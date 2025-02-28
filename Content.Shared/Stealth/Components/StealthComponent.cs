@@ -19,6 +19,11 @@ public sealed partial class StealthComponent : Component
     [DataField("enabled")]
     public bool Enabled = true;
 
+    // Sunrise-Start
+    [DataField("mirage")]
+    public bool Mirage;
+    // Sunrise-End
+
     /// <summary>
     /// The creature will continue invisible at death.
     /// </summary>
@@ -80,11 +85,13 @@ public sealed class StealthComponentState : ComponentState
     public readonly float Visibility;
     public readonly TimeSpan? LastUpdated;
     public readonly bool Enabled;
+    public readonly bool Mirage;
 
-    public StealthComponentState(float stealthLevel, TimeSpan? lastUpdated, bool enabled)
+    public StealthComponentState(float stealthLevel, TimeSpan? lastUpdated, bool enabled, bool mirage)
     {
         Visibility = stealthLevel;
         LastUpdated = lastUpdated;
         Enabled = enabled;
+        Mirage = mirage;
     }
 }

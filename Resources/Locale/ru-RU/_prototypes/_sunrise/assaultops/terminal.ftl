@@ -1,2 +1,2 @@
-ent-ComputerIcarus = icarus terminal
-    .desc = An ominous terminal with some ports and keypads, the screen is scrolling with illegible nonsense. It has a strange marking on the side, a red ring with a gold circle within.
+ent-ComputerIcarus = терминал икарус
+    .desc = Зловещий терминал с несколькими портами и клавиатурами, на экране прокручивается неразборчивый бред. На боку у него странная маркировка - красное кольцо с золотым кругом внутри.

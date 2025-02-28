@@ -9,7 +9,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.5
+        Asphyxiation: 0.2
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -101,8 +101,13 @@
       state: body-overlay-2
       visible: false
   - type: Hunger
-    baseDecayRate: 0.05
+    baseDecayRate: 0.04
   - type: Thirst
+    baseDecayRate: 0.15
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
     state: full
@@ -130,6 +135,7 @@
     minds:
     - Xeno
   - type: FootprintEmitter
+  - type: Carriable
 
 - type: entity
   parent: BaseSpeciesDummy

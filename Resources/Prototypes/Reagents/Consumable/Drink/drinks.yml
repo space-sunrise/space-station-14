@@ -12,6 +12,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0
@@ -40,6 +44,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
@@ -57,6 +65,10 @@
       effects:
       - !type:SatiateThirst
         factor: 1
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: CoconutWater
@@ -71,6 +83,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4 # Coconut water is 94% water
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: CreamOfCoconut
@@ -85,6 +101,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: CafeLatte
@@ -105,6 +125,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0
@@ -163,6 +187,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0
@@ -202,6 +230,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
@@ -219,6 +251,10 @@
     Drink:
       effects:
       - !type:SatiateThirst
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
     Poison:
       effects:
       - !type:HealthChange
@@ -246,6 +282,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: Milk
@@ -266,6 +306,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: MilkGoat
@@ -287,6 +331,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: MilkSoy
@@ -322,6 +370,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
         # TODO heal mimes
 
 - type: reagent
@@ -344,6 +396,10 @@
       effects:
       - !type:SatiateThirst
         factor: 6
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 3.0
@@ -385,6 +441,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0
@@ -404,6 +464,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
@@ -447,6 +511,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: Ice
@@ -512,6 +580,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
@@ -529,6 +601,10 @@
       effects:
         - !type:SatiateThirst
           factor: 1
+          conditions:
+          - !type:OrganType
+            type: Dwarf
+            shouldHave: false
   fizziness: 0.3
 
 - type: reagent
@@ -585,3 +661,7 @@
       effects:
       - !type:SatiateThirst
         factor: 0.6
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingHandsBase
   id: ClothingHandsGlovesAerostatic
   name: aerostatic gloves
@@ -32,6 +32,87 @@
     sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+  - type: Insulated #BALANCE PR
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileBlack
+  name: black nitrile gloves
+  description: High-quality black nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileGreen
+  name: green nitrile gloves
+  description: High-quality green nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileOrange
+  name: orange nitrile gloves
+  description: High-quality orange nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileRed
+  name: red nitrile gloves
+  description: High-quality red nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileBlue
+  name: blue nitrile gloves
+  description: High-quality blue nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
 
 - type: entity
   parent: ClothingHandsBase

@@ -1,0 +1,12 @@
+advertisement-smite-1 = SMITE! Изгони свою жажду!
+advertisement-smite-2 = Мистический взрыв лимона и лайма!
+advertisement-smite-3 = Уже более миллиона SMITE покорили жажду!
+advertisement-smite-4 = SMITE! Брось 2d8 за ВКУС.
+advertisement-smite-5 = SMITE! Время разделаться с документами!
+advertisement-smite-6 = Даже уборщик от него без ума!
+advertisement-smite-7 = SMITE! Не превратит тебя в молоток!
+advertisement-smite-8 = Лимонно-лаймовый бум!
+thankyou-smite-1 = SMITE всё исправит!
+thankyou-smite-2 = Ты ТОЧНО хотел лимон-лайм!
+thankyou-smite-3 = Офис даже не поймёт, что его сразило!
+thankyou-smite-4 = Изгони свою жажду.

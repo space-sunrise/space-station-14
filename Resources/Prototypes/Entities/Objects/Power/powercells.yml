@@ -34,7 +34,7 @@
   - type: PowerCellVisuals
   - type: Riggable
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLightLaser # Sunrise-Edit
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 50
 
 - type: entity
@@ -391,25 +391,6 @@
       visible: false
   - type: Battery
     startingCharge: 0
-
-- type: entity
-  id: PowerCageCombat
-  parent: BasePowerCage
-  name: Combat power cage
-  description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
-  components:
-  - type: Sprite
-    sprite: Objects/Power/power_cages.rsi
-    layers:
-    - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: combat
-    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
-      state: o2
-      shader: unshaded
-  - type: Battery
-    maxCharge: 7800
-    startingCharge: 7800
-  - type: EmpImmune
 
 - type: entity
   id: PowerCageSyndicate

@@ -1,0 +1,389 @@
+
+#Head
+
+- type: loadout
+  id: Sunrise-BandRed
+  equipment:
+    head: ClothingHeadBandRed
+
+- type: loadout
+  id: Sunrise-BandWhite
+  equipment:
+    head: ClothingHeadBandWhite
+
+- type: loadout
+  id: Sunrise-BandOrange
+  equipment:
+    head: ClothingHeadBandOrange
+
+- type: loadout
+  id: Sunrise-BandYellow
+  equipment:
+    head: ClothingHeadBandYellow
+
+- type: loadout
+  id: Sunrise-BandCyan
+  equipment:
+    head: ClothingHeadBandCyan
+
+- type: loadout
+  id: Sunrise-HatBlacksoft
+  equipment:
+    head: ClothingHeadHatBlacksoft
+
+- type: loadout
+  id: Sunrise-HatRedsoft
+  equipment:
+    head: ClothingHeadHatRedsoft
+
+- type: loadout
+  id: Sunrise-HatOrangesoft
+  equipment:
+    head: ClothingHeadHatOrangesoft
+
+- type: loadout
+  id: Sunrise-HatYellowsoft
+  equipment:
+    head: ClothingHeadHatYellowsoft
+
+- type: loadout
+  id: Sunrise-HatBluesoft
+  equipment:
+    head: ClothingHeadHatBluesoft
+
+- type: loadout
+  id: Sunrise-HatCyansoft
+  equipment:
+    head: ClothingHeadHatCyansoft
+
+- type: loadout
+  id: Sunrise-BandPurple
+  equipment:
+    head: ClothingHeadBandPurple
+
+- type: loadout
+  id: Sunrise-HatBrownsoft
+  equipment:
+    head: ClothingHeadHatBrownsoft
+
+- type: loadout
+  id: Sunrise-BrownFlatcap
+  equipment:
+    head: ClothingHeadHatBrownFlatcap
+
+- type: loadout
+  id: Sunrise-FedoraBrown
+  equipment:
+    head: ClothingHeadHatFedoraBrown
+
+- type: loadout
+  id: Sunrise-CowboyBrown
+  equipment:
+    head: ClothingHeadHatCowboyBrown
+
+- type: loadout
+  id: Sunrise-BandBrown
+  equipment:
+    head: ClothingHeadBandBrown
+
+- type: loadout
+  id: Sunrise-HelmetCosmonaut
+  equipment:
+    head: ClothingHeadHelmetCosmonaut
+
+- type: loadout
+  id: Sunrise-CatBrown
+  equipment:
+    head: ClothingHeadHatAnimalCatBrown
+
+- type: loadout
+  id: Sunrise-HideBear
+  equipment:
+    head: MaterialHideBear
+
+#Mask
+
+
+- type: loadout
+  id: Sunrise-MBandWhite
+  equipment:
+    mask: ClothingMaskBandWhite
+
+- type: loadout
+  id: Sunrise-MBandRed
+  equipment:
+    mask: ClothingMaskBandRed
+
+- type: loadout
+  id: Sunrise-MBandOrange
+  equipment:
+    mask: ClothingMaskBandOrange
+
+- type: loadout
+  id: Sunrise-MBandYellow
+  equipment:
+    mask: ClothingMaskBandYellow
+
+- type: loadout
+  id: Sunrise-MBandCyan
+  equipment:
+    mask: ClothingMaskBandCyan
+
+- type: loadout
+  id: Sunrise-MBandPurple
+  equipment:
+    mask: ClothingMaskBandPurple
+
+- type: loadout
+  id: Sunrise-MaskGasExplorer
+  equipment:
+    mask: ClothingMaskGasExplorer
+
+- type: loadout
+  id: Sunrise-MBandBrown
+  equipment:
+    mask: ClothingMaskBandBrown
+
+#Neck
+
+
+- type: loadout
+  id: Sunrise-ScarfBlack
+  equipment:
+    neck: ClothingNeckScarfStripedBlack
+
+- type: loadout
+  id: Sunrise-ScarfGreen
+  equipment:
+    neck: ClothingNeckScarfStripedGreen
+
+- type: loadout
+  id: Sunrise-ScarfRed
+  equipment:
+    neck: ClothingNeckScarfStripedRed
+
+- type: loadout
+  id: Sunrise-ScarfOrange
+  equipment:
+    neck: ClothingNeckScarfStripedOrange
+
+- type: loadout
+  id: Sunrise-ScarfBlue
+  equipment:
+    neck: ClothingNeckScarfStripedBlue
+
+- type: loadout
+  id: Sunrise-ScarfYellow
+  equipment:
+    neck: ClothingNeckScarfStripedYellow
+
+- type: loadout
+  id: Sunrise-ScarfCyan
+  equipment:
+    neck: ClothingNeckScarfStripedCyan
+
+- type: loadout
+  id: Sunrise-ScarfLightBlue
+  equipment:
+    neck: ClothingNeckScarfStripedLightBlue
+
+- type: loadout
+  id: Sunrise-TieRed
+  equipment:
+    neck: ClothingNeckTieRed
+
+- type: loadout
+  id: Sunrise-BedsheetCosmos
+  equipment:
+    neck: BedsheetCosmos
+
+
+- type: loadout
+  id: Sunrise-ScarfBrown
+  equipment:
+    neck: ClothingNeckScarfStripedBrown
+
+
+- type: loadout
+  id: Sunrise-ScarfPurple
+  equipment:
+    neck: ClothingNeckScarfStripedPurple
+
+#OuterClothing
+
+- type: loadout
+  id: Sunrise-WinterColorYellow
+  equipment:
+    outerClothing: ClothingOuterWinterColorYellow
+
+- type: loadout
+  id: Sunrise-WinterColorOrange
+  equipment:
+    outerClothing: ClothingOuterWinterColorOrange
+
+- type: loadout
+  id: Sunrise-WinterColorrColorRed
+  equipment:
+    outerClothing: ClothingOuterWinterColorRed
+
+- type: loadout
+  id: Sunrise-WinterColorrColorWhite
+  equipment:
+    outerClothing: ClothingOuterWinterColorWhite
+
+- type: loadout
+  id: Sunrise-ClothingOuterFlannelWhite
+  equipment:
+    outerClothing: ClothingOuterFlannelWhite
+
+- type: loadout
+  id: Sunrise-WinterColorBrown
+  equipment:
+    outerClothing: ClothingOuterWinterColorBrown
+
+- type: loadout
+  id: Sunrise-WinterColorBlue
+  equipment:
+    outerClothing: ClothingOuterWinterColorBlue
+
+- type: loadout
+  id: Sunrise-WinterColorPurple
+  equipment:
+    outerClothing: ClothingOuterWinterColorPurple
+
+- type: loadout
+  id: Sunrise-WinterColorGreen
+  equipment:
+    outerClothing: ClothingOuterWinterColorGreen
+
+- type: loadout
+  id: Sunrise-FlannelBlue
+  equipment:
+    outerClothing: ClothingOuterFlannelBlue
+
+- type: loadout
+  id: Sunrise-PonchoClassic
+  equipment:
+    outerClothing: ClothingOuterPonchoClassic
+
+- type: loadout
+  id: Sunrise-WinterColorLightBrown
+  equipment:
+    outerClothing: ClothingOuterWinterColorLightBrown
+
+- type: loadout
+  id: Sunrise-CoatBomber
+  equipment:
+    outerClothing: ClothingOuterCoatBomber
+
+- type: loadout
+  id: Sunrise-CoatTrench
+  equipment:
+    outerClothing: ClothingOuterCoatTrench
+
+- type: loadout
+  id: Sunrise-WinterColorCyan
+  equipment:
+    outerClothing: ClothingOuterWinterColorCyan
+
+- type: loadout
+  id: Sunrise-WinterColorBlack
+  equipment:
+    outerClothing: ClothingOuterWinterColorBlack
+
+#Shoes
+
+- type: loadout
+  id: Sunrise-YellowShoes
+  equipment:
+    shoes: ClothingShoesColorYellow
+
+- type: loadout
+  id: Sunrise-RedShoes
+  equipment:
+    shoes: ClothingShoesColorRed
+
+- type: loadout
+  id: Sunrise-OrangeShoes
+  equipment:
+    shoes: ClothingShoesColorOrange
+
+- type: loadout
+  id: Sunrise-ShoesPurple
+  equipment:
+    shoes: ClothingShoesColorPurple
+
+- type: loadout
+  id: Sunrise-ShoesCyan
+  equipment:
+    shoes: ClothingShoesColorCyan
+
+- type: loadout
+  id: Sunrise-ShoesGreen
+  equipment:
+    shoes: ClothingShoesColorGreen
+
+- type: loadout
+  id: Sunrise-ShoesCowboyBrown
+  equipment:
+    shoes: ClothingShoesBootsCowboyBrown
+
+- type: loadout
+  id: Sunrise-ShoesLeather
+  equipment:
+    shoes: ClothingShoesLeather
+
+# Gloves
+
+- type: loadout
+  id: Sunrise-BlackGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlack
+
+- type: loadout
+  id: Sunrise-RedGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorRed
+
+- type: loadout
+  id: Sunrise-TealGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorTeal
+
+- type: loadout
+  id: Sunrise-BlueGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlue
+
+- type: loadout
+  id: Sunrise-GreenGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorGreen
+
+- type: loadout
+  id: Sunrise-YellowBudgetGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorYellowBudget
+
+- type: loadout
+  id: Sunrise-WhiteGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorWhite
+
+- type: loadout
+  id: Sunrise-BrownGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBrown
+
+- type: loadout
+  id: Sunrise-LightBrownGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorLightBrown
+
+#Back
+
+- type: loadout
+  id: Sunrise-Clipboard
+  storage:
+    back:
+    - BoxFolderClipboard

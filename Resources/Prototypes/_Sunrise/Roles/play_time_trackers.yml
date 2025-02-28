@@ -17,6 +17,15 @@
   id: JobBlueShield
 
 - type: playTimeTracker
+  id: JobNtrGuard
+
+- type: playTimeTracker
+  id: JobNtrLeader
+
+- type: playTimeTracker
+  id: JobNtrOfficer
+
+- type: playTimeTracker
   id: JobNanoTrasenRepresentative
 
 - type: playTimeTracker
@@ -96,3 +105,18 @@
 
 - type: playTimeTracker
   id: JobAdjutant
+
+- type: playTimeTracker
+  id: JobUSSPCrew
+
+- type: playTimeTracker
+  id: JobUSSPOfficer
+
+- type: playTimeTracker
+  id: JobUSSPOfficeraAlt
+
+- type: playTimeTracker
+  id: JobUSSPSoldier
+
+- type: playTimeTracker
+  id: JobUSSPCaptain

@@ -79,7 +79,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 2.2 #Sunrise-Edit
+    fireRate: 2.25 #Sunrise-Edit
   - type: RevolverAmmoProvider
     capacity: 5
     chambers: [ True, True, True, True, True ]
@@ -94,7 +94,7 @@
 
 - type: entity
   name: Inspector
-  parent: [BaseWeaponRevolver, BaseRestrictedContraband]
+  parent: [BaseWeaponRevolver, BaseSecurityContraband]
   id: WeaponRevolverInspector
   description: A detective's best friend. Uses .45 magnum ammo.
   components:
@@ -126,6 +126,14 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
 - type: entity
+  parent: WeaponRevolverMateba
+  id: WeaponRevolverMatebaAP # For deathsquad
+  suffix: armor-piercing
+  components:
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnumAP
+
+- type: entity
   name: Python
   parent: [BaseWeaponRevolver, BaseSyndicateContraband]
   id: WeaponRevolverPython
@@ -137,7 +145,7 @@
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 2.6 #Sunrise-Edit
+    fireRate: 2.5 #Sunrise-Edit
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -169,7 +177,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
   - type: Gun
-    fireRate: 1.7 #Sunrise-Edit
+    fireRate: 1.75 #Sunrise-Edit
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container

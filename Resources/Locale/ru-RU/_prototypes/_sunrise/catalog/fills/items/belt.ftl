@@ -1,5 +1,5 @@
 ent-ClothingBeltSheathSyndicateFilled = { ent-ClothingBeltSheathSyndicate }
-    .suffix = Filled
+    .suffix = Заполненый
     .desc = { ent-ClothingBeltSheathSyndicate.desc }
-ent-BeltSheathSyndieFilledBox = обёрнутая рапира синдиката
-    .desc = Разверните.
+ent-BeltSheathSyndieFilledBox = Завернутая рапира Синдиката
+    .desc = Обёртка.

@@ -1,0 +1,10 @@
+ent-ClothingMaskBandOrange = orange bandana
+    .desc = A orange bandana to make you look cool.
+ent-ClothingMaskBandYellow = yellow bandana
+    .desc = A yellow bandana to make you look cool.
+ent-ClothingMaskBandCyan = cyan bandana
+    .desc = cyan bandana to make you look cool.
+ent-ClothingMaskBandWhite = white bandana
+    .desc = white bandana to make you look cool.
+ent-ClothingMaskBandPurple = purple bandana
+    .desc = purple bandana to make you look cool.

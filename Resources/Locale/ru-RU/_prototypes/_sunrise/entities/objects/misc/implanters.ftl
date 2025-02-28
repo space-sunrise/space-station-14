@@ -1,3 +1,3 @@
 ent-TrackingImplanterERT = { ent-BaseImplantOnlyImplanter }
-    .suffix = tracking
+    .suffix = отслеживание
     .desc = { ent-BaseImplantOnlyImplanter.desc }

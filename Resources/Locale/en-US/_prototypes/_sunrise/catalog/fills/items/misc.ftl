@@ -7,3 +7,6 @@ ent-ClothingBeltBlueShieldWebbingFilled = { ent-ClothingBeltBlueShieldWebbing }
 ent-ClothingShoesBootsBlueShieldFilled = { ent-ClothingShoesBootsBlueShield }
     .suffix = Filled
     .desc = { ent-ClothingShoesBootsBlueShield.desc }
+ent-ClothingBeltSecurityFilledERT = { ent-ClothingBeltSecurity }
+    .suffix = Filled, ERT
+    .desc = { ent-ClothingBeltSecurity.desc }

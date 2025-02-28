@@ -1,3 +1,5 @@
+ent-BaseClothingOuterSounds = { "" }
+    .desc = { "" }
 ent-ClothingOuterBase = { ent-Clothing }
     .desc = { ent-Clothing.desc }
 ent-ClothingOuterBaseLarge = { ent-ClothingOuterBase }

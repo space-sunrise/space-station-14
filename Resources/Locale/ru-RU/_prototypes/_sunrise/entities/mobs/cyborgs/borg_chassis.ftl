@@ -1,7 +1,5 @@
 ent-BorgChassisSecurity = { ent-PlayerBorgSecurityBattery }
     .desc = { ent-PlayerBorgSecurityBattery.desc }
-ent-BorgChassisSecurityCombat = { ent-PlayerBorgSecurityCombatBattery }
-    .desc = { ent-PlayerBorgSecurityCombatBattery.desc }
 ent-BorgChassisPeace = { ent-PlayerBorgPeaceBattery }
     .desc = { ent-PlayerBorgPeaceBattery.desc }
 ent-BorgChassisClown = { ent-PlayerBorgClownBattery }
@@ -14,3 +12,5 @@ ent-BorgChassisSyndicateHeavy = тяжёлый боевой киборг Син�
     .desc = Модернизированная версия боевого киборга Синдиката, оборудованный тяжёлым оружием и крепким корпусом.
 ent-BorgChassisSyndicateSpider = киборг диверсант Синдиката
     .desc = Маленький робот Синдиката, разработанный для Диверсионного Отряда, оснащён всем необходимым для крупного саботажа.
+ent-BorgChassisSecurityCombat = { ent-PlayerBorgSecurityCombatBattery }
+    .desc = { ent-PlayerBorgSecurityCombatBattery.desc }

@@ -9,6 +9,7 @@
     role: JobChef
     time: 7200 #2 hrs
   icon: "JobIconPrisonChef"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   alwaysUseSpawner: true
   canBeAntag: false

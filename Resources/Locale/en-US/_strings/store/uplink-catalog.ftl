@@ -17,6 +17,9 @@ uplink-esword-desc = A very dangerous energy sword that can reflect shots. Can b
 uplink-esword-double-name = Double Bladed Energy Sword
 uplink-esword-double-desc = A much more expensive counter part to the normal energy sword: with a much higher reflection chance, larger attack angle, higher structural damage, and faster swing. Makes a lot of noise when used or turned on.
 
+uplink-hypereutactic-blade-name = Hypereutactic Blade
+uplink-hypereutactic-blade-desc = A gigantic energy sword with power that matches its looks. Requires two hands. Slow and unwieldy, yet pretty adept at reflecting. Previously made infamous by an operative wearing a joy mask. You wouldn't want to see this coming at you down the hall!
+
 uplink-edagger-name = Energy Dagger
 uplink-edagger-desc = A small energy blade conveniently disguised in the form of a pen.
 
@@ -39,8 +42,8 @@ uplink-smoke-grenade-desc = A grenade that releases a huge cloud of smoke, perfe
 uplink-mini-bomb-name = Minibomb
 uplink-mini-bomb-desc = A low-yield, high-impact precision sabotage explosive with a 5 second long fuse. Perfect for quickly destroying a machine, dead body, or whatever else needs to go.
 
-uplink-supermatter-grenade-name = Supermatter Grenade
-uplink-supermatter-grenade-desc = Grenade that simulates delamination of a suppermatter engine, generates powerful gravity well. Explosion comparable to a Mini Bomb.
+uplink-singularity-grenade-name = Singularity Grenade
+uplink-singularity-grenade-desc = Grenade that simulates the power of a singularity, generates powerful gravity well.
 
 uplink-whitehole-grenade-name = Whitehole Grenade
 uplink-whitehole-grenade-desc = Grenade that repulses everything around for about 10 seconds. Very useful in small rooms and for chasing someone.
@@ -113,7 +116,10 @@ uplink-chest-rig-name = Chest Rig
 uplink-chest-rig-desc = Explosion-resistant tactical webbing used for holding traitor goods.
 
 uplink-emag-name = Emag
-uplink-emag-desc = The business card of the syndicate, this sequencer is able to break open airlocks and tamper with a variety of station devices. Recharges automatically.
+uplink-emag-desc = The business card of the syndicate, this sequencer is able to tamper with a variety of station devices. Recharges automatically.
+
+uplink-access-breaker-name = Access Breaker
+uplink-access-breaker-desc = A hacked access configurator and a good friend of the emag. This device is able to force airlocks open as well as erase access requirements from station equipment. Recharges automatically.
 
 uplink-agent-id-card-name = Agent ID Card
 uplink-agent-id-card-desc = A modified ID card that can copy accesses from other cards and change its name and job title at-will.
@@ -132,12 +138,6 @@ uplink-reinforcement-radio-nukeops-desc =  Radio in a nuclear operative of extre
 
 uplink-reinforcement-radio-cyborg-assault-name = Syndicate Assault Cyborg Teleporter
 uplink-reinforcement-radio-cyborg-assault-desc =  A lean, mean killing machine with access to an Energy Sword, LMG, Cryptographic Sequencer, and a Pinpointer.
-
-uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
-uplink-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
-
-uplink-mech-teleporter-assault-name = Assault Mech teleporter
-uplink-mech-teleporter-assault-desc = Contains Cybersan lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
 
 uplink-stealth-box-name = Stealth Box
 uplink-stealth-box-desc = A box outfitted with stealth technology. Sneak around unnoticed, but don't move too fast or you'll be revealed!
@@ -206,6 +206,9 @@ uplink-death-acidifier-implant-desc = Completely melts the user and their equipm
 uplink-micro-bomb-implanter-name = Micro Bomb Implanter
 uplink-micro-bomb-implanter-desc = Explode on death or manual activation with this implant. Destroys the body with all equipment.
 
+uplink-radio-implanter-name = Radio Implanter
+uplink-radio-implanter-desc = Implants a Syndicate radio, allowing covert communication without a headset.
+
 # Bundles
 uplink-observation-kit-name = Observation Kit
 uplink-observation-kit-desc = Includes surveillance camera monitor board and security hud disguised as sunglasses.
@@ -228,39 +231,6 @@ uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equ
 uplink-ammo-bundle-name = Ammo Bundle
 uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
 
-uplink-ammo-crate-ammokit-bundle-name = Syndicate super ammo bundle
-uplink-ammo-crate-ammokit-bundle-desc = Reloading! Reloading! Reloading! Contains various ammo kit except for big gun.
-
-uplink-ammo-caselesskit-name = Caseless Ammo Kit
-uplink-ammo-caselesskit-desc = Reloading! Contains 3 extended magazines and 3 base caseless magazine for the Siar-52.
-
-uplink-ammo-smgkit-name = SMG Ammo Kit
-uplink-ammo-smgkit-desc = Reloading! Contains 8 magazines for the C-20r.
-
-uplink-ammo-smgincendiarykit-name = SMG incendiary Ammo Kit
-uplink-ammo-smgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the C-20r.
-
-uplink-ammo-smguraniumkit-name = SMG uranium Ammo Kit
-uplink-ammo-smguraniumkit-desc = Reloading! Contains 8 uranium magazines for the C-20r.
-
-uplink-ammo-shotgunkit-name = Shotgun Ammo Kit
-uplink-ammo-shotgunkit-desc = Reloading! Contains 5 pellet magazines and 3 slug magazine for the Bulldog.
-
-uplink-ammo-shotgunincendiarykit-name = Shotgun incendiary Ammo Kit
-uplink-ammo-shotgunincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the Bulldog.
-
-uplink-ammo-shotgunuraniumkit-name = Shotgun uranium Ammo Kit
-uplink-ammo-shotgunuraniumkit-desc = Reloading! Contains 8 uranium magazines for the Bulldog.
-
-uplink-ammo-lmgkit-name = LMG Ammo Kit
-uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw or DL6902.
-
-uplink-ammo-lmgincendiarykit-name = LMG incendiary Ammo Kit
-uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw or DL6902.
-
-uplink-ammo-lmguraniumkit-name = LMG uranium Ammo Kit
-uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw or DL6902.
-
 uplink-sniper-bundle-name = Sniper Bundle
 uplink-sniper-bundle-desc = An inconspicuous briefcase that contains a Hristov, 10 spare bullets and a convenient disguise.
 
@@ -268,7 +238,7 @@ uplink-c20r-bundle-name = C-20r Bundle
 uplink-c20r-bundle-desc = Old faithful: The classic C-20r Submachine Gun, bundled with three magazines.
 
 uplink-buldog-bundle-name = Bulldog Bundle
-uplink-buldog-bundle-desc = Lean and mean: Contains the popular Bulldog Shotgun, a 12g beanbag drum and three 12g buckshot drums.
+uplink-buldog-bundle-desc = Lean and mean: Contains the popular Bulldog Shotgun and four 12g buckshot drums.
 
 uplink-grenade-launcher-bundle-name = China-Lake Bundle
 uplink-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 11 rounds of varying destructive capability.
@@ -371,9 +341,6 @@ uplink-hardsuit-syndieelite-desc = An elite version of the blood-red hardsuit, w
 
 uplink-clothing-outer-hardsuit-juggernaut-name = Cybersun Juggernaut Suit
 uplink-clothing-outer-hardsuit-juggernaut-desc = Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and tasers.
-
-uplink-energy-dome-name = Personal energy dome
-uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
 
 # Misc
 uplink-cyberpen-name = Cybersun Pen
@@ -494,5 +461,5 @@ uplink-combat-bakery-desc = A kit of clandestine baked weapons. Contains a bague
 uplink-business-card-name = Syndicate Business Card
 uplink-business-card-desc = A business card that you can give to someone to demonstrate your involvement in the syndicate or leave at the crime scene in order to make fun of the detective. You can buy no more than three of them.
 
-uplink-syndicate-teleporter-name = Hand syndicate teleporter
-uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+uplink-fake-mindshield-name = Fake Mindshield
+uplink-fake-mindshield-desc = A togglable implant capable of mimicking the same transmissions a real mindshield puts out when on, tricking capable Heads-up displays into thinking you have a mindshield (Nanotrasen brand implanter not provided.)

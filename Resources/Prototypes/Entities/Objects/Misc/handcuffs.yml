@@ -177,3 +177,8 @@
   - type: Sprite
     sprite: Clothing/OuterClothing/Misc/straight_jacket.rsi
     state: icon
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+  # Sunrise-End

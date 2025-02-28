@@ -30,6 +30,7 @@
     head: ClothingHeadHatOutlawHat
     jumpsuit: ClothingUniformJumpsuitOperative
     mask: CigaretteSyndicate
+    outerClothing: ClothingOuterVestWeb # Sunrise-Edit
 
 # Syndicate Operative Outfit - Barratry
 - type: startingGear

@@ -4,3 +4,40 @@
   parent: MobFelinidBase
   id: MobFelinid
 
+- type: entity
+  id: MobBaseSyndicateFelinid
+  parent: MobFelinidBase
+  suffix: syndicate base
+  abstract: true
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: NameIdentifier
+    group: Felinid
+  - type: Loadout
+    prototypes: [SyndicateOperativeClothingFelinid]
+  - type: ReplacementAccent
+    accent: cat
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinid
+  id: MobFelinidSyndicateAgent
+  suffix: syndicate agent
+  components:
+    # make the player a traitor once its taken
+  - type: AutoTraitor
+    profile: TraitorReinforcement
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinid
+  id: MobFelinidSyndicateAgentNukeops
+  suffix: NukeOps
+  components:
+  - type: NukeOperative

@@ -46,6 +46,7 @@ research-technology-advance-laser = Military-grade energy weaponry
 research-technology-explosive-mech-ammunition = Explosive Mech Ammunition
 research-technology-combat-equipment = Combat equipment
 research-technology-combat-powercells = Combat Super Powercells
+research-technology-thermal-weaponry = Thermal Weaponry
 
 research-technology-basic-robotics = Basic Robotics
 research-technology-basic-anomalous-research = Basic Anomalous Research
@@ -61,6 +62,7 @@ research-technology-advanced-anomaly-research = Advanced Anomaly Research
 research-technology-rped = Rapid Part Exchange
 research-technology-super-parts = Super Parts
 research-technology-deterrence = Deterrence Technologies
+research-technology-industrial-robotics = Industrial Robotics
 
 research-technology-janitorial-equipment = Janitorial Equipment
 research-technology-laundry-tech = Laundry Tech

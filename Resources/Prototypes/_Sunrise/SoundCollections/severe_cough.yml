@@ -1,0 +1,13 @@
+﻿- type: soundCollection
+  id: MaleSevereCough
+  files:
+  - /Audio/_Sunrise/Voice/Human/SevereCough/Male/sound1.ogg
+  - /Audio/_Sunrise/Voice/Human/SevereCough/Male/sound2.ogg
+  - /Audio/_Sunrise/Voice/Human/SevereCough/Male/sound3.ogg
+
+- type: soundCollection
+  id: FemaleSevereCough
+  files:
+  - /Audio/_Sunrise/Voice/Human/SevereCough/Female/sound1.ogg
+  - /Audio/_Sunrise/Voice/Human/SevereCough/Female/sound2.ogg
+  - /Audio/_Sunrise/Voice/Human/SevereCough/Female/sound3.ogg

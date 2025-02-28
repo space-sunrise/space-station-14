@@ -13,6 +13,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,7,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -23,7 +26,7 @@
     - SemiAuto
     minAngle: 25
     maxAngle: 46
-    fireRate: 1.6
+    fireRate: 0.75
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_shot.ogg
       params:
@@ -60,7 +63,13 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: ZoomableGun
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.25
+    sprintModifier: 0.25
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
@@ -80,6 +89,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
@@ -121,10 +133,17 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: GunRequiresWield
   - type: Wieldable
   - type: UseDelay
     delay: 1
-  - type: ZoomableGun
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
   - type: ChamberMagazineAmmoProvider
     autoEject: true
     boltClosed: null
@@ -144,12 +163,18 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,7,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    fireRate: 1.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    fireRate: 0.65
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -194,7 +219,13 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: ZoomableGun
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.25
+    sprintModifier: 0.25
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 - type: entity
   name: M1 Garand
@@ -206,6 +237,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
   - type: Gun
     fireRate: 0.8
@@ -230,6 +264,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
   - type: Gun
     fireRate: 0.8
@@ -237,3 +274,37 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+
+- type: entity
+  name: N2524 Repeater
+  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseMinorContraband ]
+  id: WeaponSniperRepeater
+  description: A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater_inhands_64x.rsi
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi
+  - type: StaticPrice
+    price: 850
+  - type: Gun
+    fireRate: 1.35
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: m3
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+    capacity: 7
+    proto: CartridgeMagnum
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5

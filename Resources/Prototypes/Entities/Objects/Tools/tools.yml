@@ -51,23 +51,6 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-    
-- type: entity
-  name: abductor's wirecutter
-  parent: Wirecutter
-  id: WirecutterAbductor
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/wirecutters.rsi
-    layers:
-      - state: abductor
-  - type: Tool
-    speedModifier: 2
-    qualities:
-      - Cutting
-    useSound:
-      path: /Audio/Items/wirecutter.ogg
-  - type: RandomSprite
 
 - type: entity
   name: screwdriver
@@ -120,7 +103,28 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-    
+
+- type: entity
+  name: abductor's screwdriver
+  parent: Screwdriver
+  id: ScrewdriverAbductor
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    layers:
+      - state: abductor
+  - type: Tool
+    speedModifier: 2
+    qualities:
+      - Screwing
+    useSound:
+      collection: Screwdriver
+  - type: RandomSprite
+  - type: Item
+    sprite: Objects/Tools/screwdriver.rsi
+    storedOffset: 2, 0
+    storedRotation: 90
+
 - type: entity
   name: abductor's screwdriver
   parent: Screwdriver
@@ -188,7 +192,10 @@
       Steel: 100
   - type: StaticPrice
     price: 22
-    
+  - type: GuideHelp
+    guides:
+    - Construction
+
 - type: entity
   name: abductor's wrench
   parent: Wrench
@@ -257,6 +264,12 @@
       Plastic: 100
   - type: StaticPrice
     price: 56
+  - type: GuideHelp
+    guides:
+    - Networking
+    - WirePanels
+    - Airlocks
+    - InspectingPower
 
 - type: entity
   name: network configurator
@@ -307,7 +320,7 @@
       price: 56
     - type: GuideHelp
       guides:
-      - NetworkConfigurator
+      - Networking
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.

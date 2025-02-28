@@ -1,9 +1,3 @@
-ent-WeaponSubMachineGunDrozdRubber = Drozd
-    .suffix = Non-Lethal
-    .desc = { ent-WeaponSubMachineGunDrozd.desc }
-ent-WeaponSubMachineGunVectorRubber = Vector
-    .desc = An excellent fully automatic Heavy SMG. Uses .45 magnum ammo.
-    .suffix = Non-Lethal
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunMP38 = MP-38
@@ -24,3 +18,5 @@ ent-WeaponAJ100 = AJ-100
     .desc = High-speed SMG, equipped with a universal connector for other types of pistol magazines.
 ent-WeaponSIAR52 = SIAR-52 SMG
     .desc = A high rate of fire weapon, equipped with integrated silencer.
+ent-UplinkSubMachineGunUzi = Uzi
+    .desc = A compact and reliable submachine gun.

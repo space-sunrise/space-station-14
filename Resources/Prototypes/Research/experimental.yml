@@ -11,7 +11,8 @@
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
-  - ExosuitFabricatorMachineCircuitboard
+  - Nanopaste # Sunrise-Add
+  - HandheldRoboAnalyzer # Sunrise-Add
 
 - type: technology
   id: BasicAnomalousResearch
@@ -124,6 +125,22 @@
   recipeUnlocks:
   - WeaponParticleDecelerator
   - HoloprojectorField
+
+- type: technology
+  id: IndustrialRobotic
+  name: research-technology-industrial-robotics
+  icon:
+    sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
+    state: fab-idle
+  discipline: Experimental
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - ExosuitFabricatorHyperConvectionMachineCircuitboard
+  technologyPrerequisites:
+  - BasicRobotics
+  - IndustrialEngineering
+
 
 # Tier 3
 

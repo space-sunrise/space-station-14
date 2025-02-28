@@ -1,4 +1,4 @@
-ent-Footstep = Footstep
-    .desc = Trace of liquid
-ent-DragMark = drag mark
+ent-Footstep = след
+    .desc = След из жидкости.
+ent-DragMark = мазня
     .desc = { ent-Footstep.desc }

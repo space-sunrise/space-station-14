@@ -484,10 +484,10 @@
   id: SolarTrackerElectronics
   result: SolarTrackerElectronics
 
-- type: latheRecipe
-  parent: BaseCircuitboardRecipe
-  id: CloningConsoleComputerCircuitboard
-  result: CloningConsoleComputerCircuitboard
+#- type: latheRecipe
+#  parent: BaseCircuitboardRecipe
+#  id: CloningConsoleComputerCircuitboard
+#  result: CloningConsoleComputerCircuitboard
 
 - type: latheRecipe
   parent: BaseCircuitboardRecipe
@@ -641,12 +641,6 @@
 
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
-  id: StationAnchorCircuitboard
-  result: StationAnchorCircuitboard
-  completetime: 8
-
-- type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
   id: ReagentGrinderIndustrialMachineCircuitboard
   result: ReagentGrinderIndustrialMachineCircuitboard
 
@@ -664,6 +658,11 @@
   parent: BaseCircuitboardRecipe
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  result: ExosuitFabricatorHyperConvectionMachineCircuitboard
 
 - type: latheRecipe #sunrise-start
   parent: BaseGoldCircuitboardRecipe

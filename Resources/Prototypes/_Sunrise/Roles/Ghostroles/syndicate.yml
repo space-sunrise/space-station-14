@@ -1,0 +1,27 @@
+- type: ghostRole
+  id: SyndicateInferiorVulpkanin
+  name: ghost-role-information-syndicate-inferior-vulpkanin-reinforcement-name
+  description: ghost-role-information-syndicate-inferior-vulpkanin-reinforcement-description
+  rules: ghost-role-information-syndicate-reinforcement-rules
+  entityPrototype: MobInferiorVulpkaninSyndicateAgent
+
+- type: ghostRole
+  id: SyndicateInferiorVulpkaninNukeops
+  name: ghost-role-information-syndicate-inferior-vulpkanin-reinforcement-name
+  description: ghost-role-information-syndicate-inferior-vulpkanin-reinforcement-description
+  rules: ghost-role-information-nukeop-reinforcement-rules
+  entityPrototype: MobInferiorVulpkaninSyndicateAgentNukeops
+
+- type: ghostRole
+  id: SyndicateFelinid
+  name: ghost-role-information-syndicate-felinid-reinforcement-name
+  description: ghost-role-information-syndicate-felinid-reinforcement-description
+  rules: ghost-role-information-syndicate-reinforcement-rules
+  entityPrototype: MobFelinidSyndicateAgent
+
+- type: ghostRole
+  id: SyndicateFelinidNukeops
+  name: ghost-role-information-syndicate-felinid-reinforcement-name
+  description: ghost-role-information-syndicate-felinid-reinforcement-description
+  rules: ghost-role-information-nukeop-reinforcement-rules
+  entityPrototype: MobFelinidSyndicateAgentNukeops

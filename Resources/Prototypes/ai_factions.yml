@@ -7,6 +7,7 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -17,8 +18,8 @@
 - type: npcFaction
   id: Mouse
   hostile:
-    - PetsNT
-    - AllHostile
+  - PetsNT
+  - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -45,6 +46,7 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -65,6 +67,7 @@
   - PetsNT
   - Zombie
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -83,6 +86,7 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -102,6 +106,7 @@
   - PetsNT
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -117,6 +122,7 @@
   - Zombie
   - SimpleHostile
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Carps
   - Changeling
@@ -137,6 +143,25 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - Wizard
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
+
+- type: npcFaction
+  id: Wizard
+  hostile:
+  - NanoTrasen
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile
   # Sunrise Edit
   - Thief
   - Carps

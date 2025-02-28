@@ -279,7 +279,14 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodBreadBaguette
     - id: DrinkWaterBottleFull
 
@@ -293,7 +300,14 @@
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodBreadBaguette
     - id: DrinkWaterBottleFull
   - type: Sprite

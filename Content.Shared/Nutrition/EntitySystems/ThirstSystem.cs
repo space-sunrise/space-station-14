@@ -14,6 +14,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Damage;
+using Content.Shared.Mobs.Systems;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -27,6 +29,8 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
@@ -152,6 +156,19 @@ public sealed class ThirstSystem : EntitySystem
         return prototype != null;
     }
 
+    private void DoContinuousThirstEffects(EntityUid uid, ThirstComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (component.CurrentThirstThreshold == ThirstThreshold.Dead &&
+            component.DehydrationDamage is { } damage &&
+            !_mobState.IsDead(uid))
+        {
+            _damageable.TryChangeDamage(uid, damage, true, false);
+        }
+    }
+
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
         if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
@@ -213,12 +230,13 @@ public sealed class ThirstSystem : EntitySystem
         var query = EntityQueryEnumerator<ThirstComponent>();
         while (query.MoveNext(out var uid, out var thirst))
         {
-            if (_timing.CurTime < thirst.NextUpdateTime)
+            if (_timing.CurTime < thirst.NextUpdateTime || _mobState.IsDead(uid)) // Sunrise-Edit
                 continue;
 
             thirst.NextUpdateTime += thirst.UpdateRate;
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            DoContinuousThirstEffects(uid, thirst);
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)

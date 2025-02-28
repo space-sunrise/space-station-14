@@ -22,9 +22,9 @@
         Blunt: 0.1
   # 4x stamina, faster recovery
   - type: Stamina
-    decay: 6
+    decay: 50
     cooldown: 1
-    critThreshold: 400
+    critThreshold: 1000
   # immune to space drugs, pax, temporary blindness
   - type: StatusEffects
     allowed:

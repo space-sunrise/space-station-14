@@ -1,2 +1,2 @@
-ent-IcarusKey = icarus authentication keycard
-    .desc = A high profile authentication keycard to Nanotrasen's Icarus secured network.
+ent-IcarusKey = ключ авторизации "Икарус"
+    .desc = Ключ предназначеный для получения доступа к орбитальному оружию НТ "Икарус"

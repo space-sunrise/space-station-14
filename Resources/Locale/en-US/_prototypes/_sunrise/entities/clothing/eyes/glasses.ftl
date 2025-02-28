@@ -10,3 +10,7 @@ ent-ClothingEyesSunGlassesHudSkill = skills sunglasses
     .desc = Sunglusses with a build-in skills HUD, showing the employment history of nearby NT crew members.
 ent-ClothingEyesGlassesNVG = sun glasses
     .desc = A pair of black sunglasses.
+ent-ClothingEyesGlassesThermalSyndie = optical thermal scanner
+    .desc = Thermals in the shape of glasses. for better exterminating NanoTrasen Scum.
+ent-ClothingEyesGlassesThermalSec = optical thermal scanner
+    .desc = Thermals in the shape of glasses.

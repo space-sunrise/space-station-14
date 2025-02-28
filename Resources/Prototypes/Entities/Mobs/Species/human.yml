@@ -11,6 +11,10 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -28,10 +32,10 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-
-  # Sunrise edit ;3
+  # Sunrise-Start
   - type: FootprintEmitter
-  # Sunrise edit end 0_0
+  - type: Carriable
+  # Sunrise-End
 
 
 - type: entity

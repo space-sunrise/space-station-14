@@ -1,0 +1,120 @@
+- type: entity
+  abstract: true
+  id: ATMBase
+  description: Big relic ATM.
+  name: ATM
+  parent: BaseComputer
+  components:
+  - type: StationAiWhitelist
+  - type: ApcPowerReceiver
+    powerLoad: 350
+  - type: ExtensionCableReceiver
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#3db83b"
+  - type: LitOnPowered
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: base
+    - map: ["computerLayerScreen"]
+      state: screen
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  - type: Icon
+    sprite: _Sunrise/Structures/Machines/atm.rsi
+    state: icon
+  - type: WiresPanel
+  - type: Wires
+    layoutId: Jukebox #Power and AIinteract
+    boardName: wires-board-name-arcade
+  - type: WiresVisuals
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Vending
+  - type: SpookySpeaker
+    messageSet: SpookySpeakerMessagesGeneric
+    speakChance: 0.2
+  - type: Anchorable
+  - type: Pullable
+  - type: StaticPrice
+    price: 300
+  - type: SpamEmitSoundRequirePower
+  - type: SpamEmitSound
+    minInterval: 30
+    maxInterval: 90
+    sound:
+      collection: ArcadeNoise
+      params:
+        volume: -8
+        maxDistance: 10
+        variation: 0.05
+
+- type: entity
+  id: ATMWallmountBase
+  parent: ATMBase
+  name: ATM Wallmount
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: false
+  - type: Rotatable
+  - type: WallMount
+    arc: 175
+  - type: Transform
+    noRot: false
+
+- type: entity
+  id: ATM
+  description: An FPI ATM cabinet without self-extermination button. strange.
+  name: FPI ATM
+  parent: ATMBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: base
+    - map: ["computerLayerScreen"]
+      state: screen
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  - type: Computer
+    board: FPIATMComputerCircuitboard
+  - type: Advertise
+    pack: BlockGameAds
+    minimumWait: 120
+    maximumWait: 240
+  - type: SpeakOnUIClosed
+    pack: BlockGameGoodbyes
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+
+- type: entity
+  parent: [ATMWallmountBase]
+  id: WallMountATM
+  name: WallMount FPI ATM
+  description: An compact Wallmount FPI ATM without self-extermination button.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/wall_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: base
+    - map: ["computerLayerScreen"]
+      state: unshaded
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false

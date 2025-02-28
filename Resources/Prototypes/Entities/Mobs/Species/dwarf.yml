@@ -8,13 +8,18 @@
   - type: Absorbable
   - type: Hunger
   - type: Thirst
+    baseDecayRate: 0.2
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon
     sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
     state: full
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.5 # Sunrise-Casual
+        Asphyxiation: 2
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -70,6 +75,7 @@
       - "footprint-left-bare-dwarf"
     rightBareFootState:
       - "footprint-right-bare-dwarf"
+  - type: Carriable
   # Sunrise edit end 0_0
 
 - type: entity

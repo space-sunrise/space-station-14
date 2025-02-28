@@ -126,7 +126,7 @@
   id: BoxHugWithoutGas
   name: box of hugs
   description: A special box for sensitive people.
-  suffix: Emergency
+  suffix: Emergency, Without gas
   components:
   - type: Sprite
     layers:
@@ -150,6 +150,25 @@
   - type: Tag
     tags:
     - BoxHug
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxMimeWithoutGas
+  suffix: Mime, Emergency, Without gas
+  components:
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodBreadBaguette
+    - id: DrinkBeerBottleFull
 
 - type: entity
   parent: BoxCardboard
@@ -197,6 +216,189 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: extendedtank
+
+# With Beer
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalWithBeer
+  name: survival box
+  suffix: With beer
+  components:
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkBeerBottleFull
+  - type: Label
+    currentLabel: без балона
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalEngineeringWithBeer
+  name: extended-capacity survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
+  suffix: Extended, With beer
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskBreath
+    - id: ExtendedEmergencyOxygenTankFilled
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkBeerBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: extendedtank
+
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalMedicalWithBeer
+  name: survival box
+  description: It's a box with basic internals inside.
+  suffix: Medical, With beer
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskBreathMedical
+    - id: EmergencyOxygenTankFilled
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkBeerBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxHugWithBeer
+  name: box of hugs
+  description: A special box for sensitive people.
+  suffix: Emergency, With beer
+  components:
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Item
+    heldPrefix: hug
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkBeerBottleFull
+  - type: Tag
+    tags:
+    - BoxHug
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxMimeWithBeer
+  suffix: Mime, Emergency, With beer
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskBreath
+    - id: EmergencyOxygenTankFilled
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodBreadBaguette
+    - id: DrinkBeerBottleFull
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalSecurityWithBeer
+  name: survival box
+  description: It's a box with basic internals inside.
+  suffix: Security, With beer
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskGasSecurity
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkBeerBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalSyndicateWithBeer
+  name: extended-capacity survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
+  suffix: Syndicate, With beer
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskGasSyndicate
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkBeerBottleFull
   - type: Sprite
     layers:
     - state: internals

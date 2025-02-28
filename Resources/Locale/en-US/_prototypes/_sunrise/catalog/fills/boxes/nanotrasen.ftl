@@ -16,3 +16,7 @@ ent-BoxClusterBangFull = ClusterBangFull box
     .desc = WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.
 ent-BoxMiniSyringe = Mini-Syringe box
     .desc = A box full of MiniSyringe.
+ent-BoxErtLeaderKit = ERT Leader kit box
+    .desc = Base Leader Kit created for centcomm squad members.
+ent-BoxErtBaseKit = ERT base kit box
+    .desc = Base Security Kit created for centcomm squad members.

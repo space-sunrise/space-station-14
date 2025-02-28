@@ -10,6 +10,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.DamageOverlay;
 
+// TODO: Рефактор попапов, с целью поддержки передачи цвета, размера и иконок в сам попап, не клепая 999 енумов
+// Возможно стоит создать прототипы попапов
+
 public sealed class DamageOverlaySystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -46,16 +49,23 @@ public sealed class DamageOverlaySystem : EntitySystem
         var damageDelta = args.DamageDelta.GetTotal();
         var coords = GenerateRandomCoordinates(Transform(ent).Coordinates, ent.Comp.Radius);
 
+        // Идея в том, что попапы должны разделяться на две большие категории: без отправителя и с ним
+        // В итоге должен быть только один попап, либо тот, либо этот
+        // Поэтому сначала проверяется, является ли попап из категории "без отправителя", и если да - отправляется он, а другой нет
+
+        // Для урона, получаемого от окружения
+        // Пример: Космос, огонь и т.д.
+
         if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && mindTarget.Session != null)
         {
-            if (IsDisabledByClient(mindTarget.Session, ent))
-                return;
+            // Специально скрыл попапы с пассивной регенерацией, они скорее мешают
+            TryCreatePopup(ent, damageDelta, coords, mindTarget.Session, false);
 
-            if (damageDelta > 0)
-            {
-                _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindTarget.Session, ent.Comp.DamagePopupType);
-            }
+            return;
         }
+
+        // Для урона, имеющего отправителя
+        // Пример: Удары игрока, моба и т.д.
 
         if (args.Origin == null)
             return;
@@ -63,17 +73,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || mindOrigin.Session == null)
             return;
 
-        if (IsDisabledByClient(mindOrigin.Session, ent))
-            return;
-
-        if (damageDelta > 0)
-        {
-            _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindOrigin.Session, ent.Comp.DamagePopupType);
-        }
-        else
-        {
-            _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, mindOrigin.Session, ent.Comp.HealPopupType);
-        }
+        TryCreatePopup(ent, damageDelta, coords, mindOrigin.Session);
     }
 
     private EntityCoordinates GenerateRandomCoordinates(EntityCoordinates center, float radius)
@@ -88,6 +88,23 @@ public sealed class DamageOverlaySystem : EntitySystem
         var newPosition = new Vector2(center.Position.X + offsetX, center.Position.Y + offsetY);
 
         return new EntityCoordinates(center.EntityId, newPosition);
+    }
+
+    private bool TryCreatePopup(Entity<DamageOverlayComponent> ent, FixedPoint2 damageDelta, EntityCoordinates coords, ICommonSession session, bool showHealPopup = true)
+    {
+        if (IsDisabledByClient(session, ent))
+            return false;
+
+        if (damageDelta > 0)
+        {
+            _popupSystem.PopupCoordinates($"-{damageDelta}", coords, session, ent.Comp.DamagePopupType);
+        }
+        else if (showHealPopup)
+        {
+            _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, session, ent.Comp.HealPopupType);
+        }
+
+        return true;
     }
 
     private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
@@ -107,7 +124,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         return false;
     }
 
-    private sealed class DamageOverlaySettings
+    private struct DamageOverlaySettings
     {
         public readonly bool StructureDamage;
 

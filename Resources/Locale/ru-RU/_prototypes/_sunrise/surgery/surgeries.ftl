@@ -1,3 +1,5 @@
+ent-SurgeryBase = { "" }
+    .desc = { "" }
 ent-SurgeryOpenIncision = Открыть порез
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryCloseIncision = Закрыть порез

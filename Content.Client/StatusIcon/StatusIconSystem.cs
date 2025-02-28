@@ -4,6 +4,7 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Whitelist;
+using Robust.Client.GameObjects;
 using Content.Shared.Administration.Managers; // Sunrise-Edit
 using Content.Shared.Administration; // Sunrise-Edit
 using Robust.Client.Graphics;
@@ -92,6 +93,9 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
             return false;
 
         if (data.HideOnStealth && TryComp<StealthComponent>(ent, out var stealth) && stealth.Enabled)
+            return false;
+
+        if (TryComp<SpriteComponent>(ent, out var sprite) && !sprite.Visible)
             return false;
 
         if (data.ShowTo != null && !_entityWhitelist.IsValid(data.ShowTo, viewer))

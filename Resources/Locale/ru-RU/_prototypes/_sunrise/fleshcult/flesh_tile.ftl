@@ -1,2 +1,2 @@
-ent-Flesh = flesh
-    .desc = A rapidly growing, dangerous plant. WHY ARE YOU STOPPING TO LOOK AT IT?!
+ent-Flesh = плоть
+    .desc = Быстрорастущее, опасное cкопление разумной плоти. ПОЧЕМУ ВЫ ОСТАНОВИЛИСЬ, ЧТОБЫ ПОСМОТРЕТЬ НА НЕГО?!

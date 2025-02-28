@@ -40,6 +40,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: FemaleHuman
@@ -84,6 +88,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: MaleReptilian
@@ -108,6 +116,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -132,6 +144,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: MaleSlime
@@ -174,6 +190,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
 
@@ -218,6 +238,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
 
@@ -228,6 +252,12 @@
       path: /Audio/Voice/Vox/shriek1.ogg
     Laugh:
       path: /Audio/Voice/Vox/vox_laugh.ogg
+    Honk:
+      collection: BikeHorn
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
   params:
     variation: 0.125
     # We need vox sounds for the other emotes
@@ -271,6 +301,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    Honk:
+      collection: BikeHorn
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -315,6 +347,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
     pitch: 0.75
@@ -358,6 +394,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
     pitch: 0.75
@@ -381,6 +421,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    Honk:
+      collection: BikeHorn
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -430,6 +472,8 @@
   sounds:
     Clap:
       collection: Claps
+    ClapSingle:
+      collection: ClapSingle
     Snap:
       collection: Snaps
       params:
@@ -442,6 +486,9 @@
   sounds:
     Clap:
       path: /Audio/Voice/Diona/diona_clap.ogg
+    # TODO: Replace this with a similar wood themed single clap
+    ClapSingle:
+      collection: ClapSingle
     Snap:
       path: /Audio/Voice/Diona/diona_snap.ogg
       params:
@@ -460,6 +507,8 @@
         variation: 0.125
     Clap:
       collection: Claps
+    ClapSingle:
+      collection: ClapSingle
     Snap:
       collection: Snaps
       params:

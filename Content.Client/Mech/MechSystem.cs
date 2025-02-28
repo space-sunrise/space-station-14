@@ -28,12 +28,12 @@ public sealed class MechSystem : SharedMechSystem
 
         UpdateAppearance(uid, component, args.Sprite);
     }
-    
+
     private void OnUpdateAppearanceEvent(EntityUid uid, MechComponent component, ref UpdateAppearanceEvent args)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
-        
+
         UpdateAppearance(uid, component, sprite);
     }
 
@@ -45,15 +45,15 @@ public sealed class MechSystem : SharedMechSystem
         var state = component.BaseState;
         var drawDepth = DrawDepth.Mobs;
 
-        if (component.BrokenState != null 
-            && _appearance.TryGetData<bool>(uid, MechVisuals.Broken, out var broken) 
+        if (component.BrokenState != null
+            && _appearance.TryGetData<bool>(uid, MechVisuals.Broken, out var broken)
             && broken)
         {
             state = component.BrokenState;
             drawDepth = DrawDepth.SmallMobs;
         }
-        else if (component.OpenState != null 
-                 && _appearance.TryGetData<bool>(uid, MechVisuals.Open, out var open) 
+        else if (component.OpenState != null
+                 && _appearance.TryGetData<bool>(uid, MechVisuals.Open, out var open)
                  && open)
         {
             state = component.OpenState;

@@ -13,6 +13,7 @@ NanoTrasenRepresentative-loadout = Снаряжение представител
 IAA-loadout = Снаряжение агента внутренних дел
 Lawyer-loadout = Снаряжение юриста
 Magistrate-loadout = Снаряжение магистрата
+OfficerNTR-loadout = Снаряжение ИСН
 # Blueshield
 Blueshield-loadout = Снаряжение офицера «синий щит»
 # Security
@@ -41,6 +42,7 @@ MedicalDoctor-loadout = Снаряжение врача
 MedicalIntern-loadout = Снаряжение интерна
 Paramedic-loadout = Снаряжение парамедика
 SeniorPhysician-loadout = Снаряжение ведущего врача
+MedicalPathologist-loadout = Снаряжение патологоанатома
 # Researching
 ResearchAssistant-loadout = Снаряжение научного ассистента
 Roboticist-loadout = Снаряжение робототехника

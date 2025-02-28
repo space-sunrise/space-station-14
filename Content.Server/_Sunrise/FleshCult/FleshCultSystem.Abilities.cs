@@ -22,6 +22,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
@@ -49,6 +50,53 @@ public sealed partial class FleshCultSystem
         SubscribeLocalEvent<FleshAbilitiesComponent, FleshCultistUnlockAbilityEvent>(OnUnlockAbility);
 
         SubscribeLocalEvent<FleshAbilitiesComponent, ComponentStartup>(OnStartup);
+    }
+
+
+
+    private int MatchSaturation(int bloodVolume, bool hasAppearance)
+    {
+        if (hasAppearance)
+        {
+            return 80;
+        }
+        return bloodVolume switch
+        {
+            >= 300 => 60,
+            >= 150 => 40,
+            >= 100 => 20,
+            _ => 10
+        };
+    }
+
+    private int MatchEvolutionPoint(int bloodVolume, bool hasAppearance)
+    {
+        if (hasAppearance)
+        {
+            return 30;
+        }
+        return bloodVolume switch
+        {
+            >= 300 => 20,
+            >= 150 => 15,
+            >= 100 => 10,
+            _ => 0
+        };
+    }
+
+    private float MatchHealPoint(int bloodVolume, bool hasAppearance)
+    {
+        if (hasAppearance)
+        {
+            return 1;
+        }
+        return bloodVolume switch
+        {
+            >= 300 => 0.8f,
+            >= 150 => 0.6f,
+            >= 100 => 0.4f,
+            _ => 0.2f
+        };
     }
 
     private void OnUnlockAbility(EntityUid uid, FleshAbilitiesComponent component,
@@ -447,25 +495,25 @@ public sealed partial class FleshCultSystem
 
         foreach (var slot in args.CheckSlots)
         {
-            if (_inventory.TryGetSlotEntity(uid, slot, out var entity) &&
-                HasComp<FleshBodyModComponent>(entity))
+            if (_inventory.TryGetSlotEntity(uid, slot, out var entity))
             {
-                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-conflict"),
-                    uid, uid, PopupType.Large);
-                return;
+                if (HasComp<FleshBodyModComponent>(entity))
+                {
+                    _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-conflict"),
+                        uid, uid, PopupType.Large);
+                    return;
+                }
+
+               if (_tagSystem.HasAnyTag(entity.Value, args.CheckTags))
+               {
+                   _inventory.TryUnequip(uid, slot, true, true);
+               }
             }
         }
 
         _inventory.TryGetSlotEntity(uid, args.TargetSlot, out var equippedItem);
         if (equippedItem != null)
         {
-            if (HasComp<FleshBodyModComponent>(equippedItem.Value))
-            {
-                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-conflict"),
-                    uid, uid, PopupType.Large);
-                return;
-            }
-
             if (TryComp(equippedItem.Value, out MetaDataComponent? metaData) && metaData.EntityPrototype != null &&
                 metaData.EntityPrototype.ID == args.Prototype)
             {

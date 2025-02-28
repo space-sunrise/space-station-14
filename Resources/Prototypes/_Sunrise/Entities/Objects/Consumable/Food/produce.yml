@@ -1,0 +1,136 @@
+- type: entity
+  name: explosive banana
+  description: explosive banana
+  parent: FoodProduceBase
+  id: ExplosiveBanana
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/explosive_banana.rsi
+    state: produce
+  - type: Produce
+    seedId: ExplosiveBanana
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 40
+        canReact: false
+      food:
+        maxVol: 5
+        canReact: false
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Potassium
+          Quantity: 1
+        - ReagentId: Water
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: coffe arabica
+  description: A coffe arabica grains, main food of scientist.
+  parent: FoodProduceBase
+  id: FoodCoffeeArabica
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/coffee_arabica.rsi
+    state: produce
+  - type: Produce
+    seedId: CoffeeArabica
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Grcoffee
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: coffe robast
+  description: A coffe robust grains, main food of shutcurity.
+  parent: FoodProduceBase
+  id: FoodCoffeeRobust
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/coffee_robust.rsi
+    state: produce
+  - type: Produce
+    seedId: CoffeeRobust
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Grcoffee
+          Quantity: 2
+        - ReagentId: Ephedrine
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: geranium
+  parent: FoodProduceBase
+  id: FoodGeranium
+  description: A flower with extracts often used in the production of medicine.
+  components:
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+  - type: FlavorProfile
+    flavors:
+    - medicine
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Lacerinol
+          Quantity: 20
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
+  - type: Produce
+    seedId: Geranium
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+    - Geranium # TODO добавить теги цветка, когда оффы реализуют ЦветоМат и флористику

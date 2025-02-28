@@ -41,7 +41,7 @@
   - type: ContainerFill
     containers:
       ItemCabinet:
-      - WeaponShotgunKammerer
+      - WeaponShotgunTrenchgun4034 #Sunrise-Edit
 
 - type: entity
   parent: [ShotGunCabinetFilled, ShotGunCabinetOpen]

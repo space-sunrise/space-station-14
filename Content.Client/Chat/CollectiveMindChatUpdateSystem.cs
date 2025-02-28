@@ -1,5 +1,5 @@
 using Content.Client.Chat.Managers;
-using Content.Shared.Sunrise.CollectiveMind;
+using Content.Shared._Sunrise.CollectiveMind;
 using Robust.Client.Player;
 
 namespace Content.Client.Chat

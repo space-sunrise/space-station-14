@@ -7,6 +7,8 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -76,7 +78,8 @@ public sealed class CryoTeleportationSystem : EntitySystem
                 || mobStateComponent.CurrentState != MobState.Alive
                 || comp.ExitTime == null
                 || _timing.CurTime - comp.ExitTime < _transferDelay
-                || HasComp<CryostorageContainedComponent>(uid))
+                || HasComp<CryostorageContainedComponent>(uid)
+                || HasComp<ZombieComponent>(uid))
                 continue;
 
             var stationGrid = _stationSystem.GetLargestGrid(stationData);
@@ -111,7 +114,8 @@ public sealed class CryoTeleportationSystem : EntitySystem
         if (!HasComp<StationCryoTeleportComponent>(ev.Station)
             || ev.JobId == null
             || ev.Player.AttachedEntity == null
-            || !_enable)
+            || !_enable
+            || HasComp<BorgChassisComponent>(ev.Player.AttachedEntity.Value))
             return;
 
         var targetComponent = EnsureComp<CryoTeleportTargetComponent>(ev.Player.AttachedEntity.Value);

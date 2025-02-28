@@ -103,6 +103,10 @@
         factor: 1
       - !type:SatiateThirst
         factor: 1
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
   footstepSound:
     collection: FootstepBlood
     params:
@@ -170,6 +174,10 @@
       effects:
       - !type:SatiateThirst
         factor: 1.5
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
     # Dragon doesn't require airloss healing, so omnizine is still best for humans.
     Medicine:
       effects:
@@ -222,6 +230,10 @@
       effects:
       - !type:SatiateThirst
         factor: 0.5
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
