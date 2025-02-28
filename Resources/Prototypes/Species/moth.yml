@@ -5,7 +5,7 @@
   prototype: MobMoth
   bodyTypes:
   - MothNormal
-  - MothSlim
+#  - MothSlim
   defaultSkinTone: "#ffda93"
   markingLimits: MobMothMarkingLimits
   dollPrototype: MobMothDummy

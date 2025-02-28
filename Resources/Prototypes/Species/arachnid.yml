@@ -5,7 +5,7 @@
   prototype: MobArachnid
   bodyTypes:
   - ArachnidNormal
-  - ArachnidSlim
+#  - ArachnidSlim
   defaultSkinTone: "#385878"
   markingLimits: MobArachnidMarkingLimits
   dollPrototype: MobArachnidDummy

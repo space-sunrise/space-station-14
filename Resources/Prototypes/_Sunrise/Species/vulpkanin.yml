@@ -5,7 +5,7 @@
   prototype: MobVulpkanin
   bodyTypes:
   - VulpkaninNormal
-  - VulpkaninSlim
+#  - VulpkaninSlim
   defaultSkinTone: "#FFBBC3"
   markingLimits: MobVulpkaninMarkingLimits
   dollPrototype: MobVulpkaninDummy

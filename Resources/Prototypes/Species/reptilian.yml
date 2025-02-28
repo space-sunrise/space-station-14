@@ -5,7 +5,7 @@
   prototype: MobReptilian
   bodyTypes:
   - ReptilianNormal
-  - ReptilianSlim
+#  - ReptilianSlim
   defaultSkinTone: "#34a223"
   markingLimits: MobReptilianMarkingLimits
   dollPrototype: MobReptilianDummy

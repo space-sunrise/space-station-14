@@ -5,7 +5,7 @@
   prototype: MobTajaran
   bodyTypes:
   - TajaranNormal
-  - TajaranSlim
+#  - TajaranSlim
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues

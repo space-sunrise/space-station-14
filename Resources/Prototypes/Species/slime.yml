@@ -5,7 +5,7 @@
   prototype: MobSlimePerson
   bodyTypes:
   - SlimeNormal
-  - SlimeSlim
+#  - SlimeSlim
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy

@@ -5,7 +5,7 @@
   prototype: MobDemon
   bodyTypes:
   - DemonNormal
-  - DemonSlim
+#  - DemonSlim
   defaultSkinTone: "#34a223"
   markingLimits: MobDemonMarkingLimits
   dollPrototype: MobDemonDummy
