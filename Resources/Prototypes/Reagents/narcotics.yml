@@ -172,6 +172,10 @@
           factor: 1
         - !type:SatiateThirst
           factor: 1
+          conditions:
+          - !type:OrganType
+            type: Dwarf
+            shouldHave: false
         - !type:HealthChange
           conditions:
           - !type:TotalDamage

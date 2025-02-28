@@ -1,10 +1,13 @@
+using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
+using Content.Shared.Movement.Pulling.Events;
+using Content.Shared.Throwing;
 using Robust.Shared.Containers;
 
 namespace Content.Shared._Sunrise.Felinid;
 
-public sealed class SharedFelinidSystem : EntitySystem
+public abstract class SharedFelinidSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -13,7 +16,29 @@ public sealed class SharedFelinidSystem : EntitySystem
         SubscribeLocalEvent<FelinidComponent, PickupAttemptEvent>(OnPickupAttempt);
         SubscribeLocalEvent<FelinidComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<FelinidComponent, ContainerIsInsertingAttemptEvent>(OnHandEquippedAttempt);
+        SubscribeLocalEvent<FelinidComponent, UseAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<FelinidComponent, ThrowAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<FelinidComponent, InteractionAttemptEvent>(OnInteractAttempt);
+        SubscribeLocalEvent<FelinidComponent, PullAttemptEvent>(OnPullAttempt);
+        SubscribeLocalEvent<FelinidComponent, AttackAttemptEvent>(OnAttempt);
+    }
 
+    private void OnInteractAttempt(Entity<FelinidComponent> ent, ref InteractionAttemptEvent args)
+    {
+        if (ent.Comp.InContainer && !HasComp<FelinidContainerComponent>(args.Target))
+            args.Cancelled = true;
+    }
+
+    private void OnAttempt(EntityUid uid, FelinidComponent component, CancellableEntityEventArgs args)
+    {
+        if (component.InContainer)
+            args.Cancel();
+    }
+
+    private void OnPullAttempt(EntityUid uid, FelinidComponent component, PullAttemptEvent args)
+    {
+        if (component.InContainer)
+            args.Cancelled = true;
     }
 
     private void OnHandEquippedAttempt(EntityUid uid, FelinidComponent component, ContainerIsInsertingAttemptEvent args)
@@ -34,9 +59,7 @@ public sealed class SharedFelinidSystem : EntitySystem
 
     private void OnPickupAttempt(EntityUid uid, FelinidComponent component, PickupAttemptEvent args)
     {
-        if (!HasComp<FelinidComponent>(args.Item))
-            return;
-
-        args.Cancel();
+        if (HasComp<FelinidComponent>(args.Item) || component.InContainer)
+            args.Cancel();
     }
 }

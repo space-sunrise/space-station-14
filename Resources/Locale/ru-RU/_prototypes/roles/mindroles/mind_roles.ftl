@@ -52,7 +52,3 @@ ent-MindRoleZombie = Роль Зомби
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRoleGhostMarker = Гост Роль
     .desc = { ent-BaseMindRole.desc }
-ent-MindRoleChangeling = Роль Генокрада
-    .desc = { ent-BaseMindRoleAntag.desc }
-ent-MindRoleVampire = Роль Вампира
-    .desc = { ent-BaseMindRoleAntag.desc }

@@ -7,7 +7,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Components;
+using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -26,7 +26,6 @@ using Content.Shared.Players.RateLimiting;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
-using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -357,9 +356,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
         }
 
-        if (playTts)
+        if (playTts && announcementSound != null)
         {
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, announceVoice);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, _audio.ResolveSound(announcementSound), announceVoice);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
@@ -396,9 +395,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playDefault && announcementSound == null)
             announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
-        if (playTts)
+        if (playTts && announcementSound != null)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
         }
         // Sunrise-edit
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
@@ -445,9 +444,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playDefault && announcementSound == null)
             announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
-        if (playTts)
+        if (playTts && announcementSound != null)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
         }
         // Sunrise-edit
 
@@ -1061,8 +1060,8 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 {
     public readonly EntityUid Source;
     public readonly string Message;
-    public readonly string OriginalMessage;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
+    public readonly string OriginalMessage; // Sunrise-TTS
     public readonly bool IsRadio; // Sunrise-TTS
 
     /// <summary>
@@ -1075,9 +1074,9 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     {
         Source = source;
         Message = message;
-        OriginalMessage = originalMessage; // Sunrise-TTS
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
+        OriginalMessage = originalMessage; // Sunrise-TTS
         IsRadio = channel != null; // Sunrise-TTS
     }
 }
@@ -1122,14 +1121,14 @@ public enum ChatTransmitRange : byte
 public sealed class AnnouncementSpokeEvent(
     Filter source,
     string message,
-    SoundSpecifier? announcementSound,
+    ResolvedSoundSpecifier? announcementSound,
     string? announceVoice)
     : EntityEventArgs
 {
     public readonly Filter Source = source;
     public readonly string Message = message;
     public readonly string? AnnounceVoice = announceVoice;
-    public readonly SoundSpecifier? AnnouncementSound = announcementSound;
+    public readonly ResolvedSoundSpecifier? AnnouncementSound = announcementSound;
 }
 
 public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs

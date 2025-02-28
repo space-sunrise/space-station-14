@@ -1,5 +1,6 @@
 using Content.Shared.Atmos.Components;
 using Content.Shared.DrawDepth;
+using Content.Shared.GameTicking;
 using Content.Shared.SubFloor;
 using Robust.Client.GameObjects;
 
@@ -45,6 +46,13 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
         base.Initialize();
 
         SubscribeLocalEvent<SubFloorHideComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+        SubscribeLocalEvent<SubFloorHideComponent, RoundRestartCleanupEvent>(RoundRestartCleanup);
+    }
+
+    private void RoundRestartCleanup(EntityUid uid, SubFloorHideComponent component, RoundRestartCleanupEvent args)
+    {
+        _showAll = false;
+        _showVentPipe = false;
     }
 
     private void OnAppearanceChanged(EntityUid uid, SubFloorHideComponent component, ref AppearanceChangeEvent args)

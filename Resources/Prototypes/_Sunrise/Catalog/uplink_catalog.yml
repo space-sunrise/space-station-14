@@ -1313,6 +1313,19 @@
       components:
       - SurplusBundle
 
+# Implats
+
+- type: listing
+  id: UplinkSmokeScreenImplanter  #PR Wiz #31782
+  name: uplink-smoke-screen-implanter-name
+  description: uplink-smoke-screen-implanter-desc
+  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
+  productEntity: SmokeScreenImplanter
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkImplants
+
 # Jobs
 
 - type: listing
@@ -1339,9 +1352,9 @@
   productEntity: UplinkSubMachineGunUzi
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 8
   cost:
-    Telecrystal: 12
+    Telecrystal: 16
   categories:
   - UplinkWeaponry
   conditions:

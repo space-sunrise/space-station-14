@@ -6,41 +6,41 @@
         <customControls:HSeparator/>
         <BoxContainer Orientation="Horizontal" SeparationOverride="2" HorizontalExpand="True">
             <customControls:VSeparator/>
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center">
                 <Label Text="{Loc 'user-profile-sponsor-title'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
-                <GridContainer Columns="2"
-                               HorizontalAlignment="Center"
-                               VerticalExpand="True"
-                               VerticalAlignment="Top"
-                               Margin="5 5 5 5">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Center">
                     <Label Text="{Loc 'user-profile-level'}" StyleClasses="LabelKeyText"/>
-                    <Label Name="SponsorTierName" />
-                </GridContainer>
-                <GridContainer Columns="2"
-                               HorizontalAlignment="Center"
-                               VerticalExpand="True"
-                               VerticalAlignment="Top">
-                    <Button Name="InfoSponsorButton" Text="{Loc 'user-profile-sponsor-info-button'}" />
-                    <Button Name="BuySponsorButton" Text="{Loc 'user-profile-sponsor-buy-button'}" />
-                </GridContainer>
+                    <Label Name="SponsorTierName" Margin="5 0 0 0"/>
+                </BoxContainer>
+                <Button Name="InfoSponsorButton" Margin="0 2 0 0" Text="{Loc 'user-profile-sponsor-info-button'}" HorizontalAlignment="Center" />
+                <Button Name="BuySponsorButton" Margin="0 2 0 0" Text="{Loc 'user-profile-sponsor-buy-button'}" HorizontalAlignment="Center" />
             </BoxContainer>
             <customControls:VSeparator/>
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" SizeFlagsStretchRatio="3" HorizontalExpand="True" Margin="5 5 5 5">
                 <Label Text="{Loc 'user-profile-social-links'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
-                <GridContainer Columns="2"
-                               HorizontalAlignment="Center"
+                <GridContainer Columns="3"
+                               Rows="3"
+                               HorizontalAlignment="Stretch"
                                VerticalExpand="True"
-                               VerticalAlignment="Top"
-                               Margin="5 5 5 5">
-                    <Label Text="{Loc 'user-profile-service-discord'}" StyleClasses="LabelKeyText"/>
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Name="LinkedDiscordName" />
-                        <Button Name="LinkDiscordButton" Text="{Loc 'user-profile-service-link'}"/>
+                               HorizontalExpand="True"
+                               VerticalAlignment="Top">
+                    <Label Text="{Loc 'user-profile-service-discord'}" HorizontalExpand="True" HorizontalAlignment="Left" StyleClasses="LabelKeyText"/>
+                    <Label Text="{Loc 'user-profile-service-telegram'}" HorizontalExpand="True" HorizontalAlignment="Left" StyleClasses="LabelKeyText"/>
+                    <Label Text="{Loc 'user-profile-service-github'}" HorizontalExpand="True" HorizontalAlignment="Left" StyleClasses="LabelKeyText"/>
+                    <Label Name="LinkedDiscordName" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                    <Label Name="LinkedTelegramName" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                    <Label Name="LinkedGitHubName" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Right">
+                        <Button Name="LinkDiscordButton" Text="{Loc 'user-profile-service-link'}" HorizontalExpand="True" HorizontalAlignment="Stretch" />
+                        <Button Name="ResetDiscordButton" Text="{Loc 'user-profile-service-reset'}" HorizontalExpand="True" HorizontalAlignment="Stretch" Visible="False"/>
                     </BoxContainer>
-                    <Label Text="{Loc 'user-profile-service-telegram'}" StyleClasses="LabelKeyText"/>
-                    <BoxContainer Orientation="Horizontal" >
-                        <Label Name="LinkedTelegramName" />
-                        <Button Name="LinkTelegramButton" Text="{Loc 'user-profile-service-link'}"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Right">
+                        <Button Name="LinkTelegramButton" Text="{Loc 'user-profile-service-link'}" HorizontalExpand="True" HorizontalAlignment="Stretch" />
+                        <Button Name="ResetTelegramButton" Text="{Loc 'user-profile-service-reset'}" HorizontalExpand="True" HorizontalAlignment="Stretch" Visible="False"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Right">
+                        <Button Name="LinkGitHubButton" Text="{Loc 'user-profile-service-link'}" HorizontalExpand="True" HorizontalAlignment="Stretch" />
+                        <Button Name="ResetGitHubButton" Text="{Loc 'user-profile-service-reset'}" HorizontalExpand="True" HorizontalAlignment="Stretch" Visible="False"/>
                     </BoxContainer>
                 </GridContainer>
             </BoxContainer>

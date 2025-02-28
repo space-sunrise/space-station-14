@@ -281,7 +281,7 @@ public sealed class HungerSystem : EntitySystem
         var query = EntityQueryEnumerator<HungerComponent>();
         while (query.MoveNext(out var uid, out var hunger))
         {
-            if (_timing.CurTime < hunger.NextThresholdUpdateTime)
+            if (_timing.CurTime < hunger.NextThresholdUpdateTime || _mobState.IsDead(uid)) // Sunrise-Edit
                 continue;
             hunger.NextThresholdUpdateTime = _timing.CurTime + hunger.ThresholdUpdateRate;
 

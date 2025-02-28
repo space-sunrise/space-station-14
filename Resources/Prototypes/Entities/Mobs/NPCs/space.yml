@@ -167,6 +167,10 @@
       collection: FootstepBounce
   - type: ReplacementAccent
     accent: kangaroo
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
 
 - type: entity
   id: MobKangarooSpaceSalvage
@@ -280,6 +284,7 @@
   parent: MobSpaceBasic
   description: Long fangs and a glowing hood, and the alluring look begs to come closer.
   components:
+    - type: VentCrawler #Sunrise-Edit
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Animals/spacecobra.rsi

@@ -48,7 +48,7 @@
     sprite: _Sunrise/Clothing/Back/Satchels/hos.rsi
 
 - type: entity
-  parent: ClothingBackpackNTRG
+  parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelNTRG
   name: NTR's satchel
   description: Stylish black leather satchel.

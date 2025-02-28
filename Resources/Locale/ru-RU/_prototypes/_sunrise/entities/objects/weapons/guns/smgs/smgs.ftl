@@ -1,6 +1,3 @@
-ent-WeaponSubMachineGunDrozdRubber = Дрозд
-    .desc = Превосходный, тяжёлый пистолет-пулемёт. Использует патроны калибра .35 авто.
-    .suffix = ПП, Не летальный
 ent-WeaponSubMachineGunP90 = P-90
     .desc = P-90 - это SMG стандартного выпуска EarthGov. Он известен своими компактными размерами и простотой использования в полевых условиях. Использует патрон калибра .35 авто.
 ent-WeaponSubMachineGunMP38 = MP-38
@@ -21,3 +18,5 @@ ent-WeaponAJ100 = AJ-100
     .desc = Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
 ent-WeaponSIAR52 = пистолет-пулемёт SIAR-52
     .desc = Высокоскорострельный ПП, оборудован интегрированым глушителем.
+ent-UplinkSubMachineGunUzi = Uzi
+    .desc = A compact and reliable submachine gun.

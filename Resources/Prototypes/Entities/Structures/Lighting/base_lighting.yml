@@ -455,8 +455,8 @@
   components:
   - type: PointLight
     enabled: false
-    radius: 7 # Sunrise-Edit
-    energy: 10 # Sunrise-Edit
+    radius: 9 # Sunrise-Edit
+    energy: 4 # Sunrise-Edit
     offset: "0, 0.4"
     color: "#7CFC00"
     mask: /Textures/Effects/LightMasks/double_cone.png

@@ -42,7 +42,7 @@
     sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
   - type: Magboots
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.75
+    walkModifier: 0.75
+    sprintModifier: 0.7
   - type: ClothingSlowOnDamageModifier
     modifier: 0.75

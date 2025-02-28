@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURNLeader
   categories: [ HideSpawnMenu ]
   name: cburn commander helmet
@@ -43,7 +43,7 @@
 # Blueshield Hardsuit
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
   name: blueshield's hardsuit helmet
@@ -87,7 +87,7 @@
     sprite: _Sunrise/Clothing/Head/Hardsuits/secoff.rsi
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitPilot
   categories: [ HideSpawnMenu ]
   name: security pilot's hardsuit helmet
@@ -177,7 +177,7 @@
   - type: FlashImmunity
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringCompact
   name: engineering hardsuit helmet
   description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
@@ -197,7 +197,7 @@
 #Для ивентов
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitUegParatrooper
   name: space marine spacesuit helmet
   description: The helmet from a paratrooper spacesuit.
@@ -223,7 +223,7 @@
   - type: ShowJobIcons
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitUegCap
   name: space suit helmet of a space marines captain.
   description: The helmet from a paratrooper captain spacesuit.
@@ -247,3 +247,54 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: ShowJobIcons
+
+#Pirate Yarrr!!
+
+#Pirate Captain Hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitPirateCapSun
+  name: pirate captain's hardsuit helmet
+  suffix: Pirate, Sunrise
+  description: A special hardsuit helmet, made for the captain of a pirate ship.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: FlashImmunity
+  - type: EyeProtection
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitPirateSun
+  name: pirate hardsuit helmet
+  suffix: Pirate, Sunrise
+  description: A special hardsuit helmet, made for Scooner.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/piratebasichelm.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/piratebasichelm.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: FlashImmunity
+  - type: EyeProtection

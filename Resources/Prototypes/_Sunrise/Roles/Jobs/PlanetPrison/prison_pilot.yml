@@ -9,6 +9,7 @@
       time: 18000 #5 hrs
   startingGear: PrisonPilotGear
   icon: "JobIconPrisonPilot"
+  overrideConsoleVisibility: false
   alwaysUseSpawner: true
   supervisors: job-supervisors-head-of-prison
   canBeAntag: false
@@ -42,4 +43,4 @@
     id: PrisonPilotPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltPrisonGuardianFilled
-    pocket1: WeaponPistolG22NonLethal
+    pocket1: WeaponPistolG22

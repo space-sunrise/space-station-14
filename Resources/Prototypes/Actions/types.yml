@@ -150,6 +150,26 @@
       state: icon
     event: !type:ActivateImplantEvent
 
+# Sunrise-Start  #PR Wiz #31782
+- type: entity
+  id: ActionActivateSmokeGrenadeImplant
+  name: Activate Smoke Grenade
+  description: Create a small cloud of smoke around you.
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    charges: 3
+    renewCharges: true
+    renewChargeDelay: 120
+    useDelay: 5
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+    event: !type:ActivateImplantEvent
+# Sunrise-End
+
 - type: entity
   id: ActionActivateScramImplant
   name: SCRAM!
@@ -175,6 +195,8 @@
   name: Scramble DNA
   description:  Randomly changes your name and appearance.
   components:
+  - type: ConfirmableAction
+    popup: dna-scrambler-action-popup
   - type: InstantAction
     charges: 1
     # Sunrise-Start
@@ -367,3 +389,16 @@
     itemIconStyle: NoItem
     useDelay: 1
     event: !type:FakeMindShieldToggleEvent
+
+- type: entity
+  id: ActionToggleParamedicSiren
+  name: Toggle Paramedic Siren
+  description: Toggles the paramedic siren on and off.
+  components:
+  - type: InstantAction 
+    icon:
+      sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+      state: icon-siren
+    useDelay: 1
+    itemIconStyle: BigAction
+    event: !type:ToggleActionEvent

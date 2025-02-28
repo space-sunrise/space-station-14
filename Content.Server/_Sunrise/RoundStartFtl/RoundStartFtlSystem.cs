@@ -2,7 +2,7 @@
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 
@@ -29,23 +29,19 @@ public sealed class RoundStartFtlSystem : EntitySystem
 
         var ftlMap = _shuttles.EnsureFTLMap();
         var xformMap = Transform(ftlMap);
-        if (!_loader.TryLoad(xformMap.MapID,
-                ftlTargetComponent.GridPath.Value.ToString(),
-                out var rootUids,
-                new MapLoadOptions()
-                {
-                    Offset = new Vector2(500, 500),
-                    DoMapInit = true,
-                }))
+        if (!_loader.TryLoadGrid(xformMap.MapID,
+                ftlTargetComponent.GridPath.Value,
+                out var rootUid,
+                offset: new Vector2(500, 500)))
             return;
 
-        if (!TryComp<ShuttleComponent>(rootUids[0], out var shuttleComp))
+        if (!TryComp<ShuttleComponent>(rootUid.Value.Owner, out var shuttleComp))
             return;
         var xform = Transform(targetUid);
-        if (!TryComp(rootUids[0], out PhysicsComponent? shuttlePhysics))
+        if (!TryComp(rootUid.Value.Owner, out PhysicsComponent? shuttlePhysics))
             return;
         var targetCoordinates = new EntityCoordinates(xform.MapUid!.Value, _transform.GetWorldPosition(xform)).Offset(Angle.Zero.RotateVec(-shuttlePhysics.LocalCenter));
-        _shuttles.FTLToCoordinates(rootUids[0], shuttleComp, targetCoordinates, Angle.Zero, 0, 0);
-        Log.Debug($"onmapinit, ftlsuccessful: {rootUids[0]}, {targetCoordinates}");
+        _shuttles.FTLToCoordinates(rootUid.Value.Owner, shuttleComp, targetCoordinates, Angle.Zero, 0, 0);
+        Log.Debug($"onmapinit, ftlsuccessful: {rootUid.Value.Owner}, {targetCoordinates}");
     }
 }

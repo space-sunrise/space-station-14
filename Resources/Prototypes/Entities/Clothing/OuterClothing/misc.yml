@@ -168,7 +168,7 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
+  parent: [ ClothingOuterBase, AllowSuitStorageClothingGasTanks, BaseMagicalContraband, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterWizardBase
   components:
   - type: WizardClothes

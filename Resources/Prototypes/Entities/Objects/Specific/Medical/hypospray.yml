@@ -50,7 +50,6 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
-    pierceArmor: true
   - type: UseDelay
     delay: 0.5
 
@@ -91,7 +90,6 @@
           maxVol: 3000
     - type: Hypospray
       onlyAffectsMobs: false
-      pierceArmor: true
     - type: UseDelay
       delay: 0.0
 
@@ -120,7 +118,6 @@
     transferAmount: 15
     onlyAffectsMobs: false
     injectOnly: true
-    pierceArmor: true
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
@@ -548,3 +545,33 @@
     - id: Hypopen
     sound:
       path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: weh auto-injector
+  parent: ChemicalMedipen
+  id: WehMedipen
+  description: A rapid dose of Weh. Contains juice that makes you Weh.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 60
+        reagents:
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 60
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 1
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: Tag
+    tags: []

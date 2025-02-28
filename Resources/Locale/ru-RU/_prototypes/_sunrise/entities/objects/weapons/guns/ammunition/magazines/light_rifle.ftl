@@ -1,5 +1,3 @@
-ent-MagazineLightRifleRubber = магазин (.30 винтовочные резиновые)
-    .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineAK = универсальный магазин автомата калашникова
     .desc = Использует патроны калибра .30 винтовочные.
 ent-MagazineMP38 = магазин ПП MP-38

@@ -223,7 +223,7 @@
   name: pulse revolver
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunPulseRevolver
-  description: This is an expensive modern Pulse gun. This gun has several unique firemodes. 
+  description: This is an expensive modern Pulse gun. This gun has several unique firemodes.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
@@ -239,6 +239,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
   - type: Gun
+    fireRate: 2.75
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
@@ -248,13 +249,13 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 120
+    autoRechargeRate: 145
     autoRechargePause: true
-    autoRechargePauseTime: 6
+    autoRechargePauseTime: 4
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
-      fireCost: 60
+      fireCost: 90
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan
@@ -278,7 +279,7 @@
     tags:
     - Sidearm
   - type: StaticPrice
-    price: 17500
+    price: 12500
 
 - type: entity
   name: miniature energy gun
@@ -450,8 +451,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 1000
+    startingCharge: 1000
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -561,7 +562,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-#  - type: Clothing
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -590,6 +592,9 @@
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -857,6 +862,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -897,6 +905,9 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -1039,3 +1050,52 @@
     maxCharge: 7500
     startingCharge: 7500
   - type: EmpImmune
+
+- type: entity
+  name: temperature gun
+  parent: [BaseWeaponBattery, BaseGunWieldable]
+  id: WeaponTemperatureGun
+  description: An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/temperaturegun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      visible: false
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/temperaturegun.rsi
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BoltTempgunCold
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BoltTempgunCold
+      fireCost: 125
+    - proto: BoltTempgunHot
+      fireCost: 100
+    - proto: BoltTempgunVeryCold
+      fireCost: 250
+    - proto: BoltTempgunVeryHot
+      fireCost: 200
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: StaticPrice
+    price: 100

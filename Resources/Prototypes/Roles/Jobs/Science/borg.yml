@@ -10,6 +10,7 @@
     time: 54000  # 15 hrs
   canBeAntag: false
   icon: JobIconStationAi
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-rd
   jobEntity: StationAiBrain
   jobPreviewEntity: PlayerStationAiPreview
@@ -26,6 +27,7 @@
   canBeAntag: false
   displayWeight: -10  # Sunrise
   icon: JobIconBorg
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgBattery
   applyTraits: false

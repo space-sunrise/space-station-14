@@ -15,8 +15,14 @@
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
-  - type: Thirst
   - type: Hunger
+    baseDecayRate: 0.015
+  - type: Thirst
+    baseDecayRate: 0.05
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -180,9 +186,9 @@
     baseWalkSpeed: 2.0
     baseSprintSpeed: 4.0
   - type: Item
-    size: Large
+    size: Huge
     shape:
-    - 0,0,1,3
+    - 0,0,3,3
   - type: Felinid
     damageBonus:
       types:

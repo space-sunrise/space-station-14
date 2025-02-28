@@ -9,6 +9,7 @@
   setPreference: true
   startingGear: CentCommOperatorGear
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   radioBold: true
   canBeAntag: false

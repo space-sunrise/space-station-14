@@ -75,6 +75,7 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
+  - WeaponMechCombatMG
   - PaintDurandExecutor
   - PaintDurandShire
   technologyPrerequisites:
@@ -136,3 +137,15 @@
   - WeaponEnergyGunPistol
   technologyPrerequisites:
   - ExperimentalBatteryAmmo
+
+- type: technology
+  id: ThermalWeaponry
+  name: research-technology-thermal-weaponry
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/temperaturegun.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - WeaponTemperatureGun

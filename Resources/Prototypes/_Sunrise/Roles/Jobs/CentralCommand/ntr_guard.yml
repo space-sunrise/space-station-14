@@ -64,12 +64,12 @@
     pocket1: WeaponEnergyGunPulseRevolver
     pocket2: HandheldCriminalRecordsMonitorUnpowered
   inhand:
-  - WeaponDisablerSMG
+  - WeaponEnergyGunTactical
   storage:
     back:
     - ClothingOuterHardsuitNTRG
-    - RegenerativeMesh
     - CrowbarRed
+    - MedkitCombatFilled
 
 # Security
 - type: job
@@ -110,7 +110,6 @@
     - Brig
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
     - BlueShield
   special:
@@ -139,6 +138,6 @@
   storage:
     back:
     - ClothingOuterHardsuitNTRG
-    - RegenerativeMesh
     - CrowbarRed
     - MagazineMagnum
+    - MedkitCombatFilled

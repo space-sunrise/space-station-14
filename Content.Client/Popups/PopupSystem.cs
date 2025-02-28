@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Sunrise.ChatIcons;
 using Content.Shared.Containers;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
@@ -76,10 +77,16 @@ namespace Content.Client.Popups
                 ("count", existingLabel.Repeats));
         }
 
-        private void PopupMessage(string? message, PopupType type, EntityCoordinates coordinates, EntityUid? entity, bool recordReplay)
+        // Sunrise edit - добавил EntityUid? origin = null, сделал bool recordReplay = true по умолчанию true
+        private void PopupMessage(string? message, PopupType type, EntityCoordinates coordinates, EntityUid? entity, EntityUid? origin = null, bool recordReplay = true)
         {
             if (message == null)
                 return;
+
+            // Sunrise edit start
+            if (origin.HasValue)
+                RaiseLocalEvent(origin.Value, new EntityPopupedEvent (message, type));
+            // Sunrise edit end
 
             if (recordReplay && _replayRecording.IsRecording)
             {
@@ -108,19 +115,25 @@ namespace Content.Client.Popups
         #region Abstract Method Implementations
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, PopupType type = PopupType.Small)
         {
-            PopupMessage(message, type, coordinates, null, true);
+            PopupMessage(message, type, coordinates, null);
         }
 
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, ICommonSession recipient, PopupType type = PopupType.Small)
         {
             if (_playerManager.LocalSession == recipient)
-                PopupMessage(message, type, coordinates, null, true);
+                PopupMessage(message, type, coordinates, null);
         }
 
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, EntityUid recipient, PopupType type = PopupType.Small)
         {
             if (_playerManager.LocalEntity == recipient)
-                PopupMessage(message, type, coordinates, null, true);
+                PopupMessage(message, type, coordinates, null);
+        }
+
+        public override void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
+        {
+            if (recipient != null && _timing.IsFirstTimePredicted)
+                PopupCoordinates(message, coordinates, recipient.Value, type);
         }
 
         private void PopupCursorInternal(string? message, PopupType type, bool recordReplay)
@@ -222,7 +235,7 @@ namespace Content.Client.Popups
         public override void PopupEntity(string? message, EntityUid uid, PopupType type = PopupType.Small)
         {
             if (TryComp(uid, out TransformComponent? transform))
-                PopupMessage(message, type, transform.Coordinates, uid, true);
+                PopupMessage(message, type, transform.Coordinates, uid);
         }
 
         public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
@@ -248,15 +261,19 @@ namespace Content.Client.Popups
 
         private void OnPopupCoordinatesEvent(PopupCoordinatesEvent ev)
         {
-            PopupMessage(ev.Message, ev.Type, GetCoordinates(ev.Coordinates), null, false);
+            // Sunrise edit start - добавил GetEntity(ev.Origin)
+            PopupMessage(ev.Message, ev.Type, GetCoordinates(ev.Coordinates), null, GetEntity(ev.Origin), false);
+            // Sunrise edit end
         }
 
         private void OnPopupEntityEvent(PopupEntityEvent ev)
         {
             var entity = GetEntity(ev.Uid);
 
+            // Sunrise edit start - добавил GetEntity(ev.Origin)
             if (TryComp(entity, out TransformComponent? transform))
-                PopupMessage(ev.Message, ev.Type, transform.Coordinates, entity, false);
+                PopupMessage(ev.Message, ev.Type, transform.Coordinates, entity, GetEntity(ev.Origin), false);
+            // Sunrise edit end
         }
 
         private void OnRoundRestart(RoundRestartCleanupEvent ev)

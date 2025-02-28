@@ -34,7 +34,7 @@
   randomizeName: false
   components:
     - type: GhostRole
-      name: ghost-role-information-ntr-lead-name  
+      name: ghost-role-information-ntr-lead-name
       description: ghost-role-information-ntr-guard-description
       rules: ghost-role-information-nonantagonist-rules
       raffle:
@@ -97,3 +97,5 @@
     - type: Loadout
       prototypes: [ NtrGuardGear ]
       roleLoadout: [ RoleSurvivalExtended ]
+
+### NTR Officer
