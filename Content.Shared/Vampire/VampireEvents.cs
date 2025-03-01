@@ -15,6 +15,7 @@ public sealed partial class VampireBloodStealEvent : VampireSelfPowerEvent { }
 public sealed partial class VampireUnholyStrengthEvent : VampireSelfPowerEvent { }
 public sealed partial class VampireSupernaturalStrengthEvent : VampireSelfPowerEvent { }
 public sealed partial class VampireCloakOfDarknessEvent : VampireSelfPowerEvent { }
+public sealed partial class VampireThermalVisionEvent : VampireSelfPowerEvent { }
 
 public sealed partial class VampireGlareEvent : VampireTargetedPowerEvent { }
 public sealed partial class VampireHypnotiseEvent : VampireTargetedPowerEvent { }
