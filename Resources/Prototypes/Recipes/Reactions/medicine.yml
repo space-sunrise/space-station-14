@@ -561,14 +561,16 @@
   id: Opporozidone
   minTemp: 400 #Maybe if a method of reducing reagent temp exists one day, this could be -50
   reactants:
-    Cognizine: 
+    Mannitol:
+      amount: 1
+    Necrosol: 
       amount: 1
     Plasma:
       amount: 2
     Doxarubixadone:
       amount: 1
   products:
-    Opporozidone: 3
+    Opporozidone: 2
 
 - type: reaction
   id: Necrosol
