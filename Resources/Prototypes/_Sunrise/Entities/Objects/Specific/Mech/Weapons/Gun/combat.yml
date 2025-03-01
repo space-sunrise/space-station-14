@@ -64,7 +64,7 @@
     angleDecay: 9
     fireRate: 10
     shotsPerBurst: 8
-    burstCooldown: 0.5
+    burstCooldown: 0.8
     selectedMode: Burst
     availableModes:
       - Burst
