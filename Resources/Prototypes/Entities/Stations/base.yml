@@ -97,6 +97,8 @@
           - /Maps/_Sunrise/Ruins/oblomok_44.yml
           - /Maps/_Sunrise/Ruins/oblomok_library.yml
           - /Maps/_Sunrise/Ruins/oblomok_pectine_syndicate_shuttle.yml
+          - /Maps/_Sunrise/Ruins/Ruins_of_Free_Cargonia.yml
+          - /Maps/_Sunrise/Ruins/Suspicious_Asteroid.yml
         abandoned: !type:GridSpawnGroup
           minimumDistance: 500
           maximumDistance: 550
