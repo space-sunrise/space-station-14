@@ -134,3 +134,5 @@ ent-LightTree05 = { ent-LightTree01 }
     .desc = { ent-LightTree01.desc }
 ent-LightTree06 = { ent-LightTree01 }
     .desc = { ent-LightTree01.desc }
+ent-floraSakuraTree = дерево сакуры
+    .desc = Дерево сакуры
