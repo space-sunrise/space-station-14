@@ -416,6 +416,11 @@ namespace Content.Server.GameTicking
 
             RoundLengthMetric.Set(0);
 
+
+
+            // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
+            _map.InitializeMap(DefaultMap);
+
             var startingEvent = new RoundStartingEvent(RoundId);
             RaiseLocalEvent(startingEvent);
 
@@ -426,9 +431,6 @@ namespace Content.Server.GameTicking
                 _startingRound = false;
                 return;
             }
-
-            // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
-            _map.InitializeMap(DefaultMap);
 
             SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
 
