@@ -219,5 +219,3 @@ ent-ClothingUniformJumpsuitCasualGreen = casual green jumpsuit
     .desc = A loose worn green shirt with a grey pants, perfect for someone looking to relax.
 ent-ClothingUniformJumpsuitFamilyGuy = семейный наряд
     .desc = Напоминает о времени, когда вы сделали что-то смешное.
-ent-ClothingUniformJumpsuitArmouredBlack = бронированный адвокатский костюм
-    .desc = И, казалось бы, простой костюм.. пока не отскочет первая пуля…
