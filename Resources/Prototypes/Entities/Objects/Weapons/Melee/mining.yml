@@ -204,6 +204,12 @@
     leech:
       groups:
         Brute: -21
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher_glaive.rsi # Sunrise-start
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage  # Sunrise-glaive-crusher, Sunrise-end
   - type: MeleeWeapon
     damage: #sunrise-start
       types:
