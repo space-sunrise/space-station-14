@@ -53,10 +53,10 @@ vampire-power-bloodsteal = Blood Steal
 vampire-power-bloodsteal-description = Wrench the blood from all bodies nearby - living or dead. Activation Cost: 20 Essence. Cooldown: 60 Seconds
 
 vampire-power-batform = Bat Form
-vampire-power-batform-description = Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds
+vampire-power-batform-description = Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds. Time of action: 180 seconds.
 
 vampire-power-mouseform = Mouse Form
-vampire-power-mouseform-description = Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds
+vampire-power-mouseform-description = Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds. Time of action: 180 seconds.
 
 vampire-power-cloakofdarkness = Cloak of Darkness
 vampire-power-cloakofdarkness-description = Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds
