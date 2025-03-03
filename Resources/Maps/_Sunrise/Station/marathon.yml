@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Map
-  engineVersion: 247.1.0
-  forkId: sunrise_station
-  forkVersion: ecd7a5c9cb722957f2d1cbd84909ab4fe91cbfa1
-  time: 02/21/2025 16:19:21
-  entityCount: 22186
-maps:
-- 1
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   0: Space
   3: FloorArcadeRed
