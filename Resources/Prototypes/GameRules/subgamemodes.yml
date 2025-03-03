@@ -24,8 +24,8 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-      # components:
-      # - type: Pacified
+      # components: SUNRISE-edit
+      # - type: Pacified SUNRISE-edit
       mindRoles:
       - MindRoleThief
       briefing:
