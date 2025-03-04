@@ -78,6 +78,7 @@
       ActionDiseaseInfectChance: -1
       ActionDiseaseShield: -1
       ActionDiseaseLethal: -1
+  - type: Muted
 
 - type: sickIcon
   id: SmartDiseaseIcon
