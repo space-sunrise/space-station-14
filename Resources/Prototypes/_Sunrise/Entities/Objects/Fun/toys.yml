@@ -951,3 +951,13 @@
         volume: 5
   - type: UseDelay
     delay: 5
+
+    - type: entity
+    id: PlushieMechanix
+    parent: [ EmitVulpGrowl, BasePlushie ]
+    name: Mechanix Faur Horseman
+    description: A gloomy plush toy that you may have seen somewhere, its arms are sewn into the pockets of a sweater, and its eyes are covered with something like chemical glasses. It smells of something pleasant, reminiscent of lemon oil. When you look at the toy, it seems to you that you have missed something...
+    components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Fun/toys.rsi
+      state: plushie-mechanix

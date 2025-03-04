@@ -150,3 +150,5 @@ ent-PlushieMihailOsipov = Plushie Mihail Osipov
     .desc = He is able to dissolve into the world of illusions and shower passersby with some metaphorical "pies". He probably knows the secret to making really witty and funny jokes.
 ent-PlushieMadokaMori = Plushie Madoka Mori
     .desc = A plush toy of the blue detective... It seems quite familiar, as if I've seen him in many sectors... The toy itself is made of a nice, silky material, and he has a gold-plated ring glued to his right hand. And yes, he's back again to the envy of everyone.
+ent-PlushieMechanix = Plushie Mechanix Faur Horseman
+    .desc = A gloomy plush toy that you may have seen somewhere, its arms are sewn into the pockets of a sweater, and its eyes are covered with something like chemical glasses. It smells of something pleasant, reminiscent of lemon oil. When you look at the toy, it seems to you that you have missed something...
