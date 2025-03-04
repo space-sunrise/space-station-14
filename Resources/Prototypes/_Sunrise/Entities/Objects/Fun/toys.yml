@@ -963,9 +963,9 @@
       state: plushie-mechanix
   
     - type: entity
-    id: PlushieSalvageSpecialist
+    id: PlushieExperiencedSalvageSpecialist
     parent: BasePlushie
-    name: Plush Seasoned Salvage Specialist
+    name: Plushie Experienced Salvage Specialist 
     description: A toy of a Salvage Specialist in a spacesuit that was reinforced with shields and goliath flesh. The tag has the signature snkrs. The toy looks pretty scary...
     components:
     - type: Sprite

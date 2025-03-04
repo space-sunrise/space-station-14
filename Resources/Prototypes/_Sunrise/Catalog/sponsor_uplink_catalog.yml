@@ -1547,8 +1547,8 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieSalvageSpecialist
-  productEntity: PlushieSalvageSpecialist
+  id: UplinkSunrisePlushieExperiencedSalvageSpecialist
+  productEntity: PlushieExperiencedSalvageSpecialist
   cost:
     Suntick: 4
   categories:
