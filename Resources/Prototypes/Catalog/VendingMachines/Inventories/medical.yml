@@ -10,7 +10,7 @@
     BoxBottle: 3
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    HyposprayMedical: 1 # Sunrise-Edit
+    HyposprayMedical: 3 # Sunrise-Edit
   contrabandInventory:
     FoodApple: 1
   emaggedInventory:
