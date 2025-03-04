@@ -238,7 +238,7 @@ public sealed class SickSystem : SharedSickSystem
         switch (args.Emote.ID)
         {
             case "Headache":
-                _popupSystem.PopupEntity("Вы чувствуете лёгкую головную боль.", uid, uid, PopupType.Small);
+                _popupSystem.PopupEntity(Loc.GetString("disease-symptom-headache"), uid, uid, PopupType.Small);
                 break;
             case "Cough":
                 if (_robustRandom.Prob(0.9f))
