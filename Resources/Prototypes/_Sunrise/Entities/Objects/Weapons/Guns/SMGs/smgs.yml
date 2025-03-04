@@ -249,8 +249,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     minAngle: 2
-    maxAngle: 50
-    fireRate: 6.5
+    maxAngle: 55
+    fireRate: 7
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
   - type: Clothing
@@ -585,8 +585,8 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
-    minAngle: 15
-    maxAngle: 16
+    minAngle: 2
+    maxAngle: 65
     fireRate: 9
     soundGunshot:
       collection: famas # Sunrise-Edit
@@ -606,6 +606,7 @@
         whitelist:
           tags:
           - MagazinePistolSubMachineGun
+          - MagazinePistolHighCapacity
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
