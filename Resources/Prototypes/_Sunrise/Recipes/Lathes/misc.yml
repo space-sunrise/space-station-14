@@ -15,3 +15,11 @@
     Steel: 6000
     Glass: 3000
     Plastic: 600
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagSec
+  result: ClothingShoesBootsMagSec
+  completetime: 30
+  materials:
+    Steel: 1000
+    Plastic: 500

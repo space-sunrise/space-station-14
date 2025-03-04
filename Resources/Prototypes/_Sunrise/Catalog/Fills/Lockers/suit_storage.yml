@@ -9,6 +9,7 @@
     - id: ClothingOuterHardsuitBlueshield
     - id: ClothingMaskGas
     - id: ClothingShoesBootsMagSec
+      prob: 0.5
   - type: AccessReader
     access: [["BlueShield"]]
 
@@ -24,6 +25,7 @@
         - id: ClothingOuterHardsuitSecuritySunrise
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagSec
+          prob: 0.3
   - type: AccessReader
     access: [["Security"]]
 
