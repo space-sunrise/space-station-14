@@ -65427,7 +65427,7 @@ entities:
     - type: Transform
       pos: 25.535248,43.587944
       parent: 2
-- proto: ClothingEyesGlassesWelding #ClothingEyesGlassesThermal
+- proto: ClothingEyesGlassesThermal
   entities:
   - uid: 10111
     components:
@@ -124741,7 +124741,7 @@ entities:
     - type: Transform
       pos: -25.5,32.5
       parent: 2
-- proto: LockerBlueshieldFilledUplink
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 17851
     components:

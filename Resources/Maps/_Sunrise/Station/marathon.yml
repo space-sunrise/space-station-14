@@ -51452,7 +51452,7 @@ entities:
     - type: Transform
       pos: 47.465996,44.649086
       parent: 30
-- proto: ClothingEyesGlassesWelding #ClothingEyesGlassesThermal
+- proto: ClothingEyesGlassesThermal
   entities:
   - uid: 9441
     components:

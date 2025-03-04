@@ -62335,7 +62335,7 @@ entities:
     - type: Transform
       pos: 22.521395,-12.417425
       parent: 2
-- proto: ClothingEyesGlassesGarGiga #ClothingEyesGlassesThermal
+- proto: ClothingEyesGlassesThermal
   entities:
   - uid: 9894
     components:
