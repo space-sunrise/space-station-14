@@ -1514,8 +1514,41 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieMechanix
+  productEntity: PlushieMechanix
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieMihailOsipov
   productEntity: PlushieMihailOsipov
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+    
+- type: listing
+  id: UplinkSunrisePlushieMadokaMori
+  productEntity: PlushieMadokaMori
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieExperiencedSalvageSpecialist
+  productEntity: PlushieExperiencedSalvageSpecialist
   cost:
     Suntick: 4
   categories:
