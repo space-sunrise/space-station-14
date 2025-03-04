@@ -155,6 +155,7 @@
         - id: ClothingOuterHardsuitSecurity
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagSec  # Sunrise-edit
+          prob: 0.3
   - type: AccessReader
     access: [["Security"]]
 
@@ -222,6 +223,7 @@
         - id: ClothingOuterHardsuitWarden
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagSec  # Sunrise-edit
+          prob: 0.5
   - type: AccessReader
     access: [["Armory"]]
 
