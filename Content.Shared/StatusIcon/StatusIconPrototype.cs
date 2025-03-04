@@ -224,7 +224,7 @@ public sealed partial class SsdIconPrototype : StatusIconPrototype, IInheritingP
 public sealed partial class SickIconPrototype : StatusIconPrototype, IInheritingPrototype
 {
     /// <inheritdoc />
-    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<SsdIconPrototype>))]
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<SickIconPrototype>))]
     public string[]? Parents { get; }
 
     /// <inheritdoc />
