@@ -1547,6 +1547,17 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieSalvageSpecialist
+  productEntity: PlushieSalvageSpecialist
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieRichardDetective
   productEntity: PlushieRichardDetective
   cost:
