@@ -120,3 +120,46 @@
       Min: 1
       Max: 20
       PotencyDivisor: 5
+
+
+- type: seed
+  id: plaststeelcap
+  name: plaststeelcap
+  noun: seeds-noun-spores
+  displayName: пластошляпник
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/plaststeelcap.rsi
+  packetPrototype: PlastSteelcapSeeds
+  productPrototypes:
+  - PlastSteelLog
+  lifespan: 80
+  maturation: 15
+  ligneous: true
+  production: 3
+  yield: 3
+  potency: 1
+  growthStages: 3
+  waterConsumption: 0.60
+  nutrientConsumption: 0.80
+  lightTolerance: 6
+  idealHeat: 288
+
+- type: seed
+  id: glasscap
+  name: glasscap
+  noun: seeds-noun-spores
+  displayName: стеклошляпник
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/glasscap.rsi
+  packetPrototype: GlasscapSeeds
+  productPrototypes:
+  - GlassLog
+  lifespan: 80
+  maturation: 15
+  ligneous: true
+  production: 3
+  yield: 5
+  potency: 1
+  growthStages: 3
+  waterConsumption: 0.60
+  nutrientConsumption: 0.50
+  lightTolerance: 6
+  idealHeat: 288

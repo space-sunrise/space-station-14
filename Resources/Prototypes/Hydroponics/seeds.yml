@@ -481,6 +481,7 @@
     - Log
   mutationPrototypes:
     - steelcap
+    - glasscap #Sunrise-add
   lifespan: 80
   maturation: 15
   ligneous: true
@@ -502,6 +503,8 @@
   packetPrototype: SteelcapSeeds
   productPrototypes:
     - SteelLog
+  mutationPrototypes: #Sunrise-add
+    - plaststeelcap #Sunrise-add
   lifespan: 80
   maturation: 15
   ligneous: true
