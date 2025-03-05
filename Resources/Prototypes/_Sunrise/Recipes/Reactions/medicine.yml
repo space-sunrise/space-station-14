@@ -59,6 +59,8 @@
     UnstableMutagen:
       amount: 1
     Cognizine:
+      amount: 0.5
+    Phalanximine:
       amount: 1
   products:
-    Darvinium: 3
+    Darvinium: 4
