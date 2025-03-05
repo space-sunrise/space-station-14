@@ -58,5 +58,7 @@
       amount: 1
     UnstableMutagen:
       amount: 1
+    Cognizine:
+      amount: 1
   products:
-    Darvinium: 2
+    Darvinium: 3
