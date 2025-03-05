@@ -83,13 +83,13 @@
 - type: sickIcon
   id: SmartDiseaseIcon
   icon:
-    sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/Interface
+    sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
     state: sick
   priority: 2
 
 - type: sickIcon
   id: NormalDiseaseIcon
   icon:
-    sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/Interface
+    sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
     state: normal
   priority: 2
