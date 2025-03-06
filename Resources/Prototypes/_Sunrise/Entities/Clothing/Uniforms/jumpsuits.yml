@@ -324,3 +324,17 @@
   name: Contortionist's Jumpsuit
   components:
   - type: VentCrawClothing
+
+- type: entity
+  parent: [ ClothingUniformBase, ClothingOuterArmorBase, BaseSyndicateContraband ]
+  id: ClothingUniformJumpsuitArmouredBlack
+  name: armored black lawyer suit
+  description: A seemingly simple business suit.. until the first bullet bounced..
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi
+  - type: Tag
+    tags:
+      - Vest
