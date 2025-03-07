@@ -284,3 +284,31 @@
     state: std_mod
   - type: SiliconLawProvider
     laws: ERTLawset
+
+- type: entity
+  id: SyndieIntellicard
+  name: Syndieintellicard
+  description: A storage device for AIs but from evil guys!
+  parent:
+  - BaseItem
+  - AiHolder
+  suffix: Empty
+  components:
+  - type: ContainerComp
+    proto: AiHeldIntellicard
+    container: station_ai_mind_slot
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/ai_card.rsi
+    layers:
+    - state: base
+    - state: full
+      map: ["unshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StationAiVisualState.Key:
+        unshaded:
+          Empty: { state: empty }
+          Occupied: { state: full }
+  - type: Intellicard
