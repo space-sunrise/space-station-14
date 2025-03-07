@@ -132,7 +132,7 @@
     enabled: false
   - type: InnateItem
     worldTargetActions:
-    - Emag
+    - AccessBreaker
     - HandheldHealthAnalyzerUnpowered
   - type: Biocode
     factions:
