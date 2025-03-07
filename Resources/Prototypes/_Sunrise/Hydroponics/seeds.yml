@@ -163,3 +163,32 @@
   nutrientConsumption: 0.50
   lightTolerance: 6
   idealHeat: 288
+
+- type: seed
+  id: CannabisVita
+  name: Cannabis Vita
+  noun: seeds-noun-seeds
+  displayName: конопля жизни
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/cannabis_vita.rsi
+  color: white
+  packetPrototype: CannabisVitaSeeds
+  productPrototypes:
+  - CannabisVitaLeaves
+  harvestRepeat: Repeat
+  lifespan: 40
+  maturation: 8
+  production: 12
+  yield: 2
+  potency: 20
+  growthStages: 3
+  idealLight: 11
+  idealHeat: 298
+  chemicals:
+    Omnizine:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 15
+    THC:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10

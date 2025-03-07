@@ -948,6 +948,7 @@
     - LeavesCannabis
   mutationPrototypes:
     - rainbowCannabis
+    - CannabisVita #Sunrise-add 
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 8
