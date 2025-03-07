@@ -210,3 +210,24 @@
       !type:VampireCloakOfDarknessEvent
       definitionName: CloakOfDarkness
     useDelay: 10
+
+- type: entity
+  id: ActionVampireThermalVision
+  name: Thermal Vision
+  description: "Toggle thermal vision, allowing you to see living beings through walls. This ability is unlocked once you reach 500 blood essence."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    priority: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: thermalvision
+    iconOn:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: thermalvision
+    event: 
+      !type:VampireThermalVisionEvent
+      definitionName: ThermalVision
+    useDelay: 5
