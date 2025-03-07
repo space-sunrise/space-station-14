@@ -20,4 +20,27 @@
     fireCost: 30
   - type: Appearance
   - type: AmmoCounter
-# TODO: Plasma Cutter
+
+- type: entity
+  id: WeaponMechIndustrialPlasmaCutter
+  name: exosuit plasma cutter
+  description: Fires spread of plasma bolts at a short range.
+  suffix: Mech Weapon, Gun, Industrial, Plasma Cutter
+  parent: [ BaseMechWeaponRange, IndustrialMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_plasmacutter
+  - type: Gun
+    fireRate: 0.35
+    projectileSpeed: 22
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletPlasmaSpread
+    fireCost: 80
+  - type: Appearance
+  - type: AmmoCounter
