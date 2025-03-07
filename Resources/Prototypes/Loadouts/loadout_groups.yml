@@ -1233,6 +1233,7 @@
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerBeret
+  - ParamedicBeret # Sunrise-Edit
   - CMOMedicalHeadMirror
 # Sunrise-start
   - BeretSeniorPhysician
@@ -1471,6 +1472,7 @@
   - PurpleSurgeryCap
 # Sunrise-end
   - ParamedicHead
+  - ParamedicBeret # Sunrise-Edit
 # Sunrise-start
   - Sunrise-HatRedsoft
   - Sunrise-HatOrangesoft
