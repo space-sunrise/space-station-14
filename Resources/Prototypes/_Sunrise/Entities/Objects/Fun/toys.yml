@@ -983,12 +983,12 @@
         collection: PlushieVulpkaninGrowls
 
   
-  - type: entity
-    id: PlushieExperiencedSalvageSpecialist
-    parent: BasePlushie
-    name: Plushie Experienced Salvage Specialist 
-    description: A toy of a Salvage Specialist in a spacesuit that was reinforced with shields and goliath flesh. The tag has the signature snkrs. The toy looks pretty scary...
-    components:
-    - type: Sprite
-      sprite: _Sunrise/Objects/Fun/toys.rsi
-      state: salvage-specialist
+- type: entity
+  id: PlushieExperiencedSalvageSpecialist
+  parent: BasePlushie
+  name: Plushie Experienced Salvage Specialist 
+  description: A toy of a Salvage Specialist in a spacesuit that was reinforced with shields and goliath flesh. The tag has the signature snkrs. The toy looks pretty scary...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: salvage-specialist
