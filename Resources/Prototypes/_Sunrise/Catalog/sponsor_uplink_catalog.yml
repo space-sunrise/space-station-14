@@ -1514,8 +1514,8 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieMechanix
-  productEntity: PlushieMechanix
+  id: UplinkSunrisePlushieMechanixFaurHorseman
+  productEntity: PlushieMechanixFaurHorseman
   cost:
     Suntick: 4
   categories:
