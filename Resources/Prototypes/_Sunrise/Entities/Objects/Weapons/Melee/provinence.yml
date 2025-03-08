@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseSyndicateContraband ]
   id: WeaponMeleeMoltenAmputator
   name: molten amputator
   components:
@@ -119,7 +119,7 @@
     radius: 2
 
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseSyndicateContraband ]
   id: WeaponMeleeMoltenCollider
   name: Molten collider
   components:
