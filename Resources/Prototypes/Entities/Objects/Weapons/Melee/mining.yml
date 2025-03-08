@@ -165,6 +165,10 @@
   name: crusher dagger
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
   components:
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher_glaive.rsi # Sunrise-start
+    quickEquip: false
+    slots: # Sunrise-glaive-crusher, Sunrise-end
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher_dagger.rsi
     state: icon
