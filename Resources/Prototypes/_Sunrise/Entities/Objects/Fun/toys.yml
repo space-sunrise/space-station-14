@@ -952,35 +952,35 @@
   - type: UseDelay
     delay: 5
 
-  - type: entity
-    id: PlushieMechanixFaurHorseman
-    parent: BasePlushie
-    name: Mechanix Faur Horseman
-    description: A gloomy plush toy that you may have seen somewhere, its arms are sewn into the pockets of a sweater, and its eyes are covered with something like chemical glasses. It smells of something pleasant, reminiscent of lemon oil. When you look at the toy, it seems to you that you have missed something...
-    components:
-    - type: Sprite
-      sprite: _Sunrise/Objects/Fun/toys.rsi
-      state: plushie-mechanix
-    - type: MeleeWeapon
-      soundHit:
-        collection: PlushieVulpkaninGrowls
-        params:
-          volume: 100
-    - type: EmitSoundOnTrigger
-      sound:
-        collection: PlushieVulpkaninGrowls
-    - type: EmitSoundOnCollide
-      sound:
-        collection: PlushieVulpkaninGrowls
-    - type: EmitSoundOnUse
-      sound:
-        collection: PlushieVulpkaninGrowls
-    - type: EmitSoundOnLand
-      sound:
-        collection: PlushieVulpkaninGrowls
-    - type: EmitSoundOnActivate
-      sound:
-        collection: PlushieVulpkaninGrowls
+- type: entity
+  id: PlushieMechanixFaurHorseman
+  parent: BasePlushie
+  name: Mechanix Faur Horseman
+  description: A gloomy plush toy that you may have seen somewhere, its arms are sewn into the pockets of a sweater, and its eyes are covered with something like chemical glasses. It smells of something pleasant, reminiscent of lemon oil. When you look at the toy, it seems to you that you have missed something...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-mechanix
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieVulpkaninGrowls
 
   
 - type: entity
