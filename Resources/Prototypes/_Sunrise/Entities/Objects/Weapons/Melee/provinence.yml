@@ -100,12 +100,17 @@
         - HighImpassable
         - LowImpassable
         hard: False
+  - type: FlyBySound
+    sound:
+      path: /Audio/_Sunrise/Items/FlareSound.ogg
   - type: Projectile
     deleteOnCollide: true
     damage:
       types:
-        Piercing: 10
-        Heat: 10
+        Piercing: 7
+        Heat: 7
+    soundHit:
+      path: /Audio/_Sunrise/Items/FlareSound.ogg
   - type: ApplyAngularVelocity
     impulse: -50
   - type: PointLight
@@ -115,8 +120,8 @@
 
 - type: entity
   parent: BaseItem
-  id: WeaponMeleeHolyCollider
-  name: holy collider
+  id: WeaponMeleeMoltenCollider
+  name: Molten collider
   components:
   - type: Sprite
     scale: 0.75, 0.75
@@ -126,23 +131,27 @@
     - state: unshaded
       shader: unshaded
   - type: MeleeWeapon
-    animation: WeaponArcMeleeHolyCollider
-    wideAnimation: WeaponArcMeleeHolyCollider
+    attackRate: 2
+    autoAttack: true
+    animation: WeaponArcMeleeMoltenCollider
+    wideAnimation: WeaponArcMeleeMoltenCollider
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 10
-        Slash: 10
-        Structural: 5
+        Heat: 5
+        Slash: 5
+        Structural: 7.5
     soundHit:
-      collection: MetalThud
+      path: /Audio/_Sunrise/Items/FlareSound.ogg
+    soundSwing:
+      path: /Audio/_Sunrise/Items/FlareSound.ogg
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 5
-        Slash: 10
-        Structural: 10
+        Heat: 2.5
+        Slash: 5
+        Structural: 7.5
   - type: Item
     size: Large
   - type: Clothing
@@ -151,11 +160,15 @@
     - back
   - type: UseDelay
     delay: 1
+  - type: PointLight
+    color: "#FF0000FF"
+    energy: 0.5
+    radius: 3
   - type: StaticPrice
     price: 50000
 
 - type: entity
-  id: WeaponArcMeleeHolyCollider
+  id: WeaponArcMeleeMoltenCollider
   parent: WeaponArcStatic
   categories: [ HideSpawnMenu ]
   components:
@@ -164,9 +177,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Melee/holy_collider.rsi
     layers:
-    - state: icon
-    - state: unshaded
+    - state: attack
       shader: unshaded
   - type: TimedDespawn
     lifetime: 0.399
-

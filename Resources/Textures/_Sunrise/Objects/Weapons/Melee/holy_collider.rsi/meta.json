@@ -12,6 +12,9 @@
         },
         {
             "name": "unshaded"
+        },
+        {
+            "name": "attack"
         }
     ]
 }
