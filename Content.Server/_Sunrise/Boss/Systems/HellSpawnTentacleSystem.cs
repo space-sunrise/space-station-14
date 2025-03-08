@@ -30,8 +30,21 @@ public sealed class HellSpawnTentacleSystem : SharedHellSpawnTentacleSystem
         if (args.Handled || args.Performer != uid)
             return;
 
-        var coords = args.Target;
-        SpawnTentacle(coords, args.Left ? GrabLeftEntityId : GrabRightEntityId);
+        var coords = args.Coords;
+
+        if (coords != null)
+        {
+            SpawnTentacle(coords.Value, args.Left ? GrabLeftEntityId : GrabRightEntityId);
+            return;
+        }
+
+        if (args.Entity != null)
+        {
+            var entCoords = Transform(args.Entity.Value).Coordinates;
+            SpawnTentacle(entCoords, args.Left ? GrabLeftEntityId : GrabRightEntityId);
+            return;
+        }
+
     }
 
     /// <summary>

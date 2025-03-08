@@ -2,7 +2,7 @@
 
 namespace Content.Shared._Sunrise.Boss.Events;
 
-public sealed partial class HellSpawnTentacleActionEvent : WorldTargetActionEvent
+public sealed partial class HellSpawnTentacleActionEvent : EntityWorldTargetActionEvent
 {
     /// <summary>
     /// Правой или левой рукой был сделан граб
