@@ -1,0 +1,55 @@
+﻿- type: entity
+  id: ActionHellSpawnRush
+  name: RUSH
+  components:
+  - type: WorldTargetAction
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    itemIconStyle: NoItem
+    priority: -1
+    range: 16
+    useDelay: 3
+    event: !type:HellSpawnRushActionEvent
+
+- type: entity
+  id: ActionHellSpawnInvincibility
+  name: Invincibility
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    checkConsciousness: false
+    priority: -1
+    useDelay: 30
+    icon: Interface/Emotes/shield.png
+    event: !type:HellSpawnInvincibilityActionEvent
+
+- type: entity
+  id: ActionHellSpawnTentacleRight
+  name: Tentacle
+  components:
+  - type: WorldTargetAction
+    icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
+    itemIconStyle: NoItem
+    priority: -1
+    range: 5
+    useDelay: 3
+    checkCanInteract: false
+    checkCanAccess: false
+    event: !type:HellSpawnTentacleActionEvent
+      left: false
+
+- type: entity
+  id: ActionHellSpawnTentacleLeft
+  name: Tentacle
+  components:
+  - type: WorldTargetAction
+    icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
+    itemIconStyle: NoItem
+    priority: -1
+    range: 7
+    useDelay: 6
+    checkCanInteract: false
+    checkCanAccess: false
+    event: !type:HellSpawnTentacleActionEvent
+      left: true
