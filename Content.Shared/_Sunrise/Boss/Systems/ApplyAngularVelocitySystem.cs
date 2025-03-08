@@ -1,4 +1,5 @@
 ﻿using Content.Shared._Sunrise.Boss.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._Sunrise.Boss.Systems;
@@ -18,6 +19,8 @@ public sealed class ApplyAngularVelocitySystem : EntitySystem
 
     private void OnInit(EntityUid uid, ApplyAngularVelocityComponent component, ComponentInit args)
     {
-        _physics.ApplyAngularImpulse(uid, component.Impulse);
+        if (!TryComp<PhysicsComponent>(uid, out var physics))
+            return;
+        _physics.SetAngularVelocity(uid, component.Impulse, body: physics);
     }
 }
