@@ -112,7 +112,7 @@
     soundHit:
       path: /Audio/_Sunrise/Items/FlareSound.ogg
   - type: ApplyAngularVelocity
-    impulse: -50
+    impulse: -37.68
   - type: PointLight
     color: "#FF0000FF"
     energy: 0.5
