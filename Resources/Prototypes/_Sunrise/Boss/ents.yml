@@ -76,10 +76,19 @@
   - type: Butcherable
     spawned:
       - id: ClothingUniformJumpsuitGalaxyBlue
+        prob: 0.5
       - id: ClothingUniformJumpsuitGalaxyRed
+        prob: 0.5
       - id: ResearchDiskDebug
+        prob: 0.5
       - id: ClothingNeckGoldmedal
+        prob: 0.5
       - id: HyperEutacticBlade
+        prob: 0.5
+      - id: WeaponMeleeMoltenCollider
+        prob: 0.5
+      - id: WeaponMeleeMoltenAmputator
+        prob: 0.5
   - type: Destructible
     thresholds:
     - trigger:
