@@ -983,7 +983,7 @@
         collection: PlushieVulpkaninGrowls
 
   
-    - type: entity
+  - type: entity
     id: PlushieExperiencedSalvageSpecialist
     parent: BasePlushie
     name: Plushie Experienced Salvage Specialist 
