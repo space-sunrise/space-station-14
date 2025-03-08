@@ -1,0 +1,168 @@
+﻿- type: entity
+  parent: BaseItem
+  id: WeaponMeleeMoltenAmputator
+  name: molten amputator
+  components:
+  - type: Sprite
+    scale: 0.72, 0.72
+    sprite: _Sunrise/Objects/Weapons/Melee/provinence_scythe.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: MeleeWeapon
+    animation: WeaponArcMoltenAmputator
+    wideAnimation: WeaponArcMoltenAmputator
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 20
+        Structural: 5
+    soundHit:
+      collection: MetalThud
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto # this shit is needed
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+      sound: -10
+  - type: BasicEntityAmmoProvider
+    proto: WeaponProjectileMoltenAmputator
+    capacity: 10
+    count: 10
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.025
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 15
+        Structural: 10
+  - type: Item
+    size: Large
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: UseDelay
+    delay: 1
+  - type: StaticPrice
+    price: 50000
+
+- type: entity
+  id: WeaponArcMoltenAmputator
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WeaponArcVisuals
+    fadeOut: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/provinence_scythe.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.399
+
+- type: entity
+  id: WeaponProjectileMoltenAmputator
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/provinence_scythe.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0.5
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Piercing: 5
+        Caustic: 1
+  - type: ApplyAngularVelocity
+    impulse: 10
+
+- type: entity
+  parent: BaseItem
+  id: WeaponMeleeHolyCollider
+  name: holy collider
+  components:
+  - type: Sprite
+    scale: 0.72, 0.72
+    sprite: _Sunrise/Objects/Weapons/Melee/holy_collider.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: MeleeWeapon
+    animation: WeaponArcMeleeHolyCollider
+    wideAnimation: WeaponArcMeleeHolyCollider
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+        Slash: 10
+        Structural: 5
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Slash: 10
+        Structural: 10
+  - type: Item
+    size: Large
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: UseDelay
+    delay: 1
+  - type: StaticPrice
+    price: 50000
+
+- type: entity
+  id: WeaponArcMeleeHolyCollider
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WeaponArcVisuals
+    fadeOut: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/holy_collider.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.399
+
