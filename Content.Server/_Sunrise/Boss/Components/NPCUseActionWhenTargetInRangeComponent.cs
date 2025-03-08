@@ -9,8 +9,8 @@ public sealed partial class UseActionWhenTargetInRange
     [DataField]
     public EntityUid? ActionEnt;
 
-    [DataField(required: true)]
-    public EntProtoId<EntityWorldTargetActionComponent> ActionId;
+    [DataField("actionId")]
+    public string ActionId;
 
     [DataField]
     public float? MaxRange = 10f;

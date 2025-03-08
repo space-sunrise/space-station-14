@@ -132,7 +132,6 @@
   - type: ActivatableUI
     key: enum.HellSpawnArenaUiKey.Key
   - type: HellSpawnConsole
-    shuttlePath: /Maps/_Sunrise/arena.yml
   - type: Godmode
 
 - type: entity
