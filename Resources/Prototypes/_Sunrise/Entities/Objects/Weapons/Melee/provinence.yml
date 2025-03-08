@@ -119,7 +119,7 @@
     radius: 2
 
 - type: entity
-  parent: [ BaseItem, BaseSyndicateContraband ]
+  parent: [ BaseSword, BaseSyndicateContraband ]
   id: WeaponMeleeMoltenCollider
   name: Molten collider
   components:
@@ -181,3 +181,15 @@
       shader: unshaded
   - type: TimedDespawn
     lifetime: 0.399
+
+- type: entity
+  parent: WeaponMeleeMoltenCollider
+  id: WeaponMeleeMoltenColliderDEBUG
+  suffix: DEBUG, DO NOT SPAWN
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Heat: 50
+        Slash: 50
+        Structural: 70

@@ -154,13 +154,14 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
 
     private async void OnSpawnMobStateChanged(EntityUid uid, HellSpawnComponent component, MobStateChangedEvent args)
     {
-        if (args is not { OldMobState: MobState.Alive, NewMobState: MobState.Dead or MobState.Critical } ||
-            component.ConsoleUid == null)
+        if (args is not { OldMobState: MobState.Alive, NewMobState: MobState.Dead or MobState.Critical })
             return;
         TeleportFightersBack();
         Status = HellSpawnBossStatus.Idle;
         UpdateArenaUi();
-        _transform.SetCoordinates(uid, Transform(component.ConsoleUid.Value).Coordinates);
+        if (AllEntityQuery<HellSpawnConsoleComponent, TransformComponent>()
+            .MoveNext(out var consoleUid, out _, out _) && consoleUid != null) // В идеальном случае в мире только один алтарь призыва
+            _transform.SetCoordinates(uid, Transform(consoleUid).Coordinates);
         await Task.Delay(1000);
         if (ArenaMap != null)
             _mapManager.DeleteMap(ArenaMap.Value);

@@ -2,7 +2,7 @@
   id: ActionHellSpawnRush
   name: RUSH
   components:
-  - type: WorldTargetAction
+  - type: EntityWorldTargetAction
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: blink
@@ -21,14 +21,14 @@
     checkConsciousness: false
     priority: -1
     useDelay: 30
-    icon: Interface/Emotes/shield.png
+    icon: _Sunrise/Interface/Actions/inferno_shield.png
     event: !type:HellSpawnInvincibilityActionEvent
 
 - type: entity
   id: ActionHellSpawnTentacleRight
   name: Tentacle
   components:
-  - type: WorldTargetAction
+  - type: EntityWorldTargetAction
     icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
     itemIconStyle: NoItem
     priority: -1
@@ -43,7 +43,7 @@
   id: ActionHellSpawnTentacleLeft
   name: Tentacle
   components:
-  - type: WorldTargetAction
+  - type: EntityWorldTargetAction
     icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
     itemIconStyle: NoItem
     priority: -1
