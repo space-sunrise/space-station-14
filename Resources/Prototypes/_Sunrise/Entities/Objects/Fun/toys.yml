@@ -1014,3 +1014,13 @@
         volume: 5
   - type: UseDelay
     delay: 5
+
+- type: entity
+  id: PlushieJamalDotsenko
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Plushie Jamal Dotsenko
+  description: Master of the Brig. Knows the history of the Vulpakins better than the Working Procedures.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-jamal

@@ -156,3 +156,5 @@ ent-PlushieExperiencedSalvageSpecialist = Plushie Experienced Salvage Specialist
     .desc = A toy of a Salvage Specialist in a spacesuit that was reinforced with shields and goliath flesh. The tag has the signature snkrs. The toy looks pretty scary...
 ent-PlushieAlisaKrokozyabka = Plushie Alice Krokozyabka
     .desc = The only Head of Personnel who won't go to lunch. Uga Booga!
+ent-PlushieJamalDotsenko = Plushie Jamal Dotsenko
+    .desc = Master of the Brig. Knows the history of the Vulpakins better than the Working Procedures.

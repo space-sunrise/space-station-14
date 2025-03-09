@@ -1569,6 +1569,17 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieJamalDotsenko
+  productEntity: PlushieJamalDotsenko
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieRichardDetective
   productEntity: PlushieRichardDetective
   cost:
