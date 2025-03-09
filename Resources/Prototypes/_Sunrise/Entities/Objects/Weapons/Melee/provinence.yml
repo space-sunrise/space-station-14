@@ -52,8 +52,6 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
-      middle:
-      - state: wielded
   - type: Clothing
     quickEquip: false
     slots:
