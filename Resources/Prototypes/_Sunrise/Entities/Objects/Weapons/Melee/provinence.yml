@@ -42,6 +42,14 @@
         Structural: 10
   - type: Item
     size: Large
+    sprite: _Sunrise/Objects/Weapons/Melee/provinence_scythe_x32.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+      middle:
+      - state: wielded
   - type: Clothing
     quickEquip: false
     slots:
@@ -156,6 +164,12 @@
         Structural: 7.5
   - type: Item
     size: Large
+    sprite: _Sunrise/Objects/Weapons/Melee/holy_collider_x32.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
   - type: Clothing
     quickEquip: false
     slots:
