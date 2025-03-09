@@ -137,6 +137,7 @@
 - type: entity
   id: HellSpawnCultist
   parent: MobHuman
+  categories: [ HideSpawnMenu ]
   components:
   - type: NpcFactionMember
     factions:
@@ -151,3 +152,47 @@
     thresholds:
       0: Alive
       5: Dead
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: BulletSkyFlare
+  name: sky flare
+  suffix: Boss
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Projectiles/sky_flare.rsi
+    layers:
+    - state: SkyFlare
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Heat: 15
+  - type: IgniteOnCollide
+    fireStacks: 1
+    count: 10
+  - type: SpiralMovement
+    radiusCoefficient: 0.3
+    omegaCoefficient: 1
+  - type: TimedDespawn
+    lifetime: 3

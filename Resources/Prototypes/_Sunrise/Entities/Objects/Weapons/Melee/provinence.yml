@@ -85,8 +85,8 @@
     fixtures:
       projectile:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.15,0.15,0.15"
+          !type:PhysShapeCircle
+          radius: 0.25
         hard: false
         mask:
         - Impassable
@@ -117,6 +117,8 @@
     color: "#FF0000FF"
     energy: 0.5
     radius: 2
+  - type: TimedDespawn
+    lifetime: 1
 
 - type: entity
   parent: [ BaseSword, BaseSyndicateContraband ]
@@ -185,11 +187,12 @@
 - type: entity
   parent: WeaponMeleeMoltenCollider
   id: WeaponMeleeMoltenColliderDEBUG
-  suffix: DEBUG, DO NOT SPAWN
+  suffix: DEBUG
+  categories: [ HideSpawnMenu ]
   components:
   - type: MeleeWeapon
     damage:
       types:
         Heat: 50
-        Slash: 50
+        Slash: 100
         Structural: 70
