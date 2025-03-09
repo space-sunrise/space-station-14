@@ -46,8 +46,12 @@
     inhandVisuals:
       left:
       - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
       middle:
       - state: wielded
   - type: Clothing
@@ -168,8 +172,12 @@
     inhandVisuals:
       left:
       - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     quickEquip: false
     slots:
