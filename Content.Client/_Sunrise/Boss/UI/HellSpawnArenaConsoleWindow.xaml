@@ -1,0 +1,15 @@
+﻿<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    MinSize="300 120"
+    Title="{Loc 'hellspawn-arena-console-title'}">
+    <BoxContainer Orientation="Vertical">
+        <Button Name="TravelButton"
+                Text="{Loc 'hellspawn-arena-console-ready'}"
+                StyleClasses="Caution" />
+        <BoxContainer Name="StatusBox" Orientation="Horizontal" Visible="True">
+            <Label Text="{Loc 'hellspawn-arena-console-status-label'}" HorizontalAlignment="Left" />
+            <Label Name="StatusLabel" Text=" " HorizontalAlignment="Right" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
