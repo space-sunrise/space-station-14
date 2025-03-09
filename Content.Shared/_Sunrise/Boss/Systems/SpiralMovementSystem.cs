@@ -15,6 +15,7 @@ public sealed class SpiralMovementSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
+    [Dependency] private readonly IEntityNetworkManager _net = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -35,7 +36,7 @@ public sealed class SpiralMovementSystem : EntitySystem
 
         component.OriginCoordinates = xform.Coordinates;
 
-        component.SpawnTime = _timing.CurTime;
+        component.SpawnTime = _timing.CurTime - component.TimeOffset;
     }
 
     public override void Update(float frameTime)

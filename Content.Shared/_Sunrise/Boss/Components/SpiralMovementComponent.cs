@@ -12,6 +12,12 @@ public sealed partial class SpiralMovementComponent : Component
     public TimeSpan RadiusCoefficient = TimeSpan.FromSeconds(0.3);
 
     [DataField]
+    public TimeSpan TimeOffset = TimeSpan.Zero;
+
+    [DataField]
+    public float StartingRadius;
+
+    [DataField]
     public float OmegaCoefficient = 2f * (float)Math.PI;
 
     [DataField]

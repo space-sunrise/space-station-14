@@ -18,7 +18,7 @@
   components:
   - type: InstantAction
     checkCanInteract: false
-    checkConsciousness: false
+    checkConsciousness: true
     priority: -1
     useDelay: 30
     icon: _Sunrise/Interface/Actions/inferno_shield.png
@@ -38,6 +38,7 @@
     checkCanAccess: false
     event: !type:HellSpawnTentacleActionEvent
       left: false
+
 - type: entity
   id: ActionHellSpawnTentacleLeft
   name: Tentacle
@@ -52,3 +53,15 @@
     checkCanAccess: false
     event: !type:HellSpawnTentacleActionEvent
       left: true
+
+- type: entity
+  id: ActionHellSpawnSpiral
+  name: Spiral
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    checkConsciousness: true
+    priority: -1
+    useDelay: 30
+    icon: _Sunrise/Interface/Actions/inferno_shield.png
+    event: !type:HellSpawnSpiralActionEvent
