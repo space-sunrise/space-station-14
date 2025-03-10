@@ -121,6 +121,9 @@ uplink-emag-desc = The business card of the syndicate, this sequencer is able to
 uplink-access-breaker-name = Access Breaker
 uplink-access-breaker-desc = A hacked access configurator and a good friend of the emag. This device is able to force airlocks open as well as erase access requirements from station equipment. Recharges automatically.
 
+uplink-syndie-intellicard-name = Syndicate Intellicard
+uplink-syndie-intellicard-desc = The best friend in the fight against AI!
+
 uplink-agent-id-card-name = Agent ID Card
 uplink-agent-id-card-desc = A modified ID card that can copy accesses from other cards and change its name and job title at-will.
 

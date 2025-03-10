@@ -810,6 +810,24 @@
   - UplinkDisruption
 
 - type: listing
+  id: UplinkSyndieIntellicard
+  name: uplink-syndie-intellicard-name
+  description: uplink-syndie-intellicard-desc
+  productEntity: SyndieIntellicard
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
   id: UplinkHypo
   name: uplink-hypo-name
   description: uplink-hypo-desc
