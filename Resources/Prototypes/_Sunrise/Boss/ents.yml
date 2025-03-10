@@ -83,6 +83,10 @@
         prob: 0.3
       - id: ClothingNeckGoldmedal
         prob: 0.5
+      - id: PowerCellAntiqueProto
+        prob: 0.5
+      - id: ClothingOuterHardsuitMaxim
+        prob: 0.5
       - id: HyperEutacticBlade
         prob: 0.3
       - id: WeaponMeleeMoltenCollider
