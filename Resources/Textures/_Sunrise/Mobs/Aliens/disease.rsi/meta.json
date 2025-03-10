@@ -1,20 +1,22 @@
 {
-    "version": 1,
-    "license": "CC0-1.0",
-    "copyright": "Made by Ligyb",
-    "size": {
-        "x": 32,
-        "y": 32
-    },
-    "states": [
-        {
-            "name": "icon"
-        },
-        {
-            "name": "idle"
-        },
-        {
-            "name": "sick"
-        }
-    ]
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by land1001",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "idle",
+      "delays": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      ]
+    }
+  ]
 }
