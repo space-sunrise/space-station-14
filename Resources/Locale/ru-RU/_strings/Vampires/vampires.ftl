@@ -92,6 +92,12 @@ vampire-mutation-bestia-info =
     - Форма летучей мыши
     - Мышиная форма
 
+# Alerts
+alerts-vampire-blood-name = Кровь
+alerts-vampire-blood-desc = Уровень крови вампира.
+alerts-vampire-stellar-weakness-name = Слабость к свету
+alerts-vampire-stellar-weakness-desc = Вампиры слабы к солнечному свету. Будьте осторожны!
+
 ## Objectives
 
 objective-condition-drain-title = Выпить { $count } крови.
