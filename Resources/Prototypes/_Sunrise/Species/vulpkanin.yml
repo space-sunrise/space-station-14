@@ -3,14 +3,17 @@
   name: species-name-foxes
   roundStart: true
   prototype: MobVulpkanin
-  sprites: MobVulpkaninSprites
+  bodyTypes:
+  - VulpkaninNormal
+#  - VulpkaninSlim
   defaultSkinTone: "#FFBBC3"
   markingLimits: MobVulpkaninMarkingLimits
   dollPrototype: MobVulpkaninDummy
   skinColoration: Hues
 
-- type: speciesBaseSprites
-  id: MobVulpkaninSprites
+- type: bodyType
+  id: VulpkaninNormal
+  name: body-normal
   sprites:
     Head: MobVulpkaninHead
     Hair: MobHumanoidAnyMarking
@@ -29,6 +32,30 @@
     RLeg: MobVulpkaninRLeg
     LFoot: MobVulpkaninLFoot
     RFoot: MobVulpkaninRFoot
+
+- type: bodyType
+  id: VulpkaninSlim
+  name: body-slim
+  sexRestrictions:
+  - Male
+  sprites:
+    Head: MobVulpkaninSlimHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobVulpkaninSlimTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobHumanoidEyes
+    LArm: MobVulpkaninSlimLArm
+    RArm: MobVulpkaninSlimRArm
+    LHand: MobVulpkaninSlimLHand
+    RHand: MobVulpkaninSlimRHand
+    LLeg: MobVulpkaninSlimLLeg
+    RLeg: MobVulpkaninSlimRLeg
+    LFoot: MobVulpkaninSlimLFoot
+    RFoot: MobVulpkaninSlimRFoot
 
 - type: markingPoints
   id: MobVulpkaninMarkingLimits
@@ -146,3 +173,75 @@
   baseSprite:
     sprite: _Sunrise/Mobs/Species/Vulpkanin/parts.rsi
     state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimHead
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: head_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimHeadFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: head_slim_f
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimTorso
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: torso_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimTorsoFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: torso_slim_f
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimLLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: l_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimLArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: l_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimLHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: l_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimLFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: l_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimRLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: r_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimRArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: r_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimRHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: r_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninSlimRFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/vulpa.rsi
+    state: r_foot_slim

@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -94,6 +95,9 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField("voice")]
     public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
     // Sunrise-TTS-End
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<BodyTypePrototype> BodyType { get; set; } = SharedHumanoidAppearanceSystem.DefaultBodyType;
 }
 
 [DataDefinition]
