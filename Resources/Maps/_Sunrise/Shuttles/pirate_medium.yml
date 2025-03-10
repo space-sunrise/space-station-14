@@ -6819,7 +6819,7 @@ entities:
     - type: Transform
       pos: -10.331844,-11.742424
       parent: 1
-- proto: WeaponMechCombatTeslaCannon
+- proto: WeaponMechIndustrialKineticAccelerator
   entities:
   - uid: 350
     components:
