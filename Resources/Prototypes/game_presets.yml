@@ -194,7 +194,6 @@
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
     - Nukeops
-    - LiteSubGamemodesRule # Только лайтовые под-антаги, чтобы не было кооперации станции с генокрадами против ЯО.
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
