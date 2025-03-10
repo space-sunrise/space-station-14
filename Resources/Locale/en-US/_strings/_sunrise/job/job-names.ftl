@@ -28,6 +28,7 @@ job-name-clown-borg = клоун киборг
 job-name-barber = парикмахер
 job-name-pathologist = патологоанатом
 job-name-adjutant = адъютант
+job-name-mail-carrier = почтальон
 # USSP
 job-name-usspcrew = Сотрудник СССП
 job-name-usspguard = Милиция СССП
@@ -74,3 +75,4 @@ JobUSSPOfficer = Офицер СССП
 JobNtrGuard = Оператор ИСН
 JobNtrLeadGuard = Командир ИСН
 JobNtrOfficer = Офицер ИСН
+JobMailCarrier = почтальон

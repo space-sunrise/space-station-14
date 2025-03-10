@@ -205,3 +205,10 @@
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: CaptainUSSP
   jobName: JobUSSPCaptain
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMailCarrier
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: MailCarrier
