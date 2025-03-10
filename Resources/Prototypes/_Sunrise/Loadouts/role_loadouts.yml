@@ -388,6 +388,23 @@
   - CommonPets
 
 - type: roleLoadout
+  id: JobMailCarrier
+  groups:
+  - GroupTankHarness
+  - MailCarrierJumpsuit
+  - SunriseCargoTechGloves
+  - CargoTechnicianBackpack
+  - SunriseCargoTechNeck
+  - TrinketsCargo
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - CommonPets
+
+- type: roleLoadout
   id: RoleSurvivalAssaultOps
   groups:
   - SurvivalSyndicate

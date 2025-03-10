@@ -611,7 +611,7 @@ VendingMachineRepDrobe: VendingMachineCigs
 Wakizashi: KukriKnife
 TearSmokeGrenade: TearGasGrenade
 BlueLightTube: LightTubeCrystalCyan
-CratePirateChest: CratePirateChestSun
+MailTeleporter: CargoMailTeleporter
 ClothingHeadHoodBrown: null
 ClaymoreDulled: null
 Amphora: null

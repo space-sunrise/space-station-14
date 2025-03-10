@@ -1060,6 +1060,13 @@
   - Sunrise-BrownGloves
 
 - type: loadoutGroup
+  id: MailCarrierJumpsuit
+  name: loadout-group-mail-jumpsuit
+  loadouts:
+  - MailCarrierJumpsuit
+  - MailCarrierJumpskirt
+
+- type: loadoutGroup
   id: SunriseSalvageGloves
   name: loadout-group-salvage-specialist-gloves
   minLimit: 0
