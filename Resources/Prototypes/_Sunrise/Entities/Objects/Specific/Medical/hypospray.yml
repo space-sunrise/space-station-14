@@ -77,3 +77,30 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: Hypospray
+
+- type: entity
+  name: medical hypospray
+  parent: BaseItem
+  description: A sterile injector for rapid administration of drugs to patients. It contains an internal Toxin filter.
+  id: HyposprayMedical
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/hypospray.rsi
+    state: med-hypospray
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+    filterPoison: true
+    doAfterTime: 0.75
+    transferAmount: 5
+  - type: UseDelay
+    delay: 6
+  - type: StaticPrice
+    price: 300
