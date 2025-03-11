@@ -259,35 +259,47 @@
   id: CultStructureAltarTome
   name: Архивы
   structureId: AltarTome
-  icon: "/Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi/icon-off.png"
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/tome_altar.rsi
+    state: icon-off
 
 - type: cultStructure
   id: CultStructureCultPylon
   name: Пилон
   structureId: CultPylon
-  icon: "/Textures/_Sunrise/BloodCult/Structures/pylon.rsi/pylon_off.png"
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/pylon.rsi
+    state: pylon_off
 
 - type: cultStructure
   id: CultStructureCultBloodAltar
   name: Алтарь
   structureId: CultBloodAltar
-  icon: "/Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi/icon-off.png"
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/blood_altar.rsi
+    state: icon-off
 
 - type: cultStructure
   id: CultStructureCultForge
   name: Кузница
   structureId: CultForge
-  icon: "/Textures/_Sunrise/BloodCult/Structures/forge.rsi/icon-off.png"
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/forge.rsi
+    state: icon-off
 
 - type: cultStructure
   id: CultStructureAirlockGlassCult
   name: Шлюз
   structureId: AirlockGlassCult
-  icon: "/Textures/_Sunrise/BloodCult/Structures/cult_airlock.rsi/closed.png"
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_airlock.rsi
+    state: closed
 
 - type: cultStructure
   id: CultStructureCultGirder
   name: Балка
   structureId: CultGirder
-  icon: "/Textures/_Sunrise/BloodCult/Structures/cult_girder.rsi/cultgirder.png"
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_girder.rsi
+    state: cultgirder
 

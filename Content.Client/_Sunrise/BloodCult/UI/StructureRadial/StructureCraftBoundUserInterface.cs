@@ -1,7 +1,7 @@
 ﻿using Content.Client.Construction;
-using Content.Client.Resources;
 using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Construction.Prototypes;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Placement;
@@ -22,6 +22,8 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+
+    private readonly SpriteSystem _spriteSystem;
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
 
     private BloodCultMenu? _menu;
@@ -29,6 +31,8 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
     public StructureCraftBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);
+
+        _spriteSystem = _systemManager.GetEntitySystem<SpriteSystem>();
     }
 
     private void CreateUI()
@@ -40,7 +44,7 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
 
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<CultStructurePrototype>())
         {
-            var texture = _resourceCache.GetTexture(prototype.Icon);
+            var texture = _spriteSystem.Frame0(prototype.Icon);
             var radialButton = _menu.AddButton(prototype.StructureName, texture);
             radialButton.OnPressed += _ =>
             {
