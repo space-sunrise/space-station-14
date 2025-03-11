@@ -52,7 +52,7 @@
     Dylomet: 1
 
 - type: reaction
-  id: Stable-Mutagen
+  id: StableMutagen
   reactants:
     Phalanximine:
       amount: 1

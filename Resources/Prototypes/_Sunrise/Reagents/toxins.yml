@@ -131,7 +131,7 @@
             Brute: 2
 
 - type: reagent
-  id: Stable-Mutagen
+  id: StableMutagen
   name: reagent-name-stable-mutagen
   group: Toxins
   desc: reagent-desc-stable-mutagen
