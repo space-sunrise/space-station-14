@@ -332,7 +332,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         _tagSystem.AddTag(cultist, "Cultist");
 
         _factionSystem.RemoveFaction(cultist, "NanoTrasen", false);
-        _factionSystem.AddFaction(cultist, "Cultist");
+        _factionSystem.AddFaction(cultist, "BloodCult");
 
         if (_inventorySystem.TryGetSlotEntity(cultist, "back", out var backPack))
         {
