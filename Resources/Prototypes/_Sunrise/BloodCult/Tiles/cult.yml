@@ -1,4 +1,4 @@
-﻿﻿- type: tile
+﻿- type: tile
   id: CultFloor
   name: tiles-cult-floor
   sprite: /Textures/_Sunrise/BloodCult/Tiles/cult_tile.rsi/cult.png

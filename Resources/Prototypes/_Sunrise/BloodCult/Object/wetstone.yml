@@ -1,4 +1,4 @@
-﻿﻿- type: entity
+﻿- type: entity
   id: WetStone
   parent: BaseItem
   name: wet stone

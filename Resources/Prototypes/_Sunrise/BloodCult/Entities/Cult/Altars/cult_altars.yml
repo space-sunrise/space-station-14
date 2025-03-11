@@ -1,4 +1,4 @@
-﻿﻿- type: entity
+﻿- type: entity
   id: CultPylon
   parent: BaseStructure
   name: pylon

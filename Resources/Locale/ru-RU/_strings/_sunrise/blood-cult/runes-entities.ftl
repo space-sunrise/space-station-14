@@ -1,4 +1,4 @@
-﻿﻿ent-OfferingRune = руна предпонесения
+﻿ent-OfferingRune = руна предпонесения
 ent-BuffRune = руна усиления
 ent-EmpoweringRune = руна могущества
 ent-TeleportRune = руна телепортации

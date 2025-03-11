@@ -1,4 +1,4 @@
-﻿﻿- type: cultistFactoryProduction
+﻿- type: cultistFactoryProduction
   id: FactoryWhetstone
   icon:
     sprite: /Textures/White/Items/Misc/wetstone.rsi

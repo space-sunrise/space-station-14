@@ -1,4 +1,4 @@
-﻿﻿- type: constructionGraph
+﻿- type: constructionGraph
   id: CultGirder
   start: start
   graph:
