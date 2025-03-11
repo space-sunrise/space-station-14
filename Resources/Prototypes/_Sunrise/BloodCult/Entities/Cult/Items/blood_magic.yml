@@ -10,6 +10,13 @@
     delay: 3
   - type: Item
     size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
   - type: UserInterface
     interfaces:
      enum.CountSelectorUIKey.Key:
