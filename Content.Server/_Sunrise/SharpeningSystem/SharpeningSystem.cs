@@ -33,25 +33,25 @@ public sealed class SharpeningSystem : EntitySystem
 
         if (!TryComp<ItemComponent>(target, out _))
         {
-            _popupSystem.PopupEntity("Вы не можете заточить это", target, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("sharpening-failed"), target, args.User);
             return;
         }
 
         if (!TryComp<MeleeWeaponComponent>(target, out var meleeWeaponComponent))
         {
-            _popupSystem.PopupEntity("Вы не можете заточить это", target, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("sharpening-failed"), target, args.User);
             return;
         }
 
         if (!meleeWeaponComponent.Damage.DamageDict.ContainsKey("Slash"))
         {
-            _popupSystem.PopupEntity("У оружия должно быть остреё", target, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("sharpening-failed-blade"), target, args.User);
             return;
         }
 
         if (HasComp<SharpenedComponent>(target))
         {
-            _popupSystem.PopupEntity("Клинок уже заточен", target, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("sharpening-failed-double"), target, args.User);
             return;
         }
 
@@ -67,7 +67,7 @@ public sealed class SharpeningSystem : EntitySystem
             Del(uid);
         }
 
-        _popupSystem.PopupEntity("Клинок успешно заточен", target, args.User);
+        _popupSystem.PopupEntity(Loc.GetString("sharpening-success"), target, args.User);
     }
 
     private void OnMeleeHit(EntityUid uid, SharpenedComponent component, MeleeHitEvent args)
@@ -76,13 +76,13 @@ public sealed class SharpeningSystem : EntitySystem
 
         if (component.AttacksLeft == 10)
         {
-            _popupSystem.PopupEntity("Клинок начал затупляться", uid, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("sharpening-roughing-begin"), uid, args.User);
         }
 
         if (component.AttacksLeft > 0)
             return;
 
-        _popupSystem.PopupEntity("Клинок потерял свою заточку", uid, args.User);
+        _popupSystem.PopupEntity(Loc.GetString("sharpening-removed"), uid, args.User);
         RemComp(uid, component);
     }
 

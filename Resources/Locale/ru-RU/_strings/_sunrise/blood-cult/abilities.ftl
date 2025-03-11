@@ -3,6 +3,7 @@ artificer-create-soul-stone-action-description = Это заклинание п�
 artificer-create-construct-shell-action-name = Создать оболочку конструкта.
 artificer-create-construct-shell-action-description = Это заклинание проникает в царство Нар-Си, вызывая один из легендарных фрагментов через время и пространство.
 artificer-convert-cultist-floor-action-name = Создать культистский пол.
+artificer-convert-cultist-floor-action-description = Это заклинание превращает пол под вами в культистский.
 convert-cultist-floor-action-description = Это заклинание возводит под вами культистский пол.
 artificer-create-cultist-wall-action-name = Создать стену культа.
 artificer-create-cultist-wall-action-description = Это заклинание возводит стену культа.

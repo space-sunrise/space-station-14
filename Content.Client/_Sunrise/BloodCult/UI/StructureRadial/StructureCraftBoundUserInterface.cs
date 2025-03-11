@@ -21,6 +21,7 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IPlacementManager _placement = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
 
     private BloodCultMenu? _menu;
@@ -39,7 +40,7 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
 
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<CultStructurePrototype>())
         {
-            var texture = IoCManager.Resolve<IResourceCache>().GetTexture(prototype.Icon);
+            var texture = _resourceCache.GetTexture(prototype.Icon);
             var radialButton = _menu.AddButton(prototype.StructureName, texture);
             radialButton.OnPressed += _ =>
             {
