@@ -22,7 +22,6 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
-
     private readonly SpriteSystem _spriteSystem;
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
 
