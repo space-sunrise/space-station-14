@@ -54,6 +54,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCultist
 
 - type: npcFaction
   id: SimpleNeutral
@@ -94,6 +95,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCultist
 
 - type: npcFaction
   id: Zombie
@@ -114,6 +116,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCultist
 
 - type: npcFaction
   id: Revolutionary
@@ -151,6 +154,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Wizard
@@ -169,3 +173,17 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - Xeno
+  - BloodCult
+
+- type: npcFaction
+  id: BloodCult
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Thief
+  - Zombie
+  - Revolutionary
+  - Changeling
+  - Vampire
+  - Xeno
