@@ -1,6 +1,4 @@
 ﻿- type: entity
-  name: кровавый обряд
-  description:
   parent: BaseItem
   id: CultBloodSpell
   components:
@@ -21,8 +19,6 @@
 
 
 - type: entity
-  name: кровавая сфера
-  description:
   parent: BaseItem
   id: CultBloodOrb
   components:

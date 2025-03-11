@@ -44,7 +44,7 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<CultStructurePrototype>())
         {
             var texture = _spriteSystem.Frame0(prototype.Icon);
-            var radialButton = _menu.AddButton(prototype.StructureName, texture);
+            var radialButton = _menu.AddButton(Loc.GetString(prototype.StructureName), texture);
             radialButton.OnPressed += _ =>
             {
                 Select(prototype.StructureId);

@@ -257,7 +257,7 @@
 
 - type: cultStructure
   id: CultStructureAltarTome
-  name: Архивы
+  name: cultStructure-AltarTome
   structureId: AltarTome
   icon:
     sprite: _Sunrise/BloodCult/Structures/tome_altar.rsi
@@ -265,7 +265,7 @@
 
 - type: cultStructure
   id: CultStructureCultPylon
-  name: Пилон
+  name: cultStructure-Pylon
   structureId: CultPylon
   icon:
     sprite: _Sunrise/BloodCult/Structures/pylon.rsi
@@ -273,7 +273,7 @@
 
 - type: cultStructure
   id: CultStructureCultBloodAltar
-  name: Алтарь
+  name: cultStructure-Altar
   structureId: CultBloodAltar
   icon:
     sprite: _Sunrise/BloodCult/Structures/blood_altar.rsi
@@ -281,7 +281,7 @@
 
 - type: cultStructure
   id: CultStructureCultForge
-  name: Кузница
+  name: cultStructure-Forge
   structureId: CultForge
   icon:
     sprite: _Sunrise/BloodCult/Structures/forge.rsi
@@ -289,7 +289,7 @@
 
 - type: cultStructure
   id: CultStructureAirlockGlassCult
-  name: Шлюз
+  name: cultStructure-Airlock
   structureId: AirlockGlassCult
   icon:
     sprite: _Sunrise/BloodCult/Structures/cult_airlock.rsi
@@ -297,7 +297,7 @@
 
 - type: cultStructure
   id: CultStructureCultGirder
-  name: Балка
+  name: cultStructure-Girder
   structureId: CultGirder
   icon:
     sprite: _Sunrise/BloodCult/Structures/cult_girder.rsi

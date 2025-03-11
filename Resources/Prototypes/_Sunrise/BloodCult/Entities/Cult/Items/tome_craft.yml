@@ -127,21 +127,21 @@
 - type: cultistFactoryProduction
   id: FactoryCultShuttleCurse
   icon: "/Textures/_Sunrise/BloodCult/Entities/shuttle_curse.rsi/icon-off.png"
-  name: Проклятие шаттла
+  name: cultistFactoryProduction-ShuttleCurse
   item:
     - CultShuttleCurse
 
 - type: cultistFactoryProduction
   id: FactoryCultClothingBlindfold
   icon: "/Textures/Clothing/Eyes/Misc/blindfold.rsi/icon.png"
-  name: Повязка Зилота
+  name: cultistFactoryProduction-Blindfold
   item:
     - CultClothingBlindfold
 
 - type: cultistFactoryProduction
   id: FactoryCultVeilShifter
   icon: "/Textures/_Sunrise/BloodCult/Entities/veil_shifter.rsi/icon.png"
-  name: Идущий по покрову
+  name: cultistFactoryProduction-VeilShifter
   item:
     - CultVeilShifter
     - CultTorch

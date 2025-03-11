@@ -1,7 +1,5 @@
 ﻿- type: construction
   id: CultGirder
-  name: руническая балка
-  description: Большой конструктивный элемент, изготовленный из металла. На этом есть руна.
   graph: CultGirder
   startNode: start
   targetNode: girder
@@ -18,8 +16,6 @@
 
 - type: construction
   id: AirlockGlassCult
-  name: рунический шлюз
-  description: Странный стеклянный шлюз с руной.
   graph: AirlockGlassCult
   startNode: start
   targetNode: airlock
@@ -36,8 +32,6 @@
 
 - type: construction
   id: CultPylon
-  name: пилон
-  description: Мистический конструкция.
   graph: CultPylon
   startNode: start
   targetNode: pylon
@@ -54,8 +48,6 @@
 
 - type: construction
   id: AltarTome
-  name: архивы
-  description: Стол, заваленный тайными рукописями и книгами на неизвестных языках.
   graph: AltarTome
   startNode: start
   targetNode: tome
@@ -72,8 +64,6 @@
 
 - type: construction
   id: CultBloodAltar
-  name: алтарь
-  description: Кровавый алтарь, посвященный какому-то существу.
   graph: CultBloodAltar
   startNode: start
   targetNode: altar
@@ -90,8 +80,6 @@
 
 - type: construction
   id: CultForge
-  name: кузница
-  description: Кузница, в которой изготавливается нечестивое оружие.
   graph: CultForge
   startNode: start
   targetNode: forge

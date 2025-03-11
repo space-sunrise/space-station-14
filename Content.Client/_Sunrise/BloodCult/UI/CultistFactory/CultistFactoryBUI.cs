@@ -54,7 +54,7 @@ public sealed class CultistFactoryBUI : BoundUserInterface
             if (prototype.Icon == null)
                 continue;
 
-            var button = _menu.AddButton(prototype.Name, spriteSys.Frame0(prototype.Icon));
+            var button = _menu.AddButton(Loc.GetString(prototype.Name), spriteSys.Frame0(prototype.Icon));
             button.OnPressed += _ =>
             {
                 Select(id);

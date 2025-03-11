@@ -3,7 +3,7 @@
   icon:
     sprite: /Textures/_Sunrise/BloodCult/Entities/wetstone.rsi
     state: cult_sharpener
-  name: Точильный камень
+  name: cultistFactoryProduction-Whetstone
   item:
     - CultSharpener
 
@@ -12,7 +12,7 @@
   icon:
     sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
     state: abyssal_gaze
-  name: Оболочка Конструкта
+  name: cultistFactoryProduction-ConstructShell
   item:
     - ConstructShell
 
@@ -22,6 +22,6 @@
     sprite: /Textures/_Sunrise/BloodCult/holy_flask.rsi
     state: icon
     color: "#333333"
-  name: Флакон нечестивой воды
+  name: cultistFactoryProduction-UnholyWater
   item:
   - DrinkUnholyWaterFull

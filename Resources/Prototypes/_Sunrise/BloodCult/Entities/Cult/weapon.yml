@@ -1,8 +1,6 @@
 ﻿- type: entity
-  name: стальной молот
   parent: BaseItem
   id: HammerJuggernaut
-  description: "Молот Джаггерната, созданный из невероятно прочных материалов и способный разрушать все на своем пути с могучим ударом."
   components:
   - type: Sprite
     sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
