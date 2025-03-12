@@ -80,15 +80,19 @@
       - id: ClothingUniformJumpsuitGalaxyRed
         prob: 0.5
       - id: ResearchDiskDebug
-        prob: 0.5
+        prob: 0.3
       - id: ClothingNeckGoldmedal
         prob: 0.5
+      - id: PowerCellAntiqueProto
+        prob: 0.5
+      - id: ClothingOuterHardsuitMaxim
+        prob: 0.5
       - id: HyperEutacticBlade
-        prob: 0.5
+        prob: 0.3
       - id: WeaponMeleeMoltenCollider
-        prob: 0.5
+        prob: 0.3
       - id: WeaponMeleeMoltenAmputator
-        prob: 0.5
+        prob: 0.2
   - type: Destructible
     thresholds:
     - trigger:

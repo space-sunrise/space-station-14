@@ -12976,3 +12976,15 @@
   id: 889
   time: '2025-03-09T23:33:48.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1525
+- author: pacable
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u044B \u0441\u043F\
+      \u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0438 \u0410\u0434\u0441\u043A\
+      \u043E\u0433\u043E \u041E\u0442\u0440\u043E\u0434\u044C\u044F."
+    type: Fix
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u044B \u043F\u0440\u0438\u0437\
+      \u044B \u0441 \u0431\u043E\u0441\u0441\u0430."
+    type: Tweak
+  id: 890
+  time: '2025-03-10T13:18:36.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1529
