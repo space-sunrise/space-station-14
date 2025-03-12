@@ -22,4 +22,10 @@ public sealed partial class CultMirrorShieldComponent : Component
 
     [DataField("illusionChance")] [ViewVariables(VVAccess.ReadWrite)]
     public float IllusionChance = 0.5f;
+
+    [DataField("maxIllusionCounter")] [ViewVariables(VVAccess.ReadWrite)]
+    public int MaxIllusionCounter = 3;
+
+    [DataField("illusionCounter")] [ViewVariables(VVAccess.ReadOnly)]
+    public HashSet<EntityUid> Illusions = new HashSet<EntityUid>();
 }
