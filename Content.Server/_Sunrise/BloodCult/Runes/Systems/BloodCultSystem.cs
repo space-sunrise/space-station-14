@@ -1,4 +1,4 @@
-using Content.Server._Sunrise.BloodCult.GameRule;
+﻿using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
@@ -36,47 +36,73 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public sealed partial class BloodCultSystem : EntitySystem
     {
-        [Dependency] private readonly EntityManager _entityManager = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly ChatSystem _chat = default!;
-        [Dependency] private readonly BodySystem _bodySystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _ui = default!;
-        [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedTransformSystem _xform = default!;
-        [Dependency] private readonly BloodCultRuleSystem _bloodCultRuleSystem = default!;
-        [Dependency] private readonly HandsSystem _handsSystem = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly GunSystem _gunSystem = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly FlammableSystem _flammableSystem = default!;
-        [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
-        [Dependency] private readonly MindSystem _mindSystem = default!;
-        [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-        [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-        [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-        [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
-        [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
-        [Dependency] private readonly ContainerSystem _containerSystem = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly TileSystem _tileSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly TurfSystem _turf = default!;
-        [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+        private const string TeleportRunePrototypeId = "TeleportRune";
+        private const string ApocalypseRunePrototypeId = "ApocalypseRune";
+        private const string RitualDaggerPrototypeId = "NarsieRitualDagger";
+        private const string BiblePrototypeId = "Bible";
+        private const string RunicMetalPrototypeId = "CultRunicMetal";
+        private const string SteelPrototypeId = "Steel";
+        private const string NarsiePrototypeId = "Narsie";
+        private const string CultBarrierPrototypeId = "CultBarrier";
+        private const string CultBloodSpeelPrototypeId = "CultBloodSpell";
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
-        [Dependency] private readonly IMapManager _mapMan = default!;
-        [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-        [Dependency] private readonly EmpSystem _empSystem = default!;
-        [Dependency] private readonly EuiManager _euiManager = default!;
-        [Dependency] private readonly InventorySystem _inventorySystem = default!;
-        [Dependency] private readonly TransformSystem _transformSystem = default!;
-        [Dependency] private readonly FlashSystem _flashSystem = default!;
-        [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
+        [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+        private readonly SoundPathSpecifier _apocRuneEndDrawing = new("/Audio/_Sunrise/BloodCult/finisheddraw.ogg");
+
+        private readonly SoundPathSpecifier _apocRuneStartDrawing = new("/Audio/_Sunrise/BloodCult/startdraw.ogg");
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly BloodCultRuleSystem _bloodCultRuleSystem = default!;
+        [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+        [Dependency] private readonly BodySystem _bodySystem = default!;
+        [Dependency] private readonly ChatSystem _chat = default!;
+        [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly CuffableSystem _cuffable = default!;
+        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
+        [Dependency] private readonly EmpSystem _empSystem = default!;
+        [Dependency] private readonly EntityManager _entityManager = default!;
+        [Dependency] private readonly EuiManager _euiManager = default!;
+        [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+        [Dependency] private readonly FlashSystem _flashSystem = default!;
+        [Dependency] private readonly GameTicker _gameTicker = default!;
+        [Dependency] private readonly GunSystem _gunSystem = default!;
+        [Dependency] private readonly HandsSystem _handsSystem = default!;
+        [Dependency] private readonly InventorySystem _inventorySystem = default!;
+        [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
+        [Dependency] private readonly EntityLookupSystem _lookup = default!;
+
+        private readonly SoundPathSpecifier _magic = new("/Audio/_Sunrise/BloodCult/magic.ogg");
+        [Dependency] private readonly IMapManager _mapMan = default!;
+        [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+        [Dependency] private readonly MindSystem _mindSystem = default!;
+        private readonly SoundPathSpecifier _narsie40Sec = new("/Audio/_Sunrise/BloodCult/40sec.ogg");
+        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
+        [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+        [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+        [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+        [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
+
+        private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
+        private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
+        [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
+        [Dependency] private readonly TileSystem _tileSystem = default!;
+        [Dependency] private readonly TransformSystem _transformSystem = default!;
+        [Dependency] private readonly TurfSystem _turf = default!;
+        [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly CultistWordGeneratorManager _wordGenerator = default!;
+        [Dependency] private readonly SharedTransformSystem _xform = default!;
+
+
+        private bool _doAfterAlreadyStarted;
+        private float _minutesToDrawApocalypseRune = 45;
+
+        private EntityUid? _playingStream;
+
+        private float _timeToDraw;
 
         public override void Initialize()
         {
@@ -91,32 +117,5 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             InitializeActions();
             InitializeRunes();
         }
-
-        private float _timeToDraw;
-        private float _minutesToDrawApocalypseRune = 45;
-
-        private const string TeleportRunePrototypeId = "TeleportRune";
-        private const string ApocalypseRunePrototypeId = "ApocalypseRune";
-        private const string RitualDaggerPrototypeId = "NarsieRitualDagger";
-        private const string BiblePrototypeId = "Bible";
-        private const string RunicMetalPrototypeId = "CultRunicMetal";
-        private const string SteelPrototypeId = "Steel";
-        private const string NarsiePrototypeId = "Narsie";
-        private const string CultBarrierPrototypeId = "CultBarrier";
-        private const string CultBloodSpeelPrototypeId = "CultBloodSpell";
-
-
-        private bool _doAfterAlreadyStarted;
-
-        private EntityUid? _playingStream;
-
-        private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
-        private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
-
-        private readonly SoundPathSpecifier _magic = new("/Audio/_Sunrise/BloodCult/magic.ogg");
-
-        private readonly SoundPathSpecifier _apocRuneStartDrawing = new("/Audio/_Sunrise/BloodCult/startdraw.ogg");
-        private readonly SoundPathSpecifier _apocRuneEndDrawing = new("/Audio/_Sunrise/BloodCult/finisheddraw.ogg");
-        private readonly SoundPathSpecifier _narsie40Sec = new("/Audio/_Sunrise/BloodCult/40sec.ogg");
     }
 }

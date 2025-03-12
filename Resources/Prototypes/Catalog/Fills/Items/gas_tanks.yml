@@ -42,10 +42,10 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      # 4 minutes
-      volume: 0.66
+      # 8 minutes
+      volume: 1.32 #Sunrise=Edit
       moles:
-        - 0.270782035 # oxygen
+        - 0.54156407 # oxygen #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -56,11 +56,11 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      # 4 minutes
-      volume: 0.66
+      # 8 minutes
+      volume: 1.32 #Sunrise=Edit
       moles:
         - 0 # oxygen
-        - 0.270782035 # nitrogen
+        - 0.54156407 # nitrogen #Sunrise=Edit
       temperature: 293.15
 
 
@@ -72,10 +72,10 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      # 9 minutes
-      volume: 1.5
+      # 18 minutes
+      volume: 3 #Sunrise=Edit
       moles:
-        - 0.615413715 # oxygen
+        - 1.23082743 # oxygen #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -86,11 +86,11 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      # 9 minutes
-      volume: 1.5
+      # 18 minutes
+      volume: 3 #Sunrise=Edit
       moles:
         - 0 # oxygen
-        - 0.615413715 # nitrogen
+        - 1.23082743 # nitrogen  #Sunrise=Edit
       temperature: 293.15
 
 
@@ -102,10 +102,10 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      # 15 minutes
-      volume: 2.5
+      # 30 minutes
+      volume: 5 #Sunrise=Edit
       moles:
-        - 1.025689525 # oxygen
+        - 2.051379050 # oxygen  #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -116,11 +116,11 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      # 15 minutes
-      volume: 2.5
+      # 30 minutes
+      volume: 5 #Sunrise=Edit
       moles:
         - 0 # oxygen
-        - 1.025689525 # nitrogen
+        - 2.051379050 # nitrogen  #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -132,7 +132,7 @@
     outputPressure: 22.4
     air:
       # 4 minutes
-      volume: 0.66
+      volume: 1.32 #sunrise-edit
       moles:
         - 0.270782035 # 95% oxygen
         - 0 # nitrogen

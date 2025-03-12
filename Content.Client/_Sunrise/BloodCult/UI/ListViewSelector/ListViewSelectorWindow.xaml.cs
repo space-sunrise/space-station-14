@@ -12,10 +12,10 @@ namespace Content.Client._Sunrise.BloodCult.UI.ListViewSelector;
 [GenerateTypedNameReferences]
 public partial class ListViewSelectorWindow : DefaultWindow
 {
-    public Action<string, int>? ItemSelected;
-
     private readonly IPrototypeManager _prototypeManager;
     private readonly SpriteSystem _sprite;
+    public Action<string, int>? ItemSelected;
+
     public ListViewSelectorWindow(IPrototypeManager prototypeManager, IEntityManager entityManager)
     {
         RobustXamlLoader.Load(this);
@@ -37,7 +37,7 @@ public partial class ListViewSelectorWindow : DefaultWindow
                 MinSize = new Vector2(100, 100),
                 MaxSize = new Vector2(100, 100),
                 HorizontalExpand = true,
-                StyleClasses = {StyleBase.ButtonSquare},
+                StyleClasses = { StyleBase.ButtonSquare },
                 ToggleMode = false,
                 ToolTip = Loc.GetString($"ent-{item}"),
                 TooltipDelay = 0.01f,

@@ -26,19 +26,19 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class CultBloodSpellSystem: EntitySystem
+public sealed class CultBloodSpellSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
 
     public override void Initialize()
@@ -50,7 +50,8 @@ public sealed class CultBloodSpellSystem: EntitySystem
         SubscribeLocalEvent<CultBloodSpellComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<CultBloodSpellComponent, CultBloodSpellCreateOrbBuiMessage>(OnRequestCreateOrb);
         SubscribeLocalEvent<CultBloodSpellComponent, CountSelectorMessage>(OnCreateOrb);
-        SubscribeLocalEvent<CultBloodSpellComponent, CultBloodSpellCreateBloodSpearBuiMessage>(OnRequestCreateBloodSpear);
+        SubscribeLocalEvent<CultBloodSpellComponent, CultBloodSpellCreateBloodSpearBuiMessage>(
+            OnRequestCreateBloodSpear);
         SubscribeLocalEvent<CultBloodSpellComponent, ExaminedEvent>(OnExamine);
     }
 
@@ -78,7 +79,9 @@ public sealed class CultBloodSpellSystem: EntitySystem
         bloodOrb.BloodCharges = args.Count;
     }
 
-    private void OnRequestCreateOrb(EntityUid uid, CultBloodSpellComponent component, CultBloodSpellCreateOrbBuiMessage args)
+    private void OnRequestCreateOrb(EntityUid uid,
+        CultBloodSpellComponent component,
+        CultBloodSpellCreateOrbBuiMessage args)
     {
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
             return;
@@ -89,7 +92,9 @@ public sealed class CultBloodSpellSystem: EntitySystem
         _ui.OpenUi(uid, CountSelectorUIKey.Key, args.Actor);
     }
 
-    private void OnRequestCreateBloodSpear(EntityUid uid, CultBloodSpellComponent component, CultBloodSpellCreateBloodSpearBuiMessage args)
+    private void OnRequestCreateBloodSpear(EntityUid uid,
+        CultBloodSpellComponent component,
+        CultBloodSpellCreateBloodSpearBuiMessage args)
     {
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
             return;
@@ -134,7 +139,9 @@ public sealed class CultBloodSpellSystem: EntitySystem
             cultistComponent.BloodCharges += bloodOrbComponent.BloodCharges;
             QueueDel(args.Target);
             _popupSystem.PopupEntity($"Собрано {bloodOrbComponent.BloodCharges} зарядов",
-                args.User, args.User, PopupType.Large);
+                args.User,
+                args.User,
+                PopupType.Large);
             _audioSystem.PlayPvs(component.BloodAbsorbSound, args.User, component.BloodAbsorbSound.Params);
             args.Handled = true;
             return;
@@ -148,20 +155,26 @@ public sealed class CultBloodSpellSystem: EntitySystem
 
         if (TryComp<BloodstreamComponent>(args.Target, out var bloodstreamComponent))
         {
-            if (_solutionSystem.ResolveSolution(args.Target.Value, bloodstreamComponent.BloodSolutionName,
-                    ref bloodstreamComponent.BloodSolution, out var bloodSolution))
+            if (_solutionSystem.ResolveSolution(args.Target.Value,
+                    bloodstreamComponent.BloodSolutionName,
+                    ref bloodstreamComponent.BloodSolution,
+                    out var bloodSolution))
             {
                 if (bloodSolution.Volume > 250)
                 {
                     var blood = bloodSolution.SplitSolutionWithOnly(
-                        100, "Blood");
+                        100,
+                        "Blood");
                     cultistComponent.BloodCharges += blood.Volume / 2;
                     _popupSystem.PopupEntity($"Собрано {blood.Volume / 2} зарядов",
-                        args.User, args.User, PopupType.Large);
+                        args.User,
+                        args.User,
+                        PopupType.Large);
                     _audioSystem.PlayPvs(component.BloodAbsorbSound, args.User, component.BloodAbsorbSound.Params);
                     blood.RemoveAllSolution();
                 }
             }
+
             args.Handled = true;
             return;
         }
@@ -170,7 +183,9 @@ public sealed class CultBloodSpellSystem: EntitySystem
         cultistComponent.BloodCharges += getCharges;
     }
 
-    private FixedPoint2 AbsorbBloodPools(EntityUid user, EntityCoordinates coordinates, CultBloodSpellComponent bloodSpell)
+    private FixedPoint2 AbsorbBloodPools(EntityUid user,
+        EntityCoordinates coordinates,
+        CultBloodSpellComponent bloodSpell)
     {
         var puddles = new ValueList<(EntityUid Entity, string Solution)>();
         puddles.Clear();
@@ -194,13 +209,15 @@ public sealed class CultBloodSpellSystem: EntitySystem
             {
                 continue;
             }
+
             foreach (var puddleSolutionContent in puddleSolution.Value.Comp.Solution.ToList())
             {
                 if (puddleSolutionContent.Reagent.Prototype != "Blood")
                     continue;
 
                 var blood = puddleSolution.Value.Comp.Solution.SplitSolutionWithOnly(
-                    puddleSolutionContent.Quantity, puddleSolutionContent.Reagent.Prototype);
+                    puddleSolutionContent.Quantity,
+                    puddleSolutionContent.Reagent.Prototype);
 
                 if (blood.Volume == 0)
                     continue;
@@ -218,13 +235,18 @@ public sealed class CultBloodSpellSystem: EntitySystem
 
         var getCharges = absorbBlood.Volume / 2;
         _popupSystem.PopupEntity($"Собрано {getCharges} зарядов",
-            user, user, PopupType.Large);
+            user,
+            user,
+            PopupType.Large);
         _audioSystem.PlayPvs(bloodSpell.BloodAbsorbSound, user, bloodSpell.BloodAbsorbSound.Params);
         absorbBlood.RemoveAllSolution();
         return getCharges;
     }
 
-    private bool HealCultist(EntityUid target, EntityUid user, BloodCultistComponent bloodCultistComponent, CultBloodSpellComponent bloodSpell)
+    private bool HealCultist(EntityUid target,
+        EntityUid user,
+        BloodCultistComponent bloodCultistComponent,
+        CultBloodSpellComponent bloodSpell)
     {
         var selfHeal = target == user;
 
@@ -237,8 +259,10 @@ public sealed class CultBloodSpellSystem: EntitySystem
 
         if (TryComp<BloodstreamComponent>(target, out var bloodstreamComponent))
         {
-            if (_solutionSystem.ResolveSolution(target, bloodstreamComponent.BloodSolutionName,
-                    ref bloodstreamComponent.BloodSolution, out var bloodSolution))
+            if (_solutionSystem.ResolveSolution(target,
+                    bloodstreamComponent.BloodSolutionName,
+                    ref bloodstreamComponent.BloodSolution,
+                    out var bloodSolution))
             {
                 var lossBlood = bloodSolution.MaxVolume - bloodSolution.Volume;
                 if (lossBlood > 0)
@@ -330,7 +354,9 @@ public sealed class CultBloodSpellSystem: EntitySystem
         bloodCultistComponent.BloodCharges -= usedCharges;
         _damageableSystem.TryChangeDamage(target, healingDamage, ignoreResistances: true);
         _popupSystem.PopupEntity($"Излечено {totalHeal} урона и восстановлено {fillBlood} крови",
-            user, user, PopupType.Large);
+            user,
+            user,
+            PopupType.Large);
         _audioSystem.PlayPvs(bloodSpell.BloodAbsorbSound, user, bloodSpell.BloodAbsorbSound.Params);
         return true;
     }

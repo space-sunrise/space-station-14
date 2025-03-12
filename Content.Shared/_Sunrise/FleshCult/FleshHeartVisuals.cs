@@ -11,8 +11,9 @@ public enum FleshHeartVisuals : byte
 [Serializable, NetSerializable]
 public enum FleshHeartStatus
 {
+    Base,
     Active,
-    Disable,
+    Final,
     Destruction
 }
 

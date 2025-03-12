@@ -7,7 +7,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public partial class BloodCultSystem
     {
-
         private void InitializeConstructs()
         {
             SubscribeLocalEvent<ConstructShellComponent, ContainerIsInsertingAttemptEvent>(OnShardInsertAttempt);
@@ -44,9 +43,12 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             _slotsSystem.RemoveItemSlot(uid, component.ShardSlot);
         }
 
-        private void OnShardInsertAttempt(EntityUid uid, ConstructShellComponent component, ContainerIsInsertingAttemptEvent args)
+        private void OnShardInsertAttempt(EntityUid uid,
+            ConstructShellComponent component,
+            ContainerIsInsertingAttemptEvent args)
         {
-            if (!_mindSystem.TryGetMind(args.EntityUid, out _, out _) || !TryComp<ActorComponent>(args.EntityUid, out var actor))
+            if (!_mindSystem.TryGetMind(args.EntityUid, out _, out _) ||
+                !TryComp<ActorComponent>(args.EntityUid, out var actor))
             {
                 _popupSystem.PopupEntity("Нет души", uid);
                 args.Cancel();

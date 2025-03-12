@@ -1,19 +1,17 @@
-﻿using Content.Server.Access.Systems;
-using Content.Server.DetailExaminable;
+using Content.Server.Access.Systems;
 using Content.Server.Holiday;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
 using Content.Server.Mind.Commands;
 using Content.Server.PDA;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
-using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.DetailExaminable;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -44,10 +42,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 {
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly ArrivalsSystem _arrivalsSystem = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly ContainerSpawnPointSystem _containerSpawnPointSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
@@ -207,26 +203,26 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
+
             // Sunrise-Start
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+            if (!string.IsNullOrEmpty(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
             {
                 var session = _actors.GetSession(entity);
-                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly)
-                    && _sponsorsManager != null
-                    && session != null
-                    && _sponsorsManager.IsAllowedFlavor(session.UserId))
+                var flavortext = profile.FlavorText;
+
+                if (_sponsorsManager != null && session != null)
                 {
                     var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
-                    var flavortext = profile.FlavorText;
-                    if (flavortext.Length > maxDescLength) // Sunrise-Edit
+                    if (flavortext.Length > maxDescLength)
                     {
                         flavortext = FormattedMessage.RemoveMarkupOrThrow(flavortext)[..maxDescLength];
                     }
-                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
                 }
-                else
+
+                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||
+                    _sponsorsManager != null && session != null && _sponsorsManager.IsAllowedFlavor(session.UserId))
                 {
-                    AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
                 }
             }
             // Sunrise-End

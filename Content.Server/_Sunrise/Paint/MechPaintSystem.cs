@@ -46,7 +46,7 @@ public sealed class MechPaintSystem : SharedMechPaintSystem
 
         if (args.Target is not { Valid: true } target)
             return;
-        
+
         if (!HasComp<MechComponent>(args.Target))
             return;
 
@@ -57,7 +57,7 @@ public sealed class MechPaintSystem : SharedMechPaintSystem
     {
         if (!args.CanInteract || !args.CanAccess)
             return;
-        
+
         if (!HasComp<MechComponent>(args.Target))
             return;
 
@@ -86,7 +86,6 @@ public sealed class MechPaintSystem : SharedMechPaintSystem
             BreakOnHandChange = true
         };
 
-        if (!_doAfterSystem.TryStartDoAfter(doAfterEventArgs))
-            return;
+        _doAfterSystem.TryStartDoAfter(doAfterEventArgs);
     }
 }

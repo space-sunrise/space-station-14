@@ -10,5 +10,7 @@ ent-FabricateCookie = { "" }
     .desc = { "" }
 ent-FabricateSoap = { "" }
     .desc = { "" }
+ent-PieThrow = { "" }
+    .desc = { "" }
 ent-ActionViewCrewManifest = View Crew Manifest
     .desc = View the View crew manifest station.

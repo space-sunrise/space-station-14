@@ -21,7 +21,7 @@
         - Prying
       useSound: /Audio/Effects/gib2.ogg
     - type: Prying
-      speedModifier: 2.5
+      speedModifier: 5
       pryPowered: true
       force: true
     - type: MeleeWeapon

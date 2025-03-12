@@ -39,4 +39,3 @@ public sealed partial class JuggernautCreateWallActionEvent : InstantActionEvent
 {
     public string WallPrototypeId = "CultBarrierJuggernaut";
 }
-

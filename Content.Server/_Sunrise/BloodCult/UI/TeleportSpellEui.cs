@@ -12,12 +12,12 @@ namespace Content.Server._Sunrise.BloodCult.UI;
 public sealed class TeleportSpellEui : BaseEui
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
-    private SharedTransformSystem _transformSystem;
-    private PopupSystem _popupSystem;
 
 
     private EntityUid _performer;
+    private PopupSystem _popupSystem;
     private EntityUid _target;
+    private SharedTransformSystem _transformSystem;
 
     private bool _used;
 
@@ -32,7 +32,7 @@ public sealed class TeleportSpellEui : BaseEui
         _performer = performer;
         _target = target;
 
-        Timer.Spawn(TimeSpan.FromSeconds(10), Close );
+        Timer.Spawn(TimeSpan.FromSeconds(10), Close);
     }
 
     public override EuiStateBase GetNewState()
@@ -52,7 +52,8 @@ public sealed class TeleportSpellEui : BaseEui
     {
         base.HandleMessage(msg);
 
-        if(_used) return;
+        if (_used)
+            return;
 
         if (msg is not TeleportSpellTargetRuneSelected cast)
         {
@@ -65,11 +66,12 @@ public sealed class TeleportSpellEui : BaseEui
         }
 
         var performerPosition = _entityManager.GetComponent<TransformComponent>(_performer).Coordinates;
-        var targetPosition = _entityManager.GetComponent<TransformComponent>(_target).Coordinates;;
+        var targetPosition = _entityManager.GetComponent<TransformComponent>(_target).Coordinates;
+        ;
 
         performerPosition.TryDistance(_entityManager, targetPosition, out var distance);
 
-        if(distance > 1.5f)
+        if (distance > 1.5f)
         {
             _popupSystem.PopupEntity("Too far", _performer, PopupType.Medium);
             return;

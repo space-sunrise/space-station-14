@@ -6,12 +6,6 @@ namespace Content.Shared._Sunrise.BloodCult.Items;
 [RegisterComponent]
 public sealed partial class CultWeaponComponent : Component
 {
-    [DataField("stuhTime"), ViewVariables(VVAccess.ReadWrite)]
-    public int StuhTime;
-
-    [DataField("damage"), ViewVariables(VVAccess.ReadWrite)]
-    public DamageSpecifier Damage = new();
-
     [DataField("convertedId"), ViewVariables(VVAccess.ReadWrite)]
     public string ConvertedId = "Holywater";
 
@@ -20,4 +14,10 @@ public sealed partial class CultWeaponComponent : Component
 
     [DataField("convertTileSound")]
     public SoundSpecifier ConvertHolyWaterSound = new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/curse.ogg");
+
+    [DataField("damage"), ViewVariables(VVAccess.ReadWrite)]
+    public DamageSpecifier Damage = new();
+
+    [DataField("stuhTime"), ViewVariables(VVAccess.ReadWrite)]
+    public int StuhTime;
 }

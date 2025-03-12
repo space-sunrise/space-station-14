@@ -1,6 +1,4 @@
-- type: entity
-  name: барьер культа
-  description: Можно уничтожить ритуальным кинжалом.
+﻿- type: entity
   id: CultBarrier
   parent: BaseStructure
   components:
@@ -61,8 +59,6 @@
 - type: entity
   parent: CultBarrier
   id: CultBarrierJuggernaut
-  name: барьер культа
-  description: Можно уничтожить ритуальным кинжалом
   components:
   - type: TimedDespawn
     lifetime: 15

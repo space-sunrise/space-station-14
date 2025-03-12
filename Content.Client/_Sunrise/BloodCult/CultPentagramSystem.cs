@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 using Robust.Client.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -7,9 +7,8 @@ namespace Content.Client._Sunrise.BloodCult;
 
 public sealed class CultPentagramSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-
     private const string Rsi = "_Sunrise/BloodCult/pentagram.rsi";
+
     private static readonly string[] States =
     {
         "halo1",
@@ -19,6 +18,8 @@ public sealed class CultPentagramSystem : EntitySystem
         "halo5",
         "halo6"
     };
+
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
 
     public override void Initialize()
     {
@@ -35,7 +36,7 @@ public sealed class CultPentagramSystem : EntitySystem
         if (sprite.LayerMapTryGet(PentagramKey.Key, out var _))
             return;
 
-        var adj = sprite.Bounds.Height / 2 + ((1.0f/32) * 10.0f);
+        var adj = sprite.Bounds.Height / 2 + ((1.0f / 32) * 10.0f);
 
         var randomIndex = _robustRandom.Next(0, States.Length);
 

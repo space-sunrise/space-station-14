@@ -16,15 +16,15 @@ namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
 public sealed class CultBloodSpearSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
 
     public override void Initialize()
@@ -56,13 +56,13 @@ public sealed class CultBloodSpearSystem : EntitySystem
 
         if (direction == null)
         {
-            _popupSystem.PopupEntity($"Копье не найдено", uid,uid, PopupType.Large);
+            _popupSystem.PopupEntity($"Копье не найдено", uid, uid, PopupType.Large);
             return;
         }
 
         if (direction.Value.Length() > component.MaxReturnDistance)
         {
-            _popupSystem.PopupEntity($"Слишком далеко", uid,uid, PopupType.Large);
+            _popupSystem.PopupEntity($"Слишком далеко", uid, uid, PopupType.Large);
             return;
         }
 
@@ -93,7 +93,8 @@ public sealed class CultBloodSpearSystem : EntitySystem
     {
         if (!_entityManager.TryGetComponent<ActionsComponent>(component.SpearOwner, out var actionsComponent))
             return;
-        if (!_entityManager.TryGetComponent<BloodSpearOwnerComponent>(component.SpearOwner, out var spearOwnerComponent))
+        if (!_entityManager.TryGetComponent<BloodSpearOwnerComponent>(component.SpearOwner,
+                out var spearOwnerComponent))
             return;
         foreach (var userAction in actionsComponent.Actions)
         {

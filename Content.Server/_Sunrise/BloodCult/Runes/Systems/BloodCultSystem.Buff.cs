@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Shared._Sunrise.BloodCult.Components;
@@ -10,7 +10,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public partial class BloodCultSystem
     {
-
         public void InitializeBuffSystem()
         {
             SubscribeLocalEvent<CultBuffComponent, ComponentAdd>(OnAdd);
@@ -82,8 +81,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!TryComp<MapGridComponent>(Transform(uid).GridUid, out var grid))
                 return false;
 
-            var tilesRefs = grid.GetLocalTilesIntersecting(new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius)));
-            var cultTileDef = (ContentTileDefinition) _tileDefinition[$"{BloodCultRuleComponent.CultFloor}"];
+            var tilesRefs = grid.GetLocalTilesIntersecting(new Box2(localpos + new Vector2(-radius, -radius),
+                localpos + new Vector2(radius, radius)));
+            var cultTileDef = (ContentTileDefinition)_tileDefinition[$"{BloodCultRuleComponent.CultFloor}"];
             var cultTile = new Tile(cultTileDef.TileId);
 
             return tilesRefs.Any(tileRef => tileRef.Tile.TypeId == cultTile.TypeId);

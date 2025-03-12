@@ -1,4 +1,4 @@
-- type: alert
+﻿- type: alert
   id: CultBuffed
   icons: [ /Textures/_Sunrise/BloodCult/Alerts/buff.png ]
   name: alerts-cult-buff-name

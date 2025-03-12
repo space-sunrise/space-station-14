@@ -28,17 +28,17 @@ namespace Content.Server._Sunrise.BloodCult.GameRule;
 
 public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly StorageSystem _storageSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private readonly StorageSystem _storageSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
     private ISawmill _sawmill = default!;
@@ -59,7 +59,10 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         SubscribeLocalEvent<BloodCultRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete);
     }
 
-    protected override void Added(EntityUid uid, BloodCultRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
+    protected override void Added(EntityUid uid,
+        BloodCultRuleComponent component,
+        GameRuleComponent gameRule,
+        GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
         //SetCodewords(component, args.RuleEntity);
@@ -159,12 +162,14 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             {
                 cultists.Add(cultistUid);
             }
+
             var constructs = new List<EntityUid>();
             var constructQuery = EntityQueryEnumerator<ConstructComponent>();
             while (constructQuery.MoveNext(out var constructUid, out _))
             {
                 constructs.Add(constructUid);
             }
+
             var enoughCultists = cultists.Count + constructs.Count > cultRuleComponent.CultMembersForSummonGod;
 
             if (!enoughCultists)
@@ -262,6 +267,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         {
             cultists.Add(cultistUid);
         }
+
         var constructs = new List<EntityUid>();
         var constructQuery = EntityQueryEnumerator<ConstructComponent>();
         while (constructQuery.MoveNext(out var constructUid, out _))
@@ -323,7 +329,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         EnsureComp<CultMemberComponent>(cultist);
 
-        _tagSystem.AddTag(cultist, "BloodCultist");
+        _tagSystem.AddTag(cultist, "Cultist");
 
         _factionSystem.RemoveFaction(cultist, "NanoTrasen", false);
         _factionSystem.AddFaction(cultist, "BloodCult");
@@ -341,7 +347,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             }
         }
 
-        _audioSystem.PlayGlobal(rule.GreatingsSound, Filter.Empty().AddPlayer(mind.Session!), false,
+        _audioSystem.PlayGlobal(rule.GreatingsSound,
+            Filter.Empty().AddPlayer(mind.Session!),
+            false,
             AudioParams.Default);
 
         _chatManager.DispatchServerMessage(mind.Session!, Loc.GetString("cult-role-greeting"));

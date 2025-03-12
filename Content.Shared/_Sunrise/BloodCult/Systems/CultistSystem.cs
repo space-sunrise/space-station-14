@@ -1,3 +1,5 @@
+﻿using Content.Shared._Sunrise.BloodCult.Components;
+
 namespace Content.Shared._Sunrise.BloodCult.Systems;
 
 /// <summary>
@@ -9,16 +11,16 @@ public sealed class CultistSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<_Sunrise.BloodCult.Components.BloodCultistComponent, ComponentStartup>(OnInit);
-        SubscribeLocalEvent<_Sunrise.BloodCult.Components.BloodCultistComponent, ComponentShutdown>(OnRemove);
+        SubscribeLocalEvent<BloodCultistComponent, ComponentStartup>(OnInit);
+        SubscribeLocalEvent<BloodCultistComponent, ComponentShutdown>(OnRemove);
     }
 
-    private void OnInit(EntityUid uid, _Sunrise.BloodCult.Components.BloodCultistComponent component, ComponentStartup args)
+    private void OnInit(EntityUid uid, BloodCultistComponent component, ComponentStartup args)
     {
         RaiseLocalEvent(new EventCultistComponentState(true));
     }
 
-    private void OnRemove(EntityUid uid, _Sunrise.BloodCult.Components.BloodCultistComponent component, ComponentShutdown args)
+    private void OnRemove(EntityUid uid, BloodCultistComponent component, ComponentShutdown args)
     {
         RaiseLocalEvent(new EventCultistComponentState(false));
     }
@@ -26,9 +28,10 @@ public sealed class CultistSystem : EntitySystem
 
 public sealed class EventCultistComponentState
 {
-    public bool Created { get; }
     public EventCultistComponentState(bool state)
     {
         Created = state;
     }
+
+    public bool Created { get; }
 }

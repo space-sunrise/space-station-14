@@ -24,7 +24,7 @@
   recipeUnlocks:
   - CargoSuit
   - BluespaceBox
-  
+
 # Tier 2
 
 - type: technology
@@ -38,3 +38,15 @@
   cost: 5000
   recipeUnlocks:
   - BasicNVD
+
+- type: technology
+  id: BasicThermals
+  name: research-technology-basic-thermals
+  icon:
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+    state: icon
+  discipline: Industrial
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - BasicThermals

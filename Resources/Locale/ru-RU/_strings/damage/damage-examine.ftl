@@ -8,5 +8,6 @@ damage-throw = метательное
 damage-examine = Наносит следующие повреждения:
 damage-examine-type = Наносит следующие повреждения ([color=cyan]{ $type }[/color]):
 damage-value = - [color=red]{ $amount }[/color] единиц [color=yellow]{ $type }[/color].
+damage-none = Это не наносит урона.
 damage-shot-split = Выстреливает сплитом. Количество: { $count }.
 damage-shot-spread = Выстреливает дробью. Количество: { $count }.

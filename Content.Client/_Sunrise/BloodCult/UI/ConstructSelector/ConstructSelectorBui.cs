@@ -11,15 +11,15 @@ namespace Content.Client._Sunrise.BloodCult.UI.ConstructSelector;
 
 public sealed class ConstructSelectorBui : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IClyde _displayManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
-    private SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    private BloodCultMenu? _menu;
 
     private bool _selected;
-    private BloodCultMenu? _menu;
+    private SpriteSystem _spriteSystem = default!;
 
     public ConstructSelectorBui(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
 
@@ -33,7 +33,7 @@ public sealed class ConstructSelectorBui : BoundUserInterface
 
         _menu.OnClose += () =>
         {
-            if(_selected)
+            if (_selected)
                 return;
 
             SendMessage(new ConstructFormSelectedEvent(_random.Pick(shellComponent.ConstructForms)));

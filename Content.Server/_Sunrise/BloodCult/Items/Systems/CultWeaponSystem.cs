@@ -17,13 +17,13 @@ namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
 public sealed class CultWeaponSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly StomachSystem _stomachSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
 
     public override void Initialize()
     {
@@ -63,10 +63,14 @@ public sealed class CultWeaponSystem : EntitySystem
             if (firstStomach == null)
                 return;
 
-            if (!_solutionContainer.TryGetSolution(firstStomach.Value.Owner, firstStomach.Value.Comp1.BodySolutionName, out var bodySolution))
+            if (!_solutionContainer.TryGetSolution(firstStomach.Value.Owner,
+                    firstStomach.Value.Comp1.BodySolutionName,
+                    out var bodySolution))
                 return;
 
-            if (_stomachSystem.TryChangeReagent(firstStomach.Value.Owner, component.ConvertedId, component.ConvertedToId))
+            if (_stomachSystem.TryChangeReagent(firstStomach.Value.Owner,
+                    component.ConvertedId,
+                    component.ConvertedToId))
                 convert = true;
 
             if (ConvertHolyWater(bodySolution.Value.Comp.Solution, component.ConvertedId, component.ConvertedToId))

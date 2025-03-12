@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Commands
 {
-    [AdminCommand(AdminFlags.Host)] // На время пока не будут закончены все новые режимы.
+    [AdminCommand(AdminFlags.Round)]
     public sealed class SetGamePresetCommand : IConsoleCommand
     {
         [Dependency] private readonly IEntityManager _entity = default!;

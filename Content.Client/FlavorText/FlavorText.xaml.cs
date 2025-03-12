@@ -11,9 +11,9 @@ namespace Content.Client.FlavorText
     {
         public Action<string>? OnFlavorTextChanged;
 
-        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
+        private readonly ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
 
-        public FlavorText(ISharedSponsorsManager? sponsorsMgr, bool sponsorOnly) // Sunrise-Edit
+        public FlavorText(ISharedSponsorsManager? sponsorsMgr, bool sponsorOnly, int baseMaxDescLength) // Sunrise-Edit
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
@@ -23,17 +23,25 @@ namespace Content.Client.FlavorText
             var loc = IoCManager.Resolve<ILocalizationManager>();
             CFlavorTextInput.Placeholder = new Rope.Leaf(loc.GetString("flavor-text-placeholder"));
             CFlavorTextInput.OnTextChanged  += _ => FlavorTextChanged();
-            // Sunrise-Start
-            if (sponsorOnly)
-            {
-                SponsorOnlyNotify.Visible = true;
-                CFlavorTextInput.Visible = false;
-                LimitBox.Visible = false;
-            }
+
             if (_sponsorsMgr != null && _sponsorsMgr.ClientAllowedFlavor())
             {
                 var maxDescLength = _sponsorsMgr.ClientGetSizeFlavor();
                 LimitLabel.Text = $"{maxDescLength}";
+            }
+            else
+            {
+                LimitLabel.Text = $"{baseMaxDescLength}";
+            }
+            // Sunrise-Start
+            if (!sponsorOnly || _sponsorsMgr == null)
+            {
+                SponsorOnlyNotify.Visible = false;
+                CFlavorTextInput.Visible = true;
+                LimitBox.Visible = true;
+            }
+            else if (_sponsorsMgr.ClientAllowedFlavor())
+            {
                 SponsorOnlyNotify.Visible = false;
                 CFlavorTextInput.Visible = true;
                 LimitBox.Visible = true;

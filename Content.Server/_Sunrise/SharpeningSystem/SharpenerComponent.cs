@@ -17,8 +17,8 @@ public sealed partial class SharpenerComponent : Component
 public sealed partial class SharpenedComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
-    public int DamageModifier = 0;
+    public int AttacksLeft = 50;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public int AttacksLeft = 50;
+    public int DamageModifier = 0;
 }

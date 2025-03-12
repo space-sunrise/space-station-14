@@ -267,6 +267,14 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalNamedCat
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: McGriff
@@ -313,7 +321,7 @@
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-dog
-    interactFailureString: petting-failure-generic
+    interactFailureString: petting-failure-dog # Sunrise-Edit
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
@@ -321,12 +329,23 @@
     attributes:
       proper: true
       gender: male
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Dog
   - type: Tag
     tags:
     - CannotSuicide
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalMcGriff
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: Paperwork
@@ -389,7 +408,6 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
-  - type: DogVision  # Sunrise-DogVision
   - type: DamageStateVisuals
     states:
       Alive:
@@ -407,7 +425,7 @@
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-dog
-    interactFailureString: petting-failure-generic
+    interactFailureString: petting-failure-dog # Sunrise-Edit
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
@@ -421,6 +439,18 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalWalter
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Dog
+  # Sunrise-start
+  - type: DogVision
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: Morty
@@ -509,6 +539,12 @@
     tags:
     - CannotSuicide
     - VimPilot
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: Alexander
@@ -539,7 +575,7 @@
   description: The captain's trustworthy fox.
   components:
   - type: InteractionPopup
-    successChance: 1
+    successChance: 0.7 # Sunrise-Edit
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
@@ -561,6 +597,12 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalRenault
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: Hamlet
@@ -679,6 +721,12 @@
     - FootstepSound
   - type: StealTarget
     stealGroup: AnimalShiva
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: Willow
@@ -778,9 +826,10 @@
         Blunt: 3  # Sunrise-edit
         Caustic: 3  # Sunrise-edit
   - type: MultiHandedItem
-  - type: Item
-    sprite: Mobs/Pets/Smile/smile.rsi
-    size: Huge
+  # Sunrise-Edit
+  #- type: Item
+  #  sprite: Mobs/Pets/Smile/smile.rsi
+  #  size: Huge
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-slime
   - type: MobPrice

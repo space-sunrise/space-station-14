@@ -8,6 +8,9 @@ namespace Content.Server._Sunrise.BloodCult.TimedProduction;
 public sealed partial class CultistFactoryComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
+    public bool Active = true;
+
+    [ViewVariables(VVAccess.ReadOnly)]
     [DataField("cooldown")]
     public int Cooldown = 240;
 
@@ -19,7 +22,4 @@ public sealed partial class CultistFactoryComponent : Component
     public IReadOnlyCollection<string> Products = ArraySegment<string>.Empty;
 
     public Enum UserInterfaceKey = CultistAltarUiKey.Key;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool Active = true;
 }

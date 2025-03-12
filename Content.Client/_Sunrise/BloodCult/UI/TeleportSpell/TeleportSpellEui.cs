@@ -18,7 +18,7 @@ public sealed class TeleportSpellEui : BaseEui
     public override void Opened()
     {
         _window.OpenCentered();
-        _window.ItemSelected += (index, _) => SendMessage(new TeleportSpellTargetRuneSelected(){RuneUid = index});
+        _window.ItemSelected += (index, _) => SendMessage(new TeleportSpellTargetRuneSelected() { RuneUid = index });
         _window.OnClose += () => SendMessage(new CloseEuiMessage());
 
         base.Opened();
@@ -32,7 +32,8 @@ public sealed class TeleportSpellEui : BaseEui
 
     public override void HandleState(EuiStateBase state)
     {
-        if(state is not TeleportSpellEuiState cast) return;
+        if (state is not TeleportSpellEuiState cast)
+            return;
 
         _window.Clear();
         _window.PopulateList(cast.Runes.Keys.ToList(), cast.Runes.Values.ToList());

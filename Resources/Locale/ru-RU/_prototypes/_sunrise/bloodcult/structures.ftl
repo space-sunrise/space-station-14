@@ -1,0 +1,12 @@
+﻿recipe-CultGirder-name = руническая балка
+recipe-CultGirder-description = Большой конструктивный элемент, изготовленный из металла. На этом есть руна.
+recipe-AirlockGlassCult-name = рунический шлюз
+recipe-AirlockGlassCult-description = Странный стеклянный шлюз с руной.
+recipe-CultPylon-name = пилон
+recipe-CultPylon-description = Мистический конструкция.
+recipe-AltarTome-name = архивы
+recipe-AltarTome-description = Стол, заваленный тайными рукописями и книгами на неизвестных языках.
+recipe-CultBloodAltar-name = алтарь
+recipe-CultBloodAltar-description = Кровавый алтарь, посвященный какому-то существу.
+recipe-CultForge-name = кузница
+recipe-CultForge-description = Кузница, в которой изготавливается нечестивое оружие.

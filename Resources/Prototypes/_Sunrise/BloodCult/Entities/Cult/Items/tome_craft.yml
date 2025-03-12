@@ -1,4 +1,4 @@
-- type: material
+﻿- type: material
   id: CultRunicMetal
   stackEntity: CultRunicMetal1
   name: materials-runic-metal
@@ -12,6 +12,7 @@
   icon: { sprite: /Textures/_Sunrise/BloodCult/Entities/runic_metal.rsi, state: runic}
   spawn: CultRunicMetal1
   maxCount: 30
+  itemSize: 1
 
 - type: entity
   name: curse orb
@@ -126,21 +127,21 @@
 - type: cultistFactoryProduction
   id: FactoryCultShuttleCurse
   icon: "/Textures/_Sunrise/BloodCult/Entities/shuttle_curse.rsi/icon-off.png"
-  name: Проклятие шаттла
+  name: cultistFactoryProduction-ShuttleCurse
   item:
     - CultShuttleCurse
 
 - type: cultistFactoryProduction
   id: FactoryCultClothingBlindfold
   icon: "/Textures/Clothing/Eyes/Misc/blindfold.rsi/icon.png"
-  name: Повязка Зилота
+  name: cultistFactoryProduction-Blindfold
   item:
     - CultClothingBlindfold
 
 - type: cultistFactoryProduction
   id: FactoryCultVeilShifter
   icon: "/Textures/_Sunrise/BloodCult/Entities/veil_shifter.rsi/icon.png"
-  name: Идущий по покрову
+  name: cultistFactoryProduction-VeilShifter
   item:
     - CultVeilShifter
     - CultTorch
@@ -171,6 +172,7 @@
         - runic
         - runic_2
         - runic_3
+      sizeMultiplier: 0.17
     - type: Appearance
     - type: RunicMetal
     - type: UserInterface
@@ -188,6 +190,7 @@
       state: runic
     - type: Stack
       count: 1
+      sizeMultiplier: 0.17
 
 - type: entity
   parent: CultRunicMetal
@@ -198,6 +201,7 @@
       state: runic
     - type: Stack
       count: 20
+      sizeMultiplier: 0.17
 
 - type: entity
   parent: CultRunicMetal
@@ -208,3 +212,4 @@
     state: runic
   - type: Stack
     count: 10
+    sizeMultiplier: 0.17

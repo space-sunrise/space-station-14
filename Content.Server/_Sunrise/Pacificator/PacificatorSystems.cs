@@ -25,10 +25,10 @@ public sealed class PacificatorSystems : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<Pacificator.PacificatorComponent, ComponentInit>(OnCompInit);
-        SubscribeLocalEvent<Pacificator.PacificatorComponent, ComponentShutdown>(OnComponentShutdown);
-        SubscribeLocalEvent<Pacificator.PacificatorComponent, InteractHandEvent>(OnInteractHand);
-        SubscribeLocalEvent<Pacificator.PacificatorComponent, SwitchGeneratorMessage>(
+        SubscribeLocalEvent<PacificatorComponent, ComponentInit>(OnCompInit);
+        SubscribeLocalEvent<PacificatorComponent, ComponentShutdown>(OnComponentShutdown);
+        SubscribeLocalEvent<PacificatorComponent, InteractHandEvent>(OnInteractHand);
+        SubscribeLocalEvent<PacificatorComponent, SwitchGeneratorMessage>(
             OnSwitchGenerator);
     }
 

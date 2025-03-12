@@ -1,14 +1,14 @@
-using Content.Shared._Sunrise.BloodCult.UI;
+﻿using Content.Shared._Sunrise.BloodCult.UI;
 
 namespace Content.Client._Sunrise.BloodCult.UI.NameSelector;
 
 public sealed class NameSelectorBUI : BoundUserInterface
 {
+    private NameSelectorWindow? _window;
+
     public NameSelectorBUI(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
-
-    private NameSelectorWindow? _window;
 
     protected override void Open()
     {

@@ -50,6 +50,9 @@
 		"name": "spas12"
 	},
 	{
+		"name": "mp7"
+	},
+	{
 		"name": "box_smg_uran"
 	},
 	{
@@ -75,6 +78,9 @@
 	},
 	{
 		"name": "nvd"
+	},
+	{
+		"name": "thermals"
 	},
 	{
 		"name": "nuke_pinpointer"
@@ -111,7 +117,7 @@
 	},
 	{
 		"name": "lecter"
-	},	
+	},
 	{
 		"name": "mag_br64"
 	},
@@ -222,6 +228,15 @@
 	},
 	{
 		"name": "pill"
+	},
+	{
+		"name": "hypospray_ert"
+	},
+	{
+		"name": "hypospray_cmo"
+	},
+	{
+		"name": "hypospray_combat"
 	},
 	{
 		"name": "magazine-magnum-p"

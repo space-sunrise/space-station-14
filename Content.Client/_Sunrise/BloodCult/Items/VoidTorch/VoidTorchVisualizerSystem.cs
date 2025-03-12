@@ -5,7 +5,9 @@ namespace Content.Client._Sunrise.BloodCult.Items.VoidTorch;
 
 public sealed class VoidTorchVisualizerSystem : VisualizerSystem<VoidTorchVisualsComponent>
 {
-    protected override void OnAppearanceChange(EntityUid uid, VoidTorchVisualsComponent component, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid,
+        VoidTorchVisualsComponent component,
+        ref AppearanceChangeEvent args)
     {
         base.OnAppearanceChange(uid, component, ref args);
 

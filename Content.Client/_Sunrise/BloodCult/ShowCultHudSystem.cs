@@ -4,6 +4,7 @@ using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.BloodCult;
+
 public sealed class ShowCultHudSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
@@ -16,7 +17,9 @@ public sealed class ShowCultHudSystem : EntitySystem
         SubscribeLocalEvent<BloodCultistComponent, GetStatusIconsEvent>(OnGetStatusIconsEvent);
     }
 
-    private void OnGetStatusIconsEvent(EntityUid uid, BloodCultistComponent bloodCultistComponent, ref GetStatusIconsEvent args)
+    private void OnGetStatusIconsEvent(EntityUid uid,
+        BloodCultistComponent bloodCultistComponent,
+        ref GetStatusIconsEvent args)
     {
         var ent = _player.LocalSession?.AttachedEntity;
         if (!HasComp<BloodCultistComponent>(ent))
@@ -26,4 +29,3 @@ public sealed class ShowCultHudSystem : EntitySystem
             args.StatusIcons.Add(iconPrototype);
     }
 }
-

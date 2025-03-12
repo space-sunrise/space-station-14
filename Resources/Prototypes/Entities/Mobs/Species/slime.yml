@@ -7,6 +7,11 @@
   - type: Absorbable
   - type: Hunger
   - type: Thirst
+    baseDecayRate: 0.3
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon
     sprite: Mobs/Species/Slime/parts.rsi
     state: full
@@ -76,7 +81,8 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.1 # Sunrise-Casual
+        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make slime boil more than blunt stretch them so i decided on this instead.
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -107,7 +113,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.5 # Sunrise-Casual
+        Asphyxiation: 0.2
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -125,6 +131,7 @@
       - "footprint-left-bare-slime"
     rightBareFootState:
       - "footprint-right-bare-slime"
+  - type: Carriable
   # Sunrise edit end.
 
 - type: entity

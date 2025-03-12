@@ -1,4 +1,4 @@
-- type: factionIcon
+﻿- type: factionIcon
   id: BloodCultFaction
   priority: 0
   locationPreference: Left

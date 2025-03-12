@@ -3,6 +3,7 @@
   name: roles-antag-nuclear-operative-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearOperative # Sunrise-Edit
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
@@ -21,6 +22,7 @@
   name: roles-antag-nuclear-operative-medic-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearMedic # Sunrise-Edit
   objective: roles-antag-nuclear-operative-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
@@ -42,6 +44,7 @@
   name: roles-antag-nuclear-operative-commander-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearCommander # Sunrise-Edit
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement

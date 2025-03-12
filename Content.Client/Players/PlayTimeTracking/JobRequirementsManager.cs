@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.Lobby;
+using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -28,7 +29,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
-    private readonly List<string> _roleBans = new();
+    private readonly List<BanInfo> _roleBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
@@ -68,6 +69,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         _roleBans.Clear();
         _roleBans.AddRange(message.Bans);
+
         Updated?.Invoke();
     }
 
@@ -96,11 +98,11 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    public bool IsAllowed(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool IsAllowed(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason, bool skipBanCheck = false)
     {
         reason = null;
 
-        if (_roleBans.Contains($"Job:{job.ID}"))
+        if (!skipBanCheck && _roleBans.Any(ban => ban.Role == $"Job:{job.ID}"))
         {
             reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
             return false;
@@ -178,12 +180,20 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public IEnumerable<KeyValuePair<string, TimeSpan>> FetchPlaytimeByRoles()
     {
         var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
+        var antagsToMap = _prototypes.EnumeratePrototypes<AntagPrototype>();
 
         foreach (var job in jobsToMap)
         {
             if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
             {
                 yield return new KeyValuePair<string, TimeSpan>(job.Name, locJobName);
+            }
+        }
+        foreach (var antag in antagsToMap)
+        {
+            if (_roles.TryGetValue(antag.PlayTimeTracker, out var locAntagName))
+            {
+                yield return new KeyValuePair<string, TimeSpan>(antag.Name, locAntagName);
             }
         }
     }
@@ -196,5 +206,52 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         }
 
         return _roles;
+    }
+
+    /// <summary>
+    /// Checks if any of the specified ban types (jobs or antags) are currently active for the provided bans.
+    /// </summary>
+    /// <param name="bans">The collection of bans to check against.</param>
+    /// <param name="banTypes">The collection of ban types (roles or antags) to check.</param>
+    /// <param name="banReason">The reason for the ban, if found.</param>
+    /// <param name="expirationTime">The expiration time of the ban, if found.</param>
+    /// <returns>True if an active ban is found, otherwise false.</returns>
+    private bool IsBanned(IEnumerable<BanInfo> bans, IEnumerable<string> banTypes, [NotNullWhen(true)] out string? banReason, out DateTime? expirationTime)
+    {
+        banReason = null;
+        expirationTime = null;
+
+        foreach (var banType in banTypes)
+        {
+            var ban = bans.FirstOrDefault(b => b.Role == banType);
+            if (ban != null)
+            {
+                banReason = ban.Reason ?? string.Empty;
+                expirationTime = ban.ExpirationTime ?? null;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public List<BanInfo> GetAntagBans()
+    {
+        return _roleBans.Where(ban => ban.Role != null && ban.Role.StartsWith("Antag:")).ToList();
+    }
+
+    public List<BanInfo> GetRoleBans()
+    {
+        return _roleBans.Where(ban => ban.Role != null && ban.Role.StartsWith("Job:")).ToList();
+    }
+
+    public bool IsAntagBanned(IEnumerable<string> antags, [NotNullWhen(true)] out string? banReason, out DateTime? expirationTime)
+    {
+        return IsBanned(GetAntagBans(), antags, out banReason, out expirationTime);
+    }
+
+    public bool IsRoleBanned(IEnumerable<string> roles, [NotNullWhen(true)] out string? banReason, out DateTime? expirationTime)
+    {
+        return IsBanned(GetRoleBans(), roles, out banReason, out expirationTime);
     }
 }

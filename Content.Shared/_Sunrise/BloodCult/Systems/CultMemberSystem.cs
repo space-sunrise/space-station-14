@@ -1,4 +1,4 @@
-using Content.Shared._Sunrise.BloodCult.Components;
+﻿using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -8,8 +8,8 @@ namespace Content.Shared._Sunrise.BloodCult.Systems;
 
 public sealed class CultMemberSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {

@@ -29,3 +29,72 @@
         amount: 4
       - id: WeaponShotgunBlunderbuss
         amount: 2
+
+#SUNRISE-Start
+- type: entity
+  id: CratePirateChestSun
+  suffix: Filled, Sunrise
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherPirateCannon
+      - id: Cutlass
+      - id: CannonBall
+        amount: 2
+      - id: CannonBallFuze
+        amount: 2
+      - id: CannonBallGlassshot
+        amount: 3
+      - id: CannonBallEMPshot
+        amount: 3
+      - id: CannonBallGrapeshot
+        amount: 4
+      - id: WeaponPistolFlintlock
+        amount: 2
+      - id: MagazineBoxAntiMateriel
+        amount: 2
+      - id: WeaponGrapplingGun
+        amount: 2
+      - id: WeaponShotgunBlunderbuss
+      - id: WeaponRevolverPirate
+        prob: 0.9
+      - id: EnergyCutlass
+        prob: 0.9
+      - id: ToolboxElectricalTurret
+        prob: 0.75
+      - id: WeaponLaserGun
+        prob: 0.40
+      - id: WeaponSniperRepeater
+        prob: 0.40
+      - id: WeaponShotgunSawnEmpty
+        prob: 0.30
+      - id: WeaponShotgunTrenchgun4034Sawn
+        prob: 0.30
+      - id: WeaponSubMachineGunMP38
+        prob: 0.25
+      - id: ToolboxElectricalTurret
+        prob: 0.25
+      - id: WeaponRevolverPython
+        prob: 0.25
+      - id: WeaponSubMachineGunSkorpion
+        prob: 0.15
+      - id: WeaponSubMachineGunPPSH41
+        prob: 0.10
+      - id: WeaponSTG44
+        prob: 0.10
+      - id: WeaponIONRifle
+        prob: 0.05
+      - id: WeaponSyndieLaserGun
+        prob: 0.05
+      - id: WeaponRifleAKMU
+        prob: 0.05
+      - id: WeaponSyndieLaserPistolBiocode
+        prob: 0.01
+      - id: WeaponLaserLNT620
+        prob: 0.01
+      - id: WeaponSniperDragunov
+        prob: 0.001
+      - id: WeaponLightMachineGunRPD
+        prob: 0.001
+#SUNRISE-End

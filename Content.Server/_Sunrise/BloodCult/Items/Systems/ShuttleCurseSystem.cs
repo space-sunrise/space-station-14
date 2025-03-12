@@ -12,13 +12,12 @@ namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
 public sealed class ShuttleCurseSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-
     private const int MaxCurses = 3;
+    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     private int _currentCurses = 0;
     private TimeSpan? _nextCurse = TimeSpan.Zero;
 

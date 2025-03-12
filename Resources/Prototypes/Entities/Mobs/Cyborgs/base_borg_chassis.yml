@@ -16,7 +16,6 @@
     soundHit:
       collection: MetalThud
   - type: CombatMode
-  - type: NoSlip
   - type: StaticPrice
     price: 1250
   - type: Fixtures
@@ -36,6 +35,7 @@
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: RotationVisuals
+    defaultRotation: 90
     horizontalRotation: 90
   - type: MobState
     allowedStates:
@@ -103,16 +103,18 @@
     - Common
     - Science
   - type: ZombieImmune
+  # Sunrise-Start
   - type: Repairable
-    # Sunrise-Start
     doAfterDelay: 3
     damage:
       types:
         Blunt: -15
         Slash: -15
         Piercing: -15
-    # Sunrise-End
+        Caustic: -15
+        Structural: -15
     allowSelfRepair: false
+  # Sunrise-End
   - type: BorgChassis
   - type: LockingWhitelist
     blacklist:
@@ -156,6 +158,7 @@
     - SlowedDown
     - Flashed
     - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -164,6 +167,7 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+    screamAction: null
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -176,7 +180,6 @@
     - cell_slot
   - type: Lock
     locked: true
-    breakOnEmag: false
     unlockOnClick: false
   - type: ActivatableUIRequiresLock
   - type: LockedWiresPanel
@@ -234,7 +237,8 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4
+    energy: 2 # Sunrise-edit
+    radius: 12 # Sunrise-edit
     netsync: false
   - type: Pullable
   - type: Puller
@@ -265,6 +269,8 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,0.15"
+  - type: Stripping
+    useDragDrop: false
   # Sunrise-end
 
 - type: entity
@@ -334,6 +340,7 @@
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
+  - type: ShowMindShieldIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
@@ -363,6 +370,7 @@
     access: [["SyndicateAgent"], ["NuclearOperative"]]
   - type: SiliconLawProvider
     laws: SyndicateStatic
+    subverted: true
   - type: IntrinsicRadioTransmitter
     channels:
     - Binary
@@ -374,6 +382,8 @@
   - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -385,45 +395,9 @@
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-    stateAlertDict:
-      Alive: BorgHealth
-      Critical: BorgCrit
-      Dead: BorgDead
-    showOverlays: false
-    allowRevives: true
   - type: FlashImmunity
   - type: TypingIndicator
     proto: syndibot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 175
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:EmptyContainersBehaviour
-        containers:
-        - borg_brain
-        - borg_module
-        - cell_slot
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Tag
     tags:
     - DoorBumpOpener

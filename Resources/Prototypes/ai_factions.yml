@@ -7,19 +7,19 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
   - Changeling
   - Vampire
   - Flesh
-  - BloodCult
 
 - type: npcFaction
   id: Mouse
   hostile:
-    - PetsNT
-    - AllHostile
+  - PetsNT
+  - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -46,6 +46,7 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -53,7 +54,7 @@
   - Vampire
   - FleshHuman
   - Flesh
-  - BloodCult
+  - BloodCultist
 
 - type: npcFaction
   id: SimpleNeutral
@@ -67,6 +68,7 @@
   - PetsNT
   - Zombie
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -74,7 +76,6 @@
   - Vampire
   - FleshHuman
   - Flesh
-  - BloodCult
 
 - type: npcFaction
   id: Xeno
@@ -86,6 +87,7 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -93,7 +95,7 @@
   - Vampire
   - FleshHuman
   - Flesh
-  - BloodCult
+  - BloodCultist
 
 - type: npcFaction
   id: Zombie
@@ -106,6 +108,7 @@
   - PetsNT
   - Revolutionary
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -113,7 +116,7 @@
   - Vampire
   - FleshHuman
   - Flesh
-  - BloodCult
+  - BloodCultist
 
 - type: npcFaction
   id: Revolutionary
@@ -122,13 +125,13 @@
   - Zombie
   - SimpleHostile
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Carps
   - Changeling
   - Vampire
   - FleshHuman
   - Flesh
-  - BloodCult
 
 - type: npcFaction
   id: AllHostile
@@ -143,6 +146,7 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - Wizard
   # Sunrise Edit
   - Thief
   - Carps
@@ -150,4 +154,24 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
+
+- type: npcFaction
+  id: Wizard
+  hostile:
+  - NanoTrasen
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - Xeno
   - BloodCult

@@ -9,6 +9,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -87,6 +88,8 @@ namespace Content.Client.Lobby.UI
         public HumanoidCharacterProfile? Profile;
 
         private List<SpeciesPrototype> _species = new();
+
+        private List<BodyTypePrototype> _bodyTypes = new();
 
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
@@ -226,6 +229,17 @@ namespace Content.Client.Lobby.UI
 
             #endregion
             // Sunrise-TTS-End
+
+            #region BodyType
+
+
+            CBodyTypesButton.OnItemSelected += args =>
+            {
+                CBodyTypesButton.SelectId(args.Id);
+                SetBodyType(_bodyTypes[args.Id].ID);
+            };
+
+            #endregion
 
             RefreshSpecies();
 
@@ -472,7 +486,8 @@ namespace Content.Client.Lobby.UI
 
                 // Sunrise-Start
                 var sponsorOnly = _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly);
-                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly);
+                var baseMaxDescLength = _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
+                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly, baseMaxDescLength);
                 // Sunrise-End
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
@@ -680,7 +695,15 @@ namespace Content.Client.Lobby.UI
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
                 var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
-                if (!_requirements.CheckRoleRequirements(requirements, antag.ID, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason)) // Sunrise-Sponsors
+                var antagAllSelection = Loc.GetString("ban-panel-role-selection-antag-all-option");
+
+                if (_requirements.IsAntagBanned(new[] { $"Antag:{antag.ID}", $"Antag:{antagAllSelection}" }, out var banReason, out var expirationTime))
+                {
+                    selector.LockDueToBan(banReason, expirationTime);
+                    Profile = Profile?.WithAntagPreference(antag.ID, false);
+                    SetDirty();
+                }
+                else if (!_requirements.CheckRoleRequirements(requirements, antag.ID, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason)) // Sunrise-Sponsors
                 {
                     selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
@@ -698,14 +721,6 @@ namespace Content.Client.Lobby.UI
                 };
 
                 antagContainer.AddChild(selector);
-
-                antagContainer.AddChild(new Button()
-                {
-                    Disabled = true,
-                    Text = Loc.GetString("loadout-window"),
-                    HorizontalAlignment = HAlignment.Right,
-                    Margin = new Thickness(3f, 0f, 0f, 0f),
-                });
 
                 AntagList.AddChild(antagContainer);
             }
@@ -785,6 +800,7 @@ namespace Content.Client.Lobby.UI
             UpdateSaveButton();
             UpdateMarkings();
             UpdateTtsVoicesControls(); // Sunrise-TTS
+            UpdateBodyTypes();
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
@@ -853,6 +869,22 @@ namespace Content.Client.Lobby.UI
             var departments = new List<DepartmentPrototype>();
             foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
             {
+                // Sunrise-Start
+                var visible = false;
+
+                foreach (var departmentRole in department.Roles)
+                {
+                    if (!_prototypeManager.TryIndex(departmentRole, out var role))
+                        continue;
+
+                    if (role.SetPreference)
+                        visible = true;
+                }
+
+                if (!visible)
+                    continue;
+                // Sunrise-End
+
                 if (department.EditorHidden)
                     continue;
 
@@ -875,7 +907,7 @@ namespace Content.Client.Lobby.UI
 
             foreach (var department in departments)
             {
-                var departmentName = Loc.GetString($"department-{department.ID}");
+                var departmentName = Loc.GetString(department.Name);
 
                 if (!_jobCategories.TryGetValue(department.ID, out var category))
                 {
@@ -945,7 +977,11 @@ namespace Content.Client.Lobby.UI
                     icon.Texture = jobIcon.Icon.Frame0();
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                    if (_requirements.IsRoleBanned(new[] { $"Job:{job.ID}" }, out var banReason, out var expirationTime))
+                    {
+                        selector.LockDueToBan(banReason, expirationTime);
+                    }
+                    else if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason, true))
                     {
                         selector.LockRequirements(reason);
                     }
@@ -1050,6 +1086,13 @@ namespace Content.Client.Lobby.UI
             // Refresh the buttons etc.
             _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
             _loadoutWindow.OpenCenteredLeft();
+
+            _loadoutWindow.OnNameChanged += name =>
+            {
+                roleLoadout.EntityName = name;
+                Profile = Profile.WithLoadout(roleLoadout);
+                SetDirty();
+            };
 
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {
@@ -1224,6 +1267,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateGenderControls();
             UpdateTtsVoicesControls(); // Sunrise-TTS
+            UpdateBodyTypes();
             RefreshLoadouts(); // Sunrise-Sex restrictions
             Markings.SetSex(newSex);
             ReloadPreview();
@@ -1253,6 +1297,7 @@ namespace Content.Client.Lobby.UI
             // In case there's species restrictions for loadouts
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
+            UpdateBodyTypes();
             UpdateSpeciesGuidebookIcon();
             ReloadPreview();
         }
@@ -1704,6 +1749,39 @@ namespace Content.Client.Lobby.UI
             _exporting = false;
             ImportButton.Disabled = false;
             ExportButton.Disabled = false;
+        }
+
+        private void SetBodyType(string newBodyType)
+        {
+            Profile = Profile?.WithBodyType(newBodyType);
+            ReloadPreview();
+            IsDirty = true;
+        }
+
+        private void UpdateBodyTypes()
+        {
+            if (Profile is null)
+                return;
+
+            CBodyTypesButton.Clear();
+            var species = _prototypeManager.Index(Profile.Species);
+            var sex = Profile.Sex;
+            _bodyTypes = species.BodyTypes.Select(protoId => _prototypeManager.Index<BodyTypePrototype>(protoId))
+                .Where(proto => !proto.SexRestrictions.Contains(sex.ToString()))
+                .ToList();
+
+            for (var i = 0; i < _bodyTypes.Count; i++)
+            {
+                CBodyTypesButton.AddItem(Loc.GetString(_bodyTypes[i].Name), i);
+            }
+
+            if (!_bodyTypes.Select(proto => proto.ID).Contains(Profile.BodyType))
+            {
+                SetBodyType(_bodyTypes.First().ID);
+            }
+
+            CBodyTypesButton.Select(_bodyTypes.FindIndex(x => x.ID == Profile.BodyType));
+            IsDirty = true;
         }
     }
 }

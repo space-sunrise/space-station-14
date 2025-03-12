@@ -88,6 +88,10 @@
     stateDoorClosed: patologoanatom_door
   - type: AccessReader
     access: [["Medical"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
 
 - type: entity
   id: ClosetPatologoanatomFilled
@@ -105,5 +109,6 @@
     - id: Scalpel
     - id: ClothingHandsGlovesNitrile
     - id: ClothingShoesColorBlack
+    - id: RubberStampPath
     - id: ClothingOuterHospitalGown
       amount: 2

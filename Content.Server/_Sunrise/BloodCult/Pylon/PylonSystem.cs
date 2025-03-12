@@ -25,19 +25,19 @@ namespace Content.Server._Sunrise.BloodCult.Pylon;
 
 public sealed class PylonSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly DamageableSystem _damageSystem = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -56,7 +56,6 @@ public sealed class PylonSystem : EntitySystem
         component.Activated = false;
 
         UpdateAppearance(uid, component);
-
     }
 
     private void OnInit(EntityUid uid, SharedPylonComponent component, ComponentInit args)
@@ -116,7 +115,7 @@ public sealed class PylonSystem : EntitySystem
         if (comp.ConvertEverything)
             ConvertEverything(comp, tiles);
 
-        var cultTileDef = (ContentTileDefinition) _tileDefinition[$"{comp.TileId}"];
+        var cultTileDef = (ContentTileDefinition)_tileDefinition[$"{comp.TileId}"];
         var cultTile = new Tile(cultTileDef.TileId);
 
         foreach (var tile in tiles)

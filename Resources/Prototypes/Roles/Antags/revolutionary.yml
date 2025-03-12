@@ -3,6 +3,7 @@
   name: roles-antag-rev-head-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagHeadRevolutionary # Sunrise-Edit
   objective: roles-antag-rev-head-objective
   requirements:
   - !type:OverallPlaytimeRequirement
@@ -18,6 +19,7 @@
   name: roles-antag-rev-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagRevolutionary # Sunrise-Edit
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
 

@@ -1,9 +1,9 @@
 using System.Linq;
 using Content.Server.Body.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Whitelist;
 using Robust.Shared.Timing;
@@ -13,10 +13,9 @@ namespace Content.Server.Body.Systems
 {
     public sealed class StomachSystem : EntitySystem
     {
+        public const string DefaultSolutionName = "stomach";
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-
-        public const string DefaultSolutionName = "stomach";
 
         public override void Initialize()
         {
@@ -46,10 +45,14 @@ namespace Content.Server.Body.Systems
                 stomach.NextUpdate += stomach.UpdateInterval;
 
                 // Get our solutions
-                if (!_solutionContainerSystem.ResolveSolution((uid, sol), DefaultSolutionName, ref stomach.Solution, out var stomachSolution))
+                if (!_solutionContainerSystem.ResolveSolution((uid, sol),
+                        DefaultSolutionName,
+                        ref stomach.Solution,
+                        out var stomachSolution))
                     continue;
 
-                if (organ.Body is not { } body || !_solutionContainerSystem.TryGetSolution(body, stomach.BodySolutionName, out var bodySolution))
+                if (organ.Body is not { } body ||
+                    !_solutionContainerSystem.TryGetSolution(body, stomach.BodySolutionName, out var bodySolution))
                     continue;
 
                 var transferSolution = new Solution();
@@ -106,9 +109,12 @@ namespace Content.Server.Body.Systems
             SolutionContainerManagerComponent? solutions = null)
         {
             return Resolve(uid, ref stomach, ref solutions, logMissing: false)
-                && _solutionContainerSystem.ResolveSolution((uid, solutions), DefaultSolutionName, ref stomach.Solution, out var stomachSolution)
-                // TODO: For now no partial transfers. Potentially change by design
-                && stomachSolution.CanAddSolution(solution);
+                   && _solutionContainerSystem.ResolveSolution((uid, solutions),
+                       DefaultSolutionName,
+                       ref stomach.Solution,
+                       out var stomachSolution)
+                   // TODO: For now no partial transfers. Potentially change by design
+                   && stomachSolution.CanAddSolution(solution);
         }
 
         public bool TryTransferSolution(
@@ -118,7 +124,9 @@ namespace Content.Server.Body.Systems
             SolutionContainerManagerComponent? solutions = null)
         {
             if (!Resolve(uid, ref stomach, ref solutions, logMissing: false)
-                || !_solutionContainerSystem.ResolveSolution((uid, solutions), DefaultSolutionName, ref stomach.Solution)
+                || !_solutionContainerSystem.ResolveSolution((uid, solutions),
+                    DefaultSolutionName,
+                    ref stomach.Solution)
                 || !CanTransferSolution(uid, solution, stomach, solutions))
             {
                 return false;
@@ -140,7 +148,9 @@ namespace Content.Server.Body.Systems
         }
 
         // Sunrise-Start
-        public bool TryChangeReagent(EntityUid uid, string fromReagent, string toReagent,
+        public bool TryChangeReagent(EntityUid uid,
+            string fromReagent,
+            string toReagent,
             StomachComponent? stomach = null,
             SolutionContainerManagerComponent? solutions = null)
         {

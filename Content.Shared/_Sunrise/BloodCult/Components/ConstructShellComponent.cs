@@ -7,11 +7,11 @@ namespace Content.Shared._Sunrise.BloodCult.Components;
 [RegisterComponent]
 public sealed partial class ConstructShellComponent : Component
 {
-    [DataField("shardSlot", required: true)]
-    public ItemSlot ShardSlot = new();
-
     public readonly string ShardSlotId = "Shard";
 
     [DataField("constructForms", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
     public List<string> ConstructForms = new();
+
+    [DataField("shardSlot", required: true)]
+    public ItemSlot ShardSlot = new();
 }

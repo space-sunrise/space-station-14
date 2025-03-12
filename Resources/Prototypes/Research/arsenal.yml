@@ -12,7 +12,7 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
-  - MechEquipmentKineticAccelerator
+  - MechEquipmentKineticAccelerator # Sunrise-Add
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -28,6 +28,7 @@
   - BoxShotgunIncendiary
   - MagazineRifleIncendiary
   - MagazinePistolIncendiary
+  - MagazinePistolSubMachineGunIncendiary
   - MagazineLightRifleIncendiary
   - SpeedLoaderMagnumIncendiary
   - MagazineShotgunIncendiary
@@ -35,6 +36,7 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
+  - MagazineLightRifleBoxIncendiary #Sunrise-Add
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -47,9 +49,11 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  # Sunrise-Start
   - WeaponMechCombatFiredartLaser
-  - WeaponEnergyGun   # Sunrise-edit
-  - WeaponEnergyGunMini # Sunrise-edit
+  - WeaponEnergyGun
+  - WeaponEnergyGunMini
+  # Sunrise-End
 
 - type: technology
   id: NonlethalAmmunition
@@ -67,14 +71,6 @@
   - WeaponDisabler
   # Sunrise-Start
   - WeaponMechCombatDisabler
-  - CartridgePistolRubber
-  - CartridgeMagnumRubber
-  - CartridgeLightRifleRubber
-  - CartridgeRifleRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxRifleRubber
   # Sunrise-End
 
 - type: technology
@@ -89,6 +85,7 @@
   recipeUnlocks:
   - MagazineRifleUranium
   - MagazinePistolUranium
+  - MagazinePistolSubMachineGunUranium
   - MagazineLightRifleUranium
   - SpeedLoaderMagnumUranium
   - MagazineBoxPistolUranium
@@ -111,7 +108,7 @@
   - TelescopicShield
   - HoloprojectorSecurity
   - WeaponDisablerSMG
-  - ClothingHeadHelmetPubgMore  # Sunrise-edit
+  - ClothingHeadHelmetPubg  # Sunrise-Add
 
 - type: technology
   id: ExplosiveTechnology
@@ -156,20 +153,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
-  - WeaponMechCombatSolarisLaser
-
-- type: technology
-  id: ExperimentalBatteryAmmo
-  name: research-technology-experimental-battery-ammo
-  icon:
-    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 2
-  cost: 8000
-  recipeUnlocks:
-  - WeaponLaserSvalinn
-  - WeaponGunLaserCarbineSemi #Sunrise-Edit
+  - WeaponMechCombatSolarisLaser #Sunrise-Add
 
 - type: technology
   id: WaveParticleHarnessing
@@ -182,18 +166,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-
-- type: technology
-  id: EnergyBarriers
-  name: research-technology-energy_barriers
-  icon:
-    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 2
-  cost: 6000
-  recipeUnlocks:
-  - EnergyDomeDirectionalTurtle
+  - WeaponMechCombatXray  #Sunrise-Add
 
 - type: technology
   id: BasicShuttleArmament
@@ -206,40 +179,16 @@
   cost: 10500
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
-  #PowerCageSmall
-  #PowerCageMedium
+  - PowerCageSmall
+  - PowerCageMedium
   - MagazineGrenadeEmpty
-  - ShellFlashArtillery
-  - ShellBlastArtillery
+  - ShellFlashArtillery # Sunrise-Edit
+  - ShellBlastArtillery # Sunrise-Edit
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-
-- type: technology #Sunrise
-  id: Gygax
-  name: research-technology-gygax
-  icon:
-    sprite: Objects/Specific/Mech/gygax.rsi
-    state: gygax
-  discipline: Arsenal
-  tier: 2
-  cost: 12000
-  recipeUnlocks:
-  - GygaxHarness
-  - GygaxArmor
-  - GygaxHead
-  - GygaxLArm
-  - GygaxLLeg
-  - GygaxRArm
-  - GygaxRLeg
-  - GygaxCentralElectronics
-  - GygaxPeripheralsElectronics
-  - GygaxTargetingElectronics
-  - WeaponMechCombatUltraRifle
-  technologyPrerequisites:
-  - Ripley2
 
 # Tier 3
 
@@ -255,23 +204,21 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
-  - WeaponMechCombatImmolationGun
+  - WeaponMechCombatImmolationGun # Sunrise-Add
+  - WeaponMechCombatIon # Sunrise-Add
 
 - type: technology
-  id: ExplosiveMechAmmunition
-  name: research-technology-explosive-mech-ammunition
+  id: ExperimentalBatteryAmmo
+  name: research-technology-experimental-battery-ammo
   icon:
-    sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_missilerack
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+    state: icon
   discipline: Arsenal
-  tier: 3
-  cost: 15000
+  tier: 2
+  cost: 8000
   recipeUnlocks:
-  - WeaponMechCombatMissileRack8
-  technologyPrerequisites:
-  - ExplosiveTechnology
-  # id: ExperimentalBatteryAmmo technology
-
+  - WeaponLaserSvalinn
+  - WeaponGunLaserCarbineSemi #Sunrise-Add
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -283,34 +230,8 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  - ShellEMPArtillery
+  - ShellEMPArtillery # Sunrise-Edit
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - BasicShuttleArmament
-
-- type: technology
-  id: Durand
-  name: research-technology-durand
-  icon:
-    sprite: Objects/Specific/Mech/durand.rsi
-    state: durand
-  discipline: Arsenal
-  tier: 3
-  cost: 16000
-  recipeUnlocks:
-  - DurandHarness
-  - DurandArmor
-  - DurandHead
-  - DurandLArm
-  - DurandLLeg
-  - DurandRArm
-  - DurandRLeg
-  - DurandCentralElectronics
-  - DurandPeripheralsElectronics
-  - DurandTargetingElectronics
-  - WeaponMechCombatShotgun
-  - WeaponMechCombatShotgunIncendiary
-  - PowerCageCombat
-  technologyPrerequisites:
-  - Gygax

@@ -24,7 +24,9 @@ public sealed class VeilVisualizerSystem : VisualizerSystem<VeilVisualsComponent
         sprite.LayerSetState(VeilVisualsLayers.Activated, activated ? StateOn : StateOff);
     }
 
-    protected override void OnAppearanceChange(EntityUid uid, VeilVisualsComponent component, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid,
+        VeilVisualsComponent component,
+        ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null
             || !AppearanceSystem.TryGetData<bool>(uid, VeilVisuals.Activated, out var activated))

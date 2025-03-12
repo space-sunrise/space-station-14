@@ -6,6 +6,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
@@ -18,14 +19,15 @@ namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
 public sealed class VoidTeleportSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly PullingSystem _pulling = default!;
 
     public override void Initialize()
     {
@@ -97,6 +99,7 @@ public sealed class VoidTeleportSystem : EntitySystem
         if (pulled != null)
         {
             _xform.SetCoordinates(pulled.Value, coords);
+            _pulling.TryStopPull(pulled.Value.Owner, pulled.Value.Comp);
 
             if (TryComp<TransformComponent>(pulled.Value, out var pulledTransform))
                 pulledTransform.AttachToGridOrMap();
@@ -104,7 +107,7 @@ public sealed class VoidTeleportSystem : EntitySystem
 
         //Play tp sound
         _audio.PlayPvs(component.TeleportInSound, coords);
-        _audio.PlayPvs(component.TeleportOutSound,oldCoords);
+        _audio.PlayPvs(component.TeleportOutSound, oldCoords);
 
         //Create tp effect
         _entMan.SpawnEntity(component.TeleportInEffect, coords);
@@ -123,12 +126,13 @@ public sealed class VoidTeleportSystem : EntitySystem
         _appearance.SetData(uid, VeilVisuals.Activated, comp.Active, appearance);
     }
 
-    private EntityUid? GetPulledEntity(EntityUid user)
+    private Entity<PullableComponent>? GetPulledEntity(EntityUid user)
     {
-        EntityUid? pulled = null;
+        Entity<PullableComponent>? pulled = null;
 
-        if (TryComp<PullerComponent>(user, out var puller))
-            pulled = puller.Pulling;
+        if (TryComp<PullerComponent>(user, out var puller) && puller.Pulling != null &&
+            TryComp<PullableComponent>(puller.Pulling.Value, out var pullableComponent))
+            pulled = (puller.Pulling.Value, pullableComponent);
 
         return pulled;
     }
@@ -143,7 +147,7 @@ public sealed class VoidTeleportSystem : EntitySystem
         Timer.Spawn(component.TimerDelay, () => TurnOffPulse(uid, component), component.Token.Token);
     }
 
-    private void TurnOffPulse(EntityUid uid ,VoidTeleportComponent comp)
+    private void TurnOffPulse(EntityUid uid, VoidTeleportComponent comp)
     {
         if (!TryComp<PointLightComponent>(uid, out var light))
             return;

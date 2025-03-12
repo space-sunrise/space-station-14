@@ -1,6 +1,4 @@
 ﻿- type: entity
-  name: кровавый обряд
-  description:
   parent: BaseItem
   id: CultBloodSpell
   components:
@@ -12,6 +10,13 @@
     delay: 3
   - type: Item
     size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
   - type: UserInterface
     interfaces:
      enum.CountSelectorUIKey.Key:
@@ -21,8 +26,6 @@
 
 
 - type: entity
-  name: кровавая сфера
-  description:
   parent: BaseItem
   id: CultBloodOrb
   components:

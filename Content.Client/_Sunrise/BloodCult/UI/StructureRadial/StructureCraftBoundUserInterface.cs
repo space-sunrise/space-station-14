@@ -1,8 +1,7 @@
 ﻿using Content.Client.Construction;
-using Content.Client.Resources;
-using Content.Client.UserInterface.Controls;
 using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Construction.Prototypes;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Placement;
@@ -16,19 +15,23 @@ namespace Content.Client._Sunrise.BloodCult.UI.StructureRadial;
 
 public sealed class StructureCraftBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlacementManager _placement = default!;
-    [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IClyde _displayManager = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private readonly IPlacementManager _placement = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    private readonly SpriteSystem _spriteSystem;
+    [Dependency] private readonly IEntitySystemManager _systemManager = default!;
 
     private BloodCultMenu? _menu;
 
     public StructureCraftBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);
+
+        _spriteSystem = _systemManager.GetEntitySystem<SpriteSystem>();
     }
 
     private void CreateUI()
@@ -40,8 +43,8 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
 
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<CultStructurePrototype>())
         {
-            var texture = IoCManager.Resolve<IResourceCache>().GetTexture(prototype.Icon);
-            var radialButton = _menu.AddButton(prototype.StructureName, texture);
+            var texture = _spriteSystem.Frame0(prototype.Icon);
+            var radialButton = _menu.AddButton(Loc.GetString(prototype.StructureName), texture);
             radialButton.OnPressed += _ =>
             {
                 Select(prototype.StructureId);

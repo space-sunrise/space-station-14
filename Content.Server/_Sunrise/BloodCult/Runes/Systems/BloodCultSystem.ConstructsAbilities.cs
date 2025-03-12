@@ -10,7 +10,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public partial class BloodCultSystem
     {
-
         public void InitializeConstructsAbilities()
         {
             SubscribeLocalEvent<ArtificerCreateSoulStoneActionEvent>(OnArtificerCreateSoulStone);
@@ -70,7 +69,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
             }
 
-            var cultistTileDefinition = (ContentTileDefinition) _tileDefinition[ev.FloorTileId];
+            var cultistTileDefinition = (ContentTileDefinition)_tileDefinition[ev.FloorTileId];
             _tileSystem.ReplaceTile(tileRef.Value, cultistTileDefinition);
             Spawn("CultTileSpawnEffect", transform.Coordinates);
             ev.Handled = true;
@@ -104,8 +103,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
             }
 
-            _statusEffectsSystem.TryAddStatusEffect<IncorporealComponent>(ev.Performer, ev.StatusEffectId,
-                TimeSpan.FromSeconds(ev.Duration), false);
+            _statusEffectsSystem.TryAddStatusEffect<IncorporealComponent>(ev.Performer,
+                ev.StatusEffectId,
+                TimeSpan.FromSeconds(ev.Duration),
+                false);
 
             ev.Handled = true;
         }
@@ -141,7 +142,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             // Check there are no walls there
             if (_turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable))
             {
-                _popupSystem.PopupEntity(Robust.Shared.Localization.Loc.GetString("mime-invisible-wall-failed"), performer, performer);
+                _popupSystem.PopupEntity(Robust.Shared.Localization.Loc.GetString("mime-invisible-wall-failed"),
+                    performer,
+                    performer);
                 return false;
             }
 
@@ -150,12 +153,16 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             {
                 if (HasComp<MobStateComponent>(entity) && entity != performer)
                 {
-                    _popupSystem.PopupEntity(Robust.Shared.Localization.Loc.GetString("mime-invisible-wall-failed"), performer, performer);
+                    _popupSystem.PopupEntity(Robust.Shared.Localization.Loc.GetString("mime-invisible-wall-failed"),
+                        performer,
+                        performer);
                     return false;
                 }
             }
 
-            _popupSystem.PopupEntity(Robust.Shared.Localization.Loc.GetString("mime-invisible-wall-popup", ("mime", performer)), performer);
+            _popupSystem.PopupEntity(
+                Robust.Shared.Localization.Loc.GetString("mime-invisible-wall-popup", ("mime", performer)),
+                performer);
             // Make sure we set the invisible wall to despawn properly
             Spawn(wallPrototypeId, coords);
             return true;

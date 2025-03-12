@@ -5,7 +5,7 @@ using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Server.Vampire;
-using Content.Server.Bible.Components; 
+using Content.Server.Bible.Components;
 using Content.Shared.Alert;
 using Content.Shared.Vampire.Components;
 using Content.Shared.NPC.Prototypes;
@@ -56,7 +56,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
     private void OnSelectAntag(EntityUid mindId, VampireRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
     {
         var ent = args.EntityUid;
-        
+
         if (HasComp<BibleUserComponent>(ent))
             return;
 
@@ -91,12 +91,12 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         EnsureComp<VampireIconComponent>(target);
         var vampireAlertComponent = EnsureComp<VampireAlertComponent>(target);
         var interfaceComponent = EnsureComp<UserInterfaceComponent>(target);
-        
+
         if (HasComp<UserInterfaceComponent>(target))
             _uiSystem.SetUiState(target, VampireMutationUiKey.Key, new VampireMutationBoundUserInterfaceState(vampireComponent.VampireMutations, vampireComponent.CurrentMutation));
-        
+
         var vampire = new Entity<VampireComponent>(target, vampireComponent);
-        
+
         RemComp<PerishableComponent>(vampire);
         RemComp<BarotraumaComponent>(vampire);
         RemComp<ThirstComponent>(vampire);
@@ -104,50 +104,33 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         vampireComponent.Balance = new() { { VampireComponent.CurrencyProto, 0 } };
 
         rule.VampireMinds.Add(mindId);
-        
+
         _vampire.AddStartingAbilities(vampire);
         _vampire.MakeVulnerableToHoly(vampire);
         _alerts.ShowAlert(vampire, vampireAlertComponent.BloodAlert);
         _alerts.ShowAlert(vampire, vampireAlertComponent.StellarWeaknessAlert);
-        
-        Random random = new Random();
-
-        foreach (var objective in rule.BaseObjectives)
-            _mind.TryAddObjective(mindId, mind, objective);
-            
-        if (rule.EscapeObjectives.Count > 0)
-        {
-            var randomEscapeObjective = rule.EscapeObjectives[random.Next(rule.EscapeObjectives.Count)];
-            _mind.TryAddObjective(mindId, mind, randomEscapeObjective);
-        }
-        
-        if (rule.StealObjectives.Count > 0)
-        {
-            var randomEscapeObjective = rule.StealObjectives[random.Next(rule.StealObjectives.Count)];
-            _mind.TryAddObjective(mindId, mind, randomEscapeObjective);
-        }
 
         return true;
     }
-    
+
     private void OnGetBriefing(Entity<VampireRuleComponent> role, ref GetBriefingEvent args)
     {
         var ent = args.Mind.Comp.OwnedEntity;
-        
+
         if (ent is null)
             return;
         args.Append(MakeBriefing(ent.Value));
     }
-    
+
     private string MakeBriefing(EntityUid ent)
     {
         if (TryComp<MetaDataComponent>(ent, out var metaData))
         {
             var briefing = Loc.GetString("vampire-role-greeting", ("name", metaData?.EntityName ?? "Unknown"));
-            
+
             return briefing;
         }
-        
+
         return "";
     }
 

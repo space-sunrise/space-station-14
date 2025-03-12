@@ -9,14 +9,14 @@ namespace Content.Shared._Sunrise.BloodCult.Components;
 public sealed partial class CultMemberComponent : Component
 {
     [DataField]
-    public string Reason = "Вы не можете атаковать членов культа";
-
-    [DataField]
-    public TimeSpan PopupCooldown = TimeSpan.FromSeconds(3.0);
+    public EntityUid? LastAttackedEntity = null;
 
     [DataField]
     public TimeSpan? NextPopupTime = null;
 
     [DataField]
-    public EntityUid? LastAttackedEntity = null;
+    public TimeSpan PopupCooldown = TimeSpan.FromSeconds(3.0);
+
+    [DataField]
+    public string Reason = "Вы не можете атаковать членов культа";
 }

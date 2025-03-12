@@ -1,4 +1,4 @@
-using Content.Server.Hands.Systems;
+﻿using Content.Server.Hands.Systems;
 using Content.Shared.Body.Events;
 
 namespace Content.Server._Sunrise.BloodCult.Juggernaut;
@@ -6,6 +6,7 @@ namespace Content.Server._Sunrise.BloodCult.Juggernaut;
 public sealed class JuggernautSystem : EntitySystem
 {
     [Dependency] private readonly HandsSystem _handsSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();

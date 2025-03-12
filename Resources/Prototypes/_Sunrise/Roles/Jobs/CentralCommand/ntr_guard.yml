@@ -1,0 +1,143 @@
+- type: job
+  id: NtrLeader
+  name: job-name-ntrleader
+  description: job-description-ntrg
+  playTimeTracker: JobNtrLeader
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 54000 # 15 hrs
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 # 5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Law
+      time: 18000 # 5 hrs
+    - !type:AgeRequirement
+      requiredAge: 25
+  startingGear: NtrLeaderGear
+  icon: JobIconNtrLeader
+  supervisors: job-supervisors-ntrg
+  canBeAntag: false
+  access:
+    - Command
+    - Bar
+    - Service
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - External
+    - Chemistry
+    - Engineering
+    - Research
+    - Detective
+    - Salvage
+    - Security
+    - Brig
+    - Cargo
+    - Atmospherics
+    - Cargo
+    - Medical
+    - BlueShield
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+
+- type: startingGear
+  id: NtrLeaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNTRG
+    neck: ClothingNeckCloakNTRG
+    back: ClothingBackpackSatchelNTRG
+    mask: ClothingMaskGasNTRGLead
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadCapNTGR
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNTRG
+    id: NtrLeadGuardPDA
+    ears: ClothingHeadsetMagistrate
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponEnergyGunPulseRevolver
+    pocket2: HandheldCriminalRecordsMonitorUnpowered
+  inhand:
+  - WeaponEnergyGunTactical
+  storage:
+    back:
+    - ClothingOuterHardsuitNTRG
+    - CrowbarRed
+    - MedkitCombatFilled
+
+# Security
+- type: job
+  id: NtrGuard
+  name: job-name-ntrguard
+  description: job-description-ntrg
+  playTimeTracker: JobNtrGuard
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 54000 # 15 hrs
+    - !type:DepartmentTimeRequirement
+      department: Law
+      time: 18000 # 5 hrs
+    - !type:AgeRequirement
+      requiredAge: 25
+  startingGear: NtrLeaderGear
+  icon: JobIconNtrGuard
+  supervisors: job-supervisors-ntrg
+  canBeAntag: false
+  access:
+    - Command
+    - Bar
+    - Service
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - External
+    - Chemistry
+    - Engineering
+    - Research
+    - Detective
+    - Salvage
+    - Security
+    - Brig
+    - Cargo
+    - Atmospherics
+    - Medical
+    - BlueShield
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+
+- type: startingGear
+  id: NtrGuardGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNTRG
+    neck: ClothingNeckCloakNTRG
+    back: ClothingBackpackSatchelNTRG
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskGasNTRG
+    head: ClothingHeadCapNTGR
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNTRG
+    id: NtrGuardPDA
+    ears: ClothingHeadsetMagistrate
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: MagazineMagnum
+  inhand:
+  - WeaponDisablerSMG
+  storage:
+    back:
+    - ClothingOuterHardsuitNTRG
+    - CrowbarRed
+    - MagazineMagnum
+    - MedkitCombatFilled

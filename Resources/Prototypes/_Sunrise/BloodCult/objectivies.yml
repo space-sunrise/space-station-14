@@ -4,7 +4,7 @@
   id: BaseCultistObjective
   components:
   - type: Objective
-    issuer: objective-issuer-blood-cult
+    issuer: cult
   - type: RoleRequirement
     roles:
       components:

@@ -1,0 +1,29 @@
+- files: ["box.yml"]
+  editors: Odleer
+
+- files: ["plasma.yml"]
+  editors: KaiserMaus, Hatiko, CallMeOwO, ktenanta, Odleer
+
+- files: ["delta.yml"]
+  editors: meowstushka, JunterFox, Odleer
+
+- files: ["planet_prison.yml"]
+  editors: Odleer, ZavanickTEP
+
+- files: ["cluster.yml"]
+  editors: Odleer
+
+- files: ["fland.yml"]
+  editors: Odleer
+
+- files: ["marathon.yml"]
+  editors: Odleer
+
+- files: ["cluster.yml"]
+  editors: Odleer
+
+- files: ["meta.yml"]
+  editors: J C Denton, freychik
+
+- files: ["bagel.yml"]
+  editors: pacable, Francus41 

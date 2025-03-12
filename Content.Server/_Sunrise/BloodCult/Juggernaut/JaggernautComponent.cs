@@ -1,7 +1,8 @@
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._Sunrise.BloodCult.Juggernaut;
+
 [RegisterComponent]
 public sealed partial class JuggernautComponent : Component
 {

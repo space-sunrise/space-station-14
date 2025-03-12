@@ -7,6 +7,19 @@ namespace Content.Client._Sunrise.BloodCult.Narsie;
 
 public sealed class NarsieVisualizer : VisualizerSystem<NarsieComponent>
 {
+    private static readonly Animation NarsieSpawnAnimation = new()
+    {
+        Length = TimeSpan.FromSeconds(3.5),
+        AnimationTracks =
+        {
+            new AnimationTrackSpriteFlick()
+            {
+                LayerKey = NarsieLayer.Default,
+                KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(new RSI.StateId("narsie_spawn_anim"), 0f) }
+            }
+        }
+    };
+
     [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
 
     public override void Initialize()
@@ -24,9 +37,11 @@ public sealed class NarsieVisualizer : VisualizerSystem<NarsieComponent>
     {
         base.OnAppearanceChange(uid, component, ref args);
 
-        if(args.Sprite == null) return;
+        if (args.Sprite == null)
+            return;
 
-        if (!args.AppearanceData.TryGetValue(NarsieVisualState.VisualState, out var narsieVisualsObject) || narsieVisualsObject is not NarsieVisuals narsieVisual)
+        if (!args.AppearanceData.TryGetValue(NarsieVisualState.VisualState, out var narsieVisualsObject) ||
+            narsieVisualsObject is not NarsieVisuals narsieVisual)
             return;
 
         switch (narsieVisual)
@@ -35,11 +50,11 @@ public sealed class NarsieVisualizer : VisualizerSystem<NarsieComponent>
                 PlaySpawnAnimation(uid);
                 break;
             case NarsieVisuals.Spawned:
-                if(_animationSystem.HasRunningAnimation(uid, "narsie_spawn")) break;
+                if (_animationSystem.HasRunningAnimation(uid, "narsie_spawn"))
+                    break;
                 SetDefaultState(args.Sprite);
                 break;
         }
-
     }
 
     private void PlaySpawnAnimation(EntityUid uid)
@@ -53,17 +68,4 @@ public sealed class NarsieVisualizer : VisualizerSystem<NarsieComponent>
         component.LayerSetState(NarsieLayer.Default, new RSI.StateId("narsie"));
         component.LayerSetAutoAnimated(NarsieLayer.Default, true);
     }
-
-    private static readonly Animation NarsieSpawnAnimation = new()
-    {
-        Length = TimeSpan.FromSeconds(3.5),
-        AnimationTracks =
-        {
-            new AnimationTrackSpriteFlick()
-            {
-                LayerKey = NarsieLayer.Default,
-                KeyFrames = {new AnimationTrackSpriteFlick.KeyFrame(new RSI.StateId("narsie_spawn_anim"), 0f)}
-            }
-        }
-    };
 }

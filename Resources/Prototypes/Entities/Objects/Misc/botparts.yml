@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   id: ProximitySensor
   name: proximity sensor
   description: Senses things in close proximity.

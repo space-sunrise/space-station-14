@@ -1,0 +1,101 @@
+### NTR Leader
+
+- type: entity
+  id: RandomHumanoidSpawnerNtrLeader
+  name: NTR leader
+  suffix: NTR Role, Leader
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: ntrleader
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitaryLeader
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: NtrLeader
+
+- type: randomHumanoidSettings
+  id: NtrLeader
+  speciesBlacklist:
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntr-lead-name
+      description: ghost-role-information-ntr-guard-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: NtrLeader
+    - type: Loadout
+      prototypes: [ NtrLeaderGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitaryLeader
+      - NamesLastMilitary
+
+### NTR Guard
+
+- type: entity
+  id: RandomHumanoidSpawnerNtrGuard
+  parent: RandomHumanoidSpawnerNtrLeader
+  name: NTR operator
+  suffix: NTR Role, Operator
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: ntrguard
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: NtrGuard
+
+- type: randomHumanoidSettings
+  id: NtrGuard
+  speciesBlacklist:
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: NtrLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntr-guard-name
+      description: ghost-role-information-ntr-guard-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: NtrGuard
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ NtrGuardGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+
+### NTR Officer

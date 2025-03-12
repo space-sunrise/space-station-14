@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: CultRobeModify
   parent: ClothingOuterRobesCult
   name: flagellant's attire
@@ -27,11 +27,13 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Reflect
-      reflectProb: 0.95
+      reflectProb: 0.5 # В сс14 один шанс и на энергитический, и на не энергетический урон. Может потом сделаю (TODO)
+      passiveReflect: true
       reflects:
         - Energy
-      needHand: true
+        - NonEnergy
     - type: ReturnItemOnThrow
+    - type: CultMirrorShield
 
 
 - type: entity
@@ -42,28 +44,28 @@
 
 - type: cultistFactoryProduction
   id: FactoryEldritchBlade
-  name: Жуткий клинок
+  name: cultistFactoryProduction-EldritchBlade
   icon: "/Textures/Objects/Weapons/Melee/cult_blade.rsi/icon.png"
   item:
     - EldritchBlade
 
 - type: cultistFactoryProduction
   id: FactoryArmorCult
-  name: Бронированная мантия
+  name: cultistFactoryProduction-ArmorCult
   icon: "/Textures/Clothing/OuterClothing/Armor/cult_armour.rsi/icon.png"
   item:
     - CultOuterArmor
 
 - type: cultistFactoryProduction
   id: FactoryCultRobeModify
-  name: Одеяние флагелланта
+  name: cultistFactoryProduction-RobeModify
   icon: "/Textures/Clothing/OuterClothing/Misc/cultrobes.rsi/icon.png"
   item:
     - CultRobeModify
 
 - type: cultistFactoryProduction
   id: FactoryCultMirrorShield
-  name: Зеркальный щит
+  name: cultistFactoryProduction-MirrorShield
   icon: "/Textures/_Sunrise/BloodCult/Entities/mirror_shield.rsi/icon-off.png"
   item:
     - CultMirrorShield

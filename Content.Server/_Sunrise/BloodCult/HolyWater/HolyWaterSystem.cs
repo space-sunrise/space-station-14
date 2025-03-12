@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Server.Stunnable;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
@@ -10,8 +9,8 @@ namespace Content.Server._Sunrise.BloodCult.HolyWater;
 
 public sealed class HolyWaterSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -28,7 +27,8 @@ public sealed class HolyWaterSystem : EntitySystem
         if (!TryComp<SolutionContainerManagerComponent>(args.Target, out var container) || container.Solutions == null)
             return;
 
-        foreach (var solution in container.Solutions!.Values.Where(solution => solution.ContainsReagent(component.ConvertedId, null)))
+        foreach (var solution in container.Solutions!.Values.Where(solution =>
+                     solution.ContainsReagent(component.ConvertedId, null)))
         {
             foreach (var reagent in solution.Contents)
             {

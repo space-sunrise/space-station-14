@@ -8,7 +8,9 @@ namespace Content.Client._Sunrise.BloodCult.UI.Altar;
 [GenerateTypedNameReferences]
 public partial class AltarListingControl : Control
 {
-    public AltarListingControl(EntityPrototype prototype, Robust.Client.Graphics.Texture icon, Action<string>? clickAction)
+    public AltarListingControl(EntityPrototype prototype,
+        Robust.Client.Graphics.Texture icon,
+        Action<string>? clickAction)
     {
         RobustXamlLoader.Load(this);
 

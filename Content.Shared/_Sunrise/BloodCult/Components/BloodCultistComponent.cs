@@ -4,7 +4,6 @@ using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Sunrise.BloodCult.Components;
 
@@ -14,20 +13,6 @@ namespace Content.Shared._Sunrise.BloodCult.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class BloodCultistComponent : Component
 {
-    [DataField("greetSound", customTypeSerializer: typeof(SoundSpecifierTypeSerializer))]
-    public SoundSpecifier? CultistGreetSound = new SoundPathSpecifier("/Audio/CultSounds/fart.ogg");
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertTime")]
-    public float HolyConvertTime = 30f;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertChance")]
-    public int HolyConvertChance = 33;
-
-    public CancellationTokenSource? HolyConvertToken;
-
-    [NonSerialized]
-    public List<string> SelectedEmpowers = new();
-
     public static string SummonCultDaggerAction = "InstantActionSummonCultDagger";
 
     //public static string BloodRitesAction = "InstantActionBloodRites";
@@ -49,12 +34,27 @@ public sealed partial class BloodCultistComponent : Component
     public static List<string> CultistActions = new()
     {
         SummonCultDaggerAction, CultTwistedConstructionAction, CultTeleportAction,
-        CultSummonCombatEquipmentAction, CultStunAction, EmpPulseAction, ShadowShacklesAction, BloodRitualAction, // BloodRitesAction
+        CultSummonCombatEquipmentAction, CultStunAction, EmpPulseAction, ShadowShacklesAction,
+        BloodRitualAction, // BloodRitesAction
     };
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "BloodCultFaction";
 
     [ViewVariables(VVAccess.ReadWrite), DataField("bloodCharges")]
     public FixedPoint2 BloodCharges = 0;
+
+    [DataField("greetSound", customTypeSerializer: typeof(SoundSpecifierTypeSerializer))]
+    public SoundSpecifier? CultistGreetSound = new SoundPathSpecifier("/Audio/CultSounds/fart.ogg");
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertChance")]
+    public int HolyConvertChance = 33;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertTime")]
+    public float HolyConvertTime = 30f;
+
+    public CancellationTokenSource? HolyConvertToken;
+
+    [NonSerialized]
+    public List<string> SelectedEmpowers = new();
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "BloodCultFaction";
 }

@@ -121,6 +121,8 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
+  - type: PieThrower
+    pieProtoId: FoodPieBananaCream
   - type: TTS
     voice: NecoArcTwo
 
@@ -192,6 +194,7 @@
     worldTargetActions:
     - ForensicScanner
   - type: ShowCriminalRecordIcons
+  - type: ShowMindShieldIcons
   - type: BorgCuffed
   - type: FlashImmunity
   - type: SiliconLawProvider
@@ -207,7 +210,7 @@
     - Cargo
     - Research
     - Service
-    - Maintenance
+#    - Maintenance #увы
     - Brig
     - Security
     - External

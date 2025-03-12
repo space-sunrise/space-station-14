@@ -656,6 +656,10 @@
       effects:
         - !type:SatiateThirst
           factor: 6
+          conditions:
+          - !type:OrganType
+            type: Dwarf
+            shouldHave: false
         - !type:ModifyBloodLevel
           amount: 6
 
@@ -1057,6 +1061,10 @@
       effects:
       - !type:SatiateThirst
         factor: 3
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       # Sunrise-Start
       - !type:DeconvertCultist
         conditions:

@@ -1,6 +1,6 @@
 namespace Content.Server._Sunrise.FleshCult.FleshGrowth;
 
-[RegisterComponent, Access(typeof(SpreaderFleshSystem), typeof(FleshHeartSystem))]
+[RegisterComponent, Access(typeof(SpreaderFleshSystem), typeof(FleshCultSystem))]
 public sealed partial class SpreaderFleshComponent : Component
 {
     [DataField("chance", required: true)]

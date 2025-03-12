@@ -17,10 +17,11 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         {
             _appearanceSystem.SetData(uid, NarsieVisualState.VisualState, NarsieVisuals.Spawning);
 
-            Timer.Spawn(TimeSpan.FromSeconds(6), () =>
-            {
-                _appearanceSystem.SetData(uid, NarsieVisualState.VisualState, NarsieVisuals.Spawned);
-            });
+            Timer.Spawn(TimeSpan.FromSeconds(6),
+                () =>
+                {
+                    _appearanceSystem.SetData(uid, NarsieVisualState.VisualState, NarsieVisuals.Spawned);
+                });
         }
     }
 }

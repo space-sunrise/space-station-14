@@ -1,5 +1,4 @@
-﻿using Content.Client.UserInterface.Controls;
-using Content.Shared._Sunrise.BloodCult;
+﻿using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -11,10 +10,10 @@ namespace Content.Client._Sunrise.BloodCult.UI.CultistFactory;
 
 public sealed class CultistFactoryBUI : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IClyde _displayManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private BloodCultMenu? _menu;
 
     private bool _updated = false;
@@ -23,6 +22,7 @@ public sealed class CultistFactoryBUI : BoundUserInterface
     {
         IoCManager.InjectDependencies(this);
     }
+
     private void ResetUI()
     {
         _menu?.Close();
@@ -54,7 +54,7 @@ public sealed class CultistFactoryBUI : BoundUserInterface
             if (prototype.Icon == null)
                 continue;
 
-            var button = _menu.AddButton(prototype.Name, spriteSys.Frame0(prototype.Icon));
+            var button = _menu.AddButton(Loc.GetString(prototype.Name), spriteSys.Frame0(prototype.Icon));
             button.OnPressed += _ =>
             {
                 Select(id);

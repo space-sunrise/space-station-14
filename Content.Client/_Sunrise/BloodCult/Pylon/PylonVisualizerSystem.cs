@@ -25,7 +25,9 @@ public sealed class PylonVisualizerSystem : VisualizerSystem<PylonVisualsCompone
         sprite.LayerSetState(PylonVisualsLayers.Activated, activated ? StateOn : StateOff);
     }
 
-    protected override void OnAppearanceChange(EntityUid uid, PylonVisualsComponent component, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid,
+        PylonVisualsComponent component,
+        ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null
             || !AppearanceSystem.TryGetData<bool>(uid, PylonVisuals.Activated, out var activated))

@@ -3,11 +3,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.BloodCult.UI.ListViewSelector;
 
-
 public sealed class ListViewSelectorBUI : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private ListViewSelectorWindow? _window;
 
@@ -30,7 +29,7 @@ public sealed class ListViewSelectorBUI : BoundUserInterface
             SendMessage(msg);
         };
 
-        if(State != null)
+        if (State != null)
             UpdateState(State);
     }
 

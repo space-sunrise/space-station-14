@@ -10,8 +10,6 @@ namespace Content.Server._Sunrise.BloodCult.GameRule;
 [RegisterComponent, Access(typeof(BloodCultRuleSystem))]
 public sealed partial class BloodCultRuleComponent : Component
 {
-    public readonly SoundSpecifier GreatingsSound = new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood_cult_greeting.ogg");
-
     [DataField("cultistPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
     public static string CultistPrototypeId = "BloodCultist";
 
@@ -24,32 +22,42 @@ public sealed partial class BloodCultRuleComponent : Component
     [DataField("eyeColor")]
     public static Color EyeColor = Color.FromHex("#f80000");
 
+    public static string HolyWaterReagent = "Holywater";
+
+    public static string ChaplainProtoId = "Chaplain";
+
     [DataField("redEyeThreshold")]
     public static int ReadEyeThreshold = 5;
 
     [DataField("pentagramThreshold")]
     public static int PentagramThreshold = 8;
 
-    public List<ICommonSession> StarCandidates = new();
+    public readonly SoundSpecifier GreatingsSound =
+        new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood_cult_greeting.ogg");
 
-    [DataField("cultistStartingItems", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
-    public List<string> StartingItems = new();
+    [DataField("cultistRolePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
+    public string CultistRolePrototype = "Cultist";
+
+    [DataField]
+    public int CultMembersForSummonGod = 10;
 
     public List<EntityUid> CultTargets = new();
-
-    public CultWinCondition WinCondition;
-
-    [DataField]
-    public int MinTargets = 1;
-
-    [DataField]
-    public int TargetsPerPlayer = 30;
 
     [DataField]
     public int MaxTargets = 3;
 
     [DataField]
-    public int CultMembersForSummonGod = 10;
+    public int MinTargets = 1;
+
+    public List<ICommonSession> StarCandidates = new();
+
+    [DataField("cultistStartingItems", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
+    public List<string> StartingItems = new();
+
+    [DataField]
+    public int TargetsPerPlayer = 30;
+
+    public CultWinCondition WinCondition;
 }
 
 public enum CultWinCondition : byte

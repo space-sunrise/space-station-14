@@ -5,21 +5,21 @@ namespace Content.Shared._Sunrise.BloodCult.UI;
 [Serializable, NetSerializable]
 public class CultistFactoryBUIState : BoundUserInterfaceState
 {
-    public IReadOnlyCollection<string> Ids { get; set; }
-
     public CultistFactoryBUIState(IReadOnlyCollection<string> ids)
     {
         Ids = ids;
     }
+
+    public IReadOnlyCollection<string> Ids { get; set; }
 }
 
 [Serializable, NetSerializable]
 public class CultistFactoryItemSelectedMessage : BoundUserInterfaceMessage
 {
-    public string Item { get; private set; }
-
     public CultistFactoryItemSelectedMessage(string item)
     {
         Item = item;
     }
+
+    public string Item { get; private set; }
 }

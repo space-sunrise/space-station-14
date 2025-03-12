@@ -12,6 +12,7 @@ public enum SelectConstructUi
 public class ConstructFormSelectedEvent : BoundUserInterfaceMessage
 {
     public string SelectedForm;
+
     public ConstructFormSelectedEvent(string form)
     {
         SelectedForm = form;

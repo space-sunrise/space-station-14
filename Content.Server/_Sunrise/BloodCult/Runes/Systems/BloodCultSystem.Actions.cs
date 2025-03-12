@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Content.Server._Sunrise.BloodCult.UI;
 using Content.Server.Body.Components;
 using Content.Shared._Sunrise.BloodCult.Actions;
@@ -22,7 +22,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<BloodCultistComponent, CultTwistedConstructionActionEvent>(OnTwistedConstructionAction);
             SubscribeLocalEvent<BloodCultistComponent, CultSummonDaggerActionEvent>(OnSummonDaggerAction);
             SubscribeLocalEvent<BloodCultistComponent, CultEmpPulseTargetActionEvent>(OnElectromagneticPulse);
-            SubscribeLocalEvent<BloodCultistComponent, CultSummonCombatEquipmentTargetActionEvent>(OnSummonCombatEquipment);
+            SubscribeLocalEvent<BloodCultistComponent, CultSummonCombatEquipmentTargetActionEvent>(
+                OnSummonCombatEquipment);
             SubscribeLocalEvent<BloodCultistComponent, CultConcealPresenceWorldActionEvent>(OnConcealPresence);
             SubscribeLocalEvent<BloodCultistComponent, CultTeleportTargetActionEvent>(OnTeleport);
             SubscribeLocalEvent<BloodCultistComponent, CultStunTargetActionEvent>(OnStunTarget);
@@ -32,7 +33,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<BloodCultistComponent, CultBloodRitualInstantActionEvent>(OnCultBloodRitual);
         }
 
-        private void OnCultBloodRitual(EntityUid uid, BloodCultistComponent component, CultBloodRitualInstantActionEvent args)
+        private void OnCultBloodRitual(EntityUid uid,
+            BloodCultistComponent component,
+            CultBloodRitualInstantActionEvent args)
         {
             var hands = _handsSystem.EnumerateHands(uid);
             var enumerateHands = hands as Hand[] ?? Enumerable.ToArray<Hand>(hands);
@@ -46,18 +49,22 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                         continue;
                     if (metaData.EntityPrototype == null)
                         continue;
-                    if (metaData.EntityPrototype.ID == BloodCultSystem.CultBloodSpeelPrototypeId)
+                    if (metaData.EntityPrototype.ID == CultBloodSpeelPrototypeId)
                     {
                         QueueDel(containerContainedEntity);
                         return;
                     }
+
                     _handsSystem.TryDrop(uid, checkActionBlocker: false);
                 }
             }
 
-            var spell = Spawn(BloodCultSystem.CultBloodSpeelPrototypeId, Transform(uid).Coordinates);
-            var isPickup = _handsSystem.TryPickup(uid, spell, checkActionBlocker: false,
-                animateUser: false, animate: false);
+            var spell = Spawn(CultBloodSpeelPrototypeId, Transform(uid).Coordinates);
+            var isPickup = _handsSystem.TryPickup(uid,
+                spell,
+                checkActionBlocker: false,
+                animateUser: false,
+                animate: false);
             if (!isPickup)
                 QueueDel(spell);
         }
@@ -74,7 +81,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             }
         }
 
-        private void OnShadowShacklesDoAfter(EntityUid uid, BloodCultistComponent component,
+        private void OnShadowShacklesDoAfter(EntityUid uid,
+            BloodCultistComponent component,
             ShadowShacklesDoAfterEvent args)
         {
             if (args.Handled || args.Cancelled)
@@ -121,7 +129,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             args.Handled = true;
         }
 
-        private void OnConcealPresence(EntityUid uid, BloodCultistComponent component, CultConcealPresenceWorldActionEvent args)
+        private void OnConcealPresence(EntityUid uid,
+            BloodCultistComponent component,
+            CultConcealPresenceWorldActionEvent args)
         {
             if (!TryComp<BloodstreamComponent>(args.Performer, out _))
                 return;
@@ -158,7 +168,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             args.Handled = true;
         }
 
-        private void OnElectromagneticPulse(EntityUid uid, BloodCultistComponent component, CultEmpPulseTargetActionEvent args)
+        private void OnElectromagneticPulse(EntityUid uid,
+            BloodCultistComponent component,
+            CultEmpPulseTargetActionEvent args)
         {
             _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 5, 10000, 5f);
             _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 2, 100000, 10f);
@@ -166,7 +178,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             args.Handled = true;
         }
 
-        private void OnShadowShackles(EntityUid uid, BloodCultistComponent component, CultShadowShacklesTargetActionEvent args)
+        private void OnShadowShackles(EntityUid uid,
+            BloodCultistComponent component,
+            CultShadowShacklesTargetActionEvent args)
         {
             if (!TryComp<BloodstreamComponent>(args.Performer, out _))
                 return;
@@ -177,8 +191,13 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
             }
 
-            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager ,uid, 1f,
-                new ShadowShacklesDoAfterEvent(), uid, target: args.Target, used: uid)
+            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
+                uid,
+                1f,
+                new ShadowShacklesDoAfterEvent(),
+                uid,
+                target: args.Target,
+                used: uid)
             {
                 BreakOnMove = true,
                 BreakOnDamage = true
@@ -201,7 +220,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!_entityManager.TryGetComponent<StackComponent>(args.Target, out var stack))
                 return;
 
-            if (stack.StackTypeId != BloodCultSystem.SteelPrototypeId)
+            if (stack.StackTypeId != SteelPrototypeId)
                 return;
 
             var transform = Transform(args.Target).Coordinates;
@@ -209,7 +228,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             _entityManager.DeleteEntity(args.Target);
 
-            var material = _entityManager.SpawnEntity(BloodCultSystem.RunicMetalPrototypeId, transform);
+            var material = _entityManager.SpawnEntity(RunicMetalPrototypeId, transform);
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -15, bloodstreamComponent);
 
@@ -218,11 +237,15 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             stackNew.Count = count;
 
-            _popupSystem.PopupEntity(Loc.GetString("Конвертируем сталь в руиник металл!"), args.Performer, args.Performer);
+            _popupSystem.PopupEntity(Loc.GetString("Конвертируем сталь в руиник металл!"),
+                args.Performer,
+                args.Performer);
             args.Handled = true;
         }
 
-        private void OnSummonDaggerAction(EntityUid uid, BloodCultistComponent component, CultSummonDaggerActionEvent args)
+        private void OnSummonDaggerAction(EntityUid uid,
+            BloodCultistComponent component,
+            CultSummonDaggerActionEvent args)
         {
             if (args.Handled)
                 return;
@@ -231,7 +254,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
 
             var xform = Transform(args.Performer).Coordinates;
-            var dagger = _entityManager.SpawnEntity(BloodCultSystem.RitualDaggerPrototypeId, xform);
+            var dagger = _entityManager.SpawnEntity(RitualDaggerPrototypeId, xform);
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -30, bloodstreamComponent);
             _handsSystem.TryPickupAnyHand(args.Performer, dagger);

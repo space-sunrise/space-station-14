@@ -58,3 +58,6 @@
   id: Core
   parallax: CoreStation
 
+- type: lobbyParallax
+  id: Box
+  parallax: BoxStation

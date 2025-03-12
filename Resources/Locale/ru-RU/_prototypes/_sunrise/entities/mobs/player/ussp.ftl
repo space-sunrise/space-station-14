@@ -1,0 +1,15 @@
+ent-MobHumanUSSP = Экипаж СССП
+    .suffix = СССП
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanUSSPOfficer = Офицер СССП
+    .suffix = СССП
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanUSSPOfficerSoldier = USSP Officer Soldier
+    .suffix = USSP | ANTAG
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanUSSPSoldier = Солдат СССП
+    .suffix = СССП | АНТАГ
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanUSSPCaptain = Капитан СССП
+    .suffix = СССП
+    .desc = { ent-MobHuman.desc }

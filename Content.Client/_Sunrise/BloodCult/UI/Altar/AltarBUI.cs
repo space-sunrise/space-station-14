@@ -33,7 +33,8 @@ public sealed class AltarBUI : BoundUserInterface
     {
         base.Dispose(disposing);
 
-        if (!disposing) return;
+        if (!disposing)
+            return;
         _window?.Dispose();
     }
 
@@ -45,7 +46,7 @@ public sealed class AltarBUI : BoundUserInterface
         {
             _window?.SetListing(listingState.Items);
         }
-        else if(state is AltarTimerBUIState timerState)
+        else if (state is AltarTimerBUIState timerState)
         {
             _window?.SetTimer(timerState.NextTimeUse);
         }

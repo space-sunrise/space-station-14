@@ -22,14 +22,16 @@ public abstract class SharedMechPaintSystem : EntitySystem
     [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly SharedMechSystem _mechSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    
+    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+
+
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<MechPaintComponent, PaintDoAfterEvent>(OnPaint);
     }
-    
+
     private void OnPaint(Entity<MechPaintComponent> entity, ref PaintDoAfterEvent args)
     {
         if (args.Target == null || args.Used == null || !HasComp<MechComponent>(args.Target))
@@ -46,7 +48,7 @@ public abstract class SharedMechPaintSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("paint-closed", ("used", args.Used)), args.User, args.User, PopupType.Medium);
             return;
         }
-        
+
         if (entity.Comp.Whitelist != null && !_whitelist.IsValid(entity.Comp.Whitelist, target) || HasComp<HumanoidAppearanceComponent>(target) || HasComp<SubFloorHideComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("paint-failure", ("target", args.Target)), args.User, args.User, PopupType.Medium);
@@ -56,9 +58,7 @@ public abstract class SharedMechPaintSystem : EntitySystem
 
         if (TryPaint(entity, target))
         {
-            EnsureComp<MechComponent>(target, out MechComponent? mech);
-            EnsureComp<AppearanceComponent>(target, out AppearanceComponent? appearance);
-
+            EnsureComp<MechComponent>(target, out var mech);
             _audio.PlayPvs(entity.Comp.Spray, entity);
 
             _popup.PopupEntity(Loc.GetString("paint-success", ("target", args.Target)), args.User, args.User, PopupType.Medium);
@@ -68,7 +68,7 @@ public abstract class SharedMechPaintSystem : EntitySystem
             entity.Comp.Used = true;
             Dirty(target, mech);
             args.Handled = true;
-            _mechSystem.UpdateAppearance(target, mech, appearance);
+            _mechSystem.UpdateAppearance(target, mech);
             return;
         }
 
@@ -78,15 +78,15 @@ public abstract class SharedMechPaintSystem : EntitySystem
             return;
         }
     }
-    
+
     private bool TryPaint(Entity<MechPaintComponent> entity, EntityUid target)
     {
         if (HasComp<HumanoidAppearanceComponent>(target) || HasComp<SubFloorHideComponent>(target) || entity.Comp.Used)
             return false;
-        
+
         if (HasComp<MechComponent>(target))
             return true;
-        
+
         return false;
     }
 }

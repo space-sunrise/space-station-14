@@ -16,9 +16,7 @@ public enum NarsieVisuals : byte
     Spawned
 }
 
-
 [RegisterComponent, NetworkedComponent]
 public partial class NarsieComponent : Component
 {
 }
-

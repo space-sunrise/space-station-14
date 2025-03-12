@@ -4,8 +4,8 @@
 public sealed partial class RunicGirderComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
-    public string UsedItemID = "NarsieRitualDagger";
+    public string DropItemID = "CultRunicMetal1";
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public string DropItemID = "CultRunicMetal1";
+    public string UsedItemID = "NarsieRitualDagger";
 }

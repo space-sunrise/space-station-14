@@ -1,5 +1,3 @@
-ent-MagazineLightRifleRubber = magazine (.30 rifle rubber)
-    .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineAK = Universal AK magazne
     .desc = { ent-BaseItem.desc }
 ent-MagazineMP38 = MP38 magazine
@@ -15,8 +13,6 @@ ent-MagazineMachineGunMG42 = MG42 magazine
 ent-MagazineLightMachineGunMG60 = MG60 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineVP70 = VP70 magazine
-    .desc = { ent-BaseItem.desc }
-ent-MagazineGlock22 = Glock22 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineHIBrowning = HI Browning magazine
     .desc = { ent-BaseItem.desc }

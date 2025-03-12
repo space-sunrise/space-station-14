@@ -6,8 +6,8 @@
   order:
     - category: CultBuffed # Sunrise-Edit
     - alertType: ChangelingBiomass
-    - category: Health
-    - category: Mood # Sunrise-Edit
+    - category: Mood #Sunrise Edit
+    - category: Health #Sunrise Edit
     - category: Stamina
     - alertType: ChangelingChemicals
     - alertType: SuitPower

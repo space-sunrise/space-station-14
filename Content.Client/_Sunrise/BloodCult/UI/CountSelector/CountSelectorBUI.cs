@@ -1,13 +1,14 @@
-using Content.Shared._Sunrise.BloodCult.Items;
+﻿using Content.Shared._Sunrise.BloodCult.Items;
+
 namespace Content.Client._Sunrise.BloodCult.UI.CountSelector;
 
 public sealed class CountSelectorBUI : BoundUserInterface
 {
+    private CountSelectorWindow? _window;
+
     public CountSelectorBUI(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
-
-    private CountSelectorWindow? _window;
 
     protected override void Open()
     {

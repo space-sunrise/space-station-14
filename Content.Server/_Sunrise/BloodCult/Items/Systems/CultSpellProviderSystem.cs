@@ -18,16 +18,16 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class CultSpellProviderSystem: EntitySystem
+public sealed class CultSpellProviderSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -47,7 +47,9 @@ public sealed class CultSpellProviderSystem: EntitySystem
         _ui.OpenUi(uid, CultSpellProviderUiKey.Key, actor.PlayerSession);
     }
 
-    private void OnDaggerActivationVerb(EntityUid uid, CultSpellProviderComponent component, GetVerbsEvent<ActivationVerb> args)
+    private void OnDaggerActivationVerb(EntityUid uid,
+        CultSpellProviderComponent component,
+        GetVerbsEvent<ActivationVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -65,7 +67,9 @@ public sealed class CultSpellProviderSystem: EntitySystem
         });
     }
 
-    private void OnCultMagicBloodSelected(EntityUid uid, CultSpellProviderComponent component, CultSpellProviderSelectedBuiMessage args)
+    private void OnCultMagicBloodSelected(EntityUid uid,
+        CultSpellProviderComponent component,
+        CultSpellProviderSelectedBuiMessage args)
     {
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp) ||
             !TryComp<ActionsComponent>(args.Actor, out var actionsComponent))

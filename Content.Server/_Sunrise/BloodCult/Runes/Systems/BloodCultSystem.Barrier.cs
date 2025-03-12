@@ -1,4 +1,4 @@
-using Content.Server._Sunrise.BloodCult.Runes.Comps;
+﻿using Content.Server._Sunrise.BloodCult.Runes.Comps;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Stealth.Components;
@@ -8,18 +8,17 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public partial class BloodCultSystem
     {
+        [Dependency] private readonly PhysicsSystem _physicsSystem = default!;
+
         public void InitializeBarrierSystem()
         {
             SubscribeLocalEvent<CultBarrierComponent, ActivateInWorldEvent>(OnActivateBarrier);
             SubscribeLocalEvent<CultBarrierComponent, InteractUsingEvent>(OnInteract);
         }
 
-        [Dependency] private readonly PhysicsSystem _physicsSystem = default!;
-
 
         private void OnActivateBarrier(EntityUid uid, CultBarrierComponent component, ActivateInWorldEvent args)
         {
-
             if (!HasComp<BloodCultistComponent>(args.User))
                 return;
 
@@ -27,7 +26,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 Deactivate(args.Target);
             else
                 Activate(args.Target);
-
         }
 
         private void Activate(EntityUid barrier)

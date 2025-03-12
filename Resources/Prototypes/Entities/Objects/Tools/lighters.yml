@@ -88,6 +88,11 @@
     radius: 1.1 #smallest possible
     color: orange
   - type: ItemTogglePointLight
+  #Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 120
+  #Sunrise-end
 
 - type: entity
   name: cheap lighter
@@ -210,6 +215,11 @@
   - type: UseDelay
   - type: IgnitionSource
     ignited: false
+  #Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 260
+  #Sunrise-end
 
 - type: entity
   name: flippo engraved lighter

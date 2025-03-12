@@ -23,18 +23,24 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         {
             var target = args.Target;
 
-            if (!HasComp<BloodCultistComponent>(args.User)) return;
+            if (!HasComp<BloodCultistComponent>(args.User))
+                return;
 
-            if (!TryComp<MobStateComponent>(target, out var state) || state.CurrentState != MobState.Dead) return;
+            if (!TryComp<MobStateComponent>(target, out var state) || state.CurrentState != MobState.Dead)
+                return;
 
-            if (!TryComp<MindContainerComponent>(target, out var mindComponent) || !mindComponent.Mind.HasValue || !TryComp<HumanoidAppearanceComponent>(target, out _)) return;
+            if (!TryComp<MindContainerComponent>(target, out var mindComponent) || !mindComponent.Mind.HasValue ||
+                !TryComp<HumanoidAppearanceComponent>(target, out _))
+                return;
 
             _mindSystem.TransferTo(mindComponent.Mind.Value, uid);
 
             var targetName = MetaData(target.Value).EntityName;
 
-            _metaDataSystem.SetEntityName(uid, Robust.Shared.Localization.Loc.GetString("soul-shard-description", ("soul", targetName)));
-            _metaDataSystem.SetEntityDescription(uid, Robust.Shared.Localization.Loc.GetString("soul-shard-description", ("soul", targetName)));
+            _metaDataSystem.SetEntityName(uid,
+                Robust.Shared.Localization.Loc.GetString("soul-shard-description", ("soul", targetName)));
+            _metaDataSystem.SetEntityDescription(uid,
+                Robust.Shared.Localization.Loc.GetString("soul-shard-description", ("soul", targetName)));
         }
 
         private void OnShardMindAdded(EntityUid uid, SoulShardComponent component, MindAddedMessage args)

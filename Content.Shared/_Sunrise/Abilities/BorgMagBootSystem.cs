@@ -18,7 +18,7 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BorgMagbootsComponent, InventoryRelayedEvent<SlipAttemptEvent>>(OnSlipAttempt);
+        SubscribeLocalEvent<BorgMagbootsComponent, SlipAttemptEvent>(OnSlipAttempt);
         SubscribeLocalEvent<BorgMagbootsComponent, ToggleBorgMagbootsActionEvent>(OnToggleAction);
         SubscribeLocalEvent<BorgMagbootsComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<BorgMagbootsComponent, MapInitEvent>(OnInit);
@@ -74,9 +74,9 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
             _alerts.ClearAlert(user, ent.Comp.MagbootsAlert);
     }
 
-    private void OnSlipAttempt(EntityUid uid, BorgMagbootsComponent component, InventoryRelayedEvent<SlipAttemptEvent> args)
+    private void OnSlipAttempt(EntityUid uid, BorgMagbootsComponent component, SlipAttemptEvent args)
     {
         if (component.On)
-            args.Args.NoSlip = true;
+            args.NoSlip = true;
     }
 }

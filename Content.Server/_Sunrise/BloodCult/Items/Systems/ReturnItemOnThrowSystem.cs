@@ -9,8 +9,8 @@ namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
 public sealed class ReturnItemOnThrowSystem : EntitySystem
 {
-    [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
 
     public override void Initialize()
     {

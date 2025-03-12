@@ -4,7 +4,7 @@ namespace Content.Client._Sunrise.BloodCult.UI.SummonCultistList;
 
 public sealed class SummonCultistListWindowBUI : BoundUserInterface
 {
-    private _Sunrise.BloodCult.UI.SummonCultistList.SummonCultistListWindow? _window;
+    private SummonCultistListWindow? _window;
 
     public SummonCultistListWindowBUI(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {

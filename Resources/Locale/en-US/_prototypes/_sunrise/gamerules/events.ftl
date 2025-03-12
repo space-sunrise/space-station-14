@@ -4,3 +4,7 @@ ent-FugitiveSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-EvilTwinSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
+ent-TerminatorSpawn = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-VentbullMigration = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }

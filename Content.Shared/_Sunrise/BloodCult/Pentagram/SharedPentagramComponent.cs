@@ -1,3 +1,5 @@
-namespace Content.Shared._Sunrise.BloodCult.Pentagram;
+﻿namespace Content.Shared._Sunrise.BloodCult.Pentagram;
 
-public abstract partial class SharedPentagramComponent : Component { }
+public abstract partial class SharedPentagramComponent : Component
+{
+}

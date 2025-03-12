@@ -1,4 +1,4 @@
-using System.Threading;
+﻿using System.Threading;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared._Sunrise.BloodCult.Components;
@@ -44,7 +44,8 @@ public sealed partial class DeconvertCultist : EntityEffect
             .PopupEntity(Loc.GetString("holy-water-started-converting", ("target", target)), uid);
 
         component.HolyConvertToken = new CancellationTokenSource();
-        Timer.Spawn(TimeSpan.FromSeconds(component.HolyConvertTime), () => ConvertCultist(uid, args.EntityManager),
+        Timer.Spawn(TimeSpan.FromSeconds(component.HolyConvertTime),
+            () => ConvertCultist(uid, args.EntityManager),
             component.HolyConvertToken.Token);
     }
 
@@ -59,6 +60,6 @@ public sealed partial class DeconvertCultist : EntityEffect
             entityManager.RemoveComponent<PentagramComponent>(uid);
         if (entityManager.HasComponent<CultMemberComponent>(uid))
             entityManager.RemoveComponent<CultMemberComponent>(uid);
-        entityManager.System<TagSystem>().RemoveTag(uid, "BloodCultist");
+        entityManager.System<TagSystem>().RemoveTag(uid, "Cultist");
     }
 }

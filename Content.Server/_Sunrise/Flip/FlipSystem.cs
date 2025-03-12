@@ -3,12 +3,14 @@ using Content.Shared._Sunrise.Flip;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Flip;
 
 public sealed class FlipSystem : SharedFlipSystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     [ValidatePrototypeId<EmotePrototype>]
     private const string EmoteFlipProto = "Flip";
@@ -22,10 +24,12 @@ public sealed class FlipSystem : SharedFlipSystem
 
     private void OnFlipOnAttack(EntityUid uid, FlipOnAttackComponent component, MeleeHitEvent args)
     {
-        Logger.Info("OnFlipOnAttack");
         foreach (var entity in args.HitEntities)
         {
             if (!HasComp<MobStateComponent>(entity))
+                continue;
+
+            if (!_random.Prob(component.Probability))
                 continue;
 
             PlayEmoteFlip(args.User);

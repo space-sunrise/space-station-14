@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.BloodCult.Runes.Comps;
@@ -15,8 +15,8 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
-using Content.Shared.Interaction;
 using Content.Shared.Humanoid;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
@@ -38,7 +38,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public partial class BloodCultSystem
     {
-
         public void InitializeRunes()
         {
             // Runes
@@ -56,7 +55,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             // UI
             SubscribeLocalEvent<RuneDrawerProviderComponent, UseInHandEvent>(OnRuneDrawerUseInHand);
-            SubscribeLocalEvent<RuneDrawerProviderComponent, GetVerbsEvent<ActivationVerb>>(OnRuneDrawerInteractionVerb);
+            SubscribeLocalEvent<RuneDrawerProviderComponent, GetVerbsEvent<ActivationVerb>>(
+                OnRuneDrawerInteractionVerb);
             SubscribeLocalEvent<RuneDrawerProviderComponent, ListViewItemSelectedMessage>(OnRuneSelected);
             SubscribeLocalEvent<CultTeleportRuneProviderComponent, TeleportRunesListWindowItemSelectedMessage>(
                 OnTeleportRuneSelected);
@@ -75,7 +75,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
          * Rune draw start ----
          */
 
-        private void OnRuneDrawerInteractionVerb(EntityUid uid, RuneDrawerProviderComponent component, GetVerbsEvent<ActivationVerb> args)
+        private void OnRuneDrawerInteractionVerb(EntityUid uid,
+            RuneDrawerProviderComponent component,
+            GetVerbsEvent<ActivationVerb> args)
         {
             if (!TryComp<ActorComponent>(args.User, out var actorComponent))
                 return;
@@ -106,7 +108,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             _ui.OpenUi(uid, ListViewSelectorUiKey.Key, actorComponent.PlayerSession);
         }
 
-        private void OnRuneSelected(EntityUid uid, RuneDrawerProviderComponent component, ListViewItemSelectedMessage args)
+        private void OnRuneSelected(EntityUid uid,
+            RuneDrawerProviderComponent component,
+            ListViewItemSelectedMessage args)
         {
             var runePrototype = args.SelectedItem;
 
@@ -130,15 +134,19 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (runePrototype == ApocalypseRunePrototypeId)
             {
                 var requestTime = TimeSpan.FromMinutes(_minutesToDrawApocalypseRune).TotalSeconds;
-                var roundTime = (float) _gameTicker.RoundDuration().TotalSeconds;
+                var roundTime = (float)_gameTicker.RoundDuration().TotalSeconds;
                 if (roundTime < requestTime)
                 {
                     _popupSystem.PopupEntity("Слишком рано...", whoCalled, whoCalled);
                     return false;
                 }
+
                 _timeToDraw = 120.0f;
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-started-drawing-rune-end"), "CULT", true,
-                    _apocRuneStartDrawing, colorOverride: Color.DarkRed);
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-started-drawing-rune-end"),
+                    "CULT",
+                    true,
+                    _apocRuneStartDrawing,
+                    colorOverride: Color.DarkRed);
             }
 
             if (!IsAllowedToDraw(whoCalled))
@@ -263,7 +271,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
             }
 
-            if (!_solutionContainer.TryGetSolution((args.OtherEntity, solution), VaporComponent.SolutionName, out var vapor))
+            if (!_solutionContainer.TryGetSolution((args.OtherEntity, solution),
+                    VaporComponent.SolutionName,
+                    out var vapor))
                 return;
 
             if (vapor.Value.Comp.Solution.Any(x => x.Reagent.Prototype == "Holywater"))
@@ -324,8 +334,15 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             foreach (var cultist in cultists)
             {
-                _chat.TrySendInGameICMessage(cultist, component.InvokePhrase, InGameICChatType.Speak, false, false, null,
-                    null, null, false);
+                _chat.TrySendInGameICMessage(cultist,
+                    component.InvokePhrase,
+                    InGameICChatType.Speak,
+                    false,
+                    false,
+                    null,
+                    null,
+                    null,
+                    false);
             }
         }
 
@@ -702,10 +719,14 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             _doAfterAlreadyStarted = true;
 
-            _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-ritual-started"), "CULT", false,
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-ritual-started"),
+                "CULT",
+                false,
                 colorOverride: Color.DarkRed);
 
-            var stream = _audio.PlayGlobal(_narsie40Sec, Filter.Broadcast(), false,
+            var stream = _audio.PlayGlobal(_narsie40Sec,
+                Filter.Broadcast(),
+                false,
                 AudioParams.Default.WithLoop(true).WithVolume(0.15f));
 
             _playingStream = stream?.Entity;
@@ -722,7 +743,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (args.Cancelled)
             {
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-ritual-prevented"), "CULT", false,
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-ritual-prevented"),
+                    "CULT",
+                    false,
                     colorOverride: Color.DarkRed);
 
                 return;
@@ -734,7 +757,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             _entityManager.SpawnEntity(NarsiePrototypeId, transform.Value);
 
-            _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-narsie-summoned"), "CULT", true, _apocRuneEndDrawing,
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-narsie-summoned"),
+                "CULT",
+                true,
+                _apocRuneEndDrawing,
                 colorOverride: Color.DarkRed);
 
             var ev = new CultNarsieSummoned();
@@ -971,7 +997,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var xform = xformQuery.GetComponent(rune);
 
             var projectileCount =
-                (int) MathF.Round(MathHelper.Lerp(component.MinProjectiles, component.MaxProjectiles, severity));
+                (int)MathF.Round(MathHelper.Lerp(component.MinProjectiles, component.MaxProjectiles, severity));
 
             var inRange = _lookup.GetEntitiesInRange(rune, component.ProjectileRange * severity, LookupFlags.Dynamic);
             inRange.RemoveWhere(x =>
@@ -1141,11 +1167,15 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 }
 
                 var pos = transComp.MapPosition;
-                var x = (int) pos.X;
-                var y = (int) pos.Y;
+                var x = (int)pos.X;
+                var y = (int)pos.Y;
                 var posText = $"(x = {x}, y = {y})";
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-narsie-summon-drawn-position", ("posText", posText)),
-                    "CULT", true, _apocRuneEndDrawing, colorOverride: Color.DarkRed);
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString("cult-narsie-summon-drawn-position", ("posText", posText)),
+                    "CULT",
+                    true,
+                    _apocRuneEndDrawing,
+                    colorOverride: Color.DarkRed);
             }
 
             var damageSpecifier = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), 10);

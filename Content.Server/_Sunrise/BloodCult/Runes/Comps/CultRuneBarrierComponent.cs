@@ -1,4 +1,6 @@
-namespace Content.Server._Sunrise.BloodCult.Runes.Comps;
+﻿namespace Content.Server._Sunrise.BloodCult.Runes.Comps;
 
 [RegisterComponent]
-public sealed partial class CultRuneBarrierComponent : Component { }
+public sealed partial class CultRuneBarrierComponent : Component
+{
+}

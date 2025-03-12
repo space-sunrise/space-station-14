@@ -13,12 +13,12 @@ namespace Content.Server._Sunrise.BloodCult.TimedProduction;
 
 public sealed class CultistFactorySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -103,8 +103,11 @@ public sealed class CultistFactorySystem : EntitySystem
         var totalSeconds = (component.NextTimeUse - _gameTiming.CurTime).Value.TotalSeconds;
         var seconds = Convert.ToInt32(totalSeconds);
 
-        _popupSystem.PopupEntity(Loc.GetString("cultist-factory-charging", ("name", name),
-            ("seconds", seconds)), uid, user);
+        _popupSystem.PopupEntity(Loc.GetString("cultist-factory-charging",
+                ("name", name),
+                ("seconds", seconds)),
+            uid,
+            user);
 
         UpdateAppearance(uid, component);
         return false;

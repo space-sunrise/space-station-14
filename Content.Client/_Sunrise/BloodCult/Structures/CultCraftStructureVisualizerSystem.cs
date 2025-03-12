@@ -5,7 +5,9 @@ namespace Content.Client._Sunrise.BloodCult.Structures;
 
 public sealed class CultCraftStructureVisualizerSystem : VisualizerSystem<CultCraftStructureVisualsComponent>
 {
-    protected override void OnAppearanceChange(EntityUid uid, CultCraftStructureVisualsComponent component, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid,
+        CultCraftStructureVisualsComponent component,
+        ref AppearanceChangeEvent args)
     {
         base.OnAppearanceChange(uid, component, ref args);
 
@@ -13,7 +15,8 @@ public sealed class CultCraftStructureVisualizerSystem : VisualizerSystem<CultCr
             || !AppearanceSystem.TryGetData<bool>(uid, CultCraftStructureVisuals.Activated, out var activated))
             return;
 
-        args.Sprite.LayerSetState(CultCraftStructureVisualsLayers.Activated, activated ? component.StateOn : component.StateOff);
+        args.Sprite.LayerSetState(CultCraftStructureVisualsLayers.Activated,
+            activated ? component.StateOn : component.StateOff);
     }
 }
 

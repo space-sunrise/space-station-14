@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "SUNRISE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "empty"
+    },
+    {
+      "name": "drink-0"
+    },
+    {
+      "name": "drink-1"
+    },
+    {
+      "name": "drink-2"
+    },
+    {
+      "name": "drink-3"
+    }
+  ]
+}

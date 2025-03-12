@@ -65,7 +65,7 @@
   parent: BaseMobFleshCult
   id: MobFleshSpider
   components:
-#    - type: VentCrawler
+    - type: VentCrawler
     - type: HTN
       rootTask:
         task: XenoCompound
@@ -112,8 +112,12 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-spider-ghost-role-name
-      description: mob-flesh-spider-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-spider-ghost-role-desc
+      rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -135,6 +139,10 @@
         collection: FootstepSpiderLegs
         params:
           volume: 10
+    - type: Hands
+      showInHands: false
+      disableExplosionRecursion: true
+      canBeStripped: false
 
 - type: entity
   parent: BaseMobFleshCult
@@ -156,28 +164,18 @@
     - type: Prying
       pryPowered: true
       force: true
-      speedModifier: 1.5
+      speedModifier: 7
       useSound:
         path: /Audio/Items/crowbar.ogg
     - type: Butcherable
       spawned:
         - id: FoodMeat
           amount: 5
-    - type: FleshPudge
-      bloodAbsorbSound:
-        path: /Audio/Effects/Fluids/splat.ogg
-        healBloodAbsorbReagents:
-          reagents:
-          - data: null
-            ReagentId: Carol
-            Quantity: 1
-        bulletAcidSpawnId: BulletSplashAcid
-        faceHuggerMobSpawnId: MobFleshHugger
-        soundThrowWorm: !type:SoundPathSpecifier
-          path: /Audio/_Sunrise/FleshCult/throw_worm.ogg
-        actionAbsorbBloodPool: AbsorbBloodPool
-        actionAcidSpit: FleshAcidSpit
-        actionThrowWorm: FleshThrowWorm
+    - type: FleshAbilities
+      startingActions:
+        - FleshCultistThrowHugger
+        - FleshCultistAcidSpit
+        - FleshCultistAbsorbBloodPool
     - type: Vocal
       sounds:
         Unsexed: FleshPudgeEmote
@@ -232,15 +230,19 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-pudge-ghost-role-name
-      description: mob-flesh-pudge-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-pudge-ghost-role-desc
+      rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: Fixtures
       fixtures:
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.35
           density: 800
           mask:
             - MobMask
@@ -248,6 +250,10 @@
             - MobLayer
     - type: Puller
       needsHands: false
+    - type: Hands
+      showInHands: false
+      disableExplosionRecursion: true
+      canBeStripped: false
 
 
 - type: entity
@@ -293,8 +299,12 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-ball-ghost-role-name
-      description: mob-flesh-ball-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-ball-ghost-role-desc
+      rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MobThresholds
       thresholds:
@@ -366,8 +376,12 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-bat-ghost-role-name
-      description: mob-flesh-bat-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-bat-ghost-role-desc
+      rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -392,7 +406,7 @@
   parent: BaseMobFleshCult
   id: MobFleshHugger
   components:
-#    - type: VentCrawler
+    - type: VentCrawler
     - type: FleshMob
       soundDeath: "/Audio/_Sunrise/FleshCult/flesh_worm_dead.ogg"
       deathMobSpawnId: "MobFleshWorm"
@@ -448,8 +462,12 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-hugger-ghost-role-name
-      description: mob-flesh-hugger-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, стены и окна если за ними нету людей, консоли и прочее.
+      description: mob-flesh-hugger-ghost-role-desc
+      rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true

@@ -1,4 +1,4 @@
-using Robust.Shared.Random;
+﻿using Robust.Shared.Random;
 
 namespace Content.Shared._Sunrise.BloodCult.Systems;
 

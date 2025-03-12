@@ -1,13 +1,13 @@
-- type: npcFaction
+﻿- type: npcFaction
   id: BloodCult
+  friendly:
+  - BloodCult
   hostile:
   - NanoTrasen
   - Syndicate
   - Thief
   - Zombie
-  - Xeno
   - Revolutionary
-  - Vampire
   - Changeling
-  - Flesh
-  - FleshHuman
+  - Vampire
+  - Xeno

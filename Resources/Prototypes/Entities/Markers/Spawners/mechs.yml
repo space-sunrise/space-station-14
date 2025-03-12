@@ -70,6 +70,20 @@
       - MechClarkeBattery
 
 - type: entity
+  name: Big Yarrke Spawner
+  id: SpawnMechBigYarrke
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/clarke.rsi
+        state: bigbrother-broken
+  - type: ConditionalSpawner
+    prototypes:
+      - MechBigYarrkeBattery
+
+- type: entity
   name: Gygax Spawner
   id: SpawnMechGygax
   parent: MarkerBase

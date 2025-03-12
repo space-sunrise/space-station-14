@@ -248,4 +248,19 @@
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Drinks/yorsh.rsi
     state: icon
-    
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkBacchusBlessingGlass
+  suffix: bacchus' blessing
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BacchusBlessing
+          Quantity: 30
+  - type: Icon
+    sprite: _Sunrise/Objects/Consumable/Drinks/bacchusblessing.rsi
+    state: icon

@@ -26,5 +26,7 @@ ent-VampireEscapeObjective = Улететь со станции живым и с
     .desc = Я должен улететь на эвакуационном шаттле. Свободным.
 ent-VampireKillRandomPersonObjective = { ent-BaseVampireObjective }
     .desc = Делайте, что хотите, только следите, чтобы они не покинули станцию.
+ent-VampireKillRandomAntagObjective = { ent-BaseVampireObjective }
+    .desc = { ent-BaseVampireObjective.desc }
 ent-VampireDrainObjective = { ent-BaseVampireObjective }
     .desc = { ent-BaseVampireObjective.desc }

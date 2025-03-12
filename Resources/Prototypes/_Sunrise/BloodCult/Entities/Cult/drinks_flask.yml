@@ -1,8 +1,6 @@
-- type: entity
+﻿- type: entity
   parent: DrinkBottleGlassBaseFull
   id: DrinkHolyWaterFull
-  name: флакон святой воды
-  description: Флакон который содержит святую воду.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -17,8 +15,6 @@
 - type: entity
   parent: DrinkBottleGlassBaseFull
   id: DrinkUnholyWaterFull
-  name: флакон нечестивой воды
-  description: Флакон который содержит нечестивую воду.
   components:
   - type: SolutionContainerManager
     solutions:

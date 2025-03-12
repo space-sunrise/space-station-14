@@ -51,6 +51,9 @@
 - type: Tag
   id: CartridgeRail
 
+- type: Tag
+  id: MiniSyringe
+
 # Magazines:
 - type: Tag
   id: MagazineM28
@@ -326,3 +329,18 @@
 
 - type: Tag
   id: ToySword
+
+- type: Tag
+  id: FugitiveUplink
+
+- type: Tag
+  id: Vest
+
+- type: Tag
+  id: FullBodyOuter
+
+- type: Tag
+  id: Directional
+
+- type: Tag
+  id: Geranium

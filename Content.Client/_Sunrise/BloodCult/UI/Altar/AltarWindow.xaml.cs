@@ -12,14 +12,11 @@ namespace Content.Client._Sunrise.BloodCult.UI.Altar;
 public partial class AltarWindow : DefaultWindow
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
     [Dependency] private readonly PrototypeManager _prototypeManager = default!;
-
-
-    public event Action<string>? OnItemSelected;
-    private TimeSpan? _nextTimeUse = null!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
     private List<AltarListingControl> _listingControls = new();
+    private TimeSpan? _nextTimeUse = null!;
 
     public AltarWindow()
     {
@@ -27,11 +24,15 @@ public partial class AltarWindow : DefaultWindow
         IoCManager.InjectDependencies(this);
     }
 
+
+    public event Action<string>? OnItemSelected;
+
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
 
-        if (_nextTimeUse == null) return;
+        if (_nextTimeUse == null)
+            return;
 
         var remainingTime = _nextTimeUse.Value - _gameTiming.CurTime;
 
@@ -50,7 +51,8 @@ public partial class AltarWindow : DefaultWindow
         foreach (var prototypeId in prototypes)
         {
             var prototype = _prototypeManager.Index<EntityPrototype>(prototypeId);
-            if(prototype == null) return;
+            if (prototype == null)
+                return;
             var prototypeIcon = _spriteSystem.GetPrototypeIcon(prototype).Default;
             AddListingControl(prototype);
         }
