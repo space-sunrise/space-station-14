@@ -27,11 +27,13 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Reflect
-      reflectProb: 0.5
+      reflectProb: 0.5 # В сс14 один шанс и на энергитический, и на не энергетический урон. Может потом сделаю (TODO)
       passiveReflect: true
       reflects:
         - Energy
+        - NonEnergy
     - type: ReturnItemOnThrow
+    - type: MirrorShield
 
 
 - type: entity
