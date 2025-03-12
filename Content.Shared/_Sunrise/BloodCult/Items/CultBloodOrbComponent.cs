@@ -18,8 +18,7 @@ public sealed partial class CultBloodOrbComponent : Component
     {
         DamageDict = new Dictionary<string, FixedPoint2>() // По итогу это выходит 5 урона с орба на 50 крови
         {
-            { "Slash", 0.05 },
-            { "Bloodloss", 0.05 },
+            { "Slash", 0.1 },
         },
     };
 }
