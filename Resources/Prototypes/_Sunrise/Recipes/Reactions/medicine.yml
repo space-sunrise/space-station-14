@@ -61,7 +61,7 @@
     UnstableMutagen:
       amount: 1
   products:
-    Stable-Mutagen: 3
+    StableMutagen: 3
 
 - type: reaction
   id: Darvinium
@@ -70,7 +70,7 @@
       amount: 1
     UnstableMutagen:
       amount: 1
-    Stable-Mutagen:
+    StableMutagen:
       amount: 3
   products:
     Darvinium: 3
