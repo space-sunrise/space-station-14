@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Station.Systems;
@@ -165,12 +166,30 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
             _inventory.TryEquip(mobUid, item.Value, containerSlot.ID, true, true);
         }
 
+        List<EntityUid> heldItems = new();
         foreach (var held in _hands.EnumerateHeld(uid))
         {
             if (!CloneItem(held, out var item))
                 continue;
             EnsureComp<UnremoveableComponent>(item.Value);
-            _hands.TryPickupAnyHand(mobUid, item.Value);
+            heldItems.Add(item.Value);
+        }
+
+        if (heldItems.Count != 0)
+        {
+            foreach (var hand in _hands.EnumerateHands(mobUid).Reverse())
+            {
+                _hands.TryPickup(mobUid, heldItems[0], hand);
+                heldItems.RemoveAt(0);
+                if (heldItems.Count == 0)
+                    break;
+            }
+        }
+
+        // А что если у цели было больше двух рук? У клона же в свою очередь будет скорее всего 2
+        foreach (var leftoveritem in heldItems)
+        {
+            QueueDel(leftoveritem);
         }
 
         return true;
@@ -209,14 +228,12 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         }
         else
         {
-            // TODO: Она должна атаковать владельца щита
             if (targetAggro != null)
             {
-                _faction.AddFaction(mobUid.Value, "Passive");
                 _faction.AggroEntity(mobUid.Value, targetAggro.Value);
             }
         }
-        _console.ExecuteCommand($"addnpc {mobUid.Value} SimpleHumanoidHostileCompound");
+        _console.ExecuteCommand($"addnpc {mobUid.Value} SimpleHostileCompound");
 
         return true;
     }
