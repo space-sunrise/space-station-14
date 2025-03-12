@@ -19,4 +19,7 @@ public sealed partial class CultMirrorShieldComponent : Component
     /// </summary>
     [DataField("breakSound")] [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? BreakSound = new SoundCollectionSpecifier("GlassBreak");
+
+    [DataField("illusionChance")] [ViewVariables(VVAccess.ReadWrite)]
+    public float IllusionChance = 0.5f;
 }

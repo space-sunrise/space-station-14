@@ -1,5 +1,7 @@
 ﻿- type: npcFaction
   id: BloodCult
+  friendly:
+  - BloodCult
   hostile:
   - NanoTrasen
   - Syndicate
