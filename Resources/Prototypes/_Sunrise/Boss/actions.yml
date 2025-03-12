@@ -54,6 +54,6 @@
   components:
   - type: InstantAction
     priority: -1
-    useDelay: 30
+    useDelay: 15
     icon: _Sunrise/Interface/Actions/inferno_shield.png
     event: !type:HellSpawnSpiralActionEvent

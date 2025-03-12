@@ -36,7 +36,7 @@ public sealed class SpiralMovementSystem : EntitySystem
 
         component.OriginCoordinates = xform.Coordinates;
 
-        component.SpawnTime = _timing.CurTime - component.TimeOffset;
+        component.SpawnTime = _timing.CurTime;
     }
 
     public override void Update(float frameTime)
@@ -50,7 +50,7 @@ public sealed class SpiralMovementSystem : EntitySystem
                 continue;
             if (xform.Coordinates.EntityId == uid) // Это вызывается если превью в спавн меню было вызвано
                 continue;
-            var deltaTime = (float)((_timing.CurTime - spiralComp.SpawnTime) / spiralComp.RadiusCoefficient);
+            var deltaTime = (float)((_timing.CurTime - spiralComp.SpawnTime + spiralComp.TimeOffset) / spiralComp.RadiusCoefficient);
 
             var x = spiralComp.OriginCoordinates.Value.X + deltaTime * (float)Math.Cos(spiralComp.OmegaCoefficient * deltaTime + spiralComp.Offset);
             var y = spiralComp.OriginCoordinates.Value.Y + deltaTime * (float)Math.Sin(spiralComp.OmegaCoefficient * deltaTime + spiralComp.Offset);

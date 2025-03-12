@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using System.Threading.Tasks;
 using Content.Server._Sunrise.Boss.Components;
 using Content.Server.Stunnable;
 using Content.Shared._Sunrise.Boss.Components;
@@ -16,6 +15,9 @@ public sealed class HellSpawnSpiralSystem : EntitySystem
 
     [DataField]
     public string BulletProto = "BulletSkyFlare";
+
+    [DataField]
+    public TimeSpan TimeOffset = TimeSpan.FromSeconds(0.5);
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -35,12 +37,12 @@ public sealed class HellSpawnSpiralSystem : EntitySystem
         _stun.TrySlowdown(uid, TimeSpan.FromSeconds(2), true, 0f, 0f);
 
         var vectors = GenerateVectors(component.FireballCount);
-        Console.WriteLine($"{vectors}");
         foreach (var vector in vectors)
         {
-            Console.WriteLine($"{vector.X} {vector.Y}");
             SpawnSpiral(xform.Coordinates, vector);
         }
+
+        args.Handled = true;
     }
 
     private List<Vector2> GenerateVectors(int N)
@@ -63,7 +65,7 @@ public sealed class HellSpawnSpiralSystem : EntitySystem
         var bullet = SpawnAtPosition(BulletProto,
             new EntityCoordinates(origin.EntityId, origin.Position));
         var spiralComp = EnsureComp<SpiralMovementComponent>(bullet);
-        spiralComp.TimeOffset = TimeSpan.FromSeconds(1);
+        spiralComp.TimeOffset = TimeOffset;
         spiralComp.Offset = (float)Math.Acos(offset.X);
 
         if (offset.Y < 0)

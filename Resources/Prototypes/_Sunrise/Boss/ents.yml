@@ -63,6 +63,7 @@
   - type: HellSpawnInvincibility
   - type: HellSpawn
   - type: HellSpawnTentacle
+  - type: HellSpawnSpiral
   - type: MeleeWeapon
     attackRate: 0.6
     hidden: true
