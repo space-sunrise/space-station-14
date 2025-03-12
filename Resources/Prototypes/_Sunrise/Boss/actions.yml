@@ -17,8 +17,6 @@
   name: Invincibility
   components:
   - type: InstantAction
-    checkCanInteract: false
-    checkConsciousness: true
     priority: -1
     useDelay: 30
     icon: _Sunrise/Interface/Actions/inferno_shield.png
@@ -33,9 +31,7 @@
     itemIconStyle: NoItem
     priority: -1
     range: 5
-    useDelay: 3
-    checkCanInteract: false
-    checkCanAccess: false
+    useDelay: 8
     event: !type:HellSpawnTentacleActionEvent
       left: false
 
@@ -48,9 +44,7 @@
     itemIconStyle: NoItem
     priority: -1
     range: 7
-    useDelay: 6
-    checkCanInteract: false
-    checkCanAccess: false
+    useDelay: 10
     event: !type:HellSpawnTentacleActionEvent
       left: true
 
@@ -59,8 +53,6 @@
   name: Spiral
   components:
   - type: InstantAction
-    checkCanInteract: false
-    checkConsciousness: true
     priority: -1
     useDelay: 30
     icon: _Sunrise/Interface/Actions/inferno_shield.png

@@ -1,7 +1,6 @@
 ﻿using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Events;
 using Content.Shared._Sunrise.Boss.Systems;
-using Content.Shared.Actions;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -25,7 +24,7 @@ public sealed class HellSpawnTentacleSystem : SharedHellSpawnTentacleSystem
 
     private void OnTentacleActionEvent(EntityUid uid,
         HellSpawnTentacleComponent component,
-        ref HellSpawnTentacleActionEvent args)
+        HellSpawnTentacleActionEvent args)
     {
         if (args.Handled || args.Performer != uid)
             return;
@@ -35,6 +34,7 @@ public sealed class HellSpawnTentacleSystem : SharedHellSpawnTentacleSystem
         if (coords != null)
         {
             SpawnTentacle(coords.Value, args.Left ? GrabLeftEntityId : GrabRightEntityId);
+            args.Handled = true;
             return;
         }
 
@@ -42,9 +42,9 @@ public sealed class HellSpawnTentacleSystem : SharedHellSpawnTentacleSystem
         {
             var entCoords = Transform(args.Entity.Value).Coordinates;
             SpawnTentacle(entCoords, args.Left ? GrabLeftEntityId : GrabRightEntityId);
+            args.Handled = true;
             return;
         }
-
     }
 
     /// <summary>

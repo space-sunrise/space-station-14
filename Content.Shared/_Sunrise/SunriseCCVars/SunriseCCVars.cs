@@ -268,7 +268,7 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> NPCDisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
 
-    public static readonly CVarDef<float> NPCDisableDistance = CVarDef.Create("npc.disable_distance", 15f);
+    public static readonly CVarDef<float> NPCDisableDistance = CVarDef.Create("npc.disable_distance", 20f);
 
     /*
      * Vote

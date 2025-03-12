@@ -139,4 +139,10 @@ public record struct ItemConstructionCreated(EntityUid Item)
 {
     public readonly EntityUid Item = Item;
 }
+
+/// <summary>
+/// Вызывается на родительском гриде чтоб определить, можно ли строить тут
+/// </summary>
+[ByRefEvent]
+public record struct TryStartItemConstruction(bool Cancelled = false);
 // Sunrise-End

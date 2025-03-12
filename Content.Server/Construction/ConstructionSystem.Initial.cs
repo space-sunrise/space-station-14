@@ -462,6 +462,17 @@ namespace Content.Server.Construction
 
             var location = GetCoordinates(ev.Location);
 
+            // Sunrise-start
+            var refEv = new TryStartItemConstruction();
+            RaiseLocalEvent(location.EntityId, ref refEv);
+            Log.Debug($"{location.EntityId}");
+            if (refEv.Cancelled)
+            {
+                Cleanup();
+                return;
+            }
+            // Sunrise-end
+
             foreach (var condition in constructionPrototype.Conditions)
             {
                 if (!condition.Condition(user, location, ev.Angle.GetCardinalDir()))
