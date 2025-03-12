@@ -179,10 +179,15 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         {
             foreach (var hand in _hands.EnumerateHands(mobUid).Reverse())
             {
-                _hands.TryPickup(mobUid, heldItems[0], hand);
-                heldItems.RemoveAt(0);
-                if (heldItems.Count == 0)
-                    break;
+                if (heldItems.Count == 0 || !HasComp<CultMirrorShieldComponent>(heldItems[0]))
+                {
+                    _hands.TrySetActiveHand(mobUid, hand.Name);
+                }
+                if (heldItems.Count != 0)
+                {
+                    _hands.TryPickup(mobUid, heldItems[0], hand);
+                    heldItems.RemoveAt(0);
+                }
             }
         }
 
@@ -233,7 +238,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
                 _faction.AggroEntity(mobUid.Value, targetAggro.Value);
             }
         }
-        _console.ExecuteCommand($"addnpc {mobUid.Value} SimpleHostileCompound");
+        _console.ExecuteCommand($"addnpc {mobUid.Value} HostileIllusionCompound");
 
         return true;
     }
