@@ -14,7 +14,7 @@ namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 /// <summary>
 ///     Система для обработки логики зеркального щита. Референс: https://youtu.be/SiFY7ek_91Y?t=330&si=GB2jxaBrhe2vG5vc
 /// </summary>
-public sealed class CultMirrorShieldSystem : EntitySystem
+public sealed partial class CultMirrorShieldSystem : EntitySystem
 {
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -28,6 +28,9 @@ public sealed class CultMirrorShieldSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        // Initialize subsystems
+        InitializeCommands();
 
         _sawmill = _log.GetSawmill("mirrorshield");
 

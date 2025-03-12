@@ -33,7 +33,7 @@
         - Energy
         - NonEnergy
     - type: ReturnItemOnThrow
-    - type: MirrorShield
+    - type: CultMirrorShield
 
 
 - type: entity
