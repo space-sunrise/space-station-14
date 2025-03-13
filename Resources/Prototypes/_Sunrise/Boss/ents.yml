@@ -134,7 +134,7 @@
     key: enum.HellSpawnArenaUiKey.Key
   - type: HellSpawnConsole
   - type: Godmode
-  - type: Unanchorable
+  - type: BlockedTool
 
 - type: entity
   id: HellSpawnCultist

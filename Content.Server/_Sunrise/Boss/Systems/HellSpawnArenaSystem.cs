@@ -72,13 +72,6 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
         SubscribeLocalEvent<HellSpawnCultistComponent, BeingGibbedEvent>(OnCultistGib);
 
         SubscribeLocalEvent<HellSpawnConsoleComponent, ComponentInit>(OnConsoleInit);
-
-        SubscribeLocalEvent<HellSpawnArenaComponent, TryStartItemConstruction>(OnTryStartItemConstruction);
-    }
-
-    private void OnTryStartItemConstruction(EntityUid uid, HellSpawnArenaComponent component, ref TryStartItemConstruction args)
-    {
-        args.Cancelled = true;
     }
 
     private void OnConsoleInit(EntityUid uid, HellSpawnConsoleComponent comp, ComponentInit args)
