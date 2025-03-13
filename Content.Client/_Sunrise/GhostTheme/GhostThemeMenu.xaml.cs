@@ -22,55 +22,132 @@ public sealed partial class GhostThemeMenu : DefaultWindow
     public event Action<string>? OnIdSelected;
 
     private List<string> _availableGhostThemes = [];
+    private string _currentSelectedTheme = string.Empty;
+    private string _searchText = string.Empty;
 
     public GhostThemeMenu()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        
+        SearchBar.OnTextChanged += OnSearchTextChanged;
+    }
+
+    private void OnSearchTextChanged(LineEdit.LineEditEventArgs args)
+    {
+        _searchText = args.Text;
+        UpdateButtons();
     }
 
     public void UpdateState(List<string> ghostThemes)
     {
         _availableGhostThemes = ghostThemes;
-        UpdateGrid();
+        UpdateButtons();
+        
+        var currentTheme = _cfg.GetCVar(SunriseCCVars.SponsorGhostTheme);
+        if (!string.IsNullOrEmpty(currentTheme) && _availableGhostThemes.Contains(currentTheme))
+        {
+            _currentSelectedTheme = currentTheme;
+            UpdatePreview(_currentSelectedTheme);
+        }
+        else if (_availableGhostThemes.Count > 0)
+        {
+            _currentSelectedTheme = _availableGhostThemes[0];
+            UpdatePreview(_currentSelectedTheme);
+        }
     }
 
-    private void UpdateGrid()
+    private void UpdateButtons()
     {
-        ClearGrid();
+        ClearButtons();
 
         foreach (var ghostTheme in _availableGhostThemes)
         {
             if (!_prototypeManager.TryIndex(ghostTheme, out GhostThemePrototype? ghostThemePrototype))
                 continue;
 
+            var themeName = Loc.GetString(ghostThemePrototype.Name);
+            if (!string.IsNullOrEmpty(_searchText) && 
+                !themeName.ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) &&
+                !ghostTheme.ToLowerInvariant().Contains(_searchText.ToLowerInvariant()))
+                continue;
+
             var button = new Button
             {
-                SetSize = new Vector2(128, 128),
+                MinHeight = 50,
                 HorizontalExpand = true,
-                ToggleMode = false,
-                StyleClasses = {StyleBase.ButtonSquare},
+                ToggleMode = true,
+                Pressed = ghostTheme == _currentSelectedTheme
             };
-            button.OnPressed += _ =>
+            
+            var panel = new PanelContainer
             {
-                OnIdSelected?.Invoke(ghostTheme);
-                _cfg.SetCVar(SunriseCCVars.SponsorGhostTheme, ghostTheme);
-                _cfg.SaveToFile();
+                HorizontalExpand = true
             };
-            Grid.AddChild(button);
+            
+            var box = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                Margin = new Thickness(5)
+            };
 
-            var ghost = new TextureRect()
+            var ghostIcon = new TextureRect
             {
                 Texture = ghostThemePrototype.Sprite.Frame0(),
                 Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                SetSize = new Vector2(40, 40)
             };
-
-            button.AddChild(ghost);
+            
+            var nameLabel = new Label
+            {
+                Text = Loc.GetString(ghostThemePrototype.Name),
+                StyleClasses = { StyleNano.StyleClassLabelBig },
+                HorizontalExpand = true,
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(10, 0, 0, 0)
+            };
+            
+            box.AddChild(ghostIcon);
+            box.AddChild(nameLabel);
+            panel.AddChild(box);
+            button.AddChild(panel);
+            
+            button.OnPressed += _ =>
+            {
+                foreach (var child in ButtonContainer.Children)
+                {
+                    if (child is Button otherButton && otherButton != button)
+                        otherButton.Pressed = false;
+                }
+                
+                button.Pressed = true;
+                _currentSelectedTheme = ghostTheme;
+                OnIdSelected?.Invoke(ghostTheme);
+                _cfg.SetCVar(SunriseCCVars.SponsorGhostTheme, ghostTheme);
+                _cfg.SaveToFile();
+                
+                UpdatePreview(ghostTheme);
+            };
+            
+            ButtonContainer.AddChild(button);
         }
     }
-
-    private void ClearGrid()
+    
+    private void UpdatePreview(string ghostTheme)
     {
-        Grid.RemoveAllChildren();
+        if (!_prototypeManager.TryIndex(ghostTheme, out GhostThemePrototype? ghostThemePrototype))
+            return;
+        
+        PreviewTexture.Texture = ghostThemePrototype.Sprite.Frame0();
+        PreviewTexture.ModulateSelfOverride = ghostThemePrototype.SpriteColor;
+        PreviewName.Text = Loc.GetString(ghostThemePrototype.Name);
+        
+        PreviewDescription.Text = Loc.GetString("ghost-theme-preview-description");
+    }
+
+    private void ClearButtons()
+    {
+        ButtonContainer.RemoveAllChildren();
     }
 }
