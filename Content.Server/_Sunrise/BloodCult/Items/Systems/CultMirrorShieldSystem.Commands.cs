@@ -36,7 +36,7 @@ public sealed partial class CultMirrorShieldSystem
         }
 
         // Clone behavior
-        shell.WriteLine($"CreateIllusion returned: {CreateIllusion(entity)}");
+        shell.WriteLine($"CreateIllusion returned: {CreateIllusion(entity, out _)}");
     }
 
     [AdminCommand(AdminFlags.Debug)]
