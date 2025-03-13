@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Sunrise.BloodCult.Items.Components;
+using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
+using Content.Server.NPC.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
 using Content.Shared._Sunrise.BloodCult.Components;
@@ -11,6 +14,8 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
@@ -42,6 +47,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly NpcFactionSystem _faction = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -56,8 +62,19 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         _sawmill = _log.GetSawmill("mirrorshield");
 
         SubscribeLocalEvent<CultMirrorShieldComponent, HitScanReflectedEvent>(OnHitScanReflected);
+        SubscribeLocalEvent<CultMirrorShieldComponent, ComponentShutdown>(OnShieldShutdown);
+
+        SubscribeLocalEvent<CultMirrorIllusionComponent, ComponentInit>(OnIllusionInit);
+        SubscribeLocalEvent<CultMirrorIllusionComponent, MobStateChangedEvent>(OnIllusionMobStateChanged);
+        SubscribeLocalEvent<CultMirrorIllusionComponent, BeingGibbedEvent>(OnIllusionGib);
+        SubscribeLocalEvent<CultMirrorIllusionComponent, ComponentShutdown>(OnIllusionShutdown);
     }
 
+    #region ShieldBreak
+
+    /// <summary>
+    /// Щит отразил что-то
+    /// </summary>
     private void OnHitScanReflected(EntityUid uid, CultMirrorShieldComponent component, HitScanReflectedEvent args)
     {
         if (TryBreakShield(uid, args))
@@ -114,6 +131,60 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         QueueDel(entity.Owner);
     }
 
+    #endregion ShieldBreak
+
+    #region Illusion
+
+    /// <summary>
+    /// Иллюзии должны разбиваться после смерти
+    /// </summary>
+    private void OnIllusionMobStateChanged(EntityUid uid, CultMirrorIllusionComponent component, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Alive)
+            return;
+        QueueDel(uid);
+    }
+
+    /// <summary>
+    /// Иллюзии должны быть дохлыми
+    /// </summary>
+    private void OnIllusionInit(EntityUid uid, CultMirrorIllusionComponent component, ComponentInit args)
+    {
+        _mobThreshold.SetMobStateThreshold(uid, 15, MobState.Critical);
+        _mobThreshold.SetMobStateThreshold(uid, 20, MobState.Dead);
+    }
+
+    /// <summary>
+    /// Иллюзию разбили. Вычеркиваем
+    /// </summary>
+    private void OnIllusionShutdown(EntityUid uid, CultMirrorIllusionComponent component, ComponentShutdown args)
+    {
+        if (!TryComp<CultMirrorShieldComponent>(component.ParentShield, out var mirror))
+            return;
+        mirror.Illusions.Remove(uid);
+    }
+
+    /// <summary>
+    /// А что если иллюзию гибнули быстрее, чем она успела умереть? Крайний случай, эта функция не должна быть вызвана никогда
+    /// </summary>
+    private void OnIllusionGib(EntityUid uid, CultMirrorIllusionComponent component, BeingGibbedEvent args)
+    {
+        if (!TryComp<CultMirrorShieldComponent>(component.ParentShield, out var mirror))
+            return;
+        mirror.Illusions.Remove(uid);
+    }
+
+    /// <summary>
+    /// Щит разбился. Иллюзии должны разбиться вместе с ним
+    /// </summary>
+    private void OnShieldShutdown(EntityUid uid, CultMirrorShieldComponent component, ComponentShutdown args)
+    {
+        foreach (var illusion in component.Illusions)
+        {
+            QueueDel(illusion);
+        }
+    }
+
     /// <summary>
     ///     Логика спавна иллюзий
     /// </summary>
@@ -122,33 +193,52 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         if (!Resolve(entity.Owner, ref entity.Comp))
             return;
 
+
         if (_random.NextFloat() > entity.Comp.IllusionChance)
             return;
 
         var xform = Transform(entity);
-        // Логика для иллюзий
         var owner = xform.ParentUid;
-        if (TryComp<BloodCultistComponent>(owner, out var cultist))
+        EntityUid? illusion = null;
+        if (HasComp<BloodCultistComponent>(owner))
         {
+            // Количество иллюзий ограничено только если хозяин щита культист
+            if (entity.Comp.Illusions.Count > entity.Comp.MaxIllusionCounter)
+                return;
+
             // Если хозяин культист, то...
-            CreateIllusion(owner);
+            if (_random.NextFloat() < 0.6f)
+                CreateIllusion(owner, out illusion, agressive: true);
+            else
+                CreateIllusion(owner, out illusion, agressive: false);
         }
         else
         {
             // Если хозяин не культист, то...
-            CreateIllusion(owner, false, owner);
+            CreateIllusion(owner, out illusion, false, owner);
         }
+
+        if (illusion == null)
+            return;
+
+        entity.Comp.Illusions.Add(illusion.Value);
     }
 
-    public bool CreateIllusion(EntityUid uid, bool agressive = true, EntityUid? targetAggro = null)
+    public bool CreateIllusion(EntityUid uid, [NotNullWhen(true)] out EntityUid? illusionUid, bool agressive = true, EntityUid? targetAggro = null)
     {
+        illusionUid = null;
+
         if (!CreateBaseIllusion(uid, out var mobUid, agressive, targetAggro))
             return false;
         if (!CloneGear(uid, mobUid.Value))
             return false;
 
+        illusionUid = mobUid;
+
         return true;
     }
+
+    #endregion Illusion
 
     # region Helper functions
 
@@ -200,7 +290,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         return true;
     }
 
-    public bool CreateBaseIllusion(EntityUid uid, [NotNullWhen(true)] out EntityUid? mobUid, bool agressive = true, EntityUid? targetAggro = null)
+    public bool CreateBaseIllusion(EntityUid uid, [NotNullWhen(true)] out EntityUid? mobUid, bool wasSourceCultist = true, EntityUid? userUid = null, bool agressive = true)
     {
         mobUid = null;
         if (!_transform.TryGetMapOrGridCoordinates(uid, out var coords))
@@ -223,22 +313,32 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
 
         // Через 15 секунд иллюзия удаляется - Не канон, удали эту хуету
         var timedDelete = EnsureComp<TimedDespawnComponent>(mobUid.Value);
-        timedDelete.Lifetime = agressive ? 10f : 15f;
+        timedDelete.Lifetime = wasSourceCultist ? 10f : 15f;
 
         _faction.ClearFactions(mobUid.Value);
-        if (agressive)
+        if (wasSourceCultist)
         {
             // Она должна атаковать всех не культистов
-            _faction.AddFaction(mobUid.Value, "BloodCult");
+            if (agressive)
+            {
+                _faction.AddFaction(mobUid.Value, "BloodCult");
+                _console.ExecuteCommand($"addnpc {mobUid.Value} HostileIllusionCompound");
+            }
+            else
+            {
+                _faction.AddFaction(mobUid.Value, "Passive");
+                EnsureComp<NPCRetaliationComponent>(mobUid.Value);
+                _console.ExecuteCommand($"addnpc {mobUid.Value} IdleCompound");
+            }
         }
         else
         {
-            if (targetAggro != null)
+            if (userUid != null)
             {
-                _faction.AggroEntity(mobUid.Value, targetAggro.Value);
+                _faction.AggroEntity(mobUid.Value, userUid.Value);
+                _console.ExecuteCommand($"addnpc {mobUid.Value} HostileIllusionCompound");
             }
         }
-        _console.ExecuteCommand($"addnpc {mobUid.Value} HostileIllusionCompound");
 
         return true;
     }
