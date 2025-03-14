@@ -583,10 +583,12 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         EnsureComp<NightDayMapLightComponent>(mapUid);
+        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
 
         Log.Info($"Created transit hub grid {ToPrettyString(uid)} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
         EnsureComp<ProtectedGridComponent>(uid.Value.Owner);
+        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
 
        // var template = _random.Pick(component.Biomes);
        // _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
