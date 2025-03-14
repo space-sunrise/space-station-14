@@ -1213,20 +1213,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.402691,3.359723
       parent: 1
-- proto: Telecrystal1
-  entities:
-  - uid: 128
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.2694192,3.021215
-      parent: 1
-  - uid: 129
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.0899558,-2.744422
-      parent: 1
 - proto: WallPlastitaniumIndestructible
   entities:
   - uid: 234
