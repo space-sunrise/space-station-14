@@ -25,7 +25,7 @@ public sealed partial class NPCSleepSystem : EntitySystem
 
     public bool DisableWithoutPlayers { get; set; } = true;
 
-    public float DisableDistance { get; set; } = 15f;
+    public float DisableDistance { get; set; } = 20f;
 
     public TimeSpan NextTick = TimeSpan.Zero;
     public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
