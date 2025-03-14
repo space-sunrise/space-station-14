@@ -24,6 +24,7 @@ public sealed partial class GhostThemeMenu : DefaultWindow
     private List<string> _availableGhostThemes = [];
     private string _currentSelectedTheme = string.Empty;
     private string _searchText = string.Empty;
+    private string _previewedTheme = string.Empty;
 
     public GhostThemeMenu()
     {
@@ -31,6 +32,7 @@ public sealed partial class GhostThemeMenu : DefaultWindow
         IoCManager.InjectDependencies(this);
         
         SearchBar.OnTextChanged += OnSearchTextChanged;
+        SelectButton.OnPressed += OnSelectButtonPressed;
     }
 
     private void OnSearchTextChanged(LineEdit.LineEditEventArgs args)
@@ -42,23 +44,35 @@ public sealed partial class GhostThemeMenu : DefaultWindow
     public void UpdateState(List<string> ghostThemes)
     {
         _availableGhostThemes = ghostThemes;
-        UpdateButtons();
         
-        var currentTheme = _cfg.GetCVar(SunriseCCVars.SponsorGhostTheme);
-        if (!string.IsNullOrEmpty(currentTheme) && _availableGhostThemes.Contains(currentTheme))
+        if (string.IsNullOrEmpty(_previewedTheme))
         {
-            _currentSelectedTheme = currentTheme;
-            UpdatePreview(_currentSelectedTheme);
+            var currentTheme = _cfg.GetCVar(SunriseCCVars.SponsorGhostTheme);
+            if (!string.IsNullOrEmpty(currentTheme) && _availableGhostThemes.Contains(currentTheme))
+            {
+                _currentSelectedTheme = currentTheme;
+                _previewedTheme = currentTheme;
+                UpdatePreview(_previewedTheme);
+            }
+            else if (_availableGhostThemes.Count > 0)
+            {
+                _currentSelectedTheme = _availableGhostThemes[0];
+                _previewedTheme = _availableGhostThemes[0];
+                UpdatePreview(_previewedTheme);
+            }
         }
-        else if (_availableGhostThemes.Count > 0)
+        else
         {
-            _currentSelectedTheme = _availableGhostThemes[0];
-            UpdatePreview(_currentSelectedTheme);
+            UpdateSelectButtonState();
         }
+        
+        UpdateButtons();
     }
 
     private void UpdateButtons()
     {
+        var currentlyPreviewedTheme = _previewedTheme;
+        
         ClearButtons();
 
         foreach (var ghostTheme in _availableGhostThemes)
@@ -77,7 +91,7 @@ public sealed partial class GhostThemeMenu : DefaultWindow
                 MinHeight = 50,
                 HorizontalExpand = true,
                 ToggleMode = true,
-                Pressed = ghostTheme == _currentSelectedTheme
+                Pressed = ghostTheme == currentlyPreviewedTheme
             };
             
             var panel = new PanelContainer
@@ -122,10 +136,7 @@ public sealed partial class GhostThemeMenu : DefaultWindow
                 }
                 
                 button.Pressed = true;
-                _currentSelectedTheme = ghostTheme;
-                OnIdSelected?.Invoke(ghostTheme);
-                _cfg.SetCVar(SunriseCCVars.SponsorGhostTheme, ghostTheme);
-                _cfg.SaveToFile();
+                _previewedTheme = ghostTheme;
                 
                 UpdatePreview(ghostTheme);
             };
@@ -144,10 +155,32 @@ public sealed partial class GhostThemeMenu : DefaultWindow
         PreviewName.Text = Loc.GetString(ghostThemePrototype.Name);
         
         PreviewDescription.Text = Loc.GetString("ghost-theme-preview-description");
+        
+        UpdateSelectButtonState();
+    }
+    
+    private void UpdateSelectButtonState()
+    {
+        SelectButton.Disabled = _previewedTheme == _currentSelectedTheme;
     }
 
     private void ClearButtons()
     {
         ButtonContainer.RemoveAllChildren();
+    }
+
+    private void OnSelectButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        if (!string.IsNullOrEmpty(_previewedTheme))
+        {
+            _currentSelectedTheme = _previewedTheme;
+            OnIdSelected?.Invoke(_currentSelectedTheme);
+            _cfg.SetCVar(SunriseCCVars.SponsorGhostTheme, _currentSelectedTheme);
+            _cfg.SaveToFile();
+            
+            UpdateButtons();
+            
+            Close();
+        }
     }
 }
