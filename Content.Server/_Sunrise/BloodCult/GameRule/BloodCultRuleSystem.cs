@@ -6,6 +6,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clumsy;
 using Content.Shared.GameTicking.Components;
@@ -234,6 +235,14 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void OnCultistComponentRemoved(EntityUid uid, BloodCultistComponent component, ComponentRemove args)
     {
+        if (TryComp<CollectiveMindComponent>(uid, out var collectiveMind))
+        {
+            collectiveMind.Minds.Remove("BloodCult");
+            
+            if (collectiveMind.Minds.Count == 0)
+                RemComp<CollectiveMindComponent>(uid);
+        }
+
         var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
 
         while (query.MoveNext(out var ruleEnt, out var cultRuleComponent, out _))
@@ -328,6 +337,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             RemComp<ClumsyComponent>(cultist);
 
         EnsureComp<CultMemberComponent>(cultist);
+        
+        var collectiveMind = EnsureComp<CollectiveMindComponent>(cultist);
+        collectiveMind.Minds.Add("BloodCult");
 
         _tagSystem.AddTag(cultist, "Cultist");
 
