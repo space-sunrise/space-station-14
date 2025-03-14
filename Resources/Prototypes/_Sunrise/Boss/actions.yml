@@ -1,6 +1,7 @@
 ﻿- type: entity
   id: ActionHellSpawnRush
   name: RUSH
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityWorldTargetAction
     icon:
@@ -15,10 +16,9 @@
 - type: entity
   id: ActionHellSpawnInvincibility
   name: Invincibility
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
-    checkCanInteract: false
-    checkConsciousness: true
     priority: -1
     useDelay: 30
     icon: _Sunrise/Interface/Actions/inferno_shield.png
@@ -27,41 +27,38 @@
 - type: entity
   id: ActionHellSpawnTentacleRight
   name: Tentacle
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityWorldTargetAction
     icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
     itemIconStyle: NoItem
     priority: -1
     range: 5
-    useDelay: 3
-    checkCanInteract: false
-    checkCanAccess: false
+    useDelay: 8
     event: !type:HellSpawnTentacleActionEvent
       left: false
 
 - type: entity
   id: ActionHellSpawnTentacleLeft
   name: Tentacle
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityWorldTargetAction
     icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
     itemIconStyle: NoItem
     priority: -1
     range: 7
-    useDelay: 6
-    checkCanInteract: false
-    checkCanAccess: false
+    useDelay: 10
     event: !type:HellSpawnTentacleActionEvent
       left: true
 
 - type: entity
   id: ActionHellSpawnSpiral
+  categories: [ HideSpawnMenu ]
   name: Spiral
   components:
   - type: InstantAction
-    checkCanInteract: false
-    checkConsciousness: true
     priority: -1
-    useDelay: 30
+    useDelay: 15
     icon: _Sunrise/Interface/Actions/inferno_shield.png
     event: !type:HellSpawnSpiralActionEvent

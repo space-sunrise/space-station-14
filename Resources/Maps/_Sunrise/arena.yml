@@ -45,6 +45,8 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+    - type: ProtectedGrid
+    - type: UnbuildableGrid
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier

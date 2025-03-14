@@ -63,6 +63,7 @@
   - type: HellSpawnInvincibility
   - type: HellSpawn
   - type: HellSpawnTentacle
+  - type: HellSpawnSpiral
   - type: MeleeWeapon
     attackRate: 0.6
     hidden: true
@@ -75,24 +76,24 @@
   # Abilities end
   - type: Butcherable
     spawned:
-      - id: ClothingUniformJumpsuitGalaxyBlue
-        prob: 0.5
-      - id: ClothingUniformJumpsuitGalaxyRed
-        prob: 0.5
-      - id: ResearchDiskDebug
-        prob: 0.3
-      - id: ClothingNeckGoldmedal
-        prob: 0.5
-      - id: PowerCellAntiqueProto
-        prob: 0.5
-      - id: ClothingOuterHardsuitMaxim
-        prob: 0.5
-      - id: HyperEutacticBlade
-        prob: 0.3
-      - id: WeaponMeleeMoltenCollider
-        prob: 0.3
-      - id: WeaponMeleeMoltenAmputator
-        prob: 0.2
+    - id: ClothingUniformJumpsuitGalaxyBlue
+      prob: 0.5
+    - id: ClothingUniformJumpsuitGalaxyRed
+      prob: 0.5
+    - id: ResearchDiskDebug
+      prob: 0.05
+    - id: ClothingNeckGoldmedal
+      prob: 0.5
+    - id: PowerCellAntiqueProto
+      prob: 0.2
+    - id: ClothingOuterHardsuitMaxim
+      prob: 0.2
+    - id: HyperEutacticBlade
+      prob: 0.05
+    - id: WeaponMeleeMoltenCollider
+      prob: 0.3
+    - id: WeaponMeleeMoltenAmputator
+      prob: 0.2
   - type: Destructible
     thresholds:
     - trigger:
@@ -137,6 +138,7 @@
     key: enum.HellSpawnArenaUiKey.Key
   - type: HellSpawnConsole
   - type: Godmode
+  - type: BlockedTool
 
 - type: entity
   id: HellSpawnCultist
