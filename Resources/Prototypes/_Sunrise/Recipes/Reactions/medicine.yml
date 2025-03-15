@@ -52,11 +52,25 @@
     Dylomet: 1
 
 - type: reaction
+  id: StableMutagen
+  reactants:
+    Phalanximine:
+      amount: 1
+    Doxarubixadone:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+  products:
+    StableMutagen: 3
+
+- type: reaction
   id: Darvinium
   reactants:
     Blood:
       amount: 1
     UnstableMutagen:
       amount: 1
+    StableMutagen:
+      amount: 3
   products:
-    Darvinium: 2
+    Darvinium: 3
