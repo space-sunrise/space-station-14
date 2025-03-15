@@ -20,3 +20,5 @@ ent-ActionVampireMouseform = Mouse Form
     .desc = Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds
 ent-ActionVampireCloakOfDarkness = Cloak of Darkness
     .desc = Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds
+ent-ActionVampireThermalVision = Thermal Vision
+    .desc = Toggle thermal vision, allowing you to see living beings through walls.
