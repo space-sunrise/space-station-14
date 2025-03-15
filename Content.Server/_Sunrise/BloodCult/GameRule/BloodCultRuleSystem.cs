@@ -18,6 +18,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
+using Content.Shared.StatusIcon.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -203,6 +204,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
             while (cultisQuery.MoveNext(out var cultistUid, out _))
             {
+                if (!HasComp<HumanoidAppearanceComponent>(cultistUid))
+                    continue;
+                
                 if (!TryComp<MobStateComponent>(cultistUid, out var mobState))
                     continue;
 
@@ -274,7 +278,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
         while (cultisQuery.MoveNext(out var cultistUid, out _))
         {
-            cultists.Add(cultistUid);
+            if (HasComp<HumanoidAppearanceComponent>(cultistUid))
+                cultists.Add(cultistUid);
         }
 
         var constructs = new List<EntityUid>();
@@ -331,7 +336,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         if (!_mindSystem.TryGetMind(cultist, out var mindId, out var mind))
             return false;
 
-        EnsureComp<BloodCultistComponent>(cultist);
+        var isHumanoid = HasComp<HumanoidAppearanceComponent>(cultist);
+
+        var cultistComponent = EnsureComp<BloodCultistComponent>(cultist);
 
         if (HasComp<ClumsyComponent>(cultist))
             RemComp<ClumsyComponent>(cultist);
@@ -346,27 +353,34 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         _factionSystem.RemoveFaction(cultist, "NanoTrasen", false);
         _factionSystem.AddFaction(cultist, "BloodCult");
 
-        if (_inventorySystem.TryGetSlotEntity(cultist, "back", out var backPack))
-        {
-            foreach (var itemPrototype in rule.StartingItems)
-            {
-                var itemEntity = Spawn(itemPrototype, Transform(cultist).Coordinates);
+        // Для животных нужно добавить компонент StatusIcon, чтобы показывать иконку культиста
+        if (!isHumanoid && !HasComp<StatusIconComponent>(cultist))
+            EnsureComp<StatusIconComponent>(cultist);
 
-                if (backPack != null)
+        if (isHumanoid && mind.Session != null)
+        {
+            if (_inventorySystem.TryGetSlotEntity(cultist, "back", out var backPack))
+            {
+                foreach (var itemPrototype in rule.StartingItems)
                 {
-                    _storageSystem.Insert(backPack.Value, itemEntity, out _);
+                    var itemEntity = Spawn(itemPrototype, Transform(cultist).Coordinates);
+
+                    if (backPack != null)
+                    {
+                        _storageSystem.Insert(backPack.Value, itemEntity, out _);
+                    }
                 }
             }
+            
+            _audioSystem.PlayGlobal(rule.GreatingsSound,
+                Filter.Empty().AddPlayer(mind.Session),
+                false,
+                AudioParams.Default);
+
+            _chatManager.DispatchServerMessage(mind.Session, Loc.GetString("cult-role-greeting"));
+
+            _mindSystem.TryAddObjective(mindId, mind, "CultistKillObjective");
         }
-
-        _audioSystem.PlayGlobal(rule.GreatingsSound,
-            Filter.Empty().AddPlayer(mind.Session!),
-            false,
-            AudioParams.Default);
-
-        _chatManager.DispatchServerMessage(mind.Session!, Loc.GetString("cult-role-greeting"));
-
-        _mindSystem.TryAddObjective(mindId, mind, "CultistKillObjective");
 
         return true;
     }

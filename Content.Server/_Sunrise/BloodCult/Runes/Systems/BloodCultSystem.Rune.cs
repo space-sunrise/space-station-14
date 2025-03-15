@@ -361,8 +361,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var targets =
                 _lookup.GetEntitiesInRange(uid, component.RangeTarget, LookupFlags.Dynamic | LookupFlags.Sundries);
 
-            targets.RemoveWhere(x =>
-                !_entityManager.HasComponent<HumanoidAppearanceComponent>(x) || HasComp<BloodCultistComponent>(x));
+            targets.RemoveWhere(x => HasComp<BloodCultistComponent>(x));
 
             if (targets.Count == 0)
                 return;
@@ -383,8 +382,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (state.CurrentState != MobState.Dead)
             {
-                var nigga = _mindSystem.TryGetMind(victim.Value, out var mindId, out var mind);
-
+                var hasMind = _mindSystem.TryGetMind(victim.Value, out var mindId, out var mind);
+                
                 var isTarget = false;
                 if (mind != null)
                 {
@@ -396,9 +395,15 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
                 var jobAllowConvert = !HasComp<MindShieldComponent>(victim.Value);
 
-                // Выполнение действия в зависимости от условий
-                if (nigga && jobAllowConvert && !isTarget)
+                if (hasMind && jobAllowConvert && !isTarget)
                 {
+                    if (args.Cultists.Count < component.ConvertMinCount)
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("cult-convert-not-enough-cultists"), args.User, args.User);
+                        args.Result = false;
+                        return;
+                    }
+                    
                     result = Convert(uid, victim.Value, args.User, args.Cultists);
                 }
                 else
