@@ -31,3 +31,20 @@
   - 0.01     # bz
   effects:
   - !type:HealiumProductionReaction {}
+
+- type: gasReaction
+  id: NitriumSynthesis
+  priority: 2
+  minimumRequirements:
+  - 0     # oxygen
+  - 2     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 2     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0.01  # bz
+  effects:
+  - !type:NitriumSynthesisReaction {}

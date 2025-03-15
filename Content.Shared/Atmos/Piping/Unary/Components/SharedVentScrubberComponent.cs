@@ -25,6 +25,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Frezon,
             Gas.BZ, // Sunrise-Edit
             Gas.Healium, // Sunrise-Edit
+            Gas.Nitrium, //SunRise edit
         };
 
         // Presets for 'dumb' air alarm modes

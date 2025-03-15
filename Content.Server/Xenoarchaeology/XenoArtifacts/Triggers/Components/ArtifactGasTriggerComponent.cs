@@ -22,6 +22,7 @@ public sealed partial class ArtifactGasTriggerComponent : Component
         Gas.NitrousOxide,
         Gas.BZ, //SunRise edit
         Gas.Healium, //SunRise edit
+        Gas.Nitrium, //SunRise edit
     };
 
     /// <summary>
