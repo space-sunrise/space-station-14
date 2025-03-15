@@ -69,6 +69,17 @@
   materials:
     Steel: 200
 
+- type: latheRecipe
+  id: HyposprayMedical
+  result: HyposprayMedical
+  category: Tools
+  completetime: 3
+  materials:
+    Plastic: 100
+    Steel: 300
+    Plasma: 100
+    Glass: 100
+
 #SyringeGuns
 - type: latheRecipe
   id: LauncherSyringeMed
