@@ -48,10 +48,10 @@
   category: Weapons
   completetime: 5
   materials:
-    Steel: 5000
+    Steel: 1500
     Glass: 1000
     Plastic: 1000
-    Silver: 2500
+    Silver: 250
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
