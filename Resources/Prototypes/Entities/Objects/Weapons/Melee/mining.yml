@@ -139,6 +139,12 @@
         Slash: 10 #sunrise-end
     soundHit:
       collection: MetalThud
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher.rsi # Sunrise-start
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage  # Sunrise-crusher, Sunrise-end
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -197,6 +203,12 @@
     leech:
       groups:
         Brute: -21
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher_glaive.rsi # Sunrise-start
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage  # Sunrise-glaive-crusher, Sunrise-end
   - type: MeleeWeapon
     damage: #sunrise-start
       types:
