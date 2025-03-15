@@ -317,3 +317,16 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: NtrLeader
+
+- type: entity
+  parent: IDCardStandard
+  id: MailCarrierIDCard
+  name: mail carrier ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmail
+  - type: PresetIdCard
+    job: MailCarrier
