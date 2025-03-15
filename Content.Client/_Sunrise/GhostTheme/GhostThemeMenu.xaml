@@ -1,11 +1,79 @@
 <DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                Title="{Loc 'ghost-theme-menu-title'}"
-               MinSize="612 612"
+               MinSize="800 612"
                Resizable="False">
-    <BoxContainer Orientation="Vertical">
-        <ScrollContainer VerticalExpand="True">
-            <GridContainer Name="Grid" Columns="4" Margin="0 5" >
-            </GridContainer>
-        </ScrollContainer>
-    </BoxContainer>
+    <PanelContainer>
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat 
+                BackgroundColor="#1b1a1f"
+                ContentMarginLeftOverride="10"
+                ContentMarginRightOverride="10"
+                ContentMarginTopOverride="10"
+                ContentMarginBottomOverride="10"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="0 0 10 0">
+                <Label Text="{Loc 'ghost-theme-menu-available-themes'}" 
+                       StyleClasses="LabelHeadingBigger"
+                       HorizontalAlignment="Center"
+                       FontColorOverride="#ffffff"
+                       Margin="0 0 0 10"/>
+                <LineEdit Name="SearchBar" 
+                         PlaceHolder="{Loc 'ghost-theme-menu-search-placeholder'}"
+                         HorizontalExpand="True"
+                         Margin="0 0 0 5"/>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="ButtonContainer" Orientation="Vertical" Margin="0 5">
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+            
+            <PanelContainer MinWidth="1" VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#2a292f"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+            
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="10 0 0 0">
+                <Label Text="{Loc 'ghost-theme-menu-preview'}" 
+                       StyleClasses="LabelHeadingBigger"
+                       HorizontalAlignment="Center"
+                       FontColorOverride="#ffffff"
+                       Margin="0 0 0 10"/>
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat 
+                            BackgroundColor="#232228"
+                            BorderColor="#2a292f"
+                            BorderThickness="1"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                        <Control HorizontalExpand="True" VerticalExpand="True" MinSize="300 300">
+                            <TextureRect Name="PreviewTexture" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"
+                                      Stretch="KeepAspectCentered"
+                                      SetSize="200 200"/>
+                        </Control>
+                        <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10 0 10">
+                            <Label Name="PreviewName" 
+                                   StyleClasses="LabelHeading" 
+                                   HorizontalAlignment="Center"
+                                   FontColorOverride="#ffffff"/>
+                            <Label Name="PreviewDescription" 
+                                   StyleClasses="LabelSubText" 
+                                   HorizontalAlignment="Center"
+                                   FontColorOverride="#aaaaaa"/>
+                            <Button Name="SelectButton"
+                                    Text="{Loc 'ghost-theme-menu-select-button'}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 10 0 0"
+                                    MinWidth="120"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
 </DefaultWindow>
