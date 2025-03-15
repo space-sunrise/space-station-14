@@ -157,7 +157,7 @@
   sponsorOnly: true
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/purple_ghost_human.rsi
-    state: icon
+    state: animated
 
 - type: ghostTheme
   id: Red
@@ -166,7 +166,7 @@
   sponsorOnly: true
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/red_ghost_human.rsi
-    state: icon
+    state: animated
 
 - type: ghostTheme
   id: BlueArchiveHibiki
