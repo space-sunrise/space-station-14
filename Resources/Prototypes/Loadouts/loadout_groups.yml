@@ -1237,6 +1237,8 @@
 # Sunrise-start
   - BeretSeniorPhysician
   - MedicalBeret
+  - ChemistBeret #Sunrise-edit
+  - PatologonatBeret #Sunrise-edit
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap

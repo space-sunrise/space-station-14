@@ -273,6 +273,8 @@
   - BeretSeniorPhysician
   - MedicalBeret
   - ParamedicBeret
+  - ChemistBeret
+  - PatologonatBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -389,6 +391,7 @@
   maxLimit: 1
   loadouts:
   - MedicalBeret
+  - ChemistBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -577,6 +580,7 @@
   maxLimit: 1
   loadouts:
   - MedicalBeret
+  - PatologonatBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap

@@ -29,3 +29,35 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChemistry
+  name: chemist's beret
+  description: A beret, for chemist.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPatologoanatom
+  name: pathologist's beret
+  description: A beret, for patologoanatom.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_pathologist.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_pathologist.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon

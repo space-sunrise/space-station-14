@@ -43,3 +43,13 @@
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretParamedic
   result: ClothingHeadHatBeretParamedic
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretChemistry
+  result: ClothingHeadHatBeretChemistry
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPatologoanatom
+  result: ClothingHeadHatBeretPatologoanatom
