@@ -4,6 +4,7 @@
     Traitor: 0.30
     Extra: 0.20
     Survival: 0.20
+    BloodCult: 0.15
     Revolutionary: 0.10
     Zombie: 0.10
     Nukeops: 0.10
@@ -13,6 +14,7 @@
   chances:
     Extra: 0.40
     Greenshift: 0.25
+    BloodCult: 0.10
     Traitor: 0.15
     Survival: 0.10
     Nukeops: 0.10
