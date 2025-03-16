@@ -45,3 +45,9 @@
   name: collective-mind-changeling
   keycode: 'г'
   color: "#ff75a8"
+
+- type: collectiveMind
+  id: BloodCult
+  name: collective-mind-blood-cult
+  keycode: 'н'
+  color: "#8b0000"

@@ -1,0 +1,9 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc runes-window-title}"
+               MinWidth="350"
+               MinHeight="400">
+    <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+        <GridContainer Name="ItemsGrid" Columns="3" Margin="0 0"></GridContainer>
+    </ScrollContainer>
+</DefaultWindow>
