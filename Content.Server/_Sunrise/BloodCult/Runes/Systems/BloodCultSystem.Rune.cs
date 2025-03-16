@@ -822,6 +822,20 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return false;
             }
 
+            if (CultRuneReviveComponent.RevivesPerCultist.TryGetValue(target, out var reviveCount))
+            {
+                if (reviveCount >= CultRuneReviveComponent.MaxRevivesPerCultist)
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("cult-revive-rune-cultist-limit-reached"), user, user);
+                    return false;
+                }
+                CultRuneReviveComponent.RevivesPerCultist[target] = reviveCount + 1;
+            }
+            else
+            {
+                CultRuneReviveComponent.RevivesPerCultist[target] = 1;
+            }
+
             CultRuneReviveComponent.ChargesLeft--;
 
             _entityManager.EventBus.RaiseLocalEvent(target, new RejuvenateEvent());
