@@ -887,7 +887,7 @@
     delay: 5
 
 - type: entity
-  id: PlushieMiraKovalskaya
+  id: PlushieMiraKovalskaya # Really Mira
   parent: BasePlushie
   name: Mira Kovalskaya
   description: She's like to say "Meow" and "mrrr"?..
