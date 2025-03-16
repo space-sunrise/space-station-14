@@ -1547,6 +1547,17 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieMolnia
+  productEntity: PlushieMolnia
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieExperiencedSalvageSpecialist
   productEntity: PlushieExperiencedSalvageSpecialist
   cost:

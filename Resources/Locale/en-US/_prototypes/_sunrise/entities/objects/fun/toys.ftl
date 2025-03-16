@@ -158,3 +158,5 @@ ent-PlushieAlisaKrokozyabka = Plushie Alice Krokozyabka
     .desc = The only Head of Personnel who won't go to lunch. Uga Booga!
 ent-PlushieJamalDotsenko = Plushie Jamal Dotsenko
     .desc = Master of the Brig. Knows the history of the Vulpakins better than the Working Procedures.
+ent-PlushieMolnia = Plushie Lightning Star Trek
+    .desc = The toy is made of pure cotton, don't eat it, think about it! XD
