@@ -9,7 +9,7 @@
       - id: ClothingHeadsetAltCommand
       - id: CigarGoldCase
         prob: 0.25
-      - id: ClothingMaskGasSecurity
+      - id: ClothingMaskGasBlueShield
       - id: TrackingImplanter
         amount: 8
 
@@ -24,7 +24,7 @@
       - id: ClothingHeadsetAltCommand
       - id: CigarGoldCase
         prob: 0.25
-      - id: ClothingMaskGasSecurity
+      - id: ClothingMaskGasBlueShield
       - id: TrackingImplanter
         amount: 8
 
@@ -40,7 +40,7 @@
       - id: CigarGoldCase
         prob: 0.25
       - id: WeaponEnergyGunMultiphase
-      - id: ClothingMaskGasSecurity
+      - id: ClothingMaskGasBlueShield
       - id: TrackingImplanter
         amount: 8
 
@@ -55,7 +55,7 @@
     - id: ClothingHeadsetAltCommand
     - id: CigarGoldCase
       prob: 0.25
-    - id: ClothingMaskGasSecurity
+    - id: ClothingMaskGasBlueShield
     - id: TrackingImplanter
       amount: 8
     - id: ClothingOuterHardsuitBlueshield
