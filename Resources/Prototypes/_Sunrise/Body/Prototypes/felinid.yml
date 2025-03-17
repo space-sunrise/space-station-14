@@ -18,7 +18,7 @@
       - left leg
       - right leg
       organs:
-        heart: OrganAnimalHeart
+        heart: OrganFelinidHeart
         lungs: OrganHumanLungs
         stomach: OrganReptilianStomach
         liver:  OrganAnimalLiver

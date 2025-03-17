@@ -622,3 +622,28 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: Dota2Antimage
+  name: tts-voice-name-dota2-antimage
+  sex: Male
+  speaker: dota2_antimage
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HeartstoneHamulRunicalTotem
+  name: tts-voice-name-heartstone-hamul-runical-totem
+  sex: Male
+  speaker: hearthstone_hamul_runical_totem
+  provider: sunrise
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HeartstoneDjaina
+  name: tts-voice-name-heartstone-djaina
+  sex: Female
+  speaker: hearthstone_djaina
+  provider: sunrise
+  sponsorOnly: false

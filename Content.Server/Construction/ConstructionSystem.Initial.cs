@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Construction.Components;
+using Content.Shared._Sunrise.UnbuildableGrid;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
@@ -461,6 +462,14 @@ namespace Content.Server.Construction
             }
 
             var location = GetCoordinates(ev.Location);
+
+            // Sunrise-start
+            if (HasComp<UnbuildableGridComponent>(location.EntityId))
+            {
+                Cleanup();
+                return;
+            }
+            // Sunrise-end
 
             foreach (var condition in constructionPrototype.Conditions)
             {

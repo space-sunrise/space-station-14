@@ -1,7 +1,3 @@
-ent-MagazinePistolRubber = пистолетный магазин (.35 авто резиновые)
-    .desc = { ent-BaseMagazinePistol.desc }
-ent-MagazinePistolSubMachineGunRubber = магазин ПП (.35 авто резиновые)
-    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
 ent-MagazineP90 = магазин ПП P-90
     .desc = Использует патроны калибра .35 авто.
 ent-MagazineMP7 = магазин ПП MP7
@@ -18,3 +14,5 @@ ent-MagazineMP7Extended = расширенный магазин MP7
     .desc = { ent-MagazineMP7.desc }
 ent-MagazineP90Extended = расширенный магазин P90
     .desc = { ent-MagazineP90.desc }
+ent-MagazineGlock22 = Glock22 magazine
+    .desc = { ent-BaseItem.desc }

@@ -146,7 +146,7 @@
                 </BoxContainer>
             </BoxContainer>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Right">
-                <PanelContainer Name="RightPanel" MinWidth="500" StyleClasses="AngleRect" VerticalExpand="True"
+                <PanelContainer Name="RightPanel" Access="Public" MinWidth="500" StyleClasses="AngleRect" VerticalExpand="True"
                                 VerticalAlignment="Stretch" HorizontalExpand="True">
                     <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"
                                   VerticalAlignment="Stretch" SeparationOverride="4">

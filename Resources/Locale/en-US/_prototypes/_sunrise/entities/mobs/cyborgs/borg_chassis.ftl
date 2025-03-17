@@ -1,11 +1,9 @@
 ent-BorgChassisSecurity = security cyborg
-    .desc = { ent-BaseBorgChassisNT.desc }
-ent-BorgChassisSecurityCombat = security combat cyborg
-    .desc = { ent-BaseBorgChassisNT.desc }
+    .desc = { ent-BorgChassisSelectable.desc }
 ent-BorgChassisPeace = peace cyborg
-    .desc = { ent-BaseBorgChassisNT.desc }
+    .desc = { ent-BorgChassisSelectable.desc }
 ent-BorgChassisClown = clown cyborg
-    .desc = { ent-BaseBorgChassisNT.desc }
+    .desc = { ent-BorgChassisSelectable.desc }
 ent-BorgChassisSyndicateReaper = syndicate reaper cyborg
     .desc = { ent-BaseBorgChassisSyndicate.desc }
 ent-BorgChassisERT = ERT combat cyborg

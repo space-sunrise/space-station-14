@@ -13,6 +13,3 @@ ent-MagazineSRifleHV = magazine (.20 rifle high-velocity)
 ent-MagazineSRiflePractice = magazine (.20 rifle practice)
     .desc = { ent-MagazineSRifleBase.desc }
     .suffix = { "" }
-ent-MagazineSRifleRubber = magazine (.20 rifle rubber)
-    .desc = { ent-MagazineSRifleBase.desc }
-    .suffix = { "" }

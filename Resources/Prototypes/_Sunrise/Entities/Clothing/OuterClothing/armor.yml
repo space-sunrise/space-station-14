@@ -34,14 +34,15 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.6
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.65
+        Caustic: 0.75
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.9
   - type: Item
-    size: Normal
+    size: Huge
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -50,29 +51,29 @@
   description: NT's unsuccessful attempt to create universal and inexpensive protection. It provides excellent protection against many types of damage, but it also slows down extremely much.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.45
-        Slash: 0.45
-        Piercing: 0.5
-        Heat: 0.60
-        Radiation: 0.75
-        Caustic: 0.75
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.80
+    damageCoefficient: 0.65
   - type: PressureProtection
-    highPressureMultiplier: 0.6
-    lowPressureMultiplier: 1000
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 0.25
   - type: TemperatureProtection
-    heatingCoefficient: 0.02
+    heatingCoefficient: 0.5
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET

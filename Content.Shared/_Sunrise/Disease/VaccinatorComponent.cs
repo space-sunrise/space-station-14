@@ -35,7 +35,7 @@ public sealed partial class VaccinatorComponent : Component
     [DataField, AutoNetworkedField]
     public SoundSpecifier? MixingSound;
 
-    [DataField]
+    [ViewVariables]
     public Entity<AudioComponent>? MixingSoundEntity;
 
     /// <summary>

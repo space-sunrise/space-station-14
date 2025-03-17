@@ -218,7 +218,7 @@ public sealed partial class ContentAudioSystem
             return;
 
         var file = _gameTicker.RestartSound;
-        if (string.IsNullOrEmpty(file))
+        if (ResolvedSoundSpecifier.IsNullOrEmpty(file))
         {
             return;
         }
@@ -227,7 +227,7 @@ public sealed partial class ContentAudioSystem
             file,
             Filter.Local(),
             false,
-            _roundEndSoundEffectParams.WithVolume(10f) // Sunrise-Edit
+            _roundEndSoundEffectParams.WithVolume(-3f) // Sunrise-Edit
         )?.Entity;
     }
 

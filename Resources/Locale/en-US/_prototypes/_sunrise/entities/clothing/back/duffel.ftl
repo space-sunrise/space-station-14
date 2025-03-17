@@ -8,5 +8,5 @@ ent-ClothingBackpackDuffelPrisonGuard = prison guard's duffel bag
     .desc = On style.
 ent-ClothingBackpackDuffelAdjutant = adjutant duffel
     .desc = It looks redundantly empty, with only a crumpled piece of paper lying lonely at the bottom.
-ent-ClothingBackpackDuffelNanotrasenMedical = nanotrasen duffel
-    .desc = A large duffel bag for holding any medical army goods.
+ent-ClothingBackpackDuffelNanotrasenMedical = nanotrasen duffel bag
+    .desc = A duffel bag containing a variety of biological containment equipment.

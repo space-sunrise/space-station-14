@@ -11,6 +11,8 @@ public sealed partial class PlayerTabEntry : PanelContainer
 {
     public NetEntity? PlayerEntity;
 
+    public Action<NetEntity?>? OnObjectives; // Sunrise-Edit
+
     public PlayerTabEntry(PlayerInfo player, StyleBoxFlat styleBoxFlat)
     {
         RobustXamlLoader.Load(this);
@@ -24,8 +26,12 @@ public sealed partial class PlayerTabEntry : PanelContainer
             CharacterLabel.Text += $" [{player.IdentityName}]";
         SponsorLabel.Text = player.IsSponsor ? player.SponsorTitle : ""; // Sunrise-Sponsors
         AntagonistLabel.Text = Loc.GetString(player.Antag ? "player-tab-is-antag-yes" : "player-tab-is-antag-no");
+        RoleTypeLabel.Text = Loc.GetString(player.RoleProto.Name);
+        RoleTypeLabel.FontColorOverride = player.RoleProto.Color;
         BackgroundColorPanel.PanelOverride = styleBoxFlat;
         OverallPlaytimeLabel.Text = player.PlaytimeString;
         PlayerEntity = player.NetEntity;
+
+        ObjectivesButton.OnPressed += _ => OnObjectives?.Invoke(player.NetEntity); // Sunrise-Edit
     }
 }

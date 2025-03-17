@@ -13,6 +13,8 @@
     rules: ghost-role-information-foliant-rules
     raffle:
       settings: short
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
   - type: GhostRoleMobSpawner
     prototype: MobBook
   - type: Sprite
@@ -34,6 +36,8 @@
     rules: ghost-role-information-exterminator-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
   - type: GhostRoleMobSpawner
     prototype: MobHumanTerminator
   - type: Sprite

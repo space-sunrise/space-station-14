@@ -34,7 +34,6 @@ public sealed class VigersRaySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
     [Dependency] private readonly ParacusiaSystem _paracusiaSystem = default!;
     [Dependency] private readonly NarcolepsySystem _narcolepsySystem = default!;
@@ -51,6 +50,9 @@ public sealed class VigersRaySystem : EntitySystem
     private static bool _notifyEveryone;
     private string[] _victims = [];
     private static bool _disableGameRules;
+
+    private const float CheckDelay = 10;
+    private TimeSpan _checkTime;
 
     public override void Initialize()
     {
@@ -136,14 +138,11 @@ public sealed class VigersRaySystem : EntitySystem
         }
     }
 
-    private const float CheckDelay = 10;
-    private TimeSpan _checkTime;
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        if (_ticker.RunLevel != GameRunLevel.InRound)
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
         {
             return;
         }

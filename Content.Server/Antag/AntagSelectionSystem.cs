@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -52,6 +53,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     // arbitrary random number to give late joining some mild interest.
@@ -158,7 +160,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             DebugTools.AssertEqual(antag.SelectionTime, AntagSelectionTime.PostPlayerSpawn);
 
-            if (!TryGetNextAvailableDefinition((uid, antag), out var def))
+            // do not count players in the lobby for the antag ratio
+            var players = _playerManager.NetworkedSessions.Count(x => x.AttachedEntity != null);
+
+            if (!TryGetNextAvailableDefinition((uid, antag), out var def, players))
                 continue;
 
             // Sunrise-Start
@@ -509,6 +514,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return false;
 
         if (ent.Comp.SelectedSessions.Contains(session))
+            return false;
+
+        // Check if any of the antagonist bans match the preferred roles in the AntagSelectionDefinition
+        if (_banManager.IsAntagBanned(session.UserId, def.PrefRoles))
             return false;
 
         mind ??= session.GetMind();

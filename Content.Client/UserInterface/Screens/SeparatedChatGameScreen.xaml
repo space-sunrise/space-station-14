@@ -16,7 +16,7 @@
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
     <SplitContainer Name="ScreenContainer" HorizontalExpand="True" VerticalExpand="True" SplitWidth="0" StretchDirection="TopLeft">
-        <LayoutContainer Name="ViewportContainer" HorizontalExpand="True" VerticalExpand="True">
+        <LayoutContainer Name="ViewportContainer" SizeFlagsStretchRatio="6" HorizontalExpand="True" VerticalExpand="True">
             <controls:MainViewport Name="MainViewport"/>
             <widgets:GhostGui Name="Ghost" Access="Protected" />
             <inventory:InventoryGui Name="Inventory" Access="Protected"/>
@@ -27,7 +27,7 @@
             </BoxContainer>
             <alerts:AlertsUI Name="Alerts" Access="Protected" />
         </LayoutContainer>
-        <PanelContainer Name="SeparatedChatPanel" MinWidth="500"> <!-- Sunrise-Edit -->
+        <PanelContainer Name="SeparatedChatPanel" SizeFlagsStretchRatio="4" MinWidth="300"> <!-- Sunrise-Edit -->
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
             </PanelContainer.PanelOverride>

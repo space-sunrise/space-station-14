@@ -54,7 +54,11 @@ public sealed partial class EntityWhitelist
     [DataField]
     public List<ProtoId<TagPrototype>>? Tags;
 
+    [DataField]
+    public bool RequireAllTags;
+
     // Sunrise-Start
+    [DataField]
     public List<ProtoId<SpeciesPrototype>>? Species;
     // Sunrise-End
 

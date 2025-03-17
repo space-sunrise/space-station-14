@@ -1,4 +1,4 @@
-# Security 
+# Security
 - type: entity
   name: security loot spawner
   suffix: Gear, Simple
@@ -52,7 +52,7 @@
         - SecurityWhistle
         - Tourniquet
       chance: 0.85
- 
+
 # Armory loot spawner
 # Automatics are a complete mess right now, so the AK-MS And WT-550 have been commented out for consistency's sake. I have no idea what role these guns are supposed to fufill.
 - type: entity
@@ -83,13 +83,13 @@
         - ClothingOuterArmorBasic
         - ClothingOuterArmorRiot
         - ClothingOuterArmorBulletproof
-#        - WeaponSubMachineGunWt550
+        - WeaponRifleM16A4 # Sunrise-Edit
         - WeaponDisabler
-        - WeaponPistolMk58
-        - WeaponRifleLecter
-        - WeaponSubMachineGunDrozd
-        - WeaponLaserCarbine
-        - WeaponShotgunKammerer
+#        - WeaponPistolMk58
+#        - WeaponRifleLecter
+#        - WeaponSubMachineGunDrozd
+#        - WeaponLaserCarbine
+        - WeaponShotgunTrenchgun4034 # Sunrise-Edit
       chance: 0.95
       offset: 0.0
 
@@ -110,13 +110,13 @@
 #        - WeaponRifleAk
       rareChance: 0.05
       prototypes:
-#        - WeaponSubMachineGunWt550
+        - WeaponRifleM16A4 # Sunrise-Edit
         - WeaponDisabler
-        - WeaponPistolMk58
-        - WeaponRifleLecter
-        - WeaponSubMachineGunDrozd
-        - WeaponLaserCarbine
-        - WeaponShotgunKammerer
+#        - WeaponPistolMk58
+#        - WeaponRifleLecter
+#        - WeaponSubMachineGunDrozd
+#        - WeaponLaserCarbine
+        - WeaponShotgunTrenchgun4034 # Sunrise-Edit
       chance: 0.95
       offset: 0.0
 

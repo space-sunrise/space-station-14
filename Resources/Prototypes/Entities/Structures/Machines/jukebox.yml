@@ -15,8 +15,7 @@
   # Sunrise-Start
   - type: TapePlayer
     rolloffFactor: 1
-    maxDistance: 20
-    decreaseVolume: 0
+    maxDistance: 30
     tapeSlot:
       insertSound: /Audio/_Sunrise/TapePlayer/insert_tape.ogg
       ejectSound: /Audio/_Sunrise/TapePlayer/eject_tape.ogg
@@ -31,6 +30,8 @@
   - type: ContainerContainer
     containers:
       tape: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
   # Sunrise-End
   - type: Machine
     board: JukeboxCircuitBoard

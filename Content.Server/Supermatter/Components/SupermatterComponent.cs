@@ -49,7 +49,7 @@ public sealed partial class SupermatterComponent : Component
     public readonly string SliverPrototype = "SupermatterSliver";
 
     [DataField("zapSound")]
-    public static SoundSpecifier SupermatterZapSound = new SoundPathSpecifier("/Audio/Weapons/emitter2.ogg");
+    public SoundSpecifier SupermatterZapSound = new SoundPathSpecifier("/Audio/Weapons/emitter2.ogg");
 
     [DataField("calmAmbienceSound")]
     public SoundSpecifier CalmAmbienceSound = new SoundPathSpecifier("/Audio/Ambience/Objects/supermatter_calm.ogg");
@@ -59,9 +59,6 @@ public sealed partial class SupermatterComponent : Component
 
     [ViewVariables]
     public SoundSpecifier CurrentAmbience = new SoundPathSpecifier("/Audio/Ambience/Objects/supermatter_calm.ogg");
-
-    [DataField("vaporizeSound")]
-    public static SoundSpecifier VaporizeSound = new SoundPathSpecifier("/Audio/Effects/Grenades/Supermatter/supermatter_start.ogg");
 
     [DataField("teslaSpawnPrototype")]
     public string TeslaPrototype = "TeslaEnergyBall";

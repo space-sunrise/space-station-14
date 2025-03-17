@@ -51,11 +51,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Heat: 0.90
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.85
   - type: ExplosionResistance
-    damageCoefficient: 0.90
+    damageCoefficient: 0.95
 
 #ERT Amber EVA Helmet
 - type: entity

@@ -10,11 +10,11 @@ namespace Content.Shared._Sunrise.FleshCult
     public sealed partial class FleshMobComponent : Component
     {
         [ViewVariables(VVAccess.ReadWrite), DataField("soundDeath")]
-        public SoundSpecifier? SoundDeath = new SoundPathSpecifier("/Audio/_Sunrise/FleshCult/flesh_pudge_dead.ogg");
+        public SoundSpecifier? SoundDeath;
 
         [ViewVariables(VVAccess.ReadWrite),
-         DataField("deathMobSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string DeathMobSpawnId = "MobFleshWorm";
+         DataField("deathMobSpawnId")]
+        public EntProtoId DeathMobSpawnId;
 
         [DataField("deathMobSpawnCount"), ViewVariables(VVAccess.ReadWrite)]
         public int DeathMobSpawnCount;

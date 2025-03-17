@@ -19,7 +19,7 @@ jobs:
   update-wiki:
     name: Build and Publish JSON blobs to wiki
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout Master
       uses: actions/checkout@v3.6.0
@@ -39,7 +39,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
     - name: Install Dependencies
       run: dotnet restore

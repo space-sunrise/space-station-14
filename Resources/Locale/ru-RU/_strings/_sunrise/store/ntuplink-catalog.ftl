@@ -4,7 +4,6 @@ ntuplink-mech-teleporter-heavy-name = Телепортер Тяжелого Ме
 ntuplink-mech-teleporter-heavy-desc = Содержит ящик с тяжелым мехом НаноТрейзен. Настолько медлителен насколько защищен. Вы умрёте последним.
 ntuplink-mech-teleporter-eliteheavy-name = Телепортер Тяжелого Элитного Меха.
 ntuplink-mech-teleporter-eliteheavy-desc = Содержит ящик с лучшим мехом НаноТрейзен. Доступен только для самых опасных миссий. Только для старших Офицеров!
-
 ntuplink-mech-powercage-nanotrasen-name = Энерго ячейка НаноТрейзен
 ntuplink-mech-powercage-nanotrasen-desc = Перезаряжаемая энергетическая ячейка для больших устройств. Увеличенная ёмкость для увеличенного уровня мощности. Имеет защиту от ЭМИ.
 ntuplink-deathrattle-implant-desc = Коробка, содержащая 6 имплантов "Предсмертный хрип". Когда вы попадаете в критическое состояние Передаст сообщение с вашими координатами по радиоканалу Центком.
@@ -17,8 +16,8 @@ ntuplink-equip-riotbulletshield-name = противопульный щит
 ntuplink-equip-telescopicshield-name = телескопический щит
 ntuplink-engineering-powercellnt-name = Батарея НаноТрейзен
 ntuplink-engineering-powercellnt-desc = Высокотехнологичная батарея НаноТрейзен, имеет огромный запас в двое больший чем запас высокоёмкой батареи а так же имеет защитное покрытие от ЭМИ воздействия.
-ntuplink-gun-bundlewt550-name = Набор WT550
 ntuplink-gun-bundlemp5-name = Набор MP-5
+ntuplink-gun-bundlemp7-name = Набор MP-7
 ntuplink-gun-bundlelecter-name = Набор Lecter
 ntuplink-gun-bundlep90-name = Набор P-90
 ntuplink-gun-bundleams42-name = Набор AMS-42

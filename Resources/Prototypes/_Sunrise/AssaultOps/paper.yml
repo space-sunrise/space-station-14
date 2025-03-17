@@ -1,5 +1,5 @@
 ﻿- type: entity
-  name: цель
+  name: target
   parent: Paper
   id: DocumentAssaultOpsGoal
   components:

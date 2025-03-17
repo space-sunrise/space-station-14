@@ -12,9 +12,12 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Shared.Interaction;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -51,6 +54,9 @@ namespace Content.Server.Voting.Managers
         private readonly HashSet<ICommonSession> _playerCanCallVoteDirty = new();
         private readonly StandardVoteType[] _standardVoteTypeValues = Enum.GetValues<StandardVoteType>();
 
+        private readonly string _voteAudio = "/Audio/_Sunrise/voting.ogg";
+        private EntityUid? _voteAudioStream;
+
         public void Initialize()
         {
             _netManager.RegisterNetMessage<MsgVoteData>();
@@ -65,7 +71,7 @@ namespace Content.Server.Voting.Managers
                 DirtyCanCallVoteAll();
             });
 
-            foreach (var kvp in _voteTypesToEnableCVars)
+            foreach (var kvp in VoteTypesToEnableCVars)
             {
                 _cfg.OnValueChanged(kvp.Value, _ =>
                 {
@@ -208,10 +214,26 @@ namespace Content.Server.Voting.Managers
 
             var entries = options.Options.Select(o => new VoteEntry(o.data, o.text)).ToArray();
 
+            if (_voteAudioStream != null && _entityManager.EntityExists(_voteAudioStream))
+            {
+                _entityManager.System<SharedAudioSystem>().Stop(_voteAudioStream);
+            }
+
+            _voteAudioStream = _entityManager.System<SharedAudioSystem>()
+                .PlayGlobal(_voteAudio, Filter.Broadcast(), true,
+                AudioParams.Default.WithLoop(true).WithVolume(-10f))!.Value.Entity;
+
+            if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
+            {
+                _entityManager.System<GameTicker>().PauseStart(true);
+                _cfg.SetCVar(CCVars.OocEnabled, false);
+            }
+
             var start = _timing.RealTime;
             var end = start + options.Duration;
             var reg = new VoteReg(id, entries, options.Title, options.InitiatorText,
-                options.InitiatorPlayer, start, end, options.VoterEligibility, options.DisplayVotes, options.TargetEntity);
+                options.InitiatorPlayer, start, end, options.VoterEligibility, options.DisplayVotes,
+                options.TargetEntity);
 
             var handle = new VoteHandle(this, reg);
 
@@ -346,7 +368,7 @@ namespace Content.Server.Voting.Managers
             if (!_cfg.GetCVar(CCVars.VoteEnabled))
                 return false;
             // Specific standard vote types can be disabled with cvars.
-            if (voteType != null && _voteTypesToEnableCVars.TryGetValue(voteType.Value, out var cvar) && !_cfg.GetCVar(cvar))
+            if (voteType != null && VoteTypesToEnableCVars.TryGetValue(voteType.Value, out var cvar) && !_cfg.GetCVar(cvar))
                 return false;
 
             // Cannot start vote if vote is already active (as non-admin).
@@ -429,6 +451,25 @@ namespace Content.Server.Voting.Managers
             {
                 Logger.Error($"Vote handle with Id {v.Id} does not exist in _voteHandles.");
             }
+
+            var activeVotes = 0;
+            foreach (var vote in _votes)
+            {
+                if (vote.Value.Finished)
+                    continue;
+                activeVotes += 1;
+            }
+
+            if (activeVotes < 1)
+            {
+                _entityManager.System<SharedAudioSystem>().Stop(_voteAudioStream);
+                if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
+                {
+                    _entityManager.System<GameTicker>().PauseStart(false);
+                    _cfg.SetCVar(CCVars.OocEnabled, true);
+                }
+            }
+
             // Sunrise-End
 
             DirtyCanCallVoteAll();

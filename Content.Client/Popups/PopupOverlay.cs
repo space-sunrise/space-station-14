@@ -97,8 +97,18 @@ public sealed class PopupOverlay : Overlay
                     e => e == popup.InitialPos.EntityId || e == ourEntity, entMan: _entManager))
                 continue;
 
+            // Sunrise edit start
+            var horizontalDirection = 0f;
+            if (ourEntity.HasValue)
+            {
+                var moverCoords = _transform.GetMoverCoordinates(ourEntity.Value);
+                // float horizontalDirection = 0f -1 for left, 1 for right.
+                horizontalDirection = moverCoords.X <= popup.InitialPos.X ? 1f : -1f;
+            }
+            // Sunrise edit end
+
             var pos = Vector2.Transform(mapPos.Position, matrix);
-            _controller.DrawPopup(popup, worldHandle, pos, scale);
+            _controller.DrawPopup(popup, worldHandle, pos, scale, horizontalDirection); // Sunrise edit
         }
     }
 }

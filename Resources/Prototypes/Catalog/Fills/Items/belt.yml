@@ -193,7 +193,7 @@
     contents:
         - id: WeaponRevolverInspector
         - id: SpeedLoaderMagnum
-        - id: SpeedLoaderMagnumRubber
+        - id: SpeedLoaderMagnum
         - id: Telebaton
 
 - type: entity

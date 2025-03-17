@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Weapons.Ranged.Components;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -295,6 +296,18 @@ public sealed partial class GunSystem : SharedGunSystem
         var lastUser = user ?? gunUid;
         EntityUid? hitEntity = null;
 
+        List<EntityUid> ignoredEntity = new();
+
+        if (TryComp<StrapComponent>(lastUser, out var strapComponent))
+        {
+            ignoredEntity.AddRange(strapComponent.BuckledEntities);
+        }
+
+        if (TryComp<BuckleComponent>(lastUser, out var buckleComponent) && buckleComponent.BuckledTo != null)
+        {
+            ignoredEntity.Add(buckleComponent.BuckledTo.Value);
+        }
+
         if (hitscan.Reflective != ReflectType.None)
         {
             for (var reflectAttempt = 0; reflectAttempt < 3; reflectAttempt++)
@@ -304,6 +317,12 @@ public sealed partial class GunSystem : SharedGunSystem
                     Physics.IntersectRay(from.MapId, ray, hitscan.MaxLength, lastUser, false).ToList();
                 if (!rayCastResults.Any())
                     break;
+
+                foreach (var rayCastResult in rayCastResults.ToList())
+                {
+                    if (ignoredEntity.Contains(rayCastResult.HitEntity))
+                        rayCastResults.Remove(rayCastResult);
+                }
 
                 var result = rayCastResults[0];
 
@@ -350,9 +369,9 @@ public sealed partial class GunSystem : SharedGunSystem
 
             var dmg = hitscan.Damage;
 
-            var hitName = ToPrettyString(hitEntity);
-            if (dmg != null)
-                dmg = Damageable.TryChangeDamage(hitEntity, dmg, hitscan.IgnoreResistances, origin: user);
+                        var hitName = ToPrettyString(hitEntity);
+                        if (dmg != null)
+                            dmg = Damageable.TryChangeDamage(hitEntity, dmg * Damageable.UniversalHitscanDamageModifier, hitscan.IgnoreResistances, origin: user);
 
             // check null again, as TryChangeDamage returns modified damage values
             if (dmg != null)
@@ -499,28 +518,28 @@ public sealed partial class GunSystem : SharedGunSystem
     // TODO: Pseudo RNG so the client can predict these.
     #region Hitscan effects
 
-    private void FireEffects(EntityCoordinates fromCoordinates, float distance, Angle mapDirection, HitscanPrototype hitscan, EntityUid? hitEntity = null)
+    private void FireEffects(EntityCoordinates fromCoordinates, float distance, Angle angle, HitscanPrototype hitscan, EntityUid? hitEntity = null)
     {
         // Lord
         // Forgive me for the shitcode I am about to do
         // Effects tempt me not
         var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale, EffectType)>();
-        var gridUid = fromCoordinates.GetGridUid(EntityManager);
-        var angle = mapDirection;
+        var fromXform = Transform(fromCoordinates.EntityId);
 
         // We'll get the effects relative to the grid / map of the firer
         // Look you could probably optimise this a bit with redundant transforms at this point.
-        var xformQuery = GetEntityQuery<TransformComponent>();
 
-        if (xformQuery.TryGetComponent(gridUid, out var gridXform))
+        var gridUid = fromXform.GridUid;
+        if (gridUid != fromCoordinates.EntityId && TryComp(gridUid, out TransformComponent? gridXform))
         {
-            var (_, gridRot, gridInvMatrix) = TransformSystem.GetWorldPositionRotationInvMatrix(gridXform, xformQuery);
-
-            fromCoordinates = new EntityCoordinates(gridUid.Value,
-                Vector2.Transform(fromCoordinates.ToMapPos(EntityManager, TransformSystem), gridInvMatrix));
-
-            // Use the fallback angle I guess?
+            var (_, gridRot, gridInvMatrix) = TransformSystem.GetWorldPositionRotationInvMatrix(gridXform);
+            var map = _transform.ToMapCoordinates(fromCoordinates);
+            fromCoordinates = new EntityCoordinates(gridUid.Value, Vector2.Transform(map.Position, gridInvMatrix));
             angle -= gridRot;
+        }
+        else
+        {
+            angle -= _transform.GetWorldRotation(fromXform);
         }
 
         if (distance >= 1f)

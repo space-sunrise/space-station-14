@@ -135,6 +135,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Roslyn", "Roslyn", "{7844DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robust.Xaml", "RobustToolbox\Robust.Xaml\Robust.Xaml.csproj", "{5C05B9B4-6AFE-4884-AA6A-5A26C0FFF2F6}"
 EndProject
+# Sunrise-Start
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sunrise Interfaces", "Sunrise Interfaces", "{DA6E23AF-5AC1-43C8-831D-812A2A758731}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Sunrise.Interfaces.Shared", "Sunrise\Content.Sunrise.Interfaces.Shared\Content.Sunrise.Interfaces.Shared.csproj", "{F9F78EE1-1FBE-43F9-8E86-78327FE330DB}"
@@ -143,6 +144,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Sunrise.Interfaces.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Sunrise.Interfaces.Client", "Sunrise\Content.Sunrise.Interfaces.Client\Content.Sunrise.Interfaces.Client.csproj", "{B63ADCCD-FA56-4114-9E14-E0793802557E}"
 EndProject
+# Sunrise-End
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -462,6 +464,7 @@ Global
 		{5C05B9B4-6AFE-4884-AA6A-5A26C0FFF2F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5C05B9B4-6AFE-4884-AA6A-5A26C0FFF2F6}.Tools|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C05B9B4-6AFE-4884-AA6A-5A26C0FFF2F6}.Tools|Any CPU.Build.0 = Debug|Any CPU
+		# Sunrise-Start
 		{F9F78EE1-1FBE-43F9-8E86-78327FE330DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9F78EE1-1FBE-43F9-8E86-78327FE330DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F78EE1-1FBE-43F9-8E86-78327FE330DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -486,6 +489,7 @@ Global
 		{B63ADCCD-FA56-4114-9E14-E0793802557E}.DebugOpt|Any CPU.Build.0 = Debug|Any CPU
 		{B63ADCCD-FA56-4114-9E14-E0793802557E}.Tools|Any CPU.ActiveCfg = Debug|Any CPU
 		{B63ADCCD-FA56-4114-9E14-E0793802557E}.Tools|Any CPU.Build.0 = Debug|Any CPU
+		# Sunrise-End
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -522,9 +526,11 @@ Global
 		{07CA34A1-1D37-4771-A2E3-495A1044AE0B} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
 		{6FBF108E-5CB5-47DE-8D7E-B496ABA9E3E2} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
 		{83F510FE-9B50-4D96-AFAB-CC13998D6AFE} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
+		# Sunrise-Start
 		{F9F78EE1-1FBE-43F9-8E86-78327FE330DB} = {DA6E23AF-5AC1-43C8-831D-812A2A758731}
 		{21D609DE-FD15-4A7E-8541-B003DB6FFC62} = {DA6E23AF-5AC1-43C8-831D-812A2A758731}
 		{B63ADCCD-FA56-4114-9E14-E0793802557E} = {DA6E23AF-5AC1-43C8-831D-812A2A758731}
+		# Sunrise-End
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA37ED9F-F8D6-468E-A101-658AD605B09A}

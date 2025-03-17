@@ -1,32 +1,22 @@
 ent-ExpCollarsKit = explosive collars kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-CaselessAmmoKit = Caseless Ammo Kit
+ent-SMGAmmoKit = C20r ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-SMGAmmoKit = SMG Ammo Kit
+ent-CaselessAmmoKit = Siar52 ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-SMGIncendiaryAmmoKit = SMG incendiary Ammo Kit
+ent-SMGIncendiaryAmmoKit = C20r Incendiary ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-SMGUraniumAmmoKit = SMG uranium Ammo Kit
+ent-SMGUraniumAmmoKit = C20r Uranium ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-ShotGunKit = Shotgun Ammo Kit
+ent-ShotGunKit = Bulldog ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-ShotGunIncendiaryKit = Shotgun incendiary Ammo Kit
+ent-ShotGunIncendiaryKit = Bulldog Incendiary ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-ShotGunUraniumKit = Shotgun uranium Ammo Kit
+ent-ShotGunUraniumKit = Bulldog Uranium ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-LMGKit = LMG Ammo Kit
+ent-LMGKit = L6 Saw ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-LMGIncendiaryKit = LMG incendiary Ammo Kit
+ent-LMGIncendiaryKit = L6 Saw Incendiary ammo kit
     .desc = { ent-BoxCardboard.desc }
-
-ent-LMGUraniumKit = LMG uranium Ammo Kit
+ent-LMGUraniumKit = L6 Saw Uranium ammo kit
     .desc = { ent-BoxCardboard.desc }

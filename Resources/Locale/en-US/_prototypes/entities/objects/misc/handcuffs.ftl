@@ -1,3 +1,5 @@
+ent-BaseHandcuffs = handcuffs
+    .desc = Used to detain criminals and other assholes.
 ent-Handcuffs = handcuffs
     .desc = Used to detain criminals and other assholes.
 ent-Cablecuffs = makeshift handcuffs

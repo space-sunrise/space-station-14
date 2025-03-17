@@ -10372,13 +10372,6 @@ entities:
     - type: Transform
       pos: 2.327287,1.5347754
       parent: 179
-- proto: WeaponSubMachineGunVector
-  entities:
-  - uid: 1635
-    components:
-    - type: Transform
-      pos: 1.752212,1.6857839
-      parent: 179
 - proto: WeaponSubMachineGunWt550
   entities:
   - uid: 1627

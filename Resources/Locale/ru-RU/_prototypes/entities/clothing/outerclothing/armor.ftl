@@ -1,3 +1,5 @@
+ent-ClothingOuterArmorBase = armor vest
+    .desc = A standard Type I armored vest that provides decent protection against most types of damage.
 ent-ClothingOuterArmorBasic = бронежилет
     .desc = Стандартный бронежилет типа I, обеспечивающий достойную защиту от большинства видов повреждений.
 ent-ClothingOuterArmorBasicSlim = бронежилет

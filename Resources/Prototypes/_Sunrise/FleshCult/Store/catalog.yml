@@ -22,7 +22,7 @@
   productEvent: !type:FleshCultistInsulatedImmunityMutationEvent
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 10
+    StolenMutationPoint: 5
   categories:
     - FleshCultistPassiveSkills
   conditions:
@@ -146,7 +146,7 @@
     prototype: FleshCultistArmor
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 25
+    StolenMutationPoint: 20
   categories:
     - FleshCultistArmor
   conditions:
@@ -162,7 +162,7 @@
   productEvent: !type:FleshCultistUnlockAbilityEvent
     prototype: FleshCultistHeavyArmor
   cost:
-    StolenMutationPoint: 45
+    StolenMutationPoint: 40
   categories:
     - FleshCultistArmor
   conditions:
@@ -178,7 +178,7 @@
     prototype: FleshCultistSpiderlegs
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 20
+    StolenMutationPoint: 15
   categories:
     - FleshCultistArmor
   conditions:
@@ -194,7 +194,7 @@
     prototype: FleshCultistAdrenalin
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 30
+    StolenMutationPoint: 15
   categories:
     - FleshCultistActiveSkills
   conditions:
@@ -226,7 +226,7 @@
     prototype: FleshCultistThrowHugger
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 30
+    StolenMutationPoint: 15
   categories:
     - FleshCultistActiveSkills
   conditions:
@@ -242,7 +242,7 @@
     prototype: FleshCultistAcidSpit
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 30
+    StolenMutationPoint: 15
   categories:
     - FleshCultistActiveSkills
   conditions:

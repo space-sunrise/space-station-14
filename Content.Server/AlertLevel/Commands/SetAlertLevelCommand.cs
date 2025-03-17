@@ -12,6 +12,7 @@ namespace Content.Server.AlertLevel.Commands
     public sealed class SetAlertLevelCommand : LocalizedCommands
     {
         [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
+        [Dependency] private readonly IEntityManager _entManager = default!; // Sunrise-Added
 
         public override string Command => "setalertlevel";
 
@@ -76,6 +77,7 @@ namespace Content.Server.AlertLevel.Commands
             }
 
             _entitySystems.GetEntitySystem<AlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
+            _entManager.EventBus.RaiseLocalEvent(stationUid.Value, new AlertAccessesEvent(stationUid.Value), true); // Sunrise-added
         }
 
         private string[] GetStationLevelNames(EntityUid station)

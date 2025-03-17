@@ -1,0 +1,29 @@
+﻿- type: entity
+  id: PetOpenAllUiAction
+  name: Open the pet management menu
+  description: Opens the management menu for all pets
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Sunrise/Actions/Pets/radials.rsi
+      state: settings
+    event: !type:PetOpenAllUiEvent
+    useDelay: 1
+
+- type: entity
+  id: PetAttackTargetAction
+  name: Attack target
+  description: Orders all pets with an attack order to attack the target
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    useDelay: 1
+    canTargetSelf: false
+    range: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Actions/Pets/radials.rsi
+      state: attack
+    event: !type:PetAttackTargetEvent

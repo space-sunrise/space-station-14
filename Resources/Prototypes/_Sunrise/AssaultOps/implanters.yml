@@ -1,6 +1,6 @@
 - type: entity
   id: IcarusKeyImplanter
-  name: имплантер ключа Икарус
+  name: icarus key implanter
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter

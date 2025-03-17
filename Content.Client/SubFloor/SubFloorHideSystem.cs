@@ -1,4 +1,6 @@
+using Content.Shared.Atmos.Components;
 using Content.Shared.DrawDepth;
+using Content.Shared.GameTicking;
 using Content.Shared.SubFloor;
 using Robust.Client.GameObjects;
 
@@ -9,6 +11,7 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     private bool _showAll;
+    private bool _showVentPipe; // Sunrise-edit
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool ShowAll
@@ -23,11 +26,33 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
         }
     }
 
+    // Sunrise-start
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool ShowVentPipe
+    {
+        get => _showVentPipe;
+        set
+        {
+            if (_showVentPipe == value) return;
+            _showVentPipe = value;
+
+            UpdateAll();
+        }
+    }
+    // Sunrise-end
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<SubFloorHideComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+        SubscribeLocalEvent<SubFloorHideComponent, RoundRestartCleanupEvent>(RoundRestartCleanup);
+    }
+
+    private void RoundRestartCleanup(EntityUid uid, SubFloorHideComponent component, RoundRestartCleanupEvent args)
+    {
+        _showAll = false;
+        _showVentPipe = false;
     }
 
     private void OnAppearanceChanged(EntityUid uid, SubFloorHideComponent component, ref AppearanceChangeEvent args)
@@ -40,7 +65,15 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
 
         scannerRevealed &= !ShowAll; // no transparency for show-subfloor mode.
 
-        var revealed = !covered || ShowAll || scannerRevealed;
+        // Sunrise-start
+        var showVentPipe = false;
+        if (HasComp<PipeAppearanceComponent>(uid))
+        {
+            showVentPipe = ShowVentPipe;
+        }
+
+        var revealed = !covered || ShowAll || scannerRevealed || showVentPipe;
+        // Sunrise-end
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)

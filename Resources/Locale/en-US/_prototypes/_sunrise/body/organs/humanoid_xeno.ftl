@@ -20,3 +20,5 @@ ent-OrganHumanoidXenoLiver = liver
     .desc = A powerful detoxifier that neutralizes dangerous substances with ease.
 ent-OrganHumanoidXenoKidneys = kidneys
     .desc = Paired filters, ruthlessly taking out anything superfluous.
+ent-OrganHumanoidXenoEyes = eyes
+    .desc = Eyes. They see

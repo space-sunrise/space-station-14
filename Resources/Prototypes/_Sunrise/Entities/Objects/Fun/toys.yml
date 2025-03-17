@@ -804,6 +804,57 @@
     sprite: _Sunrise/Objects/Fun/toys.rsi
 
 - type: entity
+  id: GoldenWeh
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_Sunrise/bye.ogg
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: GWA
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/not_for_long_weh.ogg
+  - type: EmitSoundOnUse
+    sound:
+      collection: GWA
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/not_for_long_weh.ogg
+  - type: UseDelay
+    delay: 2.0
+  - type: EmitSoundOnActivate
+    sound:
+      collection: GWA
+      params:
+        maxDistance: 10
+
+- type: entity
+  parent:
+  - GoldenWeh
+  - BasePlushie
+  id: LegendaryGoldenWeh
+  name: Legendary golden Weh
+  description: Do you remember how you made your way through the dangers, how you left a fake instead, accidentally activated a trap and started running away from a huge ball! But wait, it was a dream, then where did you get it?
+  components:
+  - type: Sprite
+    state: legendary-golden-weh
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: Item
+    heldPrefix: goldenw
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    equippedPrefix: goldenweh
+    slots:
+    - HEAD
+  - type: Speech
+    speechVerb: Reptilian
+
+- type: entity
   id: PlushieAnatolyLisitsyn
   parent: BasePlushie
   name: Anatoly Lisitsyn
@@ -834,3 +885,47 @@
         volume: 5
   - type: UseDelay
     delay: 5
+
+- type: entity
+  id: PlushieMiraKovalskaya
+  parent: BasePlushie
+  name: Mira Kovalskaya
+  description: She's like to say "Meow" and "mrrr"?..
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-mira
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 2
+
+- type: entity
+  id: PlushieMihailOsipov
+  parent: BasePlushie
+  name: Mihail Osipov
+  description: He is able to dissolve into the world of illusions and shower passersby with some metaphorical "pies". He probably knows the secret to making really witty and funny jokes.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-MihailOsipov
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/meow1.ogg
+      params:
+        volume: 5
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/meow1.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 2

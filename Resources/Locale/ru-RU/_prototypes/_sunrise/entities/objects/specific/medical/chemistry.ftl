@@ -1,0 +1,17 @@
+ent-MiniSyringeCryostasis = мини криостазис шприц
+    .desc = криостазис шприц, переделанный под пистолет.
+    .suffix = Блюспейс, Минишприц
+ent-MiniSyringeBluespace = мини блюспейс шприц
+    .desc = блюспейс шприц, переделанный под пистолет.
+    .suffix = Блюспейс, Минишприц
+ent-PrefilledMiniSyringe = { ent-MiniSyringe }
+    .desc = { ent-MiniSyringe.desc }
+ent-MiniSyringeMuteToxin = { ent-PrefilledMiniSyringe }
+    .suffix = МутТоксин, Минишприц
+    .desc = { ent-PrefilledMiniSyringe.desc }
+ent-MiniSyringeFresium = { ent-PrefilledMiniSyringe }
+    .suffix = Фрезиум, Минишприц
+    .desc = { ent-PrefilledMiniSyringe.desc }
+ent-MiniSyringeCarpoToxin = { ent-PrefilledMiniSyringe }
+    .suffix = КарпТоксин, Минишприц
+    .desc = { ent-PrefilledMiniSyringe.desc }

@@ -27,6 +27,7 @@ public interface ISharedSponsorsManager
     public bool TryGetPrototypes(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes);
     public bool TryGetOocTitle(NetUserId userId, [NotNullWhen(true)] out string? title);
     public bool TryGetOocColor(NetUserId userId, [NotNullWhen(true)] out Color? color);
+    public bool TryGetSpawnEquipment(NetUserId userId, [NotNullWhen(true)] out string? spawnEquipment);
     public bool TryGetGhostThemes(NetUserId userId, [NotNullWhen(true)] out List<string>? ghostTheme);
     public bool TryGetBypassRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? bypassRoles);
     public int GetSizeFlavor(NetUserId userId);
@@ -74,6 +75,9 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("ghostThemes")]
     public string[] GhostThemes { get; set; } = [];
+
+    [JsonPropertyName("spawnEquipment")]
+    public string? SpawnEquipment { get; set; }
 
     [JsonPropertyName("allowedMarkings")]
     public string[] AllowedMarkings { get; set; } = [];

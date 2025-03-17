@@ -25,72 +25,11 @@
     producingSound: /Audio/Machines/scanning.ogg
     idleState: icon
     runningState: building
-    staticRecipes:
-      - PrintedDocumentReportStationRecipe
-      - PrintedDocumentReportOnEliminationOfViolationsRecipe
-      - PrintedDocumentReporDepartmentRecipe
-      - PrintedDocumentReportEmployeePerformanceRecipe
-      - PrintedDocumentReportOnTheChaptersMeetingRecipe
-      - PrintedDocumentInternalAffairsAgentsReportRecipe
-      - PrintedDocumentConditionReportRecipe
-      - PrintedDocumentReportStudyObjectRecipe
-      - PrintedDocumentExperimentReportRecipe
-      - PrintedDocumentDisposalReportRecipe
-      - PrintedDocumentApplicationAppointmentInterimRecipe
-      - PrintedDocumentApplicationEmploymentRecipe
-      - PrintedDocumentLetterResignationRecipe
-      - PrintedDocumentApplicationAccessRecipe
-      - PrintedDocumentApplicationEquipmentRecipe
-      - PrintedDocumentAppealRecipe
-      - PrintedDocumentEvacuationShuttleRequestRecipe
-      - PrintedDocumentShuttleRegistrationRequestRecipe
-      - PrintedDocumentRequestCallMembersCentralCommitteeDSORecipe
-      - PrintedDocumentRequestRequestToEstablishThreatLevelRecipe
-      - PrintedDocumentRequestChangeSalaryRecipe
-      - PrintedDocumentRequestForNonlistedEmploymentRecipe
-      - PrintedDocumentRequestForPromotionRecipe
-      - PrintedDocumentRequestDocumentsRecipe
-      - PrintedDocumentRequestEuthanasiaRecipe
-      - PrintedDocumentRequestConstructionWorkRecipe
-      - PrintedDocumentRequestModernizationRecipe
-      - PrintedDocumentComplaintViolationLaborRulesRecipe
-      - PrintedDocumentComplaintOffenseRecipe
-      - PrintedDocumentPermissionEquipmentRecipe
-      - PrintedDocumentPermissionToTravelInCaseOfThreatRecipe
-      - PrintedDocumentSearchPermissionRecipe
-      - PrintedDocumentPermissionToCarryWeaponsRecipe
-      - PrintedDocumentPrescriptionDrugAuthorizationRecipe
-      - PrintedDocumentPermissionDisposeBodyRecipe
-      - PrintedDocumentConstructionPermitRecipe
-      - PrintedDocumentPermissionToExtendMarriageRecipe
-      - PrintedDocumentOrderDismissalRecipe
-      - PrintedDocumentOrderDeprivationAccessRecipe
-      - PrintedDocumentOrderEncouragementRecipe
-      - PrintedDocumentOrderParolePrisonerRecipe
-      - PrintedDocumentOrderRecognizingSentienceCreatureRecipe
-      - PrintedDocumentOrderMedicalInterventionRecipe
-      - PrintedDocumentProductManufacturingOrderRecipe
-      - PrintedDocumentOrderPurchaseResourcesEquipmentRecipe
-      - PrintedDocumentOrderingSpecialEquipmentRecipe
-      - PrintedDocumentOrderPurchaseWeaponsRecipe
-      - PrintedDocumentCertificateRecipe
-      - PrintedDocumentCertificateAdvancedTrainingRecipe
-      - PrintedDocumentCertificateOffenseRecipe
-      - PrintedDocumentDeathCertificateRecipe
-      - PrintedDocumentMarriageCertificateRecipe
-      - PrintedDocumentDivorceCertificateRecipe
-      - PrintedDocumentClosingIndictmentRecipe
-      - PrintedDocumentSentenceRecipe
-      - PrintedDocumentJudgmentRecipe
-      - PrintedDocumentStatementHealtheRecipe
-      - PrintedDocumentDecisionToStartTrialRecipe
+    staticPacks:
+      - DocsStatic
   - type: EmagLatheRecipes
-    emagStaticRecipes:
-        - PrintedDocumentErrorLoadingFormHeaderRecipe
-        - PrintedDocumentNoticeOfLiquidationRecipe
-        - PrintedDocumentBusinessDealRecipe
-        - PrintedDocumentNoteBeginningMilitaryActionsRecipe
-        - PrintedDocumentReportAccomplishmentGoalsRecipe
+    emagStaticPacks:
+      - DocsEmagged
   - type: Fixtures
     fixtures:
       fix1:
@@ -108,3 +47,14 @@
       - Document
     storage:
       SheetPrinter: 0
+
+- type: entity
+  id: ExosuitFabricatorHyperConvection
+  parent: [ExosuitFabricator, BaseHyperlathe]
+  name: hyper convection exosuit fabricator
+  description: A highly-experimental Exosuit Fabricator that harnesses the power of extreme heat to slowly create objects more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
+  - type: Machine
+    board: ExosuitFabricatorHyperConvectionMachineCircuitboard

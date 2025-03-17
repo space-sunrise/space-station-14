@@ -3,6 +3,7 @@
   name: roles-antag-thief-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagThief # Sunrise-Edit
   objective: roles-antag-thief-objective
   guides: [ Thieves ]
   # Sunrise-Edit
@@ -14,6 +15,6 @@
   id: ThiefGear
   storage:
     back:
+    - ThiefBeacon
     - ToolboxThief
     - ClothingHandsChameleonThief
-    - ThiefBeacon

@@ -24,7 +24,6 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DiseaseRoleComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<DiseaseRoleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseShopActionEvent>(OnShop);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddSymptomEvent>(OnAddSymptom);
@@ -113,9 +112,9 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         }
     }
 
-    private void OnInit(EntityUid uid, DiseaseRoleComponent component, ComponentInit args)
+    private void OnMapInit(EntityUid uid, DiseaseRoleComponent component, MapInitEvent args)
     {
-
+        _actionsSystem.AddAction(uid, DiseaseShopId, uid);
         foreach (var (id, charges) in component.Actions)
         {
             EntityUid? actionId = null;
@@ -124,11 +123,6 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         }
         component.NewBloodReagent = _random.Pick(new List<string>() { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" });
         component.Symptoms.Add("Headache", (1, 4));
-    }
-
-    private void OnMapInit(EntityUid uid, DiseaseRoleComponent component, MapInitEvent args)
-    {
-        _actionsSystem.AddAction(uid, DiseaseShopId, uid);
     }
 
     private void OnShop(EntityUid uid, DiseaseRoleComponent component, DiseaseShopActionEvent args)

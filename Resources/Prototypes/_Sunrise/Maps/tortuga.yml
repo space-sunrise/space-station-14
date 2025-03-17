@@ -1,0 +1,57 @@
+﻿- type: gameMap
+  id: Tortuga
+  mapName: 'Tortuga'
+  mapPath: /Maps/_Sunrise/Station/tortuga.yml
+  minPlayers: 0
+  stations:
+    Tortuga:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Tortuga Station {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/NTES_SealG.yml
+        - type: StationJobs
+          availableJobs:
+            Passenger: [ -1, -1 ]
+            Bartender: [ 2, 2 ]
+            Botanist: [ 2, 3 ]
+            Boxer: [ 2, 2 ]
+            Chef: [ 3, 4 ]
+            Clown: [ 1, 1 ]
+            Janitor: [ 2, 2 ]
+            Mime: [ 1, 1 ]
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            ChiefEngineer: [ 1, 1 ]
+            StationEngineer: [ 6, 8 ]
+            ChiefMedicalOfficer: [ 1, 1 ]
+            MedicalDoctor: [ 7, 9 ]
+            Chemist: [ 3, 4 ]
+            Paramedic: [ 1, 2 ]
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 5, 6 ]
+            ResearchAssistant: [ 2, 2 ]
+            HeadOfSecurity: [ 1, 1 ]
+            SecurityOfficer: [ 6, 9 ]
+            SecurityCadet: [ 1, 1 ]
+            Chaplain: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 4 ]
+            Musician: [ 2, 3 ]
+            AtmosphericTechnician: [ 2, 3 ]
+            CargoTechnician: [ 2, 2 ]
+            Reporter: [ 1, 2 ]
+            ServiceWorker: [ 4, 6 ]
+            Psychologist: [ 1, 1 ]
+            Detective: [ 1, 1 ]
+            SeniorEngineer: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            SeniorResearcher: [ 1, 1 ]

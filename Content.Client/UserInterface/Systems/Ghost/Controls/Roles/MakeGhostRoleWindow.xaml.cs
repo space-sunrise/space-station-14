@@ -64,8 +64,8 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             RaffleMaxDuration.ValueChanged += OnRaffleDurationChanged;
 
 
-            RaffleButton.AddItem("Don't raffle", RaffleDontRaffleId);
-            RaffleButton.AddItem("Custom settings", RaffleCustomRaffleId);
+            RaffleButton.AddItem(Loc.GetString("make-ghost-role-menu-raffle-disabled"), RaffleDontRaffleId);
+            RaffleButton.AddItem(Loc.GetString("make-ghost-role-menu-raffle-custom"), RaffleCustomRaffleId);
 
             var raffleProtos =
                 _prototypeManager.EnumeratePrototypes<GhostRoleRaffleSettingsPrototype>();
@@ -75,9 +75,15 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             {
                 _rafflePrototypes.Add(raffleProto);
                 var s = raffleProto.Settings;
-                var label =
-                    $"{raffleProto.ID} (initial {s.InitialDuration}s, max {s.MaxDuration}s, join adds {s.JoinExtendsDurationBy}s)";
-                RaffleButton.AddItem(label, idx++);
+
+                var label = Loc.GetString(
+                    "make-ghost-role-menu-raffle-custom-new",
+                    ("ID", raffleProto.ID),
+                    ("initial", s.InitialDuration),
+                    ("max", s.MaxDuration),
+                    ("extends", s.JoinExtendsDurationBy)
+                );
+                    RaffleButton.AddItem(label, idx++);
             }
 
             MakeButton.OnPressed += OnMakeButtonPressed;
@@ -94,7 +100,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             if (RaffleInitialDuration.Value > RaffleMaxDuration.Value)
             {
                 MakeButton.Disabled = true;
-                MakeButton.ToolTip = "The initial duration must not exceed the maximum duration.";
+                MakeButton.ToolTip = Loc.GetString("make-ghost-role-menu-duration-initial-error");
             }
             else
             {

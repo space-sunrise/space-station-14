@@ -33,12 +33,12 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "neck" ]
+    - map: [ "outerClothing" ]
     - map: [ "back" ]
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -243,6 +243,7 @@
           Quantity: 25
   - type: Food
     requiresSpecialDigestion: true
+  - type: CognizinFix
   # Sunrise-End
 
 - type: entity
@@ -258,14 +259,20 @@
   abstract: true
   components:
   # Sunrise-Start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
+  - type: CritHeartbeat
+    heartbeatSound:
+      path: /Audio/_Sunrise/Effects/heartbeat.ogg
+      params:
+        volume: -3
+        loop: True
   # Sunrise-End
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.1 # Sunrise-Casual
+        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Heat: 0.1
   - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
     allowedStates:
     - Alive
@@ -311,12 +318,13 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.5 # Sunrise-Casual
+        Asphyxiation: 1.0
     damageRecovery:
       types:
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: PetOnInteract
 
 - type: entity
   save: false
@@ -361,12 +369,12 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "neck" ]
+    - map: [ "outerClothing" ]
     - map: [ "back" ]
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

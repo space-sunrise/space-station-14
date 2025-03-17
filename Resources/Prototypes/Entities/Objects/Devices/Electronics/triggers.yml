@@ -8,7 +8,7 @@
 # - booby-trap / on-storage-open
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   id: TimerTrigger
   name: timer trigger
   description: A configurable timer.
@@ -56,7 +56,7 @@
     - type: DeviceLinkSink
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   id: VoiceTrigger
   name: voice trigger
   description: Adds a machine link that is triggered by vocal keywords.

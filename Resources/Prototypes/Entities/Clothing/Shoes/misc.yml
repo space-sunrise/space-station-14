@@ -53,6 +53,39 @@
 
 - type: entity
   parent: ClothingShoesBaseButcherable
+  id: ClothingShoeSlippersLizard
+  name: lizard plushie slippers
+  description: An adorable pair of slippers that resemble a lizardperson. Combine this with some other green clothing and you'll be the coolest crewmember on the station!
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Misc/lizard-slippers.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Misc/lizard-slippers.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepLizardSlippers
+      params:
+        variation: 0.02
+  - type: Construction
+    graph: ClothingShoeSlippersLizard
+    node: shoes
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 60
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 20
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 20
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
   id: ClothingShoesTourist
   name: tourist shoes
   description: These cheap sandals don't look very comfortable.
@@ -85,42 +118,42 @@
     sprite: Clothing/Shoes/Misc/snakeskin.rsi
   - type: NoSlip
 
-#- type: entity
-#  parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
-#  id: ClothingShoesBootsSpeed
-#  name: speed boots
-#  description: High-tech boots woven with quantum fibers, able to convert electricity into pure speed!
-#  components:
-#  - type: Sprite
-#    sprite: Clothing/Shoes/Boots/speedboots.rsi
-#    layers:
-#    - state: icon
-#      map: [ "enum.ToggleVisuals.Layer" ]
-#  - type: Clothing
-#    sprite: Clothing/Shoes/Boots/speedboots.rsi
-#  - type: ToggleClothing
-#    action: ActionToggleSpeedBoots
-#  - type: ClothingSpeedModifier
-#    walkModifier: 1.5
-#    sprintModifier: 1.5
-#  - type: Appearance
-#  - type: GenericVisualizer
-#    visuals:
-#      enum.ToggleVisuals.Toggled:
-#        enum.ToggleVisuals.Layer:
-#          True: {state: icon-on}
-#          False: {state: icon}
-#  - type: StaticPrice
-#    price: 500
-#  - type: PowerCellDraw
-#    drawRate: 4
-#  - type: ToggleCellDraw
-#  - type: ItemSlots
-#    slots:
-#      cell_slot:
-#        name: power-cell-slot-component-slot-name-default
-#  - type: Tag
-#    tags: []
+- type: entity
+  parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
+  id: ClothingShoesBootsSpeed
+  name: speed boots
+  description: High-tech boots woven with quantum fibers, able to convert electricity into pure speed!
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/speedboots.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/speedboots.rsi
+  - type: ToggleClothing
+    action: ActionToggleSpeedBoots
+  - type: ClothingSpeedModifier
+    walkModifier: 1.25
+    sprintModifier: 1.25
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
+  - type: StaticPrice
+    price: 500
+  - type: PowerCellDraw
+    drawRate: 40
+  - type: ToggleCellDraw
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: Tag
+    tags: []
 
 - type: entity
   id: ActionToggleSpeedBoots

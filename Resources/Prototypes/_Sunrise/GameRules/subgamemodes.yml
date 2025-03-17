@@ -1,0 +1,52 @@
+- type: entity
+  parent: BaseGameRule
+  id: Changeling
+  components:
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
+  - type: ChangelingRule
+  - type: AntagObjectives
+    objectives:
+    - ChangelingStealDNAObjective
+    - ChangelingSurviveObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ChangelingObjectiveGroups
+    maxDifficulty: 5
+  - type: AntagSelection
+    agentName: changeling-roundend-name
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 3
+      playerRatio: 15
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleChangeling
+
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  components:
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
+  - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireDrainObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroups
+    maxDifficulty: 5
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 3
+      playerRatio: 15
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleVampire

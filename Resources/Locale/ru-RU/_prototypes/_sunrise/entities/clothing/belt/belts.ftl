@@ -11,7 +11,5 @@ ent-ClothingBeltMedicalCMO = медицинский пояс главного в
     .desc = Стерильный пояс со множеством карманов под таблетки и другие лекарства, подчёркивающий, что лечить нужно со стилем.
 ent-ClothingBeltReaperWebbing = разгрузочный жилет
     .desc = Тактическая разгрузка, которую носят десантники Синдиката.
-ent-ClothingBeltSheathSyndicateFilled = { ent-ClothingBeltSheathSyndicate }
-    .desc = { ent-ClothingBeltSheathSyndicate.desc }
 ent-ClothingBeltSheathSyndicate = ножны для рапиры
     .desc = Зловещие тонкие ножны, подходящие для рапиры.

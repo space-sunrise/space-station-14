@@ -130,3 +130,26 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+
+#Sunrise-OLD
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformSkirtMailCarrier
+  name: mail carrier's jumpskirt
+  description: Enemy of dogs everywhere.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/mailman.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/mailman.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformSkirtMantis
+  name: forensic mantis' jumpskirt
+  description: Adapted from an ancient infantry uniform, this jumpskirt has superior mobility for tense situations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/mantis_jumpskirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/mantis_jumpskirt.rsi

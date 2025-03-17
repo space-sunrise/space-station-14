@@ -13,8 +13,8 @@ using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Configuration;
+using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -90,16 +90,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             return;
         }
 
-        var mapUid = _map.CreateMap();
-        var xform = Transform(mapUid);
-        component.MapId = xform.MapID;
         var station = _random.Pick(component.Stations);
-
-        var mapOptions = new MapLoadOptions()
-        {
-            LoadMap = false,
-            Rotation = Angle.Zero,
-        };
 
         if (!_protoManager.TryIndex<BiomeTemplatePrototype>(_random.Pick(component.Biomes), out var biome))
         {
@@ -116,7 +107,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         _chat.DispatchServerAnnouncement(Loc.GetString("planet-prison-select-map", ("stationName", gameMap.MapName)), Color.LightBlue);
         _chat.DispatchServerAnnouncement(Loc.GetString("planet-prison-select-biome", ("biomeName", biome.ID)), Color.LightBlue);
 
-        var uids = _gameTicker.LoadGameMap(gameMap, xform.MapID, mapOptions);
+        var uids = _gameTicker.LoadGameMap(gameMap, out var mapId, rot: Angle.Zero);
 
         if (uids.Count != 1)
         {
@@ -134,6 +125,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         EnsureComp<IgnoreFtlCheckComponent>(uids[0]);
         component.PrisonGrid = uids[0];
 
+        var mapUid = _mapManager.GetMapEntityId(mapId);
         _biomeSystem.EnsurePlanet(mapUid, biome);
 
         // Sunrise-Start

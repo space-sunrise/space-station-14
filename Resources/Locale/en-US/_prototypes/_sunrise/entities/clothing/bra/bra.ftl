@@ -22,5 +22,5 @@ ent-ClothingBraUk = women's bra "Great Britain"
     .desc = A bra with a design symbolizing Great Britain.
 ent-ClothingBraStrapless = women's strapless bra
     .desc = Strapless bra for invisibility under clothing.
-ent-ClothingBraChristmas = women's bra "Christmas"
+ent-ClothingBraChristmas = women's christmas bra
     .desc = A bra with a design symbolizing Christmas.

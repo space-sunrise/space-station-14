@@ -23,7 +23,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<TapePlayerComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<TapePlayerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<TapePlayerComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<TapePlayerComponent, EntInsertedIntoContainerMessage>(OnItemInserted);
         SubscribeLocalEvent<TapePlayerComponent, EntRemovedFromContainerMessage>(OnItemRemoved);
@@ -60,7 +60,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
         Dirty(uid, component);
     }
 
-    private void OnComponentInit(EntityUid uid, TapePlayerComponent component, ComponentInit args)
+    private void OnMapInit(EntityUid uid, TapePlayerComponent component, MapInitEvent args)
     {
         _itemSlotsSystem.AddItemSlot(uid, TapePlayerComponent.TapeSlotId, component.TapeSlot);
         if (HasComp<ApcPowerReceiverComponent>(uid))
@@ -85,7 +85,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
                 return;
             }
 
-            var volume = SharedAudioSystem.GainToVolume(component.Volume) - component.DecreaseVolume;
+            var volume = SharedAudioSystem.GainToVolume(component.Volume) + component.IncreaceVolume;
 
             var audioParams = AudioParams.Default
                 .WithVolume(volume)
@@ -123,7 +123,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
     private void OnTapePlayerSetVolume(EntityUid uid, TapePlayerComponent component, TapePlayerSetVolumeMessage args)
     {
         component.Volume = args.Volume;
-        var volume = SharedAudioSystem.GainToVolume(component.Volume) - component.DecreaseVolume;
+        var volume = SharedAudioSystem.GainToVolume(component.Volume) + component.IncreaceVolume;
         Audio.SetVolume(component.AudioStream, volume);
         Dirty(uid, component);
     }

@@ -128,10 +128,10 @@
   id: SignalTimerElectronics
   result: SignalTimerElectronics
 
-- type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
-  id: CloningPodMachineCircuitboard
-  result: CloningPodMachineCircuitboard
+#- type: latheRecipe
+#  parent: BaseGoldCircuitboardRecipe
+#  id: CloningPodMachineCircuitboard
+#  result: CloningPodMachineCircuitboard
 
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
@@ -377,7 +377,7 @@
   parent: BaseGoldCircuitboardRecipe
   id: GygaxTargetingElectronics
   result: GygaxTargetingElectronics
-  
+
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
   id: PhazonCentralElectronics
@@ -484,10 +484,10 @@
   id: SolarTrackerElectronics
   result: SolarTrackerElectronics
 
-- type: latheRecipe
-  parent: BaseCircuitboardRecipe
-  id: CloningConsoleComputerCircuitboard
-  result: CloningConsoleComputerCircuitboard
+#- type: latheRecipe
+#  parent: BaseCircuitboardRecipe
+#  id: CloningConsoleComputerCircuitboard
+#  result: CloningConsoleComputerCircuitboard
 
 - type: latheRecipe
   parent: BaseCircuitboardRecipe
@@ -641,12 +641,6 @@
 
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
-  id: StationAnchorCircuitboard
-  result: StationAnchorCircuitboard
-  completetime: 8
-
-- type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
   id: ReagentGrinderIndustrialMachineCircuitboard
   result: ReagentGrinderIndustrialMachineCircuitboard
 
@@ -664,3 +658,19 @@
   parent: BaseCircuitboardRecipe
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  result: ExosuitFabricatorHyperConvectionMachineCircuitboard
+
+- type: latheRecipe #sunrise-start
+  parent: BaseGoldCircuitboardRecipe
+  id: ImplantExtractorMachineCircuitboard
+  result: ImplantExtractorMachineCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 100
+    Silver: 100
+    Diamond: 100  #sunrise-end

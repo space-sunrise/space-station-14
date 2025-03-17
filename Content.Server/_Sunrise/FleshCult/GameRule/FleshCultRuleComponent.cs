@@ -1,9 +1,7 @@
 ﻿using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.NPC.Prototypes;
-using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._Sunrise.FleshCult.GameRule;
@@ -11,7 +9,7 @@ namespace Content.Server._Sunrise.FleshCult.GameRule;
 [RegisterComponent, Access(typeof(FleshCultRuleSystem))]
 public sealed partial class FleshCultRuleComponent : Component
 {
-    public EntityUid CultistsLeaderMind = new();
+    public EntityUid? CultistsLeaderMind;
 
     public SoundSpecifier AddedSound = new SoundPathSpecifier(
         "/Audio/_Sunrise/FleshCult/flesh_culstis_greeting.ogg");
@@ -33,21 +31,4 @@ public sealed partial class FleshCultRuleComponent : Component
     public Dictionary<EntityUid, FleshHeartStatus> FleshHearts = new();
 
     public EntityUid? TargetStation;
-
-    public List<string> SpeciesWhitelist = new()
-    {
-        "Human",
-        "Reptilian",
-        "Dwarf",
-        "Vulpkanin",
-        "Felinid",
-        "Moth",
-        "Swine",
-        "Arachnid",
-        "Demon",
-        "Vox",
-        "HumanoidXeno",
-        "Predator",
-        "Tajaran"
-    };
 }

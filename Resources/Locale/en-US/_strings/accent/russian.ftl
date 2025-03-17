@@ -17,3 +17,11 @@ accent-russian-words-replace-5 = comrades
 
 accent-russian-words-6 = cheers
 accent-russian-words-replace-6 = na zdorovje
+
+accent-russian-words-7 = ваше
+accent-russian-words-7-2 = твое
+accent-russian-words-replace-7 = наше
+
+accent-russian-words-8 = ваш
+accent-russian-words-8-2 = твой
+accent-russian-words-replace-8 = наш

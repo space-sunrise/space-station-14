@@ -13,8 +13,8 @@
       state: o2
       shader: unshaded
   - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
+    maxCharge: 1800
+    startingCharge: 1800
   - type: EmpImmune
 
 - type: entity
@@ -32,25 +32,6 @@
       state: o2
       shader: unshaded
   - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
-  - type: EmpImmune
-
-- type: entity
-  name: combat power cell
-  description: A rechargeable standardized power cell. This one looks like a rare combat variant.
-  id: PowerCellCombat
-  suffix: Full
-  parent: BasePowerCell
-  components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: combat
-    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
-      state: o2
-      shader: unshaded
-  - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
+    maxCharge: 1800
+    startingCharge: 1800
   - type: EmpImmune

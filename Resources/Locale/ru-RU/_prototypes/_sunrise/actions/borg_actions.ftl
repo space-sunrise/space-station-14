@@ -10,5 +10,7 @@ ent-FabricateCookie = Произвести Печенье
     .desc = Создать печенье, которому будет рад каждый.
 ent-FabricateSoap = Произвести мыло
     .desc = Создать мыло, которому будет мало кто рад.
+ent-PieThrow = { "" }
+    .desc = { "" }
 ent-ActionViewCrewManifest = Просмотреть списка экипажа
     .desc = Открывает список экипажа станции.

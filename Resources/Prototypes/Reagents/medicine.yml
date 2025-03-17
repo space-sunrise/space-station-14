@@ -656,6 +656,10 @@
       effects:
         - !type:SatiateThirst
           factor: 6
+          conditions:
+          - !type:OrganType
+            type: Dwarf
+            shouldHave: false
         - !type:ModifyBloodLevel
           amount: 6
 
@@ -1057,6 +1061,10 @@
       effects:
       - !type:SatiateThirst
         factor: 3
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
     Medicine:
       effects:
       #If vampire
@@ -1196,7 +1204,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
-          
+
 - type: reagent
   id: Opporozidone #Name based of an altered version of the startreck chem "Opporozine"
   name: reagent-name-opporozidone

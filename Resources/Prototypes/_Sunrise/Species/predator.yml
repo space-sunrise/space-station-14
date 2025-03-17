@@ -4,14 +4,16 @@
   name: species-name-predator
   roundStart: true
   prototype: MobPredator
-  sprites: MobPredatorSprites
+  bodyTypes:
+  - PredatorNormal
   markingLimits: MobPredatorMarkingLimits
   dollPrototype: MobPredatorDummy
   skinColoration: None
   sponsorOnly: true
 
-- type: speciesBaseSprites
-  id: MobPredatorSprites
+- type: bodyType
+  id: PredatorNormal
+  name: body-normal
   sprites:
     Head: MobPredatorHead
     Chest: MobPredatorTorso
