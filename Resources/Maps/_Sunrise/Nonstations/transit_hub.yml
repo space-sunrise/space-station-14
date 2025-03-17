@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/17/2025 21:21:48
+  entityCount: 2662
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -37,7 +48,7 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.059890747,-0.052645683
-      parent: 2
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -1779,61 +1790,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: NavMap
-  - uid: 2
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: OccluderTree
-    - type: LoadedMap
-  - uid: 1706
-    components:
-    - type: MetaData
-      name: grid
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.0859375,-0.05438137
-      parent: 2
-    - type: MapGrid
-      chunks:
-        -1,1:
-          ind: -1,1
-          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-          version: 6
-    - type: Broadphase
-    - type: Physics
-      bodyStatus: InAir
-      angularDamping: 0.05
-      linearDamping: 0.05
-      fixedRotation: False
-      bodyType: Dynamic
-    - type: Fixtures
-      fixtures: {}
-    - type: OccluderTree
-    - type: SpreaderGrid
-    - type: Shuttle
-    - type: GridPathfinding
-    - type: Gravity
-      gravityShakeSound: !type:SoundPathSpecifier
-        path: /Audio/Effects/alert.ogg
-    - type: DecalGrid
-      chunkCollection:
-        version: 2
-        nodes: []
-    - type: GridAtmosphere
-      version: 2
-      data:
-        chunkSize: 4
-    - type: GasTileOverlay
-    - type: IFF
-      flags: HideLabel
     - type: NavMap
 - proto: AcousticGuitarInstrument
   entities:
@@ -4739,13 +4695,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: CloningPod
-  entities:
-  - uid: 776
-    components:
-    - type: Transform
-      pos: 6.5,-9.5
-      parent: 1
 - proto: ClosetEmergencyFilledRandom
   entities:
   - uid: 246
@@ -5087,14 +5036,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,17.5
-      parent: 1
-- proto: ComputerCloningConsole
-  entities:
-  - uid: 982
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 9.5,-10.5
       parent: 1
 - proto: ComputerCrewMonitoring
   entities:
@@ -7273,31 +7214,37 @@ entities:
     - type: Transform
       pos: -23.5,1.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1257
     components:
     - type: Transform
       pos: -24.5,1.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1296
     components:
     - type: Transform
       pos: -25.5,1.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1298
     components:
     - type: Transform
       pos: -23.5,-0.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1300
     components:
     - type: Transform
       pos: -24.5,-0.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1301
     components:
     - type: Transform
       pos: -25.5,-0.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: Grille
   entities:
   - uid: 5
@@ -7967,7 +7914,7 @@ entities:
       pos: 14.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -42133.836
+      secondsUntilStateChange: -42162.477
       state: Opening
   - uid: 1061
     components:
@@ -7976,7 +7923,7 @@ entities:
       pos: 14.5,-9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -42133.066
+      secondsUntilStateChange: -42161.707
       state: Opening
 - proto: Jukebox
   entities:
@@ -7985,20 +7932,6 @@ entities:
     - type: Transform
       pos: -6.5,21.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        tape: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: KitchenElectricGrill
   entities:
   - uid: 1549
@@ -8013,6 +7946,7 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: KitchenSpike
   entities:
   - uid: 832
@@ -8438,13 +8372,6 @@ entities:
     - type: Transform
       pos: 5.5,20.5
       parent: 1
-- proto: MedicalScanner
-  entities:
-  - uid: 749
-    components:
-    - type: Transform
-      pos: 6.5,-11.5
-      parent: 1
 - proto: MedicalTechFab
   entities:
   - uid: 987
@@ -8509,6 +8436,7 @@ entities:
     - type: Transform
       pos: 11.459049,-9.489213
       parent: 1
+    - type: CMExplosionEffect
 - proto: OperatingTable
   entities:
   - uid: 992
@@ -8651,21 +8579,25 @@ entities:
     - type: Transform
       pos: 4.5,14.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 2687
     components:
     - type: Transform
       pos: -17.5,-3.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 2720
     components:
     - type: Transform
       pos: 16.5,-21.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 2724
     components:
     - type: Transform
       pos: -11.5,10.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: PosterContrabandClown
   entities:
   - uid: 620
@@ -8830,21 +8762,25 @@ entities:
     - type: Transform
       pos: 8.515874,11.541297
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1798
     components:
     - type: Transform
       pos: 13.375248,13.119421
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1799
     components:
     - type: Transform
       pos: 13.703373,12.931921
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1800
     components:
     - type: Transform
       pos: 13.343998,12.853796
       parent: 1
+    - type: CMExplosionEffect
 - proto: PowerCellRecharger
   entities:
   - uid: 354
@@ -12582,16 +12518,19 @@ entities:
     - type: Transform
       pos: -14.5,-5.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1478
     components:
     - type: Transform
       pos: 9.5,-21.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1662
     components:
     - type: Transform
       pos: 4.5,13.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: SurveillanceCameraMedical
   entities:
   - uid: 233
@@ -17080,11 +17019,13 @@ entities:
     - type: Transform
       pos: 4.5,15.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 2703
     components:
     - type: Transform
       pos: -16.5,-3.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: WindoorPlasma
   entities:
   - uid: 1309
