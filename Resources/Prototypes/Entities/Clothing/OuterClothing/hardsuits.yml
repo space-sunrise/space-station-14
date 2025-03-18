@@ -989,6 +989,8 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
+    staminaModifier: 0.0 #Sunrise-edit
+    ingoreKnockdown: true #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1026,6 +1028,7 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
+    staminaModifier: 0.3 #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
