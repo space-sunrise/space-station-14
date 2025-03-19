@@ -298,3 +298,14 @@
         Heat: 0.85
   - type: FlashImmunity
   - type: EyeProtection
+
+- type: entity
+  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitInstructor
+  name: instructor hardsuit helmet
+  description: Armored hardsuit helmet for security needs.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/security.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/security.rsi
