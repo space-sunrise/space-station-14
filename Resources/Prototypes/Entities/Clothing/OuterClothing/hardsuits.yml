@@ -23,7 +23,6 @@
         Slash: 0.9
         Piercing: 0.9
         Caustic: 0.9
-    staminaModifier: 0.8 #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.80
     sprintModifier: 0.80
@@ -639,7 +638,6 @@
         Radiation: 0.01
         Caustic: 0.5
     staminaModifier: 0.3 #Sunrise-edit
-    ingoreKnockdown: true #Sunrise-edit
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
@@ -699,7 +697,6 @@
         Radiation: 0.25
         Caustic: 0.4
     staminaModifier: 0.3 #Sunrise-edit
-    ingoreKnockdown: true #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -733,7 +730,6 @@
         Radiation: 0.2
         Caustic: 0.2
     staminaModifier: 0.0 #Sunrise-edit
-    ingoreKnockdown: true #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.65
@@ -767,7 +763,6 @@
         Radiation: 0.25
         Caustic: 0.75
     staminaModifier: 0.3 #Sunrise-edit
-    ingoreKnockdown: true #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -990,7 +985,6 @@
         Radiation: 0.1
         Caustic: 0.1
     staminaModifier: 0.0 #Sunrise-edit
-    ingoreKnockdown: true #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
