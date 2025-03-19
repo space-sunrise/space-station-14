@@ -223,7 +223,7 @@
   - type: StaminaDamageOnCollide
     damage: 33
   - type: StunOnCollide
-    knockdownAmount: 0.5 #Sunrise-Edit
+    knockdownAmount: 0.1 #Sunrise-Edit
 
 - type: entity
   name : disabler bolt
