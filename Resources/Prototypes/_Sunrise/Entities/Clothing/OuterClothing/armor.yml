@@ -101,6 +101,8 @@
         Piercing: 0.45
         Heat: 0.50
         Caustic: 0.7
+    staminaModifier: 0.5
+    ingoreKnockdown: true 
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: PressureProtection
