@@ -613,6 +613,10 @@
     - state: mag-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  # Sunrise start
+  - type: Gun
+    fireRate: 2
+  # Sunrise end
   - type: Item
     heldPrefix: taser4
   - type: Clothing
