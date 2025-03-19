@@ -208,7 +208,7 @@
   loadouts:
   #- SunriseWeaponPistolG22
   - SunriseWeaponEnergyGun
-
+  - SunriseWeaponTaser
 # Medical
 
 - type: loadoutGroup
