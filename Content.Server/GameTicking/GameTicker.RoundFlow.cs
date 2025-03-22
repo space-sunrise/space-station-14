@@ -6,7 +6,7 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
-using Content.Server.Shuttles.Components;
+using Content.Server.StatsBoard;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -20,13 +20,10 @@ using Robust.Shared.Audio;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.StatsBoard;
-using Content.Shared._Sunrise.StatsBoard;
 
 namespace Content.Server.GameTicking
 {
@@ -435,8 +432,10 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
+            // Sunrise-start
             var postInitStartingEvent = new RoundStartingPostInitEvent();
             RaiseLocalEvent(postInitStartingEvent);
+            // Sunrise-end
 
             RoundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
