@@ -948,7 +948,7 @@
     - LeavesCannabis
   mutationPrototypes:
     - rainbowCannabis
-    - CannabisVita #Sunrise-add 
+    - CannabisVita #Sunrise-add
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 8
@@ -1633,6 +1633,7 @@
     - FoodWatermelon
   mutationPrototypes:
     - holymelon
+    - Barrelmelon #Sunrise-add
   lifespan: 55
   maturation: 12
   production: 3

@@ -126,7 +126,7 @@
   id: plaststeelcap
   name: plaststeelcap
   noun: seeds-noun-spores
-  displayName: пластошляпник
+  displayName: plaststeelcap
   plantRsi: _Sunrise/Objects/Specific/Hydroponics/plaststeelcap.rsi
   packetPrototype: PlastSteelcapSeeds
   productPrototypes:
@@ -147,7 +147,7 @@
   id: glasscap
   name: glasscap
   noun: seeds-noun-spores
-  displayName: стеклошляпник
+  displayName: glasscap
   plantRsi: _Sunrise/Objects/Specific/Hydroponics/glasscap.rsi
   packetPrototype: GlasscapSeeds
   productPrototypes:
@@ -168,7 +168,7 @@
   id: CannabisVita
   name: Cannabis Vita
   noun: seeds-noun-seeds
-  displayName: конопля жизни
+  displayName: cannabis vita
   plantRsi: _Sunrise/Objects/Specific/Hydroponics/cannabis_vita.rsi
   color: white
   packetPrototype: CannabisVitaSeeds
@@ -192,3 +192,30 @@
       Min: 1
       Max: 10
       PotencyDivisor: 10
+
+- type: seed
+  id: Barrelmelon
+  name: Barrelmelon
+  noun: seeds-noun-seeds
+  displayName: Barrelmelon
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
+  packetPrototype: BarrelmelonSeeds
+  productPrototypes:
+  - FoodBarrelmelon
+  mutationPrototypes:
+  - holymelon
+  lifespan: 55
+  maturation: 12
+  production: 3
+  yield: 1
+  potency: 1
+  idealLight: 8
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Moonshine:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 20

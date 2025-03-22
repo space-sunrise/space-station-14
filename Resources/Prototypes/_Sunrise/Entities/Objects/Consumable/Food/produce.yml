@@ -172,3 +172,91 @@
   - type: Log
     spawnedPrototype: SheetPlasteel1
     spawnCount: 1
+
+- type: entity
+  name: barrelmelon
+  parent: FoodProduceBase
+  id: FoodBarrelmelon
+  description: Round brown object that you can slice and eat.
+  components:
+  - type: Item
+    size: Small
+  - type: FlavorProfile
+    flavors:
+    - barrelmelon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Moonshine
+          Quantity: 15
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
+  - type: Produce
+    seedId: barrelmelon
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Moonshine
+        Quantity: 20
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SliceableFood
+    count: 5
+    slice: FoodBarrelmelonSlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: barrelmelon slice
+  parent: ProduceSliceBase
+  id: FoodBarrelmelonSlice
+  description: Juicy green and brown slice.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+    - barrelmelon
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Moonshine
+          Quantity: 3
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Moonshine
+        Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
+    - Slice
