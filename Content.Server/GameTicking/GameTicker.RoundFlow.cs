@@ -435,6 +435,9 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
+            var postInitStartingEvent = new RoundStartingPostInitEvent();
+            RaiseLocalEvent(postInitStartingEvent);
+
             RoundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
             ReqWindowAttentionAll();

@@ -21,10 +21,10 @@ namespace Content.Server._Sunrise.StationGoal
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+            SubscribeLocalEvent<RoundStartingPostInitEvent>(OnRoundStarting);
         }
 
-        private void OnRoundStarting(RoundStartingEvent ev)
+        private void OnRoundStarting(RoundStartingPostInitEvent ev)
         {
             var playerCount = _playerManager.PlayerCount;
 
