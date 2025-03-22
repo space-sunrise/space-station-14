@@ -11,6 +11,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
@@ -40,6 +41,7 @@ public abstract class SharedJumpSystem : EntitySystem
     [Dependency] private readonly ClimbSystem _climbSystem = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
@@ -49,6 +51,8 @@ public abstract class SharedJumpSystem : EntitySystem
     [ValidatePrototypeId<EmotePrototype>]
     private const string EmoteFallOnNeckProto = "FallOnNeck";
     private const string JumpSound = "/Audio/_Sunrise/jump_mario.ogg";
+    [ValidatePrototypeId<TagPrototype>]
+    private const string CantJumpTag = "CantJump";
 
     public bool Enable;
     private static float _deadChance;
@@ -146,7 +150,8 @@ public abstract class SharedJumpSystem : EntitySystem
             _standingStateSystem.IsDown(uid) ||
             !_mobState.IsAlive(uid) ||
             _climbSystem.IsClimbing(uid) ||
-            !Enable)
+            !Enable ||
+            _tag.HasTag(uid, CantJumpTag))
             return;
 
         Jump(uid);
