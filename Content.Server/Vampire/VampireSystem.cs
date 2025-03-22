@@ -3,43 +3,33 @@ using Content.Server.Atmos.Rotting;
 using Content.Server.Beam;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Interaction;
+using Content.Server.Mind;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Storage.EntitySystems;
-using Content.Server.Mind;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
-using Content.Shared.Buckle;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Construction.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Prayer;
 using Content.Shared.StatusEffect;
+using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
-using Robust.Shared.GameStates;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using System.Linq;
 
 namespace Content.Server.Vampire;
 
@@ -112,7 +102,12 @@ public sealed partial class VampireSystem : EntitySystem
             {
                 stealth.NextStealthTick = 1;
                 if (!SubtractBloodEssence((uid, vampire), stealth.Upkeep))
+                {
                     RemCompDeferred<VampireSealthComponent>(uid);
+                    RemComp<StealthOnMoveComponent>(uid);
+                    RemComp<StealthComponent>(uid);
+                    _popup.PopupEntity(Loc.GetString("vampire-cloak-disable"), uid, uid);
+                }
             }
             stealth.NextStealthTick -= frameTime;
         }

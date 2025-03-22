@@ -47,10 +47,7 @@
   - type: EmitSoundOnLand
     sound:
       collection: SnipersDrop
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+  - type: ZoomableGun
   # Sunrise end
 
 - type: entity

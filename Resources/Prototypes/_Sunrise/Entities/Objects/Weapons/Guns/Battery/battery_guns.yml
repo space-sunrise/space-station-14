@@ -862,13 +862,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+  - type: ZoomableGun
 
 - type: entity
   name: heavy pulse carbine
@@ -905,13 +899,7 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+  - type: ZoomableGun
 
 - type: entity
   name: S-13 «Black mamba»
@@ -958,10 +946,7 @@
     maxCharge: 3000
     startingCharge: 3000
   - type: EmpImmune
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+  - type: ZoomableGun
 
 - type: entity
   name: SAM-300
