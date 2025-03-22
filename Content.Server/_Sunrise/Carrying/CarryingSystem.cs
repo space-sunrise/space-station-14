@@ -4,15 +4,14 @@ using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared._Sunrise.Carrying;
-using Content.Shared.IdentityManagement;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Carrying;
 using Content.Shared.Climbing.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
-using Content.Shared.Popups;
 using Content.Shared.Hands.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
@@ -23,13 +22,14 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
-using Robust.Shared.Player;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.Carrying
 {
@@ -235,9 +235,12 @@ namespace Content.Server._Sunrise.Carrying
             if (mod != 0)
                 length /= mod;
 
+            if (length < TimeSpan.FromSeconds(3))
+                length = TimeSpan.FromSeconds(3);
+
             if (length >= TimeSpan.FromSeconds(5))
             {
-                _popupSystem.PopupEntity(Loc.GetString("carry-too-heavy"), carried, carrier, Shared.Popups.PopupType.SmallCaution);
+                _popupSystem.PopupEntity(Loc.GetString("carry-too-heavy"), carried, carrier, PopupType.SmallCaution);
                 return;
             }
 
