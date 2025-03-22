@@ -1,11 +1,13 @@
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Climbing.Systems;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
@@ -18,7 +20,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Content.Shared.Movement.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Jump;
@@ -38,6 +39,7 @@ public abstract class SharedJumpSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ClimbSystem _climbSystem = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
+    [Dependency] private readonly StaminaSystem _stamina = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
@@ -164,8 +166,7 @@ public abstract class SharedJumpSystem : EntitySystem
             !_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
             return;
 
-        // SUNRISE-TODO: Прыжки тратят стамину
-        //_staminaSystem.TakeStaminaDamage(uid, 10);
+        _stamina.TakeStaminaDamage(ent.Owner, 15);
 
         if (_net.IsServer)
             _audioSystem.PlayEntity(JumpSound, Filter.Pvs(ent.Owner).RemovePlayers(_ignoredRecipients), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
