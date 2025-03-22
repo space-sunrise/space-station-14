@@ -135,7 +135,7 @@ public sealed partial class CCVars
     ///     in-game.
     /// </summary>
     public static readonly CVarDef<float> AtmosSpeedup =
-        CVarDef.Create("atmos.speedup", 8f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.speedup", 4f, CVar.SERVERONLY); // Sunrise-edit
 
     /// <summary>
     ///     Like atmos.speedup, but only for gas and reaction heat values. 64x means
