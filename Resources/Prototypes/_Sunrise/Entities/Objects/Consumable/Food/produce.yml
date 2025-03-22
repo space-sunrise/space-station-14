@@ -1,7 +1,7 @@
 - type: entity
   name: explosive banana
   description: explosive banana
-  parent: FoodProduceBase
+  parent: [FoodProduceBase, ItemHeftyBase]
   id: ExplosiveBanana
   components:
   - type: Damageable
