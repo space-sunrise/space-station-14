@@ -347,3 +347,6 @@
 
 - type: Tag
   id: CantJump
+
+- type: Tag
+  id: Table
