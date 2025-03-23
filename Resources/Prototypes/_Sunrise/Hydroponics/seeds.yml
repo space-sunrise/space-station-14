@@ -177,7 +177,7 @@
   harvestRepeat: Repeat
   lifespan: 40
   maturation: 8
-  production: 12
+  production: 5
   yield: 2
   potency: 20
   growthStages: 3
@@ -202,8 +202,6 @@
   packetPrototype: BarrelmelonSeeds
   productPrototypes:
   - FoodBarrelmelon
-  mutationPrototypes:
-  - holymelon
   lifespan: 55
   maturation: 12
   production: 3
@@ -219,3 +217,31 @@
       Min: 1
       Max: 15
       PotencyDivisor: 20
+
+- type: seed
+  id: Lanternfruit
+  name: Lantern fruit
+  noun: seeds-noun-seeds
+  displayName: lantern fruit
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/lanternfruit.rsi
+  packetPrototype: CannabisVitaSeeds
+  productPrototypes:
+  - FoodLanternfruit
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 8
+  production: 3
+  yield: 1
+  potency: 20
+  growthStages: 3
+  idealLight: 7
+  idealHeat: 298
+  chemicals:
+    PulverizedLantern:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 19
+    Sulfur:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
