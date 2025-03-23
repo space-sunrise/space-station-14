@@ -1,2 +1,52 @@
-я набегатор, никому не говорите пожалуйста
-ГОООООООООООООООООООООЛ
+## CBURN Leader
+- type: entity
+  id: RandomHumanoidSpawnerCBURNLeaderOmega
+  name: CBURN Leader Omega
+  suffix: CBURNRole, Omega
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: cburn
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitaryLeader
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: CBURNGearOmegaLeader
+    - type: ZombieImmune
+    - type: AutoImplant
+      implants:
+      - TrackingImplantErt
+      - MindShieldImplant
+
+- type: randomHumanoidSettings
+  id: CBURNGearOmegaLeader
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+    - type: GhostRole
+      name: CBURN Leader Gear
+      description: oeeeg
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: CBURNLeader
+    - type: Loadout
+      prototypes: [ CBURNGearOmegaLeader ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitaryLeader
+      - NamesLastMilitary

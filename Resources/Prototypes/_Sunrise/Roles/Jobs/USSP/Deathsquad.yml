@@ -1,0 +1,93 @@
+#------------------------------------
+# ID/КПК
+#------------------------------------
+
+- type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: DeathsquadPDAOper
+  name: 'КПК Центком'
+  suffix: DeathsquadPDAOper
+  description: A light green symbol of walking bureaucracy.
+  components:
+  - type: Pda
+    id: CentcomIDCardDeathsquadOper
+
+- type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: DeathsquadPDALead
+  name: 'КПК Центком'
+  suffix: DeathsquadPDALead
+  description: A light green symbol of walking bureaucracy.
+  components:
+  - type: Pda
+    id: CentcomIDCardDeathsquadLead
+
+- type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: DeathsquadPDAOSO
+  name: 'КПК Центком'
+  description: A light green symbol of walking bureaucracy.
+  components:
+  - type: Pda
+    id: CentcomIDCardDeathsquadOSO
+
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardDeathsquadOper
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: CentCom Agent
+    fullName: Death Squad Operative
+
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardDeathsquadLead
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: CentCom Agent
+    fullName: Death Squad Commander
+
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardDeathsquadOSO
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: Special Operations Officer
+
+#------------------------------------
+# Прочее
+#------------------------------------
+
+- type: dataset
+  id: NamesLordSyndiOpsCom
+  values:
+  - Командир  
+
+- type: dataset
+  id: NamesLordSyndiOps
+  values:
+  - Оперативник

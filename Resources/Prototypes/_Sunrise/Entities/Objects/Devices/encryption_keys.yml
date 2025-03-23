@@ -59,3 +59,19 @@
     layers:
     - state: crypt_red
     - state: synd_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyDeathsquad
+  name: encryption key epsilon
+  description: A time-worn encryption key. It would be better if you didn t know what they were talking about.
+  suffix: DeathSquad
+  components:
+  - type: EncryptionKey
+    channels:
+    - epsilon
+    defaultChannel: epsilon
+  - type: Sprite
+    layers:
+    - state: crypt_rusted
+    - state: com_label

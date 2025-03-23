@@ -28,3 +28,11 @@
   frequency: 1991
   color: "#890000"
   longRange: false
+
+- type: radioChannel
+  id: epsilon
+  name: Epsilon
+  keycode: 'э'
+  frequency: 8451
+  color: "#9400D3"
+  longRange: true
