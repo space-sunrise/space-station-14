@@ -1,0 +1,215 @@
+#------------------------------------
+# Эскадрон Смерти [Танго]
+#------------------------------------
+
+- type: entity
+  name: Operative Death squad
+  parent: MobHuman
+  suffix: DS, Tango
+  id: MobHumanDeathsquadTango
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Operative Death squad
+    description: Your standard task is to eliminate all living intelligent beings on the station, but not always. You are an elite fighter of the NT special squad who unquestioningly carries out any, even the dirtiest, order.
+    rules: You are a Death Squad operative. Before you begin your operations, listen to the orders of your squad leader or OSO. Follow your SRP.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [DeathSquadTangoGear]
+  - type: Stamina
+    critThreshold: 350
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOps
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - ScramImplant
+    - MindShieldImplant
+    - FreedomImplant
+    - MicroBombImplant
+  - type: Tool
+    speed: 2
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  name: Leader Death squad
+  parent: MobHuman
+  suffix: DS, Tango
+  id: MobHumanDeathsquadLeaderTango
+  components:
+  - type: Loadout
+    prototypes: [DeathSquadLeaderTangoGear]
+  - type: Stamina
+    critThreshold: 400
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOpsCom
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - ScramImplant
+    - MindShieldImplant
+    - FreedomImplant
+    - MicroBombImplant
+  - type: Tool
+    speed: 3
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+#------------------------------------
+# Эскадрон Смерти [Фокстрот]
+#------------------------------------
+
+- type: entity
+  name: Operative Death Squad
+  parent: MobHuman
+  suffix: DS, Foxtrot
+  id: MobHumanDeathsquadFoxtrot
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Operative Death Squad
+    description: Your task is to save the asset at any cost. You are an elite fighter of the NT special forces unit who unquestioningly carries out any order, even the dirtiest one.
+    rules: You are a Death Squad operative. Before you begin your operations, listen to the orders of your squad leader or OSO. Follow your SRP.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [DeathSquadFoxtrotGear]
+  - type: Stamina
+    critThreshold: 350
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOps
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - ScramImplant
+    - MindShieldImplant
+    - FreedomImplant
+    - MicroBombImplant
+  - type: Tool
+    speed: 2
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  name: Leader Death Squad
+  parent: MobHuman
+  suffix: DS, Foxtrot
+  id: MobHumanDeathsquadLeaderFoxtrot
+  components:
+  - type: Loadout
+    prototypes: [DeathSquadLeaderFoxtrotGear]
+  - type: Stamina
+    critThreshold: 400
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOpsCom
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - ScramImplant
+    - MindShieldImplant
+    - FreedomImplant
+    - MicroBombImplant
+  - type: Tool
+    speed: 3
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg

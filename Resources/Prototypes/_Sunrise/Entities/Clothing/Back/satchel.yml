@@ -55,3 +55,24 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Satchels/hos.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelLeather
+  id: ClothingBackpackOSOFilled
+  suffix: Filled, OSO
+  name: leather bag
+  description: A roomy backpack with many pockets. The backpack smells of blood and sweat of employees who died for the good of NT!
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponPulseRifle
+      - id: CigarGoldCase
+      - id: FlippoEngravedLighter
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: CombatMedipen
+      - id: TrackingImplanterERT
+      - id: ScramImplant
+      - id: MindShieldImplant
+      - id: TrackingImplant
+      - id: Telebaton
+
