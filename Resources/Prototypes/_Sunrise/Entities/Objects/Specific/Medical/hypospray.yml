@@ -77,3 +77,58 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: Hypospray
+
+- type: entity
+  name: medipen ambuzol plus
+  parent: ChemicalMedipen
+  id: MedipenAmbuzolPlus
+  description: An effective way to stabilize the zombie virus in patients blood. Just one application, and the zombie virus will no longer be a problem for you!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: AmbuzolPlus
+          Quantity: 13
+        - ReagentId: Omnizine
+          Quantity: 2
+  - type: Tag
+    tags: []
+
+- type: entity
+  name: medipen ambuzol 
+  parent: ChemicalMedipen
+  id: MedipenAmbuzol
+  description: An effective way to stabilize the zombie virus in the blood of patients. Please note that this injection does not provide immunity to the zombie virus!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Ambuzol
+          Quantity: 10
+        - ReagentId: dylovene
+          Quantity: 5
+  - type: Tag
+    tags: []
+

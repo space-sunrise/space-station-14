@@ -367,3 +367,288 @@
     - BoxCleanerGrenades
     - BoxCleanerGrenades
     - CrowbarRed
+
+#CBURN
+# Leader
+
+- type: startingGear
+  id: CBURNGearOmegaLeader
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    back: ClothingBackpackDuffelCBURN
+    head: ClothingHeadHatBeretMerc
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesNVDSec
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURNLeader
+    shoes: ClothingShoesBootsMagAdv
+    id: CBURNPDA
+    pocket1: DoubleEmergencyOxygenTankFilled 
+    pocket2: WeaponEarthGovLaserPistol
+    belt: ClothingBeltBandolier
+  inhand:
+  - WeaponEarthGovLaserSniper
+  - MedkitCombatFilled  
+  storage:
+    back:
+    - WeaponShotgunPaladin12 
+    - BoxShotgunIncendiary
+    - BoxShotgunIncendiary  
+    - BoxShotgunFlare  
+    - ClusterBangFull 
+    - GrenadeIncendiary 
+    - MedipenAmbuzol
+    - MedipenAmbuzol
+    - CrowbarOrange
+    - DoorRemoteOmni
+    - MedipenAmbuzolPlus
+
+# Solider
+
+- type: startingGear
+  id: CBURNGearOmega
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    back: ClothingBackpackDuffelCBURN
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesNVDSec
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURN
+    shoes: ClothingShoesBootsMagCombat
+    id: CBURNPDA
+    pocket1: DoubleEmergencyOxygenTankFilled 
+    pocket2: WeaponEarthGovLaserPistol
+    belt: ClothingBeltBandolier
+  storage:
+    back:
+    - WeaponShotgunPaladin12 
+    - BoxShotgunIncendiary
+    - BoxShotgunIncendiary  
+    - BoxShotgunFlare  
+    - ClusterBangFull 
+    - GrenadeIncendiary 
+    - MedipenAmbuzol
+    - MedipenAmbuzol
+    - MedipenAmbuzolPlus
+    - MedkitCombatFilled  
+
+#Death Squad
+# Leader
+
+- type: startingGear
+  id: DeathSquadLeaderFoxtrotGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquad
+    back: ClothingBackpackDeathSquad
+    shoes: ClothingShoesBootsMagAdv
+    eyes: ClothingEyesGlassesThermalSec
+    head: ClothingHeadHatERTLeaderBeret
+    mask: ClothingMaskGasDeathSquad
+    neck: ClothingNeckMantleERTLeader
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    id: DeathsquadPDALead
+    pocket1: EnergySword
+    pocket2: DoubleEmergencyOxygenTankFilled
+    ears: ClothingHeadsetAltDeathsquad
+    belt: ClothingBeltMilitaryWebbingMedFilled
+    gloves: ClothingHandsGlovesCombat
+  inhand:
+  - WeaponPulseRifle
+  storage:
+    back:
+    - ShotGunIncendiaryKit
+    - DefibrillatorCompact
+    - WeaponRevolverMatebaNew
+    - BodyBagFolded
+    - EmergencyMedipen
+    - ToolDebug
+    - WelderExperimental
+    - Hypospray
+    - HyposprayERT
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - MagazineBoxMagnumAP
+    - Stimpack
+    - Stimpack
+    - WeaponShotgunBulldog
+    - HandheldCrewMonitor
+    - AntiPoisonMedipen
+    - RadAutoInjector
+    - DoorRemoteAll
+    - EnergyShield
+
+- type: startingGear
+  id: DeathSquadLeaderTangoGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquad
+    back: ClothingBackpackDeathSquad
+    shoes: ClothingShoesBootsMagAdv
+    eyes: ClothingEyesGlassesThermalSec
+    head: ClothingHeadHatERTLeaderBeret
+    mask: ClothingMaskGasDeathSquad
+    neck: ClothingNeckMantleERTLeader
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    id: DeathsquadPDALead
+    pocket1: EnergySword
+    pocket2: DoubleEmergencyOxygenTankFilled
+    ears: ClothingHeadsetAltDeathsquad
+    belt: ClothingBeltMilitaryWebbingMedFilled
+    gloves: ClothingHandsGlovesCombat
+  inhand:
+  - WeaponPulseRifle
+  storage:
+    back:
+    - ShotGunIncendiaryKit
+    - DefibrillatorCompact
+    - WeaponRevolverMatebaNew
+    - BodyBagFolded
+    - EmergencyMedipen
+    - ToolDebug
+    - WelderExperimental
+    - Hypospray
+    - HyposprayERT
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - MagazineBoxMagnumAP
+    - Stimpack
+    - Stimpack
+    - WeaponShotgunBulldog
+    - HandheldCrewMonitor
+    - AntiPoisonMedipen
+    - RadAutoInjector
+    - DoorRemoteAll
+    - EnergyShield
+
+# Operative
+
+- type: startingGear
+  id: DeathSquadTangoGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquad
+    back: ClothingBackpackDeathSquad
+    shoes: ClothingShoesBootsMagAdv
+    eyes: ClothingEyesGlassesThermalSec
+    mask: ClothingMaskGasDeathSquad
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    id: DeathsquadPDAOper
+    pocket1: EnergySword
+    pocket2: DoubleEmergencyOxygenTankFilled
+    ears: ClothingHeadsetAltDeathsquad
+    belt: ClothingBeltMilitaryWebbingMedFilled
+    gloves: ClothingHandsGlovesCombat
+  inhand:
+  - WeaponPulseRifle
+  storage:
+    back:
+    - ShotGunIncendiaryKit
+    - DefibrillatorCompact
+    - WeaponRevolverMatebaNew
+    - BodyBagFolded
+    - EmergencyMedipen
+    - ToolDebug
+    - WelderExperimental
+    - Hypospray
+    - HyposprayERT
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - MagazineBoxMagnumAP
+    - Stimpack
+    - Stimpack
+    - WeaponShotgunBulldog
+    - HandheldCrewMonitor
+    - AntiPoisonMedipen
+    - RadAutoInjector
+
+- type: startingGear
+  id: DeathSquadFoxtrotGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquad
+    back: ClothingBackpackDeathSquad
+    shoes: ClothingShoesBootsMagAdv
+    eyes: ClothingEyesGlassesThermalSec
+    head: GeraniumCrown
+    mask: ClothingMaskGasDeathSquad
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    id: DeathsquadPDAOper
+    pocket1: EnergySword
+    pocket2: DoubleEmergencyOxygenTankFilled
+    ears: ClothingHeadsetAltDeathsquad
+    belt: ClothingBeltMilitaryWebbingMedFilled
+    gloves: ClothingHandsGlovesCombat
+  inhand:
+  - WeaponPulseRifle
+  storage:
+    back:
+    - ShotGunIncendiaryKit
+    - DefibrillatorCompact
+    - WeaponRevolverMatebaNew
+    - BodyBagFolded
+    - EmergencyMedipen
+    - ToolDebug
+    - WelderExperimental
+    - Hypospray
+    - HyposprayERT
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - MagazineBoxMagnumAP
+    - Stimpack
+    - Stimpack
+    - WeaponShotgunBulldog
+    - HandheldCrewMonitor
+    - AntiPoisonMedipen
+    - RadAutoInjector
+
+#Other
+# OSO
+
+- type: startingGear
+  id: OSOGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    back: ClothingBackpackOSOFilled
+    head: ClothingHeadCapCentcomBlack
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetAltDeathsquad
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckCloakCentcomBlack
+    shoes: ClothingShoesCentcomBlack
+    id: CentcomIDCardDeathsquadOSO
+    pocket1: DoorRemoteAll
+    pocket2: WeaponRevolverMatebaNew
+    belt: ClothingBeltHolsterOSOFilled
+
+# BS
+
+- type: startingGear
+  id: BlueShieldDSOGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+    back: ClothingBackpackSatchelBlueShield
+    shoes: ClothingShoesBootsBlueShieldFilled
+    eyes: ClothingEyesGlassesBlueShield
+    head: ClothingHeadHatBeretBlueShield
+    mask: ClothingMaskGasSecurity
+    outerClothing: ClothingOuterArmorBlueShield
+    id: BlueShieldPDA
+    pocket1: BaseUplinkNTERTBlueShield
+    pocket2: DoubleEmergencyOxygenTankFilled
+    ears: ClothingHeadsetCentCom
+    belt: ClothingBeltBlueShieldWebbingFilled
+    gloves: ClothingHandsGlovesCombat
+  inhand:
+  - WeaponDisablerSMG
+  storage:
+    back:
+    - HandheldCrewMonitor
+    - DefibrillatorCompact
+    - FoodSnackNutribrick
+    - DrinkWaterBottleFull
+    - PhoneInstrument
+    - EmergencyMedipen
+    - EmergencyMedipen
+    - EmergencyRollerBedSpawnFolded
+    - CrowbarRed
+    - TelescopicShield
