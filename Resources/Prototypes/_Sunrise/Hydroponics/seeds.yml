@@ -224,7 +224,7 @@
   noun: seeds-noun-seeds
   displayName: lantern fruit
   plantRsi: _Sunrise/Objects/Specific/Hydroponics/lanternfruit.rsi
-  packetPrototype: CannabisVitaSeeds
+  packetPrototype: LanternfruitSeeds
   productPrototypes:
   - FoodLanternfruit
   harvestRepeat: Repeat
@@ -244,4 +244,32 @@
     Sulfur:
       Min: 1
       Max: 10
+      PotencyDivisor: 10
+
+- type: seed
+  id: Redrose
+  name: red rose
+  noun: seeds-noun-seeds
+  displayName: red rose
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/redrose.rsi
+  packetPrototype: RedroseSeeds
+  productPrototypes:
+  - FoodRedrose
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 8
+  production: 3
+  yield: 2
+  potency: 10
+  growthStages: 3
+  idealLight: 7
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 2
       PotencyDivisor: 10
