@@ -393,12 +393,9 @@
 
 - type: entity
   id: MagazineScarH
-  name: Scar-H magazine
+  name: scar-h magazine
   parent: BaseItem
   components:
-  - type: Tag
-    tags:
-      - MagazineAK
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:

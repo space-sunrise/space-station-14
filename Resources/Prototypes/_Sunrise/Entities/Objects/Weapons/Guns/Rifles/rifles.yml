@@ -616,7 +616,7 @@
     delay: 0.5
 
 - type: entity
-  name: SCAR-H
+  name: scar-h
   parent: BaseWeaponRifle
   id: WeaponRifleScarH
   components:
@@ -653,9 +653,6 @@
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 3
-        whitelist:
-          tags:
-          - MagazineAK
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
