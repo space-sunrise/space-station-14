@@ -344,3 +344,6 @@
 
 - type: Tag
   id: Geranium
+
+- type: Tag
+  id: WhitelistChameleonSuit

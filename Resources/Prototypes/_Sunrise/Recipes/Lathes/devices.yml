@@ -37,3 +37,8 @@
     Steel: 1200
     Plasma: 750
     Glass: 500
+
+- type: latheRecipe
+  parent: ClothingBackpackHolding
+  id: PlantBagOfHolding
+  result: PlantBagOfHolding

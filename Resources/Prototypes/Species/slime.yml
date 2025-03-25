@@ -3,21 +3,24 @@
   name: species-name-slime
   roundStart: true
   prototype: MobSlimePerson
-  sprites: MobSlimeSprites
+  bodyTypes:
+  - SlimeNormal
+#  - SlimeSlim
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
   skinColoration: Hues
 
-- type: speciesBaseSprites
-  id: MobSlimeSprites
+- type: bodyType
+  id: SlimeNormal
+  name: body-normal
   sprites:
     Head: MobSlimeHead
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
     Chest: MobSlimeTorso
-    HeadTop: MobHumanoidAnyMarking # Sunrise-Sponsors
-    Tail: MobHumanoidAnyMarking # Sunrise-Sponsors
+    HeadTop: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobSlimeLArm
     RArm: MobSlimeRArm
@@ -28,6 +31,28 @@
     LFoot: MobSlimeLFoot
     RFoot: MobSlimeRFoot
 
+- type: bodyType
+  id: SlimeSlim
+  name: body-slim
+  sexRestrictions:
+  - Male
+  sprites:
+    Head: MobSlimeSlimHead
+    Hair: MobSlimeMarkingFollowSkin
+    FacialHair: MobSlimeMarkingFollowSkin
+    Chest: MobSlimeSlimTorso
+    HeadTop: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobHumanoidEyes
+    LArm: MobSlimeSlimLArm
+    RArm: MobSlimeSlimRArm
+    LHand: MobSlimeSlimLHand
+    RHand: MobSlimeSlimRHand
+    LLeg: MobSlimeSlimLLeg
+    RLeg: MobSlimeSlimRLeg
+    LFoot: MobSlimeSlimLFoot
+    RFoot: MobSlimeSlimRFoot
+
 - type: markingPoints
   id: MobSlimeMarkingLimits
   points:
@@ -37,11 +62,11 @@
     FacialHair:
       points: 1
       required: false
-    Tail: # :despair:
-      points: 1 # Sunrise-Sponsors
+    Tail:
+      points: 1
       required: false
-    HeadTop: # :skull:
-      points: 1 # Sunrise-Sponsors
+    HeadTop:
+      points: 1
       required: false
     Chest:
       points: 1
@@ -141,3 +166,75 @@
   baseSprite:
     sprite: Mobs/Species/Slime/parts.rsi
     state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimHead
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: head_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimHeadFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: head_slim_f
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimTorso
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: torso_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimTorsoFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: torso_slim_f
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimLLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: l_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimLArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: l_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimLHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: l_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimLFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: l_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimRLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: r_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimRArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: r_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimRHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: r_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobSlimeSlimRFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/slime.rsi
+    state: r_foot_slim

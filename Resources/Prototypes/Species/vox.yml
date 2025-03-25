@@ -3,7 +3,8 @@
   name: species-name-vox
   roundStart: true
   prototype: MobVox
-  sprites: MobVoxSprites
+  bodyTypes:
+  - VoxNormal
   markingLimits: MobVoxMarkingLimits
   dollPrototype: MobVoxDummy
   skinColoration: VoxFeathers
@@ -14,8 +15,9 @@
   sexes:
   - Unsexed
 
-- type: speciesBaseSprites
-  id: MobVoxSprites
+- type: bodyType
+  id: VoxNormal
+  name: body-normal
   sprites:
     Head: MobVoxHead
     Snout: MobHumanoidAnyMarking

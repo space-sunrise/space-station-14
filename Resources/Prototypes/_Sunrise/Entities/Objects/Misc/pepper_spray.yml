@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseItem
   id: BasePepperSpray
   name: pepper spray
@@ -15,6 +15,8 @@
         - ReagentId: TearGas
           Quantity: 40
   - type: DrainableSolution
+    solution: spray
+  - type: RefillableSolution
     solution: spray
   - type: UseDelay
   - type: Spray

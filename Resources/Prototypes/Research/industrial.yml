@@ -243,6 +243,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - PlantBagOfHolding  # Sunrise-edit
 
 - type: technology
   id: PortableFission

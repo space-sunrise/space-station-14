@@ -15,6 +15,7 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
+  - type: NoSlip
 
 - type: entity
   id: PlayerBorgEngineerBattery
@@ -69,6 +70,7 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
+  - type: NoSlip
 
 - type: entity
   id: PlayerBorgServiceBattery
@@ -186,6 +188,8 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSyndicate
+  - type: NoSlip
+  
 
 - type: entity
   id: PlayerBorgSyndicateReaperBattery
@@ -221,6 +225,7 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSyndicate
+  - type: NoSlip
 
 - type: entity
   id: PlayerBorgSyndicateAssaultBattery

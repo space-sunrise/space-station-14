@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.Decals;
@@ -42,6 +43,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     [ValidatePrototypeId<SpeciesPrototype>]
     public const string DefaultSpecies = "Human";
+
+    [ValidatePrototypeId<BodyTypePrototype>]
+    public const string DefaultBodyType = "HumanNormal"; // Sunrise
+
     // Sunrise-TTS-Start
     public const string DefaultVoice = "Voljin";
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
@@ -59,6 +64,25 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<HumanoidAppearanceComponent, ExaminedEvent>(OnExamined);
+    }
+
+    public void SetBodyType(
+        EntityUid uid,
+        ProtoId<BodyTypePrototype> bodyType,
+        bool sync = true,
+        HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!Resolve(uid, ref humanoid))
+            return;
+
+        var speciesPrototype = _proto.Index<SpeciesPrototype>(humanoid.Species);
+        if (speciesPrototype.BodyTypes.Contains(bodyType))
+            humanoid.BodyType = bodyType;
+        else
+            humanoid.BodyType = speciesPrototype.BodyTypes.First();
+
+        if (sync)
+            Dirty(uid, humanoid);
     }
 
     public DataNode ToDataNode(HumanoidCharacterProfile profile)
@@ -167,6 +191,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
         SetTTSVoice(target, sourceHumanoid.Voice, targetHumanoid); // Sunrise-TTS
+        targetHumanoid.BodyType = sourceHumanoid.BodyType;
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
         if (TryComp<GrammarComponent>(target, out var grammar))
@@ -422,6 +447,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         EnsureDefaultMarkings(uid, humanoid);
         SetTTSVoice(uid, profile.Voice, humanoid); // Sunrise-TTS
+        SetBodyType(uid, profile.BodyType, false, humanoid);
 
         humanoid.Gender = profile.Gender;
         if (TryComp<GrammarComponent>(uid, out var grammar))
