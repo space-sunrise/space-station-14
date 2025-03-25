@@ -29,6 +29,31 @@
     state: plushie-hop
 
 - type: entity
+  id: PlushieUunaMiira
+  parent: BasePlushie
+  name: UunaMiira
+  description: A dark elf with a bright soul.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: mintypresent
+  - type: EmitSoundOnUse
+    sound:
+      collection: SQUEE
+    params:
+      volume: 5
+  - type: EmitSoundOnActivate
+    sound:
+      collection: SQUEE
+    params:
+      volume: 5
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_growl1.ogg
+  - type: UseDelay
+    delay: 5
+
+- type: entity
   id: PlushieFour
   parent: BasePlushie
   name: Yasly Chunkanjuk
@@ -982,11 +1007,11 @@
     sound:
       collection: PlushieVulpkaninGrowls
 
-  
+
 - type: entity
   id: PlushieExperiencedSalvageSpecialist
   parent: BasePlushie
-  name: Experienced Salvage Specialist 
+  name: Experienced Salvage Specialist
   description: A toy of a Salvage Specialist in a spacesuit that was reinforced with shields and goliath flesh. The tag has the signature snkrs. The toy looks pretty scary...
   components:
   - type: Sprite
