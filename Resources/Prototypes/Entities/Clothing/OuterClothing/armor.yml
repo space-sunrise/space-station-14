@@ -20,6 +20,7 @@
         Slash: 0.70
         Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         Heat: 0.80
+    staminaModifier: 0.85 # Sunrise-Edit
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -136,6 +137,7 @@
         Piercing: 0.35
         Heat: 0.35
         Caustic: 0.5
+    staminaModifier: 0.3 # Sunrise-Edit
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: ClothingSpeedModifier
@@ -353,6 +355,8 @@
         Piercing: 0.4
         Heat: 0.9
         Radiation: 0.8
+    staminaModifier: 0.3 # Sunrise-Edit
+    ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.65

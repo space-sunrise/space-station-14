@@ -36,6 +36,7 @@
     spawned:
     - id: MaterialCloth1
       amount: 1
+  - type: TrayScanReveal
   # Sunrise start
   - type: FootstepModifier
     footstepSoundCollection:
@@ -371,3 +372,4 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  - type: TrayScanReveal

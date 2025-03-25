@@ -9,10 +9,11 @@
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues
-  maleFirstNames: firstMaleTajaran
-  femaleFirstNames: firstFemaleTajaran
-  maleLastNames: TajaranLast
-  femaleLastNames: TajaranLast
+  # SUNRISE-TODO: Сделать локализированые имена
+  maleFirstNames: NamesFirstMale # FirstMaleTajaran
+  femaleFirstNames: NamesFirstFemale # FirstFemaleTajaran
+  maleLastNames: NamesLast # TajaranLast
+  femaleLastNames: NamesLast # TajaranLast
   naming: firstlast
   youngAge: 23
   oldAge: 46

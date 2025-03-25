@@ -4,9 +4,12 @@
     Brutepack: 3
     Ointment: 3
     Bloodpack: 3
-    EpinephrineChemistryBottle: 3
+    ChemistryBottleEpinephrine: 3
     Syringe: 3
   contrabandInventory:
     PowerCellSmall: 2
+    AntiPoisonMedipen: 1 # Sunrise Edit
   emaggedInventory:
     StimpackMini: 1 # Sunrise Edit
+    MiniSyringeFresium: 1 # Sunrise Edit
+    MiniSyringeMuteToxin: 2 # Sunrise Edit

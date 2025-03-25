@@ -129,3 +129,19 @@
             Asphyxiation: 2
           groups:
             Brute: 2
+
+- type: reagent
+  id: StableMutagen
+  name: reagent-name-stable-mutagen
+  group: Toxins
+  desc: reagent-desc-stable-mutagen
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: bitter
+  color: "#61b440"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 5

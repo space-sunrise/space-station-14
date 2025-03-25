@@ -476,7 +476,7 @@
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentHarmless
   - type: Fixtures
     fixtures:
       fix1:
@@ -878,13 +878,13 @@
   - type: SolutionContainerManager
     solutions:
       udder:
-        maxVol: 250
+        maxVol: 500 #Sunrise-edit
         reagents:
         - ReagentId: Milk
           Quantity: 30
   - type: Udder
     reagentId: Milk
-    quantityPerUpdate: 25
+    quantityPerUpdate: 50
     growthDelay: 30
   - type: ExaminableHunger
   - type: Butcherable
@@ -1732,7 +1732,7 @@
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentHarmless
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -3687,6 +3687,7 @@
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:

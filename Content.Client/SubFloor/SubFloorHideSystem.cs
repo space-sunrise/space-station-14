@@ -1,14 +1,18 @@
+using Content.Client.UserInterface.Systems.Sandbox;
 using Content.Shared.Atmos.Components;
 using Content.Shared.DrawDepth;
 using Content.Shared.GameTicking;
 using Content.Shared.SubFloor;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
+using Robust.Shared.Player;
 
 namespace Content.Client.SubFloor;
 
 public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
     private bool _showAll;
     private bool _showVentPipe; // Sunrise-edit
@@ -21,8 +25,13 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
         {
             if (_showAll == value) return;
             _showAll = value;
+            _ui.GetUIController<SandboxUIController>().SetToggleSubfloors(value);
 
-            UpdateAll();
+            var ev = new ShowSubfloorRequestEvent()
+            {
+                Value = value,
+            };
+            RaiseNetworkEvent(ev);
         }
     }
 
@@ -46,13 +55,21 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
         base.Initialize();
 
         SubscribeLocalEvent<SubFloorHideComponent, AppearanceChangeEvent>(OnAppearanceChanged);
-        SubscribeLocalEvent<SubFloorHideComponent, RoundRestartCleanupEvent>(RoundRestartCleanup);
+        SubscribeNetworkEvent<ShowSubfloorRequestEvent>(OnRequestReceived);
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
 
-    private void RoundRestartCleanup(EntityUid uid, SubFloorHideComponent component, RoundRestartCleanupEvent args)
+    private void OnPlayerDetached(LocalPlayerDetachedEvent ev)
     {
-        _showAll = false;
+        // Vismask resets so need to reset this.
+        ShowAll = false;
         _showVentPipe = false;
+    }
+
+    private void OnRequestReceived(ShowSubfloorRequestEvent ev)
+    {
+        // When client receives request Queue an update on all vis.
+        UpdateAll();
     }
 
     private void OnAppearanceChanged(EntityUid uid, SubFloorHideComponent component, ref AppearanceChangeEvent args)
@@ -97,11 +114,20 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
 
         args.Sprite.Visible = hasVisibleLayer || revealed;
 
-        // allows a t-ray to show wires/pipes above carpets/puddles
-        if (scannerRevealed)
+        if (ShowAll)
         {
+            // Allows sandbox mode to make wires visible over other stuff.
             component.OriginalDrawDepth ??= args.Sprite.DrawDepth;
-            args.Sprite.DrawDepth = (int) Shared.DrawDepth.DrawDepth.FloorObjects + 1;
+            args.Sprite.DrawDepth = (int)Shared.DrawDepth.DrawDepth.Overdoors;
+        }
+        else if (scannerRevealed)
+        {
+            // Allows a t-ray to show wires/pipes above carpets/puddles.
+            if (component.OriginalDrawDepth is not null)
+                return;
+            component.OriginalDrawDepth = args.Sprite.DrawDepth;
+            var drawDepthDifference = Shared.DrawDepth.DrawDepth.ThickPipe - Shared.DrawDepth.DrawDepth.Puddles;
+            args.Sprite.DrawDepth -= drawDepthDifference - 1;
         }
         else if (component.OriginalDrawDepth.HasValue)
         {

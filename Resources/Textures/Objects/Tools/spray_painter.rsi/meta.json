@@ -8,6 +8,14 @@
    "states" : [
       {
          "name" : "spray_painter"
+      },
+      {
+          "name": "inhand-left",
+          "directions": 4
+      },
+      {
+          "name": "inhand-right",
+          "directions": 4
       }
    ],
    "version" : 1
