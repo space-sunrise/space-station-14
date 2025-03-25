@@ -91,6 +91,14 @@
           - /Maps/_Sunrise/Ruins/abandoned_Station.yml
           - /Maps/_Sunrise/Ruins/collector_lair.yml
           - /Maps/_Sunrise/Ruins/destroyed_trade_shuttle.yml
+          - /Maps/_Sunrise/Ruins/anomal_laboratiry.yml
+          - /Maps/_Sunrise/Ruins/Ignota_Laboratorium.yml
+          - /Maps/_Sunrise/Ruins/oblomok_33.yml
+          - /Maps/_Sunrise/Ruins/oblomok_44.yml
+          - /Maps/_Sunrise/Ruins/oblomok_library.yml
+          - /Maps/_Sunrise/Ruins/oblomok_pectine_syndicate_shuttle.yml
+          - /Maps/_Sunrise/Ruins/Ruins_of_Free_Cargonia.yml
+          - /Maps/_Sunrise/Ruins/Suspicious_Asteroid.yml
         abandoned: !type:GridSpawnGroup
           minimumDistance: 500
           maximumDistance: 550
@@ -169,6 +177,12 @@
   abstract: true
   components:
     - type: StationNews
+
+- type: entity
+  id: BaseStationDeliveries
+  abstract: true
+  components:
+  - type: CargoDeliveryData
 
 - type: entity
   id: BaseStationAllEventsEligible

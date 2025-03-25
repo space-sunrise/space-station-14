@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasSecurity
   id: ClothingMaskGasPilot
   name: security pilot's gas mask
   description: A gas mask made in the style of 21st century pilot masks.
@@ -288,3 +288,30 @@
     slots:
     - Snout
   - type: FaceCast
+
+- type: entity
+  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  id: ClothingMaskGasBlueShield
+  name: Blueshild gas mask
+  description: Gas Mask for real professionals. It may even help to get CE cameras with burning tritium!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    hideOnToggle: true
+  - type: FlashImmunity #BALANCE PR
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+        Heat: 0.90

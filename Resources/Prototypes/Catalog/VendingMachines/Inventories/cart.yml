@@ -19,5 +19,6 @@
   contrabandInventory:
     BalloonNT: 2
     LuxuryPen: 1
-    AgentIDCard: 1 # Sunrise Edit
-    EncryptionKeySyndie: 1 # Sunrise Edit
+  emaggedInventory:
+    CyberPen: 1 # Sunrise Edit
+    BalloonSyn: 2 # Sunrise Edit

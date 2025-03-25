@@ -1,4 +1,10 @@
 ghost-theme-menu-title = Смена скина призрака
+ghost-theme-menu-available-themes = Доступные скины
+ghost-theme-menu-preview = Предпросмотр
+ghost-theme-preview-description = Так будет выглядеть ваш призрак в игре
+ghost-theme-menu-select-button = Выбрать скин
+ghost-theme-menu-search-placeholder = Поиск скинов...
+ghost-theme-default = Обычный
 ghost-theme-gold = Золото
 ghost-theme-silver = Серебро
 ghost-theme-white = Белый

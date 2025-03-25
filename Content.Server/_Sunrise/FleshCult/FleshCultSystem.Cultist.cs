@@ -305,7 +305,7 @@ public sealed partial class FleshCultSystem
             var tempSol = new Solution { MaxVolume = 5 };
             tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _prototypeManager);
 
-            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna))
+            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna) && dna.DNA != null)
             {
                 var comp = EnsureComp<ForensicsComponent>(puddleUid);
                 comp.DNAs.Add(dna.DNA);

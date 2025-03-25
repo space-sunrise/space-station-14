@@ -265,7 +265,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 5
+        Heat: 0
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -305,7 +305,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 1
+        Heat: 0
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -981,7 +981,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 2
+        Heat: 0
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -1169,6 +1169,48 @@
     spread: 9
 
 # SUNRISE
+
+- type: entity
+  id: BulletPlasma
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: arcane_barrage
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 14
+        Slash: 14
+        Structural: 35
+    penetrationThreshold: 800
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 0.35
+  - type: PointLight
+    radius: 2.5
+    color: "#dd16d395"
+    energy: 0.5
+  - type: GatheringProjectile
+
+- type: entity
+  name: wide plasma barrage
+  id: BulletPlasmaSpread
+  categories: [ HideSpawnMenu ]
+  parent: BulletPlasma
+  components:
+  - type: ProjectileSpread
+    proto: BulletPlasma
+    count: 3
+    spread: 25
 
 - type: entity
   name : syndie plasma

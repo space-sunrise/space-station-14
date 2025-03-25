@@ -437,6 +437,9 @@ public sealed partial class ChangelingSystem : EntitySystem
                 return false;
         }
 
+        if (dna.DNA == null)
+            return false;
+
         var data = new TransformData
         {
             Name = metadata.EntityName,

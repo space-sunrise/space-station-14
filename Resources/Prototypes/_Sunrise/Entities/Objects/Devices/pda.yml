@@ -202,7 +202,7 @@
     - Silicon
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SecurityPilotPDA
   name: Security pilot's PDA
   components:
@@ -390,3 +390,22 @@
   components:
   - type: Pda
     id: NtrLeadGuardIDCard
+
+- type: entity
+  parent: BasePDA
+  id: MailCarrierPDA
+  name: mail carrier's PDA
+  description: PDA for the delivery man.
+  components:
+  - type: Pda
+    id: MailCarrierIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-cargo
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#003cc9"
+  - type: Icon
+    state: pda-cargo

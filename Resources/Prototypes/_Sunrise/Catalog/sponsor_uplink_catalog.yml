@@ -1514,8 +1514,74 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieMechanixFaurHorseman
+  productEntity: PlushieMechanixFaurHorseman
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieMihailOsipov
   productEntity: PlushieMihailOsipov
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMadokaMori
+  productEntity: PlushieMadokaMori
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMolnia
+  productEntity: PlushieMolnia
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieExperiencedSalvageSpecialist
+  productEntity: PlushieExperiencedSalvageSpecialist
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieAlisaKrokozyabka
+  productEntity: PlushieAlisaKrokozyabka
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieJamalDotsenko
+  productEntity: PlushieJamalDotsenko
   cost:
     Suntick: 4
   categories:
@@ -2677,9 +2743,9 @@
     - Civilian
 
 - type: listing
-  id: UplinkSunriseUnstableMutagenChemistryBottle
+  id: UplinkChemistryBottleUnstableMutagen
   name: uplink-sunrise-unstable-mutagen-chemistry-bottle-name
-  productEntity: UnstableMutagenChemistryBottle
+  productEntity: ChemistryBottleUnstableMutagen
   cost:
     Suntick: 16
   categories:
@@ -2692,9 +2758,9 @@
     - Civilian
 
 - type: listing
-  id: UplinkSunriseRobustHarvestChemistryBottle
+  id: UplinkChemistryBottleRobustHarvest
   name: uplink-sunrise-robust-harvest-chemistry-bottle-name
-  productEntity: RobustHarvestChemistryBottle
+  productEntity: ChemistryBottleRobustHarvest
   cost:
     Suntick: 8
   categories:

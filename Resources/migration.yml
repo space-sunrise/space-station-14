@@ -157,7 +157,7 @@ TransmitterSubspaceStockPart: null
 ClothingHeadHatHoodRad: null
 
 # 2024-01-12
-SpaceMedipen: null
+#SpaceMedipen: null
 
 # 2024-01-18
 ClothingHeadHelmetVoidParamed: null
@@ -558,6 +558,26 @@ MagazineBoxCaselessRifle10x24: null
 MagazineBoxCaselessRifleBig: null
 MagazinePistolHighCapacityRubber: null
 
+# 2025-03-18
+EpinephrineChemistryBottle: ChemistryBottleEpinephrine
+RobustHarvestChemistryBottle: ChemistryBottleRobustHarvest
+EZNutrientChemistryBottle: ChemistryBottleEZNutrient
+Left4ZedChemistryBottle: ChemistryBottleLeft4Zed
+UnstableMutagenChemistryBottle: ChemistryBottleUnstableMutagen
+PotassiumChemistryBottle: ChemistryBottlePotassium
+NocturineChemistryBottle: ChemistryBottleNocturine
+NitrogenChemistryBottle: ChemistryBottleNitrogen
+EphedrineChemistryBottle: ChemistryBottleEphedrine
+PhosphorusChemistryBottle: ChemistryBottlePhosphorus
+OmnizineChemistryBottle: ChemistryBottleOmnizine
+HydrogenChemistryBottle: ChemistryBottleHydrogen
+CognizineChemistryBottle: ChemistryBottleCognizine
+EthanolChemistryBottle: ChemistryBottleEthanol
+PaxChemistryBottle: ChemistryBottlePax
+MuteToxinChemistryBottle: ChemistryBottleMuteToxin
+LeadChemistryBottle: ChemistryBottleLead
+ToxinChemistryBottle: ChemistryBottleToxin
+
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
@@ -611,7 +631,7 @@ VendingMachineRepDrobe: VendingMachineCigs
 Wakizashi: KukriKnife
 TearSmokeGrenade: TearGasGrenade
 BlueLightTube: LightTubeCrystalCyan
-CratePirateChest: CratePirateChestSun
+MailTeleporter: CargoMailTeleporter
 ClothingHeadHoodBrown: null
 ClaymoreDulled: null
 Amphora: null

@@ -331,11 +331,11 @@
   productEntity: SingularityGrenade
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 1
   cost:
-    Telecrystal: 6
+    Telecrystal: 2
   categories:
-    - UplinkExplosives
+    - UplinkDisruption
 
 - type: listing
   id: UplinkWhiteholeGrenade
@@ -346,9 +346,9 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
-    - UplinkExplosives
+    - UplinkDisruption
 
 - type: listing
   id: UplinkGrenadePenguin
@@ -720,7 +720,7 @@
   id: UplinkNocturineChemistryBottle
   name: uplink-nocturine-chemistry-bottle-name
   description: uplink-nocturine-chemistry-bottle-desc
-  productEntity: NocturineChemistryBottle
+  productEntity: ChemistryBottleNocturine
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -978,6 +978,13 @@
     Telecrystal: 4
   categories:
   - UplinkDeception
+  #Sunrise-Start
+  conditions:
+  - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+  #Sunrise-end
 
 # Disruption
 
@@ -1225,6 +1232,9 @@
     whitelist:
       tags:
       - NukeOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkCameraBug
@@ -1788,9 +1798,9 @@
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 9
+    Telecrystal: 7
   cost:
-    Telecrystal: 15
+    Telecrystal: 14   #Sunrise-edit
   categories:
   - UplinkWearables
   #Sunrise-start
@@ -1856,6 +1866,19 @@
     Telecrystal: 2
   categories:
     - UplinkWearables
+
+- type: listing
+  id: UplinkOuterHardsuitChameleon
+  name: uplink-clothing-outer-hardsuit-chameleon-name
+  description: uplink-clothing-hardsuit-chameleon-desc
+  productEntity: ClothingOuterHardsuitChameleon
+  discountCategory: rareDiscounts
+  discountDownTo: 
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWearables
 
  # Pointless
 

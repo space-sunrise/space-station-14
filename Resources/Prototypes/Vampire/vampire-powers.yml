@@ -86,3 +86,10 @@
         Cold: 2
         Shock: 2
         Caustic: 2
+
+- type: vampirePower
+  id: ThermalVision
+  usableWhileStunned: true
+  usableWhileCuffed: true
+  usableWhileMuffled: true
+  activationCost: 0

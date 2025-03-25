@@ -162,6 +162,7 @@
     - Hardsuit
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
+    - WhitelistChameleonSuit #Sunrise-edit
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection

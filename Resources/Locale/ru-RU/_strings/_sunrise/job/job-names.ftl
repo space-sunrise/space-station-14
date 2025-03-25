@@ -70,3 +70,4 @@ JobUSSPCaptain = Капитан СССП
 JobClownBorg = клоун киборг
 JobBarber = парикмахер
 JobAdjutant = адъютант
+JobMailCarrier = почтальон
