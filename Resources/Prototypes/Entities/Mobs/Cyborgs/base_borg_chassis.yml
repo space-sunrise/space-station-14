@@ -168,6 +168,7 @@
     sounds:
       Unsexed: UnisexSilicon
     screamAction: null
+  - type: DamagedSiliconAccent
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -309,7 +310,7 @@
   components:
   - type: RandomMetadata
     nameSegments:
-      - names_borg
+    - NamesBorg
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -317,6 +318,7 @@
     enabled: false
     # Sunrise-Start
     tags:
+    - Borg
     - EmergencyShuttleRepealAll
     - Command
     - Lawyer

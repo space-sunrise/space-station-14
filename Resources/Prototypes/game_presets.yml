@@ -162,12 +162,13 @@
   hide: true # Sunrise-Edit
   minPlayers: 5 # Sunrise-Edit: 5 players for TRAITORS
   rules:
-    - Traitor
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-    - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
-    - BasicRoundstartVariation
+  - DummyNonAntagChance
+  - Traitor
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
@@ -192,11 +193,13 @@
   hide: true # Sunrise-Edit
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
-    - Nukeops
-    - BasicStationEventScheduler
-    - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
-    - BasicRoundstartVariation
+  - Nukeops
+  - DummyNonAntagChance
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Revolutionary
@@ -210,12 +213,13 @@
   hide: true # Sunrise-Edit
   minPlayers: 15 # Sunrise-Edit: 15 players for REVOLUTIONARY
   rules:
-    - Revolutionary
-    - SubGamemodesRule # Только лайтовые под-антаги.
-    - BasicStationEventScheduler
-    - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
-    - BasicRoundstartVariation
+  - DummyNonAntagChance
+  - Revolutionary
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Wizard
@@ -226,6 +230,7 @@
   showInVote: false
   rules:
   - Wizard
+  - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
