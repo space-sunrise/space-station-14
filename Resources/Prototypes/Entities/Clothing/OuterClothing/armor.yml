@@ -137,6 +137,7 @@
         Piercing: 0.35
         Heat: 0.35
         Caustic: 0.5
+    staminaModifier: 0.3 # Sunrise-Edit
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: ClothingSpeedModifier
