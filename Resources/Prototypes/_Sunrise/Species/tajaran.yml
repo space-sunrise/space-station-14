@@ -9,6 +9,7 @@
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues
+  # SUNRISE-TODO: Сделать локализированые имена
   maleFirstNames: FirstMaleTajaran
   femaleFirstNames: FirstFemaleTajaran
   maleLastNames: TajaranLast
