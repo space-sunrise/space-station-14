@@ -213,3 +213,107 @@
       true
     useSound:
       path: /Audio/Items/crowbar.ogg
+
+#------------------------------------
+# РХБЗЗ
+#------------------------------------
+
+- type: entity
+  name: Leader CBURN
+  parent: MobHuman
+  suffix: CBURNRole, Omega
+  id: MobHumanCBURNLeaderOmega
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Leader CBURN
+    description: You are the leader of the CBURN squad. Your task is to save the station from one or another threat. Keep in mind that you must effectively manage your squad and save as many assets as possible! Don't forget about your SRP.
+    rules: You are the leader of the CBURN squad. Your task is to save the station from one threat or another. Manage your squad effectively and save as many assets as possible! Follow OSO orders.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [CBURNGearOmegaLeader]
+  - type: MobState
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitaryLeader
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplantErt
+    - TrackingImplant
+
+- type: entity
+  name: CBURN
+  parent: MobHuman
+  suffix: CBURNRole, Omega
+  id: MobHumanCBURNOmega
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Operator CBURN
+    description: You are a member of the CBURN squad. Your task is to save the station from one threat or another. Don't forget about your SRP!
+    rules: You are a member of the CBURN squad. Your task is to save the station from one threat or another. Follow OSO's orders without question!
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [CBURNGearOmega]
+  - type: MobState
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitary
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplantErt
+    - TrackingImplant
+
+#------------------------------------
+# ОСЩ
+#------------------------------------
+
+- type: entity
+  name: Blue Shield PCC
+  parent: MobHuman
+  suffix: PCC
+  id: MobHumanBlueShieldDSO
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Blue Shield PCC
+    description: You are the human shield of the Representative of the Central Command. Observe your SRP, and carry out any orders of the RCC!
+    rules: You are a Officer Blue Shield. Listen to the orders of PCC or OSO, do not allow the death of PCC at any cost!
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [BlueShieldDSOGear]
+  - type: MobState
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOps
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+    - TrackingImplantErt
+    - TrackingImplant

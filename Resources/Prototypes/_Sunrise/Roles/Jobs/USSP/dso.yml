@@ -35,6 +35,16 @@
     id: CentcomIDCardDeathsquadOSO
 
 - type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: PDABlueShieldPCC
+  name: 'КПК Центком'
+  description: A light green symbol of walking bureaucracy.
+  components:
+  - type: Pda
+    id: CentcomIDCardBlueShieldPCC
+
+- type: entity
   parent: CentcomIDCard
   noSpawn: true
   id: CentcomIDCardDeathsquadOper
@@ -45,7 +55,7 @@
     - state: centcom
   - type: Item
     heldPrefix: blue
-  - type: IdCard
+  - type: PresetIdCard
     jobTitle: CentCom Agent
     fullName: Death Squad Operative
 
@@ -60,7 +70,7 @@
     - state: centcom
   - type: Item
     heldPrefix: blue
-  - type: IdCard
+  - type: PresetIdCard
     jobTitle: CentCom Agent
     fullName: Death Squad Commander
 
@@ -75,9 +85,22 @@
     - state: centcom
   - type: Item
     heldPrefix: blue
-  - type: IdCard
+  - type: PresetIdCard
     jobTitle: Special Operations Officer
 
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardBlueShieldPCC
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    jobTitle: Operative Blue Shield
 #------------------------------------
 # Прочее
 #------------------------------------

@@ -620,6 +620,23 @@
     pocket2: WeaponRevolverMatebaNew
     belt: ClothingBeltHolsterOSOFilled
 
+- type: startingGear
+  id: OSOAltGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    back: ClothingBackpackOSOFilled
+    head: ClothingHeadHatBeret
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesSecurity
+    ears: ClothingHeadsetAltDeathsquad
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterCoatTrench
+    shoes: ClothingShoesCentcomBlack
+    id: DeathsquadPDAOSO
+    pocket1: DoorRemoteAll
+    pocket2: WeaponRevolverMatebaNew
+    belt: ClothingBeltHolsterOSOFilled
+
 # BS
 
 - type: startingGear
