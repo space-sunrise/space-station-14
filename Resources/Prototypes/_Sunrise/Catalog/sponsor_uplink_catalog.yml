@@ -1047,6 +1047,17 @@
 # Plushies
 
 - type: listing
+  id: UplinkSunrisePlushieUunaMiira
+  productEntity: PlushieUunaMiira
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieOne
   name: uplink-sunrise-plushie-one-name
   productEntity: PlushieOne
