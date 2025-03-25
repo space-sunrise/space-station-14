@@ -12,8 +12,8 @@
   # SUNRISE-TODO: Сделать локализированые имена
   maleFirstNames: NamesFirstMale # FirstMaleTajaran
   femaleFirstNames: NamesFirstFemale # FirstFemaleTajaran
-  maleLastNames: NamesLastMale # TajaranLast
-  femaleLastNames: NamesLastFemale # TajaranLast
+  maleLastNames: NamesLast # TajaranLast
+  femaleLastNames: NamesLast # TajaranLast
   naming: firstlast
   youngAge: 23
   oldAge: 46

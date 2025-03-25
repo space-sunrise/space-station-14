@@ -10,6 +10,7 @@
     prefix: names-first-female-dataset-
     count: 771
 
+# SUNRISE-TODO: Локализированые гендерные фамилии
 - type: dataset
   id: NamesLastMale
   values:

@@ -102,12 +102,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "NamesFirstFemale";
 
+    // SUNRISE-TODO: Локализированые гендерные фамилии
     // Russian-LastnameGender-Start: Split lastname field by gender
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "NamesLastMale";
+    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "NamesLast"; // = "NamesLastMale";
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "NamesLastFemale";
+    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "NamesLast"; // = "NamesLastFemale";
 
     [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;
