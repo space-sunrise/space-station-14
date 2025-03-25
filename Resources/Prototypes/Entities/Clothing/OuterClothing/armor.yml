@@ -356,6 +356,7 @@
         Heat: 0.9
         Radiation: 0.8
     staminaModifier: 0.3 # Sunrise-Edit
+    ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.65
