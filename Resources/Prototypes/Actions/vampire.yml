@@ -210,3 +210,21 @@
       !type:VampireCloakOfDarknessEvent
       definitionName: CloakOfDarkness
     useDelay: 10
+
+- type: entity
+  id: ActionVampireBloodScale
+  name: blade scale
+  description: Strengthen your muscles by compressing blood in order to develop maximum speed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: False
+    priority: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Changeling/changeling_abilities.rsi
+      state: strained_muscles
+    event: 
+      !type:ToggleVampireBloodScaleEvent 
+      definitionName: BloodScale
+    useDelay: 2

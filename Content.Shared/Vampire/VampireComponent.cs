@@ -71,7 +71,8 @@ public sealed partial class VampireComponent : Component
     public readonly List<ProtoId<EntityPrototype>> BaseVampireActions = new()
     {
         "ActionVampireToggleFangs",
-        "ActionVampireHypnotise"
+        "ActionVampireHypnotise",
+        "ActionVampireBloodScale"
     };
 
     [ValidatePrototypeId<VampirePowerProtype>]
@@ -244,6 +245,15 @@ public sealed partial class VampireStrengthComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public string Power = "";
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float Upkeep = 0;
+}
+[RegisterComponent]
+public sealed partial class VampireBloodScaleComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool BloodScaleActive { get; set; }
+    
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
 }

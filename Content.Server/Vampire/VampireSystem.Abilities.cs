@@ -55,6 +55,7 @@ public sealed partial class VampireSystem
         SubscribeLocalEvent<VampireComponent, VampireUnholyStrengthEvent>(OnVampireUnholyStrength);
         SubscribeLocalEvent<VampireComponent, VampireSupernaturalStrengthEvent>(OnVampireSupernaturalStrength);
         SubscribeLocalEvent<VampireComponent, VampireCloakOfDarknessEvent>(OnVampireCloakOfDarkness);
+        SubscribeLocalEvent<VampireComponent, VampireBloodScaleEvent>(OnVampireBloodScale);
 
         //Hypnotise
         SubscribeLocalEvent<VampireComponent, VampireHypnotiseDoAfterEvent>(HypnotiseDoAfter);
@@ -212,6 +213,31 @@ public sealed partial class VampireSystem
 
         ev.Handled = true;
     }
+private void OnVampireBloodScale(EntityUid uid, VampireBloodScaleComponent component, VampireBloodScaleEvent ev)
+{
+    if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+        return;
+
+    var vampire = new Entity<VampireBloodScaleComponent>(uid, component); 
+
+    if (!IsAbilityUsable(vampire, def))
+        return;
+
+    ToggleBloodScale(uid, component);
+}
+
+private void ToggleBloodScale(EntityUid uid, VampireBloodScaleComponent comp)
+{
+    float newBaseSpeed = comp.BloodScaleActive ? 2.5f : 4f;
+    float newValue = comp.BloodScaleActive ? 4.5f : 7.5f;
+    string popupMessage = comp.BloodScaleActive ? Loc.GetString("blood-scale-end") : Loc.GetString("blood-scale-start");
+
+    comp.BloodScaleActive = !comp.BloodScaleActive;
+
+    _speed.ChangeBaseSpeed(uid, newBaseSpeed, newValue, 20f);
+    
+    _popup.PopupEntity(popupMessage, uid, uid);
+}
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {
         if (!HasComp<HumanoidAppearanceComponent>(args.Target))

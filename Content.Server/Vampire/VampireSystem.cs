@@ -26,6 +26,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Prayer;
 using Content.Shared.StatusEffect;
@@ -63,6 +64,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;

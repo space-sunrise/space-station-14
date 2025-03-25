@@ -86,3 +86,10 @@
         Cold: 2
         Shock: 2
         Caustic: 2
+
+- type: VampirePower
+  id: BloodScale
+  usableWhileStunned: false
+  usableWhileCuffed: true
+  activationCost: 10
+  upkeep: 4
