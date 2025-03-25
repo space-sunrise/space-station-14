@@ -1,6 +1,6 @@
 - type: entity
   name: survival box
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxRepairSynth
   description: It's a box with basic internals inside.
   components:
@@ -23,7 +23,7 @@
 
 - type: entity
   name: survival box
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxHugSynth
   description: It's a box with basic internals inside.
   components:
@@ -51,7 +51,7 @@
 
 - type: entity
   name: survival box
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxRepairSecurity
   description: It's a box with basic internals inside.
   components:
@@ -75,7 +75,7 @@
 
 - type: entity
   name: survival box
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxRepairSyndicate
   description: It's a box with basic internals inside.
   components:
@@ -108,6 +108,7 @@
   - type: StorageFill
     contents:
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -122,7 +123,7 @@
     currentLabel: без балона
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxHugWithoutGas
   name: box of hugs
   description: A special box for sensitive people.
@@ -137,6 +138,7 @@
   - type: StorageFill
     contents:
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -159,6 +161,7 @@
   - type: StorageFill
     contents:
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -171,7 +174,7 @@
     - id: DrinkBeerBottleFull
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxSurvivalSecurityWithoutGas
   name: survival box
   description: It's a box with basic internals inside.
@@ -181,6 +184,7 @@
     contents:
     - id: ClothingMaskGasSecurity
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -197,7 +201,7 @@
     - state: emergencytank
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxSurvivalSyndicateWithoutGas
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
@@ -207,6 +211,7 @@
     contents:
     - id: ClothingMaskGasSyndicate
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -233,6 +238,7 @@
   - type: StorageFill
     contents:
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -247,7 +253,7 @@
     currentLabel: без балона
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxSurvivalEngineeringWithBeer
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
@@ -258,6 +264,7 @@
     - id: ClothingMaskBreath
     - id: ExtendedEmergencyOxygenTankFilled
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -275,7 +282,7 @@
 
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxSurvivalMedicalWithBeer
   name: survival box
   description: It's a box with basic internals inside.
@@ -286,6 +293,7 @@
     - id: ClothingMaskBreathMedical
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -302,7 +310,7 @@
     - state: emergencytank
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxHugWithBeer
   name: box of hugs
   description: A special box for sensitive people.
@@ -317,6 +325,7 @@
   - type: StorageFill
     contents:
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -341,6 +350,7 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -353,7 +363,7 @@
     - id: DrinkBeerBottleFull
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxSurvivalSecurityWithBeer
   name: survival box
   description: It's a box with basic internals inside.
@@ -363,6 +373,7 @@
     contents:
     - id: ClothingMaskGasSecurity
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
@@ -379,7 +390,7 @@
     - state: emergencytank
 
 - type: entity
-  parent: BoxCardboard
+  parent: BoxSurvivalBase
   id: BoxSurvivalSyndicateWithBeer
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
@@ -389,6 +400,7 @@
     contents:
     - id: ClothingMaskGasSyndicate
     - id: EmergencyMedipen
+    - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
