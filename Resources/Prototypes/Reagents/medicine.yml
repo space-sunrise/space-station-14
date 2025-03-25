@@ -1218,7 +1218,7 @@
     Medicine:
       effects:
         - !type:ReduceRotting
-          seconds: 20
+          seconds: 10
           conditions:
           #Patient must be dead and in a cryo tube (or something cold)
           - !type:Temperature
