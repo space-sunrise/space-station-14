@@ -978,6 +978,13 @@
     Telecrystal: 4
   categories:
   - UplinkDeception
+  #Sunrise-Start
+  conditions:
+  - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+  #Sunrise-end
 
 # Disruption
 
@@ -1225,6 +1232,9 @@
     whitelist:
       tags:
       - NukeOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkCameraBug
@@ -1788,9 +1798,9 @@
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 9
+    Telecrystal: 7
   cost:
-    Telecrystal: 15
+    Telecrystal: 14   #Sunrise-edit
   categories:
   - UplinkWearables
   #Sunrise-start
