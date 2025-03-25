@@ -189,6 +189,7 @@
   wires:
   - !type:PowerWireAction
   - !type:AiInteractWireAction
+  -  !type:AccessWireAction
 
 - type: wireLayout
   id: Holopad
