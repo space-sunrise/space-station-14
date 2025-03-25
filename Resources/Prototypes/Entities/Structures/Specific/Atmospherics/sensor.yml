@@ -27,6 +27,7 @@
       Frezon: danger
       BZ: danger #SunRise edit
       Healium: stationNO #SunRise edit
+      Nitrium: stationNO #SunRise edit
   - type: Tag
     tags:
       - AirSensor

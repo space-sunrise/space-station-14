@@ -185,6 +185,8 @@
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
+    - MechIndustrialPlasmaCutter # Sunrise-Add
+    - WeaponPlasmaCutter # Sunrise-Add
 
 - type: technology
   id: Ripley2
@@ -241,6 +243,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - PlantBagOfHolding  # Sunrise-edit
 
 - type: technology
   id: PortableFission

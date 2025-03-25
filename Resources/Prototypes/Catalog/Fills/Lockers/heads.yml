@@ -18,6 +18,7 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: AstroNavCartridge
+    - id: MailTeleporterMachineCircuitboard
     # Sunrise-start: Flippos + Cargo suit
     - id: ClothingOuterSuitCargo
     - id: BluespaceBox
@@ -363,6 +364,7 @@
     - id: ClothingMaskGasSwat
     - id: ClothingOuterHardsuitSecurityRed
     - id: ClothingShoesBootsMagSec  # Sunrise-edit
+      prob: 0.3
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
 

@@ -18,7 +18,7 @@ public sealed class SickSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SickComponent, GetStatusIconsEvent>(OnGetStatusIcon);
+        SubscribeLocalEvent<MindContainerComponent, GetStatusIconsEvent>(OnGetStatusIconsGlobal);
         SubscribeNetworkEvent<UpdateInfectionsEvent>(OnUpdateInfect);
     }
 
@@ -27,23 +27,23 @@ public sealed class SickSystem : EntitySystem
         EnsureComp<SickComponent>(GetEntity(args.Uid)).Inited = true;
     }
 
-    private void OnGetStatusIcon(EntityUid uid, SickComponent component, ref GetStatusIconsEvent args)
+    private void OnGetStatusIconsGlobal(EntityUid uid, MindContainerComponent component, ref GetStatusIconsEvent args)
     {
-        if (component.Inited)
-        {
-            if (_playerManager.LocalEntity != null)
-            {
-                if (HasComp<DiseaseRoleComponent>(_playerManager.LocalEntity.Value) || HasComp<GhostComponent>(_playerManager.LocalEntity.Value))
-                {
-                    if (!_mobState.IsDead(uid) &&
-                        !HasComp<ActiveNPCComponent>(uid) &&
-                        TryComp<MindContainerComponent>(uid, out var mindContainer) &&
-                        mindContainer.ShowExamineInfo)
-                    {
-                        args.StatusIcons.Add(_prototype.Index<SickIconPrototype>(component.Icon));
-                    }
-                }
-            }
-        }
+        if (_playerManager.LocalEntity == null)
+            return;
+
+        if (!HasComp<DiseaseRoleComponent>(_playerManager.LocalEntity.Value))
+            return;
+
+        if (_mobState.IsDead(uid) ||
+            HasComp<ActiveNPCComponent>(uid) ||
+            !component.ShowExamineInfo)
+            return;
+
+        var isInfected = TryComp<SickComponent>(uid, out var sickComp) && sickComp.Inited;
+        var iconId = isInfected ? "SmartDiseaseIcon" : "NormalDiseaseIcon";
+        
+        args.StatusIcons.Add(_prototype.Index<SickIconPrototype>(iconId));
     }
 }
+
