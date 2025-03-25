@@ -253,7 +253,8 @@
 - type: latheRecipe
   id: BioGenHandheldSoil
   result: HandheldSoil
-  category: Materials
+  categories:
+  - Materials
   completetime: 3
   materials:
     Biomass: 100
@@ -261,7 +262,8 @@
 - type: latheRecipe
   id: BioClothingBeltPlant
   result: ClothingBeltPlant
-  category: Materials
+  categories:
+  - Materials
   completetime: 5
   materials:
     Biomass: 50
@@ -269,7 +271,8 @@
 - type: latheRecipe
   id: BioClothingBeltUtility
   result: ClothingBeltUtility
-  category: Materials
+  categories:
+  - Materials
   completetime: 5
   materials:
     Biomass: 50
@@ -277,7 +280,8 @@
 - type: latheRecipe
   id: BioClothingBeltMedical
   result: ClothingBeltMedical
-  category: Materials
+  categories:
+  - Materials
   completetime: 5
   materials:
     Biomass: 50
@@ -285,7 +289,8 @@
 - type: latheRecipe
   id: BioClothingBeltJanitor
   result: ClothingBeltJanitor
-  category: Materials
+  categories:
+  - Materials
   completetime: 5
   materials:
     Biomass: 50
@@ -293,7 +298,8 @@
 - type: latheRecipe
   id: BioClothingBeltStorageWaistbag
   result: ClothingBeltStorageWaistbag
-  category: Materials
+  categories:
+  - Materials
   completetime: 5
   materials:
     Biomass: 50
@@ -301,7 +307,8 @@
 - type: latheRecipe
   id: BioClothingBeltChef
   result: ClothingBeltChef
-  category: Materials
+  categories:
+  - Materials
   completetime: 5
   materials:
     Biomass: 50

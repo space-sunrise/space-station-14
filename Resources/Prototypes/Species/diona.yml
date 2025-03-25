@@ -9,10 +9,10 @@
   markingLimits: MobDionaMarkingLimits
   dollPrototype: MobDionaDummy
   skinColoration: Hues
-  maleFirstNames: DionaFirst
-  femaleFirstNames: DionaFirst
-  maleLastNames: DionaLast # Russian-LastnameGender
-  femaleLastNames: DionaLast # Russian-LastnameGender
+  maleFirstNames: NamesDionaFirst
+  femaleFirstNames: NamesDionaFirst
+  maleLastNames: NamesDionaLast # Russian-LastnameGender
+  femaleLastNames: NamesDionaLast # Russian-LastnameGender
   naming: TheFirstofLast
 
 - type: bodyType

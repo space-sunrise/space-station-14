@@ -54,7 +54,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     // sprite accessories.
 
     [DataField("sprites")]
-    public ProtoId<HumanoidSpeciesBaseSpritesPrototype> SpriteSet { get; private set; } = default!;
+    public string SpriteSet { get; private set; } = default!;
 
     [DataField(required: true)]
     public List<string> BodyTypes { get; } = default!;
@@ -104,10 +104,10 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     // Russian-LastnameGender-Start: Split lastname field by gender
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "names_last_male";
+    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "NamesLastMale";
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "names_last_female";
+    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "NamesLastFemale";
 
     [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;

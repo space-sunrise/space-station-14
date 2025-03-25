@@ -9,7 +9,8 @@
 - type: latheRecipe
   id: ClothingHeadHelmetPubgMore
   result: ClothingHeadHelmetPubg
-  category: Weapons
+  categories:
+  - Weapons
   completetime: 8
   materials:
     Steel: 6000
@@ -19,12 +20,13 @@
 - type: latheRecipe
   id: UvLightTube
   result: UvLightTube
-  category: Lights
+  categories:
+  - Lights
   completetime: 2
   materials:
     Steel: 50
     Glass: 50
-    
+
 - type: latheRecipe
   id: ClothingShoesBootsMagSec
   result: ClothingShoesBootsMagSec

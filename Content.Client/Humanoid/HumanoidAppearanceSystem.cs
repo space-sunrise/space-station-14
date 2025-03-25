@@ -58,9 +58,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         component.BaseLayers.Clear();
 
         // add default species layers
-        var speciesProto = _prototypeManager.Index(component.Species);
-        var baseSprites = _prototypeManager.Index(speciesProto.SpriteSet);
-        foreach (var (key, id) in baseSprites.Sprites)
+        var bodyTypeProto = _prototypeManager.Index(component.BodyType);
+        foreach (var (key, id) in bodyTypeProto.Sprites)
         {
             oldLayers.Remove(key);
             if (!component.CustomBaseLayers.ContainsKey(key))

@@ -258,7 +258,7 @@ public sealed partial class ZombieSystem
             if (_banManager.IsAntagBanned(session.UserId, zombiecomp.ZombieRoleId))
             {
                 // Ghost the player if they have a "Zombie" ban
-                _ghostSystem.OnGhostAttempt(mindId, false, true, mind);
+                _ghostSystem.OnGhostAttempt(mindId, false, true, mind: mind);
             }
             //Zombie role for player manifest
             _role.MindAddRole(mindId, "MindRoleZombie", mind: null, silent: true);

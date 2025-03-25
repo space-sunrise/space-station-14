@@ -12,8 +12,8 @@
   skinColoration: Hues
   maleFirstNames: NamesArachnidFirst
   femaleFirstNames: NamesArachnidFirst
-  maleLastNames: names_arachnid_last
-  femaleLastNames: names_arachnid_last
+  maleLastNames: NamesArachnidLast
+  femaleLastNames: NamesArachnidLast
 
 - type: bodyType
   id: ArachnidNormal

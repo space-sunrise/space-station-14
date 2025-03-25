@@ -1534,7 +1534,7 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-    
+
 - type: listing
   id: UplinkSunrisePlushieMadokaMori
   productEntity: PlushieMadokaMori
@@ -2743,9 +2743,9 @@
     - Civilian
 
 - type: listing
-  id: UplinkSunriseUnstableMutagenChemistryBottle
+  id: UplinkChemistryBottleUnstableMutagen
   name: uplink-sunrise-unstable-mutagen-chemistry-bottle-name
-  productEntity: UnstableMutagenChemistryBottle
+  productEntity: ChemistryBottleUnstableMutagen
   cost:
     Suntick: 16
   categories:
@@ -2758,9 +2758,9 @@
     - Civilian
 
 - type: listing
-  id: UplinkSunriseRobustHarvestChemistryBottle
+  id: UplinkChemistryBottleRobustHarvest
   name: uplink-sunrise-robust-harvest-chemistry-bottle-name
-  productEntity: RobustHarvestChemistryBottle
+  productEntity: ChemistryBottleRobustHarvest
   cost:
     Suntick: 8
   categories:

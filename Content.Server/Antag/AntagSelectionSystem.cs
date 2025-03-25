@@ -218,7 +218,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
                 var selectedCommandStaff = 0;
 
-                foreach (var compSelectedSession in antag.SelectedSessions)
+                foreach (var compSelectedSession in antag.AssignedSessions)
                 {
                     if (_jobs.IsCommandStaff(compSelectedSession))
                     {
@@ -344,7 +344,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
                     var selectedCommandStaff = 0;
 
-                    foreach (var compSelectedSession in ent.Comp.SelectedSessions)
+                    foreach (var compSelectedSession in ent.Comp.AssignedSessions)
                     {
                         if (_jobs.IsCommandStaff(compSelectedSession))
                         {

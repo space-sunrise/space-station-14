@@ -79,6 +79,7 @@
     - id: BookSpaceEncyclopedia
     - id: BookSpaceLaw
     - id: BookTheBookOfControl
+    - id: HyperLinkBookCorporateLaw # Sunrise-edit
 
 - type: entityTable
   id: RandomBookTable

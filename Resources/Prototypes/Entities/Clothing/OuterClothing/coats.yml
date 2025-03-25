@@ -432,13 +432,6 @@
       coefficients:
         Caustic: 0.75
 
-#Sunrise-start
-- type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorResearcher]
-  id: ClothingOuterCoatLabSeniorResearcherOpened
-  name: senior researcher lab coat
-#Sunrise-end
-
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorResearcher]
   id: ClothingOuterCoatLabSeniorResearcherOpened

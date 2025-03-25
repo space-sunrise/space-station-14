@@ -31,7 +31,8 @@
 - type: latheRecipe
   id: WeaponPlasmaCutter
   result: WeaponPlasmaCutter
-  category: Weapons
+  categories:
+  - Weapons
   completetime: 30
   materials:
     Steel: 1200

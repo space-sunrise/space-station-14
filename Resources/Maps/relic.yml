@@ -36604,7 +36604,7 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: NocturineChemistryBottle
+- proto: ChemistryBottleNocturine
   entities:
   - uid: 2063
     components:

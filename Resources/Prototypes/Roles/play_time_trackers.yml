@@ -227,3 +227,18 @@
 
 - type: playTimeTracker
   id: AntagWizard
+
+- type: playTimeTracker
+  id: AntagAntagonist
+
+- type: playTimeTracker
+  id: AntagTeamAntagonist
+
+- type: playTimeTracker
+  id: AntagFreeAgent
+
+- type: playTimeTracker
+  id: AntagSiliconAntagonist
+
+- type: playTimeTracker
+  id: AntagParadoxClone
