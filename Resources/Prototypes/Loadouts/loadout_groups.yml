@@ -133,6 +133,7 @@
   - CaptainCloakFormal
   - CaptainMantle
   - CaptainEliteCloak # Sunrise-Edit
+  - CapitainScarf # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -172,6 +173,7 @@
   loadouts:
   - HoPCloak
   - HoPMantle
+  - HoPScarf # Sunrise-Edit
 
 - type: loadoutGroup
   id: HoPBackpack
@@ -644,6 +646,7 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
+  - QuartermasterScarf # Sunrise-Edit
 #Sunrise-start
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
@@ -799,6 +802,7 @@
   loadouts:
   - ChiefEngineerCloak
   - ChiefEngineerMantle
+  - ChiefEngineerScarf
   #sunrise-start
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
@@ -847,6 +851,7 @@
 - type: loadoutGroup
   id: StationEngineerHead
   name: loadout-group-station-engineer-head
+  minLimit: 0
   loadouts:
 #sunrise-start
   - Sunrise-EngineerHeadBeret
@@ -965,6 +970,7 @@
   loadouts:
   - ResearchDirectorMantle
   - ResearchDirectorCloak
+  - ResearchDirectorScarf # Sunrise-Edit
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit
@@ -1078,6 +1084,7 @@
   - HeadofSecurityMantle
   - HeadofSecurityDarthHOSCloak #Sunrise-Edit
   - HeadofSecurityCloakHOSCloak #Sunrise-Edit
+  - HeadofSecurityScarf #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1232,6 +1239,7 @@
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerBeret
+  - ParamedicBeret # Sunrise-Edit
   - CMOMedicalHeadMirror
 # Sunrise-start
   - BeretSeniorPhysician
@@ -1295,6 +1303,7 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
+  - ChiefMedicalOfficerScarf # Sunrise-Edit
 # Sunrise-start
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
@@ -1470,6 +1479,7 @@
   - PurpleSurgeryCap
 # Sunrise-end
   - ParamedicHead
+  - ParamedicBeret # Sunrise-Edit
 # Sunrise-start
   - Sunrise-HatRedsoft
   - Sunrise-HatOrangesoft

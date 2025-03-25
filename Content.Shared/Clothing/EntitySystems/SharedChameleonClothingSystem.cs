@@ -96,7 +96,53 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
         {
             RemComp<ContrabandComponent>(uid);
         }
+            HelmetUpdate(uid, proto); // Sunrise-edit
     }
+    // Sunrise-start
+    // I know that this is shitcode.
+    // I could subdivide UpdateVisuals into different methods, but I don't want to change the wizden code much
+    public void HelmetUpdate(EntityUid uid, EntityPrototype proto)
+    {
+        if (!TryComp(uid, out ToggleableClothingComponent? helmet))
+            return;
+
+        if (helmet.ClothingUid == null)
+            return;
+
+        if (!proto.TryGetComponent(out ToggleableClothingComponent? protoHelmet, _factory))
+            return;
+
+        if (!_proto.TryIndex(protoHelmet.ClothingPrototype.Id, out var prototypeHelmetOther))
+            return;
+
+        if (TryComp(helmet.ClothingUid, out ClothingComponent? helmetClothing)
+            && prototypeHelmetOther.TryGetComponent(out ClothingComponent? otherHelmetClothing, _factory))
+        {
+            _clothingSystem.CopyVisuals(helmet.ClothingUid.Value, otherHelmetClothing, helmetClothing);
+        }
+        if (TryComp(helmet.ClothingUid, out AppearanceComponent? helmetApperance)
+            && prototypeHelmetOther.TryGetComponent(out AppearanceComponent? otherHelmetApperance, _factory))
+        {
+            _appearance.AppendData(otherHelmetApperance, helmet.ClothingUid.Value);
+            Dirty(uid, helmetApperance);
+        }
+        if (TryComp(helmet.ClothingUid, out MetaDataComponent? meta))
+        {
+            _metaData.SetEntityName(helmet.ClothingUid.Value, prototypeHelmetOther.Name, meta);
+            _metaData.SetEntityDescription(helmet.ClothingUid.Value, prototypeHelmetOther.Description, meta);
+        }
+        if (prototypeHelmetOther.TryGetComponent("Contraband", out ContrabandComponent? contra))
+        {
+            EnsureComp<ContrabandComponent>(helmet.ClothingUid.Value, out var current);
+            _contraband.CopyDetails(helmet.ClothingUid.Value, contra, current);
+        }
+        else
+        {
+            RemComp<ContrabandComponent>(helmet.ClothingUid.Value);
+        }
+
+    }
+    // Sunrise-end
 
     private void OnVerb(Entity<ChameleonClothingComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {

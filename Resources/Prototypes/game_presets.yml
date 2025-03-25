@@ -163,8 +163,7 @@
   minPlayers: 5 # Sunrise-Edit: 5 players for TRAITORS
   rules:
     - Traitor
-    - LiteSubGamemodesRule
-    - MiddleSubGamemodesRule
+    - SubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -212,11 +211,26 @@
   minPlayers: 15 # Sunrise-Edit: 15 players for REVOLUTIONARY
   rules:
     - Revolutionary
-    - LiteSubGamemodesRule # Только лайтовые под-антаги.
+    - SubGamemodesRule # Только лайтовые под-антаги.
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Wizard
+  alias:
+  - wizard
+  name: wizard-title
+  description: wizard-description
+  showInVote: false
+  rules:
+  - Wizard
+  - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Zombie

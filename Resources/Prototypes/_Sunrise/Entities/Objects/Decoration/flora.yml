@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseTree
+  id: floraSakuraTree
+  name: sakura tree
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Decoration/Flora/flora_treessakura.rsi
+    offset: 0,0.7
+    layers:
+    - state: sakura
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.18,-0.35,0.18,0.35"
+        density: 2000
+        layer:
+        - WallLayer

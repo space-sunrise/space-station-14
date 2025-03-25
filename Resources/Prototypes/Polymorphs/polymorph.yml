@@ -210,6 +210,7 @@
     entity: MobMouse
     revertOnDeath: true
     revertOnCrit: true
+    duration: 180 #Sunrise-Edit
 
 - type: polymorph
   id: VampireBat
@@ -217,3 +218,4 @@
     entity: MobBat
     revertOnDeath: true
     revertOnCrit: true
+    duration: 180 #Sunrise-Edit
