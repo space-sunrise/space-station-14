@@ -890,7 +890,7 @@
   id: PlushieMiraKovalskaya
   parent: BasePlushie
   name: Mira Kovalskaya
-  description: She's like to say "Meow" and "mrrr"?..
+  description: The most harmless greytide. She won't touch you, because she will lose even to a space tick:3
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -929,3 +929,108 @@
         volume: 5
   - type: UseDelay
     delay: 2
+
+- type: entity
+  id: PlushieMadokaMori
+  parent: BasePlushie
+  name: Madoka Mori
+  description: A plush toy of the blue detective... It seems quite familiar, as if I've seen him in many sectors... The toy itself is made of a nice, silky material, and he has a gold-plated ring glued to his right hand. And yes, he's back again to the envy of everyone.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-mori
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 5
+
+- type: entity
+  id: PlushieMechanixFaurHorseman
+  parent: BasePlushie
+  name: Mechanix Faur Horseman
+  description: A gloomy plush toy that you may have seen somewhere, its arms are sewn into the pockets of a sweater, and its eyes are covered with something like chemical glasses. It smells of something pleasant, reminiscent of lemon oil. When you look at the toy, it seems to you that you have missed something...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-mechanix
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieVulpkaninGrowls
+
+  
+- type: entity
+  id: PlushieExperiencedSalvageSpecialist
+  parent: BasePlushie
+  name: Experienced Salvage Specialist 
+  description: A toy of a Salvage Specialist in a spacesuit that was reinforced with shields and goliath flesh. The tag has the signature snkrs. The toy looks pretty scary...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: salvage-specialist
+
+- type: entity
+  id: PlushieAlisaKrokozyabka
+  parent: BasePlushie
+  name: Alisa Krokozyabka
+  description: The only Head of Personnel who won't go to lunch. Uga Booga!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-krokozyabka
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 5
+
+- type: entity
+  id: PlushieJamalDotsenko
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Plushie Jamal Dotsenko
+  description: Master of the Brig. Knows the history of the Vulpakins better than the Working Procedures.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-jamal
+
+- type: entity
+  id: PlushieMolnia
+  parent: [ PlushieMoth, BasePlushie ]
+  name: Plushie Lightning Star Trek
+  description: The toy is made of pure cotton, don't eat it, think about it! XD
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-molnia

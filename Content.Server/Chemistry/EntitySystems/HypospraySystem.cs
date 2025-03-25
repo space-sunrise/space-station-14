@@ -1,3 +1,4 @@
+// The code responsible for DoAfter was taken from the rejected Wizden PR 30704. And the code for toxin filtration is from 29879. And redacted banumbas
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -18,12 +19,25 @@ using Robust.Shared.GameStates;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Robust.Server.Audio;
+// Sunrise-Start
+using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.DoAfter;
+using Robust.Shared.Utility;
+// Sunrise-End
 
 namespace Content.Server.Chemistry.EntitySystems;
 
 public sealed class HypospraySystem : SharedHypospraySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
+
+    // Sunrise-Start
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
+    private const string MedicineReagentGroup = "Medicine";
+    // Sunrise-End
 
     public override void Initialize()
     {
@@ -32,7 +46,37 @@ public sealed class HypospraySystem : SharedHypospraySystem
         SubscribeLocalEvent<HyposprayComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<HyposprayComponent, MeleeHitEvent>(OnAttack);
         SubscribeLocalEvent<HyposprayComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<HyposprayComponent, HyposprayDoAfterEvent>(OnHyposprayDoAfter); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void OnHyposprayDoAfter(Entity<HyposprayComponent> entity, ref HyposprayDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Args.Target == null)
+            return;
+
+        args.Handled = TryDoInject(entity, args.Args.Target.Value, args.Args.User);
+    }
+
+    private bool HasInvalidReagents(Solution solution, string group, IPrototypeManager prototypeManager)
+    {
+        foreach (var (reagent, _) in solution.Contents)
+        {
+            if (!prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
+            {
+                DebugTools.Assert("Reagent prototype not found in prototype manager.");
+                continue;
+            }
+
+            if (reagentProto.Group != group)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }    
+    // Sunrise-End
 
     private bool TryUseHypospray(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user)
     {
@@ -42,6 +86,30 @@ public sealed class HypospraySystem : SharedHypospraySystem
         {
             return TryDraw(entity, target, drawableSolution.Value, user);
         }
+
+        // Sunrise-Start
+        // No doAfter for self-injection
+        if (entity.Comp.DoAfterTime > 0 && target != user)
+        {
+            // Is the target a mob? If yes, use a do-after to give them time to respond.
+            if (HasComp<MobStateComponent>(target) || HasComp<BloodstreamComponent>(target))
+            {
+                //If the injection would fail the doAfter can be skipped at this step
+                if (InjectionFailureCheck(entity, target, user, out _, out _, out _, out _))
+                {
+                    _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, entity.Comp.DoAfterTime, new HyposprayDoAfterEvent(), entity.Owner, target: target, used: entity.Owner)
+                    {
+                        BreakOnMove = true,
+                        BreakOnWeightlessMove = false,
+                        BreakOnDamage = true,
+                        NeedHand = true,
+                        BreakOnHandChange = true,
+                    });
+                }
+                return true;
+            }
+        }
+        // Sunrise-End
 
         return TryDoInject(entity, target, user);
     }
@@ -123,17 +191,13 @@ public sealed class HypospraySystem : SharedHypospraySystem
         else if (target == user)
             msgFormat = "hypospray-component-inject-self-message";
 
-        if (!_solutionContainers.TryGetSolution(uid, component.SolutionName, out var hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
-        {
-            _popup.PopupEntity(Loc.GetString("hypospray-component-empty-message"), target, user);
-            return true;
-        }
-
-        if (!_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
-        {
-            _popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
-            return false;
-        }
+        // Sunrise-Start
+        if (!InjectionFailureCheck(entity, target, user, out var hypoSpraySoln, out var targetSoln, out var targetSolution, out var returnValue)
+            || hypoSpraySoln == null
+            || targetSoln == null
+            || targetSolution == null)
+            return returnValue;
+        // Sunrise-End
 
         _popup.PopupEntity(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", target)), target, user);
 
@@ -188,7 +252,6 @@ public sealed class HypospraySystem : SharedHypospraySystem
         // Get transfer amount. May be smaller than _transferAmount if not enough room, also make sure there's room in the injector
         var realTransferAmount = FixedPoint2.Min(entity.Comp.TransferAmount, targetSolution.Comp.Solution.Volume,
             solution.AvailableVolume);
-
         if (realTransferAmount <= 0)
         {
             _popup.PopupEntity(
@@ -198,8 +261,22 @@ public sealed class HypospraySystem : SharedHypospraySystem
             return false;
         }
 
-        var removedSolution = _solutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
+        // Sunrise-Start
+        if (entity.Comp.FilterPoison)
+        {
+            var hasInvalidReagents = HasInvalidReagents(targetSolution.Comp.Solution, MedicineReagentGroup, _prototypeManager);
+            if (hasInvalidReagents)
+            {
+                _popup.PopupEntity(Loc.GetString("hypospray-invalid-reagents-message",
+                        ("target", Identity.Entity(target, EntityManager))),
+                    entity.Owner,
+                    user);
+                return false;
+            }
+        }
 
+        var removedSolution = _solutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
+        // Sunrise-End
         if (!_solutionContainers.TryAddSolution(soln.Value, removedSolution))
         {
             return false;
@@ -208,6 +285,7 @@ public sealed class HypospraySystem : SharedHypospraySystem
         _popup.PopupEntity(Loc.GetString("injector-component-draw-success-message",
             ("amount", removedSolution.Volume),
             ("target", Identity.Entity(target, EntityManager))), entity.Owner, user);
+
         return true;
     }
 
@@ -221,4 +299,30 @@ public sealed class HypospraySystem : SharedHypospraySystem
               entMan.HasComponent<MobStateComponent>(entity)
             : entMan.HasComponent<SolutionContainerManagerComponent>(entity);
     }
+    
+    // Sunrise-Start
+    private bool InjectionFailureCheck(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user, out Entity<SolutionComponent>? hypoSpraySoln, out Entity<SolutionComponent>? targetSoln, out Solution? targetSolution, out bool returnValue)
+    {
+        hypoSpraySoln = null;
+        targetSoln = null;
+        targetSolution = null;
+        returnValue = false;
+
+        if (!_solutionContainers.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
+        {
+            _popup.PopupEntity(Loc.GetString("hypospray-component-empty-message"), target, user);
+            returnValue = true;
+            return false;
+        }
+
+        if (!_solutionContainers.TryGetInjectableSolution(target, out targetSoln, out targetSolution))
+        {
+            _popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+            returnValue = false;
+            return false;
+        }
+
+        return true;
+    }
+    // Sunrise-End
 }

@@ -363,6 +363,7 @@
     - id: ClothingMaskGasSwat
     - id: ClothingOuterHardsuitSecurityRed
     - id: ClothingShoesBootsMagSec  # Sunrise-edit
+      prob: 0.3
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
 

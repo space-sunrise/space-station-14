@@ -19,3 +19,80 @@
     sprite: _Sunrise/Clothing/Neck/Scarfs/cyan.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Neck/Scarfs/cyan.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfHos
+  name: hos's scarf
+  description: Smells like tabacco and gunpowder.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_hos.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfCmo
+  name: cmo's scarf
+  description: Smells like chemistry.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_cmo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_cmo.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfQm
+  name: qm's scarf
+  description: Smells like money.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_qm.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_qm.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfRD
+  name: rd's scarf
+  description: Smells like slime.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_rd.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_rd.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfHOP
+  name: hop's scarf
+  description: Smells like cellulose.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_hop.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_hop.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfCap
+  name: cap's scarf
+  description: Smells like expansive whiskey.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_cap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_cap.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfCe
+  name: ce's scarf
+  description: Smells like machine oil.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_ce.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/scarf_ce.rsi

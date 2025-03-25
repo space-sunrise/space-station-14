@@ -280,8 +280,8 @@
         Caustic: 0.65 #sunrise-Edit
         Radiation: 0.55  #sunrise-add
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.80
+    sprintModifier: 0.80
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
@@ -627,9 +627,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55 #Sunrise-edit
-        Slash: 0.55 #Sunrise-edit
-        Piercing: 0.55 #Sunrise-edit
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5

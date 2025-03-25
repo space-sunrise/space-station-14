@@ -1514,8 +1514,74 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieMechanixFaurHorseman
+  productEntity: PlushieMechanixFaurHorseman
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieMihailOsipov
   productEntity: PlushieMihailOsipov
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+    
+- type: listing
+  id: UplinkSunrisePlushieMadokaMori
+  productEntity: PlushieMadokaMori
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMolnia
+  productEntity: PlushieMolnia
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieExperiencedSalvageSpecialist
+  productEntity: PlushieExperiencedSalvageSpecialist
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieAlisaKrokozyabka
+  productEntity: PlushieAlisaKrokozyabka
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieJamalDotsenko
+  productEntity: PlushieJamalDotsenko
   cost:
     Suntick: 4
   categories:
