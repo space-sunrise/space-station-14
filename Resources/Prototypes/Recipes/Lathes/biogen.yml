@@ -2,17 +2,17 @@
   id: BioGenMonkeyCube
   result: MonkeyCube
   category: Food
-  completetime: 3
+  completetime: 10
   materials:
-    Biomass: 70
+    Biomass: 16 #sunrise-edit
 
 - type: latheRecipe
   id: BioGenKoboldCube
   result: KoboldCube
   category: Food
-  completetime: 3
+  completetime: 10
   materials:
-    Biomass: 70
+    Biomass: 16 #sinrise-edit
 
 - type: latheRecipe
   id: BioGenMaterialCloth1
@@ -285,4 +285,52 @@
   materials:
     Biomass: 50
 
+- type: latheRecipe
+  id: BioCowCube
+  result: CowCube
+  completetime: 30
+  materials:
+    Biomass: 240
+
+- type: latheRecipe
+  id: BioGoatCube
+  result: GoatCube
+  completetime: 30
+  materials:
+    Biomass: 75
+
+- type: latheRecipe
+  id: BioMothroachCube
+  result: MothroachCube
+  completetime: 45 # prevent biblical floods
+  materials:
+    Biomass: 20 # a lot of materials wasted due to complex genetics
+
+- type: latheRecipe
+  id: BioMouseCube
+  result: MouseCube
+  completetime: 15
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: BioCockroachCube
+  result: CockroachCube
+  completetime: 15
+  materials:
+    Biomass: 16
+
+- type: latheRecipe
+  id: BioPigCube
+  result: PigCube
+  completetime: 15
+  materials:
+    Biomass: 55
+
+- type: latheRecipe
+  id: BioChikenCube
+  result: ChikenCube
+  completetime: 15
+  materials:
+    Biomass: 16
 # Sunrise-End

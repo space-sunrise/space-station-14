@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "copyright": "by kamenshik975 for Sunrise",
+    "size": {
+        "x": 64,
+        "y": 72
+    },
+    "states": [
+        {
+            "name": "sakura"
+        }
+    ]
+}

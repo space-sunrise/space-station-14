@@ -1287,6 +1287,7 @@
   - type: Mech
     startingEquipment:
       - WeaponMechCombatMissileRack8
+      - WeaponMechCombatShotgun
 
 # Rover
 - type: entity
@@ -1367,6 +1368,7 @@
   - type: Mech
     startingEquipment:
       - WeaponMechCombatMissileRack8
+      - WeaponMechCombatUltraRifle
 
 # Mauler
 - type: entity
@@ -1452,3 +1454,5 @@
   - type: Mech
     startingEquipment:
       - WeaponMechCombatMissileRack6
+      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatShotgun

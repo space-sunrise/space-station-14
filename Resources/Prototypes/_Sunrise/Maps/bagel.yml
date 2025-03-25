@@ -102,7 +102,7 @@
         - Zoo
         - MiningOutpost
         - Tesla
-        - XenobiologyRepair
+        #- XenobiologyRepair
         - VirusologyAmbusol
         - Containment
         - WeaponsSecurity
@@ -117,7 +117,7 @@
         - Cyborgs
         - Testing
         - Anomaly
-        - Replenishment
+        #- Replenishment
         - IntelWeapons
         - Reports
         - Reconnaissance

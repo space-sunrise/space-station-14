@@ -26,6 +26,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Weapons.Melee;
+using Content.Shared._Sunrise.ThermalVision;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
@@ -55,6 +56,7 @@ public sealed partial class VampireSystem
         SubscribeLocalEvent<VampireComponent, VampireUnholyStrengthEvent>(OnVampireUnholyStrength);
         SubscribeLocalEvent<VampireComponent, VampireSupernaturalStrengthEvent>(OnVampireSupernaturalStrength);
         SubscribeLocalEvent<VampireComponent, VampireCloakOfDarknessEvent>(OnVampireCloakOfDarkness);
+        SubscribeLocalEvent<VampireComponent, VampireThermalVisionEvent>(OnVampireThermalVision);
 
         //Hypnotise
         SubscribeLocalEvent<VampireComponent, VampireHypnotiseDoAfterEvent>(HypnotiseDoAfter);
@@ -211,6 +213,26 @@ public sealed partial class VampireSystem
         _action.SetToggled(actionEntity, toggled);
 
         ev.Handled = true;
+    }
+    private void OnVampireThermalVision(EntityUid entity, VampireComponent component, VampireThermalVisionEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+            return;
+
+        if (!IsAbilityUsable((entity, component), def))
+            return;
+
+        // Toggle thermal vision component
+        if (HasComp<ThermalVisionComponent>(entity))
+        {
+            RemComp<ThermalVisionComponent>(entity);
+            _popup.PopupEntity(Loc.GetString("vampire-thermal-vision-off"), entity, entity);
+        }
+        else
+        {
+            EnsureComp<ThermalVisionComponent>(entity);
+            _popup.PopupEntity(Loc.GetString("vampire-thermal-vision-on"), entity, entity);
+        }
     }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {

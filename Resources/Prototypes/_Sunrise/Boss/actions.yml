@@ -1,0 +1,64 @@
+﻿- type: entity
+  id: ActionHellSpawnRush
+  name: RUSH
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityWorldTargetAction
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    itemIconStyle: NoItem
+    priority: -1
+    range: 16
+    useDelay: 3
+    event: !type:HellSpawnRushActionEvent
+
+- type: entity
+  id: ActionHellSpawnInvincibility
+  name: Invincibility
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    priority: -1
+    useDelay: 30
+    icon: _Sunrise/Interface/Actions/inferno_shield.png
+    event: !type:HellSpawnInvincibilityActionEvent
+
+- type: entity
+  id: ActionHellSpawnTentacleRight
+  name: Tentacle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityWorldTargetAction
+    icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
+    itemIconStyle: NoItem
+    priority: -1
+    range: 5
+    useDelay: 8
+    event: !type:HellSpawnTentacleActionEvent
+      left: false
+
+- type: entity
+  id: ActionHellSpawnTentacleLeft
+  name: Tentacle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityWorldTargetAction
+    icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
+    itemIconStyle: NoItem
+    priority: -1
+    range: 7
+    useDelay: 10
+    event: !type:HellSpawnTentacleActionEvent
+      left: true
+
+- type: entity
+  id: ActionHellSpawnSpiral
+  categories: [ HideSpawnMenu ]
+  name: Spiral
+  components:
+  - type: InstantAction
+    priority: -1
+    useDelay: 15
+    icon: _Sunrise/Interface/Actions/inferno_shield.png
+    event: !type:HellSpawnSpiralActionEvent

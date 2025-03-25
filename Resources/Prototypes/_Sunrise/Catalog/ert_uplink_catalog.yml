@@ -1094,7 +1094,7 @@
   productEntity: ClothingEyesGlassesThermalSec
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: thermals }
   cost:
-    Crystallite: 10
+    Crystallite: 11
   categories:
     - NTEquipment
   conditions:

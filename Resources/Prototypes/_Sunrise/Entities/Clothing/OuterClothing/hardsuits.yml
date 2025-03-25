@@ -425,23 +425,60 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.4
   - type: FireProtection
     reduction: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
+        Blunt: 0.55
+        Slash: 0.6
+        Piercing: 0.65
         Heat: 0.4
-        Radiation: 0.5
-        Caustic: 0.5
+        Radiation: 0.4
+        Caustic: 0.4
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCapSun
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: ClothingOuterHardsuitBasic
+  id: ClothingOuterHardsuitChameleon
+  name: syndicate chameleon
+  description: Looking at his material, Sci-fi images inadvertently pop up in your head.
+  components:
+    - type: Tag
+      tags: []
+    - type: Sprite
+      sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 0.9
+      sprintModifier: 0.85
+    - type: Biocode
+      factions:
+      - Syndicate
+      - Thief
+    - type: ChameleonClothing
+      slot: [outerClothing]
+      default: ClothingOuterHardsuitBasic
+      requireTag: WhitelistChameleonSuit
+    - type: UserInterface
+      interfaces:
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.55
+          Piercing: 0.65
+          Heat: 0.4
+          Radiation: 0.5
+          Caustic: 0.5
