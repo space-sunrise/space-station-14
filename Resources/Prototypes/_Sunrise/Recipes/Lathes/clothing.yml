@@ -45,6 +45,16 @@
   result: ClothingHeadHatBeretParamedic
 
 - type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretChemistry
+  result: ClothingHeadHatBeretChemistry
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPatologoanatom
+  result: ClothingHeadHatBeretPatologoanatom
+
+- type: latheRecipe
   parent: BaseNeckClothingRecipe
   id: ClothingNeckScarfRD
   result: ClothingNeckScarfRD
