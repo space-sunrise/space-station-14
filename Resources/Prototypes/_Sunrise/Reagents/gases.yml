@@ -179,7 +179,6 @@
   color: "#8B4513"
   metabolisms:
     Gas:
-      Medicine:
       metabolismRate: 1.0
       effects:
       - !type:MovespeedModifier

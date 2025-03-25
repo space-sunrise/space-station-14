@@ -296,9 +296,9 @@
   description: Gas Mask for real professionals. It may even help to get CE cameras with burning tritium!
   components:
   - type: Sprite
-    sprite: Clothing/Mask/blueshield.rsi
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
   - type: Clothing
-    sprite: Clothing/Mask/blueshield.rsi
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
