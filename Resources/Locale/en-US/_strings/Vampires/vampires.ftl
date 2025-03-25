@@ -61,6 +61,12 @@ vampire-power-mouseform-description = Assume for form of a mouse. Fast, Small, I
 vampire-power-cloakofdarkness = Cloak of Darkness
 vampire-power-cloakofdarkness-description = Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds
 
+vampire-power-thermalvision = Thermal Vision
+vampire-power-thermalvision-description = Toggle thermal vision, allowing you to see living beings through walls. This ability is unlocked once you reach 500 blood essence.
+
+vampire-thermal-vision-on = You activate your thermal vision
+vampire-thermal-vision-off = You deactivate your thermal vision
+
 #Passives
 vampire-passive-unholystrength = Unholy Strength
 vampire-passive-unholystrength-description = Infuse your upper body muscles with essence, granting you claws and increased strength. Effect: 10 Slash per hit
