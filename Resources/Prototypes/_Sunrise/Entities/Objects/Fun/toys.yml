@@ -40,13 +40,13 @@
   - type: EmitSoundOnUse
     sound:
       collection: SQUEE
-    params:
-      volume: 5
+      params:
+        volume: 5
   - type: EmitSoundOnActivate
     sound:
       collection: SQUEE
-    params:
-      volume: 5
+      params:
+        volume: 5
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_Sunrise/Voice/Vulpkanin/dog_growl1.ogg
