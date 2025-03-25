@@ -176,6 +176,7 @@ namespace Content.Shared.Atmos
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
             [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"), //SunRise edit
             [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"), //SunRise edit
+            [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"), //SunRise edit
         };
 
         #region Excited Groups
@@ -205,7 +206,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 11; //SunRise edit
+        public const int TotalNumberOfGases = 12; //SunRise edit
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -391,5 +392,6 @@ namespace Content.Shared.Atmos
         Frezon = 8,
         BZ = 9, //SunRise edit
         Healium = 10, //SunRise edit
+        Nitrium = 11 //SunRise edit
     }
 }
