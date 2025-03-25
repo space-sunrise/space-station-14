@@ -68,6 +68,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
             CargoTechnician: [ 3, 3 ]
+            MailCarrier: [ 2, 2 ]
             #civilian
             Passenger: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -116,7 +117,7 @@
           - Cyborgs
           - Testing
           - Anomaly
-          - Replenishment
+          #- Replenishment
           - IntelWeapons
           - Reports
           - Reconnaissance

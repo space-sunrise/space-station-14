@@ -8,6 +8,9 @@
   id: JobBrigmedic
 
 - type: playTimeTracker
+  id: JobMailCarrier
+
+- type: playTimeTracker
   id: JobCentCommOperator
 
 - type: playTimeTracker

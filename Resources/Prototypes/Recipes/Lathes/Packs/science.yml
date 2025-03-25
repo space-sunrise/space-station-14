@@ -39,6 +39,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - PlantBagOfHolding  # Sunrise-edit
 
 - type: latheRecipePack
   id: PowerCells
@@ -54,6 +55,7 @@
   - WeaponForceGun
   - WeaponLaserSvalinn
   - WeaponProtoKineticAccelerator
+  - WeaponPlasmaCutter  # Sunrise-Add
   - WeaponTetherGun
   - WeaponGauntletGorilla
 

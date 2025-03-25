@@ -5,11 +5,13 @@ using Content.Server._Sunrise.Boss.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
+using Content.Server.Construction;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Sunrise.Paws;
 using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Systems;
+using Content.Shared.Construction;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.GameTicking;
@@ -24,11 +26,10 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Strip.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Console;
-using Robust.Shared.EntitySerialization;
-using Robust.Shared.Timing;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Boss.Systems;
@@ -49,6 +50,8 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly ConstructionSystem _construction = default!;
+    [Dependency] private readonly SharedConstructionSystem _shConstruction = default!;
 
     private ISawmill _sawmill = default!;
 

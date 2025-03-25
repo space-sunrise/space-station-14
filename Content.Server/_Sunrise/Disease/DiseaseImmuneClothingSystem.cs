@@ -5,6 +5,7 @@ using Content.Shared._Sunrise.Disease;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
+using Content.Shared.Armor;
 namespace Content.Server._Sunrise.Disease;
 
 public sealed class DiseaseImmuneClothingSystem : EntitySystem
@@ -15,7 +16,7 @@ public sealed class DiseaseImmuneClothingSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<DiseaseImmuneClothingComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<DiseaseImmuneClothingComponent, GotUnequippedEvent>(OnGotUnequipped);
-        SubscribeLocalEvent<DiseaseImmuneClothingComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
+        SubscribeLocalEvent<DiseaseImmuneClothingComponent, ArmorExamineEvent>(OnArmorExamine);
     }
 
     private void OnGotEquipped(EntityUid uid, DiseaseImmuneClothingComponent component, GotEquippedEvent args)
@@ -43,17 +44,9 @@ public sealed class DiseaseImmuneClothingSystem : EntitySystem
         component.IsActive = false;
     }
 
-    private void OnArmorVerbExamine(EntityUid uid, DiseaseImmuneClothingComponent component, GetVerbsEvent<ExamineVerb> args)
+    private void OnArmorExamine(EntityUid uid, DiseaseImmuneClothingComponent component, ref ArmorExamineEvent args)
     {
-        if (!args.CanInteract || !args.CanAccess)
-            return;
-
-        var examineMarkup = new FormattedMessage();
-        examineMarkup.TryAddMarkup($"Защищает от заражения на {Convert.ToInt32(component.Prob * 100)}%", out var _);
-
-        _examine.AddDetailedExamineVerb(args, component, examineMarkup,
-            "Стерильность", "/Textures/Interface/VerbIcons/dot.svg.192dpi.png",
-            "Изучить показатели стерильности.");
+        args.Msg.PushNewline();
+        args.Msg.AddMarkupOrThrow(Loc.GetString("disease-protection-value", ("value", Convert.ToInt32(component.Prob * 100))));
     }
-
 }
