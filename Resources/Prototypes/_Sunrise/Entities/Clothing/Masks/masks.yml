@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasSecurity
   id: ClothingMaskGasPilot
   name: security pilot's gas mask
   description: A gas mask made in the style of 21st century pilot masks.
