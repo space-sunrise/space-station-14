@@ -185,7 +185,7 @@
 
 - type: wireLayout
   id: ComputerAi
-  dummyWires: 2
+  dummyWires: 7
   wires:
   - !type:PowerWireAction
   - !type:AiInteractWireAction
