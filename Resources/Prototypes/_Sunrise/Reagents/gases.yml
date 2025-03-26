@@ -169,3 +169,64 @@
         - !type:ReagentThreshold
           reagent: Healium
           min: 1
+
+- type: reagent
+  id: Nitrium
+  name: reagent-name-nitrium
+  desc: reagent-desc-nitrium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#8B4513"
+  metabolisms:
+    Gas:
+      metabolismRate: 1.0
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 80
+        damage:
+          types:
+            Poison: 20
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 10
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 10
+        type: Remove
+      - !type:GenericStatusEffect
+        key: StaminaModifier
+        component: StaminaModifier
+        time: 10
+        type: Add
+      - !type:GenericStatusEffect
+        key: ForcedSleep
+        time: 10
+        type: Remove
+      - !type:Jitter
+      - !type:PopupMessage
+        visualType: Medium
+        messages: ["Вы чувствуете как ваше тело наполняется энергией", "Вы чувствуете как начинают болеть ваши мышцы"]
+        type: Local
+        probability: 0.05

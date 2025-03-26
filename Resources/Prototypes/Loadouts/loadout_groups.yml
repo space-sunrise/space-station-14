@@ -32,6 +32,7 @@
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
+  - ClothingNeckAroacePin
   - ClothingNeckBisexualPin
   - ClothingNeckGayPin
   - ClothingNeckIntersexPin
@@ -89,6 +90,7 @@
   - EmergencyWithoutGas  # Sunrise-Edit
   - EmergencyDwarf  # Sunrise-Edit
 
+# nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
   id: GroupEVATank
   name: loadout-group-EVA-tank
@@ -96,6 +98,14 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
+
+# vox get a nitrogen tank, other species get nothing
+- type: loadoutGroup
+  id: GroupEVATankVox
+  name: loadout-group-vox-tank
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
   id: GroupPocketTankDouble
@@ -133,6 +143,7 @@
   - CaptainCloakFormal
   - CaptainMantle
   - CaptainEliteCloak # Sunrise-Edit
+  - CapitainScarf # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -172,6 +183,7 @@
   loadouts:
   - HoPCloak
   - HoPMantle
+  - HoPScarf # Sunrise-Edit
 
 - type: loadoutGroup
   id: HoPBackpack
@@ -600,6 +612,7 @@
   - PanFlute
   - Ocarina
   - Bagpipe
+  - SuperSynthesizer
 
 # Cargo
 - type: loadoutGroup
@@ -644,6 +657,7 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
+  - QuartermasterScarf # Sunrise-Edit
 #Sunrise-start
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
@@ -799,6 +813,7 @@
   loadouts:
   - ChiefEngineerCloak
   - ChiefEngineerMantle
+  - ChiefEngineerScarf
   #sunrise-start
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
@@ -966,6 +981,7 @@
   loadouts:
   - ResearchDirectorMantle
   - ResearchDirectorCloak
+  - ResearchDirectorScarf # Sunrise-Edit
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit
@@ -1079,6 +1095,7 @@
   - HeadofSecurityMantle
   - HeadofSecurityDarthHOSCloak #Sunrise-Edit
   - HeadofSecurityCloakHOSCloak #Sunrise-Edit
+  - HeadofSecurityScarf #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1233,10 +1250,13 @@
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerBeret
+  - ParamedicBeret # Sunrise-Edit
   - CMOMedicalHeadMirror
 # Sunrise-start
   - BeretSeniorPhysician
   - MedicalBeret
+  - ChemistBeret #Sunrise-edit
+  - PatologonatBeret #Sunrise-edit
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -1296,6 +1316,7 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
+  - ChiefMedicalOfficerScarf # Sunrise-Edit
 # Sunrise-start
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
@@ -1471,6 +1492,7 @@
   - PurpleSurgeryCap
 # Sunrise-end
   - ParamedicHead
+  - ParamedicBeret # Sunrise-Edit
 # Sunrise-start
   - Sunrise-HatRedsoft
   - Sunrise-HatOrangesoft

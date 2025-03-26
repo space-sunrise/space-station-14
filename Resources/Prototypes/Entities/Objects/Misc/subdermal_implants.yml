@@ -245,7 +245,7 @@
       implantAction: ActionActivateEmpImplant
     - type: TriggerImplantAction
     - type: EmpOnTrigger
-      range: 5.5 #2.75 Sunrise-Edit
+      range: 2.75
       energyConsumption: 50000
       disableDuration: 10
 
@@ -419,7 +419,7 @@
   #categories: [ HideSpawnMenu ] Sunrsie-Edit
   components:
    - type: SubdermalImplant
-     #permanent: true Sunrsie-Edit
+   - type: MindShieldImplant
    - type: Tag
      tags:
        - MindShield

@@ -31,7 +31,8 @@ public sealed partial class GasArtifactComponent : Component
         Gas.NitrousOxide,
         Gas.Frezon,
         Gas.BZ, //SunRise edit
-        Gas.Healium //SunRise edit
+        Gas.Healium, //SunRise edit
+        Gas.Nitrium, //SunRise edit
     };
 
     /// <summary>
