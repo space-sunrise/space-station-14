@@ -20,8 +20,6 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [DeathSquadTangoGear]
-  - type: Stamina
-    critThreshold: 350
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -67,8 +65,6 @@
   components:
   - type: Loadout
     prototypes: [DeathSquadLeaderTangoGear]
-  - type: Stamina
-    critThreshold: 400
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -128,8 +124,6 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [DeathSquadFoxtrotGear]
-  - type: Stamina
-    critThreshold: 350
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -175,8 +169,6 @@
   components:
   - type: Loadout
     prototypes: [DeathSquadLeaderFoxtrotGear]
-  - type: Stamina
-    critThreshold: 400
   - type: MobState
   - type: MobThresholds
     thresholds:
