@@ -180,3 +180,28 @@
     damage:
       types:
         Piercing: 40
+
+- type: entity
+  name: Blood Bolt Barrage
+  parent: BaseItem
+  id: BloodBoltBarrage
+  description: ""
+  components:
+    - type: BloodBoltBarrage
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Sunrise/BloodCult/Entities/arcane_barrage.rsi
+      state: icon
+    - type: Gun
+      fireRate: 2
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/_Sunrise/BloodCult/enter_blood.ogg
+    - type: AmmoCounter
+    - type: BasicEntityAmmoProvider
+      proto: BloodBolt
+      capacity: 24
+      count: 24

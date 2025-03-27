@@ -14,6 +14,7 @@
   - Vampire
   - Flesh
   - FleshHuman
+  - BloodCult
 
 - type: npcFaction
   id: Thief
@@ -29,6 +30,7 @@
   - Vampire
   - Flesh
   - FleshHuman
+  - BloodCult
 
 - type: npcFaction
   id: Carps
@@ -46,6 +48,7 @@
   - Changeling
   - Flesh
   - FleshHuman
+  - BloodCult
 
 - type: npcFaction
   id: Vampire
@@ -63,3 +66,4 @@
   - Changeling
   - Flesh
   - FleshHuman
+  - BloodCult

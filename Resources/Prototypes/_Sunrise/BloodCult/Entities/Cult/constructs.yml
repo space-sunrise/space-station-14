@@ -61,6 +61,7 @@
         - CannotSuicide
         - DoorBumpOpener
     - type: CultMember
+    - type: DamageOverlay
 
 - type: entity
   id: JuggernautConstruct

@@ -1,4 +1,5 @@
-﻿using Content.Server.Body.Components;
+﻿using Content.Server._Sunrise.BloodCult.Items.Components;
+using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
@@ -7,7 +8,9 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Projectiles;
 using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
@@ -29,8 +32,34 @@ public sealed class BloodCultWeaponSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BloodBloodCultWeaponComponent, MeleeHitEvent>(OnMeleeHit);
+        SubscribeLocalEvent<BloodCultWeaponComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<BloodCultWeaponComponent, AfterInteractEvent>(OnInteractEvent);
+        SubscribeLocalEvent<BloodBoltComponent, ProjectileHitEvent>(BloodBoltOnCollide);
+    }
+
+    private void BloodBoltOnCollide(Entity<BloodBoltComponent> ent, ref ProjectileHitEvent args)
+    {
+        if (HasComp<ConstructComponent>(args.Target))
+        {
+            _damageableSystem.TryChangeDamage(args.Target,
+                ent.Comp.HealConstruct,
+                origin: args.Shooter);
+            return;
+        }
+        if (HasComp<BloodCultistComponent>(args.Target))
+        {
+            if (_solutionContainer.TryGetInjectableSolution(args.Target, out var injectableSolution, out _))
+            {
+                injectableSolution.Value.Comp.Solution.AddReagent(ent.Comp.UnholyProto, ent.Comp.UnholyVolume);
+            }
+            return;
+        }
+        if (HasComp<MobStateComponent>(args.Target))
+        {
+            _damageableSystem.TryChangeDamage(args.Target,
+                ent.Comp.Damage,
+                origin: args.Shooter);
+        }
     }
 
     private void OnInteractEvent(EntityUid uid, BloodCultWeaponComponent component, AfterInteractEvent args)

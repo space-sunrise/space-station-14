@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server._Sunrise.BloodCult.Items.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
@@ -13,13 +14,19 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
+using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
+using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -46,13 +53,57 @@ public sealed class CultBloodSpellSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CultBloodSpellComponent, GotUnequippedHandEvent>(OnGotUnequippedHand);
+        SubscribeLocalEvent<BloodBoltBarrageComponent, GotUnequippedHandEvent>(OnGotUnequippedHand);
+        SubscribeLocalEvent<BloodBoltBarrageComponent, ShotAttemptedEvent>(BarrageShotAttempt);
+        SubscribeLocalEvent<BloodBoltBarrageComponent, GunShotEvent>(BarrageShot);
         SubscribeLocalEvent<CultBloodSpellComponent, AfterInteractEvent>(OnInteractEvent);
         SubscribeLocalEvent<CultBloodSpellComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<CultBloodSpellComponent, CultBloodSpellCreateOrbBuiMessage>(OnRequestCreateOrb);
         SubscribeLocalEvent<CultBloodSpellComponent, CountSelectorMessage>(OnCreateOrb);
         SubscribeLocalEvent<CultBloodSpellComponent, CultBloodSpellCreateBloodSpearBuiMessage>(
             OnRequestCreateBloodSpear);
+        SubscribeLocalEvent<CultBloodSpellComponent, CultBloodSpellCreateBloodBoltBarrageBuiMessage>(
+            OnRequestCreateBloodBoltBarrage);
         SubscribeLocalEvent<CultBloodSpellComponent, ExaminedEvent>(OnExamine);
+    }
+
+    private void BarrageShotAttempt(Entity<BloodBoltBarrageComponent> entity, ref ShotAttemptedEvent args)
+    {
+        if (!TryComp<HandsComponent>(args.User, out var handsComponent))
+            return;
+
+        var currentHand = handsComponent.ActiveHand;
+
+        if (currentHand == null)
+            return;
+
+        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Value != currentHand);
+
+        if (!_handsSystem.CanPickupToHand(args.User, entity.Owner, otherHand.Value))
+        {
+            _popupSystem.PopupEntity($"Рука занята",
+                args.User,
+                args.User,
+                PopupType.Large);
+            args.Cancel();
+        }
+    }
+
+    private void BarrageShot(Entity<BloodBoltBarrageComponent> entity, ref GunShotEvent args)
+    {
+        if (!TryComp<HandsComponent>(args.User, out var handsComponent))
+            return;
+
+        var currentHand = handsComponent.ActiveHand;
+
+        if (currentHand == null)
+            return;
+
+        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Value != currentHand);
+
+        _handsSystem.TryPickup(args.User, entity.Owner, otherHand.Value, checkActionBlocker: false);
+
+        _handsSystem.SetActiveHand(args.User, otherHand.Value);
     }
 
     private void OnExamine(EntityUid uid, CultBloodSpellComponent component, ExaminedEvent args)
@@ -112,6 +163,25 @@ public sealed class CultBloodSpellSystem : EntitySystem
         bloodSpearComp.SpearOwner = args.Actor;
         _handsSystem.TryDrop(args.Actor, uid, checkActionBlocker: false);
         _handsSystem.TryPickup(args.Actor, bloodSpear, checkActionBlocker: false);
+        comp.BloodCharges -= component.BloodSpearCost;
+    }
+
+    private void OnRequestCreateBloodBoltBarrage(EntityUid uid,
+        CultBloodSpellComponent component,
+        CultBloodSpellCreateBloodBoltBarrageBuiMessage args)
+    {
+        if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
+            return;
+
+        if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
+            return;
+
+        if (comp.BloodCharges < component.BloodSpearCost)
+            return;
+
+        var bloodBoltBarrage = Spawn(component.BloodBoltBarrageSpawnId, _transformSystem.GetMapCoordinates(uid));
+        _handsSystem.TryDrop(args.Actor, uid, checkActionBlocker: false);
+        _handsSystem.TryPickup(args.Actor, bloodBoltBarrage, checkActionBlocker: false);
         comp.BloodCharges -= component.BloodSpearCost;
     }
 
@@ -233,7 +303,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (absorbBlood.Volume == 0)
             return 0;
 
-        var getCharges = absorbBlood.Volume / 2;
+        var getCharges = absorbBlood.Volume / 1.5;
         _popupSystem.PopupEntity($"Собрано {getCharges} зарядов",
             user,
             user,
@@ -304,7 +374,6 @@ public sealed class CultBloodSpellSystem : EntitySystem
 
                 var damageGroupSpecifier = _prototypeManager.Index<DamageGroupPrototype>(damageGroup);
 
-                // Calculate the total damage in the group
                 var totalDamageInGroup = FixedPoint2.Zero;
 
                 foreach (var damageType in damageGroupSpecifier.DamageTypes)
@@ -315,27 +384,20 @@ public sealed class CultBloodSpellSystem : EntitySystem
                 if (totalDamageInGroup == 0 || totalDamage == 0)
                     continue;
 
-                // Distribute healing proportionally to the total damage in the group
                 var proportionalHealGroup = (availableCharges * (damage / totalDamage));
 
-                // Ensure that the proportionalHealGroup does not exceed the availableHeal
                 proportionalHealGroup = FixedPoint2.Min(proportionalHealGroup, availableCharges);
 
-                // Update availableHeal by subtracting the allocated healing for the group
                 availableCharges -= proportionalHealGroup;
 
-                // Distribute healing within the group proportionally to each type
                 foreach (var damageType in damageGroupSpecifier.DamageTypes.ToList())
                 {
                     var damageInType = damageableComponent.Damage.DamageDict[damageType];
 
-                    // Calculate the proportional share of healing for the current damageType
                     var proportionalHealType = (proportionalHealGroup * (damageInType / totalDamageInGroup));
 
-                    // Ensure that the proportionalHealType does not exceed the availableHeal for the type
                     proportionalHealType = FixedPoint2.Min(proportionalHealType, damageInType);
 
-                    // Update the healingDamage dictionary with the proportionalHealType for the current damageType
                     healingDamage.DamageDict.Add(damageType, -proportionalHealType);
                     totalHeal += proportionalHealType;
                 }
@@ -363,6 +425,26 @@ public sealed class CultBloodSpellSystem : EntitySystem
 
     private void OnGotUnequippedHand(EntityUid uid, CultBloodSpellComponent component, GotUnequippedHandEvent args)
     {
+        var xform = Transform(uid);
+        if (xform.ParentUid == args.User)
+            return;
+
+        QueueDel(uid);
+    }
+
+    private void OnGotUnequippedHand(EntityUid uid, BloodBoltBarrageComponent component, GotUnequippedHandEvent args)
+    {
+        var xform = Transform(uid);
+        if (xform.ParentUid == args.User)
+            return;
+
+        if (TryComp<BloodCultistComponent>(args.User, out var cultistComponent) &&
+            TryComp<BasicEntityAmmoProviderComponent>(uid, out var ammoProviderComponent) &&
+            ammoProviderComponent.Count != null)
+        {
+            cultistComponent.BloodCharges += (FixedPoint2) ammoProviderComponent.Count * component.ShotCost;
+        }
+
         QueueDel(uid);
     }
 }

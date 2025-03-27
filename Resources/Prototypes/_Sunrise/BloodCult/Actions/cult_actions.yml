@@ -148,7 +148,7 @@
   components:
   - type: InstantAction
     temporary: true
-    useDelay: 5
+    useDelay: 2
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: bloodspear

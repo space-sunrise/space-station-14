@@ -4,6 +4,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.BloodCult.UI.BloodSpellSelector;
 
@@ -50,6 +51,17 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
                 Close();
             };
         }
+
+        var buttonBloodBoltBarrage = _menu.AddButton($"Blood Barrage (300)",
+            sprite.Frame0(new SpriteSpecifier.Rsi(
+            new ResPath("_Sunrise/BloodCult/actions_cult.rsi"),
+            "blood_barrage")));
+
+        buttonBloodBoltBarrage.OnPressed += _ =>
+        {
+            SendMessage(new CultBloodSpellCreateBloodBoltBarrageBuiMessage());
+            Close();
+        };
 
         var vpSize = _displayManager.ScreenSize;
         _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / vpSize);

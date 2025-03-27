@@ -25,6 +25,10 @@ public sealed partial class CultBloodSpellComponent : Component
      DataField("bloodSpearSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string BloodSpearSpawnId = "BloodSpear";
 
+    [ViewVariables(VVAccess.ReadWrite),
+     DataField("bloodBoltBarrageSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string BloodBoltBarrageSpawnId = "BloodBoltBarrage";
+
     [DataField("healingGroups")]
     public List<string> HealingGroups = new()
     {
@@ -45,6 +49,11 @@ public sealed class CultBloodSpellCreateOrbBuiMessage : BoundUserInterfaceMessag
 
 [Serializable, NetSerializable]
 public sealed class CultBloodSpellCreateBloodSpearBuiMessage : BoundUserInterfaceMessage
+{
+}
+
+[Serializable, NetSerializable]
+public sealed class CultBloodSpellCreateBloodBoltBarrageBuiMessage : BoundUserInterfaceMessage
 {
 }
 
