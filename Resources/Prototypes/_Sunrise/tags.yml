@@ -344,3 +344,15 @@
 
 - type: Tag
   id: Geranium
+
+- type: Tag
+  id: Abductor
+
+- type: Tag
+  id: AbductorScientist
+
+- type: Tag
+  id: ShowWires
+
+- type: Tag
+  id: CantInteract

@@ -19,12 +19,6 @@
   id: AllowGhostShownByEvent
 
 - type: Tag
-  id: Abductor
-
-- type: Tag
-  id: AbductorScientist
-
-- type: Tag
   id: Ambrosia
 
 - type: Tag

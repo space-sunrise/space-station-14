@@ -324,3 +324,13 @@
   name: Contortionist's Jumpsuit
   components:
   - type: VentCrawClothing
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformJumpsuitAbductor
+  name: abductor uniform
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Clothing/Uniforms/Jumpsuit/abductor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Abductor/Clothing/Uniforms/Jumpsuit/abductor.rsi

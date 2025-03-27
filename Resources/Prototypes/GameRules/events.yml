@@ -39,7 +39,9 @@
     - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
-    - id: LoneAbductorSpawn # Starlight
+    - id: DerelictCyborgSpawn
+
+    - id: AbductorsSpawn # Starlight-Abductors
 
 - type: entity
   id: BaseStationEvent

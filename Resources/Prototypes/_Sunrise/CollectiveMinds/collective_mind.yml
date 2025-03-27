@@ -45,3 +45,9 @@
   name: collective-mind-changeling
   keycode: 'г'
   color: "#ff75a8"
+
+- type: collectiveMind
+  id: Abductor
+  name: collective-mind-abductor
+  keycode: 'й'
+  color: "#d600bd"

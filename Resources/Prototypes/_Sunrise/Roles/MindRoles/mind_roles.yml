@@ -63,3 +63,13 @@
     exclusiveAntag: true
     roleType: SoloAntagonist
   - type: VampireRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLoneAbductor
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: LoneAbductorAntag
+  - type: Abductor

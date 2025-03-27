@@ -180,3 +180,19 @@
         amount: 4
       - id: AirlossAutoInjector
         amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelAbductorBundle
+  id: ClothingBackpackDuffelAbductorFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: HemostatAbductor
+      - id: SawAbductor
+      - id: DrillAbductor
+      - id: CauteryAbductor
+      - id: RetractorAbductor
+      - id: ScalpelAbductor
+      - id: BoneGelAbductor
+      - id: BoneSetterAbductor

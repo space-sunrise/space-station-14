@@ -24,3 +24,17 @@
     - id: ClothingBeltSheathSyndicateFilled
     sound:
       path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: ClothingAbductorBeltFilled
+  parent: ClothingAbductorBelt
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarAbductor
+      - id: WrenchAbductor
+      - id: ScrewdriverAbductor
+      - id: WirecutterAbductor
+      - id: WelderAbductor
+      - id: MultitoolAbductor

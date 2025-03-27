@@ -1099,3 +1099,36 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 100
+
+- type: entity
+  parent: BaseWeaponBatterySmall
+  id: WeaponAlien
+  name: alien pistol
+  components:
+  - type: RestrictByUserTag
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Objects/Weapons/Guns/Battery/alien.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    shape:
+    - 0, 0, 1, 1
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 100
+    - proto: BulletEnergyGunLaser
+      fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
