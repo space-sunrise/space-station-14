@@ -1,5 +1,6 @@
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Dataset;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Enums;
@@ -50,14 +51,14 @@ namespace Content.Shared.Humanoid
             switch (gender)
             {
                 case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.MaleFirstNames).Values);
+                    return _random.Pick(_prototypeManager.Index(speciesProto.MaleFirstNames));
                 case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.FemaleFirstNames).Values);
+                    return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
                 default:
                     if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.MaleFirstNames).Values);
+                        return _random.Pick(_prototypeManager.Index(speciesProto.MaleFirstNames));
                     else
-                        return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.FemaleFirstNames).Values);
+                        return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
             }
         }
 
@@ -67,14 +68,14 @@ namespace Content.Shared.Humanoid
             switch (gender)
             {
                 case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.MaleLastNames).Values);
+                    return _random.Pick(_prototypeManager.Index(speciesProto.MaleLastNames).Values);
                 case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.FemaleLastNames).Values);
+                    return _random.Pick(_prototypeManager.Index(speciesProto.FemaleLastNames).Values);
                 default:
                     if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.MaleLastNames).Values);
+                        return _random.Pick(_prototypeManager.Index(speciesProto.MaleLastNames).Values);
                     else
-                        return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.FemaleLastNames).Values);
+                        return _random.Pick(_prototypeManager.Index(speciesProto.FemaleLastNames).Values);
             }
         }
         // Russian-LastnameGender-End

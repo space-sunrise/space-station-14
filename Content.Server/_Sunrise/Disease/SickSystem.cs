@@ -55,61 +55,56 @@ public sealed class SickSystem : SharedSickSystem
 
     public void OnShut(EntityUid uid, SickComponent component, ComponentShutdown args)
     {
-        if (!TryComp<AutoEmoteComponent>(uid, out var autoEmoteComponent))
+        if (!Exists(uid))
             return;
 
-        foreach (var emote in autoEmoteComponent.Emotes)
+        if (TryComp<AutoEmoteComponent>(uid, out var autoEmoteComponent))
         {
-            if (emote.Contains("Infected"))
+            foreach (var emote in autoEmoteComponent.Emotes)
             {
-                _autoEmote.RemoveEmote(uid, emote);
+                if (emote.Contains("Infected"))
+                {
+                    _autoEmote.RemoveEmote(uid, emote);
+                }
             }
         }
+
         foreach (var key in component.Symptoms)
         {
             switch (key)
             {
                 case "Narcolepsy":
-                    if (TryComp<SleepyComponent>(uid, out var narc))
-                    {
+                    if (HasComp<SleepyComponent>(uid))
                         RemComp<SleepyComponent>(uid);
-                    }
                     break;
                 case "Muted":
-                    if (TryComp<MutedComponent>(uid, out var mute))
-                    {
+                    if (HasComp<MutedComponent>(uid))
                         RemComp<MutedComponent>(uid);
-                    }
                     break;
                 case "Blindness":
-                    if (TryComp<PermanentBlindnessComponent>(uid, out var blind))
-                    {
+                    if (HasComp<PermanentBlindnessComponent>(uid))
                         RemComp<PermanentBlindnessComponent>(uid);
-                    }
                     if (HasComp<BlurryVisionComponent>(uid))
-                    {
                         RemComp<BlurryVisionComponent>(uid);
-                    }
                     if (HasComp<EyeClosingComponent>(uid))
-                    {
                         RemComp<EyeClosingComponent>(uid);
-                    }
                     break;
                 case "Slowness":
-                    if (TryComp<SpeedModifierOnComponent>(uid, out var slow))
-                    {
+                    if (HasComp<SpeedModifierOnComponent>(uid))
                         RemComp<SpeedModifierOnComponent>(uid);
-                    }
                     break;
                 case "Bleed":
-                    if (TryComp<MinimumBleedComponent>(uid, out var bleed))
-                    {
+                    if (HasComp<MinimumBleedComponent>(uid))
                         RemComp<MinimumBleedComponent>(uid);
-                    }
                     break;
             }
         }
-        _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
+
+        if (!string.IsNullOrEmpty(component.BeforeInfectedBloodReagent) && 
+            TryComp<BloodstreamComponent>(uid, out var bloodstream))
+        {
+            _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
+        }
     }
     public override void Update(float frameTime)
     {
@@ -238,7 +233,7 @@ public sealed class SickSystem : SharedSickSystem
         switch (args.Emote.ID)
         {
             case "Headache":
-                _popupSystem.PopupEntity("Вы чувствуете лёгкую головную боль.", uid, uid, PopupType.Small);
+                _popupSystem.PopupEntity(Loc.GetString("disease-symptom-headache"), uid, uid, PopupType.Small);
                 break;
             case "Cough":
                 if (_robustRandom.Prob(0.9f))

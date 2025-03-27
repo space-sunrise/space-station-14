@@ -147,6 +147,10 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+    # Sunrise start
+    staminaModifier: 0.8 
+    ingoreKnockdown: true 
+    # Sunrise end
   - type: ToggleableClothing
     slot: head
   - type: ContainerContainer
@@ -158,6 +162,7 @@
     - Hardsuit
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
+    - WhitelistChameleonSuit #Sunrise-edit
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection

@@ -3,24 +3,26 @@
   name: species-name-arachnid
   roundStart: true
   prototype: MobArachnid
-  sprites: MobArachnidSprites
+  bodyTypes:
+  - ArachnidNormal
+#  - ArachnidSlim
   defaultSkinTone: "#385878"
   markingLimits: MobArachnidMarkingLimits
   dollPrototype: MobArachnidDummy
   skinColoration: Hues
-  maleFirstNames: names_arachnid_first
-  femaleFirstNames: names_arachnid_first
-  maleLastNames: names_arachnid_last # Russian-LastnameGender
-  femaleLastNames: names_arachnid_last # Russian-LastnameGender
-  # Sunrise-Edit
-  #sexes:
-  #- Unsexed
+  maleFirstNames: NamesArachnidFirst
+  femaleFirstNames: NamesArachnidFirst
+  maleLastNames: NamesArachnidLast
+  femaleLastNames: NamesArachnidLast
 
-- type: speciesBaseSprites
-  id: MobArachnidSprites
+- type: bodyType
+  id: ArachnidNormal
+  name: body-normal
   sprites:
     Head: MobArachnidHead
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobArachnidTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -35,10 +37,38 @@
     LFoot: MobArachnidLFoot
     RFoot: MobArachnidRFoot
 
+- type: bodyType
+  id: ArachnidSlim
+  name: body-slim
+  sexRestrictions:
+  - Male
+  sprites:
+    Head: MobArachnidSlimHead
+    Snout: MobHumanoidAnyMarking
+    Chest: MobArachnidSlimTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobArachnidSlimEyes
+    LArm: MobArachnidSlimLArm
+    RArm: MobArachnidSlimRArm
+    LHand: MobArachnidSlimLHand
+    RHand: MobArachnidSlimRHand
+    LLeg: MobArachnidSlimLLeg
+    RLeg: MobArachnidSlimRLeg
+    LFoot: MobArachnidSlimLFoot
+    RFoot: MobArachnidSlimRFoot
+
 - type: humanoidBaseSprite
   id: MobArachnidEyes
   baseSprite:
     sprite: Mobs/Species/Arachnid/parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimEyes
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
     state: eyes
 
 - type: markingPoints
@@ -155,3 +185,75 @@
   baseSprite:
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimHead
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: head_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimHeadFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: head_slim_f
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimTorso
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: torso_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimTorsoFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: torso_slim_f
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimLLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: l_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimLArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: l_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimLHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: l_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimLFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: l_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimRLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: r_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimRArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: r_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimRHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: r_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobArachnidSlimRFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/arachnid.rsi
+    state: r_foot_slim

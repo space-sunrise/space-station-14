@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Made by land1001",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "sick"
+        },
+        {
+            "name": "normal"
+        }
+    ]
+}

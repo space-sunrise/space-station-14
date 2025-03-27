@@ -1,0 +1,125 @@
+﻿- type: entity
+  id: HellspawnGrabRight
+  name: grab
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _Sunrise/Effects/bubblegum.rsi
+    layers:
+    - state: rightsmack
+# После тестов было принято решение признать это слишком имбой
+#  - type: StunOnContact
+#    blacklist:
+#      tags:
+#      - Hellspawn
+# Стан был заменен на урон
+  - type: DamageOnCollide
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkGlass
+      - DrinkCan
+      - DrinkCup
+      - DrinkSpaceGlue
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 1.1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HellspawnGrabLeft
+  name: grab
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _Sunrise/Effects/bubblegum.rsi
+    layers:
+    - state: leftsmack
+  # После тестов было принято решение признать это слишком имбой
+  #  - type: StunOnContact
+  #    blacklist:
+  #      tags:
+  #      - Hellspawn
+  # Стан был заменен на урон
+  - type: DamageOnCollide
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkGlass
+      - DrinkCan
+      - DrinkCup
+      - DrinkSpaceGlue
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 1.1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HellSpawnRushRune
+  name: rune
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: _Sunrise/Effects/rune.rsi
+    layers:
+    - state: landing
+      shader: unshaded
+#  - type: DamageOnCollide
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn  # Удостовериться в том, что она обязательно исчезнет
+    lifetime: 4
+  - type: Tag
+    tags:
+    - HideContextMenu

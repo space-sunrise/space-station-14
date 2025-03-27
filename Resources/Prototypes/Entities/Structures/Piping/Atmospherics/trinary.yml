@@ -35,6 +35,9 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/gasfilter.rsi
       layers:
@@ -96,6 +99,9 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: SubFloorHide
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:

@@ -61,6 +61,13 @@
                                                    ToolTip="{Loc 'humanoid-profile-editor-guidebook-button-tooltip'}"/>
                                     <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Body Type -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="Тип тела"/>
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="CBodyTypesButton" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!-- Body Type -->
                                 <!-- Age -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-age-label'}" />

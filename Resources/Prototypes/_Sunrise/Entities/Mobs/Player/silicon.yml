@@ -15,6 +15,7 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
+  - type: NoSlip
 
 - type: entity
   id: PlayerBorgEngineerBattery
@@ -69,6 +70,7 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
+  - type: NoSlip
 
 - type: entity
   id: PlayerBorgServiceBattery
@@ -186,6 +188,8 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSyndicate
+  - type: NoSlip
+  
 
 - type: entity
   id: PlayerBorgSyndicateReaperBattery
@@ -221,6 +225,7 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSyndicate
+  - type: NoSlip
 
 - type: entity
   id: PlayerBorgSyndicateAssaultBattery
@@ -284,3 +289,31 @@
     state: std_mod
   - type: SiliconLawProvider
     laws: ERTLawset
+
+- type: entity
+  id: SyndieIntellicard
+  name: Syndieintellicard
+  description: A storage device for AIs but from evil guys!
+  parent:
+  - BaseItem
+  - AiHolder
+  suffix: Empty
+  components:
+  - type: ContainerComp
+    proto: AiHeldIntellicard
+    container: station_ai_mind_slot
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/ai_card.rsi
+    layers:
+    - state: base
+    - state: full
+      map: ["unshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StationAiVisualState.Key:
+        unshaded:
+          Empty: { state: empty }
+          Occupied: { state: full }
+  - type: Intellicard
