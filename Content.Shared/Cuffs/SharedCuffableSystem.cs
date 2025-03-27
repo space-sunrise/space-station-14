@@ -483,8 +483,8 @@ namespace Content.Shared.Cuffs
             // Success!
             _hands.TryDrop(user, handcuff);
 
-            _container.Insert(handcuff, component.Container);
-            UpdateHeldItems(target, handcuff, component);
+            // _container.Insert(handcuff, component.Container); // Starlight-Abductor edit
+            // UpdateHeldItems(target, handcuff, component); // Starlight-Abductor edit
 
             // Sunrise-Start
             var ev = new CuffedEvent(user, target);

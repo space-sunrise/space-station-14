@@ -133,7 +133,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         _xformSys.SetParent(effectEnt, target);
         EnsureComp<TimedDespawnComponent>(effectEnt, out var despawnEffectEntComp);
         despawnEffectEntComp.Lifetime = 3.0f;
-        _audioSystem.PlayPvs("/Audio/_Starlight/Misc/alien_teleport.ogg", effectEnt);
+        _audioSystem.PlayPvs("/Audio/_Sunrise/Abductor/alien_teleport.ogg", effectEnt);
 
         var telepad = GetEntity(ent.Comp.AlienPod.Value);
         var telepadXform = EnsureComp<TransformComponent>(telepad);
@@ -141,7 +141,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         var effect = _entityManager.SpawnEntity(_teleportationEffect, telepadXform.Coordinates);
         EnsureComp<TimedDespawnComponent>(effect, out var despawnComp);
         despawnComp.Lifetime = 3.0f;
-        _audioSystem.PlayPvs("/Audio/_Starlight/Misc/alien_teleport.ogg", effect);
+        _audioSystem.PlayPvs("/Audio/_Sunrise/Abductor/alien_teleport.ogg", effect);
 
         var @event = new AbductorAttractDoAfterEvent(GetNetCoordinates(telepadXform.Coordinates), GetNetEntity(target), GetNetCoordinates(dispencerXform.Coordinates));
         ent.Comp.Target = null;

@@ -14,7 +14,11 @@ public sealed class AbductorCameraConsoleBui : BoundUserInterface
     public AbductorCameraConsoleBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
-    protected override void Open() => UpdateState(State);
+    protected override void Open()
+    {
+        base.Open();
+        UpdateState(State);
+    }
     protected override void UpdateState(BoundUserInterfaceState? state)
     {
         if (state is AbductorCameraConsoleBuiState s)

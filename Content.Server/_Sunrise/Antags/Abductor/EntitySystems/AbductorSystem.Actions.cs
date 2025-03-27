@@ -96,13 +96,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         _xformSys.SetParent(effectEnt, ev.Performer);
         EnsureComp<TimedDespawnComponent>(effectEnt, out var despawnEffectEntComp);
         despawnEffectEntComp.Lifetime = 3.0f;
-        _audioSystem.PlayPvs("/Audio/_Starlight/Misc/alien_teleport.ogg", effectEnt);
+        _audioSystem.PlayPvs("/Audio/_Sunrise/Abductor/alien_teleport.ogg", effectEnt);
 
 
         var effect = _entityManager.SpawnEntity(_teleportationEffect, spawnPosition.Value);
         EnsureComp<TimedDespawnComponent>(effect, out var despawnComp);
         despawnComp.Lifetime = 3.0f;
-        _audioSystem.PlayPvs("/Audio/_Starlight/Misc/alien_teleport.ogg", effect);
+        _audioSystem.PlayPvs("/Audio/_Sunrise/Abductor/alien_teleport.ogg", effect);
 
         var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(3), new AbductorReturnDoAfterEvent(), ev.Performer);
         _doAfter.TryStartDoAfter(doAfter);
