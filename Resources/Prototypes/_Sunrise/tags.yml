@@ -346,4 +346,7 @@
   id: Geranium
 
 - type: Tag
+  id: WhitelistChameleonSuit
+
+- type: Tag
   id: Sunflower
