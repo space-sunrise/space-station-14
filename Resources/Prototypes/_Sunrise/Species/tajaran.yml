@@ -3,21 +3,25 @@
   name: species-name-tajaran
   roundStart: true
   prototype: MobTajaran
-  sprites: MobTajaranSprites
+  bodyTypes:
+  - TajaranNormal
+#  - TajaranSlim
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues
-  maleFirstNames: firstMaleTajaran
-  femaleFirstNames: firstFemaleTajaran
-  maleLastNames: TajaranLast
-  femaleLastNames: TajaranLast
+  # SUNRISE-TODO: Сделать локализированые имена
+  maleFirstNames: NamesFirstMale # FirstMaleTajaran
+  femaleFirstNames: NamesFirstFemale # FirstFemaleTajaran
+  maleLastNames: NamesLast # TajaranLast
+  femaleLastNames: NamesLast # TajaranLast
   naming: firstlast
   youngAge: 23
   oldAge: 46
   maxAge: 49
 
-- type: speciesBaseSprites
-  id: MobTajaranSprites
+- type: bodyType
+  id: TajaranNormal
+  name: body-normal
   sprites:
     Head: MobTajaranHead
     Hair: MobHumanoidAnyMarking
@@ -32,6 +36,29 @@
     RLeg: MobTajaranRLeg
     LFoot: MobTajaranLFoot
     RFoot: MobTajaranRFoot
+    Tail: MobTajaranTail
+    HeadTop: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+
+- type: bodyType
+  id: TajaranSlim
+  name: body-slim
+  sexRestrictions:
+  - Male
+  sprites:
+    Head: MobTajaranSlimHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Chest: MobTajaranSlimTorso
+    Eyes: MobTajaranEyes
+    LArm: MobTajaranSlimLArm
+    RArm: MobTajaranSlimRArm
+    LHand: MobTajaranSlimLHand
+    RHand: MobTajaranSlimRHand
+    LLeg: MobTajaranSlimLLeg
+    RLeg: MobTajaranSlimRLeg
+    LFoot: MobTajaranSlimLFoot
+    RFoot: MobTajaranSlimRFoot
     Tail: MobTajaranTail
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
@@ -151,3 +178,75 @@
   baseSprite:
     sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
     state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimHead
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: head_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimHeadFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: head_slim_f
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimTorso
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: torso_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimTorsoFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: torso_slim_f
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimLLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: l_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimLArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: l_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimLHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: l_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimLFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: l_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimRLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: r_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimRArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: r_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimRHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: r_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranSlimRFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/tajaran.rsi
+    state: r_foot_slim

@@ -3,14 +3,17 @@
 - type: latheRecipe
   abstract: true
   id: BaseMechPartRecipe
-  category: Mech
+  categories:
+  - Mech
   completetime: 10
 
 # Recipes
 
 # Ripley
 - type: latheRecipe
-  category: Ripley # Sunrise-Add
+  categories:
+  - Mech
+  - Ripley
   parent: BaseMechPartRecipe
   id: RipleyHarness
   result: RipleyHarness
@@ -19,7 +22,6 @@
     Glass: 1200
 
 - type: latheRecipe
-  category: Ripley # Sunrise-Add
   parent: BaseMechPartRecipe
   id: RipleyLArm
   result: RipleyLArm
@@ -43,7 +45,9 @@
   result: RipleyRArm
 
 - type: latheRecipe
-  category: MechEquipment # Sunrise-Add
+  categories:
+  - Mech
+  - MechEquipment
   parent: BaseMechPartRecipe
   id: MechEquipmentGrabber
   result: MechEquipmentGrabber
@@ -53,7 +57,9 @@
 
 # H.O.N.K.
 - type: latheRecipe
-  category: Honker # Sunrise-Add
+  categories:
+  - Mech
+  - Honker
   parent: BaseMechPartRecipe
   id: HonkerHarness
   result: HonkerHarness
@@ -63,7 +69,9 @@
     Bananium: 500
 
 - type: latheRecipe
-  category: Honker # Sunrise-Add
+  categories:
+  - Mech
+  - Honker
   parent: BaseMechPartRecipe
   id: HonkerLArm
   result: HonkerLArm
@@ -88,7 +96,9 @@
   result: HonkerRArm
 
 - type: latheRecipe
-  category: MechEquipment # Sunrise-Add
+  categories:
+  - Mech
+  - MechEquipment
   parent: BaseMechPartRecipe
   id: MechEquipmentHorn
   result: MechEquipmentHorn
@@ -98,7 +108,9 @@
 
 # HAMTR
 - type: latheRecipe
-  category: Hamptr # Sunrise-Add
+  categories:
+  - Mech
+  - Hamptr
   parent: BaseMechPartRecipe
   id: HamtrHarness
   result: HamtrHarness
@@ -107,7 +119,9 @@
     Glass: 1000
 
 - type: latheRecipe
-  category: Hamptr # Sunrise-Add
+  categories:
+  - Mech
+  - Hamptr
   parent: BaseMechPartRecipe
   id: HamtrLArm
   result: HamtrLArm
@@ -131,7 +145,9 @@
   result: HamtrRArm
 
 - type: latheRecipe
-  category: MechEquipment # Sunrise-Add
+  categories:
+  - Mech
+  - MechEquipment
   parent: BaseMechPartRecipe
   id: MechEquipmentGrabberSmall
   result: MechEquipmentGrabberSmall
@@ -141,7 +157,9 @@
 
 # Vim
 - type: latheRecipe
-  category: Vim # Sunrise-Add
+  categories:
+  - Mech
+  - Vim
   parent: BaseMechPartRecipe
   id: VimHarness
   result: VimHarness

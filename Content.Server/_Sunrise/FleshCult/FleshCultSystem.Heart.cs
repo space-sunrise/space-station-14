@@ -4,6 +4,7 @@ using Content.Server._Sunrise.FleshCult.FleshGrowth;
 using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server.Body.Components;
 using Content.Server.Traits.Assorted;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
@@ -304,8 +305,8 @@ public sealed partial class FleshCultSystem
                 }
             }
 
-            var skeletonSprites = _prototypeManager.Index<HumanoidSpeciesBaseSpritesPrototype>("MobSkeletonSprites");
-            foreach (var (key, id) in skeletonSprites.Sprites)
+            var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
+            foreach (var (key, id) in bodyType.Sprites)
             {
                 if (key != HumanoidVisualLayers.Head)
                 {

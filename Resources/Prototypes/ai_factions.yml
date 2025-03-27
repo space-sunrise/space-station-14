@@ -20,6 +20,7 @@
   hostile:
   - PetsNT
   - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Passive
@@ -32,6 +33,7 @@
   - Zombie
   - Xeno
   - AllHostile
+  - Wizard
   # Sunrise Edit
   - Carps
   - Flesh
@@ -156,7 +158,11 @@
   id: Wizard
   hostile:
   - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
   - SimpleHostile
+  - SimpleNeutral
   - Syndicate
   - Xeno
   - Zombie

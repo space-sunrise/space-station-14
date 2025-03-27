@@ -246,6 +246,10 @@ public sealed partial class VampireSystem : EntitySystem
 
         UpdateAbilities(uid, component , VampireComponent.MutationsActionPrototype, null , bloodEssence >= FixedPoint2.New(50) && !HasComp<VampireSealthComponent>(uid));
 
+        // Thermal Vision - appears at 500 blood and stays available even if blood drops below 500
+        UpdateAbilities(uid, component, "ActionVampireThermalVision", "ThermalVision", 
+            bloodEssence >= FixedPoint2.New(500) || component.UnlockedPowers.ContainsKey("ThermalVision"));
+
         //Hemomancer
 
         // Blood Steal

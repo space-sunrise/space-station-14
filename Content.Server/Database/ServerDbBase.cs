@@ -251,6 +251,7 @@ namespace Content.Server.Database
                 profile.FlavorText,
                 profile.Species,
                 voice, // Sunrise-TTS
+                profile.BodyType,
                 profile.Age,
                 sex,
                 gender,
@@ -288,6 +289,7 @@ namespace Content.Server.Database
             profile.FlavorText = humanoid.FlavorText;
             profile.Species = humanoid.Species;
             profile.Voice = humanoid.Voice; // Sunrise-TTS
+            profile.BodyType = humanoid.BodyType;
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();

@@ -3,19 +3,18 @@
   name: species-name-demon
   roundStart: true
   prototype: MobDemon
-  sprites: MobDemonSprites
+  bodyTypes:
+  - DemonNormal
+#  - DemonSlim
   defaultSkinTone: "#34a223"
   markingLimits: MobDemonMarkingLimits
   dollPrototype: MobDemonDummy
   skinColoration: Hues
-  maleFirstNames: names_first_male
-  femaleFirstNames: names_first_female
-  maleLastNames: names_last_male
-  femaleLastNames: names_last_female
   naming: firstlast
 
-- type: speciesBaseSprites
-  id: MobDemonSprites
+- type: bodyType
+  id: DemonNormal
+  name: body-normal
   sprites:
     Head: MobDemonHead
     Hair: MobHumanoidAnyMarking
@@ -34,6 +33,30 @@
     RLeg: MobDemonRLeg
     LFoot: MobDemonLFoot
     RFoot: MobDemonRFoot
+
+- type: bodyType
+  id: DemonSlim
+  name: body-slim
+  sexRestrictions:
+  - Male
+  sprites:
+    Head: MobDemonSlimHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobDemonSlimTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobDemonTail
+    Eyes: MobHumanoidEyes
+    LArm: MobDemonSlimLArm
+    RArm: MobDemonSlimRArm
+    LHand: MobDemonSlimLHand
+    RHand: MobDemonSlimRHand
+    LLeg: MobDemonSlimLLeg
+    RLeg: MobDemonSlimRLeg
+    LFoot: MobDemonSlimLFoot
+    RFoot: MobDemonSlimRFoot
 
 - type: markingPoints
   id: MobDemonMarkingLimits
@@ -155,3 +178,75 @@
   baseSprite:
     sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
     state: tail
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimHead
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: head_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimHeadFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: head_slim_f
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimTorso
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: torso_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimTorsoFemale
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: torso_slim_f
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimLLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: l_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimLArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: l_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimLHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: l_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimLFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: l_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimRLeg
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: r_leg_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimRArm
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: r_arm_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimRHand
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: r_hand_slim
+
+- type: humanoidBaseSprite
+  id: MobDemonSlimRFoot
+  baseSprite:
+    sprite: Mobs/Species/Slim/demon.rsi
+    state: r_foot_slim

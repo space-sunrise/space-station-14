@@ -1,0 +1,204 @@
+﻿- type: entity
+  parent: MobHellspawn
+  id: MobHellspawnBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Damageable
+    damageContainer: BiologicalMetaphysical
+    damageModifierSet: HellSpawnBoss
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.9
+        density: 300
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        20
+      MeleeRange: !type:Single
+        2
+      FollowRange: !type:Single
+        10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+  # Abilities start
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionFireStarter
+      minRange: 0
+      maxRange: 4
+    - actionId: ActionHellSpawnRush
+      minRange: 3
+      maxRange: 0
+    - actionId: ActionHellSpawnTentacleRight
+      minRange: 1.5
+      maxRange: 4
+    - actionId: ActionHellSpawnTentacleLeft
+      minRange: 4
+      maxRange: 6.5
+  - type: HellSpawnRush
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkGlass
+      - DrinkCan
+      - DrinkCup
+      - DrinkSpaceGlue
+  - type: HellSpawnInvincibility
+  - type: HellSpawn
+  - type: HellSpawnTentacle
+  - type: HellSpawnSpiral
+  - type: MeleeWeapon
+    attackRate: 0.6
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 50
+        Structural: 70
+  # Abilities end
+  - type: Butcherable
+    spawned:
+    - id: ClothingUniformJumpsuitGalaxyBlue
+      prob: 0.5
+    - id: ClothingUniformJumpsuitGalaxyRed
+      prob: 0.5
+    - id: ResearchDiskDebug
+      prob: 0.05
+    - id: ClothingNeckGoldmedal
+      prob: 0.5
+    - id: PowerCellAntiqueProto
+      prob: 0.2
+    - id: ClothingOuterHardsuitMaxim
+      prob: 0.2
+    - id: HyperEutacticBlade
+      prob: 0.05
+    - id: WeaponMeleeMoltenCollider
+      prob: 0.3
+    - id: WeaponMeleeMoltenAmputator
+      prob: 0.2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger # Sunrise-Edit
+        damageGroup: Brute # Sunrise-Edit
+        damage: 1500
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: PressureImmunity
+  - type: Tag
+    tags:
+    - Hellspawn
+
+
+- type: entity
+  parent: AltarFangs
+  id: ComputerBossTravel
+  name: алтарь битвы с боссом
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.HellSpawnArenaUiKey.Key:
+        type: HellSpawnArenaConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.HellSpawnArenaUiKey.Key
+  - type: HellSpawnConsole
+  - type: Godmode
+  - type: BlockedTool
+
+- type: entity
+  id: HellSpawnCultist
+  parent: MobHuman
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes:
+    - CultLeaderGear
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: HellSpawnCultist
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      5: Dead
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: BulletSkyFlare
+  name: sky flare
+  suffix: Boss
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Projectiles/sky_flare.rsi
+    layers:
+    - state: SkyFlare
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Heat: 15
+  - type: IgniteOnCollide
+    fireStacks: 1
+    count: 10
+  - type: SpiralMovement
+    radiusCoefficient: 0.3
+    omegaCoefficient: 1
+  - type: TimedDespawn
+    lifetime: 3

@@ -17,7 +17,7 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
 
     public override void Initialize()
@@ -52,7 +52,7 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
         if (!TryComp(uid, out HandsComponent? handsComp))
             return;
 
-        var worldRotation = _transformSystem.GetWorldRotation(uid).ToVec();
+        var worldRotation = _transform.GetWorldRotation(uid).ToVec();
         foreach (var hand in handsComp.Hands.Values)
         {
             if (hand.HeldEntity is not { } held)

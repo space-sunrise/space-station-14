@@ -14,3 +14,4 @@ research-technology-basic-thermals = Термальные Сканеры
 research-technology-extended-amunitions = Расширенные магазины
 research-technology-phazon = Фазон
 research-technology-cargo-bluespace-equipment = Блюспейс экипировка карго
+research-technology-medical-hyposprays = Гипоспреи
