@@ -186,8 +186,8 @@
   chemicals:
     Omnizine:
       Min: 1
-      Max: 10
-      PotencyDivisor: 15
+      Max: 6
+      PotencyDivisor: 35
     THC:
       Min: 1
       Max: 10
