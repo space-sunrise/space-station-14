@@ -6,11 +6,8 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
-using Content.Shared.Standing; // Sunrise-Edit
-using Content.Shared.DoAfter; // Sunrise-Edit
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
-using System.Linq; // Sunrise-Edit
 
 namespace Content.Server.NPC.Systems
 {
@@ -22,8 +19,6 @@ namespace Content.Server.NPC.Systems
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly HTNSystem _htn = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SharedStandingStateSystem _standing = default!; // Sunrise-Edit
-        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Sunrise-Edit
 
         /// <summary>
         /// Whether any NPCs are allowed to run at all.
@@ -141,23 +136,6 @@ namespace Content.Server.NPC.Systems
             _count = 0;
             // Add your system here.
             _htn.UpdateNPC(ref _count, _maxUpdates, frameTime);
-
-            // Sunrise-Edit-Start
-
-            var query = EntityQueryEnumerator<HTNComponent, StandingStateComponent, DoAfterComponent>();
-            while (query.MoveNext(out var uid, out var htn, out var standing, out var doAfter))
-            {
-                if (!IsAwake(uid, htn) || _mobState.IsIncapacitated(uid) || standing.CurrentState == StandingState.Standing)
-                    continue;
-
-                if (doAfter.DoAfters.Values.Any(x => x.Args.Event is StandUpDoAfterEvent && !x.Cancelled && !x.Completed))
-                    continue;
-
-                _standing.Down(uid);
-                _standing.TryStandUp(uid, standing);
-            }
-
-            // Sunrise-Edit-End
         }
 
         public void OnMobStateChange(EntityUid uid, HTNComponent component, MobStateChangedEvent args)
