@@ -170,7 +170,6 @@
   noun: seeds-noun-seeds
   displayName: cannabis vita
   plantRsi: _Sunrise/Objects/Specific/Hydroponics/cannabis_vita.rsi
-  color: white
   packetPrototype: CannabisVitaSeeds
   productPrototypes:
   - CannabisVitaLeaves

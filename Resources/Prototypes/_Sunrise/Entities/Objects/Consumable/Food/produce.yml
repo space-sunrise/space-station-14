@@ -183,7 +183,7 @@
     size: Small
   - type: FlavorProfile
     flavors:
-    - barrelmelon
+    - watermelon
   - type: SolutionContainerManager
     solutions:
       food:
@@ -196,7 +196,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
   - type: Produce
-    seedId: barrelmelon
+    seedId: Barrelmelon
   - type: Extractable
     juiceSolution:
       reagents:
@@ -239,7 +239,7 @@
     size: Tiny
   - type: FlavorProfile
     flavors:
-    - barrelmelon
+    - watermelon
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
   - type: SolutionContainerManager
