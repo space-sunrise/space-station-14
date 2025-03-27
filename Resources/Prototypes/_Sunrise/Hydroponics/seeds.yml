@@ -240,11 +240,15 @@
     PulverizedLantern:
       Min: 1
       Max: 5
-      PotencyDivisor: 19
+      PotencyDivisor: 5
     Sulfur:
       Min: 1
       Max: 10
       PotencyDivisor: 10
+    Licoxide:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 5
 
 - type: seed
   id: Redrose
@@ -260,6 +264,93 @@
   maturation: 8
   production: 3
   yield: 2
+  potency: 11
+  growthStages: 3
+  idealLight: 7
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+
+- type: seed
+  id: Snapcorn
+  name: seeds-snapcorn-name
+  noun: seeds-noun-seeds
+  displayName: seeds-snapcorn-display-name
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/snapcorn.rsi
+  packetPrototype: SnapcornSeeds
+  productPrototypes:
+  - FoodSnapcorn
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 8
+  production: 4
+  yield: 2
+  potency: 20
+  growthStages: 3
+  idealLight: 8
+  waterConsumption: 0.60
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 35
+      PotencyDivisor: 3
+    Water:
+      Min: 5
+      Max: 10
+      PotencyDivisor: 5
+
+- type: seed
+  id: Whiterose
+  name: White rose
+  noun: seeds-noun-seeds
+  displayName: white rose
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/whiterose.rsi
+  packetPrototype: WhiteroseSeeds
+  productPrototypes:
+  - FoodWhiterose
+  mutationPrototypes:
+  - Geranium
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 8
+  production: 3
+  yield: 2
+  potency: 20
+  growthStages: 3
+  idealLight: 7
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+
+- type: seed
+  id: Sunflower
+  name: Sunflower
+  noun: seeds-noun-seeds
+  displayName: Sunflower
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
+  packetPrototype: SunflowerSeeds
+  productPrototypes:
+  - FoodSunflower
+  harvestRepeat: Repeat
+  lifespan: 40
+  maturation: 8
+  production: 4
+  yield: 1
   potency: 10
   growthStages: 3
   idealLight: 7
@@ -272,4 +363,8 @@
     Vitamin:
       Min: 1
       Max: 2
+      PotencyDivisor: 5
+    Oil:
+      Min: 1
+      Max: 10
       PotencyDivisor: 10

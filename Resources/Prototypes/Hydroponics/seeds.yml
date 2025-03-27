@@ -803,6 +803,8 @@
   packetPrototype: CornSeeds
   productPrototypes:
     - FoodCorn
+  mutationPrototypes:
+  - Snapcorn #Sunrise-add
   lifespan: 25
   maturation: 8
   production: 6
@@ -813,10 +815,10 @@
   waterConsumption: 0.60
   idealHeat: 298
   chemicals:
-    Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 20
+    # Nutriment: # Sunrise-edit
+    #  Min: 1
+    #  Max: 10
+    #  PotencyDivisor: 20
     Cornmeal:
       Min: 5
       Max: 15
@@ -1165,7 +1167,6 @@
     - FoodPoppy
   mutationPrototypes:
     - lily
-    - Geranium
   lifespan: 25
   maturation: 10
   production: 3

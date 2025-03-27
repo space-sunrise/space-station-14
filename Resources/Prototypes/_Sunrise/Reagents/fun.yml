@@ -73,3 +73,10 @@
   physicalDesc: reagent-physical-desc-pulverizedlantern
   flavor: medicine
   color: "#FFCA86"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
