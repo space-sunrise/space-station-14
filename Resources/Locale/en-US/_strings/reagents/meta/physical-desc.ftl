@@ -95,6 +95,7 @@ reagent-physical-desc-reflective = reflective
 reagent-physical-desc-holy = holy
 reagent-physical-desc-slimy = slimy
 reagent-physical-desc-neural = neural
+reagent-physical-desc-unidentifiable = unidentifiable
 reagent-physical-desc-h-32 = strongly smelling of radioactive burns
 reagent-physical-desc-celliminol = It smells strongly of blood
 reagent-physical-desc-blessing = reagent-desc-bacchus-blessing

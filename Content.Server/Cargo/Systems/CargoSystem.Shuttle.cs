@@ -333,7 +333,7 @@ public sealed partial class CargoSystem
         if (!TryComp(stationUid, out StationBankAccountComponent? bank))
             return;
 
-        UpdateBankAccount(stationUid.Value, bank, (int) price);
+        UpdateBankAccount(stationUid.Value, (int) price);
         // Sunrise-End
         _audio.PlayPvs(ApproveSound, uid);
         UpdatePalletConsoleInterface(uid);

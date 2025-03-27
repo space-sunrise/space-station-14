@@ -7,6 +7,7 @@
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
+  - MailCarrier # Sunrise-Roles
 
 - type: department
   id: Civilian

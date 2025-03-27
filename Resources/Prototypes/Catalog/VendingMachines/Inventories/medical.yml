@@ -5,12 +5,15 @@
     Brutepack: 5
     Ointment: 5
     Bloodpack: 5
-    EpinephrineChemistryBottle: 3
+    ChemistryBottleEpinephrine: 3
     Syringe: 5
     BoxBottle: 3
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
+    HyposprayMedical: 3 # Sunrise-Edit
   contrabandInventory:
     FoodApple: 1
+    MiniSyringe: 3 # Sunrise Edit
   emaggedInventory:
     Stimpack: 1 # Sunrise Edit
+    BoxMiniSyringe: 1 # Sunrise Edit

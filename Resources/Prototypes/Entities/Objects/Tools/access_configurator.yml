@@ -94,6 +94,8 @@
     - Armory
     - Atmospherics
     - Bar
+    - BasicSilicon
+    - Borg
     - Brig
     - Detective
     - Captain
@@ -121,6 +123,7 @@
     - Salvage
     - Security
     - Service
+    - StationAi
     - Theatre
     - CentralCommand
     - NuclearOperative

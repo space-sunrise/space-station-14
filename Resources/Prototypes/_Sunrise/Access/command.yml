@@ -1,3 +1,7 @@
 - type: accessLevel
   id: Ntrep
   name: id-card-access-level-ntrep
+
+- type: accessLevel
+  id: Magistrat
+  name: id-card-access-level-magistrat

@@ -43,3 +43,48 @@
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretParamedic
   result: ClothingHeadHatBeretParamedic
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretChemistry
+  result: ClothingHeadHatBeretChemistry
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPatologoanatom
+  result: ClothingHeadHatBeretPatologoanatom
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfRD
+  result: ClothingNeckScarfRD
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfCe
+  result: ClothingNeckScarfCe
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfCmo
+  result: ClothingNeckScarfCmo
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfQm
+  result: ClothingNeckScarfQm
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfHOP
+  result: ClothingNeckScarfHOP
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfCap
+  result: ClothingNeckScarfCap
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfHos
+  result: ClothingNeckScarfHos
