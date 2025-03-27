@@ -31,6 +31,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Vampire;
 
@@ -213,31 +214,35 @@ public sealed partial class VampireSystem
 
         ev.Handled = true;
     }
-private void OnVampireBloodScale(EntityUid uid, VampireBloodScaleComponent component, VampireBloodScaleEvent ev)
-{
-    if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
-        return;
+    private void OnVampireBloodScale(EntityUid entity, VampireComponent comp, VampireBloodScaleEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def) || def == null)
+            return;
 
-    var vampire = new Entity<VampireBloodScaleComponent>(uid, component); 
+        if (!EntityManager.TryGetComponent(entity, out VampireComponent? vampireComp))
+            return;
 
-    if (!IsAbilityUsable(vampire, def))
-        return;
+        var vampire = new Entity<VampireComponent>(entity, vampireComp);
 
-    ToggleBloodScale(uid, component);
-}
+        if (!IsAbilityUsable(vampire, def))
+            return;
 
-private void ToggleBloodScale(EntityUid uid, VampireBloodScaleComponent comp)
-{
-    float newBaseSpeed = comp.BloodScaleActive ? 2.5f : 4f;
-    float newValue = comp.BloodScaleActive ? 4.5f : 7.5f;
-    string popupMessage = comp.BloodScaleActive ? Loc.GetString("blood-scale-end") : Loc.GetString("blood-scale-start");
+        ToggleBloodScale(entity, vampireComp);
+    }
 
-    comp.BloodScaleActive = !comp.BloodScaleActive;
+    private void ToggleBloodScale(EntityUid uid, VampireComponent comp)
+    {
+        bool isActive = comp.BloodScaleActive;
+        float newBaseSpeed = isActive ? 2.5f : 4f;
+        float newValue = isActive ? 4.5f : 7.5f;
+        string popupMessage = isActive ? Loc.GetString("blood-scale-end") : Loc.GetString("blood-scale-start");
 
-    _speed.ChangeBaseSpeed(uid, newBaseSpeed, newValue, 20f);
-    
-    _popup.PopupEntity(popupMessage, uid, uid);
-}
+        comp.BloodScaleActive = !isActive;
+
+        _speed.ChangeBaseSpeed(uid, newBaseSpeed, newValue, 20f);
+
+        _popup.PopupEntity(popupMessage, uid, uid);
+    }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {
         if (!HasComp<HumanoidAppearanceComponent>(args.Target))

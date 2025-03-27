@@ -168,6 +168,20 @@ public sealed partial class VampireSystem : EntitySystem
             }
             strength.NextTick -= frameTime;
         }
+
+        var scaleQuery = EntityQueryEnumerator<VampireComponent, VampireBloodScaleComponent>();
+        while (scaleQuery.MoveNext(out var uid, out var vampire, out var scale))
+        {
+            if (vampire == null || scale == null)
+                continue;
+
+            if (scale.NextTick <= 0)
+            {
+                scale.NextTick = 1;
+                if (!SubtractBloodEssence((uid, vampire), scale.Upkeep) || _vampire.GetBloodEssence(uid) < FixedPoint2.New(1));
+            }
+            scale.NextTick -= frameTime;
+        }
     }
 
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)

@@ -213,18 +213,18 @@
 
 - type: entity
   id: ActionVampireBloodScale
-  name: blade scale
-  description: Strengthen your muscles by compressing blood in order to develop maximum speed
+  name: blood scale
+  description: "Strengthen your muscles by compressing blood in order to develop maximum speed. Activation Cost: 10 Essence. Upkeep: 5 Essence/Second Cooldown: 2 Seconds"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
-    checkCanInteract: False
+    checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
     icon:
       sprite: Changeling/changeling_abilities.rsi
       state: strained_muscles
     event: 
-      !type:ToggleVampireBloodScaleEvent 
+      !type:VampireBloodScaleEvent
       definitionName: BloodScale
-    useDelay: 2
+    useDelay: 5

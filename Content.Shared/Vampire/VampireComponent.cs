@@ -30,6 +30,9 @@ public sealed partial class VampireComponent : Component
     [ViewVariables(VVAccess.ReadOnly), DataField("currentMutation")]
     public VampireMutationsType CurrentMutation = VampireMutationsType.None;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool BloodScaleActive { get; set; }
+
     public readonly HashSet<VampireMutationsType> VampireMutations = new()
     {
         VampireMutationsType.None,
@@ -252,8 +255,11 @@ public sealed partial class VampireStrengthComponent : Component
 public sealed partial class VampireBloodScaleComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
+    public float NextTick = 0;
+
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool BloodScaleActive { get; set; }
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
 }
