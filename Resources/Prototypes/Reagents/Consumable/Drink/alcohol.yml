@@ -539,6 +539,9 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
 
+#Antifreeze as a drink is a bright blue color while it is an orangish red otherwise.
+#As a result this sprite doesn't need changing.
+
 - type: reagent
   id: Antifreeze
   name: reagent-name-antifreeze
