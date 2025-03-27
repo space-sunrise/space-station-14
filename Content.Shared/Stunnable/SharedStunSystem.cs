@@ -175,7 +175,7 @@ public abstract class SharedStunSystem : EntitySystem
     ///     Stuns the entity, disallowing it from doing many interactions temporarily.
     /// </summary>
     public bool TryStun(EntityUid uid, TimeSpan time, bool refresh,
-        StatusEffectsComponent? status = null)
+        StatusEffectsComponent? status = null, bool force = false)
     {
         if (time <= TimeSpan.Zero)
             return false;
@@ -203,7 +203,7 @@ public abstract class SharedStunSystem : EntitySystem
     ///     Knocks down the entity, making it fall to the ground.
     /// </summary>
     public bool TryKnockdown(EntityUid uid, TimeSpan time, bool refresh,
-        StatusEffectsComponent? status = null)
+        StatusEffectsComponent? status = null, bool force = false)
     {
         if (time <= TimeSpan.Zero)
             return false;
@@ -230,7 +230,7 @@ public abstract class SharedStunSystem : EntitySystem
     ///     Applies knockdown and stun to the entity temporarily.
     /// </summary>
     public bool TryParalyze(EntityUid uid, TimeSpan time, bool refresh,
-        StatusEffectsComponent? status = null)
+        StatusEffectsComponent? status = null, bool force = false)
     {
         if (!Resolve(uid, ref status, false))
             return false;

@@ -112,7 +112,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     private void OnAfterAntagSelectionComplete(Entity<BloodCultRuleComponent> ent, ref AntagSelectionCompleteEvent args)
     {
         var selectedCultist = new List<EntityUid>();
-        foreach (var selectedMind in args.GameRule.Comp.SelectedMinds)
+        foreach (var selectedMind in args.GameRule.Comp.AssignedMinds)
         {
             selectedCultist.Add(selectedMind.Item1);
         }
@@ -206,7 +206,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             {
                 if (!HasComp<HumanoidAppearanceComponent>(cultistUid))
                     continue;
-                
+
                 if (!TryComp<MobStateComponent>(cultistUid, out var mobState))
                     continue;
 
@@ -242,7 +242,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         if (TryComp<CollectiveMindComponent>(uid, out var collectiveMind))
         {
             collectiveMind.Minds.Remove("BloodCult");
-            
+
             if (collectiveMind.Minds.Count == 0)
                 RemComp<CollectiveMindComponent>(uid);
         }
@@ -344,7 +344,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             RemComp<ClumsyComponent>(cultist);
 
         EnsureComp<CultMemberComponent>(cultist);
-        
+
         var collectiveMind = EnsureComp<CollectiveMindComponent>(cultist);
         collectiveMind.Minds.Add("BloodCult");
 
@@ -371,7 +371,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                     }
                 }
             }
-            
+
             _audioSystem.PlayGlobal(rule.GreatingsSound,
                 Filter.Empty().AddPlayer(mind.Session),
                 false,
