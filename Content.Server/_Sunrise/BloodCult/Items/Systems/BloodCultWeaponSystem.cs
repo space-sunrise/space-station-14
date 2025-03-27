@@ -1,6 +1,7 @@
 ﻿using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -11,11 +12,10 @@ using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
-using CultWeaponComponent = Content.Shared._Sunrise.BloodCult.Items.CultWeaponComponent;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class CultWeaponSystem : EntitySystem
+public sealed class BloodCultWeaponSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly BodySystem _body = default!;
@@ -29,11 +29,11 @@ public sealed class CultWeaponSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CultWeaponComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<CultWeaponComponent, AfterInteractEvent>(OnInteractEvent);
+        SubscribeLocalEvent<BloodBloodCultWeaponComponent, MeleeHitEvent>(OnMeleeHit);
+        SubscribeLocalEvent<BloodCultWeaponComponent, AfterInteractEvent>(OnInteractEvent);
     }
 
-    private void OnInteractEvent(EntityUid uid, CultWeaponComponent component, AfterInteractEvent args)
+    private void OnInteractEvent(EntityUid uid, BloodCultWeaponComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach || args.Handled || args.Target == null)
             return;
@@ -102,7 +102,7 @@ public sealed class CultWeaponSystem : EntitySystem
         return false;
     }
 
-    private void OnMeleeHit(EntityUid uid, CultWeaponComponent component, MeleeHitEvent args)
+    private void OnMeleeHit(EntityUid uid, BloodCultWeaponComponent component, MeleeHitEvent args)
     {
         if (HasComp<BloodCultistComponent>(args.User))
             return;

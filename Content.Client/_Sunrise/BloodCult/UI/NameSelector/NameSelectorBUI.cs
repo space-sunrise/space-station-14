@@ -1,4 +1,5 @@
 ﻿using Content.Shared._Sunrise.BloodCult.UI;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.BloodCult.UI.NameSelector;
 
@@ -14,10 +15,8 @@ public sealed class NameSelectorBUI : BoundUserInterface
     {
         base.Open();
 
-        _window = new();
-        _window.OpenCentered();
+        _window = this.CreateWindow<NameSelectorWindow>();
         _window.OnNameChange += OnNameSelected;
-        _window.OnClose += Close;
     }
 
     private void OnNameSelected(string name)

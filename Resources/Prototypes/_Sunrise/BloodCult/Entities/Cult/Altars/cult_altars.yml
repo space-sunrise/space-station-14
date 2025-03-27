@@ -245,6 +245,7 @@
     - FactoryArmorCult
     - FactoryCultRobeModify
     - FactoryCultMirrorShield
+    - FactoryHalberd
   - type: UserInterface
     interfaces:
       enum.CultistAltarUiKey.Key:

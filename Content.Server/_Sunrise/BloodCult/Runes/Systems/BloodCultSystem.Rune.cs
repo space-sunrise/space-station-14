@@ -41,6 +41,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         public void InitializeRunes()
         {
             // Runes
+            SubscribeLocalEvent<CultRuneTeleportComponent, MapInitEvent>(TeleportRuneInit);
             SubscribeLocalEvent<CultRuneBaseComponent, ActivateInWorldEvent>(OnActivate);
             SubscribeLocalEvent<CultRuneOfferingComponent, CultRuneInvokeEvent>(OnInvokeOffering);
             SubscribeLocalEvent<CultRuneBuffComponent, CultRuneInvokeEvent>(OnInvokeBuff);
@@ -57,8 +58,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<RuneDrawerProviderComponent, UseInHandEvent>(OnRuneDrawerUseInHand);
             SubscribeLocalEvent<RuneDrawerProviderComponent, GetVerbsEvent<ActivationVerb>>(
                 OnRuneDrawerInteractionVerb);
+            SubscribeLocalEvent<CultRuneTeleportComponent, GetVerbsEvent<ActivationVerb>>(
+                OnTeleportRuneInteractionVerb);
             SubscribeLocalEvent<RuneDrawerProviderComponent, ListViewItemSelectedMessage>(OnRuneSelected);
-            SubscribeLocalEvent<CultTeleportRuneProviderComponent, TeleportRunesListWindowItemSelectedMessage>(
+            SubscribeLocalEvent<CultRuneTeleportComponent, TeleportRunesListWindowItemSelectedMessage>(
                 OnTeleportRuneSelected);
 
             SubscribeLocalEvent<CultRuneSummoningProviderComponent, SummonCultistListWindowItemSelectedMessage>(
@@ -66,14 +69,40 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             // Rune drawing/erasing
             SubscribeLocalEvent<BloodCultistComponent, CultDrawEvent>(OnDraw);
-            SubscribeLocalEvent<BloodCultistComponent, NameSelectorMessage>(OnChoose);
+            SubscribeLocalEvent<CultRuneTeleportComponent, NameSelectorMessage>(OnChoose);
             SubscribeLocalEvent<CultRuneBaseComponent, InteractUsingEvent>(TryErase);
             SubscribeLocalEvent<CultRuneBaseComponent, CultEraseEvent>(OnErase);
             SubscribeLocalEvent<CultRuneBaseComponent, StartCollideEvent>(HandleCollision);
         }
+
+        private void TeleportRuneInit(EntityUid uid, CultRuneTeleportComponent component, MapInitEvent args)
+        {
+            component.Label = Loc.GetString("cult-teleport-rune-default-label");
+        }
+
         /*
          * Rune draw start ----
          */
+
+        private void OnTeleportRuneInteractionVerb(EntityUid uid,
+            CultRuneTeleportComponent component,
+            GetVerbsEvent<ActivationVerb> args)
+        {
+            if (!TryComp<ActorComponent>(args.User, out var actorComponent))
+                return;
+
+            if (!HasComp<BloodCultistComponent>(args.User))
+                return;
+
+            args.Verbs.Add(new ActivationVerb()
+            {
+                Text = "Изменить название",
+                Act = () =>
+                {
+                    _ui.OpenUi(uid, NameSelectorUIKey.Key, actorComponent.PlayerSession);
+                }
+            });
+        }
 
         private void OnRuneDrawerInteractionVerb(EntityUid uid,
             RuneDrawerProviderComponent component,
@@ -188,27 +217,24 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             _bloodstreamSystem.TryModifyBloodLevel(user, howMuchBloodTake, bloodstreamComponent);
             _audio.PlayPvs("/Audio/_Sunrise/BloodCult/blood.ogg", user, AudioParams.Default.WithMaxDistance(2f));
 
-            if (rune == TeleportRunePrototypeId)
-            {
-                if (!TryComp<ActorComponent>(user, out var actorComponent))
-                    return;
-
-                _ui.OpenUi(user, NameSelectorUIKey.Key, actorComponent.PlayerSession);
-
-                return;
-            }
-
             SpawnRune(user, rune);
         }
 
-        private void OnChoose(EntityUid uid, BloodCultistComponent component, NameSelectorMessage args)
+        private void OnChoose(EntityUid uid, CultRuneTeleportComponent component, NameSelectorMessage args)
         {
-            if (!TryComp<ActorComponent>(uid, out var actorComponent))
+            if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
                 return;
 
             _ui.CloseUi(uid, NameSelectorUIKey.Key, actorComponent.PlayerSession);
 
-            SpawnRune(uid, TeleportRunePrototypeId, true, args.Name);
+            var label = string.IsNullOrEmpty(args.Name) ? Loc.GetString("cult-teleport-rune-default-label") : args.Name;
+
+            if (label.Length > 18)
+            {
+                label = label.Substring(0, 18);
+            }
+
+            component.Label = label;
         }
 
         //Erasing start
@@ -383,7 +409,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (state.CurrentState != MobState.Dead)
             {
                 var hasMind = _mindSystem.TryGetMind(victim.Value, out var mindId, out var mind);
-                
+
                 var isTarget = false;
                 if (mind != null)
                 {
@@ -403,7 +429,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                         args.Result = false;
                         return;
                     }
-                    
+
                     result = Convert(uid, victim.Value, args.User, args.Cultists);
                 }
                 else
@@ -573,18 +599,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private void OnInvokeTeleport(EntityUid uid, CultRuneTeleportComponent component, CultRuneInvokeEvent args)
         {
-            var targets =
-                _lookup.GetEntitiesInRange(uid, component.RangeTarget, LookupFlags.Dynamic | LookupFlags.Sundries);
-
-            if (targets.Count == 0)
-            {
-                return;
-            }
-
-            args.Result = Teleport(uid, args.User, targets.ToList());
+            args.Result = Teleport(uid, args.User);
         }
 
-        private bool Teleport(EntityUid rune, EntityUid user, List<EntityUid>? victims = null)
+        private bool Teleport(EntityUid rune, EntityUid user)
         {
             var runes = EntityQuery<CultRuneTeleportComponent>();
             var list = new List<int>();
@@ -617,33 +635,29 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return false;
             }
 
-            _entityManager.EnsureComponent<CultTeleportRuneProviderComponent>(user, out var providerComponent);
-            providerComponent.Targets = victims;
-            providerComponent.BaseRune = rune;
+            _ui.SetUiState(rune, RuneTeleporterUiKey.Key, new TeleportRunesListWindowBUIState(list, labels));
 
-            _ui.SetUiState(user, RuneTeleporterUiKey.Key, new TeleportRunesListWindowBUIState(list, labels));
-
-            if (_ui.IsUiOpen(user, RuneTeleporterUiKey.Key))
+            if (_ui.IsUiOpen(rune, RuneTeleporterUiKey.Key))
                 return false;
 
-            _ui.TryToggleUi(user, RuneTeleporterUiKey.Key, actorComponent.PlayerSession);
+            _ui.TryToggleUi(rune, RuneTeleporterUiKey.Key, actorComponent.PlayerSession);
             return true;
         }
 
         private void OnTeleportRuneSelected(
             EntityUid uid,
-            CultTeleportRuneProviderComponent component,
+            CultRuneTeleportComponent component,
             TeleportRunesListWindowItemSelectedMessage args)
         {
-            var targets = component.Targets;
+            var targets = new HashSet<EntityUid>();
+
+            _lookup.GetEntitiesInRange(uid, component.RangeTarget, targets, LookupFlags.Dynamic | LookupFlags.Sundries);
+
+            if (targets.Count == 0)
+                return;
+
             var selectedRune = new EntityUid(args.SelectedItem);
-            var baseRune = component.BaseRune;
-
-            if (targets is null || targets.Count == 0)
-                return;
-
-            if (baseRune == null)
-                return;
+            var baseRune = uid;
 
             if (!TryComp<TransformComponent>(selectedRune, out var xFormSelected) ||
                 !TryComp<TransformComponent>(baseRune, out var xFormBase))
@@ -651,17 +665,17 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             foreach (var target in targets)
             {
+                if (HasComp<HumanoidAppearanceComponent>(target) && TryComp<TransformComponent>(target, out TransformComponent? targetm))
+                {
+                    _entityManager.SpawnEntity(TeleportInEffect, xFormSelected.Coordinates);
+                    _entityManager.SpawnEntity(TeleportOutEffect, targetm.Coordinates);
+                }
                 _xform.SetCoordinates(target, xFormSelected.Coordinates);
             }
 
-            //Play tp sound
+            // Play tp sound
             _audio.PlayPvs(_teleportInSound, xFormSelected.Coordinates);
             _audio.PlayPvs(_teleportOutSound, xFormBase.Coordinates);
-
-            if (HasComp<CultTeleportRuneProviderComponent>(args.Actor))
-            {
-                RemComp<CultTeleportRuneProviderComponent>(args.Actor);
-            }
         }
 
         /*
@@ -1146,7 +1160,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             return entities;
         }
 
-        private void SpawnRune(EntityUid uid, string? rune, bool teleportRune = false, string? label = null)
+        private void SpawnRune(EntityUid uid, string? rune)
         {
             var transform = CompOrNull<TransformComponent>(uid)?.Coordinates;
 
@@ -1155,28 +1169,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (rune == null)
                 return;
-
-            if (teleportRune)
-            {
-                var teleportRuneEntity = _entityManager.SpawnEntity(rune, transform.Value);
-
-                _entityManager.TryGetComponent<CultRuneTeleportComponent>(teleportRuneEntity, out var sex);
-                {
-                    if (sex == null)
-                        return;
-
-                    label = string.IsNullOrEmpty(label) ? Loc.GetString("cult-teleport-rune-default-label") : label;
-
-                    if (label.Length > 18)
-                    {
-                        label = label.Substring(0, 18);
-                    }
-
-                    sex.Label = label;
-                }
-
-                return;
-            }
 
             if (rune == ApocalypseRunePrototypeId)
             {

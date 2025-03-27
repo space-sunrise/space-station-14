@@ -50,6 +50,14 @@ public class TeleportRunesListWindowItemSelectedMessage : BoundUserInterfaceMess
 }
 
 [Serializable, NetSerializable]
+public class TeleportRuneChangeNameMessage : BoundUserInterfaceMessage
+{
+    public TeleportRuneChangeNameMessage()
+    {
+    }
+}
+
+[Serializable, NetSerializable]
 public class TeleportRunesListWindowBUIState : BoundUserInterfaceState
 {
     public TeleportRunesListWindowBUIState(List<int> items, List<string> labels)

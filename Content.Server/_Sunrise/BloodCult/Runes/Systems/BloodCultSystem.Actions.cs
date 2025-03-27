@@ -151,7 +151,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var helmet = Spawn("ClothingHeadHelmetCult", coordinates);
             var armor = Spawn("ClothingOuterArmorCult", coordinates);
             var shoes = Spawn("ClothingShoesCult", coordinates);
-            var blade = Spawn("EldritchBlade", coordinates);
+            var blade = Spawn("TrueEldritchBlade", coordinates);
             var bola = Spawn("CultBola", coordinates);
 
             _inventorySystem.TryUnequip(uid, "head");

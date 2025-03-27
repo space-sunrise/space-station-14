@@ -10,7 +10,7 @@
       max: 720
   - type: BloodCultRule
     cultistStartingItems:
-    - NarsieRitualDagger
+    - TrueRitualDagger
     - CultRunicMetal10
   - type: AntagObjectives
     objectives:

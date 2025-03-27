@@ -38,7 +38,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
     {
         private const string TeleportRunePrototypeId = "TeleportRune";
         private const string ApocalypseRunePrototypeId = "ApocalypseRune";
-        private const string RitualDaggerPrototypeId = "NarsieRitualDagger";
+        private const string RitualDaggerPrototypeId = "TrueRitualDagger";
         private const string BiblePrototypeId = "Bible";
         private const string RunicMetalPrototypeId = "CultRunicMetal";
         private const string SteelPrototypeId = "Steel";
@@ -88,6 +88,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
         private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
+        public readonly EntProtoId TeleportInEffect = "CultTeleportInEffect";
+        public readonly EntProtoId TeleportOutEffect = "CultTeleportOutEffect";
         [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
         [Dependency] private readonly TileSystem _tileSystem = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;

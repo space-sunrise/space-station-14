@@ -205,10 +205,6 @@
       # Sunrise-Start
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
-      enum.NameSelectorUIKey.Key:
-        type: NameSelectorBUI
-      enum.RuneTeleporterUiKey.Key:
-        type: TeleportRunesListWindowBUI
       enum.SummonCultistUiKey.Key:
         type: SummonCultistListWindowBUI
       # Sunrise-End

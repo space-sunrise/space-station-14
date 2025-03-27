@@ -5,6 +5,11 @@ using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Eui;
 using Content.Shared.Popups;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Physics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.BloodCult.UI;
@@ -14,10 +19,16 @@ public sealed class TeleportSpellEui : BaseEui
     [Dependency] private readonly EntityManager _entityManager = default!;
 
 
+    public readonly EntProtoId TeleportInEffect = "CultTeleportInEffect";
+    public readonly EntProtoId TeleportOutEffect = "CultTeleportOutEffect";
+    private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
+    private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
     private EntityUid _performer;
     private PopupSystem _popupSystem;
     private EntityUid _target;
     private SharedTransformSystem _transformSystem;
+    private SharedAudioSystem _audio;
+
 
     private bool _used;
 
@@ -27,6 +38,7 @@ public sealed class TeleportSpellEui : BaseEui
         IoCManager.InjectDependencies(this);
 
         _transformSystem = _entityManager.System<SharedTransformSystem>();
+        _audio = _entityManager.System<SharedAudioSystem>();
         _popupSystem = _entityManager.System<PopupSystem>();
 
         _performer = performer;
@@ -78,6 +90,7 @@ public sealed class TeleportSpellEui : BaseEui
         }
 
         TransformComponent? runeTransform = null!;
+        TransformComponent? targetTransform = null!;
 
         foreach (var runeComponent in _entityManager.EntityQuery<CultRuneTeleportComponent>())
         {
@@ -85,6 +98,11 @@ public sealed class TeleportSpellEui : BaseEui
             {
                 runeTransform = _entityManager.GetComponent<TransformComponent>(runeComponent.Owner);
             }
+        }
+
+        if (_entityManager.TryGetComponent<TransformComponent>(_target, out var targetm))
+        {
+            targetTransform = targetm;
         }
 
         if (runeTransform is null)
@@ -96,6 +114,10 @@ public sealed class TeleportSpellEui : BaseEui
 
         _used = true;
 
+        _entityManager.SpawnEntity(TeleportInEffect, runeTransform.Coordinates);
+        _entityManager.SpawnEntity(TeleportOutEffect, targetTransform.Coordinates);
+        _audio.PlayPvs(_teleportInSound, runeTransform.Coordinates);
+        _audio.PlayPvs(_teleportOutSound, targetTransform.Coordinates);
         _transformSystem.SetCoordinates(_target, runeTransform.Coordinates);
         var ev = new TeleportSpellUserEvent();
         _entityManager.EventBus.RaiseLocalEvent(_performer, ev);

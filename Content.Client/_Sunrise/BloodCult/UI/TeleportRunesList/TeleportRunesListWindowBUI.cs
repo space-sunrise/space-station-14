@@ -1,4 +1,5 @@
 ﻿using Content.Shared._Sunrise.BloodCult.UI;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.BloodCult.UI.TeleportRunesList;
 
@@ -8,16 +9,13 @@ public sealed class TeleportRunesListWindowBUI : BoundUserInterface
 
     public TeleportRunesListWindowBUI(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        IoCManager.InjectDependencies(this);
     }
 
     protected override void Open()
     {
         base.Open();
 
-        _window = new();
-        _window.OpenCentered();
-        _window.OnClose += Close;
+        _window = this.CreateWindow<TeleportRunesListWindow>();
 
         _window.ItemSelected += (item, index) =>
         {

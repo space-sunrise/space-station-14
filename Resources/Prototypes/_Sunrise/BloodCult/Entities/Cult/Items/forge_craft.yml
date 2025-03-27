@@ -47,7 +47,14 @@
   name: cultistFactoryProduction-EldritchBlade
   icon: "/Textures/Objects/Weapons/Melee/cult_blade.rsi/icon.png"
   item:
-    - EldritchBlade
+    - TrueEldritchBlade
+
+- type: cultistFactoryProduction
+  id: FactoryHalberd
+  name: cultistFactoryProduction-Halberd
+  icon: "/Textures/Objects/Weapons/Melee/cult_halberd.rsi/icon.png"
+  item:
+  - TrueHalberd
 
 - type: cultistFactoryProduction
   id: FactoryArmorCult

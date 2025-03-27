@@ -3,6 +3,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
+      temporary: true
       useDelay: 50
       canTargetSelf: false
       icon:
@@ -19,6 +20,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
+    temporary: true
     useDelay: 3
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
@@ -31,6 +33,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
+    temporary: true
     useDelay: 5
     whitelist:
       components:
@@ -51,6 +54,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
+    temporary: true
     useDelay: 1
     whitelist:
       components:
@@ -71,6 +75,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
+    temporary: true
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: emp
@@ -85,10 +90,11 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
+      temporary: true
       useDelay: 5
       whitelist:
         components:
-          - Cultist
+          - BloodCultist
       canTargetSelf: true
       deselectOnMiss: true
       repeat: false
@@ -103,11 +109,12 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
+      temporary: true
       useDelay: 5
       whitelist:
         components:
           - HumanoidAppearance
-          - Cultist
+          - BloodCultist
       canTargetSelf: true
       deselectOnMiss: true
       repeat: false
@@ -125,6 +132,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: InstantAction
+      temporary: true
       icon:
         sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
         state: blood_dagger
@@ -139,6 +147,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
+    temporary: true
     useDelay: 5
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi

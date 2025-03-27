@@ -4,7 +4,7 @@ using Robust.Shared.Audio;
 namespace Content.Shared._Sunrise.BloodCult.Items;
 
 [RegisterComponent]
-public sealed partial class CultWeaponComponent : Component
+public sealed partial class BloodCultWeaponComponent : Component
 {
     [DataField("convertedId"), ViewVariables(VVAccess.ReadWrite)]
     public string ConvertedId = "Holywater";
