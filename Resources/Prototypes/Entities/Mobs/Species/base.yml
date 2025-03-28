@@ -207,6 +207,8 @@
         type: VampireMutationBoundUserInterface
       enum.SummonCultistUiKey.Key:
         type: SummonCultistListWindowBUI
+      enum.CultSpellProviderUiKey.Key:
+        type: SpellSelectorBUI
       # Sunrise-End
   - type: Puller
   - type: Speech

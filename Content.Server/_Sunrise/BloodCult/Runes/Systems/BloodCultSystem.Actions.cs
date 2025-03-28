@@ -3,6 +3,7 @@ using Content.Server._Sunrise.BloodCult.UI;
 using Content.Server.Body.Components;
 using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Actions;
 using Content.Shared.Cuffs.Components;
@@ -11,6 +12,8 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Stacks;
 using Content.Shared.StatusEffect;
+using Robust.Shared.Audio;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.BloodCult.Runes.Systems
@@ -22,8 +25,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<BloodCultistComponent, CultTwistedConstructionActionEvent>(OnTwistedConstructionAction);
             SubscribeLocalEvent<BloodCultistComponent, CultSummonDaggerActionEvent>(OnSummonDaggerAction);
             SubscribeLocalEvent<BloodCultistComponent, CultEmpPulseTargetActionEvent>(OnElectromagneticPulse);
-            SubscribeLocalEvent<BloodCultistComponent, CultSummonCombatEquipmentTargetActionEvent>(
-                OnSummonCombatEquipment);
             SubscribeLocalEvent<BloodCultistComponent, CultConcealPresenceWorldActionEvent>(OnConcealPresence);
             SubscribeLocalEvent<BloodCultistComponent, CultTeleportTargetActionEvent>(OnTeleport);
             SubscribeLocalEvent<BloodCultistComponent, CultStunTargetActionEvent>(OnStunTarget);
@@ -31,6 +32,127 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<BloodCultistComponent, ShadowShacklesDoAfterEvent>(OnShadowShacklesDoAfter);
             SubscribeLocalEvent<BloodCultistComponent, TeleportSpellUserEvent>(OnTeleportSpellUser);
             SubscribeLocalEvent<BloodCultistComponent, CultBloodRitualInstantActionEvent>(OnCultBloodRitual);
+            SubscribeLocalEvent<BloodCultistComponent, CultBloodMagicInstantActionEvent>(OnCultBloodMagic);
+            SubscribeLocalEvent<BloodCultistComponent, CultMagicBloodCallEvent>(OnCultMagicBlood);
+            SubscribeLocalEvent<BloodCultistComponent, CultSpellProviderSelectedBuiMessage>(OnCultMagicBloodSelected);
+            SubscribeLocalEvent<BloodCultistComponent, CultSummonCombatEquipmentTargetActionEvent>(
+                OnSummonCombatEquipment);
+        }
+
+        private void OnCultMagicBloodSelected(EntityUid uid,
+            BloodCultistComponent component,
+            CultSpellProviderSelectedBuiMessage args)
+        {
+            if (!TryComp<BloodCultistComponent>(args.Actor, out var comp) ||
+                !TryComp<ActionsComponent>(args.Actor, out var actionsComponent))
+                return;
+
+            var cultistsActions = 0;
+
+            var action = BloodCultistComponent.CultistActions.FirstOrDefault(x => x.Equals(args.ActionType));
+
+            var duplicated = false;
+            foreach (var userAction in actionsComponent.Actions)
+            {
+                var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
+                if (entityPrototypeId != null && BloodCultistComponent.CultistActions.Contains(entityPrototypeId))
+                    cultistsActions++;
+
+                if (entityPrototypeId == action)
+                    duplicated = true;
+            }
+
+            if (action == null)
+                return;
+
+            if (duplicated)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("cult-duplicated-empowers"), uid);
+                return;
+            }
+
+            var maxAllowedActions = 1;
+            var timeToGetSpell = 10;
+            var bloodTake = 20;
+
+            var xform = Transform(uid);
+
+            if (CheckNearbyEmpowerRune(xform.Coordinates))
+            {
+                maxAllowedActions = 4;
+                timeToGetSpell = 4;
+                bloodTake = 8;
+            }
+
+            if (cultistsActions >= maxAllowedActions)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("cult-too-much-empowers"), uid);
+                return;
+            }
+
+            var ev = new CultMagicBloodCallEvent
+            {
+                ActionId = action,
+                BloodTake = bloodTake
+            };
+
+            var argsDoAfterEvent = new DoAfterArgs(_entityManager, args.Actor, timeToGetSpell, ev, args.Actor)
+            {
+                BreakOnMove = true,
+                NeedHand = true,
+                Hidden = true,
+            };
+
+            _doAfterSystem.TryStartDoAfter(argsDoAfterEvent);
+        }
+
+        private void OnCultMagicBlood(EntityUid uid, BloodCultistComponent comp, CultMagicBloodCallEvent args)
+        {
+            if (args.Cancelled)
+                return;
+
+            var howMuchBloodTake = -args.BloodTake;
+            var action = args.ActionId;
+            var user = args.User;
+
+            if (HasComp<CultBuffComponent>(user))
+                howMuchBloodTake /= 2;
+
+            if (!TryComp<BloodstreamComponent>(user, out var bloodstreamComponent))
+                return;
+
+            _bloodstreamSystem.TryModifyBloodLevel(user, howMuchBloodTake, bloodstreamComponent);
+            // SUNRISE-TODO: Допустим другие не должны слышать данный звук так как дуафтер скрыт.
+            _audio.PlayLocal(new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood.ogg"),
+                user,
+                user,
+                AudioParams.Default.WithMaxDistance(2f));
+
+            EntityUid? actionId = null;
+            _actionsSystem.AddAction(user, ref actionId, action);
+        }
+
+        private bool CheckNearbyEmpowerRune(EntityCoordinates coordinates)
+        {
+            var radius = 1.0f;
+
+            foreach (var lookupUid in _lookup.GetEntitiesInRange(coordinates, radius))
+            {
+                if (HasComp<CultEmpowerComponent>(lookupUid))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void OnCultBloodMagic(EntityUid uid,
+            BloodCultistComponent component,
+            CultBloodMagicInstantActionEvent args)
+        {
+            if (!TryComp<ActorComponent>(args.Performer, out var actor))
+                return;
+
+            _ui.TryToggleUi(uid, CultSpellProviderUiKey.Key, actor.PlayerSession);
         }
 
         private void OnCultBloodRitual(EntityUid uid,

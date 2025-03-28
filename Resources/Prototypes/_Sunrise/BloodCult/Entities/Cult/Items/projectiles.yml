@@ -1,8 +1,7 @@
 ﻿- type: entity
-  id: ProjectileCult
+  id: BloodBoil
   parent: BaseBullet
-  name: Blood
-  description: FUCK.
+  name: Blood Boil
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -19,6 +18,9 @@
     color: "#ff4300"
     radius: 2.0
     energy: 7.0
+  - type: BloodBoilProjectile
+  - type: TimedDespawn
+    lifetime: 50
 
 - type: entity
   id: BloodBolt
@@ -49,3 +51,5 @@
     color: "#ff0000"
     radius: 3.0
     energy: 3.0
+  - type: TimedDespawn
+    lifetime: 10

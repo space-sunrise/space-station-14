@@ -44,11 +44,6 @@
   - type: Appearance
   - type: CultRuneBase
   - type: CultEmpower
-  - type: UserInterface
-    interfaces:
-      enum.CultSpellProviderUiKey.Key:
-        type: SpellSelectorBUI
-  - type: CultSpellProvider
 
 - type: entity
   parent: CollideRune
@@ -137,7 +132,7 @@
   - type: CultRuneBase
     invokePhrase: "Dedo ol'btoh!"
   - type: CultRuneBloodBoil
-    projectilePrototype: ProjectileCult
+    projectilePrototype: BloodBoil
 
 - type: entity
   parent: BaseRune

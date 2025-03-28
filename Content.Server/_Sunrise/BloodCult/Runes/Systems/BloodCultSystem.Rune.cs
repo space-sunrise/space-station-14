@@ -53,6 +53,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<CultRuneBloodBoilComponent, CultRuneInvokeEvent>(OnInvokeBloodBoil);
             SubscribeLocalEvent<BloodCultistComponent, SummonNarsieDoAfterEvent>(NarsieSpawn);
             SubscribeLocalEvent<CultEmpowerComponent, ActivateInWorldEvent>(OnActiveInWorld);
+            SubscribeLocalEvent<BloodBoilProjectileComponent, PreventCollideEvent>(BloodBoilCollide);
 
             // UI
             SubscribeLocalEvent<RuneDrawerProviderComponent, UseInHandEvent>(OnRuneDrawerUseInHand);
@@ -349,19 +350,16 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (ev.Result)
             {
-                OnAfterInvoke(uid, cultists);
+                OnAfterInvoke(component.InvokePhrase, cultists);
             }
         }
 
-        private void OnAfterInvoke(EntityUid rune, HashSet<EntityUid> cultists)
+        private void OnAfterInvoke(string phase, HashSet<EntityUid> cultists)
         {
-            if (!_entityManager.TryGetComponent<CultRuneBaseComponent>(rune, out var component))
-                return;
-
             foreach (var cultist in cultists)
             {
                 _chat.TrySendInGameICMessage(cultist,
-                    component.InvokePhrase,
+                    phase,
                     InGameICChatType.Speak,
                     false,
                     false,
@@ -1011,6 +1009,24 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         private void OnInvokeBloodBoil(EntityUid uid, CultRuneBloodBoilComponent component, CultRuneInvokeEvent args)
         {
             args.Result = PrepareShoot(uid, args.User, args.Cultists, 1.0f, component);
+            if (args.Result)
+            {
+                QueueDel(uid);
+            }
+        }
+
+        private void BloodBoilCollide(EntityUid uid, BloodBoilProjectileComponent component, ref PreventCollideEvent args)
+        {
+            if (HasComp<BloodCultistComponent>(args.OtherEntity) || HasComp<ConstructComponent>(args.OtherEntity))
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            if (!HasComp<MobStateComponent>(args.OtherEntity))
+            {
+                args.Cancelled = true;
+            }
         }
 
         private bool PrepareShoot(
@@ -1035,7 +1051,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var inRange = _lookup.GetEntitiesInRange(rune, component.ProjectileRange * severity, LookupFlags.Dynamic);
             inRange.RemoveWhere(x =>
                 !_entityManager.HasComponent<HumanoidAppearanceComponent>(x) ||
-                _entityManager.HasComponent<BloodCultistComponent>(x));
+                _entityManager.HasComponent<BloodCultistComponent>(x) ||
+                _entityManager.HasComponent<ConstructComponent>(x));
 
             var list = inRange.ToList();
 
@@ -1047,6 +1064,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             foreach (var cultist in cultists)
             {
+                if (HasComp<ConstructComponent>(cultist))
+                    continue;
+
                 if (!TryComp<BloodstreamComponent>(cultist, out var bloodstreamComponent))
                     return false;
 

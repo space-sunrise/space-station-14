@@ -8,6 +8,10 @@ public sealed partial class CultTwistedConstructionActionEvent : EntityTargetAct
 {
 }
 
+public sealed partial class CultBloodMagicInstantActionEvent : InstantActionEvent
+{
+}
+
 public sealed partial class CultSummonDaggerActionEvent : InstantActionEvent
 {
 }

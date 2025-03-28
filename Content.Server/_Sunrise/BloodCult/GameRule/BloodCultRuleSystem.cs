@@ -7,6 +7,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.CollectiveMind;
+using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clumsy;
 using Content.Shared.GameTicking.Components;
@@ -42,6 +43,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StorageSystem _storageSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -235,6 +237,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
             UpdateCultistsAppearance(cultRuleComponent);
         }
+
+        EntityUid? actionId = null;
+        _actionsSystem.AddAction(uid, ref actionId, BloodCultistComponent.BloodMagicAction);
     }
 
     private void OnCultistComponentRemoved(EntityUid uid, BloodCultistComponent component, ComponentRemove args)
@@ -257,6 +262,17 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             RemoveCultistAppearance(uid);
 
             CheckRoundShouldEnd();
+        }
+
+        _actionsSystem.RemoveAction(uid, component.BloodMagicEntity);
+        if (TryComp<ActionsComponent>(uid, out var actionsComponent))
+        {
+            foreach (var userAction in actionsComponent.Actions)
+            {
+                var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
+                if (entityPrototypeId != null && BloodCultistComponent.CultistActions.Contains(entityPrototypeId))
+                    _actionsSystem.RemoveAction(uid, userAction);
+            }
         }
     }
 

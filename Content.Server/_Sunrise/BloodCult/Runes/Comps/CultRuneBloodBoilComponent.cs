@@ -7,10 +7,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Comps;
 public sealed partial class CultRuneBloodBoilComponent : Component
 {
     [DataField("maxProjectiles"), ViewVariables(VVAccess.ReadWrite)]
-    public int MaxProjectiles = 9;
+    public int MaxProjectiles = 10;
 
     [DataField("minProjectiles"), ViewVariables(VVAccess.ReadWrite)]
-    public int MinProjectiles = 3;
+    public int MinProjectiles = 5;
 
     [DataField("projectilePrototype",
          required: true,

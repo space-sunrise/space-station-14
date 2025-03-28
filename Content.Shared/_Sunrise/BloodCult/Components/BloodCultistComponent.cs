@@ -31,6 +31,8 @@ public sealed partial class BloodCultistComponent : Component
 
     public static string BloodRitualAction = "InstantActionBloodRitual";
 
+    public static string BloodMagicAction = "InstantActionBloodMagic";
+
     public static List<string> CultistActions = new()
     {
         SummonCultDaggerAction, CultTwistedConstructionAction, CultTeleportAction,
@@ -41,19 +43,15 @@ public sealed partial class BloodCultistComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("bloodCharges")]
     public FixedPoint2 BloodCharges = 0;
 
-    [DataField("greetSound", customTypeSerializer: typeof(SoundSpecifierTypeSerializer))]
-    public SoundSpecifier? CultistGreetSound = new SoundPathSpecifier("/Audio/CultSounds/fart.ogg");
-
     [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertChance")]
     public int HolyConvertChance = 33;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertTime")]
     public float HolyConvertTime = 30f;
 
-    public CancellationTokenSource? HolyConvertToken;
+    public EntityUid? BloodMagicEntity;
 
-    [NonSerialized]
-    public List<string> SelectedEmpowers = new();
+    public CancellationTokenSource? HolyConvertToken;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "BloodCultFaction";

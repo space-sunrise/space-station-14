@@ -16,6 +16,19 @@
       deleteActionsWithoutCharges: true
 
 - type: entity
+  id: InstantActionBloodMagic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    temporary: true
+    useDelay: 3
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: carve
+    itemIconStyle: NoItem
+    event: !type:CultBloodMagicInstantActionEvent
+
+- type: entity
   id: InstantActionBloodRitual
   categories: [ HideSpawnMenu ]
   components:
