@@ -118,14 +118,6 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void OnHitscan(HitscanEvent ev)
     {
-        // ALL I WANT IS AN ANIMATED EFFECT
-
-        // TODO EFFECTS
-        // This is very jank
-        // because the effect consists of three unrelatd entities, the hitscan beam can be split appart.
-        // E.g., if a grid rotates while part of the beam is parented to the grid, and part of it is parented to the map.
-        // Ideally, there should only be one entity, with one sprite that has multiple layers
-        // Or at the very least, have the other entities parented to the same entity to make sure they stick together.
         const double tracerInterval = 0.01f;
 
         foreach (var a in ev.Sprites)
@@ -146,14 +138,27 @@ public sealed partial class GunSystem : SharedGunSystem
                 var stepIndex = 0;
                 foreach (var stepCoords in entityCoordinatesEnumerable)
                 {
-                    var localIndex = stepIndex;
-                    var delay = localIndex * tracerInterval;
+                    var ent = CreateTracerEffect(stepCoords, a.angle, rsi, relativeXform);
 
-                    Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
+                    var anim = new Animation()
                     {
-                        CreateTracerEffect(stepCoords, a.angle, rsi, relativeXform);
-                    });
+                        Length = TimeSpan.FromSeconds(3.00f),
+                        AnimationTracks =
+                        {
+                            new AnimationTrackSpriteFlick()
+                            {
+                                LayerKey = EffectLayers.Unshaded,
+                                KeyFrames =
+                                {
+                                    new AnimationTrackSpriteFlick.KeyFrame("empty", stepIndex * (float)tracerInterval),
+                                    new AnimationTrackSpriteFlick.KeyFrame(rsi.RsiState, (stepIndex + 1) * (float)tracerInterval),
+                                    new AnimationTrackSpriteFlick.KeyFrame("empty", (stepIndex + 2) * (float)tracerInterval),
+                                }
+                            }
+                        }
+                    };
 
+                    _animPlayer.Play(ent, anim, "hitscan-effect");
                     stepIndex++;
                 }
             }
@@ -179,25 +184,6 @@ public sealed partial class GunSystem : SharedGunSystem
         sprite.LayerSetState(EffectLayers.Unshaded, rsi.RsiState);
         sprite.Scale = new Vector2(1f, 1f);
         sprite[EffectLayers.Unshaded].Visible = true;
-
-        var anim = new Animation()
-        {
-            Length = TimeSpan.FromSeconds(0.48f),
-            AnimationTracks =
-            {
-                new AnimationTrackSpriteFlick()
-                {
-                    LayerKey = EffectLayers.Unshaded,
-                    KeyFrames =
-                    {
-                        new AnimationTrackSpriteFlick.KeyFrame(rsi.RsiState, 0f),
-                        new AnimationTrackSpriteFlick.KeyFrame("empty", 0.02f),
-                    }
-                }
-            }
-        };
-
-        _animPlayer.Play(ent, anim, "hitscan-effect");
         return ent;
     }
 
