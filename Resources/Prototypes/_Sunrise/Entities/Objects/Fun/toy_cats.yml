@@ -1,0 +1,199 @@
+﻿- type: entity
+  id: PlushieBlackCat
+  parent: BasePlushie
+  name: Black Cat Plushie
+  description: Dark, mysterious, and possibly involved in occult rituals... or just snuggles. Might bring luck, or chaos.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_blackcat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieGreyCat
+  parent: BasePlushie
+  name: Grey Cat Plushie
+  description: A cat with "I exist, but won't show emotions" energy. Perfect for philosophical reflections and passive aggression.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_greycat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieWhiteCat
+  parent: BasePlushie
+  name: White Cat Plushie
+  description: Pure, soft, and guaranteed to collect all the dust in the room. But who cares when it's this adorable?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_whitecat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieOrangeCat
+  parent: BasePlushie
+  name: Orange Cat Plushie
+  description: Hungry. Always. Even if just fed. Possibly plotting a revolution for extra dinner.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_orangecat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieRicehatCat
+  parent: BasePlushie
+  name: Ricehat Cat Plushie
+  description: White cat plushie with straw hat for hard work on rice field!.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_ricehatcat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieSiameseCat
+  parent: BasePlushie
+  name: Siamese Cat Plushie
+  description: Elegant, mysterious, and has a bit of a villainous vibe. Might already be plotting against you.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_siamesecat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieTabbyCat
+  parent: BasePlushie
+  name: Tabby Cat Plushie
+  description: The embodiment of cozy naps and sudden zoomies. Sleeps 50% of the time, destroys your shoelaces the other 50%.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_tabbycat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+
+- type: entity
+  id: PlushieTuxedoCat
+  parent: BasePlushie
+  name: Tuxedo Cat Plushie
+  description: Always dressed for a gala dinner... or at least dinner. Smooth, stylish, and highly respected among plushies.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_cats.rsi
+    state: plushie_tuxedocat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg

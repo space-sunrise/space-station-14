@@ -41,6 +41,18 @@
     - id: PlushieMoth
     - id: PlushieArachind
     - id: PlushiePenguin
+    # Sunrise-start
+    - !type:GroupSelector
+      children:
+      - id: PlushieBlackCat
+      - id: PlushieGreyCat
+      - id: PlushieWhiteCat
+      - id: PlushieOrangeCat
+      - id: PlushieRicehatCat
+      - id: PlushieSiameseCat
+      - id: PlushieTabbyCat
+      - id: PlushieTuxedoCat
+    # Sunrise-end
 
 - type: entity
   id: CrateFunPlushie
