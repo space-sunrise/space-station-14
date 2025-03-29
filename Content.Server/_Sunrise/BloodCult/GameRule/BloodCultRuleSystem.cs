@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server._Sunrise.BloodCult.Runes.Systems;
 using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Antag;
 using Content.Server.Bible.Components;
@@ -316,7 +317,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     {
         if (TryComp<HumanoidAppearanceComponent>(cultist, out var appearanceComponent))
         {
-            appearanceComponent.EyeColor = Color.Red;
+            appearanceComponent.EyeColor = Color.White;
             Dirty(cultist, appearanceComponent);
         }
 
@@ -357,7 +358,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         {
             if (TryComp<HumanoidAppearanceComponent>(cultist, out var appearanceComponent))
             {
-                appearanceComponent.EyeColor = BloodCultRuleComponent.EyeColor;
+                appearanceComponent.EyeColor = rule.EyeColor;
                 Dirty(cultist, appearanceComponent);
             }
 
@@ -458,7 +459,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                 continue;
             }
 
-            var reaper = Spawn(BloodCultRuleComponent.ReaperPrototype, Transform(mobState.Owner).Coordinates);
+            var reaper = Spawn(BloodCultSystem.ReaperConstructPrototypeId, Transform(mobState.Owner).Coordinates);
             _mindSystem.TransferTo(mindContainer.Mind.Value, reaper);
 
             _bodySystem.GibBody(mobState.Owner);

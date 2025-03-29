@@ -11,14 +11,8 @@ namespace Content.Server._Sunrise.BloodCult.GameRule;
 [RegisterComponent, Access(typeof(BloodCultRuleSystem))]
 public sealed partial class BloodCultRuleComponent : Component
 {
-    [DataField("reaperPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public static string ReaperPrototype = "ReaperConstruct";
-
-    [ViewVariables(VVAccess.ReadOnly), DataField("tileId")]
-    public static string CultFloor = "CultFloor";
-
     [DataField("eyeColor")]
-    public static Color EyeColor = Color.FromHex("#f80000");
+    public Color EyeColor = Color.FromHex("#f80000");
 
     [DataField]
     public int ReadEyeThresholdPercentage = 15;

@@ -85,6 +85,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [ValidatePrototypeId<StackPrototype>]
         private static string SteelStackPrototypeId = "Steel";
 
+        [ValidatePrototypeId<ContentTileDefinition>]
+        private static string CultTilePrototypeId = "CultFloor";
+
         private static EntProtoId ApocalypseRunePrototypeId = "ApocalypseRune";
         private static EntProtoId RunicMetalPrototypeId = "CultRunicMetal";
         private static EntProtoId CultBarrierPrototypeId = "CultBarrier";
@@ -98,6 +101,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         private static EntProtoId CuffsPrototypeId = "CultistCuffs";
         private static EntProtoId TeleportActionPrototypeId = "ActionCultTeleport";
         private static EntProtoId CultTileEffectPrototypeId = "CultTileSpawnEffect";
+        public static EntProtoId ReaperConstructPrototypeId = "ReaperConstruct";
 
         private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
         private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
