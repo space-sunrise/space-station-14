@@ -6,16 +6,16 @@
 #
 
 import io
-import itertools
 import os
+from pathlib import Path
+
 import requests
 import yaml
 from typing import Any, Iterable
 
+DEBUG = False
+DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
-GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
-GITHUB_RUN        = os.environ["GITHUB_RUN_ID"]
-GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -36,21 +36,16 @@ def main():
     if not DISCORD_WEBHOOK_URL:
         return
 
-    session = requests.Session()
-    session.headers["Authorization"]        = f"Bearer {GITHUB_TOKEN}"
-    session.headers["Accept"]               = "Accept: application/vnd.github+json"
-    session.headers["X-GitHub-Api-Version"] = "2022-11-28"
+    if DEBUG:
+        # to debug this script locally, you can use
+        # a separate local file as the old changelog
+        last_changelog_stream = DEBUG_CHANGELOG_FILE_OLD.read_text()
+    else:
+        # when running this normally in a GitHub actions workflow,
+        # it will get the old changelog from the GitHub API
+        last_changelog_stream = get_last_changelog()
 
-    most_recent = get_most_recent_workflow(session)
-
-    if most_recent is None:
-        print("No successful publish jobs found.")
-        return
-
-    last_sha = most_recent['head_commit']['id']
-    print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
-    last_changelog = yaml.safe_load(get_last_changelog(session, last_sha))
-
+    last_changelog = yaml.safe_load(last_changelog_stream)
     with open(CHANGELOG_FILE, "r") as f:
         cur_changelog = yaml.safe_load(f)
 
@@ -69,8 +64,12 @@ def get_most_recent_workflow(sess: requests.Session) -> Any:
         return run
 
 
-def get_current_run(sess: requests.Session) -> Any:
-    resp = sess.get(f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/actions/runs/{GITHUB_RUN}")
+def get_current_run(
+    sess: requests.Session, github_repository: str, github_run: str
+) -> Any:
+    resp = sess.get(
+        f"{GITHUB_API_URL}/repos/{github_repository}/actions/runs/{github_run}"
+    )
     resp.raise_for_status()
     return resp.json()
 
@@ -79,32 +78,54 @@ def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
     """
     Get all successful workflow runs before our current one.
     """
-    params = {
-        "status": "success",
-        "created": f"<={current_run['created_at']}"
-    }
+    params = {"status": "success", "created": f"<={current_run['created_at']}"}
     resp = sess.get(f"{current_run['workflow_url']}/runs", params=params)
     resp.raise_for_status()
     return resp.json()
 
 
-def get_last_changelog(sess: requests.Session, sha: str) -> str:
+def get_last_changelog() -> str:
+    github_repository = os.environ["GITHUB_REPOSITORY"]
+    github_run = os.environ["GITHUB_RUN_ID"]
+    github_token = os.environ["GITHUB_TOKEN"]
+
+    session = requests.Session()
+    session.headers["Authorization"] = f"Bearer {github_token}"
+    session.headers["Accept"] = "Accept: application/vnd.github+json"
+    session.headers["X-GitHub-Api-Version"] = "2022-11-28"
+
+    most_recent = get_most_recent_workflow(session, github_repository, github_run)
+    last_sha = most_recent["head_commit"]["id"]
+    print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
+    last_changelog_stream = get_last_changelog_by_sha(
+        session, last_sha, github_repository
+    )
+
+    return last_changelog_stream
+
+def get_last_changelog_by_sha(
+    sess: requests.Session, sha: str, github_repository: str
+) -> str:
     """
     Use GitHub API to get the previous version of the changelog YAML (Actions builds are fetched with a shallow clone)
     """
     params = {
         "ref": sha,
     }
-    headers = {
-        "Accept": "application/vnd.github.raw"
-    }
+    headers = {"Accept": "application/vnd.github.raw"}
 
-    resp = sess.get(f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{CHANGELOG_FILE}", headers=headers, params=params)
+    resp = sess.get(
+        f"{GITHUB_API_URL}/repos/{github_repository}/contents/{CHANGELOG_FILE}",
+        headers=headers,
+        params=params,
+    )
     resp.raise_for_status()
     return resp.text
 
 
-def diff_changelog(old: dict[str, Any], cur: dict[str, Any]) -> Iterable[ChangelogEntry]:
+def diff_changelog(
+    old: dict[str, Any], cur: dict[str, Any]
+) -> Iterable[ChangelogEntry]:
     """
     Find all new entries not present in the previous publish.
     """
@@ -114,14 +135,12 @@ def diff_changelog(old: dict[str, Any], cur: dict[str, Any]) -> Iterable[Changel
 
 def get_discord_body(content: str):
     return {
-            "content": content,
-            # Do not allow any mentions.
-            "allowed_mentions": {
-                "parse": []
-            },
-            # SUPPRESS_EMBEDS
-            "flags": 1 << 2
-        }
+        "content": content,
+        # Do not allow any mentions.
+        "allowed_mentions": {"parse": []},
+        # SUPPRESS_EMBEDS
+        "flags": 1 << 2,
+    }
 
 
 def send_discord(content: str):
