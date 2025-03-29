@@ -13,6 +13,18 @@
     - AtmosAlertsMonitor
 
 - type: loadout
+  id: TrinketsEngineeringEAM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2hr
+  storage:
+    back:
+    - EngiAlertsMonitor
+
+- type: loadout
   id: TrinketsEngineeringTS
   effects:
   - !type:JobRequirementLoadoutEffect
