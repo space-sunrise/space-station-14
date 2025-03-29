@@ -721,13 +721,14 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return false;
             }
 
-            var cultAwakened = _bloodCultRuleSystem.CultAwakened();
-
-            if (!cultAwakened)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("cult-narsie-not-awakened"), user, user);
-                return false;
-            }
+            // Ну нахуй
+            // var cultAwakened = _bloodCultRuleSystem.CultAwakened();
+            //
+            // if (!cultAwakened)
+            // {
+            //     _popupSystem.PopupEntity(Loc.GetString("cult-narsie-not-awakened"), user, user);
+            //     return false;
+            // }
 
             if (cultists.Count < component.SummonMinCount)
             {
@@ -753,7 +754,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             var ev = new SummonNarsieDoAfterEvent();
 
-            var argsDoAfterEvent = new DoAfterArgs(_entityManager, user, TimeSpan.FromSeconds(120), ev, user)
+            var argsDoAfterEvent = new DoAfterArgs(_entityManager, user, TimeSpan.FromSeconds(60), ev, user)
             {
                 BreakOnMove = true
             };

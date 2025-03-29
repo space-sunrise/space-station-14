@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Content.Server._Sunrise.BloodCult.Objectives.Components;
+using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
 using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Antag;
@@ -50,6 +52,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -126,46 +129,38 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void OnAfterAntagSelectionComplete(Entity<BloodCultRuleComponent> ent, ref AntagSelectionCompleteEvent args)
     {
-        var selectedCultist = new List<EntityUid>();
-        foreach (var selectedMind in args.GameRule.Comp.AssignedMinds)
-        {
-            selectedCultist.Add(selectedMind.Item1);
-        }
-
-        var priorityTargets = new List<MindContainerComponent>();
+        var selectedCultist = args.GameRule.Comp.AssignedMinds.Select(m => m.Item1).ToList();
         var potentialTargets = FindPotentialTargets(selectedCultist);
 
-        foreach (var potentialTarget in potentialTargets)
-        {
-            if (potentialTarget.Mind == null)
-                continue;
-            if (!TryComp<MindComponent>(potentialTarget.Mind.Value, out var comp))
-                continue;
-            if (HasComp<BibleUserComponent>(comp.OwnedEntity) || HasComp<MindShieldComponent>(comp.OwnedEntity))
-                priorityTargets.Add(potentialTarget);
-        }
+        var priorityTargets = potentialTargets
+            .Where(t => t.Mind != null &&
+                        (HasComp<BibleUserComponent>(t.Mind.Value) ||
+                         HasComp<MindShieldComponent>(t.Mind.Value)))
+            .ToList();
 
-        var numTargets = MathHelper.Clamp(selectedCultist.Count / ent.Comp.TargetsPerPlayer, 1, ent.Comp.MaxTargets);
+        potentialTargets.RemoveAll(priorityTargets.Contains);
 
-        var selectedVictims = new List<EntityUid>();
+        int numTargets = MathHelper.Clamp(_playerManager.PlayerCount / ent.Comp.TargetsPerPlayer,
+            ent.Comp.MinTargets, ent.Comp.MaxTargets);
 
-        for (var i = 0; i < numTargets && priorityTargets.Count > 0; i++)
-        {
-            var index = _random.Next(priorityTargets.Count);
-            var selectedVictim = priorityTargets[index];
-            priorityTargets.RemoveAt(index);
-            selectedVictims.Add(selectedVictim.Mind!.Value);
-        }
-
-        for (var i = selectedVictims.Count; i < numTargets && potentialTargets.Count > 0; i++)
-        {
-            var index = _random.Next(potentialTargets.Count);
-            var selectedVictim = potentialTargets[index];
-            potentialTargets.RemoveAt(index);
-            selectedVictims.Add(selectedVictim.Mind!.Value);
-        }
+        var selectedVictims = SelectRandomTargets(priorityTargets, numTargets);
+        selectedVictims.AddRange(SelectRandomTargets(potentialTargets, numTargets - selectedVictims.Count));
 
         ent.Comp.CultTargets.AddRange(selectedVictims);
+
+        var query = EntityQueryEnumerator<KillCultistTargetsConditionComponent>();
+
+        while (query.MoveNext(out var uid, out var killCultistTargetsComponent))
+        {
+            _cultistTargetsConditionSystem.SetTargets(uid, killCultistTargetsComponent, ent.Comp.CultTargets);
+            _cultistTargetsConditionSystem.RefresTitle(uid, killCultistTargetsComponent);
+        }
+    }
+
+    private List<EntityUid> SelectRandomTargets(List<MindContainerComponent> targets, int count)
+    {
+        _random.Shuffle(targets);
+        return targets.Take(count).Select(t => t.Mind!.Value).ToList();
     }
 
     public List<MindComponent> GetTargets()
@@ -369,17 +364,15 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         }
     }
 
-    private List<MindContainerComponent> FindPotentialTargets(List<EntityUid> exclude = null!)
+    private List<MindContainerComponent> FindPotentialTargets(List<EntityUid> exclude)
     {
         var potentialTargets = new List<MindContainerComponent>();
 
         var query = EntityQueryEnumerator<MindContainerComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
-        while (query.MoveNext(out var uid, out var mind, out var antagTarget, out _))
+        while (query.MoveNext(out var uid, out var mind, out _, out _))
         {
-            if (exclude?.Contains(uid) is true)
-            {
+            if (mind.Mind == null || exclude.Contains(mind.Mind.Value))
                 continue;
-            }
 
             potentialTargets.Add(mind);
         }

@@ -292,10 +292,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         ent.Comp.PreSelectionsComplete = true;
-        // Sunrise-Start
-        var selectionCompleteEv = new AntagSelectionCompleteEvent(ent);
-        RaiseLocalEvent(ent, ref selectionCompleteEv, true);
-        // Sunrise-End
     }
 
     /// <summary>
@@ -400,6 +396,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         ent.Comp.AssignmentComplete = true;
+
+        // Sunrise-Start
+        var selectionCompleteEv = new AntagSelectionCompleteEvent(ent);
+        RaiseLocalEvent(ent, ref selectionCompleteEv, true);
+        // Sunrise-End
     }
 
     // Sunrise-Start

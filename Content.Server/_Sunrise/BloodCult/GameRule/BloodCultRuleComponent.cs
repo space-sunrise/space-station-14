@@ -1,41 +1,36 @@
 ﻿using Content.Shared._Sunrise.BloodCult;
-using Content.Shared.Roles;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server._Sunrise.BloodCult.GameRule;
 
 [RegisterComponent, Access(typeof(BloodCultRuleSystem))]
 public sealed partial class BloodCultRuleComponent : Component
 {
-    [DataField("eyeColor")]
+    [DataField]
     public Color EyeColor = Color.FromHex("#f80000");
 
     [DataField]
-    public int ReadEyeThresholdPercentage = 15;
+    public int ReadEyeThresholdPercentage = 10;
 
     [DataField]
-    public int PentagramThresholdPercentage = 30;
+    public int PentagramThresholdPercentage = 20;
 
     public readonly SoundSpecifier GreatingsSound =
         new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood_cult_greeting.ogg");
 
+    [ViewVariables]
     public List<EntityUid> CultTargets = new();
-
-    public List<EntityUid> SacrificedMinds = new();
 
     [DataField]
     public int MaxTargets = 3;
 
     [DataField]
-    public int MinTargets = 1;
+    public int MinTargets = 3;
 
     [DataField]
-    public int TargetsPerPlayer = 30;
+    public int TargetsPerPlayer = 20;
 
+    [ViewVariables]
     public CultWinCondition WinCondition;
 
     [DataField]

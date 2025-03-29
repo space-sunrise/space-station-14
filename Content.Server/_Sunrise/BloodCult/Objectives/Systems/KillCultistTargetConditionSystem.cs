@@ -24,6 +24,16 @@ public sealed class KillCultistTargetsConditionSystem : EntitySystem
         SubscribeLocalEvent<KillCultistTargetsConditionComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
     }
 
+    public void SetTargets(EntityUid uid, KillCultistTargetsConditionComponent comp, List<EntityUid> targets)
+    {
+        comp.Targets = targets;
+    }
+
+    public void RefresTitle(EntityUid uid, KillCultistTargetsConditionComponent comp)
+    {
+        _metaData.SetEntityName(uid, GetTitle(comp.Targets, comp.Title));
+    }
+
     private void OnAfterAssign(EntityUid uid,
         KillCultistTargetsConditionComponent comp,
         ref ObjectiveAfterAssignEvent args)
