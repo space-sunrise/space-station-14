@@ -53,10 +53,12 @@ def main():
     send_to_discord(diff)
 
 
-def get_most_recent_workflow(sess: requests.Session) -> Any:
-    workflow_run = get_current_run(sess)
+def get_most_recent_workflow(
+    sess: requests.Session, github_repository: str, github_run: str
+) -> Any:
+    workflow_run = get_current_run(sess, github_repository, github_run)
     past_runs = get_past_runs(sess, workflow_run)
-    for run in past_runs['workflow_runs']:
+    for run in past_runs["workflow_runs"]:
         # First past successful run that isn't our current run.
         if run["id"] == workflow_run["id"]:
             continue
