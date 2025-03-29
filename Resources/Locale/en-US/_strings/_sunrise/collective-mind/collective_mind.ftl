@@ -8,4 +8,4 @@ collective-mind-arachnids = Арахниды
 collective-mind-carp = Карпы
 collective-mind-zombie = Зомби
 collective-mind-changeling = Генокрад
-collective-mind-blood-cult = Нар'си
+collective-mind-blood-cult = Культ Крови
