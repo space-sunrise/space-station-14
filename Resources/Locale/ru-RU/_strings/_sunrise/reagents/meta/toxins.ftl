@@ -4,3 +4,5 @@ reagent-name-dylomet = диломет
 reagent-desc-dylomet = Невероятно но это факт.
 reagent-name-stable-mutagen = стабильный мутаген
 reagent-desc-stable-mutagen = Стабильный хуила.
+reagent-name-pulverizedlantern = pulverized lantern
+reagent-desc-pulverizedlantern = pulverized lantern
