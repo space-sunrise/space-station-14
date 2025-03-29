@@ -79,8 +79,6 @@
   - type: InnateItem
     instantActions:
     - AtmosAlertsMonitor
-  - type: InnateItem
-    instantActions:
     - EngiAlertsMonitor
   # Sunrise-End
 

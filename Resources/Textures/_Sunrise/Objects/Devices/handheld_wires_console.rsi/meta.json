@@ -9,19 +9,15 @@
     "states": [
         {
             "name": "scanner",
-            "directions": 1,
             "delays": [
                 [
-                    0.4,
-                    0.4,
                     0.4,
                     0.4
                 ]
             ]
         },
         {
-            "name": "icon",
-            "directions": 1
+            "name": "icon"
         }
     ]
 }
