@@ -10,6 +10,15 @@
             - !type:KeyExistsPrecondition
               key: IdleTime
 
+    # Sunrise-Edit-Start
+    - preconditions:
+        - !type:StandingStatePrecondition
+          isStanding: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:StandUpOperator
+    # Sunrise-Edit-End
+    
     # Pick a new spot and wait there.
     - preconditions:
         - !type:BuckledPrecondition
@@ -49,6 +58,15 @@
           preconditions:
             - !type:KeyExistsPrecondition
               key: IdleTime
+
+    # Sunrise-Edit-Start
+    - preconditions:
+        - !type:StandingStatePrecondition
+          isStanding: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:StandUpOperator
+    # Sunrise-Edit-End
 
     # Pick a new angle and spin there
     - tasks:

@@ -387,9 +387,6 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<string> VigersRayVictims =
         CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
 
-    public static readonly CVarDef<bool> DisableGameRules =
-        CVarDef.Create("vigers_ray.disable_game_rules", true, CVar.SERVERONLY);
-
     /// <summary>
     ///     Flavor Profile
     /// </summary>

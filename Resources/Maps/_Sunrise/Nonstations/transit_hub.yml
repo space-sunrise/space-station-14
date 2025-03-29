@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.2.0
+  engineVersion: 249.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/17/2025 21:21:48
-  entityCount: 2662
+  time: 03/27/2025 15:18:51
+  entityCount: 2695
 maps: []
 grids:
 - 1
@@ -44,7 +44,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: NT-EZ Космопорт FC-742
+      name: "! ЦК-Космопорт FC-742"
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.059890747,-0.052645683
@@ -3004,6 +3004,173 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,4.5
       parent: 1
+- proto: CableApcExtension
+  entities:
+  - uid: 344
+    components:
+    - type: Transform
+      pos: -0.5,21.5
+      parent: 1
+  - uid: 749
+    components:
+    - type: Transform
+      pos: -0.5,22.5
+      parent: 1
+  - uid: 776
+    components:
+    - type: Transform
+      pos: -0.5,23.5
+      parent: 1
+  - uid: 982
+    components:
+    - type: Transform
+      pos: -1.5,23.5
+      parent: 1
+  - uid: 1706
+    components:
+    - type: Transform
+      pos: -2.5,23.5
+      parent: 1
+  - uid: 1802
+    components:
+    - type: Transform
+      pos: -8.5,13.5
+      parent: 1
+  - uid: 1803
+    components:
+    - type: Transform
+      pos: -8.5,14.5
+      parent: 1
+  - uid: 1804
+    components:
+    - type: Transform
+      pos: -7.5,13.5
+      parent: 1
+  - uid: 1805
+    components:
+    - type: Transform
+      pos: -6.5,23.5
+      parent: 1
+  - uid: 1806
+    components:
+    - type: Transform
+      pos: -7.5,23.5
+      parent: 1
+  - uid: 1807
+    components:
+    - type: Transform
+      pos: -8.5,23.5
+      parent: 1
+  - uid: 1808
+    components:
+    - type: Transform
+      pos: -8.5,22.5
+      parent: 1
+  - uid: 1809
+    components:
+    - type: Transform
+      pos: -8.5,21.5
+      parent: 1
+  - uid: 1811
+    components:
+    - type: Transform
+      pos: -8.5,20.5
+      parent: 1
+  - uid: 1812
+    components:
+    - type: Transform
+      pos: -8.5,19.5
+      parent: 1
+  - uid: 1813
+    components:
+    - type: Transform
+      pos: -8.5,18.5
+      parent: 1
+  - uid: 1814
+    components:
+    - type: Transform
+      pos: -8.5,17.5
+      parent: 1
+  - uid: 1815
+    components:
+    - type: Transform
+      pos: -8.5,16.5
+      parent: 1
+  - uid: 1816
+    components:
+    - type: Transform
+      pos: -8.5,15.5
+      parent: 1
+  - uid: 1817
+    components:
+    - type: Transform
+      pos: -0.5,21.5
+      parent: 1
+  - uid: 1818
+    components:
+    - type: Transform
+      pos: -0.5,20.5
+      parent: 1
+  - uid: 1819
+    components:
+    - type: Transform
+      pos: -0.5,19.5
+      parent: 1
+  - uid: 1820
+    components:
+    - type: Transform
+      pos: -0.5,18.5
+      parent: 1
+  - uid: 1821
+    components:
+    - type: Transform
+      pos: -0.5,17.5
+      parent: 1
+  - uid: 1822
+    components:
+    - type: Transform
+      pos: -0.5,16.5
+      parent: 1
+  - uid: 1823
+    components:
+    - type: Transform
+      pos: -0.5,15.5
+      parent: 1
+  - uid: 1824
+    components:
+    - type: Transform
+      pos: -1.5,17.5
+      parent: 1
+  - uid: 1825
+    components:
+    - type: Transform
+      pos: -2.5,17.5
+      parent: 1
+  - uid: 1826
+    components:
+    - type: Transform
+      pos: -0.5,13.5
+      parent: 1
+  - uid: 1827
+    components:
+    - type: Transform
+      pos: -1.5,13.5
+      parent: 1
+  - uid: 1828
+    components:
+    - type: Transform
+      pos: -0.5,14.5
+      parent: 1
+  - uid: 1829
+    components:
+    - type: Transform
+      pos: -6.5,17.5
+      parent: 1
+  - uid: 1830
+    components:
+    - type: Transform
+      pos: -7.5,17.5
+      parent: 1
 - proto: CandleRedInfinite
   entities:
   - uid: 894
@@ -4646,6 +4813,13 @@ entities:
     - type: Transform
       pos: 13.5,-15.5
       parent: 1
+- proto: ChemistryBottleEpinephrine
+  entities:
+  - uid: 2664
+    components:
+    - type: Transform
+      pos: 13.326094,-8.181222
+      parent: 1
 - proto: ChemMaster
   entities:
   - uid: 1108
@@ -5295,6 +5469,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -13.5,0.5
       parent: 1
+- proto: DebugAPC
+  entities:
+  - uid: 2
+    components:
+    - type: Transform
+      pos: -0.5,21.5
+      parent: 1
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50000
+      autoRecharge: True
+  - uid: 353
+    components:
+    - type: Transform
+      pos: -8.5,21.5
+      parent: 1
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50000
+      autoRecharge: True
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 11
@@ -7037,13 +7229,6 @@ entities:
     - type: Transform
       pos: 13.435215,-4.2813683
       parent: 1
-- proto: EpinephrineChemistryBottle
-  entities:
-  - uid: 2664
-    components:
-    - type: Transform
-      pos: 13.326094,-8.181222
-      parent: 1
 - proto: FaxMachineCentcom
   entities:
   - uid: 1714
@@ -7914,7 +8099,7 @@ entities:
       pos: 14.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -42162.477
+      secondsUntilStateChange: -42607.89
       state: Opening
   - uid: 1061
     components:
@@ -7923,7 +8108,7 @@ entities:
       pos: 14.5,-9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -42161.707
+      secondsUntilStateChange: -42607.12
       state: Opening
 - proto: Jukebox
   entities:
@@ -16924,19 +17109,14 @@ entities:
   entities:
   - uid: 1543
     components:
-    - type: Transform
-      pos: -4.5,21.5
-      parent: 1
-  - uid: 2842
-    components:
     - type: MetaData
       name: Космопорт
     - type: Transform
-      pos: 11.5,0.5
+      pos: -4.5,21.5
       parent: 1
     - type: WarpPoint
       follow: True
-      location: Космопорт
+      location: "! ЦК-Космопорт"
 - proto: WaterCooler
   entities:
   - uid: 2562
@@ -16997,20 +17177,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5317163,7.5535507
-      parent: 1
-- proto: WeaponTurretHostile
-  entities:
-  - uid: 344
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,11.5
-      parent: 1
-  - uid: 353
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,11.5
       parent: 1
 - proto: WeldingFuelTankFull
   entities:

@@ -1,7 +1,7 @@
 - type: entity
   name: explosive banana
   description: explosive banana
-  parent: FoodProduceBase
+  parent: [FoodProduceBase, ItemHeftyBase]
   id: ExplosiveBanana
   components:
   - type: Damageable
@@ -134,3 +134,278 @@
   - type: Tag
     tags:
     - Geranium # TODO добавить теги цветка, когда оффы реализуют ЦветоМат и флористику
+
+- type: entity
+  name: glasscap
+  description: Glass doesn't grow on trees! It grows on mushrooms, of course.
+  id: GlassLog
+  parent: ProduceBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/glasscap.rsi
+  - type: SolutionContainerManager
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+  - type: Produce
+    seedId: glasscap
+  - type: Log
+    spawnedPrototype: SheetGlass1
+    spawnCount: 1
+
+- type: entity
+  name: plaststeelcap
+  description: Plaststeel doesn't grow on trees! It grows on mushrooms, of course.
+  id: PlastSteelLog
+  parent: ProduceBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/plaststeelcap.rsi
+  - type: SolutionContainerManager
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+  - type: Produce
+    seedId: plaststeelcap
+  - type: Log
+    spawnedPrototype: SheetPlasteel1
+    spawnCount: 1
+
+- type: entity
+  name: barrelmelon
+  parent: FoodProduceBase
+  id: FoodBarrelmelon
+  description: Round brown object that you can slice and eat.
+  components:
+  - type: Item
+    size: Small
+  - type: FlavorProfile
+    flavors:
+    - watermelon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Moonshine
+          Quantity: 15
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
+  - type: Produce
+    seedId: Barrelmelon
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Moonshine
+        Quantity: 20
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SliceableFood
+    count: 5
+    slice: FoodBarrelmelonSlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: barrelmelon slice
+  parent: ProduceSliceBase
+  id: FoodBarrelmelonSlice
+  description: Juicy green and brown slice.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+    - watermelon
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/barrelmelon.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Moonshine
+          Quantity: 3
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Moonshine
+        Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
+    - Slice
+
+- type: entity
+  name: lantern fruit
+  description: A sofly glowing fruit with a handle-shaped stem, an Ethereal favorite!.
+  parent: FoodProduceBase
+  id: FoodLanternfruit
+  components:
+  - type: PointLight
+    radius: 3
+    energy: 1
+    softness: 0.3
+    color: "#e8ca54"
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/lanternfruit.rsi
+    state: produce
+  - type: Produce
+    seedId: Lanternfruit
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: PulverizedLantern
+          Quantity: 5
+        - ReagentId: Sulfur
+          Quantity: 10
+        - ReagentId: Licoxide
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: red rose
+  description: The classic fleur d'amour - flower of love. Watch for its thorns!
+  parent: FoodProduceBase
+  id: FoodRedrose
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/redrose.rsi
+    state: produce
+  - type: Produce # TODO добавить флавор цветка когда офы сделают цветомат
+    seedId: Redrose
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 4
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: ear of snapcorn
+  parent: FoodProduceBase
+  id: FoodSnapcorn
+  description: Needs some butter! And some cooking...
+  components:
+  - type: FlavorProfile
+    flavors:
+    - corn
+  - type: Food
+    trash:
+    - FoodCornTrash
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 35
+        - ReagentId: Water
+          Quantity: 10
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/snapcorn.rsi
+  - type: Produce
+    seedId: Snapcorn
+
+- type: entity
+  name: white rose
+  description: The classic fleur d'amour - flower of love. Watch for its thorns!
+  parent: FoodProduceBase
+  id: FoodWhiterose
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/whiterose.rsi
+    state: produce
+  - type: Produce # TODO добавить флавор цветка когда офы сделают цветомат
+    seedId: Whiterose
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 4
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: Sunflower
+  description: It's beautiful! A certain person might beat you to death if you trample these.
+  parent: FoodProduceBase
+  id: FoodSunflower
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
+    state: produce
+  - type: Produce
+    seedId: Sunflower
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Oil
+          Quantity: 2
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 10
+  - type: Tag
+    tags:
+    - Fruit
+    - Sunflower # TODO add "RedFlower" or "Poppy" tag, when other color flowers will be

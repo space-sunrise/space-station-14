@@ -14,3 +14,37 @@
   - type: Construction
     graph: GeraniumCrown
     node: GeraniumCrown
+
+- type: entity
+  parent: ClothingHeadBase
+  id: PoppyCrown
+  name: poppy crown
+  description: A flower crown made out of a string of bright red poppies.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/poppy_crown.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/poppy_crown.rsi
+    slots:
+    - HEAD
+  - type: Construction
+    graph: PoppyCrown
+    node: PoppyCrown
+
+- type: entity
+  parent: ClothingHeadBase
+  id: SunflowerCrown
+  name: sunflower crown
+  description: A bright flower crown made out sunflowers that is sure to brighten up anyone's day!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/sunflower_crown.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/sunflower_crown.rsi
+    slots:
+    - HEAD
+  - type: Construction
+    graph: SunflowerCrown
+    node: SunflowerCrown
