@@ -8,7 +8,7 @@
   - type: AssaultOpsRule
     faction: Syndicate
   - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Shuttles/assaultops.yml
+    gridPath: /Maps/_Sunrise/Shuttles/assaultops.yml
   - type: RuleGrids
   - type: RandomMetadata
     nameSegments:

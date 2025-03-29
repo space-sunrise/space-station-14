@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 250.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/29/2025 16:56:42
+  entityCount: 1262
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -1062,11 +1073,23 @@ entities:
     - type: Transform
       pos: -9.5,8.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
   - uid: 579
     components:
     - type: Transform
       pos: 5.5,8.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
 - proto: BiomassReclaimer
   entities:
   - uid: 1243
@@ -1127,31 +1150,37 @@ entities:
     - type: Transform
       pos: 1.3396106,-9.655759
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1260
     components:
     - type: Transform
       pos: 1.3396103,-9.301346
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1261
     components:
     - type: Transform
       pos: 1.6034992,-9.301347
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1262
     components:
     - type: Transform
       pos: 1.6173882,-9.634911
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1263
     components:
     - type: Transform
       pos: 1.8465552,-9.273549
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1264
     components:
     - type: Transform
       pos: 1.9021101,-9.697454
       parent: 1
+    - type: CMExplosionEffect
 - proto: CableApcExtension
   entities:
   - uid: 3
@@ -2772,6 +2801,13 @@ entities:
     - type: Transform
       pos: -5.3303432,-3.2549276
       parent: 1
+- proto: ChemistryBottleEpinephrine
+  entities:
+  - uid: 1189
+    components:
+    - type: Transform
+      pos: -4.303107,-13.517013
+      parent: 1
 - proto: ChemMaster
   entities:
   - uid: 344
@@ -3002,13 +3038,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5343943,5.1267176
-      parent: 1
-- proto: EpinephrineChemistryBottle
-  entities:
-  - uid: 1189
-    components:
-    - type: Transform
-      pos: -4.303107,-13.517013
       parent: 1
 - proto: FaxMachineSyndie
   entities:
@@ -4861,16 +4890,19 @@ entities:
     - type: Transform
       pos: -1.5,-8.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 617
     components:
     - type: Transform
       pos: -2.5,-8.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 818
     components:
     - type: Transform
       pos: -0.5,-8.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: GravityGeneratorMini
   entities:
   - uid: 171
@@ -5031,24 +5063,48 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
   - uid: 345
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
   - uid: 872
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-16.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
   - uid: 896
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,-16.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
 - proto: Interrogator
   entities:
   - uid: 77
@@ -5063,31 +5119,37 @@ entities:
     - type: Transform
       pos: -9.803305,0.86563396
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1177
     components:
     - type: Transform
       pos: -9.57049,0.6909442
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1178
     components:
     - type: Transform
       pos: -9.337674,0.4929638
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1179
     components:
     - type: Transform
       pos: 6.210654,0.41144228
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1180
     components:
     - type: Transform
       pos: 6.4900327,0.6210699
       parent: 1
+    - type: CMExplosionEffect
   - uid: 1181
     components:
     - type: Transform
       pos: 6.711209,0.7957592
       parent: 1
+    - type: CMExplosionEffect
 - proto: KitchenMicrowave
   entities:
   - uid: 920
@@ -5095,6 +5157,7 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: KitchenSpike
   entities:
   - uid: 1209
@@ -6259,11 +6322,13 @@ entities:
     - type: Transform
       pos: -2.5,-4.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 593
     components:
     - type: Transform
       pos: -0.5,-4.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: SuitStorageEVASyndicate
   entities:
   - uid: 71
