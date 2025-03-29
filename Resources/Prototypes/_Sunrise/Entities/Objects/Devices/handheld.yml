@@ -498,5 +498,5 @@
 
 - type: entity
   id: EngiAlertsMonitorUnpowered
-  parent: BaseEngiaAlertsMonitor
+  parent: BaseEngiAlertsMonitor
   suffix: Handheld, Unpowered
