@@ -350,7 +350,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!_entityManager.TryGetComponent<StackComponent>(args.Target, out var stack))
                 return;
 
-            if (stack.StackTypeId != SteelPrototypeId)
+            if (stack.StackTypeId != SteelStackPrototypeId)
                 return;
 
             var transform = Transform(args.Target).Coordinates;

@@ -23,6 +23,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Maps;
 using Content.Shared.Roles;
 using Content.Shared.Speech.EntitySystems;
+using Content.Shared.Stacks;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Server.Containers;
@@ -81,9 +82,11 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!;
 
+        [ValidatePrototypeId<StackPrototype>]
+        private static string SteelStackPrototypeId = "Steel";
+
         private static EntProtoId ApocalypseRunePrototypeId = "ApocalypseRune";
         private static EntProtoId RunicMetalPrototypeId = "CultRunicMetal";
-        private static EntProtoId SteelPrototypeId = "Steel";
         private static EntProtoId CultBarrierPrototypeId = "CultBarrier";
         private static EntProtoId CultBloodSpeelPrototypeId = "CultBloodSpell";
         private static EntProtoId TeleportInEffect = "CultTeleportInEffect";
