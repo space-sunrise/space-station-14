@@ -1,0 +1,16 @@
+﻿ent-PlushieBlackCat = Black Cat Plushie
+    .desc = Dark, mysterious, and possibly involved in occult rituals... or just snuggles. Might bring luck, or chaos.
+ent-PlushieGreyCat = Grey Cat Plushie
+    .desc = A cat with "I exist, but won't show emotions" energy. Perfect for philosophical reflections and passive aggression.
+ent-PlushieWhiteCat = White Cat Plushie
+    .desc = Pure, soft, and guaranteed to collect all the dust in the room. But who cares when it's this adorable?
+ent-PlushieOrangeCat = Orange Cat Plushie
+    .desc = Hungry. Always. Even if just fed. Possibly plotting a revolution for extra dinner.
+ent-PlushieRicehatCat = Ricehat Cat Plushie
+    .desc = White cat plushie with straw hat for hard work on rice field!
+ent-PlushieSiameseCat = Siamese Cat Plushie
+    .desc = Elegant, mysterious, and has a bit of a villainous vibe. Might already be plotting against you.
+ent-PlushieTabbyCat = Tabby Cat Plushie
+    .desc = The embodiment of cozy naps and sudden zoomies. Sleeps 50% of the time, destroys your shoelaces the other 50%.
+ent-PlushieTuxedoCat = Tuxedo Cat Plushie
+    .desc = Always dressed for a gala dinner... or at least dinner. Smooth, stylish, and highly respected among plushies.

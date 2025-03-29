@@ -481,6 +481,7 @@
     - Log
   mutationPrototypes:
     - steelcap
+    - glasscap #Sunrise-add
   lifespan: 80
   maturation: 15
   ligneous: true
@@ -502,6 +503,8 @@
   packetPrototype: SteelcapSeeds
   productPrototypes:
     - SteelLog
+  mutationPrototypes: #Sunrise-add
+    - plaststeelcap #Sunrise-add
   lifespan: 80
   maturation: 15
   ligneous: true
@@ -667,6 +670,7 @@
   production: 6
   yield: 2
   potency: 20
+  growthStages: 3
   idealLight: 9
   idealHeat: 298
   chemicals:
@@ -802,6 +806,8 @@
   packetPrototype: CornSeeds
   productPrototypes:
     - FoodCorn
+  mutationPrototypes:
+  - Snapcorn #Sunrise-add
   lifespan: 25
   maturation: 8
   production: 6
@@ -812,10 +818,10 @@
   waterConsumption: 0.60
   idealHeat: 298
   chemicals:
-    Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 20
+    # Nutriment: # Sunrise-edit
+    #  Min: 1
+    #  Max: 10
+    #  PotencyDivisor: 20
     Cornmeal:
       Min: 5
       Max: 15
@@ -947,6 +953,7 @@
     - LeavesCannabis
   mutationPrototypes:
     - rainbowCannabis
+    - CannabisVita #Sunrise-add
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 8
@@ -1165,7 +1172,6 @@
     - FoodPoppy
   mutationPrototypes:
     - lily
-    - Geranium
   lifespan: 25
   maturation: 10
   production: 3
@@ -1633,6 +1639,7 @@
     - FoodWatermelon
   mutationPrototypes:
     - holymelon
+    - Barrelmelon #Sunrise-add
   lifespan: 55
   maturation: 12
   production: 3

@@ -89,3 +89,84 @@
     - 0,0,6,4
   - type: ExplosionResistance
     damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBlack
+  name: black backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/blackbackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBlue
+  name: blue backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/bluebackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackCian
+  name: cian backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/cianbackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackGreen
+  name: green backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/greenbackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackOrange
+  name: orange backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/orangebackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackPurple
+  name: purple backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/purplebackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRed
+  name: red backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/redbackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackWhite
+  name: white backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/whitebackpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackYellow
+  name: yellow backpack
+  description: It's just a backpack, but it's beautiful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/yellowbackpack.rsi

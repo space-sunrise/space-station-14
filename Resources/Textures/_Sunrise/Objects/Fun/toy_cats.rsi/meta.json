@@ -1,0 +1,34 @@
+﻿{
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by ds @.ainami.rey.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "plushie_blackcat"
+        },
+        {
+            "name": "plushie_greycat"
+        },
+        {
+            "name": "plushie_whitecat"
+        },
+        {
+            "name": "plushie_orangecat"
+        },
+        {
+            "name": "plushie_ricehatcat"
+        },
+        {
+            "name": "plushie_siamesecat"
+        },
+        {
+            "name": "plushie_tabbycat"
+        },
+        {
+            "name": "plushie_tuxedocat"
+        }
+    ]
+}
