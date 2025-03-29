@@ -7,7 +7,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 7200 # 2hr
+      time: 72000 # 20hr
   storage:
     back:
     - AtmosAlertsMonitor
@@ -19,7 +19,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 7200 # 2hr
+      time: 72000 # 20hr
   storage:
     back:
     - EngiAlertsMonitor
