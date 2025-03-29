@@ -130,7 +130,17 @@
     sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
-
+  # Sunrise-Start
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+    staminaModifier: 0.8
+  # Sunrise-End
+    
 - type: entity
   parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterRobesJudge

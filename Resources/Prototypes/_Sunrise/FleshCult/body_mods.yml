@@ -50,6 +50,8 @@
         Slash: 0.5
         Piercing: 0.5
         Heat: 0.7
+    staminaModifier: 0.6
+    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
@@ -79,6 +81,8 @@
         Slash: 0.3
         Piercing: 0.3
         Heat: 0.5
+    staminaModifier: 0.3
+    ingoreKnockdown: true 
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
