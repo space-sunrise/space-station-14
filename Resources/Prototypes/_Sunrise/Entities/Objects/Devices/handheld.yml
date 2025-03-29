@@ -423,3 +423,80 @@
   id: AtmosAlertsMonitorUnpowered
   parent: BaseAtmosAlertsMonitor
   suffix: Handheld, Unpowered
+
+ # Engi alerts console
+
+- type: entity
+  name: handheld power control console
+  parent: BaseItem
+  id: BaseEngiAlertsMonitor
+  description: A handheld console showing where the clown cut the wires again.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_wires_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: PowerMonitoringConsole
+  - type: PowerMonitoringCableNetworks
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      hv:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.PowerMonitoringConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PowerMonitoringConsoleUiKey.Key:
+        type: PowerMonitoringConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: EngiAlertsMonitor
+  parent:
+  - BaseEngiAlertsMonitor
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: EngiAlertsMonitorEmpty
+  parent: EngiAlertsMonitor
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_wires_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: EngiAlertsMonitorUnpowered
+  parent: BaseEngiAlertsMonitor
+  suffix: Handheld, Unpowered
