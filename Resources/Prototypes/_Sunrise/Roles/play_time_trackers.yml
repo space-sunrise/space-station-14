@@ -123,3 +123,6 @@
 
 - type: playTimeTracker
   id: JobUSSPCaptain
+
+- type: playTimeTracker
+  id: AntagBloodCultist

@@ -1,0 +1,665 @@
+﻿- type: entity
+  id: CultPylon
+  parent: BaseStructure
+  name: pylon
+  description: A mysterious structure.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      pylonFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/pylon.rsi
+    layers:
+    - state: pylon
+      map: [ "enum.PylonVisualsLayers.Activated" ]
+  - type: PylonVisuals
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+  - type: Appearance
+  - type: Pylon
+    healingAuraDamage:
+      groups:
+        Brute: -10
+        Burn: -10
+        Toxin: -6
+        Genetic: -5
+        Airloss: -20
+    burnDamageOnInteract:
+      groups:
+        Burn: 5
+  - type: PointLight
+    color: "#FF0000"
+    radius: 2
+    energy: 2
+    enabled: true
+  - type: Construction
+    graph: CultPylon
+    node: pylon
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: AltarTome
+  parent: BaseStructure
+  name: archives
+  description: A table littered with secret manuscripts and books in unknown languages.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      tomeFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: CultCraftStructureVisuals
+  - type: CultistFactory
+    products:
+      cultistFactoryProduction-ShuttleCurse:
+        - CultShuttleCurse
+      cultistFactoryProduction-Blindfold:
+        - CultClothingBlindfold
+      cultistFactoryProduction-VeilShifter:
+        - CultVeilShifter
+        - CultTorch
+  - type: UserInterface
+    interfaces:
+      enum.CultistAltarUiKey.Key:
+        type: CultistFactoryBUI
+  - type: Construction
+    graph: AltarTome
+    node: tome
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: CultBloodAltar
+  parent: BaseStructure
+  name: altar
+  description: A bloody altar dedicated to some creature.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      tomeFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: CultCraftStructureVisuals
+  - type: CultistFactory
+    products:
+      cultistFactoryProduction-Whetstone:
+        - CultSharpener
+      cultistFactoryProduction-ConstructShell:
+        - ConstructShell
+      cultistFactoryProduction-UnholyWater:
+        - DrinkUnholyWaterFull
+  - type: UserInterface
+    interfaces:
+      enum.CultistAltarUiKey.Key:
+        type: CultistFactoryBUI
+  - type: Construction
+    graph: CultBloodAltar
+    node: altar
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: CultForge
+  parent: BaseStructure
+  name: forge
+  description: A forge where unholy weapons are made.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      tomeFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/forge.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: CultCraftStructureVisuals
+  - type: CultistFactory
+    products:
+      cultistFactoryProduction-EldritchBlade:
+        - TrueEldritchBlade
+      cultistFactoryProduction-Halberd:
+        - CultOuterArmor
+      cultistFactoryProduction-ArmorCult:
+        - CultRobeModify
+      cultistFactoryProduction-RobeModify:
+        - CultMirrorShield
+      cultistFactoryProduction-MirrorShield:
+        - TrueHalberd
+  - type: UserInterface
+    interfaces:
+      enum.CultistAltarUiKey.Key:
+        type: CultistFactoryBUI
+  - type: Construction
+    graph: CultForge
+    node: forge
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: NarsieCultPylon
+  parent: CultPylon
+  name: pylon
+  description: A mysterious structure.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: pylon
+      map: [ "enum.PylonVisualsLayers.Activated" ]
+  - type: PylonVisuals
+    stateOff: pylon_off
+    stateOn: pylon
+  - type: Construction
+    graph: NarsieCultPylon
+    node: narsie_pylon
+
+- type: entity
+  id: NarbeeCultPylon
+  parent: CultPylon
+  name: pylon
+  description: A mysterious structure.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: hell_pylon
+      map: [ "enum.PylonVisualsLayers.Activated" ]
+  - type: PylonVisuals
+    stateOff: hell_pylon_off
+    stateOn: hell_pylon
+  - type: Construction
+    graph: NarbeeCultPylon
+    node: narbee_pylon
+
+- type: entity
+  id: ReaperCultPylon
+  parent: CultPylon
+  name: pylon
+  description: A mysterious structure.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: reaper_pylon
+      map: [ "enum.PylonVisualsLayers.Activated" ]
+  - type: PylonVisuals
+    stateOff: reaper_pylon_off
+    stateOn: reaper_pylon
+  - type: Construction
+    graph: ReaperCultPylon
+    node: reaper_pylon
+
+- type: entity
+  id: NarsieAltarTome
+  parent: AltarTome
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: archives
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: archives_off
+    stateOn: archives
+  - type: Construction
+    graph: NarsieAltarTome
+    node: narsie_tome
+
+- type: entity
+  id: NarbeeAltarTome
+  parent: AltarTome
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: hell_archives
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: hell_archives_off
+    stateOn: hell_archives
+  - type: Construction
+    graph: NarbeeAltarTome
+    node: narbee_tome
+
+- type: entity
+  id: ReaperAltarTome
+  parent: AltarTome
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: reaper_archives
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: reaper_archives_off
+    stateOn: reaper_archives
+  - type: Construction
+    graph: ReaperAltarTome
+    node: reaper_tome
+
+- type: entity
+  id: NarsieCultBloodAltar
+  parent: CultBloodAltar
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: altar
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: altar_off
+    stateOn: altar
+  - type: Construction
+    graph: NarsieCultBloodAltar
+    node: narsie_altar
+
+- type: entity
+  id: NarbeeCultBloodAltar
+  parent: CultBloodAltar
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: hell_altar
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: hell_altar_off
+    stateOn: hell_altar
+  - type: Construction
+    graph: NarbeeCultBloodAltar
+    node: narbee_altar
+
+- type: entity
+  id: ReaperCultBloodAltar
+  parent: CultBloodAltar
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: reaper_altar
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: reaper_altar_off
+    stateOn: reaper_altar
+  - type: Construction
+    graph: ReaperCultBloodAltar
+    node: reaper_altar
+
+- type: entity
+  id: NarsieCultForge
+  parent: CultForge
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: forge
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: forge_off
+    stateOn: forge
+  - type: Construction
+    graph: NarsieCultForge
+    node: narsie_forge
+  - type: CultistFactory
+    products:
+      cultistFactoryProduction-EldritchBlade:
+      - NarsieEldritchBlade
+      cultistFactoryProduction-ArmorCult:
+      - CultOuterArmor
+      cultistFactoryProduction-RobeModify:
+      - CultRobeModify
+      cultistFactoryProduction-MirrorShield:
+      - CultMirrorShield
+      cultistFactoryProduction-Halberd:
+      - TrueHalberd
+
+- type: entity
+  id: NarbeeCultForge
+  parent: CultForge
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: hell_forge
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: hell_forge_off
+    stateOn: hell_forge
+  - type: Construction
+    graph: NarbeeCultForge
+    node: hell_forge
+  - type: CultistFactory
+    products:
+      cultistFactoryProduction-EldritchBlade:
+      - NarbeeEldritchBlade
+      cultistFactoryProduction-ArmorCult:
+      - CultOuterArmor
+      cultistFactoryProduction-RobeModify:
+      - CultRobeModify
+      cultistFactoryProduction-MirrorShield:
+      - CultMirrorShield
+      cultistFactoryProduction-Halberd:
+      - TrueHalberd
+
+- type: entity
+  id: ReaperCultForge
+  parent: CultForge
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    layers:
+    - state: reaper_forge
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: CultCraftStructureVisuals
+    stateOff: reaper_forge_off
+    stateOn: reaper_forge
+  - type: Construction
+    graph: ReaperCultForge
+    node: reaper_forge
+  - type: CultistFactory
+    products:
+      cultistFactoryProduction-EldritchBlade:
+      - ReaperEldritchBlade
+      cultistFactoryProduction-ArmorCult:
+      - CultOuterArmor
+      cultistFactoryProduction-RobeModify:
+      - CultRobeModify
+      cultistFactoryProduction-MirrorShield:
+      - CultMirrorShield
+      cultistFactoryProduction-Halberd:
+      - TrueHalberd
+
+- type: cultStructure
+  id: CultStructureNarsieAltarTome
+  name: cultStructure-AltarTome
+  structureId: NarsieAltarTome
+  cultType: Narsie
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: archives_off
+
+- type: cultStructure
+  id: CultStructureNarbeeAltarTome
+  name: cultStructure-AltarTome
+  structureId: NarbeeAltarTome
+  cultType: Narbee
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_archives_off
+
+- type: cultStructure
+  id: CultStructureReaperAltarTome
+  name: cultStructure-AltarTome
+  structureId: ReaperAltarTome
+  cultType: Reaper
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_archives_off
+
+- type: cultStructure
+  id: CultStructureNarsieCultPylon
+  name: cultStructure-Pylon
+  structureId: NarsieCultPylon
+  cultType: Narsie
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: pylon_off
+
+- type: cultStructure
+  id: CultStructureNarbeeCultPylon
+  name: cultStructure-Pylon
+  structureId: NarbeeCultPylon
+  cultType: Narbee
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_pylon_off
+
+- type: cultStructure
+  id: CultStructureReaperCultPylon
+  name: cultStructure-Pylon
+  structureId: ReaperCultPylon
+  cultType: Reaper
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_pylon_off
+
+- type: cultStructure
+  id: CultStructureNarsieCultBloodAltar
+  name: cultStructure-Altar
+  structureId: NarsieCultBloodAltar
+  cultType: Narsie
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: altar_off
+
+- type: cultStructure
+  id: CultStructureNarbeeCultBloodAltar
+  name: cultStructure-Altar
+  structureId: NarbeeCultBloodAltar
+  cultType: Narbee
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_altar_off
+
+- type: cultStructure
+  id: CultStructureReaperCultBloodAltar
+  name: cultStructure-Altar
+  structureId: ReaperCultBloodAltar
+  cultType: Reaper
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_altar_off
+
+- type: cultStructure
+  id: CultStructureNarsieCultForge
+  name: cultStructure-Forge
+  structureId: NarsieCultForge
+  cultType: Narsie
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: forge_off
+
+- type: cultStructure
+  id: CultStructureNarbeeCultForge
+  name: cultStructure-Forge
+  structureId: NarbeeCultForge
+  cultType: Narbee
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_forge_off
+
+- type: cultStructure
+  id: CultStructureReaperCultForge
+  name: cultStructure-Forge
+  structureId: ReaperCultForge
+  cultType: Reaper
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_forge_off
+
+- type: cultStructure
+  id: CultStructureNarsieAirlockGlassCult
+  name: cultStructure-Airlock
+  structureId: AirlockGlassCult
+  cultType: Narsie
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_airlock.rsi
+    state: closed
+
+- type: cultStructure
+  id: CultStructureNarbeeAirlockGlassCult
+  name: cultStructure-Airlock
+  structureId: AirlockGlassCult
+  cultType: Narbee
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_airlock.rsi
+    state: closed
+
+- type: cultStructure
+  id: CultStructureReaperAirlockGlassCult
+  name: cultStructure-Airlock
+  structureId: AirlockGlassCult
+  cultType: Reaper
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_airlock.rsi
+    state: closed
+
+- type: cultStructure
+  id: CultStructureNarsieCultGirder
+  name: cultStructure-Girder
+  structureId: CultGirder
+  cultType: Narsie
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_girder.rsi
+    state: cultgirder
+
+- type: cultStructure
+  id: CultStructureNarbeeCultGirder
+  name: cultStructure-Girder
+  structureId: CultGirder
+  cultType: Narbee
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_girder.rsi
+    state: cultgirder
+
+- type: cultStructure
+  id: CultStructureCultGirder
+  name: cultStructure-Girder
+  structureId: CultGirder
+  cultType: Reaper
+  icon:
+    sprite: _Sunrise/BloodCult/Structures/cult_girder.rsi
+    state: cultgirder

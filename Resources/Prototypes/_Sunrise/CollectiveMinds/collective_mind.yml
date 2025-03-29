@@ -1,7 +1,7 @@
 - type: collectiveMind
   id: Xeno
   name: collective-mind-xeno
-  keycode: 'к'
+  keycode: 'х'
   color: "#00ff40"
 
 - type: collectiveMind
@@ -45,3 +45,9 @@
   name: collective-mind-changeling
   keycode: 'г'
   color: "#ff75a8"
+
+- type: collectiveMind
+  id: BloodCult
+  name: collective-mind-blood-cult
+  keycode: 'к'
+  color: "#8b0000"

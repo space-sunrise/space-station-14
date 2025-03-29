@@ -1,0 +1,78 @@
+﻿- type: material
+  id: CultRunicMetal
+  stackEntity: CultRunicMetal1
+  name: materials-runic-metal
+  icon: { sprite: /Textures/_Sunrise/BloodCult/Entities/runic_metal.rsi, state: runic }
+  color: "#9d2b39"
+  price: 0.05
+
+- type: stack
+  id: RunicMetalSheets
+  name: runic metal
+  icon: { sprite: /Textures/_Sunrise/BloodCult/Entities/runic_metal.rsi, state: runic}
+  spawn: CultRunicMetal1
+  maxCount: 30
+
+- type: entity
+  parent: SheetOtherBase
+  id: CultRunicMetal
+  name: runic metal
+  description: An unusual sheet of metal with a pulsating rune.
+  suffix: Full
+  components:
+    - type: Sprite
+      sprite: "_Sunrise/BloodCult/Entities/runic_metal.rsi"
+      layers:
+        - state: runic_3
+          map: [ "base" ]
+    - type: Tag
+      tags:
+        - Sheet
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        CultRunicMetal: 100
+    - type: Stack
+      stackType: RunicMetalSheets
+      baseLayer: base
+      layerStates:
+        - runic
+        - runic_2
+        - runic_3
+    - type: Appearance
+    - type: RunicMetal
+    - type: UserInterface
+      interfaces:
+        enum.CultStructureCraftUiKey.Key:
+          type: StructureCraftBoundUserInterface
+    - type: Item
+
+- type: entity
+  parent: CultRunicMetal
+  id: CultRunicMetal1
+  suffix: Single
+  components:
+    - type: Sprite
+      state: runic
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: CultRunicMetal
+  id: CultRunicMetal20
+  suffix: 20
+  components:
+    - type: Sprite
+      state: runic
+    - type: Stack
+      count: 20
+
+- type: entity
+  parent: CultRunicMetal
+  id: CultRunicMetal10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: runic
+  - type: Stack
+    count: 10

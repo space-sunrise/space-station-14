@@ -182,10 +182,10 @@ public abstract class SharedStunSystem : EntitySystem
 
         if (!Resolve(uid, ref status, false))
             return false;
-        
+
         var beforeStun = new BeforeStunEvent();
         RaiseLocalEvent(uid, ref beforeStun);
-        
+
         if (beforeStun.Cancelled && !force)
             return false;
 
@@ -210,10 +210,10 @@ public abstract class SharedStunSystem : EntitySystem
 
         if (!Resolve(uid, ref status, false))
             return false;
-        
+
         var beforeKnockdown = new BeforeKnockdownEvent();
         RaiseLocalEvent(uid, beforeKnockdown);
-        
+
         if (beforeKnockdown.Cancelled && !force)
             return false;
 
@@ -322,6 +322,13 @@ public abstract class SharedStunSystem : EntitySystem
             args.Cancel();
     }
 
+    // Sunrise-Start
+    public bool IsParalyzed(EntityUid uid)
+    {
+        return HasComp<StunnedComponent>(uid) || HasComp<KnockedDownComponent>(uid);
+    }
+    // Sunrise-End
+
     #endregion
 }
 
@@ -337,9 +344,9 @@ public record struct BeforeStunEvent(bool Cancelled = false);
 public sealed class BeforeKnockdownEvent: EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-    
+
     public bool Cancelled;
-    
+
     public BeforeKnockdownEvent(bool cancelled = false)
     {
         Cancelled = cancelled;

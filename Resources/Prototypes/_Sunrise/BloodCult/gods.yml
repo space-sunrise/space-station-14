@@ -1,0 +1,81 @@
+﻿- type: entity
+  abstract: true
+  id: BaseBloodCultGod
+  name: Nar'si
+  components:
+  - type: RandomWalk
+    minSpeed: 10
+    maxSpeed: 15
+    minStepCooldown: 1
+    maxStepCooldown: 2
+  - type: Appearance
+  - type: Narsie
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      Penis:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        restitution: 0.8
+        density: 1
+        mask:
+          - None
+        layer:
+          - None
+  - type: Clickable
+  - type: MovementIgnoreGravity
+  - type: Pylon
+    tileConvertCooldown: 0.1
+    convertEverything: true
+    tilesConvertRange: 15
+    healingAuraRange: 100
+    healingAuraDamage:
+      groups:
+        Brute: -5
+        Burn: -5
+        Toxin: -3
+        Genetic: -1
+    burnDamageOnInteract:
+      groups:
+        Burn: 5
+
+- type: entity
+  id: Narsie
+  parent: BaseBloodCultGod
+  name: Нар'Си
+  components:
+  - type: Sprite
+    sprite: Mobs/Demons/narsie.rsi
+    drawdepth: Ghosts
+    scale: 1.0,1.0
+    layers:
+    - state: narsie
+      shader: unshaded
+
+- type: entity
+  id: Narbee
+  parent: BaseBloodCultGod
+  name: Пир'Кус
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Aliens/narbee.rsi
+    drawdepth: Ghosts
+    scale: 1.0,1.0
+    layers:
+    - state: narbee
+      shader: unshaded
+
+- type: entity
+  id: Reaper
+  parent: BaseBloodCultGod
+  name: Жнец
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Aliens/reaper.rsi
+    drawdepth: Ghosts
+    scale: 1.0,1.0
+    layers:
+    - state: reaper
+      shader: unshaded

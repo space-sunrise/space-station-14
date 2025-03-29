@@ -1,0 +1,87 @@
+﻿- type: entity
+  id: AirlockGlassCult
+  parent: Airlock
+  name: runic airlock
+  description: Strange glass airlock with a rune.
+  components:
+    - type: Door
+      occludes: false
+    - type: Occluder
+      enabled: false
+    - type: Sprite
+      sprite: /Textures/_Sunrise/BloodCult/Structures/cult_airlock.rsi
+    - type: Fixtures
+      fixtures:
+        airlockFix:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+          density: 100
+          mask:
+            - FullTileMask
+          layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
+            - GlassAirlockLayer
+    - type: LayerChangeOnWeld
+      unWeldedLayer: GlassAirlockLayer
+      weldedLayer: GlassLayer
+    - type: RadiationBlocker
+      resistance: 2
+    - type: RunicDoor
+    - type: Construction
+      graph: AirlockGlassCult
+      node: airlock
+
+- type: entity
+  id: CultGirder
+  parent: BaseStructureDynamic
+  name: runic girder
+  description: A large structural assembly made out of metal. This one have a rune on it.
+  components:
+    - type: Transform
+      anchored: true
+      noRot: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - GlassAirlockLayer
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: /Textures/_Sunrise/BloodCult/Structures/cult_girder.rsi
+      state: cultgirder
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors: #excess damage, don't spawn entities.
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: StaticPrice
+      price: 10
+    - type: Construction
+      graph: CultGirder
+      node: girder
+    - type: RunicGirder

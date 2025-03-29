@@ -1,0 +1,213 @@
+﻿- type: entity
+  id: BaseConstruct
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContentEye
+    - type: Input
+      context: "human"
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 2.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        path: /Audio/Effects/hit_kick.ogg
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _Sunrise/BloodCult/mobs.rsi
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Construct
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 300
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: BecomeDustOnDeath
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        60: Dead
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
+    - type: CombatMode
+      canDisarm: false
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+    - type: Visibility
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: Actions
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: CultMember
+    - type: DamageOverlay
+
+- type: entity
+  id: JuggernautConstruct
+  parent: BaseConstruct
+  name: juggernaut
+  description: big and scary
+  components:
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: Sprite
+      state: golem
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        300: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 1
+      baseSprintSpeed: 2
+    - type: Construct
+      actions: [JuggernautCreateWall]
+    - type: Hands
+      showInHands: true
+    - type: Body
+      prototype: ConstructJuggernaut
+    - type: Juggernaut
+
+- type: entity
+  id: ArtificerConstruct
+  parent: BaseConstruct
+  name: artificer
+  description: create some shit
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        50: Dead
+    - type: Sprite
+      state: boneshaper
+    - type: Construct
+      actions:
+        [
+          ArtificerCreateSoulStone,
+          ArtificerCreateConstructShell,
+          ArtificerConvertCultistFloor,
+          ArtificerCreateCultistWall,
+          ArtificerCreateCultistAirlock,
+        ]
+    - type: Puller
+      needsHands: false
+    - type: MeleeWeapon
+      hidden: true
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 0.85
+      damage:
+        types:
+          Blunt: 5
+          Structural: 60
+
+- type: entity
+  id: WraithConstruct
+  parent: BaseConstruct
+  name: wraith
+  description: run...
+  components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.0
+      baseSprintSpeed: 3.0
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        65: Dead
+    - type: Sprite
+      state: envoy_of_death
+    - type: StatusEffects
+      allowed:
+        - Incorporeal
+    - type: Construct
+      actions: [WraithPhase]
+    - type: MovementIgnoreGravity
+    - type: MeleeWeapon
+      hidden: true
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 0.5
+      damage:
+        types:
+          Blunt: 10
+          Slash: 10
+
+- type: entity
+  id: ReaperConstruct
+  parent: BaseConstruct
+  name: reaper
+  description: run...
+  components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.0
+      baseSprintSpeed: 3.0
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Dead
+    - type: Sprite
+      state: harvester
+    - type: Puller
+      needsHands: false
+    - type: MeleeWeapon
+      hidden: true
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 0.9
+      damage:
+        types:
+          Blunt: 20
+          Slash: 20
+          Structural: 80
+
+- type: entity
+  id: ConstructShell
+  name: construct shell
+  description: empty construct shell
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: _Sunrise/BloodCult/Entities/construct_cult.rsi
+      state: construct_cult
+    - type: ConstructShell
+      shardSlot:
+        ejectOnBreak: true
+        whitelist:
+          components:
+            - SoulShard
+      constructForms: [ArtificerConstruct, JuggernautConstruct, WraithConstruct]
+    - type: UserInterface
+      interfaces:
+        enum.SelectConstructUi.Key:
+          type: ConstructSelectorBui
+    - type: ContainerContainer
+      containers:
+        Shard: !type:ContainerSlot

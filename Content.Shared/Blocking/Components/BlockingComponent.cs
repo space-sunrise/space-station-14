@@ -77,3 +77,4 @@ public sealed partial class BlockingComponent : Component
     [DataField("activeBlockFraction"), ViewVariables(VVAccess.ReadWrite)]
     public float ActiveBlockFraction = 1.0f;
 }
+

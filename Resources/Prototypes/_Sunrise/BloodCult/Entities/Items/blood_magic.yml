@@ -1,0 +1,36 @@
+﻿- type: entity
+  parent: BaseItem
+  id: CultBloodSpell
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Entities/blood_magic.rsi
+    state: icon
+  - type: CultBloodSpell
+  - type: UseDelay
+    delay: 3
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: UserInterface
+    interfaces:
+     enum.CountSelectorUIKey.Key:
+       type: CountSelectorBUI
+     enum.CultBloodSpellUiKey.Key:
+       type: BloodSpellSelectorBUI
+
+- type: entity
+  parent: BaseItem
+  id: CultBloodOrb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Entities/summoning_orb.rsi
+    state: icon
+  - type: CultBloodOrb

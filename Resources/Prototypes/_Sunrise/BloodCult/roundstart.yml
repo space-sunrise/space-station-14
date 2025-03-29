@@ -1,0 +1,24 @@
+﻿- type: entity
+  id: BloodCult
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: BloodCultRule
+  - type: AntagObjectives
+    objectives:
+    - CultistKillObjective
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ BloodCultist ]
+      max: 4
+      playerRatio: 15
+      blacklist:
+        components:
+        - AntagImmune
+        - Synth
+        - BibleUser
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleCultist

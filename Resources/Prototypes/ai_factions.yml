@@ -14,6 +14,7 @@
   - Changeling
   - Vampire
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Mouse
@@ -56,6 +57,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: SimpleNeutral
@@ -77,6 +79,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Xeno
@@ -96,6 +99,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Zombie
@@ -116,6 +120,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Revolutionary
@@ -131,6 +136,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: AllHostile
@@ -153,6 +159,7 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Wizard
@@ -175,3 +182,5 @@
   - Vampire
   - FleshHuman
   - Flesh
+  - Xeno
+  - BloodCult

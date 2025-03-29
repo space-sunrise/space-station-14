@@ -1,0 +1,81 @@
+- type: entity
+  id: CultRobeModify
+  parent: ClothingOuterRobesCult
+  name: flagellant's attire
+  description: Some religious clothes.
+  components:
+  - type: CultRobeModifier
+
+- type: entity
+  id: CultOuterArmor
+  parent: ClothingOuterArmorCult
+  name: armored mantle
+  description: At first glance, it seems that this is a simple robe, but it has elements of armor on it.
+
+- type: entity
+  id: CultMirrorShield
+  parent: BaseShield
+  name: mirror shield
+  description: Shield with a mirror on a front side, which has some religious sign.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Entities/mirror_shield.rsi
+    state: icon
+  - type: Item
+    sprite: _Sunrise/BloodCult/Entities/mirror_shield.rsi
+    heldPrefix: "mirror"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Reflect
+    reflectProb: 0.5 # В сс14 один шанс и на энергитический, и на не энергетический урон. Может потом сделаю (TODO)
+    needActiveHand: false
+    reflects:
+    - Energy
+    - NonEnergy
+    needHand: true
+  - type: ReturnItemOnThrow
+  - type: CultMirrorShield
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.6
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.4
+      flatReductions:
+        Heat: 1
+        Piercing: 1
+
+- type: entity
+  parent: ClothingEyesBase
+  id: CultClothingBlindfold
+  name: zealot's blindfold
+  description: A blindfold endowed with a strange power.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Misc/blindfold.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Misc/blindfold.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+    - Synth
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological

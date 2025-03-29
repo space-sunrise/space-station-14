@@ -1,0 +1,15 @@
+﻿- type: factionIcon
+  id: BloodCultFaction
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/cult_hud.rsi
+    state: cult
+
+- type: factionIcon
+  id: BloodCultCultMasterFaction
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/cult_hud.rsi
+    state: cultmaster

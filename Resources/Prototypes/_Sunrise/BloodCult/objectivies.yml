@@ -1,0 +1,25 @@
+﻿- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseCultistObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-cult
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - BloodCultistRole
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseCultistObjective
+  id: CultistKillObjective
+  description:
+  components:
+  - type: Objective
+    difficulty: 3.0
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: sintouch
+  - type: KillCultistTargetsCondition
+    title: objective-condition-cult-kill-title

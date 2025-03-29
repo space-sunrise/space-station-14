@@ -1,0 +1,87 @@
+- type: entity
+  name: veil shifter
+  description: A staff that radiates strange energy.
+  parent: BaseItem
+  id: CultVeilShifter
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Entities/veil_shifter.rsi
+    layers:
+    - state: icon-on
+      map: ["enum.VeilVisualsLayers.Activated"]
+  - type: VeilVisuals
+  - type: Appearance
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 30
+        mask:
+        - ItemMask
+  - type: PointLight
+    color: red
+    range: 2
+  - type: VoidTeleport
+
+- type: entity
+  name: void torch
+  description: Strange torch.
+  parent: BaseItem
+  id: CultTorch
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Entities/void_torch.rsi
+    layers:
+    - state: icon-on
+      map: ["enum.VoidTorchVisualsLayers.Activated"]
+    color: red
+  - type: VoidTorchVisuals
+  - type: Appearance
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 30
+        mask:
+        - ItemMask
+  - type: PointLight
+    color: red
+    range: 2
+  - type: TorchCultistsProvider
+  - type: UserInterface
+    interfaces:
+      enum.CultTeleporterUiKey.Key:
+        type: TorchWindowBUI
+
+- type: entity
+  name: curse orb
+  description: Strange stone orb that pulsates with red light.
+  parent: BaseItem
+  id: CultShuttleCurse
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Entities/shuttle_curse.rsi
+    state: icon
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 30
+        mask:
+        - ItemMask
+  - type: ShuttleCurse
+  - type: PointLight
+    color: red
+    range: 2

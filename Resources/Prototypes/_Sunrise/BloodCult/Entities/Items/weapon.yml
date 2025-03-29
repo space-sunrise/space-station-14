@@ -1,0 +1,297 @@
+﻿- type: entity
+  name: ritual dagger
+  parent: BaseItem
+  id: TrueRitualDagger
+  description: A strange dagger used by sinister groups for rituals and sacrifices.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_dagger.rsi
+    state: icon
+  - type: BloodCultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 12
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cult_dagger.rsi
+    slots:
+    - back
+  - type: DisarmMalus
+  - type: RuneDrawerProvider
+    runePrototypes:
+      - OfferingRune
+      - EmpoweringRune
+      - BuffRune
+      - TeleportRune
+      - ReviveRune
+      - BarrierRune
+      - SummoningRune
+      - BloodBoilRune
+      - ApocalypseRune
+  - type: UserInterface
+    interfaces:
+      enum.ListViewSelectorUiKey.Key:
+        type: ListViewSelectorBUI
+  - type: Tool
+    qualities:
+    - CultAnchoring
+    useSound:
+      path: /Audio/_Sunrise/BloodCult/curse.ogg
+
+- type: entity
+  name: eldritch blade
+  parent: BaseItem
+  id: TrueEldritchBlade
+  description: A sword humming with unholy energy.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Slash: 20
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+    slots:
+    - back
+  - type: DisarmMalus
+  - type: BloodCultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: Tool
+    qualities:
+    - CultAnchoring
+    useSound:
+      path: /Audio/_Sunrise/BloodCult/curse.ogg
+
+- type: entity
+  name: unholy halberd
+  parent: BaseItem
+  id: TrueHalberd
+  description: A poleaxe that seems to be linked to its wielder.
+  components:
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_halberd.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 15
+        Slash: 15
+        Structural: 20
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Slash: 5
+        Structural: 10
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cult_halberd.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: UseDelay
+    delay: 1
+  - type: BloodCultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: Tool
+    qualities:
+    - CultAnchoring
+    useSound:
+      path: /Audio/_Sunrise/BloodCult/curse.ogg
+
+- type: entity
+  name: Blood spear
+  parent: BaseItem
+  id: BloodSpear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/blood_spear.rsi
+    state: icon
+  - type: ThrowingAngle
+    angle: 225
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 20
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 10
+  - type: UseDelay
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Tag
+    tags:
+    - Spear
+  - type: BloodCultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: CultBloodSpear
+    breakSound:
+      collection: GlassBreak
+      params:
+        volume: -4
+    stuhTime: 5
+    damage:
+      types:
+        Piercing: 50
+
+- type: entity
+  name: Blood Bolt Barrage
+  parent: BaseItem
+  id: BloodBoltBarrage
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: BloodBoltBarrage
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Sunrise/BloodCult/Entities/arcane_barrage.rsi
+      state: icon
+    - type: Gun
+      fireRate: 2
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/_Sunrise/BloodCult/enter_blood.ogg
+    - type: AmmoCounter
+    - type: BasicEntityAmmoProvider
+      proto: BloodBolt
+      capacity: 24
+      count: 24
+
+- type: entity
+  parent: BaseItem
+  id: HammerJuggernaut
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
+    state: icon
+  - type: MeleeWeapon
+    range: 2
+    angle: 30
+    animation: WeaponArcSmash
+    attackRate: 1
+    damage:
+      types:
+        Structural: 100
+        Blunt: 25
+  - type: MultiHandedItem
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
+    slots:
+    - back
+  - type: Appearance
+  - type: StaticPrice
+    price: 1000
+  - type: Item
+    size: Normal
+  - type: Unremoveable
+
+- type: entity
+  parent: TrueRitualDagger
+  id: NarsieRitualDagger
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/stuff.rsi
+    state: blood_dagger
+  - type: Item
+    heldPrefix: blood_dagger
+
+- type: entity
+  parent: TrueRitualDagger
+  id: ReaperRitualDagger
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/stuff.rsi
+    state: death_dagger
+  - type: Item
+    heldPrefix: death_dagger
+
+- type: entity
+  parent: TrueRitualDagger
+  id: NarbeeRitualDagger
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/stuff.rsi
+    state: hell_dagger
+  - type: Item
+    heldPrefix: hell_dagger
+
+- type: entity
+  parent: TrueEldritchBlade
+  id: NarsieEldritchBlade
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/stuff.rsi
+    state: blood_blade
+  - type: Item
+    heldPrefix: blood_blade
+
+- type: entity
+  parent: TrueEldritchBlade
+  id: ReaperEldritchBlade
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/stuff.rsi
+    state: death_blade
+  - type: Item
+    heldPrefix: death_blade
+
+- type: entity
+  parent: TrueEldritchBlade
+  id: NarbeeEldritchBlade
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/stuff.rsi
+    state: hell_blade
+  - type: Item
+    heldPrefix: hell_blade

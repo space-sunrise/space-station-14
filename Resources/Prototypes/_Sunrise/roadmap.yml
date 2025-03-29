@@ -81,9 +81,9 @@
           state: Complete
         blood-cult:
           id: blood-cult
-          name: Blood Cult (Nar'Si)
+          name: Blood Cult
           desc: A cult that follows the god Nar'Si, the cult's goal is to summon its patron, who will later destroy the station.
-          state: Partial
+          state: Complete
         ert-call:
           id: ert-call
           name: ERT Call Console

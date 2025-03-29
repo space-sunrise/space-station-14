@@ -1095,6 +1095,12 @@
         - !type:OrganType
           type: Dwarf
           shouldHave: false
+      # Sunrise-Start
+      - !type:DeconvertCultist
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      # Sunrise-End
     Medicine:
       effects:
       #If vampire

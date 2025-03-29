@@ -1,0 +1,169 @@
+﻿- type: entity
+  id: ActionCultTwistedConstruction
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EntityTargetAction
+      temporary: true
+      useDelay: 50
+      canTargetSelf: false
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: transmute
+      itemIconStyle: NoItem
+      event: !type:CultTwistedConstructionActionEvent
+      charges: 1
+      renewCharges: false
+      deleteActionsWithoutCharges: true
+
+- type: entity
+  id: InstantActionBloodMagic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    temporary: true
+    useDelay: 3
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: carve
+    itemIconStyle: NoItem
+    event: !type:CultBloodMagicInstantActionEvent
+
+- type: entity
+  id: InstantActionBloodRitual
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    temporary: true
+    useDelay: 3
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: manip
+    itemIconStyle: NoItem
+    event: !type:CultBloodRitualInstantActionEvent
+
+- type: entity
+  id: ActionCultStun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    temporary: true
+    useDelay: 5
+    whitelist:
+      components:
+        - HumanoidAppearance
+        - BorgChassis
+    canTargetSelf: false
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: stun
+    itemIconStyle: NoItem
+    event: !type:CultStunTargetActionEvent
+    charges: 1
+    renewCharges: false
+    deleteActionsWithoutCharges: true
+
+- type: entity
+  id: ActionShadowShackles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    temporary: true
+    useDelay: 1
+    whitelist:
+      components:
+      - Cuffable
+    canTargetSelf: false
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: shackles
+    itemIconStyle: NoItem
+    event: !type:CultShadowShacklesTargetActionEvent
+    charges: 4
+    renewCharges: false
+    deleteActionsWithoutCharges: true
+
+
+- type: entity
+  id: InstantActionEmpPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    temporary: true
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: emp
+    event: !type:CultEmpPulseTargetActionEvent
+    useDelay: 5
+    charges: 1
+    renewCharges: false
+    deleteActionsWithoutCharges: true
+
+- type: entity
+  id: ActionCultTeleport
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EntityTargetAction
+      temporary: true
+      useDelay: 5
+      whitelist:
+        components:
+          - BloodCultist
+      canTargetSelf: true
+      deselectOnMiss: true
+      repeat: false
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: teleport
+      itemIconStyle: NoItem
+      event: !type:CultTeleportTargetActionEvent
+
+- type: entity
+  id: ActionCultSummonCombatEquipment
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EntityTargetAction
+      temporary: true
+      useDelay: 5
+      whitelist:
+        components:
+          - HumanoidAppearance
+          - BloodCultist
+      canTargetSelf: true
+      deselectOnMiss: true
+      repeat: false
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: equip
+      itemIconStyle: NoItem
+      event: !type:CultSummonCombatEquipmentTargetActionEvent
+      charges: 1
+      renewCharges: false
+      deleteActionsWithoutCharges: true
+
+- type: entity
+  id: InstantActionSummonCultDagger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      temporary: true
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: blood_dagger
+      event: !type:CultSummonDaggerActionEvent
+      useDelay: 5
+      charges: 1
+      renewCharges: false
+      deleteActionsWithoutCharges: true
+
+- type: entity
+  id: ActionCultReturnBloodSpear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    temporary: true
+    useDelay: 2
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: bloodspear
+    itemIconStyle: NoItem
+    event: !type:CultReturnBloodSpearActionEvent
