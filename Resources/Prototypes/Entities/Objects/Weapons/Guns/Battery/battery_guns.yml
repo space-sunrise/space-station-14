@@ -430,6 +430,9 @@
   - type: HitscanBatteryAmmoProvider
     proto: BulletRedHeavyLaser # Sunrise-Edit
     fireCost: 100
+  - type: Tag
+    tags:
+    - TurretCompatibleWeapon
 
 - type: entity
   name: portable particle decelerator
