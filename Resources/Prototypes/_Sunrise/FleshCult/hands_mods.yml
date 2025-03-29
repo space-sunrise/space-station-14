@@ -27,7 +27,7 @@
     - type: MeleeWeapon
       damage:
         types:
-          Slash: 13
+          Slash: 15
     - type: MultipleTool
       statusShowBehavior: true
       entries:
@@ -74,7 +74,7 @@
       attackRate: 0.75
       damage:
         types:
-          Blunt: 20
+          Blunt: 45
           Structural: 300
     - type: Item
       size: Ginormous
@@ -97,7 +97,7 @@
     - type: MeleeWeapon
       damage:
         types:
-          Slash: 25
+          Slash: 40
     - type: Item
       size: Huge
       sprite: _Sunrise/FleshCult/FleshHandMods/flesh_blade.rsi

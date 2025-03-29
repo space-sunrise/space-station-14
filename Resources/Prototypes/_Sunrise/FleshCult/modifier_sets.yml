@@ -1,9 +1,9 @@
 ﻿- type: damageModifierSet
   id: FleshMob
   coefficients:
-    Heat: 1.50
+    Heat: 1.25
 
 - type: damageModifierSet
   id: FleshHeart
   coefficients:
-    Heat: 2.00
+    Heat: 1.5

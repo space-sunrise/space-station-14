@@ -20,7 +20,7 @@
       startingGear: FleshCultistLeaderGear
       components:
       - type: FleshCultist
-        startingMutationPoints: 50
+        startingMutationPoints: 15
       - type: NpcFactionMember
         factions:
         - FleshHuman
@@ -50,7 +50,7 @@
       playerRatio: 15
       components:
       - type: FleshCultist
-        startingMutationPoints: 15
+        startingMutationPoints: 5
       - type: NpcFactionMember
         factions:
         - FleshHuman

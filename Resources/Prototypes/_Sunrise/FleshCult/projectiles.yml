@@ -11,7 +11,7 @@
   - type: Projectile
     damage:
       types:
-        Caustic: 1
+        Caustic: 3
   - type: SplashOnTrigger
     splashReagents:
       reagents:
@@ -36,5 +36,5 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Piercing: 13
+        Piercing: 15
 

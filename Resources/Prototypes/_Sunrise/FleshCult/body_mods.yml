@@ -7,8 +7,8 @@
   suffix: Flesh Cult
   components:
   - type: ClothingSpeedModifier
-    walkModifier: 1.1
-    sprintModifier: 1.15
+    walkModifier: 1.2
+    sprintModifier: 1.25
   - type: Sprite
     sprite: _Sunrise/FleshCult/FleshBodyMods/flesh_spider.rsi
   - type: Clothing
@@ -46,15 +46,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.8
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
   - type: FleshBodyMod
-
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -76,13 +75,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.6
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: Tag
     tags:
     - FullBodyOuter
@@ -111,6 +110,6 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
