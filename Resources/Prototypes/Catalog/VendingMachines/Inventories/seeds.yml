@@ -39,8 +39,11 @@
     TowercapSeeds: 5
     WheatSeeds: 5
     WatermelonSeeds: 5
-    CoffeeArabicaSeeds: 5 # Sunrise-Edit
+    CoffeeArabicaSeeds: 5 # Sunrise-add
+    RedroseSeeds: 5 # Sunrise-add
+    SunflowerSeeds: 5 # Sunrise-add
   contrabandInventory:
+    WhiteroseSeeds: 5 # Sunrise-add
     TobaccoSeeds: 2
     FoodSnackSemki: 2
   emaggedInventory:
