@@ -24,7 +24,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Critical
+      125: Critical
       200: Dead
   - type: RandomMetadata
     nameSegments:
@@ -36,15 +36,15 @@
     solution: chemicals
     generated:
       reagents:
-      - ReagentId: Omnizine
+      - ReagentId: Epinephrine
         Quantity: 0.25
   - type: ZombieImmune
   - type: AutoImplant
     implants:
-    - ScramImplant
     - MindShieldImplant
     - FreedomImplant
-    - MicroBombImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
   - type: Tool
     speed: 2
     qualities:
@@ -69,7 +69,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      180: Critical
+      130: Critical
       200: Dead
   - type: RandomMetadata
     nameSegments:
@@ -81,15 +81,15 @@
     solution: chemicals
     generated:
       reagents:
-      - ReagentId: Omnizine
+      - ReagentId: Epinephrine
         Quantity: 0.25
   - type: ZombieImmune
   - type: AutoImplant
     implants:
-    - ScramImplant
     - MindShieldImplant
     - FreedomImplant
-    - MicroBombImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
   - type: Tool
     speed: 3
     qualities:
@@ -128,7 +128,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Critical
+      125: Critical
       200: Dead
   - type: RandomMetadata
     nameSegments:
@@ -140,15 +140,15 @@
     solution: chemicals
     generated:
       reagents:
-      - ReagentId: Omnizine
+      - ReagentId: Epinephrine
         Quantity: 0.25
   - type: ZombieImmune
   - type: AutoImplant
     implants:
-    - ScramImplant
     - MindShieldImplant
     - FreedomImplant
-    - MicroBombImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
   - type: Tool
     speed: 2
     qualities:
@@ -173,7 +173,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      180: Critical
+      140: Critical
       200: Dead
   - type: RandomMetadata
     nameSegments:
@@ -185,15 +185,15 @@
     solution: chemicals
     generated:
       reagents:
-      - ReagentId: Omnizine
+      - ReagentId: Epinephrine
         Quantity: 0.25
   - type: ZombieImmune
   - type: AutoImplant
     implants:
-    - ScramImplant
     - MindShieldImplant
     - FreedomImplant
-    - MicroBombImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
   - type: Tool
     speed: 3
     qualities:
