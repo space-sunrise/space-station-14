@@ -1,0 +1,311 @@
+#------------------------------------
+# Эскадрон Смерти [Танго]
+#------------------------------------
+
+- type: entity
+  name: Operative Death squad
+  parent: MobHuman
+  suffix: DS, Tango
+  id: MobHumanDeathsquadTango
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Operative Death squad
+    description: Your standard task is to eliminate all living intelligent beings on the station, but not always. You are an elite fighter of the NT special squad who unquestioningly carries out any, even the dirtiest, order.
+    rules: You are a Death Squad operative. Before you begin your operations, listen to the orders of your squad leader or OSO. Follow your SRP.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [DeathSquadTangoGear]
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOps
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
+  - type: Tool
+    speed: 2
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  name: Leader Death squad
+  parent: MobHuman
+  suffix: DS, Tango
+  id: MobHumanDeathsquadLeaderTango
+  components:
+  - type: Loadout
+    prototypes: [DeathSquadLeaderTangoGear]
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      130: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOpsCom
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
+  - type: Tool
+    speed: 3
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+#------------------------------------
+# Эскадрон Смерти [Фокстрот]
+#------------------------------------
+
+- type: entity
+  name: Operative Death Squad
+  parent: MobHuman
+  suffix: DS, Foxtrot
+  id: MobHumanDeathsquadFoxtrot
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Operative Death Squad
+    description: Your task is to save the asset at any cost. You are an elite fighter of the NT special forces unit who unquestioningly carries out any order, even the dirtiest one.
+    rules: You are a Death Squad operative. Before you begin your operations, listen to the orders of your squad leader or OSO. Follow your SRP.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [DeathSquadFoxtrotGear]
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOps
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
+  - type: Tool
+    speed: 2
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  name: Leader Death Squad
+  parent: MobHuman
+  suffix: DS, Foxtrot
+  id: MobHumanDeathsquadLeaderFoxtrot
+  components:
+  - type: Loadout
+    prototypes: [DeathSquadLeaderFoxtrotGear]
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      140: Critical
+      200: Dead
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOpsCom
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.25
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+    - DeathAcidifierImplant
+    - TrackingImplantErt
+  - type: Tool
+    speed: 3
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+#------------------------------------
+# РХБЗЗ
+#------------------------------------
+
+- type: entity
+  name: Leader CBURN
+  parent: MobHuman
+  suffix: CBURNRole, Omega
+  id: MobHumanCBURNLeaderOmega
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Leader CBURN
+    description: You are the leader of the CBURN squad. Your task is to save the station from one or another threat. Keep in mind that you must effectively manage your squad and save as many assets as possible! Don't forget about your SRP.
+    rules: You are the leader of the CBURN squad. Your task is to save the station from one threat or another. Manage your squad effectively and save as many assets as possible! Follow OSO orders.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [CBURNGearOmegaLeader]
+  - type: MobState
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitaryLeader
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplantErt
+    - TrackingImplant
+
+- type: entity
+  name: CBURN
+  parent: MobHuman
+  suffix: CBURNRole, Omega
+  id: MobHumanCBURNOmega
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Operator CBURN
+    description: You are a member of the CBURN squad. Your task is to save the station from one threat or another. Don't forget about your SRP!
+    rules: You are a member of the CBURN squad. Your task is to save the station from one threat or another. Follow OSO's orders without question!
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [CBURNGearOmega]
+  - type: MobState
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitary
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplantErt
+    - TrackingImplant
+
+#------------------------------------
+# ОСЩ
+#------------------------------------
+
+- type: entity
+  name: Blue Shield PCC
+  parent: MobHuman
+  suffix: PCC
+  id: MobHumanBlueShieldDSO
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Blue Shield PCC
+    description: You are the human shield of the Representative of the Central Command. Observe your SRP, and carry out any orders of the RCC!
+    rules: You are a Officer Blue Shield. Listen to the orders of PCC or OSO, do not allow the death of PCC at any cost!
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [BlueShieldDSOGear]
+  - type: MobState
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLordSyndiOps
+    - NamesLastMilitary
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+    - TrackingImplantErt
+    - TrackingImplant

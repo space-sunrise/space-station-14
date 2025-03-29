@@ -13,3 +13,6 @@ ent-ClothingBeltReaperWebbing = разгрузочный жилет
     .desc = Тактическая разгрузка, которую носят десантники Синдиката.
 ent-ClothingBeltSheathSyndicate = ножны для рапиры
     .desc = Зловещие тонкие ножны, подходящие для рапиры.
+ent-ClothingBeltHolsterOSOFilled = { ent-ClothingBeltHolster }
+     .suffix = Заполнен, ОСО
+     .desc = { ent-ClothingBeltHolster.desc }

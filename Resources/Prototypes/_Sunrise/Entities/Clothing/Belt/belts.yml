@@ -130,3 +130,15 @@
   - type: Storage # Sunrise
     storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
     storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg
+
+- type: entity
+  id: ClothingBeltHolsterOSOFilled
+  parent: ClothingBeltHolster
+  suffix: Filled, OSO
+  components:
+  - type: StorageFill
+    contents:
+        - id: MagazineBoxMagnumAP
+        - id: SpeedLoaderMagnumAP
+        - id: SpeedLoaderMagnumAP
+        - id: Handcuffs
