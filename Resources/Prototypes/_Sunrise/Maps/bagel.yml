@@ -1,4 +1,4 @@
-﻿- type: gameMap
+- type: gameMap
   id: SunriseBagel
   mapName: 'Bagel Station'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
@@ -126,4 +126,7 @@
         - Furs
         - Crew
         - CleaningUp
+        - HumanitarianAid
+        - PersonnelRecovery
+        - CrewEducation
         #- VirusFlesh
