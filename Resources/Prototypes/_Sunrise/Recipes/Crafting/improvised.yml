@@ -21,3 +21,29 @@
   icon:
     sprite: _Sunrise/Clothing/Head/Misc/geranium_crown.rsi
     state: icon
+
+- type: construction
+  name: poppy crown
+  id: PoppyCrown
+  graph: PoppyCrown
+  startNode: start
+  targetNode: PoppyCrown
+  category: construction-category-misc
+  objectType: Item
+  description: A flower crown made out of a string of bright red poppies.
+  icon:
+    sprite: _Sunrise/Clothing/Head/Misc/poppy_crown.rsi
+    state: icon
+
+- type: construction
+  name: sunflower crown
+  id: SunflowerCrown
+  graph: SunflowerCrown
+  startNode: start
+  targetNode: SunflowerCrown
+  category: construction-category-misc
+  objectType: Item
+  description: A bright flower crown made out sunflowers that is sure to brighten up anyone's day!
+  icon:
+    sprite: _Sunrise/Clothing/Head/Misc/sunflower_crown.rsi
+    state: icon

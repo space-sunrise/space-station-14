@@ -1145,8 +1145,8 @@
         reagents:
         - ReagentId: Cornmeal
           Quantity: 15
-        - ReagentId: Nutriment
-          Quantity: 5
+        #- ReagentId: Nutriment # Sunrise-edit
+        #  Quantity: 5
   - type: Tag
     tags:
     - Corn
