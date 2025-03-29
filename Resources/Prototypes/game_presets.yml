@@ -3,7 +3,7 @@
   alias:
     - survival
   name: survival-title
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
   description: survival-description
   minPlayers: 50 # Sunrise-Edit
@@ -96,7 +96,7 @@
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: false # Sunrise-Edit
   description: greenshift-description
   rules:
@@ -158,7 +158,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
   minPlayers: 5 # Sunrise-Edit: 5 players for TRAITORS
   rules:
@@ -189,7 +189,7 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
@@ -209,7 +209,7 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
   minPlayers: 15 # Sunrise-Edit: 15 players for REVOLUTIONARY
   rules:
@@ -247,7 +247,7 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
   minPlayers: 20 # Sunrise-Edit: 20 players for ZOMBIES
   rules:

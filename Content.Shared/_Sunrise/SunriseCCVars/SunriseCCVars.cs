@@ -88,16 +88,6 @@ public sealed class SunriseCCVars
         CVarDef.Create("game.godmode_end", false, CVar.SERVERONLY);
 
     /*
-     * Peaceful Round End
-     */
-
-    /// <summary>
-    /// Making everyone a pacifist at the end of a round.
-    /// </summary>
-    public static readonly CVarDef<bool> PeacefulRoundEnd =
-        CVarDef.Create("game.peaceful_end", false, CVar.SERVERONLY);
-
-    /*
      * Queue
      */
 
