@@ -4,6 +4,15 @@
   id: Lighter
   description: "A simple plastic cigarette lighter."
   components:
+  # Sunrise-start
+  - type: SurgeryTool
+    successRate: 0.1
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/cautery2.ogg
+  - type: Cautery
+  # Sunrise-end
   - type: IgnitionSource
     ignited: false
   - type: ItemToggle

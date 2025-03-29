@@ -9,7 +9,10 @@
       - torso
       organs:
         eyes: OrganHumanEyes
+    # Sunrise-start
         tongue: OrganHumanTongue
+        eye_implant: null
+    # Sunrise-end
     torso:
       part: TorsoSlime
       connections:
@@ -18,6 +21,7 @@
       - right leg
       - left leg
       organs:
+        heart: OrganSlimeHeart # Sunrise-edit
         core: SentientSlimeCore
         lungs: OrganSlimeLungs
     right arm:

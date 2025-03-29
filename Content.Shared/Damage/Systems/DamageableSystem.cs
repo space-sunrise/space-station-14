@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
+using Content.Shared._Sunrise.Medical.Damage;
 
 namespace Content.Shared.Damage
 {
@@ -238,6 +239,17 @@ namespace Content.Shared.Damage
             }
 
             damage = ApplyUniversalAllModifiers(damage);
+
+            // Sunrise-start
+            var finalEv = new DamageBeforeApplyEvent
+            {
+                Damage = damage,
+                Origin = origin
+            };
+            RaiseLocalEvent(uid.Value, finalEv);
+            if (finalEv.Cancelled)
+                return damage;
+            // Sunrise-end
 
             // TODO DAMAGE PERFORMANCE
             // Consider using a local private field instead of creating a new dictionary here.
