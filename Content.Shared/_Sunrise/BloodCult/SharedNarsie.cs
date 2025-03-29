@@ -20,3 +20,11 @@ public enum NarsieVisuals : byte
 public partial class NarsieComponent : Component
 {
 }
+
+[Serializable, NetSerializable]
+public enum BloodCultType : byte
+{
+    Narsie,
+    Narbee,
+    Reaper
+}

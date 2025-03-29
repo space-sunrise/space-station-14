@@ -1,10 +1,13 @@
 ﻿using System.Linq;
+using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Antag;
+using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Actions;
@@ -15,6 +18,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -44,6 +48,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly StorageSystem _storageSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -54,6 +59,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         _sawmill = Logger.GetSawmill("preset");
 
         SubscribeLocalEvent<CultNarsieSummoned>(OnNarsieSummon);
+        SubscribeLocalEvent<UpdateCultAppearance>(UpdateCultistsAppearance);
 
         SubscribeLocalEvent<BloodCultistComponent, ComponentInit>(OnCultistComponentInit);
         SubscribeLocalEvent<BloodCultistComponent, ComponentRemove>(OnCultistComponentRemoved);
@@ -69,7 +75,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
-        //SetCodewords(component, args.RuleEntity);
+        var cultTypes = Enum.GetValues(typeof(BloodCultType)).Cast<BloodCultType>().ToArray();
+        component.CultType = _random.Pick(cultTypes);
     }
 
     protected override void AppendRoundEndText(EntityUid uid,
@@ -111,6 +118,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         return rule;
     }
 
+    public void ChangeSacrificeCount(BloodCultRuleComponent rule, int count)
+    {
+        rule.SacrificeCount = count;
+    }
+
     private void OnAfterAntagSelectionComplete(Entity<BloodCultRuleComponent> ent, ref AntagSelectionCompleteEvent args)
     {
         var selectedCultist = new List<EntityUid>();
@@ -119,13 +131,32 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             selectedCultist.Add(selectedMind.Item1);
         }
 
+        var priorityTargets = new List<MindContainerComponent>();
         var potentialTargets = FindPotentialTargets(selectedCultist);
+
+        foreach (var potentialTarget in potentialTargets)
+        {
+            if (potentialTarget.Mind == null)
+                continue;
+            if (!TryComp<MindComponent>(potentialTarget.Mind.Value, out var comp))
+                continue;
+            if (HasComp<BibleUserComponent>(comp.OwnedEntity) || HasComp<MindShieldComponent>(comp.OwnedEntity))
+                priorityTargets.Add(potentialTarget);
+        }
 
         var numTargets = MathHelper.Clamp(selectedCultist.Count / ent.Comp.TargetsPerPlayer, 1, ent.Comp.MaxTargets);
 
         var selectedVictims = new List<EntityUid>();
 
-        for (var i = 0; i < numTargets && potentialTargets.Count > 0; i++)
+        for (var i = 0; i < numTargets && priorityTargets.Count > 0; i++)
+        {
+            var index = _random.Next(priorityTargets.Count);
+            var selectedVictim = priorityTargets[index];
+            priorityTargets.RemoveAt(index);
+            selectedVictims.Add(selectedVictim.Mind!.Value);
+        }
+
+        for (var i = selectedVictims.Count; i < numTargets && potentialTargets.Count > 0; i++)
         {
             var index = _random.Next(potentialTargets.Count);
             var selectedVictim = potentialTargets[index];
@@ -138,11 +169,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     public List<MindComponent> GetTargets()
     {
-        var querry = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
+        var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
 
         var targetMinds = new List<MindComponent>();
 
-        while (querry.MoveNext(out _, out var cultRuleComponent, out _))
+        while (query.MoveNext(out _, out var cultRuleComponent, out _))
         {
             foreach (var cultTarget in cultRuleComponent.CultTargets)
             {
@@ -154,7 +185,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         return targetMinds;
     }
 
-    public bool CanSummonNarsie()
+    public bool CultAwakened()
     {
         var querry = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
 
@@ -174,13 +205,25 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                 constructs.Add(constructUid);
             }
 
-            var enoughCultists = cultists.Count + constructs.Count > cultRuleComponent.CultMembersForSummonGod;
+            var totalPlayers = _playerManager.PlayerCount;
+            var pentagramThreshold = totalPlayers * cultRuleComponent.PentagramThresholdPercentage / 100;
+            var totalCultMembers = cultists.Count + constructs.Count;
 
-            if (!enoughCultists)
+            if (totalCultMembers > pentagramThreshold)
             {
-                return false;
+                return true;
             }
+        }
 
+        return false;
+    }
+
+    public bool TargetsKill()
+    {
+        var querry = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
+
+        while (querry.MoveNext(out _, out var cultRuleComponent, out _))
+        {
             var targetsKilled = true;
 
             var targets = GetTargets();
@@ -228,15 +271,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void OnCultistComponentInit(EntityUid uid, BloodCultistComponent component, ComponentInit args)
     {
-        var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
-
-        while (query.MoveNext(out var ruleEnt, out var cultRuleComponent, out _))
-        {
-            if (!GameTicker.IsGameRuleAdded(ruleEnt))
-                continue;
-
-            UpdateCultistsAppearance(cultRuleComponent);
-        }
+        var ev = new UpdateCultAppearance();
+        RaiseLocalEvent(ev);
 
         EntityUid? actionId = null;
         _actionsSystem.AddAction(uid, ref actionId, BloodCultistComponent.BloodMagicAction);
@@ -280,16 +316,19 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     {
         if (TryComp<HumanoidAppearanceComponent>(cultist, out var appearanceComponent))
         {
-            //Потому что я так сказал
-            appearanceComponent.EyeColor = Color.White;
+            appearanceComponent.EyeColor = Color.Red;
             Dirty(cultist, appearanceComponent);
         }
 
         RemComp<PentagramComponent>(cultist);
     }
 
-    private void UpdateCultistsAppearance(BloodCultRuleComponent bloodCultRuleComponent)
+    private void UpdateCultistsAppearance(UpdateCultAppearance ev)
     {
+        var rule = GetRule();
+        if (rule == null)
+            return;
+
         var cultists = new List<EntityUid>();
         var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
         while (cultisQuery.MoveNext(out var cultistUid, out _))
@@ -306,7 +345,12 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         }
 
         var totalCultMembers = cultists.Count + constructs.Count;
-        if (totalCultMembers < BloodCultRuleComponent.ReadEyeThreshold)
+        var totalPlayers = _playerManager.PlayerCount;
+
+        var redEyeThreshold = totalPlayers * rule.ReadEyeThresholdPercentage / 100;
+        var pentagramThreshold = totalPlayers * rule.PentagramThresholdPercentage / 100;
+
+        if (totalCultMembers < redEyeThreshold)
             return;
 
         foreach (var cultist in cultists)
@@ -317,7 +361,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                 Dirty(cultist, appearanceComponent);
             }
 
-            if (totalCultMembers < BloodCultRuleComponent.PentagramThreshold)
+            if (totalCultMembers < pentagramThreshold)
                 return;
 
             EnsureComp<PentagramComponent>(cultist);
@@ -328,14 +372,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     {
         var potentialTargets = new List<MindContainerComponent>();
 
-        var query = EntityQueryEnumerator<MindContainerComponent, HumanoidAppearanceComponent, ActorComponent>();
-        while (query.MoveNext(out var uid, out var mind, out _, out var actor))
+        var query = EntityQueryEnumerator<MindContainerComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
+        while (query.MoveNext(out var uid, out var mind, out var antagTarget, out _))
         {
-            var entity = mind.Mind;
-
-            if (entity == default)
-                continue;
-
             if (exclude?.Contains(uid) is true)
             {
                 continue;
@@ -373,18 +412,23 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         if (!isHumanoid && !HasComp<StatusIconComponent>(cultist))
             EnsureComp<StatusIconComponent>(cultist);
 
+        if (rule.CultType == null ||
+            !_prototype.TryIndex<BloodCultPrototype>($"{rule.CultType.Value.ToString()}Cult", out var cultPrototype))
+            return false;
+
+        cultistComponent.CultType = rule.CultType;
+
         if (isHumanoid && mind.Session != null)
         {
-            if (_inventorySystem.TryGetSlotEntity(cultist, "back", out var backPack))
-            {
-                foreach (var itemPrototype in rule.StartingItems)
-                {
-                    var itemEntity = Spawn(itemPrototype, Transform(cultist).Coordinates);
+            _inventorySystem.TryGetSlotEntity(cultist, "back", out var backPack);
 
-                    if (backPack != null)
-                    {
-                        _storageSystem.Insert(backPack.Value, itemEntity, out _);
-                    }
+            foreach (var itemPrototype in cultPrototype.StartingItems)
+            {
+                var itemEntity = Spawn(itemPrototype, Transform(cultist).Coordinates);
+
+                if (backPack != null)
+                {
+                    _storageSystem.Insert(backPack.Value, itemEntity, out _);
                 }
             }
 
@@ -397,6 +441,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
             _mindSystem.TryAddObjective(mindId, mind, "CultistKillObjective");
         }
+
+        Dirty(cultist, cultistComponent);
 
         return true;
     }

@@ -1,25 +1,26 @@
-﻿using Robust.Shared.Serialization;
+﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.BloodCult.UI;
 
 [Serializable, NetSerializable]
 public class CultistFactoryBUIState : BoundUserInterfaceState
 {
-    public CultistFactoryBUIState(IReadOnlyCollection<string> ids)
+    public CultistFactoryBUIState(Dictionary<string, List<EntProtoId>> ids)
     {
         Ids = ids;
     }
 
-    public IReadOnlyCollection<string> Ids { get; set; }
+    public Dictionary<string, List<EntProtoId>> Ids { get; set; }
 }
 
 [Serializable, NetSerializable]
 public class CultistFactoryItemSelectedMessage : BoundUserInterfaceMessage
 {
-    public CultistFactoryItemSelectedMessage(string item)
+    public CultistFactoryItemSelectedMessage(List<EntProtoId> equipment)
     {
-        Item = item;
+        Equipment = equipment;
     }
 
-    public string Item { get; private set; }
+    public List<EntProtoId> Equipment { get; private set; }
 }

@@ -67,9 +67,9 @@ public sealed class PylonSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var pylonsQuery = EntityQuery<SharedPylonComponent>();
+        var pylonsQuery = EntityQueryEnumerator<SharedPylonComponent>();
 
-        foreach (var comp in pylonsQuery)
+        while (pylonsQuery.MoveNext(out var uid, out var comp))
         {
             if (comp.NextTileConvert == TimeSpan.Zero)
                 comp.NextTileConvert = _timing.CurTime + TimeSpan.FromSeconds(comp.TileConvertCooldown);
@@ -82,7 +82,7 @@ public sealed class PylonSystem : EntitySystem
                 comp.NextHealTime = _timing.CurTime + TimeSpan.FromSeconds(comp.HealingAuraCooldown);
 
                 if (comp.Activated)
-                    HealPlayersInRange(comp);
+                    HealPlayersInRange(uid, comp);
             }
 
             if (_timing.CurTime >= comp.NextTileConvert)
@@ -174,14 +174,15 @@ public sealed class PylonSystem : EntitySystem
         }
     }
 
-    private void HealPlayersInRange(SharedPylonComponent comp)
+    private void HealPlayersInRange(EntityUid pylon, SharedPylonComponent comp)
     {
+        // SUNRISE-TODO: Че за параша, нахуя итерироваться по всем сессиям
         foreach (var player in _playerManager.Sessions)
         {
             if (player.AttachedEntity is not { Valid: true } playerEntity)
                 continue;
 
-            if (!EntityManager.TryGetComponent<BloodCultistComponent>(playerEntity, out _))
+            if (!HasComp<BloodCultistComponent>(playerEntity) && !HasComp<ConstructComponent>(playerEntity))
                 continue;
 
             if (_mobStateSystem.IsDead(playerEntity))
@@ -201,7 +202,7 @@ public sealed class PylonSystem : EntitySystem
             if (pylonXForm.Coordinates.InRange(EntityManager, playerXForm.Coordinates, comp.HealingAuraRange))
             {
                 var damage = comp.HealingAuraDamage;
-                _damageSystem.TryChangeDamage(playerEntity, damage, true);
+                _damageSystem.TryChangeDamage(playerEntity, damage, true, origin: pylon);
 
                 if (!TryComp<BloodstreamComponent>(playerEntity, out var bloodstream))
                     continue;
@@ -240,6 +241,7 @@ public sealed class PylonSystem : EntitySystem
 
 #pragma warning disable RA0002
             light.Enabled = comp.Activated;
+            Dirty(uid, light);
 #pragma warning restore RA0002
 
             var toggleMsg = Loc.GetString(comp.Activated ? "pylon-toggle-on" : "pylon-toggle-off");

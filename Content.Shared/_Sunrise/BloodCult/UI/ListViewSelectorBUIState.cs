@@ -9,25 +9,12 @@ public enum ListViewSelectorUiKey
 }
 
 [Serializable, NetSerializable]
-public class ListViewBUIState : BoundUserInterfaceState
-{
-    public ListViewBUIState(List<string> items)
-    {
-        Items = items;
-    }
-
-    public List<string> Items { get; set; }
-}
-
-[Serializable, NetSerializable]
 public class ListViewItemSelectedMessage : BoundUserInterfaceMessage
 {
-    public ListViewItemSelectedMessage(string selectedItem, int index)
+    public ListViewItemSelectedMessage(string selectedItem)
     {
         SelectedItem = selectedItem;
-        Index = index;
     }
 
     public string SelectedItem { get; private set; }
-    public int Index { get; private set; }
 }

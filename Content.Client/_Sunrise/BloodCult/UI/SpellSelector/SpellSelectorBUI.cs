@@ -1,9 +1,9 @@
-﻿using Content.Shared._Sunrise.BloodCult.Components;
+﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Actions;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.UserInterface;
 using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -15,7 +15,9 @@ public sealed class SpellSelectorBUI : BoundUserInterface
     [Dependency] private readonly IClyde _displayManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
 
-    private BloodCultMenu? _menu;
+    private RadialContainer? _menu;
+
+    private bool _selected;
 
     public SpellSelectorBUI(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -25,9 +27,14 @@ public sealed class SpellSelectorBUI : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _menu = this.CreateWindow<BloodCultMenu>();
-        _menu.SetEntity(Owner);
-        _menu.OnClose += Close;
+        _menu = new RadialContainer();
+        _menu.Closed += () =>
+        {
+            if (_selected)
+                return;
+
+            Close();
+        };
 
         var protoMan = IoCManager.Resolve<IPrototypeManager>();
 
@@ -52,20 +59,25 @@ public sealed class SpellSelectorBUI : BoundUserInterface
             var texture = icon.Frame0();
             var button = _menu.AddButton(proto.Name, texture);
 
-            button.OnPressed += _ =>
+            button.Controller.OnPressed += _ =>
             {
+                _selected = true;
                 SendMessage(new CultSpellProviderSelectedBuiMessage(action));
+                _menu.Close();
                 Close();
             };
         }
 
-        var vpSize = _displayManager.ScreenSize;
-        _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / vpSize);
+        _menu.OpenAttached(Owner);
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+
+        if (!disposing)
+            return;
+
         _menu?.Close();
     }
 }

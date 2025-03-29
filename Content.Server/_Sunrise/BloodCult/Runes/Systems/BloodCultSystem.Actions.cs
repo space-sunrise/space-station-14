@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server._Sunrise.BloodCult.UI;
 using Content.Server.Body.Components;
+using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
@@ -197,8 +198,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
             foreach (var userAction in actionsComponent.Actions)
             {
+                // SUNRISE-TODO: Чет говно какое-то, надо переделать.
                 var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
-                if (entityPrototypeId == "ActionCultTeleport")
+                if (entityPrototypeId == TeleportActionPrototypeId.Id)
                     _actionsSystem.RemoveAction(uid, userAction, actionsComponent);
             }
         }
@@ -213,7 +215,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (args.Args.Target == null)
                 return;
 
-            var cuffs = Spawn("CultistCuffs", Transform(uid).Coordinates);
+            var cuffs = Spawn(CuffsPrototypeId, Transform(uid).Coordinates);
             if (TryComp<HandcuffComponent>(cuffs, out var handcuffComponent))
             {
                 _audio.PlayPvs(handcuffComponent.EndCuffSound, cuffs);
@@ -257,6 +259,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         {
             if (!TryComp<BloodstreamComponent>(args.Performer, out _))
                 return;
+
+            // SUNRISE-TODO: А где?
         }
 
         private void OnSummonCombatEquipment(
@@ -267,25 +271,29 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!TryComp<BloodstreamComponent>(args.Performer, out _))
                 return;
 
+            if (component.CultType == null ||
+                !_prototypeManager.TryIndex<BloodCultPrototype>($"{component.CultType.Value.ToString()}Cult", out var cultPrototype))
+                return;
+
             _bloodstreamSystem.TryModifyBloodLevel(uid, -20);
 
             var coordinates = Transform(uid).Coordinates;
-            var helmet = Spawn("ClothingHeadHelmetCult", coordinates);
-            var armor = Spawn("ClothingOuterArmorCult", coordinates);
-            var shoes = Spawn("ClothingShoesCult", coordinates);
-            var blade = Spawn("TrueEldritchBlade", coordinates);
-            var bola = Spawn("CultBola", coordinates);
+            var helmet = Spawn(HelmetPrototypeId, coordinates);
+            var armor = Spawn(ArmorPrototypeId, coordinates);
+            var shoes = Spawn(ShoesPrototypeId, coordinates);
+            var bola = Spawn(BolaPrototypeId, coordinates);
+            var blade = Spawn(cultPrototype.RitualDaggerProto, coordinates);
 
-            _inventorySystem.TryUnequip(uid, "head");
-            _inventorySystem.TryUnequip(uid, "outerClothing");
-            _inventorySystem.TryUnequip(uid, "shoes");
+            _inventorySystem.TryUnequip(args.Target, "head");
+            _inventorySystem.TryUnequip(args.Target, "outerClothing");
+            _inventorySystem.TryUnequip(args.Target, "shoes");
 
-            _inventorySystem.TryEquip(uid, helmet, "head", force: true);
-            _inventorySystem.TryEquip(uid, armor, "outerClothing", force: true);
-            _inventorySystem.TryEquip(uid, shoes, "shoes", force: true);
+            _inventorySystem.TryEquip(args.Target, helmet, "head", force: true);
+            _inventorySystem.TryEquip(args.Target, armor, "outerClothing", force: true);
+            _inventorySystem.TryEquip(args.Target, shoes, "shoes", force: true);
 
-            _handsSystem.PickupOrDrop(uid, blade);
-            _handsSystem.PickupOrDrop(uid, bola);
+            _handsSystem.PickupOrDrop(args.Target, blade);
+            _handsSystem.PickupOrDrop(args.Target, bola);
 
             args.Handled = true;
         }
@@ -359,7 +367,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             stackNew.Count = count;
 
-            _popupSystem.PopupEntity(Loc.GetString("Конвертируем сталь в руиник металл!"),
+            _popupSystem.PopupEntity(Loc.GetString("Сталь превращается в рунный металл!"),
                 args.Performer,
                 args.Performer);
             args.Handled = true;
@@ -375,8 +383,12 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!TryComp<BloodstreamComponent>(args.Performer, out var bloodstreamComponent))
                 return;
 
+            if (component.CultType == null ||
+                !_prototypeManager.TryIndex<BloodCultPrototype>($"{component.CultType.Value.ToString()}Cult", out var cultPrototype))
+                return;
+
             var xform = Transform(args.Performer).Coordinates;
-            var dagger = _entityManager.SpawnEntity(RitualDaggerPrototypeId, xform);
+            var dagger = _entityManager.SpawnEntity(cultPrototype.RitualDaggerProto, xform);
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -30, bloodstreamComponent);
             _handsSystem.TryPickupAnyHand(args.Performer, dagger);

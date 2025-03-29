@@ -6,7 +6,7 @@ namespace Content.Shared._Sunrise.BloodCult.Events;
 /// <summary>
 ///     Вызывается на предметах в руках и сущности, которая отразила хитскан луч
 /// </summary>
-public sealed class HitScanReflectedEvent : EntityEventArgs
+public sealed class ReflectedEvent : EntityEventArgs
 {
     /// <summary>
     ///     Кто выстрелил
@@ -28,7 +28,7 @@ public sealed class HitScanReflectedEvent : EntityEventArgs
     /// </summary>
     public ReflectType? ReflectType;
 
-    public HitScanReflectedEvent(EntityUid? shooter,
+    public ReflectedEvent(EntityUid? shooter,
         EntityUid sourceItem,
         DamageSpecifier? damage = null,
         ReflectType? reflectType = null)

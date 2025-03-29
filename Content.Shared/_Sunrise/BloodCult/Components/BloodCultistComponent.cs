@@ -10,7 +10,7 @@ namespace Content.Shared._Sunrise.BloodCult.Components;
 /// <summary>
 /// This is used for tagging a mob as a cultist.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BloodCultistComponent : Component
 {
     public static string SummonCultDaggerAction = "InstantActionSummonCultDagger";
@@ -55,4 +55,7 @@ public sealed partial class BloodCultistComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "BloodCultFaction";
+
+    [DataField, AutoNetworkedField]
+    public BloodCultType? CultType;
 }

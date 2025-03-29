@@ -7,4 +7,5 @@
   - type: MindRole
     antagPrototype: BloodCultist
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: BloodCultistRole

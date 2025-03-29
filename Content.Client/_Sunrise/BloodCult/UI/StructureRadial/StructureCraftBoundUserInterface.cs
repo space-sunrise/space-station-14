@@ -1,13 +1,12 @@
-﻿using Content.Client.Construction;
+﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Client.Construction;
+using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Construction.Prototypes;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
-using Robust.Client.Input;
 using Robust.Client.Placement;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
-using Robust.Client.UserInterface;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 
@@ -15,71 +14,68 @@ namespace Content.Client._Sunrise.BloodCult.UI.StructureRadial;
 
 public sealed class StructureCraftBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IClyde _displayManager = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IPlacementManager _placement = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
-    private readonly SpriteSystem _spriteSystem;
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
 
-    private BloodCultMenu? _menu;
+    private RadialContainer? _menu;
+    private bool _selected;
 
     public StructureCraftBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);
-
-        _spriteSystem = _systemManager.GetEntitySystem<SpriteSystem>();
-    }
-
-    private void CreateUI()
-    {
-        if (_menu != null)
-            ResetUI();
-
-        _menu = this.CreateWindow<BloodCultMenu>();
-
-        foreach (var prototype in _prototypeManager.EnumeratePrototypes<CultStructurePrototype>())
-        {
-            var texture = _spriteSystem.Frame0(prototype.Icon);
-            var radialButton = _menu.AddButton(Loc.GetString(prototype.StructureName), texture);
-            radialButton.OnPressed += _ =>
-            {
-                Select(prototype.StructureId);
-            };
-        }
-
-        var vpSize = _displayManager.ScreenSize;
-        _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / vpSize);
-    }
-
-    private void ResetUI()
-    {
-        _menu?.Close();
-        _menu = null;
     }
 
     protected override void Open()
     {
         base.Open();
+        _menu = new RadialContainer();
+        _menu.Closed += () =>
+        {
+            if (_selected)
+                return;
 
-        CreateUI();
+            Close();
+        };
+        var sprite = _entMan.System<SpriteSystem>();
+
+        if (_player.LocalEntity == null)
+            return;
+
+        if (!_entMan.TryGetComponent<BloodCultistComponent>(_player.LocalEntity.Value, out var cultist) ||
+            cultist.CultType == null)
+            return;
+
+        foreach (var prototype in _prototypeManager.EnumeratePrototypes<CultStructurePrototype>())
+        {
+            if (prototype.CultType != cultist.CultType)
+                continue;
+
+            var texture = sprite.Frame0(prototype.Icon);
+            var radialButton = _menu.AddButton(Loc.GetString(prototype.StructureName), texture);
+            radialButton.Controller.OnPressed += _ =>
+            {
+                _selected = true;
+                CreateBlueprint(prototype.StructureId);
+                _menu.Close();
+                Close();
+            };
+        }
+
+        _menu.OpenAttached(Owner);
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
 
-        ResetUI();
-    }
+        if (!disposing)
+            return;
 
-    private void Select(string id)
-    {
-        CreateBlueprint(id);
-        ResetUI();
-        Close();
+        _menu?.Close();
     }
 
     private void CreateBlueprint(string id)
@@ -114,27 +110,5 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
         var hijack = new ConstructionPlacementHijack(constructSystem, construct);
 
         _placement.BeginPlacing(newObj, hijack);
-    }
-
-    private bool CheckForStructure(EntityUid? uid, string id)
-    {
-        if (uid == null)
-            return false;
-
-        if (!_entMan.TryGetComponent<TransformComponent>(uid, out var transform))
-            return false;
-
-        var lookupSystem = _entMan.System<EntityLookupSystem>();
-        var entities = lookupSystem.GetEntitiesInRange(transform.Coordinates, 15f);
-        foreach (var ent in entities)
-        {
-            if (!_entMan.TryGetComponent<MetaDataComponent>(ent, out var metadata))
-                continue;
-
-            if (metadata.EntityPrototype?.ID == id)
-                return true;
-        }
-
-        return false;
     }
 }

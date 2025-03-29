@@ -10,8 +10,10 @@ using Content.Server.Stunnable;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Events;
 using Content.Shared._Sunrise.BloodCult.Items;
+using Content.Shared.Blocking;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
@@ -20,7 +22,6 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Strip.Components;
-using Content.Shared.Weapons.Reflect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -61,7 +62,8 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
 
         _sawmill = _log.GetSawmill("mirrorshield");
 
-        SubscribeLocalEvent<CultMirrorShieldComponent, HitScanReflectedEvent>(OnHitScanReflected);
+        SubscribeLocalEvent<CultMirrorShieldComponent, BlockingEvent>(OnMeleeBlocking);
+        SubscribeLocalEvent<CultMirrorShieldComponent, ReflectedEvent>(OnHitScanReflected);
         SubscribeLocalEvent<CultMirrorShieldComponent, ComponentShutdown>(OnShieldShutdown);
 
         SubscribeLocalEvent<CultMirrorIllusionComponent, ComponentInit>(OnIllusionInit);
@@ -70,33 +72,44 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         SubscribeLocalEvent<CultMirrorIllusionComponent, ComponentShutdown>(OnIllusionShutdown);
     }
 
+    private void OnMeleeBlocking(EntityUid uid, CultMirrorShieldComponent component, BlockingEvent args)
+    {
+        if (TryBreakShield(uid, args.Damage))
+            return;
+        TrySpawnIllusion(uid);
+    }
+
     #region ShieldBreak
 
     /// <summary>
     /// Щит отразил что-то
     /// </summary>
-    private void OnHitScanReflected(EntityUid uid, CultMirrorShieldComponent component, HitScanReflectedEvent args)
+    private void OnHitScanReflected(EntityUid uid, CultMirrorShieldComponent component, ReflectedEvent args)
     {
-        if (TryBreakShield(uid, args))
+        if (args.Damage == null)
             return;
-        TrySpawnIllusion(uid, args);
+        if (TryBreakShield(uid, args.Damage))
+            return;
+        TrySpawnIllusion(uid);
     }
 
     /// <summary>
     ///     Логика ломания щита
     /// </summary>
-    public bool TryBreakShield(Entity<CultMirrorShieldComponent?> entity, HitScanReflectedEvent args)
+    public bool TryBreakShield(Entity<CultMirrorShieldComponent?> entity, DamageSpecifier damage)
     {
         if (!Resolve(entity.Owner, ref entity.Comp))
             return false;
 
-        if (args.Damage == null || args.ReflectType == null)
+        var xform = Transform(entity);
+        var owner = xform.ParentUid;
+        if (!HasComp<BloodCultistComponent>(owner))
             return false;
 
-        var sum = CalculateDamage(args.Damage);
+        var sum = CalculateDamage(damage);
         _sawmill.Debug($"sum damage: {sum}");
 
-        var chance = CalculateChance(sum, args.ReflectType.Value);
+        var chance = CalculateChance(sum);
 
         if (_random.NextFloat() > chance)
             return false;
@@ -188,11 +201,10 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     /// <summary>
     ///     Логика спавна иллюзий
     /// </summary>
-    public void TrySpawnIllusion(Entity<CultMirrorShieldComponent?> entity, HitScanReflectedEvent args)
+    public void TrySpawnIllusion(Entity<CultMirrorShieldComponent?> entity)
     {
         if (!Resolve(entity.Owner, ref entity.Comp))
             return;
-
 
         if (_random.NextFloat() > entity.Comp.IllusionChance)
             return;
@@ -207,7 +219,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
                 return;
 
             // Если хозяин культист, то...
-            if (_random.NextFloat() < 0.6f)
+            if (_random.NextFloat() < 0.8f)
                 CreateIllusion(owner, out illusion, agressive: true);
             else
                 CreateIllusion(owner, out illusion, agressive: false);
@@ -220,6 +232,9 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
 
         if (illusion == null)
             return;
+
+        var illusionComp = EnsureComp<CultMirrorIllusionComponent>(illusion.Value);
+        illusionComp.ParentShield = entity.Owner;
 
         entity.Comp.Illusions.Add(illusion.Value);
     }
@@ -366,17 +381,9 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         return sum;
     }
 
-    public FixedPoint2 CalculateChance(FixedPoint2 sum, ReflectType reflectType)
+    public FixedPoint2 CalculateChance(FixedPoint2 sum)
     {
-        var chance = 0f;
-
-        if (reflectType == ReflectType.Energy)
-            chance = Math.Clamp((sum.Float() / 100f - 0.2f) * 3f, 0f, 0.75f);
-
-        if (reflectType == ReflectType.NonEnergy)
-            chance = Math.Clamp((sum.Float() / 100f - 0.1f) * 3f, 0f, 0.75f);
-
-        return chance;
+        return Math.Clamp((sum.Float() / 100f - 0.1f) * 3f, 0f, 0.75f);
     }
 
     # endregion Helper functions

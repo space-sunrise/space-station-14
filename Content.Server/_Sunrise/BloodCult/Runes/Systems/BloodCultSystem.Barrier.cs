@@ -1,5 +1,6 @@
 ﻿using Content.Server._Sunrise.BloodCult.Runes.Comps;
 using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Interaction;
 using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
@@ -59,16 +60,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private void OnInteract(EntityUid uid, CultBarrierComponent component, InteractUsingEvent args)
         {
-            var entityPrototype = _entityManager.GetComponent<MetaDataComponent>(args.Used).EntityPrototype;
-
-            if (entityPrototype == null)
-                return;
-
-            var used = entityPrototype.ID;
             var user = args.User;
             var target = args.Target;
 
-            if (used != RitualDaggerPrototypeId)
+            if (!HasComp<BloodCultWeaponComponent>(args.Used))
                 return;
 
             if (!HasComp<BloodCultistComponent>(user))

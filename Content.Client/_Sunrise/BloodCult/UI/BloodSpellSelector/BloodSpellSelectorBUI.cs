@@ -1,4 +1,5 @@
-﻿using Content.Shared._Sunrise.BloodCult.Items;
+﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Shared._Sunrise.BloodCult.Items;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -12,7 +13,10 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
 {
     [Dependency] private readonly IClyde _displayManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
-    private BloodCultMenu? _menu;
+
+    private RadialContainer? _menu;
+
+    private bool _selected;
 
     public BloodSpellSelectorBUI(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -22,7 +26,14 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _menu = this.CreateWindow<BloodCultMenu>();
+        _menu = new RadialContainer();
+        _menu.Closed += () =>
+        {
+            if (_selected)
+                return;
+
+            Close();
+        };
 
         var protoMan = IoCManager.Resolve<IPrototypeManager>();
         var entityMan = IoCManager.Resolve<IEntityManager>();
@@ -33,9 +44,11 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
             var texture = sprite.GetPrototypeIcon(bloodOrb);
             var button = _menu.AddButton($"{bloodOrb.Name} (50)", texture.Default);
 
-            button.OnPressed += _ =>
+            button.Controller.OnPressed += _ =>
             {
+                _selected = true;
                 SendMessage(new CultBloodSpellCreateOrbBuiMessage());
+                _menu.Close();
                 Close();
             };
         }
@@ -45,31 +58,39 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
             var texture = sprite.GetPrototypeIcon(bloodSpear);
             var button = _menu.AddButton($"{bloodSpear.Name} (150)", texture.Default);
 
-            button.OnPressed += _ =>
+            button.Controller.OnPressed += _ =>
             {
+                _selected = true;
                 SendMessage(new CultBloodSpellCreateBloodSpearBuiMessage());
+                _menu.Close();
                 Close();
             };
         }
 
-        var buttonBloodBoltBarrage = _menu.AddButton($"Blood Barrage (300)",
-            sprite.Frame0(new SpriteSpecifier.Rsi(
-            new ResPath("_Sunrise/BloodCult/actions_cult.rsi"),
-            "blood_barrage")));
-
-        buttonBloodBoltBarrage.OnPressed += _ =>
+        if (protoMan.TryIndex("BloodBoltBarrage", out EntityPrototype? bloodBoltBarrage))
         {
-            SendMessage(new CultBloodSpellCreateBloodBoltBarrageBuiMessage());
-            Close();
-        };
+            var texture = sprite.GetPrototypeIcon(bloodBoltBarrage);
+            var button = _menu.AddButton($"{bloodBoltBarrage.Name} (300)", texture.Default);
 
-        var vpSize = _displayManager.ScreenSize;
-        _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / vpSize);
+            button.Controller.OnPressed += _ =>
+            {
+                _selected = true;
+                SendMessage(new CultBloodSpellCreateBloodBoltBarrageBuiMessage());
+                _menu.Close();
+                Close();
+            };
+        }
+
+        _menu.OpenAttached(Owner);
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+
+        if (!disposing)
+            return;
+
         _menu?.Close();
     }
 }

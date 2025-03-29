@@ -1,4 +1,5 @@
 ﻿using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Interaction.Events;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -25,7 +26,6 @@ public sealed class CultStructureCraftSystem : EntitySystem
         if (!_playerManager.TryGetSessionByEntity(args.User, out var session) || session is not { } playerSession)
             return;
 
-        _uiSystem.CloseUi(uid, component.UserInterfaceKey, playerSession);
-        _uiSystem.OpenUi(uid, component.UserInterfaceKey, playerSession);
+        _uiSystem.TryToggleUi(uid, CultStructureCraftUiKey.Key, playerSession);
     }
 }

@@ -1,33 +1,34 @@
 ﻿using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Sunrise.BloodCult.Items;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class CultBloodSpellComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("blodOrbSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string BlodOrbSpawnId = "CultBloodOrb";
+    [DataField]
+    public EntProtoId BlodOrbSpawnId = "CultBloodOrb";
 
-    [DataField("bloodAbsorbSound")]
+    [DataField]
     public SoundSpecifier BloodAbsorbSound = new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/enter_blood.ogg");
 
-    [DataField("bloodOrbMinCost")]
+    [DataField]
     public int BloodOrbMinCost = 50;
 
-    [DataField("bloodSpearCost")]
+    [DataField]
     public int BloodSpearCost = 150;
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("bloodSpearSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string BloodSpearSpawnId = "BloodSpear";
+    [DataField]
+    public int BloodBoltBarrageCost = 300;
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("bloodBoltBarrageSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string BloodBoltBarrageSpawnId = "BloodBoltBarrage";
+    [DataField]
+    public EntProtoId BloodSpearSpawnId = "BloodSpear";
+
+    [DataField]
+    public EntProtoId BloodBoltBarrageSpawnId = "BloodBoltBarrage";
 
     [DataField("healingGroups")]
     public List<string> HealingGroups = new()
@@ -38,7 +39,7 @@ public sealed partial class CultBloodSpellComponent : Component
         "Toxin",
     };
 
-    [DataField("radiusAbsorbBloodPools")]
+    [DataField]
     public float RadiusAbsorbBloodPools = 2.0f;
 }
 

@@ -10,6 +10,7 @@ using Content.Server.Flash;
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind;
+using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._Sunrise.BloodCult.Systems;
@@ -36,20 +37,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public sealed partial class BloodCultSystem : EntitySystem
     {
-        private const string TeleportRunePrototypeId = "TeleportRune";
-        private const string ApocalypseRunePrototypeId = "ApocalypseRune";
-        private const string RitualDaggerPrototypeId = "TrueRitualDagger";
-        private const string BiblePrototypeId = "Bible";
-        private const string RunicMetalPrototypeId = "CultRunicMetal";
-        private const string SteelPrototypeId = "Steel";
-        private const string NarsiePrototypeId = "Narsie";
-        private const string CultBarrierPrototypeId = "CultBarrier";
-        private const string CultBloodSpeelPrototypeId = "CultBloodSpell";
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-        private readonly SoundPathSpecifier _apocRuneEndDrawing = new("/Audio/_Sunrise/BloodCult/finisheddraw.ogg");
-
-        private readonly SoundPathSpecifier _apocRuneStartDrawing = new("/Audio/_Sunrise/BloodCult/startdraw.ogg");
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly BloodCultRuleSystem _bloodCultRuleSystem = default!;
         [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
@@ -70,12 +59,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
-
-        private readonly SoundPathSpecifier _magic = new("/Audio/_Sunrise/BloodCult/magic.ogg");
         [Dependency] private readonly IMapManager _mapMan = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
-        private readonly SoundPathSpecifier _narsie40Sec = new("/Audio/_Sunrise/BloodCult/40sec.ogg");
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
@@ -85,11 +71,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly SharedStunSystem _stunSystem = default!;
         [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
-
-        private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
-        private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
-        public readonly EntProtoId TeleportInEffect = "CultTeleportInEffect";
-        public readonly EntProtoId TeleportOutEffect = "CultTeleportOutEffect";
         [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
         [Dependency] private readonly TileSystem _tileSystem = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
@@ -97,10 +78,32 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly CultistWordGeneratorManager _wordGenerator = default!;
         [Dependency] private readonly SharedTransformSystem _xform = default!;
+        [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+        [Dependency] private readonly NavMapSystem _navMap = default!;
 
+        private static EntProtoId ApocalypseRunePrototypeId = "ApocalypseRune";
+        private static EntProtoId RunicMetalPrototypeId = "CultRunicMetal";
+        private static EntProtoId SteelPrototypeId = "Steel";
+        private static EntProtoId CultBarrierPrototypeId = "CultBarrier";
+        private static EntProtoId CultBloodSpeelPrototypeId = "CultBloodSpell";
+        private static EntProtoId TeleportInEffect = "CultTeleportInEffect";
+        private static EntProtoId TeleportOutEffect = "CultTeleportOutEffect";
+        private static EntProtoId HelmetPrototypeId = "ClothingHeadHelmetCult";
+        private static EntProtoId ArmorPrototypeId = "ClothingOuterArmorCult";
+        private static EntProtoId ShoesPrototypeId = "ClothingShoesCult";
+        private static EntProtoId BolaPrototypeId = "CultBola";
+        private static EntProtoId CuffsPrototypeId = "CultistCuffs";
+        private static EntProtoId TeleportActionPrototypeId = "ActionCultTeleport";
+        private static EntProtoId CultTileEffectPrototypeId = "CultTileSpawnEffect";
+
+        private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
+        private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");
+        private readonly SoundPathSpecifier _apocRuneEndDrawing = new("/Audio/_Sunrise/BloodCult/finisheddraw.ogg");
+        private readonly SoundPathSpecifier _apocRuneStartDrawing = new("/Audio/_Sunrise/BloodCult/startdraw.ogg");
+        private readonly SoundPathSpecifier _narsie40Sec = new("/Audio/_Sunrise/BloodCult/40sec.ogg");
+        private readonly SoundPathSpecifier _magic = new("/Audio/_Sunrise/BloodCult/magic.ogg");
 
         private bool _doAfterAlreadyStarted;
-        private float _minutesToDrawApocalypseRune = 45;
 
         private EntityUid? _playingStream;
 
@@ -111,7 +114,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             base.Initialize();
 
             InitializeBuffSystem();
-            InitializeNarsie();
             InitializeSoulShard();
             InitializeConstructs();
             InitializeBarrierSystem();

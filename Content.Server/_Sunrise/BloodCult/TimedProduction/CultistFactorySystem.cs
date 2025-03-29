@@ -76,10 +76,7 @@ public sealed class CultistFactorySystem : EntitySystem
         if (!CanCraft(uid, component, args.Actor))
             return;
 
-        if (!_prototypeManager.TryIndex<CultistFactoryProductionPrototype>(args.Item, out var prototype))
-            return;
-
-        foreach (var item in prototype.Item)
+        foreach (var item in args.Equipment)
         {
             var entity = Spawn(item, Transform(args.Actor).Coordinates);
             _handsSystem.TryPickupAnyHand(args.Actor, entity);

@@ -4,3 +4,4 @@ sharpening-failed-double = Клинок уже заточен
 sharpening-success = Клинок успешно заточен
 sharpening-roughing-begin = Клинок начал затупляться
 sharpening-removed = Клинок потерял свою заточку
+sharpening-used = Точильный камень больше не может заточить клинок

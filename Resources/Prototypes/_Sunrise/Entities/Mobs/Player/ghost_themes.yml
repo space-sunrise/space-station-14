@@ -48,7 +48,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: Mobs/Demons/narsie.rsi
     state: narsie
 
 - type: ghostTheme
@@ -57,7 +57,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/gods.rsi
     state: kha'rin
 
 - type: ghostTheme
@@ -66,7 +66,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/gods.rsi
     state: legion
 
 - type: ghostTheme
@@ -75,7 +75,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narbee.rsi
     state: narbee
 
 - type: ghostTheme
@@ -84,7 +84,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/reaper.rsi
     state: reaper
 
 - type: ghostTheme

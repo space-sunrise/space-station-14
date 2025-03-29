@@ -18,4 +18,7 @@ public sealed class CultStructurePrototype : IPrototype
 
     [IdDataField]
     public string ID { get; } = default!;
+
+    [DataField( required: true)]
+    public BloodCultType? CultType;
 }

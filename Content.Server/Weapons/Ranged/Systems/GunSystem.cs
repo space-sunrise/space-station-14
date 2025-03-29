@@ -406,7 +406,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                 // Sunrise-start
                 // Эта логика используется для зеркального щита культистов
-                var reflectedEv = new HitScanReflectedEvent(user, gunUid, hitscan.Damage, hitscan.Reflective);
+                var reflectedEv = new ReflectedEvent(user, gunUid, hitscan.Damage, hitscan.Reflective);
                 foreach (var hand in _hands.EnumerateHeld(hit))
                 {
                     RaiseLocalEvent(hand, reflectedEv);

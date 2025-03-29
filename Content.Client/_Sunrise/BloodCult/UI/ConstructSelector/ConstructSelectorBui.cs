@@ -1,9 +1,9 @@
-﻿using Content.Shared._Sunrise.BloodCult.Components;
+﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -16,8 +16,8 @@ public sealed class ConstructSelectorBui : BoundUserInterface
     [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    private BloodCultMenu? _menu;
 
+    private RadialContainer? _menu;
     private bool _selected;
     private SpriteSystem _spriteSystem = default!;
 
@@ -26,12 +26,19 @@ public sealed class ConstructSelectorBui : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _menu = this.CreateWindow<BloodCultMenu>();
+        _menu = new RadialContainer();
+        _menu.Closed += () =>
+        {
+            if (_selected)
+                return;
+
+            Close();
+        };
 
         _spriteSystem = _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
         var shellComponent = _entityManager.GetComponent<ConstructShellComponent>(Owner);
 
-        _menu.OnClose += () =>
+        _menu.Closed += () =>
         {
             if (_selected)
                 return;
@@ -44,15 +51,15 @@ public sealed class ConstructSelectorBui : BoundUserInterface
             var formPrototype = _prototypeManager.Index<EntityPrototype>(form);
             var button = _menu.AddButton(formPrototype.Name, _spriteSystem.GetPrototypeIcon(formPrototype).Default);
 
-            button.OnPressed += _ =>
+            button.Controller.OnPressed += _ =>
             {
                 _selected = true;
                 SendMessage(new ConstructFormSelectedEvent(form));
                 _menu.Close();
+                Close();
             };
         }
 
-        var vpSize = _displayManager.ScreenSize;
-        _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / vpSize);
+        _menu.OpenAttached(Owner);
     }
 }

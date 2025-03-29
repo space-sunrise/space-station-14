@@ -1,4 +1,5 @@
-﻿using Content.Server._Sunrise.IncorporealSystem;
+﻿using Content.Server._Sunrise.BloodCult.GameRule;
+using Content.Server._Sunrise.IncorporealSystem;
 using Content.Shared._Sunrise.BloodCult;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Interaction.Events;
@@ -28,6 +29,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private void OnConstructInit(EntityUid uid, ConstructComponent component, ComponentInit args)
         {
+            var ev = new UpdateCultAppearance();
+            RaiseLocalEvent(ev);
+
             foreach (var action in component.Actions)
             {
                 _actionsSystem.AddAction(uid, action, uid);
@@ -71,7 +75,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             var cultistTileDefinition = (ContentTileDefinition)_tileDefinition[ev.FloorTileId];
             _tileSystem.ReplaceTile(tileRef.Value, cultistTileDefinition);
-            Spawn("CultTileSpawnEffect", transform.Coordinates);
+            Spawn(CultTileEffectPrototypeId, transform.Coordinates);
             ev.Handled = true;
         }
 

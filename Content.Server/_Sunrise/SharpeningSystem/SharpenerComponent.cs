@@ -1,15 +1,16 @@
-﻿namespace Content.Server._Sunrise.SharpeningSystem;
+﻿using Content.Shared.Damage;
+
+namespace Content.Server._Sunrise.SharpeningSystem;
 
 [RegisterComponent]
 public sealed partial class SharpenerComponent : Component
 {
-    //rn gonna support only slash damage
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("damageModifier")]
-    public int DamageModifier;
+    [DataField]
+    public DamageSpecifier DamageBonus;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("usages")]
+    [DataField]
     public int Usages = 1;
 }
 
@@ -19,6 +20,6 @@ public sealed partial class SharpenedComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public int AttacksLeft = 50;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public int DamageModifier = 0;
+    [DataField]
+    public DamageSpecifier DamageBonus = new();
 }

@@ -59,7 +59,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && mindTarget.Session != null)
         {
             // Специально скрыл попапы с пассивной регенерацией, они скорее мешают
-            TryCreatePopup(ent, damageDelta, coords, mindTarget.Session, false);
+            TryCreatePopup(ent, damageDelta, coords, mindTarget.Session);
 
             return;
         }
@@ -101,7 +101,9 @@ public sealed class DamageOverlaySystem : EntitySystem
         }
         else if (showHealPopup)
         {
-            _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, session, ent.Comp.HealPopupType);
+            // Лечение меньше 1 это пасивный реген, его показывать не нужно.
+            if (damageDelta < -1)
+                _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, session, ent.Comp.HealPopupType);
         }
 
         return true;

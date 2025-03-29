@@ -3,7 +3,7 @@
 namespace Content.Shared._Sunrise.BloodCult.Items;
 
 /// <summary>
-///     Зеркальный щит культистов нарси
+///     Зеркальный щит культистов крови
 /// </summary>
 [RegisterComponent]
 public sealed partial class CultMirrorShieldComponent : Component
@@ -21,11 +21,11 @@ public sealed partial class CultMirrorShieldComponent : Component
     public SoundSpecifier? BreakSound = new SoundCollectionSpecifier("GlassBreak");
 
     [DataField("illusionChance")] [ViewVariables(VVAccess.ReadWrite)]
-    public float IllusionChance = 0.5f;
+    public float IllusionChance = 0.6f;
 
     [DataField("maxIllusionCounter")] [ViewVariables(VVAccess.ReadWrite)]
-    public int MaxIllusionCounter = 3;
+    public int MaxIllusionCounter = 5;
 
     [DataField("illusionCounter")] [ViewVariables(VVAccess.ReadOnly)]
-    public HashSet<EntityUid> Illusions = new HashSet<EntityUid>();
+    public HashSet<EntityUid> Illusions = new ();
 }

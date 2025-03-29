@@ -1,4 +1,5 @@
-﻿using Content.Shared.Roles;
+﻿using Content.Shared._Sunrise.BloodCult;
+using Content.Shared.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -10,9 +11,6 @@ namespace Content.Server._Sunrise.BloodCult.GameRule;
 [RegisterComponent, Access(typeof(BloodCultRuleSystem))]
 public sealed partial class BloodCultRuleComponent : Component
 {
-    [DataField("cultistPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public static string CultistPrototypeId = "BloodCultist";
-
     [DataField("reaperPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public static string ReaperPrototype = "ReaperConstruct";
 
@@ -22,26 +20,18 @@ public sealed partial class BloodCultRuleComponent : Component
     [DataField("eyeColor")]
     public static Color EyeColor = Color.FromHex("#f80000");
 
-    public static string HolyWaterReagent = "Holywater";
+    [DataField]
+    public int ReadEyeThresholdPercentage = 15;
 
-    public static string ChaplainProtoId = "Chaplain";
-
-    [DataField("redEyeThreshold")]
-    public static int ReadEyeThreshold = 5;
-
-    [DataField("pentagramThreshold")]
-    public static int PentagramThreshold = 8;
+    [DataField]
+    public int PentagramThresholdPercentage = 30;
 
     public readonly SoundSpecifier GreatingsSound =
         new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood_cult_greeting.ogg");
 
-    [DataField("cultistRolePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string CultistRolePrototype = "Cultist";
-
-    [DataField]
-    public int CultMembersForSummonGod = 10;
-
     public List<EntityUid> CultTargets = new();
+
+    public List<EntityUid> SacrificedMinds = new();
 
     [DataField]
     public int MaxTargets = 3;
@@ -49,15 +39,16 @@ public sealed partial class BloodCultRuleComponent : Component
     [DataField]
     public int MinTargets = 1;
 
-    public List<ICommonSession> StarCandidates = new();
-
-    [DataField("cultistStartingItems", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
-    public List<string> StartingItems = new();
-
     [DataField]
     public int TargetsPerPlayer = 30;
 
     public CultWinCondition WinCondition;
+
+    [DataField]
+    public BloodCultType? CultType;
+
+    [DataField]
+    public int SacrificeCount = 3;
 }
 
 public enum CultWinCondition : byte
@@ -67,5 +58,9 @@ public enum CultWinCondition : byte
 }
 
 public sealed class CultNarsieSummoned : EntityEventArgs
+{
+}
+
+public sealed class UpdateCultAppearance : EntityEventArgs
 {
 }

@@ -1,12 +1,13 @@
 ﻿using Content.Shared._Sunrise.BloodCult.UI;
+using Robust.Shared.Prototypes;
 
-namespace Content.Server._Sunrise.BloodCult.Runes.Comps;
+namespace Content.Shared._Sunrise.BloodCult.Items;
 
 [RegisterComponent]
 public sealed partial class RuneDrawerProviderComponent : Component
 {
-    [DataField("runePrototypes")]
-    public List<string> RunePrototypes = new();
+    [DataField]
+    public List<EntProtoId> RunePrototypes = [];
 
     [ViewVariables]
     public Enum UserInterfaceKey = ListViewSelectorUiKey.Key;

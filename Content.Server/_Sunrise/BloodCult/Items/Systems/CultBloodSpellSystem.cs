@@ -15,7 +15,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -26,7 +25,6 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
-using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -46,7 +44,6 @@ public sealed class CultBloodSpellSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
-
 
     public override void Initialize()
     {
@@ -114,7 +111,6 @@ public sealed class CultBloodSpellSystem : EntitySystem
         args.PushMarkup($"[bold][color=white]Доступно {cultistComponent.BloodCharges} зарядов[/color][bold]");
     }
 
-
     private void OnCreateOrb(EntityUid uid, CultBloodSpellComponent component, CountSelectorMessage args)
     {
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
@@ -137,9 +133,6 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
             return;
 
-        if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
-            return;
-
         _ui.OpenUi(uid, CountSelectorUIKey.Key, args.Actor);
     }
 
@@ -148,9 +141,6 @@ public sealed class CultBloodSpellSystem : EntitySystem
         CultBloodSpellCreateBloodSpearBuiMessage args)
     {
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
-            return;
-
-        if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
             return;
 
         if (comp.BloodCharges < component.BloodSpearCost)
@@ -173,16 +163,13 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
             return;
 
-        if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
-            return;
-
-        if (comp.BloodCharges < component.BloodSpearCost)
+        if (comp.BloodCharges < component.BloodBoltBarrageCost)
             return;
 
         var bloodBoltBarrage = Spawn(component.BloodBoltBarrageSpawnId, _transformSystem.GetMapCoordinates(uid));
         _handsSystem.TryDrop(args.Actor, uid, checkActionBlocker: false);
         _handsSystem.TryPickup(args.Actor, bloodBoltBarrage, checkActionBlocker: false);
-        comp.BloodCharges -= component.BloodSpearCost;
+        comp.BloodCharges -= component.BloodBoltBarrageCost;
     }
 
     private void OnUseInHand(EntityUid uid, CultBloodSpellComponent component, UseInHandEvent args)
@@ -250,7 +237,11 @@ public sealed class CultBloodSpellSystem : EntitySystem
         }
 
         var getCharges = AbsorbBloodPools(args.User, args.ClickLocation, component);
+        if (getCharges <= 0)
+            return;
+
         cultistComponent.BloodCharges += getCharges;
+        args.Handled = true;
     }
 
     private FixedPoint2 AbsorbBloodPools(EntityUid user,

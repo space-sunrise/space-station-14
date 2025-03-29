@@ -147,4 +147,5 @@
   - type: Appearance
   - type: CultRuneBase
     invokePhrase: "TOK-LYR RQA-NAP G'OLT-ULOFT!"
+    cultistGatheringRange: 3
   - type: CultRuneApocalypse

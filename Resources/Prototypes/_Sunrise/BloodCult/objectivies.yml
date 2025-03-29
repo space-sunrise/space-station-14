@@ -4,10 +4,10 @@
   id: BaseCultistObjective
   components:
   - type: Objective
-    issuer: cult
+    issuer: objective-issuer-cult
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - BloodCultistRole
 
 - type: entity

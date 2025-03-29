@@ -5,20 +5,14 @@
   components:
   - type: GameRule
     minPlayers: 20
-    delay:
-      min: 360
-      max: 720
   - type: BloodCultRule
-    cultistStartingItems:
-    - TrueRitualDagger
-    - CultRunicMetal10
   - type: AntagObjectives
     objectives:
     - CultistKillObjective
   - type: AntagSelection
     definitions:
-    - prefRoles: [ Traitor ]
-      max: 6 # Sunrise-Edit
+    - prefRoles: [ BloodCultist ]
+      max: 4
       playerRatio: 15
       blacklist:
         components:

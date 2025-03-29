@@ -16,5 +16,5 @@ ent-InstantActionSummonCultDagger = Призыв кинжала
     .desc = Позволяет получить ритуальный кинжал.
 ent-ActionCultReturnBloodSpear = Возврат копья
     .desc = Бросит копье в направлении владельца если дистанция к нему не превышает 15 клеток.
-InstantActionBloodMagic = Кровавая магия
+ent-InstantActionBloodMagic = Кровавая магия
     .desc = Позволяет использовать кровь для подготовки магических заклинаний.

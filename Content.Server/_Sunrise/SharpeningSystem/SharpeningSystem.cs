@@ -1,18 +1,16 @@
-﻿using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
+﻿using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.SharpeningSystem;
 
 public sealed class SharpeningSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -21,7 +19,6 @@ public sealed class SharpeningSystem : EntitySystem
         SubscribeLocalEvent<SharpenerComponent, AfterInteractEvent>(OnSharping);
 
         SubscribeLocalEvent<SharpenedComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<SharpenedComponent, ComponentRemove>(OnSharpenedComponentRemove);
     }
 
     private void OnSharping(EntityUid uid, SharpenerComponent component, AfterInteractEvent args)
@@ -31,7 +28,7 @@ public sealed class SharpeningSystem : EntitySystem
 
         var target = args.Target.Value;
 
-        if (!TryComp<ItemComponent>(target, out _))
+        if (!HasComp<ItemComponent>(target))
         {
             _popupSystem.PopupEntity(Loc.GetString("sharpening-failed"), target, args.User);
             return;
@@ -55,23 +52,28 @@ public sealed class SharpeningSystem : EntitySystem
             return;
         }
 
-        EnsureComp<SharpenedComponent>(target).DamageModifier = component.DamageModifier;
+        if (component.Usages <= 0)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("sharpening-used"), target, args.User);
+            return;
+        }
 
-        meleeWeaponComponent.Damage.ExclusiveAdd(
-            new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), component.DamageModifier));
+        EnsureComp<SharpenedComponent>(target).DamageBonus = component.DamageBonus;
 
         component.Usages -= 1;
 
-        if (component.Usages <= 0)
-        {
-            Del(uid);
-        }
-
         _popupSystem.PopupEntity(Loc.GetString("sharpening-success"), target, args.User);
+
+        if (component.Usages > 0)
+            return;
+
+        if (TryComp<AppearanceComponent>(uid, out var appearance))
+            _appearance.SetData(uid, SharpenerVisuals.Visual, SharpenerVisuals.Used, appearance);
     }
 
     private void OnMeleeHit(EntityUid uid, SharpenedComponent component, MeleeHitEvent args)
     {
+        args.BonusDamage += component.DamageBonus;
         component.AttacksLeft--;
 
         if (component.AttacksLeft == 10)
@@ -83,17 +85,6 @@ public sealed class SharpeningSystem : EntitySystem
             return;
 
         _popupSystem.PopupEntity(Loc.GetString("sharpening-removed"), uid, args.User);
-        RemComp(uid, component);
-    }
-
-    private void OnSharpenedComponentRemove(EntityUid uid, SharpenedComponent component, ComponentRemove args)
-    {
-        if (!TryComp(uid, out MeleeWeaponComponent? meleeWeapon))
-        {
-            return;
-        }
-
-        meleeWeapon.Damage.ExclusiveAdd(
-            new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), -component.DamageModifier));
+        RemCompDeferred<SharpenedComponent>(uid);
     }
 }

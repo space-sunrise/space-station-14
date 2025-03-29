@@ -1,16 +1,37 @@
-﻿{
-  "license": "CC-BY-SA-3.0",
-  "copyright": "https://github.com/frosty-dev/white",
+{
   "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Спизжено из SS13 Paradise",
+  "metaAtlas": false,
   "size": {
     "x": 504,
     "y": 532
   },
   "states": [
     {
-      "name": "narsie",
+      "name": "legion",
       "delays": [
         [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "kha\u0027rin",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
           0.1,
           0.1,
           0.1,
@@ -24,15 +45,9 @@
       ]
     },
     {
-      "name": "narsie_spawn_anim",
+      "name": "narsie-chains",
       "delays": [
         [
-          0.3,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          1,
           0.1,
           0.1,
           0.1,
@@ -41,15 +56,7 @@
           0.1,
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.2
+          0.1
         ]
       ]
     }

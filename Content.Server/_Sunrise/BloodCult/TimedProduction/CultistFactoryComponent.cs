@@ -1,6 +1,4 @@
-﻿using Content.Shared._Sunrise.BloodCult;
-using Content.Shared._Sunrise.BloodCult.UI;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+﻿using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.BloodCult.TimedProduction;
 
@@ -18,8 +16,6 @@ public sealed partial class CultistFactoryComponent : Component
     public TimeSpan? NextTimeUse;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    [DataField("products", customTypeSerializer: typeof(PrototypeIdListSerializer<CultistFactoryProductionPrototype>))]
-    public IReadOnlyCollection<string> Products = ArraySegment<string>.Empty;
-
-    public Enum UserInterfaceKey = CultistAltarUiKey.Key;
+    [DataField("products")]
+    public Dictionary<string, List<EntProtoId>> Products;
 }

@@ -203,28 +203,70 @@
       "name": "hell_girder"
     },
     {
-      "name": "bloodspear1"
-    },
-    {
-      "name": "bloodspear0"
-    },
-    {
       "name": "blood_dagger"
+    },
+    {
+      "name": "blood_dagger-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "blood_dagger-inhand-right",
+      "directions": 4
     },
     {
       "name": "hell_dagger"
     },
     {
+      "name": "hell_dagger-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "hell_dagger-inhand-right",
+      "directions": 4
+    },
+    {
       "name": "death_dagger"
+    },
+    {
+      "name": "death_dagger-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "death_dagger-inhand-right",
+      "directions": 4
     },
     {
       "name": "blood_blade"
     },
     {
+      "name": "blood_blade-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "blood_blade-inhand-right",
+      "directions": 4
+    },
+    {
       "name": "hell_blade"
     },
     {
+      "name": "hell_blade-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "hell_blade-inhand-right",
+      "directions": 4
+    },
+    {
       "name": "death_blade"
+    },
+    {
+      "name": "death_blade-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "death_blade-inhand-right",
+      "directions": 4
     },
     {
       "name": "mirror_shield",

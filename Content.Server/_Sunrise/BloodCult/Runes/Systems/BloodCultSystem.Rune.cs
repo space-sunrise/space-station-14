@@ -3,9 +3,11 @@ using System.Numerics;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.BloodCult.Runes.Comps;
 using Content.Server.Atmos.Components;
+using Content.Server.Bible.Components;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Components;
+using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared._Sunrise.BloodCult.Runes;
@@ -15,6 +17,7 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -33,6 +36,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
@@ -74,6 +78,17 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<CultRuneBaseComponent, InteractUsingEvent>(TryErase);
             SubscribeLocalEvent<CultRuneBaseComponent, CultEraseEvent>(OnErase);
             SubscribeLocalEvent<CultRuneBaseComponent, StartCollideEvent>(HandleCollision);
+            SubscribeLocalEvent<CultRuneReviveComponent, ExaminedEvent>(OnExamine);
+        }
+
+        private void OnExamine(EntityUid uid, CultRuneReviveComponent component, ExaminedEvent args)
+        {
+            var rule = _bloodCultRuleSystem.GetRule();
+            if (rule == null)
+                return;
+
+            var revivals = Math.Max(0, rule.SacrificeCount / 3);
+            args.PushMarkup($"[bold][color=white] Доступно воскрешений: {revivals} [/color][bold]");
         }
 
         private void TeleportRuneInit(EntityUid uid, CultRuneTeleportComponent component, MapInitEvent args)
@@ -120,7 +135,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 Text = "Начертить руну",
                 Act = () =>
                 {
-                    _ui.SetUiState(uid, ListViewSelectorUiKey.Key, new ListViewBUIState(component.RunePrototypes));
                     _ui.OpenUi(uid, ListViewSelectorUiKey.Key, actorComponent.PlayerSession);
                 }
             });
@@ -134,7 +148,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!HasComp<BloodCultistComponent>(args.User))
                 return;
 
-            _ui.SetUiState(uid, ListViewSelectorUiKey.Key, new ListViewBUIState(component.RunePrototypes));
             _ui.OpenUi(uid, ListViewSelectorUiKey.Key, actorComponent.PlayerSession);
         }
 
@@ -149,9 +162,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (!TryDraw(args.Actor, runePrototype))
                 return;
-
-            /*if (component.UserInterface != null)
-                _ui.CloseUi(component.UserInterface, actorComponent.PlayerSession);*/
         }
 
         private bool TryDraw(EntityUid whoCalled, string runePrototype)
@@ -163,20 +173,33 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (runePrototype == ApocalypseRunePrototypeId)
             {
-                var requestTime = TimeSpan.FromMinutes(_minutesToDrawApocalypseRune).TotalSeconds;
-                var roundTime = (float)_gameTicker.RoundDuration().TotalSeconds;
-                if (roundTime < requestTime)
+                var rule = _bloodCultRuleSystem.GetRule();
+                if (rule == null)
+                    return false;
+
+                var targetsKilled = true;
+
+                var targets = _bloodCultRuleSystem.GetTargets();
+                foreach (var mindComponent in targets)
                 {
-                    _popupSystem.PopupEntity("Слишком рано...", whoCalled, whoCalled);
+                    targetsKilled = _mindSystem.IsCharacterDeadIc(mindComponent);
+                }
+
+                if (!targetsKilled)
+                {
+                    _popupSystem.PopupEntity("Цели не были принесены в жертву.", whoCalled, whoCalled);
                     return false;
                 }
 
-                _timeToDraw = 120.0f;
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-started-drawing-rune-end"),
-                    "CULT",
+                _timeToDraw = 45.0f;
+                var xform = Transform(whoCalled);
+                var location = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((whoCalled, xform)));
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString("cult-started-drawing-rune-end", ("location", location)),
+                    Loc.GetString("centcomm-cult-alert"),
                     true,
                     _apocRuneStartDrawing,
-                    colorOverride: Color.DarkRed);
+                    colorOverride: Color.Red);
             }
 
             if (!IsAllowedToDraw(whoCalled))
@@ -242,17 +265,11 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private void TryErase(EntityUid uid, CultRuneBaseComponent component, InteractUsingEvent args)
         {
-            var entityPrototype = _entityManager.GetComponent<MetaDataComponent>(args.Used).EntityPrototype;
-
-            if (entityPrototype == null)
-                return;
-
-            var used = entityPrototype.ID;
             var user = args.User;
             var target = args.Target;
             var time = 3;
 
-            if (used is not (RitualDaggerPrototypeId or BiblePrototypeId))
+            if (!HasComp<RuneDrawerProviderComponent>(args.Used) && !HasComp<BibleComponent>(args.Used))
                 return;
 
             if (!HasComp<BloodCultistComponent>(user))
@@ -382,6 +399,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private void OnInvokeOffering(EntityUid uid, CultRuneOfferingComponent component, CultRuneInvokeEvent args)
         {
+            var rule = _bloodCultRuleSystem.GetRule();
+            if (rule == null)
+                return;
+
             var targets =
                 _lookup.GetEntitiesInRange(uid, component.RangeTarget, LookupFlags.Dynamic | LookupFlags.Sundries);
 
@@ -428,17 +449,17 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                         return;
                     }
 
-                    result = Convert(uid, victim.Value, args.User, args.Cultists);
+                    result = Convert(uid, victim.Value, args.User, args.Cultists, rule);
                 }
                 else
                 {
-                    result = Sacrifice(uid, victim.Value, args.User, args.Cultists, isTarget);
+                    result = Sacrifice(uid, victim.Value, args.User, args.Cultists, rule, isTarget);
                 }
             }
             else
             {
                 // Жертва мертва, выполняется альтернативное действие
-                result = SacrificeNonObjectiveDead(uid, victim.Value, args.User, args.Cultists);
+                result = SacrificeNonObjectiveDead(uid, victim.Value, args.User, args.Cultists, rule);
             }
 
             args.Result = result;
@@ -449,6 +470,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             EntityUid target,
             EntityUid user,
             HashSet<EntityUid> cultists,
+            BloodCultRuleComponent rule,
             bool isTarget = false)
         {
             if (!_entityManager.TryGetComponent<CultRuneOfferingComponent>(rune, out var offering))
@@ -463,7 +485,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (isTarget)
             {
                 _bodySystem.GibBody(target);
-                AddChargesToReviveRune();
+                _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount + 1);
 
                 return true;
             }
@@ -473,7 +495,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 _bodySystem.GibBody(target);
             }
 
-            AddChargesToReviveRune();
+            _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount + 1);
             return true;
         }
 
@@ -481,7 +503,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             EntityUid rune,
             EntityUid target,
             EntityUid user,
-            HashSet<EntityUid> cultists)
+            HashSet<EntityUid> cultists,
+            BloodCultRuleComponent rule)
         {
             if (!_entityManager.TryGetComponent<CultRuneOfferingComponent>(rune, out var offering))
                 return false;
@@ -497,11 +520,12 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 _bodySystem.GibBody(target);
             }
 
-            AddChargesToReviveRune();
+            _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount + 1);
             return true;
         }
 
-        private bool Convert(EntityUid rune, EntityUid target, EntityUid user, HashSet<EntityUid> cultists)
+        private bool Convert(EntityUid rune, EntityUid target, EntityUid user, HashSet<EntityUid> cultists,
+            BloodCultRuleComponent rule)
         {
             if (!_entityManager.TryGetComponent<CultRuneOfferingComponent>(rune, out var offering))
                 return false;
@@ -511,10 +535,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 _popupSystem.PopupEntity(Loc.GetString("cult-offering-rune-not-enough"), user, user);
                 return false;
             }
-
-            var rule = _bloodCultRuleSystem.GetRule();
-            if (rule == null)
-                return false;
 
             _bloodCultRuleSystem.MakeCultist(target, rule);
             _stunSystem.TryStun(target, TimeSpan.FromSeconds(2f), false);
@@ -693,17 +713,26 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private bool TrySummonNarsie(EntityUid user, HashSet<EntityUid> cultists, CultRuneApocalypseComponent component)
         {
-            var canSummon = _bloodCultRuleSystem.CanSummonNarsie();
+            var targetsKill = _bloodCultRuleSystem.TargetsKill();
 
-            if (!canSummon)
+            if (!targetsKill)
             {
                 _popupSystem.PopupEntity(Loc.GetString("cult-narsie-not-completed-tasks"), user, user);
                 return false;
             }
 
+            var cultAwakened = _bloodCultRuleSystem.CultAwakened();
+
+            if (!cultAwakened)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("cult-narsie-not-awakened"), user, user);
+                return false;
+            }
+
             if (cultists.Count < component.SummonMinCount)
             {
-                _popupSystem.PopupEntity(Loc.GetString("cult-narsie-summon-not-enough"), user, user);
+                _popupSystem.PopupEntity(Loc.GetString("cult-narsie-summon-not-enough",
+                    ("count", component.SummonMinCount)), user, user);
                 return false;
             }
 
@@ -737,7 +766,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             _doAfterAlreadyStarted = true;
 
             _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-ritual-started"),
-                "CULT",
+                Loc.GetString("centcomm-cult-alert"),
                 false,
                 colorOverride: Color.DarkRed);
 
@@ -761,7 +790,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (args.Cancelled)
             {
                 _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-ritual-prevented"),
-                    "CULT",
+                    Loc.GetString("centcomm-cult-alert"),
                     false,
                     colorOverride: Color.DarkRed);
 
@@ -772,10 +801,14 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (transform == null)
                 return;
 
-            _entityManager.SpawnEntity(NarsiePrototypeId, transform.Value);
+            if (component.CultType == null ||
+                !_prototypeManager.TryIndex<BloodCultPrototype>($"{component.CultType.Value.ToString()}Cult", out var cultPrototype))
+                return;
+
+            _entityManager.SpawnEntity(cultPrototype.GodProto, transform.Value);
 
             _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-narsie-summoned"),
-                "CULT",
+                Loc.GetString("centcomm-cult-alert"),
                 true,
                 _apocRuneEndDrawing,
                 colorOverride: Color.DarkRed);
@@ -828,27 +861,17 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private bool Revive(EntityUid target, EntityUid user)
         {
-            if (CultRuneReviveComponent.ChargesLeft == 0)
+            var rule = _bloodCultRuleSystem.GetRule();
+            if (rule == null)
+                return false;
+
+            if (rule.SacrificeCount < 3)
             {
-                _popupSystem.PopupEntity(Loc.GetString("cult-revive-rune-no-charges"), user, user);
+                _popupSystem.PopupEntity(Loc.GetString("cult-revive-rune-not-enough-sacrifices"), user, user);
                 return false;
             }
 
-            if (CultRuneReviveComponent.RevivesPerCultist.TryGetValue(target, out var reviveCount))
-            {
-                if (reviveCount >= CultRuneReviveComponent.MaxRevivesPerCultist)
-                {
-                    _popupSystem.PopupEntity(Loc.GetString("cult-revive-rune-cultist-limit-reached"), user, user);
-                    return false;
-                }
-                CultRuneReviveComponent.RevivesPerCultist[target] = reviveCount + 1;
-            }
-            else
-            {
-                CultRuneReviveComponent.RevivesPerCultist[target] = 1;
-            }
-
-            CultRuneReviveComponent.ChargesLeft--;
+            _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount - 3);
 
             _entityManager.EventBus.RaiseLocalEvent(target, new RejuvenateEvent());
             return true;
@@ -1192,21 +1215,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (rune == ApocalypseRunePrototypeId)
             {
-                if (!_entityManager.TryGetComponent(uid, out TransformComponent? transComp))
-                {
-                    return;
-                }
-
-                var pos = transComp.MapPosition;
-                var x = (int)pos.X;
-                var y = (int)pos.Y;
-                var posText = $"(x = {x}, y = {y})";
-                _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString("cult-narsie-summon-drawn-position", ("posText", posText)),
-                    "CULT",
-                    true,
-                    _apocRuneEndDrawing,
-                    colorOverride: Color.DarkRed);
+                // ыыыы
             }
 
             var damageSpecifier = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), 10);
@@ -1235,11 +1244,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             _bodySystem.GibBody(target);
 
             return true;
-        }
-
-        private void AddChargesToReviveRune(uint amount = 1)
-        {
-            CultRuneReviveComponent.ChargesLeft += amount;
         }
 
         private bool IsAllowedToDraw(EntityUid uid)

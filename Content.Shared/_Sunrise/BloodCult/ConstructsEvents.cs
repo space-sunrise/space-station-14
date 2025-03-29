@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Actions;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.BloodCult;
 
@@ -38,4 +39,11 @@ public sealed partial class WraithPhaseActionEvent : InstantActionEvent
 public sealed partial class JuggernautCreateWallActionEvent : InstantActionEvent
 {
     public string WallPrototypeId = "CultBarrierJuggernaut";
+}
+
+
+[Serializable, NetSerializable]
+public enum CultCraftStructureVisuals : byte
+{
+    Activated
 }

@@ -7,7 +7,4 @@ public sealed partial class RunicMetalComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("delay")]
     public float Delay = 1;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public Enum UserInterfaceKey = CultStructureCraftUiKey.Key;
 }
