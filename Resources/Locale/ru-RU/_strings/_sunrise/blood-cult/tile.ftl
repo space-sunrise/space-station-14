@@ -1,1 +1,1 @@
-﻿tiles-cult-floor = гравированный пол
+tiles-cult-floor = гравированный пол
