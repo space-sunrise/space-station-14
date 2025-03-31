@@ -21,5 +21,5 @@ bwoink-system-rate-limited = Система: вы отправляете соо�
 bwoink-system-player-disconnecting = отключился.
 bwoink-system-player-reconnecting = переподключился.
 bwoink-system-player-banned = был забанен за: { $banReason }
-bwoink-message-admin-only = (Admin Only)
-bwoink-message-silent = (S)
+bwoink-message-admin-only = (Только для админов)
+bwoink-message-silent = (Тихо)

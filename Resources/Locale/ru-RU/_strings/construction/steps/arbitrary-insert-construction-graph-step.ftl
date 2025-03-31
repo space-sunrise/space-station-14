@@ -8,4 +8,4 @@ construction-insert-info-examine-name-instrument-woodwind = деревянный
 construction-insert-info-examine-name-knife = нож
 construction-insert-info-examine-name-utensil = кухонный прибор
 construction-insert-info-examine-name-laser-cannon = мощное лазерное оружие
-construction-insert-info-examine-name-power-cell = power cell
+construction-insert-info-examine-name-power-cell = элемент питания

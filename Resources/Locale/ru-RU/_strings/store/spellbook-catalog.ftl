@@ -1,4 +1,4 @@
-# Spells
+# Заклинания
 spellbook-fireball-name = Огненный шар
 spellbook-fireball-desc = Пусть большинство членов экипажа взорвутся от ярости, когда увидят летящий в них огненный шар!
 spellbook-blink-name = Прыжок
