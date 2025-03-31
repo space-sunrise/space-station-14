@@ -400,13 +400,6 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: Valtos
-  name: tts-voice-name-valtos
-  sex: Female
-  speaker: valtos
-  provider: ntts.fdev.team
-
-- type: ttsVoice
   id: Khajiit
   name: tts-voice-name-khajiit
   sex: Male
