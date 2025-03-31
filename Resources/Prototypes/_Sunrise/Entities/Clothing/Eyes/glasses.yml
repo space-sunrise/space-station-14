@@ -56,12 +56,14 @@
     sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
-  #- type: FlashImmunity
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity
   - type: EyeProtection
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - WhitelistChameleon
+  - type: VisionDarkener
+    strength: 3
+  - type: StaticPrice
+    price: 8
 
 - type: entity
   parent: ClothingEyesBase
