@@ -96,6 +96,14 @@
 - type: htnCompound
   id: RangedCombatCompound
   branches:
+    # Sunrise-Edit-Start
+    - preconditions:
+        - !type:IsBoltOpenPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:CloseBoltOperator
+    # Sunrise-Edit-End
+
     # Move to target and shoot them if ammo
     - preconditions:
         - !type:GunAmmoPrecondition
