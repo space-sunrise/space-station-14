@@ -21,6 +21,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Roles;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Stacks;
@@ -81,6 +82,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedTransformSystem _xform = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!;
+        [Dependency] private readonly PullingSystem _pulling = default!;
 
         [ValidatePrototypeId<StackPrototype>]
         private static string SteelStackPrototypeId = "Steel";
