@@ -1,6 +1,7 @@
 device-pda-slot-component-slot-name-cartridge = Картридж
 default-program-name = Программа
 notekeeper-program-name = Заметки
+nano-task-program-name = NanoTask
 news-read-program-name = Новости станции
 crew-manifest-program-name = Манифест экипажа
 crew-manifest-cartridge-loading = Загрузка...
@@ -15,10 +16,52 @@ log-probe-scan = Загружены логи устройства { $device }!
 log-probe-label-time = Время
 log-probe-label-accessor = Использовано:
 log-probe-label-number = #
+log-probe-print-button = Распечатать логи
+log-probe-printout-device = Просканированное устройство: { $name }
+log-probe-printout-header = Последние логи:
+log-probe-printout-entry = #{ $number } / { $time } / { $accessor }
 astro-nav-program-name = АстроНав
 med-tek-program-name = МедТек
 # Wanted list cartridge
 wanted-list-program-name = Список разыскиваемых
+nano-task-ui-heading-high-priority-tasks =
+    { $amount ->
+        [zero] Нет задач высокого приоритета
+        [one] 1 задача высокого приоритета
+       *[other] { $amount } задач высокого приоритета
+    }
+nano-task-ui-heading-medium-priority-tasks =
+    { $amount ->
+        [zero] Нет задач среднего приоритета
+        [one] 1 задача среднего приоритета
+       *[other] { $amount } задач среднего приоритета
+    }
+nano-task-ui-heading-low-priority-tasks =
+    { $amount ->
+        [zero] Нет задач низкого приоритета
+        [one] 1 задача низкого приоритета
+       *[other] { $amount } задач низкого приоритета
+    }
+nano-task-ui-done = Выполнено
+nano-task-ui-revert-done = Отменить
+nano-task-ui-priority-low = Низкий
+nano-task-ui-priority-medium = Средний
+nano-task-ui-priority-high = Высокий
+nano-task-ui-cancel = Отмена
+nano-task-ui-print = Печать
+nano-task-ui-delete = Удалить
+nano-task-ui-save = Сохранить
+nano-task-ui-new-task = Новая задача
+nano-task-ui-description-label = Описание:
+nano-task-ui-description-placeholder = Взять что-то важное
+nano-task-ui-requester-label = Запрашивающий:
+nano-task-ui-requester-placeholder = Иван Нанотрейзен
+nano-task-ui-item-title = Редактировать задачу
+nano-task-printed-description = Описание: { $description }
+nano-task-printed-requester = Запрашивающий: { $requester }
+nano-task-printed-high-priority = Приоритет: Высокий
+nano-task-printed-medium-priority = Приоритет: Средний
+nano-task-printed-low-priority = Приоритет: Низкий
 wanted-list-label-no-records = Все в порядке, ковбой
 wanted-list-search-placeholder = Поиск по имени и статусу
 wanted-list-age-label = [color=darkgray]Возвраст:[/color] [color=white]{ $age }[/color]

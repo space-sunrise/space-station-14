@@ -1,4 +1,4 @@
-﻿recipe-CultGirder-name = руническая балка
+recipe-CultGirder-name = руническая балка
 recipe-CultGirder-description = Большой конструктивный элемент, изготовленный из металла. На этом есть руна.
 recipe-AirlockGlassCult-name = рунический шлюз
 recipe-AirlockGlassCult-description = Странный стеклянный шлюз с руной.

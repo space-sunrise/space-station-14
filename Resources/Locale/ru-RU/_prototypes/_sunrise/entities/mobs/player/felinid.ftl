@@ -5,5 +5,7 @@ ent-MobBaseSyndicateFelinid = { ent-MobFelinidBase }
     .desc = { ent-MobFelinidBase.desc }
 ent-MobFelinidSyndicateAgent = фелинид
     .desc = { ent-MobFelinidBase.desc }
+    .suffix = syndicate agent
 ent-MobFelinidSyndicateAgentNukeops = { ent-MobFelinidSyndicateAgent }
     .desc = { ent-MobFelinidBase.desc }
+    .suffix = NukeOps

@@ -1,4 +1,4 @@
-﻿cult-torch-window-title = Отправить предмет
+cult-torch-window-title = Отправить предмет
 cult-torch-not-cultist = Факел выпадает из ваших рук
 cult-torch-drained = Факел опустошён
 cult-torch-cooldown = Факел накапливает энергию

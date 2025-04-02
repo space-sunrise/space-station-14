@@ -16,6 +16,7 @@ fibers-black = чёрные
 fibers-blue = синие
 fibers-teal = бирюзовые
 fibers-brown = коричневые
+fibers-light-brown = светло-коричневый
 fibers-grey = серые
 fibers-green = зелёные
 fibers-orange = оранжевые

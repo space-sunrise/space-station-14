@@ -68,14 +68,14 @@ namespace Content.Shared.Humanoid
             switch (gender)
             {
                 case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index(speciesProto.MaleLastNames).Values);
+                    return _random.Pick(_prototypeManager.Index(speciesProto.MaleLastNames));
                 case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index(speciesProto.FemaleLastNames).Values);
+                    return _random.Pick(_prototypeManager.Index(speciesProto.FemaleLastNames));
                 default:
                     if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index(speciesProto.MaleLastNames).Values);
+                        return _random.Pick(_prototypeManager.Index(speciesProto.MaleLastNames));
                     else
-                        return _random.Pick(_prototypeManager.Index(speciesProto.FemaleLastNames).Values);
+                        return _random.Pick(_prototypeManager.Index(speciesProto.FemaleLastNames));
             }
         }
         // Russian-LastnameGender-End

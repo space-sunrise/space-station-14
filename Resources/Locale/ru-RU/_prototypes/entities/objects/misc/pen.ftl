@@ -14,3 +14,5 @@ ent-PenCap = перьевая ручка капитана
     .desc = Элегантная перьевая ручка для капитана станции.
 ent-PenHop = перьевая ручка главы персонала
     .desc = Элегантная перьевая ручка для главы персонала станции.
+ent-PenWiz = wizard's magical pen
+    .desc = A luxurious fountain pen. Seems to have a magical crystal eraser.

@@ -1,2 +1,2 @@
-﻿ent-CultClothingBlindfold = повязка Зилота
+ent-CultClothingBlindfold = повязка Зилота
     .desc = Повязка, наделенная странной силой.
