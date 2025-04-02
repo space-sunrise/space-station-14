@@ -26,11 +26,13 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
+using Content.Shared.Roles;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using CultMemberComponent = Content.Shared._Sunrise.BloodCult.Components.CultMemberComponent;
 
@@ -53,14 +55,14 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
-    private ISawmill _sawmill = default!;
+    private EntProtoId MindRoleCultistPrototypeId = "MindRoleCultist";
+    private EntProtoId CultistKillObjective = "CultistKillObjective";
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _sawmill = Logger.GetSawmill("preset");
 
         SubscribeLocalEvent<CultNarsieSummoned>(OnNarsieSummon);
         SubscribeLocalEvent<UpdateCultAppearance>(UpdateCultistsAppearance);
@@ -173,7 +175,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         {
             foreach (var cultTarget in cultRuleComponent.CultTargets)
             {
-                if (_mindSystem.TryGetMind(cultTarget, out var mindId, out var mind))
+                if (TryComp<MindComponent>(cultTarget, out var mind))
                     targetMinds.Add(mind);
             }
         }
@@ -237,10 +239,10 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void CheckRoundShouldEnd()
     {
-        var querry = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
+        var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
         var aliveCultistsCount = 0;
 
-        while (querry.MoveNext(out _, out var cultRuleComponent, out _))
+        while (query.MoveNext(out _, out var cultRuleComponent, out _))
         {
             var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
             while (cultisQuery.MoveNext(out var cultistUid, out _))
@@ -282,6 +284,15 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
             if (collectiveMind.Minds.Count == 0)
                 RemComp<CollectiveMindComponent>(uid);
+        }
+
+        if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
+        {
+            if (_mindSystem.TryFindObjective((mindId, mind), CultistKillObjective, out var objective))
+            {
+                _mindSystem.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(objective.Value));
+            }
+            _roles.MindRemoveRole<BloodCultistRoleComponent>((mindId, mind));
         }
 
         var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
@@ -384,6 +395,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     {
         if (!_mindSystem.TryGetMind(cultist, out var mindId, out var mind))
             return false;
+
+        _roles.MindAddRole(mindId, MindRoleCultistPrototypeId);
 
         var isHumanoid = HasComp<HumanoidAppearanceComponent>(cultist);
 

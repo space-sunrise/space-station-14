@@ -47,7 +47,7 @@ public sealed partial class BloodCultistComponent : Component
     public int HolyConvertChance = 33;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("holyConvertTime")]
-    public float HolyConvertTime = 30f;
+    public float HolyConvertTime = 60f;
 
     public EntityUid? BloodMagicEntity;
 

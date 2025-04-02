@@ -406,7 +406,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var targets =
                 _lookup.GetEntitiesInRange(uid, component.RangeTarget, LookupFlags.Dynamic | LookupFlags.Sundries);
 
-            targets.RemoveWhere(x => HasComp<BloodCultistComponent>(x));
+            targets.RemoveWhere(x =>
+                HasComp<BloodCultistComponent>(x) ||
+                HasComp<ConstructComponent>(x) ||
+                !HasComp<MobStateComponent>(x));
 
             if (targets.Count == 0)
                 return;
@@ -434,7 +437,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 {
                     foreach (var mindComponent in cultTargets)
                     {
-                        isTarget = mind.Session == mindComponent?.Session;
+                        isTarget = mind.Session == mindComponent.Session;
                     }
                 }
 

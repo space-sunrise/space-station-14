@@ -231,7 +231,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (HasComp<BorgChassisComponent>(args.Target))
                 _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(args.Target), 2, 100000, 5f);
 
-            _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(6), true);
+            _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(3), true, force: true);
             _stuttering.DoStutter(args.Target, TimeSpan.FromSeconds(30), true);
             _flashSystem.Flash(args.Target, uid, null, 3, 10);
 
