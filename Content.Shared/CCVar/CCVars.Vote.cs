@@ -50,7 +50,7 @@ public sealed partial class CCVars
     /// Whether or not to prevent the restart vote from having any effect when there is an online admin
     /// </summary>
     public static readonly CVarDef<bool> VoteRestartNotAllowedWhenAdminOnline =
-        CVarDef.Create("vote.restart_not_allowed_when_admin_online", true, CVar.SERVERONLY);
+        CVarDef.Create("vote.restart_not_allowed_when_admin_online", false, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
