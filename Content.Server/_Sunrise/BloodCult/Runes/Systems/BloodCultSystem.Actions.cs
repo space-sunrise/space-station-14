@@ -219,7 +219,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (TryComp<HandcuffComponent>(cuffs, out var handcuffComponent))
             {
                 _audio.PlayPvs(handcuffComponent.EndCuffSound, cuffs);
-                _cuffable.TryAddNewCuffs(args.Args.Target.Value, args.Args.User, cuffs);
+                _cuffable.TryCuffingNow(args.Args.User, args.Args.Target.Value, cuffs);
             }
         }
 

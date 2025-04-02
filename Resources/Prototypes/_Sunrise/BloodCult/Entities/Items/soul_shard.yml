@@ -25,6 +25,8 @@
             True: { state: "soulstone2" }
             False: { state: "soulstone" }
     - type: Speech
+    - type: TTS
+      voice: Dota2Abaddon
 
 - type: entity
   parent: SoulShard
