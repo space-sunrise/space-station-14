@@ -14,7 +14,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: ChangelingObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 15
   - type: AntagSelection
     agentName: changeling-roundend-name
     definitions:
@@ -40,7 +40,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: VampireObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 15
   - type: AntagSelection
     agentName: vampire-roundend-name
     definitions:

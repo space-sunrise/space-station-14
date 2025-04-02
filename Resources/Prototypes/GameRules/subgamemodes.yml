@@ -13,7 +13,7 @@
       maxPicks: 1
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2.5
+    maxDifficulty: 5
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
