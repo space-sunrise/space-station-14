@@ -51,7 +51,6 @@
         Piercing: 0.5
         Heat: 0.7
     staminaModifier: 0.6
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine

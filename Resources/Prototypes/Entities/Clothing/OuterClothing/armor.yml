@@ -213,8 +213,7 @@
         Slash: 0.5
         Piercing: 0.6
         Heat: 0.5
-    staminaModifier: 0.5 # Sunrise-Edit
-    ingoreKnockdown: true # Sunrise-Edit
+    staminaModifier: 0.7 # Sunrise-Edit
   - type: GroupExamine
   # Sunrise-Start
   - type: Tag
