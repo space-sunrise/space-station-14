@@ -44,7 +44,6 @@ namespace Content.Client.Voting
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IResourceCache _res = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
 
         private readonly Dictionary<StandardVoteType, TimeSpan> _standardVoteTimeouts = new();
         private readonly Dictionary<int, ActiveVote> _votes = new();
@@ -79,6 +78,8 @@ namespace Content.Client.Voting
 
         private void OnVoteMusicDisableOptionChanged(bool option)
         {
+            if (!_netManager.IsConnected)
+                return;
             var message = new VoteMusicDisableOptionMessage
             {
                 Disable = option,
