@@ -379,3 +379,11 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/revenant_ghost.rsi
     state: animated
+
+- type: ghostTheme
+  id: HoloCarp
+  name: ghost-theme-holo-carp
+  sponsorOnly: true
+  sprite:
+    sprite: Mobs/Aliens/Carps/holo.rsi
+    state: alive
