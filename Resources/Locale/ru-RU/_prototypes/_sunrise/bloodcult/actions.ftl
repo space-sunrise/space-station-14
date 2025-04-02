@@ -1,4 +1,4 @@
-﻿ent-ActionCultTwistedConstruction = Проклятие конструкции
+ent-ActionCultTwistedConstruction = Проклятие конструкции
     .desc = Зловещее заклинание, используемое для превращения металла в рунический металл.
 ent-InstantActionBloodRitual = Кровавые обряды
     .desc = Дает возможность собирать кровь, лечить культистов и создавать кровавые предметы.

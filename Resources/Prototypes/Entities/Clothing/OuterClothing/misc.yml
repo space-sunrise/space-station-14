@@ -139,7 +139,7 @@
         Piercing: 1.5
         Heat: 1.5
   # Sunrise-End
-    
+
 - type: entity
   parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterRobesJudge

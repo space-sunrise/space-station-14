@@ -61,7 +61,6 @@ tts-voice-name-tf-medic = [Team Fortress 2] Медик
 tts-voice-name-tf-sniper = [Team Fortress 2] Снайпер
 tts-voice-name-tf-spy = [Team Fortress 2] Шпион
 tts-voice-name-tf-demoman = [Team Fortress 2] Подрывник
-tts-voice-name-valtos = [Диктор] Валтос
 tts-voice-name-khajiit = [Skyrim] Каджит
 tts-voice-name-punisher = [The Punisher] Каратель
 tts-voice-name-johnny = [Cyberpunk 2077] Джонни Сильверхенд

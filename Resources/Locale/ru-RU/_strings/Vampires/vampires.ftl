@@ -95,7 +95,6 @@ vampire-mutation-bestia-info =
     
     - Форма летучей мыши
     - Мышиная форма
-
 # Alerts
 alerts-vampire-blood-name = Кровь
 alerts-vampire-blood-desc = Уровень крови вампира.

@@ -62,6 +62,8 @@
         - DoorBumpOpener
     - type: CultMember
     - type: DamageOverlay
+    - type: TTS
+      voice: dragon_knight_dragon_dota_2
 
 - type: entity
   id: JuggernautConstruct
@@ -95,6 +97,8 @@
     - type: Body
       prototype: ConstructJuggernaut
     - type: Juggernaut
+    - type: TTS
+      voice: enigma_dota_2
 
 - type: entity
   id: ArtificerConstruct

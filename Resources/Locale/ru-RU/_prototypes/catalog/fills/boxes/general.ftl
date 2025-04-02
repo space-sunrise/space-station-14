@@ -1,5 +1,7 @@
 ent-BoxCardboard = картонная коробка
     .desc = Картонная коробка для хранения вещей.
+ent-BoxSurvivalBase = cardboard box
+    .desc = A cardboard box for storing things.
 ent-BoxMousetrap = коробка мышеловок
     .desc = Коробка, наполненая мышеловками. Постарайтесь не поймать себя за руку.
 ent-BoxLightbulb = коробка лампочек

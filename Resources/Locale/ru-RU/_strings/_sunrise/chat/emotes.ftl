@@ -6,6 +6,7 @@ chat-emote-name-mews = Мявкать
 chat-emote-name-howl = Выть
 chat-emote-name-oink = Хрюкать
 chat-emote-name-meows = Мяукать
+chat-emote-name-vomit = Тошнота
 chat-emote-name-headache = Головная боль
 chat-emote-name-insult = Инсульт
 chat-emote-name-severe-cough = Тяжело кашлять

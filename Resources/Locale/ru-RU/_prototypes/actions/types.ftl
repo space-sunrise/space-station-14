@@ -20,6 +20,8 @@ ent-ActionOpenUplinkImplant = Открыть аплинк
     .desc = Открывает аплинк Синдиката, скрытый под вашей кожей.
 ent-ActionActivateEmpImplant = Активировать ЭМИ
     .desc = Вызывает небольшой ЭМ импульс вокруг вас.
+ent-ActionActivateSmokeGrenadeImplant = Activate Smoke Grenade
+    .desc = Create a small cloud of smoke around you.
 ent-ActionActivateScramImplant = УДРАТЬ!
     .desc = Случайным образом телепортирует вас на большое расстояние.
 ent-ActionActivateDnaScramblerImplant = Перемешать ДНК
@@ -56,3 +58,5 @@ ent-ActionToggleWagging = Махать хвостом
     .desc = Начать или прекратить махать хвостом.
 ent-FakeMindShieldToggleAction = [color=green]Toggle Fake Mindshield[/color]
     .desc = Turn the Fake Mindshield implant's transmission on/off
+ent-ActionToggleParamedicSiren = Toggle Paramedic Siren
+    .desc = Toggles the paramedic siren on and off.

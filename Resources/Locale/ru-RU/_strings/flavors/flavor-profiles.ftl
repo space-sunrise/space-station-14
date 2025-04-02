@@ -271,6 +271,15 @@ flavor-complex-irish-slammer = как шипучая пенка колы
 ### This is exactly what pilk tastes like. I'm not even joking. I might've been a little drunk though
 
 flavor-complex-white-gilgamesh = как слегка газированные сливки
+flavor-complex-caipirinha = как Бразилия
+flavor-complex-daiquiri = как ром, лайм и сахар
+flavor-complex-deathintheafternoon = как анис и шампанское
+flavor-complex-empress75 = like tyrian purple
+flavor-complex-mayojito = как расстройство желудка
+flavor-complex-mimeosa = like silence and oranges
+flavor-complex-mimosa = как ранний бранч
+flavor-complex-thesunalsorises = как абсентовый дайкири
+flavor-complex-whiskeysour = как виски и яйцо
 flavor-complex-antifreeze = как тепло
 flavor-complex-zombiecocktail = как поедание мозгов
 flavor-complex-absinthe = как анис
@@ -308,6 +317,7 @@ flavor-complex-sui-dream = как открытка с Альпами
 flavor-complex-toxins-special = как космические исследования
 flavor-complex-vodka-martini = как русский шпионский боевик
 flavor-complex-vodka-tonic = как освежающая горечь
+flavor-complex-bacchus-blessing = как стена из кирпичей
 flavor-complex-pilk = как сладкое молоко
 
 # Medicine/chemical-specific flavors.

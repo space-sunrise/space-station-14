@@ -284,6 +284,8 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<string> RoundVotingChancesPrototype = CVarDef.Create("vote.round_voting_chances_prototype", "SunriseVoteSecret");
 
+    public static readonly CVarDef<bool> VoteMusicDisable = CVarDef.Create("vote.music_disable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /*
      * Preset
      */
@@ -329,8 +331,8 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> JumpCooldown =
         CVarDef.Create("jump.cooldown", 0.600f, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<bool> JumpSoundEnable =
-        CVarDef.Create("jump.sound_enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<bool> JumpSoundDisable =
+        CVarDef.Create("jump.sound_disable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> BunnyHopEnable =
         CVarDef.Create("bunny_hop.enable", true, CVar.SERVER | CVar.REPLICATED);

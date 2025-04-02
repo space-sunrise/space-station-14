@@ -1,1 +1,1 @@
-﻿reagent-effect-guidebook-deconvert-cultist = Деконвертирует культиста
+reagent-effect-guidebook-deconvert-cultist = Деконвертирует культиста
