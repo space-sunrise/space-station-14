@@ -1798,9 +1798,9 @@
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 7
+    Telecrystal: 12 #Sunrise-edit
   cost:
-    Telecrystal: 14   #Sunrise-edit
+    Telecrystal: 16   #Sunrise-edit
   categories:
   - UplinkWearables
   #Sunrise-start
@@ -1819,9 +1819,9 @@
   productEntity: CrateCybersunJuggernautBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 16 # Sunrise-Edit
   cost:
-    Telecrystal: 16
+    Telecrystal: 20 # Sunrise-Edit
   categories:
   - UplinkWearables
   #Sunrise-start

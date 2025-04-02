@@ -222,10 +222,10 @@
     forceSound: true
   # Sunrise start
   - type: StaminaDamageOnCollide
-    damage: 20
+    damage: 33
   # Sunrise end
   - type: StunOnCollide
-    knockdownAmount: 0.1 #Sunrise-Edit
+    knockdownAmount: 0.5 #Sunrise-Edit
 
 - type: entity
   name : disabler bolt
