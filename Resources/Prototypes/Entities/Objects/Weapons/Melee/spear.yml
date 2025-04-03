@@ -60,7 +60,7 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 2
+        maxVol: 5 # Sunrise-Edit
   - type: MeleeChemicalInjector
     solution: melee
   - type: RefillableSolution
@@ -68,10 +68,10 @@
   - type: InjectableSolution
     solution: melee
   - type: SolutionInjectOnEmbed
-    transferAmount: 2
+    transferAmount: 1 # Sunrise-Edit
     solution: melee
   - type: SolutionTransfer
-    maxTransferAmount: 2
+    maxTransferAmount: 1 # Sunrise-Edit
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:

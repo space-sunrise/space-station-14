@@ -654,6 +654,10 @@
       effects:
       - !type:Electrocute
         probability: 0.8
+        # Sunrise-Edit
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
 
 - type: reagent
   id: Lipolicide

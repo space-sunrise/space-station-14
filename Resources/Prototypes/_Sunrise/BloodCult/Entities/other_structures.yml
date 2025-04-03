@@ -27,9 +27,25 @@
     - type: RadiationBlocker
       resistance: 2
     - type: RunicDoor
+      throwSpeed: 15
+      paralyzeTime: 3
+      damage:
+        types:
+          Blunt: 15
     - type: Construction
       graph: AirlockGlassCult
       node: airlock
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
 
 - type: entity
   id: CultGirder

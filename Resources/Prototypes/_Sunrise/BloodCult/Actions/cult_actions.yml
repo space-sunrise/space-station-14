@@ -4,16 +4,13 @@
   components:
     - type: EntityTargetAction
       temporary: true
-      useDelay: 50
+      useDelay: 5
       canTargetSelf: false
       icon:
         sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
         state: transmute
       itemIconStyle: NoItem
       event: !type:CultTwistedConstructionActionEvent
-      charges: 1
-      renewCharges: false
-      deleteActionsWithoutCharges: true
 
 - type: entity
   id: InstantActionBloodMagic

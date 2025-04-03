@@ -165,6 +165,9 @@
       effects:
       - !type:Electrocute
         probability: 0.35
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
 
 - type: reagent
   id: Razorium

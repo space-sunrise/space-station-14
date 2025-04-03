@@ -83,14 +83,10 @@
 
 - type: entity
   name: unholy halberd
-  parent: BaseItem
+  parent: UnholyHalberd
   id: TrueHalberd
   description: A poleaxe that seems to be linked to its wielder.
   components:
-  - type: Tag
-    tags:
-    - FireAxe
-  - type: Sharp
   - type: Sprite
     sprite: Objects/Weapons/Melee/cult_halberd.rsi
     state: icon
@@ -118,6 +114,7 @@
     quickEquip: false
     slots:
     - back
+    - suitStorage
   - type: UseDelay
     delay: 1
   - type: BloodCultWeapon

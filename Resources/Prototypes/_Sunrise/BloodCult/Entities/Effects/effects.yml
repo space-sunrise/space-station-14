@@ -32,7 +32,6 @@
     - type: EvaporationSparkle
     - type: Transform
       noRot: true
-      anchored: true
     - type: Sprite
       layers:
         - sprite: _Sunrise/BloodCult/Effects/cult_inout.rsi
@@ -53,7 +52,6 @@
     - type: EvaporationSparkle
     - type: Transform
       noRot: true
-      anchored: true
     - type: Sprite
       layers:
         - sprite: _Sunrise/BloodCult/Effects/cult_inout.rsi
