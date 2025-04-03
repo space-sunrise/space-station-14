@@ -22,7 +22,7 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    private MenuButton? EmotesButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.EmotesButton;
+    //private MenuButton? EmotesButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.EmotesButton;
     private SimpleRadialMenu? _menu;
 
     private static readonly Dictionary<EmoteCategory, (string Tooltip, SpriteSpecifier Sprite)> EmoteGroupingInfo
@@ -59,11 +59,11 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
 
             _menu.Open();
 
-            _menu.OnClose += OnWindowClosed;
-            _menu.OnOpen += OnWindowOpen;
+            // _menu.OnClose += OnWindowClosed;
+            // _menu.OnOpen += OnWindowOpen;
 
-            if (EmotesButton != null)
-                EmotesButton.SetClickPressed(true);
+            //if (EmotesButton != null)
+            //    EmotesButton.SetClickPressed(true);
 
             if (centered)
             {
@@ -76,50 +76,50 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
         }
         else
         {
-            _menu.OnClose -= OnWindowClosed;
-            _menu.OnOpen -= OnWindowOpen;
+            // _menu.OnClose -= OnWindowClosed;
+            // _menu.OnOpen -= OnWindowOpen;
 
-            if (EmotesButton != null)
-                EmotesButton.SetClickPressed(false);
+            //if (EmotesButton != null)
+            //    EmotesButton.SetClickPressed(false);
 
             CloseMenu();
         }
     }
 
-    public void UnloadButton()
-    {
-        if (EmotesButton == null)
-            return;
+    // public void UnloadButton()
+    // {
+    //     if (EmotesButton == null)
+    //         return;
+    //
+    //     EmotesButton.OnPressed -= ActionButtonPressed;
+    // }
 
-        EmotesButton.OnPressed -= ActionButtonPressed;
-    }
-
-    public void LoadButton()
-    {
-        if (EmotesButton == null)
-            return;
-
-        EmotesButton.OnPressed += ActionButtonPressed;
-    }
+    // public void LoadButton()
+    // {
+    //     if (EmotesButton == null)
+    //         return;
+    //
+    //     EmotesButton.OnPressed += ActionButtonPressed;
+    // }
 
     private void ActionButtonPressed(BaseButton.ButtonEventArgs args)
     {
         ToggleEmotesMenu(true);
     }
 
-    private void OnWindowClosed()
-    {
-        if (EmotesButton != null)
-            EmotesButton.Pressed = false;
+    // private void OnWindowClosed()
+    // {
+    //     if (EmotesButton != null)
+    //         EmotesButton.Pressed = false;
+    //
+    //     CloseMenu();
+    // }
 
-        CloseMenu();
-    }
-
-    private void OnWindowOpen()
-    {
-        if (EmotesButton != null)
-            EmotesButton.Pressed = true;
-    }
+    // private void OnWindowOpen()
+    // {
+    //     if (EmotesButton != null)
+    //         EmotesButton.Pressed = true;
+    // }
 
     private void CloseMenu()
     {
