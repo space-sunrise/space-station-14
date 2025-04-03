@@ -65,8 +65,6 @@ namespace Content.Server.GameTicking
                     // Sunrise-Queue-Start
                     if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
                         Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
-                    else
-                        _userDb.ClientConnected(session);
                     // Sunrise-Queue-End
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
@@ -109,10 +107,7 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.InGame:
                 {
-                    // Sunrise-Queue-Start
-                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
-                        _userDb.ClientConnected(session);
-                    // Sunrise-Queue-End
+                    _userDb.ClientConnected(session);
 
                     if (mind == null)
                     {
