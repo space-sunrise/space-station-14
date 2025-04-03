@@ -67529,20 +67529,6 @@ entities:
     - type: Transform
       pos: -97.522255,-43.642056
       parent: 2
-- proto: ClothingEyesGlassesThermalSec
-  entities:
-  - uid: 20604
-    components:
-    - type: Transform
-      parent: 20600
-    - type: Physics
-      canCollide: False
-  - uid: 26797
-    components:
-    - type: Transform
-      parent: 26793
-    - type: Physics
-      canCollide: False
 - proto: ClothingEyesGlassesWelding
   entities:
   - uid: 10402
@@ -141821,10 +141807,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 20605
-        eyes: !type:ContainerSlot
-          showEnts: False
-          occludes: False
-          ent: 20604
         head: !type:ContainerSlot
           showEnts: False
           occludes: False
