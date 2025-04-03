@@ -64,6 +64,7 @@ namespace Content.Server.Voting.Managers
         {
             _netManager.RegisterNetMessage<MsgVoteData>();
             _netManager.RegisterNetMessage<MsgVoteCanCall>();
+            _netManager.RegisterNetMessage<RequestVoteMusicDisableOptionMessage>();
             _netManager.RegisterNetMessage<VoteMusicDisableOptionMessage>(OnClientVoteMusicDisableOption);
             _netManager.RegisterNetMessage<MsgVoteMenu>(ReceiveVoteMenu);
 
@@ -118,6 +119,9 @@ namespace Content.Server.Voting.Managers
                 }
 
                 DirtyCanCallVote(e.Session);
+                var message = new RequestVoteMusicDisableOptionMessage();
+                _netManager.ServerSendMessage(message, e.Session.Channel);
+
             }
             else if (e.NewStatus == SessionStatus.Disconnected)
             {

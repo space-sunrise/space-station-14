@@ -70,16 +70,24 @@ namespace Content.Client.Voting
 
             _netManager.RegisterNetMessage<MsgVoteData>(ReceiveVoteData);
             _netManager.RegisterNetMessage<MsgVoteCanCall>(ReceiveVoteCanCall);
+            _netManager.RegisterNetMessage<RequestVoteMusicDisableOptionMessage>(OnRequestVoteMusicDisableOption);
             _netManager.RegisterNetMessage<VoteMusicDisableOptionMessage>();
-            _cfg.OnValueChanged(SunriseCCVars.VoteMusicDisable, OnVoteMusicDisableOptionChanged, true);
+            _cfg.OnValueChanged(SunriseCCVars.VoteMusicDisable, OnVoteMusicDisableOptionChanged);
 
             _client.RunLevelChanged += ClientOnRunLevelChanged;
         }
 
+        private void OnRequestVoteMusicDisableOption(RequestVoteMusicDisableOptionMessage _)
+        {
+            var message = new VoteMusicDisableOptionMessage
+            {
+                Disable = _cfg.GetCVar(SunriseCCVars.VoteMusicDisable),
+            };
+            _netManager.ClientSendMessage(message);
+        }
+
         private void OnVoteMusicDisableOptionChanged(bool option)
         {
-            if (!_netManager.IsConnected)
-                return;
             var message = new VoteMusicDisableOptionMessage
             {
                 Disable = option,
