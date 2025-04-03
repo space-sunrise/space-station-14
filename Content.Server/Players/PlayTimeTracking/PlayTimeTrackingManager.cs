@@ -406,7 +406,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     public Dictionary<string, TimeSpan> GetTrackerTimes(ICommonSession id)
     {
-        if (!_playTimeData.TryGetValue(id.UserId, out var data) || !data.Initialized) // Sunrise-Edit
+        if (!_playTimeData.TryGetValue(id.UserId, out var data) || !data.Initialized)
             throw new InvalidOperationException("Play time info is not yet loaded for this player!");
 
         return data.TrackerTimes;
