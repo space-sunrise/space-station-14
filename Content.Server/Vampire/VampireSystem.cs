@@ -185,7 +185,6 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
     }
-    
 
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)
     {

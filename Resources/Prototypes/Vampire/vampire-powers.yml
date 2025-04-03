@@ -91,5 +91,4 @@
   id: BloodScale
   usableWhileStunned: false
   usableWhileCuffed: false
-  activationCost: 10
-  upkeep: 10
+  activationCost: 5
