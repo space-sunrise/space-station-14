@@ -214,34 +214,41 @@ public sealed partial class VampireSystem
 
         ev.Handled = true;
     }
-    private void OnVampireBloodScale(EntityUid entity, VampireComponent comp, VampireBloodScaleEvent ev)
+    private void OnVampireBloodScale(EntityUid entity, VampireComponent component, VampireBloodScaleEvent ev)
     {
-        if (!TryGetPowerDefinition(ev.DefinitionName, out var def) || def == null)
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
             return;
 
-        if (!EntityManager.TryGetComponent(entity, out VampireComponent? vampireComp))
-            return;
-
-        var vampire = new Entity<VampireComponent>(entity, vampireComp);
+        var vampire = new Entity<VampireComponent>(entity, component);
 
         if (!IsAbilityUsable(vampire, def))
             return;
 
-        ToggleBloodScale(entity, vampireComp);
+        ToggleBloodScale(entity, vampire);
+        var scale = EnsureComp<VampireBloodScaleComponent>(vampire);
+        scale.Upkeep = 4f;
+
+        ev.Handled = true;
     }
 
     private void ToggleBloodScale(EntityUid uid, VampireComponent comp)
     {
-        bool isActive = comp.BloodScaleActive;
-        float newBaseSpeed = isActive ? 2.5f : 4f;
-        float newValue = isActive ? 4.5f : 7.5f;
-        string popupMessage = isActive ? Loc.GetString("blood-scale-end") : Loc.GetString("blood-scale-start");
+        var scale = EnsureComp<VampireBloodScaleComponent>(uid);
+        if (!comp.BloodScaleActive)
+        {
+            _speed.ChangeBaseSpeed(uid, 4.5f, 6f, 20f);
+            _popup.PopupEntity(Loc.GetString("blood-scale-start"), uid, uid);
+            comp.BloodScaleActive = true;
+            scale.IsActive = true;
+        }
+        else
+        {
+            _speed.ChangeBaseSpeed(uid, 2.5f, 4.5f, 20f);
+            _popup.PopupEntity(Loc.GetString("blood-scale-end"), uid, uid);
+            comp.BloodScaleActive = false;
+            scale.IsActive = false;
+        }
 
-        comp.BloodScaleActive = !isActive;
-
-        _speed.ChangeBaseSpeed(uid, newBaseSpeed, newValue, 20f);
-
-        _popup.PopupEntity(popupMessage, uid, uid);
     }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {

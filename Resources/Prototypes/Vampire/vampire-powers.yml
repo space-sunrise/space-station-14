@@ -92,4 +92,4 @@
   usableWhileStunned: false
   usableWhileCuffed: false
   activationCost: 10
-  upkeep: 4
+  upkeep: 10

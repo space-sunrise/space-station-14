@@ -262,6 +262,9 @@ public sealed partial class VampireBloodScaleComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
+    
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IsActive { get; set; }
 }
 
 [Serializable, NetSerializable]
