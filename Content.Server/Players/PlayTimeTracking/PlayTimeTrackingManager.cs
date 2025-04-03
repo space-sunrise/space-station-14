@@ -319,17 +319,12 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     public async Task LoadData(ICommonSession session, CancellationToken cancel)
     {
-        // Sunrise-Edit
-        if (!_playTimeData.TryGetValue(session.UserId, out var data))
-        {
-            data = new PlayTimeData();
-            _playTimeData[session.UserId] = data;
-        }
+        var data = new PlayTimeData();
+        _playTimeData[session.UserId] = data; // Sunrise-Edit
 
         var playTimes = await _db.GetPlayTimes(session.UserId, cancel);
         cancel.ThrowIfCancellationRequested();
 
-        data.TrackerTimes.Clear(); // Sunrise-Edit
         foreach (var timer in playTimes)
         {
             data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
