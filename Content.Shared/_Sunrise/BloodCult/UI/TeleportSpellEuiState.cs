@@ -14,8 +14,3 @@ public sealed class TeleportSpellTargetRuneSelected : EuiMessageBase
 {
     public int RuneUid;
 }
-
-[Serializable, NetSerializable]
-public sealed class TeleportSpellUserEvent : EntityEventArgs
-{
-}

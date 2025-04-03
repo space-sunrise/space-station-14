@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Damage;
 using Content.Shared.Weapons.Reflect;
 
-namespace Content.Shared._Sunrise.BloodCult.Events;
+namespace Content.Shared._Sunrise.Events;
 
 /// <summary>
 ///     Вызывается на предметах в руках и сущности, которая отразила хитскан луч
