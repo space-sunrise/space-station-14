@@ -1,12 +1,14 @@
 using Content.Client.Movement.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
+using Content.Shared._Sunrise.SunriseCCVars; // Sunrise-Edit
 using Robust.Client.Audio;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Configuration; // Sunrise-Edit
 
 namespace Content.Client.Ghost
 {
@@ -18,6 +20,7 @@ namespace Content.Client.Ghost
         [Dependency] private readonly PointLightSystem _pointLightSystem = default!;
         [Dependency] private readonly ContentEyeSystem _contentEye = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Sunrise-Edit
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -179,15 +182,19 @@ namespace Content.Client.Ghost
 
         private void OnUpdateGhostRoleCount(GhostUpdateGhostRoleCountEvent msg)
         {
-
             if (msg.AvailableGhostRoles > AvailableGhostRoleCount && IsGhost)
             {
-                _audioSystem.PlayGlobal(
-                    "/Audio/_Sunrise/Misc/ping.ogg",
-                    Filter.Local(),
-                    false,
-                    new AudioParams().WithVolume(10f)
-                );
+                // Sunrise-Edit-Start
+                if (!_cfg.GetCVar(SunriseCCVars.MuteGhostRoleNotification))
+                {
+                    _audioSystem.PlayGlobal(
+                        "/Audio/_Sunrise/Misc/ping.ogg",
+                        Filter.Local(),
+                        false,
+                        new AudioParams().WithVolume(10f)
+                    );
+                }
+                // Sunrise-Edit-End
             }
 
             AvailableGhostRoleCount = msg.AvailableGhostRoles;
