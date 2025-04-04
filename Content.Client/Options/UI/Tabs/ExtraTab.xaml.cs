@@ -41,6 +41,7 @@ public sealed partial class ExtraTab : Control
         Control.AddOptionCheckBox(SunriseCCVars.TapePlayerClientEnabled, TapePlayerClientCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.JumpSoundDisable, JumpSoundDisableCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.VoteMusicDisable, VoteMusicDisableCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.MuteGhostRoleNotification, MuteGhostRoleNotificationCheckBox);
 
         _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
 

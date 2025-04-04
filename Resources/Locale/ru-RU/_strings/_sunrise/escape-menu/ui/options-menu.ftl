@@ -14,6 +14,7 @@ ui-options-tab-extra = Экстра
 ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
 ui-options-jump-sound-disable = Отключить звук прыжка
 ui-options-vote-music-disable = Отключить музыку голосования
+ui-options-mute-new-ghost-roles = Отключить звук новых гост-ролей
 ui-options-function-toggle-standing = Лечь/Встать
 ui-options-function-cock-gun = Взвести оружие/Разрядить
 ui-options-function-jump = Прыжок
