@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/delta.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 55
+  minPlayers: 0
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
