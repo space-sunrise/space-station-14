@@ -18,6 +18,7 @@
           Slash: 0.5
           Piercing: 0.6
           Heat: 0.5
+          Shock: 0.5
     - type: ExplosionResistance
       damageCoefficient: 0.65
 
@@ -39,6 +40,7 @@
         Piercing: 0.6
         Heat: 0.65
         Caustic: 0.75
+        Shock: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Item
@@ -63,6 +65,7 @@
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
+        Shock: 0.55
     staminaModifier: 0.5 
     ingoreKnockdown: true
   - type: ExplosionResistance
@@ -103,6 +106,7 @@
         Piercing: 0.45
         Heat: 0.50
         Caustic: 0.7
+        Shock: 0.4
     staminaModifier: 0.5
     ingoreKnockdown: true 
   - type: ExplosionResistance

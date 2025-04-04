@@ -36,6 +36,7 @@
         Heat: 0.5  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
         Radiation: 0.25
         Caustic: 0.5
+        Shock: 0.45
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
@@ -112,6 +113,7 @@
         Heat: 0.7
         Caustic: 0.55
         Radiation: 0.6
+        Shock: 0.5
     staminaModifier: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -150,6 +152,7 @@
         Heat: 0.5
         Radiation: 0.25
         Caustic: 0.4
+        Shock: 0.45
     staminaModifier: 0.5
   - type: Item
     size: Huge
@@ -208,6 +211,7 @@
         Heat: 0.4
         Radiation: 0.4
         Caustic: 0.4
+        Shock: 0.45
     staminaModifier: 0.3
     ingoreKnockdown: true 
   - type: ClothingSpeedModifier
@@ -244,6 +248,7 @@
         Piercing: 0.5
         Heat: 0.65
         Caustic: 0.7
+        Shock: 0.45
     staminaModifier: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -298,6 +303,7 @@
         Heat: 0.25
         Radiation: 0.25
         Caustic: 0.25
+        Shock: 0.2
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -333,6 +339,7 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
+        Shock: 0.2
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -404,6 +411,7 @@
         Heat: 0.4
         Radiation: 0.5
         Caustic: 0.5
+        Shock: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -442,6 +450,7 @@
         Heat: 0.4
         Radiation: 0.4
         Caustic: 0.4
+        Shock: 0.45
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -487,3 +496,4 @@
           Heat: 0.4
           Radiation: 0.5
           Caustic: 0.5
+          Shock: 0.4

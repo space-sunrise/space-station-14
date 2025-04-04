@@ -23,6 +23,7 @@
         Slash: 0.9
         Piercing: 0.9
         Caustic: 0.9
+        Shock: 0.8 #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 0.80
     sprintModifier: 0.80
@@ -279,6 +280,7 @@
         Heat: 0.7 #sunrise-Edit
         Caustic: 0.65 #sunrise-Edit
         Radiation: 0.55  #sunrise-add
+        Shock: 0.6 #sunrise-add
     staminaModifier: 0.7 #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.80
@@ -339,6 +341,7 @@
         Heat: 0.65 #sunrise-edit
         Caustic: 0.6
         Radiation: 0.5  #sunrise-Edit
+        Shock: 0.55 #sunrise-add
     staminaModifier: 0.5 #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.7
@@ -372,6 +375,7 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.6
+        Shock: 0.55 #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -406,6 +410,7 @@
         Heat: 0.4
         Radiation: 0.0
         Caustic: 0.7
+        Shock: 0.15 #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.8
@@ -461,6 +466,7 @@
         Heat: 0.3
         Radiation: 0.1
         Caustic: 0.2
+        Shock: 0.4 #sunrise-add
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: ClothingSpeedModifier
@@ -508,6 +514,7 @@
         Heat: 0.65 #sunrise-Edit
         Radiation: 0.5
         Caustic: 0.6
+        Shock: 0.6 #sunrise-add
     staminaModifier: 0.5 #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -576,6 +583,7 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
+        Shock: 0.55 #sunrise-add
     staminaModifier: 0.3 #Sunrise-edit
     ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
@@ -638,6 +646,7 @@
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
+        Shock: 0.45 #sunrise-add
     staminaModifier: 0.3 # Sunrise-Edit
     ingoreKnockdown: true #Sunrise-Edit
   - type: Item
@@ -698,6 +707,7 @@
         Heat: 0.5
         Radiation: 0.25
         Caustic: 0.4
+        Shock: 0.45 #sunrise-add
     staminaModifier: 0.3 # Sunrise-Edit
     ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
@@ -732,6 +742,7 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
+        Shock: 0.2 #sunrise-add
     staminaModifier: 0.0 #Sunrise-edit
     ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
@@ -766,6 +777,7 @@
         Heat: 0.25
         Radiation: 0.25
         Caustic: 0.75
+        Shock: 0.45 #Sunrise-add
     staminaModifier: 0.3 #Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -797,6 +809,7 @@
         Slash: 0.95
         Piercing: 1
         Heat: 0.5
+        Shokc: 0.6 #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -860,6 +873,7 @@
         Piercing: 0.85
         Heat: 0.4
         Caustic: 0.75
+        Shock: 0.55 #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -988,6 +1002,7 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
+        Shock: 0.1 #sunrise-add
     staminaModifier: 0.0 #Sunrise-edit
     ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
