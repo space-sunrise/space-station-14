@@ -201,6 +201,7 @@
       Female: UnisexResomi
       Unsexed: UnisexResomi
   - type: Speech
+    speechVerb: Resomi
     allowedEmotes: ['Chirp']
   - type: Tag
     tags:
