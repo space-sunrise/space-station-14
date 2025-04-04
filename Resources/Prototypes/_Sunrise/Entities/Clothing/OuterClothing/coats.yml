@@ -48,7 +48,6 @@
           Slash: 0.8
           Piercing: 0.65
           Heat: 0.9
-          Shock: 0.85
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -83,7 +82,6 @@
         Piercing: 0.6
         Heat: 0.5
         Caustic: 0.9 # Sunrise-Edit
-        Shock: 0.65
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -310,7 +308,6 @@
         Piercing: 0.6
         Heat: 0.5
         Caustic: 0.9
-        Shock: 0.65
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
@@ -366,7 +363,6 @@
         Piercing: 0.65
         Heat: 0.8
         Caustic: 0.8
-        Shock: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: Item
@@ -398,7 +394,6 @@
         Piercing: 0.55
         Heat: 0.7
         Caustic: 0.7
-        Shock: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: Item

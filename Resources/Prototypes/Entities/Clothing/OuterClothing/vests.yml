@@ -16,7 +16,6 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
-        Shock: 0.75 #sunrise-add
     staminaModifier: 0.5 #Sunrise-edit
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -39,7 +38,6 @@
         Slash: 0.7
         Piercing: 0.5
         Heat: 0.9
-        Shock: 0.75 #sunrise-add
   - type: ExplosionResistance
     damageCoefficient: 0.9
 

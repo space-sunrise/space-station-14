@@ -68,7 +68,6 @@
         Piercing: 0.7
         Heat: 0.9
         Caustic: 0.9
-        Shock: 0.5 #sunrise-add
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
@@ -216,7 +215,6 @@
         Slash: 0.5
         Piercing: 0.6
         Heat: 0.5
-        Shock: 0.55 #sunrise-add
     staminaModifier: 0.7 # Sunrise-Edit
   - type: GroupExamine
   # Sunrise-Start
@@ -245,7 +243,6 @@
         Heat: 0.5
         Radiation: 0
         Caustic: 0.75
-        Shock: 0.6 #sunrise-add
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: PressureProtection
@@ -329,7 +326,6 @@
         Piercing: 0.6
         Heat: 0.5
         Caustic: 0.9
-        Shock: 0.55 #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -362,7 +358,6 @@
         Piercing: 0.4
         Heat: 0.9
         Radiation: 0.8
-        Shock: 0.65 #sunrise-add
     staminaModifier: 0.3 # Sunrise-Edit
     ingoreKnockdown: true #Sunrise-Edit
   - type: ClothingSpeedModifier
