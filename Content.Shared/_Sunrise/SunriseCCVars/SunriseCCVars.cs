@@ -416,7 +416,7 @@ public sealed class SunriseCCVars
         CVarDef.Create("chat_icon_pointing.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * Mute new guest role sound
+     * Mute new ghost role sound
      */
      
     public static readonly CVarDef<bool> MuteGhostRoleNotification =
