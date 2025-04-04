@@ -114,11 +114,12 @@
   inhand:
   - PetMobGoose
 
-- type: loadout
-  id: PetMobClownGoblin
-  sponsorOnly: true
-  inhand:
-  - PetMobClownGoblin
+# TODO убрать руки, т.к. такой пет дисбаланс
+#- type: loadout
+#  id: PetMobClownGoblin
+#  sponsorOnly: true
+#  inhand:
+#  - PetMobClownGoblin
 
 - type: loadout
   id: PetMobCorgiIanPup
