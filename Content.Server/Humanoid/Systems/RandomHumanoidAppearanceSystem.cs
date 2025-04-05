@@ -33,5 +33,17 @@ public sealed class RandomHumanoidAppearanceSystem : EntitySystem
 
         if (component.RandomizeName)
             _metaData.SetEntityName(uid, profile.Name);
+
+        // Sunrise-Start
+        if (component.SkinColor == null)
+            return;
+
+        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidSkin))
+            return;
+
+        var humanoidSystem = EntityManager.System<HumanoidAppearanceSystem>();
+
+        humanoidSystem.SetSkinColor(uid, component.SkinColor.Value, humanoid: humanoidSkin);
+        // Sunrise-End
     }
 }
