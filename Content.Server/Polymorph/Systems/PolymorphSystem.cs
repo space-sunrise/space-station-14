@@ -156,16 +156,6 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
     }
 
-    private void OnReturnOfMindContainer(Entity<PolymorphedEntityComponent> ent, ref BeforeFullySlicedEvent args)
-    {
-        var (_, comp) = ent;
-        if (comp.Configuration.RevertOnEat)
-        {
-            args.Cancel();
-            Revert((ent, ent));
-        }
-    }
-
     /// <summary>
     /// It is possible to be polymorphed into an entity that can't "die", but is instead
     /// destroyed. This handler ensures that destruction is treated like death.
