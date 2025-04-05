@@ -11,7 +11,7 @@
 - type: polymorph
   id: PermanentlyHuman
   configuration:
-    entity: MobHuman
+    entity: MobHumanRandomization
     forced: true
     transferName: true
     inventory: Transfer
@@ -21,7 +21,7 @@
 - type: polymorph
   id: PermanentlyReptilian
   configuration:
-    entity: MobReptilian
+    entity: MobReptilianRandomization
     forced: true
     transferName: true
     inventory: Transfer
@@ -31,7 +31,7 @@
 - type: polymorph
   id: PermanentlyTajaran
   configuration:
-    entity: MobTajaran
+    entity: MobTajaranRandomization
     forced: true
     transferName: true
     inventory: Transfer
@@ -42,7 +42,7 @@
 - type: polymorph
   id: PermanentlySlime
   configuration:
-    entity: MobSlimePerson
+    entity: MobSlimePersonRandomization
     forced: true
     transferName: true
     revertOnCrit: false
@@ -51,7 +51,7 @@
 - type: polymorph
   id: PermanentlyMoth
   configuration:
-    entity: MobMoth
+    entity: MobMothRandomization
     forced: true
     transferName: true
     inventory: Transfer
@@ -61,7 +61,7 @@
 - type: polymorph
   id: PermanentlySwine
   configuration:
-    entity: MobSwine
+    entity: MobSwineRandomization
     forced: true
     transferName: true
     inventory: Transfer
@@ -71,7 +71,7 @@
 - type: polymorph
   id: PermanentlyVox
   configuration:
-    entity: MobVox
+    entity: MobVoxRandomization
     forced: true
     transferName: true
     revertOnCrit: false
@@ -80,7 +80,7 @@
 - type: polymorph
   id: PermanentlyVulpkanin
   configuration:
-    entity: MobVulpkanin
+    entity: MobVulpkaninRandomization
     forced: true
     transferName: true
     inventory: Transfer

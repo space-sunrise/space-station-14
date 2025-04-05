@@ -21,16 +21,16 @@
     group: InferiorVulpkanin
   - type: LizardAccent
   - type: ReplacementAccent
-    accent: kobold
+    accent: dog
   - type: Speech
-    speechSounds: Lizard
-    speechVerb: Reptilian
-    allowedEmotes: ['Thump']
+    speechSounds: Vulpkanin
+    speechVerb: Vulpkanin
+    allowedEmotes: ['Growl', 'Bark', 'Howl', 'Whines']
   - type: Vocal
     sounds:
-      Male: MaleReptilian
-      Female: FemaleReptilian
-      Unsexed: MaleReptilian
+      Male: MaleVulpkanin
+      Female: FemaleVulpkanin
+      Unsexed: MaleVulpkanin
   - type: BodyEmotes
     soundsId: ReptilianBodyEmotes
   - type: TypingIndicator
