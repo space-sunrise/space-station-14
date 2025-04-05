@@ -1,0 +1,62 @@
+- type: entity
+  parent: MobHuman
+  id: MobHumanRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobReptilian
+  id: MobReptilianRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobTajaran
+  id: MobTajaranRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobSlimePerson
+  id: MobSlimePersonRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobMoth
+  id: MobMothRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobSwine
+  id: MobSwineRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobVox
+  id: MobVoxRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobVulpkanin
+  id: MobVulpkaninRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobFelinid
+  id: MobFelinidRandomization
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
