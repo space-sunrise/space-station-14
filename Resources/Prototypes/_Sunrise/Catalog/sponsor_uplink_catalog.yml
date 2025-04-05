@@ -1767,17 +1767,6 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieNara
-  productEntity: PlushieNara
-  cost:
-    Suntick: 4
-  categories:
-  - SpecialThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: UplinkSunrisePlushiePeacemaker
   productEntity: PlushiePeacemaker
   cost:

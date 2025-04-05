@@ -696,16 +696,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieNara
-  name: Na-Ra
-  description: A noir unath just came out of the dormitories.
-  components:
-  - type: Sprite
-    state: plushie-nara
-    sprite: _Sunrise/Objects/Fun/toys.rsi
-
-- type: entity
-  parent: BasePlushie
   id: PlushiePeacemaker
   name: Peacemaker
   description: Where he is, there is peace, but where there is war, he brings death.
