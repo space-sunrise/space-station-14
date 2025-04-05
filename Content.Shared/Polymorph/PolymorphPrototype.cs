@@ -140,6 +140,14 @@ public sealed partial record PolymorphConfiguration
     /// </summary>
     [DataField]
     public LocId? ExitPolymorphPopup = "polymorph-revert-popup-generic";
+
+    // Sunrise-Start
+    /// <summary>
+    /// Если true, полиморф будет заблокирован для сущностей с MindContainerComponent.HasMind
+    /// </summary>
+    [DataField(serverOnly: false)]
+    public bool BlockIfHasMind = false;
+    // Sunrise-End
 }
 
 public enum PolymorphInventoryChange : byte

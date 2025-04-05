@@ -12,6 +12,9 @@ public sealed partial class RandomHumanoidAppearanceComponent : Component
     /// </summary>
     [DataField] public string? Hair = null;
     // Sunrise-Start
-    [DataField] public Color? SkinColor = null;
+    /// <summary>
+    /// Настраивает цвет кожи в HEX формате, учитывайте то что большинство цветов не подойдёт из-за искуственных ограничений в цветах кожи.
+    /// </summary>
+    [DataField] public Color? SkinColor = null; 
     // Sunrise-End
 }
