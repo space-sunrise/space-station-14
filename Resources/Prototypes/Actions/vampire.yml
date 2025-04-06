@@ -231,3 +231,20 @@
       !type:VampireThermalVisionEvent
       definitionName: ThermalVision
     useDelay: 5
+
+- type: entity
+  id: ActionVampireBloodScale
+  name: blood scale
+  description: "Strengthen your muscles by compressing blood in order to develop maximum speed. Activation Cost: 10 Essence. Upkeep: 4 Essence/Second Cooldown: 5 Seconds"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    priority: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: bloodscale
+    event: 
+      !type:VampireBloodScaleEvent
+      definitionName: BloodScale
