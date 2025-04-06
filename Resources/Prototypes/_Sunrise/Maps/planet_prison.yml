@@ -18,13 +18,13 @@
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
             PrisonPilot: [ 1, 1 ]
-            PrisonDoctor: [ 2, 2 ]
+            PrisonDoctor: [ 3, 3 ]
             PrisonChef: [ 1, 1 ]
-            PrisonWorker: [ 1, 2 ]
-            PrisonEngineer: [ 2, 2 ]
+            PrisonWorker: [ 2, 3 ]
+            PrisonEngineer: [ 2, 3 ]
             PrisonGuard: [ 20, -1 ]
-            PlanetPrisoner: [ 0, 0 ]
+            PlanetPrisoner: [ 6, 6 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
           adjustJob: PlanetPrisoner
-          modifier: 1
+          modifier: 2 # один охранник - двое заключенных
