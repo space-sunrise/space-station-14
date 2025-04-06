@@ -108,6 +108,8 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var opts = DeserializationOptions.Default with {InitializeMaps = true};
         var uids = _gameTicker.LoadGameMap(gameMap, out var mapId, opts, rot: Angle.Zero);
 
+        component.MapId = mapId;
+
         if (uids.Count != 1)
         {
             _sawmill.Warning("Prison station have more 1 grid.");
