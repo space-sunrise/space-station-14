@@ -93,3 +93,9 @@
   usableWhileCuffed: true
   usableWhileMuffled: true
   activationCost: 0
+
+- type: vampirePower
+  id: BloodScale
+  usableWhileStunned: false
+  usableWhileCuffed: false
+  activationCost: 10
