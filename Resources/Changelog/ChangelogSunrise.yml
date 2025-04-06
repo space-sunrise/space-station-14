@@ -14236,3 +14236,21 @@
     type: Tweak
   id: 972
   time: '2025-04-06T01:49:30.784489+00:00'
+- author: Francus_, Non_stop_smetana
+  changes:
+  - message: "\u0442\u0443\u0440\u0435\u043B\u0438 \u0418\u0418 \u043D\u0430 \u0432\
+      \u0441\u0435\u0445 \u043A\u0430\u0440\u0442\u0430\u0445 \u043A\u0440\u043E\u043C\
+      \u0435 Box"
+    type: Add
+  - message: "\u041E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u0438 \u0421\u043C\
+      \u0435\u0442\u0430\u043D\u0443"
+    type: Fix
+  - message: "\u0418\u043D\u0436\u0435\u043D\u0435\u0440\u044B NT \u043F\u043E\u043B\
+      \u0443\u0447\u0438\u043B\u0438 \u0437\u0430\u0440\u043F\u043B\u0430\u0442\u0443\
+      \ \u0438 \u043F\u0435\u0440\u0435\u0441\u0442\u0440\u043E\u0438\u043B\u0438\
+      \ Packed \u043F\u043E\u0434 \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\
+      \u043E\u0435 \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0435!"
+    type: Fix
+  id: 973
+  time: '2025-04-06T09:29:37.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1670
