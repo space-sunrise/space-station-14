@@ -20,7 +20,7 @@
   id: BulletPistol
   damage:
     types:
-      Piercing: 13
+      Piercing: 16
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -55,8 +55,8 @@
   id: BulletPistolUranium
   damage:
     types:
-      Radiation: 5
-      Piercing: 8
+      Radiation: 6
+      Piercing: 10
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -67,7 +67,7 @@
   id: BulletRifle
   damage:
     types:
-      Piercing: 14
+      Piercing: 17
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -103,7 +103,7 @@
   damage:
     types:
       Radiation: 7
-      Piercing: 8
+      Piercing: 10
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -114,8 +114,8 @@
   id: BulletMagnum
   damage:
     types:
-      Piercing: 25
-      Blunt: 5
+      Piercing: 27
+      Blunt: 8
   staminaDamage: 12
   collisionMask: BulletImpassable
   reflective: NonEnergy
@@ -151,7 +151,7 @@
   id: BulletMagnumAP
   damage:
     types:
-      Piercing: 22
+      Piercing: 26
   ignoreResistances: true
   collisionMask: BulletImpassable
   reflective: NonEnergy
@@ -163,7 +163,7 @@
   id: BulletMagnumUranium
   damage:
     types:
-      Radiation: 10
+      Radiation: 15
       Piercing: 20
   collisionMask: BulletImpassable
   reflective: NonEnergy
@@ -175,7 +175,7 @@
   id: BulletLightRifle
   damage:
     types:
-      Piercing: 15
+      Piercing: 19
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -210,8 +210,8 @@
   id: BulletLightRifleUranium
   damage:
     types:
-      Radiation: 7
-      Piercing: 8
+      Radiation: 9
+      Piercing: 10
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -222,7 +222,7 @@
   id: BulletHeavyRifle
   damage:
     types:
-      Piercing: 16
+      Piercing: 19
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -332,7 +332,7 @@
   id: PelletShotgun
   damage:
     types:
-      Piercing: 8
+      Piercing: 10
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
