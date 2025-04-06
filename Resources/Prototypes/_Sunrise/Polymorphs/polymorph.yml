@@ -89,7 +89,7 @@
   configuration:
     entity: MobVulpkaninRandomization
     forced: true
-    transferName: true
+    transferName: true 
     inventory: Transfer
     revertOnCrit: false
     revertOnDeath: false
