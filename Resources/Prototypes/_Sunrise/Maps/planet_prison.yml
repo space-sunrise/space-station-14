@@ -18,7 +18,7 @@
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
             PrisonPilot: [ 1, 1 ]
-            PrisonDoctor: [ 3, 3 ]
+            PrisonDoctor: [ 2, 3 ]
             PrisonChef: [ 1, 1 ]
             PrisonWorker: [ 2, 3 ]
             PrisonEngineer: [ 2, 3 ]
