@@ -14,6 +14,14 @@
     - type: MindShield
     - type: AntagImmune
 
+- type: randomHumanoidSettings
+  id: EventHumanoidCentcomm
+  parent: EventHumanoidMindShielded
+  components:
+  - type: AutoImplant
+    implants:
+    - DeathRattleImplantCentcomm
+
 ## Death Squad
 
 - type: entity
@@ -33,6 +41,7 @@
 
 - type: randomHumanoidSettings
   id: DeathSquad
+  parent: EventHumanoidCentcomm
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -46,7 +55,6 @@
   - Demon
   - SlimePerson
   - Dwarf
-  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -85,6 +93,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeader
+  parent: EventHumanoidCentcomm
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -98,7 +107,6 @@
   - Demon
   - SlimePerson
   - Dwarf
-  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -695,6 +703,7 @@
 
 - type: randomHumanoidSettings
   id: CBURNAgent
+  parent: EventHumanoidCentcomm
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -708,7 +717,6 @@
   - Demon
   - SlimePerson
   - Dwarf
-  parent: EventHumanoidMindShielded
   components:
     - type: Loadout
       prototypes: [CBURNGear]
@@ -738,6 +746,7 @@
 
 - type: randomHumanoidSettings
   id: CentcomOfficial
+  parent: EventHumanoidCentcomm
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -745,7 +754,6 @@
   - Moth
   - Arachnid
   - Reptilian
-  parent: EventHumanoidMindShielded
   components:
     - type: GhostRole
       name: ghost-role-information-centcom-official-name

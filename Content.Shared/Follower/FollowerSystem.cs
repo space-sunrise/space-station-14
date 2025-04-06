@@ -20,6 +20,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Follower;
@@ -35,6 +36,8 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+
+    private static readonly ProtoId<TagPrototype> ForceableFollowTag = "ForceableFollow";
 
     public override void Initialize()
     {
@@ -127,7 +130,7 @@ public sealed class FollowerSystem : EntitySystem
             ev.Verbs.Add(verb);
         }
 
-        if (_tagSystem.HasTag(ev.Target, "ForceableFollow"))
+        if (_tagSystem.HasTag(ev.Target, ForceableFollowTag))
         {
             if (!ev.CanAccess || !ev.CanInteract)
                 return;
