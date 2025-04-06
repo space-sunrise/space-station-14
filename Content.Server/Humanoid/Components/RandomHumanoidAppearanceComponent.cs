@@ -1,6 +1,6 @@
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
-using Content.Shared.Humanoid.Markings; // Sunrise-HairColor
+using Content.Shared.Humanoid.Markings; // Sunrise-Edit
 
 namespace Content.Server.CharacterAppearance.Components;
 
