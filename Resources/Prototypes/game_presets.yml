@@ -194,8 +194,7 @@
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
   - Nukeops
-  - DummyNonAntagChance
-  - SubGamemodesRule
+  - DummyNonAntagChance #sunrise-edit
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
