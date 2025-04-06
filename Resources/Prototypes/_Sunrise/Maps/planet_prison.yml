@@ -24,7 +24,7 @@
             PrisonEngineer: [ 2, 3 ]
             PrisonGuard: [ 20, -1 ]
             PlanetPrisoner: [ 6, 6 ]
-        - type: OtherJobsTakenRequirement
-          targetJob: PrisonGuard
-          adjustJob: PlanetPrisoner
-          modifier: 2 # один охранник - двое заключенных
+        - type: RelativeJobsCount
+          jobs:
+            PlanetPrisoner:
+              PrisonGuard: 2
