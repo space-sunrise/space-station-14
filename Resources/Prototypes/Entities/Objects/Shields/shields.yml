@@ -104,7 +104,7 @@
           Heat: 1
   # Sunrise-Start
     - type: Reflect
-      reflectProb: 0.75
+      reflectProb: 0.25
       reflects:
       - Energy
       needHand: true
