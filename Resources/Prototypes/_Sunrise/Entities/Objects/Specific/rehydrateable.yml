@@ -41,4 +41,4 @@
   components:
   - type: Rehydratable
     possibleSpawns:
-    - MobFelinid
+    - MobFelinidRandomization
