@@ -27,8 +27,29 @@
   save: false
   name: Player felinid
   parent: MobBaseSyndicateFelinidWhite
+  id: MobFelinidSyndicateAgentWhite
+  suffix: syndicate agent white
+  components:
+    # make the player a traitor once its taken
+  - type: AutoTraitor
+    profile: TraitorReinforcement
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinidWhite
+  id: MobFelinidSyndicateAgentNukeopsWhite
+  suffix: NukeOpsWhite
+  components:
+  - type: NukeOperative
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinidWhite
   id: MobBaseSyndicateFelinid
   suffix: syndicate agent
+  abstract: true
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
