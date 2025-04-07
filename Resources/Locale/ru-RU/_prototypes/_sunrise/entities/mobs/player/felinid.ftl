@@ -1,11 +1,11 @@
 ent-MobFelinid = Урист МакФелинид
     .desc = { ent-MobFelinidBase.desc }
 ent-MobBaseSyndicateFelinid = { ent-MobFelinidBase }
-    .suffix = syndicate base
+    .suffix = синдикат
     .desc = { ent-MobFelinidBase.desc }
 ent-MobFelinidSyndicateAgent = фелинид
     .desc = { ent-MobFelinidBase.desc }
-    .suffix = syndicate agent
+    .suffix = агент синдиката
 ent-MobFelinidSyndicateAgentNukeops = { ent-MobFelinidSyndicateAgent }
     .desc = { ent-MobFelinidBase.desc }
-    .suffix = NukeOps
+    .suffix = Ядерные Оперативники

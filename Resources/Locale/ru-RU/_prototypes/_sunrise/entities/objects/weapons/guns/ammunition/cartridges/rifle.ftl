@@ -1,5 +1,9 @@
-ent-CartridgeRifleRubber = cartridge (.20 rifle rubber)
-    .desc = { ent-BaseCartridgeRifle.desc }
+ent-BulletRifleRubber = патрон (.20 резиновый)
+    .desc = { ent-BaseBullet.desc }
+ent-BulletRifleRubberHighVelocity = патрон (.20 резиновый высокоскоростной)
+    .desc = { ent-BaseBullet.desc }
+ent-BulletRifleRubberHighVelocityPractice = патрон (.20 резиновый высокоскоростной учебный)
+    .desc = { ent-BaseBullet.desc }
 ent-CartridgeRail = патрон (рельсотрон)
     .desc = { ent-BaseCartridgeRifleRocket20.desc }
 ent-BaseCartridgeRifleRocket20 = патрон (рельсотрон)

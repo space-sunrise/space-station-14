@@ -1,2 +1,2 @@
-ent-SecBreachingHammer = breaching hammer
-    .desc = A large, heavy hammer with a long handle, used for breaking stones or other heavy material such as the skulls of violent criminals, also perfect for forcing your way trough airlocks.
+ent-SecBreachingHammer = таран
+    .desc = Большой тяжелый молот с длинной рукоятью, используемый для разрушения камней или других тяжелых материалов, таких как черепа буйных преступников, также идеально подходит для взлома шлюзов.

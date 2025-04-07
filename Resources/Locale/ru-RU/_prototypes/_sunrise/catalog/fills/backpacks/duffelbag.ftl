@@ -1,4 +1,4 @@
-ent-ClothingBackpackDuffelSyndicateFilledBauer = Bauer-127 bundle
+ent-ClothingBackpackDuffelSyndicateFilledBauer = комплект Бауэр-127
     .desc = The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Набор MP5
     .desc = Mp5 c 2мя магазинами.
