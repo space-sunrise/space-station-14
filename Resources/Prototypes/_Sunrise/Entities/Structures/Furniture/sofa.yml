@@ -1,0 +1,125 @@
+- type: entity
+  name: sofa
+  id: SofaBaseMiddle
+  abstract: true
+  parent: SeatBase
+  description: Nap throne for the snack-powered royalty.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/sofa.rsi
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+
+- type: entity
+  name: sofa
+  id: SofaMiddle
+  parent: SofaBaseMiddle
+  components:
+  - type: Sprite
+    state: sofamiddle
+  - type: Construction
+    graph: Sofas
+    node: sofaMiddle
+
+- type: entity
+  id: SofaLeft
+  parent: SofaMiddle
+  components:
+  - type: Sprite
+    state: sofaend_left
+  - type: Construction
+    graph: Sofas
+    node: sofaLeft
+
+- type: entity
+  id: SofaRight
+  parent: SofaMiddle
+  components:
+  - type: Sprite
+    state: sofaend_right
+  - type: Construction
+    graph: Sofas
+    node: sofaRight
+
+- type: entity
+  name: sofa
+  id: SofaCorner
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/sofa.rsi
+    state: sofacorner
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Pullable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Construction
+    graph: Sofas
+    node: sofaCorner
+
+- type: entity
+  name: black sofa
+  id: CorpSofaMiddle
+  parent: SofaBaseMiddle
+  components:
+  - type: Sprite
+    state: corp_sofamiddle
+  - type: Construction
+    graph: Sofas
+    node: corpsofaMiddle
+
+- type: entity
+  id: CorpSofaLeft
+  parent: CorpSofaMiddle
+  components:
+  - type: Sprite
+    state: corp_sofaend_left
+  - type: Construction
+    graph: Sofas
+    node: corpsofaLeft
+
+- type: entity
+  id: CorpSofaRight
+  parent: CorpSofaMiddle
+  components:
+  - type: Sprite
+    state: corp_sofaend_right
+  - type: Construction
+    graph: Sofas
+    node: corpsofaRight
+
+- type: entity
+  id: CorpSofaCorner
+  parent: SofaCorner
+  components:
+  - type: Sprite
+    state: corp_sofacorner
+  - type: Construction
+    graph: Sofas
+    node: corpsofaCorner
