@@ -214,7 +214,6 @@
   rules:
   - DummyNonAntagChance
   - Revolutionary
-  - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
