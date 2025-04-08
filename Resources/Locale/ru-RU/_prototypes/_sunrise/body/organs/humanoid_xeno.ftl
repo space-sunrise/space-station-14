@@ -20,5 +20,5 @@ ent-OrganHumanoidXenoLiver = печень
     .desc = Мощный детоксикатор, с лёгкостью нейтрализующий опасные вещества.
 ent-OrganHumanoidXenoKidneys = почки
     .desc = Парные фильтры, безжалостно выводящие всё лишнее.
-ent-OrganHumanoidXenoEyes = eyes
-    .desc = Eyes. They see
+ent-OrganHumanoidXenoEyes = глаза
+    .desc = Глаза. Они видят

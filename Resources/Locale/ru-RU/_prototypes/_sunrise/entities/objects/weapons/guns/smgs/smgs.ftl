@@ -18,5 +18,5 @@ ent-WeaponAJ100 = AJ-100
     .desc = Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
 ent-WeaponSIAR52 = пистолет-пулемёт SIAR-52
     .desc = Высокоскорострельный ПП, оборудован интегрированым глушителем.
-ent-UplinkSubMachineGunUzi = Uzi
-    .desc = A compact and reliable submachine gun.
+ent-UplinkSubMachineGunUzi = Узи
+    .desc = Компактный и надежный пистолет-пулемет.

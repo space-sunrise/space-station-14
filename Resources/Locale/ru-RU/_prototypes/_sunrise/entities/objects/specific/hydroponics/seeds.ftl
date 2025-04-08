@@ -1,6 +1,6 @@
-ent-ExplosiveBananaSeeds = packet of explosive banana
+ent-ExplosiveBananaSeeds = пакет семян взрывного банана
     .desc = { ent-SeedBase.desc }
-ent-CoffeeArabicaSeeds = packet of coffee arabica
+ent-CoffeeArabicaSeeds = пакет семян кофе арабика
     .desc = { ent-SeedBase.desc }
-ent-CoffeeRobustSeeds = packet of coffee robust
+ent-CoffeeRobustSeeds = пакет семян кофе робуста
     .desc = { ent-SeedBase.desc }
