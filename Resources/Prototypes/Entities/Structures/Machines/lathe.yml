@@ -406,6 +406,8 @@
     - SecurityWeaponsStatic
     - SecurityStaticSunrise # Sunrise-Add
     dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives

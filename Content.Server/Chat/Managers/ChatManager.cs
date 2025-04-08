@@ -238,16 +238,17 @@ internal sealed partial class ChatManager : IChatManager
 
     private void SendOOC(ICommonSession player, string message)
     {
-        if (_adminManager.IsAdmin(player))
+        if (!_oocEnabled)
         {
-            if (!_adminOocEnabled)
+            if (_adminManager.IsAdmin(player))
+            {
+                if (!_adminOocEnabled)
+                    return;
+            }
+            else
             {
                 return;
             }
-        }
-        else if (!_oocEnabled)
-        {
-            return;
         }
 
         Color? colorOverride = null;

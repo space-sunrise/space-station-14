@@ -10,8 +10,8 @@
       state: ntrleader
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - NamesLastMilitary
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: NtrLeader
 
@@ -45,8 +45,8 @@
       roleLoadout: [ RoleSurvivalExtended ]
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - NamesLastMilitary
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
 
 ### NTR Guard
 
@@ -61,8 +61,8 @@
       state: ntrguard
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: NtrGuard
 
@@ -92,8 +92,8 @@
       job: NtrGuard
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: Loadout
       prototypes: [ NtrGuardGear ]
       roleLoadout: [ RoleSurvivalExtended ]

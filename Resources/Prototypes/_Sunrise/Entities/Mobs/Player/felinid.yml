@@ -12,6 +12,10 @@
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
+    hair: HumanHairBigafro
+    skinColor: "#331500FF"
+    hairColor: "#331500FF"
+    facialHairColor: "#331500FF" #На случай если вдруг появится борода.
   - type: NpcFactionMember
     factions:
     - Syndicate

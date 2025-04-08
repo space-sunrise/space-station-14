@@ -10,14 +10,14 @@
       state: ertleader
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - NamesLastMilitary
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTLeaderAmber
 
 - type: randomHumanoidSettings
   id: ERTLeaderAmber
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -44,8 +44,8 @@
       prototypes: [ ERTLeaderGearAmber ]
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - NamesLastMilitary
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderRed
@@ -61,7 +61,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderRed
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -96,7 +96,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderGamma
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -134,14 +134,14 @@
       state: ertsecurity
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTSecurityAmber
 
 - type: randomHumanoidSettings
   id: ERTSecurityAmber
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -165,22 +165,22 @@
       job: ERTSecurity
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTSecurityGearAmber ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityGamma
   parent: RandomHumanoidSpawnerERTSecurityAmber
-  suffix: ERTRole, Gamma 
+  suffix: ERTRole, Gamma
   components:
     - type: RandomHumanoidSpawner
       settings: ERTSecurityGamma
 
 - type: randomHumanoidSettings
   id: ERTSecurityGamma
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -218,14 +218,14 @@
       state: chaplain #needs an ERT variant once a good suit it made.
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTChaplainAmber
 
 - type: randomHumanoidSettings
   id: ERTChaplainAmber
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -250,8 +250,8 @@
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTChaplainGearAmber ]
 
@@ -268,14 +268,14 @@
       state: ertjanitor
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTJanitorAmber
 
 - type: randomHumanoidSettings
   id: ERTJanitorAmber
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -299,8 +299,8 @@
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTJanitorGearAmber ]
 
@@ -308,7 +308,7 @@
   id: RandomHumanoidSpawnerERTJanitorGamma
   parent: RandomHumanoidSpawnerERTJanitorAmber
   name: ERT janitor
-  suffix: ERTRole, Gamma 
+  suffix: ERTRole, Gamma
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -318,7 +318,7 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitorGamma
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -356,14 +356,14 @@
       state: ertengineer
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTEngineerAmber
 
 - type: randomHumanoidSettings
   id: ERTEngineerAmber
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -387,8 +387,8 @@
       job: ERTEngineer
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTEngineerGearAmber ]
 
@@ -396,7 +396,7 @@
   id: RandomHumanoidSpawnerERTEngineerGamma
   parent: RandomHumanoidSpawnerERTEngineerAmber
   name: ERT engineer
-  suffix: ERTRole, Gamma 
+  suffix: ERTRole, Gamma
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -406,7 +406,7 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineerGamma
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -444,14 +444,14 @@
       state: ertmedical
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTMedicalAmber
 
 - type: randomHumanoidSettings
   id: ERTMedicalAmber
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid
@@ -475,8 +475,8 @@
       job: ERTMedical
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - NamesLastMilitary
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTMedicalGearAmber ]
 
@@ -484,7 +484,7 @@
   id: RandomHumanoidSpawnerERTMedicalGamma
   parent: RandomHumanoidSpawnerERTMedicalAmber
   name: ERT medic
-  suffix: ERTRole, Gamma 
+  suffix: ERTRole, Gamma
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -494,7 +494,7 @@
 
 - type: randomHumanoidSettings
   id: ERTMedicalGamma
-  speciesBlacklist: 
+  speciesBlacklist:
   - Diona
   - Vox
   - Felinid

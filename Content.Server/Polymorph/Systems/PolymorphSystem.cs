@@ -22,6 +22,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// Sunrise-Start
+using Content.Shared.EntityEffects; 
+using Content.Shared.Mind.Components;
+// Sunrise-End
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -183,6 +187,14 @@ public sealed partial class PolymorphSystem : EntitySystem
     /// <returns></returns>
     public EntityUid? PolymorphEntity(EntityUid uid, PolymorphConfiguration configuration)
     {
+        // Sunrise-Start
+        if (configuration.BlockIfHasMind 
+            && TryComp<MindContainerComponent>(uid, out var mindContainer) 
+            && mindContainer.HasMind)
+        {
+            return null;
+        }
+        // Sunrise-End
         // if it's already morphed, don't allow it again with this condition active.
         if (!configuration.AllowRepeatedMorphs && HasComp<PolymorphedEntityComponent>(uid))
             return null;
