@@ -15,6 +15,7 @@ namespace Content.Client.Administration.UI.Bwoink
         public int Unread { get; private set; } = 0;
         public DateTime LastMessage { get; private set; } = DateTime.MinValue;
         private List<string> PeopleTyping { get; set; } = new();
+        public bool LoadDb { get; set; } = false;
         public event Action<string>? InputTextChanged;
 
         public BwoinkPanel(Action<string> messageSender)

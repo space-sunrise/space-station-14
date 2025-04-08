@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
+using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -358,6 +359,16 @@ namespace Content.Server.Database
         /// </remarks>
         /// <param name="notification">The notification to send.</param>
         Task SendNotification(DatabaseNotification notification);
+
+        #endregion
+
+        #region Ahelp
+
+        Task AddAHelpMessage(Guid senderSessionUserId, Guid messageUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly);
+
+        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverListAsync(List<Guid> receiverUserIds);
+
+        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId);
 
         #endregion
     }
@@ -1039,6 +1050,24 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
+        }
+
+        public Task AddAHelpMessage(Guid senderUserId, Guid receiverUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddAHelpMessage(senderUserId, receiverUserId, message, sentAt, playSound, adminOnly));
+        }
+
+        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverListAsync(List<Guid> receiverUserIds)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAHelpMessagesByReceiverListAsync(receiverUserIds));
+        }
+
+        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAHelpMessagesByReceiverAsync(receiverUserId));
         }
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)

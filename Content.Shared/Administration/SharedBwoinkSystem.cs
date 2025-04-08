@@ -26,6 +26,28 @@ namespace Content.Shared.Administration
         }
 
         [Serializable, NetSerializable]
+        public sealed class BwoinkRequestDbMessages : EntityEventArgs
+        {
+            public bool Admin { get; }
+
+            public BwoinkRequestDbMessages(bool admin)
+            {
+                Admin = admin;
+            }
+        }
+
+        [Serializable, NetSerializable]
+        public sealed class BwoinkDbLoadedMessage : EntityEventArgs
+        {
+            public NetUserId UserId { get; }
+
+            public BwoinkDbLoadedMessage(NetUserId userId)
+            {
+                UserId = userId;
+            }
+        }
+
+        [Serializable, NetSerializable]
         public sealed class BwoinkTextMessage : EntityEventArgs
         {
             public DateTime SentAt { get; }
@@ -42,7 +64,15 @@ namespace Content.Shared.Administration
 
             public readonly bool AdminOnly;
 
-            public BwoinkTextMessage(NetUserId userId, NetUserId trueSender, string text, DateTime? sentAt = default, bool playSound = true, bool adminOnly = false)
+            public readonly bool DbLoad;
+
+            public BwoinkTextMessage(NetUserId userId,
+                NetUserId trueSender,
+                string text,
+                DateTime? sentAt = default,
+                bool playSound = true,
+                bool adminOnly = false,
+                bool dbLoad = false)
             {
                 SentAt = sentAt ?? DateTime.Now;
                 UserId = userId;
@@ -50,6 +80,7 @@ namespace Content.Shared.Administration
                 Text = text;
                 PlaySound = playSound;
                 AdminOnly = adminOnly;
+                DbLoad = dbLoad;
             }
         }
     }

@@ -122,6 +122,7 @@ namespace Content.Server.Administration.Systems
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
+            SubscribeNetworkEvent<BwoinkRequestDbMessages>(OnRequestDbMessages);
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _activeConversations.Clear());
 
         	_rateLimit.Register(
@@ -205,6 +206,44 @@ namespace Content.Server.Administration.Systems
                 SessionStatus.Disconnected => Loc.GetString("bwoink-system-player-disconnecting"),
                 _ => null
             };
+
+            if (e.NewStatus == SessionStatus.Connected)
+            {
+                var admins = GetTargetAdmins();
+                var messages = await _dbManager.GetAHelpMessagesByReceiverAsync(e.Session.UserId);
+
+                foreach (var aHelpMessage in messages)
+                {
+                    var formatMessage = await FormatDbAhelpMessage(
+                        aHelpMessage.Message,
+                        (NetUserId) aHelpMessage.SenderUserId,
+                        aHelpMessage.PlaySound,
+                        aHelpMessage.AdminOnly);
+
+                    var bwoinkTextMessage = new BwoinkTextMessage(
+                        (NetUserId) aHelpMessage.ReceiverUserId,
+                        (NetUserId) aHelpMessage.SenderUserId,
+                        formatMessage,
+                        playSound: aHelpMessage.PlaySound,
+                        adminOnly: aHelpMessage.AdminOnly,
+                        dbLoad: true);
+
+                    foreach (var channel in admins)
+                    {
+                        if (channel.UserId == e.Session.UserId)
+                            continue;
+                        RaiseNetworkEvent(bwoinkTextMessage, channel);
+                    }
+                }
+
+                foreach (var channel in admins)
+                {
+                    if (channel.UserId == e.Session.UserId)
+                        continue;
+                    var loaded = new BwoinkDbLoadedMessage(e.Session.UserId);
+                    RaiseNetworkEvent(loaded, channel);
+                }
+            }
 
             if (message != null)
             {
@@ -344,6 +383,121 @@ namespace Content.Server.Administration.Systems
 
                 RaiseNetworkEvent(update, admin);
             }
+        }
+
+        private async void OnRequestDbMessages(BwoinkRequestDbMessages msg, EntitySessionEventArgs args)
+        {
+            if (msg.Admin && _adminManager.IsAdmin(args.SenderSession, true))
+            {
+                var userIds = _playerManager.Sessions.Select(session => (Guid) session.UserId).ToList();
+                var messages = await _dbManager.GetAHelpMessagesByReceiverListAsync(userIds);
+
+                var groupedMessages = messages.GroupBy(m => m.ReceiverUserId);
+
+                foreach (var group in groupedMessages)
+                {
+                    foreach (var aHelpMessage in group)
+                    {
+                        var formatMessage = await FormatDbAhelpMessage(
+                            aHelpMessage.Message,
+                            (NetUserId)aHelpMessage.SenderUserId,
+                            aHelpMessage.PlaySound,
+                            aHelpMessage.AdminOnly);
+
+                        var bwoinkTextMessage = new BwoinkTextMessage(
+                            (NetUserId)aHelpMessage.ReceiverUserId,
+                            (NetUserId)aHelpMessage.SenderUserId,
+                            formatMessage,
+                            playSound: aHelpMessage.PlaySound,
+                            adminOnly: aHelpMessage.AdminOnly,
+                            dbLoad: true);
+
+                        RaiseNetworkEvent(bwoinkTextMessage, args.SenderSession.Channel);
+                    }
+
+                    var loaded = new BwoinkDbLoadedMessage((NetUserId)group.Key);
+                    RaiseNetworkEvent(loaded, args.SenderSession.Channel);
+                }
+            }
+            else
+            {
+                var messages = await _dbManager.GetAHelpMessagesByReceiverAsync(args.SenderSession.UserId);
+
+                foreach (var aHelpMessage in messages)
+                {
+                    var formatMessage = await FormatDbAhelpMessage(
+                        aHelpMessage.Message,
+                        (NetUserId) aHelpMessage.SenderUserId,
+                        aHelpMessage.PlaySound,
+                        aHelpMessage.AdminOnly);
+
+                    var bwoinkTextMessage = new BwoinkTextMessage(
+                        (NetUserId) aHelpMessage.ReceiverUserId,
+                        (NetUserId) aHelpMessage.SenderUserId,
+                        formatMessage,
+                        playSound: aHelpMessage.PlaySound,
+                        adminOnly: aHelpMessage.AdminOnly,
+                        dbLoad: true);
+
+                    RaiseNetworkEvent(bwoinkTextMessage, args.SenderSession.Channel);
+                }
+
+                var loaded = new BwoinkDbLoadedMessage(args.SenderSession.UserId);
+                RaiseNetworkEvent(loaded, args.SenderSession.Channel);
+            }
+        }
+
+        private async Task<string> FormatDbAhelpMessage(string message, NetUserId senderUserId,
+            bool playSound = true, bool adminOnly = false)
+        {
+            var senderAdmin = await _adminManager.LoadAdminData(senderUserId);
+            var senderData = await _dbManager.GetPlayerRecordByUserId(senderUserId);
+            var username = "";
+            if (senderData != null)
+            {
+                username = senderData.LastSeenUserName;
+            }
+
+            string bwoinkText;
+            string adminPrefix = "";
+
+            if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdmin is not null && senderAdmin.Value.dat.Title is not null)
+            {
+                adminPrefix = $"[bold]\\[{senderAdmin.Value.dat.Title}\\][/bold] ";
+            }
+
+            if (senderAdmin is not null &&
+                senderAdmin.Value.dat.Flags ==
+                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+            {
+                bwoinkText = $"[color=purple]{adminPrefix}{username}[/color]";
+            }
+            else if (senderAdmin is not null && senderAdmin.Value.dat.Flags.HasFlag(AdminFlags.Adminhelp))
+            {
+                bwoinkText = $"[color=red]{adminPrefix}{username}[/color]";
+            }
+            else if (_sponsorsManager != null)
+            {
+                _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
+                _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
+                var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
+                if (oocColor != null)
+                {
+                    bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {username}[/color]";
+                }
+                else
+                {
+                    bwoinkText = $"{sponsorTitle} {username}";
+                }
+            }
+            else
+            {
+                bwoinkText = $"{username}";
+            }
+
+            var escapedText = FormattedMessage.EscapeText(message);
+
+            return $"{(adminOnly ? Loc.GetString("bwoink-message-admin-only") : !playSound ? Loc.GetString("bwoink-message-silent") : "")} {bwoinkText}: {escapedText}";
         }
 
         private void OnServerNameChanged(string obj)
@@ -728,6 +882,9 @@ namespace Content.Server.Administration.Systems
             // Sunrise-Sponsors-End
 
             LogBwoink(msg);
+
+            var sentAt = DateTimeOffset.UtcNow;
+            _dbManager.AddAHelpMessage(senderSession.UserId, message.UserId, message.Text, sentAt, message.PlaySound, message.AdminOnly);
 
             var admins = GetTargetAdmins();
 

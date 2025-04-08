@@ -1746,6 +1746,49 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #endregion
 
+
+        # region Ahelp
+
+        public async Task AddAHelpMessage(Guid senderUserId, Guid receiverUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly)
+        {
+            await using var db = await GetDb();
+            var ahelpMessage = new AHelpMessage
+            {
+                SenderUserId = senderUserId,
+                ReceiverUserId = receiverUserId,
+                Message = message,
+                SentAt = sentAt,
+                PlaySound = playSound,
+                AdminOnly = adminOnly
+            };
+            db.DbContext.AHelpMessages.Add(ahelpMessage);
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<AHelpMessage>> GetAHelpMessagesByReceiverListAsync(List<Guid> receiverUserIds)
+        {
+            await using var db = await GetDb();
+
+            var messages = await db.DbContext.AHelpMessages
+                .Where(m => receiverUserIds.Contains(m.ReceiverUserId))
+                .ToListAsync();
+
+            return messages;
+        }
+
+        public async Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId)
+        {
+            await using var db = await GetDb();
+
+            var messages = await db.DbContext.AHelpMessages
+                .Where(m => m.ReceiverUserId == receiverUserId)
+                .ToListAsync();
+
+            return messages;
+        }
+
+        # endregion
+
         # region IPIntel
 
         public async Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score)
