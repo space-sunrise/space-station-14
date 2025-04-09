@@ -12,6 +12,7 @@
     - type: Sprite
       sprite: Structures/Furniture/rollerbeds.rsi
       noRot: true
+      drawdepth: Puddles #Sunrise-add
       layers:
       - state: rollerbed
         map: ["unfoldedLayer"]

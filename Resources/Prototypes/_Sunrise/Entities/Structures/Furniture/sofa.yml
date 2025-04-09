@@ -12,6 +12,7 @@
   - type: Rotatable
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/sofa.rsi
+    drawdepth: Puddles
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -59,6 +60,7 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/sofa.rsi
     state: sofacorner
+    drawdepth: Puddles
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
