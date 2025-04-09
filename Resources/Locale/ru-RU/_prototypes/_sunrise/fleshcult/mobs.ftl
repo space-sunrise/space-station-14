@@ -1,5 +1,5 @@
-ent-BaseMobFleshCult = flesh mob
-    .desc = A shambling mass of flesh, animated through anomalous energy.
+ent-BaseMobFleshCult = сущность из плоти
+    .desc = Шаркающая масса плоти, оживленная аномальной энергией.
 ent-MobFleshSpider = тарантул из плоти
     .desc = Очень похоже на паука, только вывернутого наизнанку
 ent-MobFleshPudge = толстяк из плоти

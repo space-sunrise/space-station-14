@@ -1,7 +1,7 @@
 - type: gameMap
   id: SunrisePacked
   mapName: 'Packed'
-  mapPath: /Maps/packed.yml
+  mapPath: /Maps/_Sunrise/Station/packed.yml
   minPlayers: 7
   maxPlayers: 35
   stations:

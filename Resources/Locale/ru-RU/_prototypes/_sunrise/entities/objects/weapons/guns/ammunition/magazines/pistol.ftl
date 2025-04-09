@@ -14,5 +14,5 @@ ent-MagazineMP7Extended = расширенный магазин MP7
     .desc = { ent-MagazineMP7.desc }
 ent-MagazineP90Extended = расширенный магазин P90
     .desc = { ent-MagazineP90.desc }
-ent-MagazineGlock22 = Glock22 magazine
+ent-MagazineGlock22 = магазин Glock22
     .desc = { ent-BaseItem.desc }
