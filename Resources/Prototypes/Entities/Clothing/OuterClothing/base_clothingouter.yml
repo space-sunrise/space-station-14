@@ -149,7 +149,6 @@
         Radiation: 0.25
     # Sunrise start
     staminaModifier: 0.8 
-    ingoreKnockdown: true 
     # Sunrise end
   - type: ToggleableClothing
     slot: head

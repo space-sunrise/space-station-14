@@ -56,6 +56,7 @@ public sealed partial class VampireSystem
         SubscribeLocalEvent<VampireComponent, VampireUnholyStrengthEvent>(OnVampireUnholyStrength);
         SubscribeLocalEvent<VampireComponent, VampireSupernaturalStrengthEvent>(OnVampireSupernaturalStrength);
         SubscribeLocalEvent<VampireComponent, VampireCloakOfDarknessEvent>(OnVampireCloakOfDarkness);
+        SubscribeLocalEvent<VampireComponent, VampireBloodScaleEvent>(OnVampireBloodScale);
         SubscribeLocalEvent<VampireComponent, VampireThermalVisionEvent>(OnVampireThermalVision);
 
         //Hypnotise
@@ -214,7 +215,43 @@ public sealed partial class VampireSystem
 
         ev.Handled = true;
     }
-    private void OnVampireThermalVision(EntityUid entity, VampireComponent component, VampireThermalVisionEvent ev)
+    private void OnVampireBloodScale(EntityUid entity, VampireComponent component, VampireBloodScaleEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+            return;
+
+        var vampire = new Entity<VampireComponent>(entity, component);
+
+        if (!IsAbilityUsable(vampire, def))
+            return;
+
+        ToggleBloodScale(entity, vampire);
+        var scale = EnsureComp<VampireBloodScaleComponent>(vampire);
+        scale.Upkeep = 4f;
+
+        ev.Handled = true;
+    }
+
+    private void ToggleBloodScale(EntityUid uid, VampireComponent comp)
+    {
+        var scale = EnsureComp<VampireBloodScaleComponent>(uid);
+        if (!comp.BloodScaleActive)
+        {
+            _speed.ChangeBaseSpeed(uid, 4.5f, 6f, 20f);
+            _popup.PopupEntity(Loc.GetString("blood-scale-start"), uid, uid);
+            comp.BloodScaleActive = true;
+            scale.IsActive = true;
+        }
+        else
+        {
+            _speed.ChangeBaseSpeed(uid, 2.5f, 4.5f, 20f);
+            _popup.PopupEntity(Loc.GetString("blood-scale-end"), uid, uid);
+            comp.BloodScaleActive = false;
+            scale.IsActive = false;
+        }
+    }
+
+        private void OnVampireThermalVision(EntityUid entity, VampireComponent component, VampireThermalVisionEvent ev)
     {
         if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
             return;

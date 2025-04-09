@@ -1,9 +1,9 @@
 - type: voteRandom
   id: SunriseVoteSecret
   chances:
-    Traitor: 0.30
+    Traitor: 0.40
     Extra: 0.20
-    Survival: 0.20
+    Survival: 0.10
     BloodCult: 0.15
     Revolutionary: 0.10
     Zombie: 0.10

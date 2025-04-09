@@ -8,11 +8,11 @@
   - SunriseBagel
   - SunriseMeta
   - SunrisePlasma
-  # Играбельна но требует небольшой доработки
-  #- SunriseOasis
+  - SunriseRelic
+  - SunrisePacked
+  - SunriseOasis
   # Неиграбельно
   #- SunriseReach
-  # Неиграбельно
   #- SunriseCorvaxGelta
   # SUNRISE-TODO: Старые-новые карты
   #- Glacier

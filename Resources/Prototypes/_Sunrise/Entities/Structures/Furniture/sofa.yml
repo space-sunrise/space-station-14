@@ -61,6 +61,7 @@
     sprite: _Sunrise/Structures/Furniture/sofa.rsi
     state: sofacorner
     drawdepth: Puddles
+
   - type: Clickable
   - type: InteractionOutline
   - type: Physics

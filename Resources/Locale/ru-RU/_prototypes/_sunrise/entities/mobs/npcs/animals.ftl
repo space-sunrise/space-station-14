@@ -9,5 +9,7 @@ ent-MobBaseSyndicateInferiorVulpkanin = { ent-MobBaseInferiorVulpkanin }
     .desc = { ent-MobBaseInferiorVulpkanin.desc }
 ent-MobInferiorVulpkaninSyndicateAgent = { ent-MobInferiorVulpkanin }
     .desc = { ent-BaseMobHuman.desc }
+    .suffix = syndicate agent
 ent-MobInferiorVulpkaninSyndicateAgentNukeops = { ent-MobInferiorVulpkanin }
     .desc = { ent-BaseMobHuman.desc }
+    .suffix = NukeOps

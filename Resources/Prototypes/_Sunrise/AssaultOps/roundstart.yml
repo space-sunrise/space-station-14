@@ -10,10 +10,6 @@
   - type: LoadMapRule
     gridPath: /Maps/_Sunrise/Shuttles/assaultops.yml
   - type: RuleGrids
-  - type: RandomMetadata
-    nameSegments:
-    - names_first
-    - names_last
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
@@ -33,11 +29,6 @@
       - RoleSurvivalAssaultOps
       components:
       - type: AssaultOperative
-      # SUNRISE-TODO: Рандомное имя подходящее под под и расу
-      - type: RandomMetadata
-        nameSegments:
-        - names_first
-        - names_last
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -53,11 +44,6 @@
       - RoleSurvivalAssaultOps
       components:
       - type: AssaultOperative
-      # SUNRISE-TODO: Рандомное имя подходящее под под и расу
-      - type: RandomMetadata
-        nameSegments:
-        - names_first
-        - names_last
       - type: NpcFactionMember
         factions:
         - Syndicate

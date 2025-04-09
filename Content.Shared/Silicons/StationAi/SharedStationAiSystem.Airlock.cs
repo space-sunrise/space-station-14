@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Doors.Components;
 using Robust.Shared.Serialization;
 using Content.Shared.Electrocution;
@@ -20,7 +21,8 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnAirlockBolt(EntityUid ent, DoorBoltComponent component, StationAiBoltEvent args)
     {
-        if (component.BoltWireCut)
+        if (component.BoltWireCut
+            || HasComp<RunicDoorComponent>(ent))
         {
             ShowDeviceNotRespondingPopup(args.User);
             return;
@@ -38,7 +40,8 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnAirlockEmergencyAccess(EntityUid ent, AirlockComponent component, StationAiEmergencyAccessEvent args)
     {
-        if (!PowerReceiver.IsPowered(ent))
+        if (!PowerReceiver.IsPowered(ent)
+            || HasComp<RunicDoorComponent>(ent))
         {
             ShowDeviceNotRespondingPopup(args.User);
             return;
@@ -55,6 +58,7 @@ public abstract partial class SharedStationAiSystem
         if (
             component.IsWireCut
             || !PowerReceiver.IsPowered(ent)
+            || HasComp<RunicDoorComponent>(ent)
         )
         {
             ShowDeviceNotRespondingPopup(args.User);

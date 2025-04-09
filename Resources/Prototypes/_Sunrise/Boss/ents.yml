@@ -130,13 +130,13 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: UserInterface
-    interfaces:
-      enum.HellSpawnArenaUiKey.Key:
-        type: HellSpawnArenaConsoleBoundUserInterface
-  - type: ActivatableUI
-    key: enum.HellSpawnArenaUiKey.Key
-  - type: HellSpawnConsole
+#  - type: UserInterface
+#    interfaces:
+#      enum.HellSpawnArenaUiKey.Key:
+#        type: HellSpawnArenaConsoleBoundUserInterface
+#  - type: ActivatableUI
+#    key: enum.HellSpawnArenaUiKey.Key
+#  - type: HellSpawnConsole
   - type: Godmode
   - type: BlockedTool
 

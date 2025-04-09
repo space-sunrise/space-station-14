@@ -1,4 +1,4 @@
-﻿sharpening-failed = Вы не можете заточить это
+sharpening-failed = Вы не можете заточить это
 sharpening-failed-blade = У оружия должно быть остреё
 sharpening-failed-double = Клинок уже заточен
 sharpening-success = Клинок успешно заточен

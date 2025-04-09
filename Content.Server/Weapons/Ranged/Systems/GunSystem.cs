@@ -4,7 +4,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Weapons.Ranged.Components;
-using Content.Shared._Sunrise.BloodCult.Events;
+using Content.Shared._Sunrise.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;

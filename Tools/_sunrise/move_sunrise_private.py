@@ -2,7 +2,7 @@ import os
 import shutil
 
 CLONE_DIR = "SunrisePrivate"
-TARGET_DIRS = ["Resources", "Content.Client", "Content.Server", "Content.Shared"]
+TARGET_DIRS = ["Resources", ".github", "Content.Client", "Content.Server", "Content.Shared", "Content.Packaging"]
 
 def merge_directories(src_dir, dst_dir):
     for item in os.listdir(src_dir):

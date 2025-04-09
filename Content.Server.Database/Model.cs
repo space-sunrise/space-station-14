@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<AHelpMessage> AHelpMessages { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1332,5 +1333,20 @@ namespace Content.Server.Database
         /// The score IPIntel returned
         /// </summary>
         public float Score { get; set; }
+    }
+
+    [Table("ahelp_messages"), Index(nameof(ReceiverUserId))]
+    public class AHelpMessage
+    {
+        [Key]
+        public int Id { get; set; }
+        [ForeignKey("Player")]
+        public Guid ReceiverUserId { get; set; }
+        [ForeignKey("Player")]
+        public Guid SenderUserId { get; set; }
+        public DateTimeOffset SentAt { get; set; }
+        [Required, MaxLength(4096)] public string Message { get; set; } = string.Empty;
+        public bool PlaySound { get; set; }
+        public bool AdminOnly { get; set; }
     }
 }

@@ -3,7 +3,7 @@
   mapName: 'Box Station'
   mapPath: /Maps/_Sunrise/Station/box.yml
   maxRandomOffset: 0
-  minPlayers: 30
+  minPlayers: 0
   randomRotation: false
   stations:
     Boxstation:

@@ -1,2 +1,2 @@
-﻿ent-CultistCuffs = теневые оковы
+ent-CultistCuffs = теневые оковы
     .desc = ...

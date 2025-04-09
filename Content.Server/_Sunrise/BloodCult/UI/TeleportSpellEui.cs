@@ -1,6 +1,7 @@
 ﻿using Content.Server._Sunrise.BloodCult.Runes.Comps;
 using Content.Server.EUI;
 using Content.Server.Popups;
+using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Eui;
@@ -119,7 +120,7 @@ public sealed class TeleportSpellEui : BaseEui
         _audio.PlayPvs(_teleportInSound, runeTransform.Coordinates);
         _audio.PlayPvs(_teleportOutSound, targetTransform.Coordinates);
         _transformSystem.SetCoordinates(_target, runeTransform.Coordinates);
-        var ev = new TeleportSpellUserEvent();
+        var ev = new TeleportSpellUsedEvent();
         _entityManager.EventBus.RaiseLocalEvent(_performer, ev);
         Close();
     }

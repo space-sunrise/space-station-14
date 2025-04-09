@@ -28,7 +28,9 @@
                 <ui:OptionSlider Name="SliderTtsRadio" Title="{Loc 'ui-options-tts-radio-volume'}" />
                 <ui:OptionSlider Name="SliderTtsAnnounce" Title="{Loc 'ui-options-tts-announce-volume'}" />
                 <CheckBox Name="TapePlayerClientCheckBox" Text="{Loc 'ui-options-tape-player-enabled'}" />
-                <CheckBox Name="JumpEnabledSoundCheckBox" Text="{Loc 'ui-options-jump-sound-enabled'}" />
+                <CheckBox Name="JumpSoundDisableCheckBox" Text="{Loc 'ui-options-jump-sound-disable'}" />
+                <CheckBox Name="VoteMusicDisableCheckBox" Text="{Loc 'ui-options-vote-music-disable'}" />
+                <CheckBox Name="MuteGhostRoleNotificationCheckBox" Text="{Loc 'ui-options-mute-new-ghost-roles'}" />
 
                 <!-- Graphics -->
                 <Label Text="{Loc 'ui-options-sunrise-general-graphics'}" StyleClasses="LabelKeyText"/>

@@ -47986,23 +47986,6 @@ entities:
     - pos: -31.482323,-59.165653
       parent: 6747
       type: Transform
-- proto: ClothingEyesGlassesThermal
-  entities:
-  - uid: 4698
-    components:
-    - pos: 5.579608,-78.26251
-      parent: 6747
-      type: Transform
-  - uid: 4699
-    components:
-    - pos: 5.558774,-78.43972
-      parent: 6747
-      type: Transform
-  - uid: 8530
-    components:
-    - pos: 32.511757,18.286886
-      parent: 6747
-      type: Transform
 - proto: ClothingHandsGlovesColorYellow
   entities:
   - uid: 4676

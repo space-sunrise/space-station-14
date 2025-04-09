@@ -1,0 +1,73 @@
+- type: entity
+  parent: MobHuman
+  id: MobHumanRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+    skinColor: "#E5BDA0FF"
+
+- type: entity
+  parent: MobReptilian
+  id: MobReptilianRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobTajaran
+  id: MobTajaranRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobSlimePerson
+  id: MobSlimePersonRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobMoth
+  id: MobMothRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobSwine
+  id: MobSwineRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobVox
+  id: MobVoxRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobVulpkanin
+  id: MobVulpkaninRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobFelinid
+  id: MobFelinidRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+    skinColor: "#E5BDA0FF"

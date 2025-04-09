@@ -38,7 +38,7 @@ namespace Content.Server.GameTicking
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
                     mind.Session = session;
-                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
+                    _pvsOverride.AddSessionOverride(mindId.Value, session);
                 }
 
                 DebugTools.Assert(mind.Session == session);
@@ -65,6 +65,8 @@ namespace Content.Server.GameTicking
                     // Sunrise-Queue-Start
                     if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
                         Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    else
+                        _userDb.ClientConnected(session);
                     // Sunrise-Queue-End
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
@@ -107,7 +109,10 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.InGame:
                 {
-                    _userDb.ClientConnected(session);
+                    // Sunrise-Queue-Start
+                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
+                        _userDb.ClientConnected(session);
+                    // Sunrise-Queue-End
 
                     if (mind == null)
                     {

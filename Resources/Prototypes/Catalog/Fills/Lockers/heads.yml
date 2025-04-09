@@ -173,7 +173,6 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: FlippoLighterSunriseCe  # Sunrise-Flippo
-    - id: VariantCubeBoxSunrise  # Sunrise Edit
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -237,6 +236,7 @@
       prob: 0.8
     - id: BoxMiniSyringe
       prob: 0.20
+    - id: VariantCubeBoxSunrise
     #Sunrise-end
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled

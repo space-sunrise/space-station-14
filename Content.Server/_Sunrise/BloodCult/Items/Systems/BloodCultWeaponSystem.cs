@@ -7,6 +7,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -87,22 +88,34 @@ public sealed class BloodCultWeaponSystem : EntitySystem
 
         if (_body.TryGetBodyOrganEntityComps<StomachComponent>((args.Target.Value, body), out var stomachs))
         {
-            var firstStomach = stomachs.FirstOrNull();
+            var highestAvailable = FixedPoint2.Zero;
+            Solution? stomachSol = null;
+            Entity<StomachComponent>? stomachToUse = null;
+            foreach (var ent in stomachs)
+            {
+                var owner = ent.Owner;
+                if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out stomachSol))
+                    continue;
 
-            if (firstStomach == null)
+                if (stomachSol.AvailableVolume <= highestAvailable)
+                    continue;
+
+                stomachToUse = ent;
+                highestAvailable = stomachSol.AvailableVolume;
+            }
+
+            if (stomachToUse == null || stomachSol == null)
                 return;
 
-            if (!_solutionContainer.TryGetSolution(firstStomach.Value.Owner,
-                    firstStomach.Value.Comp1.BodySolutionName,
-                    out var bodySolution))
-                return;
-
-            if (_stomachSystem.TryChangeReagent(firstStomach.Value.Owner,
+            if (_stomachSystem.TryChangeReagent(stomachToUse.Value.Owner,
                     component.ConvertedId,
                     component.ConvertedToId))
                 convert = true;
+        }
 
-            if (ConvertHolyWater(bodySolution.Value.Comp.Solution, component.ConvertedId, component.ConvertedToId))
+        if (_solutionContainer.TryGetInjectableSolution(args.Target.Value, out var injectableSolution, out _))
+        {
+            if (ConvertHolyWater(injectableSolution.Value.Comp.Solution, component.ConvertedId, component.ConvertedToId))
                 convert = true;
         }
 

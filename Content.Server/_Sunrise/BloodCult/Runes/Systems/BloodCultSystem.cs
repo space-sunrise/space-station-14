@@ -21,6 +21,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Roles;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Stacks;
@@ -81,13 +82,19 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedTransformSystem _xform = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!;
+        [Dependency] private readonly PullingSystem _pulling = default!;
 
         [ValidatePrototypeId<StackPrototype>]
         private static string SteelStackPrototypeId = "Steel";
 
+        [ValidatePrototypeId<StackPrototype>]
+        private static string PlasteelStackPrototypeId = "Plasteel";
+
         [ValidatePrototypeId<ContentTileDefinition>]
         private static string CultTilePrototypeId = "CultFloor";
 
+        private static EntProtoId AirlockGlassCultPrototypeId = "AirlockGlassCult";
+        private static EntProtoId ConstructShellPrototypeId = "ConstructShell";
         private static EntProtoId ApocalypseRunePrototypeId = "ApocalypseRune";
         private static EntProtoId RunicMetalPrototypeId = "CultRunicMetal";
         private static EntProtoId CultBarrierPrototypeId = "CultBarrier";
@@ -100,8 +107,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         private static EntProtoId BolaPrototypeId = "CultBola";
         private static EntProtoId CuffsPrototypeId = "CultistCuffs";
         private static EntProtoId TeleportActionPrototypeId = "ActionCultTeleport";
+        private static EntProtoId TwistedConstructionActionPrototypeId = "ActionCultTwistedConstruction";
         private static EntProtoId CultTileEffectPrototypeId = "CultTileSpawnEffect";
         public static EntProtoId ReaperConstructPrototypeId = "ReaperConstruct";
+        public static EntProtoId AirlockConvertEffect = "CultAirlockGlow";
 
         private readonly SoundPathSpecifier _teleportInSound = new("/Audio/_Sunrise/BloodCult/veilin.ogg");
         private readonly SoundPathSpecifier _teleportOutSound = new("/Audio/_Sunrise/BloodCult/veilout.ogg");

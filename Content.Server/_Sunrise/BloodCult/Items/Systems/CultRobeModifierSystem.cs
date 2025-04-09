@@ -59,7 +59,7 @@ public sealed class CultRobeModifierSystem : EntitySystem
 
     private void ModifyDamage(EntityUid uid, CultRobeModifierComponent comp, bool increase)
     {
-        var damageSet = string.Empty;
+        string? damageSet = null;
         if (increase)
         {
             if (!TryComp<DamageableComponent>(uid, out var damage))

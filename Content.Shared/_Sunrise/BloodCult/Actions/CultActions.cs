@@ -52,3 +52,25 @@ public sealed partial class ShadowShacklesDoAfterEvent : SimpleDoAfterEvent
 public sealed partial class CultReturnBloodSpearActionEvent : InstantActionEvent
 {
 }
+
+[Serializable, NetSerializable]
+public sealed partial class CultMagicBloodCallEvent : SimpleDoAfterEvent
+{
+    public string? ActionId;
+    public float BloodTake;
+}
+
+[Serializable, NetSerializable]
+public sealed partial class CultConvertAirlockEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
+public sealed class TeleportSpellUsedEvent : EntityEventArgs
+{
+}
+
+[Serializable, NetSerializable]
+public sealed class TwistedConstructSpellUsedEvent : EntityEventArgs
+{
+}

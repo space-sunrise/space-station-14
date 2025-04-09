@@ -119,9 +119,9 @@ uplink-launcher-cream-pie-fake-name = Фальшивый пирогомёт
 uplink-launcher-cream-pie-fake-desc = Пирогомёт использующий микрореакторную батарею для генерации новых пирогов! Страхование от ЭМИ в цену не входит.
 
 ## Implats
+
 uplink-smoke-screen-implanter-name = Имплантер Дымовой Завесы
 uplink-smoke-screen-implanter-desc = Создает небольшое облако дыма, в котором вы можете скрыться. Можно использовать до трех раз, прежде чем у вас закончится газ.
-
 uplink-ammo-crate-ammokit-bundle-name = ящик супер набора боеприпасов синдиката
 uplink-ammo-crate-ammokit-bundle-desc = Перезаряжаю! Перезаряжаю! Перезаряжаю! Содержит все виды и наборы патронов, исключая боеприпасов для больших пушек.
 uplink-ammo-caselesskit-name = Набор безгильзовых патронов
@@ -144,17 +144,13 @@ uplink-ammo-lmgincendiarykit-name = Набор зажигательных кор
 uplink-ammo-lmgincendiarykit-desc = Перезаряжаю! Содержит 4 зажигательных магазина для L6 Saw или DL6902.
 uplink-ammo-lmguraniumkit-name = Набор урановых коробов
 uplink-ammo-lmguraniumkit-desc = Перезаряжаю! Содержит 4 урановых магазина для L6 Saw или DL6902.
-
 uplink-cluster-mini-bomb-name = Кластерная минибомба синдиката
 uplink-cluster-mini-bomb-desc = Если вы не преследуете цель точечных диверсий, то этот выбор для вас.
-
 uplink-mech-teleporter-heavy-name = Телепорт тяжелого меха
 uplink-mech-teleporter-heavy-desc = Содержит тяжелобронированный мех Cybersan с интегрированными цепным мечом и ракетной установкой BRM-6.
 uplink-mech-teleporter-assault-name = Телепорт штурмового меха
 uplink-mech-teleporter-assault-desc = Содержит легкобронированный мех Cybersan с интегрированными цепным мечом и легкой ракетной установкой SRM-8.
-
 uplink-energy-dome-name = Личный энергетический купол
 uplink-energy-dome-desc = Персональный генератор щита, который защищает владельца от лазеров и пуль, но не позволяет использовать дистанционное оружие. Поставляется с небольшим энергетическим элементом.
-
 uplink-syndicate-teleporter-name = Ручной телепорт Синдиката
 uplink-syndicate-teleporter-desc = Экспериментальное устройство ручного телепорта. Телепортирует владельца на небольшое расстояние вперед. Будьте осторожны, чтобы не оказаться в стене.

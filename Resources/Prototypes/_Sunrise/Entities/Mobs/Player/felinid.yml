@@ -5,13 +5,14 @@
   id: MobFelinid
 
 - type: entity
-  id: MobBaseSyndicateFelinid
+  id: MobBaseSyndicateFelinidWhite # Для ивентологов
   parent: MobFelinidBase
   suffix: syndicate base
   abstract: true
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
+    skinColor: "#E5BDA0FF"
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -21,6 +22,41 @@
     prototypes: [SyndicateOperativeClothingFelinid]
   - type: ReplacementAccent
     accent: cat
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinidWhite
+  id: MobFelinidSyndicateAgentWhite
+  suffix: syndicate agent white
+  components:
+    # make the player a traitor once its taken
+  - type: AutoTraitor
+    profile: TraitorReinforcement
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinidWhite
+  id: MobFelinidSyndicateAgentNukeopsWhite
+  suffix: NukeOpsWhite
+  components:
+  - type: NukeOperative
+
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobBaseSyndicateFelinidWhite
+  id: MobBaseSyndicateFelinid
+  suffix: syndicate agent
+  abstract: true
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+    hair: HumanHairBigafro
+    skinColor: "#331500FF"
+    hairColor: "#331500FF"
+    facialHairColor: "#331500FF" #На случай если вдруг появится борода.
 
 - type: entity
   save: false

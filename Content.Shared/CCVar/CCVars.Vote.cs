@@ -50,7 +50,7 @@ public sealed partial class CCVars
     /// Whether or not to prevent the restart vote from having any effect when there is an online admin
     /// </summary>
     public static readonly CVarDef<bool> VoteRestartNotAllowedWhenAdminOnline =
-        CVarDef.Create("vote.restart_not_allowed_when_admin_online", true, CVar.SERVERONLY);
+        CVarDef.Create("vote.restart_not_allowed_when_admin_online", false, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
@@ -146,13 +146,13 @@ public sealed partial class CCVars
     ///     The delay for which two votekicks are allowed to be made by separate people, in seconds.
     /// </summary>
     public static readonly CVarDef<float> VotekickTimeout =
-        CVarDef.Create("votekick.timeout", 120f, CVar.SERVERONLY);
+        CVarDef.Create("votekick.timeout", 60f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Sets the duration of the votekick vote timer.
     /// </summary>
     public static readonly CVarDef<int>
-        VotekickTimer = CVarDef.Create("votekick.timer", 60, CVar.SERVERONLY);
+        VotekickTimer = CVarDef.Create("votekick.timer", 45, CVar.SERVERONLY);
 
     /// <summary>
     ///     Config for how many hours playtime a player must have to get protection from the Raider votekick type when playing as an antag.

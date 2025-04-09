@@ -1,17 +1,20 @@
 ﻿using Content.Server.Doors.Systems;
 using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Structures;
+using Content.Shared.Damage;
 using Content.Shared.Doors;
-using Content.Shared.Humanoid;
 using Content.Shared.Stunnable;
-using Robust.Shared.Physics.Systems;
+using Content.Shared.Throwing;
 
 namespace Content.Server._Sunrise.BloodCult.Structures;
 
 public sealed class RunicDoorSystem : EntitySystem
 {
     [Dependency] private readonly DoorSystem _doorSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
 
     public override void Initialize()
     {
@@ -30,7 +33,7 @@ public sealed class RunicDoorSystem : EntitySystem
             return;
         }
 
-        if (!Process(uid, args.User.Value))
+        if (!Process(uid, args.User.Value, component))
         {
             args.Cancel();
         }
@@ -45,30 +48,24 @@ public sealed class RunicDoorSystem : EntitySystem
             return;
         }
 
-        if (!Process(uid, args.User.Value))
+        if (!Process(uid, args.User.Value, component))
         {
             args.Cancel();
         }
     }
 
-    private bool Process(EntityUid airlock, EntityUid user)
+    private bool Process(EntityUid airlock, EntityUid user, RunicDoorComponent component)
     {
         if (HasComp<BloodCultistComponent>(user) || HasComp<ConstructComponent>(user))
-        {
             return true;
-        }
 
         _doorSystem.Deny(airlock);
 
-        if (!HasComp<HumanoidAppearanceComponent>(user))
-            return false;
+        var direction = _transform.GetMapCoordinates(user).Position - _transform.GetMapCoordinates(airlock).Position;
+        _throwing.TryThrow(user, direction, component.ThrowSpeed, airlock, 10F);
+        _damage.TryChangeDamage(user, component.Damage, origin: airlock);
 
-        var direction = Transform(user).MapPosition.Position - Transform(airlock).MapPosition.Position;
-        var impulseVector = direction * 7000;
-
-        _physics.ApplyLinearImpulse(user, impulseVector);
-
-        _stunSystem.TryParalyze(user, TimeSpan.FromSeconds(3), true);
+        _stunSystem.TryParalyze(user, TimeSpan.FromSeconds(component.ParalyzeTime), true);
         return false;
     }
 }

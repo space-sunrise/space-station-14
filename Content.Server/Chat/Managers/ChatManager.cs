@@ -238,21 +238,22 @@ internal sealed partial class ChatManager : IChatManager
 
     private void SendOOC(ICommonSession player, string message)
     {
-        if (_adminManager.IsAdmin(player))
+        if (!_oocEnabled)
         {
-            if (!_adminOocEnabled)
+            if (_adminManager.IsAdmin(player))
+            {
+                if (!_adminOocEnabled)
+                    return;
+            }
+            else
             {
                 return;
             }
         }
-        else if (!_oocEnabled)
-        {
-            return;
-        }
 
         Color? colorOverride = null;
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
-        if (_adminManager.HasAdminFlag(player, AdminFlags.Admin))
+        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
             colorOverride = prefs.AdminOOCColor;

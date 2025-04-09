@@ -1,14 +1,19 @@
 ﻿using System.Linq;
 using Content.Server._Sunrise.BloodCult.UI;
 using Content.Server.Body.Components;
+using Content.Server.Destructible;
+using Content.Server.Destructible.Thresholds;
+using Content.Server.Destructible.Thresholds.Behaviors;
+using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
-using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Actions;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Destructible.Thresholds;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Stacks;
@@ -16,6 +21,7 @@ using Content.Shared.StatusEffect;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
@@ -31,10 +37,12 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             SubscribeLocalEvent<BloodCultistComponent, CultStunTargetActionEvent>(OnStunTarget);
             SubscribeLocalEvent<BloodCultistComponent, CultShadowShacklesTargetActionEvent>(OnShadowShackles);
             SubscribeLocalEvent<BloodCultistComponent, ShadowShacklesDoAfterEvent>(OnShadowShacklesDoAfter);
-            SubscribeLocalEvent<BloodCultistComponent, TeleportSpellUserEvent>(OnTeleportSpellUser);
+            SubscribeLocalEvent<BloodCultistComponent, TeleportSpellUsedEvent>(OnTeleportSpellUser);
+            SubscribeLocalEvent<BloodCultistComponent, TwistedConstructSpellUsedEvent>(OnTwistedConstructSpellUser);
             SubscribeLocalEvent<BloodCultistComponent, CultBloodRitualInstantActionEvent>(OnCultBloodRitual);
             SubscribeLocalEvent<BloodCultistComponent, CultBloodMagicInstantActionEvent>(OnCultBloodMagic);
             SubscribeLocalEvent<BloodCultistComponent, CultMagicBloodCallEvent>(OnCultMagicBlood);
+            SubscribeLocalEvent<BloodCultistComponent, CultConvertAirlockEvent>(OnCultConvertAirlock);
             SubscribeLocalEvent<BloodCultistComponent, CultSpellProviderSelectedBuiMessage>(OnCultMagicBloodSelected);
             SubscribeLocalEvent<BloodCultistComponent, CultSummonCombatEquipmentTargetActionEvent>(
                 OnSummonCombatEquipment);
@@ -192,7 +200,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 QueueDel(spell);
         }
 
-        private void OnTeleportSpellUser(EntityUid uid, BloodCultistComponent component, TeleportSpellUserEvent args)
+        private void OnTeleportSpellUser(EntityUid uid, BloodCultistComponent component, TeleportSpellUsedEvent args)
         {
             if (!_entityManager.TryGetComponent<ActionsComponent>(uid, out var actionsComponent))
                 return;
@@ -201,6 +209,19 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 // SUNRISE-TODO: Чет говно какое-то, надо переделать.
                 var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
                 if (entityPrototypeId == TeleportActionPrototypeId.Id)
+                    _actionsSystem.RemoveAction(uid, userAction, actionsComponent);
+            }
+        }
+
+        private void OnTwistedConstructSpellUser(EntityUid uid, BloodCultistComponent component, TwistedConstructSpellUsedEvent args)
+        {
+            if (!_entityManager.TryGetComponent<ActionsComponent>(uid, out var actionsComponent))
+                return;
+            foreach (var userAction in actionsComponent.Actions)
+            {
+                // SUNRISE-TODO: Чет говно какое-то, надо переделать.
+                var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
+                if (entityPrototypeId == TwistedConstructionActionPrototypeId.Id)
                     _actionsSystem.RemoveAction(uid, userAction, actionsComponent);
             }
         }
@@ -231,7 +252,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (HasComp<BorgChassisComponent>(args.Target))
                 _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(args.Target), 2, 100000, 5f);
 
-            _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(6), true);
+            _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(3), true, force: true);
             _stuttering.DoStutter(args.Target, TimeSpan.FromSeconds(30), true);
             _flashSystem.Flash(args.Target, uid, null, 3, 10);
 
@@ -347,30 +368,118 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!TryComp<BloodstreamComponent>(args.Performer, out var bloodstreamComponent))
                 return;
 
-            if (!_entityManager.TryGetComponent<StackComponent>(args.Target, out var stack))
+            if (_entityManager.TryGetComponent<StackComponent>(args.Target, out var stack))
+            {
+                if (stack.StackTypeId == PlasteelStackPrototypeId)
+                {
+                    var transform = Transform(args.Target).Coordinates;
+                    var count = stack.Count;
+
+                    _entityManager.DeleteEntity(args.Target);
+
+                    var material = _entityManager.SpawnEntity(RunicMetalPrototypeId, transform);
+
+                    _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -15, bloodstreamComponent);
+
+                    if (!_entityManager.TryGetComponent<StackComponent>(material, out var stackNew))
+                        return;
+
+                    stackNew.Count = count;
+
+                    _popupSystem.PopupEntity(Loc.GetString($"Пласталь превращается в {MetaData(material).EntityName}!"),
+                        args.Performer,
+                        args.Performer);
+                    var ev = new TwistedConstructSpellUsedEvent();
+                    RaiseLocalEvent(args.Performer, ev);
+                    args.Handled = true;
+                }
+                else if (stack.StackTypeId == SteelStackPrototypeId)
+                {
+                    var transform = Transform(args.Target).Coordinates;
+                    var count = stack.Count;
+
+                    if (count < 30)
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("Недостаточно стали"),
+                            args.Performer,
+                            args.Performer);
+                        args.Handled = true;
+                        return;
+                    }
+
+                    _entityManager.DeleteEntity(args.Target);
+
+                    var shell = _entityManager.SpawnEntity(ConstructShellPrototypeId, transform);
+
+                    _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -15, bloodstreamComponent);
+
+                    _popupSystem.PopupEntity(Loc.GetString($"Сталь превращается в {MetaData(shell).EntityName}!"),
+                        args.Performer,
+                        args.Performer);
+                    var ev = new TwistedConstructSpellUsedEvent();
+                    RaiseLocalEvent(args.Performer, ev);
+                    args.Handled = true;
+                }
+            }
+            else if (HasComp<AirlockComponent>(args.Target))
+            {
+                var ev = new CultConvertAirlockEvent();
+
+                var argsDoAfterEvent = new DoAfterArgs(_entityManager, args.Performer, 5, ev, args.Performer, args.Target)
+                {
+                    BreakOnMove = true,
+                    NeedHand = true,
+                };
+
+                _doAfterSystem.TryStartDoAfter(argsDoAfterEvent);
+                args.Handled = true;
+            }
+        }
+
+        private void OnCultConvertAirlock(EntityUid uid, BloodCultistComponent comp, CultConvertAirlockEvent args)
+        {
+            if (args.Cancelled || args.Target == null)
                 return;
 
-            if (stack.StackTypeId != SteelStackPrototypeId)
+            if (!TryComp<BloodstreamComponent>(args.User, out var bloodstreamComponent))
                 return;
 
-            var transform = Transform(args.Target).Coordinates;
-            var count = stack.Count;
+            var transform = Transform(args.Target.Value);
 
-            _entityManager.DeleteEntity(args.Target);
+            var entityStructureId = string.Empty;
+            var metadata = MetaData(args.Target.Value);
+            if (metadata.EntityPrototype != null)
+                entityStructureId = metadata.EntityPrototype.ID;
 
-            var material = _entityManager.SpawnEntity(RunicMetalPrototypeId, transform);
+            var airlock = _entityManager.SpawnEntity(AirlockGlassCultPrototypeId,
+                transform.Coordinates);
+            _entityManager.SpawnEntity(AirlockConvertEffect, transform.Coordinates);
+            var xform = Transform(airlock);
+            _transformSystem.SetLocalPositionRotation(airlock, transform.LocalPosition, transform.LocalRotation, xform);
+            _entityManager.DeleteEntity(args.Target.Value);
+            if (TryComp<DestructibleComponent>(airlock, out var destructible))
+            {
+                destructible.Thresholds.Clear();
+                var damageThreshold = new DamageThreshold
+                {
+                    Trigger = new DamageTrigger { Damage = 150 }
+                };
+                damageThreshold.AddBehavior(new SpawnEntitiesBehavior
+                {
+                    Spawn = new Dictionary<EntProtoId, MinMax> { { entityStructureId, new MinMax{Min = 1, Max = 1} } },
+                    Offset = 0f
+                });
+                damageThreshold.AddBehavior(new DoActsBehavior
+                {
+                    Acts = ThresholdActs.Destruction
+                });
+                destructible.Thresholds.Add(damageThreshold);
+            }
 
-            _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -15, bloodstreamComponent);
+            _bloodstreamSystem.TryModifyBloodLevel(args.User, -15, bloodstreamComponent);
 
-            if (!_entityManager.TryGetComponent<StackComponent>(material, out var stackNew))
-                return;
-
-            stackNew.Count = count;
-
-            _popupSystem.PopupEntity(Loc.GetString("Сталь превращается в рунный металл!"),
-                args.Performer,
-                args.Performer);
-            args.Handled = true;
+            var ev = new TwistedConstructSpellUsedEvent();
+            RaiseLocalEvent(args.User, ev);
         }
 
         private void OnSummonDaggerAction(EntityUid uid,

@@ -926,7 +926,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public const string ChatSanitize_Accent = "chatsanitize_sunrise"; // Sunrise-Edit
+    public const string ChatSanitizeAccent = "chatsanitize_sunrise"; // Sunrise-Edit
 
     public string SanitizeMessageReplaceWords(string message)
     {
@@ -934,7 +934,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var msg = message;
 
-        msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
+        msg = _wordreplacement.ApplyReplacements(msg, ChatSanitizeAccent);
 
         return msg;
     }

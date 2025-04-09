@@ -63,6 +63,9 @@
     },
     {
       "name": "thermalvision"
+    },
+    {
+      "name": "bloodscale"
     }
   ]
 }

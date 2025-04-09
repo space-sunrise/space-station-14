@@ -110,6 +110,15 @@
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher.rsi
     state: icon
+  - type: Item
+    size: Ginormous
+    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: AmmoCounter
   - type: UseDelayOnShoot
   - type: UseDelay
@@ -139,12 +148,6 @@
         Slash: 10 #sunrise-end
     soundHit:
       collection: MetalThud
-  - type: Clothing
-    sprite: Objects/Weapons/Melee/crusher.rsi # Sunrise-start
-    quickEquip: false
-    slots:
-    - back
-    - suitStorage  # Sunrise-crusher, Sunrise-end
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -153,9 +156,6 @@
         Slash: 2.5
         Structural: 30
   - type: GunRequiresWield
-  - type: Item
-    size: Ginormous
-    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
   - type: DisarmMalus
   - type: Prying
 
@@ -174,7 +174,7 @@
     attackRate: 2
     damage:
       types:
-        Slash: 15
+        Slash: 12
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
     offset: -0.15,0.0
@@ -197,18 +197,22 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher_glaive.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher_glaive.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: UseDelay
     delay: 1.9
   - type: LeechOnMarker
     leech:
       groups:
         Brute: -21
-  - type: Clothing
-    sprite: Objects/Weapons/Melee/crusher_glaive.rsi # Sunrise-start
-    quickEquip: false
-    slots:
-    - back
-    - suitStorage  # Sunrise-glaive-crusher, Sunrise-end
   - type: MeleeWeapon
     damage: #sunrise-start
       types:
@@ -217,6 +221,3 @@
   - type: Tag
     tags:
       - Pickaxe
-  - type: Item
-    size: Ginormous
-    sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi

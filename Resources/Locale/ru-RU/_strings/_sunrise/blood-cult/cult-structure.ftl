@@ -1,4 +1,4 @@
-﻿ent-CultRunicMetal = рунический металл
+ent-CultRunicMetal = рунический металл
     .desc = Необычный лист металла с пульсирующей руной.
     .suffix = Полный
 ent-CultRunicMetal1 = { ent-CultRunicMetal }

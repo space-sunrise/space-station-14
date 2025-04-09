@@ -20,7 +20,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [MindShieldImplant]
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: CentCommOperatorGear

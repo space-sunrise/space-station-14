@@ -7,6 +7,7 @@
 
 import io
 import os
+import time
 from pathlib import Path
 
 import requests
@@ -160,10 +161,18 @@ def send_embed_discord(embed: dict) -> None:
         "embeds": [embed]
     }
 
-    response = requests.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers)
+    while True:
+        response = requests.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers)
 
-    if response.status_code != 204:
-        print(f"Failed to send message to Discord: {response.status_code} {response.text}")
+        if response.status_code == 204:
+            break
+        elif response.status_code == 429:
+            retry_after = response.json().get("retry_after", 1)
+            print(f"Rate limited: sleeep {retry_after} seconds")
+            time.sleep(retry_after)
+        else:
+            print(f"Failed to send message to Discord: {response.status_code} {response.text}")
+            break
 
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:

@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
-using Content.Server._Sunrise.NightDayMapLight;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
@@ -35,6 +34,7 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Gravity;
+using Content.Shared.Light.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Parallax;
 using Content.Shared.Salvage;
@@ -582,7 +582,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
-        EnsureComp<NightDayMapLightComponent>(mapUid);
+        EnsureComp<LightCycleComponent>(mapUid);
         EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
 
         Log.Info($"Created transit hub grid {ToPrettyString(uid)} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");

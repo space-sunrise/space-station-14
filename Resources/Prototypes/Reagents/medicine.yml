@@ -83,6 +83,12 @@
         key: Jitter
         time: 3.0
         type: Remove
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        component: Drowsiness
+        time: 1.5
+        type: Add
+        refresh: false
       - !type:HealthChange
         damage:
           types:
@@ -1088,13 +1094,8 @@
   color: "#91C3F7"
   metabolisms:
     Drink:
+      metabolismRate: 0.01 # Sunrise-Edit
       effects:
-      - !type:SatiateThirst
-        factor: 3
-        conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
       # Sunrise-Start
       - !type:DeconvertCultist
         conditions:
@@ -1127,11 +1128,11 @@
           shouldHave: false
         damage:
           types:
-            Blunt: -0.2
-            Poison: -0.2
-            Heat: -0.2
-            Shock: -0.2
-            Cold: -0.2
+            Blunt: -0.5
+            Poison: -0.5
+            Heat: -0.5
+            Shock: -0.5
+            Cold: -0.5
   reactiveEffects:
     Unholy:
       methods: [ Touch ]
