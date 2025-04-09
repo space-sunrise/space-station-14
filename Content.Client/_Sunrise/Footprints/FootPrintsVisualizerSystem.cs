@@ -2,6 +2,7 @@
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.Footprints;
 
@@ -70,18 +71,10 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
     private void UpdateFootprintVisuals(EntityUid uid, FootprintComponent footprint, SpriteComponent sprite)
     {
         if (!sprite.LayerMapTryGet(FootprintSpriteLayer.MainLayer, out var layer)
-            || !TryComp<FootprintEmitterComponent>(footprint.CreatorEntity, out var emitterComponent)
             || !TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        if (!_appearanceSystem.TryGetData<FootprintVisualType>(
-                uid,
-                FootprintVisualParameter.VisualState,
-                out var visualType,
-                appearance))
-            return;
-
-        UpdateSpriteState(sprite, layer, visualType, emitterComponent);
+        UpdateSpriteState(sprite, layer,footprint.StateId, footprint.SpritePath);
         UpdateSpriteColor(sprite, layer, uid, appearance);
     }
 
@@ -91,29 +84,11 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
     private void UpdateSpriteState(
         SpriteComponent sprite,
         int layer,
-        FootprintVisualType visualType,
-        FootprintEmitterComponent emitter)
+        string state,
+        ResPath spritePath)
     {
-        var stateId = new RSI.StateId(GetStateId(visualType, emitter));
-        sprite.LayerSetState(layer, stateId, emitter.SpritePath);
-    }
-
-    /// <summary>
-    /// Determines the appropriate state ID for the footprint based on its type
-    /// </summary>
-    private string GetStateId(FootprintVisualType visualType, FootprintEmitterComponent emitter)
-    {
-        return visualType switch
-        {
-            FootprintVisualType.BareFootprint => emitter.IsRightStep
-                ? _random.Pick(emitter.RightBareFootState)
-                : _random.Pick(emitter.LeftBareFootState),
-            FootprintVisualType.ShoeFootprint => _random.Pick(emitter.ShoeFootState),
-            FootprintVisualType.SuitFootprint => _random.Pick(emitter.PressureSuitFootState),
-            FootprintVisualType.DragMark => _random.Pick(emitter.DraggingStates),
-            _ => throw new ArgumentOutOfRangeException(
-                $"Unknown footprint visual type: {visualType}")
-        };
+        var stateId = new RSI.StateId(state);
+        sprite.LayerSetState(layer, stateId, spritePath);
     }
 
     /// <summary>

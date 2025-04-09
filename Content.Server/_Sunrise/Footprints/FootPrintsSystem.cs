@@ -198,15 +198,12 @@ public sealed class FootprintSystem : EntitySystem
         var entity = Spawn(stand ? emitter.FootprintPrototype : emitter.DragMarkPrototype, coords);
 
         var footprint = EnsureComp<FootprintComponent>(entity);
-        footprint.CreatorEntity = emitterOwner;
-        Dirty(entity, footprint);
 
         if (_appearanceQuery.TryComp(entity, out var appearance))
         {
-            _appearanceSystem.SetData(entity,
-                FootprintVisualParameter.VisualState,
-                DetermineVisualState(emitterOwner, stand),
-                appearance);
+            var visualType = DetermineVisualState(emitterOwner, stand);
+            footprint.StateId = GetStateId(visualType, emitter);
+            Dirty(entity, footprint);
 
             var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
             var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0f, 1f);
@@ -218,6 +215,21 @@ public sealed class FootprintSystem : EntitySystem
         }
 
         return entity;
+    }
+
+    private string GetStateId(FootprintVisualType visualType, FootprintEmitterComponent emitter)
+    {
+        return visualType switch
+        {
+            FootprintVisualType.BareFootprint => emitter.IsRightStep
+                ? _random.Pick(emitter.RightBareFootState)
+                : _random.Pick(emitter.LeftBareFootState),
+            FootprintVisualType.ShoeFootprint => _random.Pick(emitter.ShoeFootState),
+            FootprintVisualType.SuitFootprint => _random.Pick(emitter.PressureSuitFootState),
+            FootprintVisualType.DragMark => _random.Pick(emitter.DraggingStates),
+            _ => throw new ArgumentOutOfRangeException(
+                $"Unknown footprint visual type: {visualType}")
+        };
     }
 
     /// <summary>

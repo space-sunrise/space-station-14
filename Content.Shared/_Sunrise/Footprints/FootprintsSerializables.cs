@@ -17,7 +17,10 @@ public sealed partial class FootprintComponent : Component
     /// Entity that created this footprint
     /// </summary>
     [AutoNetworkedField]
-    public EntityUid CreatorEntity;
+    public string StateId;
+
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
 
     /// <summary>
     /// Name of the solution container for this footprint
@@ -66,12 +69,6 @@ public sealed partial class PuddleFootprintComponent : Component
 [RegisterComponent]
 public sealed partial class FootprintEmitterComponent : Component
 {
-    /// <summary>
-    /// Path to the RSI file containing footprint sprites
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField]
-    public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
-
     /// <summary>
     /// State ID for left bare footprint
     /// </summary>

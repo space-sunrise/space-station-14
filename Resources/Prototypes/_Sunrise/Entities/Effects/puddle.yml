@@ -39,7 +39,7 @@
     canSlip: false
   - type: Appearance
   - type: TimedDespawn
-    lifetime: 360
+    lifetime: 1080
 
 - type: entity
   name: drag mark
