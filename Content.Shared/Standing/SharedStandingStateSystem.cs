@@ -194,7 +194,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
         return _doAfter.TryStartDoAfter(args);
     }
 
-    public void Fall(EntityUid uid, float rollDistance = 6f, float rollSpeed = 6f)
+    public void Fall(EntityUid uid, float rollDistance = 4f, float rollSpeed = 4f)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics))
             return;
