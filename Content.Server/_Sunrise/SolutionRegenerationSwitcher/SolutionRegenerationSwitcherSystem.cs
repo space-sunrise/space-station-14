@@ -3,13 +3,11 @@ using Content.Server.Popups;
 using Content.Shared._Sunrise.SolutionRegenerationSwitcher;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.SolutionRegenerationSwitcher
 {
     public sealed class SolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = null!;
         [Dependency] private readonly PopupSystem _popups = null!;
 
@@ -66,7 +64,7 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcher
 
             solutionRegeneration.ChangeGenerated(reagent);
 
-            if (!_prototypeManager.TryIndex(reagent.Reagent.Prototype, out ReagentPrototype? proto))
+            if (!PrototypeManager.TryIndex(reagent.Reagent.Prototype, out ReagentPrototype? proto))
             {
                 _sawmill.Error(
                     $"Can't get get reagent prototype {reagent.Reagent.Prototype} for {ToPrettyString(uid)}");

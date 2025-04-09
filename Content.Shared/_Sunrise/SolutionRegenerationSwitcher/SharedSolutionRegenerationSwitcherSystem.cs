@@ -1,8 +1,4 @@
-// using Content.Server.Chemistry.Components;
-
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 
@@ -10,9 +6,7 @@ namespace Content.Shared._Sunrise.SolutionRegenerationSwitcher
 {
     public abstract class SharedSolutionRegenerationSwitcherSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = null!;
-        [Dependency] private readonly SharedPopupSystem _popups = null!;
+        [Dependency] protected readonly IPrototypeManager PrototypeManager = null!;
 
         private ISawmill _sawmill = null!;
 
@@ -37,7 +31,7 @@ namespace Content.Shared._Sunrise.SolutionRegenerationSwitcher
             for (var i = 0; i < component.Options.Count; i++)
             {
                 var componentOption = component.Options[i];
-                if (!_prototypeManager.TryIndex(componentOption.Reagent.Prototype, out ReagentPrototype? proto))
+                if (!PrototypeManager.TryIndex(componentOption.Reagent.Prototype, out ReagentPrototype? proto))
                 {
                     _sawmill.Error(
                         $"Can't get reagent prototype {componentOption.Reagent.Prototype} for {ToPrettyString(uid)}");
