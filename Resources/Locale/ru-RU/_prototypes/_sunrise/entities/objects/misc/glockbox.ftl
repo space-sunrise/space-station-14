@@ -1,2 +1,2 @@
-ent-GlockBox = glock box
-    .desc = It contains a Glock22 and a magazine for it. Did you want something else?
+ent-GlockBox = коробока с глоком
+    .desc = Содержит Glock22 и магазин к нему. Вы хотели что-то другое?

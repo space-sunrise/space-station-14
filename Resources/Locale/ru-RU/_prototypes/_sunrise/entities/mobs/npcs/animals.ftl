@@ -1,6 +1,6 @@
 ent-MobSaw = свиноматерь
     .desc = Хрю.
-ent-MobBaseInferiorVulpkanin = inferior vulpkanin
+ent-MobBaseInferiorVulpkanin = низший вульпканин
     .desc = { ent-MobBaseAncestor.desc }
 ent-MobInferiorVulpkanin = низший вульпканин
     .desc = { ent-BaseMobHuman.desc }

@@ -1,2 +1,2 @@
-ent-EffectThermalVision = thermal vision
+ent-EffectThermalVision = тепловое зрение
     .desc = { "" }

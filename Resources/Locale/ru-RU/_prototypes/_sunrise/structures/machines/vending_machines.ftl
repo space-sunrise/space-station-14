@@ -1,6 +1,6 @@
-ent-VendingMachineBoxingDrobe = Boxing Drobe
-    .desc = Always short on stock.
-ent-VendingMachineMailDrobe = MailDrobe
-    .desc = Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
-ent-VendingMachineMNKDrobe = MNK Drobe
-    .desc = Quality garments provided by MoNoKrome.
+ent-VendingMachineBoxingDrobe = Боксёрский гардероб
+    .desc = Вечно не хватает товаров.
+ent-VendingMachineMailDrobe = Почтовый гардероб
+    .desc = Ни солнечные вспышки, ни метеориты, ни огонь плазмы, ни пустота космоса не остановят этих курьеров от своевременного выполнения назначенных им обходов.
+ent-VendingMachineMNKDrobe = Гардероб МНК
+    .desc = Качественная одежда от МоНоКрома.
