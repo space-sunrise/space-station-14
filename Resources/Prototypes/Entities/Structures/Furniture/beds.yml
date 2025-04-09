@@ -24,6 +24,7 @@
     sprite: Structures/Furniture/furniture.rsi
     state: bed
     noRot: true
+    drawdepth: Puddles #Sunrise-add
   - type: Strap
     position: Down
     rotation: -90
