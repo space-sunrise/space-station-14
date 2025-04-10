@@ -1,27 +1,6 @@
 ﻿Entries:
 - author: metalgearsloth
   changes:
-  - message: Drag-drop outline no longer shows the vaulting outlines if you're vaulting.
-    type: Tweak
-  id: 7643
-  time: '2024-11-23T11:19:59.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/33477
-- author: goet
-  changes:
-  - message: Useless wires some vending machines have can be cut now.
-    type: Fix
-  id: 7644
-  time: '2024-11-23T11:41:37.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/32447
-- author: IProduceWidgets
-  changes:
-  - message: Arrivals shuttle is more tamper proof.
-    type: Fix
-  id: 7645
-  time: '2024-11-23T15:14:13.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/33284
-- author: metalgearsloth
-  changes:
   - message: The auto-orientation when showing up on the arrivals shuttle now has
       a delay to it.
     type: Tweak
@@ -3891,3 +3870,24 @@
   id: 8142
   time: '2025-04-08T21:54:04.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/36399
+- author: ColonelThirtyTwo
+  changes:
+  - message: Spider clan charges are now marked as contraband
+    type: Fix
+  id: 8143
+  time: '2025-04-09T22:32:57.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36421
+- author: Beck Thompson
+  changes:
+  - message: Inflatable barrier disassembly is not not laggy anymore.
+    type: Fix
+  id: 8144
+  time: '2025-04-10T10:39:14.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/32420
+- author: RedBookcase
+  changes:
+  - message: Fixed empty handheld mass scanners being 2x2.
+    type: Fix
+  id: 8145
+  time: '2025-04-10T10:44:07.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36340
