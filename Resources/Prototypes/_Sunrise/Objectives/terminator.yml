@@ -8,8 +8,7 @@
     issuer: objective-issuer-susnet
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - TerminatorRole
+    - TerminatorRole
 
 - type: entity
   parent: [BaseTerminatorObjective, BaseKillObjective]
