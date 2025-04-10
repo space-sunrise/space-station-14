@@ -207,44 +207,6 @@ namespace Content.Server.Administration.Systems
                 _ => null
             };
 
-            if (e.NewStatus == SessionStatus.Connected)
-            {
-                var admins = GetTargetAdmins();
-                var messages = await _dbManager.GetAHelpMessagesByReceiverAsync(e.Session.UserId);
-
-                foreach (var aHelpMessage in messages)
-                {
-                    var formatMessage = await FormatDbAhelpMessage(
-                        aHelpMessage.Message,
-                        (NetUserId) aHelpMessage.SenderUserId,
-                        aHelpMessage.PlaySound,
-                        aHelpMessage.AdminOnly);
-
-                    var bwoinkTextMessage = new BwoinkTextMessage(
-                        (NetUserId) aHelpMessage.ReceiverUserId,
-                        (NetUserId) aHelpMessage.SenderUserId,
-                        formatMessage,
-                        playSound: aHelpMessage.PlaySound,
-                        adminOnly: aHelpMessage.AdminOnly,
-                        dbLoad: true);
-
-                    foreach (var channel in admins)
-                    {
-                        if (channel.UserId == e.Session.UserId)
-                            continue;
-                        RaiseNetworkEvent(bwoinkTextMessage, channel);
-                    }
-                }
-
-                foreach (var channel in admins)
-                {
-                    if (channel.UserId == e.Session.UserId)
-                        continue;
-                    var loaded = new BwoinkDbLoadedMessage(e.Session.UserId);
-                    RaiseNetworkEvent(loaded, channel);
-                }
-            }
-
             if (message != null)
             {
                 var statusType = e.NewStatus == SessionStatus.Connected
@@ -387,64 +349,35 @@ namespace Content.Server.Administration.Systems
 
         private async void OnRequestDbMessages(BwoinkRequestDbMessages msg, EntitySessionEventArgs args)
         {
-            if (msg.Admin && _adminManager.IsAdmin(args.SenderSession, true))
+            var isAdmin = _adminManager.IsAdmin(args.SenderSession);
+
+            var messages = await _dbManager.GetAHelpMessagesByReceiverAsync(msg.UserId);
+
+            foreach (var aHelpMessage in messages)
             {
-                var userIds = _playerManager.Sessions.Select(session => (Guid) session.UserId).ToList();
-                var messages = await _dbManager.GetAHelpMessagesByReceiverListAsync(userIds);
+                var formatMessage = await FormatDbAhelpMessage(
+                    aHelpMessage.Message,
+                    (NetUserId) aHelpMessage.SenderUserId,
+                    aHelpMessage.PlaySound,
+                    aHelpMessage.AdminOnly);
 
-                var groupedMessages = messages.GroupBy(m => m.ReceiverUserId);
+                if (aHelpMessage.AdminOnly && !isAdmin)
+                    continue;
 
-                foreach (var group in groupedMessages)
-                {
-                    foreach (var aHelpMessage in group)
-                    {
-                        var formatMessage = await FormatDbAhelpMessage(
-                            aHelpMessage.Message,
-                            (NetUserId)aHelpMessage.SenderUserId,
-                            aHelpMessage.PlaySound,
-                            aHelpMessage.AdminOnly);
+                var bwoinkTextMessage = new BwoinkTextMessage(
+                    (NetUserId) aHelpMessage.ReceiverUserId,
+                    (NetUserId) aHelpMessage.SenderUserId,
+                    formatMessage,
+                    aHelpMessage.SentAt.DateTime,
+                    playSound: aHelpMessage.PlaySound,
+                    adminOnly: aHelpMessage.AdminOnly,
+                    dbLoad: true);
 
-                        var bwoinkTextMessage = new BwoinkTextMessage(
-                            (NetUserId)aHelpMessage.ReceiverUserId,
-                            (NetUserId)aHelpMessage.SenderUserId,
-                            formatMessage,
-                            playSound: aHelpMessage.PlaySound,
-                            adminOnly: aHelpMessage.AdminOnly,
-                            dbLoad: true);
-
-                        RaiseNetworkEvent(bwoinkTextMessage, args.SenderSession.Channel);
-                    }
-
-                    var loaded = new BwoinkDbLoadedMessage((NetUserId)group.Key);
-                    RaiseNetworkEvent(loaded, args.SenderSession.Channel);
-                }
+                RaiseNetworkEvent(bwoinkTextMessage, args.SenderSession.Channel);
             }
-            else
-            {
-                var messages = await _dbManager.GetAHelpMessagesByReceiverAsync(args.SenderSession.UserId);
 
-                foreach (var aHelpMessage in messages)
-                {
-                    var formatMessage = await FormatDbAhelpMessage(
-                        aHelpMessage.Message,
-                        (NetUserId) aHelpMessage.SenderUserId,
-                        aHelpMessage.PlaySound,
-                        aHelpMessage.AdminOnly);
-
-                    var bwoinkTextMessage = new BwoinkTextMessage(
-                        (NetUserId) aHelpMessage.ReceiverUserId,
-                        (NetUserId) aHelpMessage.SenderUserId,
-                        formatMessage,
-                        playSound: aHelpMessage.PlaySound,
-                        adminOnly: aHelpMessage.AdminOnly,
-                        dbLoad: true);
-
-                    RaiseNetworkEvent(bwoinkTextMessage, args.SenderSession.Channel);
-                }
-
-                var loaded = new BwoinkDbLoadedMessage(args.SenderSession.UserId);
-                RaiseNetworkEvent(loaded, args.SenderSession.Channel);
-            }
+            var loaded = new BwoinkDbLoadedMessage(msg.UserId);
+            RaiseNetworkEvent(loaded, args.SenderSession.Channel);
         }
 
         private async Task<string> FormatDbAhelpMessage(string message, NetUserId senderUserId,

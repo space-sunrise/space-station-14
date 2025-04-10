@@ -303,6 +303,8 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 var panel = AHelpHelper.EnsurePanel(ch.Value);
                 panel.Visible = true;
+                if (!panel.LoadDb)
+                    AHelpHelper.LoadDbMessages(ch.Value);
             }
         }
 

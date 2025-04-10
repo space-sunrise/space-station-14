@@ -39,9 +39,9 @@ namespace Content.Client.Administration.Systems
             RaiseNetworkEvent(new BwoinkClientTypingUpdated(channel, typing));
         }
 
-        public void LoadDbMessages(bool admin)
+        public void LoadDbMessages(NetUserId userId)
         {
-            RaiseNetworkEvent(new BwoinkRequestDbMessages(admin));
+            RaiseNetworkEvent(new BwoinkRequestDbMessages(userId));
         }
     }
 }
