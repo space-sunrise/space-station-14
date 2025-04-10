@@ -7,8 +7,7 @@
     issuer: syndicate
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - PlanetPrisonerRole
+    - PlanetPrisonerRole
 
 - type: entity
   categories: [ HideSpawnMenu ]

@@ -7,8 +7,7 @@
     issuer: syndicate
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - FugitiveRole
+    - FugitiveRole
 
 - type: entity
   categories: [ HideSpawnMenu ]

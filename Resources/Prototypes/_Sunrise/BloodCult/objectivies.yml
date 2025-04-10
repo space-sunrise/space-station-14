@@ -7,8 +7,7 @@
     issuer: objective-issuer-cult
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - BloodCultistRole
+    - BloodCultistRole
 
 - type: entity
   categories: [ HideSpawnMenu ]
