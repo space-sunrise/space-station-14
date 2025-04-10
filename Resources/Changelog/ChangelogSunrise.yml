@@ -14414,3 +14414,13 @@
   id: 985
   time: '2025-04-10T19:14:42.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1708
+- author: Kendrick
+  changes:
+  - message: "\u0412 \u0440\u0435\u0432\u043E\u043B\u044E\u0446\u0438\u0438 \u0431\
+      \u043E\u043B\u044C\u0448\u0435 \u043D\u0435 \u0431\u0443\u0434\u0435\u0442 \u0432\
+      \u043E\u0440\u043E\u0432, \u0432\u0430\u043C\u043F\u0438\u0440\u043E\u0432 \u0438\
+      \ \u0433\u0435\u043D\u043E\u043A\u0440\u0430\u0434\u043E\u0432."
+    type: Remove
+  id: 986
+  time: '2025-04-10T19:16:26.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1690
