@@ -29,6 +29,7 @@
     soundEmpty:
       path: /Audio/Items/hiss.ogg
     clumsyProof: true
+    bigTrigger: true # Sunrise-Edit
   - type: ContainerAmmoProvider
     container: storagebase
   - type: PneumaticCannon
@@ -92,6 +93,7 @@
     soundEmpty:
       path: /Audio/Items/hiss.ogg
     clumsyProof: true
+    bigTrigger: true # Sunrise-Edit
   - type: ContainerAmmoProvider
     container: storagebase
   - type: Item

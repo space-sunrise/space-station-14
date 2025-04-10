@@ -29,9 +29,10 @@
     soundEmpty:
       path: /Audio/Items/hiss.ogg
     clumsyProof: true
+    bigTrigger: true
   - type: ProjectileBatteryAmmoProvider
     proto: FoodPieBananaCream
-    fireCost: 100
+    fireCost: 75
   - type: Tag
     tags:
     - Sidearm
@@ -42,4 +43,4 @@
     autoRecharge: true
     autoRechargeRate: 50
     autoRechargePause: true
-    autoRechargePauseTime: 15
+    autoRechargePauseTime: 5

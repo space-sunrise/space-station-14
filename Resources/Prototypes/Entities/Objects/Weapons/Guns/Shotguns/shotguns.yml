@@ -305,6 +305,7 @@
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
     soundGunshot:
       collection: m3 # Sunrise-Edit
+    bigTrigger: true # Sunrise-Edit
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null

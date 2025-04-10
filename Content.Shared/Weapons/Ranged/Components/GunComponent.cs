@@ -263,6 +263,15 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
+
+    // Sunrise-Start
+    /// <summary>
+    /// Whether or not someone with
+    /// Insulated gloves can opperate this gun
+    /// </summary>
+    [DataField]
+    public bool BigTrigger = false;
+    // Sunrise-End
 }
 
 [Flags]
