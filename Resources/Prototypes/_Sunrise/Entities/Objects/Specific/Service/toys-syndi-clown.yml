@@ -30,17 +30,12 @@
       path: /Audio/Items/hiss.ogg
     clumsyProof: true
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
-    proto: FoodPieBananaCream
-    fireCost: 75
   - type: Tag
     tags:
     - Sidearm
-  - type: Battery
-    maxCharge: 300
-    startingCharge: 300 # Да, ЭМИ разряжает пироги, как по мне баланс
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 50
-    autoRechargePause: true
-    autoRechargePauseTime: 5
+  - type: BasicEntityAmmoProvider
+    proto: FoodPieBananaCream
+    capacity: 4
+    count: 4
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
