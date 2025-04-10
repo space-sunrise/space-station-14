@@ -87,3 +87,13 @@
   cost: 4000
   category: cargoproduct-category-name-armory
   group: market
+
+- type: cargoProduct
+  id: CrateArmoryScorpion
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/skorpion.rsi
+    state: icon
+  product: CrateArmoryScorpion
+  cost: 7500
+  category: cargoproduct-category-name-armory
+  group: market
