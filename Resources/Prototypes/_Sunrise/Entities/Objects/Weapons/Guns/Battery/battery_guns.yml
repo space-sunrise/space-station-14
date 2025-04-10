@@ -249,9 +249,9 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 145
+    autoRechargeRate: 40
     autoRechargePause: true
-    autoRechargePauseTime: 4
+    autoRechargePauseTime: 25
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
