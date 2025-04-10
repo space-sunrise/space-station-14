@@ -1,0 +1,288 @@
+- type: entity
+  parent: BaseItem
+  id: DoubleBedsheetBase
+  name: BedsheetBase
+  abstract: true
+  description: A surprisingly soft linen bedsheet.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Bed
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/doublebedsheets.rsi
+    noRot: true
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - Bedsheet
+
+- type: entity
+  id: DoubleBedsheetBlack
+  parent: DoubleBedsheetBase
+  name: black bedsheet
+  components:
+  - type: Sprite
+    state: sheetblack
+
+- type: entity
+  id: DoubleBedsheetBlue
+  parent: DoubleBedsheetBase
+  name: blue bedsheet
+  components:
+  - type: Sprite
+    state: sheetblue
+
+- type: entity
+  id: DoubleBedsheetBrown
+  parent: DoubleBedsheetBase
+  name: brown bedsheet
+  components:
+  - type: Sprite
+    state: sheetbrown
+
+- type: entity
+  id: DoubleBedsheetCaptain
+  parent: DoubleBedsheetBase
+  name: captain's bedsheet
+  description: It has a Nanotrasen symbol on it, and was woven with a revolutionary new kind of thread guaranteed to have 0.01% permeability for most non-chemical substances, popular among most modern captains.
+  components:
+  - type: Sprite
+    state: sheetcaptain
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetCE
+  parent: DoubleBedsheetBase
+  name: CE's bedsheet
+  description: It's decorated with a wrench emblem. It's highly reflective and stain resistant, so you don't need to worry about ruining it with oil.
+  components:
+  - type: Sprite
+    state: sheetce
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetCentcom
+  parent: DoubleBedsheetBase
+  name: CentComm bedsheet
+  description: Woven with advanced nanothread for warmth as well as being very decorated, essential for all officials.
+  components:
+  - type: Sprite
+    state: sheetcentcom
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetClown
+  parent: DoubleBedsheetBase
+  name: clown's bedsheet
+  description: A rainbow blanket with a clown mask woven in. It smells faintly of bananas.
+  components:
+  - type: Sprite
+    state: sheetclown
+
+- type: entity
+  id: DoubleBedsheetCMO
+  parent: DoubleBedsheetBase
+  name: CMO's bedsheet
+  description: It's a sterilized blanket that has a cross emblem. There's some cat fur on it, likely from Runtime.
+  components:
+  - type: Sprite
+    state: sheetcmo
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetCosmos
+  parent: DoubleBedsheetBase
+  name: cosmos bedsheet
+  description: Made from the dreams of those who wonder at the stars.
+  components:
+  - type: Sprite
+    state: sheetcosmos
+
+- type: entity
+  id: DoubleBedsheetCult
+  parent: DoubleBedsheetBase
+  name: cult bedsheet
+  description: You might dream of Nar'Sie if you sleep with this. It seems rather tattered and glows of an eldritch presence.
+  components:
+  - type: Sprite
+    state: sheetcult
+
+- type: entity
+  id: DoubleBedsheetGreen
+  parent: DoubleBedsheetBase
+  name: green bedsheet
+  components:
+  - type: Sprite
+    state: sheetgreen
+
+- type: entity
+  id: DoubleBedsheetGrey
+  parent: DoubleBedsheetBase
+  name: grey bedsheet
+  components:
+  - type: Sprite
+    state: sheetgrey
+
+- type: entity
+  id: DoubleBedsheetHOP
+  parent: DoubleBedsheetBase
+  name: HOP's bedsheet
+  description: It's decorated with a key emblem. For those rare moments when you can rest and cuddle with Ian without someone screaming for you over the radio.
+  components:
+  - type: Sprite
+    state: sheethop
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetHOS
+  parent: DoubleBedsheetBase
+  name: HOS's bedsheet
+  description: It's decorated with a shield emblem. While crime doesn't sleep, you do, but you are still THE LAW!
+  components:
+  - type: Sprite
+    state: sheethos
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetIan
+  parent: DoubleBedsheetBase
+  name: Ian's bedsheet
+  components:
+  - type: Sprite
+    state: sheetian
+
+- type: entity
+  id: DoubleBedsheetMedical
+  parent: DoubleBedsheetBase
+  name: medical bedsheet
+  description: It's a sterilized blanket commonly used in the Medbay. Sterilization is voided if a virologist is present onboard the station.
+  components:
+  - type: Sprite
+    state: sheetmedical
+
+- type: entity
+  id: DoubleBedsheetMime
+  parent: DoubleBedsheetBase
+  name: mime's bedsheet
+  description: A very soothing striped blanket.  All the noise just seems to fade out when you're under the covers in this.
+  components:
+  - type: Sprite
+    state: sheetmime
+
+- type: entity
+  id: DoubleBedsheetNT
+  parent: DoubleBedsheetBase
+  name: NT bedsheet
+  description: It has the Nanotrasen logo on it and an aura of duty.
+  components:
+  - type: Sprite
+    state: sheetNT
+
+- type: entity
+  id: DoubleBedsheetOrange
+  parent: DoubleBedsheetBase
+  name: orange bedsheet
+  components:
+  - type: Sprite
+    state: sheetorange
+
+- type: entity
+  id: DoubleBedsheetPurple
+  parent: DoubleBedsheetBase
+  name: purple bedsheet
+  components:
+  - type: Sprite
+    state: sheetpurple
+
+- type: entity
+  id: DoubleBedsheetQM
+  parent: DoubleBedsheetBase
+  name: QM's bedsheet
+  components:
+  - type: Sprite
+    state: sheetqm
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetRainbow
+  parent: DoubleBedsheetBase
+  name: rainbow bedsheet
+  components:
+  - type: Sprite
+    state: sheetrainbow
+
+- type: entity
+  id: DoubleBedsheetRD
+  parent: DoubleBedsheetBase
+  name: RD's bedsheet
+  description: It appears to have a beaker emblem, and is made out of fire-resistant material, although it probably won't protect you in the event of fires you're familiar with every day.
+  components:
+  - type: Sprite
+    state: sheetrd
+  - type: StealTarget
+    stealGroup: HeadBedsheet
+
+- type: entity
+  id: DoubleBedsheetRed
+  parent: DoubleBedsheetBase
+  name: red bedsheet
+  components:
+  - type: Sprite
+    state: sheetred
+
+- type: entity
+  id: DoubleBedsheetSyndie
+  parent: DoubleBedsheetBase
+  name: syndicate bedsheet
+  description: It has a syndicate emblem and it has an aura of evil.
+  components:
+  - type: Sprite
+    state: sheetsyndie
+
+- type: entity
+  id: DoubleBedsheetUSA
+  parent: DoubleBedsheetBase
+  name: USA bedsheet
+  components:
+  - type: Sprite
+    state: sheetUSA
+
+- type: entity
+  id: DoubleBedsheetWhite
+  parent: DoubleBedsheetBase
+  name: white bedsheet
+  components:
+  - type: Butcherable
+    spawned:
+    - id: ClothingOuterGhostSheet #ghostly!
+      amount: 1
+  - type: Sprite
+    state: sheetwhite
+
+- type: entity
+  id: DoubleBedsheetWiz
+  parent: DoubleBedsheetBase
+  name: wizard's bedsheet
+  description: A special fabric enchanted with magic so you can have an enchanted night. It even glows!
+  components:
+  - type: Sprite
+    state: sheetwiz
+
+- type: entity
+  id: DoubleBedsheetYellow
+  parent: DoubleBedsheetBase
+  name: yellow bedsheet
+  components:
+  - type: Sprite
+    state: sheetyellow
