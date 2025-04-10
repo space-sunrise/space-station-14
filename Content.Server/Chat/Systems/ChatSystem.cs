@@ -710,8 +710,25 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("message", isFormatted ? action : FormattedMessage.RemoveMarkupOrThrow(action)));
 
         if (checkEmote)
-            TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, isFormatted ? ChatTransmitRange.HideChat : range, author); //sunrise-edit
+            TryEmoteChatInput(source, action); // sunrise-start
+
+        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        {
+            EntityUid listener;
+
+            if (session.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+
+            listener = session.AttachedEntity.Value;
+
+            if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
+                continue;
+
+            if (_examineSystem.InRangeUnOccluded(source, listener, VoiceRange))
+            {
+                _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel);
+            }
+        } // sunrise-end
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
