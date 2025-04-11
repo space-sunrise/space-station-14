@@ -74,7 +74,14 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
             || !TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        UpdateSpriteState(sprite, layer,footprint.StateId, footprint.SpritePath);
+        if (!_appearanceSystem.TryGetData<string>(
+                uid,
+                FootprintVisualParameter.VisualState,
+                out var visualState,
+                appearance))
+            return;
+
+        UpdateSpriteState(sprite, layer, visualState, footprint.SpritePath);
         UpdateSpriteColor(sprite, layer, uid, appearance);
     }
 

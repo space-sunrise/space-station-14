@@ -10,15 +10,9 @@ namespace Content.Shared._Sunrise.Footprints;
 /// <summary>
 /// Component that represents a single footprint entity in the world
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class FootprintComponent : Component
 {
-    /// <summary>
-    /// Entity that created this footprint
-    /// </summary>
-    [AutoNetworkedField]
-    public string StateId;
-
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
 

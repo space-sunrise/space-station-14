@@ -197,13 +197,13 @@ public sealed class FootprintSystem : EntitySystem
         var coords = CalculateFootprintPosition(gridUid, emitter, transform, stand);
         var entity = Spawn(stand ? emitter.FootprintPrototype : emitter.DragMarkPrototype, coords);
 
-        var footprint = EnsureComp<FootprintComponent>(entity);
-
         if (_appearanceQuery.TryComp(entity, out var appearance))
         {
             var visualType = DetermineVisualState(emitterOwner, stand);
-            footprint.StateId = GetStateId(visualType, emitter);
-            Dirty(entity, footprint);
+            _appearanceSystem.SetData(entity,
+                FootprintVisualParameter.VisualState,
+                GetStateId(visualType, emitter),
+                appearance);
 
             var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
             var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0f, 1f);
