@@ -270,7 +270,8 @@
     sprintModifier: 0.8
   - type: Strap
     position: Stand
-    buckleOffset: "0,0.15"
+    buckleOffsets: # Sunrise-Edit
+    - "0,0.15"
   - type: Stripping
     useDragDrop: false
   # Sunrise-end

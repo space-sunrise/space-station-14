@@ -61,3 +61,4 @@
     guides:
     - Medical Doctor
   - type: PowerSwitch
+  - type: CanSleepOnBuckle # Sunrise-Edit

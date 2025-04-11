@@ -28,6 +28,11 @@
   - type: Strap
     position: Down
     rotation: -90
+    # Sunrise-Edit
+    buckleOffsets:
+      - "0,-0.15"
+      - "0,0.25"
+    size: 200
   # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
   - type: Construction
     graph: DoubleBeds
@@ -57,3 +62,4 @@
     noRot: true
   - type: Anchorable
   - type: Pullable
+  - type: CanSleepOnBuckle # Sunrise-Edit

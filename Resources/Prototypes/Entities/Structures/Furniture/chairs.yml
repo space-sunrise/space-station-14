@@ -25,7 +25,8 @@
     noRot: true
   - type: Strap
     position: Stand
-    buckleOffset: "0,-0.05"
+    buckleOffsets: # Sunrise-Edit
+    - "0,-0.05"
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic
@@ -49,6 +50,7 @@
           collection: MetalBreak
   - type: StaticPrice
     price: 50
+  - type: CanSleepOnBuckle # Sunrise-Edit
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -373,6 +375,14 @@
   - type: Construction
     graph: Seat
     node: chairSteelBench
+  # Sunrise-Start
+  - type: Strap
+    position: Stand
+    buckleOffsets:
+    - "-0.2,0"
+    - "0.2,0"
+    size: 200
+  # Sunrise-End
 
 - type: entity
   name: wooden bench
@@ -403,3 +413,11 @@
             max: 4
   - type: StaticPrice
     price: 50
+  # Sunrise-Start
+  - type: Strap
+    position: Stand
+    buckleOffsets:
+    - "-0.2,0"
+    - "0.2,0"
+    size: 200
+  # Sunrise-End

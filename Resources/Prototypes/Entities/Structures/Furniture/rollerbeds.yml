@@ -55,7 +55,8 @@
     - type: Strap
       position: Down
       rotation: -90
-      buckleOffset: "0,0.15"
+      buckleOffsets: # Sunrise-Edit
+      - "0,0.15"
       buckleOnInteractHand: False
     - type: Appearance
     - type: GenericVisualizer

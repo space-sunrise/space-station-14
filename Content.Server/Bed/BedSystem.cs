@@ -31,6 +31,10 @@ namespace Content.Server.Bed
             base.Initialize();
             SubscribeLocalEvent<HealOnBuckleComponent, StrappedEvent>(OnStrapped);
             SubscribeLocalEvent<HealOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
+            // Sunrise-Start
+            SubscribeLocalEvent<CanSleepOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
+            SubscribeLocalEvent<CanSleepOnBuckleComponent, StrappedEvent>(OnStrapped);
+            // Sunrise-End
             SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
             SubscribeLocalEvent<StasisBedComponent, UnstrappedEvent>(OnStasisUnstrapped);
             SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
@@ -41,15 +45,32 @@ namespace Content.Server.Bed
         {
             EnsureComp<HealOnBuckleHealingComponent>(bed);
             bed.Comp.NextHealTime = _timing.CurTime + TimeSpan.FromSeconds(bed.Comp.HealTime);
-            _actionsSystem.AddAction(args.Buckle, ref bed.Comp.SleepAction, SleepingSystem.SleepActionId, bed);
+        }
+
+        // Sunrise-Start
+        private void OnStrapped(Entity<CanSleepOnBuckleComponent> bed, ref StrappedEvent args)
+        {
+            EntityUid? action = null;
+            _actionsSystem.AddAction(args.Buckle, ref action, SleepingSystem.SleepActionId, args.Buckle.Owner);
+            if (action != null)
+                bed.Comp.SleepAction.TryAdd(args.Buckle.Owner, action.Value);
 
             // Single action entity, cannot strap multiple entities to the same bed.
-            DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
+            //DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
         }
+
+        private void OnUnstrapped(Entity<CanSleepOnBuckleComponent> bed, ref UnstrappedEvent args)
+        {
+            if (bed.Comp.SleepAction.TryGetValue(args.Buckle.Owner, out var action))
+            {
+                _actionsSystem.RemoveAction(args.Buckle.Owner, action);
+                bed.Comp.SleepAction.Remove(args.Buckle.Owner);
+            }
+        }
+        // Sunrise-End
 
         private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)
         {
-            _actionsSystem.RemoveAction(args.Buckle, bed.Comp.SleepAction);
             _sleepingSystem.TryWaking(args.Buckle.Owner);
             RemComp<HealOnBuckleHealingComponent>(bed);
         }
