@@ -190,6 +190,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2
+  - type: Item
+    size: Normal
   # Sunrise-Start
   - type: Tag
     tags:

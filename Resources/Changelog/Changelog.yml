@@ -1,34 +1,4 @@
 ﻿Entries:
-- author: deltanedas
-  changes:
-  - message: Fixed expeditions on cave planets not having any ore.
-    type: Fix
-  id: 7649
-  time: '2024-11-24T08:49:31.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/32890
-- author: slarticodefast
-  changes:
-  - message: Fixed doors not auto-closing correctly after being unbolted in an open
-      state.
-    type: Fix
-  id: 7650
-  time: '2024-11-25T04:26:54.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/33524
-- author: Schrodinger71
-  changes:
-  - message: Fixed a bug letting players type "ghost" in the console and then see
-      the whole chat while being in the lobby.
-    type: Fix
-  id: 7651
-  time: '2024-11-25T07:20:32.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/33529
-- author: Minemoder
-  changes:
-  - message: The shark plushie now goes rawr when hitting something or being thrown.
-    type: Tweak
-  id: 7652
-  time: '2024-11-25T12:23:57.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/33540
 - author: red15
   changes:
   - message: Vending machine lights turns off when broken.
@@ -3890,3 +3860,35 @@
   id: 8148
   time: '2025-04-10T15:59:18.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/36273
+- author: SlamBamActionman
+  changes:
+  - message: The Syndicate Raid Bundle now comes in a Syndicate backpack instead of
+      duffelbag.
+    type: Tweak
+  - message: The Syndicate Raid Suit now has an inventory size of 2x2 (previously
+      4x4).
+    type: Tweak
+  id: 8149
+  time: '2025-04-10T22:22:17.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/35890
+- author: EmoGarbage404
+  changes:
+  - message: Grinding soda cans now gives a small amount of Aluminum.
+    type: Add
+  id: 8150
+  time: '2025-04-11T00:54:24.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36449
+- author: RedBookcase
+  changes:
+  - message: The Kardashev-Mosin is now considered Major Contraband.
+    type: Tweak
+  id: 8151
+  time: '2025-04-11T00:57:41.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36446
+- author: Nukesthestation
+  changes:
+  - message: Zombies /suicideing return to an ai state
+    type: Tweak
+  id: 8152
+  time: '2025-04-11T01:12:13.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36453
