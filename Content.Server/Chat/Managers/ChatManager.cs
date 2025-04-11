@@ -315,9 +315,26 @@ internal sealed partial class ChatManager : IChatManager
     #endregion
 
     #region Utility
+    private static readonly Dictionary<string, string> BadWords = new()
+{
+    { "лол", "л*л" },
+    { "кек", "к*к" },
+    { "чебурек", "ч*****к" }
+};
 
+    private string FilterBadWords(string input)
+{
+    foreach (var word in BadWords)
+    {
+        input = input.Replace(word.Key, word.Value, StringComparison.OrdinalIgnoreCase);
+    }
+    return input;
+}
     public void ChatMessageToOne(ChatChannel channel, string message, string wrappedMessage, EntityUid source, bool hideChat, INetChannel client, Color? colorOverride = null, bool recordReplay = false, string? audioPath = null, float audioVolume = 0, NetUserId? author = null)
     {
+        message = FilterBadWords(message);
+        wrappedMessage = FilterBadWords(wrappedMessage);
+
         var user = author == null ? null : EnsurePlayer(author);
         var netSource = _entityManager.GetNetEntity(source);
         user?.AddEntity(netSource);
