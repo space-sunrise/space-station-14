@@ -15,9 +15,11 @@
       groups:
         - id: Food
         - id: Drink
-        - id: Medicine
-        - id: Poison
-        - id: Narcotic
+        # Sunrise-start
+        #- id: Medicine
+        #- id: Poison
+        #- id: Narcotic
+        # Sunrise-end
         - id: Alcohol
           rateModifier: 0.25
     - type: SolutionContainerManager
@@ -37,7 +39,6 @@
       size: Small
       heldPrefix: brain
 
-      
 - type: entity
   id: OrganSlimeLungs
   parent: [BaseHumanOrgan, BaseOrganLungs]

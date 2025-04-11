@@ -7,3 +7,5 @@ surgery-window-reguires-table = [color=red](Требует операционн�
 surgery-window-reguires-undress = [color=red](Снимите с него броню!)[/color]
 surgery-window-reguires-tool = [color=red](Отсутствует инструмент)[/color]
 surgery-window-reguires-laydown = [color=red][font size=16]Он должен лежать![/font][/color]
+surgery-window-reguires-enable = [color=red](Предмет выключен)[/color]
+surgery-window-too-high = [color=red](Слишком высокий)[/color]

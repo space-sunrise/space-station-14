@@ -10,7 +10,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
+        tongue: OrganHumanTongue # Sunrise-edit
     torso:
       part: TorsoHuman
       connections:
@@ -24,6 +24,7 @@
         stomach: OrganHumanStomach
         liver: OrganHumanLiver
         kidneys: OrganHumanKidneys
+        cavity: null # Sunrise-edit
     right_arm:
       part: RightArmHuman
       connections:

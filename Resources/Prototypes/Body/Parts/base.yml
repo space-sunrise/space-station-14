@@ -20,6 +20,13 @@
   - type: Tag
     tags:
       - Trash
+  # Sunrise-start
+  - type: SurgeryTarget
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  # Sunrise-end
 
 - type: entity
   id: BaseTorso

@@ -12,10 +12,13 @@ public sealed partial class SurgeryStepOrganExtractComponent : Component
 {
     [DataField]
     public ComponentRegistry? Organ;
+
+    [DataField]
+    public string? Slot;
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
-public sealed partial class SurgeryStepOrganInsertComponent : Component                                                              
+public sealed partial class SurgeryStepOrganInsertComponent : Component
 {
     [DataField(required: true)]
     public string Slot;
