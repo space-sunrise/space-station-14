@@ -18,8 +18,6 @@
     Head: MobSlimeHead
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
-    UndergarmentTop: MobHumanoidAnyMarking
-    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobSlimeTorso
     HeadTop: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking

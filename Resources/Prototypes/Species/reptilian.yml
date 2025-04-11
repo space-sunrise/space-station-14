@@ -20,8 +20,6 @@
   sprites:
     Head: MobReptilianHead
     Snout: MobHumanoidAnyMarking
-    UndergarmentTop: MobHumanoidAnyMarking
-    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobReptilianTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -80,12 +78,6 @@
       points: 2
       required: false
     HeadSide:
-      points: 1
-      required: false
-    UndergarmentTop:
-      points: 1
-      required: false
-    UndergarmentBottom:
       points: 1
       required: false
     Chest:

@@ -25,8 +25,6 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    UndergarmentTop: MobHumanoidAnyMarking
-    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobHumanTorso
     Eyes: MobHumanoidEyes
     HeadTop: MobHumanoidAnyMarking
@@ -82,12 +80,6 @@
       required: false
     HeadTop:
       points: 1 # Sunrise-Sponsors
-      required: false
-    UndergarmentTop:
-      points: 1
-      required: false
-    UndergarmentBottom:
-      points: 1
       required: false
     Chest:
       points: 1

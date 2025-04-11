@@ -93,15 +93,6 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField]
     public HashSet<HumanoidVisualLayers> HideLayersOnEquip = [HumanoidVisualLayers.Hair];
 
-    /// <summary>
-    ///     Which markings the humanoid defaults to when nudity is toggled off.
-    /// </summary>
-    [DataField]
-    public ProtoId<MarkingPrototype>? UndergarmentTop = new ProtoId<MarkingPrototype>("UndergarmentTopTanktop");
-
-    [DataField]
-    public ProtoId<MarkingPrototype>? UndergarmentBottom = new ProtoId<MarkingPrototype>("UndergarmentBottomBoxers");
-
     // Sunrise-TTS-Start
     [DataField("voice")]
     public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
