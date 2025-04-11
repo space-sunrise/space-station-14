@@ -45,6 +45,10 @@
     - Revolutionary
     - Zombie
     - Wizard
+    - FleshCult
+    - BloodCult
+    - AssaultOps
+    - SubGamemodesRule
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
@@ -68,6 +72,10 @@
     - Revolutionary
     - Zombie
     - Wizard
+    - FleshCult
+    - BloodCult
+    - AssaultOps
+    - SubGamemodesRule
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
