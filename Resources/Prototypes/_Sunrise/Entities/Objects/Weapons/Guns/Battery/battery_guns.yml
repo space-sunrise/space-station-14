@@ -239,7 +239,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
   - type: Gun
-    fireRate: 2.75
+    fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
@@ -249,9 +249,9 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40
+    autoRechargeRate: 60
     autoRechargePause: true
-    autoRechargePauseTime: 25
+    autoRechargePauseTime: 6
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
