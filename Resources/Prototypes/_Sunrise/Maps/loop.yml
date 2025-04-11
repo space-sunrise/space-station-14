@@ -1,0 +1,94 @@
+- type: gameMap
+  id: SunriseLoop
+  mapName: 'Loop Station'
+  mapPath: /Maps/_Sunrise/Station/loop.yml
+  minPlayers: 35
+  maxPlayers: 70
+  maxRandomOffset: 0
+  randomRotation: false
+  stations:
+    Loop:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Loop Station {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/Shuttles/emergency_wode.yml
+        - type: StationJobs
+          availableJobs:
+            #command
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            #law
+            Magistrat: [ 1, 1 ]
+            IAA: [ 1, 1 ]
+            Lawyer: [ 1, 2 ]
+            NtrOfficer: [ 2, 2 ]
+            #service
+            Bartender: [ 2, 2 ]
+            Botanist: [ 2, 2 ]
+            Chef: [ 2, 2 ]
+            Janitor: [ 2, 2 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 3, -1 ]
+            Reporter: [ 1, 1 ]
+            Barber: [ 1, 1 ]
+            #blueshield
+            BlueShield: [ 1, 1 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            SeniorEngineer: [ 1, 1 ]
+            AtmosphericTechnician: [ 3, 3 ]
+            StationEngineer: [ 5, 5 ]
+            TechnicalAssistant: [ 3, -1 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ]
+            Chemist: [ 3, 3 ]
+            MedicalDoctor: [ 4, 5 ]
+            Paramedic: [ 2, 2 ]
+            MedicalIntern: [ 3, -1 ]
+            Psychologist: [ 1, 2 ]
+            MedicalPathologist: [ 1, 1 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            SeniorResearcher: [ 1, 1 ]
+            Roboticist: [ 2, 2 ]
+            Scientist: [ 5, 5 ]
+            ResearchAssistant: [ 3, -1 ]
+            # silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]
+            EngineerBorg: [ 2, 2 ]
+            MiningBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            SecurityBorg: [ 4, 4 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            SecurityOfficer: [ 6, 8 ]
+            Detective: [ 2, 2 ]
+            Brigmedic: [ 2, 2 ]
+            SecurityPilot: [ 1, 1 ]
+            SecurityCadet: [ 2, -1 ]
+            #supply
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 4, 4 ]
+            MailCarrier: [ 1, 2 ]
+            #civilian
+            Passenger: [ -1, -1 ]
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 1 ]
