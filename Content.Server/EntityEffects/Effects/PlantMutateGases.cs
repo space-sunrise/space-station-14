@@ -57,6 +57,17 @@ public sealed partial class PlantMutateConsumeGasses : EntityEffect
 
     [DataField]
     public float MaxValue = 0.5f;
+
+    // Sunrise-Start
+    private static readonly HashSet<Gas> BlacklistedGases = new()
+    {
+        Gas.Frezon,
+        Gas.BZ,
+        Gas.Healium,
+        Gas.Nitrium
+    };
+    // Sunrise-End
+
     public override void Effect(EntityEffectBaseArgs args)
     {
         var plantholder = args.EntityManager.GetComponent<PlantHolderComponent>(args.TargetEntity);
@@ -67,9 +78,19 @@ public sealed partial class PlantMutateConsumeGasses : EntityEffect
         var random = IoCManager.Resolve<IRobustRandom>();
         var gasses = plantholder.Seed.ConsumeGasses;
 
-        // Add a random amount of a random gas to this gas dictionary
-        float amount = random.NextFloat(MinValue, MaxValue);
-        Gas gas = random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+        // Sunrise-Start
+        var availableGases = Enum.GetValues(typeof(Gas))
+            .Cast<Gas>()
+            .Where(gas => !BlacklistedGases.Contains(gas))
+            .ToList();
+
+        if (!availableGases.Any())
+            return;
+
+        var amount = random.NextFloat(MinValue, MaxValue);
+        var gas = random.Pick(availableGases);
+        // Sunrise-End
+
         if (gasses.ContainsKey(gas))
         {
             gasses[gas] += amount;
