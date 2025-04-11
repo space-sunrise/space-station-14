@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: github.actor != 'GayBot' && github.event.pull_request.draft == false
+    if: github.actor != 'Sunrise-Bot' && github.event.pull_request.draft == false
     strategy:
       matrix:
         os: [ubuntu-latest]
