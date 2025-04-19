@@ -150,6 +150,7 @@
     - MindRoleGhostRoleSilicon
   - type: GhostTakeoverAvailable
   - type: BorgTransponder
+    disableProof: true
     sprite:
       sprite: _Sunrise/Mobs/Silicon/chassis.rsi
       state: ert_borg
