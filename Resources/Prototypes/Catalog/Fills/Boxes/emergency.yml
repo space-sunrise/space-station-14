@@ -127,10 +127,11 @@
       orGroup: Glowstick
     - id: GlowstickPurple
       orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
+    - id: CrowbarRed # Sunrise-edit
+#    - id: GlowstickYellow
+#      orGroup: Glowstick
+#    - id: GlowstickBlue
+#      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
