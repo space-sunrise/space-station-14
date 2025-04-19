@@ -13,7 +13,7 @@ public sealed partial class AoEHealComponent : Component
     /// Радиус в котором работает лечение
     /// </summary>
     [DataField]
-    public float Range = 2f;
+    public float Range = 5f;
 
     /// <summary>
     /// Сколько урона лечится за 2 секунды
