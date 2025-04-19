@@ -59,4 +59,16 @@
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
 #Sunrise-start
   - type: DamageOverlay
+  - type: AoEHeal
+    threshold: 0.9
+    damage:
+      groups:
+        # это не много. Так как мы лечим по группам урона, то это -2 урона по каждому типу в 2 секунды. Тобишь 60
+        # проникающих ранений (урон с которым можно еще надеяться спрятаться) вылечится за 2 минуты, что вполне себе нормально
+        Brute: -6
+        Burn: -4
+        Airloss: -4
+    whitelist:
+      tags:
+      - CarpRiftHealTarget
 #Sunrise-end
