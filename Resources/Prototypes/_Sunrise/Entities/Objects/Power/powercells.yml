@@ -35,3 +35,28 @@
     maxCharge: 1800
     startingCharge: 1800
   - type: EmpImmune
+
+#самодельная, by Noychik
+- type: entity
+  name: makeshift power cell
+  description: A makeshift power cell. It's not very good, but it's better than nothing.
+  id: PowerCellMakeshift
+  suffix: Full
+  parent: BasePowerCage
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: makeshift
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: EmpImmune
+  - type: Construction
+    graph: MakeshiftPowerCage
+    node: makeshiftcage
+
