@@ -588,6 +588,21 @@
   spreadAngle: 30
 
 - type: hitscan
+  id: BulletDisablerPracticeSpread
+  damage:
+    types:
+      Shock: 1
+  collisionMask: BulletImpassable
+  staminaDamage: 1
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: omni_laser
+  shootModifier: Spread
+  spreadCount: 5
+  spreadAngle: 30
+
+- type: hitscan
   id: BulletLaserSpreadNarrow
   damage:
     types:

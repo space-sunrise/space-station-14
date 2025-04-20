@@ -864,6 +864,44 @@
     autoRechargePauseTime: 30
 
 - type: entity
+  name: energy shotgun practice
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
+  id: WeaponEnergyShotgunPractice
+  description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/toy_energy_shotgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-4
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/toy_energy_shotgun.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletDisablerPracticeSpread
+    fireCost: 50
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
+    sprite: Objects/Weapons/Guns/Battery/toy_inhands_64x.rsi
+    heldPrefix: energy
+  - type: Battery
+    maxCharge: 1001
+    startingCharge: 1001
+
+- type: entity
   name: temperature gun
   parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponTemperatureGun
