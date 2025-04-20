@@ -9,6 +9,9 @@
     "states": [
         {
             "name": "makeshift"
+        },
+        {
+            "name": "o2"
         }
     ]
 }

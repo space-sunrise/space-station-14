@@ -41,6 +41,6 @@
   category: construction-category-misc
   description: Самодельная энергоячейка. Она не очень хороша, но лучше, чем ничего.
   icon:
-    sprite: Objects/Power/power_cages.rsi
+    sprite: _Sunrise/Objects/Power/power_cages.rsi
     state: makeshift
   objectType: Item

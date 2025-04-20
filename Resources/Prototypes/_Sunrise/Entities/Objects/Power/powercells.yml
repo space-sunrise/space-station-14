@@ -45,7 +45,7 @@
   parent: BasePowerCage
   components:
   - type: Sprite
-    sprite: Objects/Power/power_cages.rsi
+    sprite: _Sunrise/Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: makeshift

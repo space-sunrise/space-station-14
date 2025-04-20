@@ -1,8 +1,8 @@
 - type: entity
   id: LockerMechChassis
   parent: BaseMechPart
-  name: Корпус шкафомеха
-  description: Незавершенная конструкция шкафомеха.
+  name: LockerMech chassis
+  description: LockerMech chassis
   components:
   - type: Appearance
   - type: ContainerContainer
@@ -22,8 +22,8 @@
 
 - type: constructionGraph
   id: LockerMechConstruction
-  name: Шкафомех
-  description: Создать шкафомех.
+  name: LockerMech 
+  description: Create LockerMech.
   start: start
   graph:
   - node: start
@@ -43,30 +43,29 @@
     edges:
     - to: lockermech
       steps:
-      # 2) Установка ящиков и фонарика - 3 ящика, фонарик
       - tag: Toolbox
-        name: аварийный ящик
+        name: step-lockermech-toolbox1
         icon:
           sprite: "Objects/Tools/Toolboxes/toolbox_red.rsi"
           state: "icon"
         doAfter: 3
 
       - tag: Toolbox
-        name: второй аварийный ящик
+        name: step-lockermech-toolbox2
         icon:
           sprite: "Objects/Tools/Toolboxes/toolbox_red.rsi"
           state: "icon"
         doAfter: 3
 
       - tag: Toolbox
-        name: электрический тулбокс
+        name: step-lockermech-toolbox3
         icon:
           sprite: "Objects/Tools/Toolboxes/toolbox_yellow.rsi"
           state: "icon"
         doAfter: 2
 
       - tag: Flashlight
-        name: фонарик
+        name: step-lockermech-flashlight
         icon:
           sprite: "Objects/Tools/flashlight.rsi"
           state: "flashlight"
@@ -75,28 +74,21 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 2
-
-      # 3) Закрепление ящиков - использование отвёртки
       - tool: Screwing
         doAfter: 7
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 3
-
-      # 4) герметизация шкафа - использование включенного сварочного аппарата
       - tool: Welding
         doAfter: 10
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 4
-
-      # 5) Строительство надстроек - 5 стали, 2 стекла
       - material: Steel
         amount: 5
         doAfter: 3
-
       - material: Glass
         amount: 2
         doAfter: 3
@@ -104,10 +96,8 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 5
-
-      # 6) Установка баллона - 1 кислородный баллон
       - tag: GasTank
-        name: кислородный баллон
+        name: step-lockermech-oxygentank
         icon:
           sprite: "Objects/Tanks/oxygen.rsi"
           state: "icon"
@@ -116,11 +106,9 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 6
-
-      # 7) Установка гусениц
       - material: Steel
         amount: 5
-        name: гусеницы
+        name: step-lockermech-treads
         icon:
           sprite: "Structures/conveyor.rsi"
           state: "conveyor_loose"
@@ -129,8 +117,6 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 7
-
-      # 8) Установка проводки - 10 НВ (LV) проводов
       - material: Cable
         amount: 10
         doAfter: 10
@@ -138,10 +124,8 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 8
-
-      # 9) Установка микросхемы шлюза
       - tag: DoorElectronics
-        name: микросхема шлюза
+        name: step-lockermech-door_electronics
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics"
@@ -150,10 +134,8 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 9
-
-      # 10) Установка электрооборудования - 3 конденсатора, 2 манипулятора
       - tag: CapacitorStockPart
-        name: конденсаторы
+        name: step-lockermech-capacitors
         amount: 3
         icon:
           sprite: "Objects/Misc/stock_parts.rsi"
@@ -161,18 +143,17 @@
         doAfter: 3
 
       - tag: MicroManipulatorStockPart
-        name: манипуляторы
+        name: step-lockermech-manipulators
         amount: 2
         icon:
           sprite: "Objects/Misc/stock_parts.rsi"
           state: "micro_mani"
-        doAfter: 0.25
+        doAfter: 3
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 10
 
-      # 11) Установка ВВ проводки - 5 ВВ (HV) проводов
       - material: CableHV
         amount: 5
         doAfter: 5
@@ -181,9 +162,8 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 11
 
-      # 12) Установка энергоячейки - 1 энергоячейка
       - tag: PowerCage
-        name: энергоячейка
+        name: step-lockermech-powercell
         icon:
           sprite: "Objects/Power/power_cages.rsi"
           state: "medium"
@@ -194,7 +174,6 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 12
 
-      # 13) Финальная сборка
       - tool: Welding
         doAfter: 3
         completed:
@@ -207,11 +186,11 @@
     - !type:BuildMech
       mechPrototype: MechLocker
 
-# Единый рецепт для панели создания
+# Единый рецепт 
 - type: construction
   id: LockerMech
-  name: Шкафомех
-  description: Медленный, но герметичный мех. Собран из мусора.
+  name: LockerMech 
+  description: Slow, but sealed mech. Assembled from trash.
   graph: LockerMechConstruction
   startNode: start
   targetNode: lockermech
