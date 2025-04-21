@@ -43,5 +43,5 @@ ent-WeaponSyndieLaserPistol = SAM-300
     .desc = Лазерный пистолет Синдиката, разработанный на базе пистолета капитана НТ.
 ent-WeaponLaserMinigun = UVL-21 «Виверна»
     .desc = Тяжёлое оружие массового поражения разработанное на основе минигана.
-ent-WeaponTemperatureGun = temperature gun
-    .desc = An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
+ent-WeaponTemperatureGun = термальная пушка
+    .desc = Продвинутая пушка, стреляющая лучами, изменяющими температуру тела. Вероятно, это является своего рода военным преступлением...

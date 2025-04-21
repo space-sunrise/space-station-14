@@ -56,7 +56,7 @@ xenoarch-trigger-tip-frezon = Фрезон
 xenoarch-trigger-tip-radiation = Радиация
 xenoarch-trigger-tip-brute-damage = Физические повреждения
 xenoarch-trigger-tip-interaction = Взаимодействие
-xenoarch-trigger-tip-wrenching = Прикрепление гаечным ключом
+xenoarch-trigger-tip-wrenching = Крепление
 xenoarch-trigger-tip-prying = Вскрытие ломом
 xenoarch-trigger-tip-screwing = Закручивание отвёрткой
 xenoarch-trigger-tip-pulsing = Пульсирование
@@ -65,7 +65,7 @@ xenoarch-trigger-tip-pressure-high = Высокое давление
 xenoarch-trigger-tip-examine = Осмотр
 xenoarch-trigger-tip-timer = Регулярная самоактивация
 xenoarch-trigger-tip-blood = Кровь
-xenoarch-trigger-tip-throw = Бросить
+xenoarch-trigger-tip-throw = Активное замедление
 xenoarch-trigger-tip-death = Смерть
 xenoarch-trigger-tip-magnet = Магнитные волны
 

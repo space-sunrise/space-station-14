@@ -58,6 +58,7 @@ research-technology-anomaly-harnessing = Применение ядер аном�
 research-technology-abnormal-artifact-manipulation = Переработка артефактов
 research-technology-gravity-manipulation = Манипулирование гравитацией
 research-technology-quantum-leaping = Квантовые скачки
+research-technology-bluespace-time-manipulation = Блюспейсовое манипулирование временем
 research-technology-advanced-anomaly-research = Продвинутое изучение аномалий
 research-technology-rped = Быстрая замена компонентов
 research-technology-super-parts = Суперкомпоненты
