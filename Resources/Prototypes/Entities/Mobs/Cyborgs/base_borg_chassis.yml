@@ -161,6 +161,7 @@
     - Flashed
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech

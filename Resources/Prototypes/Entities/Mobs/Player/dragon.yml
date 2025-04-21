@@ -55,6 +55,10 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: alive-unshaded
       shader: unshaded
+  # Sunrise-Start
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  # Sunrise-End
   - type: Appearance
   - type: DamageStateVisuals
     states:

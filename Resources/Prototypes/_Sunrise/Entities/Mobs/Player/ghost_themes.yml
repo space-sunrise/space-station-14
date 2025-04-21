@@ -387,3 +387,11 @@
   sprite:
     sprite: Mobs/Aliens/Carps/holo.rsi
     state: alive
+
+- type: ghostTheme
+  id: HoloGirl
+  name: ghost-theme-holo-girl
+  sponsorOnly: true
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/holo_girl.rsi
+    state: holo_animated

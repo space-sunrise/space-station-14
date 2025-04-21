@@ -307,7 +307,6 @@
   description: Go to sleep.
   components:
   - type: InstantAction
-    temporary: true # Sunrise-Edit
     checkCanInteract: false
     checkConsciousness: false
     icon: { sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi, state: icon }

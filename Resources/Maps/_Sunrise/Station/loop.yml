@@ -11143,7 +11143,7 @@ entities:
     - type: Transform
       pos: -57.187958,-1.1723032
       parent: 2
-- proto: Bed
+- proto: DoubleBed
   entities:
   - uid: 706
     components:

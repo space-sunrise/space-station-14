@@ -49,6 +49,7 @@
           Quantity: 1
   - type: Item
     size: Tiny
+  - type: PhysicalComposition
   # Sunrise edit start
   - type: EmitSoundOnPickup
     sound:

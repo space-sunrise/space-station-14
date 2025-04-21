@@ -3,6 +3,7 @@ using Content.Server.Bed.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Actions;
 using Content.Shared.Bed;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
@@ -11,6 +12,7 @@ using Content.Shared.Damage;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -25,6 +27,7 @@ namespace Content.Server.Bed
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
         public override void Initialize()
         {
@@ -50,22 +53,19 @@ namespace Content.Server.Bed
         // Sunrise-Start
         private void OnStrapped(Entity<CanSleepOnBuckleComponent> bed, ref StrappedEvent args)
         {
-            EntityUid? action = null;
-            _actionsSystem.AddAction(args.Buckle, ref action, SleepingSystem.SleepActionId, args.Buckle.Owner);
-            if (action != null)
-                bed.Comp.SleepAction.TryAdd(args.Buckle.Owner, action.Value);
-
-            // Single action entity, cannot strap multiple entities to the same bed.
-            //DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
+            var canSleep = EnsureComp<CanSleepComponent>(args.Buckle);
+            _actionsSystem.AddAction(args.Buckle.Owner, ref canSleep.SleepAction, SleepingSystem.SleepActionId, args.Buckle.Owner);
         }
 
         private void OnUnstrapped(Entity<CanSleepOnBuckleComponent> bed, ref UnstrappedEvent args)
         {
-            if (bed.Comp.SleepAction.TryGetValue(args.Buckle.Owner, out var action))
-            {
-                _actionsSystem.RemoveAction(args.Buckle.Owner, action);
-                bed.Comp.SleepAction.Remove(args.Buckle.Owner);
-            }
+            if (!TryComp<CanSleepComponent>(args.Buckle.Owner, out var canSleep))
+                return;
+
+            RemComp<CanSleepComponent>(args.Buckle.Owner);
+            _actionsSystem.RemoveAction(args.Buckle.Owner, canSleep.SleepAction);
+            if (canSleep.SleepAction != null)
+                _actionContainer.RemoveAction(canSleep.SleepAction.Value);
         }
         // Sunrise-End
 

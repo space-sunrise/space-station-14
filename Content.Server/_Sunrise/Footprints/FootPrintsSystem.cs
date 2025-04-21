@@ -46,8 +46,8 @@ public sealed class FootprintSystem : EntitySystem
 
     // Dictionary to track footprints per tile to prevent overcrowding
     private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
-    private const int MaxFootprintsPerTile = 6;
-    private const int MaxMarksPerTile = 3;
+    private const int MaxFootprintsPerTile = 10;
+    private const int MaxMarksPerTile = 5;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
