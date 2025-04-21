@@ -136,7 +136,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         };
         AddComp(mapUid, restricted);
 
-        EnsureComp<AlwaysPoweredMapComponent>(mapUid);
         EnsureComp<LightCycleComponent>(mapUid);
 
         var destComp = _entManager.EnsureComponent<FTLDestinationComponent>(mapUid);

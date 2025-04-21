@@ -38,8 +38,9 @@
     canSlow: false
     canSlip: false
   - type: Appearance
-  - type: TimedDespawn
-    lifetime: 1080
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   name: drag mark

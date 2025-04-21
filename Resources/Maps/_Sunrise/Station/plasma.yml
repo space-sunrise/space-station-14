@@ -25228,7 +25228,7 @@ entities:
     - type: Transform
       pos: -54.22042,-29.585659
       parent: 2
-- proto: Bed
+- proto: DoubleBed
   entities:
   - uid: 2262
     components:

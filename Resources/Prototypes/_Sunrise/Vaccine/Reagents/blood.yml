@@ -6,7 +6,6 @@
   physicalDesc: reagent-description-disease-bad-physical-desc
   flavor: bitter
   color: "#722222"
-  slippery: false
   metabolisms:
     Drink:
       # Disgusting!
@@ -30,7 +29,6 @@
   physicalDesc: reagent-description-disease-bad-physical-desc
   flavor: bitter
   color: "#733333"
-  slippery: false
   metabolisms:
     Drink:
       # Disgusting!
@@ -54,7 +52,6 @@
   physicalDesc: reagent-description-disease-bad-physical-desc
   flavor: bitter
   color: "#815131"
-  slippery: false
   metabolisms:
     Drink:
       # Disgusting!
@@ -78,7 +75,6 @@
   physicalDesc: reagent-description-disease-bad-physical-desc
   flavor: bitter
   color: "#737373"
-  slippery: false
   metabolisms:
     Drink:
       # Disgusting!

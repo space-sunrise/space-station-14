@@ -381,8 +381,11 @@ public sealed class ClientClothingSystem : ClothingSystem
                     || bodyTypeName is not null && layerData.State.EndsWith(bodyTypeName)))
                     continue;
 
-                if (_displacement.TryAddDisplacement(displacementData, sprite, index, key, revealedLayers))
+                if (_displacement.TryAddDisplacement(displacementData, sprite, index, key, out var displacementKey))
+                {
+                    revealedLayers.Add(displacementKey);
                     index++;
+                }
             }
         }
 

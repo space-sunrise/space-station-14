@@ -6,3 +6,6 @@
 
 - type: statusEffect
   id: Flip
+
+- type: statusEffect
+  id: Fall
