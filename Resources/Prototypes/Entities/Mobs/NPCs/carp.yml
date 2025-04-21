@@ -15,7 +15,7 @@
           true
     - type: NpcFactionMember
       factions:
-      - Carps
+      - Carps # Sunrise-Edit
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Aliens/Carps/space.rsi
@@ -187,6 +187,14 @@
     - type: HTN
       rootTask:
         task: DragonCarpCompound
+    # Sunrise-start
+    - type: Tag
+      tags:
+      - Carp
+      - DoorBumpOpener
+      - NoPaint  # Sunrise-edit
+      - CarpRiftHealTarget  # Sunrise-edit
+    # Sunrise-end
 
 - type: entity
   id: MobCarpDungeon

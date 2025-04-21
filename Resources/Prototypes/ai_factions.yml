@@ -1,5 +1,7 @@
 - type: npcFaction
   id: Dragon
+  friendly:
+  - Carps # Sunrise Edit
   hostile:
   - NanoTrasen
   - Syndicate
@@ -9,6 +11,13 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  # Sunrise Edit
+  - Thief
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: NanoTrasen
@@ -20,6 +29,7 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Thief
   - Carps
@@ -47,6 +57,7 @@
   - Xeno
   - AllHostile
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Carps
   - Flesh
@@ -60,7 +71,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
-  #- Dragon
+  - Dragon
   - Xeno
   - AllHostile
   - Wizard
@@ -86,6 +97,7 @@
   - Zombie
   - AllHostile
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Thief
   - Carps
@@ -106,6 +118,7 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Thief
   - Carps
@@ -127,6 +140,7 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Thief
   - Carps
@@ -144,6 +158,7 @@
   - SimpleHostile
   - AllHostile
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Carps
   - Changeling
@@ -166,6 +181,7 @@
   - Zombie
   - Revolutionary
   - Wizard
+  - Dragon
   # Sunrise Edit
   - Thief
   - Carps
@@ -189,6 +205,7 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Dragon
   # Sunrise Edit
   - Thief
   - Carps

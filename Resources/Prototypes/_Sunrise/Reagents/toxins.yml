@@ -67,7 +67,6 @@
   flavor: terrible
   color: "#008000"
   physicalDesc: reagent-physical-desc-strong-smelling
-  slippery: false
   viscosity: 0.25
   reactiveEffects:
     Acidic:

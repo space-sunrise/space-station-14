@@ -517,3 +517,35 @@
   - type: Computer
     board: SecurityShuttleConsoleCircuitboard
   - type: Anchorable
+
+- type: entity
+  parent: BaseComputer
+  id: CommandConsoleComputer
+  name: command line computer
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: command
+    - map: [ "computerLayerKeys" ]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: Computer
+    board: CommandConsoleCircuitboard
+  - type: ActivatableUI
+    key: enum.CommandConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CommandConsoleUiKey.Key:
+        type: CommandConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: CommandConsole

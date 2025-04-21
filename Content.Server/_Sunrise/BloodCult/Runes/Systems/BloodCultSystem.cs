@@ -1,4 +1,5 @@
 ﻿using Content.Server._Sunrise.BloodCult.GameRule;
+using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
@@ -83,6 +84,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!;
         [Dependency] private readonly PullingSystem _pulling = default!;
+        [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
 
         [ValidatePrototypeId<StackPrototype>]
         private static string SteelStackPrototypeId = "Steel";

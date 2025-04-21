@@ -62,6 +62,11 @@ public sealed partial class BorgSystem
 
     private void DoDisable(Entity<BorgTransponderComponent, BorgChassisComponent, MetaDataComponent> ent)
     {
+        // Sunrise-start
+        if (ent.Comp1.DisableProof)
+            return;
+        // Sunrise-end
+
         ent.Comp1.NextDisable = null;
         if (ent.Comp1.FakeDisabling)
         {
@@ -109,6 +114,11 @@ public sealed partial class BorgSystem
 
     private void Destroy(Entity<BorgTransponderComponent> ent)
     {
+        // Sunrise-start
+        if (ent.Comp.DisableProof)
+            return;
+        // Sunrise-end
+
         // this is stealthy until someone realises you havent exploded
         if (CheckEmagged(ent, "destroyed"))
         {

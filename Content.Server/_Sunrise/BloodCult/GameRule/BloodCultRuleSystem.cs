@@ -4,6 +4,7 @@ using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
 using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Antag;
+using Content.Server.Bed.Cryostorage;
 using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -34,7 +35,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using CultMemberComponent = Content.Shared._Sunrise.BloodCult.Components.CultMemberComponent;
 
 namespace Content.Server._Sunrise.BloodCult.GameRule;
 
@@ -56,11 +56,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
 
-    private EntProtoId MindRoleCultistPrototypeId = "MindRoleCultist";
-    private EntProtoId CultistKillObjective = "CultistKillObjective";
+    private readonly EntProtoId _mindRoleCultistPrototypeId = "MindRoleCultist";
+    private readonly EntProtoId _cultistKillObjective = "CultistKillObjective";
 
     public override void Initialize()
     {
@@ -72,9 +70,75 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         SubscribeLocalEvent<BloodCultistComponent, ComponentInit>(OnCultistComponentInit);
         SubscribeLocalEvent<BloodCultistComponent, ComponentRemove>(OnCultistComponentRemoved);
         SubscribeLocalEvent<BloodCultistComponent, MobStateChangedEvent>(OnCultistsStateChanged);
+        SubscribeLocalEvent<BloodCultTargetComponent, ComponentShutdown>(OnCultTargetDeleted);
+        SubscribeLocalEvent<BloodCultTargetComponent, CryostorageEnteredEvent>(OnCultTargetEnterCryo);
 
         SubscribeLocalEvent<BloodCultRuleComponent, AfterAntagEntitySelectedEvent>(AfterEntitySelected);
         SubscribeLocalEvent<BloodCultRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete);
+    }
+
+    private void OnCultTargetEnterCryo(EntityUid uid, BloodCultTargetComponent component, CryostorageEnteredEvent args)
+    {
+        var rule = GetRule();
+        if (rule == null)
+            return;
+
+        // Логика уровня /b: Если цель культа попадет в крио, значит эту цель надо заменить.
+
+        if (rule.CultTargets.ContainsKey(uid))
+        {
+            rule.CultTargets.Remove(uid);
+            RemCompDeferred<BloodCultTargetComponent>(uid);
+            AddCultTarget(rule);
+        }
+    }
+
+
+    private void OnCultTargetDeleted(EntityUid uid, BloodCultTargetComponent component, ComponentShutdown args)
+    {
+        var rule = GetRule();
+        if (rule == null)
+            return;
+
+        // Логика уровня /b: Если цель культа будет удалена, значит эту цель надо заменить.
+        // Жертвоприношение не будет считаться удалением
+
+        if (rule.CultTargets.ContainsKey(uid) && rule.CultTargets[uid] == false)
+        {
+            rule.CultTargets.Remove(uid);
+            RemCompDeferred<BloodCultTargetComponent>(uid);
+            AddCultTarget(rule);
+        }
+    }
+
+    public void AddCultTarget(BloodCultRuleComponent rule)
+    {
+        var potentialTargets = FindPotentialTargets();
+
+        potentialTargets.RemoveAll(rule.CultTargets.Keys.Contains);
+
+        var priorityTargets = potentialTargets
+            .Where(target =>
+                HasComp<BibleUserComponent>(target) ||
+                HasComp<MindShieldComponent>(target))
+            .ToList();
+
+        potentialTargets.RemoveAll(priorityTargets.Contains);
+
+        var selectedVictims = SelectRandomTargets(priorityTargets, 1);
+        selectedVictims.AddRange(SelectRandomTargets(potentialTargets, 1 - selectedVictims.Count));
+
+        foreach (var selectedVictim in selectedVictims)
+        {
+            rule.CultTargets.Add(selectedVictim, false);
+        }
+
+        var query = EntityQueryEnumerator<KillCultistTargetsConditionComponent>();
+
+        while (query.MoveNext(out var uid, out var killCultistTargetsComponent))
+        {
+            _cultistTargetsConditionSystem.RefresTitle(uid, rule.CultTargets, killCultistTargetsComponent);
+        }
     }
 
     protected override void Added(EntityUid uid,
@@ -133,8 +197,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void OnAfterAntagSelectionComplete(Entity<BloodCultRuleComponent> ent, ref AntagSelectionCompleteEvent args)
     {
-        var selectedCultist = args.GameRule.Comp.AssignedMinds.Select(m => m.Item1).ToList();
-        var potentialTargets = FindPotentialTargets(selectedCultist);
+        var potentialTargets = FindPotentialTargets();
 
         var priorityTargets = potentialTargets
             .Where(target =>
@@ -152,14 +215,17 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var selectedVictims = SelectRandomTargets(priorityTargets, numTargets);
         selectedVictims.AddRange(SelectRandomTargets(potentialTargets, numTargets - selectedVictims.Count));
 
-        ent.Comp.CultTargets.AddRange(selectedVictims);
+        foreach (var selectedVictim in selectedVictims)
+        {
+            ent.Comp.CultTargets.Add(selectedVictim, false);
+            EnsureComp<BloodCultTargetComponent>(selectedVictim);
+        }
 
         var query = EntityQueryEnumerator<KillCultistTargetsConditionComponent>();
 
         while (query.MoveNext(out var uid, out var killCultistTargetsComponent))
         {
-            _cultistTargetsConditionSystem.SetTargets(uid, killCultistTargetsComponent, ent.Comp.CultTargets);
-            _cultistTargetsConditionSystem.RefresTitle(uid, killCultistTargetsComponent);
+            _cultistTargetsConditionSystem.RefresTitle(uid, ent.Comp.CultTargets, killCultistTargetsComponent);
         }
     }
 
@@ -208,15 +274,10 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         while (query.MoveNext(out _, out var cultRuleComponent, out _))
         {
-            var targetsKilled = true;
-
-            foreach (var target in cultRuleComponent.CultTargets)
+            if (cultRuleComponent.CultTargets.Values.All(value => value))
             {
-                targetsKilled = !_mobState.IsDead(target) || _entityManager.EntityExists(target);
-            }
-
-            if (targetsKilled)
                 return true;
+            }
         }
 
         return false;
@@ -273,7 +334,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
         {
-            if (_mindSystem.TryFindObjective((mindId, mind), CultistKillObjective, out var objective))
+            if (_mindSystem.TryFindObjective((mindId, mind), _cultistKillObjective, out var objective))
             {
                 _mindSystem.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(objective.Value));
             }
@@ -360,14 +421,14 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         }
     }
 
-    private List<EntityUid> FindPotentialTargets(List<EntityUid> exclude)
+    private List<EntityUid> FindPotentialTargets()
     {
         var potentialTargets = new List<EntityUid>();
 
         var query = EntityQueryEnumerator<MindContainerComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
         while (query.MoveNext(out var uid, out var mind, out _, out _))
         {
-            if (mind.Mind == null || exclude.Contains(mind.Mind.Value))
+            if (mind.Mind == null || HasComp<BloodCultistComponent>(uid))
                 continue;
 
             potentialTargets.Add(uid);
@@ -381,7 +442,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         if (!_mindSystem.TryGetMind(cultist, out var mindId, out var mind))
             return false;
 
-        _roles.MindAddRole(mindId, MindRoleCultistPrototypeId);
+        _roles.MindAddRole(mindId, _mindRoleCultistPrototypeId);
 
         var isHumanoid = HasComp<HumanoidAppearanceComponent>(cultist);
 

@@ -622,7 +622,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         AddComp(mapUid, restricted);
         // Sunrise-End
 
-        EnsureComp<AlwaysPoweredMapComponent>(mapUid);
         EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
         parallaxComponent.Parallax = "Grass";
         Dirty(mapUid, parallaxComponent);

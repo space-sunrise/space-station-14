@@ -47,7 +47,7 @@ chat-manager-cult-channel-name = Культ
 chat-manager-send-cult-chat-wrap-message = [bold]\[{ $channelName }\] { $player }: { $message }[/bold]
 hud-chatbox-select-channel-Cult = Культ
 # Objectivies
-objective-condition-cult-kill-target = { $targetName } [{ CAPITALIZE($job) }].
+objective-condition-cult-kill-target = { $targetName } ({ CAPITALIZE($job) }) - { $status }
 objective-condition-cult-kill-title =
     Жертвы:
-    { $targets }.
+    { $targets }

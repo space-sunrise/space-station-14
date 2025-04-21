@@ -50,6 +50,7 @@
   - MagazineShotgunSlug
   - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
+  - MagazineP90 # Sunrise-P90
 
 - type: latheRecipePack
   id: SecurityWeaponsStatic

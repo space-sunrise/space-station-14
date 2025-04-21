@@ -1819,7 +1819,7 @@
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
   productEntity: CrateCybersunJuggernautBundle
   cost:
-    Telecrystal: 12
+    Telecrystal: 18 #Sunrise-edit
   categories:
   - UplinkWearables
   conditions:

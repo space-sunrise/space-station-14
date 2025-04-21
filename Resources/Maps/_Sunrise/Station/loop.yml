@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 253.0.0
+  engineVersion: 254.1.0
   forkId: ""
   forkVersion: ""
-  time: 04/18/2025 04:17:53
-  entityCount: 18249
+  time: 04/19/2025 23:02:17
+  entityCount: 18250
 maps:
 - 1
 grids:
@@ -3360,43 +3360,43 @@ entities:
             0: 30583
           2,-1:
             0: 32512
-            2: 6
+            1: 6
           2,4:
             0: 6007
           3,0:
-            1: 12784
-            2: 49152
+            2: 12784
+            1: 49152
           3,1:
-            1: 4369
-            2: 192
+            2: 4369
+            1: 192
             3: 49152
           3,2:
-            1: 4369
-            2: 49344
+            2: 4369
+            1: 49344
           3,3:
-            1: 4369
-            2: 192
+            2: 4369
+            1: 192
             4: 49152
           3,-1:
             0: 65280
-            1: 7
+            2: 7
           3,4:
-            1: 61713
+            2: 61713
             5: 192
           4,0:
-            1: 17520
-            2: 4096
+            2: 17520
+            1: 4096
           4,1:
-            2: 16
+            1: 16
             3: 4096
-            1: 17476
+            2: 17476
           4,2:
-            2: 4112
-            1: 17476
+            1: 4112
+            2: 17476
           4,3:
-            2: 16
+            1: 16
             4: 4096
-            1: 17476
+            2: 17476
           -4,0:
             0: 65534
           -5,0:
@@ -3444,68 +3444,68 @@ entities:
           -1,4:
             0: 63743
           0,-4:
-            1: 4369
+            2: 4369
             0: 52428
           0,-5:
-            1: 4383
+            2: 4383
             0: 52224
           -1,-4:
             0: 52428
-            1: 12288
+            2: 12288
           0,-3:
-            1: 4369
+            2: 4369
             0: 52428
           -1,-3:
             0: 65484
           0,-2:
-            1: 1
+            2: 1
             0: 64540
           -1,-2:
             0: 30719
           1,-4:
             0: 4561
-            2: 52224
+            1: 52224
           1,-3:
             0: 61905
-            2: 12
+            1: 12
           1,-2:
             0: 65391
           1,-5:
             0: 65280
-            1: 15
+            2: 15
           2,-4:
             0: 57564
-            2: 4352
+            1: 4352
           2,-3:
-            2: 1
+            1: 1
             0: 64720
           2,-2:
             0: 15
-            2: 26112
+            1: 26112
           2,-5:
             0: 65280
-            1: 15
+            2: 15
           3,-4:
             0: 13107
-            1: 34952
+            2: 34952
           3,-3:
             0: 13107
-            1: 34952
+            2: 34952
           3,-2:
             0: 3
-            1: 32648
+            2: 32648
           3,-5:
             0: 13056
-            1: 34959
+            2: 34959
           4,-4:
-            1: 273
+            2: 273
           4,-1:
             0: 65484
           -8,0:
-            1: 4096
+            2: 4096
             0: 49356
           -9,0:
-            1: 61713
+            2: 61713
           -8,1:
             0: 3548
           -9,1:
@@ -3549,207 +3549,207 @@ entities:
           -5,4:
             0: 61627
           -8,-4:
-            1: 10383
+            2: 10383
             0: 32816
           -8,-5:
             0: 12336
-            1: 34959
+            2: 34959
           -9,-4:
-            1: 15
+            2: 15
             0: 240
           -8,-3:
-            1: 3
+            2: 3
             0: 51336
           -9,-3:
-            1: 34959
+            2: 34959
           -8,-2:
-            1: 1
+            2: 1
             0: 52236
           -9,-2:
-            1: 63624
+            2: 63624
           -8,-1:
-            1: 1
+            2: 1
             0: 3276
           -9,-1:
-            1: 4383
+            2: 4383
           -7,-4:
-            1: 43791
+            2: 43791
             0: 224
           -7,-3:
             0: 4128
-            1: 17486
+            2: 17486
           -7,-2:
             0: 61713
-            1: 196
+            2: 196
           -7,-5:
             0: 57568
-            1: 2063
+            2: 2063
           -6,-4:
-            1: 15
+            2: 15
             0: 16
           -6,-3:
-            1: 15
+            2: 15
           -6,-2:
-            1: 62
+            2: 62
             0: 47104
           -6,-5:
             0: 4112
-            1: 15
+            2: 15
           -5,-4:
-            1: 17477
+            2: 17477
             0: 34952
           -5,-3:
-            1: 26215
+            2: 26215
             0: 34952
           -5,-2:
-            1: 7
+            2: 7
             0: 65288
           -5,-5:
-            1: 17479
+            2: 17479
             0: 34952
           -4,-4:
             0: 37137
-            1: 26760
+            2: 26760
           -4,-3:
             0: 65297
-            1: 136
+            2: 136
           -4,-2:
             0: 41711
           -4,-5:
             0: 4369
-            1: 59528
+            2: 59528
           -3,-4:
-            1: 63714
+            2: 63714
             0: 12
           -3,-3:
             0: 65280
-            1: 136
+            2: 136
           -3,-2:
             0: 61695
           -3,-5:
-            1: 13032
+            2: 13032
             0: 52224
           -2,-4:
             0: 32769
-            1: 30906
+            2: 30906
           -2,-3:
             0: 65280
-            1: 136
+            2: 136
           -2,-2:
             0: 47359
           -2,-5:
             0: 4352
-            1: 60088
+            2: 60088
           -1,-1:
             0: 1911
           -1,-5:
             0: 52428
-            1: 12288
+            2: 12288
           -4,-8:
-            1: 3840
+            2: 3840
           -5,-8:
-            1: 35908
+            2: 35908
           -5,-7:
-            1: 19531
+            2: 19531
             0: 32768
           -4,-7:
-            1: 3840
+            2: 3840
             0: 61440
           -4,-6:
             0: 37151
-            1: 26752
+            2: 26752
           -5,-6:
             0: 34952
-            1: 17476
+            2: 17476
           -3,-8:
-            1: 3840
+            2: 3840
           -3,-7:
-            1: 3968
+            2: 3968
             0: 61440
           -3,-6:
             0: 15
-            1: 63616
+            2: 63616
           -2,-8:
-            1: 3840
+            2: 3840
           -2,-7:
-            1: 3840
+            2: 3840
             0: 61440
           -2,-6:
             0: 32783
-            1: 30848
+            2: 30848
           -1,-8:
-            1: 3840
+            2: 3840
           -1,-7:
-            1: 3840
+            2: 3840
             0: 61440
           -1,-6:
             0: 52431
-            1: 12288
+            2: 12288
           0,-8:
-            1: 4352
+            2: 4352
           0,-7:
-            1: 4369
+            2: 4369
           0,-6:
-            1: 62259
+            2: 62259
           -8,-8:
             0: 12288
-            1: 34816
+            2: 34816
           -8,-7:
-            1: 34959
+            2: 34959
             0: 12336
           -9,-8:
             0: 61440
-            1: 2184
+            2: 2184
           -9,-7:
-            1: 15
+            2: 15
             0: 61680
           -8,-6:
-            1: 34959
+            2: 34959
             0: 12336
           -9,-6:
-            1: 15
+            2: 15
             0: 61680
           -9,-5:
-            1: 15
+            2: 15
             0: 61680
           -7,-7:
-            1: 2063
+            2: 2063
             0: 57568
           -7,-6:
-            1: 2063
+            2: 2063
             0: 57568
           -7,-8:
             0: 57344
           -6,-8:
             0: 4096
           -6,-7:
-            1: 15
+            2: 15
             0: 4112
           -6,-6:
-            1: 1
+            2: 1
             0: 4112
           -5,-9:
-            1: 28672
+            2: 28672
           1,-6:
-            1: 29824
+            2: 29824
           1,-8:
-            1: 8192
+            2: 8192
           1,-7:
-            1: 3074
+            2: 3074
           2,-7:
-            1: 3840
+            2: 3840
           2,-6:
-            1: 240
+            2: 240
           3,-7:
-            1: 3840
+            2: 3840
           3,-6:
-            1: 240
+            2: 240
           4,-7:
-            1: 4352
+            2: 4352
           4,-6:
-            1: 4369
+            2: 4369
           4,-5:
-            1: 4369
+            2: 4369
           -4,5:
             0: 28927
           -5,5:
@@ -3878,7 +3878,7 @@ entities:
             0: 36792
           -12,-1:
             0: 56704
-            1: 2
+            2: 2
           -13,0:
             0: 36856
           -12,1:
@@ -3899,14 +3899,14 @@ entities:
             0: 62207
           -11,-1:
             0: 65280
-            1: 12
+            2: 12
           -10,0:
             0: 10086
           -10,2:
             0: 30310
           -10,-1:
             0: 30464
-            1: 15
+            2: 15
           -10,1:
             0: 28390
           0,8:
@@ -3915,12 +3915,12 @@ entities:
             0: 65535
           1,6:
             0: 49392
-            1: 4096
+            2: 4096
           1,7:
-            1: 4113
+            2: 4113
             0: 49356
           1,8:
-            1: 17
+            2: 17
             0: 45260
           2,5:
             0: 30583
@@ -3940,7 +3940,7 @@ entities:
             0: 63675
           4,4:
             5: 16
-            1: 29764
+            2: 29764
           4,5:
             0: 4080
           4,6:
@@ -3972,18 +3972,18 @@ entities:
           6,4:
             0: 48059
           7,0:
-            1: 29813
+            2: 29813
           7,-1:
-            1: 21847
+            2: 21847
           7,2:
-            1: 17988
+            2: 17988
           7,3:
             0: 26112
-            1: 4
+            2: 4
           7,1:
-            1: 17476
+            2: 17476
           8,3:
-            1: 18176
+            2: 18176
           4,8:
             0: 61917
           5,5:
@@ -4006,7 +4006,7 @@ entities:
             0: 65520
           7,5:
             0: 4607
-            1: 49152
+            2: 49152
           7,6:
             0: 24593
           7,7:
@@ -4014,55 +4014,55 @@ entities:
           7,8:
             0: 65535
           8,5:
-            1: 12834
+            2: 12834
           8,6:
-            1: 36608
+            2: 36608
           8,7:
-            1: 18319
+            2: 18319
           -12,-3:
-            1: 8751
+            2: 8751
           -13,-3:
-            1: 15
+            2: 15
           -13,-1:
             0: 56704
           -12,-2:
-            1: 8738
+            2: 8738
           -11,-3:
-            1: 34959
+            2: 34959
           -11,-4:
-            1: 34952
+            2: 34952
           -11,-5:
-            1: 34952
+            2: 34952
           -10,-3:
-            1: 15
+            2: 15
           -11,-2:
-            1: 34952
+            2: 34952
           -10,-2:
-            1: 61440
+            2: 61440
           -10,-4:
-            1: 12
+            2: 12
             0: 192
           -10,-5:
             0: 49344
-            1: 15
+            2: 15
           -11,-8:
-            1: 34952
+            2: 34952
           -11,-9:
-            1: 32768
+            2: 32768
           -11,-7:
-            1: 34952
+            2: 34952
           -10,-7:
-            1: 15
+            2: 15
             0: 49344
           -11,-6:
-            1: 34952
+            2: 34952
           -10,-8:
             0: 49152
           -10,-6:
-            1: 12
+            2: 12
             0: 49344
           -9,-9:
-            1: 61440
+            2: 61440
           -16,0:
             0: 29631
           -16,-1:
@@ -4151,7 +4151,7 @@ entities:
             0: 61695
           4,12:
             0: 241
-            1: 28672
+            2: 28672
           5,9:
             0: 24695
           5,10:
@@ -4168,7 +4168,7 @@ entities:
             0: 221
           7,9:
             0: 12351
-            1: 2048
+            2: 2048
           7,10:
             0: 12343
           7,11:
@@ -4176,7 +4176,7 @@ entities:
           7,12:
             0: 51
           8,9:
-            1: 996
+            2: 996
           -17,8:
             0: 62574
           -16,9:
@@ -4263,24 +4263,24 @@ entities:
             0: 61183
           -21,4:
             0: 32768
-            1: 112
+            2: 112
           -21,5:
             0: 136
-            1: 58112
+            2: 58112
           -20,6:
-            1: 35008
+            2: 35008
           -19,4:
             0: 4383
-            2: 17408
+            1: 17408
           -19,5:
             0: 21777
-            2: 4
+            1: 4
           -19,6:
-            1: 12832
+            2: 12832
           -19,3:
             0: 65287
           -19,7:
-            1: 3618
+            2: 3618
           -18,4:
             0: 65327
           -18,5:
@@ -4288,11 +4288,11 @@ entities:
           -18,6:
             0: 4082
           -18,7:
-            1: 58146
+            2: 58146
           -18,3:
             0: 30535
           -18,8:
-            1: 34
+            2: 34
             0: 61440
           -17,6:
             0: 26214
@@ -4310,10 +4310,10 @@ entities:
             0: 53196
           -19,10:
             0: 52431
-            1: 4352
+            2: 4352
           -19,11:
             0: 53196
-            1: 1
+            2: 1
           -19,12:
             0: 52431
           -19,8:
@@ -4336,20 +4336,20 @@ entities:
             0: 61678
           -21,0:
             0: 52224
-            1: 256
+            2: 256
           -20,1:
             0: 65535
           -21,1:
             0: 52428
-            1: 256
+            2: 256
           -20,2:
             0: 65535
           -21,2:
             0: 3276
-            1: 256
+            2: 256
           -21,3:
             0: 61440
-            1: 112
+            2: 112
           -19,0:
             0: 30479
           -19,1:
@@ -4452,7 +4452,7 @@ entities:
             0: 4095
           3,12:
             0: 143
-            1: 57856
+            2: 57856
           -12,13:
             6: 1
             0: 65484
@@ -4626,22 +4626,22 @@ entities:
           -17,18:
             0: 14779
           -16,19:
-            1: 3073
+            2: 3073
             0: 768
           -17,19:
-            1: 8
+            2: 8
             0: 16179
           -16,20:
-            1: 8754
+            2: 8754
             0: 34952
           -15,17:
             0: 12272
           -15,18:
             0: 4095
           -15,19:
-            1: 7953
+            2: 7953
           -15,20:
-            1: 4369
+            2: 4369
             0: 43690
           -14,16:
             0: 30576
@@ -4650,18 +4650,18 @@ entities:
           -14,18:
             0: 4095
           -14,19:
-            1: 7953
+            2: 7953
           -14,20:
-            1: 4369
+            2: 4369
             0: 43690
           -13,17:
             0: 4084
           -13,19:
-            1: 7953
+            2: 7953
           -13,18:
             0: 3822
           -13,20:
-            1: 4369
+            2: 4369
             0: 43690
           -12,16:
             0: 56784
@@ -4669,9 +4669,9 @@ entities:
             0: 53232
           -12,18:
             0: 285
-            1: 17408
+            2: 17408
           -12,19:
-            1: 40772
+            2: 40772
           -20,16:
             0: 4096
           -20,17:
@@ -4684,7 +4684,7 @@ entities:
             0: 65535
           -20,19:
             0: 4381
-            1: 49376
+            2: 49376
           -21,19:
             0: 34831
           -19,17:
@@ -4693,9 +4693,9 @@ entities:
             0: 55773
           -19,19:
             0: 2189
-            1: 12336
+            2: 12336
           -19,20:
-            1: 3908
+            2: 3908
           -18,17:
             0: 52733
           -18,18:
@@ -4703,15 +4703,15 @@ entities:
           -18,19:
             0: 35771
           -17,20:
-            1: 3976
+            2: 3976
           -12,20:
-            1: 39321
+            2: 39321
             0: 8738
           -11,17:
             0: 65520
           -11,18:
             0: 15
-            1: 512
+            2: 512
           -10,17:
             0: 26238
           -10,18:
@@ -4724,25 +4724,25 @@ entities:
             0: 57535
           -8,18:
             0: 7
-            1: 58880
+            2: 58880
           4,13:
-            1: 30583
+            2: 30583
           3,13:
-            1: 64652
+            2: 64652
             0: 112
           4,14:
-            1: 30583
+            2: 30583
           3,14:
-            1: 64652
+            2: 64652
             0: 112
           4,15:
-            1: 1911
+            2: 1911
           3,15:
-            1: 15
+            2: 15
             0: 30464
           4,16:
             0: 7
-            1: 4352
+            2: 4352
           5,12:
             0: 240
           0,16:
@@ -4802,9 +4802,9 @@ entities:
           3,19:
             0: 4095
           4,17:
-            1: 4369
+            2: 4369
           4,18:
-            1: 1
+            2: 1
             0: 13056
           4,19:
             0: 819
@@ -4818,20 +4818,20 @@ entities:
             0: 65535
           -4,19:
             0: 8738
-            1: 23944
+            2: 23944
           -5,19:
-            1: 2288
+            2: 2288
           -4,20:
-            1: 54613
+            2: 54613
             0: 8738
           -3,17:
             0: 3838
           -3,18:
             0: 4095
           -3,19:
-            1: 136
+            2: 136
           -2,19:
-            1: 48
+            2: 48
             0: 34952
           -2,17:
             0: 58982
@@ -4839,7 +4839,7 @@ entities:
             0: 44686
           -2,20:
             0: 2184
-            1: 12288
+            2: 12288
           -1,20:
             0: 36863
           -7,17:
@@ -4847,24 +4847,24 @@ entities:
           -7,18:
             0: 52991
           -8,19:
-            1: 34952
+            2: 34952
           -7,19:
             0: 4369
-            1: 224
+            2: 224
           -8,20:
-            1: 34952
+            2: 34952
           -7,20:
             0: 4369
-            1: 57344
+            2: 57344
           -6,17:
             0: 65535
           -6,18:
             0: 65535
           -6,19:
-            1: 43696
+            2: 43696
             0: 17472
           -6,20:
-            1: 47786
+            2: 47786
             0: 17476
           -24,13:
             0: 51200
@@ -4879,246 +4879,246 @@ entities:
           -22,14:
             0: 47
           -24,18:
-            1: 36744
+            2: 36744
           -25,18:
-            1: 2048
+            2: 2048
           -24,17:
             0: 2248
           -23,17:
             0: 3067
           -23,18:
-            1: 1792
+            2: 1792
           -24,19:
-            1: 136
+            2: 136
           -23,19:
-            1: 112
+            2: 112
           -22,17:
             0: 4095
           -22,18:
             0: 30591
           -22,19:
             0: 7
-            1: 34816
+            2: 34816
           -22,16:
             0: 8192
           -22,20:
-            1: 2184
+            2: 2184
           -4,21:
-            1: 5
+            2: 5
             0: 8738
           -5,20:
-            1: 61440
+            2: 61440
           -5,21:
-            1: 15
+            2: 15
             0: 65280
           -4,22:
             0: 13107
-            1: 8
+            2: 8
           -5,22:
             0: 48015
           -4,23:
-            1: 4224
+            2: 4224
           -4,24:
-            1: 287
+            2: 287
           -3,20:
-            1: 61440
+            2: 61440
           -3,22:
-            1: 4369
+            2: 4369
           -3,23:
-            1: 4369
+            2: 4369
           -3,21:
-            1: 4369
+            2: 4369
           -3,24:
-            1: 1
+            2: 1
           -1,21:
             0: 2184
           0,21:
             0: 546
-            1: 8
+            2: 8
           1,21:
-            1: 3
+            2: 3
             0: 2184
           2,21:
             0: 546
           -10,-9:
-            1: 61440
+            2: 61440
           -8,-9:
-            1: 61440
+            2: 61440
           -7,-9:
-            1: 61440
+            2: 61440
           -6,-9:
-            1: 61440
+            2: 61440
           8,4:
-            1: 58438
+            2: 58438
           8,8:
-            1: 17476
+            2: 17476
           9,4:
-            1: 61440
+            2: 61440
           9,6:
             0: 1365
-            1: 8738
+            2: 8738
           9,7:
-            1: 8751
+            2: 8751
             0: 21760
           9,5:
             0: 21840
-            1: 8736
+            2: 8736
           9,8:
             0: 21845
-            1: 8738
+            2: 8738
           10,4:
-            1: 61440
+            2: 61440
           10,7:
-            1: 8751
+            2: 8751
             0: 21760
           10,5:
             0: 21840
-            1: 8738
+            2: 8738
           10,6:
             0: 1365
-            1: 8738
+            2: 8738
           10,8:
             0: 21845
-            1: 8738
+            2: 8738
           11,4:
-            1: 61440
+            2: 61440
           11,7:
-            1: 8751
+            2: 8751
             0: 21760
           11,5:
             0: 21840
-            1: 8736
+            2: 8736
           11,6:
             0: 1365
-            1: 8738
+            2: 8738
           11,8:
             0: 21845
-            1: 8738
+            2: 8738
           12,4:
-            1: 61440
+            2: 61440
           12,7:
-            1: 8751
+            2: 8751
             0: 21760
           12,5:
             0: 21840
-            1: 8736
+            2: 8736
           12,6:
             0: 1365
-            1: 10786
+            2: 10786
           12,8:
             0: 21845
-            1: 8866
+            2: 8866
           13,4:
-            1: 12288
+            2: 12288
           13,6:
-            1: 18210
+            2: 18210
           13,7:
-            1: 5957
+            2: 5957
           13,8:
-            1: 4369
+            2: 4369
           13,5:
-            1: 8738
+            2: 8738
           9,9:
-            1: 240
+            2: 240
           10,9:
-            1: 242
+            2: 242
           11,9:
-            1: 240
+            2: 240
           12,9:
-            1: 240
+            2: 240
           13,9:
-            1: 17
+            2: 17
           -20,-3:
-            1: 29772
+            2: 29772
           -21,-3:
-            1: 61440
+            2: 61440
           -20,-2:
             0: 60928
           -19,-3:
-            1: 17487
+            2: 17487
           -19,-2:
             0: 63232
-            1: 4
+            2: 4
           -18,-3:
-            1: 15
+            2: 15
           -18,-2:
             0: 65520
           -17,-3:
-            1: 15
+            2: 15
           -17,-2:
             0: 30576
           -16,-3:
-            1: 34959
+            2: 34959
           -16,-2:
             0: 65520
           -15,-3:
-            1: 15
+            2: 15
           -15,-2:
             0: 61712
           -14,-3:
-            1: 15
+            2: 15
           -16,21:
-            1: 8802
+            2: 8802
             0: 34952
           -16,22:
-            1: 8738
+            2: 8738
             0: 136
           -16,23:
-            1: 226
+            2: 226
           -15,21:
-            1: 4433
+            2: 4433
             0: 43690
           -15,22:
-            1: 61713
+            2: 61713
             0: 170
           -15,23:
-            1: 240
+            2: 240
           -14,21:
-            1: 4433
+            2: 4433
             0: 43690
           -14,22:
-            1: 61713
+            2: 61713
             0: 170
           -14,23:
-            1: 61780
+            2: 61780
           -13,21:
-            1: 4433
+            2: 4433
             0: 43690
           -13,22:
-            1: 61713
+            2: 61713
             0: 170
           -13,23:
-            1: 4592
+            2: 4592
           -12,21:
-            1: 39385
+            2: 39385
             0: 8738
           -12,22:
-            1: 39321
+            2: 39321
             0: 34
           -12,23:
-            1: 248
+            2: 248
           -8,21:
-            1: 12734
+            2: 12734
           -8,22:
-            1: 12561
+            2: 12561
             0: 34952
           -9,21:
-            1: 61440
+            2: 61440
           -8,23:
-            1: 29969
+            2: 29969
           -9,23:
-            1: 15
+            2: 15
           -8,24:
-            1: 3140
+            2: 3140
           -7,21:
             0: 63505
-            1: 14
+            2: 14
           -7,22:
             0: 47931
           -7,23:
             0: 136
           -6,21:
-            1: 11
+            2: 11
             0: 65284
           -6,22:
             0: 24399
@@ -5127,17 +5127,17 @@ entities:
           -5,23:
             0: 307
           -7,24:
-            1: 3840
+            2: 3840
           -6,24:
-            1: 3904
+            2: 3904
           -5,24:
-            1: 3840
+            2: 3840
           -20,20:
-            1: 3872
+            2: 3872
           -21,20:
-            1: 3907
+            2: 3907
           -18,20:
-            1: 3904
+            2: 3904
           4,-3:
             0: 61152
           4,-2:
@@ -5147,87 +5147,87 @@ entities:
           5,-2:
             0: 26208
           6,-2:
-            1: 15
+            2: 15
           7,-2:
-            1: 22289
+            2: 22289
           -11,21:
-            1: 2288
+            2: 2288
           -11,23:
-            1: 15
+            2: 15
           -10,21:
-            1: 36608
+            2: 36608
           -10,23:
-            1: 15
+            2: 15
           -22,-1:
-            1: 12000
+            2: 12000
           -22,0:
-            1: 12066
+            2: 12066
           -21,-1:
-            1: 1809
+            2: 1809
           -21,-2:
-            1: 4369
+            2: 4369
           -24,0:
-            1: 12032
+            2: 12032
           -25,0:
-            1: 12032
+            2: 12032
           -24,1:
             0: 21845
-            1: 10786
+            2: 10786
           -25,1:
-            1: 10786
+            2: 10786
             0: 21845
           -24,2:
             0: 21845
-            1: 10786
+            2: 10786
           -25,2:
-            1: 10786
+            2: 10786
             0: 21845
           -24,3:
             0: 85
-            1: 61986
+            2: 61986
           -25,3:
-            1: 61986
+            2: 61986
             0: 85
           -24,4:
-            1: 242
+            2: 242
           -23,0:
-            1: 12032
+            2: 12032
           -23,1:
             0: 21845
-            1: 10786
+            2: 10786
           -23,2:
             0: 21845
-            1: 10786
+            2: 10786
           -23,3:
-            1: 61986
+            2: 61986
             0: 85
           -23,4:
-            1: 242
+            2: 242
           -22,1:
             0: 21845
-            1: 10786
+            2: 10786
           -22,2:
             0: 21845
-            1: 10786
+            2: 10786
           -22,3:
-            1: 62114
+            2: 62114
             0: 85
           -22,4:
-            1: 35058
+            2: 35058
           -25,4:
-            1: 242
+            2: 242
           -22,5:
-            1: 2184
+            2: 2184
           -26,0:
-            1: 11776
+            2: 11776
           -26,1:
-            1: 11810
+            2: 11810
           -26,2:
-            1: 11810
+            2: 11810
           -26,3:
-            1: 41506
+            2: 41506
           -26,4:
-            1: 226
+            2: 226
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -5245,7 +5245,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -5260,7 +5260,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -5364,22 +5364,22 @@ entities:
     - type: Transform
       parent: 6
     - type: InstantAction
-      container: 6
       originalIconColor: '#FFFFFFFF'
+      container: 6
   - uid: 10
     components:
     - type: Transform
       parent: 9
     - type: InstantAction
-      container: 9
       originalIconColor: '#FFFFFFFF'
+      container: 9
   - uid: 13
     components:
     - type: Transform
       parent: 12
     - type: InstantAction
-      container: 12
       originalIconColor: '#FFFFFFFF'
+      container: 12
 - proto: ActionToggleJetpack
   entities:
   - uid: 8
@@ -5387,22 +5387,22 @@ entities:
     - type: Transform
       parent: 6
     - type: InstantAction
-      container: 6
       originalIconColor: '#FFFFFFFF'
+      container: 6
   - uid: 11
     components:
     - type: Transform
       parent: 9
     - type: InstantAction
-      container: 9
       originalIconColor: '#FFFFFFFF'
+      container: 9
   - uid: 14
     components:
     - type: Transform
       parent: 12
     - type: InstantAction
-      container: 12
       originalIconColor: '#FFFFFFFF'
+      container: 12
 - proto: ActionToggleLight
   entities:
   - uid: 16
@@ -5410,29 +5410,29 @@ entities:
     - type: Transform
       parent: 15
     - type: InstantAction
-      container: 15
       originalIconColor: '#FFFFFFFF'
+      container: 15
   - uid: 18
     components:
     - type: Transform
       parent: 17
     - type: InstantAction
-      container: 17
       originalIconColor: '#FFFFFFFF'
+      container: 17
   - uid: 20
     components:
     - type: Transform
       parent: 19
     - type: InstantAction
-      container: 19
       originalIconColor: '#FFFFFFFF'
+      container: 19
   - uid: 22
     components:
     - type: Transform
       parent: 21
     - type: InstantAction
-      container: 21
       originalIconColor: '#FFFFFFFF'
+      container: 21
 - proto: AirAlarm
   entities:
   - uid: 23
@@ -7328,7 +7328,7 @@ entities:
       pos: -30.5,13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -87368.64
+      secondsUntilStateChange: -87399.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7460,7 +7460,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         178:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 178
     components:
     - type: Transform
@@ -7471,7 +7472,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         177:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 179
     components:
     - type: Transform
@@ -7482,7 +7484,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         180:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 180
     components:
     - type: Transform
@@ -7493,7 +7496,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         179:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockExternalEngineeringLocked
   entities:
   - uid: 181
@@ -7509,7 +7513,7 @@ entities:
       pos: 9.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -26852.895
+      secondsUntilStateChange: -26883.316
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7531,7 +7535,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         185:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 185
     components:
     - type: Transform
@@ -7543,7 +7548,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         184:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 186
     components:
     - type: Transform
@@ -7555,7 +7561,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         200:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockExternalGlass
   entities:
   - uid: 187
@@ -7624,7 +7631,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         199:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 197
     components:
     - type: Transform
@@ -7636,7 +7644,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         198:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 198
     components:
     - type: Transform
@@ -7648,7 +7657,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         197:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 199
     components:
     - type: Transform
@@ -7660,7 +7670,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         196:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockExternalGlassEngineeringLocked
   entities:
   - uid: 200
@@ -7673,7 +7684,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         186:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 201
     components:
     - type: Transform
@@ -7696,7 +7708,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         206:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 204
     components:
     - type: Transform
@@ -7707,7 +7720,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         205:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 205
     components:
     - type: Transform
@@ -7718,7 +7732,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         204:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 206
     components:
     - type: Transform
@@ -7729,7 +7744,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         203:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockExternalGlassLocked
   entities:
   - uid: 207
@@ -7850,7 +7866,7 @@ entities:
       pos: 18.5,64.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -10732.784
+      secondsUntilStateChange: -10763.205
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11127,7 +11143,7 @@ entities:
     - type: Transform
       pos: -57.187958,-1.1723032
       parent: 2
-- proto: Bed
+- proto: DoubleBed
   entities:
   - uid: 706
     components:
@@ -44234,7 +44250,7 @@ entities:
       pos: -9.5,51.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -335124.16
+      secondsUntilStateChange: -335154.56
       state: Opening
   - uid: 7013
     components:
@@ -44242,7 +44258,7 @@ entities:
       pos: -8.5,51.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -335124.88
+      secondsUntilStateChange: -335155.28
       state: Opening
   - uid: 7014
     components:
@@ -44250,7 +44266,7 @@ entities:
       pos: -6.5,51.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -335123.44
+      secondsUntilStateChange: -335153.84
       state: Opening
   - uid: 7015
     components:
@@ -44258,7 +44274,7 @@ entities:
       pos: -5.5,51.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -335122.8
+      secondsUntilStateChange: -335153.22
       state: Opening
 - proto: CyberPen
   entities:
@@ -78710,11 +78726,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         777:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         773:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         778:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11823
     components:
     - type: Transform
@@ -78723,11 +78742,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         13900:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13901:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13903:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11824
     components:
     - type: Transform
@@ -78737,11 +78759,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         13899:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13898:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13902:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonBar
   entities:
   - uid: 11825
@@ -78755,23 +78780,32 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         13890:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13889:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13891:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13892:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13893:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13894:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13895:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13896:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13897:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonBrig
   entities:
   - uid: 11826
@@ -78785,21 +78819,29 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         13888:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13887:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13886:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13885:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13884:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13883:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13882:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13881:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonCommand
   entities:
   - uid: 11827
@@ -78813,29 +78855,41 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         801:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         800:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         799:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         798:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         797:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         796:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         795:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         794:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         793:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         792:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         791:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         790:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonEngineering
   entities:
   - uid: 11828
@@ -78846,13 +78900,17 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         780:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         782:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         779:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         781:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11829
     components:
     - type: Transform
@@ -78862,13 +78920,17 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         780:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         782:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         781:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         779:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11830
     components:
     - type: Transform
@@ -78878,11 +78940,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         774:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         775:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         776:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonKitchen
   entities:
   - uid: 11831
@@ -78895,15 +78960,20 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         13905:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13904:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13906:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13907:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13908:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonMedical
   entities:
   - uid: 11832
@@ -78922,11 +78992,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         807:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         806:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         805:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11834
     components:
     - type: Transform
@@ -78936,11 +79009,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         804:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         803:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         802:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockableButtonSecurity
   entities:
   - uid: 11835
@@ -78954,11 +79030,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         783:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         784:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         785:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11836
     components:
     - type: MetaData
@@ -78969,11 +79048,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         783:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         784:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         785:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 11837
     components:
     - type: MetaData
@@ -78984,13 +79066,17 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         786:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         787:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         788:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         789:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: LockerAtmosphericsFilled
   entities:
   - uid: 11838
@@ -79642,6 +79728,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -63.5,-3.5
+      parent: 2
+- proto: MachineMaterialSilo
+  entities:
+  - uid: 18250
+    components:
+    - type: Transform
+      pos: 14.5,35.5
       parent: 2
 - proto: MagazineM16A4
   entities:
@@ -90028,11 +90121,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         770:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         771:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         772:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 16166
     components:
     - type: Transform
@@ -90915,15 +91011,20 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         13879:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13878:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13877:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13876:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         13880:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 16249
     components:
     - type: Transform
@@ -90933,17 +91034,23 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6484:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         6479:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         7543:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         6483:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         815:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         15243:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 17844
     components:
     - type: Transform
@@ -90953,9 +91060,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         319:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         17507:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 17845
     components:
     - type: Transform
@@ -90965,13 +91074,17 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         929:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         5187:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         506:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         16129:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
   - uid: 18168
     components:
     - type: Transform
@@ -90981,7 +91094,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         17373:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
   - uid: 18169
     components:
     - type: Transform
@@ -90991,7 +91105,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         18153:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 13915
@@ -100199,7 +100314,7 @@ entities:
       pos: -39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12140.253
+      secondsUntilStateChange: -12170.674
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -100233,7 +100348,7 @@ entities:
       pos: -44.5,34.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -19629.205
+      secondsUntilStateChange: -19659.627
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -100260,37 +100375,61 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6854:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6859:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6855:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6850:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6856:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6857:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6849:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         13303:
-        - Right: Forward
-        - Left: Reverse
-        - Middle: Off
+        - - Right
+          - Forward
+        - - Left
+          - Reverse
+        - - Middle
+          - Off
   - uid: 15380
     components:
     - type: Transform
@@ -100299,25 +100438,40 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6858:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6851:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6852:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6848:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         13304:
-        - Right: Forward
-        - Left: Reverse
-        - Middle: Off
+        - - Right
+          - Forward
+        - - Left
+          - Reverse
+        - - Middle
+          - Off
   - uid: 15381
     components:
     - type: Transform
@@ -100331,37 +100485,61 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6853:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6846:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6863:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6861:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6860:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6862:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6864:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         6847:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
 - proto: UnfinishedMachineFrame
   entities:
   - uid: 15383

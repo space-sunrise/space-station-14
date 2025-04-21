@@ -172,7 +172,7 @@
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: CargoRequestEngineeringComputerCircuitboard
-    - id: RCD
+    - id: RCDAdvancedSunrise # Sunrise-RCD
     - id: RCDAmmo
     - id: RubberStampCE
     - id: FlippoLighterSunriseCe  # Sunrise-Flippo

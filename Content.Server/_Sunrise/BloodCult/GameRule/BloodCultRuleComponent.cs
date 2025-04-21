@@ -1,9 +1,10 @@
-﻿using Content.Shared._Sunrise.BloodCult;
+﻿using Content.Server._Sunrise.BloodCult.Runes.Systems;
+using Content.Shared._Sunrise.BloodCult;
 using Robust.Shared.Audio;
 
 namespace Content.Server._Sunrise.BloodCult.GameRule;
 
-[RegisterComponent, Access(typeof(BloodCultRuleSystem))]
+[RegisterComponent, Access(typeof(BloodCultRuleSystem), typeof(BloodCultSystem))]
 public sealed partial class BloodCultRuleComponent : Component
 {
     [DataField]
@@ -19,13 +20,13 @@ public sealed partial class BloodCultRuleComponent : Component
         new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood_cult_greeting.ogg");
 
     [ViewVariables]
-    public List<EntityUid> CultTargets = new();
+    public readonly Dictionary<EntityUid, bool> CultTargets = new();
 
     [DataField]
     public int MaxTargets = 3;
 
     [DataField]
-    public int MinTargets = 3;
+    public int MinTargets = 1;
 
     [DataField]
     public int TargetsPerPlayer = 20;

@@ -77,4 +77,9 @@ public sealed partial class BorgTransponderComponent : Component
     /// </summary>
     [DataField]
     public bool FakeDisabled;
+
+    // Sunrise-start
+    [DataField("disableProof")]
+    public bool DisableProof;
+    // Sunrise-end
 }
