@@ -1,5 +1,7 @@
-﻿using Content.Shared.Hands;
+﻿using Content.Shared._Sunrise.Carrying;
+using Content.Shared.Hands;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Resist;
 using Content.Shared.Throwing;
 using Robust.Shared.Timing;
 
@@ -15,17 +17,9 @@ public sealed class ItemRepickupCooldownSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ItemRepickupCooldownComponent, DroppedEvent>(OnDropped);
-        SubscribeLocalEvent<ItemRepickupCooldownComponent, ThrownEvent>(OnThrown);
-    }
-
-    private void OnThrown(EntityUid uid, ItemRepickupCooldownComponent component, ThrownEvent args)
-    {
-        component.PrevDrop = _timing.CurTime;
-    }
-
-    private void OnDropped(EntityUid uid, ItemRepickupCooldownComponent component, DroppedEvent args)
-    {
-        component.PrevDrop = _timing.CurTime;
+        SubscribeLocalEvent<ItemRepickupCooldownComponent, DroppedEvent>((uid, component, args) => component.PrevDrop = _timing.CurTime);
+        SubscribeLocalEvent<ItemRepickupCooldownComponent, ThrownEvent>((uid, component, args) => component.PrevDrop = _timing.CurTime);
+        SubscribeLocalEvent<ItemRepickupCooldownComponent, EscapeInventoryEvent>((uid, component, args) => component.PrevDrop = _timing.CurTime);
+        SubscribeLocalEvent<ItemRepickupCooldownComponent, CarryDroppedEvent>((uid, component, args) => component.PrevDrop = _timing.CurTime);
     }
 }
