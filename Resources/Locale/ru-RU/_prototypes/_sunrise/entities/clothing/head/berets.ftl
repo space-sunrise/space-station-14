@@ -1,8 +1,8 @@
 ent-ClothingHeadHatBeretCE = берет старшего инженера
     .desc = Берет того человека, что каждую смену строит вам цель.
-ent-ClothingHeadHatBeretParamedic = paramedic beret
-    .desc = A beret, for paramedic.
-ent-ClothingHeadHatBeretChemistry = chemist's beret
-    .desc = A beret, for chemist.
-ent-ClothingHeadHatBeretPatologoanatom = pathologist's beret
-    .desc = A beret, for patologoanatom.
+ent-ClothingHeadHatBeretParamedic = берет парамедика
+    .desc = Берет ангела, что придёт по вашу жопу если вам станет плохо.
+ent-ClothingHeadHatBeretChemistry = берет химика
+    .desc = Берет химика, весь пропах наркотиками.
+ent-ClothingHeadHatBeretPatologoanatom = берет патологоанатома
+    .desc = Берет того, у кого самая чистая жалобная книга на станции.
