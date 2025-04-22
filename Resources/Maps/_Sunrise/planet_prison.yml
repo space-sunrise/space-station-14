@@ -4,8 +4,8 @@ meta:
   engineVersion: 254.1.0
   forkId: sunrise_station_public
   forkVersion: 3ed8858dee07423b53223386b97c85eed4bbd293
-  time: 04/22/2025 12:09:01
-  entityCount: 11030
+  time: 04/22/2025 12:56:12
+  entityCount: 11028
 maps:
 - 1
 grids:
@@ -98,7 +98,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: map 1001
+      name: Planet Prison
     - type: Transform
     - type: Map
       mapPaused: True
@@ -22027,16 +22027,6 @@ entities:
     - type: Transform
       pos: -10.5,11.5
       parent: 2
-  - uid: 11014
-    components:
-    - type: Transform
-      pos: -29.5,-3.5
-      parent: 2
-  - uid: 11015
-    components:
-    - type: Transform
-      pos: -29.5,4.5
-      parent: 2
 - proto: CurtainsRed
   entities:
   - uid: 2681
@@ -22218,7 +22208,7 @@ entities:
       pos: 99.5,-11.5
       parent: 2
     - type: NavMapBeacon
-      text: Шаттл КТ
+      text: Внутренняя посадочная площадка
 - proto: DefaultStationBeaconGravGen
   entities:
   - uid: 2706
@@ -50657,7 +50647,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 21.5,-26.5
       parent: 2
-  - uid: 11016
+  - uid: 11014
     components:
     - type: Transform
       anchored: False
@@ -50666,7 +50656,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11017
+  - uid: 11015
     components:
     - type: Transform
       anchored: False
@@ -50675,7 +50665,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11018
+  - uid: 11016
     components:
     - type: Transform
       anchored: False
@@ -50684,7 +50674,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11019
+  - uid: 11017
     components:
     - type: Transform
       anchored: False
@@ -50693,7 +50683,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11020
+  - uid: 11018
     components:
     - type: Transform
       anchored: False
@@ -50702,7 +50692,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11021
+  - uid: 11019
     components:
     - type: Transform
       anchored: False
@@ -50711,7 +50701,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11022
+  - uid: 11020
     components:
     - type: Transform
       anchored: False
@@ -50720,7 +50710,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11023
+  - uid: 11021
     components:
     - type: Transform
       anchored: False
@@ -50839,7 +50829,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,8.5
       parent: 2
-  - uid: 11024
+  - uid: 11022
     components:
     - type: Transform
       anchored: False
@@ -74012,7 +74002,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 16.5,-28.5
       parent: 2
-  - uid: 11025
+  - uid: 11023
     components:
     - type: Transform
       anchored: False
@@ -74021,7 +74011,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11026
+  - uid: 11024
     components:
     - type: Transform
       anchored: False
@@ -74030,7 +74020,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11027
+  - uid: 11025
     components:
     - type: Transform
       anchored: False
@@ -74039,7 +74029,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11028
+  - uid: 11026
     components:
     - type: Transform
       anchored: False
@@ -74048,7 +74038,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11029
+  - uid: 11027
     components:
     - type: Transform
       anchored: False
@@ -74057,7 +74047,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
-  - uid: 11030
+  - uid: 11028
     components:
     - type: Transform
       anchored: False
