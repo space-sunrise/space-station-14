@@ -1,45 +1,11 @@
-- type: constructionGraph
-  id: MakeshiftPowerCage
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: makeshiftcage
-          steps:
-            - tag: PowerCellSmall
-              name: маленькая батарейка
-              icon:
-                sprite: Objects/Power/power_cells.rsi
-                state: small
-              doAfter: 0
-            - tag: PowerCellSmall
-              name: маленькая батарейка
-              icon:
-                sprite: Objects/Power/power_cells.rsi
-                state: small
-              doAfter: 0
-            - material: Cable
-              amount: 5
-              name: НВ кабель
-              doAfter: 0
-            - material: CableHV
-              amount: 5
-              name: ВВ кабель
-              doAfter: 0
-            - material: Steel
-              amount: 2
-              doAfter: 10
-    - node: makeshiftcage
-      entity: PowerCellMakeshift
-
 - type: construction
-  name: самодельная энергоячейка
+  name: Makeshift Power Cage
   id: MakeshiftPowerCage
   graph: MakeshiftPowerCage
   startNode: start
   targetNode: makeshiftcage
   category: construction-category-misc
-  description: Самодельная энергоячейка. Она не очень хороша, но лучше, чем ничего.
+  description: Makeshift power cage. It's not very good, but better than nothing.
   icon:
     sprite: _Sunrise/Objects/Power/power_cages.rsi
     state: makeshift

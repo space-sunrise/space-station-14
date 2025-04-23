@@ -20,3 +20,6 @@
     fireCost: 30
   - type: Appearance
   - type: AmmoCounter
+  - type: Construction
+    graph: Trashgun
+    node: done
