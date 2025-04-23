@@ -19,14 +19,14 @@ public sealed partial class NitriumSynthesisReaction : IGasReactionEffect
         var temperature = mixture.Temperature;
 
         // Проверка условий для реакции
-        if (initTritium < 2 || initNitrogen < 2 || initBZ < 1 || temperature < 1500 || temperature > 100000)
+        if (initTritium < 2 || initNitrogen < 2 || initBZ < 1 || temperature < 1500 || temperature > 13000)
             return ReactionResult.NoReaction;
 
         // Логика реакции
-        var tritiumRemoved = 2f; // Количество удаляемого трития
-        var nitrogenRemoved = 2f; // Количество удаляемого азота
+        var tritiumRemoved = 5f; // Количество удаляемого трития
+        var nitrogenRemoved = 5f; // Количество удаляемого азота
         var bzRemoved = 1f; // Количество удаляемого BZ
-        var nitriumProduced = 3f; // Количество производимого Нитриума
+        var nitriumProduced = 12f; // Количество производимого Нитриума
 
         if (tritiumRemoved > initTritium || nitrogenRemoved > initNitrogen || bzRemoved > initBZ)
             return ReactionResult.NoReaction;

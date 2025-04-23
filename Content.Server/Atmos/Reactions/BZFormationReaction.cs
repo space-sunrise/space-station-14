@@ -25,7 +25,7 @@ public sealed partial class BZFormationReaction : IGasReactionEffect
 
         var n2oRemoved = totalRate * 2f;
         var plasmaRemoved = totalRate * 4f;
-        var bzFormed = totalRate * 5f;
+        var bzFormed = totalRate * 25f; // Увеличил количество производимого BZ (Increased the amount of BZ produced)
 
         if (n2oRemoved > initN2O || plasmaRemoved > initPlasma)
             return ReactionResult.NoReaction;
@@ -34,7 +34,7 @@ public sealed partial class BZFormationReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Plasma, -plasmaRemoved);
         mixture.AdjustMoles(Gas.BZ, bzFormed);
 
-        var energyReleased = bzFormed * Atmospherics.BZFormationEnergy;
+        var energyReleased = bzFormed * (Atmospherics.BZFormationEnergy / 20f); // Ослабил экзотермическую реакцию (Reduced the exothermic reaction)
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);

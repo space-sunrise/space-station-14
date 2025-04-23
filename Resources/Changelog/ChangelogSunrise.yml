@@ -15254,3 +15254,15 @@
     type: Tweak
   id: 1044
   time: '2025-04-21T09:02:28.338186+00:00'
+- author: agranomys
+  changes:
+  - message: "\u0417\u0430\u043C\u0435\u043D\u0435\u043D\u044B \u043E\u0434\u0438\u043D\
+      \u0430\u0440\u043D\u044B\u0435 \u043E\u0434\u0435\u044F\u043B\u0430 \u043D\u0430\
+      \ \u0434\u0432\u043E\u0439\u043D\u044B\u0445 \u043A\u0440\u043E\u0432\u0430\u0442\
+      \u044F\u0445 \u0438 \u0443\u0431\u0440\u0430\u043D\u044B \u0434\u0432\u043E\u0439\
+      \u043D\u044B\u0435 \u043A\u0440\u043E\u0432\u0430\u0442\u0438 \u0432 \u043C\u0435\
+      \u0434\u0435 \u043D\u0430 \u0441\u0442\u0430\u043D\u0446\u0438\u0438 Box."
+    type: Tweak
+  id: 1045
+  time: '2025-04-22T01:51:34.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/1925
