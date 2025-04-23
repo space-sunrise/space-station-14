@@ -25,7 +25,6 @@ step-lockermech-toolbox3 = электрический тулбокс
 step-lockermech-flashlight = фонарик
 step-lockermech-oxygentank = кислородный баллон
 step-lockermech-treads = 5 стальных листов
-step-lockermech-door_electronics = микросхема шлюза
 step-lockermech-capacitors = 3 конденсатора
 step-lockermech-manipulators = 2 микроманипулятора
 step-lockermech-powercell = энергоячейку

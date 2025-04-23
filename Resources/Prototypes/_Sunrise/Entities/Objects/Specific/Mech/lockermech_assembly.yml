@@ -125,7 +125,6 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 8
       - tag: DoorElectronics
-        name: step-lockermech-door_electronics
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics"
