@@ -37,9 +37,9 @@
   - type: EmpImmune
 
 - type: entity #makeshift, by Noychik
-  name: makeshift power cell
-  description: A makeshift power cell. It's not very good, but it's better than nothing.
-  id: PowerCellMakeshift
+  name: makeshift power cage
+  description: A makeshift power cage. It's not very good, but it's better than nothing.
+  id: MakeshiftPowerCage
   suffix: Full
   parent: BasePowerCage
   components:

@@ -3,7 +3,7 @@
   id: MakeshiftPowerCage
   graph: MakeshiftPowerCage
   startNode: start
-  targetNode: makeshiftcage
+  targetNode: done
   category: construction-category-misc
   description: Makeshift power cage. It's not very good, but better than nothing.
   icon:

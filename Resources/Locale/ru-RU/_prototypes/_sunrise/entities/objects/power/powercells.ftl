@@ -7,3 +7,8 @@ ent-PowerCellNanoTrasen = батарея гипер ёмкости NanoTrasen
 ent-PowerCellMakeshift = самодельная энергоячейка
     .desc = Самодельная энергоячейка. Собрана из подручных материалов.
     .suffix = Полный
+
+### MakeshiftPowerCage
+ent-MakeshiftPowerCage = самодельная энергоячейка
+    .desc = Самодельная энергоячейка. Она лучше, чем ничего, наверное...
+    .suffix = Полная
