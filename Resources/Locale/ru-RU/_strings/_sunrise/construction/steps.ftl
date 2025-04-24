@@ -58,3 +58,23 @@ step-exosuit-air-tank-name = воздушный баллон экзокостю�
 step-exosuit-thruster-name = ускоритель экзокостюма
 step-ripley-peripherals-control-module-name = модуль управления периферией Рипли
 step-ripley-central-control-module-name = центральный модуль управления Рипли
+
+### PowerCage steps
+step-powercage-smallbattery1 = первая маленькая батарея
+step-powercage-smallbattery2 = вторая маленькая батарея
+
+### Lockermech steps
+step-lockermech-toolbox1 = первый ящик для инструментов
+step-lockermech-toolbox2 = второй ящик для инструментов
+step-lockermech-toolbox3 = третий ящик для инструментов
+step-lockermech-flashlight = фонарик
+step-lockermech-oxygentank = кислородный баллон
+step-lockermech-treads = гусеницы
+step-lockermech-capacitors = конденсаторы
+step-lockermech-manipulators = микроманипуляторы
+step-lockermech-powercell = энергоячейка
+
+### Trashgun steps
+step-trashgun-oxygentank = кислородный баллон
+step-trashgun-smallbattery = маленькая батарея
+step-trashgun-pipe = труба

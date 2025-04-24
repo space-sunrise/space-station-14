@@ -2,7 +2,7 @@
   id: MechLocker
   parent: [ BaseMech, IndustrialMech ]
   name: LockerMech
-  description: Медленный, но герметичный мех. Собран из мусора.
+  description: Slow, but sealed mech. Assembled from trash.
   components:
   - type: Sprite
     drawdepth: Mobs
