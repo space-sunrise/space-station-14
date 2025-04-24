@@ -26,9 +26,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-#    pilotBlacklist:
-#      species:
-#      - Felinid
+    pilotBlacklist:
+      species:
+      - Felinid
     openStateDirections: 4
     brokenStateDirections: 1
   - type: MeleeWeapon
@@ -36,7 +36,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 14
+        Blunt: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -55,7 +55,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      300: Critical
     showOverlays: false
     allowRevives: true
 

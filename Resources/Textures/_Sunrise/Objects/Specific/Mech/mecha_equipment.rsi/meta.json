@@ -8,7 +8,10 @@
   },
   "states": [
     {
-      "name": "mecha_trashgun"
+        "name": "mecha_trashgun"
+    },
+    {
+        "name": "mecha_trashlasergun"
     }
   ]
 }
