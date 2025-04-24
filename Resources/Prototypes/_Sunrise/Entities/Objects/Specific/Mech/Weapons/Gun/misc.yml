@@ -46,6 +46,6 @@
     fireCost: 100
   - type: Appearance
   - type: AmmoCounter
-#  - type: Construction
-#    graph: Trashlasergun
-#    node: done
+  - type: Construction
+    graph: Trashlasergun
+    node: done
