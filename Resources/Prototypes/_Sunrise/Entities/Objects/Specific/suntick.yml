@@ -18,7 +18,7 @@
   - type: StaticPrice
     price: 0
   - type: StackPrice
-    price: 10
+    price: -10
   - type: Currency
     price:
       Suntick: 1
