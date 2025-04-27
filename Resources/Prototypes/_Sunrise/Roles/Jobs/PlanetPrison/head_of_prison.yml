@@ -7,6 +7,9 @@
   - !type:RoleTimeRequirement
     role: JobHeadOfSecurity
     time: 36000 #10 hrs # Sunrise-RoleTime
+  - !type:RoleTimeRequirement
+    role: JobPrisonGuard
+    time: 18000 #5 hrs # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
     time: 108000 #30 hrs # Sunrise-RoleTime
@@ -32,7 +35,7 @@
     eyes: ClothingEyesGlassesSecurity
     id: HeadOfPrisonPDA
     gloves: ClothingHandsGlovesCombat
-    ears: ClothingHeadsetAltSecurity
+    ears: ClothingHeadsetAltCommand
     belt: ClothingBeltPrisonGuardianFilled
     pocket1: WeaponPistolDeagle
     pocket2: MagazineDeagle

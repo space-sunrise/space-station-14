@@ -15,9 +15,12 @@
       prob: 0.1
     - id: ClothingUniformJumpskirtHoSParadeMale
       prob: 0.1
+    - id: ClothingHoSMantleCoat
+      prob: 0.2
     - id: DrinkVacuumFlask
       prob: 0.8
     - id: ClothingBeltSecurityFilled
+    - id: ClothingOuterCoatHoSTrench
     - id: ClothingHeadsetAltSecurity
     - id: ClothingEyesGlassesSecurity
     - id: ClothingShoesBootsJack
@@ -26,7 +29,6 @@
     - id: DoorRemoteSecurity
     - id: ClothingUniformJumpskirtHosFormal
     - id: ClothingUniformJumpsuitHosFormal
-    - id: RubberStampHos
     - id: BoxEncryptionKeySecurity
     - id: HoloprojectorSecurity
     - id: RubberStampNpt
