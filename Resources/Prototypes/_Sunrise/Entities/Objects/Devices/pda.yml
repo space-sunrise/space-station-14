@@ -83,14 +83,33 @@
 
 - type: entity
   parent: BasePDA
-  id: PrisonerPDA
+  id: PlanetPrisonerPDA
   name: prisoner's PDA
   description: In the colour of the robe for a complete set.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
-    id: PrisonerIDCard
+    id: PlanetPrisonerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-prisoner
+
+- type: entity
+  parent: BasePDA
+  id: FugitivePrisonerPDA
+  name: prisoner's PDA
+  description: In the colour of the robe for a complete set.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PlanetPrisonerIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:

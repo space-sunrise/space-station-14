@@ -87,7 +87,7 @@
 
 - type: entity
   parent: IDCardStandard
-  id: PrisonerIDCard
+  id: PlanetPrisonerIDCard
   name: prisoner ID card
   components:
   - type: Sprite

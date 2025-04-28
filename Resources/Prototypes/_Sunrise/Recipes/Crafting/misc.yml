@@ -1,0 +1,25 @@
+- type: construction #by Noychik
+  name: Trashgun
+  id: Trashgun
+  graph: Trashgun
+  startNode: start
+  targetNode: done
+  category: construction-category-misc
+  description: Makeshift trashgun. It shoots garbage at medium range. It looks like it could explode at any moment.....
+  icon:
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_trashgun
+  objectType: Item
+
+- type: construction
+  name: Trashlasergun
+  id: Trashlasergun
+  graph: Trashlasergun
+  startNode: start
+  targetNode: done
+  category: construction-category-misc
+  description: Makeshift lasergun. It shoots laser, maybe...
+  icon:
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_trashlasergun
+  objectType: Item

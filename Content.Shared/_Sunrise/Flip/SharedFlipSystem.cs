@@ -42,7 +42,7 @@ public abstract class SharedFlipSystem : EntitySystem
         SubscribeLocalEvent<FlipComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<FlipComponent, ComponentShutdown>(OnShutdown);
 
-        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.FlipDeadChanse, OnFlipDeadChanseChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.FlipDeadChance, OnFlipDeadChanseChanged, true);
 
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
     }

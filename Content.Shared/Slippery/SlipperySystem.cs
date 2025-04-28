@@ -59,7 +59,7 @@ public sealed class SlipperySystem : EntitySystem
         SubscribeLocalEvent<SlowedOverSlipperyComponent, InventoryRelayedEvent<GetSlowedOverSlipperyModifierEvent>>(OnGetSlowedOverSlipperyModifier);
         SubscribeLocalEvent<SlipperyComponent, EndCollideEvent>(OnEntityExit);
 
-        _cfg.OnValueChanged(SunriseCCVars.SlipDeadChanse, OnSLipDeadChanseChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SlipDeadChance, OnSLipDeadChanseChanged, true);
     }
 
     // Sunrise-Start

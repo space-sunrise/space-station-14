@@ -18,6 +18,8 @@
 
   defaultModules:
   - BorgModuleTool
+  - BorgModuleArtifact
+  - BorgModuleAnomaly
 
   radioChannels:
   - Science
@@ -115,8 +117,8 @@
   defaultModules:
   - BorgModuleStandart
   - BorgModuleMining
-  - BorgModuleGrapplingGun
-  - BorgModuleGPS
+  - BorgModuleTraversal
+  - BorgModuleAppraisal
   - BorgModuleJetpack # Sunrise-Edit
 
   radioChannels:
@@ -155,7 +157,7 @@
   dummyPrototype: BorgChassisJanitor
 
   # Functional
-  extraModuleCount: 3
+  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -163,8 +165,8 @@
 
   defaultModules:
   - BorgModuleStandart
-  - BorgModuleLightReplacer
   - BorgModuleAdvancedCleaning # Sunrise-Edit
+  - BorgModuleCustodial
 
   radioChannels:
   - Science
@@ -204,7 +206,7 @@
   dummyPrototype: BorgChassisMedical
 
   # Functional
-  extraModuleCount: 4
+  extraModuleCount: 5
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -212,9 +214,9 @@
 
   defaultModules:
   - BorgModuleStandart
-  - BorgModuleAdvancedTreatment # Sunrise-Edit
-  - BorgModuleTreatment
-  - BorgModuleDefibrillator # Sunrise-Edit
+  - BorgModuleChemical
+  - BorgModuleTopicals
+  - BorgModuleRescue
 
   radioChannels:
   - Science
@@ -271,7 +273,7 @@
   dummyPrototype: BorgChassisService
 
   # Functional
-  extraModuleCount: 3
+  extraModuleCount: 6
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -281,6 +283,9 @@
   - BorgModuleStandart
   - BorgModuleMusique
   - BorgModuleService
+  - BorgModuleClowning
+  - BorgModuleGardening
+  - BorgModuleHarvesting
 
   radioChannels:
   - Science

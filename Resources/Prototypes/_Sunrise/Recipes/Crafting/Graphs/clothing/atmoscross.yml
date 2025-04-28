@@ -1,0 +1,18 @@
+- type: constructionGraph
+  id: AtmosCrossCraft
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cross
+      steps:
+      - material: MetalRod
+        amount: 4
+        doAfter: 1
+      - tag: Pipe
+        icon:
+          sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeFourway
+        name: step-pipe-name
+  - node: cross
+    entity: ClothingNeckAtmosCross

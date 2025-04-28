@@ -193,6 +193,9 @@
         2.0
       FollowRange: !type:Single
         3.0
+  - type: Bloodstream
+    bloodReagent: Blood
+    bloodMaxVolume: 75
   - type: Reactive
     groups:
       Flammable: [Touch]

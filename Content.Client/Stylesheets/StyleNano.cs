@@ -66,6 +66,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassChatChannelSelectorButton = "chatSelectorOptionButton";
         public const string StyleClassChatFilterOptionButton = "chatFilterOptionButton";
         public const string StyleClassStorageButton = "storageButton";
+        public const string StyleClassInset = "Inset";
 
         public const string StyleClassSliderRed = "Red";
         public const string StyleClassSliderGreen = "Green";
@@ -1740,8 +1741,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Bwoink/un_pinned.png"))
                     }),
-                // Sunrise-Edit
-                
+                // Sunrise-Start
                 Element<Button>().Class(StyleClassNoStyle)
                     .Prop(Button.StylePropertyStyleBox, new StyleBoxFlat
                     {
@@ -1751,7 +1751,11 @@ namespace Content.Client.Stylesheets
                         ContentMarginTopOverride = 12,
                         ContentMarginBottomOverride = 12
                     }),
-                // Sunrise-Edit
+                // Sunrise-End
+
+                Element<PanelContainer>()
+                    .Class(StyleClassInset)
+                    .Prop(PanelContainer.StylePropertyPanel, insetBack),
             }).ToList());
         }
     }

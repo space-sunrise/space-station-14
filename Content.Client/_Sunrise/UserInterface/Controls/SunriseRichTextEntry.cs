@@ -33,6 +33,8 @@ internal struct SunriseRichTextEntry
 
     private readonly Dictionary<int, Control>? _tagControls;
 
+    public Dictionary<int, Control> TagControls => _tagControls ?? new Dictionary<int, Control>();
+
     public SunriseRichTextEntry(FormattedMessage message, Control parent, MarkupTagManager tagManager, Type[]? tagsAllowed = null, Color? defaultColor = null)
     {
         Message = message;

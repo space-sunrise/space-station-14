@@ -14,6 +14,6 @@
     back: ClothingBackpack
     shoes: ClothingShoesColorBlack
     belt: ClothingBeltUtilityEngineering
-    id: PrisonerPDA
+    id: FugitivePrisonerPDA
   inhand:
     - ToolboxElectricalFilled

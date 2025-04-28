@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 254.1.0
-  forkId: ""
-  forkVersion: ""
-  time: 04/20/2025 06:52:23
-  entityCount: 27865
+  forkId: sunrise_station_public
+  forkVersion: 3ed8858dee07423b53223386b97c85eed4bbd293
+  time: 04/23/2025 00:26:26
+  entityCount: 27868
 maps:
 - 1
 grids:
@@ -15039,32 +15039,12 @@ entities:
     - type: Transform
       pos: -49.540146,-16.412222
       parent: 2
-- proto: DoubleBed
+- proto: Bed
   entities:
-  - uid: 924
-    components:
-    - type: Transform
-      pos: 13.5,5.5
-      parent: 2
-  - uid: 925
-    components:
-    - type: Transform
-      pos: -25.5,-25.5
-      parent: 2
-  - uid: 926
-    components:
-    - type: Transform
-      pos: -28.5,14.5
-      parent: 2
   - uid: 927
     components:
     - type: Transform
-      pos: -2.5,50.5
-      parent: 2
-  - uid: 928
-    components:
-    - type: Transform
-      pos: 7.5,48.5
+      pos: -10.5,50.5
       parent: 2
   - uid: 929
     components:
@@ -15074,12 +15054,7 @@ entities:
   - uid: 930
     components:
     - type: Transform
-      pos: -10.5,50.5
-      parent: 2
-  - uid: 931
-    components:
-    - type: Transform
-      pos: -53.5,-55.5
+      pos: -2.5,50.5
       parent: 2
   - uid: 932
     components:
@@ -15101,111 +15076,12 @@ entities:
     - type: Transform
       pos: 7.5,24.5
       parent: 2
-  - uid: 936
-    components:
-    - type: Transform
-      pos: -53.5,-51.5
-      parent: 2
-  - uid: 937
-    components:
-    - type: Transform
-      pos: 44.5,6.5
-      parent: 2
-  - uid: 938
-    components:
-    - type: Transform
-      pos: 32.5,24.5
-      parent: 2
-  - uid: 939
-    components:
-    - type: Transform
-      pos: 32.5,29.5
-      parent: 2
-  - uid: 940
-    components:
-    - type: Transform
-      pos: 38.5,26.5
-      parent: 2
-  - uid: 941
-    components:
-    - type: Transform
-      pos: 31.5,15.5
-      parent: 2
-  - uid: 942
-    components:
-    - type: Transform
-      pos: 38.5,15.5
-      parent: 2
-  - uid: 943
-    components:
-    - type: Transform
-      pos: -14.5,-38.5
-      parent: 2
-  - uid: 944
-    components:
-    - type: Transform
-      pos: -24.5,-15.5
-      parent: 2
-  - uid: 945
-    components:
-    - type: Transform
-      pos: 25.5,-39.5
-      parent: 2
-  - uid: 946
-    components:
-    - type: Transform
-      pos: 41.5,-35.5
-      parent: 2
-  - uid: 947
-    components:
-    - type: Transform
-      pos: -20.5,46.5
-      parent: 2
-  - uid: 948
-    components:
-    - type: Transform
-      pos: -15.5,6.5
-      parent: 2
-- proto: BedsheetBlack
-  entities:
-  - uid: 949
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -20.5,46.5
-      parent: 2
-- proto: BedsheetCaptain
-  entities:
-  - uid: 950
-    components:
-    - type: Transform
-      pos: 13.5,5.5
-      parent: 2
-- proto: BedsheetCE
-  entities:
-  - uid: 951
-    components:
-    - type: Transform
-      pos: 44.5,6.5
-      parent: 2
 - proto: BedsheetClown
   entities:
   - uid: 952
     components:
     - type: Transform
       pos: 37.5,-11.5
-      parent: 2
-  - uid: 953
-    components:
-    - type: Transform
-      pos: 31.5,15.5
-      parent: 2
-- proto: BedsheetCMO
-  entities:
-  - uid: 954
-    components:
-    - type: Transform
-      pos: -14.5,-38.5
       parent: 2
 - proto: BedsheetGreen
   entities:
@@ -15227,13 +15103,6 @@ entities:
       parent: 957
     - type: Physics
       canCollide: False
-- proto: BedsheetHOS
-  entities:
-  - uid: 960
-    components:
-    - type: Transform
-      pos: 7.5,48.5
-      parent: 2
 - proto: BedsheetIan
   entities:
   - uid: 959
@@ -15264,11 +15133,6 @@ entities:
     - type: Transform
       pos: -24.5,-42.5
       parent: 2
-  - uid: 965
-    components:
-    - type: Transform
-      pos: 41.5,-35.5
-      parent: 2
   - uid: 966
     components:
     - type: Transform
@@ -15291,14 +15155,6 @@ entities:
     - type: Transform
       pos: 41.5,-12.5
       parent: 2
-- proto: BedsheetNT
-  entities:
-  - uid: 970
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -15.5,6.5
-      parent: 2
 - proto: BedsheetOrange
   entities:
   - uid: 971
@@ -15316,46 +15172,22 @@ entities:
     - type: Transform
       pos: -12.5,27.5
       parent: 2
-- proto: BedsheetQM
+- proto: BedsheetSyndie
   entities:
-  - uid: 974
+  - uid: 27866
     components:
     - type: Transform
-      pos: -28.5,14.5
+      pos: -2.5,50.5
       parent: 2
-- proto: BedsheetRD
-  entities:
-  - uid: 975
+  - uid: 27867
     components:
     - type: Transform
-      pos: 25.5,-39.5
+      pos: -6.5,50.5
       parent: 2
-- proto: BedsheetSpawner
-  entities:
-  - uid: 976
+  - uid: 27868
     components:
     - type: Transform
-      pos: 32.5,24.5
-      parent: 2
-  - uid: 977
-    components:
-    - type: Transform
-      pos: 32.5,29.5
-      parent: 2
-  - uid: 978
-    components:
-    - type: Transform
-      pos: 38.5,26.5
-      parent: 2
-  - uid: 979
-    components:
-    - type: Transform
-      pos: 38.5,15.5
-      parent: 2
-  - uid: 980
-    components:
-    - type: Transform
-      pos: -24.5,-15.5
+      pos: -10.5,50.5
       parent: 2
 - proto: BikeHorn
   entities:
@@ -72876,6 +72708,186 @@ entities:
     - type: Transform
       pos: -1.4511151,29.842415
       parent: 2
+- proto: DoubleBed
+  entities:
+  - uid: 924
+    components:
+    - type: Transform
+      pos: 13.5,5.5
+      parent: 2
+  - uid: 926
+    components:
+    - type: Transform
+      pos: -28.5,14.5
+      parent: 2
+  - uid: 928
+    components:
+    - type: Transform
+      pos: 7.5,48.5
+      parent: 2
+  - uid: 937
+    components:
+    - type: Transform
+      pos: 44.5,6.5
+      parent: 2
+  - uid: 938
+    components:
+    - type: Transform
+      pos: 32.5,24.5
+      parent: 2
+  - uid: 939
+    components:
+    - type: Transform
+      pos: 32.5,29.5
+      parent: 2
+  - uid: 940
+    components:
+    - type: Transform
+      pos: 38.5,26.5
+      parent: 2
+  - uid: 941
+    components:
+    - type: Transform
+      pos: 31.5,15.5
+      parent: 2
+  - uid: 942
+    components:
+    - type: Transform
+      pos: 38.5,15.5
+      parent: 2
+  - uid: 943
+    components:
+    - type: Transform
+      pos: -14.5,-38.5
+      parent: 2
+  - uid: 944
+    components:
+    - type: Transform
+      pos: -24.5,-15.5
+      parent: 2
+  - uid: 945
+    components:
+    - type: Transform
+      pos: 25.5,-39.5
+      parent: 2
+  - uid: 946
+    components:
+    - type: Transform
+      pos: 41.5,-35.5
+      parent: 2
+  - uid: 947
+    components:
+    - type: Transform
+      pos: -20.5,46.5
+      parent: 2
+  - uid: 948
+    components:
+    - type: Transform
+      pos: -15.5,6.5
+      parent: 2
+- proto: DoubleBedsheetBlack
+  entities:
+  - uid: 949
+    components:
+    - type: Transform
+      pos: -20.5,46.5
+      parent: 2
+- proto: DoubleBedsheetBlue
+  entities:
+  - uid: 979
+    components:
+    - type: Transform
+      pos: 38.5,15.5
+      parent: 2
+- proto: DoubleBedsheetBrown
+  entities:
+  - uid: 978
+    components:
+    - type: Transform
+      pos: 32.5,24.5
+      parent: 2
+  - uid: 980
+    components:
+    - type: Transform
+      pos: -24.5,-15.5
+      parent: 2
+- proto: DoubleBedsheetCaptain
+  entities:
+  - uid: 950
+    components:
+    - type: Transform
+      pos: 13.5,5.5
+      parent: 2
+- proto: DoubleBedsheetCE
+  entities:
+  - uid: 951
+    components:
+    - type: Transform
+      pos: 44.5,6.5
+      parent: 2
+- proto: DoubleBedsheetClown
+  entities:
+  - uid: 953
+    components:
+    - type: Transform
+      pos: 31.5,15.5
+      parent: 2
+- proto: DoubleBedsheetCMO
+  entities:
+  - uid: 954
+    components:
+    - type: Transform
+      pos: -14.5,-38.5
+      parent: 2
+- proto: DoubleBedsheetHOS
+  entities:
+  - uid: 960
+    components:
+    - type: Transform
+      pos: 7.5,48.5
+      parent: 2
+- proto: DoubleBedsheetMedical
+  entities:
+  - uid: 965
+    components:
+    - type: Transform
+      pos: 41.5,-35.5
+      parent: 2
+- proto: DoubleBedsheetNT
+  entities:
+  - uid: 970
+    components:
+    - type: Transform
+      pos: -15.5,6.5
+      parent: 2
+- proto: DoubleBedsheetPurple
+  entities:
+  - uid: 976
+    components:
+    - type: Transform
+      pos: 32.5,29.5
+      parent: 2
+- proto: DoubleBedsheetQM
+  entities:
+  - uid: 974
+    components:
+    - type: Transform
+      pos: -28.5,14.5
+      parent: 2
+- proto: DoubleBedsheetRD
+  entities:
+  - uid: 975
+    components:
+    - type: Transform
+      pos: 25.5,-39.5
+      parent: 2
+- proto: DoubleBedsheetRed
+  entities:
+  - uid: 977
+    components:
+    - type: Transform
+      pos: 38.5,26.5
+      parent: 2
 - proto: DoubleGlassAirlock
   entities:
   - uid: 11634
@@ -122966,6 +122978,21 @@ entities:
       parent: 2
 - proto: MedicalBed
   entities:
+  - uid: 925
+    components:
+    - type: Transform
+      pos: -25.5,-25.5
+      parent: 2
+  - uid: 931
+    components:
+    - type: Transform
+      pos: -53.5,-51.5
+      parent: 2
+  - uid: 936
+    components:
+    - type: Transform
+      pos: -53.5,-55.5
+      parent: 2
   - uid: 18728
     components:
     - type: Transform

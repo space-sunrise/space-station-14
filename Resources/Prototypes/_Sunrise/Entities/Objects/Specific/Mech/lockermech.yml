@@ -1,0 +1,68 @@
+- type: entity
+  id: MechLocker
+  parent: [ BaseMech, IndustrialMech ]
+  name: LockerMech
+  description: Slow, but sealed mech. Assembled from trash.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: /Textures/_Sunrise/Objects/Specific/Mech/lockermech.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: lockermech
+      sprite: /Textures/_Sunrise/Objects/Specific/Mech/lockermech.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: lockermech
+    openState: lockermech-open
+    brokenState: lockermech-broken
+    mechToPilotDamageMultiplier: 0.50
+    airtight: true
+    maxEquipmentAmount: 2
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      300: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechLockerBattery
+  parent: MechLocker
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageMedium

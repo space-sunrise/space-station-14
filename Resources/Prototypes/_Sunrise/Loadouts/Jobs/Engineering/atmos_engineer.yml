@@ -1,0 +1,14 @@
+- type: loadout
+  id: Sunrise-AtmosBeret
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 360000 # 100 hour
+  equipment:
+    head: ClothingHeadHatBeretAtmos
+
+
+
+

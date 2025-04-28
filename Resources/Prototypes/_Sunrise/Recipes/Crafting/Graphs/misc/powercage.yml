@@ -1,0 +1,34 @@
+- type: constructionGraph
+  id: MakeshiftPowerCage
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 0
+            - tag: PowerCellSmall
+              name: step-trashgun-smallbattery
+              icon:
+                sprite: Objects/Power/power_cells.rsi
+                state: small
+              doAfter: 0
+            - tag: PowerCellSmall
+              name: step-trashgun-smallbattery
+              icon:
+                sprite: Objects/Power/power_cells.rsi
+                state: small
+              doAfter: 0
+            - material: Cable
+              amount: 5
+              doAfter: 0
+            - material: CableHV
+              amount: 2
+              doAfter: 0
+            - material: Glass
+              amount: 2
+              doAfter: 10
+    - node: done
+      entity: MakeshiftPowerCage

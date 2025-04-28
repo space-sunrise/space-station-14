@@ -480,7 +480,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityUid? user = null,
         bool throwItems = false);
 
-    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid gunUid, EntityUid? user = null, float speed = 20f)
+    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid? gunUid, EntityUid? user = null, float speed = 20f)
     {
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
@@ -491,8 +491,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         Physics.SetLinearVelocity(uid, finalLinear, body: physics);
 
         var projectile = EnsureComp<ProjectileComponent>(uid);
-        Projectiles.SetShooter(uid, projectile, user);
         projectile.Weapon = gunUid;
+        var shooter = user ?? gunUid;
+        if (shooter != null)
+            Projectiles.SetShooter(uid, projectile, shooter.Value);
 
         // Sunrise-Start
         var ev = new ProjectileShotEvent();

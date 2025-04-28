@@ -834,6 +834,7 @@
   - Sunrise-EngineerHeadBeret
   - Sunrise-BandRed
   - Sunrise-BandOrange
+  - Sunrise-AtmosBeret
   - Sunrise-BandYellow
   - Sunrise-BandCyan
   - StationEngineerHardhatRed
@@ -951,6 +952,7 @@
   maxLimit: 1
   loadouts:
   - Sunrise-EngineerHeadBeret
+  - Sunrise-AtmosBeret
   - Sunrise-BandRed
   - Sunrise-BandOrange
   - Sunrise-BandYellow

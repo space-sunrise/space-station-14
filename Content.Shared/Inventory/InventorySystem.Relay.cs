@@ -4,6 +4,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Hypospray.Events;
 using Content.Shared.Climbing.Events;
+using Content.Shared.Contraband;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
@@ -58,6 +59,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, GetSlowedOverSlipperyModifierEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ModifySlowOnDamageSpeedEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ExtinguishEvent>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, GetContrabandDetailsEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ShotAttemptedEvent>(RefRelayInventoryEvent); // Sunrise-Edit
 
         // Eye/vision events

@@ -38,13 +38,15 @@ namespace Content.Shared.Administration
         }
 
         [Serializable, NetSerializable]
-        public sealed class BwoinkDbLoadedMessage : EntityEventArgs
+        public sealed class BwoinkTextHistoryMessage : EntityEventArgs
         {
             public NetUserId UserId { get; }
+            public List<BwoinkTextMessage> Messages { get; }
 
-            public BwoinkDbLoadedMessage(NetUserId userId)
+            public BwoinkTextHistoryMessage(NetUserId userId, List<BwoinkTextMessage> messages)
             {
                 UserId = userId;
+                Messages = messages;
             }
         }
         // Sunrise-End

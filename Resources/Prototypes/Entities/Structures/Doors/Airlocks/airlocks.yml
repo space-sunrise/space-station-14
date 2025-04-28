@@ -227,7 +227,7 @@
   suffix: Salvage
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/salvage.rsi
+    sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
   - type: Wires
     layoutId: AirlockCargo
 

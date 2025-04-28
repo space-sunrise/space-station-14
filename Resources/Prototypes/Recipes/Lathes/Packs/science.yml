@@ -56,6 +56,9 @@
   - WeaponForceGun
   - WeaponProtoKineticAccelerator
   - WeaponPlasmaCutter  # Sunrise-Add
+  - PKAUpgradeDamage
+  - PKAUpgradeRange
+  - PKAUpgradeFireRate
   - WeaponTetherGun
   - WeaponGauntletGorilla
 
