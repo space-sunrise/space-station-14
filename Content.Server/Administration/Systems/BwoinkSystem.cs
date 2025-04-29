@@ -352,37 +352,35 @@ namespace Content.Server.Administration.Systems
         {
             var isAdmin = _adminManager.IsAdmin(args.SenderSession);
 
-            var messages = await _dbManager.GetAHelpMessagesByReceiverAsync(msg.UserId);
+            var messages = (await _dbManager.GetAHelpMessagesByReceiverAsync(msg.UserId))
+                .OrderBy(message => message.SentAt);
 
-            /*
-             * SUNRISE-TODO: Мы отправляем всю историю по одному сообщению используя ванильный класс.
-             * Вероятно более разумно было бы отправлять все сообщения одним эвентом... Возможно.
-             */
+            var history = new List<BwoinkTextMessage>();
             foreach (var aHelpMessage in messages)
             {
-                var formatMessage = await FormatDbAhelpMessage(
-                    aHelpMessage.Message,
-                    (NetUserId) aHelpMessage.SenderUserId,
-                    aHelpMessage.PlaySound,
-                    aHelpMessage.AdminOnly);
-
                 if (aHelpMessage.AdminOnly && !isAdmin)
                     continue;
 
+                var formatMessage = await FormatDbAhelpMessage(
+                    aHelpMessage.Message,
+                    (NetUserId)aHelpMessage.SenderUserId,
+                    aHelpMessage.PlaySound,
+                    aHelpMessage.AdminOnly);
+
                 var bwoinkTextMessage = new BwoinkTextMessage(
-                    (NetUserId) aHelpMessage.ReceiverUserId,
-                    (NetUserId) aHelpMessage.SenderUserId,
+                    (NetUserId)aHelpMessage.ReceiverUserId,
+                    (NetUserId)aHelpMessage.SenderUserId,
                     formatMessage,
                     aHelpMessage.SentAt.DateTime.ToLocalTime(),
                     playSound: aHelpMessage.PlaySound,
                     adminOnly: aHelpMessage.AdminOnly,
                     dbLoad: true);
 
-                RaiseNetworkEvent(bwoinkTextMessage, args.SenderSession.Channel);
+                history.Add(bwoinkTextMessage);
             }
 
-            var loaded = new BwoinkDbLoadedMessage(msg.UserId);
-            RaiseNetworkEvent(loaded, args.SenderSession.Channel);
+            var historyEvent = new BwoinkTextHistoryMessage(msg.UserId, history);
+            RaiseNetworkEvent(historyEvent, args.SenderSession.Channel);
         }
 
         private async Task<string> FormatDbAhelpMessage(string message, NetUserId senderUserId,

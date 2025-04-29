@@ -6,10 +6,12 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: GhostTakeoverAvailable
+    - type: IdBind
 
 - type: randomHumanoidSettings
   id: EventHumanoidMindShielded
   parent: EventHumanoid
+  randomizeName: false
   components:
     - type: MindShield
     - type: AntagImmune

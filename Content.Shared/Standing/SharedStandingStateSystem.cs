@@ -1,8 +1,11 @@
 using System.Numerics;
 using Content.Shared._Sunrise.Jump;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Emoting;
@@ -18,6 +21,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -43,13 +47,18 @@ public abstract class SharedStandingStateSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [ValidatePrototypeId<StatusEffectPrototype>]
     private const string FallStatusEffectKey = "Fall";
+    [ValidatePrototypeId<EmotePrototype>]
+    private const string EmoteFallOnNeckProto = "FallOnNeck";
+
+    private static float _fallDeadChance;
 
     public const float FallModifier = 0.4f;
 
-    private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
+    private const int StandingCollisionLayer = (int) CollisionGroup.LowImpassable;
 
     public override void Initialize()
     {
@@ -66,6 +75,13 @@ public abstract class SharedStandingStateSystem : EntitySystem
         SubscribeLocalEvent<FallComponent, UpdateCanMoveEvent>(OnMoveAttempt);
         SubscribeLocalEvent<FallComponent, ComponentStartup>(UpdateCanMove);
         SubscribeLocalEvent<FallComponent, ComponentShutdown>(UpdateCanMove);
+
+        _cfg.OnValueChanged(SunriseCCVars.FallDeadChance, OnFallDeadChanceChanged, true);
+    }
+
+    private void OnFallDeadChanceChanged(float value)
+    {
+        _fallDeadChance = value;
     }
 
     private void UpdateCanMove(EntityUid uid, FallComponent component, EntityEventArgs args)
@@ -226,7 +242,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
 
     public void Fall(EntityUid uid)
     {
-        if (!TryComp<PhysicsComponent>(uid, out var physics))
+        if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
             return;
 
         var velocity = physics.LinearVelocity;
@@ -243,6 +259,11 @@ public abstract class SharedStandingStateSystem : EntitySystem
             FallStatusEffectKey,
             TimeSpan.FromSeconds(1),
             false);
+
+        if (_random.Prob(_fallDeadChance) && _net.IsServer)
+        {
+            RaiseLocalEvent(uid, new PlayEmoteMessage(EmoteFallOnNeckProto));
+        }
     }
 
     public bool Stand(EntityUid uid,

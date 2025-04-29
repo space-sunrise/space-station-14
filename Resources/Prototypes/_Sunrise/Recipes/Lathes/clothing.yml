@@ -55,6 +55,11 @@
   result: ClothingHeadHatBeretPatologoanatom
 
 - type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretAtmos
+  result: ClothingHeadHatBeretAtmos
+
+- type: latheRecipe
   parent: BaseNeckClothingRecipe
   id: ClothingNeckScarfRD
   result: ClothingNeckScarfRD

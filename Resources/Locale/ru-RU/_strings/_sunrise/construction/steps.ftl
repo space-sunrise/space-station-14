@@ -58,3 +58,7 @@ step-exosuit-air-tank-name = воздушный баллон экзокостю�
 step-exosuit-thruster-name = ускоритель экзокостюма
 step-ripley-peripherals-control-module-name = модуль управления периферией Рипли
 step-ripley-central-control-module-name = центральный модуль управления Рипли
+
+### PowerCage steps
+step-powercage-smallbattery1 = первая маленькая батарея
+step-powercage-smallbattery2 = вторая маленькая батарея

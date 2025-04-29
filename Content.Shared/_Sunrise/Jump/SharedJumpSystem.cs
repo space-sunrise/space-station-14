@@ -72,7 +72,7 @@ public abstract class SharedJumpSystem : EntitySystem
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
 
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpEnable, OnJumpEnableChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpDeadChanse, OnJumpDeadChanseChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpDeadChance, OnJumpDeadChanceChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopEnable, OnBunnyHopEnableChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopMinSpeedThreshold, OnBunnyHopMinSpeedThresholdChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopSpeedBoostWindow, OnBunnyHopSpeedBoostWindowChanged, true);
@@ -99,7 +99,7 @@ public abstract class SharedJumpSystem : EntitySystem
         Enable = enanle;
     }
 
-    private void OnJumpDeadChanseChanged(float value)
+    private void OnJumpDeadChanceChanged(float value)
     {
         _deadChance = value;
     }
@@ -178,7 +178,6 @@ public abstract class SharedJumpSystem : EntitySystem
             ent.Comp.OriginalCollisionLayers[id] = fixture.CollisionLayer;
 
             _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.LowImpassable, manager: fixtures);
-            _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.MidImpassable, manager: fixtures);
         }
 
         if (!BunnyHopEnable)

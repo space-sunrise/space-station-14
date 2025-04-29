@@ -32,3 +32,7 @@ recipe-CarpStatue-name = статуя карпа
 recipe-CarpStatue-description = Статуя одного из храбрых карпов, благодаря которому мы находимся там, где находимся. С настоящими зубами!
 recipe-MemoryCell-name = ячейка памяти
 recipe-MemoryCell-description = Устройство для хранения данных.
+recipe-MakeshiftPowerCage-name = самодельная энергоячейка
+recipe-MakeshiftPowerCage-description = Самодельная энергоячейка. Собрана из подручных материалов.
+recipe-LockerMech-name = шкафомех
+recipe-LockerMech-description = Медленный, но герметичный мех. Собран из мусора и подручных материалов.

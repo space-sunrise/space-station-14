@@ -10,6 +10,7 @@
     - Ghost
     - Jump
     - Flip
+    - Fall
   popupMessages: ["animations-msg-flip"]
   animation: true
 
@@ -25,6 +26,7 @@
     - Ghost
     - Jump
     - Flip
+    - Fall
   popupMessages: ["animations-msg-jump"]
   animation: true
 
@@ -40,6 +42,7 @@
     - Ghost
     - Jump
     - Flip
+    - Fall
   popupMessages: ["animations-msg-dance"]
   animation: true
 
@@ -55,6 +58,7 @@
     - Ghost
     - Jump
     - Flip
+    - Fall
   animation: true
 
 - type: emote

@@ -24,6 +24,7 @@
   - type: Hands
   - type: ComplexInteraction
   - type: Puller
+    needsHands: false
   - type: CombatMode
   - type: Physics
     ignorePaused: true
@@ -99,8 +100,7 @@
   - type: SolutionScanner
   - type: IgnoreUIRange
   - type: ShowAntagIcons
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+  - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost
   - type: Loadout

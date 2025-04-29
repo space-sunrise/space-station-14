@@ -115,3 +115,23 @@
   components:
   - type: PriorityDock
     tag: DockGamma
+
+- type: entity
+  parent: AirlockStandardGlass
+  id: AirlockChapelStandardGlassLocked
+  suffix: Chapel, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChapel ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockXeno
+  id: AirlockXenoMaintLocked
+  suffix: Maintenance, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]

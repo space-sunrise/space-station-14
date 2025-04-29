@@ -290,8 +290,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: EmpImmune  # Sunrise-EMP
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: BulletPulse # Sunrise-Edit
     fireCost: 200
@@ -338,8 +337,7 @@
       - SemiAuto
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: EmpImmune  # Sunrise-EMP
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: BulletPulse # Sunrise-Edit
     fireCost: 100 # Sunrise-Edit
