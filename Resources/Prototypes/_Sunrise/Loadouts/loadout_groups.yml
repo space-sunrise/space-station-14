@@ -131,6 +131,21 @@
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
+  - BlueShieldTurtleneck
+
+- type: loadoutGroup
+  id: BlueShieldBelt
+  name: loadout-group-blueshield-belt
+  loadouts: 
+  - BlueShieldWebbing
+  - AssaultBeltBS
+
+- type: loadoutGroup
+  id: BlueShieldNeck
+  name: loadout-group-blueshield-neck
+  loadouts:
+  - BlueShieldMantle
+  - BlueShieldCoat
 
 - type: loadoutGroup
   id: BarberJumpsuit
