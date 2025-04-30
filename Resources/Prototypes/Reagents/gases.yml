@@ -26,6 +26,10 @@
         conditions:
         - !type:OrganType
           type: Plant
+      - !type:Oxygenate #Sunrise-Start
+        conditions:
+        - !type:OrganType
+          type: Predator #Sunrise-End
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -70,6 +74,10 @@
           type: Rat
       - !type:Oxygenate
         conditions:
+        - !type:OrganType
+          type: Predator #Sunrise-Start
+      - !type:Oxygenate
+        conditions: #Sunrise-End
         - !type:OrganType
           type: Plant
       # Convert Oxygen into CO2.
@@ -297,6 +305,25 @@
         ratios:
           NitrousOxide: 1.0
           Nitrogen: -1.0
+      - !type:HealthChange #Sunrise-Start
+        conditions:
+        - !type:OrganType
+          type: Predator
+        scaleByQuantity: true
+        ignoreResistances: true
+        damage:
+          types:
+            Poison:
+              0.5
+      - !type:AdjustAlert
+        alertType: Toxins
+        conditions:
+          - !type:ReagentThreshold
+            min: 0.5
+          - !type:OrganType
+            type: Predator
+        clear: true
+        time: 5 #Sunrise-End
 
 - type: reagent
   id: NitrousOxide
