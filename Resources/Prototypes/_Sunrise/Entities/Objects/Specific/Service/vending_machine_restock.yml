@@ -15,3 +15,5 @@
     - state: green_bit
       shader: unshaded
     - state: refill_paint
+  - type: StaticPrice
+    price: 2000

@@ -80,8 +80,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
-  #- type: Advertise
-  #  pack:
+  - type: Advertise
+    pack: PaintVendAds
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/paintvend.rsi
     layers:
@@ -92,8 +92,6 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Service"]]
   - type: PointLight
     radius: 1.5
     energy: 1.6
