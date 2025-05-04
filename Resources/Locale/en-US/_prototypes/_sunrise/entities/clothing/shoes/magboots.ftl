@@ -5,4 +5,4 @@ ent-ClothingShoesBootsMagPirate = pirate magboots
 ent-ClothingShoesBootsMagSec = Security magboots
     .desc = Security magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
 ent-ClothingShoesBootsMagAtmos = Atmos magboots
-    .desc = Stylish magnetic boots for atmospheric technicians. Even a senior engineer will envy this color!
+    .desc = Stylish magnetic boots for atmospheric technicians. They have a built-in battery charger!

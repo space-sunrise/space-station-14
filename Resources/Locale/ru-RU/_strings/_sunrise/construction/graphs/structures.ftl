@@ -192,3 +192,5 @@ recipe-BananiumAltar-name = бананиумовый алтарь
 recipe-BananiumAltar-description = Бананиумовый алтарь, посвящённый Хонкоматери.
 recipe-SolidSecretDoor-name = потайная дверь
 recipe-SolidSecretDoor-description = Потайная дверь в стене.
+recipe-Turnstile-name = турникет
+recipe-Turnstile-description = Не позволяет вернутся обратно. 

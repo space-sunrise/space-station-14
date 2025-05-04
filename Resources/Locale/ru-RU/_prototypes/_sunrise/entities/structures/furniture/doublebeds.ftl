@@ -1,2 +1,2 @@
-ent-DoubleBed = double bed
-    .desc = This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+ent-DoubleBed = двойная кровать
+    .desc = Тем кому комфорт важнее всего! Она такая удобная, что вас расслабляет и вылечивает раны!
