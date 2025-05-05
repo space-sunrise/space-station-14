@@ -3489,6 +3489,8 @@
         state: hamster-0
   - type: Item
     size: Tiny
+  - type: ItemRepickupCooldown  # Sunrise-add
+    cooldown: 5                 # Sunrise-add
   - type: Physics
   - type: FaxableObject
     insertingState: inserting_hamster
