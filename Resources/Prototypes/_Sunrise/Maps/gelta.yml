@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/corvax_gelta.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 40
+  minPlayers: 0
   stations:
     Gelta:
       stationProto: StandardNanotrasenStation
@@ -74,13 +74,12 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             #blueshield
-            BlueShield: [ 1, 1 ]
+            BlueShieldEnsign: [ 1, 1 ]
+            BlueShieldOfficer: [ 5, 5 ]
             #law
             IAA: [ 1, 1 ]
-            Magistrat: [ 1, 1 ]
             Lawyer: [ 3, 3 ]
-            NtrLeader: [ 1, 1 ]
-            NtrGuard: [ 2, 2 ]
+            NtrOfficer: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
@@ -127,4 +126,5 @@
           - CleaningUp
           - HumanitarianAid
           - PersonnelRecovery
+          - CrewEducation
           #- VirusFlesh

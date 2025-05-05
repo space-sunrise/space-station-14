@@ -1,0 +1,65 @@
+- type: entity
+  name: double bed
+  id: DoubleBed
+  parent: BaseStructure
+  description: This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+  components:
+  - type: HealOnBuckle
+    damage:
+      types:
+        Poison: -0.1
+        Blunt: -0.1
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
+        density: 190
+        mask:
+        - TableMask
+  - type: Sprite
+    sprite: _Sunrise/Entities/Structures/Furniture/doublebeds.rsi
+    state: doublebed
+    noRot: true
+    drawdepth: Puddles
+  - type: Strap
+    position: Down
+    rotation: -90
+    # Sunrise-Edit
+    buckleOffsets:
+      - "0,-0.15"
+      - "0,0.25"
+    size: 200
+  # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
+  - type: Construction
+    graph: DoubleBeds
+    node: doubleBed
+  # So that you can put bedsheets on beds again. Would be cool to have a tag
+  # for this so that only bedsheets can be placed.
+  - type: PlaceableSurface
+    placeCentered: true
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 4
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+  - type: Pullable
+  - type: CanSleepOnBuckle # Sunrise-Edit

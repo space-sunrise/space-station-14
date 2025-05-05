@@ -72,6 +72,40 @@
             ]
         },
         {
+        "name": "diona0",
+        "delays": [
+            [
+                0.3,
+                0.3,
+                0.3,
+                0.4
+            ]
+        ]
+        },
+        {
+            "name": "diona1"
+        },
+        {
+            "name": "diona2"
+        },
+        {
+            "name": "gingerbread0",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.4
+                ]
+            ]
+        },
+        {
+            "name": "gingerbread1"
+        },
+        {
+            "name": "gingerbread2"
+        },
+        {
             "name": "alien1"
         },
         {
@@ -872,3 +906,4 @@
         }
     ]
 }
+

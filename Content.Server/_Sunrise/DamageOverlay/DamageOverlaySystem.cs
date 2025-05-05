@@ -18,6 +18,7 @@ public sealed class DamageOverlaySystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     private readonly List<ICommonSession> _disabledSessions = [];
     private readonly Dictionary<ICommonSession, DamageOverlaySettings> _playerSettings = new ();
@@ -56,10 +57,11 @@ public sealed class DamageOverlaySystem : EntitySystem
         // Для урона, получаемого от окружения
         // Пример: Космос, огонь и т.д.
 
-        if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && mindTarget.Session != null)
+
+        if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && _player.TryGetSessionById(mindTarget.UserId, out var sessionTarget))
         {
             // Специально скрыл попапы с пассивной регенерацией, они скорее мешают
-            TryCreatePopup(ent, damageDelta, coords, mindTarget.Session, false);
+            TryCreatePopup(ent, damageDelta, coords, sessionTarget);
 
             return;
         }
@@ -70,10 +72,10 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (args.Origin == null)
             return;
 
-        if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || mindOrigin.Session == null)
+        if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || !_player.TryGetSessionById(mindOrigin.UserId, out var sessionOrigin))
             return;
 
-        TryCreatePopup(ent, damageDelta, coords, mindOrigin.Session);
+        TryCreatePopup(ent, damageDelta, coords, sessionOrigin);
     }
 
     private EntityCoordinates GenerateRandomCoordinates(EntityCoordinates center, float radius)
@@ -101,7 +103,9 @@ public sealed class DamageOverlaySystem : EntitySystem
         }
         else if (showHealPopup)
         {
-            _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, session, ent.Comp.HealPopupType);
+            // Лечение меньше 1 это пасивный реген, его показывать не нужно.
+            if (damageDelta < -1)
+                _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, session, ent.Comp.HealPopupType);
         }
 
         return true;

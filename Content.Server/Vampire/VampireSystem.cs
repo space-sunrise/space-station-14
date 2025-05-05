@@ -3,28 +3,22 @@ using Content.Server.Atmos.Rotting;
 using Content.Server.Beam;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Interaction;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Mind;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
-using Content.Shared.Buckle;
-using Content.Shared.Bed.Sleep;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Construction.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Prayer;
@@ -32,14 +26,14 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
+using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
-using Robust.Shared.GameStates;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using System.Linq;
+using Content.Shared.Movement.Systems;
 
 namespace Content.Server.Vampire;
 
@@ -78,6 +72,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     [Dependency] private readonly SharedVampireSystem _vampire = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
 
     private Dictionary<string, EntityUid> _actionEntities = new();
 
@@ -172,6 +168,29 @@ public sealed partial class VampireSystem : EntitySystem
             }
             strength.NextTick -= frameTime;
         }
+
+        var scaleQuery = EntityQueryEnumerator<VampireComponent, VampireBloodScaleComponent>();
+        while (scaleQuery.MoveNext(out var uid, out var vampire, out var scale))
+        {
+            if (vampire == null || scale == null)
+                continue;
+            if (scale.IsActive)
+            {
+                if (scale.NextTick <= 0)
+                {
+                    scale.NextTick = 1;
+                    if (!SubtractBloodEssence((uid, vampire), scale.Upkeep))
+                    {
+                        ToggleBloodScale(uid, vampire);
+                        scale.IsActive = false;
+                    }
+                }
+                else
+                {
+                    scale.NextTick -= frameTime;
+                }
+            }
+        }
     }
 
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)
@@ -235,7 +254,10 @@ public sealed partial class VampireSystem : EntitySystem
         if (mutationsAction == null)
             return;
 
-        _action.SetCharges(mutationsAction, chargeDisplay);
+        if (!TryComp<LimitedChargesComponent>(mutationsAction, out var charges))
+            return;
+
+        _charges.SetCharges((mutationsAction.Value, charges), chargeDisplay);
     }
 
     private void OnVampireBloodChangedEvent(EntityUid uid, VampireComponent component, VampireBloodChangedEvent args)
@@ -271,6 +293,10 @@ public sealed partial class VampireSystem : EntitySystem
             component.actionEntities.Remove("ActionVampireCloakOfDarkness");
 
         UpdateAbilities(uid, component , VampireComponent.MutationsActionPrototype, null , bloodEssence >= FixedPoint2.New(50) && !HasComp<VampireSealthComponent>(uid));
+
+        // Thermal Vision - appears at 500 blood and stays available even if blood drops below 500
+        UpdateAbilities(uid, component, "ActionVampireThermalVision", "ThermalVision",
+            bloodEssence >= FixedPoint2.New(500) || component.UnlockedPowers.ContainsKey("ThermalVision"));
 
         //Hemomancer
 

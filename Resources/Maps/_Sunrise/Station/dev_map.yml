@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 255.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/05/2025 04:43:56
+  entityCount: 1713
+maps:
+- 962
+grids:
+- 179
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   89: FloorSteel
@@ -504,7 +515,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
 - proto: AirAlarm
   entities:
   - uid: 800
@@ -3731,7 +3741,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1078:
-        - ArtifactAnalyzerSender: ArtifactAnalyzerReceiver
+        - - ArtifactAnalyzerSender
+          - ArtifactAnalyzerReceiver
 - proto: ComputerCargoOrders
   entities:
   - uid: 116
@@ -3963,15 +3974,13 @@ entities:
     - type: Transform
       pos: -2.861032,-5.524786
       parent: 179
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnitSpawnerLateJoin
   entities:
   - uid: 216
     components:
     - type: Transform
       pos: -4.5,-3.5
       parent: 179
-- proto: CryogenicSleepUnitSpawnerLateJoin
-  entities:
   - uid: 989
     components:
     - type: Transform
@@ -3991,6 +4000,7 @@ entities:
     - type: Transform
       pos: -6.5,-11.5
       parent: 179
+    - type: CMExplosionEffect
 - proto: DefaultStationBeaconAISatellite
   entities:
   - uid: 1198
@@ -4104,6 +4114,13 @@ entities:
     - type: Transform
       pos: 3.8231986,6.150942
       parent: 179
+- proto: DrinkInc
+  entities:
+  - uid: 1711
+    components:
+    - type: Transform
+      pos: -6.9945126,1.2462082
+      parent: 179
 - proto: Dropper
   entities:
   - uid: 730
@@ -4118,6 +4135,7 @@ entities:
     - type: Transform
       pos: -10.505015,6.711994
       parent: 179
+    - type: CMExplosionEffect
 - proto: ExGrenade
   entities:
   - uid: 433
@@ -4125,6 +4143,7 @@ entities:
     - type: Transform
       pos: -2.4737325,1.5491183
       parent: 179
+    - type: CMExplosionEffect
 - proto: ExplosivePayload
   entities:
   - uid: 668
@@ -4132,6 +4151,7 @@ entities:
     - type: Transform
       pos: 6.829691,9.4118185
       parent: 179
+    - type: CMExplosionEffect
 - proto: FaxMachineCaptain
   entities:
   - uid: 967
@@ -5503,6 +5523,7 @@ entities:
     - type: Transform
       pos: 15.5,19.5
       parent: 179
+    - type: CMExplosionEffect
 - proto: MachineArtifactAnalyzer
   entities:
   - uid: 1078
@@ -5726,6 +5747,13 @@ entities:
     - type: Transform
       pos: 10.5,12.5
       parent: 179
+- proto: PaperVigersRayBirthdayInvitation
+  entities:
+  - uid: 1713
+    components:
+    - type: Transform
+      pos: -6.7913876,1.6837082
+      parent: 179
 - proto: PartRodMetal
   entities:
   - uid: 133
@@ -5776,6 +5804,7 @@ entities:
     - type: Transform
       pos: 7.5772533,-7.233466
       parent: 179
+    - type: CMExplosionEffect
 - proto: PowerCellHigh
   entities:
   - uid: 567
@@ -5783,6 +5812,7 @@ entities:
     - type: Transform
       pos: -4.76583,8.265328
       parent: 179
+    - type: CMExplosionEffect
 - proto: PowerCellHyper
   entities:
   - uid: 703
@@ -5790,6 +5820,7 @@ entities:
     - type: Transform
       pos: -4.3179135,8.275752
       parent: 179
+    - type: CMExplosionEffect
 - proto: PowerCellMedium
   entities:
   - uid: 186
@@ -5797,16 +5828,19 @@ entities:
     - type: Transform
       pos: -2.67511,-10.351
       parent: 179
+    - type: CMExplosionEffect
   - uid: 187
     components:
     - type: Transform
       pos: -2.55011,-10.6635
       parent: 179
+    - type: CMExplosionEffect
   - uid: 360
     components:
     - type: Transform
       pos: -3.7970803,8.275752
       parent: 179
+    - type: CMExplosionEffect
 - proto: PowerCellRecharger
   entities:
   - uid: 709
@@ -5821,6 +5855,7 @@ entities:
     - type: Transform
       pos: -3.3182633,8.234056
       parent: 179
+    - type: CMExplosionEffect
 - proto: Poweredlight
   entities:
   - uid: 93
@@ -6101,6 +6136,46 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-10.5
       parent: 179
+- proto: PrinterDoc
+  entities:
+  - uid: 1635
+    components:
+    - type: Transform
+      pos: -2.5,-3.5
+      parent: 179
+    - type: ContainerContainer
+      containers:
+        paper_copy: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+  - uid: 1692
+    components:
+    - type: Transform
+      pos: -7.5,1.5
+      parent: 179
+    - type: ContainerContainer
+      containers:
+        paper_copy: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: Protolathe
   entities:
   - uid: 12
@@ -6390,6 +6465,13 @@ entities:
     - type: Transform
       pos: -3.981244,10.799851
       parent: 179
+- proto: SheetPaper
+  entities:
+  - uid: 1712
+    components:
+    - type: Transform
+      pos: -6.6195126,1.2149582
+      parent: 179
 - proto: SheetPGlass
   entities:
   - uid: 416
@@ -6473,7 +6555,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         728:
-        - Pressed: Trigger
+        - - Pressed
+          - Trigger
 - proto: SignAtmos
   entities:
   - uid: 1301
@@ -6679,6 +6762,7 @@ entities:
     - type: Transform
       pos: -3.6722443,1.5595427
       parent: 179
+    - type: CMExplosionEffect
 - proto: SubstationBasic
   entities:
   - uid: 1018
@@ -6686,6 +6770,7 @@ entities:
     - type: Transform
       pos: -6.5,-13.5
       parent: 179
+    - type: CMExplosionEffect
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 1186
@@ -7279,6 +7364,9 @@ entities:
     - type: Transform
       pos: -1.6653601,11.616664
       parent: 179
+    - type: CollisionWake
+      enabled: False
+    - type: Conveyed
 - proto: trayScanner
   entities:
   - uid: 758
@@ -7313,17 +7401,26 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         721:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         720:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         716:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
   - uid: 1290
     components:
     - type: Transform
@@ -7334,21 +7431,33 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1234:
-        - Left: Open
-        - Right: Open
-        - Middle: Close
+        - - Left
+          - Open
+        - - Right
+          - Open
+        - - Middle
+          - Close
         1233:
-        - Left: Open
-        - Right: Open
-        - Middle: Close
+        - - Left
+          - Open
+        - - Right
+          - Open
+        - - Middle
+          - Close
         1232:
-        - Left: Open
-        - Right: Open
-        - Middle: Close
+        - - Left
+          - Open
+        - - Right
+          - Open
+        - - Middle
+          - Close
         728:
-        - Left: Trigger
-        - Right: Trigger
-        - Middle: Trigger
+        - - Left
+          - Trigger
+        - - Right
+          - Trigger
+        - - Middle
+          - Trigger
   - uid: 1499
     components:
     - type: Transform
@@ -7357,9 +7466,12 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1385:
-        - Left: Open
-        - Right: Open
-        - Middle: Close
+        - - Left
+          - Open
+        - - Right
+          - Open
+        - - Middle
+          - Close
   - uid: 1520
     components:
     - type: Transform
@@ -7368,9 +7480,12 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1230:
-        - Left: Open
-        - Right: Open
-        - Middle: Close
+        - - Left
+          - Open
+        - - Right
+          - Open
+        - - Middle
+          - Close
 - proto: UnfinishedMachineFrame
   entities:
   - uid: 522
@@ -9524,13 +9639,6 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 179
-- proto: WeaponDisabler
-  entities:
-  - uid: 1698
-    components:
-    - type: Transform
-      pos: 2.4419262,-0.21644086
-      parent: 179
 - proto: WeaponDisablerPractice
   entities:
   - uid: 1704
@@ -9592,6 +9700,11 @@ entities:
     - type: Transform
       pos: -0.038470283,1.586895
       parent: 179
+  - uid: 1676
+    components:
+    - type: Transform
+      pos: 1.9833664,1.7119814
+      parent: 179
 - proto: WeaponEarthGovXRay
   entities:
   - uid: 1706
@@ -9601,10 +9714,48 @@ entities:
       parent: 179
 - proto: WeaponEnergyGun
   entities:
+  - uid: 1675
+    components:
+    - type: Transform
+      pos: 0.6076835,1.5243511
+      parent: 179
+    - type: Item
+      heldPrefix: disabler
+    - type: EnergyGunFireModes
+      currentFireMode:
+        state: disabler
+        name: energy-gun-disable
+        shotType: Hitscan
+        fireCost: 60
+        hitscanProto: BulletDisabler
+        projectileProto: null
+    - type: HitscanBatteryAmmoProvider
+      fireCost: 60
+      proto: BulletDisabler
   - uid: 1707
     components:
     - type: Transform
       pos: 1.9208347,1.7224058
+      parent: 179
+    - type: EnergyGunFireModes
+      currentFireMode:
+        state: disabler
+        name: energy-gun-disable
+        shotType: Hitscan
+        fireCost: 60
+        hitscanProto: BulletDisabler
+        projectileProto: null
+    - type: Item
+      heldPrefix: disabler
+    - type: HitscanBatteryAmmoProvider
+      fireCost: 60
+      proto: BulletDisabler
+- proto: WeaponEnergyGunMini
+  entities:
+  - uid: 1683
+    components:
+    - type: Transform
+      pos: -0.47618774,1.5973186
       parent: 179
     - type: EnergyGunFireModes
       currentFireMode:
@@ -9619,12 +9770,10 @@ entities:
     - type: HitscanBatteryAmmoProvider
       fireCost: 50
       proto: BulletDisabler
-- proto: WeaponEnergyGunMini
-  entities:
-  - uid: 1683
+  - uid: 1698
     components:
     - type: Transform
-      pos: -0.47618774,1.5973186
+      pos: 2.4419262,-0.21644086
       parent: 179
     - type: EnergyGunFireModes
       currentFireMode:
@@ -9711,14 +9860,14 @@ entities:
         state: disabler
         name: energy-gun-disable
         shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
+        fireCost: 49
+        hitscanProto: BulletDisablerSmg
         projectileProto: null
     - type: Item
       heldPrefix: disabler
     - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
+      fireCost: 49
+      proto: BulletDisablerSmg
 - proto: WeaponEnergyShotgun
   entities:
   - uid: 1708
@@ -9731,10 +9880,11 @@ entities:
         state: ""
         name: energy-gun-shotgun-spread
         shotType: Hitscan
-        fireCost: 100
+        fireCost: 150
         hitscanProto: BulletLaserSpread
         projectileProto: null
     - type: HitscanBatteryAmmoProvider
+      fireCost: 150
       proto: BulletLaserSpread
 - proto: WeaponFlareGun
   entities:
@@ -9764,26 +9914,27 @@ entities:
     - type: Transform
       pos: 0.25334132,1.6285902
       parent: 179
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        gun_magazine: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: WeaponIONRifle
   entities:
+  - uid: 1662
+    components:
+    - type: Transform
+      pos: 2.2126462,1.6181666
+      parent: 179
   - uid: 1673
     components:
     - type: Transform
       pos: -1.1536068,1.6598625
-      parent: 179
-- proto: WeaponLaserCannon
-  entities:
-  - uid: 1676
-    components:
-    - type: Transform
-      pos: 1.9833664,1.7119814
-      parent: 179
-- proto: WeaponLaserCarbine
-  entities:
-  - uid: 1675
-    components:
-    - type: Transform
-      pos: 0.6076835,1.5243511
       parent: 179
 - proto: WeaponLaserCarbinePractice
   entities:
@@ -9916,13 +10067,6 @@ entities:
     - type: Transform
       pos: -0.42407835,1.4930795
       parent: 179
-- proto: WeaponPistolDeagle
-  entities:
-  - uid: 1692
-    components:
-    - type: Transform
-      pos: 0.38882542,1.5556227
-      parent: 179
 - proto: WeaponPistolEchis
   entities:
   - uid: 1664
@@ -9944,19 +10088,17 @@ entities:
     - type: Transform
       pos: 2.6287487,0.44533905
       parent: 179
+  - uid: 1649
+    components:
+    - type: Transform
+      pos: 2.5253015,0.45068935
+      parent: 179
 - proto: WeaponPistolHIB88M4
   entities:
   - uid: 1010
     components:
     - type: Transform
       pos: 2.5349514,-0.03416013
-      parent: 179
-- proto: WeaponPistolMk58
-  entities:
-  - uid: 1649
-    components:
-    - type: Transform
-      pos: 2.5253015,0.45068935
       parent: 179
 - proto: WeaponPistolN1984
   entities:
@@ -10007,19 +10149,17 @@ entities:
     - type: Transform
       pos: 2.223068,1.6390146
       parent: 179
-- proto: WeaponRevolverMateba
-  entities:
-  - uid: 1651
-    components:
-    - type: Transform
-      pos: -0.47618774,1.6807098
-      parent: 179
 - proto: WeaponRevolverMatebaNew
   entities:
   - uid: 1650
     components:
     - type: Transform
       pos: 1.2017285,1.5764707
+      parent: 179
+  - uid: 1651
+    components:
+    - type: Transform
+      pos: -0.47618774,1.6807098
       parent: 179
 - proto: WeaponRevolverPirate
   entities:
@@ -10035,13 +10175,6 @@ entities:
     - type: Transform
       pos: -1.601746,1.545199
       parent: 179
-- proto: WeaponRifleAk
-  entities:
-  - uid: 1631
-    components:
-    - type: Transform
-      pos: -0.29046816,1.6023927
-      parent: 179
 - proto: WeaponRifleAKM
   entities:
   - uid: 437
@@ -10053,6 +10186,11 @@ entities:
     components:
     - type: Transform
       pos: -12.238617,9.081488
+      parent: 179
+  - uid: 1631
+    components:
+    - type: Transform
+      pos: -0.29046816,1.6023927
       parent: 179
 - proto: WeaponRifleAKMU
   entities:
@@ -10075,20 +10213,6 @@ entities:
     - type: Transform
       pos: 1.6081795,1.6598625
       parent: 179
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        gun_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: WeaponRifleBR64
   entities:
   - uid: 999
@@ -10115,19 +10239,17 @@ entities:
     - type: Transform
       pos: 2.6495922,1.0916213
       parent: 179
-- proto: WeaponRifleLecter
-  entities:
-  - uid: 1647
-    components:
-    - type: Transform
-      pos: 2.4940362,1.586895
-      parent: 179
 - proto: WeaponRifleM16A4
   entities:
   - uid: 1039
     components:
     - type: Transform
       pos: -0.6864986,1.5502732
+      parent: 179
+  - uid: 1647
+    components:
+    - type: Transform
+      pos: 2.4940362,1.586895
       parent: 179
 - proto: WeaponRifleM28
   entities:
@@ -10136,8 +10258,6 @@ entities:
     - type: Transform
       pos: 2.660014,-1.2120618
       parent: 179
-- proto: WeaponRifleM90GrenadeLauncher
-  entities:
   - uid: 1648
     components:
     - type: Transform
@@ -10164,13 +10284,6 @@ entities:
     - type: Transform
       pos: 0.86822987,1.6807098
       parent: 179
-- proto: WeaponShotgunEnforcer
-  entities:
-  - uid: 1658
-    components:
-    - type: Transform
-      pos: -0.29901603,1.7432537
-      parent: 179
 - proto: WeaponShotgunHandmade
   entities:
   - uid: 1696
@@ -10184,13 +10297,6 @@ entities:
     components:
     - type: Transform
       pos: 2.504458,0.23178735
-      parent: 179
-- proto: WeaponShotgunKammerer
-  entities:
-  - uid: 1642
-    components:
-    - type: Transform
-      pos: -1.1119198,1.6807098
       parent: 179
 - proto: WeaponShotgunPaladin12
   entities:
@@ -10213,12 +10319,22 @@ entities:
     - type: Transform
       pos: 2.5245297,-0.878497
       parent: 179
+  - uid: 1658
+    components:
+    - type: Transform
+      pos: -0.29901603,1.7432537
+      parent: 179
 - proto: WeaponShotgunTrenchgun4034
   entities:
   - uid: 1625
     components:
     - type: Transform
       pos: 0.3661074,1.7066319
+      parent: 179
+  - uid: 1642
+    components:
+    - type: Transform
+      pos: -1.1119198,1.6807098
       parent: 179
 - proto: WeaponShotgunZauer
   entities:
@@ -10241,52 +10357,17 @@ entities:
     - type: Transform
       pos: 1.7834773,1.7170556
       parent: 179
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        gun_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
   - uid: 1639
     components:
     - type: Transform
       pos: 1.7957722,1.4930795
       parent: 179
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        gun_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: WeaponSniperGarand
   entities:
   - uid: 1014
     components:
     - type: Transform
       pos: 2.57664,-1.4518117
-      parent: 179
-- proto: WeaponSniperHristov
-  entities:
-  - uid: 1662
-    components:
-    - type: Transform
-      pos: 2.2126462,1.6181666
       parent: 179
 - proto: WeaponSniperMosin
   entities:
@@ -10323,13 +10404,6 @@ entities:
     - type: Transform
       pos: 0.86635536,1.591969
       parent: 179
-- proto: WeaponSubMachineGunDrozd
-  entities:
-  - uid: 1640
-    components:
-    - type: Transform
-      pos: -0.05931379,1.5973186
-      parent: 179
 - proto: WeaponSubMachineGunMP5
   entities:
   - uid: 1043
@@ -10343,6 +10417,11 @@ entities:
     components:
     - type: Transform
       pos: 2.4817398,1.0395017
+      parent: 179
+  - uid: 1640
+    components:
+    - type: Transform
+      pos: -0.05931379,1.5973186
       parent: 179
 - proto: WeaponSubMachineGunNewVector
   entities:
@@ -10367,17 +10446,15 @@ entities:
       parent: 179
 - proto: WeaponSubMachineGunSkorpion
   entities:
-  - uid: 1659
-    components:
-    - type: Transform
-      pos: 2.327287,1.5347754
-      parent: 179
-- proto: WeaponSubMachineGunWt550
-  entities:
   - uid: 1627
     components:
     - type: Transform
       pos: -1.7391039,1.6128163
+      parent: 179
+  - uid: 1659
+    components:
+    - type: Transform
+      pos: 2.327287,1.5347754
       parent: 179
 - proto: WeaponSyndieLaserGun
   entities:
@@ -10435,6 +10512,7 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 179
+    - type: CMExplosionEffect
 - proto: Window
   entities:
   - uid: 230

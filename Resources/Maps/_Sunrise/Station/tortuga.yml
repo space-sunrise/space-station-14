@@ -57688,23 +57688,6 @@ entities:
     - pos: -91.5742,-16.479868
       parent: 33
       type: Transform
-- proto: ClothingEyesGlassesThermal
-  entities:
-  - uid: 16411
-    components:
-    - pos: 20.341524,-22.855486
-      parent: 33
-      type: Transform
-  - uid: 17655
-    components:
-    - pos: 15.478602,76.2783
-      parent: 33
-      type: Transform
-  - uid: 27372
-    components:
-    - pos: -76.47195,-7.268279
-      parent: 33
-      type: Transform
 - proto: ClothingEyesHudBeer
   entities:
   - uid: 24329

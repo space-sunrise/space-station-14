@@ -1,0 +1,144 @@
+- type: constructionGraph
+  id: Sofas
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DestroyEntity {}
+    edges:
+    - to: sofaMiddle
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: sofaLeft
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: sofaRight
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: sofaCorner
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: corpsofaMiddle
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: corpsofaLeft
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: corpsofaRight
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: corpsofaCorner
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+  - node: sofaMiddle
+    entity: SofaMiddle
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: sofaLeft
+    entity: SofaLeft
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: sofaRight
+    entity: SofaRight
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: sofaCorner
+    entity: SofaCorner
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: corpsofaMiddle
+    entity: CorpSofaMiddle
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: corpsofaLeft
+    entity: CorpSofaLeft
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: corpsofaRight
+    entity: CorpSofaRight
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: corpsofaCorner
+    entity: CorpSofaCorner
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 1

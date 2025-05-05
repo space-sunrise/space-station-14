@@ -44,3 +44,5 @@ ent-ClothingMaskSterileGreen = green sterile mask
     .desc = A sterile green mask designed to help prevent the spread of diseases.
 ent-ClothingMaskFaceCast = face cast
     .desc = It can steal your personality!
+ent-ClothingMaskGasBlueShield = Blueshild gas mask
+    .desc = Gas Mask for real professionals. It may even help to get CE cameras with burning tritium!

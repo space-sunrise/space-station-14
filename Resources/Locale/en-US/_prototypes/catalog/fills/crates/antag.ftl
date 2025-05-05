@@ -4,3 +4,6 @@ ent-CratePirateChestCaptain = captains pirate chest
 ent-CratePirateChest = crews pirate chest
     .suffix = Filled
     .desc = { ent-CratePirate.desc }
+ent-CratePirateChestSun = { ent-CratePirate }
+    .suffix = Filled, Sunrise
+    .desc = { ent-CratePirate.desc }

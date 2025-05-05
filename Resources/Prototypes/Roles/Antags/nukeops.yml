@@ -77,7 +77,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    #- DeathAcidifierImplanter
+    - DeathAcidifierImplanter
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -90,7 +90,7 @@
   storage:
     back:
     - PinpointerSyndicateNuclear
-    #- DeathAcidifierImplanter
+    - DeathAcidifierImplanter
 
 #Nuclear Operative Commander Gear
 - type: startingGear
@@ -124,7 +124,7 @@
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
-    #- DeathAcidifierImplanter
+    - DeathAcidifierImplanter
 
 #Lone Operative Gear
 - type: startingGear

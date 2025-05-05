@@ -12,6 +12,7 @@ using Content.Shared.Mobs.Components; // Sunrise-Edit
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Pointing;
+using Content.Shared.Random.Helpers;
 using Content.Shared.RatKing;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -137,10 +138,10 @@ namespace Content.Server.RatKing
             base.DoCommandCallout(uid, component);
 
             if (!component.OrderCallouts.TryGetValue(component.CurrentOrder, out var datasetId) ||
-                !PrototypeManager.TryIndex<DatasetPrototype>(datasetId, out var datasetPrototype))
+                !PrototypeManager.TryIndex<LocalizedDatasetPrototype>(datasetId, out var datasetPrototype))
                 return;
 
-            var msg = Random.Pick(datasetPrototype.Values);
+            var msg = Random.Pick(datasetPrototype);
             _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, true);
         }
     }

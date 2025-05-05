@@ -142,7 +142,7 @@ public sealed partial class GunComponent : Component
     /// Who the gun is being requested to shoot at directly.
     /// </summary>
     [ViewVariables]
-    public EntityUid? Target = null;
+    public HashSet<EntityUid> Targets = new();
 
     /// <summary>
     ///     The base value for how many shots to fire per burst.
@@ -263,6 +263,15 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
+
+    // Sunrise-Start
+    /// <summary>
+    /// Whether or not someone with
+    /// Insulated gloves can opperate this gun
+    /// </summary>
+    [DataField]
+    public bool BigTrigger = false;
+    // Sunrise-End
 }
 
 [Flags]

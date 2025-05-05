@@ -16,6 +16,7 @@
     soundHit:
       collection: MetalThud
   - type: CombatMode
+  - type: NoSlip
   - type: StaticPrice
     price: 1250
   - type: Fixtures
@@ -35,7 +36,7 @@
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: RotationVisuals
-    defaultRotation: 90
+    defaultRotation: 90 # Sunrise-Edit
     horizontalRotation: 90
   - type: MobState
     allowedStates:
@@ -122,6 +123,7 @@
       - BorgChassis
       - RoboticsConsole
   - type: WiresPanel
+    openingTool: Prying
     openDelay: 3
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
@@ -159,6 +161,7 @@
     - Flashed
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -167,6 +170,8 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+    screamAction: null
+  - type: DamagedSiliconAccent
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -236,7 +241,8 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4
+    energy: 2 # Sunrise-edit
+    radius: 12 # Sunrise-edit
     netsync: false
   - type: Pullable
   - type: Puller
@@ -247,6 +253,8 @@
     - DoorBumpOpener
     - FootstepSound
     - CanPilot
+    - SiliconEmotes
+    - Unimplantable
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -266,7 +274,8 @@
     sprintModifier: 0.8
   - type: Strap
     position: Stand
-    buckleOffset: "0,0.15"
+    buckleOffsets: # Sunrise-Edit
+    - "0,0.15"
   - type: Stripping
     useDragDrop: false
   # Sunrise-end
@@ -307,7 +316,7 @@
   components:
   - type: RandomMetadata
     nameSegments:
-      - names_borg
+    - NamesBorg
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -315,6 +324,7 @@
     enabled: false
     # Sunrise-Start
     tags:
+    - Borg
     - EmergencyShuttleRepealAll
     - Command
     - Lawyer
@@ -338,7 +348,6 @@
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
@@ -380,6 +389,8 @@
   - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -389,8 +400,6 @@
     radius: 6
     energy: 3
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
   - type: FlashImmunity
   - type: TypingIndicator
     proto: syndibot

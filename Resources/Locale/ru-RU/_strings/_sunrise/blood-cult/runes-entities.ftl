@@ -1,0 +1,1 @@
+runes-window-title = Руны

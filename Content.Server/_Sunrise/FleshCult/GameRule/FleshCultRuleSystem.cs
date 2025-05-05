@@ -14,6 +14,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.FleshCult.GameRule;
@@ -25,6 +26,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string LeaderAntagProto = "FleshCultistLeader";
@@ -75,9 +77,9 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
     private void OnObjectivesTextPrepend(EntityUid uid, FleshCultRuleComponent comp, ref ObjectivesTextPrependEvent args)
     {
-        if (!TryComp(comp.CultistsLeaderMind, out MindComponent? mind) && mind == null)
+        if (!TryComp(comp.CultistsLeaderMind, out MindComponent? mind))
             return;
-        _mindSystem.TryGetSession(comp.CultistsLeaderMind, out var session);
+        _player.TryGetSessionById(mind.UserId, out var session);
         args.Text += "\n" + Loc.GetString("flesh-cult-round-end-leader", ("name", mind.CharacterName)!, ("username", session!.Name));
     }
 
@@ -151,7 +153,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         SendCultistBriefing(mindId, fleshCultRule.CultistsNames);
 
-        if (_mindSystem.TryGetSession(mindId, out var session))
+        if (_player.TryGetSessionById(mind.UserId, out var session))
         {
             _audioSystem.PlayGlobal(fleshCultRule.AddedSound, session);
         }
@@ -161,19 +163,11 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return true;
     }
 
-    private void SendCultistBriefing(EntityUid mind, List<string> cultistsNames)
+    private void SendCultistBriefing(EntityUid mindId, List<string> cultistsNames)
     {
-        if (!_mindSystem.TryGetSession(mind, out var session))
+        if (!_mindSystem.TryGetMind(mindId, out _, out var mind) || !_player.TryGetSessionById(mind.UserId, out var session))
             return;
         _chatManager.DispatchServerMessage(session, Loc.GetString("flesh-cult-role-greeting"));
-        _chatManager.DispatchServerMessage(session, Loc.GetString("flesh-cult-role-cult-members", ("cultMembers", string.Join(", ", cultistsNames))));
-    }
-
-    private void SendCultistLeaderBriefing(EntityUid mind, List<string> cultistsNames)
-    {
-        if (!_mindSystem.TryGetSession(mind, out var session))
-            return;
-        _chatManager.DispatchServerMessage(session, Loc.GetString("flesh-cult-role-greeting-leader"));
         _chatManager.DispatchServerMessage(session, Loc.GetString("flesh-cult-role-cult-members", ("cultMembers", string.Join(", ", cultistsNames))));
     }
 

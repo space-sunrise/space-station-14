@@ -34,13 +34,6 @@
                MouseFilter="Pass"/>
         <cc:VSeparator/>
         <!-- Sunrise-Sponsors-End -->
-        <Label Name="AntagonistLabel"
-               SizeFlagsStretchRatio="1"
-               HorizontalExpand="True"
-               ClipText="True"
-               Text="{Loc player-tab-antagonist}"
-               MouseFilter="Pass"/>
-        <cc:VSeparator/>
         <Label Name="RoleTypeLabel"
                SizeFlagsStretchRatio="2"
                HorizontalExpand="True"

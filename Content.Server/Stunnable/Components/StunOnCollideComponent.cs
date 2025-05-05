@@ -10,13 +10,13 @@ namespace Content.Server.Stunnable.Components
 
         // See stunsystem for what these do
         [DataField("stunAmount")]
-        public int StunAmount;
+        public float StunAmount;
 
         [DataField("knockdownAmount")]
-        public int KnockdownAmount;
+        public float KnockdownAmount;
 
         [DataField("slowdownAmount")]
-        public int SlowdownAmount;
+        public float SlowdownAmount;
 
         [DataField("walkSpeedMultiplier")]
         public float WalkSpeedMultiplier = 1f;

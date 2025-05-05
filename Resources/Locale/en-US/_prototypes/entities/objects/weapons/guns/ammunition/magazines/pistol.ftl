@@ -37,5 +37,3 @@ ent-MagazinePistolSubMachineGunUranium = SMG magazine (.35 auto uranium)
     .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
 ent-MagazinePistolSubMachineGunIncendiary = SMG magazine (.35 auto Incendiary)
     .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
-ent-MagazinePistolHighCapacityRubber = machine pistol magazine (.35 auto rubber)
-    .desc = { ent-BaseMagazinePistolHighCapacity.desc }

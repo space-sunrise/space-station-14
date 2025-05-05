@@ -1,6 +1,9 @@
 - files: ["box.yml"]
   editors: Odleer
 
+- files: ["barratry.yml"]
+  editors: Focstor, Furo, non_stop_smetana
+
 - files: ["plasma.yml"]
   editors: KaiserMaus, Hatiko, CallMeOwO, ktenanta, Odleer
 

@@ -7,3 +7,5 @@ user-profile-sponsor-buy-button = Приобрести
 user-profile-service-link = Подвязать
 user-profile-service-discord = Discord:
 user-profile-service-telegram = Telegram:
+user-profile-service-github = GitHub:
+user-profile-service-reset = Отвязать

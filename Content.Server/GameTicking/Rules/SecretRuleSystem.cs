@@ -8,6 +8,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Random;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Prometheus;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
@@ -24,6 +25,15 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
     [Dependency] private readonly IComponentFactory _compFact = default!;
 
     private string _ruleCompName = default!;
+    // Sunrise-Start
+    private readonly Counter _secretPresetSelectedCounter = Metrics.CreateCounter(
+        "secret_preset_selected",
+        "Amount of times each preset was selected in secret mode",
+        new CounterConfiguration
+        {
+            LabelNames = ["preset"]
+        });
+    // Sunrise-End
 
     public override void Initialize()
     {
@@ -45,6 +55,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
+        _secretPresetSelectedCounter.WithLabels(preset.ID).Inc(); // Sunrise-Edit
 
         foreach (var rule in preset.Rules)
         {

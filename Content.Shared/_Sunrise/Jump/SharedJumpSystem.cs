@@ -46,7 +46,7 @@ public abstract class SharedJumpSystem : EntitySystem
     private const string JumpStatusEffectKey = "Jump";
     [ValidatePrototypeId<EmotePrototype>]
     private const string EmoteFallOnNeckProto = "FallOnNeck";
-    private const string JumpSound = "/Audio/_Sunrise/jump_mario.ogg";
+    private readonly SoundSpecifier _jumpSound = new SoundPathSpecifier("/Audio/_Sunrise/jump_mario.ogg");
 
     public bool Enable;
     private static float _deadChance;
@@ -65,14 +65,14 @@ public abstract class SharedJumpSystem : EntitySystem
 
         SubscribeLocalEvent<JumpComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<JumpComponent, ComponentShutdown>(OnShutdown);
-        SubscribeNetworkEvent<ClientOptionJumpSoundEvent>(OnClientOptionJumpSound);
+        SubscribeNetworkEvent<ClientOptionDisableJumpSoundEvent>(OnClientOptionJumpSound);
         SubscribeLocalEvent<BunnyHopComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMoveSpeed);
 
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
 
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpEnable, OnJumpEnableChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpDeadChanse, OnJumpDeadChanseChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpDeadChance, OnJumpDeadChanceChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopEnable, OnBunnyHopEnableChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopMinSpeedThreshold, OnBunnyHopMinSpeedThresholdChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopSpeedBoostWindow, OnBunnyHopSpeedBoostWindowChanged, true);
@@ -86,12 +86,12 @@ public abstract class SharedJumpSystem : EntitySystem
             args.ModifySpeed(component.SpeedMultiplier, component.SpeedMultiplier);
     }
 
-    private async void OnClientOptionJumpSound(ClientOptionJumpSoundEvent ev, EntitySessionEventArgs args)
+    private async void OnClientOptionJumpSound(ClientOptionDisableJumpSoundEvent ev, EntitySessionEventArgs args)
     {
-        if (ev.Enabled)
-            _ignoredRecipients.Remove(args.SenderSession);
-        else
+        if (ev.Disable)
             _ignoredRecipients.Add(args.SenderSession);
+        else
+            _ignoredRecipients.Remove(args.SenderSession);
     }
 
     private void OnJumpEnableChanged(bool enanle)
@@ -99,7 +99,7 @@ public abstract class SharedJumpSystem : EntitySystem
         Enable = enanle;
     }
 
-    private void OnJumpDeadChanseChanged(float value)
+    private void OnJumpDeadChanceChanged(float value)
     {
         _deadChance = value;
     }
@@ -168,7 +168,7 @@ public abstract class SharedJumpSystem : EntitySystem
         //_staminaSystem.TakeStaminaDamage(uid, 10);
 
         if (_net.IsServer)
-            _audioSystem.PlayEntity(JumpSound, Filter.Pvs(ent.Owner).RemovePlayers(_ignoredRecipients), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
+            _audioSystem.PlayEntity(_audioSystem.ResolveSound(_jumpSound), Filter.Pvs(ent.Owner).RemovePlayers(_ignoredRecipients), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
 
         EnsureComp<CanMoveInAirComponent>(ent.Owner);
         _physics.SetBodyStatus(ent.Owner, body, BodyStatus.InAir);
@@ -178,7 +178,6 @@ public abstract class SharedJumpSystem : EntitySystem
             ent.Comp.OriginalCollisionLayers[id] = fixture.CollisionLayer;
 
             _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.LowImpassable, manager: fixtures);
-            _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.MidImpassable, manager: fixtures);
         }
 
         if (!BunnyHopEnable)

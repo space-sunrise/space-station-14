@@ -25,6 +25,32 @@ namespace Content.Shared.Administration
         {
         }
 
+        // Sunrise-Start
+        [Serializable, NetSerializable]
+        public sealed class BwoinkRequestDbMessages : EntityEventArgs
+        {
+            public NetUserId UserId { get; }
+
+            public BwoinkRequestDbMessages(NetUserId userId)
+            {
+                UserId = userId;
+            }
+        }
+
+        [Serializable, NetSerializable]
+        public sealed class BwoinkTextHistoryMessage : EntityEventArgs
+        {
+            public NetUserId UserId { get; }
+            public List<BwoinkTextMessage> Messages { get; }
+
+            public BwoinkTextHistoryMessage(NetUserId userId, List<BwoinkTextMessage> messages)
+            {
+                UserId = userId;
+                Messages = messages;
+            }
+        }
+        // Sunrise-End
+
         [Serializable, NetSerializable]
         public sealed class BwoinkTextMessage : EntityEventArgs
         {
@@ -40,13 +66,25 @@ namespace Content.Shared.Administration
 
             public bool PlaySound { get; }
 
-            public BwoinkTextMessage(NetUserId userId, NetUserId trueSender, string text, DateTime? sentAt = default, bool playSound = true)
+            public readonly bool AdminOnly;
+
+            public readonly bool DbLoad;
+
+            public BwoinkTextMessage(NetUserId userId,
+                NetUserId trueSender,
+                string text,
+                DateTime? sentAt = default,
+                bool playSound = true,
+                bool adminOnly = false,
+                bool dbLoad = false)
             {
                 SentAt = sentAt ?? DateTime.Now;
                 UserId = userId;
                 TrueSender = trueSender;
                 Text = text;
                 PlaySound = playSound;
+                AdminOnly = adminOnly;
+                DbLoad = dbLoad;
             }
         }
     }

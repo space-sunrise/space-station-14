@@ -1,4 +1,5 @@
-﻿using Content.Client._Sunrise.IoC;
+﻿using Content.Client._Sunrise.Contributors;
+using Content.Client._Sunrise.IoC;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
@@ -64,6 +65,7 @@ namespace Content.Client.IoC
 
             // Sunrise-Start
             collection.Register<ServersHubManager>();
+            collection.Register<ContributorsManager>();
             SunriseClientContentIoC.Register();
             // Sunrise-End
         }

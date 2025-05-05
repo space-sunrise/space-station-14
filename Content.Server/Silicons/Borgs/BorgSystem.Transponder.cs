@@ -1,13 +1,10 @@
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Emag.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Robotics;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Explosion.Components;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Emag.Systems;
 using Robust.Shared.Utility;
 
@@ -65,6 +62,11 @@ public sealed partial class BorgSystem
 
     private void DoDisable(Entity<BorgTransponderComponent, BorgChassisComponent, MetaDataComponent> ent)
     {
+        // Sunrise-start
+        if (ent.Comp1.DisableProof)
+            return;
+        // Sunrise-end
+
         ent.Comp1.NextDisable = null;
         if (ent.Comp1.FakeDisabling)
         {
@@ -112,6 +114,11 @@ public sealed partial class BorgSystem
 
     private void Destroy(Entity<BorgTransponderComponent> ent)
     {
+        // Sunrise-start
+        if (ent.Comp.DisableProof)
+            return;
+        // Sunrise-end
+
         // this is stealthy until someone realises you havent exploded
         if (CheckEmagged(ent, "destroyed"))
         {

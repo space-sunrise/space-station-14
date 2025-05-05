@@ -173,3 +173,8 @@
   id: PersonnelRecovery
   text: station-goal-personnel-recovery
   lockBoxPrototypeId: Lockbox
+
+- type: stationGoal
+  id: CrewEducation
+  text: station-goal-church
+  lockBoxPrototypeId: Lockbox

@@ -10,23 +10,26 @@
   id: HeadOfPersonnel
   name: id-card-access-level-head-of-personnel
 
-- type: accessLevel
-  id: Magistrat
-  name: id-card-access-level-magistrat
-
 - type: accessGroup
   id: Command
   tags:
-  - Command
   - Captain
-  - HeadOfPersonnel
+  - Command
+  - ChiefEngineer
+  - ChiefMedicalOfficer
   - Cryogenics
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  - Quartermaster
+  - ResearchDirector
   - BlueShield  # Sunrise-edit
   - Magistrat  # Sunrise-edit
   - Ntrep  # Sunrise-edit
 
 - type: accessLevel
   id: EmergencyShuttleRepealAll
+  name: id-card-access-level-emergency-shuttle-repeal
+  canAddToIdCard: false
 
 - type: accessLevel
   id: Cryogenics

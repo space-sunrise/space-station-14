@@ -3,19 +3,22 @@
   name: species-name-diona
   roundStart: true
   prototype: MobDiona
-  sprites: MobDionaSprites
+  bodyTypes:
+  - DionaNormal
   defaultSkinTone: "#cdb369"
   markingLimits: MobDionaMarkingLimits
   dollPrototype: MobDionaDummy
   skinColoration: Hues
-  maleFirstNames: DionaFirst
-  femaleFirstNames: DionaFirst
-  maleLastNames: DionaLast # Russian-LastnameGender
-  femaleLastNames: DionaLast # Russian-LastnameGender
+  maleFirstNames: NamesDionaFirst
+  femaleFirstNames: NamesDionaFirst
+  maleLastNames: NamesDionaLast # Russian-LastnameGender
+  femaleLastNames: NamesDionaLast # Russian-LastnameGender
   naming: TheFirstofLast
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/diona.png # Sunrise-Edit
 
-- type: speciesBaseSprites
-  id: MobDionaSprites
+- type: bodyType
+  id: DionaNormal
+  name: body-normal
   sprites:
     Head: MobDionaHead
     HeadTop: MobHumanoidAnyMarking

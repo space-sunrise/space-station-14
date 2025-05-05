@@ -4,6 +4,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
 using Content.Server.VoiceMask;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -68,8 +69,16 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
+        // Sunrise-TTS-Start
         if (TryComp(uid, out ActorComponent? actor))
+        {
             _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            if (uid != args.MessageSource && HasComp<TTSComponent>(args.MessageSource))
+            {
+                args.Receivers.Add(uid);
+            }
+        }
+        // Sunrise-TTS-End
     }
 
     /// <summary>
@@ -117,6 +126,7 @@ public sealed class RadioSystem : EntitySystem
         var content = escapeMarkup
             ? FormattedMessage.EscapeText(message)
             : message;
+
         // Sunrise-Start
         if (GetIdCardIsBold(messageSource))
         {
@@ -141,7 +151,7 @@ public sealed class RadioSystem : EntitySystem
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, []); // Sunrise-TTS
+        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, []);
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -181,7 +191,7 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref ev);
         }
 
-        RaiseLocalEvent(new RadioSpokeEvent(messageSource, message, ev.Receivers.ToArray())); // Sunrise-TTS
+        RaiseLocalEvent(new RadioSpokeEvent(messageSource, FormattedMessage.RemoveMarkupPermissive(message), ev.Receivers.ToArray())); // Sunrise-TTS
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");

@@ -37,11 +37,8 @@ namespace Content.Server.GameTicking
             {
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
-                    mind.Session = session;
-                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
+                    _pvsOverride.AddSessionOverride(mindId.Value, session);
                 }
-
-                DebugTools.Assert(mind.Session == session);
             }
 
             DebugTools.Assert(session.GetMind() == mindId);
@@ -65,6 +62,8 @@ namespace Content.Server.GameTicking
                     // Sunrise-Queue-Start
                     if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
                         Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    else
+                        _userDb.ClientConnected(session);
                     // Sunrise-Queue-End
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
@@ -107,7 +106,10 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.InGame:
                 {
-                    _userDb.ClientConnected(session);
+                    // Sunrise-Queue-Start
+                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
+                        _userDb.ClientConnected(session);
+                    // Sunrise-Queue-End
 
                     if (mind == null)
                     {
@@ -148,10 +150,9 @@ namespace Content.Server.GameTicking
                 case SessionStatus.Disconnected:
                 {
                     _chatManager.SendAdminAnnouncement(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
-                    if (mind != null)
+                    if (mindId != null)
                     {
-                        _pvsOverride.ClearOverride(GetNetEntity(mindId!.Value));
-                        mind.Session = null;
+                        _pvsOverride.RemoveSessionOverride(mindId.Value, session);
                     }
 
                     if (_playerGameStatuses.ContainsKey(args.Session.UserId)) // Sunrise-Queue: Delete data only if player was in game

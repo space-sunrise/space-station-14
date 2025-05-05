@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
-using Content.Server._Sunrise.NightDayMapLight;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
@@ -9,12 +8,10 @@ using Content.Server.Administration.Managers;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Communications;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Pinpointer;
-using Content.Server.Parallax;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
@@ -23,20 +20,33 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.AlwaysPoweredMap;
+using Content.Shared._Sunrise.UnbuildableGrid;
 using Content.Shared.Access.Systems;
+using Content.Shared.Atmos;
 using Content.Shared.CCVar;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
+using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
 using Content.Shared.GameTicking;
+using Content.Shared.Gravity;
+using Content.Shared.Light.Components;
 using Content.Shared.Localizations;
+using Content.Shared.Parallax;
+using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
@@ -44,18 +54,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Server.GameTicking;
-using Content.Shared._Sunrise.AlwaysPoweredMap;
-using Content.Shared.Atmos;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Doors.Components;
-using Content.Shared.Doors.Systems;
-using Content.Shared.Gravity;
-using Content.Shared.Parallax;
-using Content.Shared.Parallax.Biomes;
-using Content.Shared.Salvage;
-using Robust.Shared.Audio;
+using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -79,6 +78,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly DockingSystem _dock = default!;
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -86,7 +87,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -575,24 +575,26 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // Sunrise-start
         var mapUid = _mapSystem.CreateMap(out var mapId, runMapInit: false);
 
-        if (!_loader.TryLoad(mapId, component.Map.ToString(), out var uids) || uids.Count != 1)
+        if (!_loader.TryLoadGrid(mapId, component.Map, out var uid))
         {
             Log.Error($"Failed to set up transit hub map!");
             QueueDel(mapUid);
             return;
         }
 
-        EnsureComp<NightDayMapLightComponent>(mapUid);
+        EnsureComp<LightCycleComponent>(mapUid);
+        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
 
-        Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
+        Log.Info($"Created transit hub grid {ToPrettyString(uid)} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
-        EnsureComp<ProtectedGridComponent>(uids[0]);
+        EnsureComp<ProtectedGridComponent>(uid.Value.Owner);
+        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
 
        // var template = _random.Pick(component.Biomes);
        // _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
 
         component.MapEntity = mapUid;
-        component.Entity = uids[0];
+        component.Entity = uid;
 
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
         moles[(int) Gas.Oxygen] = 21.824779f;
@@ -620,7 +622,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         AddComp(mapUid, restricted);
         // Sunrise-End
 
-        EnsureComp<AlwaysPoweredMapComponent>(mapUid);
         EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
         parallaxComponent.Parallax = "Grass";
         Dirty(mapUid, parallaxComponent);
@@ -677,22 +678,21 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // Sunrise-start
         var mapId = _mapManager.CreateMap();
 
-        var mapOptions = new MapLoadOptions { LoadMap = false,};
-        if (!_loader.TryLoad(mapId, shuttlePath.ToString(), out var uids, mapOptions) || uids.Count != 1)
+        var mapOptions = new DeserializationOptions {};
+        if (!_loader.TryLoadGrid(mapId, shuttlePath, out var shuttle, mapOptions))
         {
             Log.Error($"Unable to spawn emergency shuttle {shuttlePath} for {ToPrettyString(ent)}");
             return;
         }
 
-        var shuttle = uids[0];
-
         ent.Comp1.EmergencyShuttle = shuttle;
-        EnsureComp<ProtectedGridComponent>(shuttle);
-        EnsureComp<PreventPilotComponent>(shuttle);
-        EnsureComp<EmergencyShuttleComponent>(shuttle);
+        EnsureComp<ProtectedGridComponent>(shuttle.Value.Owner);
+        EnsureComp<PreventPilotComponent>(shuttle.Value.Owner);
+        EnsureComp<EmergencyShuttleComponent>(shuttle.Value.Owner);
+        EnsureComp<UnbuildableGridComponent>(shuttle.Value.Owner); // Sunrise-edit
 
         var docks = new HashSet<Entity<DockingComponent>>();
-        _lookup.GetChildEntities(shuttle, docks);
+        _lookup.GetChildEntities(shuttle.Value.Owner, docks);
         foreach (var dock in docks)
         {
             var airlock = EnsureComp<AirlockComponent>(dock);
@@ -715,18 +715,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (!EmergencyShuttleArrived)
             return false;
 
-        // check each emergency shuttle
+        // check if target is on an emergency shuttle
         var xform = Transform(target);
-        foreach (var stationData in EntityQuery<StationEmergencyShuttleComponent>())
-        {
-            if (stationData.EmergencyShuttle == null)
-                continue;
 
-            if (IsOnGrid(xform, stationData.EmergencyShuttle.Value))
-            {
-                return true;
-            }
-        }
+        if (HasComp<EmergencyShuttleComponent>(xform.GridUid))
+            return true;
 
         return false;
     }

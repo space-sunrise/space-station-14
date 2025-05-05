@@ -55,6 +55,7 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
+using Content.Shared._RMC14.Xenonids.Screech;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Radio;
 
@@ -266,6 +267,10 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         _audio.PlayPvs(comp.ShriekSound, uid);
 
+        // Sunrise edit start
+        StartScreech(uid, playSound: false);
+        // Sunrise edit end
+
         var center = Transform(uid).MapPosition;
         var gamers = Filter.Empty();
         gamers.AddInRange(center, comp.ShriekPower, _player, EntityManager);
@@ -431,6 +436,9 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (storedDNA.DNA != null && storedDNA.DNA == dna.DNA)
                 return false;
         }
+
+        if (dna.DNA == null)
+            return false;
 
         var data = new TransformData
         {
@@ -606,6 +614,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         EnsureComp<ZombieImmuneComponent>(uid);
+
+        // Sunrise edit start
+        EnsureComp<XenoScreechComponent>(uid);
+        // Sunrise edit end
 
         // add actions
         foreach (var actionId in comp.BaseChangelingActions)

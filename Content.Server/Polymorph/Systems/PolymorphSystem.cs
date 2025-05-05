@@ -2,9 +2,11 @@ using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Mind.Commands;
+using Content.Shared.Nutrition;
 using Content.Server.Polymorph.Components;
 using Content.Shared.Actions;
 using Content.Shared.Buckle;
+using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Hands.EntitySystems;
@@ -22,13 +24,17 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// Sunrise-Start
+using Content.Shared.EntityEffects; 
+using Content.Shared.Mind.Components;
+// Sunrise-End
 
 namespace Content.Server.Polymorph.Systems;
 
 public sealed partial class PolymorphSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _compFact = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
@@ -60,8 +66,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphedEntityComponent, BeforeFullySlicedEvent>(OnBeforeFullySliced);
         SubscribeLocalEvent<PolymorphedEntityComponent, DestructionEventArgs>(OnDestruction);
 
-        InitializeCollide();
         InitializeMap();
+        InitializeTrigger();
     }
 
     public override void Update(float frameTime)
@@ -89,7 +95,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             }
         }
 
-        UpdateCollide();
+        UpdateTrigger();
     }
 
     private void OnComponentStartup(Entity<PolymorphableComponent> ent, ref ComponentStartup args)
@@ -183,6 +189,14 @@ public sealed partial class PolymorphSystem : EntitySystem
     /// <returns></returns>
     public EntityUid? PolymorphEntity(EntityUid uid, PolymorphConfiguration configuration)
     {
+        // Sunrise-Start
+        if (configuration.BlockIfHasMind 
+            && TryComp<MindContainerComponent>(uid, out var mindContainer) 
+            && mindContainer.HasMind)
+        {
+            return null;
+        }
+        // Sunrise-End
         // if it's already morphed, don't allow it again with this condition active.
         if (!configuration.AllowRepeatedMorphs && HasComp<PolymorphedEntityComponent>(uid))
             return null;
@@ -203,6 +217,12 @@ public sealed partial class PolymorphSystem : EntitySystem
             _audio.PlayPvs(configuration.PolymorphSound, targetTransformComp.Coordinates);
 
         var child = Spawn(configuration.Entity, _transform.GetMapCoordinates(uid, targetTransformComp), rotation: _transform.GetWorldRotation(uid));
+
+        if (configuration.PolymorphPopup != null)
+            _popup.PopupEntity(Loc.GetString(configuration.PolymorphPopup,
+                ("parent", Identity.Entity(uid, EntityManager)),
+                ("child", Identity.Entity(child, EntityManager))),
+                child);
 
         MakeSentientCommand.MakeSentient(child, EntityManager);
 
@@ -266,6 +286,14 @@ public sealed partial class PolymorphSystem : EntitySystem
         EnsurePausedMap();
         if (PausedMap != null)
             _transform.SetParent(uid, targetTransformComp, PausedMap.Value);
+
+        // Raise an event to inform anything that wants to know about the entity swap
+        var ev = new PolymorphedEvent(uid, child, false);
+        RaiseLocalEvent(uid, ref ev);
+
+        // visual effect spawn
+        if (configuration.EffectProto != null)
+            SpawnAttachedTo(configuration.EffectProto, child.ToCoordinates());
 
         return child;
     }
@@ -339,10 +367,19 @@ public sealed partial class PolymorphSystem : EntitySystem
         // if an item polymorph was picked up, put it back down after reverting
         _transform.AttachToGridOrMap(parent, parentXform);
 
-        _popup.PopupEntity(Loc.GetString("polymorph-revert-popup-generic",
+        // Raise an event to inform anything that wants to know about the entity swap
+        var ev = new PolymorphedEvent(uid, parent, true);
+        RaiseLocalEvent(uid, ref ev);
+
+        // visual effect spawn
+        if (component.Configuration.EffectProto != null)
+            SpawnAttachedTo(component.Configuration.EffectProto, parent.ToCoordinates());
+
+        if (component.Configuration.ExitPolymorphPopup != null)
+            _popup.PopupEntity(Loc.GetString(component.Configuration.ExitPolymorphPopup,
                 ("parent", Identity.Entity(uid, EntityManager)),
                 ("child", Identity.Entity(parent, EntityManager))),
-            parent);
+                parent);
         QueueDel(uid);
 
         return parent;

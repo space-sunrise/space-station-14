@@ -1,0 +1,7 @@
+- type: microwaveMealRecipe
+  id: RecipeDriedCannabisVita
+  name: dried cannabis vita leaves recipe
+  result: LeavesCannabisVitaDried
+  time: 10
+  solids:
+    CannabisVitaLeaves: 1

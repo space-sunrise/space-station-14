@@ -32,7 +32,7 @@
         true
   - type: NpcFactionMember
     factions:
-    - Carps
+    - Dragon
   - type: Speech
     speechVerb: LargeMob
   - type: CombatMode
@@ -41,7 +41,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 5
-    weightlessModifier: 1.5
+    baseWeightlessModifier: 1.5
   - type: RandomSprite
     available:
     - enum.DamageStateVisualLayers.Base:
@@ -55,6 +55,10 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: alive-unshaded
       shader: unshaded
+  # Sunrise-Start
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  # Sunrise-End
   - type: Appearance
   - type: DamageStateVisuals
     states:
@@ -154,6 +158,17 @@
     - DoorBumpOpener
   - type: Puller
     needsHands: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesDragon
+    - NamesDragonTitle
+    nameFormat: name-format-dragon
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2.5 # fast because dragon strong
+    useSound:
+      path: /Audio/Items/crowbar.ogg
   # Sunrise-Start
   - type: CollectiveMind
     minds:
@@ -180,12 +195,22 @@
   components:
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
+  - type: GhostRole
+    mindRoles:
+    - MindRoleDragon
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
   - type: GuideHelp
     guides:
     - MinorAntagonists
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - CarpRiftHealTarget
+  # Sunrise-end
 
 - type: entity
   categories: [ HideSpawnMenu ]

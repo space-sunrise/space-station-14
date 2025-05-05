@@ -16,7 +16,7 @@ permissions:
 jobs:
   update-locale:
     runs-on: ubuntu-latest
-    if: github.repository == 'space-sunrise/space-station-14' # && github.event.pull_request.merged == true
+    if: github.repository == 'space-sunrise/sunrise-station' # && github.event.pull_request.merged == true
 
     steps:
       - name: Checkout repository

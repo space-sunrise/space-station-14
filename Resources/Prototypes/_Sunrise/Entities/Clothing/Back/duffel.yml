@@ -64,3 +64,84 @@
     walkModifier: 1
     sprintModifier: 1
   - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelBlack
+  name: black duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/blackduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelBlue
+  name: blue duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/blueduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCian
+  name: cian duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/cianduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelGreen
+  name: green duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/greenduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelOrange
+  name: orange duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/orangeduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelPurple
+  name: purple duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/purpleduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelRed
+  name: red duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/redduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelWhite
+  name: white duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/whiteduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelYellow
+  name: yellow duffel
+  description: This duffel bag looks great.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/yellowduffel.rsi

@@ -42,6 +42,7 @@
     - StaminaModifier
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: EmoteAnimation # Sunrise-Edit
   - type: MobState
     allowedStates:

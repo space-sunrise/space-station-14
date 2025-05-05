@@ -33,7 +33,7 @@ public sealed class TTSManager
         "Amount of wanted TTS radio audio.");
 
     private static readonly Counter WantedAnnounceCount = Metrics.CreateCounter(
-        "tts_wanted_Announce_count",
+        "tts_wanted_announce_count",
         "Amount of wanted TTS Announce audio.");
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;

@@ -1,9 +1,8 @@
-﻿- type: gameMap
+- type: gameMap
   id: SunriseBagel
-  mapName: 'Bagel Station'
+  mapName: 'Bagel'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
   minPlayers: 0
-  maxPlayers: 65
   maxRandomOffset: 0
   randomRotation: false
   stations:
@@ -69,19 +68,19 @@
           Quartermaster: [ 1, 1 ]
           SalvageSpecialist: [ 3, 3 ]
           CargoTechnician: [ 3, 3 ]
+          MailCarrier: [ 1, 2 ]
           #civilian
           Passenger: [ -1, -1 ]
           Clown: [ 1, 1 ]
           Mime: [ 1, 1 ]
           Musician: [ 1, 1 ]
           #blueshield
-          BlueShield: [ 1, 1 ]
+          BlueShieldEnsign: [ 1, 1 ]
+          BlueShieldOfficer: [ 5, 5 ]
           #law
           IAA: [ 1, 1 ]
-          Magistrat: [ 1, 1 ]
           Lawyer: [ 3, 3 ]
-          NtrLeader: [ 1, 1 ]
-          NtrGuard: [ 2, 2 ]
+          NtrOfficer: [ 2, 2 ]
           # silicon
           StationAi: [ 1, 1 ]
           Borg: [ 2, 2 ]
@@ -103,7 +102,7 @@
         - Zoo
         - MiningOutpost
         - Tesla
-        - XenobiologyRepair
+        #- XenobiologyRepair
         - VirusologyAmbusol
         - Containment
         - WeaponsSecurity
@@ -118,7 +117,7 @@
         - Cyborgs
         - Testing
         - Anomaly
-        - Replenishment
+        #- Replenishment
         - IntelWeapons
         - Reports
         - Reconnaissance
@@ -126,4 +125,7 @@
         - Furs
         - Crew
         - CleaningUp
+        - HumanitarianAid
+        - PersonnelRecovery
+        - CrewEducation
         #- VirusFlesh

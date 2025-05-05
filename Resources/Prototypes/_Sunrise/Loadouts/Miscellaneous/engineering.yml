@@ -7,10 +7,22 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 7200 # 2hr
+      time: 72000 # 20hr
   storage:
     back:
     - AtmosAlertsMonitor
+
+- type: loadout
+  id: TrinketsEngineeringEAM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 72000 # 20hr
+  storage:
+    back:
+    - EngiAlertsMonitor
 
 - type: loadout
   id: TrinketsEngineeringTS

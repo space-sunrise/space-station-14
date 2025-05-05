@@ -9,6 +9,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -22,6 +23,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly ISharedPlayerManager _player = default!;
 
         [ValidatePrototypeId<EntityPrototype>]
         private const string MindRole = "MindRolePlanetPrisoner";
@@ -112,9 +114,9 @@ namespace Content.Server._Sunrise.PlanetPrison
                 // Не ну а чо
                 QueueDel(prisoner);
                 planetPrisonRule.EscapedPrisoners.Add(mindId);
-                if (mind.Session != null)
+                if (_player.TryGetSessionById(mind.UserId, out var session))
                 {
-                    _newLifeSystem.SetNextAllowRespawn(mind.Session.UserId, _gameTiming.CurTime);
+                    _newLifeSystem.SetNextAllowRespawn(session.UserId, _gameTiming.CurTime);
                 }
             }
         }

@@ -13757,12 +13757,12 @@ entities:
       type: Transform
   - uid: 310
     components:
-      pos: -20.5,49.5
+    - pos: -20.5,49.5
       parent: 2
       type: Transform
   - uid: 311
     components:
-      pos: -20.5,50.5
+    - pos: -20.5,50.5
       parent: 2
       type: Transform
   - uid: 312
@@ -13882,12 +13882,12 @@ entities:
       type: Transform
   - uid: 335
     components:
-      pos: -38.5,47.5
+    - pos: -38.5,47.5
       parent: 2
       type: Transform
   - uid: 336
     components:
-      pos: -38.5,46.5
+    - pos: -38.5,46.5
       parent: 2
       type: Transform
   - uid: 337
@@ -13927,17 +13927,17 @@ entities:
       type: Transform
   - uid: 344
     components:
-      pos: -39.5,39.5
+    - pos: -39.5,39.5
       parent: 2
       type: Transform
   - uid: 345
     components:
-      pos: -40.5,38.5
+    - pos: -40.5,38.5
       parent: 2
       type: Transform
   - uid: 346
     components:
-      pos: -26.5,-16.5
+    - pos: -26.5,-16.5
       parent: 2
       type: Transform
   - uid: 347
@@ -13967,77 +13967,77 @@ entities:
       type: Transform
   - uid: 352
     components:
-      pos: -21.5,-25.5
+    - pos: -21.5,-25.5
       parent: 2
       type: Transform
   - uid: 353
     components:
-      pos: -20.5,-24.5
+    - pos: -20.5,-24.5
       parent: 2
       type: Transform
   - uid: 354
     components:
-      pos: -21.5,-24.5
+    - pos: -21.5,-24.5
       parent: 2
       type: Transform
   - uid: 355
     components:
-      pos: -6.5,-26.5
+    - pos: -6.5,-26.5
       parent: 2
       type: Transform
   - uid: 356
     components:
-      pos: -7.5,-27.5
+    - pos: -7.5,-27.5
       parent: 2
       type: Transform
   - uid: 357
     components:
-      pos: -39.5,38.5
+    - pos: -39.5,38.5
       parent: 2
       type: Transform
   - uid: 358
     components:
-      pos: -8.5,-29.5
+    - pos: -8.5,-29.5
       parent: 2
       type: Transform
   - uid: 359
     components:
-      pos: -9.5,-28.5
+    - pos: -9.5,-28.5
       parent: 2
       type: Transform
   - uid: 360
     components:
-      pos: -8.5,-27.5
+    - pos: -8.5,-27.5
       parent: 2
       type: Transform
   - uid: 361
     components:
-      pos: -7.5,-26.5
+    - pos: -7.5,-26.5
       parent: 2
       type: Transform
   - uid: 362
     components:
-      pos: -6.5,-25.5
+    - pos: -6.5,-25.5
       parent: 2
       type: Transform
   - uid: 363
     components:
-      pos: -5.5,-26.5
+    - pos: -5.5,-26.5
       parent: 2
       type: Transform
   - uid: 364
     components:
-      pos: -7.5,-28.5
+    - pos: -7.5,-28.5
       parent: 2
       type: Transform
   - uid: 365
     components:
-      pos: -8.5,-28.5
+    - pos: -8.5,-28.5
       parent: 2
       type: Transform
   - uid: 366
     components:
-      pos: -9.5,-29.5
+    - pos: -9.5,-29.5
       parent: 2
       type: Transform
   - uid: 367
@@ -14067,7 +14067,7 @@ entities:
       type: Transform
   - uid: 372
     components:
-      pos: -25.5,-16.5
+    - pos: -25.5,-16.5
       parent: 2
       type: Transform
   - uid: 373
@@ -14409,7 +14409,7 @@ entities:
       type: Transform
   - uid: 440
     components:
-      pos: -21.5,51.5
+    - pos: -21.5,51.5
       parent: 2
       type: Transform
   - uid: 441
@@ -14429,22 +14429,22 @@ entities:
       type: Transform
   - uid: 444
     components:
-      pos: -20.5,-22.5
+    - pos: -20.5,-22.5
       parent: 2
       type: Transform
   - uid: 445
     components:
-      pos: -19.5,-22.5
+    - pos: -19.5,-22.5
       parent: 2
       type: Transform
   - uid: 446
     components:
-      pos: -41.5,38.5
+    - pos: -41.5,38.5
       parent: 2
       type: Transform
   - uid: 447
     components:
-      pos: -42.5,37.5
+    - pos: -42.5,37.5
       parent: 2
       type: Transform
   - uid: 448
@@ -14741,7 +14741,7 @@ entities:
       type: Transform
   - uid: 506
     components:
-      pos: -11.5,45.5
+    - pos: -11.5,45.5
       parent: 2
       type: Transform
   - uid: 507
@@ -44280,7 +44280,7 @@ entities:
     components:
     - pos: -15.2631445,-16.00474
       parent: 2
-      type: Transform 
+      type: Transform
 - proto: ClothingOuterWinterEngi
   entities:
   - uid: 6230

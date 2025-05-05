@@ -1,12 +1,12 @@
-﻿- type: cargoProduct
-  id: HandheldSoil
-  icon:
-    sprite: _Sunrise/Objects/Misc/soil.rsi
-    state: item
-  product: HandheldSoil
-  cost: 400
-  category: cargoproduct-category-name-hydroponics
-  group: market
+﻿#- type: cargoProduct
+#  id: HandheldSoil
+#  icon:
+#    sprite: _Sunrise/Objects/Misc/soil.rsi
+#    state: item
+#  product: HandheldSoil
+#  cost: 400
+#  category: cargoproduct-category-name-hydroponics
+#  group: market
 
 - type: cargoProduct
   id: HydroponicsSeedsMinimal

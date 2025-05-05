@@ -1,0 +1,2 @@
+ent-ExplosionEffectSmoke = { "" }
+    .desc = { "" }

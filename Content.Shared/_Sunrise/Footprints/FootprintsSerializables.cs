@@ -10,14 +10,11 @@ namespace Content.Shared._Sunrise.Footprints;
 /// <summary>
 /// Component that represents a single footprint entity in the world
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class FootprintComponent : Component
 {
-    /// <summary>
-    /// Entity that created this footprint
-    /// </summary>
-    [AutoNetworkedField]
-    public EntityUid CreatorEntity;
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
 
     /// <summary>
     /// Name of the solution container for this footprint
@@ -66,12 +63,6 @@ public sealed partial class PuddleFootprintComponent : Component
 [RegisterComponent]
 public sealed partial class FootprintEmitterComponent : Component
 {
-    /// <summary>
-    /// Path to the RSI file containing footprint sprites
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField]
-    public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
-
     /// <summary>
     /// State ID for left bare footprint
     /// </summary>

@@ -1,0 +1,10 @@
+ent-CultTileSpawnEffect = Sparkle
+    .desc = { "" }
+ent-CultTeleportInEffect = Teleport in
+    .desc = { "" }
+ent-CultTeleportOutEffect = Teleport out
+    .desc = { "" }
+ent-CultWallGlow = wall glow
+    .desc = { "" }
+ent-CultAirlockGlow = airlock glow
+    .desc = { "" }

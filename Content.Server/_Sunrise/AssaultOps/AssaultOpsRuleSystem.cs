@@ -39,7 +39,6 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly StoreSystem _store = default!;
 
     [ValidatePrototypeId<TagPrototype>]

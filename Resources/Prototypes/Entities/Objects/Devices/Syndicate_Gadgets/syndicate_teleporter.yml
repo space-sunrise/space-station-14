@@ -13,7 +13,6 @@
   - type: UseDelay
     delay: 0.5
   - type: LimitedCharges
-    charges: 3
     maxCharges: 3
   - type: AutoRecharge
     rechargeDuration: 30

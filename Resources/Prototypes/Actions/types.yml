@@ -102,13 +102,14 @@
   name: Break Free
   description: Activating your freedom implant will free you from any hand restraints
   components:
+  - type: LimitedCharges
+    maxCharges: 3
+  # Sunrise-Start
+  - type: AutoRecharge
+    rechargeDuration: 120
+  # Sunrise-End
   - type: InstantAction
-    charges: 3
-    # Sunrise-Start
-    renewCharges: true
-    renewChargeDelay: 120
-    useDelay: 5
-    # Sunrise-End
+    useDelay: 5 # Sunrise-Edit
     checkCanInteract: false
     itemIconStyle: BigAction
     priority: -20
@@ -135,13 +136,14 @@
   name: Activate EMP
   description: Triggers a small EMP pulse around you
   components:
+  - type: LimitedCharges
+    maxCharges: 3
+  # Sunrise-Start
+  - type: AutoRecharge
+    rechargeDuration: 120
+  # Sunrise-End
   - type: InstantAction
     checkCanInteract: false
-    charges: 3
-    # Sunrise-Start
-    renewCharges: true
-    renewChargeDelay: 120
-    # Sunrise-End
     useDelay: 5
     itemIconStyle: BigAction
     priority: -20
@@ -158,9 +160,6 @@
   components:
   - type: InstantAction
     checkCanInteract: false
-    charges: 3
-    renewCharges: true
-    renewChargeDelay: 120
     useDelay: 5
     itemIconStyle: BigAction
     priority: -20
@@ -168,6 +167,10 @@
       sprite: Objects/Weapons/Grenades/smoke.rsi
       state: icon
     event: !type:ActivateImplantEvent
+  - type: LimitedCharges
+    maxCharges: 3
+  - type: AutoRecharge
+    rechargeDuration: 120
 # Sunrise-End
 
 - type: entity
@@ -175,13 +178,14 @@
   name: SCRAM!
   description: Randomly teleports you within a large distance.
   components:
+  - type: LimitedCharges
+    maxCharges: 2
+  # Sunrise-Start
+  - type: AutoRecharge
+    rechargeDuration: 360
+  # Sunrise-End
   - type: InstantAction
     checkCanInteract: false
-    charges: 2
-    # Sunrise-Start
-    renewCharges: true
-    renewChargeDelay: 360 #Sunrise
-    # Sunrise-End
     useDelay: 5
     itemIconStyle: BigAction
     priority: -20
@@ -195,13 +199,16 @@
   name: Scramble DNA
   description:  Randomly changes your name and appearance.
   components:
+  - type: ConfirmableAction
+    popup: dna-scrambler-action-popup
+  - type: LimitedCharges
+    maxCharges: 1
+  # Sunrise-Start
+  - type: AutoRecharge
+    rechargeDuration: 300
+  # Sunrise-End
   - type: InstantAction
-    charges: 1
-    # Sunrise-Start
-    renewCharges: true
-    renewChargeDelay: 300
-    useDelay: 5
-    # Sunrise-End
+    useDelay: 5 # Sunrise-Edit
     itemIconStyle: BigAction
     priority: -20
     icon:
@@ -260,18 +267,6 @@
   - type: InstantAction
     useDelay: 30
     event: !type:VendingMachineSelfDispenseEvent
-
-- type: entity
-  id: ActionArtifactActivate
-  name: Activate Artifact
-  description: Immediately activates your current artifact node.
-  components:
-  - type: InstantAction
-    icon:
-      sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi
-      state: ano01
-    useDelay: 60
-    event: !type:ArtifactSelfActivateEvent
 
 - type: entity
   id: ActionToggleBlock
@@ -387,3 +382,16 @@
     itemIconStyle: NoItem
     useDelay: 1
     event: !type:FakeMindShieldToggleEvent
+
+- type: entity
+  id: ActionToggleParamedicSiren
+  name: Toggle Paramedic Siren
+  description: Toggles the paramedic siren on and off.
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+      state: icon-siren
+    useDelay: 1
+    itemIconStyle: BigAction
+    event: !type:ToggleActionEvent

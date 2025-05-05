@@ -24,6 +24,9 @@
     },
     {
       "name": "stamp-path"
+    },
+    {
+      "name": "stamp-npt"
     }
   ]
 }

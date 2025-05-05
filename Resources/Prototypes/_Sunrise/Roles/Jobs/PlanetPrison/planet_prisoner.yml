@@ -6,10 +6,11 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10 hrs
-  startingGear: PrisonerGear
+  startingGear: PlanetPrisonerGear
   alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconPrisoner"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-security
   displayWeight: 0
   special:
@@ -20,8 +21,8 @@
       - type: PlanetPrisoner
 
 - type: startingGear
-  id: PrisonerGear
+  id: PlanetPrisonerGear
   equipment:
     shoes: ClothingShoesBootsPrisonerGrey
-    id: PrisonerPDA
+    id: PlanetPrisonerPDA
     ears: ClothingHeadsetGrey

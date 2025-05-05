@@ -30,7 +30,7 @@ public sealed partial class CCVars
     ///     Goes from 0 (no recoil at all) to 1 (regular amounts of recoil)
     /// </summary>
     public static readonly CVarDef<float> ScreenShakeIntensity =
-        CVarDef.Create("accessibility.screen_shake_intensity", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("accessibility.screen_shake_intensity", 0.5f, CVar.REPLICATED | CVar.SERVER);
 
     /// <summary>
     ///     A generic toggle for various visual effects that are color sensitive.
@@ -38,4 +38,27 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> AccessibilityColorblindFriendly =
         CVarDef.Create("accessibility.colorblind_friendly", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Speech bubble text opacity slider, controlling the alpha of speech bubble's text.
+    ///     Goes from to 0 (completely transparent) to 1 (completely opaque)
+    /// </summary>
+    public static readonly CVarDef<float> SpeechBubbleTextOpacity =
+        CVarDef.Create("accessibility.speech_bubble_text_opacity", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Speech bubble speaker opacity slider, controlling the alpha of the speaker's name in a speech bubble.
+    ///     Goes from to 0 (completely transparent) to 1 (completely opaque)
+    /// </summary>
+    public static readonly CVarDef<float> SpeechBubbleSpeakerOpacity =
+        CVarDef.Create("accessibility.speech_bubble_speaker_opacity", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Speech bubble background opacity slider, controlling the alpha of the speech bubble's background.
+    ///     Goes from to 0 (completely transparent) to 1 (completely opaque)
+    /// </summary>
+    public static readonly CVarDef<float> SpeechBubbleBackgroundOpacity =
+        CVarDef.Create("accessibility.speech_bubble_background_opacity", 0.75f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+
 }

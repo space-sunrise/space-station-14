@@ -25,6 +25,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Frezon,
             Gas.BZ, // Sunrise-Edit
             Gas.Healium, // Sunrise-Edit
+            Gas.Nitrium, //SunRise edit
         };
 
         // Presets for 'dumb' air alarm modes
@@ -64,7 +65,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             FilterGases = new(GasVentScrubberData.DefaultFilterGases),
             PumpDirection = ScrubberPumpDirection.Siphoning,
             VolumeRate = 200f,
-            WideNet = false
+            WideNet = true
         };
 
         public static GasVentScrubberData ReplaceModePreset = new GasVentScrubberData

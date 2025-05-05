@@ -1,65 +1,49 @@
-using Content.Server.Advertise.Components;
 using Content.Server.Chat.Systems;
-using Content.Shared.Dataset;
-using Robust.Shared.Log;
+using Content.Shared.Advertise.Components;
+using Content.Shared.Advertise.Systems;
+using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
-using ActivatableUIComponent = Content.Shared.UserInterface.ActivatableUIComponent;
 
-namespace Content.Server.Advertise
+namespace Content.Server.Advertise.EntitySystems;
+
+public sealed partial class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
 {
-    public sealed partial class SpeakOnUIClosedSystem : EntitySystem
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly ChatSystem _chat = default!;
+        base.Initialize();
 
-        public override void Initialize()
-        {
-            base.Initialize();
-            SubscribeLocalEvent<SpeakOnUIClosedComponent, BoundUIClosedEvent>(OnBoundUIClosed);
-        }
+        SubscribeLocalEvent<SpeakOnUIClosedComponent, BoundUIClosedEvent>(OnBoundUIClosed);
+    }
+    private void OnBoundUIClosed(Entity<SpeakOnUIClosedComponent> entity, ref BoundUIClosedEvent args)
+    {
+        if (!TryComp(entity, out ActivatableUIComponent? activatable) || !args.UiKey.Equals(activatable.Key))
+            return;
 
-        private void OnBoundUIClosed(EntityUid uid, SpeakOnUIClosedComponent component, BoundUIClosedEvent args)
-        {
-            if (!TryComp<ActivatableUIComponent>(uid, out var activatable) || !args.UiKey.Equals(activatable.Key))
-                return;
+        if (entity.Comp.RequireFlag && !entity.Comp.Flag)
+            return;
 
-            if (component.RequireFlag && !component.Flag)
-                return;
+        TrySpeak((entity, entity.Comp));
+    }
 
-            TrySpeak(uid, component);
-        }
+    public bool TrySpeak(Entity<SpeakOnUIClosedComponent?> entity)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+            return false;
 
-        public bool TrySpeak(EntityUid uid, SpeakOnUIClosedComponent? component)
-        {
-            if (component == null || !component.Enabled)
-                return false;
+        if (!entity.Comp.Enabled)
+            return false;
 
-            if (!_prototypeManager.TryIndex(component.Pack, out LocalizedDatasetPrototype? messagePack))
-            {
-                Logger.Warning($"Failed to find localized dataset prototype with ID: {component.Pack}");
-                return false;
-            }
+        if (!_prototypeManager.TryIndex(entity.Comp.Pack, out var messagePack))
+            return false;
 
-            var messageKey = _random.Pick(messagePack.Values);
-            var message = Loc.GetString(messageKey, ("name", Name(uid)));
-
-            //Logger.Info($"Localized message: {message}, messageKey: {messageKey}");
-            _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Speak, true);
-            component.Flag = false;
-            return true;
-        }
-
-        public bool TrySetFlag(EntityUid uid, SpeakOnUIClosedComponent? component, bool value = true)
-        {
-            if (component == null)
-                return false;
-            
-            component.Flag = value;
-            return true;
-        }
+        var message = Loc.GetString(_random.Pick(messagePack.Values), ("name", Name(entity)));
+        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, true);
+        entity.Comp.Flag = false;
+        return true;
     }
 }

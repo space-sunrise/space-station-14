@@ -3,19 +3,22 @@
   name: species-name-vox
   roundStart: true
   prototype: MobVox
-  sprites: MobVoxSprites
+  bodyTypes:
+  - VoxNormal
   markingLimits: MobVoxMarkingLimits
   dollPrototype: MobVoxDummy
   skinColoration: VoxFeathers
   defaultSkinTone: "#6c741d"
-  maleFirstNames: names_vox
-  femaleFirstNames: names_vox
+  maleFirstNames: NamesVox
+  femaleFirstNames: NamesVox
   naming: First
   sexes:
   - Unsexed
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/vox.png # Sunrise-Edit
 
-- type: speciesBaseSprites
-  id: MobVoxSprites
+- type: bodyType
+  id: VoxNormal
+  name: body-normal
   sprites:
     Head: MobVoxHead
     Snout: MobHumanoidAnyMarking

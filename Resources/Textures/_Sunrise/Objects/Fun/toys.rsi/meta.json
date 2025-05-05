@@ -17,6 +17,30 @@
         "name": "plushie-hop"
       },
       {
+        "name": "plushie-MihailOsipov"
+      },
+      {
+        "name": "plushie-mira"
+      },
+      {
+        "name": "plushie-mori"
+      },
+	  {
+        "name": "plushie-mechanix"
+      },
+	  {
+        "name": "salvage-specialist"
+      },
+	  {
+        "name": "plushie-krokozyabka"
+      },
+	  {
+        "name": "plushie-jamal"
+      },
+	  {
+        "name": "plushie-molnia"
+      },
+      {
         "name": "plushie-secvulp"
       },
       {
@@ -187,6 +211,9 @@
         "name": "plushie-nara"
       },
       {
+        "name": "mintypresent"
+      },
+      {
         "name": "plushie-peacemaker"
       },
       {
@@ -241,7 +268,7 @@
       {
         "name": "evgeniya_krein"
       },
-      { 
+      {
         "name": "legendary-golden-weh"
       },
       {
@@ -255,6 +282,15 @@
       {
         "name": "goldenw-inhand-right",
         "directions": 4
+    },
+    {
+        "name": "plushie_narvi"
+    },
+    {
+        "name": "plushie_sansa"
+    },
+    {
+        "name": "plushie_tatarchuk"
       }
     ]
   }

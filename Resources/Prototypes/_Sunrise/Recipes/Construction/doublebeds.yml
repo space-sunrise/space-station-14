@@ -1,0 +1,16 @@
+- type: construction
+  id: DoubleBed
+  name: double bed
+  description: This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+  graph: DoubleBeds
+  startNode: start
+  targetNode: doubleBed
+  category: construction-category-furniture
+  icon:
+    sprite: _Sunrise/Entities/Structures/Furniture/doublebeds.rsi
+    state: doublebed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

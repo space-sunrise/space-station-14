@@ -1,0 +1,29 @@
+- type: bloodCult
+  id: NarsieCult
+  cultType: Narsie
+  ritualDaggerProto: NarsieRitualDagger
+  cultBladeProto: NarsieEldritchBlade
+  godProto: Narsie
+  startingItems:
+  - NarsieRitualDagger
+  - CultRunicMetal10
+
+- type: bloodCult
+  id: NarbeeCult
+  cultType: Narbee
+  ritualDaggerProto: NarbeeRitualDagger
+  cultBladeProto: NarbeeEldritchBlade
+  godProto: Narbee
+  startingItems:
+  - NarbeeRitualDagger
+  - CultRunicMetal10
+
+- type: bloodCult
+  id: ReaperCult
+  cultType: Reaper
+  ritualDaggerProto: ReaperRitualDagger
+  cultBladeProto: ReaperEldritchBlade
+  godProto: Reaper
+  startingItems:
+  - ReaperRitualDagger
+  - CultRunicMetal10

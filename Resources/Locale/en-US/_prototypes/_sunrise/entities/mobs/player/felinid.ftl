@@ -1,5 +1,14 @@
 ent-MobFelinid = Player felinid
     .desc = { ent-MobFelinidBase.desc }
+ent-MobBaseSyndicateFelinidWhite = { ent-MobFelinidBase }
+    .suffix = syndicate base
+    .desc = { ent-MobFelinidBase.desc }
+ent-MobFelinidSyndicateAgentWhite = Player felinid
+    .suffix = syndicate agent white
+    .desc = { ent-MobBaseSyndicateFelinidWhite.desc }
+ent-MobFelinidSyndicateAgentNukeopsWhite = Player felinid
+    .suffix = NukeOpsWhite
+    .desc = { ent-MobBaseSyndicateFelinidWhite.desc }
 ent-MobBaseSyndicateFelinid = { ent-MobFelinidBase }
     .suffix = syndicate base
     .desc = { ent-MobFelinidBase.desc }

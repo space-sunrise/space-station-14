@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Physics;
+﻿using Content.Shared.Damage;
+using Robust.Shared.Physics;
 
 namespace Content.Shared.Blocking;
 
@@ -20,4 +21,18 @@ public sealed partial class BlockingUserComponent : Component
     /// </summary>
     [DataField("originalBodyType")]
     public BodyType OriginalBodyType;
+}
+
+
+public sealed class BlockingEvent : EntityEventArgs
+{
+    public EntityUid? User;
+    public DamageSpecifier Damage;
+
+    public BlockingEvent(EntityUid user,
+        DamageSpecifier damage)
+    {
+        User = user;
+        Damage = damage;
+    }
 }

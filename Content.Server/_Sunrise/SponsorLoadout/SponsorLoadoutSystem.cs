@@ -23,29 +23,25 @@ public sealed class SponsorLoadoutSystem : EntitySystem
         if (_sponsorsManager == null)
             return;
 
-        if (!_sponsorsManager.TryGetPrototypes(ev.Player.UserId, out var prototypes))
+        if (!_sponsorsManager.TryGetSpawnEquipment(ev.Player.UserId, out var spawnEquipment))
             return;
-        foreach (var loadoutId in prototypes)
-        {
-            if (!_prototypeManager.TryIndex<SponsorLoadoutPrototype>(loadoutId, out var loadout))
-                continue;
-            var isSponsorHave = !prototypes.Contains(loadoutId);
-            var isWhitelisted = ev.JobId != null &&
-                                loadout.WhitelistJobs != null &&
-                                !loadout.WhitelistJobs.Contains(ev.JobId);
-            var isBlacklisted = ev.JobId != null &&
-                                loadout.BlacklistJobs != null &&
-                                loadout.BlacklistJobs.Contains(ev.JobId);
-            var isSpeciesRestricted = loadout.SpeciesRestrictions != null &&
-                                      loadout.SpeciesRestrictions.Contains(ev.Profile.Species);
+        if (!_prototypeManager.TryIndex<SponsorLoadoutPrototype>(spawnEquipment, out var loadout))
+            return;
+        var isWhitelisted = ev.JobId != null &&
+                            loadout.WhitelistJobs != null &&
+                            !loadout.WhitelistJobs.Contains(ev.JobId);
+        var isBlacklisted = ev.JobId != null &&
+                            loadout.BlacklistJobs != null &&
+                            loadout.BlacklistJobs.Contains(ev.JobId);
+        var isSpeciesRestricted = loadout.SpeciesRestrictions != null &&
+                                  loadout.SpeciesRestrictions.Contains(ev.Profile.Species);
 
-            if (isSponsorHave || isWhitelisted || isBlacklisted || isSpeciesRestricted)
-                continue;
+        if (isWhitelisted || isBlacklisted || isSpeciesRestricted)
+            return;
 
-            if (!_prototypeManager.TryIndex(loadout.Equipment, out var startingGear))
-                continue;
+        if (!_prototypeManager.TryIndex(loadout.Equipment, out var startingGear))
+            return;
 
-            _spawn.EquipStartingGear(ev.Mob, startingGear);
-        }
+        _spawn.EquipStartingGear(ev.Mob, startingGear);
     }
 }

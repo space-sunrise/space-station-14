@@ -19,7 +19,7 @@
     - 0,0,2,1
   - type: StorageFill
     contents:
-      - id: MagazineGlock22Rubber
+      - id: MagazineGlock22
         amount: 1
-      - id: WeaponPistolG22NonLethal
+      - id: WeaponPistolG22
         amount: 1

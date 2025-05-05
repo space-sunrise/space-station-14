@@ -8,3 +8,5 @@ ent-ClothingHeadHatWeldingMaskFlameBlue = blue-flame welding mask
     .desc = A painted welding helmet, this one has blue flames on it.
 ent-ClothingHeadHatWeldingMaskPainted = painted welding mask
     .desc = A welding helmet, painted in crimson.
+ent-ActionToggleWeldingMask = Adjust Welding Mask
+    .desc = Covers or reveals your face.

@@ -1,3 +1,15 @@
 ent-SuitStorageBlueShield = { ent-SuitStorageBase }
     .suffix = ОСЩ
     .desc = { ent-SuitStorageBase.desc }
+ent-SuitStorageSecSunrise = { ent-SuitStorageBase }
+    .suffix = Security, Sunrise
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStorageEVAPirateSun = { ent-SuitStorageBase }
+    .suffix = Pirate EVA, Sunrise
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStoragePirateSun = { ent-SuitStorageBase }
+    .suffix = Pirate, Sunrise
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStoragePirateCapSun = { ent-SuitStorageBase }
+    .suffix = Pirate Captain, Sunrise
+    .desc = { ent-SuitStorageBase.desc }

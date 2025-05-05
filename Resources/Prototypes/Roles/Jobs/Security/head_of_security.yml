@@ -6,15 +6,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 10800 #3 hrs
+      time: 3600 #1 hr
+    - !type:RoleTimeRequirement
+      role: JobDetective
+      time: 3600 #1 hr, knowing how to use the tools is important
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 36000 #10 hrs
+      time: 18000 #5 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 108000 # 30 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs
+      time: 36000 # 10 hrs
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
@@ -35,7 +36,7 @@
   - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -49,8 +50,7 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
-#    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-#    - MagazineGlock22Rubber # Sunrise-Edit
+#    - MagazineGlock22 # Sunrise-Edit

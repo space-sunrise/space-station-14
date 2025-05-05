@@ -10,3 +10,4 @@ vampire-role-greeting =
         Пейте кровь и эволюционируйте, чтобы выполнить их!
 vampire-role-greeting-short = Вы вампир, который пробрался на станцию под видом работника!
 roles-antag-vamire-name = Вампир
+roles-antag-vamire-objective = Сосите кровь для выживания и эволюционируйте!

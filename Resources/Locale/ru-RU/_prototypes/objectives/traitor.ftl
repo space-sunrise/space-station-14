@@ -50,7 +50,3 @@ ent-CMOCrewMonitorStealObjective = { ent-BaseCMOStealObjective }
     .desc = { ent-BaseCMOStealObjective.desc }
 ent-SecretDocumentsStealObjective = { ent-BaseTraitorStealObjective }
     .desc = { ent-BaseTraitorStealObjective.desc }
-ent-PlutoniumCoreStealObjective = { ent-BaseTraitorStealObjective }
-    .desc = { ent-BaseTraitorStealObjective.desc }
-ent-StealSupermatterSliverObjective = { ent-BaseTraitorStealObjective }
-    .desc = { ent-BaseTraitorStealObjective.desc }

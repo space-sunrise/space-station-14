@@ -13,3 +13,67 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretParamedic
+  name: paramedic beret
+  description: A beret, for paramedic.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_paramedic.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_paramedic.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChemistry
+  name: chemist's beret
+  description: A beret, for chemist.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPatologoanatom
+  name: pathologist's beret
+  description: A beret, for patologoanatom.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_pathologist.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_pathologist.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtmos
+  name: atmos beret
+  description: A beret, for atmos.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon

@@ -23,7 +23,7 @@ ghost-role-information-ert-cyborg-description = Слава НТ!
 ghost-role-information-ert-cyborg-rules = Подчиняйтесь ОБР и Центральному Командованию.
 
 ghost-role-information-ntr-lead-name = Командир ИСН
-ghost-role-information-ntr-guard-name = Оперативник ИСН
+ghost-role-information-ntr-guard-name = Оператор ИСН
 ghost-role-information-ntr-guard-description = Вы являетесь опорой и защитой Юридического Департамента, выполняя решения и постановления самого Магистрата и Представителя NanoTrasen!
 
 ghost-role-information-ussp-crew-name = Сотрудник СССП

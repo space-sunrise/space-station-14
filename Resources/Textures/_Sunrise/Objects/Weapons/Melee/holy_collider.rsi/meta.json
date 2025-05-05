@@ -1,0 +1,20 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Calamity Mode Classic",
+    "size": {
+        "x": 48,
+        "y": 48
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "unshaded"
+        },
+        {
+            "name": "attack"
+        }
+    ]
+}

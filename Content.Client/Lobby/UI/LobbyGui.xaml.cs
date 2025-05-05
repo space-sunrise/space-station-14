@@ -100,6 +100,15 @@ namespace Content.Client.Lobby.UI
                 ServersHubHider.Texture = ServersHubContent.Visible ? IconExpanded : IconCollapsed;
             };
 
+            ContributorsHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ContributorsContent.Visible = !ContributorsContent.Visible;
+                ContributorsHider.Texture = ContributorsContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
             ChangelogHider.OnKeyBindUp += args =>
             {
                 if (args.Function != EngineKeyFunctions.Use)
@@ -164,17 +173,23 @@ namespace Content.Client.Lobby.UI
             }
 
             ServersHubHider.Texture = ServersHubContent.Visible ? IconExpanded : IconCollapsed;
+            ContributorsHider.Texture = ContributorsContent.Visible ? IconExpanded : IconCollapsed;
             ChangelogHider.Texture = ChangelogContent.Visible ? IconExpanded : IconCollapsed;
             ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
             CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
             ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
             UserProfileHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
             ServersHubHider.Modulate = StyleNano.NanoGold;
+            ContributorsHider.Modulate = StyleNano.NanoGold;
             ChangelogHider.Modulate = StyleNano.NanoGold;
             ServerInfoHider.Modulate = StyleNano.NanoGold;
             CharacterInfoHider.Modulate = StyleNano.NanoGold;
             ChatHider.Modulate = StyleNano.NanoGold;
             UserProfileHider.Modulate = StyleNano.NanoGold;
+
+            // Скрываем чейнджлог по умолчанию
+            ChangelogContent.Visible = false;
+            ChangelogHider.Texture = IconCollapsed;
         }
 
         private void OnServersHubEnableChanged(bool enable)

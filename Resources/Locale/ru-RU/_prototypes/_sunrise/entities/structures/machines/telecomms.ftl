@@ -1,5 +1,5 @@
 ent-TelecomServerFilledLaw = { ent-TelecomServer }
-    .suffix = Коммандование
+    .suffix = Юридический
     .desc = { ent-TelecomServer.desc }
 ent-TelecomServerFilledUSSP = { ent-TelecomServer }
     .suffix = СССП

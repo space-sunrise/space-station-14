@@ -1,19 +1,17 @@
-﻿using Content.Server.Access.Systems;
-using Content.Server.DetailExaminable;
+using Content.Server.Access.Systems;
 using Content.Server.Holiday;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
 using Content.Server.Mind.Commands;
 using Content.Server.PDA;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
-using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.DetailExaminable;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -44,10 +42,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 {
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly ArrivalsSystem _arrivalsSystem = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly ContainerSpawnPointSystem _containerSpawnPointSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
@@ -164,8 +160,29 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (_randomizeCharacters)
         {
             var weightId = _configurationManager.GetCVar(CCVars.ICRandomSpeciesWeights);
-            var weights = _prototypeManager.Index<WeightedRandomSpeciesPrototype>(weightId);
-            speciesId = weights.Pick(_random);
+
+            // If blank, choose a round start species.
+            if (string.IsNullOrEmpty(weightId))
+            {
+                var roundStart = new List<ProtoId<SpeciesPrototype>>();
+
+                var speciesPrototypes = _prototypeManager.EnumeratePrototypes<SpeciesPrototype>();
+                foreach (var proto in speciesPrototypes)
+                {
+                    if (proto.RoundStart)
+                        roundStart.Add(proto.ID);
+                }
+
+                if (roundStart.Count == 0)
+                    speciesId = SharedHumanoidAppearanceSystem.DefaultSpecies;
+                else
+                    speciesId = _random.Pick(roundStart);
+            }
+            else
+            {
+                var weights = _prototypeManager.Index<WeightedRandomSpeciesPrototype>(weightId);
+                speciesId = weights.Pick(_random);
+            }
         }
         else if (profile != null)
         {
@@ -186,25 +203,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             profile = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
         }
 
-        if (loadout != null)
-        {
-            EquipRoleLoadout(entity.Value, loadout, roleProto!);
-        }
-
-        if (prototype?.StartingGear != null)
-        {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
-            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
-        }
-
-        var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
-        RaiseLocalEvent(entity.Value, ref gearEquippedEv);
-
         if (profile != null)
         {
-            if (prototype != null)
-                SetPdaAndIdCardData(entity.Value, profile.Name, prototype, station);
-
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
@@ -230,6 +230,25 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 }
             }
             // Sunrise-End
+        }
+
+        if (loadout != null)
+        {
+            EquipRoleLoadout(entity.Value, loadout, roleProto!);
+        }
+
+        if (prototype?.StartingGear != null)
+        {
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+        }
+
+        var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
+        RaiseLocalEvent(entity.Value, ref gearEquippedEv);
+
+        if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData))
+        {
+            SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station);
         }
 
         DoJobSpecials(job, entity.Value);

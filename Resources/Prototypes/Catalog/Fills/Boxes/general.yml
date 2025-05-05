@@ -33,6 +33,21 @@
   # Sunrise edit end
 
 - type: entity
+  name: cardboard box
+  parent: BoxBase
+  id: BoxSurvivalBase
+  description: A cardboard box for storing things.
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,3
+
+- type: entity
   name: mousetrap box
   parent: BoxCardboard
   id: BoxMousetrap
@@ -243,6 +258,7 @@
     contents:
       - id: ClothingShoesBootsPerformer
       - id: ClothingUniformJumpskirtPerformer
+      - id: ClothingHeadPerformerWig
       - id: FoodMealMemoryleek
         amount: 2
 

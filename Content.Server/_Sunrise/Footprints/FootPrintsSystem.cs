@@ -46,8 +46,8 @@ public sealed class FootprintSystem : EntitySystem
 
     // Dictionary to track footprints per tile to prevent overcrowding
     private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
-    private const int MaxFootprintsPerTile = 6;
-    private const int MaxMarksPerTile = 3;
+    private const int MaxFootprintsPerTile = 10;
+    private const int MaxMarksPerTile = 5;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -197,15 +197,12 @@ public sealed class FootprintSystem : EntitySystem
         var coords = CalculateFootprintPosition(gridUid, emitter, transform, stand);
         var entity = Spawn(stand ? emitter.FootprintPrototype : emitter.DragMarkPrototype, coords);
 
-        var footprint = EnsureComp<FootprintComponent>(entity);
-        footprint.CreatorEntity = emitterOwner;
-        Dirty(entity, footprint);
-
         if (_appearanceQuery.TryComp(entity, out var appearance))
         {
+            var visualType = DetermineVisualState(emitterOwner, stand);
             _appearanceSystem.SetData(entity,
                 FootprintVisualParameter.VisualState,
-                DetermineVisualState(emitterOwner, stand),
+                GetStateId(visualType, emitter),
                 appearance);
 
             var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
@@ -218,6 +215,21 @@ public sealed class FootprintSystem : EntitySystem
         }
 
         return entity;
+    }
+
+    private string GetStateId(FootprintVisualType visualType, FootprintEmitterComponent emitter)
+    {
+        return visualType switch
+        {
+            FootprintVisualType.BareFootprint => emitter.IsRightStep
+                ? _random.Pick(emitter.RightBareFootState)
+                : _random.Pick(emitter.LeftBareFootState),
+            FootprintVisualType.ShoeFootprint => _random.Pick(emitter.ShoeFootState),
+            FootprintVisualType.SuitFootprint => _random.Pick(emitter.PressureSuitFootState),
+            FootprintVisualType.DragMark => _random.Pick(emitter.DraggingStates),
+            _ => throw new ArgumentOutOfRangeException(
+                $"Unknown footprint visual type: {visualType}")
+        };
     }
 
     /// <summary>

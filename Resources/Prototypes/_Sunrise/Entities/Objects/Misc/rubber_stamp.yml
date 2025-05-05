@@ -67,3 +67,17 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-adj
+    
+- type: entity
+  name: Head of Prison rubber stamp
+  parent: RubberStampBase
+  id: RubberStampNpt
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-npt
+    stampedColor: "#c94f26"
+    stampState: "paper_stamp-npt"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-npt

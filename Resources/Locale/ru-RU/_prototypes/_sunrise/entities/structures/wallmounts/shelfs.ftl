@@ -1,6 +1,6 @@
-ent-ShelfStoreBar = bar store shelf
-    .desc = Made out of the finest synthetic wood for all alcohol holding needs.
+ent-ShelfStoreBar = барная полка
+    .desc = Изготовлена из лучшего синтетического дерева для хранения алкоголя.
     .suffix = Finance, Servise
-ent-ShelfStoreKitchen = kitchen store shelf
-    .desc = Holds knifes, spice, and everything nice!
+ent-ShelfStoreKitchen = кухонная полка
+    .desc = Хранит ножи, специи и всё самое вкусное!
     .suffix = Finance, Servise

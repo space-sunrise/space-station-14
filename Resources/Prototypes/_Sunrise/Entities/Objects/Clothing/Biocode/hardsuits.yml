@@ -62,3 +62,16 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
+
+- type: entity
+  parent: ClothingOuterArmorRaid
+  id: ClothingOuterArmorRaidBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15

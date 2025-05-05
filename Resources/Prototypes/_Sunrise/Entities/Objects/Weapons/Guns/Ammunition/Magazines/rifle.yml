@@ -1,18 +1,4 @@
 - type: entity
-  id: MagazineRifleRubber
-  name: "magazine (.20 rifle rubber)"
-  parent: BaseMagazineRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleRubber
-  - type: Sprite
-    layers:
-    - state: practice
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: MagazineV31
   parent: BaseItem
   components:

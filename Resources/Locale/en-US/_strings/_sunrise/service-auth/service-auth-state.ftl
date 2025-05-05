@@ -1,5 +1,6 @@
 service-auth-discord-title = Авторизация Discord
 service-auth-telegram-title = Авторизация Telegram
+service-auth-github-title = Авторизация GitHub
 service-auth-select-service-title = Выбор сервиса авторизации
 service-auth-select-service = Для доступа на сервер вам необходимо связать аккаунт SS14 c одним из сервисов.
 service-auth-warn1 = Советуем вам делать привязку на основной аккаунт.

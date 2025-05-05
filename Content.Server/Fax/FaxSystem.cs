@@ -1,10 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Labels;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
@@ -13,13 +10,14 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Emag.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Fax;
 using Content.Shared.Fax.Systems;
 using Content.Shared.Fax.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
+using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Paper;
 using Robust.Server.GameObjects;
@@ -27,10 +25,16 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Content.Shared.NameModifier.Components;
 using Content.Shared.Power;
-
+using Content.Shared.DeviceNetwork.Components;
+// sunrise-start
+using System.Linq;
+using Content.Shared.Ghost;
+using Content.Shared.Inventory;
+using Robust.Server.Containers;
+using Content.Server.Storage.EntitySystems;
+// sunrise-end
 namespace Content.Server.Fax;
 
 public sealed class FaxSystem : EntitySystem
@@ -51,6 +55,12 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    //sunrise-start
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly EntityStorageSystem _storage = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    // sunrise-end
 
     private const string PaperSlotId = "Paper";
 
@@ -451,6 +461,9 @@ public sealed class FaxSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        if (component.SendTimeoutRemaining > 0)
+            return;
+
         var sendEntity = component.PaperSlot.Item;
         if (sendEntity == null)
             return;
@@ -493,6 +506,9 @@ public sealed class FaxSystem : EntitySystem
     public void Send(EntityUid uid, FaxMachineComponent? component, FaxSendMessage args)
     {
         if (!Resolve(uid, ref component))
+            return;
+
+        if (component.SendTimeoutRemaining > 0)
             return;
 
         var sendEntity = component.PaperSlot.Item;
@@ -570,7 +586,7 @@ public sealed class FaxSystem : EntitySystem
         _appearanceSystem.SetData(uid, FaxMachineVisuals.VisualState, FaxMachineVisualState.Printing);
 
         if (component.NotifyAdmins)
-            NotifyAdmins(faxName);
+            NotifyAdmins(faxName, printout); // sunrise-edit
 
         component.PrintingQueue.Enqueue(printout);
     }
@@ -583,8 +599,8 @@ public sealed class FaxSystem : EntitySystem
         var printout = component.PrintingQueue.Dequeue();
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
-        var printed = EntityManager.SpawnEntity(entityToSpawn, Transform(uid).Coordinates);
-
+        var coordinates = _transform.GetMapCoordinates(uid); // sunrise-edit
+        var printed = EntityManager.SpawnEntity(entityToSpawn, coordinates);
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
@@ -611,9 +627,62 @@ public sealed class FaxSystem : EntitySystem
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
     }
 
-    private void NotifyAdmins(string faxName)
+    private void NotifyAdmins(string faxName, FaxPrintout printout)
     {
         _chat.SendAdminAnnouncement(Loc.GetString("fax-machine-chat-notify", ("fax", faxName)));
         _audioSystem.PlayGlobal("/Audio/Machines/high_tech_confirm.ogg", Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false, AudioParams.Default.WithVolume(-8f));
+
+
+        //sunrise-start
+        //get all admins that are attached to a ghost
+        var clients = _adminManager.ActiveAdmins;
+
+        //get their ghost entities
+        foreach (var client in clients)
+        {
+            //check if attached
+            if (client.AttachedEntity == null)
+                continue;
+
+            //check if they are a ghost
+            if (!TryComp<GhostComponent>(client.AttachedEntity.Value, out var ghostComp))
+                continue;
+
+            Logger.Info($"Admin {client.Name} is a ghost, sending fax to them.");
+
+            //get their inventory
+            if (_inventory.TryGetSlotEntity(client.AttachedEntity.Value, "back", out var worn))
+            {
+                Logger.Info($"Admin {client.Name} has a back slot, sending fax to them.");
+                //generate the entity
+                var entityToSpawn = printout.PrototypeId;
+                if (EntityManager.TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
+                {
+                    if (TryComp<PaperComponent>(printed.Value, out var paper))
+                    {
+                        _paperSystem.SetContent((printed.Value, paper), printout.Content);
+
+                        // Apply stamps
+                        if (printout.StampState != null)
+                        {
+                            foreach (var stamp in printout.StampedBy)
+                            {
+                                _paperSystem.TryStamp((printed.Value, paper), stamp, printout.StampState);
+                            }
+                        }
+
+                        paper.EditingDisabled = printout.Locked;
+                    }
+
+                    _metaData.SetEntityName(printed.Value, printout.Name);
+
+                    if (printout.Label is { } label)
+                    {
+                        _labelSystem.Label(printed.Value, label);
+                    }
+                }
+            }
+        }
+        //sunrise-end
     }
 }

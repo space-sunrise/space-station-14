@@ -35,6 +35,9 @@
   - type: StorageFill
     contents:
       - id: CrowbarRed
+      - id: Screwdriver #Sunrise-add
+      - id: Wrench #Sunrise-add
+      - id: PaperBin20 #Sunrise-add
       - id: VariantCubeBox
       - id: BoxMousetrap
         amount: 2
@@ -101,10 +104,11 @@
       - id: ClothingHandsGlovesLeather
       - id: ClothingOuterApronBotanist
       - id: ClothingHeadBandBotany
-      - id: RobustHarvestChemistryBottle
+      - id: ChemistryBottleRobustHarvest
         prob: 0.3
       - id: ClothingBeltPlant
       - id: PlantBag ##Some maps don't have nutrivend
+      - id: PlantAnalyzer
       - id: BoxMouthSwab
       - id: Dropper
       - id: HandLabeler
@@ -133,6 +137,7 @@
   id: ClosetJanitorBombFilled
   parent: ClosetJanitorBomb
   suffix: DO NOT MAP, Filled
+  categories: [ DoNotMap ]
   components:
   - type: StorageFill
     contents:

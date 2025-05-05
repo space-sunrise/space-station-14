@@ -46,6 +46,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+    bigTrigger: true # Sunrise-Edit
 
 
 - type: entity

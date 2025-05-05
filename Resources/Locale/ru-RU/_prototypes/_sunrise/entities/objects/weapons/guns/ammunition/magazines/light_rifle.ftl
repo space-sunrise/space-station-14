@@ -1,5 +1,3 @@
-ent-MagazineLightRifleRubber = магазин (.30 винтовочные резиновые)
-    .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineAK = универсальный магазин автомата калашникова
     .desc = Использует патроны калибра .30 винтовочные.
 ent-MagazineMP38 = магазин ПП MP-38
@@ -26,3 +24,5 @@ ent-MagazineDl6902 = короб-магазин DL6902
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazinePistolSubMachineGunSIAR52 = Расширенный магазин (безгильзовые)
     .desc = { ent-BaseMagazineLightRifle.desc }
+ent-MagazineScarH = scar-h magazine
+    .desc = { ent-BaseItem.desc }

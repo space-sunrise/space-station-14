@@ -13,6 +13,7 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private readonly EntityManager _entManager = default!;
 
     private static readonly SlotFlags[] IgnoredSlots =
     {
@@ -52,7 +53,23 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         {
             sprite.CopyFrom(otherSprite);
         }
+       // Sunrise-start
+        if (!TryComp(uid, out ToggleableClothingComponent? helmet)
+            || !proto.TryGetComponent(out ToggleableClothingComponent? protoHelmet, _factory))
+            return;
 
+        if (!_proto.TryIndex(protoHelmet.ClothingPrototype.Id, out var prototypeHelmetOther))
+            return;
+
+        if (prototypeHelmetOther == null)
+            return;
+
+        if (TryComp(helmet.ClothingUid, out SpriteComponent? helmetSprite)
+            && prototypeHelmetOther.TryGetComponent(out SpriteComponent? otherHelmetSprite, _factory))
+        {
+            helmetSprite.CopyFrom(otherHelmetSprite);
+        }
+        // Sunrise-end
         // Edgecase for PDAs to include visuals when UI is open
         if (TryComp(uid, out PdaBorderColorComponent? borderColor)
             && proto.TryGetComponent(out PdaBorderColorComponent? otherBorderColor, _factory))

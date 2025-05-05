@@ -20,27 +20,35 @@ public sealed class RequireProjectileTargetSystem : EntitySystem
     private void PreventCollide(Entity<RequireProjectileTargetComponent> ent, ref PreventCollideEvent args)
     {
         if (args.Cancelled)
-          return;
+            return;
 
         if (!ent.Comp.Active)
             return;
 
         var other = args.OtherEntity;
-        if (TryComp(other, out ProjectileComponent? projectile) &&
-            CompOrNull<TargetedProjectileComponent>(other)?.Target != ent)
+        if (TryComp(other, out ProjectileComponent? projectile))
         {
-            // Prevents shooting out of while inside of crates
-            var shooter = projectile.Shooter;
-            if (!shooter.HasValue)
-                return;
+            var hasTarget = false;
+            if (TryComp<TargetedProjectileComponent>(other, out var targeted))
+            {
+                hasTarget = targeted.Targets.Contains(ent);
+            }
 
-            // ProjectileGrenades delete the entity that's shooting the projectile,
-            // so it's impossible to check if the entity is in a container
-            if (TerminatingOrDeleted(shooter.Value))
-                return;
+            if (!hasTarget)
+            {
+                // Prevents shooting out of while inside of crates
+                var shooter = projectile.Shooter;
+                if (!shooter.HasValue)
+                    return;
 
-            if (!_container.IsEntityOrParentInContainer(shooter.Value))
-               args.Cancelled = true;
+                // ProjectileGrenades delete the entity that's shooting the projectile,
+                // so it's impossible to check if the entity is in a container
+                if (TerminatingOrDeleted(shooter.Value))
+                    return;
+
+                if (!_container.IsEntityOrParentInContainer(shooter.Value))
+                    args.Cancelled = true;
+            }
         }
     }
 

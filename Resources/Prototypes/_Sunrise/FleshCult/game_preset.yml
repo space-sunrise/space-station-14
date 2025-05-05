@@ -5,11 +5,10 @@
   - fs
   name: flesh-cult-title
   description: flesh-cult-description
-  showInVote: true
+  showInVote: false
   hide: true
   rules:
   - FleshCult
-  - LiteSubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler

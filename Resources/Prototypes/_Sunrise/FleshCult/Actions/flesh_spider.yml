@@ -7,4 +7,4 @@
     - type: InstantAction
       icon: _Sunrise/FleshCult/Interface/Actions/flesh_web.png
       event: !type:SpiderWebActionEvent
-      useDelay: 15
+      useDelay: 10

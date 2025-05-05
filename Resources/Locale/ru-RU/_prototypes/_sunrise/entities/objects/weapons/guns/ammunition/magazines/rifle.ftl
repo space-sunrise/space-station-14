@@ -1,5 +1,3 @@
-ent-MagazineRifleRubber = магазин (.20 винтовочные резиновые)
-    .desc = { ent-BaseMagazineRifle.desc }
 ent-MagazineV31 = магазин для рельсотрона
     .desc = Стандартный тяжёлый магазин типа EarthGov.
 ent-MagazineFamas = магазин автомата автомата фамаз

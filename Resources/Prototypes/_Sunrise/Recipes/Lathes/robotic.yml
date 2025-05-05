@@ -9,7 +9,8 @@
 - type: latheRecipe
   id: HandheldRoboAnalyzer
   result: HandheldRoboAnalyzerEmpty
-  category: Tools
+  categories:
+  - Tools
   completetime: 4
   materials:
     Glass: 500

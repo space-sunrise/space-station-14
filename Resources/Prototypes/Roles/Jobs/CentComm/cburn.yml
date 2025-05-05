@@ -6,12 +6,16 @@
   setPreference: false
   startingGear: CBURNGear
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: CBURNGear

@@ -4,10 +4,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
-using Content.Server.Players;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
-using Content.Shared.Info;
 using Content.Shared.Players;
 using Robust.Server.Console;
 using Robust.Server.Player;
@@ -56,6 +54,16 @@ namespace Content.Server.Administration.Managers
         public bool IsAdmin(ICommonSession session, bool includeDeAdmin = false)
         {
             return GetAdminData(session, includeDeAdmin) != null;
+        }
+
+        public AdminData? GetAdminDataByUserId(NetUserId userId, bool includeDeAdmin = false)
+        {
+            if (_playerManager.TryGetSessionById(userId, out var session))
+            {
+                return GetAdminData(session, includeDeAdmin);
+            }
+
+            return null;
         }
 
         public AdminData? GetAdminData(ICommonSession session, bool includeDeAdmin = false)
@@ -108,7 +116,7 @@ namespace Content.Server.Administration.Managers
                 // The DB function handles this scenario fine, but it's worth noting.
                 await _dbManager.UpdateAdminDeadminnedAsync(player.UserId, newState);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 _sawmill.Error("Failed to save deadmin state to database for {Admin}", player.UserId);
             }
@@ -447,59 +455,62 @@ namespace Content.Server.Administration.Managers
 
                 return (data, null, true);
             }
-            else
+
+            return await LoadAdminData(session.UserId);
+        }
+
+        public async Task<(AdminData dat, int? rankId, bool specialLogin)?> LoadAdminData(NetUserId session)
+        {
+            var dbData = await _dbManager.GetAdminDataForAsync(session);
+
+            if (dbData == null)
             {
-                var dbData = await _dbManager.GetAdminDataForAsync(session.UserId);
-
-                if (dbData == null)
-                {
-                    // Not an admin!
-                    return null;
-                }
-
-                if (dbData.Suspended)
-                {
-                    // Suspended admins don't count.
-                    return null;
-                }
-
-                var flags = AdminFlags.None;
-
-                if (dbData.AdminRank != null)
-                {
-                    flags = AdminFlagsHelper.NamesToFlags(dbData.AdminRank.Flags.Select(p => p.Flag));
-                }
-
-                foreach (var dbFlag in dbData.Flags)
-                {
-                    var flag = AdminFlagsHelper.NameToFlag(dbFlag.Flag);
-                    if (dbFlag.Negative)
-                    {
-                        flags &= ~flag;
-                    }
-                    else
-                    {
-                        flags |= flag;
-                    }
-                }
-
-                var data = new AdminData
-                {
-                    Flags = flags,
-                    Active = !dbData.Deadminned,
-                };
-
-                if (dbData.Title != null  && _cfg.GetCVar(CCVars.AdminUseCustomNamesAdminRank))
-                {
-                    data.Title = dbData.Title;
-                }
-                else if (dbData.AdminRank != null)
-                {
-                    data.Title = dbData.AdminRank.Name;
-                }
-
-                return (data, dbData.AdminRankId, false);
+                // Not an admin!
+                return null;
             }
+
+            if (dbData.Suspended)
+            {
+                // Suspended admins don't count.
+                return null;
+            }
+
+            var flags = AdminFlags.None;
+
+            if (dbData.AdminRank != null)
+            {
+                flags = AdminFlagsHelper.NamesToFlags(dbData.AdminRank.Flags.Select(p => p.Flag));
+            }
+
+            foreach (var dbFlag in dbData.Flags)
+            {
+                var flag = AdminFlagsHelper.NameToFlag(dbFlag.Flag);
+                if (dbFlag.Negative)
+                {
+                    flags &= ~flag;
+                }
+                else
+                {
+                    flags |= flag;
+                }
+            }
+
+            var data = new AdminData
+            {
+                Flags = flags,
+                Active = !dbData.Deadminned,
+            };
+
+            if (dbData.Title != null  && _cfg.GetCVar(CCVars.AdminUseCustomNamesAdminRank))
+            {
+                data.Title = dbData.Title;
+            }
+            else if (dbData.AdminRank != null)
+            {
+                data.Title = dbData.AdminRank.Name;
+            }
+
+            return (data, dbData.AdminRankId, false);
         }
 
         private static bool IsLocal(ICommonSession player)

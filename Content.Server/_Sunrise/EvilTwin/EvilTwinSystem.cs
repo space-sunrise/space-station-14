@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._Sunrise.TraitorTarget;
-using Content.Server.DetailExaminable;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
@@ -15,6 +14,7 @@ using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
 using Content.Shared.Clothing;
+using Content.Shared.DetailExaminable;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants;

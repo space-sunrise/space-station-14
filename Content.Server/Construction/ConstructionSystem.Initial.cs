@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Construction.Components;
+using Content.Shared._Sunrise.UnbuildableGrid;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
@@ -462,6 +463,14 @@ namespace Content.Server.Construction
 
             var location = GetCoordinates(ev.Location);
 
+            // Sunrise-start
+            if (HasComp<UnbuildableGridComponent>(location.EntityId))
+            {
+                Cleanup();
+                return;
+            }
+            // Sunrise-end
+
             foreach (var condition in constructionPrototype.Conditions)
             {
                 if (!condition.Condition(user, location, ev.Angle.GetCardinalDir()))
@@ -483,7 +492,7 @@ namespace Content.Server.Construction
                 return;
             }
 
-            var mapPos = location.ToMap(EntityManager, _transformSystem);
+            var mapPos = _transformSystem.ToMapCoordinates(location);
             var predicate = GetPredicate(constructionPrototype.CanBuildInImpassable, mapPos);
 
             if (!_interactionSystem.InRangeUnobstructed(user, mapPos, predicate: predicate))

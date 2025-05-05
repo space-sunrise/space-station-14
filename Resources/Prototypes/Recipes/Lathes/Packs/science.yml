@@ -29,6 +29,7 @@
   - HoloprojectorField
   - SignallerAdvanced
   - DeviceQuantumSpinInverter
+  - DeviceDesynchronizer
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -39,6 +40,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - PlantBagOfHolding  # Sunrise-edit
 
 - type: latheRecipePack
   id: PowerCells
@@ -52,8 +54,11 @@
   recipes:
   - WeaponPistolCHIMP
   - WeaponForceGun
-  - WeaponLaserSvalinn
   - WeaponProtoKineticAccelerator
+  - WeaponPlasmaCutter  # Sunrise-Add
+  - PKAUpgradeDamage
+  - PKAUpgradeRange
+  - PKAUpgradeFireRate
   - WeaponTetherGun
   - WeaponGauntletGorilla
 

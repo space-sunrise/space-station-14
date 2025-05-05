@@ -37,26 +37,6 @@
     color: blue
     energy: 0.5
 
-# Sunrise-RUBBER
-- type: entity
-  id: BaseBulletRubber
-  name: base bullet rubber
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: rubber
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 1
-    soundHit:
-      path: /Audio/Weapons/Guns/Hits/snap.ogg
-  - type: StaminaDamageOnCollide
-    damage: 20 # 5 hits to stun sounds reasonable
-
 - type: entity
   parent: BaseBullet
   id: RadiationBullet
@@ -189,3 +169,30 @@
     radius: 3.5
     color: blue
     energy: 0.5
+
+- type: entity #by Noychik
+  id: BulletKineticTrash
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _Sunrise/Objects/Weapons/Projectiles/projectiles.rsi
+    layers:
+    - state: bullet_trash
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 20
+        Structural: 25
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: PointLight
+    radius: 2.5
+    color: white
+    energy: 0.5
+  - type: GatheringProjectile

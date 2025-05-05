@@ -9,4 +9,5 @@ public interface IClientServiceAuthManager : ISharedServiceAuthManager
     public event Action<List<LinkedServiceData>>? LoadedServiceLinkedServices;
     public event Action<ServiceAuthData>? LoadedAuthData;
     public void ToggleWindow(ServiceType serviceType);
+    public void ResetServiceLink(ServiceType serviceType);
 }

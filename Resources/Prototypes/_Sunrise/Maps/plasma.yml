@@ -2,8 +2,7 @@
   id: SunrisePlasma
   mapName: 'Plasma'
   mapPath: /Maps/_Sunrise/Station/plasma.yml
-  minPlayers: 20
-  maxPlayers: 100
+  minPlayers: 0
   maxRandomOffset: 0
   randomRotation: false
   stations:
@@ -25,11 +24,9 @@
             Adjutant: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             #law
-            Magistrat: [ 1, 1 ]
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 2 ]
-            NtrLeader: [ 1, 1 ]
-            NtrGuard: [ 2, 2 ]
+            NtrOfficer: [ 2, 2 ]
             #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]
@@ -42,7 +39,8 @@
             Zookeeper: [ 1, 1 ]
             Barber: [ 1, 1 ]
             #blueshield
-            BlueShield: [ 1, 1 ]
+            BlueShieldEnsign: [ 1, 1 ]
+            BlueShieldOfficer: [ 5, 5 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
@@ -88,6 +86,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
             CargoTechnician: [ 4, 6 ]
+            MailCarrier: [ 1, 2 ]
             #civilian
             Passenger: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -118,11 +117,16 @@
           - Cyborgs
           - Testing
           - Anomaly
-          - Replenishment
+          #- Replenishment
           - IntelWeapons
           - Reports
           - Reconnaissance
           - Saboteurs
           - Furs
           - Crew
+          - CleaningUp
+          - HumanitarianAid
+          - PersonnelRecovery
+          - CrewEducation
           #- VirusFlesh
+

@@ -1,0 +1,287 @@
+﻿- type: construction
+  id: CultGirder
+  graph: CultGirder
+  startNode: start
+  targetNode: girder
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/cult_girder.rsi
+    state: cultgirder
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AirlockGlassCult
+  graph: AirlockGlassCult
+  startNode: start
+  targetNode: airlock
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/cult_airlock.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultPylon
+  graph: CultPylon
+  startNode: start
+  targetNode: pylon
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/pylon.rsi
+    state: pylon_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: NarsieCultPylon
+  graph: NarsieCultPylon
+  startNode: start
+  targetNode: narsie_pylon
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: pylon_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: NarbeeCultPylon
+  graph: NarbeeCultPylon
+  startNode: start
+  targetNode: narbee_pylon
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_pylon_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ReaperCultPylon
+  graph: ReaperCultPylon
+  startNode: start
+  targetNode: reaper_pylon
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_pylon_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: AltarTome
+  graph: AltarTome
+  startNode: start
+  targetNode: tome
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi
+    state: icon-off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: NarsieAltarTome
+  graph: NarsieAltarTome
+  startNode: start
+  targetNode: narsie_tome
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: archives_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: NarbeeAltarTome
+  graph: NarbeeAltarTome
+  startNode: start
+  targetNode: narbee_tome
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_archives_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ReaperAltarTome
+  graph: ReaperAltarTome
+  startNode: start
+  targetNode: reaper_tome
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_archives_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: CultBloodAltar
+  graph: CultBloodAltar
+  startNode: start
+  targetNode: altar
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi
+    state: icon-off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: NarsieCultBloodAltar
+  graph: NarsieCultBloodAltar
+  startNode: start
+  targetNode: narsie_altar
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: altar_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: NarbeeCultBloodAltar
+  graph: NarbeeCultBloodAltar
+  startNode: start
+  targetNode: narbee_altar
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_altar_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ReaperCultBloodAltar
+  graph: ReaperCultBloodAltar
+  startNode: start
+  targetNode: reaper_altar
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_altar_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: CultForge
+  graph: CultForge
+  startNode: start
+  targetNode: forge
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/forge.rsi
+    state: icon-off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: NarsieCultForge
+  graph: NarsieCultForge
+  startNode: start
+  targetNode: narsie_forge
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: forge_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: NarbeeCultForge
+  graph: NarbeeCultForge
+  startNode: start
+  targetNode: narbee_forge
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: hell_forge_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ReaperCultForge
+  graph: ReaperCultForge
+  startNode: start
+  targetNode: reaper_forge
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
+    state: reaper_forge_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

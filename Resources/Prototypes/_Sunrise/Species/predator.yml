@@ -4,14 +4,17 @@
   name: species-name-predator
   roundStart: true
   prototype: MobPredator
-  sprites: MobPredatorSprites
+  bodyTypes:
+  - PredatorNormal
   markingLimits: MobPredatorMarkingLimits
   dollPrototype: MobPredatorDummy
   skinColoration: None
   sponsorOnly: true
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
 
-- type: speciesBaseSprites
-  id: MobPredatorSprites
+- type: bodyType
+  id: PredatorNormal
+  name: body-normal
   sprites:
     Head: MobPredatorHead
     Chest: MobPredatorTorso

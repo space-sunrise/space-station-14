@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
@@ -8,6 +9,8 @@ using Content.Shared.Hands;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
+using Content.Shared.Polymorph;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -18,6 +21,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Follower;
@@ -34,6 +38,8 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
+    private static readonly ProtoId<TagPrototype> ForceableFollowTag = "ForceableFollow";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -42,12 +48,14 @@ public sealed class FollowerSystem : EntitySystem
         //SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove); // Sunrise-Edit
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
+        SubscribeLocalEvent<FollowerComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
 
         SubscribeLocalEvent<FollowedComponent, ComponentGetStateAttemptEvent>(OnFollowedAttempt);
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
-        SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
-
+        SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
+        SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
+        SubscribeLocalEvent<FollowedComponent, StationAiRemoteEntityReplacementEvent>(OnFollowedStationAiRemoteEntityReplaced);
         // Sunrise-Start
         SubscribeLocalEvent<FollowerComponent, StartedFollowingEntityEvent>(OnStartedFollowingEntity);
         SubscribeLocalEvent<FollowerComponent, StopFollowActionEvent>(OnStopFollowAction);
@@ -82,10 +90,16 @@ public sealed class FollowerSystem : EntitySystem
         }
     }
 
-    private void OnBeforeSave(BeforeSaveEvent ev)
+    private void OnBeforeSave(BeforeSerializationEvent ev)
     {
-        // Some followers will not be map savable. This ensures that maps don't get saved with empty/invalid
-        // followers, but just stopping any following on the map being saved.
+        // Some followers will not be map savable. This ensures that maps don't get saved with some entities that have
+        // empty/invalid followers, by just stopping any following happening on the map being saved.
+        // I hate this so much.
+        // TODO WeakEntityReference
+        // We need some way to store entity references in a way that doesn't imply that the entity still exists.
+        // Then we wouldn't have to deal with this shit.
+
+        var maps = ev.Entities.Select(x => Transform(x).MapUid).ToHashSet();
 
         var query = AllEntityQuery<FollowerComponent, TransformComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var follower, out var xform, out var meta))
@@ -93,7 +107,7 @@ public sealed class FollowerSystem : EntitySystem
             if (meta.EntityPrototype == null || meta.EntityPrototype.MapSavable)
                 continue;
 
-            if (xform.MapUid != ev.Map)
+            if (!maps.Contains(xform.MapUid))
                 continue;
 
             StopFollowingEntity(uid, follower.Following);
@@ -118,7 +132,7 @@ public sealed class FollowerSystem : EntitySystem
             ev.Verbs.Add(verb);
         }
 
-        if (_tagSystem.HasTag(ev.Target, "ForceableFollow"))
+        if (_tagSystem.HasTag(ev.Target, ForceableFollowTag))
         {
             if (!ev.CanAccess || !ev.CanInteract)
                 return;
@@ -158,11 +172,36 @@ public sealed class FollowerSystem : EntitySystem
         StopFollowingEntity(uid, component.Following, deparent: false);
     }
 
+    private void OnAfterHandleState(Entity<FollowerComponent> entity, ref AfterAutoHandleStateEvent args)
+    {
+        StartFollowingEntity(entity, entity.Comp.Following);
+    }
+
     // Since we parent our observer to the followed entity, we need to detach
     // before they get deleted so that we don't get recursively deleted too.
     private void OnFollowedTerminating(EntityUid uid, FollowedComponent component, ref EntityTerminatingEvent args)
     {
         StopAllFollowers(uid, component);
+    }
+
+    private void OnFollowedPolymorphed(Entity<FollowedComponent> entity, ref PolymorphedEvent args)
+    {
+        foreach (var follower in entity.Comp.Following)
+        {
+            // Stop following the target's old entity and start following the new one
+            StartFollowingEntity(follower, args.NewEntity);
+        }
+    }
+
+    // TODO: Slartibarfast mentioned that ideally this should be generalized and made part of SetRelay in SharedMoverController.Relay.cs.
+    // This would apply to polymorphed entities as well
+    private void OnFollowedStationAiRemoteEntityReplaced(Entity<FollowedComponent> entity, ref StationAiRemoteEntityReplacementEvent args)
+    {
+        if (args.NewRemoteEntity == null)
+            return;
+
+        foreach (var follower in entity.Comp.Following)
+            StartFollowingEntity(follower, args.NewRemoteEntity.Value);
     }
 
     /// <summary>
@@ -225,6 +264,7 @@ public sealed class FollowerSystem : EntitySystem
         RaiseLocalEvent(follower, followerEv);
         RaiseLocalEvent(entity, entityEv);
         Dirty(entity, followedComp);
+        Dirty(follower, followerComp);
     }
 
     /// <summary>
@@ -236,7 +276,7 @@ public sealed class FollowerSystem : EntitySystem
         if (!Resolve(target, ref followed, false))
             return;
 
-        if (!HasComp<FollowerComponent>(uid))
+        if (!TryComp<FollowerComponent>(uid, out var followerComp) || followerComp.Following != target)
             return;
 
         followed.Following.Remove(uid);

@@ -4,9 +4,9 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.TTS;
 
 [Serializable, NetSerializable]
-public sealed class AnnounceTtsEvent(byte[] data, SoundSpecifier? announcementSound)
+public sealed class AnnounceTtsEvent(byte[] data, ResolvedSoundSpecifier? announcementSound)
     : EntityEventArgs
 {
     public byte[] Data { get; } = data;
-    public SoundSpecifier? AnnouncementSound = announcementSound;
+    public ResolvedSoundSpecifier? AnnouncementSound = announcementSound;
 }

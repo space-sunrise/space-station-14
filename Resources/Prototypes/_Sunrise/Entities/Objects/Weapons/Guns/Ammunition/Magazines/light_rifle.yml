@@ -1,18 +1,4 @@
 - type: entity
-  id: MagazineLightRifleRubber
-  name: "magazine (.30 rifle rubber)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleRubber
-  - type: Sprite
-    layers:
-    - state: practice
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: MagazineAK
   name: Universal AK magazne
   parent: BaseItem
@@ -159,7 +145,7 @@
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/pk_box.rsi
   - type: MagazineVisuals
     magState: mag
-    steps: 7
+    steps: 8
     zeroVisible: false
   - type: Appearance
 
@@ -402,5 +388,35 @@
   - type: MagazineVisuals
     magState: mag
     steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineScarH
+  name: scar-h magazine
+  parent: BaseItem
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeLightRifle  # 762x39
+    proto: CartridgeLightRifle  # 762x39
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/scarh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
     zeroVisible: false
   - type: Appearance

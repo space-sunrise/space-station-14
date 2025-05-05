@@ -1,24 +1,4 @@
 - type: entity
-  id: MagazineCaselessRifleRubber
-  name: "pistol magazine (.25 caseless rubber)"
-  parent: BaseMagazinePistolCaselessRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifleRubber
-    capacity: 10
-  - type: Sprite
-    layers:
-    - state: practice
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
   parent: BaseMagazinePistolCaselessRifle
   id: BaseMagazinePistolCaselessRifleExtended
   components:

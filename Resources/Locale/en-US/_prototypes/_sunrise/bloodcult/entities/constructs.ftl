@@ -1,0 +1,12 @@
+ent-BaseConstruct = { "" }
+    .desc = { "" }
+ent-JuggernautConstruct = juggernaut
+    .desc = big and scary
+ent-ArtificerConstruct = artificer
+    .desc = create some shit
+ent-WraithConstruct = wraith
+    .desc = run...
+ent-ReaperConstruct = reaper
+    .desc = run...
+ent-ConstructShell = construct shell
+    .desc = empty construct shell

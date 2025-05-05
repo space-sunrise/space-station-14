@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Content.Server.Atmos.Reactions;
 
 /// <summary>
-///     Produces Healium by mixing BZ and Frezon at temperatures between 23K and 293K. Efficiency increases in colder temperatures.  
+///     Produces Healium by mixing BZ and Frezon at temperatures between 23K and 293K. Efficiency increases in colder temperatures.
 /// </summary>
 [UsedImplicitly]
 public sealed partial class HealiumProductionReaction : IGasReactionEffect
@@ -19,9 +19,9 @@ public sealed partial class HealiumProductionReaction : IGasReactionEffect
         var rate = mixture.Temperature / Atmospherics.T20C;
         var efficiency = 23.15f / mixture.Temperature;
 
-        var bZRemoved = 1f * rate;
-        var frezonRemoved = 9f * rate;
-        var healiumProduced = 10f * rate * efficiency;
+        var bZRemoved = 3f * rate;
+        var frezonRemoved = 30f * rate;
+        var healiumProduced = 45f * rate * efficiency;
 
         if (bZRemoved > initBZ || frezonRemoved > initFrezon || mixture.Temperature > Atmospherics.T20C)
             return ReactionResult.NoReaction;
@@ -30,10 +30,12 @@ public sealed partial class HealiumProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Frezon, -frezonRemoved);
         mixture.AdjustMoles(Gas.Healium, healiumProduced);
 
-        var energyReleased = healiumProduced * Atmospherics.HealiumProductionEnergy;
+        var energyReleased = healiumProduced * Atmospherics.HealiumProductionEnergy * 0.5f; // Ослабил экзотермическую реакцию (Reduced the exothermic reaction)
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
-            mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);
+        {
+            mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased * 0.5f) / heatCap, Atmospherics.TCMB);
+        }
 
         return ReactionResult.Reacting;
     }

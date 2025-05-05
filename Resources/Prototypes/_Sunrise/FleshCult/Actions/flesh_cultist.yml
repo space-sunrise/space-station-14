@@ -20,7 +20,7 @@
     event: !type:FleshCultistHandTransformEvent
       prototype: FleshBlade
     itemIconStyle: NoItem
-    useDelay: 10
+    useDelay: 3
     checkCanInteract: false
 
 - type: entity
@@ -33,7 +33,7 @@
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAdrenalin.png
     event: !type:FleshCultistAdrenalinActionEvent
     itemIconStyle: NoItem
-    useDelay: 180
+    useDelay: 60
     checkCanInteract: false
 
 - type: entity
@@ -59,7 +59,7 @@
     event: !type:FleshCultistHandTransformEvent
       prototype: FleshClaw
     itemIconStyle: NoItem
-    useDelay: 10
+    useDelay: 3
     checkCanInteract: false
 
 - type: entity
@@ -73,7 +73,7 @@
     itemIconStyle: NoItem
     event: !type:FleshCultistThrowHuggerActionEvent
     range: 200
-    useDelay: 240
+    useDelay: 60
     checkCanInteract: false
 
 - type: entity
@@ -87,7 +87,7 @@
     itemIconStyle: NoItem
     event: !type:FleshCultistAcidSpitActionEvent
     range: 200
-    useDelay: 60
+    useDelay: 30
     checkCanInteract: false
 
 - type: entity
@@ -101,7 +101,7 @@
     event: !type:FleshCultistHandTransformEvent
       prototype: FleshFist
     itemIconStyle: NoItem
-    useDelay: 10
+    useDelay: 3
     checkCanInteract: false
 
 - type: entity
@@ -115,7 +115,7 @@
     event: !type:FleshCultistHandTransformEvent
       prototype: FleshSpikeHandGun
     itemIconStyle: NoItem
-    useDelay: 10
+    useDelay: 3
     checkCanInteract: false
 
 - type: entity
@@ -132,7 +132,7 @@
       checkSlots:
         - shoes
     itemIconStyle: NoItem
-    useDelay: 30
+    useDelay: 10
     checkCanInteract: false
 
 - type: entity
@@ -149,7 +149,7 @@
       checkSlots:
       - shoes
     itemIconStyle: NoItem
-    useDelay: 30
+    useDelay: 10
     checkCanInteract: false
 
 - type: entity
@@ -168,7 +168,7 @@
       checkTags:
       - FullBodyOuter
     itemIconStyle: NoItem
-    useDelay: 30
+    useDelay: 10
     checkCanInteract: false
 
 - type: entity
@@ -180,7 +180,7 @@
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAbsorbBloodPool.png
     event: !type:FleshCultistAbsorbBloodPoolActionEvent
-    useDelay: 30
+    useDelay: 5
     checkCanInteract: false
 
 - type: entity

@@ -1,5 +1,6 @@
 using Content.Shared.Overlays;
 using Content.Shared.Security.Components;
+using Content.Shared.Standing;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
@@ -9,6 +10,7 @@ namespace Content.Client.Overlays;
 public sealed class ShowCriminalRecordIconsSystem : EquipmentHudSystem<ShowCriminalRecordIconsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -20,6 +22,9 @@ public sealed class ShowCriminalRecordIconsSystem : EquipmentHudSystem<ShowCrimi
     private void OnGetStatusIconsEvent(EntityUid uid, CriminalRecordComponent component, ref GetStatusIconsEvent ev)
     {
         if (!IsActive)
+            return;
+
+        if (!_standing.IsStanding(uid))
             return;
 
         if (_prototype.TryIndex(component.StatusIcon, out var iconPrototype))

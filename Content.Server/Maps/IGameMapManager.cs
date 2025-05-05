@@ -12,6 +12,11 @@ public interface IGameMapManager
     /// </summary>
     /// <returns>enumerator of map prototypes</returns>
     IEnumerable<GameMapPrototype> CurrentlyEligibleMaps();
+    // Sunrise-Start
+    IEnumerable<string> CurrentlyExcludedMaps();
+    public void ClearExcludedMaps();
+    public void AddExcludedMap(string mapId);
+    // Sunrise-End
 
     /// <summary>
     /// Returns all maps that can be voted for.

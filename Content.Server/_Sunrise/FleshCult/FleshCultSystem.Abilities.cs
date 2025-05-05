@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Body.Components;
 using Content.Server.Construction.Components;
 using Content.Server.Traits.Assorted;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -73,13 +74,13 @@ public sealed partial class FleshCultSystem
     {
         if (hasAppearance)
         {
-            return 30;
+            return 10;
         }
         return bloodVolume switch
         {
-            >= 300 => 20,
-            >= 150 => 15,
-            >= 100 => 10,
+            >= 300 => 5,
+            >= 150 => 3,
+            >= 100 => 1,
             _ => 0
         };
     }
@@ -269,8 +270,8 @@ public sealed partial class FleshCultSystem
                 }
             }
 
-            var skeletonSprites = _prototypeManager.Index<HumanoidSpeciesBaseSpritesPrototype>("MobSkeletonSprites");
-            foreach (var (key, id) in skeletonSprites.Sprites)
+            var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
+            foreach (var (key, id) in bodyType.Sprites)
             {
                 if (key != HumanoidVisualLayers.Head)
                 {

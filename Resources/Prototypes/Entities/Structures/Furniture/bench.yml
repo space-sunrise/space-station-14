@@ -17,6 +17,14 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+    # Sunrise-Start
+  - type: Strap
+    position: Stand
+    buckleOffsets:
+    - "-0.2,0"
+    - "0.2,0"
+    size: 200
+    # Sunrise-End
 
 - type: entity
   id: BenchColorfulComfy

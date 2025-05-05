@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Latejoin;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Audio;
@@ -8,6 +9,7 @@ using Content.Client.Message;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Shared.CCVar;
+using Content.Shared._Sunrise.Contributors;
 using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
@@ -46,6 +48,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly IResourceManager _resource = default!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!;
+        [Dependency] private readonly ContributorsManager _contributorsManager = default!;
         [Dependency] private readonly ChangelogManager _changelogManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -123,6 +126,9 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
             _serversHubManager.ServersDataListChanged += RefreshServersHubHeader;
+            _contributorsManager.ContributorsDataListChanged += RefreshContributorsHeader;
+
+            RefreshContributorsHeader(_contributorsManager.ContributorsDataList);
         }
 
         protected override void Shutdown()
@@ -143,6 +149,7 @@ namespace Content.Client.Lobby
             Lobby = null;
 
             _serversHubManager.ServersDataListChanged -= RefreshServersHubHeader;
+            _contributorsManager.ContributorsDataListChanged -= RefreshContributorsHeader;
         }
 
         private void RefreshServersHubHeader(List<ServerHubEntry> servers)
@@ -150,6 +157,11 @@ namespace Content.Client.Lobby
             var totalPlayers = _serversHubManager.ServersDataList.Sum(server => server.CurrentPlayers);
             var maxPlayers = _serversHubManager.ServersDataList.Sum(server => server.MaxPlayers);
             Lobby!.ServersHubHeaderLabel.Text = Loc.GetString("serverhub-playingnow", ("total", totalPlayers), ("max", maxPlayers)); // Sunrise-Edit
+        }
+
+        private void RefreshContributorsHeader(List<ContributorEntry> contributors)
+        {
+            Lobby!.ContributorsHeaderLabel.Text = Loc.GetString("contributors-header-count", ("count", contributors.Count));
         }
 
         public void SwitchState(LobbyGui.LobbyGuiState state)

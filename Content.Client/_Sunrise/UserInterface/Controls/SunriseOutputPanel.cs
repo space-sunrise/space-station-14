@@ -12,7 +12,18 @@ public sealed class SunriseOutputPanel : Control
 {
     [Dependency] private readonly MarkupTagManager _tagManager = default!;
 
+    public const string StyleClassOutputPanelScrollDownButton = "outputPanelScrollDownButton";
     public const string StylePropertyStyleBox = "stylebox";
+    public bool ShowScrollDownButton
+    {
+        get => _showScrollDownButton;
+        set
+        {
+            _showScrollDownButton = value;
+            _updateScrollButtonVisibility();
+        }
+    }
+    private bool _showScrollDownButton;
 
     private readonly SunriseRingBufferList<SunriseRichTextEntry> _entries = new();
     private bool _isAtBottom = true;
@@ -21,6 +32,7 @@ public sealed class SunriseOutputPanel : Control
     private bool _firstLine = true;
     private StyleBox? _styleBoxOverride;
     private VScrollBar _scrollBar;
+    private Button _scrollDownButton;
 
     public bool ScrollFollowing { get; set; } = true;
 
@@ -38,7 +50,25 @@ public sealed class SunriseOutputPanel : Control
             HorizontalAlignment = Control.HAlignment.Right
         };
         AddChild(_scrollBar);
-        _scrollBar.OnValueChanged += _ => _isAtBottom = _scrollBar.IsAtEnd;
+
+        AddChild(_scrollDownButton = new Button()
+        {
+            Name = "scrollLiveBtn",
+            StyleClasses = { StyleClassOutputPanelScrollDownButton },
+            VerticalAlignment = VAlignment.Bottom,
+            HorizontalAlignment = HAlignment.Center,
+            Text = String.Format("⬇    {0}    ⬇", Loc.GetString("output-panel-scroll-down-button-text")),
+            MaxWidth = 300,
+            Visible = false,
+        });
+
+        _scrollDownButton.OnPressed += _ => ScrollToBottom();
+
+        _scrollBar.OnValueChanged += _ =>
+        {
+            _isAtBottom = _scrollBar.IsAtEnd;
+            _updateScrollButtonVisibility();
+        };
     }
 
     public int EntryCount => _entries.Count;
@@ -64,6 +94,14 @@ public sealed class SunriseOutputPanel : Control
     public void Clear()
     {
         _firstLine = true;
+        foreach (var entry in _entries)
+        {
+            entry.HideControls();
+            foreach (var control in entry.TagControls.Values)
+            {
+                control.Orphan();
+            }
+        }
         _entries.Clear();
         _totalContentHeight = 0;
         _scrollBar.MaxValue = Math.Max(_scrollBar.Page, _totalContentHeight);
@@ -186,6 +224,7 @@ public sealed class SunriseOutputPanel : Control
         var styleBoxSize = _getStyleBox()?.MinimumSize.Y ?? 0;
 
         _scrollBar.Page = UIScale * (Height - styleBoxSize);
+        _updateScrollButtonVisibility();
         _invalidateEntries();
     }
 
@@ -285,5 +324,10 @@ public sealed class SunriseOutputPanel : Control
             _invalidateEntries();
             _invalidOnVisible = false;
         }
+    }
+
+    private void _updateScrollButtonVisibility()
+    {
+        _scrollDownButton.Visible = ShowScrollDownButton && !_isAtBottom;
     }
 }

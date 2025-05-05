@@ -1,0 +1,11 @@
+﻿- type: entity
+  id: ExplosionEffectSmoke
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: _Sunrise/Effects/explosion_smoke.rsi
+    state: smoke
+    shader: unshaded
+  - type: ExplosionSmokeEffect
+  - type: TimedDespawn
+    lifetime: 5

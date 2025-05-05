@@ -223,9 +223,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                                 baseLayerStorage.Layer = customBaseLayer.Id;
                             else
                             {
-                                var speciesProto = _prototypes.Index(humanoid.Species);
-                                var baseSprites = _prototypes.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
-                                if (baseSprites.Sprites.TryGetValue(layer.Value, out var baseLayer))
+                                var bodyType = _prototypes.Index(humanoid.BodyType);
+                                if (bodyType.Sprites.TryGetValue(layer.Value, out var baseLayer))
                                     baseLayerStorage.Layer = baseLayer;
                             }
                         }

@@ -30,6 +30,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Robust.Shared.Player;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Shared.Popups;
@@ -41,19 +42,20 @@ namespace Content.Server.GameTicking.Rules;
 /// </summary>
 public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleComponent>
 {
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
     [Dependency] private readonly AdminVerbSystem _adminVerbSystem = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
@@ -181,7 +183,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         // Check if the user has a ban on "Revolutionary"
         // Check if the user has a ban on "Revolutionary"
-        if (mind != null && mind.Session != null && _banManager.IsAntagBanned(mind.Session.UserId, "Rev"))
+        if (mind != null && mind.UserId.HasValue && _banManager.IsAntagBanned(mind.UserId.Value, "Rev"))
         {
             KillDueToBan(ev.Target);
             return;
@@ -208,8 +210,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             _role.MindAddRole(mindId, "MindRoleRevolutionary");
         }
 
-        if (mind?.Session != null)
-            _antag.SendBriefing(mind.Session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
+        if (mind is { UserId: not null } && _player.TryGetSessionById(mind.UserId, out var session))
+            _antag.SendBriefing(session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
     }
 
     //TODO: Enemies of the revolution
@@ -232,7 +234,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             commandList.Add(id);
         }
 
-        return IsGroupDetainedOrDead(commandList, true, true);
+        return IsGroupDetainedOrDead(commandList, true, true, true);
     }
 
     private void OnHeadRevMobStateChanged(EntityUid uid, HeadRevolutionaryComponent comp, MobStateChangedEvent ev)
@@ -257,7 +259,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         // If no Head Revs are alive all normal Revs will lose their Rev status and rejoin Nanotrasen
         // Cuffing Head Revs is not enough - they must be killed.
-        if (IsGroupDetainedOrDead(headRevList, false, false))
+        if (IsGroupDetainedOrDead(headRevList, false, false, false))
         {
             var rev = AllEntityQuery<RevolutionaryComponent, MindContainerComponent>();
             while (rev.MoveNext(out var uid, out _, out var mc))
@@ -271,7 +273,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 _popup.PopupEntity(Loc.GetString("rev-break-control", ("name", Identity.Entity(uid, EntityManager))), uid);
                 _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(uid)} was deconverted due to all Head Revolutionaries dying.");
 
-                if (!_mind.TryGetMind(uid, out var mindId, out _, mc))
+                if (!_mind.TryGetMind(uid, out var mindId, out var mind, mc))
                     continue;
 
                 // remove their antag role
@@ -279,7 +281,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
                 // make it very obvious to the rev they've been deconverted since
                 // they may not see the popup due to antag and/or new player tunnel vision
-                if (_mind.TryGetSession(mindId, out var session))
+                if (_player.TryGetSessionById(mind.UserId, out var session))
                     _euiMan.OpenEui(new DeconvertedEui(), session);
             }
             return true;
@@ -294,34 +296,45 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     /// <param name="list">The list of the entities</param>
     /// <param name="checkOffStation">Bool for if you want to check if someone is in space and consider them missing in action. (Won't check when emergency shuttle arrives just in case)</param>
     /// <param name="countCuffed">Bool for if you don't want to count cuffed entities.</param>
+    /// <param name="countRevolutionaries">Bool for if you want to count revolutionaries.</param>
     /// <returns></returns>
-    private bool IsGroupDetainedOrDead(List<EntityUid> list, bool checkOffStation, bool countCuffed)
+    private bool IsGroupDetainedOrDead(List<EntityUid> list, bool checkOffStation, bool countCuffed, bool countRevolutionaries)
     {
         var gone = 0;
+
         foreach (var entity in list)
         {
             if (TryComp<CuffableComponent>(entity, out var cuffed) && cuffed.CuffedHandCount > 0 && countCuffed)
             {
                 gone++;
+                continue;
             }
-            else
+
+            if (TryComp<MobStateComponent>(entity, out var state))
             {
-                if (TryComp<MobStateComponent>(entity, out var state))
-                {
-                    if (state.CurrentState == MobState.Dead || state.CurrentState == MobState.Invalid)
-                    {
-                        gone++;
-                    }
-                    else if (checkOffStation && _stationSystem.GetOwningStation(entity) == null && !_emergencyShuttle.EmergencyShuttleArrived)
-                    {
-                        gone++;
-                    }
-                }
-                //If they don't have the MobStateComponent they might as well be dead.
-                else
+                if (state.CurrentState == MobState.Dead || state.CurrentState == MobState.Invalid)
                 {
                     gone++;
+                    continue;
                 }
+
+                if (checkOffStation && _stationSystem.GetOwningStation(entity) == null && !_emergencyShuttle.EmergencyShuttleArrived)
+                {
+                    gone++;
+                    continue;
+                }
+            }
+            //If they don't have the MobStateComponent they might as well be dead.
+            else
+            {
+                gone++;
+                continue;
+            }
+
+            if ((HasComp<RevolutionaryComponent>(entity) || HasComp<HeadRevolutionaryComponent>(entity)) && countRevolutionaries)
+            {
+                gone++;
+                continue;
             }
         }
 

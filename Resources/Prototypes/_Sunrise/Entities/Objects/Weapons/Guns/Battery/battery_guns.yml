@@ -239,7 +239,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
   - type: Gun
-    fireRate: 2.75
+    fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
@@ -249,9 +249,9 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 145
+    autoRechargeRate: 60
     autoRechargePause: true
-    autoRechargePauseTime: 4
+    autoRechargePauseTime: 6
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -292,6 +292,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
     - state: mode-disabler
       shader: unshaded
       map: [ "Firemode" ]
@@ -320,7 +323,7 @@
   - type: MagazineVisuals
     magState: mag
     steps: 5
-    zeroVisible: true
+    zeroVisible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -451,8 +454,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 1000
+    startingCharge: 1000
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -562,7 +565,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-#  - type: Clothing
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -591,6 +595,9 @@
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -660,6 +667,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
@@ -704,6 +712,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
@@ -752,6 +761,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 8000
     startingCharge: 8000
@@ -801,6 +811,7 @@
     magState: mag
     steps: 6
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
@@ -849,6 +860,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
@@ -858,6 +870,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -898,6 +913,9 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3

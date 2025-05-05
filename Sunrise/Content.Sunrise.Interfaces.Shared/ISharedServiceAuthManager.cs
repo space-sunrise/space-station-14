@@ -11,7 +11,8 @@ public sealed record ServiceAuthDataResponse(string Url, byte[] Qrcode);
 public enum ServiceType
 {
     Discord,
-    Telegram
+    Telegram,
+    Github
 }
 
 public sealed class ServiceAuthData(string url, byte[] qrcode, ServiceType serviceType)

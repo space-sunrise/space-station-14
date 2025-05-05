@@ -4,7 +4,6 @@ using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -69,14 +68,11 @@ public sealed partial class StationCentCommSystem : EntitySystem
             return null;
         }
 
-        var mapId = _mapManager.CreateMap();
-        _mapManager.AddUninitializedMap(mapId);
-        component.MapId = mapId;
         if (component.Station != null)
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>(component.Station, out var gameMap))
             {
-                _gameTicker.LoadGameMap(gameMap, mapId, null);
+                _gameTicker.LoadGameMap(gameMap, out var mapId);
 
                 if (_shuttle.TryAddFTLDestination(mapId, true, out var ftlDestination))
                     ftlDestination.Whitelist = component.ShuttleWhitelist;

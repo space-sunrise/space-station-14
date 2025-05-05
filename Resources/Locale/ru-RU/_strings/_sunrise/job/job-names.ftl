@@ -1,6 +1,7 @@
 job-name-magistrat = магистрат
 job-name-centcomop = оператор Центком
 job-name-blueshield = офицер «Синий Щит»
+job-name-blueshield-ensign = лейтенант «Синий Щит»
 job-name-iaa = агент внутренних дел
 job-name-senior-engineer = ведущий инженер
 job-name-senior-researcher = ведущий учёный
@@ -28,11 +29,16 @@ job-name-peace-borg = миротворец
 job-name-clown-borg = клоун киборг
 job-name-pathologist = патологоанатом
 job-name-barber = парикмахер
+job-name-mail-carrier = почтальон
 job-name-adjutant = адъютант
 job-name-usspcrew = Сотрудник СССП
 job-name-usspguard = Милиция СССП
 job-name-usspsoldier = Солдат СССП
 job-name-usspofficer = Офицер СССП
+# NTR
+job-name-ntrguard = Оператор ИСН
+job-name-ntrleader = Командир ИСН
+job-name-ntrofficer = Офицер ИСН
 job-name-usspcaptain = Капитан СССП
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
@@ -66,7 +72,11 @@ JobUSSPCrew = Сотрудник СССП
 JobUSSPGuard = Милиция СССП
 JobUSSPSoldier = Солдат СССП
 JobUSSPOfficer = Офицер СССП
+JobNtrGuard = Оператор ИСН
+JobNtrLeadGuard = Командир ИСН
+JobNtrOfficer = Офицер ИСН
 JobUSSPCaptain = Капитан СССП
 JobClownBorg = клоун киборг
 JobBarber = парикмахер
 JobAdjutant = адъютант
+JobMailCarrier = почтальон

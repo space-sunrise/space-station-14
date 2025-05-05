@@ -26,6 +26,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Weapons.Melee;
+using Content.Shared._Sunrise.ThermalVision;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
@@ -55,6 +56,8 @@ public sealed partial class VampireSystem
         SubscribeLocalEvent<VampireComponent, VampireUnholyStrengthEvent>(OnVampireUnholyStrength);
         SubscribeLocalEvent<VampireComponent, VampireSupernaturalStrengthEvent>(OnVampireSupernaturalStrength);
         SubscribeLocalEvent<VampireComponent, VampireCloakOfDarknessEvent>(OnVampireCloakOfDarkness);
+        SubscribeLocalEvent<VampireComponent, VampireBloodScaleEvent>(OnVampireBloodScale);
+        SubscribeLocalEvent<VampireComponent, VampireThermalVisionEvent>(OnVampireThermalVision);
 
         //Hypnotise
         SubscribeLocalEvent<VampireComponent, VampireHypnotiseDoAfterEvent>(HypnotiseDoAfter);
@@ -211,6 +214,62 @@ public sealed partial class VampireSystem
         _action.SetToggled(actionEntity, toggled);
 
         ev.Handled = true;
+    }
+    private void OnVampireBloodScale(EntityUid entity, VampireComponent component, VampireBloodScaleEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+            return;
+
+        var vampire = new Entity<VampireComponent>(entity, component);
+
+        if (!IsAbilityUsable(vampire, def))
+            return;
+
+        ToggleBloodScale(entity, vampire);
+        var scale = EnsureComp<VampireBloodScaleComponent>(vampire);
+        scale.Upkeep = 4f;
+
+        ev.Handled = true;
+    }
+
+    private void ToggleBloodScale(EntityUid uid, VampireComponent comp)
+    {
+        var scale = EnsureComp<VampireBloodScaleComponent>(uid);
+        if (!comp.BloodScaleActive)
+        {
+            _speed.ChangeBaseSpeed(uid, 4.5f, 6f, 20f);
+            _popup.PopupEntity(Loc.GetString("blood-scale-start"), uid, uid);
+            comp.BloodScaleActive = true;
+            scale.IsActive = true;
+        }
+        else
+        {
+            _speed.ChangeBaseSpeed(uid, 2.5f, 4.5f, 20f);
+            _popup.PopupEntity(Loc.GetString("blood-scale-end"), uid, uid);
+            comp.BloodScaleActive = false;
+            scale.IsActive = false;
+        }
+    }
+
+        private void OnVampireThermalVision(EntityUid entity, VampireComponent component, VampireThermalVisionEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+            return;
+
+        if (!IsAbilityUsable((entity, component), def))
+            return;
+
+        // Toggle thermal vision component
+        if (HasComp<ThermalVisionComponent>(entity))
+        {
+            RemComp<ThermalVisionComponent>(entity);
+            _popup.PopupEntity(Loc.GetString("vampire-thermal-vision-off"), entity, entity);
+        }
+        else
+        {
+            EnsureComp<ThermalVisionComponent>(entity);
+            _popup.PopupEntity(Loc.GetString("vampire-thermal-vision-on"), entity, entity);
+        }
     }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {

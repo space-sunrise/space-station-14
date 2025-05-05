@@ -3,6 +3,7 @@ using Content.Server.Bed.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Actions;
 using Content.Shared.Bed;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
@@ -11,6 +12,7 @@ using Content.Shared.Damage;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -25,12 +27,17 @@ namespace Content.Server.Bed
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<HealOnBuckleComponent, StrappedEvent>(OnStrapped);
             SubscribeLocalEvent<HealOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
+            // Sunrise-Start
+            SubscribeLocalEvent<CanSleepOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
+            SubscribeLocalEvent<CanSleepOnBuckleComponent, StrappedEvent>(OnStrapped);
+            // Sunrise-End
             SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
             SubscribeLocalEvent<StasisBedComponent, UnstrappedEvent>(OnStasisUnstrapped);
             SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
@@ -41,15 +48,29 @@ namespace Content.Server.Bed
         {
             EnsureComp<HealOnBuckleHealingComponent>(bed);
             bed.Comp.NextHealTime = _timing.CurTime + TimeSpan.FromSeconds(bed.Comp.HealTime);
-            _actionsSystem.AddAction(args.Buckle, ref bed.Comp.SleepAction, SleepingSystem.SleepActionId, bed);
-
-            // Single action entity, cannot strap multiple entities to the same bed.
-            DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
         }
+
+        // Sunrise-Start
+        private void OnStrapped(Entity<CanSleepOnBuckleComponent> bed, ref StrappedEvent args)
+        {
+            var canSleep = EnsureComp<CanSleepComponent>(args.Buckle);
+            _actionsSystem.AddAction(args.Buckle.Owner, ref canSleep.SleepAction, SleepingSystem.SleepActionId, args.Buckle.Owner);
+        }
+
+        private void OnUnstrapped(Entity<CanSleepOnBuckleComponent> bed, ref UnstrappedEvent args)
+        {
+            if (!TryComp<CanSleepComponent>(args.Buckle.Owner, out var canSleep))
+                return;
+
+            RemComp<CanSleepComponent>(args.Buckle.Owner);
+            _actionsSystem.RemoveAction(args.Buckle.Owner, canSleep.SleepAction);
+            if (canSleep.SleepAction != null)
+                _actionContainer.RemoveAction(canSleep.SleepAction.Value);
+        }
+        // Sunrise-End
 
         private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)
         {
-            _actionsSystem.RemoveAction(args.Buckle, bed.Comp.SleepAction);
             _sleepingSystem.TryWaking(args.Buckle.Owner);
             RemComp<HealOnBuckleHealingComponent>(bed);
         }

@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
+using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -360,6 +361,16 @@ namespace Content.Server.Database
         Task SendNotification(DatabaseNotification notification);
 
         #endregion
+
+        // Sunrise-Start
+        #region Ahelp
+
+        Task AddAHelpMessage(Guid senderSessionUserId, Guid messageUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly);
+
+        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId);
+
+        #endregion
+        // Sunrise-End
     }
 
     /// <summary>
@@ -408,6 +419,7 @@ namespace Content.Server.Database
         private ServerDbBase _db = default!;
         private LoggingProvider _msLogProvider = default!;
         private ILoggerFactory _msLoggerFactory = default!;
+        private ISawmill _sawmill = default!;
 
         private bool _synchronous;
         // When running in integration tests, we'll use a single in-memory SQLite database connection.
@@ -423,6 +435,7 @@ namespace Content.Server.Database
             {
                 builder.AddProvider(_msLogProvider);
             });
+            _sawmill = _logMgr.GetSawmill("db.manager");
 
             _synchronous = _cfg.GetCVar(CCVars.DatabaseSynchronous);
 
@@ -1041,6 +1054,18 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
 
+        public Task AddAHelpMessage(Guid senderUserId, Guid receiverUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddAHelpMessage(senderUserId, receiverUserId, message, sentAt, playSound, adminOnly));
+        }
+
+        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAHelpMessagesByReceiverAsync(receiverUserId));
+        }
+
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {
             lock (_notificationHandlers)
@@ -1144,7 +1169,7 @@ namespace Content.Server.Database
                 Password = pass
             }.ConnectionString;
 
-            Logger.DebugS("db.manager", $"Using Postgres \"{host}:{port}/{db}\"");
+            _sawmill.Debug($"Using Postgres \"{host}:{port}/{db}\"");
 
             builder.UseNpgsql(connectionString);
             SetupLogging(builder);
@@ -1167,12 +1192,12 @@ namespace Content.Server.Database
             if (!inMemory)
             {
                 var finalPreferencesDbPath = Path.Combine(_res.UserData.RootDir!, configPreferencesDbPath);
-                Logger.DebugS("db.manager", $"Using SQLite DB \"{finalPreferencesDbPath}\"");
+                _sawmill.Debug($"Using SQLite DB \"{finalPreferencesDbPath}\"");
                 getConnection = () => new SqliteConnection($"Data Source={finalPreferencesDbPath}");
             }
             else
             {
-                Logger.DebugS("db.manager", "Using in-memory SQLite DB");
+                _sawmill.Debug("Using in-memory SQLite DB");
                 _sqliteInMemoryConnection = new SqliteConnection("Data Source=:memory:");
                 // When using an in-memory DB we have to open it manually
                 // so EFCore doesn't open, close and wipe it every operation.

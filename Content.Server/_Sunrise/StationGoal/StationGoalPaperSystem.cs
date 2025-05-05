@@ -1,6 +1,7 @@
 using Content.Server.GameTicking.Events;
 using Content.Server.Paper;
 using Content.Shared.Fax.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.Paper;
 using Robust.Server.Containers;
 using Robust.Server.Player;
@@ -21,10 +22,10 @@ namespace Content.Server._Sunrise.StationGoal
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+            SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarting);
         }
 
-        private void OnRoundStarting(RoundStartingEvent ev)
+        private void OnRoundStarting(RoundStartedEvent ev)
         {
             var playerCount = _playerManager.PlayerCount;
 
@@ -70,22 +71,23 @@ namespace Content.Server._Sunrise.StationGoal
                 return false;
 
             var wasSent = false;
-            var fleshTilesQuery = EntityQueryEnumerator<FaxMachineComponent>();
-            while (fleshTilesQuery.MoveNext(out var faxId, out var fax))
+
+            var printout = new FaxPrintout(
+                Loc.GetString(goal.Text, ("station", MetaData(ent.Value).EntityName)),
+                Loc.GetString("station-goal-fax-paper-name"),
+                null,
+                null,
+                "paper_stamp-centcom",
+                new List<StampDisplayInfo>
+                {
+                    new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.Green },
+                });
+
+            var faxQuery = EntityQueryEnumerator<FaxMachineComponent>();
+            while (faxQuery.MoveNext(out var faxId, out var fax))
             {
                 if (!fax.ReceiveStationGoal)
                     continue;
-
-                var printout = new FaxPrintout(
-                    Loc.GetString(goal.Text, ("station", MetaData(ent.Value).EntityName)),
-                    Loc.GetString("station-goal-fax-paper-name"),
-                    null,
-                    null,
-                    "paper_stamp-centcom",
-                    new List<StampDisplayInfo>
-                    {
-                        new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#006600") },
-                    });
 
                 var xform = Transform(faxId);
                 var paper = SpawnPaperGoal(xform.Coordinates, printout);

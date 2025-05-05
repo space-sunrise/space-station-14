@@ -1,0 +1,15 @@
+﻿- type: gamePreset
+  id: BloodCult
+  alias:
+  - bloodcult
+  name: cult-title
+  description: cult-description
+  showInVote: false
+  hide: true
+  minPlayers: 20
+  rules:
+  - BloodCult
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation

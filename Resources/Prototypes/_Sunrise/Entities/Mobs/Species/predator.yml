@@ -11,6 +11,10 @@
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
     state: full
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Perishable
   - type: HumanoidAppearance
     species: Predator

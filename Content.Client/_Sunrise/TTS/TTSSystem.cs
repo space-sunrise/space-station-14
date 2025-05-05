@@ -37,10 +37,10 @@ public sealed class TTSSystem : EntitySystem
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
     private static readonly AudioResource EmptyAudioResource = new();
 
-    public sealed class QueuedTts(byte[] data, TtsType ttsType, SoundSpecifier? announcementSound = null)
+    public sealed class QueuedTts(byte[] data, TtsType ttsType, ResolvedSoundSpecifier? announcementSound = null)
     {
         public byte[] Data = data;
-        public SoundSpecifier? AnnouncementSound = announcementSound;
+        public ResolvedSoundSpecifier? AnnouncementSound = announcementSound;
         public TtsType TtsType = ttsType;
     }
 
@@ -138,7 +138,7 @@ public sealed class TTSSystem : EntitySystem
 
         if (entry.AnnouncementSound != null)
         {
-            _currentPlaying = _audio.PlayGlobal(_sharedAudio.GetSound(entry.AnnouncementSound), new EntityUid(), finalParams.AddVolume(-5f));
+            _currentPlaying = _audio.PlayGlobal(entry.AnnouncementSound, new EntityUid(), finalParams.AddVolume(-5f));
         }
         _currentPlaying = PlayTTSBytes(entry.Data, null, finalParams, true);
     }
@@ -200,17 +200,17 @@ public sealed class TTSSystem : EntitySystem
 
         if (globally)
         {
-            playing = _audio.PlayGlobal(res.AudioStream, finalParams);
+            playing = _audio.PlayGlobal(res.AudioStream, null, finalParams);
         }
         else
         {
             if (sourceUid != null)
             {
-                playing = _audio.PlayEntity(res.AudioStream, sourceUid.Value, finalParams);
+                playing = _audio.PlayEntity(res.AudioStream, sourceUid.Value, null, finalParams);
             }
             else
             {
-                playing = _audio.PlayGlobal(res.AudioStream, finalParams);
+                playing = _audio.PlayGlobal(res.AudioStream, null, finalParams);
             }
         }
 

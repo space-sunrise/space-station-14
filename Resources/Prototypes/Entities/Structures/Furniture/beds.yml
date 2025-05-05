@@ -24,6 +24,7 @@
     sprite: Structures/Furniture/furniture.rsi
     state: bed
     noRot: true
+    drawdepth: Puddles #Sunrise-add
   - type: Strap
     position: Down
     rotation: -90
@@ -56,6 +57,7 @@
     noRot: true
   - type: Anchorable
   - type: Pullable
+  - type: CanSleepOnBuckle # Sunrise-Edit
 
 
 - type: entity
@@ -78,6 +80,7 @@
   - type: GuideHelp
     guides:
     - Medical Doctor
+  - type: CanSleepOnBuckle # Sunrise-Edit
 
 - type: entity
   parent: Bed
@@ -179,3 +182,4 @@
           MaterialWoodPlank:
             min: 2
             max: 2
+  - type: CanSleepOnBuckle # Sunrise-Edit

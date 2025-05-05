@@ -131,6 +131,21 @@
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
+  - BlueShieldTurtleneck
+
+- type: loadoutGroup
+  id: BlueShieldBelt
+  name: loadout-group-blueshield-belt
+  loadouts:
+  - BlueShieldWebbing
+  - AssaultBeltBS
+
+- type: loadoutGroup
+  id: BlueShieldNeck
+  name: loadout-group-blueshield-neck
+  loadouts:
+  - BlueShieldMantle
+  - BlueShieldCoat
 
 - type: loadoutGroup
   id: BarberJumpsuit
@@ -206,9 +221,23 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - SunriseWeaponPistolG22
+  #- SunriseWeaponPistolG22
   - SunriseWeaponEnergyGun
+  - SunriseWeaponTaser
 
+# Security  HoS
+- type: loadoutGroup
+  id: SunriseSecurityGunHos
+  name: loadout-group-hos-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - SunriseWeaponPistolG22
+  - SunriseWeaponTaser
+  - HeadofSecurityWeapon20h
+  - HeadofSecurityWeapon50h
+  - HeadofSecurityWeapon50h2
+  - HeadofSecurityWeapon100h
 # Medical
 
 - type: loadoutGroup
@@ -272,6 +301,9 @@
   loadouts:
   - BeretSeniorPhysician
   - MedicalBeret
+  - ParamedicBeret
+  - ChemistBeret
+  - PatologonatBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -321,7 +353,7 @@
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlue
   - Sunrise-Stethoscope
@@ -388,6 +420,7 @@
   maxLimit: 1
   loadouts:
   - MedicalBeret
+  - ChemistBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -406,7 +439,7 @@
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-Stethoscope
 
@@ -481,7 +514,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
 
 - type: loadoutGroup
@@ -520,7 +553,7 @@
   loadouts:
   - Sunrise-ScarfRed
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-Stethoscope
 
@@ -532,7 +565,7 @@
   loadouts:
   - Sunrise-ScarfRed
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlue
   - Sunrise-Stethoscope
@@ -576,6 +609,7 @@
   maxLimit: 1
   loadouts:
   - MedicalBeret
+  - PatologonatBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -608,7 +642,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlack
   - Sunrise-Stethoscope
@@ -782,6 +816,7 @@
   maxLimit: 2
   loadouts:
   - TrinketsEngineeringAAM
+  - TrinketsEngineeringEAM
   - TrinketsEngineeringTS
   - TrinketsEngineeringFL
   - TrinketsEngineeringGA
@@ -803,7 +838,7 @@
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
   - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-TieRed
 
 - type: loadoutGroup
@@ -813,7 +848,7 @@
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
-  - EngineerMaskCMGA 
+  - EngineerMaskCMGA
   - Sunrise-MBandRed
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
@@ -828,6 +863,7 @@
   - Sunrise-EngineerHeadBeret
   - Sunrise-BandRed
   - Sunrise-BandOrange
+  - Sunrise-AtmosBeret
   - Sunrise-BandYellow
   - Sunrise-BandCyan
   - StationEngineerHardhatRed
@@ -945,6 +981,7 @@
   maxLimit: 1
   loadouts:
   - Sunrise-EngineerHeadBeret
+  - Sunrise-AtmosBeret
   - Sunrise-BandRed
   - Sunrise-BandOrange
   - Sunrise-BandYellow
@@ -965,7 +1002,7 @@
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
-  - EngineerMaskCMGA 
+  - EngineerMaskCMGA
   - Sunrise-MBandRed
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
@@ -981,7 +1018,7 @@
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
   - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue  
+  - Sunrise-ScarfLightBlue
   - Sunrise-TieRed
 
 - type: loadoutGroup
@@ -1057,6 +1094,13 @@
   - OrangeGloves
   - Sunrise-LightBrownGloves
   - Sunrise-BrownGloves
+
+- type: loadoutGroup
+  id: MailCarrierJumpsuit
+  name: loadout-group-mail-jumpsuit
+  loadouts:
+  - MailCarrierJumpsuit
+  - MailCarrierJumpskirt
 
 - type: loadoutGroup
   id: SunriseSalvageGloves
@@ -1191,3 +1235,17 @@
   - PetMobClownGoblin
   - PetMobCorgiIanPup
   - PetMobParrot
+
+#Law
+
+- type: loadoutGroup
+  id: BackNTR
+  name: loadout-group-backntr
+  loadouts:
+  - BackpackNTRG
+
+- type: loadoutGroup
+  id: UniformNTR
+  name: loadout-group-uniformntr
+  loadouts:
+  - JumpsuitNTR

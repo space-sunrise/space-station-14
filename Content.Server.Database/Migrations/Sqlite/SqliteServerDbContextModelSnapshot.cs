@@ -15,7 +15,49 @@ namespace Content.Server.Database.Migrations.Sqlite
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
+
+            modelBuilder.Entity("Content.Server.Database.AHelpMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ahelp_messages_id");
+
+                    b.Property<bool>("AdminOnly")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("admin_only");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("message");
+
+                    b.Property<bool>("PlaySound")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("play_sound");
+
+                    b.Property<Guid>("ReceiverUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("receiver_user_id");
+
+                    b.Property<Guid>("SenderUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("sender_user_id");
+
+                    b.Property<DateTimeOffset>("SentAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("sent_at");
+
+                    b.HasKey("Id")
+                        .HasName("PK_ahelp_messages");
+
+                    b.HasIndex("ReceiverUserId")
+                        .HasDatabaseName("IX_ahelp_messages_receiver_user_id");
+
+                    b.ToTable("ahelp_messages", (string)null);
+                });
 
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
@@ -264,8 +306,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("expiration_time");
 
-                    b.Property<DateTime?>("LastEditedAt")
-                        .IsRequired()
+                    b.Property<DateTime>("LastEditedAt")
                         .HasColumnType("TEXT")
                         .HasColumnName("last_edited_at");
 
@@ -393,8 +434,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("expiration_time");
 
-                    b.Property<DateTime?>("LastEditedAt")
-                        .IsRequired()
+                    b.Property<DateTime>("LastEditedAt")
                         .HasColumnType("TEXT")
                         .HasColumnName("last_edited_at");
 
@@ -779,6 +819,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
+                    b.Property<string>("BodyType")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("body_type");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -854,12 +899,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
 
-                    // Sunrise-TTS-Start
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
-                    // Sunrise-TTS-End
 
                     b.HasKey("Id")
                         .HasName("PK_profile");
@@ -927,6 +970,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("profile_role_loadout_id");
+
+                    b.Property<string>("EntityName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("entity_name");
 
                     b.Property<int>("ProfileId")
                         .HasColumnType("INTEGER")

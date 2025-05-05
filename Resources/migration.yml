@@ -157,7 +157,7 @@ TransmitterSubspaceStockPart: null
 ClothingHeadHatHoodRad: null
 
 # 2024-01-12
-SpaceMedipen: null
+#SpaceMedipen: null
 
 # 2024-01-18
 ClothingHeadHelmetVoidParamed: null
@@ -289,46 +289,46 @@ BodyBag_Folded: BodyBagFolded
 
 # Sunrise-Edit: Возвращены резиновые боеприпасы.
 # 2024-04-26
-#BaseBulletRubber: null
-#BulletPistolRubber: BulletPistol
-#BulletMagnumRubber: BulletMagnum
-#BulletLightRifleRubber: BulletLightRifle
-#BulletRifleRubber: BulletRifle
-#BulletCaselessRifleRubber: BulletCaselessRifle
-#CartridgePistolRubber: CartridgePistol
-#CartridgeMagnumRubber: CartridgeMagnum
-#CartridgeLightRifleRubber: CartridgeLightRifle
-#CartridgeRifleRubber: CartridgeRifle
-#CartridgeCaselessRifleRubber: CartridgeCaselessRifle
-#MagazinePistolRubber: MagazinePistol
-#MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGun
-#MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
-#MagazineMagnumRubber: MagazineMagnum
-#MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
-#MagazineLightRifleRubber: MagazineLightRifle
-#MagazineRifleRubber: MagazineRifle
-#MagazineCaselessRifleRubber: MagazineCaselessRifle
-#MagazineCaselessRifleShortRubber: MagazineCaselessRifleShort
-#SpeedLoaderPistolRubber: SpeedLoaderPistol
-#SpeedLoaderMagnumRubber: SpeedLoaderMagnum
-#MagazineBoxPistolRubber: MagazineBoxPistol
+BaseBulletRubber: null
+BulletPistolRubber: BulletPistol
+BulletMagnumRubber: BulletMagnum
+BulletLightRifleRubber: BulletLightRifle
+BulletRifleRubber: BulletRifle
+BulletCaselessRifleRubber: BulletCaselessRifle
+CartridgePistolRubber: CartridgePistol
+CartridgeMagnumRubber: CartridgeMagnum
+CartridgeLightRifleRubber: CartridgeLightRifle
+CartridgeRifleRubber: CartridgeRifle
+CartridgeCaselessRifleRubber: CartridgeCaselessRifle
+MagazinePistolRubber: MagazinePistol
+MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGun
+MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
+MagazineMagnumRubber: MagazineMagnum
+MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
+MagazineLightRifleRubber: MagazineLightRifle
+MagazineRifleRubber: MagazineRifle
+MagazineCaselessRifleRubber: MagazineCaselessRifle
+MagazineCaselessRifleShortRubber: MagazineCaselessRifleShort
+SpeedLoaderPistolRubber: SpeedLoaderPistol
+SpeedLoaderMagnumRubber: SpeedLoaderMagnum
+MagazineBoxPistolRubber: MagazineBoxPistol
 # RIP box of magnum rubbers 202X to 2024
-#MagazineBoxMagnumRubber: MagazineBoxMagnum
-#MagazineBoxLightRifleRubber: MagazineBoxLightRifle
-#MagazineBoxRifleRubber: MagazineBoxRifle
-#MagazineBoxRifleBigRubber: MagazineBoxRifleBig
-#MagazineBoxCaselessRifleRubber: MagazineBoxCaselessRifle
+MagazineBoxMagnumRubber: MagazineBoxMagnum
+MagazineBoxLightRifleRubber: MagazineBoxLightRifle
+MagazineBoxRifleRubber: MagazineBoxRifle
+MagazineBoxRifleBigRubber: MagazineBoxRifleBig
+MagazineBoxCaselessRifleRubber: MagazineBoxCaselessRifle
 #MagazineBoxCaselessRifleBigRubber: MagazineBoxCaselessRifle10x24
-#BoxMagazinePistolRubber: BoxMagazinePistol
-#BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
-#BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
-#BoxMagazineLightRifleRubber: BoxMagazineLightRifle
-#BoxMagazineRifleRubber: BoxMagazineRifle
-#BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
-#BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
-#WeaponPistolMk58Nonlethal: WeaponPistolMk58
-#WeaponPistolN1984Nonlethal: WeaponPistolN1984
-#WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
+BoxMagazinePistolRubber: BoxMagazinePistol
+BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
+BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
+BoxMagazineLightRifleRubber: BoxMagazineLightRifle
+BoxMagazineRifleRubber: BoxMagazineRifle
+BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
+BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
+WeaponPistolMk58Nonlethal: WeaponPistolMk58
+WeaponPistolN1984Nonlethal: WeaponPistolN1984
+WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
 #WeaponRifleLecterRubber: WeaponRifleLecter
 
 # 2024-04-26
@@ -538,19 +538,89 @@ LightTree04: LightTree
 LightTree05: LightTree
 LightTree06: LightTree
 
-#2024-12-28
+# 2024-12-28
 DrinkIrishCarBomb: DrinkIrishSlammer
 
-#2025-01-06
+# 2025-01-06
+BorgModuleRadiationDetection: null
+BorgModuleGPS: null
+BorgModuleLightReplacer: BorgModuleCustodial
+BorgModuleAdvancedTreatment: null
 ClothingMaskSexyClown: ClothingMaskBlushingClown
 ClothingMaskSexyMime: ClothingMaskBlushingMime
 
 # 2025-01-27
 FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
 
-#2025-02-05
+# 2025-02-05
 WeaponSubMachineGunVector: null
 WeaponSubMachineGunVectorRubber: null
+
+# 2025-02-11
+WallShuttleInterior: WallShuttle
+
+# 2025-02-18
+PosterContrabandLustyExomorph: PosterContrabandRealExomorph
+PosterContrabandBustyBackdoorExoBabes6: PosterContrabandRouny
+
+# 2025-02-20
+MagazineBoxAntiMaterielBig: null
+MagazineBoxCaselessRifle10x24: null
+MagazineBoxCaselessRifleBig: null
+MagazinePistolHighCapacityRubber: null
+
+# 2025-03-18
+EpinephrineChemistryBottle: ChemistryBottleEpinephrine
+RobustHarvestChemistryBottle: ChemistryBottleRobustHarvest
+EZNutrientChemistryBottle: ChemistryBottleEZNutrient
+Left4ZedChemistryBottle: ChemistryBottleLeft4Zed
+UnstableMutagenChemistryBottle: ChemistryBottleUnstableMutagen
+PotassiumChemistryBottle: ChemistryBottlePotassium
+NocturineChemistryBottle: ChemistryBottleNocturine
+NitrogenChemistryBottle: ChemistryBottleNitrogen
+EphedrineChemistryBottle: ChemistryBottleEphedrine
+PhosphorusChemistryBottle: ChemistryBottlePhosphorus
+OmnizineChemistryBottle: ChemistryBottleOmnizine
+HydrogenChemistryBottle: ChemistryBottleHydrogen
+CognizineChemistryBottle: ChemistryBottleCognizine
+EthanolChemistryBottle: ChemistryBottleEthanol
+PaxChemistryBottle: ChemistryBottlePax
+MuteToxinChemistryBottle: ChemistryBottleMuteToxin
+LeadChemistryBottle: ChemistryBottleLead
+ToxinChemistryBottle: ChemistryBottleToxin
+
+# 2025-03-29
+ClothingBackpackDuffelSyndicateRaidBundle: ClothingBackpackSyndicateRaidBundle
+
+# 2025-04-14
+MailRobustToolsSpam: MailSpamLetter
+MailNanotrasenSpam: MailSpamLetter
+MailSyndicateSpam: MailSpamLetter
+MailAlternativeDimensionSpam: MailSpamLetter
+MailNarsieCultSpam: MailSpamLetter
+MailRageCageSpam: MailSpamLetter
+MailVoyageAdvertisementSpam: MailSpamLetter
+MailScienceSpiderClanSpam: MailSpamLetter
+MailAllAccessSpam: MailSpamLetter
+MailCentcommRetributionSpam: MailSpamLetter
+MailEvilLizardSpam: MailSpamLetter
+MailParentsNeedMoneySpam: MailSpamLetter
+
+# 2025-04-15
+SimpleXenoArtifact: ComplexXenoArtifact
+MediumXenoArtifact: ComplexXenoArtifact
+SimpleXenoArtifactItem: ComplexXenoArtifactItem
+MediumXenoArtifactItem: ComplexXenoArtifactItem
+VariedXenoArtifactItem: ComplexXenoArtifactItem
+
+# 2025-04-19
+ClothingOuterHardsuitSyndicate: ClothingOuterEVASuitSyndicate
+AirlockMaintCommonLocked: AirlockMaintLocked
+AirlockMaintIntLocked: AirlockMaintLocked
+
+# 2025-04-26
+#ComputerCargoShuttle: ComputerShuttleCargo
+CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
 
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
@@ -605,6 +675,7 @@ VendingMachineRepDrobe: VendingMachineCigs
 Wakizashi: KukriKnife
 TearSmokeGrenade: TearGasGrenade
 BlueLightTube: LightTubeCrystalCyan
+MailTeleporter: CargoMailTeleporter
 ClothingHeadHoodBrown: null
 ClaymoreDulled: null
 Amphora: null
@@ -623,16 +694,17 @@ ClothingUniformMNKTracksuitBlack: null
 QSI: null
 EffectHearts: null
 Oracle: null
-CloningPod: null
-ComputerCloningConsole: null
-MedicalScanner: null
 ServiceTechFab: null
 ServiceTechFabCircuitboard: null
 EngineeringTechFab: null
 ScienceTechFab: null
 ReverseEngineeringMachine: null
-CloningPodMachineCircuitboard: null
-CloningConsoleComputerCircuitboard: null
-MedicalScannerMachineCircuitboard: null
 ScienceTechFabCircuitboard: null
 EngineeringTechFabCircuitboard: null
+WeaponPistolDeagle: null #Пока не обновят кабинеты ГСБ на картах.
+MagazineDeagle: null
+MagazineMagnum: null
+LockerBlueShieldFilledUplink: LockerBlueShieldEnsignFilled
+LockerBlueShieldFilledUplinkMultiphase: LockerBlueShieldEnsignFilled
+GunSafeBlueShield: null
+SpawnPointBlueShield: SpawnPointBlueShieldOfficer

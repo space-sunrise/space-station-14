@@ -1,2 +1,2 @@
-ent-SyndyFlashGrenade = SyndyFlash Grenade
-    .desc = It definitely smells fake.
+ent-SyndyFlashGrenade = Светошумовая граната синдиката
+    .desc = Определенно пахнет подделкой.

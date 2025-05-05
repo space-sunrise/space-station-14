@@ -11,9 +11,10 @@ on:
 jobs:
   validate_rsis:
     name: Validate RSIs
+    if: github.actor != 'Sunrise-Bot'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.6.0
+      - uses: actions/checkout@v4.2.2
       - name: Set up Python
         uses: actions/setup-python@v4
         with:

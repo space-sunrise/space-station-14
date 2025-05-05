@@ -104,11 +104,6 @@
     - type: StationLimitedNetwork
     - type: WirelessNetworkConnection
       range: 500
-    - type: TriggerOnMobstateChange
-      mobState:
-      - Critical
-    - type: Rattle
-      radioChannel: "Security"
 
 #ERT implants Sunrise-start
 #- type: entity
@@ -171,7 +166,10 @@
       dropContainerItemsIfGib: true
     - type: Storage
       grid:
-      - 0,0,2,2
+      - 0,0,0,1
+      - 1,0,1,0
+      - 1,2,1,2
+      - 2,1,2,2
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
@@ -419,10 +417,9 @@
   #categories: [ HideSpawnMenu ] Sunrsie-Edit
   components:
    - type: SubdermalImplant
-     #permanent: true Sunrsie-Edit
+   - type: MindShieldImplant
    - type: Tag
      tags:
-       - MindShield
        - SubdermalImplant
 
 # Centcomm implants
@@ -438,3 +435,23 @@
   - type: RadioImplant
     radioChannels:
     - CentCom
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantBlueShield
+  name: blue shield death rattle implant
+  description: This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Rattle
+    radioChannel: BlueShield
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantCentcomm
+  name: centcomm death rattle implant
+  description: This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Rattle
+    radioChannel: CentCom

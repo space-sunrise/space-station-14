@@ -1,5 +1,6 @@
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Overlays;
+using Content.Shared.Standing;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
@@ -9,6 +10,7 @@ namespace Content.Client.Overlays;
 public sealed class ShowMindShieldIconsSystem : EquipmentHudSystem<ShowMindShieldIconsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -23,6 +25,10 @@ public sealed class ShowMindShieldIconsSystem : EquipmentHudSystem<ShowMindShiel
     {
         if(!IsActive)
             return;
+
+        if (!_standing.IsStanding(uid))
+            return;
+
         if (component.IsEnabled && _prototype.TryIndex(component.MindShieldStatusIcon, out var fakeStatusIconPrototype))
             ev.StatusIcons.Add(fakeStatusIconPrototype);
     }
@@ -30,6 +36,9 @@ public sealed class ShowMindShieldIconsSystem : EquipmentHudSystem<ShowMindShiel
     private void OnGetStatusIconsEvent(EntityUid uid, MindShieldComponent component, ref GetStatusIconsEvent ev)
     {
         if (!IsActive)
+            return;
+
+        if (!_standing.IsStanding(uid))
             return;
 
         if (_prototype.TryIndex(component.MindShieldStatusIcon, out var iconPrototype))

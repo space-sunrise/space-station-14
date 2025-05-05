@@ -51,8 +51,10 @@ namespace Content.Server.Voting
         /// </summary>
         public bool DisplayVotes = true;
 
+        public bool DisplayVotesAdmins = true; // Sunrise-Edit
+
         /// <summary>
-        ///     Whether the vote should have an entity attached to it, to be used for things like letting ghosts follow it. 
+        ///     Whether the vote should have an entity attached to it, to be used for things like letting ghosts follow it.
         /// </summary>
         public NetEntity? TargetEntity = null;
 

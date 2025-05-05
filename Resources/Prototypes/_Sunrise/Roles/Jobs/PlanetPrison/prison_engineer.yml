@@ -11,6 +11,7 @@
   canBeAntag: false
   startingGear: PrisonEngineerGear
   icon: "JobIconPrisonEngineer"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   displayWeight: 70
   access:

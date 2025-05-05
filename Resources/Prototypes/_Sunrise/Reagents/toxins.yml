@@ -67,7 +67,6 @@
   flavor: terrible
   color: "#008000"
   physicalDesc: reagent-physical-desc-strong-smelling
-  slippery: false
   viscosity: 0.25
   reactiveEffects:
     Acidic:
@@ -129,3 +128,19 @@
             Asphyxiation: 2
           groups:
             Brute: 2
+
+- type: reagent
+  id: StableMutagen
+  name: reagent-name-stable-mutagen
+  group: Toxins
+  desc: reagent-desc-stable-mutagen
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: bitter
+  color: "#61b440"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 5

@@ -38,3 +38,7 @@ ent-PrisonCommsComputerCircuitboard = prison communications computer board
     .desc = A computer printed circuit board for a prison communications console.
 ent-SecurityShuttleConsoleCircuitboard = security shuttle computer board
     .desc = A computer printed circuit board for a security shuttle computer.
+ent-FPIATMComputerCircuitboard = FPI ATM board
+    .desc = A computer printed circuit board for a FPI ATM cabinet.
+ent-ShipyardComputerCircuitboard = shipyard computer board
+    .desc = A computer printed circuit board for a shipyard computer.

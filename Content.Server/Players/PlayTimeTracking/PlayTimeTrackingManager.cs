@@ -77,7 +77,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     // We must block server shutdown on these to avoid losing data.
     private readonly List<Task> _pendingSaveTasks = new();
 
-    private readonly Dictionary<NetUserId, PlayTimeData> _playTimeData = new(); // Sunrise-Edit
+    private readonly Dictionary<ICommonSession, PlayTimeData> _playTimeData = new();
 
     public event CalcPlayTimeTrackersCallback? CalcTrackers;
 
@@ -120,7 +120,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var player in _playersDirty)
         {
-            if (!_playTimeData.TryGetValue(player.UserId, out var data) || data.Disconected) // Sunrise-Edit
+            if (!_playTimeData.TryGetValue(player, out var data))
                 continue;
 
             DebugTools.Assert(data.IsDirty);
@@ -175,11 +175,6 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var data in _playTimeData.Values)
         {
-            // Sunrise-Start
-            if (data.Disconected)
-                continue;
-            // Sunrise-End
-
             FlushSingleTracker(data, time);
         }
     }
@@ -192,7 +187,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     public void FlushTracker(ICommonSession player)
     {
         var time = _timing.RealTime;
-        var data = _playTimeData[player.UserId]; // Sunrise-Edit
+        var data = _playTimeData[player];
 
         FlushSingleTracker(data, time);
     }
@@ -273,13 +268,9 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var (player, data) in _playTimeData)
         {
-            // Sunrise-Start
-            if (data.Disconected)
-                continue;
-            // Sunrise-End
             foreach (var tracker in data.DbTrackersDirty)
             {
-                log.Add(new PlayTimeUpdate(player, tracker, data.TrackerTimes[tracker])); // Sunrise-Edit
+                log.Add(new PlayTimeUpdate(player.UserId, tracker, data.TrackerTimes[tracker]));
             }
 
             data.DbTrackersDirty.Clear();
@@ -300,7 +291,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     {
         var log = new List<PlayTimeUpdate>();
 
-        var data = _playTimeData[session.UserId]; // Sunrise-Edit
+        var data = _playTimeData[session];
 
         foreach (var tracker in data.DbTrackersDirty)
         {
@@ -320,7 +311,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     public async Task LoadData(ICommonSession session, CancellationToken cancel)
     {
         var data = new PlayTimeData();
-        _playTimeData[session.UserId] = data; // Sunrise-Edit
+        _playTimeData.Add(session, data);
 
         var playTimes = await _db.GetPlayTimes(session.UserId, cancel);
         cancel.ThrowIfCancellationRequested();
@@ -340,16 +331,12 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     {
         SaveSession(session);
 
-        // Sunrise-Start
-        //_playTimeData.Remove(session);
-        if (_playTimeData.TryGetValue(session.UserId, out var data))
-            data.Disconected = true;
-        // Sunrise-End
+        _playTimeData.Remove(session);
     }
 
     public void AddTimeToTracker(ICommonSession id, string tracker, TimeSpan time)
     {
-        if (!_playTimeData.TryGetValue(id.UserId, out var data) || !data.Initialized) // Sunrise-Edit
+        if (!_playTimeData.TryGetValue(id, out var data) || !data.Initialized)
             throw new InvalidOperationException("Play time info is not yet loaded for this player!");
 
         AddTimeToTracker(data, tracker, time);
@@ -377,7 +364,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     {
         time = null;
 
-        if (!_playTimeData.TryGetValue(id.UserId, out var data) || !data.Initialized) // Sunrise-Edit
+        if (!_playTimeData.TryGetValue(id, out var data) || !data.Initialized)
         {
             return false;
         }
@@ -401,7 +388,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     public Dictionary<string, TimeSpan> GetTrackerTimes(ICommonSession id)
     {
-        if (!_playTimeData.TryGetValue(id.UserId, out var data) || !data.Initialized)
+        if (!_playTimeData.TryGetValue(id, out var data) || !data.Initialized)
             throw new InvalidOperationException("Play time info is not yet loaded for this player!");
 
         return data.TrackerTimes;
@@ -409,7 +396,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     public TimeSpan GetPlayTimeForTracker(ICommonSession id, string tracker)
     {
-        if (!_playTimeData.TryGetValue(id.UserId, out var data) || !data.Initialized) // Sunrise-Edit
+        if (!_playTimeData.TryGetValue(id, out var data) || !data.Initialized)
             throw new InvalidOperationException("Play time info is not yet loaded for this player!");
 
         return data.TrackerTimes.GetValueOrDefault(tracker);
@@ -435,7 +422,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     private PlayTimeData? DirtyPlayer(ICommonSession player)
     {
-        if (!_playTimeData.TryGetValue(player.UserId, out var data) || !data.Initialized) // Sunrise-Edit
+        if (!_playTimeData.TryGetValue(player, out var data) || !data.Initialized)
             return null;
 
         if (!data.IsDirty)
@@ -474,8 +461,6 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         /// Set of trackers which are different from their DB values and need to be saved to DB.
         /// </summary>
         public readonly HashSet<string> DbTrackersDirty = new();
-
-        public bool Disconected;
     }
 
     void IPostInjectInit.PostInject()

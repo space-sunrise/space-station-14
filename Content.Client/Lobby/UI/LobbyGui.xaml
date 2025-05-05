@@ -12,7 +12,8 @@
     xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
     xmlns:changelog="clr-namespace:Content.Client.Changelog"
     xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile"
-    xmlns:texture="clr-namespace:Content.Client._Sunrise.Texture">
+    xmlns:texture="clr-namespace:Content.Client._Sunrise.Texture"
+    xmlns:contributors="clr-namespace:Content.Client._Sunrise.Contributors">
     <!-- Background -->
     <TextureRect Name="LobbyArt" Access="Public" VerticalExpand="True" HorizontalExpand="True"
                  Stretch="KeepAspectCovered" />
@@ -110,6 +111,26 @@
                                               VerticalExpand="True"
                                               HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                     <serversHub:ServersHub Name="ServersHubBody" Access="Public" HorizontalExpand="True"
+                                                            VerticalExpand="True" />
+                                </BoxContainer>
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" Name="ContributorsBox" VerticalExpand="True"
+                                          VerticalAlignment="Bottom" Access="Public" SizeFlagsStretchRatio="2">
+                                <controls:StripeBack>
+                                    <BoxContainer Orientation="Horizontal" Name="ContributorsHeader" >
+                                        <Label HorizontalExpand="True" Name="ContributorsHeaderLabel" Access="Public"
+                                               Text="{Loc 'contributors-header'}" VAlign="Center" StyleClasses="LabelHeading"
+                                               Align="Center"/>
+                                        <TextureRect Name="ContributorsHider" VerticalAlignment="Center" SetSize="25 25"
+                                                     Stretch="KeepAspectCentered" Margin="5 1" MouseFilter="Stop"
+                                                     HorizontalAlignment="Right" Access="Public">
+                                        </TextureRect>
+                                    </BoxContainer>
+                                </controls:StripeBack>
+                                <BoxContainer Orientation="Vertical" Name="ContributorsContent" HorizontalExpand="True"
+                                              VerticalExpand="True"
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                    <contributors:ContributorsTop Name="ContributorsBody" Access="Public" HorizontalExpand="True"
                                                             VerticalExpand="True" />
                                 </BoxContainer>
                             </BoxContainer>

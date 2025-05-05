@@ -17,6 +17,8 @@
     sprite: _Sunrise/Mobs/Aliens/disease.rsi
     layers:
     - state: idle
+      shader: unshaded
+      map: ["base"]
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -53,12 +55,7 @@
       settings: default
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
-
   - type: GhostTakeoverAvailable
-  - type: PointLight
-    color: "#52964F"
-    radius: 2
-    softness: 1
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
@@ -81,11 +78,18 @@
       ActionDiseaseInfectChance: -1
       ActionDiseaseShield: -1
       ActionDiseaseLethal: -1
+  - type: Muted
 
 - type: sickIcon
   id: SmartDiseaseIcon
   icon:
-    sprite: _Sunrise/Mobs/Aliens/disease.rsi
+    sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
     state: sick
   priority: 2
 
+- type: sickIcon
+  id: NormalDiseaseIcon
+  icon:
+    sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
+    state: normal
+  priority: 2

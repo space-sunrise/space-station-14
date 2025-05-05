@@ -4,7 +4,7 @@
          xmlns:parallax="clr-namespace:Content.Client.Parallax"
          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
          xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub">
-    <parallax:ParallaxControl />
+    <parallax:ParallaxControl SpeedX="20"/>
 
     <BoxContainer Orientation="Vertical"
                   HorizontalAlignment="Left"

@@ -8,6 +8,61 @@
       role: JobHeadOfSecurity
       time: 72000 #20 hrs
 
+#Sunrise-Start
+- type: loadoutEffectGroup
+  id: MasterHoS50h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 180000 #50 hrs
+
+- type: loadoutEffectGroup
+  id: MasterHoS100h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 360000 #100 hrs
+
+#WeaponsHos
+
+- type: loadout
+  id: HeadofSecurityWeapon20h
+  equipment:
+    pocket1: WeaponSniperRepeater
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityWeapon50h
+  equipment:
+    pocket1: WeaponSubMachineGunSkorpion
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS50h
+
+- type: loadout
+  id: HeadofSecurityWeapon50h2
+  equipment:
+    pocket1: WeaponRevolverMatebaNew
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS50h
+
+- type: loadout
+  id: HeadofSecurityWeapon100h
+  equipment:
+    pocket1: WeaponPistolDeagle
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS100h
+
+#Sunrise-End
+
 # Jumpsuit
 - type: loadout
   id: HeadofSecurityJumpsuit
@@ -39,6 +94,23 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtHosFormal
 
+#Sunrise-Start
+- type: loadout
+  id: HeadofSecurityJumpsuitHoSOld
+  sponsorOnly: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityJumpsuitUSSPBlack
+  sponsorOnly: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+#Sunrise-End
+
 # Head
 - type: loadout
   id: HeadofSecurityHead
@@ -49,6 +121,28 @@
   id: HeadofSecurityBeret
   equipment:
     head: ClothingHeadHatBeretHoS
+
+#Sunrise-Start
+- type: loadout
+  id: HeadofSecurityHatCap
+  equipment:
+    head: ClothingHeadHatCapHoS
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityCapUSSPBlack
+  sponsorOnly: true
+  equipment:
+    head: ClothingHeadHatCapUSSPBlack
+
+- type: loadout
+  id: HeadofSecurityCapLeather
+  sponsorOnly: true
+  equipment:
+    head: ClothingHeadHatCapLeatherHoS
+#Sunrise-End
 
 # Neck
 - type: loadout
@@ -69,6 +163,21 @@
   equipment:
     neck: ClothingNeckMantleHOS
 
+- type: loadout
+  id: HeadofSecurityCloakHOSCloak
+  sponsorOnly: true
+  equipment:
+    neck: ClothingNeckCloakHOSCloak
+
+- type: loadout
+  id: HeadofSecurityDarthHOSCloak
+  sponsorOnly: true
+  equipment:
+    neck: ClothingNeckCloakDarthHOSCloak
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
 # OuterClothing
 - type: loadout
   id: HeadofSecurityCoat
@@ -79,3 +188,34 @@
   id: HeadofSecurityWinterCoat
   equipment:
     outerClothing: ClothingOuterWinterHoS
+
+#Sunrise-Start
+- type: loadout
+  id: HeadofSecurityGreatcoat
+  equipment:
+    outerClothing: ClothingOuterCoatHoSGreatcoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityGreatcoatBlack
+  sponsorOnly: true
+  equipment:
+    outerClothing: ClothingOuterCoatHOSOvercoatBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityUSSPBlack
+  sponsorOnly: true
+  equipment:
+    outerClothing: ClothingOuterCoatUSSPOvercoatBlack
+
+- type: loadout
+  id: HeadofSecurityOvercoat
+  sponsorOnly: true
+  equipment:
+    outerClothing: ClothingOuterCoatHoSOvercoat
+#Sunrise-End

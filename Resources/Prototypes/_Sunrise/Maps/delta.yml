@@ -1,10 +1,10 @@
 - type: gameMap
   id: SunriseDelta
-  mapName: 'Delta Station'
+  mapName: 'Delta'
   mapPath: /Maps/_Sunrise/Station/delta.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 40
+  minPlayers: 0
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
@@ -57,10 +57,10 @@
             Roboticist: [ 4, 4 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 1, 1 ]
+            Warden: [ 2, 2 ]
             SeniorOfficer: [ 1, 1 ]
             Detective: [ 1, 1 ]
-            Brigmedic: [ 2, 2 ]
+            Brigmedic: [ 1, 1 ]
             SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 5, 5 ]
             SecurityCadet: [ 5, -1 ]
@@ -68,19 +68,19 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
+            MailCarrier: [ 2, 2 ]
             #civilian
             Passenger: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             #blueshield
-            BlueShield: [ 1, 1 ]
+            BlueShieldEnsign: [ 1, 1 ]
+            BlueShieldOfficer: [ 5, 5 ]
             #law
             IAA: [ 1, 1 ]
-            Magistrat: [ 1, 1 ]
             Lawyer: [ 3, 3 ]
-            NtrLeader: [ 1, 1 ]
-            NtrGuard: [ 2, 2 ]
+            NtrOfficer: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]

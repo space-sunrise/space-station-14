@@ -3,9 +3,9 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/DeltaParallaxBG.png"
+        path: "/Textures/_Sunrise/Parallaxes/NES/MirStationParallaxBG.png"
       slowness: 0.998046875
-      scale: "0.5, 0.5"
+      scale: "1, 1"
     - texture:
         !type:GeneratedParallaxTextureSource
         id: "hq_wizard_stars"
@@ -28,8 +28,8 @@
       slowness: 0.984352
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/DeltaParallaxNeb.png"
-      slowness: 0.978046875
+        path: "/Textures/_Sunrise/Parallaxes/NES/planet2.png"
+      slowness: 0.998046875
       scale: "1, 1"
       tiled: false
   layersLQ:

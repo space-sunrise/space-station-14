@@ -115,8 +115,9 @@
     price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
-    - RegalRatNameKingdom
-    - RegalRatNameTitle
+    - NamesRegalratKingdom
+    - NamesRegalratTitle
+    nameFormat: name-format-regal-rat
   - type: GuideHelp
     guides:
     - MinorAntagonists
@@ -192,6 +193,9 @@
         2.0
       FollowRange: !type:Single
         3.0
+  - type: Bloodstream
+    bloodReagent: Blood
+    bloodMaxVolume: 75
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -243,8 +247,8 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 5
-        Piercing: 3
+        Slash: 7 # Sunrise-Edit
+        Piercing: 3 # Sunrise-Edit
   - type: Body
     prototype: Rat
     requiredLegs: 1 # TODO: More than 1 leg

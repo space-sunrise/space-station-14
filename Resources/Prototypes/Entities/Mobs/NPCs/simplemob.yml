@@ -32,6 +32,7 @@
     - Adrenaline
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: EmoteAnimation # Sunrise-Edit
   - type: Buckle
   - type: StandingState
@@ -113,6 +114,7 @@
     - Adrenaline
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: EmoteAnimation # Sunrise-Edit
   - type: Bloodstream
     bloodMaxVolume: 150

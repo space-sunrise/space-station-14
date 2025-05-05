@@ -17,7 +17,7 @@ namespace Content.Server.Roles.Jobs;
 public sealed class JobSystem : SharedJobSystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedPlayerSystem _playerSystem = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
@@ -48,7 +48,7 @@ public sealed class JobSystem : SharedJobSystem
         if (args.Silent)
             return;
 
-        if (!_mind.TryGetSession(mindId, out var session))
+        if (!_player.TryGetSessionById(component.UserId, out var session))
             return;
 
         if (!MindTryGetJob(mindId, out var prototype))

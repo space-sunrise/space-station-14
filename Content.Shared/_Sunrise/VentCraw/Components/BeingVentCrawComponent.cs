@@ -1,9 +1,11 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Sunrise.VentCraw.Components;
 
 /// <summary>
 /// A component indicating that the entity is in the process of moving through the venting process
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BeingVentCrawComponent : Component
 {
     /// <summary>

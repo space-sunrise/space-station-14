@@ -44,3 +44,5 @@ ent-ClothingMaskSterileGreen = зелёная стерильная маска
     .desc = Стерильная зелёная маска, помогающая предотвратить распространение инфекций.
 ent-ClothingMaskFaceCast = слепок лица
     .desc = Он может украсть твою личность...
+ent-ClothingMaskGasBlueShield = Blueshild gas mask
+    .desc = Gas Mask for real professionals. It may even help to get CE cameras with burning tritium!

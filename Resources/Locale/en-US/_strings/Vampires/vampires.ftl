@@ -53,13 +53,19 @@ vampire-power-bloodsteal = Blood Steal
 vampire-power-bloodsteal-description = Wrench the blood from all bodies nearby - living or dead. Activation Cost: 20 Essence. Cooldown: 60 Seconds
 
 vampire-power-batform = Bat Form
-vampire-power-batform-description = Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds
+vampire-power-batform-description = Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds. Time of action: 180 seconds.
 
 vampire-power-mouseform = Mouse Form
-vampire-power-mouseform-description = Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds
+vampire-power-mouseform-description = Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds. Time of action: 180 seconds.
 
 vampire-power-cloakofdarkness = Cloak of Darkness
 vampire-power-cloakofdarkness-description = Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds
+
+vampire-power-thermalvision = Thermal Vision
+vampire-power-thermalvision-description = Toggle thermal vision, allowing you to see living beings through walls. This ability is unlocked once you reach 500 blood essence.
+
+vampire-thermal-vision-on = You activate your thermal vision
+vampire-thermal-vision-off = You deactivate your thermal vision
 
 #Passives
 vampire-passive-unholystrength = Unholy Strength
@@ -70,3 +76,41 @@ vampire-passive-supernaturalstrength-description = Increase your upper body musc
 
 vampire-passive-deathsembrace = Deaths Embrace
 vampire-passive-deathsembrace-description = Embrace death and it shall pass you over. Effect: Heal when in a coffin, automatically return to your coffin upon death for 100 blood essence.
+
+# Mutation menu
+vampire-mutation-menu-ui-window-name = Mutations Menu
+vampire-mutation-none-info = Nothing selected
+vampire-mutation-hemomancer-info =
+    Focused on blood magic and blood manipulation around itself.
+    
+    Abilities:
+    
+    - Screech
+    - Blood Steal
+vampire-mutation-umbrae-info =
+    Focused on darkness, stealth, and mobility.
+    
+    Abilities:
+    
+    - Glare
+    - Cloak of Darkness
+vampire-mutation-gargantua-info =
+    Focused on melee damage and durability.
+    
+    Abilities:
+    
+    - Unholy Strength
+    - Supernatural Strength
+vampire-mutation-bestia-info =
+    Focused on transformation and trophy collection.
+    
+    Abilities:
+    
+    - Bat Form
+    - Mouse Form
+
+# Alerts
+alerts-vampire-blood-name = Blood
+alerts-vampire-blood-desc = Vampire blood level.
+alerts-vampire-stellar-weakness-name = Stellar Weakness
+alerts-vampire-stellar-weakness-desc = Vampires are weak to sunlight. Be careful!

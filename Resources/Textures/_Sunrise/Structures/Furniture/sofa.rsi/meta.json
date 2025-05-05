@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/tgstation/tgstation/pull/41767",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sofacorner",
+      "directions": 4
+    },
+    {
+      "name": "sofacorner_armrest",
+      "directions": 4
+    },
+    {
+      "name": "sofaend_right",
+      "directions": 4
+    },
+    {
+      "name": "sofaend_left_armrest",
+      "directions": 4
+    },
+    {
+      "name": "sofaend_left",
+      "directions": 4
+    },
+    {
+      "name": "sofaend_right_armrest",
+      "directions": 4
+    },
+    {
+      "name": "sofamiddle",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofacorner",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofaend_right",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofamiddle",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofaend_left",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofacorner_armrest",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofaend_left_armrest",
+      "directions": 4
+    },
+    {
+      "name": "corp_sofaend_right_armrest",
+      "directions": 4
+    }
+  ]
+}

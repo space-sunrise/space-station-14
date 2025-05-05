@@ -6,6 +6,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
+using Content.Server.Ghost;
 using Content.Server.Shuttles.Components;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Spawners.Components;
@@ -107,6 +108,9 @@ namespace Content.Server.GameTicking
                 if (job == null)
                 {
                     var playerSession = _playerManager.GetSessionById(netUser);
+                    var evNoJobs = new NoJobsAvailableSpawningEvent(playerSession); // Used by gamerules to wipe their antag slot, if they got one
+                    RaiseLocalEvent(evNoJobs);
+
                     _chatManager.DispatchServerMessage(playerSession, Loc.GetString("job-not-available-wait-in-lobby"));
                 }
                 else
@@ -224,6 +228,9 @@ namespace Content.Server.GameTicking
                 {
                     JoinAsObserver(player);
                 }
+
+                var evNoJobs = new NoJobsAvailableSpawningEvent(player); // Used by gamerules to wipe their antag slot, if they got one
+                RaiseLocalEvent(evNoJobs);
 
                 _chatManager.DispatchServerMessage(player,
                     Loc.GetString("game-ticker-player-no-jobs-available-when-joining"));
@@ -390,6 +397,7 @@ namespace Content.Server.GameTicking
             if (DummyTicker)
                 return;
 
+            var makeObserver = false;
             Entity<MindComponent?>? mind = player.GetMind();
             if (mind == null)
             {
@@ -397,10 +405,13 @@ namespace Content.Server.GameTicking
                 var (mindId, mindComp) = _mind.CreateMind(player.UserId, name);
                 mind = (mindId, mindComp);
                 _mind.SetUserId(mind.Value, player.UserId);
-                _roles.MindAddRole(mind.Value, "MindRoleObserver");
+                makeObserver = true;
             }
 
             var ghost = _ghost.SpawnGhost(mind.Value);
+            if (makeObserver)
+                _roles.MindAddRole(mind.Value, "MindRoleObserver");
+
             _adminLogger.Add(LogType.LateJoin,
                 LogImpact.Low,
                 $"{player.Name} late joined the round as an Observer with {ToPrettyString(ghost):entity}.");
@@ -448,13 +459,13 @@ namespace Content.Server.GameTicking
                 // Ideally engine would just spawn them on grid directly I guess? Right now grid traversal is handling it during
                 // update which means we need to add a hack somewhere around it.
                 var spawn = _robustRandom.Pick(_possiblePositions);
-                var toMap = spawn.ToMap(EntityManager, _transform);
+                var toMap = _transform.ToMapCoordinates(spawn);
 
                 if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
                 {
                     var gridXform = Transform(gridUid);
 
-                    return new EntityCoordinates(gridUid, Vector2.Transform(toMap.Position, gridXform.InvWorldMatrix));
+                    return new EntityCoordinates(gridUid, Vector2.Transform(toMap.Position, _transform.GetInvWorldMatrix(gridXform)));
                 }
 
                 return spawn;

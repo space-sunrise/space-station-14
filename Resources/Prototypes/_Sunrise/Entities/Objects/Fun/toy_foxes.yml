@@ -1,0 +1,224 @@
+﻿- type: entity
+  id: PlushieBlackfox
+  parent: BasePlushie
+  name: Black fox Plushie
+  description: A plushie of a black fox. Soft and mysterious.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_blackfox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushieBluefox
+  parent: BasePlushie
+  name: Blue fox Plushie
+  description: A plushie of a blue fox. Looks chill and cute.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_bluefox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushieCoffeefox
+  parent: BasePlushie
+  name: Coffee fox Plushie
+  description: A plushie of a cozy, coffee-blended fox. Energetic vibes!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_coffeefox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushieCrimsonfox
+  parent: BasePlushie
+  name: Crimson fox Plushie
+  description: A plushie of a crimson fox. Bold and brave.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_crimsonfox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushieMarblefox
+  parent: BasePlushie
+  name: Marble fox Plushie
+  description: A plushie of a marble-patterned fox. Elegant and soft.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_marblefox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushieOrangefox
+  parent: BasePlushie
+  name: Orange fox Plushie
+  description: A plushie of an orange fox. Bright and cheerful.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_orangefox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushiePinkfox
+  parent: BasePlushie
+  name: Pink fox Plushie
+  description: A plushie of a pink fox. Cuteness overload!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_pinkfox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushiePurplefox
+  parent: BasePlushie
+  name: Purple fox Plushie
+  description: A plushie of a purple fox. Enigmatic and cuddly.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_purplefox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg
+
+- type: entity
+  id: PlushieRedfox
+  parent: BasePlushie
+  name: Red fox Plushie
+  description: A plushie of a red fox. Energetic and fun to squeeze.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toy_foxes.rsi
+    state: plushie_redfox
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/fox1.ogg

@@ -73451,7 +73451,7 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
-- proto: LockerBlueshieldFilled
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 270
     components:

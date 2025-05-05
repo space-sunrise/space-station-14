@@ -85,7 +85,6 @@
         - HypopenBox
         - GatfruitSeeds
         - EnergyDagger
-        - SupermatterGrenade
         - WhiteholeGrenade
         - HotPotato
         - WeaponSniperMosin
@@ -142,7 +141,7 @@
         - WeaponRevolverPythonAP
         - ThrowingKnivesKit
         - ExGrenade
-        - NocturineChemistryBottle
+        - ChemistryBottleNocturine
         - ChameleonProjector
       rareChance: 0.2
       prototypes:

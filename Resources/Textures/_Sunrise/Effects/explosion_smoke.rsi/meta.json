@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "SUNRISE",
+    "size":
+    {
+        "x": 128,
+        "y": 128
+    },
+    "states":
+    [
+        {
+            "name": "smoke"
+        },
+        {
+            "name": "dust"
+        },
+        {
+            "name": "fire"
+        },
+        {
+            "name": "gas"
+        }
+    ]
+}

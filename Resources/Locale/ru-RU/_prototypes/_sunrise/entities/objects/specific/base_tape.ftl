@@ -1,4 +1,4 @@
-ent-BaseMusicTape = tape
+ent-BaseMusicTape = кассета
     .desc = { ent-BaseItem.desc }
-ent-MusicTape1 = cassette tape (Sunset by PigeonBeans)
+ent-MusicTape1 = кассета (Sunset от PigeonBeans)
     .desc = { ent-BaseMusicTape.desc }

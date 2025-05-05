@@ -11,6 +11,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
     Narcotic:
       effects:
       - !type:MovespeedModifier

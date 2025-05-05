@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHeadBase
-  id: WeldingMaskBase
+  id: WeldingMaskBase # Left for the guys made by the greatest prototypers of Sunrise.
   name: welding mask
   abstract: true
   components:
@@ -25,15 +25,56 @@
     - Snout
 
 - type: entity
-  parent: WeldingMaskBase
-  id: ClothingHeadHatWelding
+  parent: [ClothingHeadBase, BaseToggleClothing] # Sunrise-Edit
+  id: ClothingHeadHatWelding # Sunrise-Edit
   name: welding mask
+  # Sunrise-Start
+  #  abstract: true
   description: A head-mounted face cover designed to protect the wearer completely from space-arc eye.
   components:
   - type: Sprite
     sprite: Clothing/Head/Welding/welding.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: Clothing
     sprite: Clothing/Head/Welding/welding.rsi
+    # Sunrise End
+  - type: Item
+    storedRotation: 0
+  - type: ItemToggle # Welding mask starts in an activated state
+    activated: true
+  - type: ToggleClothing
+    action: ActionToggleWeldingMask
+  - type: HideLayerClothing
+    slots:
+    - Snout
+    hideOnToggle: true
+  - type: Appearance
+  - type: WeldingMask
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon}
+          False: {state: icon-up}
+  # Sunrise-End
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      Glass: 100
+  - type: StaticPrice
+    price: 50
+  # Sunrise-Start
+  - type: ComponentToggler
+    components:
+    - type: IngestionBlocker
+    - type: FlashImmunity
+    - type: IdentityBlocker
+    - type: EyeProtection
+    - type: VisionDarkener
+      strength: 6
+    # Sunrise-End
   - type: Tag
     tags:
     - HamsterWearable
@@ -41,34 +82,79 @@
     - WeldingMask
 
 - type: entity
-  parent: WeldingMaskBase
+  parent: ClothingHeadHatWelding # Sunrise-Edit
   id: ClothingHeadHatWeldingMaskFlame
   name: flame welding mask
   description: A painted welding helmet, this one has flames on it.
   components:
   - type: Sprite
     sprite: Clothing/Head/Welding/flame_welding_mask.rsi
+    # Sunrise-Start
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # Sunrise-End
   - type: Clothing
     sprite: Clothing/Head/Welding/flame_welding_mask.rsi
+    # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - WeldingMask
+    # Sunrise-End
 
 - type: entity
-  parent: WeldingMaskBase
+  parent: ClothingHeadHatWelding # Sunrise-Edit
   id: ClothingHeadHatWeldingMaskFlameBlue
   name: blue-flame welding mask
   description: A painted welding helmet, this one has blue flames on it.
   components:
   - type: Sprite
     sprite: Clothing/Head/Welding/blue_flame_welding_mask.rsi
+    # Sunrise-Start
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # Sunrise-End
   - type: Clothing
     sprite: Clothing/Head/Welding/blue_flame_welding_mask.rsi
+    # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - WeldingMask
+    # Sunrise-End
 
 - type: entity
-  parent: WeldingMaskBase
+  parent: ClothingHeadHatWelding # Sunrise-Edit
   id: ClothingHeadHatWeldingMaskPainted
   name: painted welding mask
   description: A welding helmet, painted in crimson.
   components:
   - type: Sprite
     sprite: Clothing/Head/Welding/paintedwelding.rsi
+    # Sunrise-Start
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # Sunrise-End
   - type: Clothing
     sprite: Clothing/Head/Welding/paintedwelding.rsi
+    # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - WeldingMask
+    # Sunrise-End
+
+  # Sunrise-Start
+- type: entity
+  id: ActionToggleWeldingMask
+  name: Adjust Welding Mask
+  description: Covers or reveals your face.
+  components:
+  - type: InstantAction
+    useDelay: 1
+    itemIconStyle: BigItem
+    event: !type:ToggleActionEvent
+  # Sunrise-End

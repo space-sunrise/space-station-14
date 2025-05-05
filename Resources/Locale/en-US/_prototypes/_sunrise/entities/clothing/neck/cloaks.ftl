@@ -43,4 +43,4 @@ ent-ClothingCloakAtmosian = atmosian's cloak
 ent-ClothingNeckCloakUeg = paratrooper cape
     .desc = The cloak of the famous space troopers of the United Government of Earth. It is worn only by those truly honored to be OPZ Space Troopers. This cape represents the freedom and democracy that civilization must strive for. Otherwise, democracy and liberation will be brought by the Earth Government.
 ent-ClothingNeckCloakNTRG = trenchcoat NTRG Sqaud
-    .desc = NTR cloak
+    .desc = The cloak of the famous space troopers of the United Government of Earth. It is worn only by those truly honored to be OPZ Space Troopers. This cape represents the freedom and democracy that civilization must strive for. Otherwise, democracy and liberation will be brought by the Earth Government.

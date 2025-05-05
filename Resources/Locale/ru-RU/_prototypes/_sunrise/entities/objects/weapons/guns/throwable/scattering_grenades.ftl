@@ -1,4 +1,4 @@
-ent-ClusterSyndyFlashGrenade = Godkiss
-    .desc = The probability that you will be banned for using this grenade is 99.9%.
-ent-SyndyClusterGrenade = syndyclustergrenade
-    .desc = If you don't care about accuracy, then this choice is for you.
+ent-ClusterSyndyFlashGrenade = Поцелуй Бога
+    .desc = Вероятность того, что вас забанят за использование этой гранаты, составляет 99,9%.
+ent-SyndyClusterGrenade = кластерная граната синдиката
+    .desc = Если вам не важна точность, то этот выбор для вас.

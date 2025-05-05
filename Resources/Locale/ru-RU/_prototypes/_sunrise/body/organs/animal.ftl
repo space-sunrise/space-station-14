@@ -14,5 +14,5 @@ ent-OrganPigHeart = { ent-OrganAnimalHeart }
     .desc = { ent-OrganAnimalHeart.desc }
 ent-OrganChikenHeart = { ent-OrganAnimalHeart }
     .desc = { ent-OrganAnimalHeart.desc }
-ent-OrganInferiorVulpkaninHeart = heart
+ent-OrganInferiorVulpkaninHeart = сердце
     .desc = { ent-OrganAnimalHeart.desc }

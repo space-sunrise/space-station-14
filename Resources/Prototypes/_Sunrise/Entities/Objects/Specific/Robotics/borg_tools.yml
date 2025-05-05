@@ -96,7 +96,6 @@
       shader: unshaded
   - type: LimitedCharges
     maxCharges: 10
-    charges: 10
   - type: AutoRecharge
     rechargeDuration: 30
 
@@ -239,31 +238,6 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
-  - type: Hypospray
-    pierceArmor: true
-
-- type: entity
-  parent: Holoprojector
-  id: HolofanProjectorBorg
-  name: holofan robot projector
-  description: Stop suicidal passengers from killing everyone during atmos emergencies.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HolosignProjector
-    signProto: HoloFan
-    chargeUse: 120
-  - type: Sprite
-    sprite: Objects/Devices/Holoprojectors/atmos.rsi
-    state: icon
-  - type: Tag
-    tags:
-    - HolofanProjector
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellRobotTool
-        locked: true
 
 - type: entity
   name: robot china lake
@@ -577,7 +551,6 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
-    pierceArmor: true
 
 - type: entity
   name: the saboteur's communications jammer

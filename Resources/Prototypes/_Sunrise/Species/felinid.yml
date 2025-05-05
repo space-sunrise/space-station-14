@@ -3,13 +3,16 @@
   name: species-name-felinid
   roundStart: true
   prototype: MobFelinid
-  sprites: MobHumanSprites
+  bodyTypes:
+  - HumanNormal
+  - HumanSlim
   markingLimits: MobFelinidMarkingLimits
   dollPrototype: MobFelinidDummy
   skinColoration: HumanToned
   youngAge: 23
   oldAge: 25
   maxAge: 27
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
 
 - type: markingPoints
   id: MobFelinidMarkingLimits

@@ -1,4 +1,5 @@
 using System.Globalization;
+using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
@@ -216,6 +217,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
+        RaiseLocalEvent(ent, new CryostorageEnteredEvent());
+        RemCompDeferred<AntagTargetComponent>(ent);
         cryostorageComponent.StoredPlayers.Add(ent);
         Dirty(ent, comp);
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
@@ -347,4 +350,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             HandleEnterCryostorage((uid, containedComp), id);
         }
     }
+}
+
+public class CryostorageEnteredEvent
+{
 }

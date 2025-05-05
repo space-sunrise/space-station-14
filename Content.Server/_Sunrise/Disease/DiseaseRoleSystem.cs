@@ -3,6 +3,8 @@ using Content.Shared.Actions;
 using Robust.Shared.Random;
 using Content.Shared._Sunrise.Disease;
 using Content.Server.Store.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
@@ -16,6 +18,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
 
 
     [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
@@ -39,7 +42,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 15))
         {
-            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
             return;
         }
         component.Lethal += 1;
@@ -53,7 +56,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 15))
         {
-            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
             return;
         }
         component.Shield += 1;
@@ -67,7 +70,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 20))
         {
-            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
             return;
         }
         if (component.BaseInfectChance < 0.9f)
@@ -83,7 +86,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 15))
         {
-            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
             return;
         }
         if (component.CoughInfectChance < 0.85f)
@@ -119,7 +122,10 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         {
             EntityUid? actionId = null;
             if (_actionsSystem.AddAction(uid, ref actionId, id))
-                _actionsSystem.SetCharges(actionId, charges < 0 ? null : charges);
+            {
+                var limitCharges = EnsureComp<LimitedChargesComponent>(actionId.Value);
+                _sharedCharges.SetCharges((actionId.Value, limitCharges), charges);
+            }
         }
         component.NewBloodReagent = _random.Pick(new List<string>() { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" });
         component.Symptoms.Add("Headache", (1, 4));

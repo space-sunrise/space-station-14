@@ -37,9 +37,15 @@ public sealed partial class ExplosionSystem
     /// <summary>
     ///     Constructor for the shared <see cref="ExplosionEvent"/> using the server-exclusive explosion classes.
     /// </summary>
-    private EntityUid CreateExplosionVisualEntity(MapCoordinates epicenter, string prototype, Matrix3x2 spaceMatrix, ExplosionSpaceTileFlood? spaceData, IEnumerable<ExplosionGridTileFlood> gridData, List<float> iterationIntensity)
+    private EntityUid CreateExplosionVisualEntity(MapCoordinates epicenter, ExplosionPrototype prototype, Matrix3x2 spaceMatrix, ExplosionSpaceTileFlood? spaceData, IEnumerable<ExplosionGridTileFlood> gridData, List<float> iterationIntensity)
     {
         var explosionEntity = Spawn(null, MapCoordinates.Nullspace);
+
+        // Sunrise added start
+        if (prototype.EffectType != ExplosionEffectType.Standard)
+            return explosionEntity;
+        // Sunrise added end
+
         var comp = AddComp<ExplosionVisualsComponent>(explosionEntity);
 
         foreach (var grid in gridData)
@@ -49,7 +55,7 @@ public sealed partial class ExplosionSystem
 
         comp.SpaceTiles = spaceData?.TileLists;
         comp.Epicenter = epicenter;
-        comp.ExplosionType = prototype;
+        comp.ExplosionType = prototype.ID; // Sunrise edit
         comp.Intensity = iterationIntensity;
         comp.SpaceMatrix = spaceMatrix;
         comp.SpaceTileSize = spaceData?.TileSize ?? DefaultTileSize;
@@ -57,7 +63,7 @@ public sealed partial class ExplosionSystem
 
         // Light, sound & visuals may extend well beyond normal PVS range. In principle, this should probably still be
         // restricted to something like the same map, but whatever.
-        _pvsSys.AddGlobalOverride(GetNetEntity(explosionEntity));
+        _pvsSys.AddGlobalOverride(explosionEntity);
 
         var appearance = AddComp<AppearanceComponent>(explosionEntity);
         _appearance.SetData(explosionEntity, ExplosionAppearanceData.Progress, 1, appearance);

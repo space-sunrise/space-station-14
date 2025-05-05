@@ -19,6 +19,7 @@ steal-target-groups-advanced-defibrillator = продвинутый дефибр
 steal-target-groups-figurines = фигурка
 steal-target-groups-heads-cloaks = плащи глав
 steal-target-groups-heads-bedsheets = одеяла глав
+steal-target-groups-mail = письмо
 steal-target-groups-stamps = Печать
 steal-target-groups-door-remotes = Пульт от шлюзов
 steal-target-groups-encryption-keys = ключ шифрования

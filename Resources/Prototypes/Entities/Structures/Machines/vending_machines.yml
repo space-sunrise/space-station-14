@@ -75,8 +75,6 @@
   - type: Anchorable
   - type: TypingIndicator
     proto: robot
-  - type: TTS
-    voice: FactCore
   - type: Speech
     speechVerb: Robotic
     speechSounds: Vending
@@ -106,6 +104,9 @@
     price: 100
   - type: Appearance
   - type: WiresVisuals
+  - type: DontSell # Sunrise-Edit
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
 
 - type: entity
   parent: VendingMachine

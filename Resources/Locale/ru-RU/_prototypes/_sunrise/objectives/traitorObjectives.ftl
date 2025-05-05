@@ -1,6 +1,8 @@
-ent-HijackShuttleObjective = Завладейте эвакуационным шаттлом
-    .desc = Улетите на шаттле свободным и без лояльного экипажа Nanotrasen на борту. Используйте ЛЮБЫЕ доступные вам методы. Агенты Синдиката, враги Nanotrasen и заложники в наручниках могут оставаться на шаттле живыми. Игнорируйте помощь от кого-либо, кроме агента поддержки.
 ent-MultiphaseEnergygunStealObjective = { ent-BaseTraitorStealObjective }
     .desc = { ent-BaseTraitorStealObjective.desc }
 ent-CMOAdvancedDefibrillatorStealObjective = { ent-BaseCMOStealObjective }
     .desc = { ent-BaseCMOStealObjective.desc }
+ent-PlutoniumCoreStealObjective = { ent-BaseTraitorStealObjective }
+    .desc = { ent-BaseTraitorStealObjective.desc }
+ent-StealSupermatterSliverObjective = { ent-BaseTraitorStealObjective }
+    .desc = { ent-BaseTraitorStealObjective.desc }

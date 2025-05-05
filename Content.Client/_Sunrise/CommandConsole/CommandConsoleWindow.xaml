@@ -1,0 +1,14 @@
+﻿<controls1:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Sunrise.CommandConsole"
+    xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="command line"
+    MinSize="800 400">
+    <PanelContainer VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch"
+                    StyleClasses="PdaBackground" Margin="5 5 5 5">
+        <BoxContainer Orientation="Vertical">
+            <TextEdit Name="CommandInput" HorizontalExpand="True" VerticalExpand="True" Margin="0 0 0 5" MinHeight="100"/>
+            <Button Name="ExecuteButton" Text="execute" ToolTip="executes command chain" StyleClasses="OpenBoth" Access="Public" />
+        </BoxContainer>
+    </PanelContainer>
+</controls1:FancyWindow>

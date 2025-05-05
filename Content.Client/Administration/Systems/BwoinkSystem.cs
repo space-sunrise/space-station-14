@@ -19,11 +19,11 @@ namespace Content.Client.Administration.Systems
             OnBwoinkTextMessageRecieved?.Invoke(this, message);
         }
 
-        public void Send(NetUserId channelId, string text, bool playSound)
+        public void Send(NetUserId channelId, string text, bool playSound, bool adminOnly)
         {
             // Reuse the channel ID as the 'true sender'.
             // Server will ignore this and if someone makes it not ignore this (which is bad, allows impersonation!!!), that will help.
-            RaiseNetworkEvent(new BwoinkTextMessage(channelId, channelId, text, playSound: playSound));
+            RaiseNetworkEvent(new BwoinkTextMessage(channelId, channelId, text, playSound: playSound, adminOnly: adminOnly));
             SendInputTextUpdated(channelId, false);
         }
 
@@ -38,5 +38,12 @@ namespace Content.Client.Administration.Systems
             _lastTypingUpdateSent = (_timing.RealTime, typing);
             RaiseNetworkEvent(new BwoinkClientTypingUpdated(channel, typing));
         }
+
+        // Sunrise-Start
+        public void LoadDbMessages(NetUserId userId)
+        {
+            RaiseNetworkEvent(new BwoinkRequestDbMessages(userId));
+        }
+        // Sunrise-End
     }
 }

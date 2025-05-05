@@ -42,11 +42,16 @@ public sealed partial class UserProfile : Control
         {
             LinkDiscordButton.Disabled = true;
             LinkTelegramButton.Disabled = true;
+            LinkGitHubButton.Disabled = true;
         }
         else
         {
             LinkTelegramButton.OnPressed += LinkTelegramPressed;
             LinkDiscordButton.OnPressed += LinkDiscordPressed;
+            LinkGitHubButton.OnPressed += LinkGitHubPressed;
+            ResetTelegramButton.OnPressed += ResetTelegramPressed;
+            ResetDiscordButton.OnPressed += ResetDiscordPressed;
+            ResetGitHubButton.OnPressed += ResetGitHubPressed;
             _serviceAuthManager.LoadedServiceLinkedServices += RefreshServiceLinkedServices;
         }
 
@@ -93,20 +98,65 @@ public sealed partial class UserProfile : Control
         if (_serviceAuthManager == null)
             return;
 
-        foreach (var serviceAuthData in _serviceAuthManager.ServiceLinkedServices)
+        // Reset visibility and text for all services
+        LinkDiscordButton.Visible = true;
+        LinkedDiscordName.Text = string.Empty;
+        ResetDiscordButton.Visible = false;
+
+        LinkTelegramButton.Visible = true;
+        LinkedTelegramName.Text = string.Empty;
+        ResetTelegramButton.Visible = false;
+
+        LinkGitHubButton.Visible = true;
+        LinkedGitHubName.Text = string.Empty;
+        ResetGitHubButton.Visible = false;
+
+        // Update visibility and text based on linked services
+        foreach (var serviceAuthData in linkedServices)
         {
             switch (serviceAuthData.ServiceType)
             {
                 case ServiceType.Discord:
                     LinkDiscordButton.Visible = false;
                     LinkedDiscordName.Text = serviceAuthData.Username;
+                    ResetDiscordButton.Visible = true;
                     break;
                 case ServiceType.Telegram:
                     LinkTelegramButton.Visible = false;
                     LinkedTelegramName.Text = serviceAuthData.Username;
+                    ResetTelegramButton.Visible = true;
+                    break;
+                case ServiceType.Github:
+                    LinkGitHubButton.Visible = false;
+                    LinkedGitHubName.Text = serviceAuthData.Username;
+                    ResetGitHubButton.Visible = true;
                     break;
             }
         }
+    }
+
+    private void ResetTelegramPressed(BaseButton.ButtonEventArgs obj)
+    {
+        if (_serviceAuthManager == null)
+            return;
+
+        _serviceAuthManager.ResetServiceLink(ServiceType.Telegram);
+    }
+
+    private void ResetDiscordPressed(BaseButton.ButtonEventArgs obj)
+    {
+        if (_serviceAuthManager == null)
+            return;
+
+        _serviceAuthManager.ResetServiceLink(ServiceType.Discord);
+    }
+
+    private void ResetGitHubPressed(BaseButton.ButtonEventArgs obj)
+    {
+        if (_serviceAuthManager == null)
+            return;
+
+        _serviceAuthManager.ResetServiceLink(ServiceType.Github);
     }
 
     private void BuySponsorPressed(BaseButton.ButtonEventArgs obj)
@@ -128,6 +178,14 @@ public sealed partial class UserProfile : Control
             return;
 
         _serviceAuthManager.ToggleWindow(ServiceType.Discord);
+    }
+
+    private void LinkGitHubPressed(BaseButton.ButtonEventArgs obj)
+    {
+        if (_serviceAuthManager == null)
+            return;
+
+        _serviceAuthManager.ToggleWindow(ServiceType.Github);
     }
 
     private void InfoSponsorPressed(BaseButton.ButtonEventArgs obj)

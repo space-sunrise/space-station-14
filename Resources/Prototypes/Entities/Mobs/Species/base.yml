@@ -33,12 +33,12 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
+    - map: [ "outerClothing" ] #Sunrise-edit
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "neck" ]
     - map: [ "back" ]
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -145,6 +145,7 @@
     - LoveEffect  # Sunrise-Edit
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -200,8 +201,14 @@
         type: SurgeryBui
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      # Sunrise-Start
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
+      enum.SummonCultistUiKey.Key:
+        type: SummonCultistListWindowBUI
+      enum.CultSpellProviderUiKey.Key:
+        type: SpellSelectorBUI
+      # Sunrise-End
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -259,6 +266,7 @@
   abstract: true
   components:
   # Sunrise-Start
+  - type: DarkenedVision
   - type: CanEscapeInventory
   - type: Mood
   - type: CritHeartbeat
@@ -308,7 +316,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike # TODO human.
@@ -369,12 +377,12 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "neck" ]
+    - map: [ "outerClothing" ]
     - map: [ "back" ]
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

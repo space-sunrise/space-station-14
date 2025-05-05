@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.Vote;
 using Content.Shared.Voting;
 using Robust.Client;
 using Robust.Client.Audio;
@@ -14,6 +16,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Sources;
+using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 
 
@@ -40,6 +43,7 @@ namespace Content.Client.Voting
         [Dependency] private readonly IClientNetManager _netManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IResourceCache _res = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         private readonly Dictionary<StandardVoteType, TimeSpan> _standardVoteTimeouts = new();
         private readonly Dictionary<int, ActiveVote> _votes = new();
@@ -66,8 +70,29 @@ namespace Content.Client.Voting
 
             _netManager.RegisterNetMessage<MsgVoteData>(ReceiveVoteData);
             _netManager.RegisterNetMessage<MsgVoteCanCall>(ReceiveVoteCanCall);
+            _netManager.RegisterNetMessage<RequestVoteMusicDisableOptionMessage>(OnRequestVoteMusicDisableOption);
+            _netManager.RegisterNetMessage<VoteMusicDisableOptionMessage>();
+            _cfg.OnValueChanged(SunriseCCVars.VoteMusicDisable, OnVoteMusicDisableOptionChanged);
 
             _client.RunLevelChanged += ClientOnRunLevelChanged;
+        }
+
+        private void OnRequestVoteMusicDisableOption(RequestVoteMusicDisableOptionMessage _)
+        {
+            var message = new VoteMusicDisableOptionMessage
+            {
+                Disable = _cfg.GetCVar(SunriseCCVars.VoteMusicDisable),
+            };
+            _netManager.ClientSendMessage(message);
+        }
+
+        private void OnVoteMusicDisableOptionChanged(bool option)
+        {
+            var message = new VoteMusicDisableOptionMessage
+            {
+                Disable = option,
+            };
+            _netManager.ClientSendMessage(message);
         }
 
         private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)

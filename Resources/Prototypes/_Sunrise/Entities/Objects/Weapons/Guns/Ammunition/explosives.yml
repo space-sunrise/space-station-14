@@ -97,3 +97,30 @@
   - type: SpentAmmoVisuals
     state: frag
     suffix: false
+
+#Pirate
+- type: entity
+  id: CannonBallEMPshot
+  name: EMPshot
+  suffix: Pirate, Sunrise
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletEMP
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: empball
+
+- type: entity
+  id: CannonBallFuze
+  name: fuzed cannonball
+  suffix: Pirate, Sunrise
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeBlast
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: fuzeball

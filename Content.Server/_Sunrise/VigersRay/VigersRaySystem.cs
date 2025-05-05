@@ -1,7 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server._Sunrise.AssaultOps;
-using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -17,7 +15,6 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
-using Content.Shared.GameTicking.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
@@ -49,7 +46,6 @@ public sealed class VigersRaySystem : EntitySystem
     private static bool _soundEveryone;
     private static bool _notifyEveryone;
     private string[] _victims = [];
-    private static bool _disableGameRules;
 
     private const float CheckDelay = 10;
     private TimeSpan _checkTime;
@@ -64,12 +60,6 @@ public sealed class VigersRaySystem : EntitySystem
         _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinSoundEveryone, OnVigersRayJoinSoundEveryoneChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinShockEveryone, OnVigersRayJoinShockEveryoneChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.VigersRayVictims, OnVigersRayVictimsChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.DisableGameRules, OnDisableGameRulesChanged, true);
-    }
-
-    private void OnDisableGameRulesChanged(bool value)
-    {
-        _disableGameRules = value;
     }
 
     private void OnVigersRayJoinNotifyEveryoneChanged(bool value)
@@ -154,20 +144,6 @@ public sealed class VigersRaySystem : EntitySystem
 
         if (_victims.Length != 0)
             PunishVictims();
-        if (_disableGameRules)
-            EndRestrictedRules();
-    }
-
-    private void EndRestrictedRules()
-    {
-        var query = EntityQueryEnumerator<GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var gameRule))
-        {
-            if (HasComp<FleshCultRuleComponent>(uid) || HasComp<AssaultOpsRuleComponent>(uid))
-            {
-                _gameTicker.EndGameRule(uid);
-            }
-        }
     }
 
     private void PunishVictims()

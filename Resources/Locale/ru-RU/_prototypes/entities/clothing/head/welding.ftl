@@ -8,3 +8,5 @@ ent-ClothingHeadHatWeldingMaskFlameBlue = сварочная маска сине
     .desc = Покрашенная сварочная маска, на ней изображены синие языки пламени.
 ent-ClothingHeadHatWeldingMaskPainted = покрашенная сварочная маска
     .desc = Сварочная маска, покрашенная в малиновый цвет.
+ent-ActionToggleWeldingMask = Adjust Welding Mask
+    .desc = Covers or reveals your face.

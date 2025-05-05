@@ -1,0 +1,27 @@
+- type: job
+  id: MailCarrier
+  name: job-name-mail-carrier
+  description: job-description-mail-carrier
+  playTimeTracker: JobMailCarrier
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 14400 # 4 hrs
+  startingGear: MailCarrierGear
+  icon: "JobIconMailCarrier"
+  supervisors: job-supervisors-qm #job-supervisors-hop
+  displayWeight: 30
+  # salary: 1000
+  access:
+  - Maintenance
+  - Mail
+  - Cargo
+
+- type: startingGear
+  id: MailCarrierGear
+  equipment:
+    head: ClothingHeadMailCarrier
+    shoes: ClothingShoesColorBlack
+    id: MailCarrierPDA
+    ears: ClothingHeadsetCargo
+    belt: MailBag

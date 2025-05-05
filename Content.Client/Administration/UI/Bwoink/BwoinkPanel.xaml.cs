@@ -17,6 +17,11 @@ namespace Content.Client.Administration.UI.Bwoink
         private List<string> PeopleTyping { get; set; } = new();
         public event Action<string>? InputTextChanged;
 
+        // Sunrise-Start
+        private DateTime? _lastDateHeader;
+        public bool LoadDb { get; set; }
+        // Sunrise-End
+
         public BwoinkPanel(Action<string> messageSender)
         {
             RobustXamlLoader.Load(this);
@@ -55,13 +60,26 @@ namespace Content.Client.Administration.UI.Bwoink
 
         public void ReceiveLine(SharedBwoinkSystem.BwoinkTextMessage message)
         {
-            if (!Visible)
+            if (!Visible && !message.DbLoad) // Sunrise-Edit
                 Unread++;
 
+            // Sunrise-Start
+            if (_lastDateHeader == null || _lastDateHeader.Value.Date != message.SentAt.Date)
+            {
+                _lastDateHeader = message.SentAt.Date;
+
+                var dateHeader = new FormattedMessage(1);
+                dateHeader.AddMarkupOrThrow($"[center=\"{message.SentAt:dd.MM.yyyy}\"]");
+                TextOutput.AddMessage(dateHeader);
+            }
+            // Sunrise-End
+
             var formatted = new FormattedMessage(1);
-            formatted.AddMarkupOrThrow($"[color=gray]{message.SentAt.ToShortTimeString()}[/color] {message.Text}");
+            var formattedTime = $"[bold]{message.SentAt:HH:mm}[/bold]";
+            formatted.AddMarkupOrThrow($"{formattedTime} {message.Text}");
             TextOutput.AddMessage(formatted);
-            LastMessage = message.SentAt;
+            if (!message.DbLoad) // Sunrise-Edit
+                LastMessage = message.SentAt;
         }
 
         private void UpdateTypingIndicator()

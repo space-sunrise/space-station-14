@@ -1,0 +1,12 @@
+ent-CultRunicMetal = runic metal
+    .desc = An unusual sheet of metal with a pulsating rune.
+    .suffix = Full
+ent-CultRunicMetal1 = { ent-CultRunicMetal }
+    .suffix = Single
+    .desc = { ent-CultRunicMetal.desc }
+ent-CultRunicMetal20 = { ent-CultRunicMetal }
+    .suffix = 20
+    .desc = { ent-CultRunicMetal.desc }
+ent-CultRunicMetal10 = { ent-CultRunicMetal }
+    .suffix = 10
+    .desc = { ent-CultRunicMetal.desc }

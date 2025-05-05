@@ -1,0 +1,37 @@
+﻿{
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by ds @.ainami.rey.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "plushie_blackfox"
+        },
+        {
+            "name": "plushie_bluefox"
+        },
+        {
+            "name": "plushie_coffeefox"
+        },
+        {
+            "name": "plushie_crimsonfox"
+        },
+        {
+            "name": "plushie_marblefox"
+        },
+        {
+            "name": "plushie_orangefox"
+        },
+        {
+            "name": "plushie_pinkfox"
+        },
+        {
+            "name": "plushie_purplefox"
+        },
+        {
+            "name": "plushie_redfox"
+        }
+    ]
+}

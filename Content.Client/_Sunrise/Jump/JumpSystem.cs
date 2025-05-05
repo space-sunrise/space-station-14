@@ -29,14 +29,14 @@ public sealed partial class JumpSystem : SharedJumpSystem
             .Bind(ContentKeyFunctions.Jump, InputCmdHandler.FromDelegate(Jump, handle: false, outsidePrediction: false))
             .Register<JumpSystem>();
 
-        _cfg.OnValueChanged(SunriseCCVars.JumpSoundEnable, OnJumpSoundEnabledOptionChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.JumpSoundDisable, OnJumpSoundEnabledOptionChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.JumpCooldown, OnJumpCooldownChanged, true);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
-        _cfg.UnsubValueChanged(SunriseCCVars.JumpSoundEnable, OnJumpSoundEnabledOptionChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.JumpSoundDisable, OnJumpSoundEnabledOptionChanged);
     }
 
     private void OnJumpCooldownChanged(float value)
@@ -46,7 +46,7 @@ public sealed partial class JumpSystem : SharedJumpSystem
 
     private void OnJumpSoundEnabledOptionChanged(bool option)
     {
-        RaiseNetworkEvent(new ClientOptionJumpSoundEvent(option));
+        RaiseNetworkEvent(new ClientOptionDisableJumpSoundEvent(option));
     }
 
     private void Jump(ICommonSession? session)

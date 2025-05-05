@@ -49,8 +49,8 @@
     randomizeName: false
   - type: RandomMetadata
     nameSegments:
-    - NamesFirstMilitary
-    - names_last_male
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
 
 - type: entity
   name: USSP Officer Soldier
@@ -60,7 +60,7 @@
   components:
   - type: GhostRole
     name: ghost-role-information-ussp-waralt-name
-    description: ghost-role-information-ussp-waralt-description 
+    description: ghost-role-information-ussp-waralt-description
     rules: ghost-role-information-ussp-war-rules
     raffle:
       settings: default
@@ -77,9 +77,8 @@
     randomizeName: false
   - type: RandomMetadata
     nameSegments:
-    - NamesFirstMilitaryLeader
-    - names_last_male
-
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
 - type: entity
   name: USSP Soldier
   parent: MobHuman
@@ -88,7 +87,7 @@
   components:
   - type: GhostRole
     name: ghost-role-information-ussp-war-name
-    description: ghost-role-information-ussp-war-description 
+    description: ghost-role-information-ussp-war-description
     rules: ghost-role-information-ussp-war-rules
     raffle:
       settings: default
@@ -105,8 +104,8 @@
     randomizeName: false
   - type: RandomMetadata
     nameSegments:
-    - NamesFirstMilitary
-    - names_last_male
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
 
 - type: entity
   name: USSP Captain
@@ -133,6 +132,6 @@
     randomizeName: false
   - type: RandomMetadata
     nameSegments:
-    - NamesFirstMilitaryLeader
-    - names_last_male
+    - NamesMilitaryFirstLeader
+    - NamesMilitaryLast
 

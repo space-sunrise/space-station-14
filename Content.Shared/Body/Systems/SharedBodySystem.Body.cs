@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
@@ -19,6 +20,11 @@ namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
+    private const float GibletLaunchImpulse = 8;
+    private const float GibletLaunchImpulseVariance = 3;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+
+    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
     /*
      * tl;dr of how bobby works
      * - BodyComponent uses a BodyPrototype as a template.
@@ -27,11 +33,6 @@ public partial class SharedBodySystem
      */
 
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-
-    private const float GibletLaunchImpulse = 8;
-    private const float GibletLaunchImpulseVariance = 3;
 
     private void InitializeBody()
     {
@@ -126,6 +127,10 @@ public partial class SharedBodySystem
         // Sunrise-End
 
         MapInitParts(rootPartUid, prototype);
+
+        // Sunrise-Start
+        RaiseLocalEvent(bodyEntity, new BodyInitEvent());
+        // Sunrise-End
     }
 
     private void OnBodyCanDrag(Entity<BodyComponent> ent, ref CanDragEvent args)
@@ -173,7 +178,10 @@ public partial class SharedBodySystem
                 cameFromEntities[connection] = childPart;
 
                 var childPartComponent = Comp<BodyPartComponent>(childPart);
-                var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, parentPartComponent);
+                var partSlot = CreatePartSlot(parentEntity,
+                    connection,
+                    childPartComponent.PartType,
+                    parentPartComponent);
                 var cont = Containers.GetContainer(parentEntity, GetPartSlotContainerId(connection));
 
                 if (partSlot is null || !Containers.Insert(childPart, cont))
@@ -309,23 +317,37 @@ public partial class SharedBodySystem
         {
             gibSoundOverride ??= gibbable.GibSound;
         }
+
         var parts = GetBodyChildren(bodyId, body).ToArray();
         gibs.EnsureCapacity(parts.Length);
         foreach (var part in parts)
         {
-
-            _gibbingSystem.TryGibEntityWithRef(bodyId, part.Id, GibType.Gib, GibContentsOption.Skip, ref gibs,
-                playAudio: false, launchGibs:true, launchDirection:splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+            _gibbingSystem.TryGibEntityWithRef(bodyId,
+                part.Id,
+                GibType.Gib,
+                GibContentsOption.Skip,
+                ref gibs,
+                playAudio: false,
+                launchGibs: true,
+                launchDirection: splatDirection,
+                launchImpulse: GibletLaunchImpulse * splatModifier,
+                launchImpulseVariance: GibletLaunchImpulseVariance,
+                launchCone: splatCone);
 
             if (!gibOrgans)
                 continue;
 
             foreach (var organ in GetPartOrgans(part.Id, part.Component))
             {
-                _gibbingSystem.TryGibEntityWithRef(bodyId, organ.Id, GibType.Drop, GibContentsOption.Skip,
-                    ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
-                    launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+                _gibbingSystem.TryGibEntityWithRef(bodyId,
+                    organ.Id,
+                    GibType.Drop,
+                    GibContentsOption.Skip,
+                    ref gibs,
+                    playAudio: false,
+                    launchImpulse: GibletLaunchImpulse * splatModifier,
+                    launchImpulseVariance: GibletLaunchImpulseVariance,
+                    launchCone: splatCone);
             }
         }
 
@@ -338,6 +360,7 @@ public partial class SharedBodySystem
                 gibs.Add(item);
             }
         }
+
         _audioSystem.PlayPredicted(gibSoundOverride, bodyTransform.Coordinates, null);
         return gibs;
     }

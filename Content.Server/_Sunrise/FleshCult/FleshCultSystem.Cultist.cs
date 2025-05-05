@@ -20,7 +20,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -223,15 +222,17 @@ public sealed partial class FleshCultSystem
     {
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
         {
-            _roles.MindRemoveRole<FleshCultistRoleComponent>((mindId, mind));
-            var indexesToRemove = mind.Objectives
-                .Select((objective, index) => new { objective, index })
-                .Where(x => MetaData(x.objective).EntityPrototype!.ID is CreateFleshHeartObjective or FleshCultSurviveObjective)
-                .Select(x => x.index)
-                .ToList();
+            if (_mindSystem.TryFindObjective((mindId, mind), CreateFleshHeartObjective, out var fleshHeartObjective))
+            {
+                _mindSystem.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(fleshHeartObjective.Value));
+            }
 
-            foreach (var index in indexesToRemove.OrderByDescending(i => i))
-                _mindSystem.TryRemoveObjective(mindId, mind, index);
+            if (_mindSystem.TryFindObjective((mindId, mind), FleshCultSurviveObjective, out var surviveObjective))
+            {
+                _mindSystem.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(surviveObjective.Value));
+            }
+
+            _roles.MindRemoveRole<FleshCultistRoleComponent>((mindId, mind));
         }
     }
 
@@ -306,7 +307,7 @@ public sealed partial class FleshCultSystem
             var tempSol = new Solution { MaxVolume = 5 };
             tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _prototypeManager);
 
-            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna))
+            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna) && dna.DNA != null)
             {
                 var comp = EnsureComp<ForensicsComponent>(puddleUid);
                 comp.DNAs.Add(dna.DNA);

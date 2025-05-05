@@ -1,77 +1,73 @@
 #Knight_of_the_Sun:
 - type: sponsorLoadout
-  id: SunriseUplink40Loadout
-  equipment: SunriseUplink40
+  id: SunriseSponsorTier2
+  equipment: SunriseSponsorTier2
 
 - type: startingGear
-  id: SunriseUplink40
+  id: SunriseSponsorTier2
+  equipment:
+    neck: ClothingNeckSunriseBadge
   storage:
     back:
     - SunriseUplink40
 
 #Sun:
 - type: sponsorLoadout
-  id: SunriseUplink80Loadout
-  equipment: SunriseUplink80
+  id: SunriseSponsorTier3
+  equipment: SunriseSponsorTier3
 
 - type: startingGear
-  id: SunriseUplink80
+  id: SunriseSponsorTier3
+  equipment:
+    neck: ClothingNeckSunriseBadge
   storage:
     back:
     - SunriseUplink80
 
 #Endless_Summer
 - type: sponsorLoadout
-  id: SunriseUplink100Loadout
-  equipment: SunriseUplink100
+  id: SunriseSponsorTier4
+  equipment: SunriseSponsorTier4
 
 - type: startingGear
-  id: SunriseUplink100
+  id: SunriseSponsorTier4
+  equipment:
+    neck: ClothingNeckSunriseBadge
   storage:
     back:
     - SunriseUplink100
-
-#Badge
-- type: sponsorLoadout
-  id: SunriseBadgeLoadout
-  equipment: ClothingNeckSunriseBadge
-
-- type: startingGear
-  id: ClothingNeckSunriseBadge
-  equipment:
-    neck: ClothingNeckSunriseBadge
 
 # FISHSTATION UPLINKS:
 
 # first level?
 - type: sponsorLoadout
-  id: FishStationUplink40Loadout
-  equipment: FishStationUplink40
+  id: FishSponsorTier1
+  equipment: FishSponsorTier1
 
 - type: startingGear
-  id: FishStationUplink40
+  id: FishSponsorTier1
   storage:
     back:
     - FishStationUplink40
 
 # second level?
 - type: sponsorLoadout
-  id: FishStationUplink80Loadout
-  equipment: FishStationUplink80
+  id: FishSponsorTier2
+  equipment: FishSponsorTier2
 
 - type: startingGear
-  id: FishStationUplink80
+  id: FishSponsorTier2
   storage:
     back:
     - FishStationUplink80
 
 # third level?
 - type: sponsorLoadout
-  id: FishStationUplink100Loadout
-  equipment: FishStationUplink100
+  id: FishSponsorTier3
+  equipment: FishSponsorTier3
 
 - type: startingGear
-  id: FishStationUplink100
+  id: FishSponsorTier3
   storage:
     back:
     - FishStationUplink100
@@ -80,33 +76,33 @@
 
 # first level?
 - type: sponsorLoadout
-  id: NeweraStationUplink40Loadout
-  equipment: NeweraStationUplink40
+  id: NeweraSponsorTier1
+  equipment: NeweraSponsorTier1
 
 - type: startingGear
-  id: NeweraStationUplink40
+  id: NeweraSponsorTier1
   storage:
     back:
     - NeweraStationUplink40
 
 # second level?
 - type: sponsorLoadout
-  id: NeweraStationUplink80Loadout
-  equipment: NeweraStationUplink80
+  id: NeweraSponsorTier2
+  equipment: NeweraSponsorTier2
 
 - type: startingGear
-  id: NeweraStationUplink80
+  id: NeweraSponsorTier2
   storage:
     back:
     - NeweraStationUplink80
 
 # third level?
 - type: sponsorLoadout
-  id: NeweraStationUplink100Loadout
-  equipment: NeweraStationUplink100
+  id: NeweraSponsorTier3
+  equipment: NeweraSponsorTier3
 
 - type: startingGear
-  id: NeweraStationUplink100
+  id: NeweraSponsorTier3
   storage:
     back:
     - NeweraStationUplink100

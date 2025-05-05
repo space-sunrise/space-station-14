@@ -75,6 +75,7 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
+  - WeaponMechCombatMG
   - PaintDurandExecutor
   - PaintDurandShire
   technologyPrerequisites:
@@ -134,5 +135,3 @@
   recipeUnlocks:
   - WeaponGunLaserCarbineAutomatic
   - WeaponEnergyGunPistol
-  technologyPrerequisites:
-  - ExperimentalBatteryAmmo

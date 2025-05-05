@@ -1,3 +1,6 @@
+using Content.Client._RMC14.Explosion;
+using Content.Client._RMC14.Xenonids.Screech;
+using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Entry;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Administration.Managers;
@@ -21,6 +24,7 @@ using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
 using Content.Client.Stylesheets;
+using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Ame.Components;
@@ -76,7 +80,9 @@ namespace Content.Client.Entry
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Hub
+        [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
 
         public override void Init()
         {
@@ -143,6 +149,7 @@ namespace Content.Client.Entry
             _playbackMan.Initialize();
 
             _serversHubManager.Initialize(); // Sunrise-Hub
+            _contributorsManager.Initialize(); // Sunrise-Hub
 
             // Sunrise-Sponsors-Start
             SunriseClientEntry.Init();
@@ -174,6 +181,10 @@ namespace Content.Client.Entry
             _parallaxManager.LoadDefaultParallax();
 
             _overlayManager.AddOverlay(new SingularityOverlay());
+            // Sunrise edit start
+            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay());
+            _overlayManager.AddOverlay(new RMCXenoScreechShockWaveOverlay());
+            // Sunrise edit end
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
@@ -242,6 +253,15 @@ namespace Content.Client.Entry
             if (level == ModUpdateLevel.FramePreEngine)
             {
                 _debugMonitorManager.FrameUpdate();
+            }
+
+            if (level == ModUpdateLevel.PreEngine)
+            {
+                if (_baseClient.RunLevel is ClientRunLevel.InGame or ClientRunLevel.SinglePlayerGame)
+                {
+                    var updateSystem = _entitySystemManager.GetEntitySystem<BuiPreTickUpdateSystem>();
+                    updateSystem.RunUpdates();
+                }
             }
         }
     }

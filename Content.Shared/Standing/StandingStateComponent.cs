@@ -17,10 +17,10 @@ public sealed partial class StandingStateComponent : Component
     public List<string> ChangedFixtures = new();
 
     [DataField, AutoNetworkedField]
-    public float CycleTime { get; set; } = 2f;
+    public float CycleTime { get; set; } = 1f;
 
     [DataField, AutoNetworkedField]
-    public float BaseSpeedModify { get; set; } = 0.4f;
+    public float BaseSpeedModify { get; set; } = 0.6f;
 }
 
 [Serializable, NetSerializable]

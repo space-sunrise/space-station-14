@@ -36,6 +36,9 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -85,6 +88,9 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3

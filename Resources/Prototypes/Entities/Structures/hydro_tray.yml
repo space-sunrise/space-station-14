@@ -87,8 +87,6 @@
         acts: ["Destruction"]
   - type: Machine
     board: HydroponicsTrayMachineCircuitboard
-  - type: TTS
-    voice: FactCore
   - type: WiresPanel
   - type: AmbientSound
     volume: -9
@@ -103,6 +101,8 @@
   - type: Tag
     tags:
     - NoPaint
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
   # Sunrise-end
 
 - type: entity

@@ -1,0 +1,25 @@
+﻿- type: entity
+  id: BloodCult
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: BloodCultRule
+  - type: AntagObjectives
+    objectives:
+    - CultistKillObjective
+#    Сюда нужно цель на призыв нарси.
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ BloodCultist ]
+      max: 4
+      playerRatio: 15
+      blacklist:
+        components:
+        - AntagImmune
+        #- Synth  # SUNRISE-TODO: КПБ
+        - BibleUser
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleCultist

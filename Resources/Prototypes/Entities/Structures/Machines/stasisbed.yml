@@ -14,6 +14,7 @@
   - type: Sprite
     sprite: Structures/Machines/stasis_bed.rsi
     noRot: true
+    drawdepth: Puddles #Sunrise-add
     layers:
     - state: icon
     - state: unlit
@@ -60,3 +61,4 @@
     guides:
     - Medical Doctor
   - type: PowerSwitch
+  - type: CanSleepOnBuckle # Sunrise-Edit

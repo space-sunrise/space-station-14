@@ -105,7 +105,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         if (TryComp(Transform(uid).ParentUid, out ActorComponent? actor))
         {
             _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
-            if (actorUid != args.MessageSource && TryComp(args.MessageSource, out TTSComponent? _))
+            if (actorUid != args.MessageSource && HasComp<TTSComponent>(args.MessageSource))
             {
                 args.Receivers.Add(actorUid);
             }

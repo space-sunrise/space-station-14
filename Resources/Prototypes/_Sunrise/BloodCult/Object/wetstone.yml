@@ -1,0 +1,42 @@
+﻿- type: entity
+  id: WetStone
+  parent: BaseItem
+  components:
+    - type: Sharpener
+      damageBonus:
+        types:
+          Slash: 5
+    - type: Sprite
+      sprite: _Sunrise/BloodCult/Entities/wetstone.rsi
+      layers:
+      - state: sharpener
+        map: [ "base" ]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SharpenerVisuals.Visual:
+          base:
+            Sharp: { state: sharpener }
+            Used: { state: sharpener_used }
+    - type: Item
+      size: Small
+
+- type: entity
+  parent: WetStone
+  id: CultSharpener
+  components:
+    - type: Sharpener
+      damageBonus:
+        types:
+          Slash: 15
+    - type: Sprite
+      sprite: _Sunrise/BloodCult/Entities/wetstone.rsi
+      layers:
+      - state: cult_sharpener
+        map: [ "base" ]
+    - type: GenericVisualizer
+      visuals:
+        enum.SharpenerVisuals.Visual:
+          base:
+            Sharp: { state: cult_sharpener }
+            Used: { state: cult_sharpener_used }

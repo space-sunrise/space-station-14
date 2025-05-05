@@ -7,6 +7,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared._Sunrise.VentCraw.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
+using Content.Shared.NodeContainer;
 using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.VentCraw;
@@ -42,7 +43,7 @@ public sealed class BeingVentCrawSystem : EntitySystem
                 mind = _entities.GetComponent<MindComponent>(mindId);
             }
 
-            _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, mind);
+            _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, mind: mind);
         }
     }
 

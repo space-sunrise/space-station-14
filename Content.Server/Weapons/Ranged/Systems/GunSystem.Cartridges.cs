@@ -80,7 +80,7 @@ public sealed partial class GunSystem
             shootModifier = ShootModifier.Spread;
         }
 
-        _damageExamine.AddDamageExamineWithModifier(args.Message, damageSpec, shotCount, shootModifier, Loc.GetString("damage-projectile"));
+        _damageExamine.AddDamageExamineWithModifier(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, Loc.GetString("damage-projectile"));
     }
 
     private DamageSpecifier? GetProjectileDamage(string proto)
@@ -95,7 +95,7 @@ public sealed partial class GunSystem
 
             if (!p.Damage.Empty)
             {
-                return p.Damage;
+                return p.Damage * Damageable.UniversalProjectileDamageModifier;
             }
         }
 

@@ -60,10 +60,10 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (_charges.IsEmpty(uid, charges))
+        if (_charges.IsEmpty((uid, charges)))
             return;
 
-        _charges.UseCharge(uid, charges);
+        _charges.TryUseCharge((uid, charges));
 
         Teleportation(uid, args.User, component);
     }

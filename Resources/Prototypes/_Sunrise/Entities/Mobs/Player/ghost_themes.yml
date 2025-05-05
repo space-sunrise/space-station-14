@@ -48,7 +48,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: Mobs/Demons/narsie.rsi
     state: narsie
 
 - type: ghostTheme
@@ -57,7 +57,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/gods.rsi
     state: kha'rin
 
 - type: ghostTheme
@@ -66,7 +66,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/gods.rsi
     state: legion
 
 - type: ghostTheme
@@ -75,7 +75,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narbee.rsi
     state: narbee
 
 - type: ghostTheme
@@ -84,7 +84,7 @@
   scale: 0.15, 0.15
   sponsorOnly: true
   sprite:
-    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/reaper.rsi
     state: reaper
 
 - type: ghostTheme
@@ -157,7 +157,7 @@
   sponsorOnly: true
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/purple_ghost_human.rsi
-    state: icon
+    state: animated
 
 - type: ghostTheme
   id: Red
@@ -166,7 +166,7 @@
   sponsorOnly: true
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/red_ghost_human.rsi
-    state: icon
+    state: animated
 
 - type: ghostTheme
   id: BlueArchiveHibiki
@@ -379,3 +379,26 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/revenant_ghost.rsi
     state: animated
+
+- type: ghostTheme
+  id: HoloCarp
+  name: ghost-theme-holo-carp
+  sponsorOnly: true
+  sprite:
+    sprite: Mobs/Aliens/Carps/holo.rsi
+    state: alive
+
+- type: ghostTheme
+  id: HoloGirl
+  name: ghost-theme-holo-girl
+  sponsorOnly: true
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/holo_girl.rsi
+    state: holo_animated
+
+- type: ghostTheme
+  id: Pirate
+  name: ghost-theme-pirate
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/pirate_ghost.rsi
+    state: pirate_icon

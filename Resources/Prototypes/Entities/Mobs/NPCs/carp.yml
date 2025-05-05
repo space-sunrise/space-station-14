@@ -15,7 +15,7 @@
           true
     - type: NpcFactionMember
       factions:
-      - Carps
+      - Carps # Sunrise-Edit
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Aliens/Carps/space.rsi
@@ -180,13 +180,21 @@
       description: ghost-role-information-sentient-carp-description
       rules: ghost-role-information-space-dragon-summoned-carp-rules
       mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+      - MindRoleGhostRoleTeamAntagonistFlock
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
     - type: HTN
       rootTask:
         task: DragonCarpCompound
+    # Sunrise-start
+    - type: Tag
+      tags:
+      - Carp
+      - DoorBumpOpener
+      - NoPaint  # Sunrise-edit
+      - CarpRiftHealTarget  # Sunrise-edit
+    # Sunrise-end
 
 - type: entity
   id: MobCarpDungeon

@@ -1,0 +1,20 @@
+- type: entity
+  name: plant bag of holding
+  id: PlantBagOfHolding
+  parent: PlantBag
+  description: A robust bag of holding for botanists and gardeners to carry large amounts of plants. Magnetises any nearby plants when attached to a belt.
+  components:
+  - type: MagnetPickup
+    range: 2
+  - type: Sprite
+    # Temporary sprite until a new one is made
+    # sprite: Objects/Specific/Hydroponics/plant_bag_holding.rsi
+    sprite: Objects/Specific/Mining/ore_bag_holding.rsi
+    state: icon
+  - type: Clothing
+    # same temporary sprite
+    # sprite: Objects/Specific/Hydroponics/plant_bag_holding.rsi
+    sprite: Objects/Specific/Mining/ore_bag_holding.rsi
+  - type: Storage
+    grid:
+    - 0,0,19,9

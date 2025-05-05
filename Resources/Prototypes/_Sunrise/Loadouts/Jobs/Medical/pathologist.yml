@@ -7,3 +7,8 @@
   id: CoatPatologoanatom
   equipment:
     outerClothing: ClothingOuterCoatPatologoanatom
+
+- type: loadout
+  id: PatologonatBeret
+  equipment:
+    head: ClothingHeadHatBeretPatologoanatom

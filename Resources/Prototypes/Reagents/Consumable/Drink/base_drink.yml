@@ -2,12 +2,17 @@
   id: BaseDrink
   group: Drinks
   abstract: true
-  slippery: true
+  slipData:
+    requiredSlipSpeed: 3.5
   metabolisms:
     Drink:
       effects:
       - !type:SatiateThirst
         factor: 3
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
   reactiveEffects:
     Extinguish:
       methods: [ Touch ]
@@ -29,6 +34,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 0.1
@@ -46,6 +55,9 @@
   id: BaseAlcohol
   group: Drinks
   abstract: true
+  slipData:
+    requiredSlipSpeed: 3.5
+  friction: 0.4
   metabolisms:
     Drink:
       effects:

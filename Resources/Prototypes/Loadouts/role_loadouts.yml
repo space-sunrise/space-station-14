@@ -39,8 +39,14 @@
 
 # Silicons
 - type: roleLoadout
+  id: JobBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
   id: JobStationAi
   nameDataset: NamesAI
+  canCustomizeName: true
 
 # Civilian
 - type: roleLoadout
@@ -219,6 +225,7 @@
 
 - type: roleLoadout
   id: JobClown
+  canCustomizeName: true
   groups:
   - GroupTankHarness
   - ClownHead
@@ -238,6 +245,7 @@
 
 - type: roleLoadout
   id: JobMime
+  canCustomizeName: true
   groups:
   - GroupTankHarness
   - MimeHead
@@ -563,7 +571,7 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
-  - SunriseSecurityGun
+  - SunriseSecurityGunHos
   - Bra
   - Pants
   - Socks
@@ -671,7 +679,7 @@
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
-  - Glasses
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -698,7 +706,7 @@
   # Sunrise-end
   - MedicalShoes
   #- MedicalDoctorPDA
-  - Glasses
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -728,7 +736,7 @@
   - SunriseMedicalDoctorNeck
   - MedicalShoes
   # Sunrise-end
-  - Glasses
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -792,7 +800,7 @@
   - SunriseParamedicNeck
   # Sunrise-end
   - ParamedicShoes
-  - Glasses
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -889,11 +897,20 @@
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
 
+# gives vox a harness and breathing mask
+# nitrogen tank not included
 - type: roleLoadout
   id: RoleSurvivalVoxSupport
   groups:
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+# gives vox a nitrogen breathing tank
+# other species get nothing
+- type: roleLoadout
+  id: RoleSurvivalVoxTank
+  groups:
+  - GroupEVATankVox
 
 - type: roleLoadout
   id: RoleSurvivalStandard

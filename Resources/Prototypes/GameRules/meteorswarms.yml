@@ -56,38 +56,35 @@
   id: MeteorSwarmScheduler
   components:
   - type: GameRule
-# Sunrise-Edit: No meteorites
-#  - type: BasicStationEventScheduler
-#    minimumTimeUntilFirstEvent: 600 # 10 min
-#    minMaxEventTiming:
-#      min: 750 # 12.5 min
-#      max: 930 # 17.5 min
-#    scheduledGameRules: !type:NestedSelector
-#      tableId: BasicMeteorSwarmEventsTable
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 600 # 10 min
+    minMaxEventTiming:
+      min: 750 # 12.5 min
+      max: 930 # 17.5 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: BasicMeteorSwarmEventsTable
 
 - type: entity
   parent: BaseGameRule
   id: MeteorSwarmMildScheduler
   components:
   - type: GameRule
-# Sunrise-Edit: No meteorites
-#  - type: BasicStationEventScheduler
-#    minimumTimeUntilFirstEvent: 600 # 10 min
-#    minMaxEventTiming:
-#      min: 750 # 12.5 min
-#      max: 930 # 17.5 min
-#    scheduledGameRules: !type:NestedSelector
-#      tableId: MeteorSwarmMildTable
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 600 # 10 min
+    minMaxEventTiming:
+      min: 750 # 12.5 min
+      max: 930 # 17.5 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: MeteorSwarmMildTable
 
 - type: entity
   parent: BaseGameRule
   id: KesslerSyndromeScheduler
   components:
   - type: GameRule
-# Sunrise-Edit: No meteorites
-#  - type: RampingStationEventScheduler
-#    scheduledGameRules: !type:NestedSelector
-#      tableId: BasicMeteorSwarmEventsTable
+  - type: RampingStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: BasicMeteorSwarmEventsTable
 
 # Game Rules
 
@@ -121,8 +118,8 @@
       min: 2
       max: 3
     meteorsPerWave:
-      min: 3
-      max: 5
+      min: 1 # Sunrise-Edit
+      max: 3 # Sunrise-Edit
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -141,8 +138,8 @@
       min: 2
       max: 3
     meteorsPerWave:
-      min: 8
-      max: 12
+      min: 5 # Sunrise-Edit
+      max: 10 # Sunrise-Edit
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -151,6 +148,14 @@
   - type: StationEvent
     weight: 18
     minimumPlayers: 15
+    # Sunrise-Start
+    startAnnouncement: station-event-meteor-swarm-start-announcement
+    endAnnouncement: station-event-meteor-swarm-end-announcement
+    startAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg
+    endAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg
+    # Sunrise-End
   - type: MeteorSwarm
     meteors:
       MeteorSmall: 7
@@ -162,6 +167,15 @@
   components:
   - type: StationEvent
     weight: 10
+    # Sunrise-Start
+    minimumPlayers: 30
+    startAnnouncement: station-event-meteor-swarm-start-announcement
+    endAnnouncement: station-event-meteor-swarm-end-announcement
+    startAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg
+    endAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg
+    # Sunrise-End
   - type: MeteorSwarm
     meteors:
       MeteorSmall: 3
@@ -174,6 +188,15 @@
   components:
   - type: StationEvent
     weight: 5
+    # Sunrise-Start
+    minimumPlayers: 50
+    startAnnouncement: station-event-meteor-swarm-start-announcement
+    endAnnouncement: station-event-meteor-swarm-end-announcement
+    startAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg
+    endAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg
+    # Sunrise-End
   - type: MeteorSwarm
     meteors:
       MeteorSmall: 2

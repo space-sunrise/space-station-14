@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<AHelpMessage> AHelpMessages { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -403,6 +404,9 @@ namespace Content.Server.Database
         public string FlavorText { get; set; } = null!;
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
+
+        public string BodyType { get; set; } = null!;
+
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public string Voice { get; set; } = null!; // Sunrise-TTS
@@ -480,6 +484,12 @@ namespace Content.Server.Database
         /// The corresponding role prototype on the profile.
         /// </summary>
         public string RoleName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Custom name of the role loadout if it supports it.
+        /// </summary>
+        [MaxLength(256)]
+        public string? EntityName { get; set; }
 
         /// <summary>
         /// Store the saved loadout groups. These may get validated and removed when loaded at runtime.
@@ -982,6 +992,8 @@ namespace Content.Server.Database
         BabyJail = 4,
         /// Results from rejected connections with external API checking tools
         IPChecks = 5,
+        /// Results from rejected connections who are authenticated but have no modern hwid associated with them.
+        NoHwid = 6
     }
 
     public class ServerBanHit
@@ -1321,5 +1333,20 @@ namespace Content.Server.Database
         /// The score IPIntel returned
         /// </summary>
         public float Score { get; set; }
+    }
+
+    [Table("ahelp_messages"), Index(nameof(ReceiverUserId))]
+    public class AHelpMessage
+    {
+        [Key]
+        public int Id { get; set; }
+        [ForeignKey("Player")]
+        public Guid ReceiverUserId { get; set; }
+        [ForeignKey("Player")]
+        public Guid SenderUserId { get; set; }
+        public DateTimeOffset SentAt { get; set; }
+        [Required, MaxLength(4096)] public string Message { get; set; } = string.Empty;
+        public bool PlaySound { get; set; }
+        public bool AdminOnly { get; set; }
     }
 }

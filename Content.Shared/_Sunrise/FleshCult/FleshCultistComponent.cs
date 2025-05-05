@@ -18,13 +18,13 @@ public sealed partial class FleshCultistComponent : Component
     public FixedPoint2 HungerСonsumption = -0.0555555555556; // 100 hunger in 30 minutes
 
     [ViewVariables(VVAccess.ReadWrite), DataField("maxHunger")]
-    public FixedPoint2 MaxHunger = 150;
+    public FixedPoint2 MaxHunger = 300;
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionFleshCultistShop = "FleshCultistShop";
 
     [DataField]
-    public FixedPoint2 StartingMutationPoints = 15;
+    public FixedPoint2 StartingMutationPoints = 5;
 
     [DataField]
     public EntityUid? ActionFleshCultistShopEntity;

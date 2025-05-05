@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasSecurity
   id: ClothingMaskGasPilot
   name: security pilot's gas mask
   description: A gas mask made in the style of 21st century pilot masks.
@@ -21,10 +21,6 @@
     sprite: _Sunrise/Clothing/Mask/atmosian.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/atmosian.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.80
 
 - type: entity
   parent: ClothingMaskGasERT
@@ -288,3 +284,14 @@
     slots:
     - Snout
   - type: FaceCast
+
+- type: entity
+  parent: [ ClothingMaskGasSwat, BaseSecurityContraband ]
+  id: ClothingMaskGasBlueShield
+  name: Blueshild gas mask
+  description: Gas Mask for real professionals. It may even help to get CE cameras with burning tritium!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsig

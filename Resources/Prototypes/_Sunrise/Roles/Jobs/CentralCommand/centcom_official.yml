@@ -9,6 +9,7 @@
   setPreference: false
   startingGear: CentCommOfficialGear
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   radioBold: true
   canBeAntag: false
@@ -19,7 +20,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [MindShieldImplant]
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: CentCommOfficialGear

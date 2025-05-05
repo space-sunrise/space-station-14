@@ -44,13 +44,13 @@ public sealed class SpreaderFleshSystem : EntitySystem
     private void SpreaderAddHandler(EntityUid uid, SpreaderFleshComponent component, ComponentAdd args)
     {
         if (component.Enabled)
-            _edgeGrowths.Add(uid); // ez
+            _edgeGrowths.Add(uid);
     }
 
     public void UpdateNearbySpreaders(EntityUid blocker, AirtightComponent comp)
     {
         if (!EntityManager.TryGetComponent<TransformComponent>(blocker, out var transform))
-            return; // how did we get here?
+            return;
 
         if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
             return;

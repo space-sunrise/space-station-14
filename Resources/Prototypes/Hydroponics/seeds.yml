@@ -481,6 +481,7 @@
     - Log
   mutationPrototypes:
     - steelcap
+    - glasscap #Sunrise-add
   lifespan: 80
   maturation: 15
   ligneous: true
@@ -502,6 +503,8 @@
   packetPrototype: SteelcapSeeds
   productPrototypes:
     - SteelLog
+  mutationPrototypes: #Sunrise-add
+    - plaststeelcap #Sunrise-add
   lifespan: 80
   maturation: 15
   ligneous: true
@@ -623,6 +626,8 @@
   noun: seeds-noun-seeds
   displayName: seeds-killertomato-display-name
   plantRsi: Objects/Specific/Hydroponics/tomatokiller.rsi
+  plantLogImpact: High
+  harvestLogImpact: High
   packetPrototype: KillerTomatoSeeds
   productPrototypes:
     - MobTomatoKiller
@@ -665,6 +670,7 @@
   production: 6
   yield: 2
   potency: 20
+  growthStages: 3
   idealLight: 9
   idealHeat: 298
   chemicals:
@@ -800,6 +806,8 @@
   packetPrototype: CornSeeds
   productPrototypes:
     - FoodCorn
+  mutationPrototypes:
+  - Snapcorn #Sunrise-add
   lifespan: 25
   maturation: 8
   production: 6
@@ -810,10 +818,10 @@
   waterConsumption: 0.60
   idealHeat: 298
   chemicals:
-    Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 20
+    # Nutriment: # Sunrise-edit
+    #  Min: 1
+    #  Max: 10
+    #  PotencyDivisor: 20
     Cornmeal:
       Min: 5
       Max: 15
@@ -930,8 +938,8 @@
   idealHeat: 298
   chemicals:
     Egg:
-      Min: 1
-      Max: 10
+      Min: 4
+      Max: 12
       PotencyDivisor: 10
 
 - type: seed
@@ -945,6 +953,7 @@
     - LeavesCannabis
   mutationPrototypes:
     - rainbowCannabis
+    - CannabisVita #Sunrise-add
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 8
@@ -1064,6 +1073,8 @@
   displayName: seeds-deathnettle-display-name
   plantRsi: Objects/Specific/Hydroponics/death_nettle.rsi
   packetPrototype: DeathNettleSeeds
+  plantLogImpact: High
+  harvestLogImpact: High
   productPrototypes:
     - DeathNettle
   lifespan: 25
@@ -1398,8 +1409,8 @@
   chemicals:
     Amatoxin:
       Min: 1
-      Max: 25
-      PotencyDivisor: 4
+      Max: 10
+      PotencyDivisor: 12
     Nutriment: ## yumby :)
       Min: 1
       Max: 5
@@ -1628,6 +1639,7 @@
     - FoodWatermelon
   mutationPrototypes:
     - holymelon
+    - Barrelmelon #Sunrise-add
   lifespan: 55
   maturation: 12
   production: 3

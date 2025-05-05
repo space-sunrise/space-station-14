@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -20,6 +21,7 @@ public sealed class GameMapManager : IGameMapManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IResourceManager _resMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     private readonly Queue<string> _previousMaps = new();
@@ -31,6 +33,8 @@ public sealed class GameMapManager : IGameMapManager
     private bool _mapRotationEnabled;
     [ViewVariables(VVAccess.ReadOnly)]
     private int _mapQueueDepth = 1;
+
+    private readonly HashSet<string> _excludedMaps = new(); // Sunrise-Edit
 
     private ISawmill _log = default!;
 
@@ -98,6 +102,26 @@ public sealed class GameMapManager : IGameMapManager
         var maps = AllVotableMaps().Where(IsMapEligible).ToArray();
         return maps.Length == 0 ? AllMaps().Where(x => x.Fallback) : maps;
     }
+
+    // Sunrise-Start
+    public IEnumerable<string> CurrentlyExcludedMaps()
+    {
+        return _excludedMaps;
+    }
+
+    public void AddExcludedMap(string mapId)
+    {
+        if (!_cfg.GetCVar(SunriseCCVars.ExcludeMaps))
+            return;
+
+        _excludedMaps.Add(mapId);
+    }
+
+    public void ClearExcludedMaps()
+    {
+        _excludedMaps.Clear();
+    }
+    // Sunrise-End
 
     public IEnumerable<GameMapPrototype> AllVotableMaps()
     {
