@@ -1929,6 +1929,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-15.5
       parent: 104
+  - type: GridFill
+      addComponents:
+      - type: NukeOpsShuttle
+      path: /Maps/_Sunrise/Shuttles/infiltrator.yml
 - proto: AirlockExternalNukeopLocked
   entities:
   - uid: 1415
