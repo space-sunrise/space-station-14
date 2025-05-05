@@ -18,6 +18,7 @@
   youngAge: 23
   oldAge: 46
   maxAge: 49
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # SUNRISE-TODO: Спрайт жопы таяров
 
 - type: bodyType
   id: TajaranNormal

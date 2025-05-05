@@ -26,8 +26,9 @@ public sealed class FaxBoundUi : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindow<FaxWindow>();
-        _window.FileButtonPressed += OnFileButtonPressed;
-        _window.CopyButtonPressed += OnCopyButtonPressed;
+        // Sunrise-Edit
+        //_window.FileButtonPressed += OnFileButtonPressed;
+        //_window.CopyButtonPressed += OnCopyButtonPressed;
         _window.SendButtonPressed += OnSendButtonPressed;
         _window.RefreshButtonPressed += OnRefreshButtonPressed;
         _window.PeerSelected += OnPeerSelected;

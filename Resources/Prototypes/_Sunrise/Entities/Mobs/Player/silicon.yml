@@ -317,3 +317,15 @@
           Empty: { state: empty }
           Occupied: { state: full }
   - type: Intellicard
+
+- type: entity
+  id: SyndicateCircuitBoard
+  parent: BaseElectronics
+  name: law board (Syndicate)
+  description: An electronics board containing the Sindicate lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: SyndicateStatic

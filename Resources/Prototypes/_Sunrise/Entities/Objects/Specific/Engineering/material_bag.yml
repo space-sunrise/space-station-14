@@ -1,6 +1,6 @@
 - type: entity
   name: material bag
-  id: MaterialBag
+  id: MaterialBagSunrise
   parent: BaseStorageItem
   description: A very roomy engineering bag designed for storing materials.
   components:

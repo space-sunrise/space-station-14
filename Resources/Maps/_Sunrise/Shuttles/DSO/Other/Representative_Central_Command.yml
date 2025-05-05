@@ -651,7 +651,7 @@ entities:
     - type: Transform
       pos: -4.254051,9.584671
       parent: 1
-- proto: BlueShieldIDCard
+- proto: BlueShieldOfficerIDCard
   entities:
   - uid: 39
     components:
@@ -4052,7 +4052,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.7481457,16.90559
       parent: 1
-- proto: LockerBlueshieldFilledUplink
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 249
     components:

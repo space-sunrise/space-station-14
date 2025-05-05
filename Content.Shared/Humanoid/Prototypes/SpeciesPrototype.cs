@@ -144,6 +144,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public SpriteSpecifier Preview { get; private set; } =
         new SpriteSpecifier.Rsi(new ResPath("/Textures/Mobs/Species/Human/parts.rsi"), "full");
+
+    [DataField]
+    public string ButtScanTexture = "/Textures/_Sunrise/ButtsScans/human.png";
 }
 
 public enum SpeciesNaming : byte

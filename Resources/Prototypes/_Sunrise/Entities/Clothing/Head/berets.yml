@@ -61,3 +61,19 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtmos
+  name: atmos beret
+  description: A beret, for atmos.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon

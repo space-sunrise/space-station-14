@@ -33,6 +33,8 @@ internal struct SunriseRichTextEntry
 
     private readonly Dictionary<int, Control>? _tagControls;
 
+    public Dictionary<int, Control> TagControls => _tagControls ?? new Dictionary<int, Control>();
+
     public SunriseRichTextEntry(FormattedMessage message, Control parent, MarkupTagManager tagManager, Type[]? tagsAllowed = null, Color? defaultColor = null)
     {
         Message = message;
@@ -74,6 +76,12 @@ internal struct SunriseRichTextEntry
         // This method is gonna suck due to complexity.
         // Bear with me here.
         // I am so deeply sorry for the person adding stuff to this in the future.
+
+        HideControls();
+        foreach (var control in TagControls.Values)
+        {
+            control.Orphan();
+        }
 
         Height = defaultFont.GetHeight(uiScale);
         LineBreaks.Clear();

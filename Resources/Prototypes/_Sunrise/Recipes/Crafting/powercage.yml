@@ -1,0 +1,12 @@
+- type: construction
+  name: Makeshift Power Cage
+  id: MakeshiftPowerCage
+  graph: MakeshiftPowerCage
+  startNode: start
+  targetNode: done
+  category: construction-category-misc
+  description: Makeshift power cage. It's not very good, but better than nothing.
+  icon:
+    sprite: _Sunrise/Objects/Power/power_cages.rsi
+    state: makeshift
+  objectType: Item

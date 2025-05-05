@@ -7,7 +7,7 @@
     DiseaseBloodFirst:
       amount: 20
   products:
-    DiseaseBloodFirst: 1
+    DiseaseBloodFirst: 0.05
 
 - type: reaction
   id: VaccineInspectSecond
@@ -18,7 +18,7 @@
     DiseaseBloodSecond:
       amount: 20
   products:
-    DiseaseBloodSecond: 1
+    DiseaseBloodSecond: 0.05
 
 - type: reaction
   id: VaccineInspectThird
@@ -29,5 +29,5 @@
     DiseaseBloodThird:
       amount: 20
   products:
-    DiseaseBloodThird: 1
-  
+    DiseaseBloodThird: 0.05
+

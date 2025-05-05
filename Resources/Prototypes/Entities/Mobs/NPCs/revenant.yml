@@ -88,3 +88,11 @@
   - type: TTS
     voice: HermaeusMora
   # Sunrise-end
+  # Sunrise-start
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: false
+    shockDamage: 30
+  # Sunrise-end

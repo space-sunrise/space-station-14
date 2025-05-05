@@ -3,8 +3,10 @@ using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
 using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
@@ -12,7 +14,6 @@ namespace Content.Shared.CombatMode;
 public abstract class SharedCombatModeSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private   readonly INetManager _netMan = default!;
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
@@ -24,7 +25,18 @@ public abstract class SharedCombatModeSystem : EntitySystem
         SubscribeLocalEvent<CombatModeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CombatModeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<CombatModeComponent, ToggleCombatActionEvent>(OnActionPerform);
+        SubscribeLocalEvent<CombatModeComponent, AttemptMobCollideEvent>(OnCollide); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void OnCollide(EntityUid uid, CombatModeComponent component, ref AttemptMobCollideEvent args)
+    {
+        if (!component.IsInCombatMode)
+        {
+            args.Cancelled = true;
+        }
+    }
+    // Sunrise-End
 
     private void OnMapInit(EntityUid uid, CombatModeComponent component, MapInitEvent args)
     {
@@ -93,7 +105,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
             {
                 EnsureComp<NoRotateOnMoveComponent>(mechPilot.Mech);
             }
-            
+
             EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
@@ -103,7 +115,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
             {
                 RemComp<NoRotateOnMoveComponent>(mechPilot.Mech);
             }
-            
+
             RemComp<MouseRotatorComponent>(uid);
             RemComp<NoRotateOnMoveComponent>(uid);
         }

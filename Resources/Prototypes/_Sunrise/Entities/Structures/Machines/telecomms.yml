@@ -1,12 +1,22 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledLaw
-  suffix: Command
+  suffix: Law
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyLaw
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledBlueShield
+  suffix: BlueShield
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBlueShield
 
 - type: entity
   parent: TelecomServer

@@ -10,6 +10,7 @@
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
   skinColoration: Hues
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/slime.png # Sunrise-Edit
 
 - type: bodyType
   id: SlimeNormal

@@ -94,6 +94,14 @@ public sealed class SunriseOutputPanel : Control
     public void Clear()
     {
         _firstLine = true;
+        foreach (var entry in _entries)
+        {
+            entry.HideControls();
+            foreach (var control in entry.TagControls.Values)
+            {
+                control.Orphan();
+            }
+        }
         _entries.Clear();
         _totalContentHeight = 0;
         _scrollBar.MaxValue = Math.Max(_scrollBar.Page, _totalContentHeight);

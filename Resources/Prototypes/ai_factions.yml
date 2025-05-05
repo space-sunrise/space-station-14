@@ -29,6 +29,7 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  - Xenoborg
   - Dragon
   # Sunrise Edit
   - Thief
@@ -75,6 +76,7 @@
   - Xeno
   - AllHostile
   - Wizard
+  - Xenoborg
   # Sunrise Edit
   - Thief
   - Carps
@@ -97,6 +99,7 @@
   - Zombie
   - AllHostile
   - Wizard
+  - Xenoborg
   - Dragon
   # Sunrise Edit
   - Thief
@@ -119,6 +122,7 @@
   - AllHostile
   - Wizard
   - Dragon
+  - Xenoborg
   # Sunrise Edit
   - Thief
   - Carps
@@ -141,6 +145,7 @@
   - AllHostile
   - Wizard
   - Dragon
+  - Xenoborg
   # Sunrise Edit
   - Thief
   - Carps
@@ -158,6 +163,7 @@
   - SimpleHostile
   - AllHostile
   - Wizard
+  - Xenoborg
   - Dragon
   # Sunrise Edit
   - Carps
@@ -181,6 +187,7 @@
   - Zombie
   - Revolutionary
   - Wizard
+  - Xenoborg
   - Dragon
   # Sunrise Edit
   - Thief
@@ -205,7 +212,34 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - Xenoborg
   - Dragon
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - Xeno
+  - BloodCult
+
+- type: npcFaction
+  id: Xenoborg
+  hostile:
+  # they have brains
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  - Wizard
+
+  - Xeno # rivalry
+
+  # cause they are hostile to them
+  - SimpleHostile
+  - AllHostile
+
   # Sunrise Edit
   - Thief
   - Carps

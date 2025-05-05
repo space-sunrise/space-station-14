@@ -1,0 +1,51 @@
+- type: entity #makeshift trashgun for mech
+  id: WeaponMechIndustrialTrashgun
+  name: exosuit trashgun
+  description: Assembled from garbage and spare parts. Fires garbage at a short range.
+  suffix: Mech Weapon, Gun, Industrial, Trashgun
+  parent: [ BaseMechWeaponRange, IndustrialMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_trashgun
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletKineticTrash
+    fireCost: 30
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Construction
+    graph: Trashgun
+    node: done
+
+- type: entity #makeshift lasergun for mech
+  id: WeaponMechIndustrialTrashLasergun
+  name: makeshift exosuit lasergun
+  description: Assembled from garbage and spare parts. Fires a laser... maybe...
+  suffix: Mech Weapon, Gun, Industrial, LaserGun
+  parent: [ BaseMechWeaponRange, IndustrialMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_trashlasergun
+  - type: Gun
+    fireRate: 0.25
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaser
+    fireCost: 100
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Construction
+    graph: Trashlasergun
+    node: done

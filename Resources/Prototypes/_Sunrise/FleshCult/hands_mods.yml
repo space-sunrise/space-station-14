@@ -97,7 +97,7 @@
     - type: MeleeWeapon
       damage:
         types:
-          Slash: 40
+          Slash: 30
     - type: Item
       size: Huge
       sprite: _Sunrise/FleshCult/FleshHandMods/flesh_blade.rsi

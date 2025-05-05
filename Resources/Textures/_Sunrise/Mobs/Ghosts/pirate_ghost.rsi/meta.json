@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By ASLEEP. Discord - seeyoulater1",
+    "size": {
+      "x": 56,
+      "y": 56
+    },
+    "states": [
+      {
+        "name": "pirate_icon"
+      }
+    ]
+  }

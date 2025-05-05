@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Создано kamenshik975 (github, discord) для Sunrise Station",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "state0"
+      },
+      {
+        "name": "state1"
+      },
+      {
+        "name": "state2"
+      },
+      {
+        "name": "state3"
+      },
+      {
+        "name": "state4"
+      },
+      {
+        "name": "state5"
+      },
+      {
+        "name": "state6"
+      },
+      {
+        "name": "state7"
+      },
+      {
+        "name": "state8"
+      },
+      {
+        "name": "state9"
+      },
+      {
+        "name": "state10"
+      },
+      {
+        "name": "state11"
+      },
+      {
+        "name": "state12"
+      },
+      {
+        "name": "state13"
+      },
+      {
+        "name": "state14"
+      },
+      {
+        "name": "state15"
+      }
+    ],
+    "selectors": {
+      "enum.MechAssemblyVisuals.State": {
+        "0": "state0",
+        "1": "state1",
+        "2": "state2",
+        "3": "state3",
+        "4": "state4",
+        "5": "state5",
+        "6": "state6",
+        "7": "state7",
+        "8": "state8",
+        "9": "state9",
+        "10": "state10",
+        "11": "state11",
+        "12": "state12",
+        "13": "state13",
+        "14": "state14",
+        "15": "state15"
+      }
+    }
+  }

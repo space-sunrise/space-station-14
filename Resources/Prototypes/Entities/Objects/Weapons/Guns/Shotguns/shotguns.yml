@@ -176,29 +176,30 @@
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
 
-#- type: entity
-#  name: Kammerer
-#  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
-#  id: WeaponShotgunKammerer
-#  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
-#  components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
-#  - type: Item
-#    size: Normal
-#    shape:
-#    - 0,0,4,0
-#    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
-#  - type: Sprite
-#    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
-#  - type: Clothing
-#    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
-#  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
-#  - type: Tag
-#    tags:
-#    - WeaponShotgunKammerer
-#  - type: Gun
-#    fireRate: 1
-#    soundGunshot:
-#      collection: m3 # Sunrise-Edit
+- type: entity
+  name: Kammerer
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponShotgunKammerer
+  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
+  categories: [ HideSpawnMenu ]
+  components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
 
 - type: entity
   name: sawn-off shotgun

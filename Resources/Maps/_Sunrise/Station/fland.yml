@@ -28951,7 +28951,7 @@ entities:
     - type: Transform
       pos: 35.547684,59.74187
       parent: 2
-- proto: Bed
+- proto: DoubleBed
   entities:
   - uid: 2227
     components:
@@ -163799,7 +163799,7 @@ entities:
     - type: Transform
       pos: 74.5,-26.5
       parent: 2
-- proto: LockerBlueshieldFilledUplink
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 24768
     components:

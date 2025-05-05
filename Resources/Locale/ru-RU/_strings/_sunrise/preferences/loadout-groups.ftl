@@ -93,6 +93,7 @@ loadout-group-mail-backpack = Почтальон, рюкзак
 loadout-group-salvage-specialist-head = Утилизатор, голова
 loadout-group-cargo-trinkets = Безделушки СНБ
 loadout-group-security-gun = СБ, оружие
+loadout-group-hos-gun = ГСБ, оружие
 loadout-group-pets = Питомцы
 loadout-group-backntr = ИСН, рюкзак
 loadout-group-uniformntr = Униформа ИСН

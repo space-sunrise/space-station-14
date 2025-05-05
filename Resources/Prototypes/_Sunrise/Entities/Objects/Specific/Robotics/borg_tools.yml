@@ -240,29 +240,6 @@
       Quantity: 2
 
 - type: entity
-  parent: Holoprojector
-  id: HolofanProjectorBorg
-  name: holofan robot projector
-  description: Stop suicidal passengers from killing everyone during atmos emergencies.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HolosignProjector
-    signProto: HoloFan
-    chargeUse: 120
-  - type: Sprite
-    sprite: Objects/Devices/Holoprojectors/atmos.rsi
-    state: icon
-  - type: Tag
-    tags:
-    - HolofanProjector
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellRobotTool
-        locked: true
-
-- type: entity
   name: robot china lake
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBorg

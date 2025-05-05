@@ -9,3 +9,4 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobDwarfDummy
   skinColoration: HumanToned
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit

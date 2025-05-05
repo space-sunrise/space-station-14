@@ -6,3 +6,5 @@ ent-ClothingHeadHatBeretChemistry = chemist's beret
     .desc = A beret, for chemist.
 ent-ClothingHeadHatBeretPatologoanatom = pathologist's beret
     .desc = A beret, for patologoanatom.
+ent-ClothingHeadHatBeretAtmos = beret atmospheric technician
+    .desc = A beret, for the person who will definitely not let plasma into the distro.

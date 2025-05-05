@@ -54,7 +54,10 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
         SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
         SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
-        SubscribeNetworkEvent<SharedBwoinkSystem.BwoinkDbLoadedMessage>(OnBwoinkDbLoadedMessage);
+
+        // Sunrise-Start
+        SubscribeNetworkEvent<SharedBwoinkSystem.BwoinkTextHistoryMessage>(OnBwoinkTextHistoryMessage);
+        // Sunrise-End
 
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
         _config.OnValueChanged(CCVars.AHelpSound, v => _aHelpSound = v, true);
@@ -164,10 +167,18 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         UIHelper?.PeopleTypingUpdated(args);
     }
 
-    private void OnBwoinkDbLoadedMessage(SharedBwoinkSystem.BwoinkDbLoadedMessage args, EntitySessionEventArgs session)
+    // Sunrise-Start
+    private void OnBwoinkTextHistoryMessage(SharedBwoinkSystem.BwoinkTextHistoryMessage args, EntitySessionEventArgs session)
     {
+        EnsureUIHelper();
+        UIHelper?.Clean(args.UserId);
+        foreach (var msg in args.Messages)
+        {
+            UIHelper?.Receive(msg);
+        }
         UIHelper?.SetLoadDb(args.UserId);
     }
+    // Sunrise-End
 
     public void EnsureUIHelper()
     {
@@ -333,7 +344,10 @@ public interface IAHelpUIHandler : IDisposable
     public event Action OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
     public event Action<NetUserId, string>? InputTextChanged;
+    // Sunrise-Start
     public void SetLoadDb(NetUserId userId);
+    public void Clean(NetUserId userId);
+    // Sunrise-End
 }
 public sealed class AdminAHelpUIHandler : IAHelpUIHandler
 {
@@ -425,6 +439,14 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         }
     }
 
+    public void Clean(NetUserId userId)
+    {
+        if (_activePanelMap.TryGetValue(userId, out var panel))
+        {
+            panel.TextOutput.Clear();
+        }
+    }
+
     public void LoadDbMessages(NetUserId userId)
     {
         _bwoinkSystem?.LoadDbMessages(userId);
@@ -508,6 +530,12 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         Window?.Dispose();
         Window = null;
         Control = null;
+        // Sunrise-Start
+        foreach (var (_, panel) in _activePanelMap)
+        {
+            panel.LoadDb = false;
+        }
+        // Sunrise-End
         _activePanelMap.Clear();
         EverOpened = false;
     }
@@ -541,6 +569,11 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     public void SetLoadDb(NetUserId userId)
     {
         LoadDb = true;
+    }
+
+    public void Clean(NetUserId userId)
+    {
+        _chatPanel!.TextOutput.Clear();
     }
 
     public bool IsLoadDb(NetUserId userId)
@@ -618,11 +651,6 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         // Sunrise-Start
         if (!IsLoadDb(_ownerId))
         {
-            /*
-             * SUNRISE-TODO: Если открыть ахелп в котором уже есть сообщения то при загрузке с бд они продублируются.
-             * Ничего лучше чем очищать все сообщения перед загрузкой истории я не придумал.
-             */
-            _chatPanel.TextOutput.Clear();
             _bwoinkSystem?.LoadDbMessages(_ownerId);
         }
 
@@ -637,5 +665,6 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         _window?.Dispose();
         _window = null;
         _chatPanel = null;
+        LoadDb = false; // Sunrise-Edit
     }
 }

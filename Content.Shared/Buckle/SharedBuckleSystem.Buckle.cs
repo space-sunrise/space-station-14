@@ -140,6 +140,9 @@ public abstract partial class SharedBuckleSystem
         }
 
         // Sunrise-Start
+        if (strapComp.BuckleOffsets.Count == 0)
+            return;
+
         var isValid = false;
         foreach (var offset in strapComp.BuckleOffsets)
         {
@@ -421,7 +424,7 @@ public abstract partial class SharedBuckleSystem
         if (TryComp<PhysicsComponent>(buckle, out var physics))
             _physics.ResetDynamics(buckle, physics);
 
-        DebugTools.AssertEqual(xform.ParentUid, strap.Owner);
+        //DebugTools.AssertEqual(xform.ParentUid, strap.Owner);
     }
 
     /// <summary>

@@ -161,6 +161,7 @@
     - Flashed
     - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
+    - Fall # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -252,6 +253,7 @@
     - DoorBumpOpener
     - FootstepSound
     - CanPilot
+    - SiliconEmotes
     - Unimplantable
   - type: Emoting
   - type: GuideHelp
@@ -346,7 +348,6 @@
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
@@ -399,8 +400,6 @@
     radius: 6
     energy: 3
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
   - type: FlashImmunity
   - type: TypingIndicator
     proto: syndibot

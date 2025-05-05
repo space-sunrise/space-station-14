@@ -295,11 +295,6 @@ namespace Content.Client.Administration.UI.Bwoink
                 // Sunrise-Start
                 if (!panel.LoadDb)
                 {
-                    /*
-                     * SUNRISE-TODO: Если открыть ахелп в котором уже есть сообщения то при загрузке с бд они продублируются.
-                     * Ничего лучше чем очищать все сообщения перед загрузкой истории я не придумал.
-                     */
-                    panel.TextOutput.Clear();
                     AHelpHelper.LoadDbMessages(ch.Value);
                 }
                 // Sunrise-End
