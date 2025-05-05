@@ -179,6 +179,14 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_virology.rsi
 
+- type: entity
+  id: DoubleGlassAirlockMiner
+  parent: [ DoubleGlassAirlock, AirlockMiningGlass ]
+  suffix: Mining(Salvage)
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_salvage.rsi
+
 # == Triple airlocks ==
 
 - type: entity
