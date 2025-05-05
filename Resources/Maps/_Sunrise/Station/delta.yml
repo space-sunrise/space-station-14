@@ -181212,7 +181212,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerBlueshieldFilledUplinkMultiphase
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 26027
     components:

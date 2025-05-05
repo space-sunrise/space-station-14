@@ -536,7 +536,7 @@
     baseSprintSpeed : 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
-    weightlessModifier: 1
+    baseWeightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -1755,6 +1755,8 @@
   - type: Item
     size: Tiny
     heldPrefix: 0
+  - type: ItemRepickupCooldown  # Sunrise-add
+    cooldown: 5                 # Sunrise-add
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi
@@ -3489,6 +3491,8 @@
         state: hamster-0
   - type: Item
     size: Tiny
+  - type: ItemRepickupCooldown  # Sunrise-add
+    cooldown: 5                 # Sunrise-add
   - type: Physics
   - type: FaxableObject
     insertingState: inserting_hamster

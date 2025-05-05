@@ -1,5 +1,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Sunrise.GasRegeneration;

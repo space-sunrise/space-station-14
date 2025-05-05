@@ -1,7 +1,7 @@
 - type: entity
-  id: LockerBlueshield
+  id: LockerBlueShield
   parent: LockerBaseSecure
-  name: blueshield officer's locker
+  name: blue shield officer's locker
   components:
     - type: Appearance
     - type: Sprite
@@ -24,6 +24,14 @@
       stateDoorClosed: bssecure_door
     - type: AccessReader
       access: [["BlueShield"]]
+
+- type: entity
+  id: LockerBlueShieldEnsign
+  parent: LockerBlueShield
+  name: blue shield ensign locker
+  components:
+  - type: AccessReader
+    access: [["BlueShieldEnsign"]]
 
 - type: entity
   id: LockerPilot

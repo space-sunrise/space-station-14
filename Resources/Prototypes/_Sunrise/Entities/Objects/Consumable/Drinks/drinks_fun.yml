@@ -1,0 +1,38 @@
+- type: entity
+  parent: DrinkBase
+  id: DrinkInc
+  name: inc tube
+  description:
+  components:
+  - type: Openable
+    sound:
+      collection: packetOpenSounds
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/lube-tube.rsi
+    layers:
+    - state: icon
+      map: ["enum.OpenableVisuals.Layer"]
+    - state: fill1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+    - state: icon-front
+      map: [ "enum.SolutionContainerLayers.Overlay" ]
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Inc
+          Quantity: 30
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+  - type: TrashOnSolutionEmpty
+    solution: drink

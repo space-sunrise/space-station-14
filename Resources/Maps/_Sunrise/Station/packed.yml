@@ -72133,7 +72133,7 @@ entities:
     - type: Transform
       pos: 32.5,-32.5
       parent: 2
-- proto: LockerBlueshieldFilledUplinkMultiphase
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 10999
     components:

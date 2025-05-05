@@ -210,7 +210,7 @@
   graph:
   - node: start
     edges:
-    - to: narbee_forge
+    - to: hell_forge
       completed:
       - !type:SnapToGrid
         southRotation: true
@@ -218,7 +218,7 @@
       - material: RunicMetalSheets
         amount: 3
         doAfter: 1
-  - node: narbee_forge
+  - node: hell_forge
     entity: NarbeeCultForge
 
 - type: constructionGraph

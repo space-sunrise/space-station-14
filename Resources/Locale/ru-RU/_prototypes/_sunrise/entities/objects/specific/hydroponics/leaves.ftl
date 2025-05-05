@@ -1,6 +1,6 @@
-ent-CannabisVitaLeaves = Cannabis Vita leaves
-    .desc = Medicinal hemp leaves.
-ent-LeavesCannabisVitaDried = Dried cannabis vita leaves
-    .desc = Dried cannabis vita leaves, ready to be ground.
-ent-GroundCannabisVita = ground cannabis vita
-    .desc = Ground cannabis vita, ready to take you on a trip.
+ent-CannabisVitaLeaves = листья каннабиса вита
+    .desc = Листья лечебной конопли.
+ent-LeavesCannabisVitaDried = сушенные листья канабиса вита
+    .desc = Сушеные листья конопли «вита», готовые к измельчению.
+ent-GroundCannabisVita = измельченый каннабис вита
+    .desc = Молотая конопляная вита, готовая взять вас с собой в путешествие.

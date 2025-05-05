@@ -30,6 +30,9 @@
 - type: Tag
   id: AppraisalTool
 
+- type: Tag #Sunrise-Edit
+  id: Apron #Sunrise-Edit
+
 - type: Tag
   id: Arrow
 
@@ -589,6 +592,10 @@
 
 - type: Tag
   id: GeigerCounter
+
+# Used for warps
+- type: Tag
+  id: GhostOnlyWarp
 
 - type: Tag
   id: GlassAirlock
@@ -1342,6 +1349,9 @@
 - type: Tag
   id: UraniumGlassShard
 
+- type: Tag #Sunrise-Edit
+  id: UtilityBelt #Sunrise-Edit
+
 - type: Tag
   id: Vegetable
 
@@ -1353,6 +1363,9 @@
 
 - type: Tag
   id: VoiceTrigger
+
+- type: Tag # Eating fix tag
+  id: VoxFood
 
 - type: Tag
   id: Wall
@@ -1425,5 +1438,20 @@
 
 - type: Tag
   id: WriteIgnoreStamps
+
+- type: Tag
+  id: XenoborgModuleEngi
+
+- type: Tag
+  id: XenoborgModuleGeneric
+
+- type: Tag
+  id: XenoborgModuleHeavy
+
+- type: Tag
+  id: XenoborgModuleScout
+
+- type: Tag
+  id: XenoborgModuleStealth
 
 # ALPHABETICAL

@@ -13,6 +13,7 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/reptilian.png # Sunrise-Edit
 
 - type: bodyType
   id: ReptilianNormal

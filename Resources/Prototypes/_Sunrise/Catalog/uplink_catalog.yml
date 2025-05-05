@@ -416,6 +416,22 @@
       tags:
       - NukeOpsUplink
 
+# for the hristov
+- type: listing
+  id: UplinkHristovAmmoAP
+  # name: uplink-sniper-ammo-name
+  description: uplink-sniper-ammo-desc
+  productEntity: MagazineBoxAntiMaterielAP
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFrag
@@ -883,7 +899,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkHypo
   name: uplink-hypo-name

@@ -97,6 +97,11 @@
             - Multitool
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - UtilityBelt
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseClothingBeltSounds] # Sunrise
@@ -233,6 +238,21 @@
     sound:
       path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
   # Sunrise edit end
+# Sunrise-start
+- type: entity
+  parent: ClothingBeltAssault
+  id: ClothingBeltAssaultFilled
+  name: assault belt
+  description: A tactical assault belt.
+  components:
+  - type: StorageFill
+    contents:
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+# Sunrise-end
 
 - type: entity
   parent: ClothingBeltStorageBase

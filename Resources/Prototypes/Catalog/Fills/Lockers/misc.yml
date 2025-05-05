@@ -168,6 +168,7 @@
     - id: MechPaintGygaxPirate
     - id: MechPaintGygaxBlack
       weight: 2
+    - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable
   id: MaintenanceLockerLoot

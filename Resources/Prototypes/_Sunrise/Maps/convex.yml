@@ -24,7 +24,6 @@
             Adjutant: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             #law
-            Magistrat: [ 1, 1 ]
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 2 ]
             NtrOfficer: [ 2, 2 ]
@@ -40,7 +39,8 @@
             Zookeeper: [ 1, 1 ]
             Barber: [ 1, 1 ]
             #blueshield
-            BlueShield: [ 1, 1 ]
+            BlueShieldEnsign: [ 1, 1 ]
+            BlueShieldOfficer: [ 5, 5 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]

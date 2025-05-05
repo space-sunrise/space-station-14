@@ -5,7 +5,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mp5 }
   cost:
-    Bluecrystal: 4
+    Bluecrystal: 5
   categories:
     - NTAutoGun
   conditions:
@@ -18,7 +18,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunMP7Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mp7 }
   cost:
-    Bluecrystal: 6
+    Bluecrystal: 7
   categories:
     - NTAutoGun
   conditions:
@@ -31,7 +31,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: p90 }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 17 #C-20r Analog
   categories:
   - NTAutoGun
   conditions:
@@ -70,7 +70,7 @@
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 35
+    Bluecrystal: 40
   categories:
     - NTAutoGun
   conditions:
@@ -83,7 +83,7 @@
   productEntity: ClothingBackpackDuffelWeaponRifleBR64Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: br64 }
   cost:
-    Bluecrystal: 34
+    Bluecrystal: 35
   categories:
   - NTAutoGun
   conditions:
@@ -96,7 +96,7 @@
   productEntity: ClothingBackpackDuffelWeaponSniperHristovFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hristov }
   cost:
-    Bluecrystal: 15
+    Bluecrystal: 30
   categories:
   - NTAutoGun
   conditions:
@@ -109,7 +109,7 @@
   productEntity: ClothingBackpackDuffelWeaponShotgunZauerFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: zauer }
   cost:
-    Bluecrystal: 15
+    Bluecrystal: 20
   categories:
   - NTAutoGun
   conditions:
@@ -122,7 +122,7 @@
   productEntity: ClothingBackpackDuffelWeaponXM1014Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: xm1014 }
   cost:
-    Bluecrystal: 7
+    Bluecrystal: 8
   categories:
   - NTAutoGun
   conditions:
@@ -749,19 +749,19 @@
   - NTAdditional
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
+    stock: 5
 
 - type: listing
   id: NTUplinkSunrisePinpointerUniversal
   productEntity: PinpointerUniversal
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: universal_pinpointer }
   cost:
-    Crystallite: 2
+    Crystallite: 5
   categories:
   - NTAdditional
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 6
+    stock: 5
 
 - type: listing
   id: NTUplinkSunriseBoxMRE
@@ -1044,7 +1044,7 @@
   productEntity: JetpackBlueFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: jet_blue }
   cost:
-    Crystallite: 3
+    Crystallite: 4
   categories:
     - NTEquipment
   conditions:
@@ -1057,7 +1057,7 @@
   productEntity: JetpackMiniFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mini_jet }
   cost:
-    Crystallite: 2
+    Crystallite: 4
   categories:
     - NTEquipment
   conditions:
@@ -1070,7 +1070,7 @@
   productEntity: JetpackVoidFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: void_jet }
   cost:
-    Crystallite: 10
+    Crystallite: 11
   categories:
     - NTEquipment
   conditions:

@@ -67,3 +67,32 @@
       map: ["enum.VendingMachineVisualLayers.Base"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
+  id: PaintVend
+  name: PaintVend
+  description: PaintVend — your partner in colorful crimes against boredom.
+  components:
+  - type: VendingMachine
+    pack: PaintVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: PaintVendAds
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/paintvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "normal-unshaded"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"

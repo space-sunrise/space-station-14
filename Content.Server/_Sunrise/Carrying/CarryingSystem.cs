@@ -302,6 +302,9 @@ namespace Content.Server._Sunrise.Carrying
             }
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
+
+            var ev = new CarryDroppedEvent();
+            RaiseLocalEvent(carried, ref ev);
         }
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)

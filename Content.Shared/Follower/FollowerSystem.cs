@@ -1,12 +1,10 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Hands;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Polymorph;
@@ -35,8 +33,6 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
     private static readonly ProtoId<TagPrototype> ForceableFollowTag = "ForceableFollow";
 
@@ -45,7 +41,7 @@ public sealed class FollowerSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
-        //SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove); // Sunrise-Edit
+        SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove);
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
         SubscribeLocalEvent<FollowerComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
@@ -56,24 +52,7 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
         SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
         SubscribeLocalEvent<FollowedComponent, StationAiRemoteEntityReplacementEvent>(OnFollowedStationAiRemoteEntityReplaced);
-        // Sunrise-Start
-        SubscribeLocalEvent<FollowerComponent, StartedFollowingEntityEvent>(OnStartedFollowingEntity);
-        SubscribeLocalEvent<FollowerComponent, StopFollowActionEvent>(OnStopFollowAction);
-        // Sunrise-Stop
     }
-
-    // Sunrise-Start
-    private void OnStopFollowAction(EntityUid uid, FollowerComponent component, StopFollowActionEvent args)
-    {
-        StopFollowingEntity(uid, component.Following);
-    }
-
-    private void OnStartedFollowingEntity(Entity<FollowerComponent> ent, ref StartedFollowingEntityEvent args)
-    {
-        _actions.AddAction(ent.Owner, ref ent.Comp.StopFollowActionEntity, ent.Comp.StopFollowAction);
-        EnsureComp<BlockMovementComponent>(ent.Owner);
-    }
-    // Sunrise-Stop
 
     private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
@@ -150,12 +129,11 @@ public sealed class FollowerSystem : EntitySystem
         }
     }
 
-    // Sunrise-Edit: Сброс слежения только через экшн.
-    // private void OnFollowerMove(EntityUid uid, FollowerComponent component, ref MoveInputEvent args)
-    // {
-    //     if (args.HasDirectionalMovement)
-    //         StopFollowingEntity(uid, component.Following);
-    // }
+    private void OnFollowerMove(EntityUid uid, FollowerComponent component, ref MoveInputEvent args)
+    {
+        if (args.HasDirectionalMovement)
+            StopFollowingEntity(uid, component.Following);
+    }
 
     private void OnPullStarted(EntityUid uid, FollowerComponent component, PullStartedMessage args)
     {
@@ -285,16 +263,6 @@ public sealed class FollowerSystem : EntitySystem
 
         if (removeComp)
         {
-            // Sunrise-Edit
-            RemComp<BlockMovementComponent>(uid);
-
-            if (TryComp<FollowerComponent>(uid, out var followerComponent) && followerComponent.StopFollowActionEntity != null)
-            {
-                _actions.RemoveAction(uid, followerComponent.StopFollowActionEntity);
-                _actionContainer.RemoveAction(followerComponent.StopFollowActionEntity.Value);
-            }
-            // Sunrise-Edit
-
             RemComp<FollowerComponent>(uid);
             RemComp<OrbitVisualsComponent>(uid);
         }
@@ -426,9 +394,3 @@ public sealed class EntityStoppedFollowingEvent : FollowEvent
     {
     }
 }
-
-// Sunrise-Start
-public sealed partial class StopFollowActionEvent : InstantActionEvent
-{
-}
-// Sunrise-End

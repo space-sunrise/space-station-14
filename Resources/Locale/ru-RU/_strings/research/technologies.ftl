@@ -40,6 +40,7 @@ research-technology-wave-particle-harnessing = Применение волнов
 research-technology-advanced-riot-control = Продвинутое противодействие беспорядкам
 research-technology-portable-microfusion-weaponry = Оруженый портативный микросинтез
 research-technology-experimental-battery-ammo = Батарейные боеприпасы
+research-technology-kinetic-modifications = Протокинетические модификации
 research-technology-advance-laser = Военное энергетическое вооружение
 research-technology-energy_barriers = Энергетические барьеры
 research-technology-combat-equipment = Боевое снаряжение

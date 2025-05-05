@@ -1,0 +1,42 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Title="{Loc 'printerdoc-menu-title'}"
+    MinSize="500 350"
+    SetSize="650 400">
+    <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
+        <BoxContainer VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
+                <LineEdit Name="SearchBar" PlaceHolder="{Loc 'printerdoc-menu-search-placeholder'}" HorizontalExpand="True"/>
+                <Label Text="{Loc 'printerdoc-menu-templates'}" Margin="0 0 0 5" HorizontalAlignment="Center"/>
+                <PanelContainer VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                        <ItemList Name="TemplateList" VerticalExpand="True" HorizontalExpand="True"/>
+                    </ScrollContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer MinWidth="5"/>
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Text="{Loc 'printerdoc-menu-paper'}"/>
+                <Label Name="PaperCountLabel" Margin="5 0 10 0"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Text="{Loc 'printerdoc-menu-ink'}"/>
+                <Label Name="InkAmountLabel" Margin="5 0 0 0"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Text="{Loc 'printerdoc-menu-copy-status'}"/>
+                <Label Name="CopyStatusLabel" Margin="5 0 0 0"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 10 0 0">
+                <Button Name="PrintButton" Text="{Loc 'printerdoc-menu-print'}" HorizontalExpand="True"/>
+                <Button Name="CopyButton" Text="{Loc 'printerdoc-menu-copy'}" HorizontalExpand="True"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

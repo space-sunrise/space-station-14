@@ -19,3 +19,9 @@
     sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defib.rsi
     state: defib
 
+- type: stealTargetGroup
+  id: HandheldFax
+  name: objective-condition-steal-handheld-fax #handheld fax
+  sprite:
+    sprite: _Sunrise/Objects/Devices/handled_fax.rsi
+    state: icon

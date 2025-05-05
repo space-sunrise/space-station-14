@@ -19,25 +19,27 @@
             <OptionButton Name="PeerSelector" HorizontalExpand="True" />
         </BoxContainer>
         <Control HorizontalExpand="True" MinHeight="20" />
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+        <!--> Sunrise-Edit <-->
+        <!--> <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
             <Button Name="FileButton"
                     Text="{Loc 'fax-machine-ui-file-button'}"
                     HorizontalExpand="False"/>
-            <Button Name="PaperButton"
-                    Text="{Loc 'fax-machine-ui-paper-button-normal'}"
-                    HorizontalExpand="False"/>
-        </BoxContainer>
+        </BoxContainer> <-->
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-            <Button Name="CopyButton"
+            <!--> Sunrise-Edit <-->
+            <!-->   <Button Name="CopyButton"
                     Text="{Loc 'fax-machine-ui-copy-button'}"
                     HorizontalExpand="False"
-                    Disabled="True" />
+                    Disabled="True" /> <-->
             <Button Name="SendButton"
                     Text="{Loc 'fax-machine-ui-send-button'}"
                     HorizontalExpand="True"
                     Disabled="True" />
             <Button Name="RefreshButton"
                     Text="{Loc 'fax-machine-ui-refresh-button'}" />
+            <Button Name="PaperButton"
+                    Text="{Loc 'fax-machine-ui-paper-button-normal'}"
+                    HorizontalExpand="False"/>
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

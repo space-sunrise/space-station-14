@@ -9,7 +9,6 @@
   hide: true
   rules:
     - AssaultOps
-    - SubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler

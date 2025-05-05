@@ -117771,7 +117771,7 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerBlueshieldFilled
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 12610
     components:

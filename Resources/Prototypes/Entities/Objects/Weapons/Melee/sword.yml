@@ -180,6 +180,8 @@
     reflectProb: 0.40
     spread: 90
     needActiveHand: true
+    slotFlags:
+    - NONE
 
 #Greatswords
 - type: entity

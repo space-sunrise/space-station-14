@@ -11,6 +11,7 @@
   dollPrototype: MobDemonDummy
   skinColoration: Hues
   naming: firstlast
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # SUNRISE-TODO: Спрайт жопы аркан
 
 - type: bodyType
   id: DemonNormal

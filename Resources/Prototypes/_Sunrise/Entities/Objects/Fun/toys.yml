@@ -1059,3 +1059,54 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-molnia
+
+- type: entity
+  id: PlushieAndrewNarvi
+  parent: BasePlushie
+  name: AndrewNarvi
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_narvi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Ambience/Objects/alarm.ogg
+      params:
+        volume: -2
+  - type: TriggerOnActivate
+  - type: UseDelay
+    delay: 11
+
+- type: entity
+  id: PlushieTimofeyTatarchuk
+  parent: BasePlushie
+  name: Timofey Tatarchuk
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_tatarchuk
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/Items/Hit/Sabre/hit1.ogg
+      params:
+        volume: -1
+  - type: TriggerOnActivate
+  - type: UseDelay
+    delay: 2
+
+- type: entity
+  id: PlushieSansaMontanelli
+  parent: BasePlushie
+  name: Sansa Montanelli
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_sansa
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Paper/paper_scribble5.ogg
+      params:
+        volume: 0
+  - type: TriggerOnActivate
+  - type: UseDelay
+    delay: 1

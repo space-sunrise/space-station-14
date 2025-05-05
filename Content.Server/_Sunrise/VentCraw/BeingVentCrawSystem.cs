@@ -7,6 +7,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared._Sunrise.VentCraw.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
+using Content.Shared.NodeContainer;
 using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.VentCraw;

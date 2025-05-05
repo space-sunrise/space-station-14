@@ -1,14 +1,4 @@
 - type: entity
-  id: StopFollowAction
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: InstantAction
-    icon: _Sunrise/Interface/Actions/stopFollow.png
-    priority: 2
-    checkCanInteract: false
-    event: !type:StopFollowActionEvent
-
-- type: entity
   id: GhostChangeTheme
   name: Change Ghost Theme
   description: Allows you to change the skin of the ghost.

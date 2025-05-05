@@ -83,5 +83,6 @@ research-technology-honk-mech = H.O.N.K. Mech
 research-technology-honk-weapons = Bananium Weapons
 research-technology-advanced-spray = Advanced Spray
 research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
+research-technology-clowning-utilities = Clowning Utilities
 research-technology-quantum-fiber-weaving = Quantum Fiber Weaving
 research-technology-bluespace-chemistry = Bluespace Chemistry

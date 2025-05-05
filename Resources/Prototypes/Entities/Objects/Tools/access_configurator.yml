@@ -49,6 +49,7 @@
       - Service
       - Theatre
       - BlueShield # Sunrise
+      - BlueShieldEnsign # Sunrise
       - Ntrep # Sunrise
       - Magistrat # Sunrise
       - Barber  # Sunrise
@@ -73,6 +74,7 @@
       requiresComplex: true
       requireActiveHand: false
       singleUser: true
+      inHandsOnly: true
     - type: ItemSlots
     - type: ContainerContainer
       containers:
@@ -138,6 +140,7 @@
     - Barber  # Sunrise
     privilegedIdSlot:
       name: id-card-console-privileged-id
+      startingItem: UniversalIDCard
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
