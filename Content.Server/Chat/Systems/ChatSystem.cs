@@ -176,8 +176,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
+        // Sunrise-Start
+        //I despise this being here but there doesnt seem to be a cleaner way to watch for tags or complete component removals
         if (TryComp<CollectiveMindComponent>(source, out var collective))
             _collectiveMind.UpdateCollectiveMind(source, collective);
+        // Sunrise-End
 
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
@@ -504,7 +507,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
             return;
 
-        if (!sourseCollectiveMindComp.Minds.Contains(collectiveMind.ID))
+        if (!sourceCollectiveMindComp.Minds.ContainsKey(collectiveMind))
             return;
 
         // Sunrise added start - для санитизации чата
@@ -525,12 +528,14 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (_mobStateSystem.IsDead(uid))
                 continue;
 
-            if (collectMindComp.Minds.Contains(collectiveMind.ID))
+            if (collectMindComp.Minds.ContainsKey(collectiveMind))
             {
                 clients.AddPlayer(actorComp.PlayerSession);
                 receivers.Add(uid);
             }
         }
+
+        var Number = $"{sourceCollectiveMindComp.Minds[collectiveMind].MindId}";
 
         var admins = _adminManager.ActiveAdmins
             .Select(p => p.Channel);

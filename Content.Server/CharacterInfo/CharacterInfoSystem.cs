@@ -35,7 +35,7 @@ public sealed class CharacterInfoSystem : EntitySystem
         var jobTitle = Loc.GetString("character-info-no-profession");
         string? briefing = null;
         // Sunrise-Start: collective minds displayed at character menu
-        Dictionary<string, int>? collectiveMinds = null;
+        Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>? collectiveMinds = null;
         if (TryComp<CollectiveMindComponent>(entity, out var mindsComp))
             collectiveMinds = mindsComp.Minds;
         // Sunrise-End: collective minds displayed at character menu

@@ -2,6 +2,7 @@ using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
+using Content.Shared._Sunrise.CollectiveMind;
 
 namespace Content.Client.CharacterInfo;
 
@@ -48,7 +49,7 @@ public sealed class CharacterInfoSystem : EntitySystem
         EntityUid Entity,
         string Job,
         Dictionary<string, List<ObjectiveInfo>> Objectives,
-        Dictionary<string, int>? CollectiveMinds, // Sunrise-Edit: collective minds displayed at character menu
+        Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>? CollectiveMinds, // Sunrise-Edit: collective minds displayed at character menu
         string? Briefing,
         string EntityName
     );

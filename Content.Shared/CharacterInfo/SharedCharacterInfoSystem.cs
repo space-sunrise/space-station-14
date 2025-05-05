@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Objectives;
 using Robust.Shared.Serialization;
 
@@ -21,9 +22,9 @@ public sealed class CharacterInfoEvent : EntityEventArgs
     public readonly string JobTitle;
     public readonly Dictionary<string, List<ObjectiveInfo>> Objectives;
     public readonly string? Briefing;
-    public readonly Dictionary<string, int>? CollectiveMinds; // Sunrise-Edit: collective minds displayed at character menu
+    public readonly Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>? CollectiveMinds; // Sunrise-Edit: collective minds displayed at character menu
 
-    public CharacterInfoEvent(NetEntity netEntity, string jobTitle, Dictionary<string, List<ObjectiveInfo>> objectives, string? briefing, Dictionary<string, int>? collectiveMinds) // Sunrise-Edit: collective minds displayed at character menu
+    public CharacterInfoEvent(NetEntity netEntity, string jobTitle, Dictionary<string, List<ObjectiveInfo>> objectives, string? briefing, Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>? collectiveMinds) // Sunrise-Edit: collective minds displayed at character menu
     {
         NetEntity = netEntity;
         JobTitle = jobTitle;

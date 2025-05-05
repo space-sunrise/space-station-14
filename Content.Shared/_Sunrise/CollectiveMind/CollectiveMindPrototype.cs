@@ -1,9 +1,12 @@
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.CollectiveMind;
 
 [Prototype]
+[Serializable, NetSerializable]
 public sealed partial class CollectiveMindPrototype : IPrototype
 {
     [DataField]
@@ -31,5 +34,5 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     public List<string> RequiredComponents { get; set; } = new();
 
     [DataField]
-    public List<string> RequiredTags { get; set; } = new();
+    public List<ProtoId<TagPrototype>> RequiredTags { get; set; } = new();
 }
