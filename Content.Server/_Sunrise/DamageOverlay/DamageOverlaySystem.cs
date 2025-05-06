@@ -1,12 +1,11 @@
-using System.Numerics;
-using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.DamageOverlay;
+using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.DamageOverlay;
 
@@ -16,11 +15,9 @@ namespace Content.Server._Sunrise.DamageOverlay;
 public sealed class DamageOverlaySystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
-    private readonly List<ICommonSession> _disabledSessions = [];
+    private readonly HashSet<ICommonSession> _disabledSessions = [];
     private readonly Dictionary<ICommonSession, DamageOverlaySettings> _playerSettings = new ();
 
     public override void Initialize()
@@ -30,6 +27,14 @@ public sealed class DamageOverlaySystem : EntitySystem
         SubscribeLocalEvent<DamageOverlayComponent, DamageChangedEvent>(OnDamageChange);
 
         SubscribeNetworkEvent<DamageOverlayOptionEvent>(OnDamageOverlayOption);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => CleanUp());
+    }
+
+    private void CleanUp()
+    {
+        _disabledSessions.Clear();
+        _playerSettings.Clear();
     }
 
     private async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
@@ -39,7 +44,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         else
             _disabledSessions.Add(args.SenderSession);
 
-        _playerSettings[args.SenderSession] = new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled);
+        _playerSettings.TryAdd(args.SenderSession, new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled));
     }
 
     private void OnDamageChange(Entity<DamageOverlayComponent> ent, ref DamageChangedEvent args)
@@ -48,7 +53,7 @@ public sealed class DamageOverlaySystem : EntitySystem
             return;
 
         var damageDelta = args.DamageDelta.GetTotal();
-        var coords = GenerateRandomCoordinates(Transform(ent).Coordinates, ent.Comp.Radius);
+        var coords = Transform(ent).Coordinates.GetRandomInRadius(ent.Comp.Radius);
 
         // Идея в том, что попапы должны разделяться на две большие категории: без отправителя и с ним
         // В итоге должен быть только один попап, либо тот, либо этот
@@ -58,10 +63,10 @@ public sealed class DamageOverlaySystem : EntitySystem
         // Пример: Космос, огонь и т.д.
 
 
-        if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && _player.TryGetSessionById(mindTarget.UserId, out var sessionTarget))
+        if (_player.TryGetSessionByEntity(ent, out var targetSession))
         {
             // Специально скрыл попапы с пассивной регенерацией, они скорее мешают
-            TryCreatePopup(ent, damageDelta, coords, sessionTarget);
+            TryCreatePopup(ent, damageDelta, coords, targetSession);
 
             return;
         }
@@ -72,27 +77,17 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (args.Origin == null)
             return;
 
-        if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || !_player.TryGetSessionById(mindOrigin.UserId, out var sessionOrigin))
+        if (!_player.TryGetSessionByEntity(args.Origin.Value, out var originSession))
             return;
 
-        TryCreatePopup(ent, damageDelta, coords, sessionOrigin);
+        TryCreatePopup(ent, damageDelta, coords, originSession);
     }
 
-    private EntityCoordinates GenerateRandomCoordinates(EntityCoordinates center, float radius)
-    {
-        var angle = _random.NextDouble() * 2 * Math.PI;
-
-        var distance = _random.NextDouble() * radius;
-
-        var offsetX = (float)(Math.Cos(angle) * distance);
-        var offsetY = (float)(Math.Sin(angle) * distance);
-
-        var newPosition = new Vector2(center.Position.X + offsetX, center.Position.Y + offsetY);
-
-        return new EntityCoordinates(center.EntityId, newPosition);
-    }
-
-    private bool TryCreatePopup(Entity<DamageOverlayComponent> ent, FixedPoint2 damageDelta, EntityCoordinates coords, ICommonSession session, bool showHealPopup = true)
+    private bool TryCreatePopup(Entity<DamageOverlayComponent> ent,
+        FixedPoint2 damageDelta,
+        EntityCoordinates coords,
+        ICommonSession session,
+        bool showHealPopup = true)
     {
         if (IsDisabledByClient(session, ent))
             return false;
@@ -128,17 +123,9 @@ public sealed class DamageOverlaySystem : EntitySystem
         return false;
     }
 
-    private struct DamageOverlaySettings
+    private struct DamageOverlaySettings(bool selfEnabled, bool structuresEnabled)
     {
-        public readonly bool StructureDamage;
-
-        public readonly bool SelfDamage;
-
-        public DamageOverlaySettings(bool evSelfEnabled, bool evStructuresEnabled)
-        {
-            SelfDamage = evSelfEnabled;
-
-            StructureDamage = evStructuresEnabled;
-        }
+        public readonly bool SelfDamage = selfEnabled;
+        public readonly bool StructureDamage = structuresEnabled;
     }
 }
