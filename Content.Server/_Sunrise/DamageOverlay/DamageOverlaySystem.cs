@@ -33,7 +33,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => CleanUp());
     }
 
-    private void CleanUp()
+    private static void CleanUp()
     {
         DisabledSessions.Clear();
         PlayerSettings.Clear();
