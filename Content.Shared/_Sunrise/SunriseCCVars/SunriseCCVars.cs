@@ -428,4 +428,11 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<bool> MuteGhostRoleNotification =
         CVarDef.Create("ghost.mute_role_notification", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Heartbeat sound
+     */
+
+    public static readonly CVarDef<bool> PlayHeartBeatSound =
+        CVarDef.Create("heartbeat.play_sound", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

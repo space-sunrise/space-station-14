@@ -43,6 +43,8 @@ public sealed partial class ExtraTab : Control
         Control.AddOptionCheckBox(SunriseCCVars.VoteMusicDisable, VoteMusicDisableCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.MuteGhostRoleNotification, MuteGhostRoleNotificationCheckBox);
 
+        Control.AddOptionCheckBox(SunriseCCVars.PlayHeartBeatSound, PlayHeartbeatSound);
+
         _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
 
         var lobbyBackgroundTypes = new List<OptionDropDownCVar<string>.ValueOption>

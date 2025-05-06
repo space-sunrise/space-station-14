@@ -31,6 +31,7 @@
                 <CheckBox Name="JumpSoundDisableCheckBox" Text="{Loc 'ui-options-jump-sound-disable'}" />
                 <CheckBox Name="VoteMusicDisableCheckBox" Text="{Loc 'ui-options-vote-music-disable'}" />
                 <CheckBox Name="MuteGhostRoleNotificationCheckBox" Text="{Loc 'ui-options-mute-new-ghost-roles'}" />
+                <CheckBox Name="PlayHeartbeatSound" Text="{Loc 'ui-options-play-heartbeat-sound'}" />
 
                 <!-- Graphics -->
                 <Label Text="{Loc 'ui-options-sunrise-general-graphics'}" StyleClasses="LabelKeyText"/>

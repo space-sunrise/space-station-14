@@ -24,3 +24,4 @@ ui-options-function-auto-get-up = Автоматически вставать п
 ui-options-function-hold-look-up = Удерживать клавишу для прицеливания
 ui-options-chat-icons-enable = Использовать иконки профессий в чате
 ui-options-chat-pointing-visuals-enable = Отображать указывания с иконками в чате
+ui-options-play-heartbeat-sound = Проигрывать звук сердцебиения
