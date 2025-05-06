@@ -39,7 +39,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         PlayerSettings.Clear();
     }
 
-    private async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
+    private static async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
     {
         if (ev.Enabled)
             DisabledSessions.Remove(args.SenderSession);
@@ -108,7 +108,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         return true;
     }
 
-    private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
+    private static bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
     {
         if (DisabledSessions.Contains(session))
             return true;
