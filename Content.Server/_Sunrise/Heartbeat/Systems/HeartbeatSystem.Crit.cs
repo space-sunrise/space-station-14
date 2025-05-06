@@ -1,8 +1,8 @@
-﻿using Content.Server._Sunrise.CritHeartbeat.Components;
+﻿using Content.Server._Sunrise.Heartbeat.Components;
 using Content.Shared.Damage;
 using Content.Shared.Mobs;
 
-namespace Content.Server._Sunrise.CritHeartbeat.Systems;
+namespace Content.Server._Sunrise.Heartbeat.Systems;
 
 public sealed partial class HeartbeatSystem
 {

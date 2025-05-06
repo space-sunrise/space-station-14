@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.CritHeartbeat.Components;
+﻿using Content.Server._Sunrise.Heartbeat.Components;
 using Content.Shared._Sunrise.Heartbeat;
 using Content.Shared.Damage;
 using Content.Shared.GameTicking;
@@ -8,7 +8,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Sunrise.CritHeartbeat.Systems;
+namespace Content.Server._Sunrise.Heartbeat.Systems;
 
 // TODO: Сделать возможность с помощью стетоскопа услышать сердцебиение человека
 
@@ -18,7 +18,8 @@ public sealed partial class HeartbeatSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    private static readonly SoundSpecifier HeartbeatSound = new SoundPathSpecifier("/Audio/_Sunrise/Effects/heartbeat.ogg");
+    private static readonly SoundSpecifier HeartbeatSound =
+        new SoundPathSpecifier("/Audio/_Sunrise/Effects/heartbeat.ogg", AudioParams.Default.WithVolume(-3f));
 
     private static readonly HashSet<ICommonSession> DisabledSessions = [];
 
