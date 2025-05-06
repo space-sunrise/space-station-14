@@ -6,6 +6,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.DamageOverlay;
 
@@ -15,6 +16,7 @@ namespace Content.Server._Sunrise.DamageOverlay;
 public sealed class DamageOverlaySystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     private readonly HashSet<ICommonSession> _disabledSessions = [];
@@ -53,7 +55,7 @@ public sealed class DamageOverlaySystem : EntitySystem
             return;
 
         var damageDelta = args.DamageDelta.GetTotal();
-        var coords = Transform(ent).Coordinates.GetRandomInRadius(ent.Comp.Radius);
+        var coords = Transform(ent).Coordinates.GetRandomInRadius(ent.Comp.Radius, _random);
 
         // Идея в том, что попапы должны разделяться на две большие категории: без отправителя и с ним
         // В итоге должен быть только один попап, либо тот, либо этот
