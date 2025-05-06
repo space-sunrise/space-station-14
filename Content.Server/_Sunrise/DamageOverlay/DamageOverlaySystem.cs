@@ -19,8 +19,8 @@ public sealed class DamageOverlaySystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
-    private readonly HashSet<ICommonSession> _disabledSessions = [];
-    private readonly Dictionary<ICommonSession, DamageOverlaySettings> _playerSettings = new ();
+    private static readonly HashSet<ICommonSession> DisabledSessions = [];
+    private static readonly Dictionary<ICommonSession, DamageOverlaySettings> PlayerSettings = new ();
 
     public override void Initialize()
     {
@@ -35,18 +35,18 @@ public sealed class DamageOverlaySystem : EntitySystem
 
     private void CleanUp()
     {
-        _disabledSessions.Clear();
-        _playerSettings.Clear();
+        DisabledSessions.Clear();
+        PlayerSettings.Clear();
     }
 
     private async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
     {
         if (ev.Enabled)
-            _disabledSessions.Remove(args.SenderSession);
+            DisabledSessions.Remove(args.SenderSession);
         else
-            _disabledSessions.Add(args.SenderSession);
+            DisabledSessions.Add(args.SenderSession);
 
-        _playerSettings.TryAdd(args.SenderSession, new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled));
+        PlayerSettings.TryAdd(args.SenderSession, new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled));
     }
 
     private void OnDamageChange(Entity<DamageOverlayComponent> ent, ref DamageChangedEvent args)
@@ -110,10 +110,10 @@ public sealed class DamageOverlaySystem : EntitySystem
 
     private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
     {
-        if (_disabledSessions.Contains(session))
+        if (DisabledSessions.Contains(session))
             return true;
 
-        if (_playerSettings.TryGetValue(session, out var playerSettings))
+        if (PlayerSettings.TryGetValue(session, out var playerSettings))
         {
             if (target.Comp.IsStructure && !playerSettings.StructureDamage)
                 return true;
