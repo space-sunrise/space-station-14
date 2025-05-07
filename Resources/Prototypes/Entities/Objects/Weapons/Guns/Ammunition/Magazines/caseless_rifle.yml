@@ -88,7 +88,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRifle
-    capacity: 99
+    capacity: 50 #sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/10x24.rsi
   - type: MagazineVisuals
