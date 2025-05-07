@@ -8,7 +8,7 @@
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger
-    baseDecayRate: 0.04
+    baseDecayRate: 0.08
   - type: Thirst
     baseDecayRate: 0.15
     dehydrationDamage:
@@ -22,10 +22,12 @@
     speechSounds: Swine
     speechVerb: Swine
     allowedEmotes: ['Oink']
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 0.9
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      120: Critical
       200: Dead
   - type: Fixtures
     fixtures:

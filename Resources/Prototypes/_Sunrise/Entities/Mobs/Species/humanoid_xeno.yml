@@ -38,8 +38,8 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 3
-        Slash: 7
+        Blunt: 5
+        Slash: 10
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcidHumanoidXeno
   - type: DamageVisuals

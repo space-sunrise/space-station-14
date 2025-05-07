@@ -25,6 +25,9 @@
     - Scream
     - Whines
   - type: FootprintEmitter
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Vulpkanin
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -37,6 +40,9 @@
         Blunt: 2
         Slash: 3
   - type: Carriable
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 
 - type: entity
