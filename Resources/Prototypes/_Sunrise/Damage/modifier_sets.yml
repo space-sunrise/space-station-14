@@ -75,11 +75,6 @@
     Heat: 1.5
 
 - type: damageModifierSet
-  id: Tajaran
+  id: Xenomorph
   coefficients:
-    Heat: 1.1
-
-- type: damageModifierSet
-  id: Vulpkanin
-  coefficients:
-    Heat: 1.1
+    Heat: 1.15

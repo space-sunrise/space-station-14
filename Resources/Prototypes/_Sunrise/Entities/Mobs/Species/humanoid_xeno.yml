@@ -42,6 +42,9 @@
         Slash: 10
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcidHumanoidXeno
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Xenomorph
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
