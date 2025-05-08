@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "taken from tg station at https://github.com/tgstation/tgstation/tree/3274884afd1ce6e72f5786cfd7466a19bca0ad3e/icons/obj/service/hydroponics and seeds sprite from ss220 at https://github.com/ss220-space/Paradise/blob/HEAD/icons/obj/hydroponics/seeds.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "dead"
+        },
+        {
+            "name": "harvest"
+        },
+        {
+            "name": "produce"
+        },
+        {
+            "name": "seed"
+        },
+        {
+            "name": "stage-1"
+        },
+        {
+            "name": "stage-2"
+        },
+        {
+            "name": "stage-3"
+        }
+    ]
+}

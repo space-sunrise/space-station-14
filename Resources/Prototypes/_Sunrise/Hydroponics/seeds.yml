@@ -367,3 +367,29 @@
       Min: 1
       Max: 10
       PotencyDivisor: 10
+
+- type: seed
+  id: Bamboo
+  name: Bamboo
+  noun: seeds-noun-seeds
+  displayName: bamboo
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/bamboo.rsi
+  packetPrototype: BambooSeeds
+  productPrototypes:
+    - BambooStalk
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 10
+  production: 2
+  yield: 2
+  potency: 10
+  growthStages: 3
+  idealLight: 8
+  idealHeat: 295
+  waterConsumption: 0.50
+  nutrientConsumption: 0.40
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 10

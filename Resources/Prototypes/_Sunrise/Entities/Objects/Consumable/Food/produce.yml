@@ -409,3 +409,28 @@
     tags:
     - Fruit
     - Sunflower # TODO add "RedFlower" or "Poppy" tag, when other color flowers will be
+
+- type: entity
+  name: bamboo stalk
+  description: A strong and flexible stalk of bamboo. Can be used for crafting or as food.
+  parent: FoodProduceBase
+  id: BambooStalk
+  components:
+    - type: FlavorProfile
+      flavors:
+        - plant
+    - type: Sprite
+      sprite: _Sunrise/Objects/Specific/Hydroponics/bamboo.rsi
+      state: produce
+    - type: Produce
+      seedId: Bamboo
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 8
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 4
+    - type: Tag
+      tags:
+        - Vegetable
