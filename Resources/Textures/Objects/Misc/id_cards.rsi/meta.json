@@ -11,6 +11,9 @@
             "name": "default"
         },
         {
+      "name": "black"
+        },
+        {
             "name": "centcom"
         },
         {
@@ -210,6 +213,15 @@
         },
         {
             "name": "syndie"
+        },
+        {
+            "name": "syndi"
+        },
+        {
+            "name": "syndi_operative"
+        },
+        {
+            "name": "syndi_corpsman"
         },
         {
             "name": "idcluwne"
