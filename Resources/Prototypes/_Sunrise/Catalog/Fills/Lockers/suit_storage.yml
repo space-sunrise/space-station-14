@@ -6,10 +6,9 @@
   - type: StorageFill
     contents:
     - id: OxygenTankFilled
-    - id: ClothingOuterHardsuitBlueshield
-    - id: ClothingMaskGas
+    - id: ClothingOuterHardsuitBlueShield
+    - id: ClothingMaskGasBlueShield
     - id: ClothingShoesBootsMagSec
-      prob: 0.5
   - type: AccessReader
     access: [["BlueShield"]]
 

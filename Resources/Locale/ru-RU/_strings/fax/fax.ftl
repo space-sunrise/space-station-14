@@ -80,3 +80,4 @@ fax-label-morgue = Морг
 fax-label-mailroom = Почта
 fax-label-bar = Бар
 fax-label-courthhouse = Зал суда
+fax-label-representative = Представитель

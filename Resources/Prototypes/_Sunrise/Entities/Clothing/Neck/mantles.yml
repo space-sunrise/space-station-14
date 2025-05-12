@@ -30,3 +30,14 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/HoSmantle.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Neck/Mantles/HoSmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingBSMantle
+  name: blueshield mantle
+  description: Mantle for command bodyguards.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Neck/Mantles/blueshieldm.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Neck/Mantles/blueshieldm.rsi

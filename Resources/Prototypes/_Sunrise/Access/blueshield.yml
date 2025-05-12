@@ -1,3 +1,7 @@
 - type: accessLevel
   id: BlueShield
   name: id-card-access-level-blueshield
+
+- type: accessLevel
+  id: BlueShieldEnsign
+  name: id-card-access-level-blueshield-ensign

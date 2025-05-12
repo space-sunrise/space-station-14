@@ -13,8 +13,8 @@
 
 - type: entity
   parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitBlueshield
-  name: blueshield's hardsuit
+  id: ClothingOuterHardsuitBlueShield
+  name: blue shield hardsuit
   description: Tough and reliable, just like its owner.
   components:
   - type: Sprite
@@ -42,7 +42,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
 
 - type: entity
-  parent: ClothingOuterHardsuitBlueshield
+  parent: ClothingOuterHardsuitBlueShield
   id: ClothingOuterHardsuitNTRG
   name: NTR Guard's hardsuit
   description: Tough and reliable, just like its owner.

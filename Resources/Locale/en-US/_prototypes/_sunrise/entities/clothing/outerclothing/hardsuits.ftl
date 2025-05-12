@@ -1,6 +1,6 @@
 ent-ClothingOuterHardsuitCBURNLeader = CBURN commander exosuit
     .desc = A lightweight yet strong exosuit used for special cleanup operations.
-ent-ClothingOuterHardsuitBlueshield = blueshield's hardsuit
+ent-ClothingOuterHardsuitBlueShield = blueshield's hardsuit
     .desc = Tough and reliable, just like its owner.
 ent-ClothingOuterHardsuitNTRG = NTR Guard's hardsuit
     .desc = Tough and reliable, just like its owner.

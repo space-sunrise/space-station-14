@@ -113,10 +113,6 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
-  # Sunrise-start
-  - type: Carriable
-  - type: CanEscapeInventory
-  # Sunrise-end
 
 - type: entity
   name: basic slime
@@ -161,6 +157,10 @@
         Base: blue_adult_slime
       Dead:
         Base: blue_adult_slime_dead
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: blue slime
@@ -178,6 +178,10 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: short
+# Sunrise-start
+    - type: Carriable
+    - type: CanEscapeInventory
+# Sunrise-end
 
 - type: entity
   name: green slime
@@ -201,6 +205,10 @@
           Structural: 4
           Caustic: 1
           Poison: 4
+# Sunrise-start
+    - type: Carriable
+    - type: CanEscapeInventory
+# Sunrise-end
 
 - type: entity
   name: green slime
@@ -218,6 +226,10 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: short
+# Sunrise-start
+    - type: Carriable
+    - type: CanEscapeInventory
+# Sunrise-end
 
 - type: entity
   name: yellow slime
@@ -240,6 +252,10 @@
           Blunt: 6
           Structural: 4
           Caustic: 4
+# Sunrise-start
+    - type: Carriable
+    - type: CanEscapeInventory
+# Sunrise-end
 
 - type: entity
   name: yellow slime
@@ -257,3 +273,7 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: short
+# Sunrise-start
+    - type: Carriable
+    - type: CanEscapeInventory
+# Sunrise-end

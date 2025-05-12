@@ -15,7 +15,7 @@
         - to: apc
           steps:
             - component: ApcElectronics
-              name: step-apc-electronics-name
+              name: construction-graph-component-apc-electronics
               doAfter: 2
         - to: start
           completed:

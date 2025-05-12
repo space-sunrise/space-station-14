@@ -66,6 +66,9 @@ public sealed partial class StrapComponent : Component
     [DataField, AutoNetworkedField]
     public bool Enabled = true;
 
+    [DataField]
+    public bool HandBuckle = true;
+
     /// <summary>
     /// The sound to be played when a mob is buckled
     /// </summary>

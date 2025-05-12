@@ -53144,7 +53144,7 @@ entities:
     - pos: -44.5,-29.5
       parent: 34
       type: Transform
-- proto: LockerBlueshieldFilled
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 612
     components:

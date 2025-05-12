@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 254.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/04/2025 18:35:46
+  entityCount: 545
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   66: FloorMetalDiamond
@@ -1950,70 +1961,6 @@ entities:
     - type: Transform
       pos: -1.5,-3.5
       parent: 1
-- proto: EncryptionKeyCargo
-  entities:
-  - uid: 353
-    components:
-    - type: Transform
-      parent: 352
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeyCommand
-  entities:
-  - uid: 355
-    components:
-    - type: Transform
-      parent: 354
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeyCommon
-  entities:
-  - uid: 357
-    components:
-    - type: Transform
-      parent: 356
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeyEngineering
-  entities:
-  - uid: 359
-    components:
-    - type: Transform
-      parent: 358
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeyMedical
-  entities:
-  - uid: 361
-    components:
-    - type: Transform
-      parent: 360
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeyScience
-  entities:
-  - uid: 363
-    components:
-    - type: Transform
-      parent: 362
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeySecurity
-  entities:
-  - uid: 365
-    components:
-    - type: Transform
-      parent: 364
-    - type: Physics
-      canCollide: False
-- proto: EncryptionKeyService
-  entities:
-  - uid: 367
-    components:
-    - type: Transform
-      parent: 366
-    - type: Physics
-      canCollide: False
 - proto: GeneratorBasic15kW
   entities:
   - uid: 368
@@ -2021,11 +1968,13 @@ entities:
     - type: Transform
       pos: 6.5,-2.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 369
     components:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: HandheldGPSBasic
   entities:
   - uid: 370
@@ -2035,6 +1984,24 @@ entities:
       parent: 1
 - proto: PoweredSmallLight
   entities:
+  - uid: 357
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,3.5
+      parent: 1
+  - uid: 358
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-2.5
+      parent: 1
+  - uid: 359
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 8.5,-2.5
+      parent: 1
   - uid: 371
     components:
     - type: Transform
@@ -2821,11 +2788,13 @@ entities:
     - type: Transform
       pos: 6.5,-4.5
       parent: 1
+    - type: CMExplosionEffect
   - uid: 509
     components:
     - type: Transform
       pos: -1.5,-4.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: TableReinforced
   entities:
   - uid: 510
@@ -2840,172 +2809,82 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
       parent: 1
-- proto: TelecomServer
+- proto: TelecomServerFilledBlueShield
   entities:
-  - uid: 352
-    components:
-    - type: Transform
-      pos: 4.5,-0.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 353
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 354
-    components:
-    - type: Transform
-      pos: 3.5,1.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 355
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 356
+  - uid: 260
     components:
     - type: Transform
       pos: 0.5,1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 357
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 358
+- proto: TelecomServerFilledCargo
+  entities:
+  - uid: 354
     components:
     - type: Transform
-      pos: 4.5,1.5
+      pos: 4.5,-0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 359
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 360
+- proto: TelecomServerFilledCommand
+  entities:
+  - uid: 263
     components:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 361
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 362
+- proto: TelecomServerFilledCommon
+  entities:
+  - uid: 265
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+- proto: TelecomServerFilledEngineering
+  entities:
+  - uid: 352
     components:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 363
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 364
+- proto: TelecomServerFilledLaw
+  entities:
+  - uid: 355
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
+- proto: TelecomServerFilledMedical
+  entities:
+  - uid: 261
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
+- proto: TelecomServerFilledScience
+  entities:
+  - uid: 264
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 1
+- proto: TelecomServerFilledSecurity
+  entities:
+  - uid: 353
     components:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 365
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 366
+- proto: TelecomServerFilledService
+  entities:
+  - uid: 262
     components:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 367
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 512
+- proto: TelecomServerFilledUSSP
+  entities:
+  - uid: 356
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      pos: 4.5,0.5
       parent: 1
 - proto: ToolboxElectricalFilled
   entities:

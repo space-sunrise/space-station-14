@@ -10,6 +10,7 @@
   dollPrototype: MobXenoDummy
   skinColoration: TintedHues
   sponsorOnly: true
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
 
 - type: bodyType
   id: HumanoidXenoNormal

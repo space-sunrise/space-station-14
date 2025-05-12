@@ -163799,7 +163799,7 @@ entities:
     - type: Transform
       pos: 74.5,-26.5
       parent: 2
-- proto: LockerBlueshieldFilledUplink
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 24768
     components:

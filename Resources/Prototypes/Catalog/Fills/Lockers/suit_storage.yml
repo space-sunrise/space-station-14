@@ -59,7 +59,7 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitSyndicate
+        - id: ClothingOuterEVASuitSyndicate
         - id: ClothingHeadHelmetSyndicate
         - id: ClothingMaskGasSyndicate
 
@@ -134,6 +134,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitAtmos
         - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagAtmos  #sunrise-edit
   - type: AccessReader
     access: [["Atmospherics"]]
     # Sunrise-start
@@ -294,6 +295,7 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitWizard
         - id: ClothingMaskBreath
-        - id: JetpackVoidFilled
+        # TODO: Gone until reworked to have no space protection
+        #- id: ClothingOuterHardsuitWizard
+        #- id: JetpackVoidFilled

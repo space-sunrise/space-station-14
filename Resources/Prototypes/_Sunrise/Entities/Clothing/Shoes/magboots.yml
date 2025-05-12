@@ -46,3 +46,33 @@
     sprintModifier: 0.7
   - type: ClothingSlowOnDamageModifier
     modifier: 0.75
+
+- type: entity
+  parent: ClothingShoesBootsMagBase
+  id: ClothingShoesBootsMagAtmos
+  name: Atmos magboots
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
+  - type: PowerChargerVisuals
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+  - type: Item
+    size: Huge
+  - type: Charger
+    slotId: charger_slot
+    portable: true
+    chargeRate: 10
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: false
+        whitelist:
+          components:
+          - PowerCell

@@ -38,3 +38,5 @@ recipe-WebShield-name = паутинный щит
 recipe-WebShield-description = Нитяной щит. Он слаб и плохо противостоит нагреванию
 recipe-blindfold-name = повязка на глаза
 recipe-blindfold-description = Полоса непроницаемого материала.
+recipe-AtmosCrossCraft-name = { ent-ClothingNeckAtmosCross }
+recipe-AtmosCrossCraft-description = { ent-ClothingNeckAtmosCross.desc }

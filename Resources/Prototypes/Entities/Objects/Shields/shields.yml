@@ -107,7 +107,6 @@
       reflectProb: 0.75
       reflects:
       - Energy
-      needHand: true
   # Sunrise-End
 
 - type: entity
@@ -339,7 +338,6 @@
       reflectProb: 0.95
       reflects:
         - Energy
-      needHand: true # Sunrise-Edit
     - type: Blocking #Mirror shield reflects heat/laser, but is relatively weak to everything else.
       passiveBlockModifier:
         coefficients:
@@ -430,7 +428,6 @@
       reflectProb: 0.95
       reflects:
         - Energy
-      needHand: true # Sunrise-Edit
     - type: Blocking
       passiveBlockModifier:
         coefficients:

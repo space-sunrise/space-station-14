@@ -10,6 +10,11 @@
   description: "An always powered light."
   suffix: Always powered
   components:
+  # Sunrise start
+  - type: DamageOverlay
+    damagePopupType: SmallFloating
+    isStructure: true
+  # Sunrise end
   - type: MeleeSound
     soundGroups:
       Brute:

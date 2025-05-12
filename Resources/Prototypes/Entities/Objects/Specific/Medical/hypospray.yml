@@ -46,7 +46,7 @@
   id: SyndiHypo
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/syndihypo.rsi
+    sprite: _Sunrise/Objects/Specific/Medical/syndihypo.rsi #Sunrise-edit
     layers:
       - state: hypo
         map: ["enum.SolutionContainerLayers.Base"]
@@ -54,7 +54,7 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Item
-    sprite: Objects/Specific/Medical/syndihypo.rsi
+    sprite: _Sunrise/Objects/Specific/Medical/syndihypo.rsi #Sunrise-edit
   - type: SolutionContainerManager
     solutions:
       hypospray:

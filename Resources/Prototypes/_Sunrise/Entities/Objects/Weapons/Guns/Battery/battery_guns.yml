@@ -292,6 +292,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
     - state: mode-disabler
       shader: unshaded
       map: [ "Firemode" ]
@@ -320,7 +323,7 @@
   - type: MagazineVisuals
     magState: mag
     steps: 5
-    zeroVisible: true
+    zeroVisible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -664,6 +667,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
@@ -708,6 +712,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
@@ -756,6 +761,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 8000
     startingCharge: 8000
@@ -805,6 +811,7 @@
     magState: mag
     steps: 6
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
@@ -853,6 +860,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800

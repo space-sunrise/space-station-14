@@ -18,3 +18,5 @@ ent-ClothingHandsGlovesChristmas = christmas gloves
     .desc = Stylish Christmas leather gloves.
 ent-ClothingHandsGlovesChristmasLong = christmas gloves long
     .desc = Stylish Christmas long leather gloves.
+ent-InsulatedGlovesAtmos = insulated gloves atmos
+    .desc = Insulated gloves made specifically for atmospheric technicians.

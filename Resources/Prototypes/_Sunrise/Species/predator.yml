@@ -10,6 +10,7 @@
   dollPrototype: MobPredatorDummy
   skinColoration: None
   sponsorOnly: true
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
 
 - type: bodyType
   id: PredatorNormal

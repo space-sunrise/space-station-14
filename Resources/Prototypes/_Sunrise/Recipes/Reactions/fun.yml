@@ -11,5 +11,7 @@
       amount: 2
     Leporazine:
       amount: 3
+    Wine:
+      amount: 3
   products:
     Aphrodesiac: 5

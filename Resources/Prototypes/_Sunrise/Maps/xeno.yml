@@ -40,7 +40,8 @@
             Reporter: [ 2, 2 ]
             Barber: [ 1, 1 ]
             #blueshield
-            BlueShield: [ 1, 1 ]
+            BlueShieldEnsign: [ 1, 1 ]
+            BlueShieldOfficer: [ 5, 5 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]

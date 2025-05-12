@@ -113836,7 +113836,7 @@ entities:
     - type: Transform
       pos: -29.5,43.5
       parent: 2
-- proto: LockerBlueshieldFilledHardsuit
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 21035
     components:

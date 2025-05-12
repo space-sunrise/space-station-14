@@ -43,8 +43,8 @@
     - Medical
     - BlueShield
   special:
-    - !type:AddImplantSpecial
-      implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
 
 - type: startingGear
   id: NtrLeaderGear

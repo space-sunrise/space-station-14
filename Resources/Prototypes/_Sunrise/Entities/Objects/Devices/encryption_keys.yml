@@ -15,6 +15,21 @@
 
 - type: entity
   parent: EncryptionKey
+  id: EncryptionKeyBlueShield
+  name: blue shield encryption key
+  description:
+  components:
+  - type: EncryptionKey
+    channels:
+    - BlueShield
+    defaultChannel: BlueShield
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
   id: EncryptionKeyUSSP
   name: USSP encryption key
   description: A time-worn encryption key. You’d be better off not knowing what they’re talking about.

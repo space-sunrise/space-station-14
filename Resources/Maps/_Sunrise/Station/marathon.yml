@@ -98300,7 +98300,7 @@ entities:
         - 0
         - 0
         - 0
-- proto: LockerBlueshieldFilledHardsuit
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 15064
     components:

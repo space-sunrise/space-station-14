@@ -72,7 +72,6 @@
   - type: Reflect
     reflectProb: .35
     spread: 45
-    needActiveHand: true # Sunrise-Edit
   # Sunrise-start
   - type: Tag
     tags:
@@ -231,7 +230,6 @@
   - type: Reflect
     reflectProb: .15
     spread: 45
-    needActiveHand: true # Sunrise-Edit
   - type: Tag
     tags:
     - Write
@@ -343,7 +341,6 @@
   - type: Reflect
     reflectProb: .75
     spread: 75
-    needActiveHand: true # Sunrise-Edit
   - type: FlipOnAttack # Sunrise-Edit
     probability: 0.5 # Sunrise-Edit
 
@@ -409,3 +406,12 @@
   components: # could add energy-draining like the L6C
   - type: Wieldable
     freeHandsRequired: 0 # because borg has no off-hand to wield with.  Without this, it will be unable to activate the esword
+
+- type: entity
+  parent: [ EnergyDaggerLoud, BaseXenoborgContraband ]
+  id: EnergyDaggerLoudBlue
+  suffix: blue
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#2288ff" # can only be blue

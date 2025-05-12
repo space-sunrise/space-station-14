@@ -5,10 +5,10 @@
   - type: Objective
     difficulty: 3
   - type: NotJobRequirement
-    job: BlueShield
+    job: BlueShieldEnsign
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
-    owner: офицер "Синий Щит"
+    owner: лейтенант "Синий Щит"
 
 - type: entity
   parent: BaseCMOStealObjective
@@ -44,3 +44,15 @@
     stealGroup: SupermatterSliver
     objectiveNoOwnerText: objective-condition-steal-supermatter-sliver
     descriptionText: objective-description-steal-supermatter-sliver
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: HandheldFaxStealObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+  - type: NotJobRequirement
+    job: NanoTrasenRepresentative
+  - type: StealCondition
+    stealGroup: HandheldFax
+    owner: job-name-ntrep

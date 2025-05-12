@@ -4,7 +4,7 @@
   graph:
     - node: start
       edges:
-        - to: done
+        - to: makeshiftcage
           steps:
             - material: Steel
               amount: 5
@@ -30,5 +30,5 @@
             - material: Glass
               amount: 2
               doAfter: 10
-    - node: done
+    - node: makeshiftcage
       entity: MakeshiftPowerCage

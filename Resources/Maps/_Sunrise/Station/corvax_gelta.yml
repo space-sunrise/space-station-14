@@ -197294,7 +197294,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerBlueshieldFilled
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 26268
     components:

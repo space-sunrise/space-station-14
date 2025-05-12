@@ -79,10 +79,27 @@
   - CommonPets
 
 - type: roleLoadout
-  id: JobBlueShield
+  id: JobBlueShieldEnsign
   groups:
   - BlueShieldJumpsuit
   - BlueShieldBackpack
+  - BlueShieldBelt
+  - BlueShieldNeck
+  - Trinkets
+  - SurvivalSecurity
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - CommonPets
+
+- type: roleLoadout
+  id: JobBlueShieldOfficer
+  groups:
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - BlueShieldBelt
+  - BlueShieldNeck
   - Trinkets
   - SurvivalSecurity
   - GroupSpeciesBreathTool

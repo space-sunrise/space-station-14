@@ -92,6 +92,14 @@
 # == Double airlocks == #
 
 - type: entity
+  id: DoubleGlassAirlockBasic
+  parent: [ DoubleGlassAirlock ]
+  name: double basic glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_basic.rsi
+
+- type: entity
   id: DoubleGlassAirlockAtmospherics
   parent: [ DoubleGlassAirlockEngineering ]
   suffix: Atmospherics
@@ -178,6 +186,14 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_virology.rsi
+
+- type: entity
+  id: DoubleGlassAirlockMiner
+  parent: [ DoubleGlassAirlock, AirlockMiningGlass ]
+  suffix: Mining(Salvage)
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_salvage.rsi
 
 # == Triple airlocks ==
 

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 254.1.0
+  forkId: sunrise_station
+  forkVersion: 79dd0485abd2a14a98c03d5e62550a43c4e07799
+  time: 04/29/2025 13:03:05
+  entityCount: 288
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   69: FloorMetalDiamond
@@ -293,7 +304,7 @@ entities:
   - uid: 125
     components:
     - type: Transform
-      pos: 3.4785953,-0.46385288
+      pos: -0.5601306,-0.91355574
       parent: 1
 - proto: BrokenEnergyShield
   entities:
@@ -511,19 +522,13 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-- proto: ClothingBackpackDuffelSyndicateFilledMedical
+- proto: ChairPilotSeat
   entities:
-  - uid: 123
+  - uid: 287
     components:
     - type: Transform
-      pos: -0.52140474,9.469952
-      parent: 1
-- proto: ClothingBackpackSyndie
-  entities:
-  - uid: 116
-    components:
-    - type: Transform
-      pos: 3.4872725,6.499874
+      rot: 3.141592653589793 rad
+      pos: 1.5,14.5
       parent: 1
 - proto: ClothingBeltSyndieWebbing
   entities:
@@ -537,50 +542,15 @@ entities:
   - uid: 124
     components:
     - type: Transform
-      pos: -0.53702974,10.4757185
+      pos: 3.5023694,-0.44480574
       parent: 1
 - proto: ClothingMaskGasSyndicate
   entities:
   - uid: 115
     components:
     - type: Transform
-      pos: -0.5127275,6.5100904
+      pos: 3.523026,-0.9160116
       parent: 1
-- proto: ClothingOuterHardsuitSyndieCommanderBiocode
-  entities:
-  - uid: 117
-    components:
-    - type: Transform
-      pos: 3.477391,10.483221
-      parent: 1
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]60%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]60%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]70%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]50%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]75%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]60%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]50%[/color].
-          priority: 0
-          component: Armor
-        title: null
 - proto: ComputerBroken
   entities:
   - uid: 209
@@ -632,6 +602,41 @@ entities:
     - type: Transform
       pos: 4.5,-9.5
       parent: 1
+- proto: GoldenBikeHorn
+  entities:
+  - uid: 276
+    components:
+    - type: Transform
+      pos: -0.37710118,10.212475
+      parent: 1
+- proto: GoldenPlunger
+  entities:
+  - uid: 277
+    components:
+    - type: Transform
+      pos: -0.7208512,10.274975
+      parent: 1
+- proto: GoldRing
+  entities:
+  - uid: 278
+    components:
+    - type: Transform
+      pos: -0.45522618,9.82185
+      parent: 1
+- proto: GoldRingDiamond
+  entities:
+  - uid: 280
+    components:
+    - type: Transform
+      pos: -0.7364762,9.7281
+      parent: 1
+- proto: GoldRingGem
+  entities:
+  - uid: 279
+    components:
+    - type: Transform
+      pos: -0.23647618,9.6031
+      parent: 1
 - proto: Grille
   entities:
   - uid: 20
@@ -679,6 +684,34 @@ entities:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
+- proto: IngotGold
+  entities:
+  - uid: 275
+    components:
+    - type: Transform
+      pos: -0.47085118,10.6656
+      parent: 1
+- proto: IngotSilver
+  entities:
+  - uid: 281
+    components:
+    - type: Transform
+      pos: -0.5021012,6.6656
+      parent: 1
+- proto: LandMineExplosive
+  entities:
+  - uid: 285
+    components:
+    - type: Transform
+      pos: 1.4813589,4.4292717
+      parent: 1
+    - type: CMExplosionEffect
+  - uid: 286
+    components:
+    - type: Transform
+      pos: 1.4501089,12.466593
+      parent: 1
+    - type: CMExplosionEffect
 - proto: LightTubeBroken
   entities:
   - uid: 204
@@ -700,6 +733,32 @@ entities:
     - type: Transform
       pos: -2.5,-7.5
       parent: 1
+- proto: MaterialDiamond1
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      pos: 3.5804944,7.0028615
+      parent: 1
+  - uid: 122
+    components:
+    - type: Transform
+      pos: 3.3148694,6.5497365
+      parent: 1
+  - uid: 123
+    components:
+    - type: Transform
+      pos: 3.3304944,7.4716115
+      parent: 1
+- proto: Paper
+  entities:
+  - uid: 288
+    components:
+    - type: Transform
+      pos: 0.5126089,14.761157
+      parent: 1
+    - type: Paper
+      content: 'Цель поезда: Перевозка полезных ресурсов в аванпост синдиката для скорой атаки на NT.'
 - proto: PlasmaReinforcedWindowDirectional
   entities:
   - uid: 168
@@ -927,8 +986,9 @@ entities:
   - uid: 106
     components:
     - type: Transform
-      pos: -0.5194173,7.3819723
+      pos: 3.481359,1.5995872
       parent: 1
+    - type: CMExplosionEffect
 - proto: PoweredlightEmpty
   entities:
   - uid: 203
@@ -1090,6 +1150,33 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.12044263,-7.925602
       parent: 1
+- proto: SheetUranium1
+  entities:
+  - uid: 113
+    components:
+    - type: Transform
+      pos: 3.5961194,10.315361
+      parent: 1
+  - uid: 116
+    components:
+    - type: Transform
+      pos: 3.3929944,9.893486
+      parent: 1
+  - uid: 117
+    components:
+    - type: Transform
+      pos: 3.5492444,9.659111
+      parent: 1
+  - uid: 120
+    components:
+    - type: Transform
+      pos: 3.4242444,10.565361
+      parent: 1
+  - uid: 274
+    components:
+    - type: Transform
+      pos: 3.3617444,9.362236
+      parent: 1
 - proto: SignalButton
   entities:
   - uid: 167
@@ -1103,11 +1190,35 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         151:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         148:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         147:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
+- proto: SilverRing
+  entities:
+  - uid: 284
+    components:
+    - type: Transform
+      pos: -0.6427262,7.337475
+      parent: 1
+- proto: SilverRingDiamond
+  entities:
+  - uid: 283
+    components:
+    - type: Transform
+      pos: -0.25210118,7.212475
+      parent: 1
+- proto: SilverRingGem
+  entities:
+  - uid: 282
+    components:
+    - type: Transform
+      pos: -0.5333512,7.024975
+      parent: 1
 - proto: SuitStorageEVASyndicate
   entities:
   - uid: 94
@@ -1134,19 +1245,13 @@ entities:
     - type: Transform
       pos: 3.5,2.5
       parent: 1
+    - type: CMExplosionEffect
 - proto: SyndicatePersonalAI
   entities:
   - uid: 114
     components:
     - type: Transform
       pos: -0.5127275,-1.4785476
-      parent: 1
-- proto: SyndieMiniBomb
-  entities:
-  - uid: 113
-    components:
-    - type: Transform
-      pos: 3.5341475,1.4929104
       parent: 1
 - proto: TableFrame
   entities:
@@ -1166,6 +1271,11 @@ entities:
     components:
     - type: Transform
       pos: 0.5,15.5
+      parent: 1
+  - uid: 119
+    components:
+    - type: Transform
+      pos: 0.5,14.5
       parent: 1
   - uid: 149
     components:
@@ -1280,34 +1390,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-7.5
-      parent: 1
-- proto: ToyFigurineFootsoldier
-  entities:
-  - uid: 121
-    components:
-    - type: Transform
-      pos: 3.4629703,9.344952
-      parent: 1
-- proto: ToyFigurineNukie
-  entities:
-  - uid: 120
-    components:
-    - type: Transform
-      pos: 3.6660953,9.438702
-      parent: 1
-- proto: ToyFigurineNukieCommander
-  entities:
-  - uid: 119
-    components:
-    - type: Transform
-      pos: 3.3067203,9.438702
-      parent: 1
-- proto: ToyFigurineNukieElite
-  entities:
-  - uid: 122
-    components:
-    - type: Transform
-      pos: 3.4942203,9.751202
       parent: 1
 - proto: VendingMachineSyndieDrobe
   entities:

@@ -1,74 +1,27 @@
 - type: entity
-  id: LockerBlueshieldFilled
+  id: LockerBlueShieldOfficerFilled
   suffix: Filled
-  parent: LockerBlueshield
+  parent: LockerBlueShield
   components:
   - type: StorageFill
     contents:
-      - id: WeaponDisabler
-      - id: ClothingHeadsetAltCommand
+      - id: ClothingHeadsetBlueShield
       - id: CigarGoldCase
         prob: 0.25
       - id: ClothingMaskGasBlueShield
-      - id: TrackingImplanter
-        amount: 8
+      - id: HandheldCrewMonitor # Sunrise-TODO: Мониторинг командования.
 
 - type: entity
-  id: LockerBlueshieldFilledUplink
-  suffix: Filled, Uplink
-  parent: LockerBlueshield
+  id: LockerBlueShieldEnsignFilled
+  suffix: Ensign, Filled
+  parent: LockerBlueShieldEnsign
   components:
   - type: StorageFill
     contents:
-      - id: BaseUplinkNTERTBlueShield
-      - id: ClothingHeadsetAltCommand
+      - id: ClothingHeadsetBlueShieldEnsign
       - id: CigarGoldCase
         prob: 0.25
       - id: ClothingMaskGasBlueShield
-      - id: TrackingImplanter
-        amount: 8
-
-- type: entity
-  id: LockerBlueshieldFilledUplinkMultiphase
-  suffix: Filled, Uplink, Multiphase
-  parent: LockerBlueshield
-  components:
-  - type: StorageFill
-    contents:
-      - id: BaseUplinkNTERTBlueShield
-      - id: ClothingHeadsetAltCommand
-      - id: CigarGoldCase
-        prob: 0.25
       - id: WeaponEnergyGunMultiphase
-      - id: ClothingMaskGasBlueShield
-      - id: TrackingImplanter
-        amount: 8
-
-- type: entity
-  id: LockerBlueshieldFilledHardsuit
-  suffix: Filled, Hardsuit
-  parent: LockerBlueshield
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponDisabler
-    - id: ClothingHeadsetAltCommand
-    - id: CigarGoldCase
-      prob: 0.25
-    - id: ClothingMaskGasBlueShield
-    - id: TrackingImplanter
-      amount: 8
-    - id: ClothingOuterHardsuitBlueshield
-    - id: OxygenTankFilled
-    - id: ClothingMaskBreathMedicalSecurity
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeBlueShield
-  name: blue shield safe
-  components:
-  - type: AccessReader
-    access: [["BlueShield"]]
-  - type: StorageFill
-    contents:
-    - id: WeaponEnergyGunMultiphase
+      - id: BoxEncryptionKeyBlueShield
+      - id: HandheldCrewMonitor # Sunrise-TODO: Мониторинг командования.

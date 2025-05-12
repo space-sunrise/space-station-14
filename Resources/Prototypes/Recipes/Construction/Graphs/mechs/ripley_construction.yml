@@ -34,7 +34,7 @@
           data: 4
 
       - tag: RipleyCentralControlModule
-        name: step-ripley-central-control-module-name
+        name: construction-graph-tag-ripley-central-control-module
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -51,7 +51,7 @@
           data: 6
 
       - tag: RipleyPeripheralsControlModule
-        name: step-ripley-peripherals-control-module-name
+        name: construction-graph-tag-ripley-peripherals-control-module
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -71,7 +71,7 @@
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
       - tag: PowerCage
-        name: step-powercage-name
+        name: construction-graph-component-power-cage
         store: battery-container
         icon:
           sprite: Objects/Power/power_cages.rsi

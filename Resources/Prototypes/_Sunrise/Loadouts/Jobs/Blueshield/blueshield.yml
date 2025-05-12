@@ -22,3 +22,31 @@
   id: BlueShieldJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitBlueShield
+
+- type: loadout
+  id: BlueShieldCoat
+  #sponsorOnly: true
+  equipment:
+    neck: ClothingOuterCoatBlueshield
+
+- type: loadout
+  id: BlueShieldTurtleneck
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueshieldJS
+
+- type: loadout
+  id: BlueShieldMantle
+  #sponsorOnly: true
+  equipment:
+    neck: ClothingBSMantle
+
+- type: loadout
+  id: AssaultBeltBS
+  #sponsorOnly: true
+  equipment:
+    belt: ClothingBeltAssaultFilled
+
+- type: loadout
+  id: BlueShieldWebbing
+  equipment:
+    belt: ClothingBeltBlueShieldWebbingFilled

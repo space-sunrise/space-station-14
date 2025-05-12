@@ -9,3 +9,9 @@
   values:
     prefix: advertisement-honkers-
     count: 10
+
+- type: localizedDataset
+  id: PaintVendAds
+  values:
+    prefix: advertisement-paintvend-
+    count: 7

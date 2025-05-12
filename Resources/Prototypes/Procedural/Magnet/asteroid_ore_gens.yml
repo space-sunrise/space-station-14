@@ -11,6 +11,7 @@
     OreUranium: 0.20
     OreArtifactFragment: 0.10
     OreBananium: 0.10
+    OreDiamond: 0.03  #Sunrise-Edit
 
 - type: oreDunGen
   id: OreIron
@@ -83,6 +84,14 @@
   count: 6
   minGroupSize: 3
   maxGroupSize: 6
+
+- type: oreDunGen  #Sunrise-Start
+  id: OreDiamond
+  replacement: AsteroidRock
+  entity: AsteroidRockDiamond
+  count: 2
+  minGroupSize: 1
+  maxGroupSize: 3  #Sunrise-End
 
 - type: oreDunGen
   id: OreArtifactFragment

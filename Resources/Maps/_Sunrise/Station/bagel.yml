@@ -117862,7 +117862,7 @@ entities:
     - type: Transform
       pos: -25.5,32.5
       parent: 2
-- proto: LockerBlueshieldFilledUplinkMultiphase
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 17886
     components:

@@ -7,7 +7,7 @@
     tags:
     - Cartridge
     - CartridgeAntiMateriel
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     proto: BulletAntiMateriel
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
@@ -18,3 +18,26 @@
   - type: SpentAmmoVisuals
   - type: StaticPrice
     price: 20
+
+#Sunrise-Start
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeAntiMaterielAP
+  name: cartridge (.60 anti-materiel AP)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeAntiMateriel
+  - type: HitScanCartridgeAmmo
+    proto: BulletAntiMaterielHitscan
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+#Sunrise-End

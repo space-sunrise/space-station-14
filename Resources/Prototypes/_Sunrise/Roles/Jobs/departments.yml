@@ -11,12 +11,13 @@
     - NtrOfficer
 
 - type: department # Surnise-Blueshield
-  id: Blueshield
+  id: BlueShield
   name: department-Blueshield
   description: department-Blueshield-description
   color: "#005bfb"  # Иначе плохо видно
   roles:
-    - BlueShield
+    - BlueShieldEnsign
+    - BlueShieldOfficer
   primary: false
   weight: 50
 

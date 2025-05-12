@@ -41,13 +41,31 @@
 
 - type: entity
   parent: BasePDA
-  id: BlueShieldPDA
-  name: blue shield officer's PDA
+  id: BlueShieldOfficerPDA
+  name: blue shield officer PDA
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
-    id: BlueShieldIDCard
+    id: BlueShieldOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-blueshield
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-blueshield
+
+- type: entity
+  parent: BasePDA
+  id: BlueShieldEnsignPDA
+  name: blue shield ensign PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BlueShieldEnsignIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:

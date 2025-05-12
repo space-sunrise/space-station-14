@@ -38,8 +38,12 @@ namespace Content.IntegrationTests.Tests.Chemistry
 
             foreach (var reactionPrototype in prototypeManager.EnumeratePrototypes<ReactionPrototype>())
             {
-                //since i have no clue how to isolate each loop assert-wise im just gonna throw this one in for good measure
-                Console.WriteLine($"Testing {reactionPrototype.ID}");
+                Console.WriteLine($"\n=== Testing reaction: {reactionPrototype.ID} ===");
+                Console.WriteLine($"Reactants:");
+                foreach (var (id, reactant) in reactionPrototype.Reactants)
+                {
+                    Console.WriteLine($"  {id}: {reactant.Amount} (catalyst: {reactant.Catalyst})");
+                }
 
                 EntityUid beaker = default;
                 Entity<SolutionComponent>? solutionEnt = default!;
@@ -74,23 +78,60 @@ namespace Content.IntegrationTests.Tests.Chemistry
 
                 await server.WaitAssertion(() =>
                 {
-                    //you just got linq'd fool
-                    //(i'm sorry)
                     var foundProductsMap = reactionPrototype.Products
                         .Concat(reactionPrototype.Reactants.Where(x => x.Value.Catalyst).ToDictionary(x => x.Key, x => x.Value.Amount))
                         .ToDictionary(x => x, _ => false);
+
+                    Console.WriteLine($"\nExpected products for {reactionPrototype.ID}:");
+                    foreach (var (reagent, quantity) in foundProductsMap)
+                    {
+                        Console.WriteLine($"  {reagent.Key}: {reagent.Value}");
+                    }
+
+                    Console.WriteLine($"\nActual solution contents for {reactionPrototype.ID}:");
                     foreach (var (reagent, quantity) in solution.Contents)
                     {
-                        Assert.That(foundProductsMap.TryFirstOrNull(x => x.Key.Key == reagent.Prototype && x.Key.Value == quantity, out var foundProduct));
+                        Console.WriteLine($"  {reagent.Prototype}: {quantity}");
+                    }
+
+                    foreach (var (reagent, quantity) in solution.Contents)
+                    {
+                        var found = foundProductsMap.TryFirstOrNull(x => x.Key.Key == reagent.Prototype && x.Key.Value == quantity, out var foundProduct);
+                        if (!found)
+                        {
+                            Console.WriteLine($"\nERROR: Failed to find match for {reagent.Prototype} x{quantity}");
+                            var possibleMatches = foundProductsMap.Where(x => x.Key.Key == reagent.Prototype).ToList();
+                            if (possibleMatches.Any())
+                            {
+                                Console.WriteLine("Possible matches with different quantities:");
+                                foreach (var match in possibleMatches)
+                                {
+                                    Console.WriteLine($"  {match.Key.Key} x{match.Key.Value}");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("No matches found for this reagent type");
+                            }
+                        }
+                        Assert.That(found, Is.True, $"Failed to find match for {reagent.Prototype} x{quantity} in reaction {reactionPrototype.ID}");
                         foundProductsMap[foundProduct.Value.Key] = true;
                     }
 
-                    Assert.That(foundProductsMap.All(x => x.Value));
-                });
+                    var missingProducts = foundProductsMap.Where(x => !x.Value).ToList();
+                    if (missingProducts.Any())
+                    {
+                        Console.WriteLine($"\nERROR: Missing expected products in {reactionPrototype.ID}:");
+                        foreach (var (reagent, _) in missingProducts)
+                        {
+                            Console.WriteLine($"  {reagent.Key}: {reagent.Value}");
+                        }
+                    }
 
+                    Assert.That(foundProductsMap.All(x => x.Value), $"Not all expected products were found in reaction {reactionPrototype.ID}");
+                });
             }
             await pair.CleanReturnAsync();
         }
     }
-
 }

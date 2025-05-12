@@ -11,7 +11,7 @@
   icon: "JobIconMagistrat"
   supervisors: job-supervisors-centcom
   canBeAntag: false
-  setPreference: true
+  setPreference: false
   radioBold: true
   displayWeight: 75
   access:
@@ -35,7 +35,7 @@
   - Maintenance
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff

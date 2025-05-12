@@ -36,9 +36,10 @@
     pryPowered: true
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Clothing
-    sprite: _Sunrise  /Objects/Weapons/Melee/breaching_hammer.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/breaching_hammer.rsi
     quickEquip: false
     slots:
     - back
+    - suitStorage
 
 

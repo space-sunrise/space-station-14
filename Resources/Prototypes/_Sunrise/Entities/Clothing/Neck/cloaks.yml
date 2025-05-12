@@ -235,3 +235,14 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/ntrg_neck.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingOuterCoatBlueshield
+  name: blue shield's overcoat
+  description: Somewhat royal overcoat, that protecting protecting its wearer.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi

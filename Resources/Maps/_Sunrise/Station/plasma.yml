@@ -131583,7 +131583,7 @@ entities:
     - type: Transform
       pos: -121.5,-5.5
       parent: 2
-- proto: LockerBlueshieldFilledUplinkMultiphase
+- proto: LockerBlueShieldEnsignFilled
   entities:
   - uid: 19519
     components:

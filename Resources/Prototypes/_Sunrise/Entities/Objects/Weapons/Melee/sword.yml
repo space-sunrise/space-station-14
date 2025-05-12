@@ -36,7 +36,6 @@
     - NonEnergy
     reflectProb: 0.20
     spread: 90
-    needActiveHand: true
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
   - type: Tag

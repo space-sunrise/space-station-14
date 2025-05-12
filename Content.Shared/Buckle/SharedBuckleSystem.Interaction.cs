@@ -81,6 +81,9 @@ public abstract partial class SharedBuckleSystem
         if (!component.Enabled)
             return;
 
+        if (!component.HandBuckle)
+            return;
+
         if (!TryComp(args.User, out BuckleComponent? buckle))
             return;
 

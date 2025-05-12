@@ -131,6 +131,21 @@
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
+  - BlueShieldTurtleneck
+
+- type: loadoutGroup
+  id: BlueShieldBelt
+  name: loadout-group-blueshield-belt
+  loadouts:
+  - BlueShieldWebbing
+  - AssaultBeltBS
+
+- type: loadoutGroup
+  id: BlueShieldNeck
+  name: loadout-group-blueshield-neck
+  loadouts:
+  - BlueShieldMantle
+  - BlueShieldCoat
 
 - type: loadoutGroup
   id: BarberJumpsuit
@@ -209,6 +224,20 @@
   #- SunriseWeaponPistolG22
   - SunriseWeaponEnergyGun
   - SunriseWeaponTaser
+
+# Security  HoS
+- type: loadoutGroup
+  id: SunriseSecurityGunHos
+  name: loadout-group-hos-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - SunriseWeaponPistolG22
+  - SunriseWeaponTaser
+  - HeadofSecurityWeapon20h
+  - HeadofSecurityWeapon50h
+  - HeadofSecurityWeapon50h2
+  - HeadofSecurityWeapon100h
 # Medical
 
 - type: loadoutGroup

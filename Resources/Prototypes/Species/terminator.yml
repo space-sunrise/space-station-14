@@ -11,6 +11,7 @@
   femaleFirstNames: NamesSkeletonFirst
   dollPrototype: MobSkeletonPersonDummy
   skinColoration: TintedHues
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit
 
 - type: bodyType
   id: TerminatorNormal

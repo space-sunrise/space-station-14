@@ -4626,7 +4626,6 @@ entities:
     - type: Transform
       pos: -7.469537,5.465501
       parent: 1
-    - type: BiasedArtifact
 - proto: SMESExtended
   entities:
   - uid: 719

@@ -395,3 +395,11 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/holo_girl.rsi
     state: holo_animated
+
+- type: ghostTheme
+  id: Pirate
+  name: ghost-theme-pirate
+  sponsorOnly: true
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/pirate_ghost.rsi
+    state: pirate_icon

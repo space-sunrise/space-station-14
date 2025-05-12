@@ -43,7 +43,7 @@
     - Ntrep
   special:
     - !type:AddImplantSpecial
-      implants: [MindShieldImplant]
+      implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
     - !type:AddComponentSpecial
       components:
       - type: CommandStaff
@@ -62,3 +62,4 @@
     back:
     - RubberStampNtrep
     - CaneNT
+    - HandheldFax #sunrise-edit

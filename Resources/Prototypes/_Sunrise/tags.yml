@@ -353,3 +353,6 @@
 
 - type: Tag
   id: CarpRiftHealTarget
+
+- type: Tag
+  id: SheetPaper

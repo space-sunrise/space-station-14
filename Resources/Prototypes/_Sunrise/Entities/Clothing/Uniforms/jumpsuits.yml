@@ -338,3 +338,13 @@
   - type: Tag
     tags:
       - Vest
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBlueshieldJS
+  name: blueshield's jumpsuit
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi

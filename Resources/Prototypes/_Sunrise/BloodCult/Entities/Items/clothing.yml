@@ -34,11 +34,9 @@
         acts: [ "Destruction" ]
   - type: Reflect
     reflectProb: 0.5 # В сс14 один шанс и на энергитический, и на не энергетический урон. Может потом сделаю (TODO)
-    needActiveHand: false
     reflects:
     - Energy
     - NonEnergy
-    needHand: true
   - type: ReturnItemOnThrow
   - type: CultMirrorShield
   - type: Blocking

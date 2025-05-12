@@ -41,10 +41,10 @@
 - type: damageModifierSet
   id: Dragon
   coefficients:
-    Blunt: 0.55
-    Slash: 0.55
-    Piercing: 0.4
-    Heat: 0.4
+    Blunt: 0.7
+    Slash: 0.7
+    Piercing: 0.7
+    Heat: 0.6
     Shock: 0.5
 
 - type: damageModifierSet

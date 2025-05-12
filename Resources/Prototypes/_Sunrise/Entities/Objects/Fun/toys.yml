@@ -29,9 +29,9 @@
     state: plushie-hop
 
 - type: entity
-  id: PlushieUunaMiira
+  id: PlushieUunaKatsuhiro
   parent: BasePlushie
-  name: UunaMiira
+  name: Uuna Katsuhiro
   description: A dark elf with a bright soul.
   components:
   - type: Sprite
@@ -39,6 +39,11 @@
     state: mintypresent
   - type: EmitSoundOnUse
     sound:
+      collection: SQUEE
+      params:
+        volume: 5
+  - type: MeleeWeapon
+    soundHit:
       collection: SQUEE
       params:
         volume: 5
@@ -51,7 +56,7 @@
     sound:
       path: /Audio/_Sunrise/Voice/Vulpkanin/dog_growl1.ogg
   - type: UseDelay
-    delay: 5
+    delay: 3
 
 - type: entity
   id: PlushieFour
@@ -1059,3 +1064,54 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-molnia
+
+- type: entity
+  id: PlushieAndrewNarvi
+  parent: BasePlushie
+  name: AndrewNarvi
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_narvi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Ambience/Objects/alarm.ogg
+      params:
+        volume: -2
+  - type: TriggerOnActivate
+  - type: UseDelay
+    delay: 11
+
+- type: entity
+  id: PlushieTimofeyTatarchuk
+  parent: BasePlushie
+  name: Timofey Tatarchuk
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_tatarchuk
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/Items/Hit/Sabre/hit1.ogg
+      params:
+        volume: -1
+  - type: TriggerOnActivate
+  - type: UseDelay
+    delay: 2
+
+- type: entity
+  id: PlushieSansaMontanelli
+  parent: BasePlushie
+  name: Sansa Montanelli
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_sansa
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Paper/paper_scribble5.ogg
+      params:
+        volume: 0
+  - type: TriggerOnActivate
+  - type: UseDelay
+    delay: 1

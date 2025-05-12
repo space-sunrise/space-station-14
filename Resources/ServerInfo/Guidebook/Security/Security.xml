@@ -36,8 +36,8 @@ It is worth noting that flashes can be both used in a large area ([color=yellow]
 Should the situation dictate, [color=#cb0000]Security[/color] have access to laser rifles, shotguns, handguns and automatic rifles able to put down substancial fire against any who would stand against the station.
   <Box>
     <GuideEntityEmbed Entity="WeaponLaserCarbine"/>
-    <GuideEntityEmbed Entity="WeaponShotgunKammerer"/>
+    <GuideEntityEmbed Entity="WeaponShotgunTrenchgun4034"/>
     <GuideEntityEmbed Entity="WeaponPistolMk58"/>
-    <GuideEntityEmbed Entity="WeaponRifleLecter"/>
+    <GuideEntityEmbed Entity="WeaponRifleM16A4"/>
   </Box>
 </Document>

@@ -68,4 +68,7 @@ public sealed record GeneralStationRecord
     /// </summary>
     [DataField]
     public string? DNA;
+
+    [DataField]
+    public bool Silicon; // Sunrise-Edit
 }

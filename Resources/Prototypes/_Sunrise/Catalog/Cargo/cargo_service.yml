@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: ServicePrinterDocMachine
+  icon:
+    sprite: _Sunrise/Structures/Machines/printer.rsi
+    state: icon
+  product: CrateServicePrinterDoc
+  cost: 2000
+  category: cargoproduct-category-name-service
+  group: market

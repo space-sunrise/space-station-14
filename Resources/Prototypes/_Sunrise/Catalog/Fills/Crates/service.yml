@@ -1,0 +1,10 @@
+- type: entity
+  id: CrateServicePrinterDoc
+  parent: CrateGenericSteel
+  name: printer machine crate
+  description:
+  components:
+  - type: StorageFill
+    contents:
+    - id: Screwdriver
+    - id: PrinterDocFlatpack

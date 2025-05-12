@@ -8,6 +8,61 @@
       role: JobHeadOfSecurity
       time: 72000 #20 hrs
 
+#Sunrise-Start
+- type: loadoutEffectGroup
+  id: MasterHoS50h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 180000 #50 hrs
+
+- type: loadoutEffectGroup
+  id: MasterHoS100h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 360000 #100 hrs
+
+#WeaponsHos
+
+- type: loadout
+  id: HeadofSecurityWeapon20h
+  equipment:
+    pocket1: WeaponSniperRepeater
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityWeapon50h
+  equipment:
+    pocket1: WeaponSubMachineGunSkorpion
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS50h
+
+- type: loadout
+  id: HeadofSecurityWeapon50h2
+  equipment:
+    pocket1: WeaponRevolverMatebaNew
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS50h
+
+- type: loadout
+  id: HeadofSecurityWeapon100h
+  equipment:
+    pocket1: WeaponPistolDeagle
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS100h
+
+#Sunrise-End
+
 # Jumpsuit
 - type: loadout
   id: HeadofSecurityJumpsuit

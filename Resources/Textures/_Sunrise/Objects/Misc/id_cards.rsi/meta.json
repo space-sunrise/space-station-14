@@ -30,6 +30,9 @@
             "name": "silver"
         },
         {
+            "name": "gold"
+        },
+        {
             "name": "silver-inhand-left",
             "directions": 4
         },

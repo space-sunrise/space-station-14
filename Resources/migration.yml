@@ -613,6 +613,11 @@ SimpleXenoArtifactItem: ComplexXenoArtifactItem
 MediumXenoArtifactItem: ComplexXenoArtifactItem
 VariedXenoArtifactItem: ComplexXenoArtifactItem
 
+# 2025-04-19
+ClothingOuterHardsuitSyndicate: ClothingOuterEVASuitSyndicate
+AirlockMaintCommonLocked: AirlockMaintLocked
+AirlockMaintIntLocked: AirlockMaintLocked
+
 # 2025-04-26
 #ComputerCargoShuttle: ComputerShuttleCargo
 CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
@@ -696,3 +701,10 @@ ScienceTechFab: null
 ReverseEngineeringMachine: null
 ScienceTechFabCircuitboard: null
 EngineeringTechFabCircuitboard: null
+WeaponPistolDeagle: null #Пока не обновят кабинеты ГСБ на картах.
+MagazineDeagle: null
+MagazineMagnum: null
+LockerBlueShieldFilledUplink: LockerBlueShieldEnsignFilled
+LockerBlueShieldFilledUplinkMultiphase: LockerBlueShieldEnsignFilled
+GunSafeBlueShield: null
+SpawnPointBlueShield: SpawnPointBlueShieldOfficer

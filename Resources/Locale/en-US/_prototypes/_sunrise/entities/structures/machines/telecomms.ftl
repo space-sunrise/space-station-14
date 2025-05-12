@@ -1,5 +1,5 @@
 ent-TelecomServerFilledLaw = { ent-TelecomServer }
-    .suffix = Command
+    .suffix = Law
     .desc = { ent-TelecomServer.desc }
 ent-TelecomServerFilledUSSP = { ent-TelecomServer }
     .suffix = USSP

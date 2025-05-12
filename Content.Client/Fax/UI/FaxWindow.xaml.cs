@@ -14,9 +14,11 @@ namespace Content.Client.Fax.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FaxWindow : DefaultWindow
 {
-    public event Action? FileButtonPressed;
+    // Sunrise-Edit
+    //public event Action? FileButtonPressed;
     public event Action? PaperButtonPressed;
-    public event Action? CopyButtonPressed;
+    // Sunrise-Edit
+    //public event Action? CopyButtonPressed;
     public event Action? SendButtonPressed;
     public event Action? RefreshButtonPressed;
     public event Action<string>? PeerSelected;
@@ -29,9 +31,11 @@ public sealed partial class FaxWindow : DefaultWindow
 
         PaperButtonPressed += OnPaperButtonPressed;
 
-        FileButton.OnPressed += _ => FileButtonPressed?.Invoke(); 
-        PaperButton.OnPressed += _ => PaperButtonPressed?.Invoke(); 
-        CopyButton.OnPressed += _ => CopyButtonPressed?.Invoke();
+        // Sunrise-Edit
+        //FileButton.OnPressed += _ => FileButtonPressed?.Invoke();
+        PaperButton.OnPressed += _ => PaperButtonPressed?.Invoke();
+        // Sunrise-Edit
+        //CopyButton.OnPressed += _ => CopyButtonPressed?.Invoke();
         SendButton.OnPressed += _ => SendButtonPressed?.Invoke();
         RefreshButton.OnPressed += _ => RefreshButtonPressed?.Invoke();
         PeerSelector.OnItemSelected += args =>
@@ -40,7 +44,8 @@ public sealed partial class FaxWindow : DefaultWindow
 
     public void UpdateState(FaxUiState state)
     {
-        CopyButton.Disabled = !state.CanCopy;
+        // Sunrise-Edit
+        // CopyButton.Disabled = !state.CanCopy;
         SendButton.Disabled = !state.CanSend;
         //Sunrise-Start
         var Localekey = $"fax-label-{Regex.Replace(state.DeviceName, @"[*?!'%\s]", string.Empty).ToLower()}";
@@ -53,7 +58,7 @@ public sealed partial class FaxWindow : DefaultWindow
             FromLabel.Text = Loc.GetString($"fax-label-{Regex.Replace(state.DeviceName, @"[*?!'%\s]", string.Empty).ToLower()}");
         }
         //Sunrise-End
-        
+
         if (state.IsPaperInserted)
         {
             PaperStatusLabel.FontColorOverride = Color.Green;

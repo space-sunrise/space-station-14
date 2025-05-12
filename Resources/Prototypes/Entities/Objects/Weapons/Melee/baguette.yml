@@ -14,4 +14,3 @@
   - type: Reflect
     reflectProb: 0.05
     spread: 90
-    needActiveHand: true

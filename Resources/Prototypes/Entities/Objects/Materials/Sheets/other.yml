@@ -61,7 +61,11 @@
         reagents:
         - ReagentId: Cellulose
           Quantity: 3
-
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - SheetPaper
+  # Sunrise-End
 
 - type: entity
   parent: SheetPaper

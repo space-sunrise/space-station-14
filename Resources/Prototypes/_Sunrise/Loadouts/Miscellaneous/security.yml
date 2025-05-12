@@ -1,8 +1,8 @@
-#- type: loadout
-#  id: SunriseWeaponPistolG22
-#  storage:
-#    back:
-#    - GlockBox
+- type: loadout
+  id: SunriseWeaponPistolG22
+  storage:
+   back:
+   - GlockBox
 
 - type: loadout
   id: SunriseWeaponEnergyGun

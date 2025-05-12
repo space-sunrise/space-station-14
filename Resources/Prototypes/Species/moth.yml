@@ -14,6 +14,7 @@
   femaleFirstNames: NamesMothFirstFemale
   maleLastNames: NamesMothLast
   femaleLastNames: NamesMothLast
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit SUNRISE-TODO: Спрайт жопы для молей
 
 - type: bodyType
   id: MothNormal

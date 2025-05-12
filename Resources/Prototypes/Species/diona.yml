@@ -14,6 +14,7 @@
   maleLastNames: NamesDionaLast # Russian-LastnameGender
   femaleLastNames: NamesDionaLast # Russian-LastnameGender
   naming: TheFirstofLast
+  buttScanTexture: /Textures/_Sunrise/ButtsScans/diona.png # Sunrise-Edit
 
 - type: bodyType
   id: DionaNormal

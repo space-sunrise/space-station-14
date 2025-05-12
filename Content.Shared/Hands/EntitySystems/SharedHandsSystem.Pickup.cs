@@ -6,11 +6,15 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Timing; // Sunrise-add
+using Content.Shared._Sunrise.Item; // Sunrise-add
 
 namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!; // Sunrise-add
+
     private void InitializePickup()
     {
         SubscribeLocalEvent<HandsComponent, EntInsertedIntoContainerMessage>(HandleEntityInserted);
@@ -104,6 +108,11 @@ public abstract partial class SharedHandsSystem : EntitySystem
         if (!CanPickupToHand(uid, entity, hand, checkActionBlocker, handsComp, item))
             return false;
 
+        // Sunrise-start
+        if (!CheckRepickupDuration(entity))
+            return false;
+        // Sunrise-end
+
         if (animate)
         {
             var xform = Transform(uid);
@@ -123,6 +132,29 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
         return true;
     }
+
+    // Sunrise-start
+    /// <summary>
+    /// Проверка для <see cref="ItemRepickupCooldownComponent"/>. Остановка досрочного поднятия
+    /// Всю логику нельзя запихнуть в <see cref="ItemRepickupCooldownSystem"/>, потому что
+    /// <see cref="PickupAttemptEvent"/> вызывается на мобе, который пытается поднять, а не на цели. Создавать новый
+    /// ивент... Это пока не надо, мне кажется только больше конфликтов будет
+    /// </summary>
+    /// <param name="entity">Для какой сущности проверять</param>
+    /// <returns>Результат проверки</returns>
+    public bool CheckRepickupDuration(Entity<ItemRepickupCooldownComponent?> entity)
+    {
+        // У сущности просто нет запрашиваемого компонента
+        if (!Resolve(entity.Owner, ref entity.Comp, logMissing: false))
+            return true;
+
+        if (entity.Comp.PrevDrop is not null &&
+            _timing.CurTime - entity.Comp.PrevDrop < entity.Comp.CooldownDuration)
+            return false;
+
+        return true;
+    }
+    // Sunrise-end
 
     /// <summary>
     ///     Tries to pick up an entity into any hand, forcing to drop an item if there are no free hands

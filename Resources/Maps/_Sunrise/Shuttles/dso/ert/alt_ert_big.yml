@@ -9394,7 +9394,7 @@ entities:
       parent: 1100
     - type: Physics
       canCollide: False
-- proto: ClothingOuterHardsuitSyndicate
+- proto: ClothingOuterEVASuitSyndicate
   entities:
   - uid: 1130
     components:
@@ -10171,7 +10171,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10217,7 +10217,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10263,7 +10263,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10309,7 +10309,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10355,7 +10355,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10401,7 +10401,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10447,7 +10447,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10493,7 +10493,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:
@@ -10539,7 +10539,7 @@ entities:
       parent: 689
     - type: Paper
       content: >-
-        ОТ: 
+        ОТ:
 
 
         КОМУ:

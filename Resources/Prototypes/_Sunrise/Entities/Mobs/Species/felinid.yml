@@ -189,6 +189,8 @@
     size: Huge
     shape:
     - 0,0,3,3
+  - type: ItemRepickupCooldown
+    cooldown: 5
   - type: Felinid
     damageBonus:
       types:

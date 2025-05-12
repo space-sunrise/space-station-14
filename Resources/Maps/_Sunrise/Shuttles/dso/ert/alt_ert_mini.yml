@@ -2910,23 +2910,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SheetPrinter1
-  entities:
-  - uid: 331
-    components:
-    - type: Transform
-      pos: 1.3797729,7.564818
-      parent: 1
-  - uid: 332
-    components:
-    - type: Transform
-      pos: 1.4214396,7.502383
-      parent: 1
-  - uid: 333
-    components:
-    - type: Transform
-      pos: 1.4769952,7.446885
-      parent: 1
 - proto: SheetSteel
   entities:
   - uid: 54
