@@ -48,19 +48,19 @@
     itemIconStyle: NoItem
     useDelay: 360
 
-- type: entity
-  id: FleshCultistClaw
-  name: flesh-cultist-claw-name
-  description: flesh-cultist-claw-desc
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: InstantAction
-    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
-    event: !type:FleshCultistHandTransformEvent
-      prototype: FleshClaw
-    itemIconStyle: NoItem
-    useDelay: 3
-    checkCanInteract: false
+#- type: entity
+#  id: FleshCultistClaw
+#  name: flesh-cultist-claw-name
+#  description: flesh-cultist-claw-desc
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: InstantAction
+#    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
+#    event: !type:FleshCultistHandTransformEvent
+#      prototype: FleshClaw
+#    itemIconStyle: NoItem
+#    useDelay: 3
+#    checkCanInteract: false
 
 - type: entity
   id: FleshCultistThrowHugger
