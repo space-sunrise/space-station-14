@@ -11,9 +11,13 @@
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/wirecutter_pickup.ogg
+      params:
+        volume: -2
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/wirecutter_drop.ogg
+      params:
+        volume: -2
   # Sunrise edit
   - type: Tag
     tags:
@@ -65,9 +69,13 @@
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/screwdriver_pickup.ogg
+      params:
+        volume: -2
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/screwdriver_drop.ogg
+      params:
+        volume: -2
   # Sunrise end
   - type: Tag
     tags:
@@ -117,9 +125,13 @@
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/wrench_pickup.ogg
+      params:
+        volume: -2
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/wrench_drop.ogg
+      params:
+        volume: -2
   # Sunrise end
   - type: Tag
     tags:

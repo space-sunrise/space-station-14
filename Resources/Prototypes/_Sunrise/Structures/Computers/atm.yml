@@ -44,16 +44,17 @@
   - type: Pullable
   - type: StaticPrice
     price: 300
-  - type: SpamEmitSoundRequirePower
-  - type: SpamEmitSound
-    minInterval: 30
-    maxInterval: 90
-    sound:
-      collection: ArcadeNoise
-      params:
-        volume: -8
-        maxDistance: 10
-        variation: 0.05
+  # need new sounds
+  #- type: SpamEmitSoundRequirePower
+  #- type: SpamEmitSound
+    #minInterval: 30
+    #maxInterval: 90
+    #sound:
+    #  collection: ArcadeNoise
+    #  params:
+    #    volume: -8
+    #    maxDistance: 10
+    #    variation: 0.05
 
 - type: entity
   id: ATMWallmountBase
@@ -93,7 +94,7 @@
   - type: Computer
     board: FPIATMComputerCircuitboard
   - type: Advertise
-    pack: BlockGameAds
+    pack: ATMAds
     minimumWait: 120
     maximumWait: 240
   - type: SpeakOnUIClosed

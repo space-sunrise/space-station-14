@@ -10,7 +10,7 @@
   - type: SpaceGarbage
 
 - type: entity
-  parent: UtensilBase
+  parent: [PlasticSounds, UtensilBase] # Sunrise edit
   id: UtensilBasePlastic
   abstract: true
   components:

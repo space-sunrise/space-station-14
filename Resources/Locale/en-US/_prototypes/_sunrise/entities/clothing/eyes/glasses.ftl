@@ -14,3 +14,5 @@ ent-ClothingEyesGlassesThermalSyndie = optical thermal scanner
     .desc = Thermals in the shape of glasses. for better exterminating NanoTrasen Scum.
 ent-ClothingEyesGlassesThermalSec = optical thermal scanner
     .desc = Thermals in the shape of glasses.
+ent-ClothingEyesStuttering = stuttering glasses
+    .desc = Glasses that give the owner knowledge...or stuttering

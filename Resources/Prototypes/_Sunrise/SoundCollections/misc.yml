@@ -11,3 +11,8 @@
     - /Audio/_Sunrise/Voice/Slime/блабл-бламп.ogg
     - /Audio/_Sunrise/Voice/Slime/блюмп.ogg
     - /Audio/_Sunrise/Voice/Slime/бламп.ogg
+
+- type: soundCollection
+  id: EquipSounds
+  files:
+  - /Audio/_Sunrise/Items/Equip/base_equip.ogg

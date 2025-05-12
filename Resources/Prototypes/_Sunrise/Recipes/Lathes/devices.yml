@@ -15,8 +15,8 @@
   materials:
     Steel: 1000
     Plastic: 400
-    Silver: 100
-    Diamond: 100
+    Silver: 300
+    Uranium: 300
 
 - type: latheRecipe
   id: BasicThermals
@@ -35,8 +35,8 @@
   - Weapons
   completetime: 30
   materials:
-    Steel: 1200
-    Plasma: 750
+    Steel: 1400
+    Plasma: 800
     Glass: 500
 
 - type: latheRecipe

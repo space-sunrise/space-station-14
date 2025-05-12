@@ -20,7 +20,7 @@
       components:
       - Cuffable
     canTargetSelf: false
-    useDelay: 15
+    useDelay: 9
     checkCanAccess: true
     range: 2
     event: !type:BorgCuffedActionEvent

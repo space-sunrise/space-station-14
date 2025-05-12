@@ -10,7 +10,7 @@
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [HelmetSounds, ClothingHeadBase]
   id: ClothingHeadHelmetPilot
   name: security pilot's helmet
   description: A thick pilot's helmet that provides good head protection.

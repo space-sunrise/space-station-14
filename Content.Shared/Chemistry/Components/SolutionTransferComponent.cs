@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Chemistry.Components;
@@ -51,4 +52,10 @@ public sealed partial class SolutionTransferComponent : Component
     [DataField("canChangeTransferAmount")]
     [ViewVariables(VVAccess.ReadWrite)]
     public bool CanChangeTransferAmount { get; set; } = false;
+
+    // Sunrise added start
+    [DataField]
+    public SoundSpecifier? TransferSound = new SoundCollectionSpecifier("SolutionTransfer",
+        AudioParams.Default.WithVolume(-5f).WithMaxDistance(3f).WithVariation(0.15f));
+    // Sunrise added end
 }
