@@ -7,3 +7,13 @@
     useDelay: 5
     priority: -9
     event: !type:ToggleActionEvent
+
+- type: entity
+  id: ActionToggleNightVision
+  name: toggle night vision
+  description: Toggle night vision on or off.
+  components:
+  - type: InstantAction
+    useDelay: 5
+    priority: -9
+    event: !type:ToggleActionEvent

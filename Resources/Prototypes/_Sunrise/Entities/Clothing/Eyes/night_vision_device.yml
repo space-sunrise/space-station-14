@@ -1,20 +1,17 @@
 - type: entity
   name: NVD
   id: ClothingEyesNVD
-  parent: [BaseItem, PowerCellSlotSmallItem]
+  parent: [ClothingEyesBase, BaseToggleClothing]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
   components:
   - type: Item
+  - type: Appearance
   - type: Sprite
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
     layers:
       - state: icon
       - state: icon-unshaded
         shader: unshaded
-      - state: light-overlay
-        visible: false
-        shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
     quickEquip: true
@@ -24,14 +21,18 @@
       - state: equipped-EYES-unshaded
         shader: unshaded
     slots: [ Eyes ]
-  - type: Appearance
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#82eb6c"
-    displayShader: NVDDisplay
-  - type: PowerCellDraw
-    drawRate: 0
-    useRate: 20
+  - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ToggleClothing
+    action: ActionToggleNightVision
+    disableOnUnequip: true
+    targetSlot: eyes
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effectPrototype: EffectNightVisionHandcrafted
 
 - type: entity
   name: NVD Security
@@ -39,22 +40,6 @@
   suffix: security
   parent: [ClothingEyesNVD, ShowSecurityIcons, BaseSecurityCommandContraband]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
-  components:
-  - type: Item
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-      - state: light-overlay
-        visible: false
-        shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#82eb6c"
-    displayShader: NVDDisplay
 
 - type: entity
   name: Med-Security NVD
@@ -62,43 +47,19 @@
   suffix: med-security
   parent: [ClothingEyesNVD, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
-  components:
-  - type: Item
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-      - state: light-overlay
-        visible: false
-        shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#82eb6c"
-    displayShader: NVDDisplay
 
 - type: entity
   parent: [ClothingEyesNVD, ShowSecurityIcons]
   id: ClothingEyesNVDSyndicate
   suffix: syndicate
   components:
+  - type: ShowSyndicateIcons
   - type: Sprite
     sprite: _Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi
     layers:
       - state: icon
       - state: icon-unshaded
         shader: unshaded
-      - state: light-overlay
-        visible: false
-        shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: ShowSyndicateIcons
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#ff6e6e"
-    displayShader: NVDDisplay
 
 - type: entity
   parent: ClothingEyesNVD
@@ -114,11 +75,8 @@
       - state: light-overlay
         visible: false
         shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#f2fa5c"
-    displayShader: NVDDisplay
-  - type: PowerCellDraw
-    drawRate: 0
-    useRate: 50
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effectPrototype: EffectNightVisionHandcrafted
