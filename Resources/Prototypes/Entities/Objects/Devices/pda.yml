@@ -1163,7 +1163,7 @@
       - NanoTaskCartridge
 
 - type: entity
-  parent: [ BasePDA, BaseSyndicateContraband ]
+  parent: [ SyndiPDA, BaseSyndicateContraband ]
   id: SyndiOperativePDA
   name: syndicate operative PDA
   description: Death to NT!
@@ -1175,18 +1175,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-operative
-  - type: PdaBorderColor
-    borderColor: "#891417"
   - type: Icon
     state: pda-syndi-operative
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-      - NanoTaskCartridge
 
 - type: entity
-  parent: [ BaseMedicalPDA, BaseSyndicateContraband ]
+  parent: [ SyndiPDA, BaseSyndicateContraband ]
   id: SyndiCorpsmanPDA
   name: syndicate corpsman PDA
   description: Commander... I need to cook!
@@ -1198,8 +1191,6 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-corpsman
-  - type: PdaBorderColor
-    borderColor: "#891417"
   - type: Icon
     state: pda-syndi-corpsman
   - type: CartridgeLoader
@@ -1210,7 +1201,7 @@
       - MedTekCartridge
 
 - type: entity
-  parent: [ BasePDA, BaseSyndicateContraband ]
+  parent: [ SyndiPDA, BaseSyndicateContraband ]
   id: SyndiCommanderPDA
   name: syndicate commander PDA
   description: So what are we, some kind of Nukie squad?
@@ -1222,15 +1213,8 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-commander
-  - type: PdaBorderColor
-    borderColor: "#891417"
   - type: Icon
     state: pda-syndi-commander
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-      - NanoTaskCartridge
 
 - type: entity
   parent: BaseSecurityPDA
