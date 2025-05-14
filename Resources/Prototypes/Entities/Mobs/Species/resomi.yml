@@ -145,6 +145,11 @@
         sizeMaps:
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
             state: suitStorage
       belt:
         sizeMaps:
@@ -198,6 +203,11 @@
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: mask
       outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
         sizeMaps:
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
