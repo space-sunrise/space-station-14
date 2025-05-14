@@ -26,7 +26,6 @@
             #law
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 2 ]
-            NtrOfficer: [ 2, 2 ]
             #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 2 ]
@@ -34,7 +33,7 @@
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 3, -1 ]
+            ServiceWorker: [ 3, 3 ]
             Reporter: [ 1, 1 ]
             Barber: [ 1, 1 ]
             #blueshield
@@ -45,14 +44,14 @@
             SeniorEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 5 ]
-            TechnicalAssistant: [ 3, -1 ]
+            TechnicalAssistant: [ 3, 3 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             Chemist: [ 3, 3 ]
             MedicalDoctor: [ 4, 5 ]
             Paramedic: [ 2, 2 ]
-            MedicalIntern: [ 3, -1 ]
+            MedicalIntern: [ 3, 3 ]
             Psychologist: [ 1, 2 ]
             MedicalPathologist: [ 1, 1 ]
             #science
@@ -60,7 +59,7 @@
             SeniorResearcher: [ 1, 1 ]
             Roboticist: [ 2, 2 ]
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 3, -1 ]
+            ResearchAssistant: [ 3, 3 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
@@ -80,7 +79,7 @@
             Detective: [ 2, 2 ]
             Brigmedic: [ 2, 2 ]
             SecurityPilot: [ 1, 1 ]
-            SecurityCadet: [ 2, -1 ]
+            SecurityCadet: [ 2, 3 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]

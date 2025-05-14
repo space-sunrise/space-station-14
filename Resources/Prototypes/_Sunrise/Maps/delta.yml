@@ -30,7 +30,7 @@
             Janitor: [ 4, 4 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 5, -1 ]
+            ServiceWorker: [ 5, 5 ]
             Reporter: [ 2, 2 ]
             Zookeeper: [ 1, 1 ]
             Barber: [ 1, 1 ]
@@ -39,21 +39,21 @@
             SeniorEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 5 ]
-            TechnicalAssistant: [ 5, -1 ]
+            TechnicalAssistant: [ 5, 5 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             Chemist: [ 2, 3 ]
             MedicalDoctor: [ 4, 4 ]
-            Paramedic: [ 4, 4 ]
-            MedicalIntern: [ 5, -1 ]
+            Paramedic: [ 2, 2 ]
+            MedicalIntern: [ 5, 5 ]
             Psychologist: [ 2, 2 ]
             MedicalPathologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 5, -1 ]
+            ResearchAssistant: [ 5, 5 ]
             Roboticist: [ 4, 4 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
@@ -63,7 +63,7 @@
             Brigmedic: [ 1, 1 ]
             SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 5, 5 ]
-            SecurityCadet: [ 5, -1 ]
+            SecurityCadet: [ 5, 5 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -80,7 +80,6 @@
             #law
             IAA: [ 1, 1 ]
             Lawyer: [ 3, 3 ]
-            NtrOfficer: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
