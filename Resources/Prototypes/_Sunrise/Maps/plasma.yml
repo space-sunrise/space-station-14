@@ -80,7 +80,7 @@
             Detective: [ 2, 2 ]
             Brigmedic: [ 2, 2 ]
             SecurityPilot: [ 1, 1 ]
-            SecurityCadet: [ 2, 4 ]
+            SecurityCadet: [ 4, 4 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
