@@ -38,4 +38,4 @@
     pocket2: WeaponTaser
   storage:
     back:
-    - HandheldCrewMonitor # Sunrise-TODO: Мониторинг командования.
+    - HandheldCrewMonitor
