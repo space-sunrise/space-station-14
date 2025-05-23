@@ -5,8 +5,7 @@
   startNode: start
   targetNode: groundVita
   category: construction-category-misc
-  description: "Ground cannabis vita, ready to take you on a trip."
-  icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
+  description: Ground cannabis vita, ready to take you on a trip.
   objectType: Item
 
 - type: construction
@@ -16,6 +15,5 @@
   startNode: start
   targetNode: jointVita
   category: construction-category-misc
-  description: "A roll of dried plant matter wrapped in thin paper."
-  icon: { sprite: Objects/Consumable/Smokeables/Cannabis/joint.rsi, state: unlit-icon }
+  description: A roll of dried plant matter wrapped in thin paper.
   objectType: Item

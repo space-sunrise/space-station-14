@@ -6,9 +6,6 @@
   startNode: start
   targetNode: doubleBed
   category: construction-category-furniture
-  icon:
-    sprite: _Sunrise/Entities/Structures/Furniture/doublebeds.rsi
-    state: doublebed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

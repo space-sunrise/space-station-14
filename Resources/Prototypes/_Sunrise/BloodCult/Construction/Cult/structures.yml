@@ -5,9 +5,6 @@
   targetNode: girder
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/Structures/cult_girder.rsi
-    state: cultgirder
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -21,9 +18,6 @@
   targetNode: airlock
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/Structures/cult_airlock.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -37,9 +31,6 @@
   targetNode: pylon
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/Structures/pylon.rsi
-    state: pylon_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -53,9 +44,6 @@
   targetNode: narsie_pylon
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: pylon_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -69,9 +57,6 @@
   targetNode: narbee_pylon
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: hell_pylon_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -85,9 +70,6 @@
   targetNode: reaper_pylon
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: reaper_pylon_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -101,9 +83,6 @@
   targetNode: tome
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi
-    state: icon-off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -117,9 +96,6 @@
   targetNode: narsie_tome
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: archives_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -133,9 +109,6 @@
   targetNode: narbee_tome
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: hell_archives_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -149,9 +122,6 @@
   targetNode: reaper_tome
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: reaper_archives_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -165,9 +135,6 @@
   targetNode: altar
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi
-    state: icon-off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -181,9 +148,6 @@
   targetNode: narsie_altar
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: altar_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -197,9 +161,6 @@
   targetNode: narbee_altar
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: hell_altar_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -213,9 +174,6 @@
   targetNode: reaper_altar
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: reaper_altar_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -229,9 +187,6 @@
   targetNode: forge
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/Structures/forge.rsi
-    state: icon-off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -245,9 +200,6 @@
   targetNode: narsie_forge
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: forge_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -261,9 +213,6 @@
   targetNode: narbee_forge
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: hell_forge_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -277,9 +226,6 @@
   targetNode: reaper_forge
   hide: true
   category: construction-category-structures
-  icon:
-    sprite: /Textures/_Sunrise/BloodCult/stuff.rsi
-    state: reaper_forge_off
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

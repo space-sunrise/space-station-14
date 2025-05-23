@@ -215,8 +215,5 @@
   startNode: start
   targetNode: lockermech
   category: construction-category-misc
-  icon:
-    sprite: /Textures/_Sunrise/Objects/Specific/Mech/lockermech.rsi
-    state: lockermech
   objectType: Structure
 

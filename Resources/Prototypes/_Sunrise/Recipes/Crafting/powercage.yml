@@ -6,7 +6,4 @@
   targetNode: done
   category: construction-category-misc
   description: Makeshift power cage. It's not very good, but better than nothing.
-  icon:
-    sprite: _Sunrise/Objects/Power/power_cages.rsi
-    state: makeshift
   objectType: Item

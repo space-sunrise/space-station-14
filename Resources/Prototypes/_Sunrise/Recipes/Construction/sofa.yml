@@ -6,9 +6,6 @@
   targetNode: sofaMiddle
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: sofamiddle
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -23,9 +20,6 @@
   targetNode: sofaLeft
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: sofaend_left
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -40,9 +34,6 @@
   targetNode: sofaRight
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: sofaend_right
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -57,9 +48,6 @@
   targetNode: sofaCorner
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: sofacorner
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -74,9 +62,6 @@
   targetNode: corpsofaMiddle
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: corp_sofamiddle
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -91,9 +76,6 @@
   targetNode: corpsofaLeft
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: corp_sofaend_left
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -108,9 +90,6 @@
   targetNode: corpsofaRight
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: corp_sofaend_right
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -125,9 +104,6 @@
   targetNode: corpsofaCorner
   category: construction-category-furniture
   description: Nap throne for the snack-powered royalty.
-  icon:
-    sprite: _Sunrise/Structures/Furniture/sofa.rsi
-    state: corp_sofacorner
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
