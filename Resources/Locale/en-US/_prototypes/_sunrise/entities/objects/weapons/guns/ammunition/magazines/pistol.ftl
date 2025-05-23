@@ -16,4 +16,3 @@ ent-MagazineP90Extended = { ent-MagazineP90 }
     .desc = { ent-MagazineP90.desc }
 ent-MagazineGlock22 = Glock22 magazine
     .desc = { ent-BaseItem.desc }
-    .desc = { ent-BaseMagazinePistolHighCapacity.desc }

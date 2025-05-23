@@ -43,5 +43,3 @@ ent-WeaponSyndieLaserPistol = SAM-300
     .desc = The Syndicate's laser pistol, developed from the NT Captain's pistol.
 ent-WeaponLaserMinigun = UVL-21 «Vivern»
     .desc = A heavy weapon of mass destruction based on the minigun.
-ent-WeaponTemperatureGun = temperature gun
-    .desc = An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.

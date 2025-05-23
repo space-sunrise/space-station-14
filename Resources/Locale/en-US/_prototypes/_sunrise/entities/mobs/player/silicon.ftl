@@ -47,3 +47,5 @@ ent-ERTDirectivesCircuitBoard = circuit board (ERT Directives)
 ent-SyndieIntellicard = Syndieintellicard
     .desc = A storage device for AIs but from evil guys!
     .suffix = Empty
+ent-SyndicateCircuitBoard = law board (Syndicate)
+    .desc = An electronics board containing the Sindicate lawset.

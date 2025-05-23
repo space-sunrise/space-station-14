@@ -60,3 +60,5 @@ ent-ClothingUniformJumpsuitAtmosSyndie = Contortionist's Jumpsuit
     .desc = { ent-ClothingUniformJumpsuitAtmos.desc }
 ent-ClothingUniformJumpsuitArmouredBlack = armored black lawyer suit
     .desc = A seemingly simple business suit.. until the first bullet bounced..
+ent-ClothingUniformJumpsuitBlueshieldJS = blueshield's jumpsuit
+    .desc = { ent-ClothingUniformBase.desc }

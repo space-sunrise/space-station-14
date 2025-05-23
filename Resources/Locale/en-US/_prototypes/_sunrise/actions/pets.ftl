@@ -1,4 +1,4 @@
-ent-PetOpenAllUiAction = Открыть меню управления питомцами
-    .desc = Открывает меню управления всеми питомцами
-ent-PetAttackTargetAction = Атаковать цель
-    .desc = Приказывает всем питомцам, имеющим приказ атаки, атаковать цель
+ent-PetOpenAllUiAction = Open the pet management menu
+    .desc = Opens the management menu for all pets
+ent-PetAttackTargetAction = Attack target
+    .desc = Orders all pets with an attack order to attack the target

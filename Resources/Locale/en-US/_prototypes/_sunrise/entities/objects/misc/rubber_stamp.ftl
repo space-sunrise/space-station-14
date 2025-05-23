@@ -13,3 +13,6 @@ ent-RubberStampPath = Pathologist rubber stamp
 ent-RubberStampAdj = Adjutant's rubber stamp
     .suffix = DO NOT MAP
     .desc = { ent-RubberStampBase.desc }
+ent-RubberStampNpt = Head of Prison rubber stamp
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }

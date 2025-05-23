@@ -33,6 +33,6 @@ ent-SawImprov = choppa
 ent-SawElectric = circular saw
     .desc = For heavy duty cutting.
 ent-SawAdvanced = advanced circular saw
-    .desc = You think you can cut anything with it.
+    .desc = Interdyne's state-of-the-art surgical saw. Guaranteed to stay spotless and sterile, no matter how messy the job.
 ent-BoneGel = bottle of bone gel
     .desc = A container for bone gel that often needs to be refilled from a specialized machine.

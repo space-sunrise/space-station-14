@@ -1,2 +1,2 @@
-ent-ClothingUniformJumpsuitTactical = Тактический костюм с водолазкой
-    .desc = Тактическая водолазка с двойным швом, замаскированная под шелковый костюм гражданского класса. Предназначена для самых формальных операторов. Воротник очень острый.
+ent-ClothingUniformJumpsuitTactical = tactical turtleneck suit
+    .desc = A double seamed tactical turtleneck disguised as a civilian grade silk suit. Intended for the most formal operator. The collar is really sharp.

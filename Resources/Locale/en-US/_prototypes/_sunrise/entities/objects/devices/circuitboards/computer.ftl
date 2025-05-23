@@ -42,3 +42,5 @@ ent-FPIATMComputerCircuitboard = FPI ATM board
     .desc = A computer printed circuit board for a FPI ATM cabinet.
 ent-ShipyardComputerCircuitboard = shipyard computer board
     .desc = A computer printed circuit board for a shipyard computer.
+ent-CommandConsoleCircuitboard = { ent-BaseComputerCircuitboard }
+    .desc = { ent-BaseComputerCircuitboard.desc }

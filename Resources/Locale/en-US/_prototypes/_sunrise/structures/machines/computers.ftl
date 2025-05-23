@@ -54,3 +54,5 @@ ent-PrisonComputerComms = prison communications computer
     .desc = A console for controlling announcements in a space prison.
 ent-ComputerShuttleSecurity = security shuttle console
     .desc = Console for remote control of the security shuttle.
+ent-CommandConsoleComputer = command line computer
+    .desc = { ent-BaseComputer.desc }

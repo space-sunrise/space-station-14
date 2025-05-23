@@ -1,6 +1,6 @@
 ent-BaseFleshCultObjective = { ent-BaseObjective }
     .desc = { ent-BaseObjective.desc }
-ent-CreateFleshHeartObjective = Создать и пробудить сердце плоти.
-    .desc = Вам необходимо развить необходимый навык для создания сердца. Для пробуждения оно должно поглотить нужное количество тел развитых существ. После пробуждения будьте готовы его защищать, ведь оно начнет превращать всю станцию в плоть.
-ent-FleshCultSurviveObjective = Выжить и сохранить человеческий облик.
-    .desc = Не допустите голодания паразита, чтобы избежать непредвиденных обстоятельств.
+ent-CreateFleshHeartObjective = Create and awaken the heart of flesh.
+    .desc = You need to develop the necessary skill to create a heart. It must absorb the right number of bodies of evolved beings to awaken. Once awakened, be prepared to defend it, for it will begin to turn the entire station into flesh.
+ent-FleshCultSurviveObjective = Survive and remain human.
+    .desc = Do not allow the parasite to starve to avoid unforeseen circumstances.

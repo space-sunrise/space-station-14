@@ -1,4 +1,4 @@
-ent-SheetMetalBase = { ent-BaseItem }
+ent-SheetMetalBase = { ent-MetalSounds }
     .desc = A sheet of metal, used often on the station in various applications.
 ent-SheetSteel = steel
     .suffix = Full
@@ -29,4 +29,7 @@ ent-SheetPlasteel10 = plasteel
     .desc = { ent-SheetPlasteel.desc }
 ent-SheetPlasteel1 = plasteel
     .suffix = Single
+    .desc = { ent-SheetPlasteel.desc }
+ent-SheetPlasteelLingering0 = { ent-SheetPlasteel }
+    .suffix = Lingering, 0
     .desc = { ent-SheetPlasteel.desc }

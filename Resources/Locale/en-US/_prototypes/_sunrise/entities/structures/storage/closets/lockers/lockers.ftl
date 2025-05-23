@@ -1,5 +1,7 @@
-ent-LockerBlueshield = blueshield officer's locker
+ent-LockerBlueShield = blue shield officer's locker
     .desc = { ent-LockerBaseSecure.desc }
+ent-LockerBlueShieldEnsign = blue shield ensign locker
+    .desc = { ent-LockerBlueShield.desc }
 ent-LockerPilot = security pilot's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-GunSafeIonRifle = ion rifle safe
@@ -10,3 +12,5 @@ ent-ClosetPatologoanatom = patologoanatom's locker
 ent-ClosetPatologoanatomFilled = { ent-ClosetPatologoanatom }
     .suffix = Filled
     .desc = { ent-ClosetPatologoanatom.desc }
+ent-LockerBlueshield = blueshield officer's locker
+    .desc = { ent-LockerBaseSecure.desc }

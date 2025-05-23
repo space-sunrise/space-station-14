@@ -1,4 +1,6 @@
-ent-BlueShieldIDCard = blueshield ID card
+ent-BlueShieldOfficerIDCard = blue shield officer ID card
+    .desc = { ent-IDCardStandard.desc }
+ent-BlueShieldEnsignIDCard = blue shield ensign ID card
     .desc = { ent-IDCardStandard.desc }
 ent-RoboticistIDCard = roboticist ID card
     .desc = { ent-IDCardStandard.desc }
@@ -50,4 +52,6 @@ ent-NtrLeadGuardIDCard = NTR Lead ID card
     .desc = Leader OwO Squad
     .suffix = Leader
 ent-MailCarrierIDCard = mail carrier ID card
+    .desc = { ent-IDCardStandard.desc }
+ent-BlueShieldIDCard = blueshield ID card
     .desc = { ent-IDCardStandard.desc }
