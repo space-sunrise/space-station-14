@@ -44,29 +44,29 @@
       - tag: Toolbox
         name: step-lockermech-toolbox1
         icon:
-          sprite: "Objects/Tools/Toolboxes/toolbox_red.rsi"
-          state: "icon"
+          sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+          state: icon
         doAfter: 3
 
       - tag: Toolbox
         name: step-lockermech-toolbox2
         icon:
-          sprite: "Objects/Tools/Toolboxes/toolbox_red.rsi"
-          state: "icon"
+          sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+          state: icon
         doAfter: 3
 
       - tag: Toolbox
         name: step-lockermech-toolbox3
         icon:
-          sprite: "Objects/Tools/Toolboxes/toolbox_yellow.rsi"
-          state: "icon"
+          sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+          state: icon
         doAfter: 2
 
       - tag: Flashlight
         name: step-lockermech-flashlight
         icon:
-          sprite: "Objects/Tools/flashlight.rsi"
-          state: "flashlight"
+          sprite: Objects/Tools/flashlight.rsi
+          state: flashlight
         doAfter: 2
         completed:
         - !type:VisualizerDataInt
@@ -97,8 +97,8 @@
       - tag: GasTank
         name: step-lockermech-oxygentank
         icon:
-          sprite: "Objects/Tanks/oxygen.rsi"
-          state: "icon"
+          sprite: Objects/Tanks/oxygen.rsi
+          state: icon
         doAfter: 4
         completed:
         - !type:VisualizerDataInt
@@ -106,10 +106,6 @@
           data: 6
       - material: Steel
         amount: 5
-        #name: step-lockermech-treads
-        #icon:
-        #  sprite: "Structures/conveyor.rsi"
-        #  state: "conveyor_loose"
         doAfter: 7
         completed:
         - !type:VisualizerDataInt
@@ -124,8 +120,8 @@
           data: 8
       - tag: DoorElectronics
         icon:
-          sprite: "Objects/Misc/module.rsi"
-          state: "door_electronics"
+          sprite: Objects/Misc/module.rsi
+          state: door_electronics
         doAfter: 3
         completed:
         - !type:VisualizerDataInt
@@ -155,8 +151,8 @@
       - tag: MicroManipulatorStockPart
         name: step-lockermech-manipulators
         icon:
-          sprite: "Objects/Misc/stock_parts.rsi"
-          state: "micro_mani"
+          sprite: Objects/Misc/stock_parts.rsi
+          state: micro_mani
         doAfter: 1
         completed:
         - !type:VisualizerDataInt
@@ -166,8 +162,8 @@
       - tag: MicroManipulatorStockPart
         name: step-lockermech-manipulators
         icon:
-          sprite: "Objects/Misc/stock_parts.rsi"
-          state: "micro_mani"
+          sprite: Objects/Misc/stock_parts.rsi
+          state: micro_mani
         doAfter: 1
         completed:
         - !type:VisualizerDataInt
@@ -185,8 +181,8 @@
       - tag: PowerCage
         name: step-lockermech-powercell
         icon:
-          sprite: "Objects/Power/power_cages.rsi"
-          state: "medium"
+          sprite: Objects/Power/power_cages.rsi
+          state: medium
         store: battery-container
         doAfter: 1.5
         completed:
@@ -202,6 +198,7 @@
           data: 13
 
   - node: lockermech
+    entity: MechLocker
     actions:
     - !type:BuildMech
       mechPrototype: MechLocker
