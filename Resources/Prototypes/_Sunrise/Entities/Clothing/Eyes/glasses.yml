@@ -122,7 +122,3 @@
     sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
   - type: AddAccentClothing
     accent: StutteringAccent
-    matchRandomProb: 0.1
-    fourRandomProb: 0
-    threeRandomProb: 0
-    cutRandomProb: 0
