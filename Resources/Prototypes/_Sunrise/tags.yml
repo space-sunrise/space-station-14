@@ -356,3 +356,6 @@
 
 - type: Tag
   id: SheetPaper
+
+- type: Tag
+  id: PowerCellHigh
