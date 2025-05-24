@@ -15,6 +15,7 @@
   - type: Tag
     tags:
     - Trash
+    - Cigarette # Lust-Edit
   - type: SpaceGarbage
   - type: StaticPrice
     price: 5
