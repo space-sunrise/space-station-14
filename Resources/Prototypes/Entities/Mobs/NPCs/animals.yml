@@ -2278,7 +2278,7 @@
 
 - type: entity
   name: penguin
-  parent: SimpleMobBase
+  parent: [SimpleMobBase, StripableInventoryBase]
   id: MobPenguin
   description: Their lives are constant pain due to their inner-body knees.
   components:
@@ -2289,13 +2289,18 @@
       state: penguin
       sprite: Mobs/Animals/penguin.rsi
   - type: Physics
+  # Lust-Start
+  - type: Inventory
+    speciesId: penguin
+    templateId: penguin
+  # Lust-End
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.25
-        density: 100
+          radius: 0.35
+        density: 15
         mask:
         - MobMask
         layer:
