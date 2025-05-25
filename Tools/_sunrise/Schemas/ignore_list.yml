@@ -179,3 +179,5 @@ ignore_files:
   - 'flesh_hugger.ftl'
   - 'flesh_spider.ftl'
   - 'spells-actions.ftl'
+  - artifact-component.ftl
+  - plant-analyzer-component.ftl
