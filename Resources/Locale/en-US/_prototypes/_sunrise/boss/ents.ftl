@@ -1,6 +1,6 @@
 ent-MobHellspawnBoss = { ent-MobHellspawn }
     .desc = { ent-MobHellspawn.desc }
-ent-ComputerBossTravel = алтарь битвы с боссом
+ent-ComputerBossTravel = boss battle altar
     .desc = { ent-AltarFangs.desc }
 ent-HellSpawnCultist = { ent-MobHuman }
     .desc = { ent-MobHuman.desc }

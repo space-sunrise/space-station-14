@@ -105,7 +105,7 @@
   parent: GasCanister
   id: NitriumCanister
   name: Nitrium Canister
-  description: "Канистра, которая может содержать любой тип газа. Эта, предположительно, содержит Нитриум. Может быть подключена к разъему с помощью ключа."
+  description: A canister that can hold any type of gas. This one supposedly contains Nitrium. Can be connected to a port with a wrench.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Storage/canister.rsi

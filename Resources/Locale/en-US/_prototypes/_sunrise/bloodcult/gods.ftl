@@ -1,8 +1,8 @@
 ent-BaseBloodCultGod = Nar'si
     .desc = { "" }
-ent-Narsie = Нар'Си
+ent-Narsie = Nar'Si
     .desc = { ent-BaseBloodCultGod.desc }
-ent-Narbee = Пир'Кус
+ent-Narbee = Pir'Kus
     .desc = { ent-BaseBloodCultGod.desc }
-ent-Reaper = Жнец
+ent-Reaper = Reaper
     .desc = { ent-BaseBloodCultGod.desc }

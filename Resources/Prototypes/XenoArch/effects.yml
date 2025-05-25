@@ -142,7 +142,7 @@
 - type: entity
   id: BaseXenoArtifactEffect
   name: effect
-  description: Неизвестно
+  description: Unknown
   categories: [ HideSpawnMenu ]
   abstract: true
   components:
@@ -154,7 +154,7 @@
   id: BaseOneTimeXenoArtifactEffect
   parent: BaseXenoArtifactEffect
   name: one-time-effect
-  description: Неизвестно
+  description: Unknown
   categories: [ HideSpawnMenu ]
   abstract: true
   components:
@@ -169,7 +169,7 @@
 - type: entity
   id: XenoArtifactEffectUniversalIntercom
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает трансмогрификационные свойства
+  description: Gains transmogrifying properties
   components:
   - type: XAEApplyComponents
     components:
@@ -198,7 +198,7 @@
 - type: entity
   id: XenoArtifactBecomeRandomInstrument
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становится музыкальным инструментом
+  description: Becomes a musical instrument
   components:
   - type: XAEApplyComponents
     components:
@@ -211,7 +211,7 @@
 - type: entity
   id: XenoArtifactStorage
   parent: BaseOneTimeXenoArtifactEffect
-  description: Появляется скрытое хранилище
+  description: A hidden storage appears
   components:
   - type: XAEApplyComponents
     components:
@@ -225,14 +225,14 @@
 - type: entity
   id: XenoArtifactPhasing
   parent: BaseOneTimeXenoArtifactEffect
-  description: Теряет колизию
+  description: Loses collision
   components:
   - type: XAERemoveCollision
 
 - type: entity
   id: XenoArtifactWandering
   parent: BaseOneTimeXenoArtifactEffect
-  description: Начинает спонтанно двигаться
+  description: Starts moving spontaneously
   components:
   - type: XAEApplyComponents
     components:
@@ -245,7 +245,7 @@
 - type: entity
   id: XenoArtifactSolutionStorage
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает свойства кувшина
+  description: Gains jug properties
   components:
   - type: XAEApplyComponents
     components:
@@ -273,7 +273,7 @@
 - type: entity
   id: XenoArtifactSpeedUp
   parent: BaseOneTimeXenoArtifactEffect
-  description: Увеличивает скорость движения держателя
+  description: Increases the holder's movement speed
   components:
   - type: XAEApplyComponents
     components:
@@ -284,7 +284,7 @@
 - type: entity
   id: XenoArtifactDrill
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает свойства бура
+  description: Gains drill properties
   components:
   - type: XAEApplyComponents
     components:
@@ -300,7 +300,7 @@
 - type: entity
   id: XenoArtifactGenerateEnergy
   parent: BaseOneTimeXenoArtifactEffect # todo - increment power, but only once per node
-  description: Излучает энергию
+  description: Emits energy
   components:
   - type: XAEApplyComponents
     components:
@@ -316,7 +316,7 @@
 - type: entity
   id: XenoArtifactGun
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает свойства оружия
+  description: Gains weapon properties
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -347,7 +347,7 @@
 - type: entity
   id: XenoArtifactGhost
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становится разумным
+  description: Becomes sentient
   components:
   - type: XAEApplyComponents
     components:
@@ -367,14 +367,14 @@
 - type: entity
   id: XenoArtifactOmnitool
   parent: BaseOneTimeXenoArtifactEffect
-  description: Получается свойства омнитула
+  description: Gains omnitool properties
   components:
   - type: XAEApplyComponents
     components:
     - type: UserInterface
       interfaces:
-          enum.SignalLinkerUiKey.Key:
-            type: SignalPortSelectorBoundUserInterface
+        enum.SignalLinkerUiKey.Key:
+          type: SignalPortSelectorBoundUserInterface
     - type: ToolTileCompatible
     - type: Tool
       qualities:
@@ -383,7 +383,7 @@
       useSound: /Audio/Items/drill_use.ogg
     - type: Tag
       tags:
-        - Multitool
+      - Multitool
     - type: MultipleTool
       statusShowBehavior: true
       entries:
@@ -414,7 +414,7 @@
 - type: entity
   id: XenoArtifactEffectBadFeeling
   parent: BaseXenoArtifactEffect
-  description: Передаёт сообщение
+  description: Transmits a message
   components:
   - type: XAETelepathic
     messages:
@@ -444,7 +444,7 @@
 - type: entity
   id: XenoArtifactEffectGoodFeeling
   parent: BaseXenoArtifactEffect
-  description: Передаёт сообщение
+  description: Transmits a message
   components:
   - type: XAETelepathic
     messages:
@@ -473,7 +473,7 @@
 - type: entity
   id: XenoArtifactEffectJunkSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт мусор
+  description: Spawns junk
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -496,14 +496,14 @@
 - type: entity
   id: XenoArtifactEffectLightFlicker
   parent: BaseXenoArtifactEffect
-  description: Создаёт незначительные электромагнитные помехи
+  description: Creates minor electromagnetic interference
   components:
   - type: XAELightFlicker
 
 - type: entity
   id: XenoArtifactPotassiumWave
   parent: BaseXenoArtifactEffect
-  description: Создаёт калий
+  description: Creates potassium
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -530,7 +530,7 @@
 - type: entity
   id: XenoArtifactFloraSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт флору
+  description: Spawns flora
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -545,7 +545,7 @@
 - type: entity
   id: XenoArtifactChemicalPuddle
   parent: BaseXenoArtifactEffect
-  description: Создаёт лужу из химикатов # todo: make description say what exact chemical is produced, maybe add mixes into possible chemicals
+  description: Creates a chemical puddle
   components:
   - type: XAECreatePuddle
     chemAmount:
@@ -581,14 +581,14 @@
 - type: entity
   id: XenoArtifactThrowThingsAround
   parent: BaseXenoArtifactEffect
-  description: Создаёт незначительный взрыв
+  description: Creates a minor explosion
   components:
   - type: XAEThrowThingsAround
 
 - type: entity
   id: XenoArtifactColdWave
   parent: BaseXenoArtifactEffect
-  description: Охлаждает атмосферу вокруг
+  description: Cools the surrounding atmosphere
   components:
   - type: XAETemperature
     targetTemp: 50
@@ -596,7 +596,7 @@
 - type: entity
   id: XenoArtifactHeatWave
   parent: BaseXenoArtifactEffect
-  description: Сильно нагревает окружающую атмосферу
+  description: Strongly heats the surrounding atmosphere
   components:
   - type: XAETemperature
     targetTemp: 500
@@ -604,7 +604,7 @@
 - type: entity
   id: XenoArtifactFoamMild
   parent: BaseXenoArtifactEffect
-  description: Создаёт пену из химикатов # todo: separate in 1 for each chemical for description? actually sounds like a very good idea
+  description: Creates chemical foam
   components:
   - type: XAEFoam
     replaceDescription: true
@@ -624,7 +624,7 @@
 - type: entity
   id: XenoArtifactRandomInstrumentSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт музыкальный инструмент
+  description: Spawns a musical instrument
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -644,7 +644,7 @@
 - type: entity
   id: XenoArtifactMonkeySpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт обезьяну
+  description: Spawns a monkey
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -667,7 +667,7 @@
 - type: entity
   id: XenoArtifactRadioactive
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становится радиоактивным
+  description: Becomes radioactive
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -680,7 +680,7 @@
 - type: entity
   id: XenoArtifactChargeBattery
   parent: BaseXenoArtifactEffect
-  description: Заряжает батарейки
+  description: Charges batteries
   components:
   - type: XAEChargeBattery
   - type: XAETelepathic
@@ -690,7 +690,7 @@
 - type: entity
   id: XenoArtifactKnock
   parent: BaseXenoArtifactEffect
-  description: Создаёт слабые электромагнитные помехи
+  description: Creates weak electromagnetic interference
   components:
   - type: XAEKnock
   - type: XAELightFlicker
@@ -698,7 +698,7 @@
 - type: entity
   id: XenoArtifactMagnet
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт небольшой гравитационный колодец
+  description: Creates a small gravitational well
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -712,7 +712,7 @@
 - type: entity
   id: XenoArtifactMagnetNegative
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт небольшой гравитационный колодец
+  description: Creates a small gravitational well
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -726,7 +726,7 @@
 - type: entity
   id: XenoArtifactStealth
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт световую интерференцию
+  description: Creates light interference
   components:
   - type: XAEApplyComponents
     components:
@@ -740,7 +740,7 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawn
   parent: BaseXenoArtifactEffect # todo: splice into different well-named effects, amounts should reflect how rare material is
-  description: Создаёт редкие материалы
+  description: Spawns rare materials
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -770,7 +770,7 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnSilver
   parent: BaseXenoArtifactEffect
-  description: Создаёт редкие материалы
+  description: Spawns rare materials
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -793,7 +793,7 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnPlasma
   parent: BaseXenoArtifactEffect
-  description: Создаёт твёрдую плазму
+  description: Creates solid plasma
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -816,7 +816,7 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnGold
   parent: BaseXenoArtifactEffect
-  description: Создаёт золото
+  description: Creates gold
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -839,7 +839,7 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnUranium
   parent: BaseXenoArtifactEffect
-  description: Создаёт уран
+  description: Creates uranium
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -862,7 +862,7 @@
 - type: entity
   id: XenoArtifactAngryCarpSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт агресивную рыбу
+  description: Spawns an aggressive fish
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -885,7 +885,7 @@
 - type: entity
   id: XenoArtifactFaunaSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт дружелюбную фауну
+  description: Spawns friendly fauna
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -940,7 +940,7 @@
 - type: entity
   id: XenoArtifactCashSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт деньги
+  description: Spawns cash
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -969,7 +969,7 @@
 - type: entity
   id: XenoArtifactShatterWindows
   parent: BaseXenoArtifactEffect
-  description: Ломает окна
+  description: Shatters windows
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -988,7 +988,7 @@
 - type: entity
   id: XenoArtifactFoamGood
   parent: BaseXenoArtifactEffect
-  description: Создает волну полезной пены
+  description: Creates a wave of beneficial foam
   components:
   - type: XenoArtifactNode
     maxDurability: 7
@@ -1009,7 +1009,7 @@
 - type: entity
   id: XenoArtifactFoamDangerous
   parent: BaseXenoArtifactEffect
-  description: Создает волну вредной пены
+  description: Creates a wave of harmful foam
   components:
   - type: XAEFoam
     minFoamAmount: 20
@@ -1031,7 +1031,7 @@
 - type: entity
   id: XenoArtifactPuddleRare
   parent: BaseXenoArtifactEffect
-  description: Создает лужу полезных химикатов
+  description: Creates a puddle of beneficial chemicals
   components:
   - type: XAECreatePuddle
     chemAmount:
@@ -1061,7 +1061,7 @@
 - type: entity
   id: XenoArtifactAnomalySpawn
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт аномалию
+  description: Spawns an anomaly
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1076,7 +1076,7 @@
 - type: entity
   id: XenoArtifactIgnite
   parent: BaseXenoArtifactEffect
-  description: Делает пирокинез
+  description: Causes ignition
   components:
   - type: XAEIgnite
     range: 7
@@ -1087,14 +1087,14 @@
 - type: entity
   id: XenoArtifactTeleport
   parent: BaseXenoArtifactEffect
-  description: Делает телепортацию
+  description: Causes teleportation
   components:
   - type: XAERandomTeleportInvoker
 
 - type: entity
   id: XenoArtifactEmp
   parent: BaseXenoArtifactEffect
-  description: Создаёт опасные электромагнитные помехи
+  description: Creates dangerous electromagnetic interference
   components:
   - type: XenoArtifactNode
     maxDurability: 5
@@ -1106,14 +1106,14 @@
 - type: entity
   id: XenoArtifactPolyMonkey
   parent: BaseXenoArtifactEffect
-  description: Временно преобразозует плоть в мех
+  description: Temporarily transmutes flesh into fur
   components:
   - type: XAEPolymorph
 
 - type: entity
   id: XenoArtifactPolyLizard
   parent: BaseXenoArtifactEffect
-  description: Временно изменяет форму плоти в соответствии с масштабом
+  description: Temporarily transmutes flesh into scales
   components:
   - type: XAEPolymorph
     polymorphPrototypeName: ArtifactLizard
@@ -1121,7 +1121,7 @@
 - type: entity
   id: XenoArtifactPolyLuminous
   parent: BaseXenoArtifactEffect
-  description: Временно преобразовать плоть в свет
+  description: Temporarily transmutes flesh into light
   components:
   - type: XAEPolymorph
     polymorphPrototypeName: ArtifactLuminous
@@ -1129,7 +1129,7 @@
 - type: entity
   id: XenoArtifactRadioactiveStrong
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становиться сильно радиоактивным
+  description: Becomes strongly radioactive
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1142,7 +1142,7 @@
 - type: entity
   id: XenoArtifactMaterialSpawnGlass
   parent: BaseXenoArtifactEffect
-  description: Создаёт стекло
+  description: Spawns glass
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1157,7 +1157,7 @@
 - type: entity
   id: XenoArtifactMaterialSpawnSteel
   parent: BaseXenoArtifactEffect
-  description: Создаёт сталь
+  description: Spawns steel
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1172,7 +1172,7 @@
 - type: entity
   id: XenoArtifactMaterialSpawnPlastic
   parent: BaseXenoArtifactEffect
-  description: Создаёт пластик
+  description: Spawns plastic
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1187,14 +1187,14 @@
 - type: entity
   id: XenoArtifactPortal
   parent: BaseXenoArtifactEffect
-  description: Создаёт кратковременный блюспейс портал
+  description: Creates a short-lived bluespace portal
   components:
   - type: XAEPortal
 
 - type: entity
   id: XenoArtifactArtifactSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт артефакт
+  description: Spawns an artifact
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -1214,7 +1214,7 @@
 - type: entity
   id: XenoArtifactShuffle
   parent: BaseXenoArtifactEffect
-  description: Меняет местами разумные существа #not ALL beings, but oh well...
+  description: Shuffles sentient beings
   components:
   - type: XAEShuffle
   - type: XAETelepathic
@@ -1225,7 +1225,7 @@
 - type: entity
   id: XenoArtifactHealAll
   parent: BaseXenoArtifactEffect
-  description: Чудесно излечивает всех существ рядом
+  description: Miraculously heals all nearby beings
   components:
   - type: XAEDamageInArea
     damageChance: 1
@@ -1241,7 +1241,7 @@
 - type: entity
   id: XenoArtifactTesla
   parent: BaseOneTimeXenoArtifactEffect
-  description: Полномасштабные разрушения
+  description: Large-scale destruction
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1256,7 +1256,7 @@
 - type: entity
   id: XenoArtifactSingularity
   parent: BaseOneTimeXenoArtifactEffect
-  description: Полномасштабные разрушения
+  description: Large-scale destruction
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1271,7 +1271,7 @@
 - type: entity
   id: XenoArtifactExplosionScary
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт маломасштабную высокоскоростную ядерную реакцию
+  description: Creates a small-scale high-speed nuclear reaction
   components:
   - type: XAETriggerExplosives
   - type: Explosive
@@ -1286,7 +1286,7 @@
 - type: entity
   id: XenoArtifactBoom
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт взрыв
+  description: Creates an explosion
   components:
   - type: XAETriggerExplosives
   - type: Explosive
@@ -1300,7 +1300,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasPlasma
   parent: BaseXenoArtifactEffect
-  description: Создаёт газообразную плазму
+  description: Creates gaseous plasma
   components:
   - type: XAECreateGas
     gases:
@@ -1309,7 +1309,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasTritium
   parent: BaseXenoArtifactEffect
-  description: Создаёт газообразный тритий
+  description: Creates gaseous tritium
   components:
   - type: XAECreateGas
     gases:
@@ -1318,7 +1318,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasAmmonia
   parent: BaseXenoArtifactEffect
-  description: Создаёт аммиак
+  description: Creates ammonia
   components:
   - type: XAECreateGas
     gases:
@@ -1327,7 +1327,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasFrezon
   parent: BaseXenoArtifactEffect
-  description: Создаёт фрезон
+  description: Creates frezon
   components:
   - type: XAECreateGas
     gases:
@@ -1336,7 +1336,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasNitrousOxide
   parent: BaseXenoArtifactEffect
-  description: Создаёт оксид азота
+  description: Creates nitrous oxide
   components:
   - type: XAECreateGas
     gases:
@@ -1345,7 +1345,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasCarbonDioxide
   parent: BaseXenoArtifactEffect
-  description: Создаёт углекислый газ
+  description: Creates carbon dioxide
   components:
   - type: XAECreateGas
     gases:
@@ -1355,7 +1355,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasBZ
   parent: BaseXenoArtifactEffect
-  description: Создаёт БЗ
+  description: Creates BZ
   components:
   - type: XAECreateGas
     gases:
@@ -1364,7 +1364,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasHealium
   parent: BaseXenoArtifactEffect
-  description: Создаёт хилиум
+  description: Creates healium
   components:
   - type: XAECreateGas
     gases:
@@ -1373,7 +1373,7 @@
 - type: entity
   id: XenoArtifactEffectCreationGasNitrium
   parent: BaseXenoArtifactEffect
-  description: Создаёт нитриум
+  description: Creates nitrium
   components:
   - type: XAECreateGas
     gases:

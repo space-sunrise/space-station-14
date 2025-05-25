@@ -44,7 +44,7 @@
 - type: entity
   id: Narsie
   parent: BaseBloodCultGod
-  name: Нар'Си
+  name: Nar'Si
   components:
   - type: Sprite
     sprite: Mobs/Demons/narsie.rsi
@@ -57,7 +57,7 @@
 - type: entity
   id: Narbee
   parent: BaseBloodCultGod
-  name: Пир'Кус
+  name: Pir'Kus
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Aliens/narbee.rsi
@@ -70,7 +70,7 @@
 - type: entity
   id: Reaper
   parent: BaseBloodCultGod
-  name: Жнец
+  name: Reaper
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Aliens/reaper.rsi

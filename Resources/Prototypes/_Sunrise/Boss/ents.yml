@@ -126,7 +126,7 @@
 - type: entity
   parent: AltarFangs
   id: ComputerBossTravel
-  name: алтарь битвы с боссом
+  name: boss battle altar
   placement:
     mode: SnapgridCenter
   components:
