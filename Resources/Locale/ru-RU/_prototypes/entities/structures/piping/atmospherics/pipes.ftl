@@ -1,6 +1,6 @@
 ent-GasPipeBase = труба
     .desc = Содержит газ.
-ent-VentCrawHolder = vent claw holder
+ent-VentCrawHolder = держатель вентиляционного когтя
     .desc = { "" }
 ent-GasPipeHalf = { ent-GasPipeBase }
     .suffix = Половинная

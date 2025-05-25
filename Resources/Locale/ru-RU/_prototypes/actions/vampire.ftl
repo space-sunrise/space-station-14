@@ -22,5 +22,5 @@ ent-ActionVampireCloakOfDarkness = Плащ тьмы
     .desc = Замаскируйте себя от глаз смертных, делая вас невидимым в неподвижном состоянии. Стоимость активации: 30 крови. Трата: 1 кровь/секунда Время перезарядки: 10 секунд
 ent-ActionVampireThermalVision = Тепловое зрение
     .desc = Переключить тепловое зрение, позволяющее видеть живые существа сквозь стены.
-ent-ActionVampireBloodScale = blood scale
-    .desc = Strengthen your muscles by compressing blood in order to develop maximum speed. Activation Cost: 10 Essence. Upkeep: 4 Essence/Second Cooldown: 5 Seconds
+ent-ActionVampireBloodScale = Кровавая чешуя
+    .desc = Укрепите свои мышцы, сжимая кровь, чтобы развить максимальную скорость. Стоимость активации: 10 Сущности. Содержание: 4 Сущности/Секунда. Перезарядка: 5 Секунд.

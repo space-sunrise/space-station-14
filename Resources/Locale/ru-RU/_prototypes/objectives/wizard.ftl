@@ -1,6 +1,6 @@
-ent-BaseWizardObjective = { ent-BaseObjective }
+ent-BaseWizardObjective = Базовая цель волшебника
     .desc = { ent-BaseObjective.desc }
-ent-WizardSurviveObjective = Survive
-    .desc = The Space Wizards Federation want you to live!
-ent-WizardDemonstrateObjective = Show off
-    .desc = Give the station a good demonstration of your powers!
+ent-WizardSurviveObjective = Выжить
+    .desc = Федерация Космических Волшебников хочет, чтобы вы жили!
+ent-WizardDemonstrateObjective = Продемонстрировать силу
+    .desc = Устройте станции хорошую демонстрацию своих магических сил!

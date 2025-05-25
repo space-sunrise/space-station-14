@@ -1,6 +1,6 @@
-ent-HellspawnGrabRight = grab
+ent-HellspawnGrabRight = схватить
     .desc = { "" }
-ent-HellspawnGrabLeft = grab
+ent-HellspawnGrabLeft = схватить
     .desc = { "" }
-ent-HellSpawnRushRune = rune
+ent-HellSpawnRushRune = руна
     .desc = { "" }

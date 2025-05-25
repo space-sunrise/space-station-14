@@ -1,4 +1,4 @@
-ent-BaseBloodCultGod = Nar'si
+ent-BaseBloodCultGod = Нар'Си
     .desc = { "" }
 ent-Narsie = Нар'Си
     .desc = { ent-BaseBloodCultGod.desc }

@@ -59,5 +59,5 @@ ent-RubberStampGreytide = печать грейтайда
 ent-RubberStampPsychologist = печать психолога
     .desc = Печать из резины, для проставления печатей на важных документах. Назначьте эти методы лечения!
     .suffix = НЕ МАППИТЬ
-ent-RubberStampWizard = wizard's rubber stamp
-    .desc = A chaotic wizard stamp for serving unchaotic paperwork, how ironic.
+ent-RubberStampWizard = печать мага
+    .desc = Хаотичный волшебный штамп для оформления нехаотичной документации, какая ирония.

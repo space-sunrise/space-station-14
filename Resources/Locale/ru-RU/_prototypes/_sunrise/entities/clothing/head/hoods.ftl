@@ -1,4 +1,4 @@
 ent-ClothingHeadHatHoodBlackCloak = капюшон
     .desc = Закрывает затылок.
-ent-ClothingHeadHatHoodWinterColorCyan = cyan winter coat hood
+ent-ClothingHeadHatHoodWinterColorCyan = голубой капюшон зимней куртки
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }

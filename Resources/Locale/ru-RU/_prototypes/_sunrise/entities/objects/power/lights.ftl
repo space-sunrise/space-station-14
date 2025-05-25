@@ -1,2 +1,2 @@
-ent-UvLightTube = ultraviolet light tube
-    .desc = A high power high energy bulb for the depths of space. Purple.
+ent-UvLightTube = ультрафиолетовая лампа
+    .desc = Мощная высокоэнергетическая лампа для глубин космоса. Фиолетовая.

@@ -1,2 +1,2 @@
-ent-floraSakuraTree = sakura tree
+ent-floraSakuraTree = дерево сакуры
     .desc = { ent-BaseTree.desc }
