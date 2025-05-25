@@ -54,3 +54,5 @@ ent-PrisonComputerComms = тюремный коммуникационный ко
     .desc = Консоль для управления объявлениями в космической тюрьме.
 ent-ComputerShuttleSecurity = консоль шаттла безопасности
     .desc = Консоль для удаленного управления шаттлом службы безопасности.
+ent-CommandConsoleComputer = комьютер консоли командования
+    .desc = { ent-BaseComputer.desc }

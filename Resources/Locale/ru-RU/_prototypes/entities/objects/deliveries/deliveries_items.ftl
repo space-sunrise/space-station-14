@@ -1,3 +1,5 @@
+ent-MailSpamLetter = письмо-спам
+    .desc = Даже космос не защищен от нежелательной почты.
 ent-MailRobustToolsSpam = Robust Toolbox - Специальное предложение!
     .desc = Реклама ящика для инструментов Robust.
 ent-MailNanotrasenSpam = Причины выбрать Nanotrasen!

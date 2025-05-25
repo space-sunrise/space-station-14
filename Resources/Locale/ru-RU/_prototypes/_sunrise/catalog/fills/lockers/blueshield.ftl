@@ -1,3 +1,9 @@
+ent-LockerBlueShieldOfficerFilled = { ent-LockerBlueShield }
+    .suffix = Заполнен
+    .desc = { ent-LockerBlueShield.desc }
+ent-LockerBlueShieldEnsignFilled = { ent-LockerBlueShieldEnsign }
+    .suffix = Лейтенант, Заполнен
+    .desc = { ent-LockerBlueShieldEnsign.desc }
 ent-LockerBlueshieldFilled = { ent-LockerBlueshield }
     .suffix = Заполнен
     .desc = { ent-LockerBlueshield.desc }

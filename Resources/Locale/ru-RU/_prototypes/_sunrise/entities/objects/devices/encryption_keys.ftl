@@ -1,5 +1,7 @@
 ent-EncryptionKeyLaw = ключ шифрования юридического отдела
     .desc = Ключ шифрования, используемый самыми дотошными персонами.
+ent-EncryptionKeyBlueShield = ключ шифрования синего щита
+    .desc = { ent-EncryptionKey.desc }
 ent-EncryptionKeyUSSP = ключ шифрования СССП
     .desc = Изношенный временем ключ шифрования. Лучше бы тебе не знать о чём там говорят.
 ent-EncryptionKeyUSSPSec = ключ шифрования СССП офицеров

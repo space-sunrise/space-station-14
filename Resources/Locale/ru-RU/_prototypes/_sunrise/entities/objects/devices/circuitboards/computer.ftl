@@ -42,3 +42,5 @@ ent-FPIATMComputerCircuitboard = плата банкомата FPI
     .desc = Компьютерная печатная плата для банкомата FPI.
 ent-ShipyardComputerCircuitboard = плата компьютера верфи
     .desc = Компьютерная печатная плата для компьютера верфи.
+ent-CommandConsoleCircuitboard = { ent-BaseComputerCircuitboard }
+    .desc = { ent-BaseComputerCircuitboard.desc }

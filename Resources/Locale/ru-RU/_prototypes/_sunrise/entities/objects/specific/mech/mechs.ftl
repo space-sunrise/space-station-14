@@ -11,14 +11,6 @@ ent-MechMolotBattery = { ent-MechMolot }
 ent-MechMolotFilled = { ent-MechMolotBattery }
     .desc = { ent-MechMolotBattery.desc }
     .suffix = Батарея, Заполнен
-ent-MechLocker = Шкафомех
-    .desc = Медленный, но герметичный мех. Собран из мусора и подручных материалов.
-ent-MechLockerBattery = { ent-MechLocker }
-    .desc = { ent-MechLocker.desc }
-    .suffix = Батарея
-ent-LockerMechChassis = корпус шкафомеха
-    .desc = Незавершенная конструкция шкафомеха.
-
 step-lockermech-toolbox1 = аварийный тулбокс
 step-lockermech-toolbox2 = второй аварийный тулбокс
 step-lockermech-toolbox3 = электрический тулбокс
@@ -28,4 +20,3 @@ step-lockermech-treads = 5 стальных листов
 step-lockermech-capacitors = 3 конденсатора
 step-lockermech-manipulators = 2 микроманипулятора
 step-lockermech-powercell = энергоячейку
-

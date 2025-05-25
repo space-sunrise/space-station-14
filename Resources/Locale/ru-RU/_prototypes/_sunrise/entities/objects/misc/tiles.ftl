@@ -1,3 +1,11 @@
+ent-FloorTileItemTechmaintDark = тёмный пол техобслуживания
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemXeno = пол ксеноморфов
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemDarkSquiggly = тёмная стальная плитка с волнистым узором
+    .desc = { ent-FloorTileItemDark.desc }
+ent-FloorTileItemDarkSquigglyVertical = тёмная стальная вертикальная плитка с волнистым узором
+    .desc = { ent-FloorTileItemDark.desc }
 ent-FloorTileItemWoodParquet = паркет
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemWoodBlack = чёрный деревянный пол

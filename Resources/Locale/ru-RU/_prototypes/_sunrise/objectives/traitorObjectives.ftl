@@ -6,3 +6,5 @@ ent-PlutoniumCoreStealObjective = { ent-BaseTraitorStealObjective }
     .desc = { ent-BaseTraitorStealObjective.desc }
 ent-StealSupermatterSliverObjective = { ent-BaseTraitorStealObjective }
     .desc = { ent-BaseTraitorStealObjective.desc }
+ent-HandheldFaxStealObjective = { ent-BaseTraitorStealObjective }
+    .desc = { ent-BaseTraitorStealObjective.desc }

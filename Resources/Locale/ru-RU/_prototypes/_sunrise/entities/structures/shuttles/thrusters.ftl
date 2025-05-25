@@ -6,3 +6,5 @@ ent-HugeThruster = огромный ракетный двигатель
     .desc = { ent-Thruster }
 ent-HugeRedThruster = огромный красный ракетный двигатель
     .desc = { ent-Thruster }
+ent-RustedThruster = ржавый двигатель
+    .desc = Не подлежащий ремонту двигатель, сломанный из-за износа. Пригоден только для утилизации.

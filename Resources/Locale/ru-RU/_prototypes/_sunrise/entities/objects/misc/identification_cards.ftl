@@ -1,4 +1,6 @@
-ent-BlueShieldIDCard = ID карта офицера "синий щит"
+ent-BlueShieldOfficerIDCard = ID карта офицера "Синего щита"
+    .desc = { ent-IDCardStandard.desc }
+ent-BlueShieldEnsignIDCard = ID карта лейтенанта "Синего щита"
     .desc = { ent-IDCardStandard.desc }
 ent-RoboticistIDCard = ID карта робототехника
     .desc = { ent-IDCardStandard.desc }
@@ -50,4 +52,6 @@ ent-NtrLeadGuardIDCard = NTR Lead ID card
     .desc = Leader OwO Squad
     .suffix = Leader
 ent-MailCarrierIDCard = mail carrier ID card
+    .desc = { ent-IDCardStandard.desc }
+ent-BlueShieldIDCard = ID карта офицера "синий щит"
     .desc = { ent-IDCardStandard.desc }

@@ -19,5 +19,7 @@ ent-DoorRemoteEngineering = пульт от шлюзов инженерного 
 ent-DoorRemoteAll = супер-пульт от шлюзов
     .suffix = Адмемы
     .desc = { ent-DoorRemoteDefault.desc }
+ent-DoorRemoteXenoborg = пульт управления дверями ксеноборга
+    .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteFirefight = пульт от пожарных шлюзов
     .desc = Гаджет, который может открывать и закрывать пожарные шлюзы дистанционно.

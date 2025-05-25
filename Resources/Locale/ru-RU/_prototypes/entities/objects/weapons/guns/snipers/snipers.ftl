@@ -12,3 +12,6 @@ ent-Musket = мушкет
 ent-WeaponPistolFlintlock = кремнёвый пистолет
     .desc = Спутник пирата. Яррр! Использует патроны калибра .60 антиматериальный.
     .suffix = Пистолет, Винтовка
+ent-WeaponPistolFlintlockEmpty = { ent-WeaponPistolFlintlock }
+    .suffix = Пустой
+    .desc = { ent-WeaponPistolFlintlock.desc }

@@ -9,3 +9,7 @@ ent-FaxMachineSyndie = факс дальнего действия Синдика
 ent-FaxMachineCaptain = факс дальнего действия капитана
     .suffix = ЯдерныеКоды
     .desc = { ent-FaxMachineBase.desc }
+ent-HandheldFaxBase = портативный факс
+    .desc = Портативный факс.
+ent-HandheldFax = Портативный факс
+    .desc = Портативный факс сделанный специально для представителей корпорации.

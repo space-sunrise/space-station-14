@@ -1,3 +1,9 @@
 ent-OrganVoxLungs = { ent-OrganHumanLungs }
     .suffix = вокс
     .desc = { ent-OrganHumanLungs.desc }
+ent-OrganVoxStomach = желудок
+    .desc = Желудок с запахом аммиака.
+ent-OrganVoxLiver = печень
+    .desc = Пахнет горючим.
+ent-OrganVoxHeart = сердце
+    .desc = Странное сердце вокса.
