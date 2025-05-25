@@ -11,5 +11,5 @@ ent-SnakeSpawnerMundane = спавнер НПС змея
 ent-SpaceTickSpawnerNPC = спавнер НПС космический клещ
     .suffix = 100
     .desc = { ent-MarkerBase.desc }
-ent-XenoAISpawner = спавнер НПС ксено
+ent-XenoAISpawner = генератор NPC ксеноморфов
     .desc = { ent-MarkerBase.desc }

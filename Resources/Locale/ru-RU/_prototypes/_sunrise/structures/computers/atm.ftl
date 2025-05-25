@@ -1,8 +1,8 @@
-ent-ATMBase = ATM
-    .desc = Big relic ATM.
-ent-ATMWallmountBase = ATM Wallmount
+ent-ATMBase = Банкомат
+    .desc = Большой старый банкомат.
+ent-ATMWallmountBase = Настенный банкомат
     .desc = { ent-ATMBase.desc }
-ent-ATM = FPI ATM
-    .desc = An FPI ATM cabinet without self-extermination button. strange.
-ent-WallMountATM = WallMount FPI ATM
-    .desc = An compact Wallmount FPI ATM without self-extermination button.
+ent-ATM = Банкомат FPI
+    .desc = Банкомат FPI без кнопки самоуничтожения. Странно.
+ent-WallMountATM = Настенный банкомат FPI
+    .desc = Компактный настенный банкомат FPI без кнопки самоуничтожения.

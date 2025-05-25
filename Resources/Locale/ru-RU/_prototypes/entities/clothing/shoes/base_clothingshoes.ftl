@@ -8,4 +8,4 @@ ent-ClothingShoesBootsSecFilled = { "" }
     .suffix = Заполненный
     .desc = { "" }
 ent-ClothingShoesBaseWinterBoots = { ent-ClothingShoesBaseButcherable }
-    .desc = Меховые ботинки, которые помогут пережить даже самую холодную зиму.
+    .desc = Меховые сапоги, которые помогут пережить даже самые суровые зимы.

@@ -1,10 +1,10 @@
 ent-ClothingHeadBandOrange = оранжевая бандана
-    .desc = Оранжевая бандана, чтобы выглядеть круто.
-ent-ClothingHeadBandYellow = жёлтая бандана
-    .desc = Жёлтая бандана, чтобы выглядеть круто.
+    .desc = { ent-ClothingHeadBandBase.desc }
+ent-ClothingHeadBandYellow = желтая бандана
+    .desc = { ent-ClothingHeadBandBase.desc }
 ent-ClothingHeadBandCyan = голубая бандана
-    .desc = Голубая бандана, чтобы выглядеть круто.
+    .desc = { ent-ClothingHeadBandBase.desc }
 ent-ClothingHeadBandWhite = белая бандана
-    .desc = Белая бандана, чтобы выглядеть круто.
+    .desc = { ent-ClothingHeadBandBase.desc }
 ent-ClothingHeadBandPurple = фиолетовая бандана
-    .desc = Фиолетовая бандана, чтобы выглядеть круто.
+    .desc = { ent-ClothingHeadBandBase.desc }

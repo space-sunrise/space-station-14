@@ -1,3 +1,3 @@
-ent-WeaponBaguette = багет
-    .desc = Bon appétit!
+ent-WeaponBaguette = { ent-FoodBreadBaguette }
     .suffix = Оружие
+    .desc = { ent-FoodBreadBaguette.desc }
