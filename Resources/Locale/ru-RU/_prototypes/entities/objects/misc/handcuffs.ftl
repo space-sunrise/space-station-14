@@ -1,5 +1,5 @@
-ent-BaseHandcuffs = handcuffs
-    .desc = Used to detain criminals and other assholes.
+ent-BaseHandcuffs = наручники
+    .desc = Используется для удержания преступников и прочих засранцев
 ent-Handcuffs = наручники
     .desc = Используется для удержания преступников и прочих засранцев.
 ent-Cablecuffs = самодельные наручники

@@ -1,3 +1,3 @@
-ent-JointVita = joint
-    .desc = A roll of dried plant matter wrapped in thin paper.
-    .suffix = Vita
+ent-JointVita = косяк
+    .desc = Скрутка из сушёных растительных волокон, обёрнутая в тонкую бумагу.
+    .suffix = Вита

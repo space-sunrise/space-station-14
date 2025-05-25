@@ -1,5 +1,5 @@
 ent-MobHellspawn = адское отродье
     .desc = Неудержимая сила резни.
-ent-MobHellspawnGhostRole = hellspawn
-    .desc = An unstoppable force of carnage.
-    .suffix = Ghost Role
+ent-MobHellspawnGhostRole = адское отродье
+    .desc = Неудержимая сила резни.
+    .suffix = Роль призрака

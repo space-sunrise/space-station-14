@@ -1,2 +1,2 @@
-ent-TearGasDispenser = tear gas dispenser
-    .desc = Wallmount reagent dispenser.
+ent-TearGasDispenser = распылитель слезоточивого газа
+    .desc = Настенный распылитель реагентов.

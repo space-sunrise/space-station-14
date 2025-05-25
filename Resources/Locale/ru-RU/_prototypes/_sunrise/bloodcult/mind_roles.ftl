@@ -1,2 +1,2 @@
-ent-MindRoleCultist = Cultist Role
+ent-MindRoleCultist = Кровавый культист
     .desc = { ent-BaseMindRoleAntag.desc }

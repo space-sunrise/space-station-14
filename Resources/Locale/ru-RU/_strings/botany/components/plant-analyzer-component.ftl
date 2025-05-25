@@ -25,29 +25,29 @@ plant-analyzer-output =
     { $yield ->
         [0]
             { $gasCount ->
-                [0] The only thing it seems to do is consume water and nutrients.
-               *[other] The only thing it seems to do is turn water and nutrients into [bold]{ $gases }[/bold].
+                [0] Единственное, что оно, похоже, делает, это потребляет воду и питательные вещества.
+               *[other] Единственное, что оно, похоже, делает, это превращает воду и питательные вещества в [bold]{ $gases }[/bold].
             }
        *[other]
-            It has [color=lightgreen]{ $yield } { $potency }[/color]{ $seedless ->
-                [true] { " " }but [color=red]seedless[/color]
+            Оно имеет [color=lightgreen]{ $yield } { $potency }[/color]{ $seedless ->
+                [true] { " " }но [color=red]без семян[/color]
                *[false] { $nothing }
             }{ " " }{ $yield ->
-                [one] flower
-               *[other] flowers
-            }{ " " }that{ $gasCount ->
+                [one] цветок
+               *[other] цветков
+            }{ " " }который{ $gasCount ->
                 [0] { $nothing }
                *[other]
                     { $yield ->
-                        [one] { " " }emits
-                       *[other] { " " }emit
-                    }{ " " }[bold]{ $gases }[/bold] and
-            }{ " " }will turn into{ $yield ->
+                        [one] { " " }выделяет
+                       *[other] { " " }выделяют
+                    }{ " " }[bold]{ $gases }[/bold] и
+            }{ " " }превратится в{ $yield ->
                 [one] { " " }{ INDEFINITE($firstProduce) } [color=#a4885c]{ $produce }[/color]
                *[other] { " " }[color=#a4885c]{ $producePlural }[/color]
             }.{ $chemCount ->
                 [0] { $nothing }
-               *[other] { " " }There are trace amounts of [color=white]{ $chemicals }[/color] in its stem.
+               *[other] { " " }В его стебле обнаружены следовые количества [color=white]{ $chemicals }[/color] in its stem.
             }
     }
 plant-analyzer-potency-tiny = микроскопическое

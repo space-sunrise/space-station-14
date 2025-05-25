@@ -9,5 +9,5 @@ ent-WeaponMeleeMoltenCollider = Расплавленный коллайдер
 ent-WeaponArcMeleeMoltenCollider = { ent-WeaponArcStatic }
     .desc = { ent-WeaponArcStatic.desc }
 ent-WeaponMeleeMoltenColliderDEBUG = { ent-WeaponMeleeMoltenCollider }
-    .suffix = DEBUG
+    .suffix = ДЕБАГ
     .desc = { ent-WeaponMeleeMoltenCollider.desc }

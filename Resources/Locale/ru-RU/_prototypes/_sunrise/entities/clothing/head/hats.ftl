@@ -58,5 +58,5 @@ ent-ClothingHeadHatSingulo = корона Сингуло
     .desc = Величайшее достижение инженеров и ученых - компактная установка сингулярности, позволяющая владельцу продемонстрировать свой статус и уникальность на станции.
 ent-ClothingHeadHatDeerHorns = Оленьи рога
     .desc = Рожки что обычно носят Олени.
-ent-ClothingHeadMailCarrier = mail carrier's hat
-    .desc = Smells like a good pension.
+ent-ClothingHeadMailCarrier = шапка почтальона
+    .desc = Пахнет хорошей пенсией.
