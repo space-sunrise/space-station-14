@@ -3,6 +3,7 @@
   id: SpawnMobHuman
   parent: MarkerBase
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Sprite
     layers:

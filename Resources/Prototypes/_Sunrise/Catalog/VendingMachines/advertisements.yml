@@ -15,3 +15,9 @@
   values:
     prefix: advertisement-paintvend-
     count: 7
+
+- type: localizedDataset
+  id: ATMAds
+  values:
+    prefix: advertisement-ATM-
+    count: 8

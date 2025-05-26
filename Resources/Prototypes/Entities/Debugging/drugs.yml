@@ -4,6 +4,7 @@
   name: meth  # beer it is. coffee. beer? coff-ee? be-er? c-o... b-e
   description: Just a whole glass of meth.
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

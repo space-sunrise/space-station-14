@@ -708,3 +708,6 @@ LockerBlueShieldFilledUplink: LockerBlueShieldEnsignFilled
 LockerBlueShieldFilledUplinkMultiphase: LockerBlueShieldEnsignFilled
 GunSafeBlueShield: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
+SuitStorageBlueShield: null
+LockerBlueShieldEnsignFilled: null
+LockerBlueShieldOfficerFilled: null

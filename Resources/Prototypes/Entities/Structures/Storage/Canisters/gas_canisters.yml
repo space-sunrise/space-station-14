@@ -98,6 +98,16 @@
     - type: GasPortable
     - type: GasCanister
       gasTankSlot:
+        # Sunrise added start
+        insertSound:
+          path: /Audio/_Sunrise/Items/GasTanks/insert.ogg
+          params:
+            volume: -3
+        ejectSound:
+          path: /Audio/_Sunrise/Items/GasTanks/remove.ogg
+          params:
+            volume: -3
+        # Sunrise added end
         name: comp-gas-canister-slot-name-gas-tank
         whitelist:
           components:

@@ -139,7 +139,7 @@
   name: glasscap
   description: Glass doesn't grow on trees! It grows on mushrooms, of course.
   id: GlassLog
-  parent: ProduceBase
+  parent: [GlassSounds, ProduceBase] # Sunrise edit
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Hydroponics/glasscap.rsi

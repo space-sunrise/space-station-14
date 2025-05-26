@@ -428,3 +428,24 @@
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: JobMiningSpecialist
+  groups:
+  - GroupTankHarness
+  - SunriseSalvageHead
+  - SunriseSalvageMask
+  - SunriseSalvageGloves
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SunriseSalvageNeck
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - TrinketsCargo
+  - Bra
+  - Pants
+  - Socks
+  - CommonPets

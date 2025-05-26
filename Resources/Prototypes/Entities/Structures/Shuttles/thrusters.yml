@@ -116,6 +116,7 @@
   id: DebugThruster
   parent: BaseThruster
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Thruster
     requireSpace: false
@@ -215,6 +216,7 @@
   id: DebugGyroscope
   parent: BaseThruster
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Thruster
     thrusterType: Angular

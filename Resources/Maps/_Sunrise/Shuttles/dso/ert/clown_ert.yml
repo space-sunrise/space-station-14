@@ -2362,10 +2362,6 @@ entities:
       pos: -3.9028208,-4.015589
       parent: 1
     - type: NetworkConfigurator
-      devices:
-        'UID: 2758': invalid
-        'UID: 2759': invalid
-      linkModeActive: False
 - proto: Nanopaste10
   entities:
   - uid: 10

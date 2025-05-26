@@ -9,7 +9,8 @@
     neck: ClothingNeckSunriseBadge
   storage:
     back:
-    - SunriseUplink40
+    - SunriseUplink
+    - Suntick40
 
 #Sun:
 - type: sponsorLoadout
@@ -22,7 +23,8 @@
     neck: ClothingNeckSunriseBadge
   storage:
     back:
-    - SunriseUplink80
+    - SunriseUplink
+    - Suntick80
 
 #Endless_Summer
 - type: sponsorLoadout
@@ -35,7 +37,8 @@
     neck: ClothingNeckSunriseBadge
   storage:
     back:
-    - SunriseUplink100
+    - SunriseUplink
+    - Suntick100
 
 # FISHSTATION UPLINKS:
 
@@ -48,7 +51,8 @@
   id: FishSponsorTier1
   storage:
     back:
-    - FishStationUplink40
+    - FishStationUplink
+    - Suntick40
 
 # second level?
 - type: sponsorLoadout
@@ -59,7 +63,8 @@
   id: FishSponsorTier2
   storage:
     back:
-    - FishStationUplink80
+    - FishStationUplink
+    - Suntick80
 
 # third level?
 - type: sponsorLoadout
@@ -70,7 +75,8 @@
   id: FishSponsorTier3
   storage:
     back:
-    - FishStationUplink100
+    - FishStationUplink
+    - Suntick100
 
 # NEWERA STATION
 
@@ -83,7 +89,8 @@
   id: NeweraSponsorTier1
   storage:
     back:
-    - NeweraStationUplink40
+    - NeweraStationUplink
+    - Suntick40
 
 # second level?
 - type: sponsorLoadout
@@ -94,7 +101,8 @@
   id: NeweraSponsorTier2
   storage:
     back:
-    - NeweraStationUplink80
+    - NeweraStationUplink
+    - Suntick80
 
 # third level?
 - type: sponsorLoadout
@@ -105,4 +113,5 @@
   id: NeweraSponsorTier3
   storage:
     back:
-    - NeweraStationUplink100
+    - NeweraStationUplink
+    - Suntick100

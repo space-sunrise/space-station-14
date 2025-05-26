@@ -55,12 +55,17 @@
   - type: XenoArtifact
     effectsTable: !type:GroupSelector
       children:
+      # Sunrise edit start - новые смешные эффекты
       - !type:NestedSelector
-        tableId: XenoArtifactEffectsDefaultTable
-        weight: 54
+        tableId: SunriseArtifactEffectsDefaultTable
+        weight: 3
       - !type:NestedSelector
-        tableId: XenoArtifactEffectsHandheldOnlyTable
-        weight: 2
+        tableId: SunriseArtifactEffectsVanillaDefaultReducedTable
+        weight: 3
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsUltraFunnyTable
+        weight: 1
+      # Sunrise edit end
 
 - type: entity
   parent: BaseXenoArtifactItem

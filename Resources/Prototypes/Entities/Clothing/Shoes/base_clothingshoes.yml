@@ -3,6 +3,23 @@
   parent: Clothing
   id: ClothingShoesBase
   components:
+  # Sunrise added start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Shoes/pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Shoes/drop.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Shoes/drop.ogg
+      params:
+        volume: -2
+  # Sunrise added end
   - type: Clothing
     slots:
     - FEET

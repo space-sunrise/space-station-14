@@ -9,7 +9,7 @@
     unequipDelay: 20
   - type: Explosive
     explosionType: Default
-    totalIntensity: 10.0
+    totalIntensity: 200
     intensitySlope: 5
     maxIntensity: 4
   - type: ExplodeOnTrigger

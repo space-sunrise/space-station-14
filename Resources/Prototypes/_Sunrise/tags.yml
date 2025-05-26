@@ -356,3 +356,9 @@
 
 - type: Tag
   id: SheetPaper
+
+- type: Tag
+  id: RiotShield
+
+- type: Tag
+  id: RiotShieldStrobe

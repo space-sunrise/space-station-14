@@ -22,7 +22,7 @@
 
 - type: entity
   id: DoubleGlassAirlockSalvageLocked
-  parent: [ DoubleGlassAirlockMiner ]
+  parent: [ DoubleGlassAirlockSalvage ]
   suffix: Salvage, Locked
   components:
   - type: ContainerFill
@@ -133,7 +133,7 @@
 
 - type: entity
   id: TripleGlassAirlockSalvageLocked
-  parent: [ TripleGlassAirlockCargo ]
+  parent: [ TripleGlassAirlockSalvage ]
   suffix: Salvage, Locked
   components:
   - type: ContainerFill

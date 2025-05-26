@@ -56,6 +56,16 @@
         layer:
         - MachineLayer
   - type: EntityStorage
+    # Sunrise edit start
+    closeSound:
+      path: /Audio/_Sunrise/Structures/Closets/close.ogg
+      params:
+        volume: -1
+    openSound:
+      path: /Audio/_Sunrise/Structures/Closets/open.ogg
+      params:
+        volume: -1
+    # Sunrise edit end
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container

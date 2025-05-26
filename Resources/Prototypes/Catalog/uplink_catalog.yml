@@ -684,7 +684,15 @@
   cost:
     Telecrystal: 6
   categories:
-  - UplinkChemicals
+  - UplinkChemicals 
+  # Sunrise-Start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - SubdermalImplant
+      - NukeOpsUplink 
+  # Sunrise-End
 
 - type: listing
   id: UplinkHypoDart

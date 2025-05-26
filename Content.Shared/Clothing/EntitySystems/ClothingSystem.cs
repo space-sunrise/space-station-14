@@ -62,17 +62,20 @@ public abstract class ClothingSystem : EntitySystem
                 if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
                     continue;
 
-                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
+                // Sunrise edit - убрал тихое надевание через быстрое надевание
+                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, false, inventory: userEnt, checkDoafter: true))
                     continue;
 
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, true, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
+                // Sunrise edit - убрал тихое надевание через быстрое надевание
+                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, false, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
                     continue;
 
                 _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
             }
             else
             {
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, true, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
+                // Sunrise edit - убрал тихое надевание через быстрое надевание
+                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, false, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
                     continue;
             }
 

@@ -5,6 +5,17 @@
   description: A card necessary to access various areas aboard the station.
   abstract: true
   components:
+  # Sunrise added start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/ID/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/ID/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/ID/drop.ogg
+  # Sunrise added end
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
   - type: Clothing

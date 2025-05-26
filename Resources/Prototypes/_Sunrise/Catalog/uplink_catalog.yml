@@ -660,27 +660,27 @@
       tags:
       - AssaultOpsUplink
 
-- type: listing
-  id: UplinkHardsuitSyndieCommander
-  name: uplink-hardsuit-syndie-commander-name
-  description: uplink-hardsuit-syndie-commander-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
-  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+# - type: listing
+#   id: UplinkHardsuitSyndieCommander
+#   name: uplink-hardsuit-syndie-commander-name
+#   description: uplink-hardsuit-syndie-commander-desc
+#   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
+#   productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
+#   cost:
+#     Telecrystal: 12
+#   categories:
+#   - UplinkWearables
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - NukeOpsUplink
+#   - !type:BuyerWhitelistCondition
+#     blacklist:
+#       components:
+#       - SurplusBundle
 
 - type: listing
   id: UplinkHardsuitSyndieMedic
@@ -1159,9 +1159,9 @@
   productEntity: WeaponMechCombatTeslaCannon
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 10
   cost:
-    Telecrystal: 8
+    Telecrystal: 16
   categories:
   - UplinkMechs
   conditions:
@@ -1346,9 +1346,9 @@
   productEntity: EnergyDomeGeneratorPersonalSyndieBiocode
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 8
   cost:
-    Telecrystal: 18
+    Telecrystal: 12
   categories:
   - UplinkWearables
   conditions:
@@ -1366,7 +1366,7 @@
   discountDownTo:
     Telecrystal: 7
   cost:
-    Telecrystal: 12
+    Telecrystal: 10
   categories:
   - UplinkDisruption
   conditions:
@@ -1457,20 +1457,20 @@
     whitelist:
     - Clown
 
-- type: listing
-  id: UplinkSubMachineGunUzi
-  name: uzi-name
-  description: uzi-desc
-  productEntity: UplinkSubMachineGunUzi
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 8
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:BuyerJobCondition
+# - type: listing
+#   id: UplinkSubMachineGunUzi
+#   name: uzi-name
+#   description: uzi-desc
+#   productEntity: UplinkSubMachineGunUzi #Todo: Респрайт этого дерьма.
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 8
+#   cost:
+#     Telecrystal: 12
+#   categories:
+#   - UplinkWeaponry
+#   conditions:
+#   - !type:BuyerJobCondition
 
 - type: listing
   id: UplinkClusterSyndieMiniBomb
@@ -1501,6 +1501,24 @@
   - !type:BuyerJobCondition
     whitelist:
     - AtmosphericTechnician
+
+- type: listing
+  id: uplinkCArmouredJumpsuit
+  name: uplink-armoured-jumpsuit-name
+  description: uplink-armoured-jumpsuit-desc
+  productEntity: ClothingUniformJumpsuitArmouredBlack
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkSyndicateCircuitBoard

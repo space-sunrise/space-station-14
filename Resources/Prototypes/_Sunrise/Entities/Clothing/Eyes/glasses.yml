@@ -109,3 +109,20 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: ShowMindShieldIcons
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesStuttering
+  name: stuttering glasses
+  description: Glasses that give the owner knowledge...or stuttering
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
+  - type: AddAccentClothing
+    accent: StutteringAccent
+    matchRandomProb: 0.1
+    fourRandomProb: 0
+    threeRandomProb: 0
+    cutRandomProb: 0

@@ -84,6 +84,17 @@
   name: cloth
   suffix: Full
   components:
+  # Sunrise added start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  # Sunrise added end
   - type: Healing
     damageContainers:
       - Biological
@@ -173,6 +184,17 @@
   name: durathread
   suffix: Full
   components:
+  # Sunrise added start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  # Sunrise added end
   - type: Stack
     stackType: Durathread
     baseLayer: base
@@ -232,6 +254,17 @@
   name: wood
   suffix: Full
   components:
+  # Sunrise added start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Wood/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Wood/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Wood/drop.ogg
+  # Sunrise added end
   - type: Material
   - type: PhysicalComposition
     materialComposition:

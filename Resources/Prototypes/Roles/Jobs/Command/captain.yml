@@ -34,6 +34,9 @@
     implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
+      # Sunrise added start
+      - type: ArtifactFunnyTarget
+      # Sunrise added end
       - type: CommandStaff
   speciesBlacklist:
   - Vox # Sunrise-Edit

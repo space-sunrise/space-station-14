@@ -8,6 +8,7 @@
   - Quartermaster
   - SalvageSpecialist
   - MailCarrier # Sunrise-Roles
+  - MiningSpecialist # Sunrise-Roles
 
 - type: department
   id: Civilian

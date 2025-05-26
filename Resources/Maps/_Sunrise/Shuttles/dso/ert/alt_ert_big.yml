@@ -15098,20 +15098,6 @@ entities:
       parent: 515
     - type: Physics
       canCollide: False
-- proto: MusicTape132
-  entities:
-  - uid: 1468
-    components:
-    - type: Transform
-      pos: 2.5480745,11.619652
-      parent: 1
-- proto: MusicTape31
-  entities:
-  - uid: 1469
-    components:
-    - type: Transform
-      pos: 2.4230745,11.760277
-      parent: 1
 - proto: MysteryFigureBox
   entities:
   - uid: 1470

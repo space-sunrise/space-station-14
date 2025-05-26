@@ -1,0 +1,306 @@
+﻿# Базовые эффекты
+
+- type: entity
+  id: SunriseEffectHeal
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEDamageInArea
+    damageChance: 1
+    radius: 8
+    whitelist:
+      components:
+      - MobState
+    damage:
+      groups:
+        Brute: -300
+        Burn: -300
+
+- type: entity
+  id: SunriseArtifactGenerateEnergy
+  parent: BaseOneTimeXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: PowerSupplier
+      supplyRate: 20000
+    - type: NodeContainer
+      examinable: true
+      nodes:
+        output_hv:
+          !type:CableDeviceNode
+          nodeGroupID: HVPower
+
+- type: entity
+  id: SunriseArtifactWandering
+  parent: BaseOneTimeXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: RandomWalk
+      minSpeed: 12
+      maxSpeed: 20
+      minStepCooldown: 1
+      maxStepCooldown: 3
+
+- type: entity
+  id: SunriseArtifactThrowThingsAround
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEThrowThingsAround
+
+- type: entity
+  id: SunriseArtifactKnock
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEKnock
+  - type: XAELightFlicker
+
+- type: entity
+  id: SunriseArtifactEffectJunkSpawn
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      offset: 5
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 10, 40
+        children:
+        - !type:NestedSelector
+          tableId: GenericTrashItems
+          weight: 35
+
+- type: entity
+  id: SunriseArtifactShatterWindows
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 3
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 2
+  - type: XAEDamageInArea
+    damageChance: 0.75
+    whitelist:
+      tags:
+      - Window
+    damage:
+      types:
+        Structural: 200
+
+- type: entity
+  id: SunriseEffectBoltAirlocks
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactBoltAirlocks
+
+- type: entity
+  id: SunriseArtifactHunger
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactModifyHunger
+
+- type: entity
+  id: SunriseEffectThirst
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactModifyThirst
+
+- type: entity
+  id: SunriseEffectTeslaDischarge
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: LightningArcShooter
+      maxLightningArc: 4
+      shootMaxInterval: 4
+      shootRange: 6
+    - type: TimedRemoveComponents
+      removeAfter: 10
+      components:
+      - type: LightningArcShooter
+
+- type: entity
+  id: SunriseEffectSpawnEvilTwin
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactStartGameRule
+    rules:
+      EvilTwinSpawn: 2
+
+- type: entity
+  id: SunriseArtifactTeleport
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: XAERandomTeleportInvoker
+
+- type: entity
+  id: SunriseArtifactEmp
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 5
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 3
+  - type: XAEEmpInArea
+
+- type: entity
+  id: SunriseEffectIgnite
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEIgnite
+    range: 7
+    fireStack:
+      min: 3
+      max: 6
+
+- type: entity
+  id: SunriseEffectShuffleUltra
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEShuffle
+    radius: 70
+
+- type: entity
+  id: SunriseEffectPolyChair
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEPolymorph
+    polymorphPrototypeName: SunriseEffectChair
+
+- type: entity
+  id: SunriseEffectPolyWatermelon
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEPolymorph
+    polymorphPrototypeName: SunriseEffectWatermelon
+
+- type: entity
+  id: SunriseEffectPolyAppendix
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEPolymorph
+    polymorphPrototypeName: SunriseEffectAppendix
+
+- type: entity
+  id: SunriseEffectPolyDisposal
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEPolymorph
+    polymorphPrototypeName: SunriseEffectDisposal
+
+- type: entity
+  id: SunriseEffectPolyTable
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEPolymorph
+    polymorphPrototypeName: SunriseEffectTable
+
+- type: entity
+  id: SunriseEffectSwap
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactWhitelistSwap
+    targetWhitelist:
+      components:
+      - ArtifactFunnyTarget
+
+- type: entity
+  id: SunriseEffectRandomTransformation
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactRandomTransformation
+    prototypeBlacklist:
+    - Singularity
+    - TeslaEnergyBall
+    - TeslaMiniEnergyBall
+    categoryBlacklist:
+    - HideSpawnMenu
+    - Debug
+    - Spawner
+
+- type: entity
+  id: SunriseEffectMagnetUltra
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: GravityWell
+      maxRange: 80
+      baseRadialAcceleration: 90
+    - type: TimedRemoveComponents
+      components:
+      - type: GravityWell
+
+- type: entity
+  id: SunriseEffectShiftedAsciiTableAccent
+  parent: BaseXenoArtifactEffect
+  description: artifact-effect-hint-data-deleted
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AddComponentsInRadius
+    whitelist:
+      components:
+      - HumanoidAppearance
+    components:
+    - type: AnomalyAccent
+    - type: TimedRemoveComponents
+      removeAfter: 600
+      components:
+      - type: AnomalyAccent

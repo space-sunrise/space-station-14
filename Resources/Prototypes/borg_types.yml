@@ -165,7 +165,7 @@
 
   defaultModules:
   - BorgModuleStandart
-  - BorgModuleAdvancedCleaning # Sunrise-Edit
+  - BorgModuleCleaning
   - BorgModuleCustodial
 
   radioChannels:
@@ -192,6 +192,14 @@
   petFailureString: petting-failure-janitor-cyborg
   addComponents:
   - type: FootprintAreaCleaner
+  - type: Absorbent
+    pickupAmount: 500
+  - type: SolutionContainerManager
+    solutions:
+      absorbed:
+        maxVol: 500
+  - type: Spillable
+    solution: absorbed
 
 
 # Medical borg

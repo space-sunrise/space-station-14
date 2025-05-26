@@ -614,3 +614,15 @@
   shootModifier: Spread
   spreadCount: 3
   spreadAngle: 9
+
+- type: hitscan #by Noychik
+  id: BulletKineticTrash
+  damage:
+    types:
+      Blunt: 15
+      Structural: 25
+  collisionMask: BulletImpassable
+  reflective: NonEnergy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Projectiles/projectiles.rsi
+    state: bullet_trash

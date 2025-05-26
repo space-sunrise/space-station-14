@@ -2188,6 +2188,12 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEVAInventory
+    # Sunrise added start
+    soundVend:
+      path: /Audio/_Sunrise/Items/GasTanks/remove.ogg
+      params:
+        volume: -3
+    # Sunrise added end
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
@@ -2201,6 +2207,12 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEngineeringInventory
+    # Sunrise added start
+    soundVend:
+      path: /Audio/_Sunrise/Items/GasTanks/remove.ogg
+      params:
+        volume: -3
+    # Sunrise added end
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     layers:

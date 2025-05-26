@@ -1,0 +1,8 @@
+﻿- type: soundCollection
+  id: DrinkSounds
+  files:
+  - /Audio/_Sunrise/Effects/Liquid/Drink/sound1.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Drink/sound2.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Drink/sound3.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Drink/sound4.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Drink/sound5.ogg

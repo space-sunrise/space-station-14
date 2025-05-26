@@ -15,6 +15,9 @@
   special:
   - !type:AddComponentSpecial
     components:
+    # Sunrise added start
+    - type: ArtifactFunnyTarget
+    # Sunrise added end
     - type: Clumsy
       gunShootFailDamage:
         types: #literally just picked semi random valus. i tested this once and tweaked it.

@@ -1,0 +1,8 @@
+﻿- type: soundCollection
+  id: SolutionTransfer
+  files:
+  - /Audio/_Sunrise/Effects/Liquid/Transfer/sound1.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Transfer/sound2.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Transfer/sound3.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Transfer/sound4.ogg
+  - /Audio/_Sunrise/Effects/Liquid/Transfer/sound5.ogg

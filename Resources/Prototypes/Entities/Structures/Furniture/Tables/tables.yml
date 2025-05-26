@@ -792,6 +792,7 @@
   name: table
   description: PUT ON THEM CODERSOCKS!!
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

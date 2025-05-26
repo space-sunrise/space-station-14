@@ -25,6 +25,13 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Diona
+  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
+    allowedStates:
+    - Alive
+    damageCap: 80
+    damage:
+      groups:
+        Brute: -0.5
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

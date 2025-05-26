@@ -1,6 +1,7 @@
 ﻿- type: entity
   id: OptionsVisualizerTest
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
