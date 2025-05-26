@@ -243,7 +243,7 @@
       implantAction: ActionActivateEmpImplant
     - type: TriggerImplantAction
     - type: EmpOnTrigger
-      range: 5.5 #2.75 Sunrise-Edit
+      range: 3 #2.75 Sunrise-Edit
       energyConsumption: 50000
       disableDuration: 10
 
