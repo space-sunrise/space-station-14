@@ -9,11 +9,11 @@
   group: market
 
 - type: cargoProduct
-  id: CrateServiceRefillPrinter
+  id: CrateServicePrinterDocRestock
   icon:
     sprite: Objects/Misc/pens.rsi
     state: pen
-  product: CrateServiceBureaucracyINC
+  product: CrateServicePrinterDocRestock
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
