@@ -1,3 +1,17 @@
+# Это я перенес ручками из англ локали, так как мой скрипт их где-то проебал. Нужно потом доработать его
+ent-TripleGlassAirlockSalvage = { ent-TripleGlassAirlock }
+    .suffix = Шахта(Утилизаторы)
+    .desc = { ent-TripleGlassAirlock.desc }
+ent-DoubleGlassAirlockSalvage = { ent-DoubleGlassAirlock }
+    .suffix = Шахта(Утилизаторы)
+    .desc = { ent-DoubleGlassAirlock.desc }
+ent-AirlockStandardGlass = { ent-AirlockGlass }
+    .suffix = Сервис
+    .desc = { ent-AirlockGlass.desc }
+ent-AirlockXeno = { ent-Airlock }
+    .suffix = Ксено
+    .desc = { ent-Airlock.desc }
+#
 ent-DoubleGlassAirlockAtmosphericsLocked = { ent-DoubleGlassAirlockAtmospherics }
     .suffix = Атмосферика, Закрыт
     .desc = { ent-DoubleGlassAirlockAtmospherics.desc }
