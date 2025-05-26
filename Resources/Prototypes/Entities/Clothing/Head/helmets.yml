@@ -69,14 +69,11 @@
   - type: Armor #This is intentionally not spaceproof, when the time comes to port the values from SS13 this should be buffed from what it was.
     modifiers:
       coefficients:
-        Blunt: 0.80
-        Slash: 0.80
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.80
-        Heat: 0.80
-        Radiation: 0.80
-        Caustic: 0.95
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.9
 
 #Syndicate SWAT Helmet
 - type: entity
@@ -108,7 +105,6 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.95
 
 #Bombsuit Helmet
 - type: entity
@@ -328,13 +324,6 @@
     sprite: Clothing/Head/Helmets/ert_leader.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_leader.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.85 #sunrise-start
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85 #sunrise-end
 
 #ERT Security Helmet
 - type: entity
@@ -347,13 +336,6 @@
     sprite: Clothing/Head/Helmets/ert_security.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_security.rsi
-  - type: Armor #sunrise-start
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85 #sunrise-end
 
 #ERT Medic Helmet
 - type: entity
@@ -366,13 +348,6 @@
     sprite: Clothing/Head/Helmets/ert_medic.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_medic.rsi
-  - type: Armor #sunrise-start
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85 #sunrise-end
 
 #ERT Engineer Helmet
 - type: entity
@@ -385,13 +360,6 @@
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
-  - type: Armor #sunrise-start
-    modifiers:
-      coefficients:
-        Blunt: 0.85 #sunrise-start
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85 #sunrise-end
 
 #ERT Janitor Helmet
 - type: entity
@@ -404,13 +372,6 @@
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
-  - type: Armor #sunrise-start
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85 #sunrise-end
 
 - type: entity
   parent: [ BaseSyndicateContraband, ClothingHeadHelmetBase ]
@@ -425,10 +386,10 @@
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 
 #Bone Helmet

@@ -1,4 +1,4 @@
-- type: entity #makeshift trashgun for mech
+- type: entity #by Noychik
   id: WeaponMechIndustrialTrashgun
   name: exosuit trashgun
   description: Assembled from garbage and spare parts. Fires garbage at a short range.
@@ -15,16 +15,16 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: HitscanBatteryAmmoProvider
     proto: BulletKineticTrash
-    fireCost: 30
+    fireCost: 60
   - type: Appearance
   - type: AmmoCounter
   - type: Construction
     graph: Trashgun
     node: done
 
-- type: entity #makeshift lasergun for mech
+- type: entity #by Noychik
   id: WeaponMechIndustrialTrashLasergun
   name: makeshift exosuit lasergun
   description: Assembled from garbage and spare parts. Fires a laser... maybe...
@@ -41,8 +41,8 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaser
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletRedMediumLaser
     fireCost: 100
   - type: Appearance
   - type: AmmoCounter

@@ -345,3 +345,16 @@
     - state: idmail
   - type: PresetIdCard
     job: MailCarrier
+
+- type: entity
+  parent: IDCardStandard
+  id: MiningIDCard
+  name: mining ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idstationminer
+  - type: PresetIdCard
+    job: MiningSpecialist

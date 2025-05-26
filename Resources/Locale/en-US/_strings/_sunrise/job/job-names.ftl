@@ -30,6 +30,7 @@ job-name-barber = парикмахер
 job-name-pathologist = патологоанатом
 job-name-adjutant = адъютант
 job-name-mail-carrier = почтальон
+job-name-miningspec = mining specialist
 # USSP
 job-name-usspcrew = Сотрудник СССП
 job-name-usspguard = Милиция СССП

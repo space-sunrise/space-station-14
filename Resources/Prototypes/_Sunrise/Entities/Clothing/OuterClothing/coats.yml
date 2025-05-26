@@ -46,7 +46,7 @@
         coefficients:
           Blunt: 0.8
           Slash: 0.8
-          Piercing: 0.65
+          Piercing: 0.75
           Heat: 0.9
 
 - type: entity
@@ -77,11 +77,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        Heat: 0.5
-        Caustic: 0.9 # Sunrise-Edit
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.65
+        Heat: 0.8
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -115,7 +114,7 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.65
+        Piercing: 0.75
         Heat: 0.9
 
 - type: entity
@@ -303,11 +302,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        Heat: 0.5
-        Caustic: 0.9
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
@@ -360,9 +358,8 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.65
-        Heat: 0.8
-        Caustic: 0.8
+        Piercing: 0.75
+        Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: Item
@@ -389,11 +386,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.55
-        Heat: 0.7
-        Caustic: 0.7
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: Item

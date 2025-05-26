@@ -46,4 +46,10 @@ public record struct AbsorberPudleEvent(EntityUid User)
 {
     public readonly EntityUid User = User;
 }
+
+[ByRefEvent]
+public record struct AbsorberFootPrintEvent(EntityUid User)
+{
+    public readonly EntityUid User = User;
+}
 // Sunrise-End

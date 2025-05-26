@@ -4,3 +4,4 @@ id-card-access-level-ntrep = Представитель NT
 id-card-access-level-magistrat = Магистрат
 id-card-access-level-barber = Парикмахер
 id-card-access-level-mail = Почтальйон
+id-card-access-level-mining = Шахтёр

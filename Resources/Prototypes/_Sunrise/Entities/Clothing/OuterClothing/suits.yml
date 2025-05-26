@@ -3,7 +3,6 @@
   id: ClothingOuterSuitCargo
   name: cargo suit
   description: A special suit for cargo workers, somewhat reminiscent of an old suit from another universe.
-  suffix: Sunrise
   components:
   - type: Storage
     grid:
@@ -15,15 +14,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo-suit.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo-suit.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Heat: 1.2
-        Slash: 0.8
-        Piercing: 0.8
-        Caustic: 0.8
-        Cold: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
