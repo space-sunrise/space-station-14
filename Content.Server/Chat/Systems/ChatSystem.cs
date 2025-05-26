@@ -246,7 +246,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                     _popupSystem.PopupEntity(selfMessage, source, PopupType.Large);
 
                     var statusEffects = EntityManager.System<StatusEffectsSystem>();
-                    statusEffects.TryAddStatusEffect<MutedComponent>(source, "Muted", TimeSpan.FromSeconds(5), true);
+                    statusEffects.TryAddStatusEffect<MutedComponent>(source, "Muted", TimeSpan.FromSeconds(300), true);
 
                     return;
                 }
