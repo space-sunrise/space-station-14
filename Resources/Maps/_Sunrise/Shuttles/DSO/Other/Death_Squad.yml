@@ -72,7 +72,6 @@ entities:
       name: NTS-Виверна-415
     - type: Transform
       pos: 8.274825,1.7586465
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -225,7 +224,6 @@ entities:
       joints:
         docking84837: !type:WeldJoint
           bodyB: 1
-          bodyA: invalid
           id: docking84837
           localAnchorB: 0.49999997,0
           localAnchorA: 12.5,4
@@ -240,7 +238,6 @@ entities:
       parent: 1
     - type: Docking
       dockJointId: docking84837
-      dockedWith: invalid
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: False

@@ -147,6 +147,7 @@
   id: DebugHardBomb
   name: debug bomb
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   description: Holy shit this is gonna explode.
   components:
     - type: Defusable

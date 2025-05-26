@@ -647,30 +647,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
-  #Sunrise-start
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSyndicate
-        whitelist:
-          tags:
-            - PowerCell
-  - type: EnergyDomeGenerator
-    damageEnergyDraw: 4
-    domePrototype: EnergyDomeSmallRed
-  - type: PowerCellDraw
-    drawRate: 0
-    useRate: 0
-  - type: UseDelay
-    delay: 10.0
-  #Sunrise-end
 
 #Syndicate Commander Hardsuit
 - type: entity

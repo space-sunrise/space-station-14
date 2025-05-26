@@ -208,7 +208,7 @@
   parent: WeaponMeleeMoltenCollider
   id: WeaponMeleeMoltenColliderDEBUG
   suffix: DEBUG
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, Debug ]
   components:
   - type: MeleeWeapon
     damage:

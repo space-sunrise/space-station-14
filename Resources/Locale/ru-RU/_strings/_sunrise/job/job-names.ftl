@@ -30,6 +30,7 @@ job-name-clown-borg = клоун киборг
 job-name-pathologist = патологоанатом
 job-name-barber = парикмахер
 job-name-mail-carrier = почтальон
+job-name-miningspec = шахтёр
 job-name-adjutant = адъютант
 job-name-usspcrew = Сотрудник СССП
 job-name-usspguard = Милиция СССП

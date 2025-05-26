@@ -3,6 +3,7 @@ using Content.Server.AbstractAnalyzer;
 using Content.Server.Body.Components;
 using Content.Server.Medical.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Sunrise.Research.Artifact;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
@@ -57,6 +58,10 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
 
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
+
+        // Sunrise edit start - новый триггер
+        RaiseLocalEvent(target, new EntityAnalyzedEvent ());
+        // Sunrise edit end
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),

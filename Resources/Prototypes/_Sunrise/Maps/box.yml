@@ -67,6 +67,7 @@
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
+            # MiningSpecialist: [ 1, 1 ]
             CargoTechnician: [ 3, 3 ]
             MailCarrier: [ 2, 2 ]
             #civilian

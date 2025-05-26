@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [GlassSounds, BaseItem] # Sunrise edit
   id: SheetGlassBase
   name: glass
   description: A sheet of glass, used often on the station in various applications.

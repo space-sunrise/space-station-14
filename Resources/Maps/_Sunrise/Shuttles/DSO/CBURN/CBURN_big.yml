@@ -40,7 +40,6 @@ entities:
       name: NTS-415 «Мертвец»
     - type: Transform
       pos: 50.796875,-0.453125
-      parent: invalid
     - type: MapGrid
       chunks:
         -1,-1:

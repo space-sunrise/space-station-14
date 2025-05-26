@@ -146,16 +146,10 @@ public sealed partial class FootprintEmitterComponent : Component
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeFoot = 0.2f;
+    public float TransferVolumeFoot = 0.5f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeDragMark = 0.5f;
-
-    /// <summary>
-    /// Rate at which footprint color fades
-    /// </summary>
-    [DataField]
-    public float ColorFadeRate = 0.05f;
+    public float TransferVolumeDragMark = 1.0f;
 
     /// <summary>
     /// Offset from entity center for footprint placement

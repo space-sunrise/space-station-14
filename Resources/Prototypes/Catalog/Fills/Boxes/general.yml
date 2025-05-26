@@ -416,6 +416,7 @@
   name: lead-lined box
   parent: BoxCardboard
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   id: BoxLeadLined
   description: This box stymies the transmission of harmful radiation.
   components:

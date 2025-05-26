@@ -110,7 +110,7 @@
   - type: ConditionalSpawner
     prototypes:
       - MechDurandBattery
-      
+
 - type: entity
   name: Marauder Spawner
   id: SpawnMechMarauder
@@ -270,3 +270,18 @@
   - type: ConditionalSpawner
     prototypes:
       - MechSecPod
+
+- type: entity
+  name: Mining Pod Spawner
+  suffix: Filled
+  id: SpawnMechMiningPodFilled
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
+        state: sec_pod
+  - type: ConditionalSpawner
+    prototypes:
+      - MechMiningPod

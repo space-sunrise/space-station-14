@@ -40,6 +40,15 @@
     damage: 20
   - type: UseDelay
     delay: 0.4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Telebatons/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Telebatons/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Telebatons/drop.ogg
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     size: Small

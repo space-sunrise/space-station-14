@@ -7,6 +7,13 @@
     state: icon
   - type: Clothing
     slots: [gloves]
+    # Sunrise added start
+    equipSound:
+      path: /Audio/_Sunrise/Items/Equip/Gloves/sound1.ogg
+      params:
+        volume: -4
+        maxDistance: 3
+    # Sunrise added end
   - type: Food
     requiresSpecialDigestion: true
   - type: Item

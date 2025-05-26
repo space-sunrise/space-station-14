@@ -45,9 +45,13 @@
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/crowbar_pickup.ogg
+      params:
+        volume: -2
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/crowbar_drop.ogg
+      params:
+        volume: -2
   # Sunrise end
 
 # Standard (grey) Crowbar

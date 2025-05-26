@@ -3,6 +3,11 @@
   parent: BaseItem
   id: Clothing
   components:
+  - type: Clothing
+    equipSound:
+      collection: EquipSounds
+      params:
+        maxDistance: 3
   - type: Item
     size: Normal
   - type: Sprite

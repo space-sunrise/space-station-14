@@ -1,0 +1,66 @@
+- type: polymorph
+  id: SunriseEffectChair
+  configuration:
+    entity: ChairFolding
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnEat: true
+    duration: 120
+
+- type: polymorph
+  id: SunriseEffectWatermelon
+  configuration:
+    entity: FoodWatermelon
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnEat: true
+    duration: 120
+
+- type: polymorph
+  id: SunriseEffectAppendix
+  configuration:
+    entity: OrganHumanAppendix
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnEat: true
+    duration: 120
+
+- type: polymorph
+  id: SunriseEffectDisposal
+  configuration:
+    entity: DisposalUnit
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnEat: true
+    duration: 120
+
+- type: polymorph
+  id: SunriseEffectTable
+  configuration:
+    entity: Table
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnEat: true
+    duration: 120
+
+# TODO: отдельные СМЕШНЫЕ полиморфы для LUST STATION

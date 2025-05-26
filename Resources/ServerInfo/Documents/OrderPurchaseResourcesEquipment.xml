@@ -1,12 +1,12 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header.png" scale=2]
+[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_sup.png" scale=1]
 
 
-[bold]Station XX-000 ПД-КОМ[/bold]
-=============================================
-    ЗАКАЗ НА ЗАКУПКУ РЕСУРСОВ, СНАРЯЖЕНИЯ
-=============================================
-Время и дата:
+[bold]Форма НТ/КОМ-ЗАК[/bold]
+[head=3]Заказ на закупку ресурсов, снаряжения[/head]
+
+[italic]Время и дата:[/italic]
+
 Составитель документа:
 Должность составителя:
 
@@ -16,6 +16,5 @@
 
 Причина:
 
-=============================================
-                        ⠀[italic]Место для печатей[/italic]
+[italic]Место для печатей[/italic]
 </Document>

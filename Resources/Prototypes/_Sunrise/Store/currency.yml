@@ -3,4 +3,4 @@
   displayName: Сантики
   cash:
     1: Suntick1
-  canWithdraw: true
+  canWithdraw: false

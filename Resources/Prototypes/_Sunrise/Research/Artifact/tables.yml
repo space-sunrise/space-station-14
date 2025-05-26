@@ -1,0 +1,167 @@
+﻿# Эффекты
+
+- type: entityTable
+  id: SunriseArtifactEffectsDefaultTable
+  table: !type:GroupSelector
+    children:
+    - id: SunriseEffectHeal
+      weight: 2
+    - id: SunriseArtifactGenerateEnergy
+      weight: 2
+    - id: SunriseArtifactWandering
+      weight: 3
+    - id: SunriseArtifactThrowThingsAround
+      weight: 3
+    - id: SunriseArtifactKnock
+      weight: 3
+    - id: SunriseArtifactEffectJunkSpawn
+      weight: 3
+    - id: SunriseArtifactShatterWindows
+      weight: 3
+    - id: SunriseEffectBoltAirlocks
+      weight: 3
+    - id: SunriseArtifactHunger
+      weight: 2
+    - id: SunriseEffectThirst
+      weight: 2
+    - id: SunriseEffectTeslaDischarge
+      weight: 1
+    - id: SunriseEffectSpawnEvilTwin
+      weight: 1
+    - id: SunriseArtifactTeleport
+      weight: 2
+    - id: SunriseArtifactEmp
+      weight: 2
+    - id: SunriseEffectIgnite
+      weight: 1
+
+- type: entityTable
+  id: SunriseArtifactEffectsUltraFunnyTable
+  table: !type:GroupSelector
+    children:
+    - id: SunriseEffectShuffleUltra
+      weight: 2
+    - id: SunriseEffectPolyChair
+      weight: 3
+    - id: SunriseEffectPolyWatermelon
+      weight: 3
+    - id: SunriseEffectPolyAppendix
+      weight: 3
+    - id: SunriseEffectPolyDisposal
+      weight: 3
+    - id: SunriseEffectPolyTable
+      weight: 3
+    - id: SunriseEffectSwap
+      weight: 3
+    - id: SunriseEffectRandomTransformation
+      weight: 1
+    - id: SunriseEffectMagnetUltra
+      weight: 2
+    - id: SunriseEffectShiftedAsciiTableAccent
+      weight: 3
+
+# Ванильная, которую я чуть подрезал
+- type: entityTable
+  id: SunriseArtifactEffectsVanillaDefaultReducedTable
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactSpeedUp
+      weight: 4.0
+    - id: XenoArtifactGhost
+      weight: 4.0
+    - id: XenoArtifactPotassiumWave
+      weight: 7.0
+    - id: XenoArtifactFloraSpawn
+      weight: 7.0
+    - id: XenoArtifactChemicalPuddle
+      weight: 7.0
+    - id: XenoArtifactThrowThingsAround
+      weight: 7.0
+    - id: XenoArtifactColdWave
+      weight: 7.0
+    - id: XenoArtifactHeatWave
+      weight: 4.0
+    - id: XenoArtifactFoamMild
+      weight: 5.0
+    - id: XenoArtifactRandomInstrumentSpawn
+      weight: 7.0
+    - id: XenoArtifactRadioactive
+      weight: 5.0
+    - id: XenoArtifactChargeBattery
+      weight: 7.0
+    - id: XenoArtifactStealth
+      weight: 1.0
+    - id: XenoArtifactRareMaterialSpawnSilver
+      weight: 1.8
+    - id: XenoArtifactRareMaterialSpawnPlasma
+      weight: 2.0
+    - id: XenoArtifactRareMaterialSpawnGold
+      weight: 1.8
+    - id: XenoArtifactRareMaterialSpawnUranium
+      weight: 1.0
+    - id: XenoArtifactAngryCarpSpawn
+      weight: 4.0
+    - id: XenoArtifactFaunaSpawn
+      weight: 7.0
+    - id: XenoArtifactCashSpawn
+      weight: 7.0
+    - id: XenoArtifactFoamGood
+      weight: 4.0
+    - id: XenoArtifactFoamDangerous
+      weight: 2.0
+    - id: XenoArtifactPuddleRare
+      weight: 2.0
+    - id: XenoArtifactAnomalySpawn
+      weight: 7.0
+    - id: XenoArtifactRadioactiveStrong
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnGlass
+      weight: 3.3
+    - id: XenoArtifactMaterialSpawnSteel
+      weight: 3.3
+    - id: XenoArtifactMaterialSpawnPlastic
+      weight: 3.3
+    - id: XenoArtifactArtifactSpawn
+      weight: 0.5
+    - id: XenoArtifactExplosionScary
+      weight: 1.0
+    - id: XenoArtifactBoom
+      weight: 5.0
+    - id: XenoArtifactEffectCreationGasPlasma
+      weight: 2.0
+    - id: XenoArtifactEffectCreationGasTritium
+      weight: 2.0
+    - id: XenoArtifactEffectCreationGasAmmonia
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasFrezon
+      weight: 1.0
+    - id: XenoArtifactEffectCreationGasNitrousOxide
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasCarbonDioxide
+      weight: 4.0
+
+# Триггеры
+
+- type: weightedRandomXenoArchTrigger
+  id: SunriseDefaultTriggers
+  weights:
+    TriggerMusic: 1
+    TriggerHeat: 1
+    TriggerCold: 0.5
+    TriggerPlasma: 0.5
+    TriggerRadiation: 0.5
+    TriggerPressureHigh: 0.5
+    TriggerPressureLow: 1
+    TriggerExamine: 1
+    TriggerBruteDamage: 1
+    TriggerWrenching: 1
+    TriggerPrying: 1
+    TriggerScrewing: 1
+    TriggerPulsing: 1
+    TriggerTimer: 0.25
+    TriggerBlood: 1
+    TriggerThrow: 1
+    TriggerDeath: 1
+    TriggerMagnet: 1
+    # Дальше наши самописные
+    TriggerHealthAnalyzer: 1

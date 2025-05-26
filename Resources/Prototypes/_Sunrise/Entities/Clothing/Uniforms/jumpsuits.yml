@@ -348,3 +348,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMiningSpecialist
+  name: mining specialist's jumpsuit
+  description: A suit passed down through many generations. a fine layer of dust trails behind it.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/mining.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/mining.rsi

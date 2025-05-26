@@ -8,3 +8,16 @@
     contents:
     - id: Screwdriver
     - id: PrinterDocFlatpack
+
+- type: entity
+  id: CrateServicePrinterDocRestock
+  parent: CrateGenericSteel
+  name: printer machine restock crate
+  description: printer paper with ink and office papper
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetPaper
+      amount: 1
+    - id: DrinkInc
+      amount: 1

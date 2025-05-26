@@ -122,7 +122,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
 
         var tileCoordinates = _mapSystem.CoordinatesToTile(gridUid.Value, grid, coordinates);
         var tileRef = _mapSystem.GetTileRef(gridUid.Value, grid, tileCoordinates);
-        var entities = _lookup.GetLocalEntitiesIntersecting(tileRef);
+        var entities = _lookup.GetLocalEntitiesIntersecting(tileRef, 0);
 
         foreach (var entity in entities)
         {
@@ -137,11 +137,8 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             if (!_solutionContainerSystem.TryGetSolution(args.Used, AbsorbentComponent.SolutionName, out var absorberSoln))
                 return;
 
-            if (TryComp<UseDelayComponent>(args.Used, out var useDelay) && _useDelay.IsDelayed((args.Used, useDelay)))
-                return;
-
             var tileCenterPos = _mapSystem.GridTileToLocal(gridUid.Value, grid, tileRef.GridIndices);
-            CleanFootprints(args.User, args.Used, component, useDelay, absorberSoln.Value, footPrints, tileCenterPos);
+            CleanFootprints(args.User, args.Used, component, absorberSoln.Value, footPrints, tileCenterPos);
             args.Handled = true;
             return;
         }
@@ -151,8 +148,9 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     }
 
     // Sunrise-Start
-    private void CleanFootprints(EntityUid user, EntityUid used, AbsorbentComponent absorber, UseDelayComponent? useDelay,
-        Entity<SolutionComponent> absorberSoln, HashSet<Entity<FootprintComponent>> footPrints, EntityCoordinates targetCoords)
+    public void CleanFootprints(EntityUid user, EntityUid used, AbsorbentComponent absorber,
+        Entity<SolutionComponent> absorberSoln, HashSet<Entity<FootprintComponent>> footPrints,
+        EntityCoordinates targetCoords)
     {
         var soundPlayed = false;
 
@@ -196,8 +194,14 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
                 _audio.PlayPvs(absorber.PickupSound, footstepUid);
             }
 
-            if (useDelay is not null)
-                _useDelay.TryResetDelay((used, useDelay));
+            // Без этой хуйни некоторые лужи будут пустыми и не будут удаляться
+            var ev = new SolutionContainerChangedEvent(targetStepSolution, comp.ContainerName);
+            RaiseLocalEvent(footstepUid, ref ev);
+
+            // Sunrise-Start
+            var absorberEv = new AbsorberFootPrintEvent(user);
+            RaiseLocalEvent(user, ref absorberEv);
+            // Sunrise-End
         }
 
         var userXform = Transform(user);

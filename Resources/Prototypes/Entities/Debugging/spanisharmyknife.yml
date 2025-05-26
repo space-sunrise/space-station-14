@@ -4,6 +4,7 @@
   id: ToolDebug
   description: The pain of using this is almost too great to bear.
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

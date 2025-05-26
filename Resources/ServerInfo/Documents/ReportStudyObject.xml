@@ -1,12 +1,12 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header.png" scale=2]
+[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_rnd.png" scale=1]
 
 
-[bold]Station XX-000 ПД-КОМ[/bold]
-=============================================
-                ОТЧЁТ ОБ ИЗУЧЕНИИ ОБЪЕКТА
-=============================================
-Время и дата:
+[bold]Форма НТ/НИО-СИТ[/bold]
+[head=3]Отчет об изучении объекта[/head]
+
+[italic]Время и дата:[/italic]
+
 Составитель документа:
 Должность составителя:
 
@@ -15,6 +15,5 @@
 
 Выявленные свойства объекта:
 
-=============================================
-                        ⠀[italic]Место для печатей[/italic]
+[italic]Место для печатей[/italic]
 </Document>

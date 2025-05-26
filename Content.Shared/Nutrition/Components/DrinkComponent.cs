@@ -13,7 +13,7 @@ public sealed partial class DrinkComponent : Component
     public string Solution = "drink";
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier UseSound = new SoundPathSpecifier("/Audio/Items/drink.ogg");
+    public SoundSpecifier UseSound = new SoundCollectionSpecifier("DrinkSounds"); // Sunrise edit
 
     [DataField, AutoNetworkedField]
     public FixedPoint2 TransferAmount = FixedPoint2.New(5);

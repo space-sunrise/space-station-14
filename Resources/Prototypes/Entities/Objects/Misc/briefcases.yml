@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStorageItem
+  parent: [CaseSounds, BaseStorageItem] # Sunrise edit
   id: BriefcaseBase
   description: Useful for carrying items in your hands.
   abstract: true

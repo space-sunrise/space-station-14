@@ -37,19 +37,16 @@ public sealed class FootprintSystem : EntitySystem
 
     #region Entity Queries
     private EntityQuery<TransformComponent> _transformQuery;
-    private EntityQuery<MobThresholdsComponent> _mobStateQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
     #endregion
 
     public static readonly float FootsVolume = 5;
     public static readonly float BodySurfaceVolume = 15;
 
     // Dictionary to track footprints per tile to prevent overcrowding
-    private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
-    private const int MaxFootprintsPerTile = 10;
-    private const int MaxMarksPerTile = 5;
-
-    private EntityQuery<PhysicsComponent> _physicsQuery;
+    private const int MaxFootprintsPerTile = 6;
+    private const int MaxMarksPerTile = 3;
 
     #region Initialization
     /// <summary>
@@ -60,13 +57,11 @@ public sealed class FootprintSystem : EntitySystem
         base.Initialize();
 
         _transformQuery = GetEntityQuery<TransformComponent>();
-        _mobStateQuery = GetEntityQuery<MobThresholdsComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
-        SubscribeNetworkEvent<RoundRestartCleanupEvent>(Reset);
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentInit>(OnFootprintEmitterInit);
     }
 
@@ -175,11 +170,6 @@ public sealed class FootprintSystem : EntitySystem
         UpdateEmitterState(emitter, transform);
     }
 
-    private void Reset(RoundRestartCleanupEvent msg)
-    {
-        _tileFootprints.Clear();
-    }
-
     #endregion
 
     #region Footprint Creation and Management
@@ -206,7 +196,7 @@ public sealed class FootprintSystem : EntitySystem
                 appearance);
 
             var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
-            var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0f, 1f);
+            var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0.5f, 1f);
 
             _appearanceSystem.SetData(entity,
                 FootprintVisualParameter.TrackColor,

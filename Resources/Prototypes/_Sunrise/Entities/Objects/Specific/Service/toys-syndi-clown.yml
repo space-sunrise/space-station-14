@@ -35,7 +35,13 @@
     - Sidearm
   - type: BasicEntityAmmoProvider
     proto: FoodPieBananaCream
-    capacity: 4
-    count: 4
+    capacity: 3
+    count: 3
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Items/bikehorn.ogg
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Вы не истинный клоун.
