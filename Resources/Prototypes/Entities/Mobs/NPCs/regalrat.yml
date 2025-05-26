@@ -4,6 +4,12 @@
   parent: [ SimpleMobBase, MobCombat ]
   description: He's da rat. He make da roolz.
   components:
+  # Sunrise edit start
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-rats-name
+    description: ghost-panel-antagonist-rats-description
+    priority: 110
+  # Sunrise edit end
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
@@ -176,6 +182,12 @@
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
+  # Sunrise edit start
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-rats-name
+    description: ghost-panel-antagonist-rats-description
+    priority: 110
+  # Sunrise edit end
   - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: MovementSpeedModifier

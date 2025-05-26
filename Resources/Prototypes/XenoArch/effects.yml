@@ -142,7 +142,7 @@
 - type: entity
   id: BaseXenoArtifactEffect
   name: effect
-  description: Неизвестно
+  description: artifact-effect-hint-data-deleted # Sunrise edit
   categories: [ HideSpawnMenu ]
   abstract: true
   components:
@@ -154,7 +154,7 @@
   id: BaseOneTimeXenoArtifactEffect
   parent: BaseXenoArtifactEffect
   name: one-time-effect
-  description: Неизвестно
+  description: artifact-effect-hint-data-deleted # Sunrise edit
   categories: [ HideSpawnMenu ]
   abstract: true
   components:
@@ -169,7 +169,8 @@
 - type: entity
   id: XenoArtifactEffectUniversalIntercom
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает трансмогрификационные свойства
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -198,7 +199,8 @@
 - type: entity
   id: XenoArtifactBecomeRandomInstrument
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становится музыкальным инструментом
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -211,7 +213,8 @@
 - type: entity
   id: XenoArtifactStorage
   parent: BaseOneTimeXenoArtifactEffect
-  description: Появляется скрытое хранилище
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -225,14 +228,16 @@
 - type: entity
   id: XenoArtifactPhasing
   parent: BaseOneTimeXenoArtifactEffect
-  description: Теряет колизию
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAERemoveCollision
 
 - type: entity
   id: XenoArtifactWandering
   parent: BaseOneTimeXenoArtifactEffect
-  description: Начинает спонтанно двигаться
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -245,7 +250,8 @@
 - type: entity
   id: XenoArtifactSolutionStorage
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает свойства кувшина
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -273,7 +279,8 @@
 - type: entity
   id: XenoArtifactSpeedUp
   parent: BaseOneTimeXenoArtifactEffect
-  description: Увеличивает скорость движения держателя
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -284,7 +291,8 @@
 - type: entity
   id: XenoArtifactDrill
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает свойства бура
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -300,7 +308,8 @@
 - type: entity
   id: XenoArtifactGenerateEnergy
   parent: BaseOneTimeXenoArtifactEffect # todo - increment power, but only once per node
-  description: Излучает энергию
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -316,7 +325,8 @@
 - type: entity
   id: XenoArtifactGun
   parent: BaseOneTimeXenoArtifactEffect
-  description: Обретает свойства оружия
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -347,7 +357,8 @@
 - type: entity
   id: XenoArtifactGhost
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становится разумным
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -367,7 +378,8 @@
 - type: entity
   id: XenoArtifactOmnitool
   parent: BaseOneTimeXenoArtifactEffect
-  description: Получается свойства омнитула
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -414,7 +426,8 @@
 - type: entity
   id: XenoArtifactEffectBadFeeling
   parent: BaseXenoArtifactEffect
-  description: Передаёт сообщение
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAETelepathic
     messages:
@@ -444,7 +457,8 @@
 - type: entity
   id: XenoArtifactEffectGoodFeeling
   parent: BaseXenoArtifactEffect
-  description: Передаёт сообщение
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAETelepathic
     messages:
@@ -473,7 +487,8 @@
 - type: entity
   id: XenoArtifactEffectJunkSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт мусор
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -496,14 +511,16 @@
 - type: entity
   id: XenoArtifactEffectLightFlicker
   parent: BaseXenoArtifactEffect
-  description: Создаёт незначительные электромагнитные помехи
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAELightFlicker
 
 - type: entity
   id: XenoArtifactPotassiumWave
   parent: BaseXenoArtifactEffect
-  description: Создаёт калий
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -530,7 +547,8 @@
 - type: entity
   id: XenoArtifactFloraSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт флору
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -545,7 +563,8 @@
 - type: entity
   id: XenoArtifactChemicalPuddle
   parent: BaseXenoArtifactEffect
-  description: Создаёт лужу из химикатов # todo: make description say what exact chemical is produced, maybe add mixes into possible chemicals
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreatePuddle
     chemAmount:
@@ -581,14 +600,16 @@
 - type: entity
   id: XenoArtifactThrowThingsAround
   parent: BaseXenoArtifactEffect
-  description: Создаёт незначительный взрыв
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEThrowThingsAround
 
 - type: entity
   id: XenoArtifactColdWave
   parent: BaseXenoArtifactEffect
-  description: Охлаждает атмосферу вокруг
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAETemperature
     targetTemp: 50
@@ -596,7 +617,8 @@
 - type: entity
   id: XenoArtifactHeatWave
   parent: BaseXenoArtifactEffect
-  description: Сильно нагревает окружающую атмосферу
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAETemperature
     targetTemp: 500
@@ -604,7 +626,8 @@
 - type: entity
   id: XenoArtifactFoamMild
   parent: BaseXenoArtifactEffect
-  description: Создаёт пену из химикатов # todo: separate in 1 for each chemical for description? actually sounds like a very good idea
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEFoam
     replaceDescription: true
@@ -624,7 +647,8 @@
 - type: entity
   id: XenoArtifactRandomInstrumentSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт музыкальный инструмент
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -644,7 +668,8 @@
 - type: entity
   id: XenoArtifactMonkeySpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт обезьяну
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -667,7 +692,8 @@
 - type: entity
   id: XenoArtifactRadioactive
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становится радиоактивным
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -680,7 +706,8 @@
 - type: entity
   id: XenoArtifactChargeBattery
   parent: BaseXenoArtifactEffect
-  description: Заряжает батарейки
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEChargeBattery
   - type: XAETelepathic
@@ -690,7 +717,8 @@
 - type: entity
   id: XenoArtifactKnock
   parent: BaseXenoArtifactEffect
-  description: Создаёт слабые электромагнитные помехи
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEKnock
   - type: XAELightFlicker
@@ -698,7 +726,8 @@
 - type: entity
   id: XenoArtifactMagnet
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт небольшой гравитационный колодец
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -712,7 +741,8 @@
 - type: entity
   id: XenoArtifactMagnetNegative
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт небольшой гравитационный колодец
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -726,7 +756,8 @@
 - type: entity
   id: XenoArtifactStealth
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт световую интерференцию
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
@@ -740,7 +771,8 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawn
   parent: BaseXenoArtifactEffect # todo: splice into different well-named effects, amounts should reflect how rare material is
-  description: Создаёт редкие материалы
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -770,7 +802,8 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnSilver
   parent: BaseXenoArtifactEffect
-  description: Создаёт редкие материалы
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -793,7 +826,8 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnPlasma
   parent: BaseXenoArtifactEffect
-  description: Создаёт твёрдую плазму
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -816,7 +850,8 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnGold
   parent: BaseXenoArtifactEffect
-  description: Создаёт золото
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -839,7 +874,8 @@
 - type: entity
   id: XenoArtifactRareMaterialSpawnUranium
   parent: BaseXenoArtifactEffect
-  description: Создаёт уран
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -862,7 +898,8 @@
 - type: entity
   id: XenoArtifactAngryCarpSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт агресивную рыбу
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -885,7 +922,8 @@
 - type: entity
   id: XenoArtifactFaunaSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт дружелюбную фауну
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -940,7 +978,8 @@
 - type: entity
   id: XenoArtifactCashSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт деньги
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -969,7 +1008,8 @@
 - type: entity
   id: XenoArtifactShatterWindows
   parent: BaseXenoArtifactEffect
-  description: Ломает окна
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -988,7 +1028,8 @@
 - type: entity
   id: XenoArtifactFoamGood
   parent: BaseXenoArtifactEffect
-  description: Создает волну полезной пены
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 7
@@ -1009,7 +1050,8 @@
 - type: entity
   id: XenoArtifactFoamDangerous
   parent: BaseXenoArtifactEffect
-  description: Создает волну вредной пены
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEFoam
     minFoamAmount: 20
@@ -1031,7 +1073,8 @@
 - type: entity
   id: XenoArtifactPuddleRare
   parent: BaseXenoArtifactEffect
-  description: Создает лужу полезных химикатов
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreatePuddle
     chemAmount:
@@ -1061,7 +1104,8 @@
 - type: entity
   id: XenoArtifactAnomalySpawn
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт аномалию
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1076,7 +1120,8 @@
 - type: entity
   id: XenoArtifactIgnite
   parent: BaseXenoArtifactEffect
-  description: Делает пирокинез
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEIgnite
     range: 7
@@ -1087,14 +1132,16 @@
 - type: entity
   id: XenoArtifactTeleport
   parent: BaseXenoArtifactEffect
-  description: Делает телепортацию
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAERandomTeleportInvoker
 
 - type: entity
   id: XenoArtifactEmp
   parent: BaseXenoArtifactEffect
-  description: Создаёт опасные электромагнитные помехи
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 5
@@ -1106,14 +1153,16 @@
 - type: entity
   id: XenoArtifactPolyMonkey
   parent: BaseXenoArtifactEffect
-  description: Временно преобразозует плоть в мех
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEPolymorph
 
 - type: entity
   id: XenoArtifactPolyLizard
   parent: BaseXenoArtifactEffect
-  description: Временно изменяет форму плоти в соответствии с масштабом
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEPolymorph
     polymorphPrototypeName: ArtifactLizard
@@ -1121,7 +1170,8 @@
 - type: entity
   id: XenoArtifactPolyLuminous
   parent: BaseXenoArtifactEffect
-  description: Временно преобразовать плоть в свет
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEPolymorph
     polymorphPrototypeName: ArtifactLuminous
@@ -1129,7 +1179,8 @@
 - type: entity
   id: XenoArtifactRadioactiveStrong
   parent: BaseOneTimeXenoArtifactEffect
-  description: Становиться сильно радиоактивным
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1142,7 +1193,8 @@
 - type: entity
   id: XenoArtifactMaterialSpawnGlass
   parent: BaseXenoArtifactEffect
-  description: Создаёт стекло
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1157,7 +1209,8 @@
 - type: entity
   id: XenoArtifactMaterialSpawnSteel
   parent: BaseXenoArtifactEffect
-  description: Создаёт сталь
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1172,7 +1225,8 @@
 - type: entity
   id: XenoArtifactMaterialSpawnPlastic
   parent: BaseXenoArtifactEffect
-  description: Создаёт пластик
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1187,14 +1241,16 @@
 - type: entity
   id: XenoArtifactPortal
   parent: BaseXenoArtifactEffect
-  description: Создаёт кратковременный блюспейс портал
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEPortal
 
 - type: entity
   id: XenoArtifactArtifactSpawn
   parent: BaseXenoArtifactEffect
-  description: Создаёт артефакт
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -1214,7 +1270,8 @@
 - type: entity
   id: XenoArtifactShuffle
   parent: BaseXenoArtifactEffect
-  description: Меняет местами разумные существа #not ALL beings, but oh well...
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEShuffle
   - type: XAETelepathic
@@ -1225,7 +1282,8 @@
 - type: entity
   id: XenoArtifactHealAll
   parent: BaseXenoArtifactEffect
-  description: Чудесно излечивает всех существ рядом
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEDamageInArea
     damageChance: 1
@@ -1241,7 +1299,8 @@
 - type: entity
   id: XenoArtifactTesla
   parent: BaseOneTimeXenoArtifactEffect
-  description: Полномасштабные разрушения
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1256,7 +1315,8 @@
 - type: entity
   id: XenoArtifactSingularity
   parent: BaseOneTimeXenoArtifactEffect
-  description: Полномасштабные разрушения
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1271,7 +1331,8 @@
 - type: entity
   id: XenoArtifactExplosionScary
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт маломасштабную высокоскоростную ядерную реакцию
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAETriggerExplosives
   - type: Explosive
@@ -1286,7 +1347,8 @@
 - type: entity
   id: XenoArtifactBoom
   parent: BaseOneTimeXenoArtifactEffect
-  description: Создаёт взрыв
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAETriggerExplosives
   - type: Explosive
@@ -1300,7 +1362,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasPlasma
   parent: BaseXenoArtifactEffect
-  description: Создаёт газообразную плазму
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1309,7 +1372,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasTritium
   parent: BaseXenoArtifactEffect
-  description: Создаёт газообразный тритий
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1318,7 +1382,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasAmmonia
   parent: BaseXenoArtifactEffect
-  description: Создаёт аммиак
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1327,7 +1392,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasFrezon
   parent: BaseXenoArtifactEffect
-  description: Создаёт фрезон
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1336,7 +1402,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasNitrousOxide
   parent: BaseXenoArtifactEffect
-  description: Создаёт оксид азота
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1345,7 +1412,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasCarbonDioxide
   parent: BaseXenoArtifactEffect
-  description: Создаёт углекислый газ
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1355,7 +1423,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasBZ
   parent: BaseXenoArtifactEffect
-  description: Создаёт БЗ
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1364,7 +1433,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasHealium
   parent: BaseXenoArtifactEffect
-  description: Создаёт хилиум
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:
@@ -1373,7 +1443,8 @@
 - type: entity
   id: XenoArtifactEffectCreationGasNitrium
   parent: BaseXenoArtifactEffect
-  description: Создаёт нитриум
+  description: artifact-effect-hint-data-deleted # Sunrise edit
+  categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAECreateGas
     gases:

@@ -65,7 +65,8 @@ public abstract class SharedJobSystem : EntitySystem
     {
         // Not that many departments so we can just eat the cost instead of storing the inverse lookup.
         var departmentProtos = _prototypes.EnumeratePrototypes<DepartmentPrototype>().ToList();
-        departmentProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        departmentProtos.Sort((x, y) => y.Weight.CompareTo(x.Weight)); // Sunrise edit
+        // Сделал сортировку по весу, чтобы первее выдавался отдел главнее вместо алфавитной сортировки
 
         foreach (var department in departmentProtos)
         {

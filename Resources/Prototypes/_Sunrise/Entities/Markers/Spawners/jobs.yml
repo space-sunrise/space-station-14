@@ -272,3 +272,15 @@
     layers:
     - state: green
     - state: adjutant
+
+- type: entity
+  id: SpawnPointminingspecialist
+  parent: SpawnPointJobBase
+  name: miningspecialist
+  components:
+  - type: SpawnPoint
+    job_id: MiningSpecialist
+  - type: Sprite
+    layers:
+    - state: green
+    - state: salvagespecialist

@@ -33,7 +33,6 @@ public sealed class CloudEmoteSystem : SharedCloudEmoteSystem
                 comp.Phase += 1;
                 display("CloudEmoteStart", uid, comp);
             }
-            _sawmill.Info(comp.Emote.ToString());
         }
 
     }

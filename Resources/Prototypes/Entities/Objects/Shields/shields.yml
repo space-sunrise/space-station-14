@@ -68,6 +68,15 @@
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
+    - type: MeleeThrowOnHit #Sunrise-Start
+      distance: 0.7
+      speed: 7
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 7
+      bluntStaminaDamageFactor: 3.0 #Sunrise-End
     - type: StaticPrice
       price: 90
     - type: Blocking
@@ -82,6 +91,103 @@
         flatReductions:
           Blunt: 1
           Slash: 1
+    - type: Tag #Sunrise-Start
+      tags:
+      - RiotShield
+
+- type: entity
+  name: riot strobe shield
+  parent: [ BaseShield, BaseSecurityContraband, MachineComponentSounds ]
+  id: RiotShieldStrobe
+  description: A large tower shield with atached Flash. Good for controlling crowds.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Melee/shields.rsi
+      layers:
+      - state: riot-icon
+        map: [ "enum.FlashVisuals.BaseLayer" ]
+      - state: flashing
+        map: [ "enum.FlashVisuals.LightLayer" ]
+        visible: false
+        shader: unshaded
+    - type: Flash
+    - type: LimitedCharges
+      maxCharges: 5
+    - type: MeleeThrowOnHit
+      distance: 0.5
+      speed: 5
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 7
+      bluntStaminaDamageFactor: 3.0
+    - type: Item
+      size: Ginormous
+      sprite: _Sunrise/Objects/Weapons/Melee/shields.rsi
+      heldPrefix: riot
+    - type: UseDelay
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.FlashVisuals.Burnt:
+          enum.FlashVisuals.BaseLayer:
+            True: {state: burnt}
+        enum.FlashVisuals.Flashing:
+          enum.FlashVisuals.LightLayer:
+            True: {visible: true}
+            False: {visible: false}
+    - type: StaticPrice
+      price: 90
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+        flatReductions:
+          Blunt: 3
+          Slash: 3
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 150
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 120
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 2
+                  max: 3
+                SheetGlass:
+                  min: 2
+                  max: 2
+                CableApcStack1:
+                  min: 1
+                  max: 2
+    - type: Construction
+      graph: RiotShieldStrobeConstruction
+      node: shieldstrobe
+    - type: Tag
+      tags:
+      - RiotShieldStrobe
+#Sunrise-End
 
 - type: entity
   name: laser shield

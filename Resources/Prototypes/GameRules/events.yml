@@ -229,6 +229,12 @@
         color: Green
         sound: /Audio/Misc/ninja_greeting.ogg
       components:
+      # Sunrise edit start
+      - type: GhostPanelAntagonistMarker
+        name: ghost-panel-antagonist-ninja-name
+        description: ghost-panel-antagonist-ninja-description
+        priority: 40
+      # Sunrise edit end
       - type: SpaceNinja
       - type: NpcFactionMember
         factions:
@@ -556,6 +562,12 @@
       roleLoadout:
       - RoleSurvivalNukie
       components:
+      # Sunrise edit start
+      - type: GhostPanelAntagonistMarker
+        name: ghost-panel-antagonist-loneops-name
+        description: ghost-panel-antagonist-loneops-description
+        priority: 20
+      # Sunrise edit end
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:

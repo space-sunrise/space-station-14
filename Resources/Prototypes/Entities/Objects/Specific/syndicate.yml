@@ -136,6 +136,7 @@
   parent: BaseUplinkRadio
   id: BaseUplinkRadioDebug
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Store
     balance:

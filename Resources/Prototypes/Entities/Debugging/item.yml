@@ -4,6 +4,7 @@
   name: weirdly shaped item
   description: What is it...?
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

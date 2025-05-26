@@ -10,6 +10,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
 using Content.Shared._Sunrise.NewLife;
+using GhostWarpsResponseEvent = Content.Shared.Ghost.SharedGhostSystem.GhostWarpsResponseEvent;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -131,7 +132,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         if (Gui?.TargetWindow is not { } window)
             return;
 
-        window.UpdateWarps(msg.Warps);
+        window.UpdateWarps(msg.Players, msg.Places, msg.Antagonists);
         window.Populate();
     }
 
@@ -163,7 +164,9 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RespawnPressed += Respawn; // Sunrise-Sponsors
         Gui.ChangeServerPressed += ChangeServerPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
-        Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
+
+        // Sunrise edit - нету фичи
+        // Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
 
         UpdateGui();
     }

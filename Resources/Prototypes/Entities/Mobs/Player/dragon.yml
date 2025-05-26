@@ -193,6 +193,12 @@
   parent: BaseMobDragon
   id: MobDragon
   components:
+  # Sunrise edit start
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-dragon-name
+    description: ghost-panel-antagonist-dragon-description
+    priority: 60
+  # Sunrise edit end
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
   - type: GhostRole

@@ -20,6 +20,7 @@ using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -29,6 +30,8 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Roles;
+using Content.Shared.SSDIndicator;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Warps;
@@ -45,7 +48,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Ghost
 {
-    public sealed class GhostSystem : SharedGhostSystem
+    public sealed partial class GhostSystem : SharedGhostSystem
     {
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly IAdminLogManager _adminLog = default!;
@@ -334,7 +337,12 @@ namespace Content.Server.Ghost
                 return;
             }
 
-            var response = new GhostWarpsResponseEvent(GetPlayerWarps(entity).Concat(GetLocationWarps()).ToList());
+            // Sunrise edit start - для красивой гост меню
+            var response = new GhostWarpsResponseEvent(GetPlayerWarps().ToList(),
+                GetLocationWarps().ToList(),
+                GetAntagonistWarps().ToList());
+            // Sunrise edit end
+
             RaiseNetworkEvent(response, args.SenderSession.Channel);
         }
 
@@ -390,6 +398,8 @@ namespace Content.Server.Ghost
                 _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
         }
 
+        /* SUNRISE EDIT - методы переделаны и вынесены в partial класс для гост панели
+
         private IEnumerable<GhostWarp> GetLocationWarps()
         {
             var allQuery = AllEntityQuery<WarpPointComponent>();
@@ -418,6 +428,7 @@ namespace Content.Server.Ghost
                     yield return new GhostWarp(GetNetEntity(attached), playerInfo, false);
             }
         }
+        */
 
         #endregion
 

@@ -30,6 +30,7 @@ construction-graph-tag-medical-hud = medical hud
 # security
 construction-graph-tag-sun-glasses = sun glasses
 construction-graph-tag-security-helmet = security helmet
+construction-graph-tag-strobe-shield = strobe riot shield
 
 # materials
 construction-graph-tag-capacitor = capacitor
