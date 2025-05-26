@@ -2,6 +2,7 @@
   id: DebugGenerator
   parent: BaseGenerator
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: PowerSupplier
     supplyRate: 300000
@@ -15,6 +16,7 @@
   id: DebugConsumer
   name: consumer
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
@@ -60,6 +62,7 @@
   id: DebugBatteryStorage
   name: battery storage
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
@@ -93,6 +96,7 @@
   id: DebugBatteryDischarger
   name: battery discharger
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
@@ -128,6 +132,7 @@
   id: DebugSMES
   parent: BaseSMES
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
@@ -146,6 +151,7 @@
   id: DebugAPC
   parent: BaseAPC
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
@@ -155,6 +161,7 @@
   id: DebugPowerReceiver
   name: power receiver
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:

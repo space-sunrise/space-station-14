@@ -94,6 +94,7 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
+  - type: GunRequiresWield
 
 - type: entity
   name: L6C ROW

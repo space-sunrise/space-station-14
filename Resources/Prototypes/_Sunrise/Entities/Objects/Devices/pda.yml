@@ -446,3 +446,32 @@
     accentVColor: "#003cc9"
   - type: Icon
     state: pda-cargo
+
+- type: entity
+  parent: BasePDA
+  id: MiningPDA
+  name: mining PDA
+  description: there is dirt in every crack.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: MiningIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-mining
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentVColor: "#3e3ac3"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-mining
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - AstroNavCartridge

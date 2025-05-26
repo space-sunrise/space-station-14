@@ -2,7 +2,7 @@
   id: DebugMechEquipment
   abstract: true
   suffix: DEBUG
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, Debug ] # Sunrise edit
   components:
   - type: Tag
     tags:

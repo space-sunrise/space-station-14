@@ -20,6 +20,8 @@
   - type: StaticPrice
     price: 100
   - type: Store
+    refundAllowed: false
+    ownerOnly: true
     categories:
       - General
       - SecurityThings
@@ -51,37 +53,18 @@
 #    SUNRISE     #
 ##################
 
-# Рыцарь Солнца
 - type: entity
   parent: BaseDonationPlink
-  id: SunriseUplink40
+  id: SunriseUplink
   name: Sunrise portable shop
   description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
-  suffix: 40
   components:
-  - type: Store
-    balance:
-      Suntick: 40
-
-# Солнышко
-- type: entity
-  parent: SunriseUplink40
-  id: SunriseUplink80
-  suffix: 80
-  components:
-  - type: Store
-    balance:
-      Suntick: 80
-
-# Бесконечное лето
-- type: entity
-  parent: SunriseUplink40
-  id: SunriseUplink100
-  suffix: 100
-  components:
-  - type: Store
-    balance:
-      Suntick: 100
+  - type: Item
+    sprite: _Sunrise/Objects/Devices/sunrise_uplink.rsi
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/sunrise_uplink.rsi
+    layers:
+    - state: icon-on
 
 ##################
 #  FISH STATION  #
@@ -89,10 +72,9 @@
 
 - type: entity
   parent: BaseDonationPlink
-  id: FishStationUplink40
+  id: FishStationUplink
   name: /"Fishplink/" portable shop
   description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
-  suffix: 40
   components:
   - type: Item
     size: Small
@@ -101,27 +83,6 @@
     sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
     layers:
     - state: icon-on
-  - type: Store
-    balance:
-      Suntick: 40
-
-- type: entity
-  parent: FishStationUplink40
-  id: FishStationUplink80
-  suffix: 80
-  components:
-  - type: Store
-    balance:
-      Suntick: 80
-
-- type: entity
-  parent: FishStationUplink40
-  id: FishStationUplink100
-  suffix: 100
-  components:
-  - type: Store
-    balance:
-      Suntick: 100
 
 ##################
 #     NEWERA     #
@@ -129,10 +90,9 @@
 
 - type: entity
   parent: BaseDonationPlink
-  id: NeweraStationUplink40
+  id: NeweraStationUplink
   name: /"Catoplink/" portable Shop
   description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
-  suffix: 40
   components:
   - type: Item
     size: Small
@@ -141,24 +101,3 @@
     sprite: _Sunrise/Entities/Objects/Devices/newera_uplink.rsi
     layers:
     - state: icon-on
-  - type: Store
-    balance:
-      Suntick: 40
-
-- type: entity
-  parent: NeweraStationUplink40
-  id: NeweraStationUplink80
-  suffix: 80
-  components:
-  - type: Store
-    balance:
-      Suntick: 80
-
-- type: entity
-  parent: NeweraStationUplink40
-  id: NeweraStationUplink100
-  suffix: 100
-  components:
-  - type: Store
-    balance:
-      Suntick: 100

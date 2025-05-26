@@ -24,6 +24,7 @@
   - ResearchDirector
   - Brig
   - Cryogenics
+  - ResearchConsoleAccess # Sunrise-Edit
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]

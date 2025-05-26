@@ -312,7 +312,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         }
         if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger))
         {
-            recharger.AutoRecharge = false;
+            recharger.AutoRecharge = true;
         }
 
         _audio.PlayPvs(generator.Comp.TurnOffSound, generator);

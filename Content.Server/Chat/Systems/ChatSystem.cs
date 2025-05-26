@@ -38,6 +38,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Robust.Shared.Timing; //sunrise-edit : IC Spam-mute
+using Content.Shared.Speech.Muting; //sunrise-edit : IC Spam-mute
+using Content.Shared.StatusEffect; //sunrise-edit : IC Spam-mute
 
 namespace Content.Server.Chat.Systems;
 
@@ -65,6 +68,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    //sunrise-edit-start : IC Spam-mute
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    private readonly Dictionary<NetUserId, List<(string Message, float Time)>> _messageHistory = new();
+    private const float SpamWindow = 3f;
+    private const int MaxSameMessageCount = 3;
+    //sunrise-edit-end
 
     // Sunrise-TTS-Start: Moved from Server to Shared
     // public const int VoiceRange = 10; // how far voice goes in world units
@@ -201,6 +210,48 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (!CanSendInGame(message, shell, player))
             return;
+        //sunrise-edit-start : IC Spam-mute
+        if (player != null)
+        {
+            if (desiredType == InGameICChatType.Emote)
+            {
+                // ignore emote chat
+            }
+            else
+            {
+
+                var now = (float)_gameTiming.CurTime.TotalSeconds;
+
+                if (!_messageHistory.TryGetValue(player.UserId, out var history))
+                {
+                    history = new List<(string Message, float Time)>();
+                    _messageHistory[player.UserId] = history;
+                }
+
+                // Cleaning up old records (older than 5 seconds)
+                history.RemoveAll(m => now - m.Time > 5f);
+
+                // Add current message
+                history.Add((message, now));
+
+                // Count repetitions for the last 1.5 and 5 seconds
+                int repeatsInShort = history.Count(m => m.Message == message && now - m.Time <= 1.5f);
+                int repeatsInLong = history.Count(m => m.Message == message);
+
+                if (repeatsInShort > 1 || repeatsInLong > 2)
+                {
+                    history.Clear(); // reset spam history
+
+                    var selfMessage = Loc.GetString("spam-mute-text-self");
+                    _popupSystem.PopupEntity(selfMessage, source, PopupType.Large);
+
+                    var statusEffects = EntityManager.System<StatusEffectsSystem>();
+                    statusEffects.TryAddStatusEffect<MutedComponent>(source, "Muted", TimeSpan.FromSeconds(300), true);
+
+                    return;
+                }
+            }
+        }    //sunrise-edit-end
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
 

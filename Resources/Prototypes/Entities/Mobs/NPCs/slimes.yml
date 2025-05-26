@@ -181,6 +181,10 @@
 # Sunrise-start
     - type: Carriable
     - type: CanEscapeInventory
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-slime-name
+      description: ghost-panel-antagonist-slime-description
+      priority: 80
 # Sunrise-end
 
 - type: entity
@@ -229,6 +233,10 @@
 # Sunrise-start
     - type: Carriable
     - type: CanEscapeInventory
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-slime-name
+      description: ghost-panel-antagonist-slime-description
+      priority: 80
 # Sunrise-end
 
 - type: entity
@@ -276,4 +284,8 @@
 # Sunrise-start
     - type: Carriable
     - type: CanEscapeInventory
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-slime-name
+      description: ghost-panel-antagonist-slime-description
+      priority: 80
 # Sunrise-end

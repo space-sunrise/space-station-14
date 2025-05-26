@@ -486,9 +486,11 @@
       state: generic_panel_open
   - type: ResearchClient
   - type: ResearchConsole
-  - type: ActiveRadio
-    channels:
-    - Science
+  # Sunrise-Edit-Start
+  #- type: ActiveRadio
+  #  channels:
+  #  - Science
+  # Sunrise-Edit-End
   - type: TechnologyDatabase
   - type: ActivatableUI
     key: enum.ResearchConsoleUiKey.Key
@@ -505,7 +507,7 @@
   - type: Computer
     board: ResearchComputerCircuitboard
   - type: AccessReader
-    access: [["Research"]]
+    access: [["ResearchConsoleAccess"]]
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -981,7 +983,7 @@
     energy: 1.6
     color: "#b89f25"
   - type: AccessReader
-    access: [["Quartermaster"], ["HeadOfPersonnel"]] # Sunrise-Edit
+    access: [["CargoPurchaseAccess"]] # Sunrise-Edit
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

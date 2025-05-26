@@ -23,6 +23,7 @@
   access:
   - Cargo
   - Salvage
+  - CargoPurchaseAccess  # Sunrise-Edit
   - Quartermaster
   - Maintenance
   - External

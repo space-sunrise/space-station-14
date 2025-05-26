@@ -182,7 +182,55 @@
   collisionMask: FullTileMask
   rotation: User
   fx: EffectRCDConstruct4
+# Sunrise Start
+- type: rcd
+  id: TripleGlassAirlockBasic
+  category: Airlocks
+  sprite: /Textures/Interface/Radial/RCD/triple_glass_airlock_basic.png
+  mode: ConstructObject
+  prototype: TripleGlassAirlockBasic
+  cost: 12
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
 
+- type: rcd
+  id: TripleGlassAirlock
+  category: Airlocks
+  sprite: /Textures/Interface/Radial/RCD/triple_glass_airlock.png
+  mode: ConstructObject
+  prototype: TripleGlassAirlock
+  cost: 8
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: DoubleGlassAirlock
+  category: Airlocks
+  sprite: /Textures/Interface/Radial/RCD/double_glass_airlock.png
+  mode: ConstructObject
+  prototype: DoubleGlassAirlock
+  cost: 8
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: DoubleGlassAirlockBasic
+  category: Airlocks
+  sprite: /Textures/Interface/Radial/RCD/double_glass_airlock_basic.png
+  mode: ConstructObject
+  prototype: DoubleGlassAirlockBasic
+  cost: 8
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+# Sunrise End
 - type: rcd
   id: Firelock
   category: Airlocks

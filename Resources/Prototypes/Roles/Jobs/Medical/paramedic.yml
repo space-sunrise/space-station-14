@@ -11,6 +11,7 @@
       time: 36000 # 15 hrs # Sunrise-RoleTime
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
+  canBeAntag: false # Sunrise-Edit
   supervisors: job-supervisors-cmo
   displayWeight: 25  # Sunrise
   access:
@@ -29,3 +30,4 @@
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
+    - HandheldCrewMonitor # Sunrise-Edit

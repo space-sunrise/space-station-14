@@ -4,6 +4,7 @@
   id: WeaponPistolDebug
   description: ded
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
@@ -46,6 +47,7 @@
   name: bang, ded mag
   parent: BaseMagazinePistol
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
@@ -76,6 +78,7 @@
   name: bang, ded cartridge
   parent: BaseCartridgePistol
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
@@ -89,6 +92,7 @@
   id: MeleeDebugGib
   description: hit hard ye
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

@@ -51,6 +51,8 @@
   - Brig
   - Lawyer
   - Cargo
+  - CargoPurchaseAccess # Sunrise-edit
+  - ResearchConsoleAccess # Sunrise-Edit
   - Atmospherics
   - Medical
   - Barber  # Sunrise-edit

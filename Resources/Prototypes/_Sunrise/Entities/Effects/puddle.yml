@@ -5,29 +5,11 @@
   description: Trace of liquid
   components:
   - type: Clickable
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepWater
-      params:
-        volume: 3
   - type: Transform
     noRot: false
   - type: Sprite
     drawdepth: FloorObjects
     color: "#FFFFFF80"
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      slipFixture:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
-        mask:
-        - ItemMask
-        layer:
-        - SlipLayer
-        hard: false
   - type: SolutionContainerManager
     solutions:
       step: { maxVol: 1 }
@@ -38,9 +20,6 @@
     canSlow: false
     canSlip: false
   - type: Appearance
-  - type: Tag
-    tags:
-    - HideContextMenu
 
 - type: entity
   name: drag mark

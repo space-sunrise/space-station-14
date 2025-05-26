@@ -111,6 +111,7 @@
   parent: CrateEngineering
   name:  generator crate
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: StorageFill
     contents:

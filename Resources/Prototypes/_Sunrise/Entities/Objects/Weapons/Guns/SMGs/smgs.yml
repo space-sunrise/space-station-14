@@ -2,6 +2,7 @@
   name: P-90
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunP90
+  categories: [ HideSpawnMenu ]
   components:
   - type: Item
     size: Large
@@ -22,7 +23,7 @@
     - type: Gun
       minAngle: 21
       maxAngle: 32
-      fireRate: 6
+      fireRate: 4
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:

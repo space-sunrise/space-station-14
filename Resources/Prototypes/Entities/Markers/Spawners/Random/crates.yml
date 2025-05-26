@@ -80,6 +80,7 @@
     - id: CrateServiceColorfulLights
     - id: CrateServiceReplacementLights
     - id: CrateServiceBureaucracy
+    - id: CrateServicePrinterDocRestock
     - id: PetCarrier
     - id: CrateHydroponicsTools
     - id: CrateHydroponicsSeeds

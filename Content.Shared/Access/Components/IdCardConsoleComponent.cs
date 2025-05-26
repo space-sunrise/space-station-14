@@ -79,6 +79,8 @@ public sealed partial class IdCardConsoleComponent : Component
         "Magistrat", // Sunrise-Edit
         "Barber", // Sunrise-Edit
         "Mail", // Sunrise-Edit
+        "CargoPurchaseAccess", // Sunrise-Edit
+        "ResearchConsoleAccess", // Sunrise-Edit
     };
 
     [Serializable, NetSerializable]

@@ -24,8 +24,19 @@
     - Xenoarchaeology
   # gameplay interactions
   - type: XenoArtifact
-    effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+    # Sunrise edit start - новые смешные эффекты
+    effectsTable: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsDefaultTable
+        weight: 3
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsVanillaDefaultReducedTable
+        weight: 3
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsUltraFunnyTable
+        weight: 1
+      # Sunrise edit end
   - type: Damageable
   - type: Actions
   - type: Physics

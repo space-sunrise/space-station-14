@@ -116,7 +116,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<BloodCultistComponent>(args.Actor, out var comp))
             return;
 
-        var count = Math.Min(component.BloodOrbMinCost, args.Count);
+        var count = Math.Max(component.BloodOrbMinCost, args.Count);
 
         if (comp.BloodCharges < count)
             return;

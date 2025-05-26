@@ -199,6 +199,8 @@
     netsync: false
   - type: AccessReader
   - type: DamageOverlay # Sunrise-Edit
+  - type: ExplosionResistance # Sunrise-Edit
+    damageCoefficient: 0.8 # Sunrise-Edit
 
 # Ripley MK-I
 - type: entity
@@ -760,6 +762,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -767,6 +772,7 @@
       types:
         Blunt: 30
         Structural: 190
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -829,6 +835,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -836,6 +845,7 @@
       types:
         Blunt: 50
         Structural: 250
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2
@@ -977,6 +987,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -984,6 +997,7 @@
       types:
         Blunt: 35
         Structural: 250
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -1065,6 +1079,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1072,6 +1089,7 @@
       types:
         Blunt: 55
         Structural: 370
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -1148,6 +1166,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1155,6 +1176,7 @@
       types:
         Blunt: 60
         Structural: 400
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -1234,6 +1256,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1241,6 +1266,7 @@
       types:
         Blunt: 35
         Structural: 280
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -1320,6 +1346,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1327,6 +1356,7 @@
       types:
         Blunt: 50
         Structural: 360
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2
@@ -1401,6 +1431,9 @@
     pilotBlacklist:
       species:
       - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1408,6 +1441,7 @@
       types:
         Blunt: 60
         Structural: 390
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5

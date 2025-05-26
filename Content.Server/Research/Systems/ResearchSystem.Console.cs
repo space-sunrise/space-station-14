@@ -44,7 +44,8 @@ public sealed partial class ResearchSystem
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
-        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+        //sunrise-edit-start
+        /*if (!_emag.CheckFlag(uid, EmagType.Interaction))
         {
             var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
             RaiseLocalEvent(getIdentityEvent);
@@ -56,7 +57,8 @@ public sealed partial class ResearchSystem
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
-        }
+        }*/
+        //sunrise-edit-end
 
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);

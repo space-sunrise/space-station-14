@@ -225,6 +225,7 @@
   id: WallDebug
   name: debug wall
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

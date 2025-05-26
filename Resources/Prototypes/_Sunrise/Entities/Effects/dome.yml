@@ -1,0 +1,28 @@
+- type: entity
+  id: EnergyDomeCult
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _Sunrise/BloodCult/Effects/shield.rsi
+        state: shield-cult
+        shader: unshaded
+    scale: 1.2, 1.2
+  - type: PointLight
+    enabled: true
+    radius: 6
+    power: 3
+    color: "#f5166b"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 0
+        mask:
+        - None
+        layer:
+        - BulletImpassable
+        - Opaque

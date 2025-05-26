@@ -1,0 +1,10 @@
+- type: microwaveMealRecipe
+  id: RecipeBunSugar
+  name: Bun recipe
+  result: FoodBun
+  time: 5
+  reagents:
+    Sugar: 10
+    TableSalt: 5
+  solids:
+    FoodDough: 1
