@@ -1,5 +1,5 @@
 - type: stack
   id: Suntick
-  name: Suntick
+  name: construction-graph-tag-suntick
   icon: _Sunrise/Objects/Specific/Donate/suntick.rsi
   spawn: Suntick1

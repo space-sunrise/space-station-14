@@ -7,17 +7,17 @@
     - to: GeraniumCrown
       steps:
       - tag: Geranium
-        name: Geranium
+        name: construction-graph-tag-geranium
         icon:
           sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
       - tag: Geranium
-        name: Geranium
+        name: construction-graph-tag-geranium
         icon:
           sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
       - tag: Geranium
-        name: Geranium
+        name: construction-graph-tag-geranium
         icon:
           sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
@@ -34,17 +34,17 @@
     - to: PoppyCrown
       steps:
       - tag: Flower
-        name: Flower
+        name: construction-graph-tag-flower
         icon:
           sprite: Objects/Specific/Hydroponics/poppy.rsi
           state: produce
       - tag: Flower
-        name: Flower
+        name: construction-graph-tag-flower
         icon:
           sprite: Objects/Specific/Hydroponics/poppy.rsi
           state: produce
       - tag: Flower
-        name: Flower
+        name: construction-graph-tag-flower
         icon:
           sprite: Objects/Specific/Hydroponics/poppy.rsi
           state: produce
@@ -61,17 +61,17 @@
     - to: SunflowerCrown
       steps:
       - tag: Sunflower
-        name: Sunflower
+        name: construction-graph-tag-sunflower
         icon:
           sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
           state: produce
       - tag: Sunflower
-        name: Sunflower
+        name: construction-graph-tag-sunflower
         icon:
           sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
           state: produce
       - tag: Sunflower
-        name: Sunflower
+        name: construction-graph-tag-sunflower
         icon:
           sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
           state: produce

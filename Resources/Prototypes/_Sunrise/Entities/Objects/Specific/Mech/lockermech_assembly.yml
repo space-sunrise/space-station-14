@@ -119,6 +119,7 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 8
       - tag: DoorElectronics
+        name: step-lockermech-door-electronics
         icon:
           sprite: Objects/Misc/module.rsi
           state: door_electronics
@@ -206,8 +207,8 @@
 # Единый рецепт
 - type: construction
   id: LockerMech
-  name: LockerMech
-  description: Slow, but sealed mech. Assembled from trash.
+  name: construction-graph-tag-lockermech-name
+  description: construction-graph-tag-lockermech-desc
   graph: LockerMechConstruction
   startNode: start
   targetNode: lockermech

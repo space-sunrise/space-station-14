@@ -9,31 +9,31 @@
 #  objectType: Item
 
 - type: construction
-  name: geranium crown
+  name: construction-graph-tag-geranium-crown
   id: GeraniumCrown
   graph: GeraniumCrown
   startNode: start
   targetNode: GeraniumCrown
   category: construction-category-misc
   objectType: Item
-  description: A majestic crown made of fresh geranium flowers. Perfect for botanists and nature lovers.
+  description: construction-graph-tag-geranium-crown-desc
 
 - type: construction
-  name: poppy crown
+  name: construction-graph-tag-poppy-crown
   id: PoppyCrown
   graph: PoppyCrown
   startNode: start
   targetNode: PoppyCrown
   category: construction-category-misc
   objectType: Item
-  description: A flower crown made out of a string of bright red poppies.
+  description: construction-graph-tag-poppy-crown-desc
 
 - type: construction
-  name: sunflower crown
+  name: construction-graph-tag-sunflower-crown
   id: SunflowerCrown
   graph: SunflowerCrown
   startNode: start
   targetNode: SunflowerCrown
   category: construction-category-misc
   objectType: Item
-  description: A bright flower crown made out sunflowers that is sure to brighten up anyone's day!
+  description: construction-graph-tag-sunflower-crown-desc

@@ -37,20 +37,20 @@ step-trashgun-smallbattery = { ent-PowerCellSmall }
 step-trashgun-pipe = { ent-GasPipeStraight }
 
 step-powercage-name = { ent-MakeshiftPowerCage }
-construction-graph-tag-exosuit-air-tank = exosuit air tank
-construction-graph-tag-exosuit-thruster = exosuit thruster
-construction-graph-tag-phasic-scanning-module = phasic scanning module
-construction-graph-tag-capacitor = capacitor
-construction-graph-tag-any-anomaly-core = any anomaly core
-construction-graph-tag-phazon-armor-plates = phazon armor plates
-construction-graph-tag-durand-armor-plates = durand armor plates
-construction-graph-tag-gygax-armor-plates = gygax armor plates
+construction-graph-tag-exosuit-air-tank = баллон экзокостюма
+construction-graph-tag-exosuit-thruster = двигатель экзокостюма
+construction-graph-tag-phasic-scanning-module = фазовый сканирующий модуль
+construction-graph-tag-capacitor = конденсатор
+construction-graph-tag-any-anomaly-core = любой аномальный сердечник
+construction-graph-tag-phazon-armor-plates = бронепластины фазона
+construction-graph-tag-durand-armor-plates = бронепластины дюранда
+construction-graph-tag-gygax-armor-plates = бронепластины гигакса
 
 # Полы (floor tiles)
-dark-techmaint-floor = dark techmaint floor
-xeno-floor = xeno floor
-dark-squiggly-floor = dark squiggly floor
-dark-squiggly-vertical-floor = dark squiggly vertical floor
+dark-techmaint-floor = темный техобслуживающий пол
+xeno-floor = ксенопол
+dark-squiggly-floor = темный волнистый пол
+dark-squiggly-vertical-floor = темный вертикальный волнистый пол
 
 # Оружие и материалы
 construction-graph-tag-glass-shard = осколок стекла
@@ -117,7 +117,6 @@ construction-graph-tag-igniter = воспламенитель
 construction-graph-tag-modular-receiver = модульный приёмник
 construction-graph-tag-rifle-stock = приклад винтовки
 construction-graph-tag-match-stick = спичка
-construction-graph-tag-flower = цветок
 construction-graph-tag-ambrosia = амброзия
 construction-graph-tag-human-head = человеческая голова
 construction-graph-tag-light-bulb = лампочка
@@ -166,3 +165,93 @@ construction-graph-tag-potato = картофель
 
 # Взрывчатые вещества
 construction-graph-tag-payload = боевая часть
+
+# Манипуляторы
+step-manipulator-name = манипулятор
+
+# Мехи
+construction-graph-tag-lockermech-name = шкаф-мех
+construction-graph-tag-lockermech-desc = Медленный, но герметичный мех. Собран из мусора.
+
+# Ядерное оружие
+construction-graph-tag-plutonium-core = плутониевый сердечник
+
+# Цветы и венки
+construction-graph-tag-geranium = герань
+construction-graph-tag-flower = цветок
+construction-graph-tag-sunflower = подсолнух
+
+# Импровизированная броня
+construction-graph-tag-apron = фартук
+construction-graph-tag-utility-belt = пояс с инструментами
+construction-graph-tag-scrap-armor = самодельная броня
+construction-graph-tag-scrap-armor-desc = Плохо сделанный комплект брони из сваренных стальных листов и запасных кабелей.
+construction-graph-tag-scrap-helmet = самодельный шлем
+construction-graph-tag-scrap-helmet-desc = Ведро, грубо переделанное в стальной шлем.
+
+# Предметы
+construction-graph-tag-ground-cannabis-vita = измельченная каннабис вита
+construction-graph-tag-dried-cannabis-vita = высушенные листья каннабис вита
+construction-graph-tag-nanopaste = нанопаста
+construction-graph-tag-blue-crystal = синий кристалл
+construction-graph-tag-crystallite = кристаллит
+construction-graph-tag-suntick = солнечный тик
+construction-graph-tag-runic-metal = рунический металл
+
+# Мебель
+construction-graph-tag-double-bed = двуспальная кровать
+construction-graph-tag-double-bed-desc = Используется для лежания, сна или привязывания. Отдых здесь обеспечивает крайне медленное исцеление.
+construction-graph-tag-sofa = диван
+construction-graph-tag-sofa-desc = Трон для сна королевской особы, питающейся закусками.
+construction-graph-tag-sofa-left = диван левый
+construction-graph-tag-sofa-right = диван правый
+construction-graph-tag-sofa-corner = диван угловой
+construction-graph-tag-black-sofa = черный диван
+construction-graph-tag-black-sofa-left = черный диван левый
+construction-graph-tag-black-sofa-right = черный диван правый
+construction-graph-tag-black-sofa-corner = черный диван угловой
+
+# Предметы крафта
+construction-graph-tag-atmoscross = АтмосКрест
+construction-graph-tag-atmoscross-desc = Крест, сделанный из металлических прутьев и газовой трубы, идеально подходит для энтузиастов атмосферы.
+construction-graph-tag-geranium-crown = венок из герани
+construction-graph-tag-geranium-crown-desc = Величественная корона из свежих цветов герани. Идеально подходит для ботаников и любителей природы.
+construction-graph-tag-poppy-crown = венок из маков
+construction-graph-tag-poppy-crown-desc = Венок из нитки ярко-красных маков.
+construction-graph-tag-sunflower-crown = венок из подсолнухов
+construction-graph-tag-sunflower-crown-desc = Яркий венок из подсолнухов, который обязательно поднимет настроение любому!
+
+# Оружие
+construction-graph-tag-trashgun = Мусоромет
+construction-graph-tag-trashgun-desc = Самодельный мусоромет. Стреляет мусором на среднюю дистанцию. Похоже, может взорваться в любой момент.....
+construction-graph-tag-trashlasergun = Мусоролазер
+construction-graph-tag-trashlasergun-desc = Самодельный лазер. Стреляет лазером, возможно...
+
+# Энергетика
+construction-graph-tag-power-cage = Самодельная энергоклетка
+construction-graph-tag-power-cage-desc = Самодельная энергоклетка. Не очень хорошая, но лучше чем ничего.
+
+# Курительные смеси
+construction-graph-tag-joint-vita = косяк вита
+construction-graph-tag-joint-vita-desc = Скрутка из высушенного растительного материала, обернутая в тонкую бумагу.
+
+# Контейнеры
+construction-graph-tag-canister = канистра
+construction-graph-tag-canister-desc = Канистра, которая может содержать любой тип газа. Может быть прикреплена к соединительным портам с помощью гаечного ключа.
+
+# Lockermech
+step-lockermech-toolbox1 = Используйте красный ящик с инструментами
+step-lockermech-toolbox2 = Используйте красный ящик с инструментами
+step-lockermech-toolbox3 = Используйте желтый ящик с инструментами
+step-lockermech-flashlight = Установите фонарик
+step-lockermech-oxygentank = Установите кислородный бак
+step-lockermech-manipulators = Установите микроманипуляторы
+step-lockermech-powercell = Установите силовую ячейку
+
+# Energy Sword
+construction-graph-tag-energy-sword = энергетический меч
+construction-graph-tag-energy-sword-desc = Опасное энергетическое оружие, способное разрезать практически все.
+
+# Cannabis Vita
+construction-graph-tag-ground-cannabis-vita-desc = Измельченные листья каннабиса вита, готовые к употреблению.
+construction-graph-tag-joint-vita-desc = Самокрутка из каннабиса вита.

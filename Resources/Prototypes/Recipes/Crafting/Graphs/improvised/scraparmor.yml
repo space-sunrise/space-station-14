@@ -10,7 +10,7 @@
           icon:
             sprite: Clothing/OuterClothing/Misc/apronbotanist.rsi
             state: icon
-          name: an apron
+          name: construction-graph-tag-apron
         - material: Cable
           amount: 15
           doAfter: 10
@@ -41,7 +41,7 @@
           icon:
             sprite: Clothing/Belt/utility.rsi
             state: icon
-          name: utility belt
+          name: construction-graph-tag-utility-belt
         - material: Cable
           amount: 15
           doAfter: 15

@@ -1,9 +1,9 @@
 - type: construction
-  name: AtmosCross
+  name: construction-graph-tag-atmoscross
   id: AtmosCrossCraft
   graph: AtmosCrossCraft
   startNode: start
   targetNode: cross
   category: construction-category-clothing
-  description: A cross crafted from metal rods and a gas pipe, perfect for atmospheric enthusiasts.
+  description: construction-graph-tag-atmoscross-desc
   objectType: Item

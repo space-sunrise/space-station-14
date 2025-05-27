@@ -7,6 +7,7 @@
         - to: DoubleEnergySwordNode
           steps:
             - tag: EnergySword
+              name: ent-EnergySword # Sunrise edit
               doAfter: 2
 
     - node: DoubleEnergySwordNode
@@ -33,6 +34,7 @@
     - to: ToySwordDoubledNode
       steps:
       - tag: ToySword
+        name: ent-ToySword # Sunrise edit
         doAfter: 2
 
   - node: ToySwordDoubledNode

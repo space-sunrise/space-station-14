@@ -8,7 +8,7 @@
 
 - type: stack
   id: RunicMetalSheets
-  name: runic metal
+  name: construction-graph-tag-runic-metal
   icon: { sprite: /Textures/_Sunrise/BloodCult/Entities/runic_metal.rsi, state: runic}
   spawn: CultRunicMetal1
   maxCount: 30

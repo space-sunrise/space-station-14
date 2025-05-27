@@ -1,7 +1,7 @@
 - type: construction
   id: DoubleBed
-  name: double bed
-  description: This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+  name: construction-graph-tag-double-bed
+  description: construction-graph-tag-double-bed-desc
   graph: DoubleBeds
   startNode: start
   targetNode: doubleBed

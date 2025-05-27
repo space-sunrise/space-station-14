@@ -1,6 +1,6 @@
 - type: stack
   id: Nanopaste
-  name: nanopaste
+  name: construction-graph-tag-nanopaste
   icon: { sprite: "/Textures/_Sunrise/Objects/Misc/nanopaste.rsi", state: icon }
   spawn: Nanopaste
   maxCount: 10
