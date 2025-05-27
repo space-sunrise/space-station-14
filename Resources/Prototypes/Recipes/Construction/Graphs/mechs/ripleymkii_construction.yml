@@ -34,7 +34,7 @@
           data: 4
 
       - tag: RipleyCentralControlModule
-        name: step-ripley-central-control-module-name
+        name: construction-graph-tag-ripley-central-control-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -51,7 +51,7 @@
           data: 6
 
       - tag: RipleyPeripheralsControlModule
-        name: step-ripley-peripherals-control-module-name
+        name: construction-graph-tag-ripley-peripherals-control-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -107,7 +107,7 @@
           data: 17
 
       - tag: MechAirTank
-        name: step-exosuit-air-tank-name
+        name: step-exosuit-air-tank-name # Sunrise edit
         icon:
           sprite: Objects/Specific/Mech/mecha_equipment.rsi
           state: mecha_air_tank
