@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Sunrise.FleshCult;
+namespace Content.Shared._Sunrise.FleshCult;
 
 [RegisterComponent]
 public sealed partial class PendingFleshCultistComponent : Component

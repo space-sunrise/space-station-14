@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Bed;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
@@ -18,8 +19,8 @@ public abstract class SharedBedSystem : EntitySystem
         base.Initialize();
 
         // Sunrise-Start
-        SubscribeLocalEvent<_Sunrise.Bed.CanSleepOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
-        SubscribeLocalEvent<_Sunrise.Bed.CanSleepOnBuckleComponent, StrappedEvent>(OnStrapped);
+        SubscribeLocalEvent<CanSleepOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
+        SubscribeLocalEvent<CanSleepOnBuckleComponent, StrappedEvent>(OnStrapped);
         // Sunrise-End
 
         SubscribeLocalEvent<HealOnBuckleComponent, MapInitEvent>(OnHealMapInit);
@@ -28,13 +29,13 @@ public abstract class SharedBedSystem : EntitySystem
     }
 
     // Sunrise-Start
-    private void OnStrapped(Entity<_Sunrise.Bed.CanSleepOnBuckleComponent> bed, ref StrappedEvent args)
+    private void OnStrapped(Entity<CanSleepOnBuckleComponent> bed, ref StrappedEvent args)
     {
         var canSleep = EnsureComp<CanSleepComponent>(args.Buckle);
         _actionsSystem.AddAction(args.Buckle.Owner, ref canSleep.SleepAction, SleepingSystem.SleepActionId, args.Buckle.Owner);
     }
 
-    private void OnUnstrapped(Entity<_Sunrise.Bed.CanSleepOnBuckleComponent> bed, ref UnstrappedEvent args)
+    private void OnUnstrapped(Entity<CanSleepOnBuckleComponent> bed, ref UnstrappedEvent args)
     {
         if (!TryComp<CanSleepComponent>(args.Buckle.Owner, out var canSleep))
             return;

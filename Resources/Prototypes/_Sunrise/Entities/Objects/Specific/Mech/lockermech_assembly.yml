@@ -127,25 +127,25 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 9
-      - tag: CapacitorStockPart
-        name: step-lockermech-capacitors
+      - tag: MicroManipulatorStockPart
+        name: step-lockermech-manipulators
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          state: micro_mani
         doAfter: 1
 
-      - tag: CapacitorStockPart
-        name: step-lockermech-capacitors
+      - tag: MicroManipulatorStockPart
+        name: step-lockermech-manipulators
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          state: micro_mani
         doAfter: 1
 
-      - tag: CapacitorStockPart
-        name: step-lockermech-capacitors
+      - tag: MicroManipulatorStockPart
+        name: step-lockermech-manipulators
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          state: micro_mani
         doAfter: 1
 
       - tag: MicroManipulatorStockPart

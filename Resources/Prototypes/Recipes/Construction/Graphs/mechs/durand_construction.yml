@@ -80,11 +80,11 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 9
 
-      - tag: CapacitorStockPart
-        name: step-capacitor-name
+      - tag: MicroManipulatorStockPart
+        name: step-manipulator-name
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          state: micro_mani
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"

@@ -6,6 +6,3 @@ ent-CapacitorStockPart = конденсатор
 ent-MicroManipulatorStockPart = манипулятор
     .desc = Базовый манипулятор, используемый при создании некоторых устройств.
     .suffix = Уровень 1
-ent-MatterBinStockPart = ёмкость материи
-    .desc = Базовая ёмкость материи, используемая при создании различных устройств.
-    .suffix = Уровень 1

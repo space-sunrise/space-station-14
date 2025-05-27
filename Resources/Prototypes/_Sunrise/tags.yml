@@ -160,9 +160,6 @@
   id: MicroManipulatorStockPart
 
 - type: Tag
-  id: MatterBinStockPart
-
-- type: Tag
   id: PartRodMetal
 
 - type: Tag

@@ -6,6 +6,3 @@ ent-CapacitorStockPart = capacitor
 ent-MicroManipulatorStockPart = manipulator
     .desc = A basic manipulator used in the construction of a variety of devices.
     .suffix = Rating 1
-ent-MatterBinStockPart = matter bin
-    .desc = A basic matter bin used in the construction of a variety of devices.
-    .suffix = Rating 1

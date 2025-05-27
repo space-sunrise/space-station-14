@@ -1,12 +1,10 @@
-using Content.Server.Cargo.Systems;
-using Content.Shared.Cargo;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Cargo.Components;
+namespace Content.Shared.Cargo;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 [Access(typeof(SharedCargoSystem))]
 public sealed partial class CargoPalletConsoleComponent : Component
 {

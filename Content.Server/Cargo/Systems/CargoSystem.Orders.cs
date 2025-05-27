@@ -442,7 +442,7 @@ namespace Content.Server.Cargo.Systems
             }
         }
 
-        private void PlayDenySound(EntityUid uid, CargoPalletConsoleComponent component)
+        private void PlayDenySound(EntityUid uid, Shared.Cargo.CargoPalletConsoleComponent component)
         {
             if (_timing.CurTime >= component.NextDenySoundTime)
             {

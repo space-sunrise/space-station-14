@@ -80,8 +80,7 @@
   - type: MachineBoard
     prototype: Interrogator
     stackRequirements:
-      MatterBin: 2
-      Manipulator: 2
+      Manipulator: 4
       Glass: 1
       Cable: 1
 
