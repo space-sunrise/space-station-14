@@ -3,7 +3,7 @@ construction-graph-tag-hamtr-central-control-module = { ent-HamtrCentralElectron
 construction-graph-tag-hamtr-peripherals-control-module = { ent-HamtrPeripheralsElectronics }
 
 # Мехи: PowerCage и контроллеры
-construction-graph-component-power-cage = { ent-MakeshiftPowerCage }
+construction-graph-component-power-cage = { ent-PowerCageSmall }
 
 # Ripley
 construction-graph-tag-ripley-central-control-module = { ent-RipleyCentralElectronics }
@@ -37,221 +37,216 @@ step-trashgun-smallbattery = { ent-PowerCellSmall }
 step-trashgun-pipe = { ent-GasPipeStraight }
 
 step-powercage-name = { ent-MakeshiftPowerCage }
-construction-graph-tag-exosuit-air-tank = баллон экзокостюма
-construction-graph-tag-exosuit-thruster = двигатель экзокостюма
-construction-graph-tag-phasic-scanning-module = фазовый сканирующий модуль
-construction-graph-tag-capacitor = конденсатор
-construction-graph-tag-any-anomaly-core = любой аномальный сердечник
-construction-graph-tag-phazon-armor-plates = бронепластины фазона
-construction-graph-tag-durand-armor-plates = бронепластины дюранда
-construction-graph-tag-gygax-armor-plates = бронепластины гигакса
+construction-graph-tag-exosuit-air-tank = { ent-ExosuitAirTank }
+construction-graph-tag-exosuit-thruster = { ent-ExosuitThruster }
+construction-graph-tag-phasic-scanning-module = { ent-PhasicScanningModule }
+construction-graph-tag-capacitor = { ent-Capacitor }
+construction-graph-tag-any-anomaly-core = { ent-AnomalyCore }
+construction-graph-tag-phazon-armor-plates = { ent-PhazonArmorPlates }
+construction-graph-tag-durand-armor-plates = { ent-DurandArmorPlates }
+construction-graph-tag-gygax-armor-plates = { ent-GygaxArmorPlates }
 
 # Полы (floor tiles)
-dark-techmaint-floor = темный техобслуживающий пол
-xeno-floor = ксенопол
-dark-squiggly-floor = темный волнистый пол
-dark-squiggly-vertical-floor = темный вертикальный волнистый пол
+dark-techmaint-floor = { ent-FloorTileItemTechmaintDark }
+xeno-floor = { ent-FloorTileItemXeno }
+# У этих нет своих ентити прототипов
+dark-squiggly-floor = { ent-FloorTileItemSteel }
+dark-squiggly-vertical-floor = { ent-FloorTileItemSteel }
 
 # Оружие и материалы
-construction-graph-tag-glass-shard = осколок стекла
-construction-graph-tag-reinforced-glass-shard = осколок армированного стекла
-construction-graph-tag-plasma-glass-shard = осколок плазменного стекла
-construction-graph-tag-uranium-glass-shard = осколок уранового стекла
-construction-graph-tag-conveyor-belt-assembly = сборка конвейерной ленты
-construction-graph-tag-ghost = призрак
-construction-graph-tag-ectoplasm = эктоплазма
-construction-graph-tag-corgi-hide = шкура корги
-construction-graph-tag-grey-flatcap = серая кепка
-construction-graph-tag-brown-flatcap = коричневая кепка
-construction-graph-tag-eva-suit = скафандр EVA
-construction-graph-tag-eva-helmet = шлем EVA
-construction-graph-tag-red-crayon = красный мелок
-construction-graph-tag-black-crayon = черный мелок
-construction-graph-tag-suspenders = подтяжки
-construction-graph-tag-wheat-bushel = сноп пшеницы
-construction-graph-tag-rubber-ducky = резиновая уточка
+construction-graph-tag-glass-shard = { ent-GlassShard }
+construction-graph-tag-reinforced-glass-shard = { ent-ShardGlassReinforced }
+construction-graph-tag-plasma-glass-shard = { ent-ShardGlassPlasma }
+construction-graph-tag-uranium-glass-shard = { ent-ShardGlassUranium }
+construction-graph-tag-conveyor-belt-assembly = { ent-ConveyorBeltAssembly }
+construction-graph-tag-ghost = { ent-Ghost }
+construction-graph-tag-ectoplasm = { ent-Ectoplasm }
+construction-graph-tag-corgi-hide = { ent-CorgiHide }
+construction-graph-tag-grey-flatcap = { ent-GreyFlatcap }
+construction-graph-tag-brown-flatcap = { ent-BrownFlatcap }
+construction-graph-tag-eva-suit = { ent-EVASuit }
+construction-graph-tag-eva-helmet = { ent-EVAHelmet }
+construction-graph-tag-red-crayon = { ent-RedCrayon }
+construction-graph-tag-black-crayon = { ent-BlackCrayon }
+construction-graph-tag-suspenders = { ent-Suspenders }
+construction-graph-tag-wheat-bushel = { ent-WheatBushel }
+construction-graph-tag-rubber-ducky = { ent-RubberDucky }
 
 # Клоунские предметы
-construction-graph-tag-purple-crayon = фиолетовый мелок
-construction-graph-tag-yellow-crayon = желтый мелок
-construction-graph-tag-clown-recorder = клоунский рекордер
-construction-graph-tag-clown-bike-horn = велосипедный гудок
-construction-graph-tag-pipe = труба
-construction-graph-tag-torch = факел
-construction-graph-tag-lizard-plushie = плюшевая ящерица
-construction-graph-tag-cuffs = наручники
-construction-graph-tag-banana-peel = банановая кожура
-construction-graph-tag-clown-suit = клоунский костюм
-construction-graph-tag-clown-shoes = клоунские ботинки
-construction-graph-tag-clown-mask = клоунская маска
-construction-graph-tag-clowne-horn = сломанный велосипедный гудок
-construction-graph-tag-happy-honk-meal = счастливая хонк-еда
-construction-graph-tag-woeful-cluwne-meal = печальная клун-еда
-construction-graph-tag-mime-meal = мим-версия счастливой хонк-еды
+construction-graph-tag-purple-crayon = { ent-CrayonPurple }
+construction-graph-tag-yellow-crayon = { ent-CrayonYellow }
+construction-graph-tag-clown-recorder = { ent-ClownRecorder }
+construction-graph-tag-clown-bike-horn = { ent-BikeHorn }
+construction-graph-tag-pipe = { ent-GasPipeStraight }
+construction-graph-tag-torch = { ent-Torch }
+construction-graph-tag-lizard-plushie = { ent-PlushieLizard }
+construction-graph-tag-cuffs = { ent-Cablecuffs }
+construction-graph-tag-banana-peel = { ent-TrashBananaPeel }
+construction-graph-tag-clown-suit = { ent-ClothingUniformJumpsuitClown }
+construction-graph-tag-clown-shoes = { ent-ClothingShoesClown }
+construction-graph-tag-clown-mask = { ent-ClothingMaskClown }
+construction-graph-tag-clowne-horn = { ent-BikeHorn }
+construction-graph-tag-happy-honk-meal = { ent-HappyHonk }
+construction-graph-tag-woeful-cluwne-meal = { ent-HappyHonkCluwne }
+construction-graph-tag-mime-meal = { ent-HappyHonkMime }
 
 # Кристаллы
-construction-graph-tag-cyan-crystal-shard = осколок голубого кристалла
-construction-graph-tag-blue-crystal-shard = осколок синего кристалла
-construction-graph-tag-yellow-crystal-shard = осколок желтого кристалла
-construction-graph-tag-pink-crystal-shard = осколок розового кристалла
-construction-graph-tag-orange-crystal-shard = осколок оранжевого кристалла
-construction-graph-tag-black-crystal-shard = осколок черного кристалла
+construction-graph-tag-cyan-crystal-shard = { ent-CyanCrystalShard }
+construction-graph-tag-blue-crystal-shard = { ent-BlueCrystalShard }
+construction-graph-tag-yellow-crystal-shard = { ent-YellowCrystalShard }
+construction-graph-tag-pink-crystal-shard = { ent-PinkCrystalShard }
+construction-graph-tag-orange-crystal-shard = { ent-OrangeCrystalShard }
+construction-graph-tag-black-crystal-shard = { ent-BlackCrystalShard }
 
 # Боты и компоненты
-construction-graph-tag-bucket = ведро
-construction-graph-tag-proximity-sensor = датчик приближения
-construction-graph-tag-borg-arm = рука борга
-construction-graph-tag-borg-head = голова борга
-construction-graph-tag-fire-extinguisher = огнетушитель
-construction-graph-tag-fire-helmet = пожарный шлем
-construction-graph-tag-medkit = аптечка
-construction-graph-tag-health-analyzer = анализатор здоровья
-construction-graph-tag-power-cell-small = малая батарея
-construction-graph-tag-power-cell = батарея
-construction-graph-tag-potato-battery = картофельная батарея
-construction-graph-tag-super-compact-ai-chip = суперкомпактный ИИ-чип
+construction-graph-tag-bucket = { ent-Bucket }
+construction-graph-tag-proximity-sensor = { ent-ProximitySensor }
+construction-graph-tag-borg-arm = { ent-LeftArmBorg } или { ent-RightArmBorg }
+construction-graph-tag-borg-head = { ent-LightHeadBorg }
+construction-graph-tag-fire-extinguisher = { ent-FireExtinguisher }
+construction-graph-tag-fire-helmet = { ent-FireHelmet }
+construction-graph-tag-medkit = { ent-Medkit }
+construction-graph-tag-health-analyzer = { ent-HandheldHealthAnalyzer }
+construction-graph-tag-power-cell-small = { ent-PowerCellSmall }
+construction-graph-tag-power-cell = { ent-PowerCellSmall }
+construction-graph-tag-potato-battery = { ent-PowerCellPotato }
+construction-graph-tag-super-compact-ai-chip = { ent-PotatoAIChip }
 
 # Импровизированное оружие
-construction-graph-tag-empty-can = пустая банка
-construction-graph-tag-igniter = воспламенитель
-construction-graph-tag-modular-receiver = модульный приёмник
-construction-graph-tag-rifle-stock = приклад винтовки
-construction-graph-tag-match-stick = спичка
-construction-graph-tag-ambrosia = амброзия
-construction-graph-tag-human-head = человеческая голова
-construction-graph-tag-light-bulb = лампочка
-construction-graph-tag-radio = радио
+construction-graph-tag-empty-can = любая банка
+construction-graph-tag-igniter = { ent-Igniter }
+construction-graph-tag-modular-receiver = { ent-ModularReceiver }
+construction-graph-tag-rifle-stock = { ent-RifleStock }
+construction-graph-tag-match-stick = { ent-MatchStick }
+construction-graph-tag-ambrosia = { ent-FoodAmbrosiaVulgaris }
+construction-graph-tag-human-head = { ent-HeadHuman }
+construction-graph-tag-light-bulb = { ent-LightBulb }
+construction-graph-tag-radio = { ent-RadioHandheld }
 
 # Щиты и защита
-construction-graph-tag-strobe-shield = стробоскопический щит
-construction-graph-tag-security-helmet = шлем охраны
-construction-graph-tag-security-hud = интерфейс охраны
-construction-graph-tag-medical-hud = медицинский интерфейс
-construction-graph-tag-sun-glasses = солнечные очки
+construction-graph-tag-strobe-shield = { ent-RiotShieldStrobe }
+construction-graph-tag-security-helmet = { ent-ClothingHeadHelmetBasic }
+construction-graph-tag-security-hud = { ent-ClothingEyesHudSecurity }
+construction-graph-tag-medical-hud = { ent-ClothingEyesHudMedical }
+construction-graph-tag-sun-glasses = { ent-ClothingEyesGlassesSunglasses }
 
 # Скафандры
-construction-graph-tag-spationaut-hardsuit = скафандр космонавта
+construction-graph-tag-spationaut-hardsuit = { ent-ClothingOuterHardsuitSpatio }
 
 # Электроника
-construction-graph-tag-freezer-electronics = электроника морозильника
-construction-graph-tag-door-electronics-circuit-board = плата электроники двери
-construction-graph-tag-firelock-electronics-circuit-board = плата электроники противопожарной двери
-construction-graph-tag-mailing-unit-electronics = электроника почтового блока
-construction-graph-tag-intercom-electronics = электроника интеркома
-construction-graph-tag-solar-assembly-parts = детали солнечной панели
-construction-graph-tag-solar-tracker-electronics = электроника солнечного трекера
-construction-graph-tag-station-map-electronics = электроника карты станции
-construction-graph-tag-signal-timer-electronics = электроника сигнального таймера
-construction-graph-tag-screen-timer-electronics = электроника экранного таймера
-construction-graph-tag-brig-timer-electronics = электроника таймера брига
-construction-graph-tag-wallmount-generator-circuit-board = плата настенного генератора
-construction-graph-tag-wallmount-apu-circuit-board = плата настенного БП
-construction-graph-tag-wallmount-substation-circuit-board = плата настенной подстанции
-construction-graph-tag-surveillance-camera-monitor-board = плата монитора камеры наблюдения
-construction-graph-tag-television-board = плата телевизора
-construction-graph-tag-air-alarm-electronics = электроника воздушной тревоги
-construction-graph-tag-fire-alarm-electronics = электроника пожарной тревоги
+construction-graph-tag-freezer-electronics = { ent-FreezerElectronics }
+construction-graph-tag-door-electronics-circuit-board = { ent-DoorElectronicsCircuitBoard }
+construction-graph-tag-firelock-electronics-circuit-board = { ent-FirelockElectronicsCircuitBoard }
+construction-graph-tag-mailing-unit-electronics = { ent-MailingUnitElectronics }
+construction-graph-tag-intercom-electronics = { ent-IntercomElectronics }
+construction-graph-tag-solar-assembly-parts = { ent-SolarAssemblyFlatpack }
+construction-graph-tag-solar-tracker-electronics = { ent-SolarTrackerElectronics }
+construction-graph-tag-station-map-electronics = { ent-StationMapCircuitboard }
+construction-graph-tag-signal-timer-electronics = { ent-SignalTimerElectronics }
+construction-graph-tag-screen-timer-electronics = { ent-ScreenTimerElectronics }
+construction-graph-tag-brig-timer-electronics = { ent-BrigTimerElectronics }
+construction-graph-tag-wallmount-generator-circuit-board = { ent-WallmountGeneratorElectronics }
+construction-graph-tag-wallmount-apu-circuit-board = { ent-WallmountGeneratorAPUElectronics }
+construction-graph-tag-wallmount-substation-circuit-board = { ent-WallmountSubstationElectronics }
+construction-graph-tag-surveillance-camera-monitor-board = { ent-SurveillanceCameraMonitorCircuitboard }
+construction-graph-tag-television-board = { ent-ComputerTelevisionCircuitboard }
+construction-graph-tag-air-alarm-electronics = { ent-AirAlarmElectronics }
+construction-graph-tag-fire-alarm-electronics = { ent-FireAlarmElectronics }
 
 # Инструменты
-construction-graph-tag-multitool = мультитул
-construction-graph-tag-voice-trigger = голосовой триггер
-construction-graph-tag-signal-trigger = сигнальный триггер
+construction-graph-tag-multitool = { ent-Multitool }
+construction-graph-tag-voice-trigger = { ent-VoiceTrigger }
+construction-graph-tag-signal-trigger = { ent-SignalTrigger }
 
 # Оружие и улучшения
-construction-graph-tag-weapon-pistol-chimp-upgrade-kit = набор улучшения пистолета CHIMP
+construction-graph-tag-weapon-pistol-chimp-upgrade-kit = { ent-WeaponPistolCHIMPUpgradeKit }
 
 # Растения и материалы
-construction-graph-tag-potato = картофель
+construction-graph-tag-potato = { ent-FoodPotato }
 
 # Взрывчатые вещества
-construction-graph-tag-payload = боевая часть
+construction-graph-tag-payload = любой заряд
 
 # Манипуляторы
-step-manipulator-name = манипулятор
+step-manipulator-name = { ent-MicroManipulatorStockPart }
 
 # Мехи
-construction-graph-tag-lockermech-name = шкаф-мех
-construction-graph-tag-lockermech-desc = Медленный, но герметичный мех. Собран из мусора.
+construction-graph-tag-lockermech-name = { ent-MechLocker }
+construction-graph-tag-lockermech-desc = { ent-MechLocker.desc }
+step-lockermech-door-electronics = { ent-DoorElectronics }
 
 # Ядерное оружие
-construction-graph-tag-plutonium-core = плутониевый сердечник
+construction-graph-tag-plutonium-core = { ent-PlutoniumCore }
 
 # Цветы и венки
-construction-graph-tag-geranium = герань
-construction-graph-tag-flower = цветок
-construction-graph-tag-sunflower = подсолнух
+construction-graph-tag-geranium = { ent-FoodGeranium }
+construction-graph-tag-flower = любой цветок
+construction-graph-tag-sunflower = { ent-FoodSunflower }
 
 # Импровизированная броня
-construction-graph-tag-apron = фартук
-construction-graph-tag-utility-belt = пояс с инструментами
-construction-graph-tag-scrap-armor = самодельная броня
-construction-graph-tag-scrap-armor-desc = Плохо сделанный комплект брони из сваренных стальных листов и запасных кабелей.
-construction-graph-tag-scrap-helmet = самодельный шлем
-construction-graph-tag-scrap-helmet-desc = Ведро, грубо переделанное в стальной шлем.
+construction-graph-tag-apron = { ent-ClothingOuterApron }
+construction-graph-tag-utility-belt = { ent-ClothingBeltUtility }
+construction-graph-tag-scrap-armor = { ent-ClothingOuterArmorScrap }
+construction-graph-tag-scrap-armor-desc = { ent-ClothingOuterArmorScrap.desc }
+construction-graph-tag-scrap-helmet = { ent-ClothingHeadHelmetScrap }
+construction-graph-tag-scrap-helmet-desc = { ent-ClothingHeadHelmetScrap.desc }
 
 # Предметы
-construction-graph-tag-ground-cannabis-vita = измельченная каннабис вита
-construction-graph-tag-dried-cannabis-vita = высушенные листья каннабис вита
-construction-graph-tag-nanopaste = нанопаста
-construction-graph-tag-blue-crystal = синий кристалл
-construction-graph-tag-crystallite = кристаллит
-construction-graph-tag-suntick = солнечный тик
-construction-graph-tag-runic-metal = рунический металл
+construction-graph-tag-ground-cannabis-vita = { ent-GroundCannabisVita }
+construction-graph-tag-dried-cannabis-vita = { ent-DriedCannabisVita }
+construction-graph-tag-nanopaste = { ent-Nanopaste }
+construction-graph-tag-blue-crystal = { ent-BlueCrystal }
+construction-graph-tag-crystallite = { ent-Crystallite }
+construction-graph-tag-suntick = сантики
+construction-graph-tag-runic-metal = { ent-RunicMetal }
 
 # Мебель
-construction-graph-tag-double-bed = двуспальная кровать
-construction-graph-tag-double-bed-desc = Используется для лежания, сна или привязывания. Отдых здесь обеспечивает крайне медленное исцеление.
-construction-graph-tag-sofa = диван
-construction-graph-tag-sofa-desc = Трон для сна королевской особы, питающейся закусками.
-construction-graph-tag-sofa-left = диван левый
-construction-graph-tag-sofa-right = диван правый
-construction-graph-tag-sofa-corner = диван угловой
-construction-graph-tag-black-sofa = черный диван
-construction-graph-tag-black-sofa-left = черный диван левый
-construction-graph-tag-black-sofa-right = черный диван правый
-construction-graph-tag-black-sofa-corner = черный диван угловой
+construction-graph-tag-double-bed = { ent-DoubleBed }
+construction-graph-tag-double-bed-desc = { ent-DoubleBed.desc }
+construction-graph-tag-sofa = { ent-SofaMiddle }
+construction-graph-tag-sofa-desc = { ent-SofaMiddle.desc }
+construction-graph-tag-sofa-left = { ent-SofaLeft }
+construction-graph-tag-sofa-right = { ent-SofaRight }
+construction-graph-tag-sofa-corner = { ent-SofaCorner }
+construction-graph-tag-black-sofa = { ent-CorpSofaMiddle }
+construction-graph-tag-black-sofa-left = { ent-CorpSofaLeft }
+construction-graph-tag-black-sofa-right = { ent-CorpSofaRight }
+construction-graph-tag-black-sofa-corner = { ent-CorpSofaCorner }
 
 # Предметы крафта
-construction-graph-tag-atmoscross = АтмосКрест
-construction-graph-tag-atmoscross-desc = Крест, сделанный из металлических прутьев и газовой трубы, идеально подходит для энтузиастов атмосферы.
-construction-graph-tag-geranium-crown = венок из герани
-construction-graph-tag-geranium-crown-desc = Величественная корона из свежих цветов герани. Идеально подходит для ботаников и любителей природы.
-construction-graph-tag-poppy-crown = венок из маков
-construction-graph-tag-poppy-crown-desc = Венок из нитки ярко-красных маков.
-construction-graph-tag-sunflower-crown = венок из подсолнухов
-construction-graph-tag-sunflower-crown-desc = Яркий венок из подсолнухов, который обязательно поднимет настроение любому!
+construction-graph-tag-atmoscross = { ent-ClothingNeckAtmosCross }
+construction-graph-tag-atmoscross-desc = { ent-ClothingNeckAtmosCross.desc }
+construction-graph-tag-geranium-crown = { ent-GeraniumCrown }
+construction-graph-tag-geranium-crown-desc = { ent-GeraniumCrown.desc }
+construction-graph-tag-poppy-crown = { ent-PoppyCrown }
+construction-graph-tag-poppy-crown-desc = { ent-PoppyCrown.desc }
+construction-graph-tag-sunflower-crown = { ent-SunflowerCrown }
+construction-graph-tag-sunflower-crown-desc = { ent-SunflowerCrown.desc }
 
 # Оружие
-construction-graph-tag-trashgun = Мусоромет
-construction-graph-tag-trashgun-desc = Самодельный мусоромет. Стреляет мусором на среднюю дистанцию. Похоже, может взорваться в любой момент.....
-construction-graph-tag-trashlasergun = Мусоролазер
-construction-graph-tag-trashlasergun-desc = Самодельный лазер. Стреляет лазером, возможно...
+construction-graph-tag-trashgun = { ent-WeaponMechIndustrialTrashgun }
+construction-graph-tag-trashgun-desc = { ent-WeaponMechIndustrialTrashgun.desc }
+construction-graph-tag-trashlasergun = { ent-WeaponMechIndustrialTrashLasergun }
+construction-graph-tag-trashlasergun-desc = { ent-WeaponMechIndustrialTrashLasergun.desc }
 
 # Энергетика
-construction-graph-tag-power-cage = Самодельная энергоклетка
-construction-graph-tag-power-cage-desc = Самодельная энергоклетка. Не очень хорошая, но лучше чем ничего.
+construction-graph-tag-power-cage = { ent-PowerCageSmall }
+construction-graph-tag-power-cage-desc = { ent-PowerCageSmall.desc }
 
 # Курительные смеси
-construction-graph-tag-joint-vita = косяк вита
-construction-graph-tag-joint-vita-desc = Скрутка из высушенного растительного материала, обернутая в тонкую бумагу.
+construction-graph-tag-joint-vita = { ent-JointVita }
+construction-graph-tag-joint-vita-desc = { ent-JointVita.desc }
 
 # Контейнеры
-construction-graph-tag-canister = канистра
-construction-graph-tag-canister-desc = Канистра, которая может содержать любой тип газа. Может быть прикреплена к соединительным портам с помощью гаечного ключа.
-
-# Lockermech
-step-lockermech-toolbox1 = Используйте красный ящик с инструментами
-step-lockermech-toolbox2 = Используйте красный ящик с инструментами
-step-lockermech-toolbox3 = Используйте желтый ящик с инструментами
-step-lockermech-flashlight = Установите фонарик
-step-lockermech-oxygentank = Установите кислородный бак
-step-lockermech-manipulators = Установите микроманипуляторы
-step-lockermech-powercell = Установите силовую ячейку
+construction-graph-tag-canister = { ent-StorageCanister }
+construction-graph-tag-canister-desc = { ent-StorageCanister.desc }
 
 # Energy Sword
-construction-graph-tag-energy-sword = энергетический меч
-construction-graph-tag-energy-sword-desc = Опасное энергетическое оружие, способное разрезать практически все.
+construction-graph-tag-energy-sword = { ent-EnergySword }
+construction-graph-tag-energy-sword-desc = { ent-EnergySword.desc }
 
 # Cannabis Vita
-construction-graph-tag-ground-cannabis-vita-desc = Измельченные листья каннабиса вита, готовые к употреблению.
-construction-graph-tag-joint-vita-desc = Самокрутка из каннабиса вита.
+construction-graph-tag-ground-cannabis-vita-desc = { ent-GroundCannabisVita.desc }
+
+# New tag
+construction-graph-tag-smokeablejointvita = { ent-JointVita }
