@@ -18,7 +18,7 @@ public sealed partial class ByClickReagentConvertComponent : Component
     #region Effects
 
     [DataField]
-    public LocId? PopupMessage
+    public string? PopupMessage
     {
         get => _popupMessageId != null ? Loc.GetString(_popupMessageId) : null;
         set => _popupMessageId = value;
