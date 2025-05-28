@@ -4,5 +4,5 @@ namespace Content.Server._Sunrise.ExtendedAccess;
 public partial record struct ExtendedAccessOptions
 {
     [DataField] public string? Announcement;
-    [DataField] public TimeSpan Delay = TimeSpan.FromSeconds(2);
+    [DataField] public TimeSpan Delay = TimeSpan.FromSeconds(60);
 }
