@@ -6,6 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Reagents.Convert;
 
+// TODO: Поддержка множества реагентов для конверта
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ByClickReagentConvertComponent : Component
 {
