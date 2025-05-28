@@ -4,7 +4,20 @@
   parent: BaseStorageItem
   id: Bible
   components:
-  - type: BibleWaterConvert # Lust-Edit
+  # Sunrise edit start
+  - type: ByClickReagentConvert
+    target: Water
+    result: Holywater
+    sound:
+      path: /Audio/Effects/holy.ogg
+    popupMessage: holy-water-converted
+    whitelistUser:
+      components:
+      - BibleUser
+    blacklistTarget:
+      components:
+      - MobState
+    # Sunrise edit end
   - type: UseDelay
     delay: 10.0
   - type: Bible
