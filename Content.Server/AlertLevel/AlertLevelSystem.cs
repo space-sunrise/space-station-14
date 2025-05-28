@@ -165,6 +165,9 @@ public sealed class AlertLevelSystem : EntitySystem
             component.ActiveDelay = true;
         }
 
+        // Sunrise added - добавил сохраненый прежний уровень для системы автодоступов
+        var previousLevel = component.CurrentLevel;
+
         component.CurrentLevel = level;
         component.IsLevelLocked = locked;
 
@@ -212,7 +215,8 @@ public sealed class AlertLevelSystem : EntitySystem
         }
         // Sunrise-End
 
-        RaiseLocalEvent(new AlertLevelChangedEvent(station, level));
+        // Sunrise edit - добавил прежний уровень для системы автодоступов
+        RaiseLocalEvent(new AlertLevelChangedEvent(station, level, previousLevel));
     }
 }
 
@@ -227,9 +231,12 @@ public sealed class AlertLevelChangedEvent : EntityEventArgs
     public EntityUid Station { get; }
     public string AlertLevel { get; }
 
-    public AlertLevelChangedEvent(EntityUid station, string alertLevel)
+    public string PreviousLevel; // Sunrise added - прежний уровень для системы автодоступов
+
+    public AlertLevelChangedEvent(EntityUid station, string alertLevel, string previousLevel)
     {
         Station = station;
         AlertLevel = alertLevel;
+        PreviousLevel = previousLevel; // Sunrise added - прежний уровень для системы автодоступов
     }
 }

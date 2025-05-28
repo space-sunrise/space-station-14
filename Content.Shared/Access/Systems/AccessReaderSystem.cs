@@ -68,7 +68,7 @@ public sealed class AccessReaderSystem : EntitySystem
         component.AccessLists = new(state.AccessLists);
         component.DenyTags = new(state.DenyTags);
         component.AccessLog = new(state.AccessLog);
-        component.Group = new(state.Group); // Sunrise-alertAccesses
+        component.Group = state.Group != null ? new (state.Group) : null; // Sunrise added - автодоступы по коду
         component.AccessLogLimit = state.AccessLogLimit;
     }
 
@@ -167,8 +167,10 @@ public sealed class AccessReaderSystem : EntitySystem
         if (!reader.Enabled)
             return true;
 
-        if (AreAccessTagsAllowedAlert(access, reader))
+        // Sunrise added start
+        if (IsAccessAllowedByExtendedAccess(access, reader))
             return true;
+        // Sunrise added end
 
         if (reader.ContainerAccessProvider == null)
             return IsAllowedInternal(access, stationKeys, reader);
@@ -186,10 +188,10 @@ public sealed class AccessReaderSystem : EntitySystem
             if (!TryComp(entity, out AccessReaderComponent? containedReader))
                 continue;
 
-            // Sunrise-start
-            if (AreAccessTagsAllowedAlert(access, containedReader))
+            // Sunrise added start
+            if (IsAccessAllowedByExtendedAccess(access, containedReader))
                 return true;
-            // Sunrise-end
+            // Sunrise added end
 
             if (IsAllowed(access, stationKeys, entity, containedReader))
                 return true;
@@ -238,26 +240,18 @@ public sealed class AccessReaderSystem : EntitySystem
     /// <summary>
     /// Сравнивает список аварийных доступов с доступами на карте.
     /// </summary>
-    public bool AreAccessTagsAllowedAlert(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
+    public bool IsAccessAllowedByExtendedAccess(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
     {
-        if (reader.Group == string.Empty)
-            return false;
-
-        if (!_prototype.TryIndex<AccessGroupPrototype>(reader.Group, out var accessTags))
-            return false;
-
-        if (accessTags == null)
+        if (!_prototype.TryIndex(reader.Group, out var accessTags))
             return false;
 
         if (accessTags.Tags.Count == 0)
             return false;
-        foreach (var ent in accessTags.Tags)
-        {
-            if (access.Contains(ent))
-                return true;
-        }
 
-        return false;
+        if (!accessTags.Tags.Any(access.Contains))
+            return false;
+
+        return true;
     }
     // Sunrise-end
 

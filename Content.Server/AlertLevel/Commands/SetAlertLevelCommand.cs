@@ -77,7 +77,6 @@ namespace Content.Server.AlertLevel.Commands
             }
 
             _entitySystems.GetEntitySystem<AlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
-            _entManager.EventBus.RaiseLocalEvent(stationUid.Value, new AlertAccessesEvent(stationUid.Value), true); // Sunrise-added
         }
 
         private string[] GetStationLevelNames(EntityUid station)

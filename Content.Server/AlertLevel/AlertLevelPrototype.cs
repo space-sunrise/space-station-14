@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.ExtendedAccess;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -72,8 +73,11 @@ public sealed partial class AlertLevelDetail
     /// </summary>
     [DataField("shuttleTime")] public TimeSpan ShuttleTime { get; private set; } = TimeSpan.FromMinutes(5);
 
-    // Sunrise-Start
-    [DataField("forceEndRound")] public bool ForceEndRound { get; private set; } = false;
-    // Sunrise-End
+    // Sunrise added start
+    [DataField] public bool ForceEndRound;
+
+    [DataField] public ExtendedAccessOptions? ExtendedAccessOptions;
+
+    // Sunrise added end
 }
 
