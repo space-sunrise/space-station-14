@@ -48,6 +48,9 @@ public sealed class ExtendedAccessSystem : EntitySystem
         if (options == null)
             return;
 
+        // Предотвращение стаканье смены доступов. Доступы должны сменяться только на последний код угрозы.
+        RecreateToken();
+
         Timer.Spawn(options.Value.Delay, () => AfterDelay((ev.Station, alert)), _token.Token);
 
         if (options.Value.Announcement != null)
