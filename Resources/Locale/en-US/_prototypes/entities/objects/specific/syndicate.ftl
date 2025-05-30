@@ -1,6 +1,6 @@
 ent-Telecrystal = telecrystal
     .desc = It seems to be pulsing with suspiciously enticing energies.
-    .suffix = 20 TC
+    .suffix = 100 TC
 ent-Telecrystal1 = { ent-Telecrystal }
     .suffix = 1 TC
     .desc = { ent-Telecrystal.desc }

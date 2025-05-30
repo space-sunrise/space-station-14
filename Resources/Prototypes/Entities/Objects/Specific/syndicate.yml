@@ -1,29 +1,43 @@
+#sunrise-edit-start
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: TelecrystalBase
+  description: A heavy metal ingot stamped with the Nanotrasen logo.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
+    size: Tiny
+  - type: StaticPrice
+    price: 0
 
 - type: entity
-  name: telecrystal
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: TelecrystalBase
   id: Telecrystal
-  suffix: 20 TC
-  description: It seems to be pulsing with suspiciously enticing energies.
+  name: Telecrystal
+  suffix: 100 TC
   components:
   - type: Stack
-    count: 20
     stackType: Telecrystal
-    #Sunrise-edit-start
     baseLayer: base
     layerStates:
     - telecrystal
     - telecrystal_2
     - telecrystal_3
+    count: 100
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [10, 50, 100]
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
     state: telecrystal_3
-    map: ["base"]
-  - type: Item
-    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
-    size: Tiny
+    layers:
+    - state: telecrystal_3
+      map: ["base"]
   - type: Appearance
-  #Sunrise-edit-end
+  - type: Extractable
+    grindableSolutionName: Telecrystal
   - type: StaticPrice
     price: 0
   - type: StackPrice
@@ -35,44 +49,36 @@
 - type: entity
   parent: Telecrystal
   id: Telecrystal1
+  name: Telecrystal
   suffix: 1 TC
   components:
-  - type: Stack
-    count: 1
-    #Sunrise-start
-    stackType: Telecrystal
   - type: Sprite
     state: telecrystal
-    layers:
-    - state: telecrystal
-    #Sunrise-end
+  - type: Stack
+    count: 1
 
 - type: entity
   parent: Telecrystal
   id: Telecrystal5
+  name: Telecrystal
   suffix: 5 TC
   components:
-  - type: Stack
-    count: 5
-    #Sunrise-start
   - type: Sprite
     state: telecrystal
-    layers:
-    - state: telecrystal
-    #Sunrise-end
+  - type: Stack
+    count: 5
 
 - type: entity
   parent: Telecrystal
   id: Telecrystal10
+  name: Telecrystal
   suffix: 10 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 10
-    #Sunrise-start
-    stackType: Telecrystal
-  - type: Sprite
-    state: telecrystal_2
-    #Sunrise-end
+#sunrise-edit-end
 
 # Uplinks
 - type: entity
@@ -83,11 +89,11 @@
   suffix: Empty
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Devices/communication.rsi
+    sprite: _Sunrise/Objects/Devices/communication.rsi #Sunrise-edit
     layers:
     - state: old-radio
   - type: Item
-    sprite: _Sunrise/Objects/Devices/communication.rsi
+    sprite: _Sunrise/Objects/Devices/communication.rsi #Sunrise-edit
     heldPrefix: old-radio
   - type: UserInterface
     interfaces:
