@@ -3,7 +3,7 @@
   abstract: true
   parent: [BaseItem, BaseSyndicateContraband]
   id: TelecrystalBase
-  description: A heavy metal ingot stamped with the Nanotrasen logo.
+  description: It seems to be pulsing with suspiciously enticing energies.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
