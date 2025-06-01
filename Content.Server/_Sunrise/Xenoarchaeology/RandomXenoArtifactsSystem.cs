@@ -6,6 +6,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.GameTicking;
 using Content.Shared.Item;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
+using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
 using IConfigurationManager = Robust.Shared.Configuration.IConfigurationManager;
 using Robust.Shared.Prototypes;
 
@@ -112,6 +113,9 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
             return;
 
         EntityManager.AddComponents(ent, _baseParentPrototype!.Components, false);
+
+        // Чтобы не давать лишние подсказки, ибо не прикол
+        RemComp<XATExaminableTextComponent>(ent);
     }
 
     /// <summary>
