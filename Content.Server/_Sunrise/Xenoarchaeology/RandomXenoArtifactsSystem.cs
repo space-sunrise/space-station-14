@@ -109,9 +109,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
     private void MakeArtifact(Entity<ItemComponent> ent)
     {
-        if (!Exists(ent))
-            return;
-
         EntityManager.AddComponents(ent, _baseParentPrototype!.Components, false);
 
         // Чтобы не давать лишние подсказки, ибо не прикол
