@@ -37,6 +37,7 @@
     - BaseStationAntagsTargets
     - BaseStationCryoTeleport
     - BaseStationMeteorSwarmTarget
+    - BaseStationRandomXenoArtifact
   # Sunrise-End
   components:
     - type: Transform

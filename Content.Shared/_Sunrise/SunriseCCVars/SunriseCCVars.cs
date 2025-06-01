@@ -445,4 +445,20 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<int> ArrivalsMinHours =
         CVarDef.Create("transithub.arrivals_min_hours", 0, CVar.SERVER | CVar.ARCHIVE);
+
+    /*
+     * Random items-artifacts
+     */
+
+    /// <summary>
+    /// Включены ли артефакты-предметы? Переключение этого в моменты игры динамически включает и выключает фичу
+    /// </summary>
+    public static readonly CVarDef<bool> EnableRandomArtifacts =
+        CVarDef.Create("random_artifacts.enable", true, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Соотношение артефактов-предметов к обычным предметам.
+    /// </summary>
+    public static readonly CVarDef<float> ItemToArtifactRatio =
+        CVarDef.Create("random_artifacts.ratio", 0.55f, CVar.SERVER | CVar.ARCHIVE);
 }

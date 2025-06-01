@@ -96,3 +96,9 @@
   abstract: true
   components:
   - type: StationMeteorSwarmTarget
+
+- type: entity
+  id: BaseStationRandomXenoArtifact
+  abstract: true
+  components:
+  - type: StationRandomXenoArtifact
