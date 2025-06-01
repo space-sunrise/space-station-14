@@ -1,9 +1,6 @@
 # Sunrise
 # Код
-/Content.Shared/** @VigersRay @ThereDrD0
-/Content.Server/** @VigersRay @ThereDrD0
-/Content.Client/** @VigersRay @ThereDrD0
-/Content.Tests/** @VigersRay @ThereDrD0
+/Content.*/** @VigersRay @ThereDrD0
 /Tools/** @VigersRay
 
 # Прототипы
