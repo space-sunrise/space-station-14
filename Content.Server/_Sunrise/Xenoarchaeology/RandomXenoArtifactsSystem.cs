@@ -9,6 +9,7 @@ using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
 using IConfigurationManager = Robust.Shared.Configuration.IConfigurationManager;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Xenoarchaeology;
 
@@ -17,6 +18,7 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     /// <summary>
@@ -75,7 +77,9 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
         var items = _helpers.GetAll<ItemComponent>()
             .Where(e => IsAppropriate(e.Owner))
-            .ToHashSet();
+            .ToList();
+
+        _random.Shuffle(items);
 
         var reducedItems = _helpers.GetPercentageOfHashSet(items, _itemToArtifactRatio);
 
@@ -110,9 +114,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     private void MakeArtifact(Entity<ItemComponent> ent)
     {
         EntityManager.AddComponents(ent, _baseParentPrototype!.Components, false);
-
-        // Чтобы не давать лишние подсказки, ибо не прикол
-        RemComp<XATExaminableTextComponent>(ent);
     }
 
     /// <summary>

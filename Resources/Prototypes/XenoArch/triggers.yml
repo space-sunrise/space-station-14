@@ -191,8 +191,9 @@
   components:
   - type: XATToolUse
     requiredTool: Anchoring
-  - type: XATExaminableText
-    examineText: xenoarch-trigger-examine-wrenching
+  # Sunrise edit - не нужно
+  #- type: XATExaminableText
+  #  examineText: xenoarch-trigger-examine-wrenching
 
 - type: xenoArchTrigger
   id: TriggerPrying
@@ -200,8 +201,9 @@
   components:
   - type: XATToolUse
     requiredTool: Prying
-  - type: XATExaminableText
-    examineText: xenoarch-trigger-examine-prying
+  # Sunrise edit - не нужно
+  #- type: XATExaminableText
+  #  examineText: xenoarch-trigger-examine-prying
 
 - type: xenoArchTrigger
   id: TriggerScrewing
@@ -209,8 +211,9 @@
   components:
   - type: XATToolUse
     requiredTool: Screwing
-  - type: XATExaminableText
-    examineText: xenoarch-trigger-examine-screwing
+  # Sunrise edit - не нужно
+  #- type: XATExaminableText
+  #  examineText: xenoarch-trigger-examine-screwing
 
 - type: xenoArchTrigger
   id: TriggerPulsing
@@ -218,8 +221,9 @@
   components:
   - type: XATToolUse
     requiredTool: Pulsing
-  - type: XATExaminableText
-    examineText: xenoarch-trigger-examine-pulsing
+  # Sunrise edit - не нужно
+  #- type: XATExaminableText
+  #  examineText: xenoarch-trigger-examine-pulsing
 
 - type: xenoArchTrigger
   id: TriggerTimer
