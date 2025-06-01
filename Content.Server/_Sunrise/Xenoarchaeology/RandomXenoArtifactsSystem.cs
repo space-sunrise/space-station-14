@@ -142,7 +142,7 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
         if (!enabled)
         {
-            var items = _helpers.GetAll<ItemComponent, XenoArtifactComponent>();
+            var items = _helpers.GetAll<XenoArtifactRandomItemMarkerComponent>();
 
             foreach (var item in items)
             {
