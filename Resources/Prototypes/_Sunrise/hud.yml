@@ -3,3 +3,9 @@
   name: ui-options-hud-theme-operative
   path: /Textures/_Sunrise/Interface/Operative/
   order: 7
+
+- type: hudTheme
+  id: SS14PrototypeTheme
+  name: ui-options-hud-theme-prototype
+  path: /Textures/_Sunrise/Interface/Prototype/
+  order: 7
