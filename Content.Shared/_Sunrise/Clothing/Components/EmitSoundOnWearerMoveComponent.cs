@@ -8,18 +8,18 @@ namespace Content.Shared._Sunrise.Clothing.Components;
 ///  Указывает, что предмет одежды издает звук при движении.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class EmitSoundOnMoveComponent : Component
+public sealed partial class EmitSoundOnWearerMoveComponent : Component
 {
     /// <summary>
     /// Звук, который будет проигрываться.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("sound", required: true), AutoNetworkedField]
-    public SoundSpecifier SoundCollection = new SoundCollectionSpecifier("ChurchBell"); // Placeholder value
+    [DataField("sound", required: true), AutoNetworkedField]
+    public SoundSpecifier SoundCollection = default!;
 
     /// <summary>
     /// Требуется ли гравитация для работы предмета.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("requiresGravity"), AutoNetworkedField]
+    [DataField("requiresGravity"), AutoNetworkedField]
     public bool RequiresGravity = true;
 
     /// <summary>
@@ -37,6 +37,6 @@ public sealed partial class EmitSoundOnMoveComponent : Component
     /// <summary>
     ///   Надет ли этот предмет в корректный слот инвентаря.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public bool IsValidSlot = true;
 }
