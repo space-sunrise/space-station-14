@@ -7,6 +7,7 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
+using Content.Shared.GameTicking;
 
 namespace Content.Server._Sunrise.AntiSpam;
 
@@ -27,6 +28,7 @@ public sealed class AntiSpamSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MobStateComponent, TrySendICMessageEvent>(SpamICCheck);
+        SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartHistoryCleanup);
     }
 
     private void SpamICCheck(Entity<MobStateComponent> ent, ref TrySendICMessageEvent args)
@@ -66,6 +68,10 @@ public sealed class AntiSpamSystem : EntitySystem
 
             _statusEffects.TryAddStatusEffect<MutedComponent>(ent, "Muted", TimeSpan.FromSeconds(MuteDuration), true);
         }
+    }
+    private void RoundRestartHistoryCleanup(RoundRestartCleanupEvent ev)
+    {
+        MessageHistory.Clear();
     }
 }
 
