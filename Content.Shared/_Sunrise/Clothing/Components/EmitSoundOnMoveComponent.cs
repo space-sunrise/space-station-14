@@ -8,7 +8,7 @@ namespace Content.Shared._Sunrise.Clothing.Components;
 ///  Указывает, что предмет одежды издает звук при движении.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class EmitsSoundOnMoveComponent : Component
+public sealed partial class EmitSoundOnMoveComponent : Component
 {
     /// <summary>
     /// Звук, который будет проигрываться.
@@ -38,5 +38,5 @@ public sealed partial class EmitsSoundOnMoveComponent : Component
     ///   Надет ли этот предмет в корректный слот инвентаря.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool IsSlotValid = true;
+    public bool IsValidSlot = true;
 }
