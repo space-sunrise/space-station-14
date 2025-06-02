@@ -13,13 +13,13 @@ public sealed partial class EmitSoundOnWearerMoveComponent : Component
     /// <summary>
     /// Звук, который будет проигрываться.
     /// </summary>
-    [DataField("sound", required: true), AutoNetworkedField]
-    public SoundSpecifier SoundCollection = default!;
+    [DataField(required: true), AutoNetworkedField]
+    public SoundSpecifier Sound = default!;
 
     /// <summary>
     /// Требуется ли гравитация для работы предмета.
     /// </summary>
-    [DataField("requiresGravity"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public bool RequiresGravity = true;
 
     /// <summary>

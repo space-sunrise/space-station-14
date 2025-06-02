@@ -5,18 +5,27 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._Sunrise.Clothing.EntitySystems;
 
 public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
 {
+    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    private EntityQuery<InputMoverComponent> _inputMover;
+
+    public const float MinDistanceSprinting = 1.5f;
+    public const float MinDistanceWaling = 2f;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        _inputMover = _entMan.GetEntityQuery<InputMoverComponent>();
+
         SubscribeLocalEvent<EmitSoundOnWearerMoveComponent, GotEquippedEvent>(OnEquipped);
     }
 
@@ -28,20 +37,20 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
         while (query.MoveNext(out var uid, out var emitSoundOnMoveComponent, out var physics, out var xform, out var clothing))
         {
             if (xform.GridUid == null)
-                return;
+                continue;
 
             if (emitSoundOnMoveComponent.RequiresGravity && _gravity.IsWeightless(uid, physics, xform))
-                return;
+                continue;
 
             var wearer = xform.ParentUid;
             var worn = wearer.Valid &&
                        clothing.InSlot != null &&
                        emitSoundOnMoveComponent.IsValidSlot;
 
-            var coords = worn ? Transform(wearer).Coordinates : xform.Coordinates;
-            var dist = (worn && TryComp<InputMoverComponent>(wearer, out var mover) && mover.Sprinting)
-                ? 1.5f
-                : 2f;
+            var coords = xform.Coordinates;
+            var dist = (worn && _inputMover.TryGetComponent(wearer, out var mover) && mover.Sprinting)
+                ? MinDistanceSprinting
+                : MinDistanceWaling;
             if (!coords.TryDistance(EntityManager, emitSoundOnMoveComponent.LastPosition, out var distance) ||
                 distance > dist)
                 emitSoundOnMoveComponent.SoundDistance = dist;
@@ -50,10 +59,10 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
 
             emitSoundOnMoveComponent.LastPosition = coords;
             if (emitSoundOnMoveComponent.SoundDistance < dist)
-                return;
+                continue;
             emitSoundOnMoveComponent.SoundDistance -= dist;
 
-            var sound = emitSoundOnMoveComponent.SoundCollection;
+            var sound = emitSoundOnMoveComponent.Sound;
             _audio.PlayPredicted(
                 sound,
                 uid,
