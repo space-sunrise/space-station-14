@@ -7,7 +7,7 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 
-namespace Content.Client._Sunrise.Clothing.Systems;
+namespace Content.Shared._Sunrise.Clothing.EntitySystems;
 
 public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
 {
@@ -59,6 +59,7 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
                 uid,
                 uid,
                 sound.Params.WithVolume(sound.Params.Volume).WithVariation(sound.Params.Variation ?? 0f));
+            Dirty(uid, emitSoundOnMoveComponent);
         }
     }
 
