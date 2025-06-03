@@ -127,6 +127,24 @@ namespace Content.Server.Power.Pow3r
                 _storage = Array.Empty<Slot>();
             }
 
+            public GenIdStorage(int initialCapacity)
+            {
+                if (initialCapacity <= 0)
+                    throw new ArgumentException("Initial capacity must be greater than 0", nameof(initialCapacity));
+
+                _storage = new Slot[initialCapacity];
+
+                for (var i = 0; i < initialCapacity - 1; i++)
+                {
+                    _storage[i].NextSlot = i + 1;
+                    _storage[i].Generation = 1;
+                }
+                _storage[initialCapacity - 1].NextSlot = int.MaxValue;
+                _storage[initialCapacity - 1].Generation = 1;
+
+                _nextFree = 0;
+            }
+
             public static GenIdStorage<T> FromEnumerable(IEnumerable<(NodeId, T)> enumerable)
             {
                 var storage = new GenIdStorage<T>();
@@ -471,22 +489,22 @@ namespace Content.Server.Power.Pow3r
             /// <summary>
             ///     Power generators
             /// </summary>
-            [ViewVariables] public List<NodeId> Supplies = new();
+            [ViewVariables] public HashSet<NodeId> Supplies = new();
 
             /// <summary>
             ///     Power consumers.
             /// </summary>
-            [ViewVariables] public List<NodeId> Loads = new();
+            [ViewVariables] public HashSet<NodeId> Loads = new();
 
             /// <summary>
             ///     Batteries that are draining power from this network (connected to the INPUT port of the battery).
             /// </summary>
-            [ViewVariables] public List<NodeId> BatteryLoads = new();
+            [ViewVariables] public HashSet<NodeId> BatteryLoads = new();
 
             /// <summary>
             ///     Batteries that are supplying power to this network (connected to the OUTPUT port of the battery).
             /// </summary>
-            [ViewVariables] public List<NodeId> BatterySupplies = new();
+            [ViewVariables] public HashSet<NodeId> BatterySupplies = new();
 
             /// <summary>
             ///     The total load on the power network as of last tick.
@@ -504,6 +522,14 @@ namespace Content.Server.Power.Pow3r
             [ViewVariables] public float LastCombinedMaxSupply = 0f;
 
             [ViewVariables] [JsonIgnore] public int Height;
+
+            public Network()
+            {
+                Supplies.EnsureCapacity(16);
+                Loads.EnsureCapacity(32);
+                BatteryLoads.EnsureCapacity(8);
+                BatterySupplies.EnsureCapacity(8);
+            }
         }
     }
 }
