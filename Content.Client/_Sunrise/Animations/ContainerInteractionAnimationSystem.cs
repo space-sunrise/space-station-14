@@ -10,7 +10,6 @@ namespace Content.Client._Sunrise.Animations;
 
 public sealed class ContainerInteractionAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -36,15 +35,15 @@ public sealed class ContainerInteractionAnimationSystem : EntitySystem
         if (_animation.HasRunningAnimation(ent, InsertTrack))
             return;
 
-        var targetScaleX = MinimumScale + _random.NextFloat(-ContainerInteractionAnimationComponent.Variation, ContainerInteractionAnimationComponent.Variation);
-        var targetScaleY = MinimumScale + _random.NextFloat(-ContainerInteractionAnimationComponent.Variation, ContainerInteractionAnimationComponent.Variation);
+        var targetScaleX = MinimumScale + _random.NextFloat(-ent.Comp.Variation, ent.Comp.Variation);
+        var targetScaleY = MinimumScale + _random.NextFloat(-ent.Comp.Variation, ent.Comp.Variation);
 
         var animation = new Animation
         {
             Length = TimeSpan.FromSeconds(ent.Comp.Duration),
             AnimationTracks =
             {
-                new AnimationTrackComponentProperty()
+                new AnimationTrackComponentProperty
                 {
                     Property = nameof(SpriteComponent.Scale),
                     ComponentType = typeof(SpriteComponent),
@@ -59,11 +58,5 @@ public sealed class ContainerInteractionAnimationSystem : EntitySystem
         };
 
         _animation.Play(ent, animation, InsertTrack);
-    }
-
-    private void Reset(Entity<SpriteComponent> ent)
-    {
-        _animation.Stop(ent.Owner, InsertTrack);
-        _sprite.SetScale(ent.AsNullable(), Vector2.One);
     }
 }
