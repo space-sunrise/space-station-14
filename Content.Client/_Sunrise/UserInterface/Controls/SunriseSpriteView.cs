@@ -11,14 +11,13 @@ namespace Content.Client._Sunrise.UserInterface.Controls;
 public class SunriseStaticSpriteView : Control
 {
     private readonly SpriteSystem _sprite;
-    private readonly SharedTransformSystem _transform;
     private readonly IEntityManager _entityMan;
 
     private SpriteComponent? _cachedSprite;
     private Angle _rotation;
 
     [ViewVariables]
-    private Entity<SpriteComponent, TransformComponent> Entity { get; set; }
+    private Entity<SpriteComponent> Entity { get; set; }
 
     /// <summary>
     /// This field configures automatic scaling of the sprite. This automatic scaling is done before
@@ -92,7 +91,6 @@ public class SunriseStaticSpriteView : Control
         RectClipContent = true;
 
         _sprite = _entityMan.System<SpriteSystem>();
-        _transform ??= _entityMan.System<TransformSystem>();
 
         SetEntity(uid);
     }
@@ -102,7 +100,7 @@ public class SunriseStaticSpriteView : Control
         if (Entity.Owner == uid)
             return;
 
-        if (!_entityMan.TryGetComponent(uid, out SpriteComponent? sprite) || !_entityMan.TryGetComponent(uid, out TransformComponent? xform))
+        if (!_entityMan.TryGetComponent(uid, out SpriteComponent? sprite))
             return;
 
         // Создаем глубокую копию спрайта
@@ -111,7 +109,7 @@ public class SunriseStaticSpriteView : Control
 
         _rotation = sprite.Rotation;
 
-        Entity = new(uid, sprite, xform);
+        Entity = (uid, sprite);
     }
     protected override Vector2 MeasureOverride(Vector2 availableSize)
     {
@@ -122,7 +120,7 @@ public class SunriseStaticSpriteView : Control
 
     private void UpdateSize()
     {
-        if (!ResolveEntity(out var uid, out var sprite, out _))
+        if (!ResolveEntity(out var uid, out var sprite))
             return;
 
         var spriteBox = _sprite.CalculateBounds((uid, sprite), default, _rotation, _rotation)
@@ -166,7 +164,7 @@ public class SunriseStaticSpriteView : Control
 
     protected override void Draw(IRenderHandle renderHandle)
     {
-        if (!ResolveEntity(out var uid, out _, out var xform) || _cachedSprite == null)
+        if (!ResolveEntity(out var uid, out _) || _cachedSprite == null)
             return;
 
         var stretchVec = Stretch switch
@@ -192,32 +190,25 @@ public class SunriseStaticSpriteView : Control
             uid,
             position,
             scale,
-            _rotation, // Используем сохраненный поворот
+            _rotation,
             _rotation,
             OverrideDirection,
-            _cachedSprite, // Кэшированный спрайт
-            xform,
-            _transform
+            _cachedSprite
         );
 
         world.Modulate = oldModulate;
     }
 
-    private bool ResolveEntity(
-        out EntityUid uid,
-        [NotNullWhen(true)] out SpriteComponent? sprite,
-        [NotNullWhen(true)] out TransformComponent? xform)
+    private bool ResolveEntity(out EntityUid uid, [NotNullWhen(true)] out SpriteComponent? sprite)
     {
         sprite = null;
-        xform = null;
         uid = EntityUid.Invalid;
 
         if (!_entityMan.EntityExists(Entity.Owner) || _cachedSprite == null)
             return false;
 
-        sprite = _cachedSprite;
-        xform = Entity.Comp2;
         uid = Entity.Owner;
+        sprite = _cachedSprite;
 
         return true;
     }
