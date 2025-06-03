@@ -35,6 +35,13 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
     private EntityQuery<TransformComponent> _xform;
 
+    private EntityQuery<DoorElectronicsComponent> _doorElectronics;
+    private EntityQuery<ApcElectronicsComponent> _apcElectronics;
+    private EntityQuery<OrganComponent> _organs;
+    private EntityQuery<BodyPartComponent> _bodyParts;
+
+    private EntityQuery<StationRandomXenoArtifactComponent> _avaliableStations;
+
     private ISawmill _sawmill = default!;
 
     public override void Initialize()
@@ -47,6 +54,14 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
 
         _xform = GetEntityQuery<TransformComponent>();
+
+        _doorElectronics = GetEntityQuery<DoorElectronicsComponent>();
+        _apcElectronics = GetEntityQuery<ApcElectronicsComponent>();
+        _organs = GetEntityQuery<OrganComponent>();
+        _bodyParts = GetEntityQuery<BodyPartComponent>();
+
+        _avaliableStations = GetEntityQuery<StationRandomXenoArtifactComponent>();
+
 
         _sawmill = Logger.GetSawmill("sunrise.random_artifacts");
     }
@@ -101,23 +116,23 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
         var station = _station.GetOwningStation(ent, ent.Comp);
 
-        if (!HasComp<StationRandomXenoArtifactComponent>(station))
+        if (!_avaliableStations.HasComp(station))
             return false;
 
         // Блеклист компонентов, которые не должны становиться артефактами.
         // Все это какие-то предметы, внутри других предметов, которые достаются через жопу.
         // Поэтому делать их артефактами ну такое себе
 
-        if (!HasComp<DoorElectronicsComponent>(ent))
+        if (_doorElectronics.HasComp(ent))
             return false;
 
-        if (!HasComp<ApcElectronicsComponent>(ent))
+        if (_apcElectronics.HasComp(ent))
             return false;
 
-        if (!HasComp<OrganComponent>(ent))
+        if (_organs.HasComp(ent))
             return false;
 
-        if (HasComp<BodyPartComponent>(ent))
+        if (_bodyParts.HasComp(ent))
             return false;
 
         return true;
