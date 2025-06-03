@@ -29,8 +29,8 @@ public sealed class AoEHealSystem : EntitySystem
             return;
         _prev = _timing.CurTime;
 
-        var query = EntityQueryEnumerator<TransformComponent, AoEHealComponent>();
-        while (query.MoveNext(out _, out var xform, out var aoEHealComponent))
+        var query = EntityQueryEnumerator<AoEHealComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var aoEHealComponent, out var xform))
         {
             var targetsQuery =
                 _lookupSystem.GetEntitiesInRange<DamageableComponent>(xform.Coordinates, aoEHealComponent.Range);
