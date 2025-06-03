@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -22,56 +23,74 @@ namespace Content.Server.Atmos.EntitySystems
         public string? SpaceWindSound { get; private set; } = "/Audio/Effects/space_wind.ogg";
 
         private readonly HashSet<Entity<MovedByPressureComponent>> _activePressures = new(8);
+        private readonly Dictionary<EntityUid, HashSet<EntityUid>> _pressureCache = new();
+        private const int PressureBatchSize = 16;
 
         private void UpdateHighPressure(float frameTime)
         {
             var toRemove = new RemQueue<Entity<MovedByPressureComponent>>();
+            var processedEntities = new HashSet<EntityUid>();
 
-            foreach (var ent in _activePressures)
+            var pressureArray = _activePressures.ToArray();
+
+            for (var i = 0; i < pressureArray.Length; i += PressureBatchSize)
             {
-                var (uid, comp) = ent;
-                MetaDataComponent? metadata = null;
-
-                if (Deleted(uid, metadata))
+                var batchSize = Math.Min(PressureBatchSize, pressureArray.Length - i);
+                for (var j = 0; j < batchSize; j++)
                 {
-                    toRemove.Add((uid, comp));
-                    continue;
-                }
+                    var ent = pressureArray[i + j];
+                    var (uid, comp) = ent;
 
-                if (Paused(uid, metadata))
-                    continue;
+                    if (processedEntities.Contains(uid))
+                        continue;
 
-                comp.Accumulator += frameTime;
+                    processedEntities.Add(uid);
+                    MetaDataComponent? metadata = null;
 
-                if (comp.Accumulator < 2f)
-                    continue;
-
-                // Reset it just for VV reasons even though it doesn't matter
-                comp.Accumulator = 0f;
-                toRemove.Add(ent);
-
-                if (HasComp<MobStateComponent>(uid) &&
-                    TryComp<PhysicsComponent>(uid, out var body))
-                {
-                    _physics.SetBodyStatus(uid, body, BodyStatus.OnGround);
-                }
-
-                if (TryComp<FixturesComponent>(uid, out var fixtures)
-                    && TryComp<MovedByPressureComponent>(uid, out var component))
-                {
-                    foreach (var (id, fixture) in fixtures.Fixtures)
+                    if (Deleted(uid, metadata))
                     {
-                        if (component.TableLayerRemoved.Contains(id))
-                        {
-                            _physics.AddCollisionMask(uid, id, fixture, (int)CollisionGroup.TableLayer, manager: fixtures);
-                        }
+                        toRemove.Add((uid, comp));
+                        continue;
                     }
+
+                    if (Paused(uid, metadata))
+                        continue;
+
+                    comp.Accumulator += frameTime;
+
+                    if (comp.Accumulator < 2f)
+                        continue;
+
+                    comp.Accumulator = 0f;
+                    toRemove.Add(ent);
+
+                    ProcessPressureEntity(uid, comp);
                 }
             }
 
             foreach (var comp in toRemove)
             {
                 _activePressures.Remove(comp);
+            }
+        }
+
+        private void ProcessPressureEntity(EntityUid uid, MovedByPressureComponent component)
+        {
+            if (HasComp<MobStateComponent>(uid) &&
+                TryComp<PhysicsComponent>(uid, out var body))
+            {
+                _physics.SetBodyStatus(uid, body, BodyStatus.OnGround);
+            }
+
+            if (TryComp<FixturesComponent>(uid, out var fixtures))
+            {
+                foreach (var (id, fixture) in fixtures.Fixtures)
+                {
+                    if (component.TableLayerRemoved.Contains(id))
+                    {
+                        _physics.AddCollisionMask(uid, id, fixture, (int)CollisionGroup.TableLayer, manager: fixtures);
+                    }
+                }
             }
         }
 

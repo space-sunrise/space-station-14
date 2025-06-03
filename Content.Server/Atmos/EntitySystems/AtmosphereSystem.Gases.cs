@@ -5,6 +5,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using Robust.Shared.Prototypes;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -14,6 +15,15 @@ namespace Content.Server.Atmos.EntitySystems
 
         private GasReactionPrototype[] _gasReactions = Array.Empty<GasReactionPrototype>();
         private float[] _gasSpecificHeats = new float[Atmospherics.TotalNumberOfGases];
+
+        private readonly AtmosphereObjectPool<GasMixture> _mixturePool = new AtmosphereObjectPool<GasMixture>(
+            () => new GasMixture(Atmospherics.CellVolume),
+            mixture => {
+                mixture.Clear();
+                return mixture;
+            },
+            1000
+        );
 
         /// <summary>
         ///     List of gas reactions ordered by priority.
@@ -69,11 +79,24 @@ namespace Content.Server.Atmos.EntitySystems
                 return Atmospherics.SpaceHeatCapacity;
             }
 
-            Span<float> tmp = stackalloc float[moles.Length];
-            NumericsHelpers.Multiply(moles, GasSpecificHeats, tmp);
-            // Adjust heat capacity by speedup, because this is primarily what
-            // determines how quickly gases heat up/cool.
-            return MathF.Max(NumericsHelpers.HorizontalAdd(tmp), Atmospherics.MinimumHeatCapacity);
+            var result = 0f;
+            var i = 0;
+            var length = moles.Length;
+
+            for (; i <= length - 4; i += 4)
+            {
+                result += moles[i] * GasSpecificHeats[i] +
+                         moles[i + 1] * GasSpecificHeats[i + 1] +
+                         moles[i + 2] * GasSpecificHeats[i + 2] +
+                         moles[i + 3] * GasSpecificHeats[i + 3];
+            }
+
+            for (; i < length; i++)
+            {
+                result += moles[i] * GasSpecificHeats[i];
+            }
+
+            return MathF.Max(result, Atmospherics.MinimumHeatCapacity);
         }
 
         /// <summary>
@@ -365,6 +388,17 @@ namespace Content.Server.Atmos.EntitySystems
         {
             NoExchange = -2,
             TemperatureExchange = -1,
+        }
+
+        public GasMixture GetMixture()
+        {
+            return _mixturePool.Get();
+        }
+
+        public void ReturnMixture(GasMixture mixture)
+        {
+            if (mixture != null)
+                _mixturePool.Return(mixture);
         }
     }
 }
