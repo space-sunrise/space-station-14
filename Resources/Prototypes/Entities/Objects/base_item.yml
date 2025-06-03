@@ -54,6 +54,7 @@
   parent: BaseItem
   abstract: true
   components:
+  - type: ContainerInteractionAnimation # Sunrise added
   - type: Storage
   - type: UserInterface
     interfaces:

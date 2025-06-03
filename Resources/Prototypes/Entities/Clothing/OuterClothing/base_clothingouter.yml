@@ -45,6 +45,7 @@
   parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterStorageBase
   components:
+  - type: ContainerInteractionAnimation # Sunrise added
   - type: Storage
     grid:
     - 0,0,2,1

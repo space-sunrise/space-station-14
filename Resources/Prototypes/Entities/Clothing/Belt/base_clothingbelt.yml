@@ -23,6 +23,7 @@
   parent: ClothingBeltBase
   id: ClothingBeltStorageBase
   components:
+  - type: ContainerInteractionAnimation # Sunrise added
   - type: Storage
     maxItemSize: Normal
     defaultStorageOrientation: Vertical
