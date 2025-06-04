@@ -19,6 +19,7 @@ using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Speech.EntitySystems;
 using Robust.Server.Audio;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -383,6 +384,10 @@ public sealed class BloodstreamSystem : EntitySystem
 
             tempSolution.RemoveAllSolution();
         }
+
+        // Sunrise added start - звуки кровотечения(капающей крови)
+        _audio.PlayPvs(component.BloodDrippingSound, uid, AudioParams.Default.WithVolume(-1f));
+        // Sunrise added end
 
         _solutionContainerSystem.UpdateChemicals(component.TemporarySolution.Value);
 

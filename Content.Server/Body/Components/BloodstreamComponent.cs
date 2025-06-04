@@ -103,7 +103,12 @@ namespace Content.Server.Body.Components
         ///     The sound to be played when a weapon instantly deals blood loss damage.
         /// </summary>
         [DataField]
-        public SoundSpecifier InstantBloodSound = new SoundCollectionSpecifier("blood");
+        public SoundSpecifier InstantBloodSound = new SoundCollectionSpecifier("BleedingStart"); // Sunrise edit - новый звук начатого кровотечения
+
+        // Sunrise added start - звуки кровотечения(капающей крови)
+        [DataField]
+        public SoundSpecifier BloodDrippingSound = new SoundCollectionSpecifier("BloodDripping");
+        // Sunrise added end
 
         /// <summary>
         ///     The sound to be played when some damage actually heals bleeding rather than starting it.
