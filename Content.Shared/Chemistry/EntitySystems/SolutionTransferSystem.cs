@@ -161,14 +161,14 @@ public sealed class SolutionTransferSystem : EntitySystem
     /// </summary>
     /// <returns>The actual amount transferred.</returns>
     public FixedPoint2 Transfer(EntityUid user,
-        EntityUid sourceEntity,
+        Entity<SolutionTransferComponent?> sourceEntity, // Sunrise edit - для звуков перемещения жидкости
         Entity<SolutionComponent> source,
-        Entity<SolutionTransferComponent?> targetEntity, // Sunrise edit
+        EntityUid targetEntity,
         Entity<SolutionComponent> target,
         FixedPoint2 amount)
     {
-        // Sunrise added start
-        if (!Resolve(targetEntity.Owner, ref targetEntity.Comp))
+        // Sunrise added start - для звуков перемещения жидкости
+        if (!Resolve(sourceEntity.Owner, ref sourceEntity.Comp))
             return FixedPoint2.Zero;
         // Sunrise added end
 
@@ -209,8 +209,8 @@ public sealed class SolutionTransferSystem : EntitySystem
         var solution = _solution.SplitSolution(source, actualAmount);
         _solution.AddSolution(target, solution);
 
-        // Sunrise added start
-        _audio.PlayPvs(targetEntity.Comp.TransferSound, targetEntity);
+        // Sunrise added start - звук перемещения жидкости
+        _audio.PlayPvs(sourceEntity.Comp.TransferSound, targetEntity);
         // Sunrise added end
 
         var ev = new SolutionTransferredEvent(sourceEntity, targetEntity, user, actualAmount);
