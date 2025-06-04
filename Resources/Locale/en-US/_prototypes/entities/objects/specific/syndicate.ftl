@@ -1,3 +1,5 @@
+ent-TelecrystalBase = { ent-BaseItem }
+    .desc = It seems to be pulsing with suspiciously enticing energies.
 ent-Telecrystal = telecrystal
     .desc = It seems to be pulsing with suspiciously enticing energies.
     .suffix = 100 TC

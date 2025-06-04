@@ -20,3 +20,5 @@ ent-BaseStationCryoTeleport = { "" }
     .desc = { "" }
 ent-BaseStationMeteorSwarmTarget = { "" }
     .desc = { "" }
+ent-BaseStationRandomXenoArtifact = { "" }
+    .desc = { "" }
