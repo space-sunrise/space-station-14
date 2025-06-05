@@ -52,18 +52,18 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 0.75
-    friction: 5
-    weightlessFriction: 5
-    weightlessAcceleration: 3.5
-    weightlessModifier: 3
+    baseWalkSpeed: 1.7
+    baseSprintSpeed: 1.7
+    baseFriction: 15
+    baseWeightlessModifier: 10
   - type: MovementAlwaysTouching
   - type: Pullable
   - type: Clickable
   - type: WiresPanel
   - type: Physics
     bodyType: Dynamic
+    angularDamping: 2
+    linearDamping: 2
   - type: MobState
     allowedStates:
     - Alive
@@ -114,7 +114,8 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 9
+    radius: 30
+    energy: 3
     netsync: false
 
 - type: entity
