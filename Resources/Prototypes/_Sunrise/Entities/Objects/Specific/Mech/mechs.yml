@@ -52,18 +52,18 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.7 # Sunrise-edit
-    baseSprintSpeed: 1.7 # Sunrise-edit
-    baseFriction: 15 # Sunrise-edit
-    baseWeightlessModifier: 10 # Sunrise-edit
+    baseWalkSpeed: 1.7
+    baseSprintSpeed: 1.7
+    baseFriction: 15
+    baseWeightlessModifier: 10
   - type: MovementAlwaysTouching
   - type: Pullable
   - type: Clickable
   - type: WiresPanel
   - type: Physics
     bodyType: Dynamic
-    angularDamping: 2 # Sunrise-edit
-    linearDamping: 2 # Sunrise-edit
+    angularDamping: 2
+    linearDamping: 2
   - type: MobState
     allowedStates:
     - Alive
@@ -114,8 +114,8 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 30 # Sunrise-edit
-    energy: 3 # Sunrise-edit
+    radius: 30
+    energy: 3
     netsync: false
 
 - type: entity
