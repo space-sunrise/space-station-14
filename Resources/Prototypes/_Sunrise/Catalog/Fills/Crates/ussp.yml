@@ -169,7 +169,7 @@
   parent: [BaseItem, BaseSecurityContraband]
   id: WrappedMosin
   name: wraped mosin rifle
-  description: A Kardashev-Mosin relic rifle, created 670 years ago. Hermetically sealed for eternal storage — heavily greased with cosmic lubricant, tightly wrapped in packing paper, and forgotten until the next war. Ammunition not included. #Реликтовая винтовка Кардашев-Мосина, созданная 670 лет назад. Герметично упакована для вечного хранения — обильно смазана космической смазкой, туго обёрнута в упаковочную бумагу и забыта до следующей войны. Патроны в сделку не входили.
+  description: A Kardashev-Mosin relic rifle, created 670 years ago. Hermetically sealed for eternal storage — heavily greased with cosmic lubricant, tightly wrapped in packing paper, and forgotten until the next war. Ammunition not included.
   components:
   - type: Item
     size: Huge
