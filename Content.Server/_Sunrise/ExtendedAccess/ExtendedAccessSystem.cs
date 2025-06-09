@@ -2,6 +2,7 @@
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Station.Components;
 using Timer = Robust.Shared.Timing.Timer;
@@ -11,6 +12,7 @@ namespace Content.Server._Sunrise.ExtendedAccess;
 public sealed class ExtendedAccessSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     private static CancellationTokenSource _token = new();
 
@@ -85,25 +87,8 @@ public sealed class ExtendedAccessSystem : EntitySystem
             if (reader.AlertAccesses.Count == 0)
                 continue;
 
-            UpdateAccess((uid, reader), station);
+            _accessReader.UpdateAccess((uid, reader), station.Comp.CurrentLevel);
         }
-    }
-
-    /// <summary>
-    /// Устанавливает новые доступы в соответствии с текущим кодом угрозы.
-    /// Сбрасывает аварийные доступы, если не нашлось доступов при текущем коде угрозы.
-    /// </summary>
-    private void UpdateAccess(Entity<AccessReaderComponent> ent, Entity<AlertLevelComponent> station)
-    {
-        if (station.Comp.AlertLevels == null)
-            return;
-
-        if (ent.Comp.AlertAccesses.TryGetValue(station.Comp.CurrentLevel, out var value))
-            ent.Comp.Group = value;
-        else
-            ent.Comp.Group = null;
-
-        Dirty(ent);
     }
 
     private static void RecreateToken()

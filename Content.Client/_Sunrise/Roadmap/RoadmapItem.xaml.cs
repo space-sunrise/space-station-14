@@ -21,10 +21,10 @@ public sealed partial class RoadmapItem : Control
             var panel = (StyleBoxFlat) StateColor.PanelOverride!;
             panel.BackgroundColor = _itemState switch
             {
-                RoadmapItemState.Planned => Color.FromHex("#e74c3c"),
-                RoadmapItemState.InProgress => Color.FromHex("#3498db"),
-                RoadmapItemState.Partial => Color.FromHex("#f1c40f"),
-                RoadmapItemState.Complete => Color.FromHex("#2ecc71"),
+                RoadmapItemState.Planned => Color.Red,
+                RoadmapItemState.InProgress => Color.FromHex("#20C9FF"),
+                RoadmapItemState.Partial => Color.Yellow,
+                RoadmapItemState.Complete => Color.Green,
                 _ => Color.Transparent
             };
 
@@ -42,8 +42,8 @@ public sealed partial class RoadmapItem : Control
 
     public string? HeaderText
     {
-        get => HeaderLabel.Text;
-        set => HeaderLabel.Text = value;
+        get => HeaderButton.Text;
+        set => HeaderButton.Text = value;
     }
 
     public string? Text

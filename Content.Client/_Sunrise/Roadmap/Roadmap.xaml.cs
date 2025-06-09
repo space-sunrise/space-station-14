@@ -32,24 +32,26 @@ namespace Content.Client._Sunrise.Roadmap
         {
             var msg = new FormattedMessage();
             var headerLocale = Loc.GetString("ui-roadmap-header");
-            msg.AddMarkupOrThrow($"[font size=24][bold]{headerLocale} {roadmapVersions.Fork}[/bold][/font]");
+            msg.AddMarkupOrThrow($"[font size=24]{headerLocale} [bold]{roadmapVersions.Fork}[/bold][/font]");
             Header.SetMessage(msg);
 
-            Items2024.RemoveAllChildren();
-            Items2025.RemoveAllChildren();
-            Items2026.RemoveAllChildren();
-
-            foreach (var version in roadmapVersions.Versions)
+            foreach (var roadmapVersion in roadmapVersions.Versions)
             {
-                var targetColumn = version.Key switch
+                var version = new BoxContainer()
                 {
-                    "2024" => Items2024,
-                    "2025" => Items2025,
-                    "2026" => Items2026,
-                    _ => Items2024
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    Margin = new Thickness(0, 0, 20, 0),
+                    HorizontalExpand = true,
                 };
 
-                foreach (var goal in version.Value.Goals)
+                var versionHeader = new RoadmapVersionHeader()
+                {
+                    Text = roadmapVersion.Value.Name,
+                };
+
+                version.AddChild(versionHeader);
+
+                foreach (var goal in roadmapVersion.Value.Goals)
                 {
                     var roadmapItem = new RoadmapItem()
                     {
@@ -58,8 +60,10 @@ namespace Content.Client._Sunrise.Roadmap
                         ItemState = goal.Value.State,
                     };
 
-                    targetColumn.AddChild(roadmapItem);
+                    version.AddChild(roadmapItem);
                 }
+
+                Versions.AddChild(version);
             }
         }
     }

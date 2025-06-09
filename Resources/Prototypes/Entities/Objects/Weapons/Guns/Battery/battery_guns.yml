@@ -528,7 +528,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: HitscanBatteryAmmoProvider # Sunrise-Edit
     proto: BulletDisablerPractice
-    fireCost: 50
+    fireCost: 62.5
   - type: Tag
     tags:
     - Taser
@@ -556,7 +556,7 @@
       - Belt
   - type: HitscanBatteryAmmoProvider # Sunrise-Edit
     proto: BulletDisabler
-    fireCost: 50
+    fireCost: 62.5
   - type: GuideHelp
     guides:
     - Security
@@ -629,7 +629,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletTaser
+    proto: BulletTaserSunrise #Sunrise-Edit
     fireCost: 100 #Sunrise-Edit
   - type: MagazineVisuals
     magState: mag
