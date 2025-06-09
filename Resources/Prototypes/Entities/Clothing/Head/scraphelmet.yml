@@ -52,7 +52,7 @@
 # The helmet itself
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMajorContraband]
-  id: ClothingHeadHelmetScrap
+  id: ClothingHeadHelmetScrap #When we get the tech for it this bad boy needs to be given a vision reduction when equipped. 1-2 tiles less than normal should be good.
   name: scrap helmet
   description: A cobbled-together helmet made from cabling, steel, and a bucket.
   components:
@@ -70,8 +70,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.8
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
         Shock: 1.05

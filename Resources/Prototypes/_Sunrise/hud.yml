@@ -8,4 +8,10 @@
   id: SS14PrototypeTheme
   name: ui-options-hud-theme-prototype
   path: /Textures/_Sunrise/Interface/Prototype/
-  order: 7
+  order: 8
+
+- type: hudTheme
+  id: SS14MedicalTheme
+  name: ui-options-hud-theme-medical
+  path: /Textures/_Sunrise/Interface/Medical/
+  order: 9

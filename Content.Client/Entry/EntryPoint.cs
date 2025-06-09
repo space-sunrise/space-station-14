@@ -136,6 +136,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("sponsorLoadout"); // Sunrise-Sponsors
             _prototypeManager.RegisterIgnore("holidayGiveawayItem"); // Sunrise-Edit
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
+            _prototypeManager.RegisterIgnore("codewordGenerator");
+            _prototypeManager.RegisterIgnore("codewordFaction");
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();

@@ -37,7 +37,7 @@
         Blunt: 5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseSprintSpeed: 3.1
   - type: Reflect
     reflectProb: 0.15
     spread: 180

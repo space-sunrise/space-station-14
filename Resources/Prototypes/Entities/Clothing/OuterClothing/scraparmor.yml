@@ -51,7 +51,7 @@
 
 # The armor itself
 - type: entity
-  parent: [ClothingOuterArmorHeavy, BaseMajorContraband]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseMajorContraband]
   id: ClothingOuterArmorScrap
   name: scrap armor
   description: A tider's gleaming plate mail. Bail up, or you're a dead man.
@@ -73,18 +73,13 @@
         Slash: 0.5
         Piercing: 0.5 #Some nukie tier physical protection...
         Heat: 0.8
-        Shock: 1.8 # #Hey, it's a bunch of solid steel. Bzzzzz
         Radiation: 0.8 #Hey, it's a bunch of solid steel.
   - type: ExplosionResistance
     damageCoefficient: 0.80
-  - type: StaminaResistance
-    damageCoefficient: 1.35 # Тяжело в нем явно
   - type: ClothingSpeedModifier #But that protection comes at a price.
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.6
+    sprintModifier: 0.6
   - type: GroupExamine
-  - type: ProtectedFromStepTriggers
-    slots: WITHOUT_POCKET
   - type: Construction
     graph: scraparmor
     node: scraparmorfinished

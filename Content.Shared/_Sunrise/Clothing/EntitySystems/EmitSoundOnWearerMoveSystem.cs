@@ -5,7 +5,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._Sunrise.Clothing.EntitySystems;
@@ -47,7 +46,7 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
                        clothing.InSlot != null &&
                        emitSoundOnMoveComponent.IsValidSlot;
 
-            var coords = xform.Coordinates;
+            var coords = Transform(wearer).Coordinates;
             var dist = (worn && _inputMover.TryGetComponent(wearer, out var mover) && mover.Sprinting)
                 ? MinDistanceSprinting
                 : MinDistanceWaling;

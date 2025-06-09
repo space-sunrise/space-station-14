@@ -36,7 +36,8 @@ public sealed class ScoopableSolutionSystem : EntitySystem
             !_solution.TryGetRefillableSolution(beaker, out var target, out _))
             return false;
 
-        var scooped = _solutionTransfer.Transfer(user, ent, src.Value, beaker, target.Value, srcSolution.Volume);
+        // Sunrise edit - ent -> ent.Owner
+        var scooped = _solutionTransfer.Transfer(user, ent.Owner, src.Value, beaker, target.Value, srcSolution.Volume);
         if (scooped == 0)
             return false;
 
