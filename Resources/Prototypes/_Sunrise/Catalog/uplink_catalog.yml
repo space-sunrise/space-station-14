@@ -69,23 +69,6 @@
       tags:
       - NukeOpsUplink
 
-# For the Buldog
-- type: listing
-  id: UplinkMagazineShotgunSlug
-  name: uplink-magazine-shotgun-name
-  description: uplink-magazine-shotgun-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
-  productEntity: MagazineShotgunSlug
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
-
 - type: listing
   id: UplinkMagazineShotgun
   name: uplink-magazine-shotgun-name

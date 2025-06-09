@@ -14,6 +14,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Systems;
+using Content.Shared.Mech.Components; //sunrise-edit
 
 namespace Content.Shared.Friction
 {
@@ -30,6 +31,7 @@ namespace Content.Shared.Friction
         private EntityQuery<PullerComponent> _pullerQuery;
         private EntityQuery<PullableComponent> _pullableQuery;
         private EntityQuery<MapGridComponent> _gridQuery;
+        private EntityQuery<MechComponent> _mechQuery; //sunrise-edit
 
         private float _frictionModifier;
         private float _minDamping;
@@ -49,6 +51,7 @@ namespace Content.Shared.Friction
             _pullerQuery = GetEntityQuery<PullerComponent>();
             _pullableQuery = GetEntityQuery<PullableComponent>();
             _gridQuery = GetEntityQuery<MapGridComponent>();
+            _mechQuery = GetEntityQuery<MechComponent>(); //sunrise-edit
         }
 
         public override void UpdateBeforeSolve(bool prediction, float frameTime)
@@ -62,6 +65,9 @@ namespace Content.Shared.Friction
 
                 // Only apply friction when it's not a mob (or the mob doesn't have control)
                 // We may want to instead only apply friction to dynamic entities and not mobs ever.
+                if (_mechQuery.HasComp(uid)) //sunrise-edit
+                    continue; //sunrise-edit
+
                 if (prediction && !body.Predict || _mover.UseMobMovement(uid))
                     continue;
 

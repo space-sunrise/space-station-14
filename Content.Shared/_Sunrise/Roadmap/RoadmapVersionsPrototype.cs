@@ -22,9 +22,6 @@ public sealed partial class RoadmapGroup
     public string Name { get; set; } = string.Empty;
 
     [DataField]
-    public int Year { get; set; } = 2024;
-
-    [DataField]
     public Dictionary<string, RoadmapGoal> Goals = new();
 }
 

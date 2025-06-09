@@ -97,11 +97,10 @@
             - Multitool
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
-  # Sunrise-Start
   - type: Tag
     tags:
     - UtilityBelt
-  # Sunrise-End
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseClothingBeltSounds] # Sunrise
@@ -671,6 +670,8 @@
         - Gun
         - BallisticAmmoProvider
         - CartridgeAmmo
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseSecurityContraband ]
@@ -717,6 +718,8 @@
     sprite: Clothing/Belt/militarywebbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing

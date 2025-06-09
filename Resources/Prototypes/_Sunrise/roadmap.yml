@@ -1,8 +1,8 @@
 - type: roadmapVersions
   id: SunriseRoadmap
   versions:
-    2024:
-      name: 2024
+    current:
+      name: Уже доступно
       goals:
         fugitive:
           id: fugitive
@@ -59,16 +59,6 @@
           name: Mechs
           desc: Controlled mechanoids, created to work in difficult places, as well as in facilitating the transportation of goods and other tasks where man himself can not cope.
           state: Complete
-        ipc:
-          id: ipc
-          name: IPC
-          desc: A race of intelligent machines, in reworking.
-          state: InProgress
-        blob:
-          id: blob
-          name: Blob
-          desc: An antagonist whose goal is to devour and thereby destroy the station.
-          state: InProgress
         assault-ops:
           id: assault-ops
           name: Assault Ops
@@ -84,39 +74,42 @@
           name: Blood Cult
           desc: A cult that follows the god Nar'Si, the cult's goal is to summon its patron, who will later destroy the station.
           state: Complete
-        ert-call:
-          id: ert-call
-          name: ERT Call Console
-          desc: A console that can be used to call an ERT.
-          state: Partial
         vent-crawling:
           id: vent-crawling
           name: Vent Crawling
           desc: Allowing small creatures and various antagonists to move through the ventilation system.
-          state: Partial
+          state: Complete
+    inprogress:
+      name: В разработке
+      goals:
         economy:
           id: economy
           name: Economy
           desc: Adding money, wages, the post office will give money and vendomats will take money for food.
-          state: Partial
-    2025:
-      name: 2025
-      goals:
+          state: InProgress
+        ipc:
+          id: ipc
+          name: IPC
+          desc: A race of intelligent machines, in reworking.
+          state: InProgress
+        ert-call:
+          id: ert-call
+          name: ERT Call Console
+          desc: A console that can be used to call an ERT.
+          state: InProgress
+        blob:
+          id: blob
+          name: Blob
+          desc: An antagonist whose goal is to devour and thereby destroy the station.
+          state: InProgress
         extend-med:
           id: extend-med
           name: Medical Department Expansion
           desc: Adding new mechanics, roles.
-          state: Partial
-        ai:
-          id: ai
-          name: AI
-          desc: A new artificial intelligence profession aimed at helping the station destroy itself?
-          state: Partial
-        mail:
-          id: mail
-          name: Mail
-          desc: Sending parcels to different parts of the station for which the station will receive money.
           state: InProgress
+    planing:
+      name: Планируется
+      goals:
         borer:
           id: borer
           name: Brainworm
@@ -152,11 +145,6 @@
           name: Spider Terror
           desc: The result of the Syndicate's experiments to crossbreed the DNA of a giant space spider and a Xenomorph.
           state: Planned
-        wizards:
-          id: wizards
-          name: Wizard Mode
-          desc: Game mode when the mage spawns and does all sorts of mischief.
-          state: Planned
         morph:
           id: morph
           name: Morph
@@ -191,10 +179,7 @@
           id: ussp
           name: USSP Station
           desc: A separate station of the USSP with its own shift tasks.
-          state: InProgress
-    2026:
-      name: 2026
-      goals:
+          state: Planned
         ratvar:
           id: ratvar
           name: Ratvar Cult

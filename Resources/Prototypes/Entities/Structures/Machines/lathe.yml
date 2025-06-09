@@ -22,7 +22,6 @@
       path: /Audio/Machines/circuitprinter.ogg
       params:
         volume: -2
-        variance: 0.2
         maxDistance: 4
         pitch: 0.7
   - type: MaterialStorage

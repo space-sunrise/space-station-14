@@ -158,23 +158,18 @@
   category: construction-category-clothing
   objectType: Item
 
- #Sunrise-Start #If merge Scrap Armor PR Delete
 - type: construction
-  name: construction-graph-tag-scrap-armor
   id: scraparmor
   graph: scraparmor
   startNode: start
   targetNode: scraparmorfinished
   category: construction-category-clothing
-  description: construction-graph-tag-scrap-armor-desc
   objectType: Item
 
 - type: construction
-  name: construction-graph-tag-scrap-helmet
   id: scraphelmet
   graph: scraphelmet
   startNode: start
   targetNode: scraphelmet
   category: construction-category-clothing
-  description: construction-graph-tag-scrap-helmet-desc
   objectType: Item

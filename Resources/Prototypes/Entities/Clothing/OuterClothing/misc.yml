@@ -8,28 +8,26 @@
     sprite: Clothing/OuterClothing/Misc/apron.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apron.rsi
- #Sunrise-Start #If merge Scrap Armor PR Delete
   - type: Tag
     tags:
     - Apron
-#Sunrise-End #If merge Scrap Armor PR Delete
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterApronBar
-  name: apron
   suffix: Bartender
+  name: apron
   description: A darker apron designed for bartenders.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Misc/apronbar.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apronbar.rsi
- #Sunrise-Start #If merge Scrap Armor PR Delete
   - type: Tag
     tags:
     - Apron
-#Sunrise-End #If merge Scrap Armor PR Delete
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
@@ -42,11 +40,10 @@
     sprite: Clothing/OuterClothing/Misc/apronbotanist.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apronbotanist.rsi
- #Sunrise-Start #If merge Scrap Armor PR Delete
   - type: Tag
     tags:
     - Apron
-#Sunrise-End #If merge Scrap Armor PR Delete
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
@@ -59,11 +56,10 @@
     sprite: Clothing/OuterClothing/Misc/apronchef.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apronchef.rsi
- #Sunrise-Start #If merge Scrap Armor PR Delete
   - type: Tag
     tags:
     - Apron
-#Sunrise-End #If merge Scrap Armor PR Delete
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
