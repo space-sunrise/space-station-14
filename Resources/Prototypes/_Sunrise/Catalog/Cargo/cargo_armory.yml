@@ -87,3 +87,23 @@
   cost: 4000
   category: cargoproduct-category-name-armory
   group: market
+
+- type: cargoProduct
+  id: SecurityMosin
+  icon:
+    sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi
+    state: icon
+  product: CrateShelfMosin
+  cost: 2250
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: SecurityAmmunitionSmallLightRifle
+  icon:
+    sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
+    state: icon
+  product: CrateAmmunitionSmallLightRifle
+  cost: 500
+  category: cargoproduct-category-name-armory
+  group: market

@@ -1,0 +1,223 @@
+- type: entity
+  parent: CrateGeneric
+  id: CrateAmmunitionSmall
+  name: old small ammunition crate
+  components:
+  - type: EntityStorage
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.46875,0.03125"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: Icon
+    sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
+    state: base
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.4,0.3,0.19"
+        density: 50
+        mask:
+        - CrateMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+    containers:
+    - entity_storage
+  - type: StaticPrice
+    price: 125
+
+- type: entity
+  parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallLightRifle
+  name: old small ammunition crate
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpeedLoaderLightRifle
+        amount: 12
+      - id: MagazineBoxLightRifle
+        amount: 4
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: CrateShelfMosin
+  name: old wooden crate
+  description: A large wooden crate designed for storing ancient rifles.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi
+    layers:
+      - state: base
+        map: ["enum.StorageVisualLayers.Base"]
+      - state: fill-0
+        map: ["enum.StorageFillLayers.Fill"]
+      - state: closed
+        map: ["enum.StorageVisualLayers.Door"]
+      - state: paper
+        sprite: Structures/Storage/Crates/labels.rsi
+        map: ["enum.PaperLabelVisuals.Layer"]
+  - type: Appearance
+  - type: StorageFillVisualizer
+    maxFillLevels: 4
+    fillBaseName: fill
+  - type: Storage
+    grid:
+    - 0,0,4,1
+    - 0,3,4,4
+    - 0,6,4,7
+    - 0,9,4,10
+    whitelist:
+      tags:
+        - WrappedWeapon
+    maxItemSize: Huge
+  - type: StorageFill
+    contents:
+      - id: WrappedMosin
+        amount: 4
+  - type: EntityStorageVisuals
+    stateBase: base
+    stateDoorOpen: open
+    stateDoorClosed: closed
+    stateWelded: welded
+  - type: EntityStorage
+    isWeldable: true
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+  - type: ContainerContainer
+    containers:
+      paper_label: !type:ContainerSlot
+      storagebase: !type:Container {}
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# Упакованная Винтовка для ящика мосинок
+- type: entity
+  parent: [BaseItem, BaseSecurityContraband]
+  id: WrappedMosin
+  name: wraped mosin rifle
+  description: A Kardashev-Mosin relic rifle, created 670 years ago. Hermetically sealed for eternal storage — heavily greased with cosmic lubricant, tightly wrapped in packing paper, and forgotten until the next war. Ammunition not included. #Реликтовая винтовка Кардашев-Мосина, созданная 670 лет назад. Герметично упакована для вечного хранения — обильно смазана космической смазкой, туго обёрнута в упаковочную бумагу и забыта до следующей войны. Патроны в сделку не входили.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/wrapped_rifle.rsi
+    state: base
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponSniperMosinLubed
+    sound:
+      path: /Audio/Effects/poster_broken.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/paper_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/paper_drop.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/paper_use.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/paper_drop.ogg
+  - type: EmitSoundOnThrow
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/paper_throw.ogg
+  - type: Tag
+    tags:
+    - Recyclable
+    - WrappedWeapon
+

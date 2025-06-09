@@ -308,3 +308,30 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+
+# Смазанная винтовка для ящика винтовок
+- type: entity
+  name: Kardashev-Mosin
+  parent: [WeaponSniperMosin, BaseGunWieldable, BaseMajorContraband]
+  id: WeaponSniperMosinLubed
+  description: A relic Kardashev-Mosin rifle that has survived countless wars, and it's still deadly. Freshly unsealed, heavily greased — ready for the next war! Uses .30 caliber rounds.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: GunRequiresWield
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: null
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: Lubed
+    slipStrength: 3
+    slipsLeft: 3
+  - type: Tag
+    tags:
+      - WrappedWeapon

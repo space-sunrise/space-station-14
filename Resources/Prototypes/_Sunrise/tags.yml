@@ -54,6 +54,10 @@
 - type: Tag
   id: MiniSyringe
 
+# Weapons
+- type: Tag
+  id: WrappedWeapon
+
 # Magazines:
 - type: Tag
   id: MagazineM28

@@ -64,6 +64,20 @@
   - type: GunRequiresWield
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 15 #you fucking stab em
+        Bloodloss: 2 #no way to apply bleed, triangular bayonet wounds are hard to fix
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: AltFireMelee
+    attackType: Heavy
+  # Sunrise end
 
 - type: entity
   name: Hristov

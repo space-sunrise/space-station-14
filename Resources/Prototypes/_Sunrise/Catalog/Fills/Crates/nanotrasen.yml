@@ -1,5 +1,3 @@
-#Sunrise-start
-
 - type: entity
   id: CrateCommandNTGygaxBundle
   suffix: Filled
@@ -50,5 +48,3 @@
       - id: ToolboxMechanicalFilled
       - id: TowelColorNT
       - id: WelderIndustrial
-
-#sunrise-end
