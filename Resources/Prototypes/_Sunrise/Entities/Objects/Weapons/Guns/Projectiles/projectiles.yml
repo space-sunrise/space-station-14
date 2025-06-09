@@ -112,7 +112,7 @@
 
 - type: entity
   id: BulletGrenadeFragLight
-  name: Light frag grenade
+  name: light frag grenade
   parent: BaseBulletGrenade
   categories: [ HideSpawnMenu ]
   components:
