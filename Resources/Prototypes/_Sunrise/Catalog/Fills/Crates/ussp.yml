@@ -168,7 +168,7 @@
 - type: entity
   parent: [BaseItem, BaseSecurityContraband]
   id: WrappedMosin
-  name: wraped mosin rifle
+  name: wrapped mosin rifle
   description: A Kardashev-Mosin relic rifle, created 670 years ago. Hermetically sealed for eternal storage — heavily greased with cosmic lubricant, tightly wrapped in packing paper, and forgotten until the next war. Ammunition not included.
   components:
   - type: Item
