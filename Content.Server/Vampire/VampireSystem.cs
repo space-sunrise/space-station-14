@@ -8,6 +8,7 @@ using Content.Server.Polymorph.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Mind;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
@@ -323,7 +324,7 @@ public sealed partial class VampireSystem : EntitySystem
             {
                 if (TryComp(uid, out ActionsComponent? comp))
                 {
-                    _action.RemoveAction(uid, _entityManager.GetEntity(abilityInfo.Action), comp);
+                    _action.RemoveAction(uid, _entityManager.GetEntity(abilityInfo.Action));
                     _actionContainer.RemoveAction(_entityManager.GetEntity(abilityInfo.Action));
                     component.actionEntities.Remove(actionId);
                     if (powerId != null && component.UnlockedPowers.ContainsKey(powerId))

@@ -50,5 +50,7 @@ ent-NtrLeadGuardPDA = NTR Guard's PDA
     .desc = NTR Guard's PDA
 ent-MailCarrierPDA = mail carrier's PDA
     .desc = PDA for the delivery man.
+ent-MiningPDA = mining PDA
+    .desc = there is dirt in every crack.
 ent-BlueShieldPDA = blue shield officer's PDA
     .desc = { ent-BasePDA.desc }

@@ -1,5 +1,7 @@
 ent-CrateServiceJanitorialSupplies = janitorial supplies crate
     .desc = Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, broom, spray cleaner, rag, and trash bag.
+ent-CrateServiceCleanerGrenades = bulk cleanades crate
+    .desc = Contains two boxes of cleaner grenades, for those deeply-entrenched stains.
 ent-CrateServiceReplacementLights = replacement lights crate
     .desc = May the light of Aether shine upon this station! Or at least, the light of forty two light tubes and twenty one light bulbs.
 ent-CrateServiceHolidayLights = holiday lights crate
@@ -14,8 +16,6 @@ ent-CrateServiceCustomSmokable = DIY smokeables crate
     .desc = Want to get a little creative with what you use to destroy your lungs? Then this crate is for you! Has everything you need to roll your own cigarettes.
 ent-CrateServiceBureaucracy = bureaucracy crate
     .desc = Several stacks of paper, a few pens and an office toy. What more could you ask for?
-ent-CrateServicePrinterDocRestock = a crate of ink and office papper
-    .desc = printer paper with ink and office papper
 ent-CrateServiceFaxMachine = fax machine crate
     .desc = A fax machine and a screwdriver to set the name with.
 ent-CrateServicePersonnel = personnel crate

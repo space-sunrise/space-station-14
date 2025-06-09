@@ -53,19 +53,17 @@ public abstract class BaseTextureTag : IMarkupTag
     protected static bool TryDrawIconEntity(string stringUid, long scaleValue, [NotNullWhen(true)] out Control? control)
     {
         control = null;
-        var spriteView = new SunriseStaticSpriteView()
-        {
-            OverrideDirection = Direction.South,
-            SetSize = new Vector2(48f, 32f),
-        };
 
         stringUid = ClearString(stringUid);
 
         if (!EntityUid.TryParse(stringUid, out var entityUid))
             return false;
 
-        spriteView.SetEntity(entityUid);
-        spriteView.Scale = new Vector2(scaleValue, scaleValue);
+        var spriteView = new SunriseStaticSpriteView(entityUid)
+        {
+            SetSize = new Vector2(48f, 32f),
+            Scale = new Vector2(scaleValue, scaleValue),
+        };
 
         control = spriteView;
         return true;

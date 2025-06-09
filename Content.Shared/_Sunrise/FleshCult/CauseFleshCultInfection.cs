@@ -1,4 +1,3 @@
-using Content.Server.Sunrise.FleshCult;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 

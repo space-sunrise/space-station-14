@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CLA",
-    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
+    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt, some icons were redesigned by Gardsnake",
     "size": {
         "x": 8,
         "y": 8
@@ -90,6 +90,12 @@
         },
         {
             "name": "MailCarrier"
+        },
+        {
+            "name": "Musician"
+        },
+        {
+            "name": "Borg"
         }
     ]
 }

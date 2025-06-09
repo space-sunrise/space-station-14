@@ -15,6 +15,41 @@
     - type: Ammo
       muzzleFlash: null
 
+- type: entity
+  id: BulletTaserSunrise
+  name: taser bolt
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    color: "#ffff33"
+    layers:
+    - state: spark
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Shock: 1
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: Licoxide
+          Quantity: 0.5
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 0.5
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+  - type: TimedDespawn
+    lifetime: 0.25
+
 # Sunrise-ION
 - type: entity
   name: EMP impulse

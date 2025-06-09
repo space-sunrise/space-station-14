@@ -1,13 +1,11 @@
-﻿ghost-teleport-menu-antagonists-label = Антагонисты
+ghost-teleport-menu-antagonists-label = Антагонисты
 ghost-teleport-menu-alive-label = Живые
 ghost-teleport-menu-dead-label = Мертвые
 ghost-teleport-menu-ghosts-label = Призраки
 ghost-teleport-menu-left-label = Вышедшие из тела
 ghost-teleport-menu-locations-label = Локации и объекты
 ghost-teleport-menu-count-label = Количество
-
 ghost-panel-unknown-job = Неизвестно кто
-
 ghost-panel-antagonist-wizard-name = Волшебник
 ghost-panel-antagonist-wizard-description = Старый сумашедший из Федерации Магов, обученный смертельным заклинаниям
 ghost-panel-antagonist-nukeops-name = Ядерный оперативник

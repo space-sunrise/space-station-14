@@ -7,6 +7,7 @@ using Content.Server.Temperature.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
@@ -196,9 +197,11 @@ public sealed partial class FleshCultSystem
     {
         if (TryComp(uid, out ActionsComponent? actionsComponent) && TryComp(uid, out FleshAbilitiesComponent? abilitiesComponent))
         {
-            _action.RemoveAction(uid, component.ActionFleshCultistShopEntity, comp: actionsComponent);
+            _action.RemoveAction(uid, component.ActionFleshCultistShopEntity);
             foreach (var action in abilitiesComponent.Actions)
-                _action.RemoveAction(uid, action, comp: actionsComponent);
+            {
+                _action.RemoveAction(uid, action);
+            }
         }
     }
 

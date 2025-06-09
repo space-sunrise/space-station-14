@@ -48,7 +48,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         component.Lethal += 1;
         if (component.Lethal >= 5)
         {
-            _actionsSystem.RemoveAction(uid, args.Action);
+            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
         }
     }
 
@@ -62,7 +62,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         component.Shield += 1;
         if (component.Shield >= 6)
         {
-            _actionsSystem.RemoveAction(uid, args.Action);
+            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
         }
     }
 
@@ -78,7 +78,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         else
         {
             component.BaseInfectChance = 1;
-            _actionsSystem.RemoveAction(uid, args.Action);
+            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
         }
     }
 
@@ -94,7 +94,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         else
         {
             component.CoughInfectChance = 1;
-            _actionsSystem.RemoveAction(uid, args.Action);
+            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
         }
     }
 
@@ -183,7 +183,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         {
             component.Symptoms.Add(args.Symptom, (args.MinLevel, args.MaxLevel));
         }
-        _actionsSystem.RemoveAction(uid, args.Action);
+        _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
     }
 
     //private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)

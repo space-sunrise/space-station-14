@@ -1,5 +1,5 @@
 ﻿using Content.Server._Sunrise.FleshCult.GameRule;
-using Content.Server.Sunrise.FleshCult;
+using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;

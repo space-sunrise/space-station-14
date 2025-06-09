@@ -223,7 +223,6 @@ namespace Content.Server.Communications
             if (stationUid != null)
             {
                 _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
-                RaiseLocalEvent(new AlertAccessesEvent(stationUid.Value)); // Sunrise-added
             }
         }
 

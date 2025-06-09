@@ -176,172 +176,103 @@ public sealed class HTNSystem : EntitySystem
         component.PlanAccumulator = 0f;
     }
 
-    public void UpdateNPC(ref int count, int maxUpdates, float frameTime)
+    public override void Update(float frameTime)
     {
+        base.Update(frameTime);
         _planQueue.Process();
-        var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
+    }
 
-        // Move ahead "count" entries in the query.
-        // This is to ensure that if we didn't process all the npcs the first time,
-        // we get to the remaining ones instead of iterating over the beginning again.
-        for (var i = 0; i < count; i++)
-        {
-            query.MoveNext(out _, out _);
-        }
+    public void UpdateNPC(EntityUid uid, HTNComponent component, ref int count, int maxUpdates, float frameTime)
+    {
+        if (count >= maxUpdates)
+            return;
 
-        // the amount of updates we've processed during this iteration.
-        var updates = 0;
-        while (query.MoveNext(out var uid, out _, out var comp))
+        if (!component.Enabled)
+            return;
+
+        if (component.PlanningJob != null)
         {
-            // If we're over our max count or it's not MapInit then ignore the NPC.
-            if (updates >= maxUpdates)
+            if (component.PlanningJob.Exception != null)
             {
-                // Intentional return. We don't want to go to the end logic and reset count.
+                Log.Fatal($"Received exception on planning job for {uid}!");
+                _npc.SleepNPC(uid);
+                var exc = component.PlanningJob.Exception;
+                RemComp<HTNComponent>(uid);
+                throw exc;
+            }
+
+            // If a new planning job has finished then handle it.
+            if (component.PlanningJob.Status != JobStatus.Finished)
                 return;
-            }
 
-            if (!comp.Enabled)
-                continue;
+            var newPlanBetter = false;
 
-            if (comp.PlanningJob != null)
+            // If old traversal is better than new traversal then ignore the new plan
+            if (component.Plan != null && component.PlanningJob.Result != null)
             {
-                if (comp.PlanningJob.Exception != null)
+                var oldMtr = component.Plan.BranchTraversalRecord;
+                var mtr = component.PlanningJob.Result.BranchTraversalRecord;
+
+                for (var i = 0; i < oldMtr.Count; i++)
                 {
-                    Log.Fatal($"Received exception on planning job for {uid}!");
-                    _npc.SleepNPC(uid);
-                    var exc = comp.PlanningJob.Exception;
-                    RemComp<HTNComponent>(uid);
-                    throw exc;
-                }
-
-                // If a new planning job has finished then handle it.
-                if (comp.PlanningJob.Status != JobStatus.Finished)
-                    continue;
-
-                var newPlanBetter = false;
-
-                // If old traversal is better than new traversal then ignore the new plan
-                if (comp.Plan != null && comp.PlanningJob.Result != null)
-                {
-                    var oldMtr = comp.Plan.BranchTraversalRecord;
-                    var mtr = comp.PlanningJob.Result.BranchTraversalRecord;
-
-                    for (var i = 0; i < oldMtr.Count; i++)
+                    if (i < mtr.Count && oldMtr[i] > mtr[i])
                     {
-                        if (i < mtr.Count && oldMtr[i] > mtr[i])
-                        {
-                            newPlanBetter = true;
-                            break;
-                        }
+                        newPlanBetter = true;
+                        break;
                     }
                 }
-
-                if (comp.Plan == null || newPlanBetter)
-                {
-                    comp.CheckServices = false;
-
-                    if (comp.Plan != null)
-                    {
-                        ShutdownTask(comp.Plan.CurrentOperator, comp.Blackboard, HTNOperatorStatus.BetterPlan);
-                        ShutdownPlan(comp);
-                    }
-
-                    comp.Plan = comp.PlanningJob.Result;
-
-                    // Startup the first task and anything else we need to do.
-                    if (comp.Plan != null)
-                    {
-                        StartupTask(comp.Plan.Tasks[comp.Plan.Index], comp.Blackboard, comp.Plan.Effects[comp.Plan.Index]);
-                    }
-
-                    // Send debug info
-                    foreach (var session in _subscribers)
-                    {
-                        var text = new StringBuilder();
-
-                        if (comp.Plan != null)
-                        {
-                            text.AppendLine($"BTR: {string.Join(", ", comp.Plan.BranchTraversalRecord)}");
-                            text.AppendLine($"tasks:");
-                            var root = comp.RootTask;
-                            var btr = new List<int>();
-                            var level = -1;
-                            AppendDebugText(root, text, comp.Plan.BranchTraversalRecord, btr, ref level);
-                        }
-
-                        RaiseNetworkEvent(new HTNMessage()
-                        {
-                            Uid = GetNetEntity(uid),
-                            Text = text.ToString(),
-                        }, session.Channel);
-                    }
-                }
-                // Keeping old plan
-                else
-                {
-                    comp.CheckServices = true;
-                }
-
-                comp.PlanningJob = null;
-                comp.PlanningToken = null;
             }
 
-            Update(uid, comp, frameTime);
-            count++;
-            updates++;
-        }
-
-        // only reset our counter back to 0 if we finish iterating.
-        // otherwise it lets us know where we left off.
-        count = 0;
-    }
-
-    private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
-    {
-        // If it's the selected BTR then highlight.
-        for (var i = 0; i < btr.Count; i++)
-        {
-            text.Append("--");
-        }
-
-        text.Append(' ');
-
-        if (task is HTNPrimitiveTask primitive)
-        {
-            text.AppendLine(primitive.ToString());
-            return;
-        }
-
-        if (task is HTNCompoundTask compTask)
-        {
-            var compound = _prototypeManager.Index<HTNCompoundPrototype>(compTask.Task);
-            level++;
-            text.AppendLine(compound.ID);
-            var branches = compound.Branches;
-
-            for (var i = 0; i < branches.Count; i++)
+            if (component.Plan == null || newPlanBetter)
             {
-                var branch = branches[i];
-                btr.Add(i);
-                text.AppendLine($" branch {string.Join(", ", btr)}:");
+                component.CheckServices = false;
 
-                foreach (var sub in branch.Tasks)
+                if (component.Plan != null)
                 {
-                    AppendDebugText(sub, text, planBtr, btr, ref level);
+                    ShutdownTask(component.Plan.CurrentOperator, component.Blackboard, HTNOperatorStatus.BetterPlan);
+                    ShutdownPlan(component);
                 }
 
-                btr.RemoveAt(btr.Count - 1);
+                component.Plan = component.PlanningJob.Result;
+
+                // Startup the first task and anything else we need to do.
+                if (component.Plan != null)
+                {
+                    StartupTask(component.Plan.Tasks[component.Plan.Index], component.Blackboard, component.Plan.Effects[component.Plan.Index]);
+                }
+
+                // Send debug info
+                foreach (var session in _subscribers)
+                {
+                    var text = new StringBuilder();
+
+                    if (component.Plan != null)
+                    {
+                        text.AppendLine($"BTR: {string.Join(", ", component.Plan.BranchTraversalRecord)}");
+                        text.AppendLine($"tasks:");
+                        var root = component.RootTask;
+                        var btr = new List<int>();
+                        var level = -1;
+                        AppendDebugText(root, text, component.Plan.BranchTraversalRecord, btr, ref level);
+                    }
+
+                    RaiseNetworkEvent(new HTNMessage()
+                    {
+                        Uid = GetNetEntity(uid),
+                        Text = text.ToString(),
+                    }, session.Channel);
+                }
+            }
+            // Keeping old plan
+            else
+            {
+                component.CheckServices = true;
             }
 
-            level--;
-            return;
+            component.PlanningJob = null;
+            component.PlanningToken = null;
         }
 
-        throw new NotImplementedException();
-    }
-
-    private void Update(EntityUid uid, HTNComponent component, float frameTime)
-    {
         // If we're not planning then countdown to next one.
         if (component.PlanningJob == null)
             component.PlanAccumulator -= frameTime;
@@ -408,6 +339,52 @@ public sealed class HTNSystem : EntitySystem
                     throw new InvalidOperationException();
             }
         }
+
+        count++;
+    }
+
+    private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
+    {
+        // If it's the selected BTR then highlight.
+        for (var i = 0; i < btr.Count; i++)
+        {
+            text.Append("--");
+        }
+
+        text.Append(' ');
+
+        if (task is HTNPrimitiveTask primitive)
+        {
+            text.AppendLine(primitive.ToString());
+            return;
+        }
+
+        if (task is HTNCompoundTask compTask)
+        {
+            var compound = _prototypeManager.Index<HTNCompoundPrototype>(compTask.Task);
+            level++;
+            text.AppendLine(compound.ID);
+            var branches = compound.Branches;
+
+            for (var i = 0; i < branches.Count; i++)
+            {
+                var branch = branches[i];
+                btr.Add(i);
+                text.AppendLine($" branch {string.Join(", ", btr)}:");
+
+                foreach (var sub in branch.Tasks)
+                {
+                    AppendDebugText(sub, text, planBtr, btr, ref level);
+                }
+
+                btr.RemoveAt(btr.Count - 1);
+            }
+
+            level--;
+            return;
+        }
+
+        throw new NotImplementedException();
     }
 
     public void ShutdownTask(HTNOperator currentOperator, NPCBlackboard blackboard, HTNOperatorStatus status)

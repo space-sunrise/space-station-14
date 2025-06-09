@@ -1,7 +1,9 @@
-ent-GasPipeBase = pipe
+ent-GasPipeSansLayers = gas pipe
     .desc = Holds gas.
 ent-VentCrawHolder = vent claw holder
     .desc = { "" }
+ent-GasPipeBase = pipe
+    .desc = Holds gas.
 ent-GasPipeHalf = { ent-GasPipeBase }
     .suffix = Half
     .desc = { ent-GasPipeBase.desc }
@@ -19,3 +21,5 @@ ent-GasPipeFourway = { ent-GasPipeBase }
     .desc = { ent-GasPipeBase.desc }
 ent-GasPipeBroken = broken pipe
     .desc = It used to hold gas.
+ent-GasPipeManifold = gas pipe manifold
+    .desc = Allows gas pipes of different configurations to be connected together.

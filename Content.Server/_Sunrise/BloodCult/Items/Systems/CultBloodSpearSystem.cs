@@ -5,6 +5,7 @@ using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -100,7 +101,7 @@ public sealed class CultBloodSpearSystem : EntitySystem
         {
             var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
             if (entityPrototypeId == spearOwnerComponent.ReturnSpearActionId)
-                _actionsSystem.RemoveAction(component.SpearOwner.Value, userAction, actionsComponent);
+                _actionsSystem.RemoveAction(component.SpearOwner.Value, userAction);
         }
 
         if (HasComp<BloodSpearOwnerComponent>(component.SpearOwner.Value))

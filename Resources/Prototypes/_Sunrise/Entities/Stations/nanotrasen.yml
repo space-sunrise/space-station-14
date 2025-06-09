@@ -10,3 +10,27 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: DevStation
+  parent:
+  - BaseStation
+  - BaseStationNews
+  - BaseStationCargo
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationArrivals
+  - BaseStationGateway
+  - BaseStationEvacuation
+  - BaseStationAlertLevels
+  - BaseStationMagnet
+  - BaseStationExpeditions
+  - BaseStationSalvageJobs
+  - BaseStationSiliconLawCrewsimov
+  - BaseStationAllEventsEligible
+  - BaseStationNanotrasen
+  - BaseStationDeliveries
+  - BaseStationTransitHub
+  components:
+  - type: Transform

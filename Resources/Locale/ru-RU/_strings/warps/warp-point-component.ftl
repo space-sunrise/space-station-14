@@ -2,7 +2,7 @@ warp-point-component-on-examine-success = ID данной локации: { $loc
 #locations
 location-nuke-disk = Ядерный диск
 location-nuclear-bomb = Ядерная боеголовка
-location-centcomm = Центральное коммандование
+location-centcomm = Центральное командование
 location-nar-sie = Нар'Си
 location-ratvar = Ратвар
 location-bombing-target = Цель бомбардировки

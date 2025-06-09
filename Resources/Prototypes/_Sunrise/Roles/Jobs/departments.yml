@@ -29,10 +29,35 @@
   color: "#9f4000"
   roles:
   - HeadOfPrison
-  - PrisonPilot
   - PrisonWorker
   - PrisonChef
   - PrisonDoctor
   - PrisonEngineer
   - PrisonGuard
   - PlanetPrisoner
+
+- type: department
+  id: CentralCommand
+  name: department-CentralCommand
+  description: department-CentralCommand-description
+  color: "#0d4f1d"
+  roles:
+  - CentCommOperator
+  - CentCommOfficial
+  weight: 120
+
+- type: department
+  id: SpecialOperations
+  name: department-SpecialOperations
+  description: department-SpecialOperations-description
+  color: "#0c344d"
+  roles:
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  editorHidden: true

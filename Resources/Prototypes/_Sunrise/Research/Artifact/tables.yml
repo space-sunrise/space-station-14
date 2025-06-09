@@ -158,7 +158,7 @@
     TriggerPrying: 1
     TriggerScrewing: 1
     TriggerPulsing: 1
-    TriggerTimer: 0.25
+    TriggerTimer: 1 # Sunrise edit - для артефактов предметов. Чтобы виднее были
     TriggerBlood: 1
     TriggerThrow: 1
     TriggerDeath: 1

@@ -1,13 +1,15 @@
 - type: entity
+  parent: BaseAction
   id: GhostChangeTheme
   name: Change Ghost Theme
   description: Allows you to change the skin of the ghost.
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     checkCanInteract: false
     icon:
       sprite: _Sunrise/Mobs/Ghosts/gold_ghost_human.rsi
       state: animated
     itemIconStyle: NoItem
+  - type: InstantAction
     event: !type:GhostThemeActionEvent

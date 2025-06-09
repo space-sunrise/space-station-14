@@ -10,7 +10,7 @@
           icon:
             sprite: Objects/Tools/bucket.rsi
             state: icon
-          name: a bucket
+          name: construction-graph-tag-bucket
         - material: Cable
           amount: 15
           doAfter: 3

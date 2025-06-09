@@ -410,10 +410,7 @@ public sealed class SupermatterSystem : EntitySystem
             sb.Append(Loc.GetString("supermatter-announcement-delam-countdown", ("seconds", sm.DelamCountdownTimer)));
             // make it cancellable in case there are crazy engineers that managed to contain the delam
             if (stationUid != null)
-            {
                 _alert.SetLevel(stationUid.Value, alertLevel, true, true, true, false);
-                RaiseLocalEvent(new AlertAccessesEvent(stationUid.Value));
-            }
 
             SupermatterAlert(uid, sb.ToString());
 

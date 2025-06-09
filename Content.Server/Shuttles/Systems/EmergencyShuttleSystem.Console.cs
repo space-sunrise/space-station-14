@@ -187,7 +187,7 @@ public sealed partial class EmergencyShuttleSystem
                 if (!Deleted(transitHub.Entity)) // Sunrise-Edit
                 {
                     _shuttle.FTLToDock(comp.EmergencyShuttle.Value, shuttle,
-                        transitHub.Entity.Value, _consoleAccumulator, TransitTime); // Sunrise-Edit
+                        transitHub.Entity.Value, _consoleAccumulator, TransitTime, priorityTag: "DockEmergency"); // Sunrise-Edit
                     continue;
                 }
 

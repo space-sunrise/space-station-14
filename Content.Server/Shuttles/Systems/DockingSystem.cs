@@ -31,8 +31,11 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedJointSystem _jointSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly ILogManager _logMan = default!;
 
         private const string DockingJoint = "docking";
+
+        private ISawmill? _logger;
 
         private EntityQuery<MapGridComponent> _gridQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -59,6 +62,8 @@ namespace Content.Server.Shuttles.Systems
             // in which case I would also add their subs here.
             SubscribeLocalEvent<ShuttleConsoleComponent, DockRequestMessage>(OnRequestDock);
             SubscribeLocalEvent<ShuttleConsoleComponent, UndockRequestMessage>(OnRequestUndock);
+
+            _logger = _logMan.GetSawmill("DockingSystem");
         }
 
         public void UndockDocks(EntityUid gridUid)

@@ -1,10 +1,12 @@
 - type: entity
+  parent: BaseAction
   id: FleshSpiderWebAction
   name: spider-web-action-name
   description: spider-web-action-description
   categories: [ HideSpawnMenu ]
   components:
-    - type: InstantAction
+    - type: Action
       icon: _Sunrise/FleshCult/Interface/Actions/flesh_web.png
-      event: !type:SpiderWebActionEvent
       useDelay: 10
+    - type: InstantAction
+      event: !type:SpiderWebActionEvent

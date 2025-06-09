@@ -1,4 +1,7 @@
+using Content.Server.Actions;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Content.Shared.Actions.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.UserInterface;
@@ -9,6 +12,7 @@ namespace Content.Server._Sunrise.InnateItem
     public sealed class InnateItemSystem : EntitySystem
     {
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+        [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
@@ -57,13 +61,13 @@ namespace Content.Server._Sunrise.InnateItem
 
         private EntityUid CreateWorldTargetAction(EntityUid uid)
         {
-            var action = EnsureComp<EntityTargetActionComponent>(uid);
-            action.Event = new InnateWorldTargetActionEvent(uid);
-            action.Icon = new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID);
-            action.ItemIconStyle = ItemActionIconStyle.NoItem;
-            action.CheckCanInteract = false;
-            action.CheckCanAccess = false;
-            action.IgnoreContainer = true;
+            var targetAction = EnsureComp<TargetActionComponent>(uid);
+            var action = EnsureComp<ActionComponent>(uid);
+            _actions.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
+            _actions.SetEvent(uid, new InnateWorldTargetActionEvent(uid));
+            _actions.SetCheckCanInteract((uid, action), false);
+            _actions.SetCheckCanAccess((uid, targetAction), false);
+            _actions.SetIgnoreContainer((uid, targetAction), false);
             if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
             {
                 activatableUIComponent.RequiresComplex = false;
@@ -76,10 +80,10 @@ namespace Content.Server._Sunrise.InnateItem
 
         private EntityUid CreateInstantAction(EntityUid uid)
         {
-            var action = EnsureComp<InstantActionComponent>(uid);
-            action.Event = new InnateInstantActionEvent(uid);
-            action.Icon = new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID);
-            action.CheckCanInteract = false;
+            var action = EnsureComp<ActionComponent>(uid);
+            _actions.SetEvent(uid, new InnateInstantActionEvent(uid));
+            _actions.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
+            _actions.SetCheckCanInteract((uid, action), false);
             if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
             {
                 activatableUIComponent.RequiresComplex = false;

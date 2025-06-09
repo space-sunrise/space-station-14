@@ -2,6 +2,7 @@ using Content.Server._Sunrise.StationCentComm;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Sunrise.AlwaysPoweredMap;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -67,8 +68,12 @@ public sealed partial class StationCentCommSystem : EntitySystem
             {
                 _gameTicker.LoadGameMap(gameMap, out var mapId);
 
+                var mapEnt = _map.GetMapOrInvalid(mapId);
+
                 if (_shuttle.TryAddFTLDestination(mapId, true, out var ftlDestination))
                     ftlDestination.Whitelist = component.ShuttleWhitelist;
+
+                EnsureComp<AlwaysPoweredMapComponent>(mapEnt);
 
                 _map.InitializeMap(mapId);
             }

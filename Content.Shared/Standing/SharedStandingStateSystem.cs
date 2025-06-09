@@ -56,7 +56,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
 
     private static float _fallDeadChance;
 
-    public const float FallModifier = 0.4f;
+    public const float FallModifier = 0.2f;
 
     private const int StandingCollisionLayer = (int) CollisionGroup.LowImpassable;
 
@@ -254,7 +254,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
 
         Down(uid, dropHeldItems: false);
 
-        _physics.SetLinearVelocity(uid, physics.LinearVelocity * 2f, body: physics);
+        _physics.SetLinearVelocity(uid, physics.LinearVelocity * 4f, body: physics);
         _statusEffects.TryAddStatusEffect<FallComponent>(uid,
             FallStatusEffectKey,
             TimeSpan.FromSeconds(1),

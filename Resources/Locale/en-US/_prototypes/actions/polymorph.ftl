@@ -1,7 +1,7 @@
 ent-ActionRevertPolymorph = Revert
     .desc = Revert back into your original form.
-ent-ActionPolymorph = { "" }
-    .desc = { "" }
+ent-BaseActionPolymorph = { ent-BaseAction }
+    .desc = { ent-BaseAction.desc }
 ent-ActionPolymorphWizardSpider = Spider Polymorph
     .desc = Polymorphs you into a Spider.
 ent-ActionPolymorphWizardRod = Rod Form
@@ -12,3 +12,5 @@ ent-ActionPolymorphJauntII = Ethereal Jaunt II
     .desc = Melt into the Ethereal Plane for an even quicker getaway!
 ent-ActionPolymorphJauntIII = Ethereal Jaunt III
     .desc = Are you even tangible anymore?
+ent-ActionPolymorph = { "" }
+    .desc = { "" }

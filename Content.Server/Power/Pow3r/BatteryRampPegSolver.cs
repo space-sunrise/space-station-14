@@ -93,16 +93,21 @@ namespace Content.Server.Power.Pow3r
             }
         }
 
-        private void UpdateNetwork(Network network, PowerState state, float frameTime)
+        public void UpdateNetwork(Network network, PowerState state, float frameTime)
         {
             // TODO Look at SIMD.
             // a lot of this is performing very basic math on arrays of data objects like batteries
             // this really shouldn't be hard to do.
             // except for maybe the paused/enabled guff. If its mostly false, I guess they could just be 0 multipliers?
 
+            var loads = network.Loads;
+            var supplies = network.Supplies;
+            var batteryLoads = network.BatteryLoads;
+            var batterySupplies = network.BatterySupplies;
+
             // Add up demand from loads.
-            var demand = 0f;
-            foreach (var loadId in network.Loads)
+            float demand = 0f;
+            foreach (var loadId in loads)
             {
                 var load = state.Loads[loadId];
 
@@ -118,7 +123,7 @@ namespace Content.Server.Power.Pow3r
             // Would require a second pass over the network, or something. Not sure.
 
             // Add demand from batteries
-            foreach (var batteryId in network.BatteryLoads)
+            foreach (var batteryId in batteryLoads)
             {
                 var battery = state.Batteries[batteryId];
                 if (!battery.Enabled || !battery.CanCharge || battery.Paused)
@@ -138,9 +143,9 @@ namespace Content.Server.Power.Pow3r
             DebugTools.Assert(demand >= 0);
 
             // Add up supply in network.
-            var totalSupply = 0f;
-            var totalMaxSupply = 0f;
-            foreach (var supplyId in network.Supplies)
+            float totalSupply = 0f;
+            float totalMaxSupply = 0f;
+            foreach (var supplyId in supplies)
             {
                 var supply = state.Supplies[supplyId];
                 if (!supply.Enabled || supply.Paused)
@@ -166,12 +171,12 @@ namespace Content.Server.Power.Pow3r
             // loading network, there will be a "rush" of input current when a network powers on, before power
             // stabilizes in the network. This is fine.
 
-            var totalBatterySupply = 0f;
-            var totalMaxBatterySupply = 0f;
+            float totalBatterySupply = 0f;
+            float totalMaxBatterySupply = 0f;
             if (unmet > 0)
             {
                 // determine supply available from batteries
-                foreach (var batteryId in network.BatterySupplies)
+                foreach (var batteryId in batterySupplies)
                 {
                     var battery = state.Batteries[batteryId];
                     if (!battery.Enabled || !battery.CanDischarge || battery.Paused)
@@ -203,7 +208,7 @@ namespace Content.Server.Power.Pow3r
             // if supply ratio == 1 (or is close to) we could skip some math for each load & battery.
 
             // Distribute supply to loads.
-            foreach (var loadId in network.Loads)
+            foreach (var loadId in loads)
             {
                 var load = state.Loads[loadId];
                 if (!load.Enabled || load.DesiredPower == 0 || load.Paused)
@@ -213,7 +218,7 @@ namespace Content.Server.Power.Pow3r
             }
 
             // Distribute supply to batteries
-            foreach (var batteryId in network.BatteryLoads)
+            foreach (var batteryId in batteryLoads)
             {
                 var battery = state.Batteries[batteryId];
                 if (!battery.Enabled || battery.DesiredPower == 0 || battery.Paused || !battery.CanCharge)
@@ -235,7 +240,7 @@ namespace Content.Server.Power.Pow3r
                 var targetRelativeSupplyOutput = Math.Min(demand, totalMaxSupply) / totalMaxSupply;
 
                 // Apply load to supplies
-                foreach (var supplyId in network.Supplies)
+                foreach (var supplyId in supplies)
                 {
                     var supply = state.Supplies[supplyId];
                     if (!supply.Enabled || supply.Paused)
@@ -260,7 +265,7 @@ namespace Content.Server.Power.Pow3r
             var relativeTargetBatteryOutput = Math.Min(unmet, totalMaxBatterySupply) / totalMaxBatterySupply;
 
             // Apply load to supplying batteries
-            foreach (var batteryId in network.BatterySupplies)
+            foreach (var batteryId in batterySupplies)
             {
                 var battery = state.Batteries[batteryId];
                 if (!battery.Enabled || battery.Paused || !battery.CanDischarge)
@@ -452,7 +457,7 @@ namespace Content.Server.Power.Pow3r
 
         #region Jobs
 
-        private record struct UpdateNetworkJob : IParallelRobustJob
+        public record struct UpdateNetworkJob : IParallelRobustJob
         {
             public int BatchSize => 4;
 

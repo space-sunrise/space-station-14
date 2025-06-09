@@ -115,7 +115,7 @@ public sealed class NightVisionDeviceSystem : EntitySystem
             _cell.SetDrawEnabled((ent.Owner, draw), false);
         }
 
-        _appearance.SetData(ent, ToggleableLightVisuals.Enabled, false);
+        _appearance.SetData(ent, ToggleableVisuals.Enabled, false);
 
         var updVisEv = new NightVisionDeviceUpdateVisualsEvent();
         RaiseLocalEvent(ent, ref updVisEv);
@@ -146,7 +146,7 @@ public sealed class NightVisionDeviceSystem : EntitySystem
             _cell.SetDrawEnabled((ent.Owner, draw), ent.Comp.Activated);
         }
 
-        _appearance.SetData(ent, ToggleableLightVisuals.Enabled, ent.Comp.Activated);
+        _appearance.SetData(ent, ToggleableVisuals.Enabled, ent.Comp.Activated);
 
         var updVisEv = new NightVisionDeviceUpdateVisualsEvent();
         RaiseLocalEvent(ent, ref updVisEv);

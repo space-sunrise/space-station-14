@@ -33,7 +33,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._Sunrise.NewLife; // Sunrise-NewLife
-using Content.Server._Sunrise.TraitorTarget; // Sunrise-Edit
+using Content.Server._Sunrise.TraitorTarget;
+using Content.Server.Shuttles.Systems; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
 {
@@ -43,7 +44,8 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
-        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-NewLife
+        [Dependency] private readonly ArrivalsSystem _arrivals = default!;
+        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-Edit
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -285,15 +287,25 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var spawnPointType = SpawnPointType.Unset;
-            if (jobPrototype.AlwaysUseSpawner)
+            var overall = _playTimeTracking.GetOverallPlaytime(player);
+
+            EntityUid? mobMaybe = null;
+            var spawnPointType = SpawnPointType.Arrivals;
+            if (jobPrototype.AlwaysUseSpawner ||
+                overall < TimeSpan.FromHours(_cfg.GetCVar(SunriseCCVars.ArrivalsMinHours)) ||
+                _cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn)
+                )
             {
                 lateJoin = false;
                 spawnPointType = SpawnPointType.Job;
             }
+            else
+            {
+                mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, jobPrototype, character);
+            }
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character, spawnPointType: spawnPointType);
-            DebugTools.AssertNotNull(mobMaybe);
+            if (mobMaybe == null)
+                mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobPrototype, character, spawnPointType: spawnPointType);
             var mob = mobMaybe!.Value;
 
             // Sunrise-Start

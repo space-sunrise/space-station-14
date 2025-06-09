@@ -15,6 +15,7 @@
 [![Steam](https://img.shields.io/badge/Steam-SS14%20SUNRISE-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
 [![GitHub](https://img.shields.io/github/stars/space-sunrise/space-station-14?style=social)](https://github.com/space-sunrise/space-station-14)
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/space-sunrise/sunrise-station?utm_source=oss&utm_medium=github&utm_campaign=space-sunrise%2Fsunrise-station&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 # Space Station 14 - SUNRISE
 
@@ -25,6 +26,7 @@
 </div>
 
 Space Station 14 — это ролевая игра, вдохновлённая культовой классикой Space Station 13. Space Station 14 наполнена весельем и хаосом. С первого взгляда игра кажется сложной, и это так, но мы поможем тебе освоиться в этой игре и найти своё место. Игра работает на собственном движке [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), написанном на C#.
+
 
 ## Документация
 

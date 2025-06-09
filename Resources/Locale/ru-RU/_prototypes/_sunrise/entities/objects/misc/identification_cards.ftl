@@ -53,5 +53,7 @@ ent-NtrLeadGuardIDCard = ID карта старшего охранника NTR
     .suffix = Лидер
 ent-MailCarrierIDCard = ID карта почтальона
     .desc = { ent-IDCardStandard.desc }
+ent-MiningIDCard = mining ID card
+    .desc = { ent-IDCardStandard.desc }
 ent-BlueShieldIDCard = ID карта офицера "Синего щита"
     .desc = { ent-IDCardStandard.desc }

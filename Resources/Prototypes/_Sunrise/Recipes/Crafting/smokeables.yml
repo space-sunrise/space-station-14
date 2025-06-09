@@ -1,19 +1,19 @@
 - type: construction
-  name: ground cannabis vita
+  name: construction-graph-tag-ground-cannabis-vita
   id: smokeableGroundCannabisVita
   graph: smokeableGroundCannabisVita
   startNode: start
   targetNode: groundVita
   category: construction-category-misc
-  description: Ground cannabis vita, ready to take you on a trip.
+  description: construction-graph-tag-ground-cannabis-vita-desc
   objectType: Item
 
 - type: construction
-  name: joint vita
+  name: construction-graph-tag-joint-vita
   id: smokeableJointVita
   graph: smokeableJointVita
   startNode: start
   targetNode: jointVita
   category: construction-category-misc
-  description: A roll of dried plant matter wrapped in thin paper.
+  description: construction-graph-tag-joint-vita-desc
   objectType: Item

@@ -21,19 +21,15 @@
     access: [["Cryogenics"]]
   - type: InteractionOutline
   - type: Cryostorage
-  - type: Physics
-    canCollide: false
   - type: Fixtures
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.3
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
         density: 190
         mask:
-        - MachineMask
-        layer:
-        - None
+        - TableMask
   - type: DragInsertContainer
     containerId: storage
     entryDelay: 2

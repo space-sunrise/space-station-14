@@ -2,6 +2,7 @@
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Utility;
@@ -43,15 +44,13 @@ public sealed class SpellSelectorBUI : BoundUserInterface
             if (!protoMan.TryIndex(action, out var proto))
                 continue;
 
-            SpriteSpecifier? icon;
-            if (action.StartsWith("InstantAction") && proto.TryGetComponent(out InstantActionComponent? instantComp))
-                icon = instantComp.Icon;
-            else
-            {
-                if (!proto.TryGetComponent(out EntityTargetActionComponent? targetComp))
-                    continue;
-                icon = targetComp.Icon;
-            }
+            if (!proto.Components.TryGetComponent("ActionComponent", out var actionComp))
+                continue;
+
+            if (actionComp is not ActionComponent actionComponent)
+                continue;
+
+            var icon = actionComponent.Icon;
 
             if (icon == null)
                 continue;

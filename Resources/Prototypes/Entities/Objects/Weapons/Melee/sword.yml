@@ -99,7 +99,7 @@
       state: storage
       sprite: Objects/Weapons/Melee/captain_sabre_storage_64x.rsi #Done in 64x64 because it looks way too puny in 32x32
     shape:
-    - 0,0,0,3
+    - 0,0,0,4 # Sunrise edit
   - type: Tag
     tags:
     - CaptainSabre

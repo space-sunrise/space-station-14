@@ -28,3 +28,5 @@ ent-ClosetWallAtmospherics = atmospherics wall closet
     .desc = { ent-BaseWallCloset.desc }
 ent-LockerWallMedical = medical wall locker
     .desc = { ent-BaseWallLocker.desc }
+ent-LockerWallEvacRepair = evac repair wall locker
+    .desc = { ent-BaseWallLocker.desc }

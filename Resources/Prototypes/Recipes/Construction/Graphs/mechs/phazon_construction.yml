@@ -35,7 +35,7 @@
           data: 4
 
       - tag: PhazonCentralControlModule
-        name: phazon central control module
+        name: construction-graph-tag-phazon-central-control-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -52,7 +52,7 @@
           data: 6
 
       - tag: PhazonPeripheralsControlModule
-        name: phazon peripherals control module
+        name: construction-graph-tag-phazon-peripherals-control-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -69,7 +69,7 @@
           data: 8
 
       - tag: PhazonTargetingControlModule
-        name: phazon weapon control and targeting module
+        name: construction-graph-tag-phazon-weapon-control-and-targeting-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: mcontroller
@@ -84,9 +84,9 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 10
-          
+
       - tag: MechPhasicScanningModule
-        name: phasic scanning module
+        name: construction-graph-tag-phasic-scanning-module # Sunrise edit
         icon:
           sprite: "Objects/Specific/Mech/mecha_equipment.rsi"
           state: triphasic_scan_module
@@ -102,11 +102,11 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 12
 
-      - tag: CapacitorStockPart
-        name: capacitor
+      - tag: MicroManipulatorStockPart
+        name: step-manipulator-name
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          state: micro_mani
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
@@ -118,9 +118,9 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 14
-          
+
       - tag: AnomalyCore
-        name: any anomaly core
+        name: construction-graph-tag-any-anomaly-core # Sunrise edit
         icon:
           sprite: "Structures/Specific/Anomalies/Cores/gravity_core.rsi"
           state: core
@@ -130,7 +130,7 @@
           data: 15
 
       - tag: PowerCage
-        name: power cage
+        name: step-powercage-name # Sunrise edit
         store: battery-container
         icon:
           sprite: Objects/Power/power_cages.rsi
@@ -172,7 +172,7 @@
           data: 20
 
       - tag: MechAirTank
-        name: exosuit air tank
+        name: step-exosuit-air-tank-name # Sunrise edit
         icon:
           sprite: Objects/Specific/Mech/mecha_equipment.rsi
           state: mecha_air_tank
@@ -181,7 +181,7 @@
         doAfter: 1
 
       - tag: MechThruster
-        name: exosuit thruster
+        name: step-exosuit-thruster-name # Sunrise edit
         icon:
           sprite: Objects/Specific/Mech/mecha_equipment.rsi
           state: mecha_bin
@@ -190,7 +190,7 @@
         doAfter: 1
 
       - tag: PhazonArmor
-        name: phazon armor plates
+        name: construction-graph-tag-phazon-armor-plates # Sunrise edit
         icon:
           sprite: "Objects/Specific/Mech/phazon_construction.rsi"
           state: phazon_armor
@@ -208,7 +208,7 @@
 
       - tool: Welding
         doAfter: 1
-       
+
   - node: phazon
     actions:
     - !type:BuildMech

@@ -1,5 +1,11 @@
 ent-BaseDonationPlink = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
+ent-SunriseUplink = Sunrise portable shop
+    .desc = Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
+ent-FishStationUplink = /"Fishplink/" portable shop
+    .desc = Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
+ent-NeweraStationUplink = /"Catoplink/" portable Shop
+    .desc = Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
 ent-SunriseUplink40 = портативный магазин Санрайз
     .desc = Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
     .suffix = 40

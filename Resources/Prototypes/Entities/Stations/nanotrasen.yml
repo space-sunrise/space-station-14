@@ -17,9 +17,9 @@
     - BaseStationRecords
     - BaseStationArrivals
     - BaseStationGateway
-    - BaseStationShuttles
-    # Нету смысла пока не будет консоли отправки ОБР
-    #- BaseStationCentComm # Sunrise-Edit
+    # Увы, но с онлайном в 130 слишком расточительно спавнить кучу говна
+    #- BaseStationShuttles
+    - BaseStationCentComm
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
@@ -37,6 +37,7 @@
     - BaseStationAntagsTargets
     - BaseStationCryoTeleport
     - BaseStationMeteorSwarmTarget
+    - BaseStationRandomXenoArtifact
   # Sunrise-End
   components:
     - type: Transform
@@ -58,6 +59,8 @@
     # Sunrise-End
   components:
     - type: Transform
+    - type: ProtectedGrid
+    - type: UnbuildableGrid
 
 - type: entity
   id: StandardStationArena

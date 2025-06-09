@@ -10,6 +10,3 @@ ent-MakeshiftPowerCage = самодельная энергоячейка
 ent-PowerCellMakeshift = самодельная энергоячейка
     .desc = Самодельная энергоячейка. Собрана из подручных материалов.
     .suffix = Полный
-
-### MakeshiftPowerCage
-

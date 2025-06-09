@@ -10,6 +10,7 @@
     size: Large
     shape:
     - 0,0,2,2
+  - type: ContainerInteractionAnimation # Sunrise added
   - type: Storage
     maxItemSize: Small
     grid:

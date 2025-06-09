@@ -491,7 +491,8 @@ public sealed partial class ShuttleSystem
         else if (HasComp<MapGridComponent>(target.EntityId) &&
                  !HasComp<MapComponent>(target.EntityId))
         {
-            var config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle);
+            var config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle,
+                priorityTag: entity.Comp1.PriorityTag); // Sunrise-Edit
             var mapCoordinates = _transform.ToMapCoordinates(target);
 
             // Couldn't dock somehow so just fallback to regular position FTL.
@@ -545,7 +546,7 @@ public sealed partial class ShuttleSystem
         comp.State = FTLState.Cooldown;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
         _console.RefreshShuttleConsoles(uid);
-        _mapManager.SetMapPaused(mapId, false);
+        _mapSystem.SetPaused(mapId, false);
         Smimsh(uid, xform: xform);
 
         var ftlEvent = new FTLCompletedEvent(uid, _mapSystem.GetMap(mapId));

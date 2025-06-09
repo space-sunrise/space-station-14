@@ -1,5 +1,3 @@
-ent-ClothingHeadHelmetHardsuitBasic = базовый шлем скафандра
-    .desc = Базовый шлем скафандра, обеспечивающий незначительную защиту от большинства источников повреждений.
 ent-ClothingHeadHelmetHardsuitAtmos = шлем скафандра атмос-техника
     .desc = Специальный шлем скафандра, предназначенный для работы в условиях низкого давления и высокой температуры.
 ent-ClothingHeadHelmetHardsuitEngineering = шлем скафандра инженера
@@ -75,3 +73,5 @@ ent-ClothingHeadHelmetHardsuitSanta = шлем скафандра Санты
 ent-ChangelingClothingHeadHelmetHardsuit = органический космический шлем
     .desc = Космическая биомасса из ткани, устойчива к давлению и температуре.
     .suffix = Неснимаемый
+ent-ClothingHeadHelmetHardsuitBasic = базовый шлем скафандра
+    .desc = Базовый шлем скафандра, обеспечивающий незначительную защиту от большинства источников повреждений.

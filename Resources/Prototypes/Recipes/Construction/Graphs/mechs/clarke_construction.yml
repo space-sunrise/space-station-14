@@ -34,7 +34,7 @@
           data: 4
 
       - tag: ClarkeCentralControlModule
-        name: clarke central control module
+        name: construction-graph-tag-clarke-central-control-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -51,7 +51,7 @@
           data: 6
 
       - tag: ClarkePeripheralsControlModule
-        name: clarke peripherals control module
+        name: construction-graph-tag-clarke-peripherals-control-module # Sunrise edit
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -67,11 +67,11 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 8
 
-      - tag: CapacitorStockPart
-        name: step-capacitor-name
+      - tag: MicroManipulatorStockPart
+        name: step-manipulator-name
         icon:
           sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          state: micro_mani
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
@@ -85,7 +85,7 @@
           data: 10
 
       - tag: PowerCage
-        name: power cage
+        name: step-powercage-name # Sunrise edit
         store: battery-container
         icon:
           sprite: Objects/Power/power_cages.rsi
@@ -130,7 +130,7 @@
         doAfter: 1
 
       - tag: MechAirTank
-        name: exosuit air tank
+        name: step-exosuit-air-tank-name # Sunrise edit
         icon:
           sprite: Objects/Specific/Mech/mecha_equipment.rsi
           state: mecha_air_tank
@@ -139,7 +139,7 @@
         doAfter: 1
 
       - tag: MechThruster
-        name: exosuit thruster
+        name: step-exosuit-thruster-name # Sunrise edit
         icon:
           sprite: Objects/Specific/Mech/mecha_equipment.rsi
           state: mecha_bin

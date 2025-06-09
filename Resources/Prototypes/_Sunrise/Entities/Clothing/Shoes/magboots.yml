@@ -56,7 +56,7 @@
     sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
   - type: PowerChargerVisuals

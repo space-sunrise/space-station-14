@@ -1,25 +1,28 @@
 - type: entity
+  parent: BaseAction
   id: ActionVampireOpenMutationsMenu
   name: Mutations menu
   description: "Opens menu with vampires mutations."
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: summonheirloom
+    useDelay: 5
+  - type: InstantAction
     event:
       !type:VampireOpenMutationsMenu
-    useDelay: 5
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireToggleFangs
   name: Toggle Fangs
   description: "Extend or retract your fangs. Walking around with your fangs out might reveal your true nature."
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     checkCanInteract: false
     priority: 1
     itemIconStyle: NoItem
@@ -29,20 +32,20 @@
     iconOn:
       sprite: Interface/Actions/actions_vampire.rsi
       state: fangs_extended
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireToggleFangsEvent
       definitionName: ToggleFangs
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireGlare
   name: Glare
   description: "Release a blinding flash from your eyes, stunning a unprotected mortal for 10 seconds. Activation Cost: 20 Essence. Cooldown: 60 Seconds"
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
+  - type: Action
+    useDelay: 20
     priority: 2
     itemIconStyle: NoItem
     icon:
@@ -50,40 +53,48 @@
       state: glare
     sound: !type:SoundPathSpecifier
       path: /Audio/Effects/Vampire/glare.ogg
-    event: 
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    event:
       !type:VampireGlareEvent
       definitionName: Glare
-    useDelay: 20
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireHypnotise
   name: Hypnotise
   description: "Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - HumanoidAppearance
-    canTargetSelf: false
-    interactOnMiss: false
+  - type: Action
+    useDelay: 30
     priority: 2
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: hypnotise
-    event: 
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+    event:
       !type:VampireHypnotiseEvent
       definitionName: Hypnotise
-    useDelay: 30
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireScreech
   name: Screech
   description: "Release a piercing scream, stunning unprotected mortals and shattering fragile objects nearby. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 30"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 25
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
@@ -92,18 +103,20 @@
       state: screech
     sound: !type:SoundPathSpecifier
       path: /Audio/Effects/Vampire/screech_tone.ogg
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireScreechEvent
       definitionName: Screech
-    useDelay: 25
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireBloodSteal
   name: Blood Steal
   description: "Wrench the blood from all bodies nearby - living or dead. Activation Cost: 20 Essence. Cooldown: 60 Seconds"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 25
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
@@ -112,54 +125,60 @@
       state: bloodsteal
     sound: !type:SoundPathSpecifier
       path: /Audio/Effects/demon_consume.ogg
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireBloodStealEvent
       definitionName: BloodSteal
-    useDelay: 25
-    
+
 - type: entity
+  parent: BaseAction
   id: ActionVampireUnholyStrength
   name: Unholy Strength
   description: "Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 25
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: unholystrength
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireUnholyStrengthEvent
       definitionName: UnholyStrength
-    useDelay: 25
-    
+
 - type: entity
+  parent: BaseAction
   id: ActionVampireSupernaturalStrength
   name: SuperNatural Strength
   description: "Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 25
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: supernaturalstrength
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireUnholyStrengthEvent
       definitionName: SupernaturalStrength
-    useDelay: 25
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireBatform
   name: Bat Form
   description: "Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 30
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
@@ -168,18 +187,20 @@
       state: batform
     sound: !type:SoundPathSpecifier
       path: /Audio/Effects/teleport_arrival.ogg
-    event: 
+  - type: InstantAction
+    event:
       !type:VampirePolymorphEvent
       definitionName: PolymorphBat
-    useDelay: 30
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireMouseform
   name: Mouse Form
   description: "Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 30
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
@@ -188,36 +209,40 @@
       state: mouseform
     sound: !type:SoundPathSpecifier
       path: /Audio/Effects/teleport_arrival.ogg
-    event: 
+  - type: InstantAction
+    event:
       !type:VampirePolymorphEvent
       definitionName: PolymorphMouse
-    useDelay: 30
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireCloakOfDarkness
   name: Cloak of Darkness
   description: "Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 10
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: cloakofdarkness
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireCloakOfDarknessEvent
       definitionName: CloakOfDarkness
-    useDelay: 10
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireThermalVision
   name: Thermal Vision
   description: "Toggle thermal vision, allowing you to see living beings through walls. This ability is unlocked once you reach 500 blood essence."
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 5
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
@@ -227,24 +252,26 @@
     iconOn:
       sprite: Interface/Actions/actions_vampire.rsi
       state: thermalvision
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireThermalVisionEvent
       definitionName: ThermalVision
-    useDelay: 5
 
 - type: entity
+  parent: BaseAction
   id: ActionVampireBloodScale
   name: blood scale
   description: "Strengthen your muscles by compressing blood in order to develop maximum speed. Activation Cost: 10 Essence. Upkeep: 4 Essence/Second Cooldown: 5 Seconds"
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     checkCanInteract: false
     priority: 2
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: bloodscale
-    event: 
+  - type: InstantAction
+    event:
       !type:VampireBloodScaleEvent
       definitionName: BloodScale

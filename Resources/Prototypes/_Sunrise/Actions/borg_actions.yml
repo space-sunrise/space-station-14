@@ -1,94 +1,112 @@
 ﻿- type: entity
+  parent: BaseAction
   id: ActionToggleBorgMagboots
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
     iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
     itemIconStyle: NoItem
     priority: 12
+  - type: InstantAction
     event: !type:ToggleBorgMagbootsActionEvent
 
 - type: entity
+  parent: BaseAction
   id: BorgCuffed
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
+  - type: Action
     icon: { sprite: Objects/Misc/cablecuffs.rsi, state: cuff }
     itemIconStyle: NoItem
+    useDelay: 9
+    priority: 9
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
+  - type: EntityTargetAction
+    canTargetSelf: false
     whitelist:
       components:
       - Cuffable
-    canTargetSelf: false
-    useDelay: 9
-    checkCanAccess: true
-    range: 2
     event: !type:BorgCuffedActionEvent
-    priority: 9
 
 - type: entity
+  parent: BaseAction
   id: FabricateLollipop
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: _Sunrise/Objects/Consumable/Food/candy.rsi, state: lollipop }
     useDelay: 120
     priority: 20
+  - type: InstantAction
     event: !type:FabricateLollipopActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FabricateGumball
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: _Sunrise/Objects/Consumable/Food/candy.rsi, state: gumball }
     useDelay: 40
     priority: 20
+  - type: InstantAction
     event: !type:FabricateGumballActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FabricateCookie
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Objects/Consumable/Food/Baked/misc.rsi, state: COOKIE!!! }
     useDelay: 30
     priority: 20
+  - type: InstantAction
     event: !type:FabricateCookieActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FabricateSoap
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Objects/Specific/Janitorial/soap.rsi, state: soap-4 }
     useDelay: 30
     priority: 20
+  - type: InstantAction
     event: !type:FabricateSoapActionEvent
 
 - type: entity
+  parent: BaseAction
   id: PieThrow
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: _Sunrise/Interface/Actions/pie.png
     itemIconStyle: NoItem
-    event: !type:PieThrowActionEvent
-    range: 200
     useDelay: 30
     checkCanInteract: false
+  - type: TargetAction
+    range: 200
+  - type: WorldTargetAction
+    event: !type:PieThrowActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionViewCrewManifest
   name: View Crew Manifest
   description: View the View crew manifest station.
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_borg.rsi
       state: state-manifest
-    event: !type:CrewManifestOpenActionEvent
     useDelay: 0.5
     priority: 11
+  - type: InstantAction
+    event: !type:CrewManifestOpenActionEvent

@@ -29,5 +29,5 @@
   - type: MachineBoard
     prototype: ThrusterSyndicate
     stackRequirements:
-      Capacitor: 4
+      Manipulator: 4
       Steel: 5

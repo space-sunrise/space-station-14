@@ -170,7 +170,8 @@
       drink:
         reagents:
         - ReagentId: Ice
-          Quantity: 200
+          Quantity: 50
+        maxVol: 50
   - type: Sprite
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon

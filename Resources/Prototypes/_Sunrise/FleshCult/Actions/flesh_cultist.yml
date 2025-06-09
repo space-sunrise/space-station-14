@@ -1,165 +1,194 @@
 ﻿- type: entity
+  parent: BaseAction
   id: FleshCultistShop
   name: flesh-cultist-shop-name
   description: flesh-cultist-shop-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistShop.png
-    event: !type:FleshCultistShopActionEvent
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistShopActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistBlade
   name: flesh-cultist-blade-name
   description: flesh-cultist-blade-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistBlade.png
-    event: !type:FleshCultistHandTransformEvent
-      prototype: FleshBlade
     itemIconStyle: NoItem
     useDelay: 3
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshBlade
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistAdrenalin
   name: flesh-cultist-adrenalin-name
   description: flesh-cultist-adrenalin-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAdrenalin.png
-    event: !type:FleshCultistAdrenalinActionEvent
     itemIconStyle: NoItem
     useDelay: 60
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistAdrenalinActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistCreateFleshHeart
   name: flesh-cultist-create-flesh-heart-name
   description: flesh-cultist-create-flesh-heart-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png
-    event: !type:FleshCultistCreateFleshHeartActionEvent
     itemIconStyle: NoItem
     useDelay: 360
+  - type: InstantAction
+    event: !type:FleshCultistCreateFleshHeartActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistClaw
   name: flesh-cultist-claw-name
   description: flesh-cultist-claw-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
-    event: !type:FleshCultistHandTransformEvent
-      prototype: FleshClaw
     itemIconStyle: NoItem
     useDelay: 3
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshClaw
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistThrowHugger
   name: flesh-cultist-throw-hugger-name
   description: flesh-cultist-throw-hugger-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshThrowHugger.png
     itemIconStyle: NoItem
-    event: !type:FleshCultistThrowHuggerActionEvent
-    range: 200
     useDelay: 60
     checkCanInteract: false
+  - type: TargetAction
+    range: 200
+  - type: WorldTargetAction
+    event: !type:FleshCultistThrowHuggerActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistAcidSpit
   name: flesh-cultist-acid-spit-name
   description: flesh-cultist-acid-spit-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshAcidSpit.png
     itemIconStyle: NoItem
-    event: !type:FleshCultistAcidSpitActionEvent
-    range: 200
     useDelay: 30
     checkCanInteract: false
+  - type: TargetAction
+    range: 200
+  - type: WorldTargetAction
+    event: !type:FleshCultistAcidSpitActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistFist
   name: flesh-cultist-fist-name
   description: flesh-cultist-fist-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFist.png
-    event: !type:FleshCultistHandTransformEvent
-      prototype: FleshFist
     itemIconStyle: NoItem
     useDelay: 3
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshFist
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistSpikeGun
   name: flesh-cultist-spike-gun-name
   description: flesh-cultist-spike-gun-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpikeGun.png
-    event: !type:FleshCultistHandTransformEvent
-      prototype: FleshSpikeHandGun
     itemIconStyle: NoItem
     useDelay: 3
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshSpikeHandGun
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistArmor
   name: flesh-cultist-armor-name
   description: flesh-cultist-armor-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistArmor.png
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+  - type: InstantAction
     event: !type:FleshCultistBodyTransformEvent
       prototype: ClothingOuterArmorFlesh
       targetSlot: outerClothing
       checkSlots:
-        - shoes
-    itemIconStyle: NoItem
-    useDelay: 10
-    checkCanInteract: false
+      - shoes
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistHeavyArmor
   name: flesh-cultist-heavy-armor-name
   description: flesh-cultist-heavy-armor-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistHeavyArmor.png
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+  - type: InstantAction
     event: !type:FleshCultistBodyTransformEvent
       prototype: ClothingOuterHeavyArmorFlesh
       targetSlot: outerClothing
       checkSlots:
       - shoes
-    itemIconStyle: NoItem
-    useDelay: 10
-    checkCanInteract: false
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistSpiderlegs
   name: flesh-cultist-spider-legs-name
   description: flesh-cultist-spider-legs-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpiderLegs.png
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+  - type: InstantAction
     event: !type:FleshCultistBodyTransformEvent
       prototype: ClothingFleshSpiderLegs
       targetSlot: shoes
@@ -167,34 +196,35 @@
       - outerClothing
       checkTags:
       - FullBodyOuter
-    itemIconStyle: NoItem
-    useDelay: 10
-    checkCanInteract: false
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistAbsorbBloodPool
   name: flesh-cultist-absorb-blood-pool-name
   description: flesh-cultist-absorb-blood-pool-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAbsorbBloodPool.png
-    event: !type:FleshCultistAbsorbBloodPoolActionEvent
     useDelay: 5
     checkCanInteract: false
+  - type: InstantAction
+    event: !type:FleshCultistAbsorbBloodPoolActionEvent
 
 - type: entity
+  parent: BaseAction
   id: FleshCultistDevour
   name: flesh-cultist-devour-name
   description: flesh-cultist-devour-desc
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
+  - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistDevour.png
     itemIconStyle: NoItem
-    event: !type:FleshCultistDevourActionEvent
     checkCanInteract: false
     useDelay: 5
+  - type: EntityTargetAction
     whitelist:
       components:
-        - MobState
+      - MobState
+    event: !type:FleshCultistDevourActionEvent

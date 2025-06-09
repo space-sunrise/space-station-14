@@ -1,7 +1,9 @@
-ent-GasPipeBase = труба
-    .desc = Содержит газ.
+ent-GasPipeSansLayers = труба
+    .desc = содержит газ
 ent-VentCrawHolder = держатель вентиляционного когтя
     .desc = { "" }
+ent-GasPipeBase = труба
+    .desc = Содержит газ.
 ent-GasPipeHalf = { ent-GasPipeBase }
     .suffix = Половинная
     .desc = { ent-GasPipeBase.desc }
@@ -19,3 +21,5 @@ ent-GasPipeFourway = { ent-GasPipeBase }
     .desc = { ent-GasPipeBase.desc }
 ent-GasPipeBroken = сломанная труба
     .desc = Раньше в ней содержался газ.
+ent-GasPipeManifold = коллектор газовых труб
+    .desc = Позволяет газовым трубам из разных конфигураций соединяться вместе.

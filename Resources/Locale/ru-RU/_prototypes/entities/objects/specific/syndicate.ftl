@@ -1,6 +1,8 @@
+ent-TelecrystalBase = { ent-BaseItem }
+    .desc = Оно, кажется, пульсирует подозрительно манящей энергией.
 ent-Telecrystal = телекристалл
     .desc = Похоже, он переливается подозрительно манящей энергией.
-    .suffix = 20 ТК
+    .suffix = 100 ТК
 ent-Telecrystal1 = { ent-Telecrystal }
     .suffix = 1 ТК
     .desc = { ent-Telecrystal.desc }

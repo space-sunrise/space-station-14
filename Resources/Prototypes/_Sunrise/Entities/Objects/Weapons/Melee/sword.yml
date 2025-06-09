@@ -22,7 +22,7 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 2
+        maxVol: 10
   - type: MeleeChemicalInjector
     solution: melee
   - type: RefillableSolution
@@ -30,14 +30,21 @@
   - type: InjectableSolution
     solution: melee
   - type: SolutionTransfer
-    maxTransferAmount: 2
+    maxTransferAmount: 1
   - type: Reflect
     reflects:
     - NonEnergy
     reflectProb: 0.20
     spread: 90
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier_storage_64x.rsi
+    shape:
+    - 0,0,0,4 #1x5
   - type: Tag
     tags:
     - SyndicateRapier
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/sabre_drop.ogg

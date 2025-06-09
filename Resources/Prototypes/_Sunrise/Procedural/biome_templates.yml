@@ -1,5 +1,5 @@
 - type: biomeTemplate
-  id: PrisonLowDesert
+  id: PlainLowDesert
   layers:
     - !type:BiomeEntityLayer
       threshold: 0.95
@@ -20,7 +20,7 @@
 
 # Grass
 - type: biomeTemplate
-  id: PrisonGrasslands
+  id: PlainGrasslands
   layers:
     # Sparse vegetation
     - !type:BiomeDecalLayer
@@ -136,7 +136,7 @@
 
 # Snow
 - type: biomeTemplate
-  id: PrisonSnow
+  id: PlainSnow
   layers:
     # Sparse vegetation
     - !type:BiomeDecalLayer

@@ -24,9 +24,9 @@ public sealed partial class CargoSystem
     {
         SubscribeLocalEvent<TradeStationComponent, GridSplitEvent>(OnTradeSplit);
 
-        SubscribeLocalEvent<CargoPalletConsoleComponent, CargoPalletSellMessage>(OnPalletSale);
-        SubscribeLocalEvent<CargoPalletConsoleComponent, CargoPalletAppraiseMessage>(OnPalletAppraise);
-        SubscribeLocalEvent<CargoPalletConsoleComponent, BoundUIOpenedEvent>(OnPalletUIOpen);
+        SubscribeLocalEvent<Shared.Cargo.CargoPalletConsoleComponent, CargoPalletSellMessage>(OnPalletSale);
+        SubscribeLocalEvent<Shared.Cargo.CargoPalletConsoleComponent, CargoPalletAppraiseMessage>(OnPalletAppraise);
+        SubscribeLocalEvent<Shared.Cargo.CargoPalletConsoleComponent, BoundUIOpenedEvent>(OnPalletUIOpen);
 
         _cfg.OnValueChanged(CCVars.LockboxCutEnabled, (enabled) => { _lockboxCutEnabled = enabled; }, true);
     }
@@ -48,7 +48,7 @@ public sealed partial class CargoSystem
             new CargoPalletConsoleInterfaceState((int) totalAmount, toSell.Count, true));
     }
 
-    private void OnPalletUIOpen(EntityUid uid, CargoPalletConsoleComponent component, BoundUIOpenedEvent args)
+    private void OnPalletUIOpen(EntityUid uid, Shared.Cargo.CargoPalletConsoleComponent component, BoundUIOpenedEvent args)
     {
         UpdatePalletConsoleInterface(uid);
     }
@@ -61,7 +61,7 @@ public sealed partial class CargoSystem
     /// known for their entity spam i wouldnt put it past them
     /// </summary>
 
-    private void OnPalletAppraise(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletAppraiseMessage args)
+    private void OnPalletAppraise(EntityUid uid, Shared.Cargo.CargoPalletConsoleComponent component, CargoPalletAppraiseMessage args)
     {
         UpdatePalletConsoleInterface(uid);
     }
@@ -212,7 +212,7 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private void OnPalletSale(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletSellMessage args)
+    private void OnPalletSale(EntityUid uid, Shared.Cargo.CargoPalletConsoleComponent component, CargoPalletSellMessage args)
     {
         // Sunrise-Start
         var player = args.Actor;

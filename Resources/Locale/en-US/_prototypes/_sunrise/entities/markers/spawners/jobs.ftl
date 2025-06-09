@@ -42,5 +42,7 @@ ent-SpawnPointMedicalPathologist = pathologist
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointAdjutant = adjutant
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointminingspecialist = miningspecialist
+    .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBlueShield = blueshield
     .desc = { ent-SpawnPointJobBase.desc }

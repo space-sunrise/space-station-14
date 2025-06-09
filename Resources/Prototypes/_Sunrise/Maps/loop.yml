@@ -15,7 +15,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_loop.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency.yml
         - type: StationJobs
           availableJobs:
             #command

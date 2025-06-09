@@ -158,24 +158,18 @@
   category: construction-category-clothing
   objectType: Item
 
- #Sunrise-Start #If merge Scrap Armor PR Delete
 - type: construction
-  name: scrap armor
   id: scraparmor
   graph: scraparmor
   startNode: start
   targetNode: scraparmorfinished
   category: construction-category-clothing
-  description: A poorly-made set of armor, made of sheets of welded steel and spare cabling.
   objectType: Item
 
 - type: construction
-  name: scrap helmet
   id: scraphelmet
   graph: scraphelmet
   startNode: start
   targetNode: scraphelmet
   category: construction-category-clothing
-  description: A bucket crudely refitted into a steel helmet.
   objectType: Item
- #Sunrise-End #If merge Scrap Armor PR Delete

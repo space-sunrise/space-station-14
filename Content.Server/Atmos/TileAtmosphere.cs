@@ -161,5 +161,30 @@ namespace Content.Server.Atmos
         public TileAtmosphere()
         {
         }
+
+        public void Reset()
+        {
+            Air = null;
+            AirArchived = null;
+            Array.Clear(AdjacentTiles, 0, AdjacentTiles.Length);
+            ExcitedGroup = null;
+            Hotspot = default;
+            GridIndex = EntityUid.Invalid;
+            GridIndices = default;
+            MapAtmosphere = false;
+            Space = false;
+            ArchivedCycle = 0;
+            LastShare = 0f;
+            MonstermosInfo = default;
+            CurrentCycle = 0;
+            Excited = false;
+            PressureDifference = 0f;
+            PressureDirection = AtmosDirection.Invalid;
+            PressureSpecificTarget = null;
+            MaxFireTemperatureSustained = 0f;
+            Temperature = 0f;
+            HeatCapacity = 0f;
+            AirtightData = default;
+        }
     }
 }

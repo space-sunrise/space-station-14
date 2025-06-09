@@ -4313,13 +4313,6 @@ entities:
       parent: 490
     - type: Physics
       canCollide: False
-- proto: LauncherSyringeRapidFilled
-  entities:
-  - uid: 630
-    components:
-    - type: Transform
-      pos: -0.5854852,-11.109983
-      parent: 1
 - proto: LightReplacerEmpty
   entities:
   - uid: 565

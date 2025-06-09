@@ -4,7 +4,5 @@ ent-SpawnMobSnowMan = спавнер снеговика
 ent-SpawnMobSnowManEvil = спавнер враждебного снеговика
     .desc = { ent-MarkerBase.desc }
     .suffix = Новый Год | Враждебный
-ent-SpawnMobXenoPraetorian = генератор одинокого ксено-преторианца
-    .desc = { ent-MarkerBase.desc }
 ent-SpawnMobGorillaLargo = спавнер гориллы Ларго
     .desc = { ent-MarkerBase.desc }

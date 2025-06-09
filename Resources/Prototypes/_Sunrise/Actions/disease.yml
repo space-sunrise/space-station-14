@@ -1,234 +1,267 @@
 - type: entity
+  parent: BaseAction
   id: ActionInfect
   name: action-disease-infect-name
   description: action-disease-infect-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
+  - type: Action
     useDelay: 1
     itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: action
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
     whitelist:
       components:
       - HumanoidAppearance
     canTargetSelf: false
-    interactOnMiss: false
-    icon:
-      sprite: _Sunrise/Actions/disease.rsi
-      state: action
     event: !type:InfectEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseShop
   name: action-disease-shop-name
   description: action-disease-shop-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: shop
+  - type: InstantAction
     event: !type:DiseaseShopActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseBaseChance
   name: listing-disease-base-chance-name
   description: listing-disease-base-chance-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: baseChance
+  - type: InstantAction
     event: !type:DiseaseAddBaseChanceEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseInfectChance
   name: listing-disease-infect-chance-name
   description: listing-disease-infect-chance-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: coughChance
+  - type: InstantAction
     event: !type:DiseaseAddCoughChanceEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseShield
   name: listing-disease-shield-name
   description: listing-disease-shield-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: shield
+  - type: InstantAction
     event: !type:DiseaseAddShieldEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseLethal
   name: listing-disease-lethal-name
   description: listing-disease-lethal-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: lethal
+  - type: InstantAction
     event: !type:DiseaseAddLethalEvent
 
 #Store
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseCough
   name: listing-disease-cough-name
   description: listing-disease-cough-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: cough
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Cough"
       minLevel: 2
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseSneeze
   name: listing-disease-sneeze-name
   description: listing-disease-sneeze-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: sneeze
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Sneeze"
       minLevel: 3
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseVomit
   name: listing-disease-vomit-name
   description: listing-disease-vomit-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: vomit
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Vomit"
       minLevel: 3
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseNarcolepsy
   name: listing-disease-narcolepsy-name
   description: listing-disease-narcolepsy-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: narcolepsy
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Narcolepsy"
       minLevel: 3
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseCrying
   name: listing-disease-cry-name
   description: listing-disease-cry-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: sob
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Crying"
       minLevel: 0
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseMuted
   name: listing-disease-muted-name
   description: listing-disease-muted-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: muted
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Muted"
       minLevel: 4
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseSlowness
   name: listing-disease-slowness-name
   description: listing-disease-slowness-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: slowness
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Slowness"
       minLevel: 2
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseBleed
   name: listing-disease-bleed-name
   description: listing-disease-bleed-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: bleed
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Bleed"
       minLevel: 3
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseBlindness
   name: listing-disease-blindness-name
   description: listing-disease-blindness-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: blindness
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Blindness"
       minLevel: 4
 
 - type: entity
+  parent: BaseAction
   id: ActionDiseaseInsult
   name: listing-disease-insult-name
   description: listing-disease-insult-description
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
       state: lethal
+  - type: InstantAction
     event: !type:DiseaseAddSymptomEvent
       symptom: "Insult"
       minLevel: 2

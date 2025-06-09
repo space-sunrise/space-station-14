@@ -647,3 +647,19 @@
   speaker: hearthstone_djaina
   provider: sunrise
   sponsorOnly: false
+
+- type: ttsVoice
+  id: HeartstoneBob
+  name: tts-voice-name-heartstone-bob1
+  sex: Male
+  speaker: hearthstone_bob1
+  provider: sunrise
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HeartstoneRexar
+  name: tts-voice-name-heartstone-rexar
+  sex: Male
+  speaker: hearthstone_rexar
+  provider: sunrise
+  sponsorOnly: false

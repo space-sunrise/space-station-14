@@ -25,7 +25,7 @@
   parent: JobIcon
   id: JobIconBorg
   icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
+    sprite: _Sunrise/Interface/Misc/job_icons.rsi # Sunrise-Edit
     state: Borg
   jobName: job-name-borg
 
@@ -207,6 +207,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconCluwne
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Cluwne
+  jobName: job-name-cluwne
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconCaptain
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
@@ -329,7 +337,7 @@
   parent: JobIcon
   id: JobIconMusician
   icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
+    sprite: _Sunrise/Interface/Misc/job_icons.rsi # Sunrise-Edit
     state: Musician
   jobName: job-name-musician
 

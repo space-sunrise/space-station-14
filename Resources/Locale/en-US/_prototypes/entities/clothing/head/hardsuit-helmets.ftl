@@ -1,5 +1,3 @@
-ent-ClothingHeadHelmetHardsuitBasic = basic hardsuit helmet
-    .desc = A basic-looking hardsuit helmet that provides minor protection against most sources of damage.
 ent-ClothingHeadHelmetHardsuitAtmos = atmos hardsuit helmet
     .desc = A special hardsuit helmet designed for working in low-pressure, high thermal environments.
 ent-ClothingHeadHelmetHardsuitEngineering = engineering hardsuit helmet
@@ -75,3 +73,5 @@ ent-ClothingHeadHelmetHardsuitSanta = Santa's hardsuit helmet
 ent-ChangelingClothingHeadHelmetHardsuit = organic space helmet
     .desc = A spaceworthy biomass of pressure and temperature resistant tissue.
     .suffix = Unremoveable
+ent-ClothingHeadHelmetHardsuitBasic = basic hardsuit helmet
+    .desc = A basic-looking hardsuit helmet that provides minor protection against most sources of damage.

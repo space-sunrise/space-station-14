@@ -135,3 +135,47 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassCentCommShuttle
+  suffix: External, CentComm, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockCentComm
+
+- type: entity
+  parent: AirlockExternalGlassShuttleArrivals
+  id: AirlockExternalGlassShuttleArrivalsLockedCentComm
+  suffix: External, Arrivals, Glass, Docking, Locked, CentComm
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+  - type: Airlock
+    safety: false
+  - type: Door
+    forcedCrushClose: true
+    doorStunTime: 10
+    crushDamage:
+      types:
+        Blunt: 10 # А вот нехуй.
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleEmergencyLockedCentComm
+  suffix: External, Emergency, Glass, Docking, Locked, CentComm
+  components:
+  - type: PriorityDock
+    tag: DockEmergency
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+  - type: Airlock
+    safety: false
+  - type: Door
+    forcedCrushClose: true
+    doorStunTime: 10
+    crushDamage:
+      types:
+        Blunt: 10 # А вот нехуй.

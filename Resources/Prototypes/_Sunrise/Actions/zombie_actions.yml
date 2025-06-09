@@ -1,25 +1,30 @@
 - type: entity
+  parent: BaseAction
   id: ZombieJump
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 15
     icon:
       sprite: _Sunrise/Actions/zombie.rsi
       state: jump
     itemIconStyle: NoItem
-    checkCanAccess: false
+  - type: TargetAction
     range: 200
+    checkCanAccess: false
+  - type: WorldTargetAction
     event: !type:ZombieJumpActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ZombieFlair
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 5
     icon:
       sprite: _Sunrise/Actions/zombie.rsi
       state: the_look
     itemIconStyle: NoItem
+  - type: InstantAction
     event: !type:ZombieFlairActionEvent

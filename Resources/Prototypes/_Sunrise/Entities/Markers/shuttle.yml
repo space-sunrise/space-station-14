@@ -7,16 +7,3 @@
       blockRotate: true
     - type: Sprite
       state: pink
-
-- type: entity
-  id: FTLPointShuttlePrisonSpawn
-  parent: MarkerBase
-  name: landing pad
-  suffix: Prison shuttle spawn
-  components:
-  - type: FTLBeacon
-    blockRotate: true
-  - type: Sprite
-    state: pink
-  - type: RoundstartFtlTarget
-    gridPath: "/Maps/_Sunrise/Shuttles/prison.yml"

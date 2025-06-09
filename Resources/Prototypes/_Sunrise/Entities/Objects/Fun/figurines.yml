@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineBlueshield
+  name: blue shield figure
+  description: A figure depicting Blue Shield, ready to protect the command staff at all costs.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: blueshield
+  - type: SpeakOnTrigger
+    pack: FigurinesBlueshield
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineEnforcementofficer
+  name: enforcement officer figure
+  description: A figure depicting Enforcement Officer, ready to protect the lawyer at all costs.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: enforcementofficer
+  - type: SpeakOnTrigger
+    pack: FigurinesEnforcementofficer

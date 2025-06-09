@@ -75,6 +75,17 @@
     announceVoice: PortalGlados # Sunrise-Edit
     sound: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-Edit
   - type: ShowJobIcons
+  # Sunrise-Start
+  - type: ShowThirstIcons
+  - type: ShowHungerIcons
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - Mech
+  # Sunrise-End
   - type: Speech # Sunrise-Edit
     speechVerb: Robotic # Sunrise-Edit
 

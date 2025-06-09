@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Whether gas differences will move entities.
     /// </summary>
     public static readonly CVarDef<bool> SpaceWind =
-        CVarDef.Create("atmos.space_wind", false, CVar.SERVERONLY);
+        CVarDef.Create("atmos.space_wind", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     Divisor from maxForce (pressureDifference * 2.25f) to force applied on objects.
@@ -120,13 +120,13 @@ public sealed partial class CCVars
     ///     Maximum time in milliseconds that atmos can take processing.
     /// </summary>
     public static readonly CVarDef<float> AtmosMaxProcessTime =
-        CVarDef.Create("atmos.max_process_time", 3f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.max_process_time", 1.5f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Atmos tickrate in TPS. Atmos processing will happen every 1/TPS seconds.
     /// </summary>
     public static readonly CVarDef<float> AtmosTickRate =
-        CVarDef.Create("atmos.tickrate", 15f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.tickrate", 30f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Scale factor for how fast things happen in our atmosphere
@@ -135,14 +135,14 @@ public sealed partial class CCVars
     ///     in-game.
     /// </summary>
     public static readonly CVarDef<float> AtmosSpeedup =
-        CVarDef.Create("atmos.speedup", 8f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.speedup", 24f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Like atmos.speedup, but only for gas and reaction heat values. 64x means
     ///     gases heat up and cool down 64x faster than real life.
     /// </summary>
     public static readonly CVarDef<float> AtmosHeatScale =
-        CVarDef.Create("atmos.heat_scale", 8f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.heat_scale", 24f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Maximum explosion radius for explosions caused by bursting a gas tank ("max caps").

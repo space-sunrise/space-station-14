@@ -43,9 +43,10 @@ public partial class ChatBox : UIWidget
         ChatInput.Input.OnFocusExit += OnFocusExit;
         ChatInput.ChannelSelector.OnChannelSelect += OnChannelSelect;
         ChatInput.FilterButton.Popup.OnChannelFilter += OnChannelFilter;
-
+        ChatInput.FilterButton.Popup.OnNewHighlights += OnNewHighlights;
         _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
+        _controller.HighlightsUpdated += OnHighlightsUpdated;
         _controller.RegisterChat(this);
     }
 
@@ -77,6 +78,11 @@ public partial class ChatBox : UIWidget
         AddLine(msg.WrappedMessage, color);
     }
 
+    private void OnHighlightsUpdated(string highlights)
+    {
+        ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
+    }
+
     private void OnChannelSelect(ChatSelectChannel channel)
     {
         _controller.UpdateSelectedChannel(this);
@@ -105,6 +111,11 @@ public partial class ChatBox : UIWidget
         {
             _controller.ClearUnfilteredUnreads(channel);
         }
+    }
+
+    private void OnNewHighlights(string highlighs)
+    {
+        _controller.UpdateHighlights(highlighs);
     }
 
     // Sunrise start

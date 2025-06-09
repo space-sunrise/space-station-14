@@ -79,3 +79,5 @@ tts-voice-name-hearthstone-khadgar = (NEW) [Heathstone] Кхадгар
 tts-voice-name-dota2-antimage = (NEW) [Dota 2] Антимаг
 tts-voice-name-heartstone-hamul-runical-totem = (NEW) [Hearthstone] Рунический Тотем
 tts-voice-name-heartstone-djaina = (NEW) [Hearthstone] Джайна
+tts-voice-name-heartstone-bob1 = (NEW) [Hearthstone] БОБ
+tts-voice-name-heartstone-rexar = (NEW) [Hearthstone] Рексар

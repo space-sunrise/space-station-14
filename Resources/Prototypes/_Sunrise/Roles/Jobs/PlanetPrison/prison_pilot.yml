@@ -9,6 +9,7 @@
       time: 18000 #5 hrs
   startingGear: PrisonPilotGear
   icon: "JobIconPrisonPilot"
+  setPreference: false
   overrideConsoleVisibility: false
   alwaysUseSpawner: true
   supervisors: job-supervisors-head-of-prison

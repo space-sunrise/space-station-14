@@ -1,19 +1,19 @@
 - type: construction #by Noychik
-  name: Trashgun
+  name: construction-graph-tag-trashgun
   id: Trashgun
   graph: Trashgun
   startNode: start
   targetNode: done
   category: construction-category-misc
-  description: Makeshift trashgun. It shoots garbage at medium range. It looks like it could explode at any moment.....
+  description: construction-graph-tag-trashgun-desc
   objectType: Item
 
 - type: construction
-  name: Trashlasergun
+  name: construction-graph-tag-trashlasergun
   id: Trashlasergun
   graph: Trashlasergun
   startNode: start
   targetNode: done
   category: construction-category-misc
-  description: Makeshift lasergun. It shoots laser, maybe...
+  description: construction-graph-tag-trashlasergun-desc
   objectType: Item

@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
+using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
@@ -11,6 +12,7 @@ using Content.Server.Communications;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Parallax;
 using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
@@ -55,6 +57,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Parallax.Biomes;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -91,6 +94,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAirlockSystem _airlockSystem = default!;
+    [Dependency] private readonly BiomeSystem _biomes = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 
@@ -586,35 +590,20 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         EnsureComp<LightCycleComponent>(mapUid);
-        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
 
         Log.Info($"Created transit hub grid {ToPrettyString(uid)} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
         EnsureComp<ProtectedGridComponent>(uid.Value.Owner);
+        EnsureComp<ArrivalsSourceComponent>(uid.Value.Owner); // Sunrise-edit
         EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
+        EnsureComp<ImmortalGridComponent>(uid.Value.Owner); // Sunrise-edit
 
-       // var template = _random.Pick(component.Biomes);
-       // _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
+       var template = _random.Pick(component.Biomes);
+       var biome = _prototypeManager.Index<BiomeTemplatePrototype>(template);
+       _biomes.EnsurePlanet(mapUid, biome);
 
         component.MapEntity = mapUid;
         component.Entity = uid;
-
-        var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int) Gas.Oxygen] = 21.824779f;
-        moles[(int) Gas.Nitrogen] = 82.10312f;
-
-        var mixture = new GasMixture(moles, Atmospherics.T20C);
-
-        _atmos.SetMapAtmosphere(mapUid, false, mixture);
-
-        var gravity = EnsureComp<GravityComponent>(mapUid);
-        gravity.Enabled = true;
-        gravity.Inherent = true;
-        Dirty(mapUid, gravity);
-
-        var light = EnsureComp<MapLightComponent>(mapUid);
-        light.AmbientLightColor = Color.FromHex("#D8B059");
-        Dirty(mapUid, light);
 
         // Sunrise-Start
         var restricted = new RestrictedRangeComponent
@@ -624,10 +613,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         };
         AddComp(mapUid, restricted);
         // Sunrise-End
-
-        EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
-        parallaxComponent.Parallax = "Grass";
-        Dirty(mapUid, parallaxComponent);
 
         _mapManager.DoMapInitialize(mapId);
         // Sunrise-end
@@ -694,16 +679,16 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         EnsureComp<EmergencyShuttleComponent>(shuttle.Value.Owner);
         EnsureComp<UnbuildableGridComponent>(shuttle.Value.Owner); // Sunrise-edit
 
-        var docks = new HashSet<Entity<DockingComponent>>();
-        _lookup.GetChildEntities(shuttle.Value.Owner, docks);
-        foreach (var dock in docks)
-        {
-            var airlock = EnsureComp<AirlockComponent>(dock);
-            _airlockSystem.SetSafety(airlock, false);
-            var door = EnsureComp<DoorComponent>(dock);
-            door.ForcedCrushClose = true;
-            door.CrushDamage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 1000);
-        }
+        // var docks = new HashSet<Entity<DockingComponent>>();
+        // _lookup.GetChildEntities(shuttle.Value.Owner, docks);
+        // foreach (var dock in docks)
+        // {
+        //     var airlock = EnsureComp<AirlockComponent>(dock);
+        //     _airlockSystem.SetSafety(airlock, false);
+        //     var door = EnsureComp<DoorComponent>(dock);
+        //     door.ForcedCrushClose = true;
+        //     door.CrushDamage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 1000);
+        // }
 
         // Sunrise-end
         Log.Info($"Added emergency shuttle {ToPrettyString(shuttle)} for station {ToPrettyString(ent)} and centcomm {ToPrettyString(ent.Comp2.Entity)}");

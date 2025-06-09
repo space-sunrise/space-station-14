@@ -53,5 +53,7 @@ ent-NtrLeadGuardIDCard = NTR Lead ID card
     .suffix = Leader
 ent-MailCarrierIDCard = mail carrier ID card
     .desc = { ent-IDCardStandard.desc }
+ent-MiningIDCard = mining ID card
+    .desc = { ent-IDCardStandard.desc }
 ent-BlueShieldIDCard = blueshield ID card
     .desc = { ent-IDCardStandard.desc }

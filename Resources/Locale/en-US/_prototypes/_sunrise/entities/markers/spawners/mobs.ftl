@@ -4,5 +4,3 @@ ent-SpawnMobSnowMan = snowman spawner
 ent-SpawnMobSnowManEvil = evil snowman spawner
     .suffix = NewYear | Hostile
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobXenoPraetorian = xeno lone praetorian spawner
-    .desc = { ent-MarkerBase.desc }

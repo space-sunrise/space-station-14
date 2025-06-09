@@ -9,13 +9,13 @@
       layers:
         - state: defib
         - state: defib-on
-          map: [ "enum.ToggleVisuals.Layer" ]
+          map: [ "enum.ToggleableVisuals.Layer" ]
           visible: false
           shader: unshaded
     - type: GenericVisualizer
       visuals:
-        enum.ToggleVisuals.Toggled:
-          enum.ToggleVisuals.Layer:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
             True: { visible: true }
             False: { visible: false }
     - type: Item

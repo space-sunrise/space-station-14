@@ -20,7 +20,4 @@ public sealed partial class StationTransitHubComponent : Component
     [ViewVariables(VVAccess.ReadOnly),
      DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<BiomeTemplatePrototype>))]
     public List<string> Biomes = new();
-
-    [DataField]
-    public Color PlanetLightColor = Color.FromHex("#2b3143");
 }

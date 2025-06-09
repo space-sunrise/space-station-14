@@ -24,3 +24,14 @@
   - type: Construction
     graph: AtmosCrossCraft
     node: cross
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckAmethystHeart
+  name: AmethystHeart
+  description: The perfect necklace for those who value uniqueness and elegance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Necklaces/amethyst_heart.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Necklaces/amethyst_heart.rsi

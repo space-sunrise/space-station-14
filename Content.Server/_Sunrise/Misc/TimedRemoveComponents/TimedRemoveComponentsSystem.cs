@@ -24,7 +24,7 @@ public sealed class TimedRemoveComponentsSystem : EntitySystem
 
     private void RemoveComponents(Entity<TimedRemoveComponentsComponent> ent)
     {
-        if (!Exists(ent))
+        if (TerminatingOrDeleted(ent))
             return;
 
         EntityManager.RemoveComponents(ent, ent.Comp.Components);

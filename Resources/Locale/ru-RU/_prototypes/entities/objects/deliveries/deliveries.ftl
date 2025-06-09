@@ -8,3 +8,5 @@ ent-DeliveryModifierPriority = { "" }
     .desc = Компоненты, добавляемые, когда доставка считается приоритетной.
 ent-DeliveryModifierFragile = { "" }
     .desc = Компоненты, добавляемые, когда доставка считается хрупкой.
+ent-DeliveryModifierBomb = { "" }
+    .desc = Components to add when a delivery is rolled as a bomb.

@@ -5,7 +5,7 @@
   minPlayers: 0
   stations:
     Dev:
-      stationProto: StandardNanotrasenStation
+      stationProto: DevStation
       components:
         - type: StationNameSetup
           mapNameTemplate: "Dev"

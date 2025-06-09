@@ -1,21 +1,25 @@
 - type: entity
+  parent: BaseAction
   id: NVDToggleAction
   name: Switching Night Vision Device
   description: Switching NVD
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     icon: { sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi, state: icon }
+  - type: InstantAction
     event: !type:ToggleActionEvent
 
 - type: entity
+  parent: BaseAction
   id: SwitchNightVision
   name: Switches Night Vision
   description: Switches Night Vision
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     icon: { sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi, state: icon }
+  - type: InstantAction
     event: !type:NightVisionToggleEvent

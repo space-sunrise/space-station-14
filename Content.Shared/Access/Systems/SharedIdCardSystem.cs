@@ -205,6 +205,22 @@ public abstract class SharedIdCardSystem : EntitySystem
         return true;
     }
 
+    public bool TryChangeJobDepartment(EntityUid uid, List<ProtoId<DepartmentPrototype>> departments, IdCardComponent? id = null)
+    {
+        if (!Resolve(uid, ref id))
+            return false;
+
+        id.JobDepartments.Clear();
+        foreach (var department in departments)
+        {
+            id.JobDepartments.Add(department);
+        }
+
+        Dirty(uid, id);
+
+        return true;
+    }
+
     // Sunrise-Start
     public bool TryChangeJobColor(EntityUid uid, string? jobColor, bool boldRadio = false, IdCardComponent? id = null, EntityUid? player = null)
     {

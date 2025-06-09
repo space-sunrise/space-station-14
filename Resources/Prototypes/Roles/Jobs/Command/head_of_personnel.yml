@@ -77,3 +77,15 @@
     back:
     - Flash
     - Telebaton # Sunrise-Edit
+
+- type: chameleonOutfit
+  id: HeadOfPersonnelChameleonOutfit
+  job: HeadOfPersonnel
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHopcap
+    eyes: ClothingEyesHudCommand
+    mask: ClothingMaskNeckGaiterRed
+    neck: ClothingNeckCloakHop
+    outerClothing: ClothingOuterWinterHoP
+

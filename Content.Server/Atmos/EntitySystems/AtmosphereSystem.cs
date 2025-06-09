@@ -1,6 +1,5 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
-using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Atmos.EntitySystems;
@@ -15,6 +14,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Content.Server.Atmos.EntitySystems;
 
@@ -48,6 +48,11 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     private HashSet<EntityUid> _entSet = new();
 
     private string[] _burntDecals = [];
+
+    private readonly Stopwatch _frameStopwatch = new();
+    private float _lastFrameTime;
+    private float _averageFrameTime;
+    private int _frameCount;
 
     public override void Initialize()
     {
@@ -95,6 +100,8 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     public override void Update(float frameTime)
     {
+        _frameStopwatch.Restart();
+
         base.Update(frameTime);
 
         UpdateProcessing(frameTime);
@@ -118,6 +125,16 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         }
 
         _exposedTimer -= ExposedUpdateDelay;
+
+        _frameStopwatch.Stop();
+        _lastFrameTime = (float)_frameStopwatch.Elapsed.TotalMilliseconds;
+        _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
+        _frameCount++;
+
+        if (_frameCount % 100 == 0)
+        {
+            Logger.Info($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms");
+        }
     }
 
     private void CacheDecals()

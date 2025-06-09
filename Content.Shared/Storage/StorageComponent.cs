@@ -120,7 +120,7 @@ namespace Content.Shared.Storage
         /// Sound played whenever an entity is removed from storage.
         /// </summary>
         [DataField]
-        public SoundSpecifier? StorageRemoveSound;
+        public SoundSpecifier? StorageRemoveSound = new SoundCollectionSpecifier("storageRustle"); // Sunrise edit
 
         /// <summary>
         /// Sound played whenever the storage window is opened.

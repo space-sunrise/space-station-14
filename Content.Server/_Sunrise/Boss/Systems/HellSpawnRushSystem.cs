@@ -45,19 +45,10 @@ public sealed class HellSpawnRushSystem : EntitySystem
     {
         if (_container.IsEntityOrParentInContainer(ent.Owner) || args.Handled)
             return;
-        if (args.Coords != null)
-        {
-            Rush(args.Performer, args.Coords.Value, ent.Comp.Range);
-            args.Handled = true;
-            return;
-        }
 
-        if (args.Entity != null)
-        {
-            Rush(args.Performer, Transform(args.Entity.Value).Coordinates, ent.Comp.Range);
-            args.Handled = true;
-            return;
-        }
+        Rush(args.Performer, args.Target, ent.Comp.Range);
+        args.Handled = true;
+
         // ent.Comp.IsThrown = true;
     }
 

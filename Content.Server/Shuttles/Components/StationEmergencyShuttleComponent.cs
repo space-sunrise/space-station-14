@@ -21,7 +21,7 @@ public sealed partial class StationEmergencyShuttleComponent : Component
     /// Emergency shuttle map path for this station.
     /// </summary>
     [DataField("emergencyShuttlePath", customTypeSerializer: typeof(ResPathSerializer))]
-    public ResPath EmergencyShuttlePath { get; set; } = new("/Maps/Shuttles/emergency.yml");
+    public ResPath EmergencyShuttlePath { get; set; } = new("/Maps/_Sunrise/Shuttles/emergency.yml"); // Sunrise-Edit
 
     /// <summary>
     /// The announcement made when the shuttle has successfully docked with the station.

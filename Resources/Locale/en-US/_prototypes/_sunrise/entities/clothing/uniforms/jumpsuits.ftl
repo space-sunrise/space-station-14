@@ -62,3 +62,5 @@ ent-ClothingUniformJumpsuitArmouredBlack = armored black lawyer suit
     .desc = A seemingly simple business suit.. until the first bullet bounced..
 ent-ClothingUniformJumpsuitBlueshieldJS = blueshield's jumpsuit
     .desc = { ent-ClothingUniformBase.desc }
+ent-ClothingUniformJumpsuitMiningSpecialist = mining specialist's jumpsuit
+    .desc = A suit passed down through many generations. a fine layer of dust trails behind it.

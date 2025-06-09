@@ -1,79 +1,89 @@
 ﻿- type: entity
+  parent: BaseAction
   id: ActionCultTwistedConstruction
   categories: [ HideSpawnMenu ]
   components:
-    - type: EntityTargetAction
-      temporary: true
-      useDelay: 5
-      canTargetSelf: false
-      icon:
-        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
-        state: transmute
-      itemIconStyle: NoItem
-      event: !type:CultTwistedConstructionActionEvent
+  - type: Action
+    temporary: true
+    useDelay: 5
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: transmute
+    itemIconStyle: NoItem
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:CultTwistedConstructionActionEvent
 
 - type: entity
+  parent: BaseAction
   id: InstantActionBloodMagic
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     temporary: true
     useDelay: 3
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: carve
     itemIconStyle: NoItem
+  - type: InstantAction
     event: !type:CultBloodMagicInstantActionEvent
 
 - type: entity
+  parent: BaseAction
   id: InstantActionBloodRitual
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     temporary: true
     useDelay: 3
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: manip
     itemIconStyle: NoItem
+  - type: InstantAction
     event: !type:CultBloodRitualInstantActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionCultStun
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
+  - type: Action
     temporary: true
     useDelay: 5
-    whitelist:
-      components:
-        - HumanoidAppearance
-        - BorgChassis
-    canTargetSelf: false
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: stun
     itemIconStyle: NoItem
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+      - BorgChassis
     event: !type:CultStunTargetActionEvent
   - type: LimitedCharges
     maxCharges: 1
   - type: DeleteWithoutCharges
 
 - type: entity
+  parent: BaseAction
   id: ActionShadowShackles
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityTargetAction
+  - type: Action
     temporary: true
     useDelay: 1
-    whitelist:
-      components:
-      - Cuffable
-    canTargetSelf: false
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: shackles
     itemIconStyle: NoItem
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Cuffable
     event: !type:CultShadowShacklesTargetActionEvent
   - type: LimitedCharges
     maxCharges: 4
@@ -81,86 +91,98 @@
 
 
 - type: entity
+  parent: BaseAction
   id: InstantActionEmpPulse
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 5
     temporary: true
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: emp
+  - type: InstantAction
     event: !type:CultEmpPulseTargetActionEvent
-    useDelay: 5
   - type: LimitedCharges
     maxCharges: 1
   - type: DeleteWithoutCharges
 
 - type: entity
+  parent: BaseAction
   id: ActionCultTeleport
   categories: [ HideSpawnMenu ]
   components:
-    - type: EntityTargetAction
+    - type: Action
       temporary: true
       useDelay: 5
-      whitelist:
-        components:
-          - BloodCultist
-      canTargetSelf: true
-      deselectOnMiss: true
-      repeat: false
       icon:
         sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
         state: teleport
       itemIconStyle: NoItem
+    - type: TargetAction
+      deselectOnMiss: true
+      repeat: false
+    - type: EntityTargetAction
+      whitelist:
+        components:
+        - BloodCultist
+      canTargetSelf: true
       event: !type:CultTeleportTargetActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionCultSummonCombatEquipment
   categories: [ HideSpawnMenu ]
   components:
-    - type: EntityTargetAction
+    - type: Action
       temporary: true
       useDelay: 5
-      whitelist:
-        components:
-          - HumanoidAppearance
-          - BloodCultist
-      canTargetSelf: true
-      deselectOnMiss: true
-      repeat: false
       icon:
         sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
         state: equip
       itemIconStyle: NoItem
+    - type: TargetAction
+      deselectOnMiss: true
+      repeat: false
+    - type: EntityTargetAction
+      canTargetSelf: true
+      whitelist:
+        components:
+        - HumanoidAppearance
+        - BloodCultist
       event: !type:CultSummonCombatEquipmentTargetActionEvent
     - type: LimitedCharges
       maxCharges: 1
     - type: DeleteWithoutCharges
 
 - type: entity
+  parent: BaseAction
   id: InstantActionSummonCultDagger
   categories: [ HideSpawnMenu ]
   components:
-    - type: InstantAction
+    - type: Action
       temporary: true
       icon:
         sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
         state: blood_dagger
-      event: !type:CultSummonDaggerActionEvent
       useDelay: 5
+    - type: InstantAction
+      event: !type:CultSummonDaggerActionEvent
     - type: LimitedCharges
       maxCharges: 1
     - type: DeleteWithoutCharges
 
 - type: entity
+  parent: BaseAction
   id: ActionCultReturnBloodSpear
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     temporary: true
     useDelay: 2
     icon:
       sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
       state: bloodspear
     itemIconStyle: NoItem
+  - type: InstantAction
     event: !type:CultReturnBloodSpearActionEvent

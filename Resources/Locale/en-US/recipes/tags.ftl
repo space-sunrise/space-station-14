@@ -33,7 +33,7 @@ construction-graph-tag-security-helmet = security helmet
 construction-graph-tag-strobe-shield = strobe riot shield
 
 # materials
-construction-graph-tag-capacitor = capacitor
+construction-graph-tag-manipulator = modular machine part
 construction-graph-tag-voice-trigger = a voice trigger
 construction-graph-tag-signal-trigger = a signal trigger
 construction-graph-tag-proximity-sensor = proximity sensor
@@ -56,7 +56,7 @@ construction-graph-tag-super-compact-ai-chip = a super-compact AI chip
 # other
 construction-graph-tag-light-bulb = light bulb
 construction-graph-tag-radio = radio
-construction-graph-tag-pipe = pipe
+construction-graph-tag-pipe = gas pipe
 construction-graph-tag-human-head = human head
 construction-graph-tag-bucket = bucket
 construction-graph-tag-borg-arm = borg arm
@@ -69,6 +69,8 @@ construction-graph-tag-match-stick = match stick
 construction-graph-tag-potato = a potato
 construction-graph-tag-wheat-bushel = wheat bushel
 construction-graph-tag-corgi-hide = corgi hide
+construction-graph-tag-apron = an apron
+construction-graph-tag-utility-belt = a utility belt
 soil-construction-graph-any-mushroom = any mushroom
 
 # toys

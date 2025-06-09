@@ -6,7 +6,6 @@
   setPreference: false
   startingGear: CBURNGear
   icon: "JobIconNanotrasen"
-  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -27,19 +26,23 @@
     ears: ClothingHeadsetAltCentCom
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
-    pocket1: PowerCellNanoTrasen  #sunrise-edit
-    pocket2: WeaponLaserSvalinn #sunrise-edit
+    pocket1: RadioHandheld
+    pocket2: WeaponLaserGun
     belt: ClothingBeltBandolier
   storage:
     back:
-    - WeaponShotgunPaladin12 #sunrise-edit
+    - WeaponShotgunDoubleBarreled
     - BoxShotgunIncendiary
-    - BoxShotgunIncendiary  #sunrise-edit
-    - BoxShotgunFlare  #sunrise-edit
-    - ClusterBangFull #sunrise-edit
-    - GrenadeIncendiary #sunrise-edit
+    - GrenadeFlashBang
     - PillAmbuzolPlus
-    - SyringeAmbuzol  #sunrise-edit
-    - MedkitCombatFilled  #sunrise-edit
+    - PillAmbuzol
+
+- type: chameleonOutfit
+  id: CBURNChameleonOutfit
+  job: CBURN
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetCBURN
+    neck: ClothingNeckScarfStripedBrown

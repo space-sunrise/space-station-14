@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Systems;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
 
@@ -30,17 +31,16 @@ public sealed class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilityS
 
         if (ent.Comp.InvincibilityActionEntity == null)
             return;
-        if (!TryComp<InstantActionComponent>(ent.Comp.InvincibilityActionEntity, out var action))
+        if (!TryComp<ActionComponent>(ent.Comp.InvincibilityActionEntity, out var action))
             return;
-        if (!_actions.ValidAction(action))
+        if (!TryComp<InstantActionComponent>(ent.Comp.InvincibilityActionEntity, out var instantAction))
+            return;
+        if (!_actions.ValidAction((ent.Comp.InvincibilityActionEntity.Value, action)))
             return;
 
-        _actions.PerformAction(ent.Owner,
-            null,
-            ent.Comp.InvincibilityActionEntity.Value,
-            action,
-            action.BaseEvent,
-            _timing.CurTime,
+        _actions.PerformAction((ent.Owner, null),
+            (ent.Comp.InvincibilityActionEntity.Value, action),
+            instantAction.Event,
             false);
     }
 }

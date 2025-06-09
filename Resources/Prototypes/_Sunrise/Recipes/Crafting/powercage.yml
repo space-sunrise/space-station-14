@@ -1,9 +1,9 @@
 - type: construction
-  name: Makeshift Power Cage
+  name: construction-graph-tag-power-cage
   id: MakeshiftPowerCage
   graph: MakeshiftPowerCage
   startNode: start
   targetNode: makeshiftcage
   category: construction-category-misc
-  description: Makeshift power cage. It's not very good, but better than nothing.
+  description: construction-graph-tag-power-cage-desc
   objectType: Item

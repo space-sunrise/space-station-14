@@ -15,6 +15,7 @@ using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clumsy;
 using Content.Shared.GameTicking.Components;

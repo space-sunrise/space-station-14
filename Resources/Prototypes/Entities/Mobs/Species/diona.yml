@@ -124,6 +124,7 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Rootable
   # Sunrise-Start
   - type: CollectiveMind
     minds:

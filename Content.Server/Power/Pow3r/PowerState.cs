@@ -471,22 +471,22 @@ namespace Content.Server.Power.Pow3r
             /// <summary>
             ///     Power generators
             /// </summary>
-            [ViewVariables] public List<NodeId> Supplies = new();
+            [ViewVariables] public HashSet<NodeId> Supplies = new();
 
             /// <summary>
             ///     Power consumers.
             /// </summary>
-            [ViewVariables] public List<NodeId> Loads = new();
+            [ViewVariables] public HashSet<NodeId> Loads = new();
 
             /// <summary>
             ///     Batteries that are draining power from this network (connected to the INPUT port of the battery).
             /// </summary>
-            [ViewVariables] public List<NodeId> BatteryLoads = new();
+            [ViewVariables] public HashSet<NodeId> BatteryLoads = new();
 
             /// <summary>
             ///     Batteries that are supplying power to this network (connected to the OUTPUT port of the battery).
             /// </summary>
-            [ViewVariables] public List<NodeId> BatterySupplies = new();
+            [ViewVariables] public HashSet<NodeId> BatterySupplies = new();
 
             /// <summary>
             ///     The total load on the power network as of last tick.
@@ -504,6 +504,14 @@ namespace Content.Server.Power.Pow3r
             [ViewVariables] public float LastCombinedMaxSupply = 0f;
 
             [ViewVariables] [JsonIgnore] public int Height;
+
+            public Network()
+            {
+                Supplies.EnsureCapacity(16);
+                Loads.EnsureCapacity(32);
+                BatteryLoads.EnsureCapacity(8);
+                BatterySupplies.EnsureCapacity(8);
+            }
         }
     }
 }

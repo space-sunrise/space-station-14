@@ -1,64 +1,77 @@
 ﻿- type: entity
+  parent: BaseAction
   id: ActionHellSpawnRush
   name: RUSH
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: blink
     itemIconStyle: NoItem
     priority: -1
-    range: 16
     useDelay: 3
+  - type: TargetAction
+    range: 16
+  - type: WorldTargetAction
     event: !type:HellSpawnRushActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionHellSpawnInvincibility
   name: Invincibility
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     priority: -1
     useDelay: 30
     icon: _Sunrise/Interface/Actions/inferno_shield.png
+  - type: InstantAction
     event: !type:HellSpawnInvincibilityActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionHellSpawnTentacleRight
   name: Tentacle
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
     itemIconStyle: NoItem
     priority: -1
-    range: 5
     useDelay: 8
+  - type: TargetAction
+    range: 5
+  - type: WorldTargetAction
     event: !type:HellSpawnTentacleActionEvent
       left: false
 
 - type: entity
+  parent: BaseAction
   id: ActionHellSpawnTentacleLeft
   name: Tentacle
   categories: [ HideSpawnMenu ]
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
     itemIconStyle: NoItem
     priority: -1
-    range: 7
     useDelay: 10
+  - type: TargetAction
+    range: 7
+  - type: WorldTargetAction
     event: !type:HellSpawnTentacleActionEvent
       left: true
 
 - type: entity
   id: ActionHellSpawnSpiral
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: Spiral
   components:
-  - type: InstantAction
+  - type: Action
     priority: -1
     useDelay: 15
     icon: _Sunrise/Interface/Actions/inferno_shield.png
+  - type: InstantAction
     event: !type:HellSpawnSpiralActionEvent

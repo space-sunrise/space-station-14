@@ -22,7 +22,7 @@
   - type: ClothingSlotAmmoProvider
   - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - PowerpackMinigunMG100
   - type: Appearance

@@ -36,7 +36,7 @@
     sprite: Clothing/Head/Welding/welding.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Clothing/Head/Welding/welding.rsi
     # Sunrise End
@@ -54,8 +54,8 @@
   - type: WeldingMask
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: icon-up}
   # Sunrise-End
@@ -92,7 +92,7 @@
     # Sunrise-Start
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
     # Sunrise-End
   - type: Clothing
     sprite: Clothing/Head/Welding/flame_welding_mask.rsi
@@ -114,7 +114,7 @@
     # Sunrise-Start
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
     # Sunrise-End
   - type: Clothing
     sprite: Clothing/Head/Welding/blue_flame_welding_mask.rsi
@@ -136,7 +136,7 @@
     # Sunrise-Start
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
     # Sunrise-End
   - type: Clothing
     sprite: Clothing/Head/Welding/paintedwelding.rsi
@@ -149,12 +149,14 @@
 
   # Sunrise-Start
 - type: entity
+  parent: BaseAction
   id: ActionToggleWeldingMask
   name: Adjust Welding Mask
   description: Covers or reveals your face.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     itemIconStyle: BigItem
+  - type: InstantAction
     event: !type:ToggleActionEvent
   # Sunrise-End

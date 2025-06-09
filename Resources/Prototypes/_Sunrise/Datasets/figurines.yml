@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: FigurinesBlueshield
+  values:
+    prefix: figurines-blueshield-
+    count: 4
+
+- type: localizedDataset
+  id: FigurinesEnforcementofficer
+  values:
+    prefix: figurines-enforcementofficer-
+    count: 3

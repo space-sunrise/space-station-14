@@ -397,7 +397,7 @@
     - state: indwelder_cyborg-on
       visible: false
       shader: unshaded
-      map: ["enum.ToggleVisuals.Layer"]
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Item
     size: Small
   - type: SolutionContainerManager

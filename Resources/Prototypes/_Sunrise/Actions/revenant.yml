@@ -1,9 +1,11 @@
 - type: entity
+  parent: BaseAction
   id: ActionRevenantLock
   name: Lock Airlock
   description: Costs 60 Essence.
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Sunrise/Interface/Actions/lock.png
-    event: !type:RevenantLockActionEvent
     useDelay: 25
+  - type: InstantAction
+    event: !type:RevenantLockActionEvent

@@ -31,7 +31,7 @@ public sealed partial class CCVars
     ///     Whether the arrivals shuttle is enabled.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsShuttles =
-        CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY); // Sunrise-Edit
+        CVarDef.Create("shuttle.arrivals", true, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     The map to use for the arrivals station.
@@ -43,13 +43,13 @@ public sealed partial class CCVars
     ///     Cooldown between arrivals departures. This should be longer than the FTL time or it will double cycle.
     /// </summary>
     public static readonly CVarDef<float> ArrivalsCooldown =
-        CVarDef.Create("shuttle.arrivals_cooldown", 50f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.arrivals_cooldown", 100f, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Are players allowed to return on the arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsReturns =
-        CVarDef.Create("shuttle.arrivals_returns", false, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.arrivals_returns", true, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Should all players who spawn at arrivals have godmode until they leave the map?

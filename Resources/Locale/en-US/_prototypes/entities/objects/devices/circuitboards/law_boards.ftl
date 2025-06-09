@@ -1,5 +1,9 @@
 ent-NTDefaultCircuitBoard = law board (NT Default)
     .desc = An electronics board containing the NT Default lawset.
+ent-AsimovCircuitBoard = law board (Crewsimov)
+    .desc = An electronics board containing the Crewsimov lawset.
+ent-CorporateCircuitBoard = law board (Corporate)
+    .desc = An electronics board containing the Corporate lawset.
 ent-CommandmentCircuitBoard = law board (Ten Commandments)
     .desc = An electronics board containing the Ten Commandments lawset.
 ent-PaladinCircuitBoard = law board (Paladin)

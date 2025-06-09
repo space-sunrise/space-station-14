@@ -38929,22 +38929,6 @@ entities:
     - type: Transform
       pos: 48.110985,25.791754
       parent: 2
-- proto: FTLPointShuttle
-  entities:
-  - uid: 4810
-    components:
-    - type: MetaData
-      name: Посадочная площадка прибытия
-    - type: Transform
-      pos: -4.5,-33.5
-      parent: 2
-- proto: FTLPointShuttlePrisonSpawn
-  entities:
-  - uid: 4811
-    components:
-    - type: Transform
-      pos: 117.5,-5.5
-      parent: 2
 - proto: FuelDispenser
   entities:
   - uid: 4812

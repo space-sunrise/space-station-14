@@ -1,20 +1,43 @@
-
+#sunrise-edit-start
 - type: entity
-  name: telecrystal
+  abstract: true
   parent: [BaseItem, BaseSyndicateContraband]
-  id: Telecrystal
-  suffix: 20 TC
+  id: TelecrystalBase
   description: It seems to be pulsing with suspiciously enticing energies.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
-    state: telecrystal
+    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
   - type: Item
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
     size: Tiny
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  parent: TelecrystalBase
+  id: Telecrystal
+  name: Telecrystal
+  suffix: 100 TC
+  components:
   - type: Stack
-    count: 20
     stackType: Telecrystal
+    baseLayer: base
+    layerStates:
+    - telecrystal
+    - telecrystal_2
+    - telecrystal_3
+    count: 100
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [10, 50, 100]
+  - type: Sprite
+    state: telecrystal_3
+    layers:
+    - state: telecrystal_3
+      map: ["base"]
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: Telecrystal
   - type: StaticPrice
     price: 0
   - type: StackPrice
@@ -26,26 +49,36 @@
 - type: entity
   parent: Telecrystal
   id: Telecrystal1
+  name: Telecrystal
   suffix: 1 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 1
 
 - type: entity
   parent: Telecrystal
   id: Telecrystal5
+  name: Telecrystal
   suffix: 5 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 5
 
 - type: entity
   parent: Telecrystal
   id: Telecrystal10
+  name: Telecrystal
   suffix: 10 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 10
+#sunrise-edit-end
 
 # Uplinks
 - type: entity
@@ -56,11 +89,11 @@
   suffix: Empty
   components:
   - type: Sprite
-    sprite: Objects/Devices/communication.rsi
+    sprite: _Sunrise/Objects/Devices/communication.rsi #Sunrise-edit
     layers:
     - state: old-radio
   - type: Item
-    sprite: Objects/Devices/communication.rsi
+    sprite: _Sunrise/Objects/Devices/communication.rsi #Sunrise-edit
     heldPrefix: old-radio
   - type: UserInterface
     interfaces:

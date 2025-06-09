@@ -2,6 +2,7 @@ using Content.Server._Sunrise.Boss.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Atmos.Components;
 using Robust.Shared.Timing;
 
@@ -60,11 +61,11 @@ public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
 
         foreach (var actionWhenTargetInRange in user.Comp.Actions)
         {
-            if (HasComp<InstantActionComponent>(actionWhenTargetInRange.ActionEnt))
+            if (TryComp<InstantActionComponent>(actionWhenTargetInRange.ActionEnt, out var instantAction))
             {
-                var action = Comp<InstantActionComponent>(actionWhenTargetInRange.ActionEnt.Value);
+                var action = Comp<ActionComponent>(actionWhenTargetInRange.ActionEnt.Value);
 
-                if (!_actions.ValidAction(action))
+                if (!_actions.ValidAction((actionWhenTargetInRange.ActionEnt.Value, action)))
                     continue;
 
                 var targetXform = Transform(target);
@@ -77,19 +78,16 @@ public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
                     actionWhenTargetInRange.MinRange != 0f && distance < actionWhenTargetInRange.MinRange)
                     continue;
 
-                _actions.PerformAction(user,
-                    null,
-                    actionWhenTargetInRange.ActionEnt.Value,
-                    action,
-                    action.BaseEvent,
-                    _timing.CurTime,
+                _actions.PerformAction((user, null),
+                    (actionWhenTargetInRange.ActionEnt.Value, action),
+                    instantAction.Event,
                     false);
             }
-            else if (HasComp<EntityWorldTargetActionComponent>(actionWhenTargetInRange.ActionEnt))
+            else if (TryComp<WorldTargetActionComponent>(actionWhenTargetInRange.ActionEnt, out var worldTargetAction))
             {
-                var action = Comp<EntityWorldTargetActionComponent>(actionWhenTargetInRange.ActionEnt.Value);
+                var action = Comp<ActionComponent>(actionWhenTargetInRange.ActionEnt.Value);
 
-                if (!_actions.ValidAction(action))
+                if (!_actions.ValidAction((actionWhenTargetInRange.ActionEnt.Value, action)))
                     continue;
 
                 var targetXform = Transform(target);
@@ -102,17 +100,14 @@ public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
                     actionWhenTargetInRange.MinRange != 0f && distance < actionWhenTargetInRange.MinRange)
                     continue;
 
-                if (action.Event != null)
+                if (worldTargetAction.Event is {} worldEv)
                 {
-                    action.Event.Coords = targetXform.Coordinates;
+                    worldEv.Target = targetXform.Coordinates;
                 }
 
-                _actions.PerformAction(user,
-                    null,
-                    actionWhenTargetInRange.ActionEnt.Value,
-                    action,
-                    action.BaseEvent,
-                    _timing.CurTime,
+                _actions.PerformAction((user, null),
+                    (actionWhenTargetInRange.ActionEnt.Value, action),
+                    worldTargetAction.Event,
                     false);
             }
         }
