@@ -46,8 +46,6 @@
         - CrateMask #this is so they can go under plastic flaps
         layer:
         - MachineLayer
-    containers:
-    - entity_storage
   - type: StaticPrice
     price: 125
 
