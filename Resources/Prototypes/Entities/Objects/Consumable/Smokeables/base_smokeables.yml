@@ -15,6 +15,7 @@
   - type: Tag
     tags:
     - Trash
+    - Cigar # Sunrise-Edit
   - type: SpaceGarbage
   - type: StaticPrice
     price: 5

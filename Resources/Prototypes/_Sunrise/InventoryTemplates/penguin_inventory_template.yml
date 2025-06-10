@@ -1,0 +1,13 @@
+- type: inventoryTemplate
+  id: penguin
+  slots:
+  - name: mask
+    slotTexture: mask
+    slotFlags: MASK
+    uiWindowPos: 0,2
+    strippingWindowPos: 1,1
+    displayName: Mask
+    whitelist:
+      tags:
+        - Cigarette
+        - Cigar

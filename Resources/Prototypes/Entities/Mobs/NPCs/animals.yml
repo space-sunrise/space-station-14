@@ -2349,7 +2349,7 @@
 
 - type: entity
   name: penguin
-  parent: SimpleMobBase
+  parent: [SimpleMobBase, StripableInventoryBase] # Sinrise-Edit
   id: MobPenguin
   description: Their lives are constant pain due to their inner-body knees.
   components:
@@ -2371,6 +2371,11 @@
         - MobMask
         layer:
         - MobLayer
+  #Sunruse-Start
+  - type: Inventory
+    speciesId: penguin
+    templateId: penguin
+  #Sunruse-End
   - type: DamageStateVisuals
     states:
       Alive:
