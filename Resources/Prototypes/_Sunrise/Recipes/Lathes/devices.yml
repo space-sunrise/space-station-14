@@ -19,6 +19,41 @@
     Uranium: 300
 
 - type: latheRecipe
+  id: EvaBasicHardsuitTechnology
+  result: ClothingOuterSuitEmergency
+  completetime: 7
+  materials:
+    Steel: 1000
+    Plastic: 1000
+
+- type: latheRecipe
+  id: AdvancedEVA
+  result: ClothingOuterHardsuitEVA
+  completetime: 10
+  materials:
+    Steel: 1000
+    Plastic: 1000
+    Silver: 10
+
+- type: latheRecipe
+  id: AdvancedEVA
+  result: ClothingHeadHelmetEVA
+  completetime: 5
+  materials:
+    Steel: 500
+    Plastic: 400
+
+- type: latheRecipe
+  id: BasicNVD
+  result: ClothingEyesNVD
+  completetime: 30
+  materials:
+    Steel: 1000
+    Plastic: 400
+    Silver: 300
+    Uranium: 300
+
+- type: latheRecipe
   id: BasicThermals
   result: ClothingEyesGlassesThermal
   completetime: 30
