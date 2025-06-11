@@ -1,6 +1,6 @@
 ent-DoubleBedsheetBase = большое одеяло
     .desc = Удивительно мягкая льняная одеяло.
-ent-DoubleBedsheetBlack = черное одеяло
+ent-DoubleBedsheetBlack = чёрное одеяло
     .desc = { ent-DoubleBedsheetBase.desc }
 ent-DoubleBedsheetBlue = синее одеяло
     .desc = { ent-DoubleBedsheetBase.desc }
@@ -52,7 +52,7 @@ ent-DoubleBedsheetSyndie = одеяло синди
     .desc = У него есть эмблема синдиката и аура зла.
 ent-DoubleBedsheetUSA = одеяло США
     .desc = { ent-DoubleBedsheetBase.desc }
-ent-DoubleBedsheetWhite = белове одеяло
+ent-DoubleBedsheetWhite = белое одеяло
     .desc = { ent-DoubleBedsheetBase.desc }
 ent-DoubleBedsheetWiz = волшебное одеяло
     .desc = Специальная ткань, зачарованная магией, чтобы у вас была волшебная ночь. Она даже светится!
