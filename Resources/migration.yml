@@ -751,3 +751,11 @@ TableWoodReinforced: null
 BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
+
+# Кто удалил и не добавил в миграции
+PrintedDocumentClosingIndictment: null
+PrintedDocumentPermissionDisposeBody: null
+PrintedDocumentDeathCertificate: null
+PrintedDocumentReportOnTheChaptersMeeting: null
+SheetPrinter1: null
+BorgModuleDefibrillator: null
