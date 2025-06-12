@@ -1,2 +1,2 @@
-ent-EnergyPickaxe = holopickaxe
-    .desc = A holographic mining tool with blades comprised of hard light. Doesn't pack the same punch as an energy weapon, but more compact than most mining tools when turned off.
+ent-EnergyPickaxe = голокирка
+    .desc = Голографический инструмент для добычи с лезвиями из твёрдого света. Не обладает такой же мощью, как энергетическое оружие, но в выключенном состоянии более компактен, чем большинство инструментов для добычи.
