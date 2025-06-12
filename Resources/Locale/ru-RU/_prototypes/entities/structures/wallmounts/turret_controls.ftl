@@ -10,5 +10,5 @@ ent-WeaponEnergyTurretSecurityControlPanel = { ent-WeaponEnergyTurretStationCont
 ent-WeaponEnergyTurretCommandControlPanel = { ent-WeaponEnergyTurretStationControlPanelBase }
     .suffix = Командование
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
-ent-WeaponEnergyTurretStationControlPanel = панель управления охранной турелью
-    .desc = Настенный интерфейс для удаленной настройки рабочих параметров связанных охранных турелей.
+ent-WeaponEnergyTurretStationControlPanel = { ent-WeaponEnergyTurretStationControlPanelBase }
+    .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
