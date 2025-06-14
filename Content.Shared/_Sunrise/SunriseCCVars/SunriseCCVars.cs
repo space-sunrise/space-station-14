@@ -465,9 +465,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<float> ItemToArtifactRatio =
         CVarDef.Create("random_artifacts.ratio", 0.55f, CVar.SERVER | CVar.ARCHIVE);
 
-    /// <summary>
-    /// AntiSpam params
-    /// </summary>
+    /*
+     * AntiSpam params
+     */
     public static readonly CVarDef<bool> AntiSpamEnable =
         CVarDef.Create("anti_spam.enable", false, CVar.SERVER | CVar.ARCHIVE);
     public static readonly CVarDef<int> AntiSpamCounterShort =
@@ -480,4 +480,10 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("anti_spam.time_short", 1.5f, CVar.SERVER | CVar.ARCHIVE);
     public static readonly CVarDef<float> AntiSpamTimeLong =
         CVarDef.Create("anti_spam.time_long", 5f, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Вроде все очевидно
+    /// </summary>
+    public static readonly CVarDef<string> IpWhitelist =
+        CVarDef.Create("admin.ip_whitelist", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 }

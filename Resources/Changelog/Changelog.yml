@@ -1,84 +1,4 @@
 ﻿Entries:
-- author: Nukesthestation
-  changes:
-  - message: Zombies /suicideing return to an ai state
-    type: Tweak
-  id: 8152
-  time: '2025-04-11T01:12:13.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36453
-- author: YoungThugSS14
-  changes:
-  - message: Wizards now appear roundstart in the "all at once" gamemode.
-    type: Tweak
-  id: 8153
-  time: '2025-04-11T02:06:47.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36408
-- author: DinnerCalzone
-  changes:
-  - message: Fixed gas mixers and pneumatic valves being hidden by floor tiles.
-    type: Fix
-  id: 8154
-  time: '2025-04-11T02:10:03.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36428
-- author: Nox38, BurgerMoth, ArtisticRoomba
-  changes:
-  - message: Added descriptions for all .25 caseless cartridges, magazines, and ammo
-      boxes.
-    type: Add
-  id: 8155
-  time: '2025-04-11T02:15:27.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36385
-- author: Nox38, BurgerMoth, ArtisticRoomba
-  changes:
-  - message: Added descriptions to all .45 magnum cartridges, magazines, speed loaders,
-      and ammo boxes.
-    type: Add
-  id: 8156
-  time: '2025-04-11T04:58:33.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36383
-- author: PJB3005
-  changes:
-  - message: Lobby time on Wizard's Den has been increased from 2 minute 30 seconds
-      to 5 minutes.
-    type: Tweak
-  id: 8157
-  time: '2025-04-12T09:05:14.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36476
-- author: Quantum-cross
-  changes:
-  - message: Supercrit anomaly playing explosion sound twice
-    type: Fix
-  id: 8158
-  time: '2025-04-12T23:27:00.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36489
-- author: metalgearsloth
-  changes:
-  - message: Fixed docking ports being clipped in shuttle nav if using non-100% UI
-      scales.
-    type: Fix
-  id: 8159
-  time: '2025-04-13T06:29:05.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36348
-- author: KingFroozy
-  changes:
-  - message: Added white shoes to paramedic's loadout.
-    type: Add
-  id: 8160
-  time: '2025-04-13T10:35:28.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/32227
-- author: EmoGarbage404
-  changes:
-  - message: Adds departmental economy! All departments now have custom request consoles
-      where they can order from cargo and make money transfers.
-    type: Add
-  - message: Added lock boxes. These are access-locked crates that allow a department
-      to earn sole income when they are sold. Order more from cargo.
-    type: Add
-  - message: Slightly increased passive station income.
-    type: Tweak
-  id: 8161
-  time: '2025-04-13T13:22:36.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36445
 - author: K-Dynamic
   changes:
   - message: Neutralised anomaly infections now drop inert cores.
@@ -3910,3 +3830,81 @@
   id: 8664
   time: '2025-06-13T05:21:57.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/38299
+- author: nkokic
+  changes:
+  - message: Tear gas smoke is now white and semi-transparent.
+    type: Tweak
+  - message: Tear gas now causes coughing, slows you down and hits a bit faster than
+      before.
+    type: Add
+  id: 8665
+  time: '2025-06-13T13:53:44.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36440
+- author: M1tht1c
+  changes:
+  - message: You can now remove visitors mindshields.
+    type: Fix
+  - message: Disaster victims now have mindshields when appropriate.
+    type: Fix
+  id: 8666
+  time: '2025-06-13T14:43:41.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36537
+- author: SyaoranFox
+  changes:
+  - message: Rat King is now a full antag.
+    type: Tweak
+  id: 8667
+  time: '2025-06-13T15:52:19.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/38124
+- author: qrwas
+  changes:
+  - message: add missing locale for Undergarment
+    type: Fix
+  id: 8668
+  time: '2025-06-13T16:09:30.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/38304
+- author: slarticodefast
+  changes:
+  - message: Fixed some reagents like puncturase healing bleeding when they shouldn't.
+    type: Fix
+  id: 8669
+  time: '2025-06-13T16:11:15.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/38289
+- author: Kittygyat
+  changes:
+  - message: Monkeys & kobolds can now wear emergency EVA suits, with a fresh new
+      sprite to go along with it! You're welcome, Pun-Pun enthusiasts!
+    type: Tweak
+  id: 8670
+  time: '2025-06-13T18:54:21.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/37660
+- author: Nox38
+  changes:
+  - message: The warden's dresser now contains their jumpsuits!
+    type: Add
+  id: 8671
+  time: '2025-06-14T08:59:40.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/38283
+- author: Sparlight
+  changes:
+  - message: Corgium has been added.  Consuming too much polymorphs you into a smart
+      corgi.
+    type: Add
+  id: 8672
+  time: '2025-06-14T09:07:48.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/37951
+- author: Sparlight
+  changes:
+  - message: A pet bag for smart corgis to wear and a construction option for them.  Not
+      actually wearable by normal pets at this time.
+    type: Add
+  id: 8673
+  time: '2025-06-14T16:09:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/37440
+- author: Nikitosych
+  changes:
+  - message: Fixed the ability for holoparasite to kill the host through the mech
+    type: Fix
+  id: 8674
+  time: '2025-06-14T17:22:45.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/36659

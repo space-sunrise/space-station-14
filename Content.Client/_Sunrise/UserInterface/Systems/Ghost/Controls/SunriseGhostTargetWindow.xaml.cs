@@ -109,10 +109,10 @@ public sealed partial class SunriseGhostTargetWindow : DefaultWindow
                 _deadPlayers.Add(warp);
             else if (warp.IsLeft) // Ливнувшие
                 _leftPlayers.Add(warp);
-            else if (!warp.IsDead) // Живые. Как в крите, так и полноценное живые
-                _alivePlayers.Add(warp);
             else if (warp.IsGhost) // Призраки
                 _ghostPlayers.Add(warp);
+            else if (!warp.IsDead) // Живые. Как в крите, так и полноценное живые
+                _alivePlayers.Add(warp);
         }
     }
 }

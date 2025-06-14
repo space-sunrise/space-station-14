@@ -36,17 +36,17 @@ public sealed class AntiSpamSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, TrySendICMessageEvent>(SpamICCheck);
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartHistoryCleanup);
         _humanoidQuery = GetEntityQuery<HumanoidAppearanceComponent>();
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamEnable, OnCvarEnableChanged, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamCounterShort, OnCvarCounterShortChanged, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamCounterLong, OnCvarCounterLongChanged, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamMuteDuration, OnCvarMuteDurationChanged, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamTimeShort, OnCvarTimeShortChanged, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamTimeLong, OnCvarTimeLongChanged, true);
+        _configuration.OnValueChanged(SunriseCCVars.AntiSpamEnable, enabled => _enabled = enabled, true);
+        _configuration.OnValueChanged(SunriseCCVars.AntiSpamCounterShort, val => _counterShort = val, true);
+        _configuration.OnValueChanged(SunriseCCVars.AntiSpamCounterLong, val => _counterLong = val, true);
+        _configuration.OnValueChanged(SunriseCCVars.AntiSpamMuteDuration, val => _muteDuration = val, true);
+        _configuration.OnValueChanged(SunriseCCVars.AntiSpamTimeShort, val => _timeShort = val, true);
+        _configuration.OnValueChanged(SunriseCCVars.AntiSpamTimeLong, val => _timeLong = val, true);
     }
 
     private void SpamICCheck(Entity<MobStateComponent> ent, ref TrySendICMessageEvent args)
     {
-        if (_enabled == false)
+        if (!_enabled)
             return;
         if (args.Player == null)
             return;
@@ -88,30 +88,6 @@ public sealed class AntiSpamSystem : EntitySystem
     private void RoundRestartHistoryCleanup(RoundRestartCleanupEvent ev)
     {
         MessageHistory.Clear();
-    }
-    private void OnCvarEnableChanged(bool enabled)
-    {
-        _enabled = enabled;
-    }
-    private void OnCvarCounterShortChanged(int counterShort)
-    {
-        _counterShort = counterShort;
-    }
-    private void OnCvarCounterLongChanged(int counterLong)
-    {
-        _counterLong = counterLong;
-    }
-    private void OnCvarMuteDurationChanged(float muteDuration)
-    {
-        _muteDuration = muteDuration;
-    }
-    private void OnCvarTimeShortChanged(float muteTimeShort)
-    {
-        _timeShort = muteTimeShort;
-    }
-    private void OnCvarTimeLongChanged(float muteTimeLong)
-    {
-        _timeLong = muteTimeLong;
     }
 }
 

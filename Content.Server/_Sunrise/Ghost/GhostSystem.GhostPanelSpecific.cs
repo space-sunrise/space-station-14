@@ -1,7 +1,8 @@
-﻿using Content.Shared._Sunrise.Ghost;
+﻿using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.Ghost;
 using Content.Shared.Ghost;
-using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Roles;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
@@ -45,27 +46,22 @@ public sealed partial class GhostSystem
         while (query.MoveNext(out var uid, out var mind, out var meta))
         {
             var isGhost = HasComp<GhostComponent>(uid);
+            var isMob = HasComp<MobStateComponent>(uid);
 
-            if (!IsEntityPanelRelevant(uid, isGhost))
+            if (!IsEntityPanelRelevant(uid, isGhost, isMob))
                 continue;
 
-            // Антагонисты не сюда
-            if (HasComp<GhostPanelAntagonistMarkerComponent>(uid))
-                continue;
-
-            var playerDepartmentId = _prototypeManager.Index(UnknownDepartmentPrototype).ID;
-            ProtoId<JobPrototype>? playerJobId = null;
             var playerMind = mind.Mind ?? mind.LastMindStored;
-
-            if (_jobs.MindTryGetJob(playerMind, out var jobPrototype))
-            {
-                playerJobId = jobPrototype.ID;
-
-                if (_jobs.TryGetDepartment(jobPrototype.ID, out var departmentPrototype))
-                    playerDepartmentId = departmentPrototype.ID;
-            }
+            TryGetPlayerJobInfo(playerMind, out var playerJobId, out var playerDepartmentId);
 
             var hasAnyMind = playerMind != null;
+
+            // Проверка на стандартных мобов, в которых нет игрока
+            // Они могут проходить через IsEntityPanelRelevant(), то по сути никогда не являлись игроками
+            var isSimpleMob = isMob && !hasAnyMind;
+            if (isSimpleMob)
+                continue;
+
             var isDead = _mobState.IsDead(uid);
             var isLeft = TryComp<SSDIndicatorComponent>(uid, out var indicator) && indicator.IsSSD && !isDead && hasAnyMind;
 
@@ -81,6 +77,24 @@ public sealed partial class GhostSystem
 
             yield return warp;
         }
+    }
+
+    private bool TryGetPlayerJobInfo(EntityUid? mind,
+        [NotNullWhen(true)] out string? job, out string department)
+    {
+        department = _prototypeManager.Index(UnknownDepartmentPrototype).ID;
+        job = null;
+
+        if (!_jobs.MindTryGetJob(mind, out var jobPrototype))
+            return false;
+
+        if (!_jobs.TryGetDepartment(jobPrototype.ID, out var departmentPrototype))
+            return false;
+
+        job = jobPrototype.ID;
+        department = departmentPrototype.ID;
+
+        return true;
     }
 
     /// <summary>
@@ -107,11 +121,11 @@ public sealed partial class GhostSystem
     /// <summary>
     /// Проверяет, является ли живая сущность подходящей для нахождения в панели телепорта призрака
     /// </summary>
-    private bool IsEntityPanelRelevant(EntityUid uid, bool isGhost)
+    private bool IsEntityPanelRelevant(EntityUid uid, bool isGhost, bool isMob)
     {
-        return HasComp<HumanoidAppearanceComponent>(uid)
-               || isGhost
-               || HasComp<BorgChassisComponent>(uid)
-               || HasComp<StationAiHeldComponent>(uid);
+        return !HasComp<GhostPanelAntagonistMarkerComponent>(uid) &&
+            (isMob || isGhost
+                   || HasComp<BorgChassisComponent>(uid)
+                   || HasComp<StationAiHeldComponent>(uid));
     }
 }

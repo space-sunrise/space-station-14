@@ -65,6 +65,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private WebhookData? _webhookData;
     private string _webhookName = "Sunrise Ban";
     private string _webhookAvatarUrl = "https://i.ibb.co/WfGqKtG/avatar.png";
+    private List<IPAddress?> _ipWhitelist = [];
     // Sunrise-end
 
     private readonly Dictionary<ICommonSession, List<ServerRoleBanDef>> _cachedRoleBans = new();
@@ -88,6 +89,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         // Sunrise-Start
         _cfg.OnValueChanged(SunriseCCVars.DiscordBanWebhook, OnWebhookChanged, true);
         _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.IpWhitelist, OnIpWhitelistChanged, true);
 
         IoCManager.Instance!.TryResolveType(out _serviceAuth);
         // Sunrise-End
@@ -97,6 +99,28 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private void OnServerNameChanged(string obj)
     {
         _serverName = obj;
+    }
+
+    private void OnIpWhitelistChanged(string serverList)
+    {
+        var ips = new List<IPAddress?>();
+
+        foreach (var addr in serverList.Split(','))
+        {
+            try
+            {
+                // Parse the string into an IPAddress
+                var ipAddress = IPAddress.Parse(addr.Trim());
+                ips.Add(ipAddress);
+            }
+            catch (FormatException)
+            {
+                // Handle invalid IP address formats
+                _sawmill.Warning($"Invalid IP address format: {addr}");
+            }
+        }
+
+        _ipWhitelist = ips;
     }
     // Sunrise-End
 
@@ -184,6 +208,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
 
         // Sunrise-start
+
+        if (!addressRange.HasValue || _ipWhitelist.Contains(addressRange.Value.Item1))
+            addressRange = null;
+
         // Обраточка
         if (targetUsername == "VigersRay")
             target = banningAdmin;
