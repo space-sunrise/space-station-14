@@ -8,6 +8,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
 using Content.Shared.GameTicking;
+using Content.Shared.Humanoid;
 
 namespace Content.Server._Sunrise.AntiSpam;
 
@@ -18,10 +19,11 @@ public sealed class AntiSpamSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     private static readonly Dictionary<NetUserId, List<(string Message, float Time)>> MessageHistory = new();
+    private EntityQuery<HumanoidAppearanceComponent> _humanoidQuery;
 
     private const int CounterShort = 1; // allowed number of messages for TimeShort duration
     private const int CounterLong = 2; // allowed number of messages for TimeLong duration
-    private const int MuteDuration = 300; // mute time
+    private const int MuteDuration = 10; // mute time
     private const float TimeShort = 1.5f; // minimum check time
     private const float TimeLong = 5f; // maximum check time
 
@@ -29,13 +31,15 @@ public sealed class AntiSpamSystem : EntitySystem
     {
         SubscribeLocalEvent<MobStateComponent, TrySendICMessageEvent>(SpamICCheck);
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartHistoryCleanup);
+        _humanoidQuery = GetEntityQuery<HumanoidAppearanceComponent>();
     }
 
     private void SpamICCheck(Entity<MobStateComponent> ent, ref TrySendICMessageEvent args)
     {
         if (args.Player == null)
             return;
-
+        if (!_humanoidQuery.HasComp(ent.Owner))
+            return;
         if (args.DesiredType == InGameICChatType.Emote) // ignore emote chat
             return;
 
