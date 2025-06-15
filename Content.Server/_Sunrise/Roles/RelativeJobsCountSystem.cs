@@ -55,7 +55,7 @@ public sealed class RelativeJobsCountSystem : EntitySystem
         // И добавляем им слоты
         foreach (var settings in station.Comp.Online)
         {
-            if (!_jobsSystem.TryGetJobSlot(station, settings.TargetJob, out var jobCount))
+            if (!_jobsSystem.TryGetJobSlot(station, settings.TargetJob, out _))
                 continue;
 
             // Максимально возможное количество дополнительных слотов.
@@ -87,7 +87,7 @@ public sealed class RelativeJobsCountSystem : EntitySystem
                 if (playerJobId != relativeJob.ToString())
                     continue;
 
-                if (!_jobsSystem.TryGetJobSlot(station, settings.TargetJob, out var jobCount))
+                if (!_jobsSystem.TryGetJobSlot(station, settings.TargetJob, out _))
                     continue;
 
                 AddSlots((station, component), settings, modifier);
@@ -101,11 +101,17 @@ public sealed class RelativeJobsCountSystem : EntitySystem
         var toAdd = Math.Clamp(value, 0, maxSlots);
 
         _jobsSystem.TryAdjustJobSlot(station, settings.TargetJob, toAdd, true);
-        RemoveAdditionalSlot(station, settings, value);
+        RemoveAdditionalSlot(station, settings, toAdd);
     }
 
-    private static void RemoveAdditionalSlot(Entity<RelativeJobsCountComponent> station, IRelativeCountSettings settings, int value)
+    private void RemoveAdditionalSlot(Entity<RelativeJobsCountComponent> station, IRelativeCountSettings settings, int value)
     {
+        if (!station.Comp.TotalMaxCount.ContainsKey(settings.TargetJob))
+        {
+            _sawmill.Error($"Target job {settings.TargetJob} not presented in TotalMaxCount dictionary");
+            return;
+        }
+
         station.Comp.TotalMaxCount[settings.TargetJob] -= value;
     }
 
