@@ -25,5 +25,9 @@
             PlanetPrisoner: [ 4, 4 ]
         - type: RelativeJobsCount
           jobs:
-            PlanetPrisoner:
+          - targetJob: PlanetPrisoner
+            dependency:
               PrisonGuard: 2
+            maxSlots: 100
+          totalMaxCount:
+            PlanetPrisoner: 100
