@@ -29,6 +29,7 @@ public sealed partial class RelativeJobsCountComponent : Component
     /// Ключ -> работа, слоты которой будут ограничены.
     /// Значение -> Количество максимальных слотов. Без учета того, что написано в перечислении ролей у карты.
     /// </summary>
+    /// TODO: Поддержка отключения этого, чтобы можно было не указывать кап
     [DataField(required: true)]
     public Dictionary<ProtoId<JobPrototype>, int> TotalMaxCount;
 }
@@ -94,5 +95,7 @@ public interface IRelativeCountSettings
     /// <summary>
     /// Максимум слотов, которые будут открыты для данной роли через данные настройки.
     /// </summary>
+    /// TODO: Поддержка отключения этого, чтобы можно было не указывать кап
+    /// TODO: Проверить, что это вообще работает, если отличается от максимального количества из компонента
     public int MaxSlots { get; set; }
 }
