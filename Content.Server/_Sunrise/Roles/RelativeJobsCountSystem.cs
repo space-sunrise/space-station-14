@@ -63,7 +63,9 @@ public sealed class RelativeJobsCountSystem : EntitySystem
             var maxSlots = GetMaxSlots(settings, station.Comp);
 
             // Расчет количества дополнительных слотов. Минимально 0, максимальное зависит от maxSlots
-            var additionalSlots = (int) Math.Clamp(totalPlayer / settings.AnyTargetOnlineIncreaseSlot, 0f, maxSlots);
+            var additionalSlots = maxSlots >= 0
+                ? (int) Math.Clamp(totalPlayer / settings.AnyTargetOnlineIncreaseSlot, 0f, maxSlots)
+                : (int) Math.Round(totalPlayer / settings.AnyTargetOnlineIncreaseSlot);
 
             AddSlots(station, settings, additionalSlots);
         }
@@ -98,7 +100,7 @@ public sealed class RelativeJobsCountSystem : EntitySystem
     private void AddSlots(Entity<RelativeJobsCountComponent> station, IRelativeCountSettings settings, int value)
     {
         var maxSlots = GetMaxSlots(settings, station.Comp);
-        var toAdd = Math.Clamp(value, 0, maxSlots);
+        var toAdd = maxSlots >= 0 ? Math.Clamp(value, 0, maxSlots) : value;
         if (toAdd == 0)
             return;
 
@@ -152,6 +154,9 @@ public sealed class RelativeJobsCountSystem : EntitySystem
     {
         if (!component.TotalMaxCount.TryGetValue(settings.TargetJob, out var totalMax))
             return 0;
+
+        if (totalMax == -1)
+            return -1;
 
         return Math.Clamp(Math.Min(settings.MaxSlots, totalMax), 0, int.MaxValue);
     }
