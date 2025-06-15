@@ -54,7 +54,7 @@ public partial record struct JobRelativeCount : IRelativeCountSettings
     /// <summary>
     /// Максимум слотов, которые будут открыты для данной роли через количество других ролей.
     /// </summary>
-    [DataField(required: true)] public int MaxSlots { get; set; }
+    [DataField] public int MaxSlots { get; set; } = -1;
 }
 
 /// <summary>
@@ -77,7 +77,7 @@ public partial record struct OnlineRelativeCount : IRelativeCountSettings
     /// <summary>
     /// Максимум слотов, которые будут открыты для данной роли через количество онлайна.
     /// </summary>
-    [DataField(required: true)] public int MaxSlots { get; set; }
+    [DataField] public int MaxSlots { get; set; } = -1;
 }
 
 /// <summary>
@@ -94,7 +94,6 @@ public interface IRelativeCountSettings
     /// <summary>
     /// Максимум слотов, которые будут открыты для данной роли через данные настройки.
     /// </summary>
-    /// TODO: Поддержка отключения этого, чтобы можно было не указывать кап
     /// TODO: Проверить, что это вообще работает, если отличается от максимального количества из компонента
     public int MaxSlots { get; set; }
 }

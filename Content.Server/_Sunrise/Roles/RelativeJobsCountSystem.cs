@@ -134,6 +134,9 @@ public sealed class RelativeJobsCountSystem : EntitySystem
         IRelativeCountSettings settings,
         RelativeJobsCountComponent component)
     {
+        if (settings.MaxSlots == -1)
+            return false;
+
         if (!component.TotalMaxCount.TryGetValue(settings.TargetJob, out var targetCount))
         {
             _sawmill.Error($"Target job {settings.TargetJob} not presented in TotalMaxCount dictionary");
