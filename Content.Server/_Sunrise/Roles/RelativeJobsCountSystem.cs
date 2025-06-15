@@ -99,6 +99,8 @@ public sealed class RelativeJobsCountSystem : EntitySystem
     {
         var maxSlots = GetMaxSlots(settings, station.Comp);
         var toAdd = Math.Clamp(value, 0, maxSlots);
+        if (toAdd == 0)
+            return;
 
         _jobsSystem.TryAdjustJobSlot(station, settings.TargetJob, toAdd, true);
         RemoveAdditionalSlot(station, settings, toAdd);
