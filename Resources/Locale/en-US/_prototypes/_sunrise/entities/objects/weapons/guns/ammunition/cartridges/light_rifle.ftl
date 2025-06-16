@@ -1,0 +1,10 @@
+ent-SunriseBaseCartridgeLightRifle = cartridge (7,62mm)
+    .desc = A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
+ent-SunriseCartridgeLightRifle = cartridge (7,62mm)
+    .desc = { ent-SunriseBaseCartridgeLightRifle.desc }
+ent-SunriseCartridgeLightRiflePractice = cartridge (7,62mm practice)
+    .desc = A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Chalk ammunition is generally non-harmful, used for practice.
+ent-SunriseCartridgeLightRifleIncendiary = cartridge (7,62mm incendiary)
+    .desc = A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+ent-SunriseCartridgeLightRifleUranium = cartridge (7,62mm uranium)
+    .desc = A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.

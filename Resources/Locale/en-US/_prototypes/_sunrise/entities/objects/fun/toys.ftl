@@ -168,3 +168,5 @@ ent-PlushieTimofeyTatarchuk = Timofey Tatarchuk
     .desc = { ent-BasePlushie.desc }
 ent-PlushieSansaMontanelli = Sansa Montanelli
     .desc = { ent-BasePlushie.desc }
+ent-PlushieKalium = Kalium Fon Dez
+    .desc = { ent-BasePlushie.desc }

@@ -183,7 +183,7 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 325
+    Steel: 500
 
 - type: latheRecipe
   id: MagazineG36
@@ -194,14 +194,14 @@
   materials:
     Steel: 325
 
-- type: latheRecipe
-  id: MagazineM28
-  result: MagazineM28
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 325
+# - type: latheRecipe
+#   id: MagazineM28 #Есть MagazineAR18
+#   result: MagazineM28
+#   categories:
+#   - Ammo
+#   completetime: 5
+#   materials:
+#     Steel: 325
 
 - type: latheRecipe
   id: MagazineFamas
@@ -228,7 +228,7 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 505
+    Steel: 800
 
 - type: latheRecipe
   id: MagazineV31
@@ -284,6 +284,16 @@
   completetime: 5
   materials:
     Steel: 193
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeSidearm
+  id: FlareGunSecurityUpgrade
+  result: FlareGunSecurityUpgrade
+  categories:
+  - Weapons
+  materials:
+    Plastic: 50
+    Steel: 250
 
 - type: latheRecipe
   id: ClothingHeadHelmetPubg
@@ -390,14 +400,14 @@
   materials:
     Steel: 650
 
-- type: latheRecipe
-  id: MagazineM28Extended
-  result: MagazineM28Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 650
+#- type: latheRecipe
+#  id: MagazineM28Extended
+#  result: MagazineM28Extended
+#  categories:
+#  - Weapons
+#  completetime: 12
+#  materials:
+#    Steel: 650
 
 - type: latheRecipe
   id: MagazineG36Extended
@@ -427,15 +437,15 @@
     Steel: 1300
     Plastic: 100
 
-- type: latheRecipe
-  id: MagazineBauer127Extended
-  result: MagazineBauer127Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 1200
-    Plastic: 50
+#- type: latheRecipe
+#  id: MagazineBauer127Extended
+#  result: MagazineBauer127Extended
+#  categories:
+#  - Weapons
+#  completetime: 12
+#  materials:
+#    Steel: 1200
+#    Plastic: 50
 
 - type: latheRecipe
   id: MagazineBR64Extended

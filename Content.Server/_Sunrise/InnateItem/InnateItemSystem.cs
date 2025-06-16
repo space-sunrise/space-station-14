@@ -1,7 +1,5 @@
-using Content.Server.Actions;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Actions.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.UserInterface;
@@ -12,7 +10,6 @@ namespace Content.Server._Sunrise.InnateItem
     public sealed class InnateItemSystem : EntitySystem
     {
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-        [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
@@ -20,7 +17,7 @@ namespace Content.Server._Sunrise.InnateItem
         {
             base.Initialize();
             SubscribeLocalEvent<InnateItemComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<InnateItemComponent, InnateWorldTargetActionEvent>(WorldTargetActionActivate);
+            SubscribeLocalEvent<InnateItemComponent, InnateEntityTargetActionEvent>(WorldTargetActionActivate);
             SubscribeLocalEvent<InnateItemComponent, InnateInstantActionEvent>(InstantActionActivate);
             SubscribeLocalEvent<InnateItemComponent, ComponentShutdown>(OnShutdown);
         }
@@ -61,13 +58,16 @@ namespace Content.Server._Sunrise.InnateItem
 
         private EntityUid CreateWorldTargetAction(EntityUid uid)
         {
-            var targetAction = EnsureComp<TargetActionComponent>(uid);
             var action = EnsureComp<ActionComponent>(uid);
-            _actions.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
-            _actions.SetEvent(uid, new InnateWorldTargetActionEvent(uid));
-            _actions.SetCheckCanInteract((uid, action), false);
-            _actions.SetCheckCanAccess((uid, targetAction), false);
-            _actions.SetIgnoreContainer((uid, targetAction), false);
+            EnsureComp<WorldTargetActionComponent>(uid);
+            EnsureComp<EntityTargetActionComponent>(uid);
+            var targetAction = EnsureComp<TargetActionComponent>(uid);
+            _actionsSystem.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
+            _actionsSystem.SetEvent(uid, new InnateEntityTargetActionEvent(uid));
+            _actionsSystem.SetPriority((uid, action), 0);
+            _actionsSystem.SetItemIconStyle((uid, action), ItemActionIconStyle.NoItem);
+            _actionsSystem.SetCheckCanInteract((uid, action), false);
+            _actionsSystem.SetIgnoreContainer((uid, targetAction), true);
             if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
             {
                 activatableUIComponent.RequiresComplex = false;
@@ -81,9 +81,11 @@ namespace Content.Server._Sunrise.InnateItem
         private EntityUid CreateInstantAction(EntityUid uid)
         {
             var action = EnsureComp<ActionComponent>(uid);
-            _actions.SetEvent(uid, new InnateInstantActionEvent(uid));
-            _actions.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
-            _actions.SetCheckCanInteract((uid, action), false);
+            EnsureComp<InstantActionComponent>(uid);
+            _actionsSystem.SetEvent(uid, new InnateInstantActionEvent(uid));
+            _actionsSystem.SetPriority((uid, action), 0);
+            _actionsSystem.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
+            _actionsSystem.SetCheckCanInteract((uid, action), false);
             if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
             {
                 activatableUIComponent.RequiresComplex = false;
@@ -94,13 +96,16 @@ namespace Content.Server._Sunrise.InnateItem
             return uid;
         }
 
-        private void WorldTargetActionActivate(EntityUid uid, InnateItemComponent component, InnateWorldTargetActionEvent args)
+        private void WorldTargetActionActivate(EntityUid uid, InnateItemComponent component, InnateEntityTargetActionEvent args)
         {
+            if (args.Entity == null)
+                return;
+
             _interactionSystem.InteractUsing(
                 args.Performer,
                 args.Item,
+                args.Entity.Value,
                 args.Target,
-                Transform(args.Target).Coordinates,
                 false,
                 false,
                 false);
@@ -113,11 +118,11 @@ namespace Content.Server._Sunrise.InnateItem
         }
     }
 
-    public sealed partial class InnateWorldTargetActionEvent : EntityTargetActionEvent
+    public sealed partial class InnateEntityTargetActionEvent : WorldTargetActionEvent
     {
         public EntityUid Item;
 
-        public InnateWorldTargetActionEvent(EntityUid item)
+        public InnateEntityTargetActionEvent(EntityUid item)
         {
             Item = item;
         }

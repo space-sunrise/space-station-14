@@ -8,7 +8,7 @@
     tags:
     - Cartridge
     - CartridgeLightRifle
-  - type: HitScanCartridgeAmmo
+  - type: HitScanCartridgeAmmo #Sunrise-Edit
     proto: BulletLightRifle
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -24,7 +24,7 @@
   parent: BaseCartridgeLightRifle
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
   components:
-  - type: HitScanCartridgeAmmo
+  - type: HitScanCartridgeAmmo #Sunrise-Edit
     proto: BulletLightRifle
 
 - type: entity
@@ -33,7 +33,7 @@
   parent: BaseCartridgeLightRifle
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Chalk ammunition is generally non-harmful, used for practice.
   components:
-  - type: HitScanCartridgeAmmo
+  - type: HitScanCartridgeAmmo #Sunrise-Edit
     proto: BulletLightRiflePractice
   - type: Sprite
     layers:
@@ -49,10 +49,8 @@
   parent: BaseCartridgeLightRifle
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   components:
-  - type: HitScanCartridgeAmmo
+  - type: HitScanCartridgeAmmo #Sunrise-Edit
     proto: BulletLightRifleIncendiary
-  - type: IgniteOnAmmoHit
-    fireStacks: 0.7 # Sunrise-Edit
   - type: Sprite
     layers:
       - state: base
@@ -67,7 +65,7 @@
   parent: BaseCartridgeLightRifle
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
   components:
-  - type: HitScanCartridgeAmmo
+  - type: HitScanCartridgeAmmo #Sunrise-Edit
     proto: BulletLightRifleUranium
   - type: Sprite
     layers:

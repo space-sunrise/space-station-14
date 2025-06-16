@@ -100,11 +100,11 @@
   - MagazineP90Extended
   - MagazineM16A4Extended
   - MagazineAR18Extended
-  - MagazineM28Extended
+  #- MagazineM28Extended
   - MagazineG36Extended
   - MagazineFamasExtended
   - MagazineV31Extended
-  - MagazineBauer127Extended
+  #- MagazineBauer127Extended
   - MagazineBR64Extended
   - MagazineDragunovExtended
 

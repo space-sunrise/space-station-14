@@ -282,15 +282,18 @@
       {
         "name": "goldenw-inhand-right",
         "directions": 4
-    },
-    {
+      },
+      {
         "name": "plushie_narvi"
-    },
-    {
+      },
+      {
         "name": "plushie_sansa"
-    },
-    {
+      },
+      {
         "name": "plushie_tatarchuk"
+      },
+      {
+        "name": "plushie_kalium"
       }
-    ]
+      ]
   }

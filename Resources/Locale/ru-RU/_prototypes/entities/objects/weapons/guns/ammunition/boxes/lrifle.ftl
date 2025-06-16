@@ -1,12 +1,12 @@
-ent-BoxLRifleBase = коробка патронов (.30 винтовочные)
+ent-BoxLRifleBase = коробка патронов (7,62мм)
     .desc = { ent-BaseItem.desc }
     .suffix = { "" }
-ent-BoxLRifleBigBox = коробка патронов (.30 винтовочные)
+ent-BoxLRifleBigBox = коробка патронов (7,62мм)
     .desc = { ent-BoxLRifleBase.desc }
     .suffix = { "" }
-ent-BoxLRifleBox = коробка патронов (.30 винтовочные)
+ent-BoxLRifleBox = коробка патронов (7,62мм)
     .desc = { ent-BoxLRifleBase.desc }
     .suffix = { "" }
-ent-BoxLRifleBoxPractice = коробка патронов (.30 винтовочные учебные)
+ent-BoxLRifleBoxPractice = коробка патронов (7,62мм учебные)
     .desc = { ent-BoxLRifleBase.desc }
     .suffix = { "" }

@@ -203,7 +203,7 @@ public sealed partial class SunriseCCVars : CVars
      */
 
     public static readonly CVarDef<bool> MinPlayersEnable =
-            CVarDef.Create("planet_prison.enable", false, CVar.SERVERONLY);
+        CVarDef.Create("planet_prison.enable", false, CVar.SERVERONLY);
 
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 0, CVar.SERVERONLY);
@@ -270,19 +270,24 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
 
-    public static readonly CVarDef<bool> RunMapVoteAfterRestart = CVarDef.Create("vote.run_map_vote_after_restart", false);
+    public static readonly CVarDef<bool> RunMapVoteAfterRestart =
+        CVarDef.Create("vote.run_map_vote_after_restart", false);
 
-    public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
+    public static readonly CVarDef<bool> RunPresetVoteAfterRestart =
+        CVarDef.Create("vote.run_preset_vote_after_restart", false);
 
-    public static readonly CVarDef<float> ChancePresetVoteAfterRestart = CVarDef.Create("vote.chance_preset_vote_after_restart", 0.5f);
+    public static readonly CVarDef<float> ChancePresetVoteAfterRestart =
+        CVarDef.Create("vote.chance_preset_vote_after_restart", 0.5f);
 
     public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 60);
 
     public static readonly CVarDef<int> RoundVotingCount = CVarDef.Create("vote.round_voting_count", 3);
 
-    public static readonly CVarDef<string> RoundVotingChancesPrototype = CVarDef.Create("vote.round_voting_chances_prototype", "SunriseVoteSecret");
+    public static readonly CVarDef<string> RoundVotingChancesPrototype =
+        CVarDef.Create("vote.round_voting_chances_prototype", "SunriseVoteSecret");
 
-    public static readonly CVarDef<bool> VoteMusicDisable = CVarDef.Create("vote.music_disable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<bool> VoteMusicDisable =
+        CVarDef.Create("vote.music_disable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_map", false, CVar.SERVERONLY);
 
@@ -290,7 +295,8 @@ public sealed partial class SunriseCCVars : CVars
      * Preset
      */
 
-    public static readonly CVarDef<bool> ResetPresetAfterRestart = CVarDef.Create("game.reset_preset_after_restart", false);
+    public static readonly CVarDef<bool> ResetPresetAfterRestart =
+        CVarDef.Create("game.reset_preset_after_restart", false);
 
     /*
      * Ban links.
@@ -464,4 +470,44 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<float> ItemToArtifactRatio =
         CVarDef.Create("random_artifacts.ratio", 0.55f, CVar.SERVER | CVar.ARCHIVE);
+
+    /*
+     * AntiSpam params
+     */
+    public static readonly CVarDef<bool> AntiSpamEnable =
+        CVarDef.Create("anti_spam.enable", false, CVar.SERVER | CVar.ARCHIVE);
+    public static readonly CVarDef<int> AntiSpamCounterShort =
+        CVarDef.Create("anti_spam.counter_short", 1, CVar.SERVER | CVar.ARCHIVE);
+    public static readonly CVarDef<int> AntiSpamCounterLong =
+        CVarDef.Create("anti_spam.counter_long", 2, CVar.SERVER | CVar.ARCHIVE);
+    public static readonly CVarDef<float> AntiSpamMuteDuration =
+        CVarDef.Create("anti_spam.mute_duration", 10f, CVar.SERVER | CVar.ARCHIVE);
+    public static readonly CVarDef<float> AntiSpamTimeShort =
+        CVarDef.Create("anti_spam.time_short", 1.5f, CVar.SERVER | CVar.ARCHIVE);
+    public static readonly CVarDef<float> AntiSpamTimeLong =
+        CVarDef.Create("anti_spam.time_long", 5f, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Вроде все очевидно
+    /// </summary>
+    public static readonly CVarDef<string> IpWhitelist =
+        CVarDef.Create("admin.ip_whitelist", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /*
+     * Chat sanitization
+     */
+
+    /// <summary>
+    /// Включена ли санитизация чата (антиспам от набегаторов)
+    /// </summary>
+    public static readonly CVarDef<bool> ChatSanitizationEnable =
+        CVarDef.Create("chatsan.enable", true, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Контроллирует поведение санитизации.
+    /// Агрессивное: если сообщение не проходит критерии - блокировать полностью его.
+    /// Обычное: в сообщении, которое не проходит критерии, удалять не проходящие критерии части.
+    /// </summary>
+    public static readonly CVarDef<bool> ChatSanitizationAggressive =
+        CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 }

@@ -13,13 +13,13 @@ public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelis
 {
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SunriseHelpersSystem _sunriseHelpers = default!;
+    [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     protected override void OnActivated(Entity<ArtifactWhitelistSwapComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
-        var humans = _sunriseHelpers.GetAll<HumanoidAppearanceComponent, TransformComponent>().ToList();
-        var targets = _sunriseHelpers.GetAll<TransformComponent>()
+        var humans = _helpers.GetAll<HumanoidAppearanceComponent, TransformComponent>().ToList();
+        var targets = _helpers.GetAll<TransformComponent>()
             .Where(e => _whitelist.IsWhitelistPassOrNull(ent.Comp.TargetWhitelist, e))
             .ToList();
 

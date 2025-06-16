@@ -62,7 +62,7 @@
     layers:
     - state: emp_pulse
   - type: EmpOnTrigger
-    range: 4
+    range: 2
     energyConsumption: 30000
     disableDuration: 10
   - type: Ammo
@@ -222,3 +222,198 @@
     radius: 3.5
     color: blue
     energy: 0.5
+
+# Grenades Handheld
+- type: entity
+  id: BulletGrenadeExplosive
+  name: explosive grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/grenade.rsi
+    layers:
+      - state: primed
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120 # about a ~4 tile radius
+    canCreateVacuum: false
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
+  - type: OnUseTimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 3.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+  - type: TimedDespawn
+    lifetime: 3.5
+
+- type: entity
+  id: BulletGrenadeExplosiveShrapnel
+  name: explosive grenade
+  parent: BulletGrenadeExplosive
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLethal
+    capacity: 15
+
+- type: entity
+  id: BulletGrenadeFlashBang
+  name: flashbang
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/flashbang.rsi
+    layers:
+      - state: primed
+  - type: FlashOnTrigger
+    range: 7
+  - type: SoundOnTrigger
+    sound:
+      path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
+      params:
+        volume: 20
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Effects/flash_bang.ogg"
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: OnUseTimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 3.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/countdown.ogg
+  - type: TimedDespawn
+    lifetime: 3.5
+
+- type: entity
+  id: BulletSyndieMiniBomb
+  name: syndicate minibomb
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/syndgrenade.rsi
+    layers:
+      - state: primed
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    totalIntensity: 200
+    intensitySlope: 30
+    maxIntensity: 60
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
+  - type: OnUseTimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/minibombcountdown.ogg
+      params:
+        volume: 12
+  - type: TimedDespawn
+    lifetime: 5
+
+# Grenades Handheld  Pellet
+- type: entity
+  id: BulletGrenadeShrapnel
+  name: shrapnel grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
+    layers:
+      - state: primed
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLethal
+    capacity: 30
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: OnUseTimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 3.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+  - type: TimedDespawn
+    lifetime: 3.5
+
+- type: entity
+  id: BulletGrenadeIncendiary
+  name: incendiary grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/pyrogrenade.rsi
+    layers:
+      - state: primed
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterIncendiary
+    capacity: 30
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: OnUseTimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 3.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+  - type: TimedDespawn
+    lifetime: 3.5
+
+- type: entity
+  id: BulletGrenadeStinger
+  name: stinger grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/stingergrenade.rsi
+    layers:
+      - state: primed
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterRubber
+    capacity: 30
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Effects/flash_bang.ogg"
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: OnUseTimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 3.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/countdown.ogg
+  - type: TimedDespawn
+    lifetime: 3.5

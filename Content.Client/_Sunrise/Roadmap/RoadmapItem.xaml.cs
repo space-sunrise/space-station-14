@@ -21,11 +21,11 @@ public sealed partial class RoadmapItem : Control
             var panel = (StyleBoxFlat) StateColor.PanelOverride!;
             panel.BackgroundColor = _itemState switch
             {
-                RoadmapItemState.Planned => Color.Red,
-                RoadmapItemState.InProgress => Color.FromHex("#20C9FF"),
-                RoadmapItemState.Partial => Color.Yellow,
-                RoadmapItemState.Complete => Color.Green,
-                _ => Color.Transparent
+                RoadmapItemState.Planned => Color.FromHex("#e74c3c"),
+                RoadmapItemState.InProgress => Color.FromHex("#3498db"),
+                RoadmapItemState.Partial => Color.FromHex("#f1c40f"),
+                RoadmapItemState.Complete => Color.FromHex("#2ecc71"),
+                _ => Color.Transparent,
             };
 
             StateText.Text = _itemState switch
@@ -34,7 +34,7 @@ public sealed partial class RoadmapItem : Control
                 RoadmapItemState.InProgress => Loc.GetString("ui-roadmap-state-in-progress"),
                 RoadmapItemState.Partial => Loc.GetString("ui-roadmap-state-partial"),
                 RoadmapItemState.Complete => Loc.GetString("ui-roadmap-state-complete"),
-                _ => string.Empty
+                _ => string.Empty,
             };
             StateText.ModulateSelfOverride = panel.BackgroundColor;
         }
@@ -42,8 +42,8 @@ public sealed partial class RoadmapItem : Control
 
     public string? HeaderText
     {
-        get => HeaderButton.Text;
-        set => HeaderButton.Text = value;
+        get => HeaderLabel.Text;
+        set => HeaderLabel.Text = value;
     }
 
     public string? Text

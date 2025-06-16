@@ -223,6 +223,9 @@
     itemIconStyle: NoItem
     checkCanInteract: false
     useDelay: 5
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
   - type: EntityTargetAction
     whitelist:
       components:

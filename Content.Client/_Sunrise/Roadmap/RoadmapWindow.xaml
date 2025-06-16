@@ -1,9 +1,0 @@
-﻿<roadmap:RoadmapWindow
-    xmlns="https://spacestation14.io"
-    xmlns:roadmap="clr-namespace:Content.Client._Sunrise.Roadmap"
-    MinSize="900 800"
-    Title="{Loc ui-roadmap}">
-    <ScrollContainer VerticalExpand="True" HScrollEnabled="False" HorizontalExpand="True" MinWidth="300">
-        <roadmap:Roadmap Name="RoadmapBody" Access="Public" />
-    </ScrollContainer>
-</roadmap:RoadmapWindow>

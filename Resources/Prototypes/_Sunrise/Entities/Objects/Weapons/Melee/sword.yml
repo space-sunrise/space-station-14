@@ -48,3 +48,5 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Sunrise/Items/Handling/sabre_drop.ogg
+  - type: StaticPrice
+    price: 3000

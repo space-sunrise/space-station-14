@@ -1,4 +1,4 @@
-﻿- type: inventoryTemplate
+- type: inventoryTemplate
   id: human
   slots:
     # Sunrise-start
@@ -144,3 +144,6 @@
       uiWindowPos: 3,0
       strippingWindowPos: 0,5
       displayName: Back
+      blacklist:
+        tags:
+        - PetOnly

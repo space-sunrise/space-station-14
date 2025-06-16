@@ -57,6 +57,12 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         if (sensorStatus == null)
             return;
 
+        var serverTransform = Transform(uid);
+        var serverMapId = serverTransform.MapID;
+
+        if (sensorStatus.MapId != serverMapId)
+            return;
+
         sensorStatus.Timestamp = _gameTiming.CurTime;
         component.SensorStatus[args.SenderAddress] = sensorStatus;
     }
@@ -93,10 +99,14 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         if (!Resolve(uid, ref serverComponent, ref device))
             return;
 
+        var serverTransform = Transform(uid);
+        var serverMapId = serverTransform.MapID;
+
         var payload = new NetworkPayload()
         {
             [DeviceNetworkConstants.Command] = DeviceNetworkConstants.CmdUpdatedState,
-            [SuitSensorConstants.NET_STATUS_COLLECTION] = serverComponent.SensorStatus
+            [SuitSensorConstants.NET_STATUS_COLLECTION] = serverComponent.SensorStatus,
+            [SuitSensorConstants.MAP_ID] = serverMapId,
         };
 
         _deviceNetworkSystem.QueuePacket(uid, null, payload, device: device);

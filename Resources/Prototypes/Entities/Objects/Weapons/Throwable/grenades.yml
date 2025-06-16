@@ -59,6 +59,13 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 2 # 2 beeps total (at 0 and 2)
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletGrenadeExplosive
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   name: flashbang
@@ -90,6 +97,11 @@
     tags:
     - HandGrenade
     - GrenadeFlashBang
+    - HandGrenadeAmmo #Sunrise-Start
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFlashBang
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals #Sunrise-End
 
 - type: entity
   id: GrenadeFlashEffect
@@ -147,6 +159,13 @@
         volume: 12
   - type: StaticPrice
     price: 2000
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletSyndieMiniBomb
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   name: self destruct
@@ -454,10 +473,11 @@
   - type: SmokeOnTrigger
     duration: 10
     spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite
     solution:
       reagents:
       - ReagentId: TearGas
-        Quantity: 50
+        Quantity: 20
 
 - type: entity
   parent: [ BaseEngineeringContraband, SmokeGrenade ]

@@ -131,7 +131,7 @@
     #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
     #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
     id: SyndiAgentPDA
-    belt: ClothingBeltMilitaryWebbingMedFilled # Sunrise-Edit
+    belt: ClothingBeltMilitaryWebbingMedSunriseFilled # Sunrise-Edit
   storage:
     back:
     - SyndiHypo

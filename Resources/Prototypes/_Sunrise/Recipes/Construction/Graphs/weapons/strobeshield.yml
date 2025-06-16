@@ -11,6 +11,11 @@
         icon:
           sprite: Objects/Weapons/Melee/shields.rsi
           state: riot-icon
+      - tag: Flash
+        name: construction-graph-tag-flash
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
       - material: Cable
         amount: 2
       - material: Steel

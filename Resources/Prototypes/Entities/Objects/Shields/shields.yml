@@ -490,6 +490,13 @@
       soundDeactivate:
         path: /Audio/Weapons/ebladeoff.ogg
       deactivateUnequippedHand: true
+      # Sunrise-Start
+      predictable: false
+      soundFailToActivate:
+        path: /Audio/Machines/button.ogg
+        params:
+          variation: 0.250
+      # Sunrise-End
     - type: ItemToggleActiveSound
       activeSound:
         path: /Audio/Weapons/ebladehum.ogg
@@ -553,30 +560,20 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 180
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                BrokenEnergyShield:
-                  min: 1
-                  max: 1
-    - type: StaticPrice
-      price: 350
+    # Sunrise-Start
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50
+      autoRecharge: true
+      autoRechargePause: true
+      autoRechargePauseTime: 5
+    - type: EnergyShield
+    - type: ExaminableBattery
+    - type: Battery
+      maxCharge: 1500
+      startingCharge: 1500
+    - type: PowerCellDraw
+      useRate: 2.5
+    # Sunrise-End
 
 - type: entity
   name: broken energy shield

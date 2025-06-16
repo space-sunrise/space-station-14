@@ -12,5 +12,5 @@ ent-FabricateSoap = Произвести мыло
     .desc = Создать мыло, которому будет мало кто рад.
 ent-PieThrow = { "" }
     .desc = { "" }
-ent-ActionViewCrewManifest = Просмотреть списка экипажа
+ent-ActionViewCrewManifest = Просмотреть список экипажа станции
     .desc = Открывает список экипажа станции.

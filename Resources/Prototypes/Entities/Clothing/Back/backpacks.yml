@@ -32,6 +32,10 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: FelinidContainer
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Backpack
 
 - type: entity
   parent: ClothingBackpack

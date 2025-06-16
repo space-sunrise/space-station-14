@@ -130,3 +130,24 @@
   - type: Storage # Sunrise
     storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
     storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingMedSunrise
+  name: medical chest rig
+  description: A set of tactical webbing worn by Gorlex Marauder medic operatives have additional layer of durathread for keeping chemical inside safety.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbingmed.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbingmed.rsi
+  - type: Item
+    size: Huge
+  - type: ExplosionResistance
+    damageCoefficient: 0.01 #Sunrise-edit
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+      - 0,0,1,1
+      - 3,0,10,1
+      # - 12,0,13,1 #Без второго 2на2

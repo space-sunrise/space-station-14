@@ -1,0 +1,16 @@
+- type: entity
+  id: FlareGunSecurityUpgrade
+  name: upgrade kit (security flare gun)
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Storage/procase_mini.rsi
+    state: closed
+  - type: Item
+    sprite: _RMC14/Objects/Storage/procase_mini.rsi
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: Tag
+    tags:
+    - UpgradeFlareGun

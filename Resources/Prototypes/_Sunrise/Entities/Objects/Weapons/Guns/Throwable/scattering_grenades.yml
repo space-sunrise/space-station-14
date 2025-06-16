@@ -57,4 +57,5 @@
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Machines/door_lock_off.ogg"
-
+  - type: StaticPrice
+    price: 2500

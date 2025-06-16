@@ -51,7 +51,7 @@
             - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: SunriseCartridgeLightRifle #Sunrise-Edit TODO: 5.56
         priority: 1
         whitelist:
           tags:

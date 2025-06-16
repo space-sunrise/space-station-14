@@ -1,10 +1,12 @@
 using System.Linq;
+using Content.Shared.NPC.Prototypes;
 using System.Text.RegularExpressions;
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Pinpointer;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Roles;
@@ -53,6 +55,8 @@ namespace Content.Server.Zombies
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!; // Sunrise-Zombies
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+
+        public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -200,6 +204,7 @@ namespace Content.Server.Zombies
         private void OnPendingMapInit(EntityUid uid, IncurableZombieComponent component, MapInitEvent args)
         {
             _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
+            _faction.AddFaction(uid, Faction);
 
             if (HasComp<ZombieComponent>(uid) || HasComp<ZombieImmuneComponent>(uid))
                 return;

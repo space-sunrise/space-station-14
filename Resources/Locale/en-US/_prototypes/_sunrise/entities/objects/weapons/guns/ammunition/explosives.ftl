@@ -1,3 +1,5 @@
+ent-GrenadeFragLight = frag grenade
+    .desc = { ent-BaseGrenade.desc }
 ent-BaseArtilleryShell = base shell
     .desc = { ent-BaseItem.desc }
 ent-ShellFragArtillery = artillery frag shell

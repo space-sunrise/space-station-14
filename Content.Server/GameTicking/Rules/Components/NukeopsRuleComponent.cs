@@ -64,7 +64,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public FixedPoint2 WarTcAmountPerNukie = 50;
+    public FixedPoint2 WarTcAmountPerNukie = 45; // Sunrise-edit
 
     // Sunrise-Start
     [DataField]

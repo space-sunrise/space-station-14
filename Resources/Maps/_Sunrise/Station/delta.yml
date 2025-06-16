@@ -209512,7 +209512,7 @@ entities:
     - type: Transform
       pos: -29.5,44.5
       parent: 2
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 9807
     components:
