@@ -32,6 +32,8 @@
     damage:
       types:
         Shock: 1
+  - type: StaminaDamageOnCollide
+    damage: 33
   - type: SolutionContainerManager
     solutions:
       ammo:
@@ -48,7 +50,7 @@
   - type: InjectableSolution
     solution: ammo
   - type: TimedDespawn
-    lifetime: 0.25
+    lifetime: 0.28 #5.2 tiles
 
 # Sunrise-ION
 - type: entity

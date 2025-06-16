@@ -1540,6 +1540,13 @@
     Telecrystal: 8 # it's a gamble that may kill you easily so 4 TC per 2 uses, second one more of a backup
   categories:
     - UplinkImplants
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkDnaScramblerImplant

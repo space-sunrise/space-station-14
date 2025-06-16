@@ -145,7 +145,7 @@
     bigTrigger: true
   - type: UseDelayOnShoot
   - type: UseDelay
-    delay: 0.75 #No script abuse
+    delay: 0.85 #No script abuse
   - type: Tag
     tags:
     - Sidearm

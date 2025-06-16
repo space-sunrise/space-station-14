@@ -625,12 +625,12 @@
     slots:
     - Belt
   - type: Gun
-    fireRate: 1 #Sunrise-Edit
+    fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletTaserSunrise #Sunrise-Edit
-    fireCost: 100 #Sunrise-Edit
+    fireCost: 83.3 #Sunrise-Edit 12 Shots
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -743,6 +743,7 @@
     fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    bigTrigger: true # Sunrise-Edit
   - type: ProjectileBatteryAmmoProvider
     proto: AnomalousParticleDeltaStrong
     fireCost: 100
