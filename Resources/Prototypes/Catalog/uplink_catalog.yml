@@ -1475,6 +1475,7 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+      - LoneOpsUplink
   # Sunrise-End
 
 - type: listing
