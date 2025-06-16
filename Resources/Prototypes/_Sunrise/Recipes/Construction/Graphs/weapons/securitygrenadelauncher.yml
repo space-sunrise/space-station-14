@@ -8,7 +8,7 @@
         - to: auto
           steps:
             - tag: UpgradeFlareGun
-              name: construction-graph-tag-borg-arm # SUNRISE-TODO: Каизер чини говно
+              name: construction-graph-tag-UpgradeFlareGun
               doAfter: 8
           completed:
             - !type:AdminLog
