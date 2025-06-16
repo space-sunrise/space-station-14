@@ -66,7 +66,7 @@ ent-FakeMindShieldToggleAction = [color=green]Переключить фейко�
     .desc = Включить/выключить передачу фейкового импланта щита разума
 ent-ActionToggleParamedicSiren = Переключить сирену парамедика
     .desc = Включает или выключает сирену парамедика.
-ent-ActionToggleRootable = action-name-toggle-rootable
-    .desc = action-description-toggle-rootable
+ent-ActionToggleRootable = Укорениться
+    .desc = Начать или перестать быть прикреплённым к полу.
 ent-ActionChameleonController = Измените свою одежду
     .desc = Быстро измените свою одежду

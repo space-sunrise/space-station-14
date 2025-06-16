@@ -39,7 +39,7 @@
             - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: SunriseCartridgeLightRifle  # 762x39
         priority: 1
         whitelist:
           tags:
@@ -99,7 +99,7 @@
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: SunriseCartridgeLightRifle  # 762x39
         priority: 1
         whitelist:
           tags:
@@ -350,21 +350,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineM28
+        startingItem: MagazineAR18
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineM28
-            - MagazineRifle
+            - MagazineAR18 #MagazineM28 Одно и тоже
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeHeavyRifleNT #7.62х51 NT
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeHeavyRifleNT #7.62х51 NT
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -391,12 +390,12 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
   - type: Item
     size: Huge
     shape:
-    - 0,0,3,2
-    sprite: _Sunrise/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+      - 0,0,4,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -40
@@ -417,14 +416,13 @@
         whitelist:
           tags:
           - MagazineAR18
-          - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle  # 556
+        startingItem: CartridgeHeavyRifleNT  # 7.62х51
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle  # 556
+          - CartridgeHeavyRifleNT  #7.62х51 NT
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -541,7 +539,7 @@
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: SunriseCartridgeLightRifle  # 762x39
         priority: 1
         whitelist:
           tags:
@@ -655,11 +653,11 @@
         priority: 3
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: CartridgeHeavyRifleNT  # 7.62 NT
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle  # 762x39
+            - CartridgeHeavyRifleNT  # 7.62 NT
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

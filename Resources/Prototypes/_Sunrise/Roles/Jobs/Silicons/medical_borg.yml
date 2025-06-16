@@ -12,3 +12,4 @@
   displayWeight: -10  # Sunrise
   jobEntity: PlayerBorgMedicalBattery
   overrideConsoleVisibility: false
+  alwaysUseSpawner: true

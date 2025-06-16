@@ -108,11 +108,12 @@ construction-graph-tag-human-head = { ent-HeadHuman }
 construction-graph-tag-light-bulb = { ent-LightBulb }
 construction-graph-tag-radio = { ent-RadioHandheld }
 # Щиты и защита
-construction-graph-tag-strobe-shield = { ent-RiotShieldStrobe }
+construction-graph-tag-strobe-shield = { ent-RiotShield }
 construction-graph-tag-security-helmet = { ent-ClothingHeadHelmetBasic }
 construction-graph-tag-security-hud = { ent-ClothingEyesHudSecurity }
 construction-graph-tag-medical-hud = { ent-ClothingEyesHudMedical }
 construction-graph-tag-sun-glasses = { ent-ClothingEyesGlassesSunglasses }
+construction-graph-tag-flash = { ent-Flash }
 # Скафандры
 construction-graph-tag-spationaut-hardsuit = { ent-ClothingOuterHardsuitSpatio }
 # Электроника

@@ -27,7 +27,7 @@
     - SemiAuto
     minAngle: 25
     maxAngle: 46
-    fireRate: 0.75
+    fireRate: 2.25
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_shot.ogg
       params:
@@ -49,11 +49,11 @@
             - MagazineDragunov
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeAntiMateriel  # 762x54
+        startingItem: CartridgeHeavyLightRifle  # 762x54
         priority: 1
         whitelist:
           tags:
-            - CartridgeAntiMateriel  # 762x54
+            - CartridgeHeavyRifle  # 762x54
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -74,6 +74,8 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+  - type: StaticPrice
+    price: 5000
 
 - type: entity
   name: BR-64
@@ -121,11 +123,11 @@
             - MagazineBR64
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnum  # 062
+        startingItem: CartridgeHeavyRifleNT  # 062
         priority: 1
         whitelist:
           tags:
-          - CartridgeMagnum  # 062
+          - CartridgeHeavyRifleNT  # 062
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -167,7 +169,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,7,2
+    - 0,0,8,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -221,7 +223,7 @@
   - type: GunRequiresWield
   - type: Wieldable
   - type: UseDelay
-    delay: 0.5
+    delay: 1
   - type: SpeedModifiedOnWield
     walkModifier: 0.25
     sprintModifier: 0.25
@@ -229,6 +231,8 @@
   - type: EyeCursorOffset
     maxOffset: 15
     pvsIncrease: 2
+  - type: StaticPrice
+    price: 10000
 
 - type: entity
   name: M1 Garand
@@ -331,7 +335,7 @@
     proto: null
     whitelist:
       tags:
-      - CartridgeLightRifle
+      - CartridgeHeavyRifle
   - type: Lubed
     slipStrength: 3
     slipsLeft: 3

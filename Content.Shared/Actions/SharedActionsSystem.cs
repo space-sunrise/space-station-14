@@ -425,6 +425,10 @@ public abstract class SharedActionsSystem : EntitySystem
 
         // if not just checking pure range, let stored entities be targeted by actions
         // if it's out of range it probably isn't stored anyway...
+
+        if (targetAction.IgnoreContainer)
+            return true;
+
         return _interaction.CanAccessViaStorage(user, target);
     }
 
@@ -972,6 +976,24 @@ public abstract class SharedActionsSystem : EntitySystem
 
         ent.Comp.IconOn = iconOn;
         DirtyField(ent, ent.Comp, nameof(ActionComponent.IconOn));
+    }
+
+    public void SetItemIconStyle(Entity<ActionComponent?> ent, ItemActionIconStyle itemIconStyle)
+    {
+        if (!_actionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.ItemIconStyle == itemIconStyle)
+            return;
+
+        ent.Comp.ItemIconStyle = itemIconStyle;
+        DirtyField(ent, ent.Comp, nameof(ActionComponent.ItemIconStyle));
+    }
+
+    public void SetPriority(Entity<ActionComponent?> ent, int priority)
+    {
+        if (!_actionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.Priority == priority)
+            return;
+
+        ent.Comp.Priority = priority;
+        DirtyField(ent, ent.Comp, nameof(ActionComponent.Priority));
     }
 
     public void SetIconColor(Entity<ActionComponent?> ent, Color color)

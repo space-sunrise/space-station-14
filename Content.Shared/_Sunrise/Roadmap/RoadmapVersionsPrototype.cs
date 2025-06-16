@@ -3,7 +3,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Roadmap;
 
-[Prototype("roadmapVersions")]
+[Prototype]
 public sealed class RoadmapVersionsPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;
@@ -11,35 +11,25 @@ public sealed class RoadmapVersionsPrototype : IPrototype
     public string Fork { get; set; } = "SUNRISE";
 
     [DataField]
-    public Dictionary<string, RoadmapGroup> Versions = new();
+    public List<RoadmapGroup> Versions = [];
 }
 
 [DataDefinition]
-[Serializable, NetSerializable]
-public sealed partial class RoadmapGroup
+public partial record struct RoadmapGroup
 {
-    [DataField]
-    public string Name { get; set; } = string.Empty;
+    [DataField] public string Name;
 
-    [DataField]
-    public Dictionary<string, RoadmapGoal> Goals = new();
+    [DataField] public List<RoadmapGoal> Goals = [];
 }
 
 [DataDefinition]
-[Serializable, NetSerializable]
-public sealed partial class RoadmapGoal
+public partial record struct RoadmapGoal
 {
-    [DataField]
-    public string Id { get; set; } = string.Empty; //Хуйня нужная для локализации, не трогать
-    
-    [DataField]
-    public string Name { get; set; } = string.Empty;
+    [DataField] public string Name;
 
-    [DataField]
-    public string Desc { get; set; } = string.Empty;
+    [DataField] public string Desc;
 
-    [DataField]
-    public RoadmapItemState State { get; set; } = RoadmapItemState.Planned;
+    [DataField] public RoadmapItemState State = RoadmapItemState.Planned;
 }
 
 [Serializable, NetSerializable]
@@ -48,5 +38,5 @@ public enum RoadmapItemState
     Planned,
     InProgress,
     Partial,
-    Complete
+    Complete,
 }

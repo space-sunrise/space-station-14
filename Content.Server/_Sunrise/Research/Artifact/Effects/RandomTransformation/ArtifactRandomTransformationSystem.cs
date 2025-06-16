@@ -16,7 +16,7 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SunriseHelpersSystem _sunriseHelpers = default!;
+    [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
@@ -54,7 +54,7 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
 
     private void ReduceAndTransform(Entity<ArtifactRandomTransformationComponent> ent, IReadOnlyCollection<EntityUid> entities)
     {
-        var items = _sunriseHelpers.GetPercentageOfHashSet(entities, ent.Comp.TransformationPercentRatio);
+        var items = _helpers.GetPercentageOfHashSet(entities, ent.Comp.TransformationPercentRatio);
 
         DoTransformation(ent, items);
     }

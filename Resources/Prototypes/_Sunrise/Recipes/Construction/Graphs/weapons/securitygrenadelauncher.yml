@@ -1,0 +1,18 @@
+- type: constructionGraph
+  id: GrenadeLauncherSecurity
+  start: start
+  graph:
+    - node: start
+      entity: WeaponFlareGunSecurity
+      edges:
+        - to: auto
+          steps:
+            - tag: UpgradeFlareGun
+              name: construction-graph-tag-borg-arm # SUNRISE-TODO: Каизер чини говно
+              doAfter: 8
+          completed:
+            - !type:AdminLog
+              message: "Converted FlareGun to GrenadeLauncher"
+              impact: High
+    - node: auto
+      entity: WeaponGrenadeLauncherSecurity

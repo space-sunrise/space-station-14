@@ -98,38 +98,38 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
-  id: MagazineM28
-  name: M28 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineM28
-  - type: Item
-    size: Small
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeRifle  # 556
-    whitelist:
-      tags:
-      - CartridgeRifle  # 556
-    capacity: 25
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/m28.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
+# - type: entity
+#   id: MagazineM28
+#   name: M28 magazine
+#   parent: BaseItem
+#   components:
+#   - type: Tag
+#     tags:
+#     - MagazineM28
+#   - type: Item
+#     size: Small
+#   - type: BallisticAmmoProvider
+#     mayTransfer: true
+#     proto: CartridgeHeavyRifleNT  # 762
+#     whitelist:
+#       tags:
+#       - CartridgeHeavyRifleNT  # 762
+#     capacity: 20
+#   - type: ContainerContainer
+#     containers:
+#       ballistic-ammo: !type:Container
+#   - type: Sprite
+#     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/m28.rsi
+#     layers:
+#     - state: base
+#       map: ["enum.GunVisualLayers.Base"]
+#     - state: mag-1
+#       map: ["enum.GunVisualLayers.Mag"]
+#   - type: MagazineVisuals
+#     magState: mag
+#     steps: 2
+#     zeroVisible: false
+#   - type: Appearance
 
 - type: entity
   id: MagazineAR18
@@ -143,11 +143,11 @@
     size: Small
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeRifle  # 556
+    proto: CartridgeHeavyRifleNT  # 762
     whitelist:
       tags:
-      - CartridgeRifle  # 556
-    capacity: 25
+      - CartridgeHeavyRifleNT  # 762
+    capacity: 20
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -218,19 +218,19 @@
   - type: BallisticAmmoProvider
     capacity: 34
 
-- type: entity
-  parent: MagazineM28
-  id: MagazineM28Extended
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 34
+# - type: entity
+#   parent: MagazineM28
+#   id: MagazineM28Extended
+#   components:
+#   - type: BallisticAmmoProvider
+#     capacity: 30
 
 - type: entity
   parent: MagazineAR18
   id: MagazineAR18Extended
   components:
   - type: BallisticAmmoProvider
-    capacity: 34
+    capacity: 30
 
 - type: entity
   parent: MagazineM16A4

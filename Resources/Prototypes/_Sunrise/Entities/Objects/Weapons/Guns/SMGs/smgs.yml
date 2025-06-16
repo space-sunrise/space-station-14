@@ -515,6 +515,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 5500
 
 - type: entity
   name: SIAR-52 SMG
@@ -571,6 +573,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 6500
 
 - type: entity
   name: Uzi

@@ -641,6 +641,7 @@
   - type: ItemBorgModule
     items:
     - Bucket # Sunrise-Edit
+    - BorgTrashBag # Sunrise-Edit
     - BorgSprayBottle
     - HoloprojectorJanitorBorg # Sunrise-Edit
   - type: BorgModuleIcon
@@ -659,6 +660,7 @@
   - type: ItemBorgModule
     items:
     - BorgBucket # Sunrise-Edit
+    - BorgTrashBag # Sunrise-Edit
     - HoloprojectorJanitorBorg # Sunrise-Edit
     - SprayBottleSpaceCleanerBorg # Sunrise-Edit
     - BorgDropper
@@ -694,7 +696,7 @@
     - state: icon-treatment
   - type: ItemBorgModule
     items:
-    - HandheldHealthAnalyzerUnpowered
+    #- HandheldHealthAnalyzerUnpowered
     - Gauze10Lingering
     - Brutepack10Lingering
     - Ointment10Lingering
@@ -715,9 +717,9 @@
     - state: icon-defib
   - type: ItemBorgModule
     items:
-    - HandheldHealthAnalyzerUnpowered
+    #- HandheldHealthAnalyzerUnpowered
     - DefibrillatorOneHandedUnpowered
-    - BorgFireExtinguisher
+    #- BorgFireExtinguisher
     - BorgHandheldGPSBasic
     - HandLabeler
   - type: BorgModuleIcon

@@ -45,3 +45,5 @@
     factions:
     - Syndicate
     alertText: Вы не истинный клоун.
+  - type: StaticPrice
+    price: 1500

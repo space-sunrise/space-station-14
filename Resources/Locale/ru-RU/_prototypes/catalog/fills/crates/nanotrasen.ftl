@@ -1,9 +1,0 @@
-ent-CrateCommandNTGygaxBundle = набор Nanotrasen "Гигакс"
-    .desc = Содержит набор легкобронированного меха Nanotrasen.
-    .suffix = Заполненный
-ent-CrateCommandMarauderBundle = набор Nanotrasen "Мародёр"
-    .desc = Содержит набор тяжело бронированного меха Nanotrasen.
-    .suffix = Заполненный
-ent-CrateCommandSeraphBundle = набор Nanotrasen "Серафим"
-    .desc = Содержит набор элитного тяжело бронированного меха Nanotrasen.
-    .suffix = Заполненный

@@ -21,9 +21,11 @@ uplink-magazine-bauer127-extended-name = расширенный магазин B
 uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
 uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
 uplink-magazine-bauer127-extended-desc = Магазин для Bauer127. Содержит 15 патронов калибра .60 антиматериальный.
-uplink-magazine-dl6902-name = Короб-магазин DL6902 (.30 винтовочные)
-uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов калибра .30.
 
+uplink-magazine-dl6902-name = Короб-магазин DL6902 (7,62мм)
+uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов калибра 7,62х39мм.
+uplink-magazine-dragunov-desc = Магазин для Драгунова. Содержит 10 патронов калибра 7,62х54R.
+uplink-magazine-dragunov-extended-desc = Магазин для Драгунова. Содержит 20 патронов калибра 7,62х54R.
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -54,15 +56,17 @@ uplink-armoured-jumpsuit-desc = Казалось бы, простой делов
 uplink-syndicate-rapier-name = Рапира Синдиката
 uplink-syndicate-rapier-desc = Элегантная рапира из пластитана с алмазным наконечником. Рапира поставляется в собственных ножнах и способна пробить практически любую защиту если бить точно.
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
-uplink-clothing-backpack-syndie-aj100-desc = Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
+uplink-clothing-backpack-syndie-aj100-desc = Включает в себя пистолет-пулемёт AJ-100 что имеет универсальную шахту магазина и может использовать большинство магазинов для ПП и пистолетов и два магазина безгильзовых патрон.
 uplink-weapon-syndie-laser-pistol-name = SAM-300
 uplink-clothing-backpack-syndie-dl6902-name = Набор DL6902
-uplink-clothing-backpack-syndie-dl6902-desc = Включает в себя пулемёт DL6902 и один магазин патрон.
+uplink-clothing-backpack-syndie-dl6902-desc = Включает в себя пулемёт DL6902 и один дополнительный короб.
 uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
-uplink-clothing-backpack-syndie-siar52-desc = Включает в себя пулемёт SIAR-52 и два магазина патрон.
+uplink-clothing-backpack-syndie-siar52-desc = Включает в себя SIAR-52 что оборудован интегрированым глушителем. и два магазина безгильзовых патрон.
 uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
 uplink-weapon-bauer-127-name = винтовка Bauer SR-127
+uplink-weapon-dragunov-name = Набор Драгунов
+uplink-weapon-dragunov-desc = Культовая снайперская винтовка и два магазина на 10 патронов, известная своей меткостью и стрельбой на дальние дистанции. Использует винтовочные патроны калибра 7.62x54R.
 
 ## Cyborgs
 
@@ -135,11 +139,11 @@ uplink-ammo-shotgunincendiarykit-desc = Перезаряжаю! Содержит
 uplink-ammo-shotgunuraniumkit-name = Набор урановых магазинов для дробовика
 uplink-ammo-shotgunuraniumkit-desc = Перезаряжаю! Содержит 8 урановые магазины для Bulldog.
 uplink-ammo-lmgkit-name = Набор коробов
-uplink-ammo-lmgkit-desc = Перезаряжаю! Содержит 4 магазина для L6 Saw или DL6902.
+uplink-ammo-lmgkit-desc = Перезаряжаю! Содержит 4 магазина для L6 Saw.
 uplink-ammo-lmgincendiarykit-name = Набор зажигательных коробов
-uplink-ammo-lmgincendiarykit-desc = Перезаряжаю! Содержит 4 зажигательных магазина для L6 Saw или DL6902.
+uplink-ammo-lmgincendiarykit-desc = Перезаряжаю! Содержит 4 зажигательных магазина для L6 Saw.
 uplink-ammo-lmguraniumkit-name = Набор урановых коробов
-uplink-ammo-lmguraniumkit-desc = Перезаряжаю! Содержит 4 урановых магазина для L6 Saw или DL6902.
+uplink-ammo-lmguraniumkit-desc = Перезаряжаю! Содержит 4 урановых магазина для L6 Saw.
 uplink-cluster-mini-bomb-name = Кластерная минибомба синдиката
 uplink-cluster-mini-bomb-desc = Если вы не преследуете цель точечных диверсий, то этот выбор для вас.
 uplink-mech-teleporter-heavy-name = Телепорт тяжелого меха

@@ -284,3 +284,123 @@
     layers:
     - state: green
     - state: salvagespecialist
+
+- type: entity
+  id: SpawnPointClownBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: ClownBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: clown
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: clown_e
+
+- type: entity
+  id: SpawnPointEngineerBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: EngineerBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: engineer
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: engineer_e
+
+- type: entity
+  id: SpawnPointJanitorBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: JanitorBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: janitor
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: janitor_e
+
+- type: entity
+  id: SpawnPointMedicalBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: MedicalBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: medical
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: medical_e
+
+- type: entity
+  id: SpawnPointMiningBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: MiningBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: miner
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: miner_e
+
+- type: entity
+  id: SpawnPointPeaceBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: PeaceBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: peace
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: peace_e
+
+- type: entity
+  id: SpawnPointSecurityBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: SecurityBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: sec
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: sec_e
+
+- type: entity
+  id: SpawnPointServiceBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: ServiceBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: service
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: service_e

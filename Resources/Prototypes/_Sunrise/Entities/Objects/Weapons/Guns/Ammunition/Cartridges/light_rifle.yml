@@ -1,0 +1,79 @@
+- type: entity
+  id: SunriseBaseCartridgeLightRifle
+  name: cartridge (7,62mm)
+  parent: [ BaseCartridge, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLightRifle
+  - type: HitScanCartridgeAmmo
+    proto: BulletLightRifle
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x39.rsi
+    scale: 0.70, 0.70
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: SunriseCartridgeLightRifle
+  name: cartridge (7,62mm)
+  parent: SunriseBaseCartridgeLightRifle
+  description: A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
+  components:
+  - type: HitScanCartridgeAmmo
+    proto: BulletLightRifle
+
+- type: entity
+  id: SunriseCartridgeLightRiflePractice
+  name: cartridge (7,62mm practice)
+  parent: SunriseBaseCartridgeLightRifle
+  description: A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations. Chalk ammunition is generally non-harmful, used for practice.
+  components:
+  - type: HitScanCartridgeAmmo
+    proto: BulletLightRiflePractice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+
+- type: entity
+  id: SunriseCartridgeLightRifleIncendiary
+  name: cartridge (7,62mm incendiary)
+  parent: SunriseBaseCartridgeLightRifle
+  description: A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+  components:
+  - type: HitScanCartridgeAmmo
+    proto: BulletLightRifleIncendiary
+  - type: IgniteOnAmmoHit
+    fireStacks: 0.7
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: entity
+  id: SunriseCartridgeLightRifleUranium
+  name: cartridge (7,62mm uranium)
+  parent: SunriseBaseCartridgeLightRifle
+  description: A classic intermediate cartridge 7,62x39mm used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
+  components:
+  - type: HitScanCartridgeAmmo
+    proto: BulletLightRifleUranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"

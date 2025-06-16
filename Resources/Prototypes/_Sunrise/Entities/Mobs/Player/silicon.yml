@@ -317,6 +317,8 @@
           Empty: { state: empty }
           Occupied: { state: full }
   - type: Intellicard
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   id: SyndicateCircuitBoard
@@ -329,3 +331,5 @@
     state: std_mod
   - type: SiliconLawProvider
     laws: SyndicateStatic
+  - type: StaticPrice
+    price: 2000

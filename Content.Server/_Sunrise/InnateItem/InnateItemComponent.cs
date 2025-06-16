@@ -6,8 +6,6 @@ namespace Content.Server._Sunrise.InnateItem
     [RegisterComponent]
     public sealed partial class InnateItemComponent : Component
     {
-        public bool AlreadyInitialized = false;
-
         [ViewVariables(VVAccess.ReadOnly),
          DataField("instantActions", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public List<string?> InstantActions = new();

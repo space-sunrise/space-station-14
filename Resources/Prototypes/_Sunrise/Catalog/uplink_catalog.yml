@@ -401,16 +401,55 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkMagazineBauer127Extended
-  name: uplink-magazine-bauer127-extended-name
-  description: uplink-magazine-bauer127-extended-desc
+  id: UplinkMagazineBauer127
+  name: uplink-magazine-bauer127-name
+  description: uplink-magazine-bauer127-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi, state: base }
-  productEntity: MagazineBauer127Extended
+  productEntity: MagazineBauer127
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 1
   cost:
-    Telecrystal: 5
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
+  id: UplinkMagazineDragunov
+  # name: uplink-magazine-dragunov-name
+  description: uplink-magazine-dragunov-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunov
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkMagazineDragunovExtended
+  # name: uplink-magazine-dragunov-extended-name
+  description: uplink-magazine-dragunov-extended-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovExtended
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 3
   categories:
   - UplinkAmmo
   conditions:
@@ -654,16 +693,16 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkWeaponBauer127
-  name: uplink-weapon-bauer-127-name
-  productEntity: ClothingBackpackDuffelSyndicateFilledBauer
-  description: uplink-weapon-bauer-127-name
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
+  id: UplinkWeaponDragunov
+  name: uplink-weapon-dragunov-name
+  productEntity: ClothingBackpackDuffelSyndicateFilledDragunov
+  description: uplink-weapon-dragunov-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/big.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 10
   cost:
-    Telecrystal: 16
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
   conditions:
@@ -671,6 +710,25 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+
+- type: listing
+  id: UplinkWeaponBauer127
+  name: uplink-weapon-bauer-127-name
+  productEntity: ClothingBackpackDuffelSyndicateFilledBauer
+  description: uplink-weapon-bauer-127-name
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 16
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkHardsuitSyndieCommander
@@ -701,7 +759,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
   productEntity: ClothingOuterHardsuitSyndieMedicBiocode
   cost:
-    Telecrystal: 8
+    Telecrystal: 9
   categories:
   - UplinkWearables
   conditions:

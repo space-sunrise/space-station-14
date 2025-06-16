@@ -1,3 +1,5 @@
+ent-CratePlants = ящик с растениями
+    .desc = Набор различных горшечных растений, чтобы оживить вашу станцию!
 ent-CrateFunPlushie = ящик плюшевых игрушек
     .desc = Куча мягких плюшевых игрушек. Разложите их повсюду, а потом подумайте, как вы объясните эту покупку NT.
 ent-CrateFunLizardPlushieBulk = оптовый ящик плюшевых унатхов
@@ -28,8 +30,8 @@ ent-CrateFunParty = набор для вечеринок
     .desc = Все участники вечеринки ждут, когда вы его откроете. Включает в себя подарки, напитки и даже торт.
 ent-CrateFunWaterGuns = ящик водяных пистолетов
     .desc = Специальное летнее предложение с набором ярких водяных пистолетов. Не содержит воды.
-ent-CrateFunFoamGuns = Foam Force crate
-    .desc = Contains four Foam Force rifles, some grenades, and extra ammo. It's [REDACTED] or nothing!
+ent-CrateFunFoamGuns = ящик Foam Force
+    .desc = Содержит четыре винтовки Foam Force, несколько гранат и дополнительные боеприпасы. Выбирайте «Foam Force» — или ничего!
 ent-CrateFunBoxing = ящик боксёрского снаряжения
     .desc = Хотите организовать подпольный бойцовский клуб или провести турнир среди сотрудников станции? Этот ящик для вас!
 ent-CrateFunPirate = { ent-CratePirate }

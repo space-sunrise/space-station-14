@@ -114,7 +114,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
         if (_frameCount % 100 == 0)
         {
-            Logger.Info($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms");
+            Logger.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
         }
 
         _exposedTimer += frameTime;

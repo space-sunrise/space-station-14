@@ -6,3 +6,34 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Grenades/syndgrenade.rsi
+
+- type: entity
+  name: shrapnel-explosive grenade
+  description: Grenade that creates a small but devastating explosion.
+  parent: [GrenadeBase, BaseSyndicateContraband]
+  id: ExShrapnelGrenade
+  components:
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLethal
+    capacity: 15
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 100
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: CartridgeAmmo
+    proto: BulletGrenadeExplosiveShrapnel
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo

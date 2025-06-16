@@ -5,3 +5,5 @@ ent-WeaponGrenadeLauncherGL70 = GL-79
 ent-WeaponGrenadeLauncherGL70Flash = GL-79
     .suffix = GrenadeFlash
     .desc = { ent-WeaponGrenadeLauncherGL70.desc }
+ent-WeaponGrenadeLauncherSecurity = гранатомёт безопасности
+    .desc = Модификация сигнального пистолета СБ, обеспечивающая безопасный запуск любых ручных гранат на дальнюю дистанцию. "Внимание" Стрельба в упор или в препятствия под прямым углом не рекомендуется — возможен возврат гранаты.

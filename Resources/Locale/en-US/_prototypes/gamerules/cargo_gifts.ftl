@@ -20,3 +20,5 @@ ent-GiftsSecurityGuns = { ent-CargoGiftsBase }
     .desc = { ent-CargoGiftsBase.desc }
 ent-GiftsSecurityRiot = { ent-CargoGiftsBase }
     .desc = { ent-CargoGiftsBase.desc }
+ent-GiftsAncientGuns = { ent-CargoGiftsBase }
+    .desc = { ent-CargoGiftsBase.desc }

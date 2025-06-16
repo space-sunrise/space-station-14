@@ -307,7 +307,7 @@ namespace Content.Server.Power.EntitySystems
 
             if (_frameCount % 100 == 0)
             {
-                Logger.Info($"PowerNetSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms");
+                Logger.Debug($"PowerNetSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
             }
         }
 

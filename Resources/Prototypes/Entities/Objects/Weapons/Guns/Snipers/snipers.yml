@@ -27,10 +27,10 @@
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: BallisticAmmoProvider
     capacity: 10
-    proto: CartridgeLightRifle
+    proto: CartridgeHeavyLightRifle #Sunrise-Edit 7,62x54R
     whitelist:
       tags:
-      - CartridgeLightRifle
+      - CartridgeHeavyRifle #Sunrise-Edit
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

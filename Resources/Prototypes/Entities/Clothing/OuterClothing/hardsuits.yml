@@ -579,6 +579,23 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  - type: ExplosionResistance #Sunrise-start
+    damageCoefficient: 0.35
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.25
+        Caustic: 0.25
+        Bloodloss: 0.5
+  - type: FireProtection
+    reduction: 0.5
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+#Sunrise-end
 
 #Syndicate Elite Hardsuit
 - type: entity

@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.1.0
+  engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/03/2025 15:35:11
+  time: 06/13/2025 01:34:18
   entityCount: 2525
 maps: []
 grids:
@@ -975,6 +975,7 @@ entities:
       configurators: []
       deviceLists: []
       transmitFrequencyId: ArrivalsShuttleTimer
+    - type: PreventPilot
 - proto: AirAlarm
   entities:
   - uid: 2347
@@ -6473,13 +6474,6 @@ entities:
     - type: Transform
       pos: -8.5,21.5
       parent: 1
-- proto: ComputerEmergencyShuttle
-  entities:
-  - uid: 557
-    components:
-    - type: Transform
-      pos: -10.5,18.5
-      parent: 1
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 1220
@@ -6493,6 +6487,13 @@ entities:
     components:
     - type: Transform
       pos: -10.5,21.5
+      parent: 1
+- proto: ComputerShuttle
+  entities:
+  - uid: 557
+    components:
+    - type: Transform
+      pos: -10.5,18.5
       parent: 1
 - proto: CrowbarRed
   entities:
@@ -7951,7 +7952,7 @@ entities:
       pos: -12.5,-25.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2163.7312
+      secondsUntilStateChange: -2269.716
       state: Opening
     - type: DeviceLinkSource
       lastSignals:

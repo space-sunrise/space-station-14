@@ -1115,3 +1115,19 @@
   - type: TriggerOnActivate
   - type: UseDelay
     delay: 1
+
+- type: entity
+  id: PlushieKalium
+  parent: BasePlushie
+  name: Kalium Fon Dez
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie_kalium
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+      params:
+        volume: 3
+  - type: UseDelay
+    delay: 1

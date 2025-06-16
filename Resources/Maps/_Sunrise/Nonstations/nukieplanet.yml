@@ -11428,13 +11428,6 @@ entities:
     - type: Transform
       pos: -18.500195,-11.724729
       parent: 2
-- proto: ClothingBeltMercWebbing
-  entities:
-  - uid: 1784
-    components:
-    - type: Transform
-      pos: 14.711664,15.28885
-      parent: 2
 - proto: ClothingEyesGlassesChemical
   entities:
   - uid: 1785
@@ -11531,7 +11524,7 @@ entities:
       inSlot: head
     - type: Physics
       canCollide: False
-- proto: ClothingHeadHelmetMerc
+- proto: ClothingHeadHatBeretMerc
   entities:
   - uid: 1772
     components:
@@ -14805,7 +14798,7 @@ entities:
     - type: Transform
       pos: -17.5,-9.5
       parent: 2
-- proto: MiningDrillDiamond
+- proto: MiningDrill
   entities:
   - uid: 2311
     components:

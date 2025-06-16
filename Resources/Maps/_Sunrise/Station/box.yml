@@ -166821,7 +166821,7 @@ entities:
     - type: Transform
       pos: -12.5,-74.5
       parent: 2
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 1397
     components:

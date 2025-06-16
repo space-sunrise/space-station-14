@@ -8,5 +8,3 @@ ent-MagazineDragunovExtended = { ent-MagazineDragunov }
     .desc = { ent-MagazineDragunov.desc }
 ent-MagazineBR64Extended = { ent-MagazineBR64 }
     .desc = { ent-MagazineBR64.desc }
-ent-MagazineBauer127Extended = { ent-MagazineBauer127 }
-    .desc = { ent-MagazineBauer127.desc }
