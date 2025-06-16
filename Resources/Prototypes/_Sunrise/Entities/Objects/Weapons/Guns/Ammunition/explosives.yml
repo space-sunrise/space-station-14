@@ -1,4 +1,21 @@
-﻿# Shells that used for friendship and duster
+﻿- type: entity
+  id: GrenadeFragLight
+  name: frag grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragLight
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: frag
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+
+# Shells that used for friendship and duster
 
 - type: entity
   id: BaseArtilleryShell

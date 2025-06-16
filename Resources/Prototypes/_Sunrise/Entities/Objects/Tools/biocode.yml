@@ -6,6 +6,8 @@
   - type: FactionClothingBlocker
     factions:
     - Syndicate
+  - type: StaticPrice
+    price: 3000
 
 - type: entity
   parent: EnergyDomeGeneratorPersonalSyndie
@@ -15,6 +17,8 @@
   - type: FactionClothingBlocker
     factions:
     - Syndicate
+  - type: StaticPrice
+    price: 4000
 
 - type: entity
   parent: EnergyShield
@@ -24,3 +28,5 @@
   - type: Biocode
     factions:
     - Syndicate
+  - type: StaticPrice
+    price: 900

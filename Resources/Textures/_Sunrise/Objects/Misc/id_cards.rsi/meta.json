@@ -99,6 +99,48 @@
         },
         {
             "name": "idmail"
+        },
+        {
+            "name": "idmusician"
+        },
+        {
+            "name": "idpassenger"
+        },
+        {
+            "name": "idsecuritypilot"
+        },
+        {
+            "name": "idmime"
+        },
+        {
+            "name": "idbrigmedic"
+        },
+        {
+            "name": "ert_engineer"
+        },
+        {
+            "name": "ert_janitor"
+        },
+        {
+            "name": "ert_medic"
+        },
+        {
+            "name": "ert_security"
+        },
+        {
+            "name": "idintern-cadet"
+        },
+        {
+            "name": "idintern-med"
+        },
+        {
+            "name": "idintern-sci"
+        },
+        {
+            "name": "idintern-service"
+        },
+        {
+            "name": "idintern-tech"
         }
     ]
 }

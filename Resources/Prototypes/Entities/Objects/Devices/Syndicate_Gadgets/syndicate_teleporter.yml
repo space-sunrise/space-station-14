@@ -21,3 +21,5 @@
       collection: BrokenDevice
       params:
         variation: 0.125
+  - type: StaticPrice
+    price: 3000

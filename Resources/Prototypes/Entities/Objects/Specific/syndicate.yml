@@ -148,10 +148,10 @@
   components:
   - type: Store
     balance:
-      Telecrystal: 60
+      Telecrystal: 80 #Sunrise edit
   - type: Tag
     tags:
-    - NukeOpsUplink
+    - LoneOpsUplink #Sunrise added
 
 - type: entity
   parent: BaseUplinkRadio

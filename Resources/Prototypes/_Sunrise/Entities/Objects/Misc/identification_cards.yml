@@ -46,9 +46,10 @@
   name: security pilot ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: idsecurityofficer
+    - state: idsecuritypilot
   - type: PresetIdCard
     job: SecurityPilot
 
@@ -94,6 +95,7 @@
   name: brigmedic ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - state: idbrigmedic

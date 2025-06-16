@@ -44,6 +44,8 @@
   - type: Strap
     position: Down
     rotation: -90
+    buckleOffsets:
+    - "0,-0.15"
   - type: Machine
     board: StasisBedMachineCircuitboard
   - type: Physics

@@ -1,3 +1,5 @@
+ent-GrenadeFragLight = осколочная граната
+    .desc = { ent-BaseGrenade.desc }
 ent-BaseArtilleryShell = базовый артиллерийский снаряд
     .desc = Базовый артиллерийский снаряд.
 ent-ShellFragArtillery = осколочный артиллерийский снаряд

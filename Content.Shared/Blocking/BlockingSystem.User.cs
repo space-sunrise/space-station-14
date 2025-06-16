@@ -47,6 +47,9 @@ public sealed partial class BlockingSystem
             if (args.Damage.GetTotal() <= 0)
                 return;
 
+            if (!_toggle.IsActivated(component.BlockingItem.Value)) // Sunrise-Edit
+                return;
+
             // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
             if (!TryComp<DamageableComponent>(component.BlockingItem, out var dmgComp))
                 return;

@@ -1,20 +1,5 @@
 - type: gameMapPool
   id: DefaultMapPool
-  maps:
-  - Amber
-  - Bagel
-  - Box
-  - Convex
-  #- Core
-  - Elkridge
-  - Fland
-  #- Gate
-  - Loop
-  - Marathon
-  - Meta
-  - Oasis
-  - Omega
-  - Packed
-  - Plasma
-  - Reach
-  #- Train
+  maps: # Sunrise edit - так как прототипы карт закомментированы, нужно и отсюда убрать
+  - Empty
+  - Exo

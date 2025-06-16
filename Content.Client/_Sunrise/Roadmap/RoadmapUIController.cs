@@ -5,7 +5,7 @@ namespace Content.Client._Sunrise.Roadmap;
 
 public sealed class RoadmapUIController : UIController, IOnStateEntered<LobbyState>
 {
-    private RoadmapWindow? _window;
+    private Roadmap? _window;
     private bool _shown;
 
     public void OnStateEntered(LobbyState state)
@@ -25,7 +25,7 @@ public sealed class RoadmapUIController : UIController, IOnStateEntered<LobbySta
         }
 
         _shown = true;
-        _window = new RoadmapWindow();
+        _window = new Roadmap();
         _window.OnClose += () => _window = null;
 
         _window.OpenCentered();

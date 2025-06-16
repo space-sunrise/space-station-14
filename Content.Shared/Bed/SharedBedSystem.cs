@@ -23,7 +23,8 @@ public abstract class SharedBedSystem : EntitySystem
         SubscribeLocalEvent<CanSleepOnBuckleComponent, StrappedEvent>(OnStrapped);
         // Sunrise-End
 
-        SubscribeLocalEvent<HealOnBuckleComponent, MapInitEvent>(OnHealMapInit);
+        // Sunrise-Edit
+        //SubscribeLocalEvent<HealOnBuckleComponent, MapInitEvent>(OnHealMapInit);
         SubscribeLocalEvent<HealOnBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<HealOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
     }
@@ -42,16 +43,18 @@ public abstract class SharedBedSystem : EntitySystem
 
         RemComp<CanSleepComponent>(args.Buckle.Owner);
         _actionsSystem.RemoveAction(args.Buckle.Owner, canSleep.SleepAction);
+        _sleepingSystem.TryWaking(args.Buckle.Owner);
         if (canSleep.SleepAction != null)
             _actConts.RemoveAction(canSleep.SleepAction.Value);
     }
     // Sunrise-End
 
-    private void OnHealMapInit(Entity<HealOnBuckleComponent> ent, ref MapInitEvent args)
-    {
-        _actConts.EnsureAction(ent.Owner, ref ent.Comp.SleepAction, SleepingSystem.SleepActionId);
-        Dirty(ent);
-    }
+    // Sunrise-Edit
+    // private void OnHealMapInit(Entity<HealOnBuckleComponent> ent, ref MapInitEvent args)
+    // {
+    //     _actConts.EnsureAction(ent.Owner, ref ent.Comp.SleepAction, SleepingSystem.SleepActionId);
+    //     Dirty(ent);
+    // }
 
     private void OnStrapped(Entity<HealOnBuckleComponent> bed, ref StrappedEvent args)
     {
@@ -61,8 +64,9 @@ public abstract class SharedBedSystem : EntitySystem
 
     private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)
     {
-        _actionsSystem.RemoveAction(args.Buckle.Owner, bed.Comp.SleepAction);
-        _sleepingSystem.TryWaking(args.Buckle.Owner);
+        // Sunrise-Edit
+        //_actionsSystem.RemoveAction(args.Buckle.Owner, bed.Comp.SleepAction);
+        //_sleepingSystem.TryWaking(args.Buckle.Owner);
         RemComp<HealOnBuckleHealingComponent>(bed);
     }
 }

@@ -74,3 +74,6 @@
   - type: Tag
     tags:
     - Sidearm
+  - type: Construction  # Sunrise-start
+    graph: GrenadeLauncherSecurity
+    node: start   # Sunrise-end

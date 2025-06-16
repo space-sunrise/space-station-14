@@ -28,6 +28,8 @@
   - type: Strap
     position: Down
     rotation: -90
+    buckleOffsets:
+    - "0,-0.15"
   # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
   - type: Construction
     graph: bed

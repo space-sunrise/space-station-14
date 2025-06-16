@@ -142,7 +142,7 @@
     mode: SnapgridCenter
     snap:
     - Wallmount
- 
+
 - type: entity
   id: FireAlarmXeno
   parent: FireAlarm
@@ -150,14 +150,14 @@
   description: An alien fire alarm. Works just the same!
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/air_monitors_xeno.rsi
+    sprite: Structures/Wallmounts/air_monitors_xeno.rsi
     layers:
     - state: fire0
       map: ["fireAlarmBase"]
     - state: fire_off
       map: ["fireAlarmState"]
     - state: fire_b2
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]  
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - type: Construction
 
 - type: entity
@@ -167,7 +167,7 @@
   description: An alien fire alarm assembly. Good luck with the wires.
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/air_monitors_xeno.rsi
+    sprite: Structures/Wallmounts/air_monitors_xeno.rsi
     layers:
     - state: fire_b1
       map: [ "enum.ConstructionVisuals.Layer" ]

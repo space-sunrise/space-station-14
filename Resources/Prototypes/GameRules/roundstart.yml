@@ -252,11 +252,17 @@
   components:
   - type: GameRule
     minPlayers: 15
+    # Sunrise-Start
+    delay:
+      min: 1800
+      max: 2000
+    # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ HeadRev ]
+      fallbackRoles: [ Rev ]
       max: 3
       playerRatio: 15
       briefing:
@@ -269,6 +275,18 @@
       - type: HeadRevolutionary
       mindRoles:
       - MindRoleHeadRevolutionary
+    - prefRoles: [ Rev ]
+      fallbackRoles: [ HeadRev ]
+      max: 30
+      playerRatio: 3
+      briefing:
+        text: rev-role-greeting
+        color: CornflowerBlue
+        sound: "/Audio/Ambience/Antag/headrev_start.ogg"
+      components:
+      - type: Revolutionary
+      mindRoles:
+      - MindRoleRevolutionary
 
 - type: entity
   id: Sandbox

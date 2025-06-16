@@ -45,6 +45,7 @@
   name: passenger ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: default
     - state: idpassenger
@@ -273,6 +274,7 @@
   name: mime ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: default
     - state: idmime
@@ -537,6 +539,7 @@
   name: ERT engineer ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: gold
     - state: ert_engineer
@@ -549,6 +552,7 @@
   name: ERT janitor ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: gold
     - state: ert_janitor
@@ -561,6 +565,7 @@
   name: ERT medic ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: gold
     - state: ert_medic
@@ -573,6 +578,7 @@
   name: ERT security ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: gold
     - state: ert_security
@@ -585,6 +591,7 @@
   name: musician ID card
   components:
     - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
       layers:
         - state: default
         - state: idmusician
@@ -618,6 +625,7 @@
     - Maintenance
     - SyndicateAgent
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: default
     - state: idpassenger

@@ -30,7 +30,7 @@
     - WeaponEnergyGunMini
     - WeaponEnergyGunPistol
     - WeaponGunLaserCarbineAutomatic
-    - ClothingShoesBootsMagCombat
+    - FlareGunSecurityUpgrade
     - BaseMagazinePistolCaselessRifleExtended
     - MagazinePPSH41Extended
     - MagazineMP5Extended
@@ -38,11 +38,11 @@
     - MagazineP90Extended
     - MagazineM16A4Extended
     - MagazineAR18Extended
-    - MagazineM28Extended
+    #- MagazineM28Extended
     - MagazineG36Extended
     - MagazineFamasExtended
     - MagazineV31Extended
-    - MagazineBauer127Extended
+    #- MagazineBauer127Extended
     - MagazineBR64Extended
     - MagazineDragunovExtended
     - ShellBlastArtillery
@@ -50,6 +50,6 @@
     - ShellFlashArtillery
     - EnergyDomeDirectionalTurtle
     - ClothingHeadHelmetPubg
-    - ClothingShoesBootsMagCombat
     - ClothingShoesBootsMagSec
+    - ClothingShoesBootsMagCombat
     - WeaponTemperatureGun

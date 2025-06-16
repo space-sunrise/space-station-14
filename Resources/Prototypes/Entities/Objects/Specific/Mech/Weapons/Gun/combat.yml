@@ -351,10 +351,18 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack
   - type: Gun
-    fireRate: 1.2
-    selectedMode: FullAuto
+    minAngle: 1
+    maxAngle: 14
+    angleIncrease: 5
+    angleDecay: 4
+    fireRate: 2.5
+    burstFireRate: 5
+    shotsPerBurst: 3
+    burstCooldown: 1
+    selectedMode: Burst
     availableModes:
-      - FullAuto
+      - SemiAuto
+      - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: ProjectileBatteryAmmoProvider

@@ -46,3 +46,12 @@
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ArrivalsShuttleTimer
+
+- type: entity
+  id: ShuttleTimer
+  parent: Screen
+  name: screen
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Private
+    receiveFrequencyId: ShuttleTimer

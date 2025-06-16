@@ -293,7 +293,7 @@ namespace Content.Server.GameTicking
             var spawnPointType = SpawnPointType.Arrivals;
             if (jobPrototype.AlwaysUseSpawner ||
                 overall < TimeSpan.FromHours(_cfg.GetCVar(SunriseCCVars.ArrivalsMinHours)) ||
-                _cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn)
+                !_cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn)
                 )
             {
                 lateJoin = false;

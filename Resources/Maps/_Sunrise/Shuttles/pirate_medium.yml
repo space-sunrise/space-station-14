@@ -5408,7 +5408,7 @@ entities:
         - Pressed: Toggle
         673:
         - Pressed: Toggle
-- proto: SMESExtended
+- proto: SMESBasic
   entities:
   - uid: 409
     components:

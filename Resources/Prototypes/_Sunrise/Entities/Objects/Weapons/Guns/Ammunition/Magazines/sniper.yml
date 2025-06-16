@@ -10,10 +10,10 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 10
-    proto: CartridgeAntiMateriel  # 762x54
+    proto: CartridgeHeavyLightRifle  # 762x54
     whitelist:
       tags:
-        - CartridgeAntiMateriel  # 762x54
+        - CartridgeHeavyRifle  # 762x54
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -47,10 +47,10 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 32
-    proto: CartridgeMagnum  # 062
+    proto: CartridgeHeavyRifleNT  # 062
     whitelist:
       tags:
-        - CartridgeMagnum  # 062
+        - CartridgeHeavyRifleNT  # 062
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -72,30 +72,28 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineBauer127
-  name: Bauer127 magazine
+  id: BaseMagazineBauer127
+  name: Bauer127 magazine (12,7mm anti-materiel)
   description: Standart EarthGov type of heavy magazines.
-  parent: BaseItem
+  parent: [ BaseItem, BaseMajorContraband ]
+  abstract: true
   components:
   - type: Tag
     tags:
       - MagazineBauer127
+  - type: Item
+    size: Small
   - type: BallisticAmmoProvider
     mayTransfer: true
-    capacity: 10
-    proto: CartridgeAntiMateriel  # AntiMateriel
     whitelist:
       tags:
-        - CartridgeAntiMateriel  # AntiMateriel
+        - CartridgeAntiMateriel
+    capacity: 7
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: Item
-    size: Small
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -106,6 +104,38 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineBauer127
+  name: Bauer127 magazine (12,7mm anti-materiel)
+  description: Standart EarthGov type of heavy magazines.
+  parent: BaseMagazineBauer127
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMateriel  # AntiMateriel
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#9b0000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#9b0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#9b0000"
 
 - type: entity
   parent: MagazineDragunov
@@ -120,10 +150,3 @@
   components:
   - type: BallisticAmmoProvider
     capacity: 36
-
-- type: entity
-  parent: MagazineBauer127
-  id: MagazineBauer127Extended
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 15

@@ -24,3 +24,21 @@
     - id: ClothingBeltSheathSyndicateFilled
     sound:
       path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingMedSunriseFilled
+  parent: ClothingBeltMilitaryWebbingMedSunrise
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ChemistryBottleEpinephrine
+        amount: 2
+      - id: ChemistryBottleOmnizine
+      - id: SyringeStimulants
+        amount: 1
+      - id: RadAutoInjector
+      - id: AntiPoisonMedipen
+      - id: MedipenCombatInjector
+      - id: Bloodpack
+      - id: MedkitCombatFilled

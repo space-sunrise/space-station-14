@@ -4,11 +4,11 @@ namespace Content.Client._Sunrise.UserInterface.Controls;
 
 public sealed class RichTextButton : Button
 {
-    public new SunriseRichTextLabel Label { get; }
+    public new RichTextLabel Label { get; }
 
     public RichTextButton()
     {
-        Label = new SunriseRichTextLabel();
+        Label = new RichTextLabel();
 
         AddChild(Label);
     }

@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseSMES
   id: SMESExtended
-  suffix: Basic, Extended, 24MW
+  suffix: Basic, Extended, 30MW
   components:
   - type: Battery
-    maxCharge: 24000000
-    startingCharge: 24000000
+    maxCharge: 30000000
+    startingCharge: 30000000

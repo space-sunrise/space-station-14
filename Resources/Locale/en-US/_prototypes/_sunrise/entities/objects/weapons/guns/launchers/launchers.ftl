@@ -5,3 +5,5 @@ ent-WeaponGrenadeLauncherGL70 = GL-79
 ent-WeaponGrenadeLauncherGL70Flash = GL-79
     .suffix = GrenadeFlash
     .desc = { ent-WeaponGrenadeLauncherGL70.desc }
+ent-WeaponGrenadeLauncherSecurity = security grenade launcher
+    .desc = A security flare gun modification that allows for the safe launch of any hand grenade over long distances. "Warning" Firing at close range or directly at obstacles is not recommended — risk of grenade bounce-back.

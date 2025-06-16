@@ -53,7 +53,9 @@
   - type: ItemBorgModule
     items:
     - DL6902Borg
-    - WeaponLauncherChinaLakeBorg
+    # - WeaponLauncherChinaLakeBorg
+    - HeavyRifleBorg
+    - WeaponLauncherDusterBorg
 
 - type: entity
   id: BorgScoutModuleSyndicateCombat

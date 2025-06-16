@@ -107,6 +107,16 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         UpdateProcessing(frameTime);
         UpdateHighPressure(frameTime);
 
+        _frameStopwatch.Stop();
+        _lastFrameTime = (float)_frameStopwatch.Elapsed.TotalMilliseconds;
+        _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
+        _frameCount++;
+
+        if (_frameCount % 100 == 0)
+        {
+            Logger.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
+        }
+
         _exposedTimer += frameTime;
 
         if (_exposedTimer < ExposedUpdateDelay)
@@ -125,16 +135,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         }
 
         _exposedTimer -= ExposedUpdateDelay;
-
-        _frameStopwatch.Stop();
-        _lastFrameTime = (float)_frameStopwatch.Elapsed.TotalMilliseconds;
-        _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
-        _frameCount++;
-
-        if (_frameCount % 100 == 0)
-        {
-            Logger.Info($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms");
-        }
     }
 
     private void CacheDecals()

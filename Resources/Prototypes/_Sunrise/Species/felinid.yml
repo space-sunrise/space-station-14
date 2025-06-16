@@ -17,6 +17,9 @@
 - type: markingPoints
   id: MobFelinidMarkingLimits
   points:
+    Special: # the cat ear joke
+      points: 1
+      required: false
     Hair:
       points: 1
       required: false

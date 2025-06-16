@@ -37,6 +37,12 @@
 - type: Tag
   id: AnomalyCore
 
+- type: Tag
+  id: LoneOpsUplink
+
+- type: Tag
+  id: Flash
+
 # Catridges:
 
 - type: Tag
@@ -52,11 +58,20 @@
   id: CartridgeRail
 
 - type: Tag
+  id: CartridgeHeavyRifleNT
+
+- type: Tag
   id: MiniSyringe
+
+- type: Tag
+  id: HandGrenadeAmmo
 
 # Weapons
 - type: Tag
   id: WrappedWeapon
+
+- type: Tag
+  id: UpgradeFlareGun
 
 # Magazines:
 - type: Tag

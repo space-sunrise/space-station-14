@@ -363,10 +363,26 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnRequestUndock(EntityUid uid, ShuttleConsoleComponent component, UndockRequestMessage args)
         {
+            var console = _console.GetDroneConsole(uid);
+
+            if (console == null)
+            {
+                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+                return;
+            }
+
+            var shuttleUid = Transform(console.Value).GridUid;
+
             if (!TryGetEntity(args.DockEntity, out var dockEnt) ||
                 !TryComp(dockEnt, out DockingComponent? dockComp))
             {
                 _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+                return;
+            }
+
+            if (!CanShuttleUndock(shuttleUid))
+            {
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
                 return;
             }
 

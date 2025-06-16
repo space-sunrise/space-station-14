@@ -18,7 +18,7 @@
   id: Rev
   name: roles-antag-rev-name
   antagonist: true
-  setPreference: false
+  setPreference: true # Sunrise-Edit
   playTimeTracker: AntagRevolutionary # Sunrise-Edit
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]

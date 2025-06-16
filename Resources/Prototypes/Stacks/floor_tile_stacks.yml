@@ -192,7 +192,7 @@
 
 - type: stack
   id: FloorTileTechmaintDark
-  name: dark-techmaint-floor # Sunrise edit
+  name: stack-techmaint-floor-dark
   spawn: FloorTileItemTechmaintDark
   maxCount: 30
 
@@ -643,18 +643,30 @@
 
 - type: stack
   id: FloorTileXeno
-  name: xeno-floor # Sunrise edit
+  name: stack-xeno-floor
   spawn: FloorTileItemXeno
   maxCount: 30
 
 - type: stack
-  id: FloorTileDarkSquiggly
-  name: dark-squiggly-floor # Sunrise edit
-  spawn: FloorTileItemDarkSquiggly
+  id: FloorTileXenoSteel
+  name: stack-xeno-steel
+  spawn: FloorTileItemXenoSteelCorner
   maxCount: 30
 
 - type: stack
-  id: FloorTileDarkSquigglyVertical
-  name: dark-squiggly-vertical-floor # Sunrise edit
-  spawn: FloorTileItemDarkSquigglyVertical
+  id: FloorTileXenoSteelCorner
+  name: stack-xeno-steel-corner
+  spawn: FloorTileItemXenoSteelCorner
+  maxCount: 30
+
+- type: stack
+  id: FloorTileXenoMaint
+  name: stack-xeno-maint
+  spawn: FloorTileItemXenoSteelCorner
+  maxCount: 30
+
+- type: stack
+  id: FloorTileDarkSquiggly
+  name: stack-dark-squiggly
+  spawn: FloorTileItemDarkSquiggly
   maxCount: 30

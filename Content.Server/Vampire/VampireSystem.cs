@@ -35,6 +35,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Nutrition.EntitySystems;
 
 namespace Content.Server.Vampire;
 

@@ -21,7 +21,7 @@
   - type: Gun
     minAngle: 40
     maxAngle: 80
-    fireRate: 7.5
+    fireRate: 6.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -37,15 +37,13 @@
         whitelist:
           tags:
           - MagazineLightMachineGunMG60
-          - MagazineRPD
-          - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: CartridgeHeavyLightRifle  # 762x54
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 762x39
+          - CartridgeHeavyRifle  # 762x54
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -57,18 +55,18 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.5
+    delay: 1
   - type: GunRequiresWield
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.5
-    sprintModifier: 0.5
+    walkModifier: 0.55
+    sprintModifier: 0.55
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 2.5
+    pvsIncrease: 0.25
 
 - type: entity
   name: RPD
@@ -89,30 +87,30 @@
     shape:
     - 0,0,5,3
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -45
   - type: Gun
     minAngle: 40
     maxAngle: 60
-    fireRate: 8
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleBox
+        startingItem: MagazineRPD
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazineRPD
-          - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: SunriseCartridgeLightRifle  # 762x39
         priority: 1
         whitelist:
           tags:
@@ -132,6 +130,9 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
 - type: entity
   name: MG-42
@@ -226,7 +227,7 @@
   - type: Gun
     minAngle: 40
     maxAngle: 60
-    fireRate: 8.25
+    fireRate: 8
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -255,7 +256,7 @@
             - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: SunriseCartridgeLightRifle
         priority: 1
         whitelist:
           tags:
@@ -267,3 +268,5 @@
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
+  - type: StaticPrice
+    price: 10000

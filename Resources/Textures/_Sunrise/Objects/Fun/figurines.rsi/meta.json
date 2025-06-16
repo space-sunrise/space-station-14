@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Sprites made by kamenshik975 (discord) for Sunrise Station",
+    "copyright": "Sprites by Sokol (sunrise team); Blueshield & enforcementofficer by kamenshik975",
     "size": {
         "x": 32,
         "y": 32
@@ -19,7 +19,19 @@
             "name": "blueshield"
         },
         {
+            "name": "brigmedic"
+        },
+        {
+            "name": "cburn"
+        },
+        {
+            "name": "deathsquad"
+        },
+        {
             "name": "enforcementofficer"
+        },
+        {
+            "name": "ert"
         }
     ]
 }

@@ -17,7 +17,7 @@
   license: "CC0-1.0"
   copyright: "Created by TheShuEd"
   source: "https://github.com/space-syndicate/space-station-14/pull/1938"
-  
+
 - files: ["SillyOcean_Overlay2.png"]
   license: "CC0-1.0"
   copyright: "Created by TheShuEd"
@@ -27,8 +27,3 @@
   license: "CC0-1.0"
   copyright: "Created by odlieerr"
   source: "https://deep-fold.itch.io/pixel-planet-generator"
-
-- files: [ "space_map3.png", "XenoParallaxNeb.png" ]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Made by SlamBamActionman"
-  source: "https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Parallaxes/space_map3.png"

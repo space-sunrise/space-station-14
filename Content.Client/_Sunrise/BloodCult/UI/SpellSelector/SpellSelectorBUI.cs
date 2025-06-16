@@ -44,7 +44,9 @@ public sealed class SpellSelectorBUI : BoundUserInterface
             if (!protoMan.TryIndex(action, out var proto))
                 continue;
 
-            if (!proto.Components.TryGetComponent("ActionComponent", out var actionComp))
+            // Sunrise-TODO: Лютый щиткод, нужно нахуярить прототип cultAction и там хранить иконку и сам экшен.
+            // Sunrise-TODO: А здесь лишь енумерировать все эти прототипы
+            if (!proto.Components.TryGetComponent("Action", out var actionComp))
                 continue;
 
             if (actionComp is not ActionComponent actionComponent)

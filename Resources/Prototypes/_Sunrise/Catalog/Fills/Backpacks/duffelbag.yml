@@ -6,9 +6,21 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponRifleBauer127
-      - id: MagazineBauer127Extended
-      - id: MagazineBauer127Extended
+      - id: WeaponRifleBauer127Biocode
+      - id: MagazineBauer127
+      - id: MagazineBauer127
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledDragunov
+  name: Dragunov bundle
+  description: "The iconic Dragunov magazine rifle with 2 raspy magazines in the set."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSniperDragunovBiocode
+      - id: MagazineDragunov
+      - id: MagazineDragunov
 
 #ERT_Uplink
 - type: entity

@@ -185,6 +185,10 @@
       guides:
       - Security
       - Antagonists
+    - type: Tag #Sunerise-start
+      tags:
+      - Flash
+#Sunerise-end
 
 - type: entity
   name: flash

@@ -17,6 +17,14 @@
       "name": "mecha_honker"
     },
     {
+      "name": "inhand-left-honk",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-honk",
+      "directions": 4
+    },
+    {
       "name": "mecha_mime"
     },
     {
@@ -65,7 +73,23 @@
       "name": "mecha_clamp"
     },
     {
+      "name": "inhand-left-big",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-big",
+      "directions": 4
+    },
+    {
       "name": "mecha_clamp_small"
+    },
+    {
+      "name": "inhand-left-small",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-small",
+      "directions": 4
     },
     {
       "name": "mecha_wire"
