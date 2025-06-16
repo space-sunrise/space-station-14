@@ -80,6 +80,7 @@
       - AssaultOpsUplink
       - SubdermalImplant
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
   - !type:ListingLimitedStockCondition
     stock: 1
   #Sunrise-end
@@ -260,6 +261,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 #Sunrise-end
 
 - type: listing
@@ -414,6 +416,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink #Sunrise added
 
 - type: listing
   id: UplinkC4Bundle
@@ -485,6 +488,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
       - AssaultOpsUplink
 
 - type: listing
@@ -699,6 +703,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 
 #Chemicals
 
@@ -767,6 +772,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkNocturineChemistryBottle
@@ -811,6 +817,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
       - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -830,6 +837,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
       - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -849,6 +857,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
       - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -878,6 +887,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 # Deception
 
@@ -1179,10 +1189,10 @@
   categories:
   - UplinkDisruption
   conditions:
-  - !type:BuyerWhitelistCondition
+  - !type:BuyerWhitelistCondition #Sunrise-start
       blacklist:
         components:
-          - SurplusBundle
+          - SurplusBundle #Sunrise-end
 
 # Надо заменить на плату с целью помогать агентам.
 #- type: listing
@@ -1279,6 +1289,7 @@
       whitelist:
         tags:
         - NukeOpsUplink
+        - LoneOpsUplink # Sunrise-Edit
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -1350,6 +1361,7 @@
       blacklist:
         tags:
           - NukeOpsUplink
+          - LoneOpsUplink # Sunrise-Edit
           - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -1403,6 +1415,7 @@
       blacklist:
         tags:
           - NukeOpsUplink
+          - LoneOpsUplink # Sunrise-Edit
           - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -1591,6 +1604,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkMacroBombImplanter
@@ -1607,6 +1621,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkDeathAcidifierImplanter
@@ -1623,6 +1638,7 @@
       whitelist:
         tags:
           - NukeOpsUplink
+          - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkUplinkImplanter # uplink uplink real
@@ -1849,6 +1865,7 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+      - LoneOpsUplink
   #Sunrise-end
 
 - type: listing
@@ -1866,6 +1883,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkHardsuitSyndieElite
@@ -1898,6 +1916,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkClothingEyesHudSyndicate

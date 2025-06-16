@@ -2374,7 +2374,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitSyndieCommanderBiocode
+- proto: BoxDeathRattleImplants
   entities:
   - uid: 53
     components:

@@ -37,6 +37,9 @@
 - type: Tag
   id: AnomalyCore
 
+- type: Tag
+  id: LoneOpsUplink
+
 # Catridges:
 
 - type: Tag
