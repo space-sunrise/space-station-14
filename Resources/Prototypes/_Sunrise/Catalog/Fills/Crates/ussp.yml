@@ -53,13 +53,12 @@
   parent: CrateAmmunitionSmall
   id: CrateAmmunitionSmallLightRifle
   name: old small ammunition crate
+  suffix: Filled
   components:
   - type: StorageFill
     contents:
       - id: SpeedLoaderLightRifle
-        amount: 12
-      - id: MagazineBoxLightRifle
-        amount: 4
+        amount: 16
 
 - type: entity
   parent: BaseStructureDynamic
