@@ -84,7 +84,7 @@
 
 - type: entity
   abstract: true
-  parent: [BaseItem, AmmoBoxSounds] # Sunrise
+  parent: [BaseItem, AmmoBoxSounds]
   id: BaseMagazineBoxHeavyRifle
   name: ammunition box (7,62mmR)
   components:
@@ -101,7 +101,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi # TODO: Новые спрайты
   - type: MagazineVisuals
     magState: mag
     steps: 4

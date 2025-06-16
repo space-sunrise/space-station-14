@@ -83,17 +83,94 @@
 
 # # Boxes
 
-# - type: entity
-#   parent: BaseMagazineBoxHeavyRifle
-#   id: MagazineBoxHeavyRifle
-#   name: ammunition box (.325 rifle)
-#   description: Cardboard box full of .325x2 full-power rifle rounds. Dated, but still widely used by marksman rifles and medium machine guns.
-#   components:
-#   - type: BallisticAmmoProvider
-#     proto: CartridgeHeavyRifle
-#   - type: Sprite
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-1
-#       map: ["enum.GunVisualLayers.Mag"]
+- type: entity
+  abstract: true
+  parent: [BaseItem, AmmoBoxSounds]
+  id: BaseMagazineBoxHeavyRifleNT
+  name: ammunition box (7,62mm NT)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeHeavyRifleNT
+    proto: CartridgeHeavyRifleNT
+    capacity: 120
+  - type: Item
+    size: Normal
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # TODO: Новые спрайты
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifleNT
+  id: MagazineBoxHeavyRifleNT
+  name: ammunition box (7,62mm NT)
+  description: Cardboard box full of 7.62x51mm full-power rifle rounds. Dated, but still widely used by marksman rifles and medium machine guns.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 40
+    proto: CartridgeHeavyRifleNT
+  - type: Item
+    size: Small
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: MagazineBoxHeavyRifleNT
+  id: MagazineBoxHeavyRifleNTPractice
+  name: ammunition box (7,62mm NT practice)
+  description: Cardboard box full of 7.62x51mm full-power rifle rounds. Dated, but still widely used by marksman rifles and medium machine guns. Intended to hold non-harmful chalk ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleNTPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  parent: MagazineBoxHeavyRifleNT
+  id: MagazineBoxHeavyRifleNTIncendiary
+  name: ammunition box (7,62mm NT incendiary)
+  description: Cardboard box full of 7.62x51mm full-power rifle rounds. Dated, but still widely used by marksman rifles and medium machine guns. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleNTIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: MagazineBoxHeavyRifleNT
+  id: MagazineBoxHeavyRifleNTUranium
+  name: ammunition box (7,62mm NT uranium)
+  description: Cardboard box full of 7.62x51mm full-power rifle rounds. Dated, but still widely used by marksman rifles and medium machine guns. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleNTUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
