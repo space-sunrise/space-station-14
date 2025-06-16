@@ -2,3 +2,4 @@
   id: DefaultMapPool
   maps: # Sunrise edit - так как прототипы карт закомментированы, нужно и отсюда убрать
   - Empty
+  - Exo

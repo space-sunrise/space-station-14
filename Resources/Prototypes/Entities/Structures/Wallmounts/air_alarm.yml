@@ -157,7 +157,7 @@
   description: An alien air alarm. Hopefully they didn't breathe poison.
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/air_monitors_xeno.rsi
+    sprite: Structures/Wallmounts/air_monitors_xeno.rsi
     layers:
     - state: alarm0
       map: ["airAlarmBase"] # TODO: fire alarm enum
@@ -172,7 +172,7 @@
   description: An alien air alarm. Why are the wires pulsating?...
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/air_monitors_xeno.rsi
+    sprite: Structures/Wallmounts/air_monitors_xeno.rsi
     layers:
     - state: alarm_b1
       map: [ "enum.ConstructionVisuals.Layer" ]
