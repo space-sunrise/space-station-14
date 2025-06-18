@@ -1,0 +1,47 @@
+- type: construction
+  id: RailingWood
+  graph: RailingWood
+  startNode: start
+  targetNode: railing
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerWood
+  graph: RailingWood
+  startNode: start
+  targetNode: railingCorner
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerWoodSmall
+  graph: RailingWood
+  startNode: start
+  targetNode: railingCornerSmall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingRoundWood
+  graph: RailingWood
+  startNode: start
+  targetNode: railingRound
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
