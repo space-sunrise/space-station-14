@@ -1976,6 +1976,18 @@
   categories:
   - UplinkWearables
 
+#Sunrise-Start
+- type: listing
+  id: UplinkMiscSyndiePowercage
+  name: uplink-objects-power-syndie-powercell-name
+  description: uplink-objects-power-syndie-powercell-desc
+  productEntity: PowerCellSyndicate
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+#Sunrise-End
+
  # Pointless
 
 - type: listing
