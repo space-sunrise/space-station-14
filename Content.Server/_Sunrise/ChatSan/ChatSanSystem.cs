@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Chat;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 
 namespace Content.Server._Sunrise.ChatSan;
@@ -12,6 +13,7 @@ public sealed class ChatSanSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly ISharedChatManager _chat = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private bool _enabled;
     private bool _aggressive;
@@ -42,7 +44,6 @@ public sealed class ChatSanSystem : EntitySystem
             return;
         ev.Handled = true;
 
-        // 1. Если regex нашел url: [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)
         switch (_aggressive)
         {
             case true:
@@ -55,7 +56,13 @@ public sealed class ChatSanSystem : EntitySystem
                 ev.Cancelled = cancelled;
                 if (cancelled)
                 {
-                    _chat.SendAdminAlert(Loc.GetString("chatsan-admin-alert", ("message_cropped", ev.Message.Substring(0, 20))));
+                    if (_playerManager.TryGetSessionByEntity(ev.Source, out var session) || session is null)
+                        return;
+
+                    _chat.SendAdminAlert(Loc.GetString(
+                        "chatsan-admin-alert",
+                        ("user", session.Data.UserName),
+                        ("message_cropped", ev.Message.Substring(0, 20))));
                 }
                 return;
             case false:

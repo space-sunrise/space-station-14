@@ -470,7 +470,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(source, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -548,7 +548,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(originalMessage);
+        var sanEvent = new ChatSanRequestEvent(source, originalMessage);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -629,7 +629,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(originalMessage);
+        var sanEvent = new ChatSanRequestEvent(source, originalMessage);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -727,7 +727,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(action);
+        var sanEvent = new ChatSanRequestEvent(source, action);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -777,7 +777,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private void SendLOOC(EntityUid source, ICommonSession player, string message, bool hideChat)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(source, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -806,7 +806,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(source, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;

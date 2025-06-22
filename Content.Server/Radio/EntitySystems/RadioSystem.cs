@@ -98,7 +98,7 @@ public sealed class RadioSystem : EntitySystem
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(messageSource, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
