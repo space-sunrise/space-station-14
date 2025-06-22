@@ -18,7 +18,16 @@ public sealed class ChatSanSystem : EntitySystem
     private bool _enabled;
     private bool _aggressive;
 
+    /// <summary>
+    /// Этот реджекс паттерн используется для поиска ссылок в сообщении. Он очень расширенный, тобишь даже test:\\example.com
+    /// он будет отфильтровывать.
+    /// </summary>
     private static readonly Regex UrlRegex = new("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)");
+
+    /// <summary>
+    /// Этот реджекс используется для поиска ASCII артов в сообщении. По сути он выбирает все символы, которые нельзя
+    /// напечатать на клавиатуре. Я проверил, что благодаря ему можно напечатать все локали.
+    /// </summary>
     private static readonly Regex AsciiArtRegex = new("[\\x20-\\x7E]*");
 
     /// <inheritdoc/>
@@ -35,6 +44,10 @@ public sealed class ChatSanSystem : EntitySystem
         SubscribeLocalEvent<ChatSanRequestEvent>(HandleChatSanRequest);
     }
 
+    /// <summary>
+    /// Обрабатывает реквест к системе автоматической санитизации чата.
+    /// </summary>
+    /// <param name="ev"></param>
     private void HandleChatSanRequest(ref ChatSanRequestEvent ev)
     {
         if (!_enabled)
@@ -44,12 +57,14 @@ public sealed class ChatSanSystem : EntitySystem
             return;
         ev.Handled = true;
 
+        // Мы используем эту систему исключительно если цель контроллирует игрок.
         if (!_playerManager.TryGetSessionByEntity(ev.Source, out var session))
             return;
 
 
         switch (_aggressive)
         {
+            // Агрессивный режим: блокируем сообщение от юзера если нашли недопустимую последовательность.
             case true:
                 var conditions = new List<bool>
                 {
@@ -68,6 +83,7 @@ public sealed class ChatSanSystem : EntitySystem
                             : ev.Message)));
                 }
                 return;
+            // Щадящий режим: удаляем все недопустимые последовательности.
             case false:
                 ev.Message = UrlReplace(ev.Message);
                 ev.Message = AsciiArtReplace(ev.Message);
