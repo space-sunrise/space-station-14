@@ -28,7 +28,7 @@ public sealed class ChatSanSystem : EntitySystem
     /// Этот реджекс используется для поиска ASCII артов в сообщении. По сути он выбирает все символы, которые нельзя
     /// напечатать на клавиатуре. Я проверил, что благодаря ему можно напечатать все локали.
     /// </summary>
-    private static readonly Regex AsciiArtRegex = new("[\\x20-\\x7E]*");
+    private static readonly Regex AsciiArtRegex = new("[^\\x09\\x0A\\x0D\\x20-\\x7E\\u0400-\\u04FF]");
 
     /// <inheritdoc/>
     public override void Initialize()
