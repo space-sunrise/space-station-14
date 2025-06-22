@@ -19,7 +19,7 @@ public sealed class ChatSanSystem : EntitySystem
     private bool _aggressive;
 
     private static readonly Regex UrlRegex = new("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)");
-    private static readonly Regex AsciiArtRegex = new("^[\\x20-\\x7E]*$\n");
+    private static readonly Regex AsciiArtRegex = new("[\\x20-\\x7E]*");
 
     /// <inheritdoc/>
     public override void Initialize()
