@@ -56,7 +56,7 @@ public sealed class ChatSanSystem : EntitySystem
                 ev.Cancelled = cancelled;
                 if (cancelled)
                 {
-                    if (_playerManager.TryGetSessionByEntity(ev.Source, out var session) || session is null)
+                    if (!_playerManager.TryGetSessionByEntity(ev.Source, out var session))
                         return;
 
                     _chat.SendAdminAlert(Loc.GetString(
