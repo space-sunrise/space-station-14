@@ -44,6 +44,10 @@ public sealed class ChatSanSystem : EntitySystem
             return;
         ev.Handled = true;
 
+        if (!_playerManager.TryGetSessionByEntity(ev.Source, out var session))
+            return;
+
+
         switch (_aggressive)
         {
             case true:
@@ -56,9 +60,6 @@ public sealed class ChatSanSystem : EntitySystem
                 ev.Cancelled = cancelled;
                 if (cancelled)
                 {
-                    if (!_playerManager.TryGetSessionByEntity(ev.Source, out var session))
-                        return;
-
                     _chat.SendAdminAlert(Loc.GetString(
                         "chatsan-admin-alert",
                         ("user", session.Data.UserName),
