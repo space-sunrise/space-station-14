@@ -1,4 +1,4 @@
-﻿using Content.Server.Bed.Cryostorage;
+using Content.Server.Bed.Cryostorage;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -59,6 +59,12 @@ public sealed class CryoTeleportationSystem : EntitySystem
         _transferDelay = TimeSpan.FromMinutes(value);
     }
 
+    /// <summary>
+    /// Периодически проверяет и телепортирует подходящие сущности игроков в криохранилище после заданной задержки выхода.
+    /// </summary>
+    /// <remarks>
+    /// Для каждой сущности с компонентами <c>CryoTeleportTargetComponent</c> и <c>MobStateComponent</c>, находящейся в живом состоянии и соответствующей условиям (выход сессии, истечение задержки, отсутствие зомби и уже не в криохранилище), ищет подходящее криохранилище на станции. Перед телепортацией вызывает локальное событие <c>BeforeCryoTeleportEvent</c>, добавляет компонент <c>CryostorageContainedComponent</c>, создает портал и проигрывает звук переноса. Затем пытается поместить сущность в контейнер криохранилища; при неудаче вызывает обработчик входа в криохранилище.
+    /// </remarks>
     public override void Update(float delay)
     {
         if (_nextTick > _timing.CurTime)

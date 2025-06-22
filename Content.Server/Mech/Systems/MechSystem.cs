@@ -68,7 +68,9 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Инициализирует систему мехов, подписываясь на события, связанные с взаимодействием, управлением энергией, повреждениями, пользовательским интерфейсом, атмосферой, оборудованием и перемещением пилота.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -104,14 +106,18 @@ public sealed partial class MechSystem : SharedMechSystem
         #endregion
     }
 
-    // Sunrise-start
+    /// <summary>
+    /// Обрабатывает попытку крио-телепортации пилота, предварительно извлекая его из меха, если тот существует.
+    /// </summary>
     private void OnCryoTeleportAttemptEvent(EntityUid uid, MechPilotComponent component, BeforeCryoTeleportEvent args)
     {
         if (!TryComp<MechComponent>(component.Mech, out var mechComponent))
             return;
         TryEject(uid, mechComponent);
     }
-    // Sunrise-end
+    /// <summary>
+    /// Отправляет внутриигровое IC-сообщение от имени меха с указанным текстом.
+    /// </summary>
 
     private void OnMechSay(EntityUid uid, MechComponent component, MechSayEvent args)
     {
