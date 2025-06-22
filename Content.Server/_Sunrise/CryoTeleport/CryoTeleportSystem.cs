@@ -92,6 +92,9 @@ public sealed class CryoTeleportationSystem : EntitySystem
             if (cryoStorage == null)
                 continue;
 
+            var ev = new BeforeCryoTeleportEvent();
+            RaiseLocalEvent(uid, ev);
+
             var containedComp = AddComp<CryostorageContainedComponent>(uid);
 
             containedComp.Cryostorage = cryoStorage.Value;
