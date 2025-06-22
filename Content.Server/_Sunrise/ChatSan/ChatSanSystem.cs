@@ -63,7 +63,9 @@ public sealed class ChatSanSystem : EntitySystem
                     _chat.SendAdminAlert(Loc.GetString(
                         "chatsan-admin-alert",
                         ("user", session.Data.UserName),
-                        ("message_cropped", ev.Message.Substring(0, 20))));
+                        ("message_cropped", ev.Message.Length > 20
+                            ? ev.Message.Substring(0, 20)
+                            : ev.Message)));
                 }
                 return;
             case false:
