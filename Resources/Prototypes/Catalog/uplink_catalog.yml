@@ -1560,7 +1560,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4 # Sunrise-Edit
+    Telecrystal: 3 # Sunrise-Edit
   categories:
     - UplinkImplants
   #Sunrise-start
@@ -1579,9 +1579,9 @@
   productEntity: EmpImplanter
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 2 # Sunrise-Edit
+    Telecrystal: 3 # Sunrise-Edit
   cost:
-    Telecrystal: 4 # Sunrise-Edit
+    Telecrystal: 5 # Sunrise-Edit
   categories:
     - UplinkImplants
 
