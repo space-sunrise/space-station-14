@@ -3,13 +3,15 @@
 [ByRefEvent]
 public record struct ChatSanRequestEvent
 {
+    public EntityUid Source;
     public string Message;
 
     public bool Cancelled;
     public bool Handled;
 
-    public ChatSanRequestEvent(string message)
+    public ChatSanRequestEvent(EntityUid source, string message)
     {
+        Source = source;
         Message = message;
     }
 }
