@@ -119,6 +119,8 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  - PowerCageSmall  # Sunrise-Add
+  - PowerCageRechargerCircuitboard  # Sunrise-Add
 
 # Tier 2
 
