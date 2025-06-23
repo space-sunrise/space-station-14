@@ -116,7 +116,7 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 15 # Sunrise-Edit
+        Blunt: 20
     soundHit:
       collection: MetalThud
     bluntStaminaDamageFactor: 1.5

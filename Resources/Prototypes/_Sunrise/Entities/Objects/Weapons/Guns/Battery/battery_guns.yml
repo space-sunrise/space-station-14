@@ -1,6 +1,6 @@
 - type: entity
   id: BaseWeaponAutoPowerCell
-  parent: BaseWeaponPowerCell
+  parent: BaseItem
   abstract: true
   components:
   - type: Clothing
@@ -9,16 +9,23 @@
     slots:
     - Back
     - suitStorage
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: AmmoCounter
   - type: Gun
-    fireRate: 4
+    fireRate: 6
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 30
   - type: ItemSlots
     slots:
-      gun_magazine:
+      cell_slot:
         name: Magazine
         startingItem: PowerCellHigh
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -27,6 +34,23 @@
           tags:
             - PowerCell
             - PowerCellHigh
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
 
 - type: entity
   name: LNT620 "Spark"
@@ -43,9 +67,14 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 4
-    minAngle: 5
-    maxAngle: 12
+    fireRate: 7
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 1.15
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item
@@ -408,14 +437,14 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    minAngle: 2
-    maxAngle: 12
-    angleIncrease: 1.5
-    angleDecay: 8
+    minAngle: 1.5
+    maxAngle: 20
+    angleIncrease: 1.25
+    angleDecay: 12
     selectedMode: Burst
-    shotsPerBurst: 3
-    burstCooldown: 0.25
-    burstFireRate: 4.5
+    shotsPerBurst: 5
+    burstCooldown: 0.15
+    burstFireRate: 8
     availableModes:
     - Burst
   - type: Item
