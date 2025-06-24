@@ -362,6 +362,23 @@ namespace Content.Client.Construction
 
         /// <summary>
         /// Checks if any construction ghosts are present at the given position
+<<<<<<< HEAD
+=======
+        /// </summary>
+        private bool GhostPresent(EntityCoordinates loc)
+        {
+            foreach (var ghost in _ghosts)
+            {
+                if (EntityManager.GetComponent<TransformComponent>(ghost.Value).Coordinates.Equals(loc))
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if the maximum number of construction ghosts has been reached at the given location.
+>>>>>>> f074adaf34 (chore(Construction): Revert removal of GhostPreset method to keep maintainability of the code)
         /// </summary>
         private bool GhostPresent(EntityCoordinates loc)
         {
