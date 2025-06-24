@@ -6,9 +6,11 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
+using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -29,6 +31,7 @@ namespace Content.Client.Construction
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -362,6 +365,7 @@ namespace Content.Client.Construction
         /// </summary>
         private bool GhostPresent(EntityCoordinates loc)
         {
+<<<<<<< HEAD
             foreach (var ghost in _ghosts)
             {
                 if (Comp<TransformComponent>(ghost.Value).Coordinates.Equals(loc))
@@ -369,6 +373,13 @@ namespace Content.Client.Construction
             }
 
             return false;
+=======
+            // Count ghosts at the given location and allow up to the maximum allowed per tile
+            var ghostCount = _ghosts.Values.Count(ghost =>
+                EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
+
+            return ghostCount >= _configurationManager.GetCVar(CCVars.ConstructionMaxGhostsPerTile);
+>>>>>>> b22d63d443 (feat(Construction): export the limit of construction ghosts per tile into a CVar)
         }
 
         public void TryStartConstruction(EntityUid ghostId, ConstructionGhostComponent? ghostComp = null)
