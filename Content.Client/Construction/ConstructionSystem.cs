@@ -6,11 +6,15 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
-using Content.Shared.CCVar;
+// Starlight start
+using Content.Shared.Starlight.CCVar;
+// Starlight end
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+// Starlight start
 using Robust.Shared.Configuration;
+// Starlight end
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -31,7 +35,9 @@ namespace Content.Client.Construction
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
+        // Starlight-edit start
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        // Starlight-edit end
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -276,8 +282,14 @@ namespace Content.Client.Construction
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
+<<<<<<< HEAD
             if (GhostPresent(loc))
+=======
+            // Starlight-edit start
+            if (HasReachedMaximumGhosts(loc))
+>>>>>>> 7756e07b90 (Chore(Construction): Add comments indicating which parts of code have been edited for starlight purposes)
                 return false;
+            // Starlight-edit end
 
             var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
@@ -376,6 +388,7 @@ namespace Content.Client.Construction
             return false;
         }
 
+        // Starlight start
         /// <summary>
         /// Checks if the maximum number of construction ghosts has been reached at the given location.
 >>>>>>> f074adaf34 (chore(Construction): Revert removal of GhostPreset method to keep maintainability of the code)
@@ -395,9 +408,14 @@ namespace Content.Client.Construction
             var ghostCount = _ghosts.Values.Count(ghost =>
                 EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
 
+<<<<<<< HEAD
             return ghostCount >= _configurationManager.GetCVar(CCVars.ConstructionMaxGhostsPerTile);
 >>>>>>> b22d63d443 (feat(Construction): export the limit of construction ghosts per tile into a CVar)
+=======
+            return ghostCount >= _configurationManager.GetCVar(StarlightCCVars.ConstructionMaxGhostsPerTile);
+>>>>>>> 7756e07b90 (Chore(Construction): Add comments indicating which parts of code have been edited for starlight purposes)
         }
+        // Starlight end
 
         public void TryStartConstruction(EntityUid ghostId, ConstructionGhostComponent? ghostComp = null)
         {
