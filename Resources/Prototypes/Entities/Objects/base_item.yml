@@ -44,7 +44,7 @@
   - type: Pullable
   - type: DamageExaminable
   - type: TTS
-    voice: FactCore # Sunrise-TTS
+    voice: Portal2FactCore # Sunrise-TTS
   - type: StaticPrice
     price: 0 # Sunrise-TTS
 

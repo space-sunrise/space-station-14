@@ -501,7 +501,7 @@ public sealed partial class SunriseCCVars : CVars
     /// Включена ли санитизация чата (антиспам от набегаторов)
     /// </summary>
     public static readonly CVarDef<bool> ChatSanitizationEnable =
-        CVarDef.Create("chatsan.enable", false, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("chatsan.enable", true, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Контроллирует поведение санитизации.
@@ -509,5 +509,5 @@ public sealed partial class SunriseCCVars : CVars
     /// Обычное: в сообщении, которое не проходит критерии, удалять не проходящие критерии части.
     /// </summary>
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
-        CVarDef.Create("chatsan.aggressive", false, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 }

@@ -102,7 +102,7 @@
     tags:
     - NoPaint
   - type: TTS
-    voice: FactCore # Sunrise-TTS
+    voice: Portal2FactCore # Sunrise-TTS
   # Sunrise-end
 
 - type: entity

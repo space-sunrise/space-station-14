@@ -41,7 +41,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: TTS
-    voice: FactCore # Sunrise-TTS
+    voice: Portal2FactCore # Sunrise-TTS
 
 - type: entity
   id: ComputerFrame

@@ -1,1 +1,1 @@
-﻿chatsan-admin-alert = Игрок попытался отправить { $message_cropped }, но был остановлен.
+﻿chatsan-admin-alert = Игрок { $user } попытался отправить "{ $message_cropped }...", но был остановлен.

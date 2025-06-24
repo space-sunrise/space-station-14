@@ -216,6 +216,42 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/atmosian.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingFairyWings
+  name: Fairy wings
+  description: The wings of the legendary fairy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Wings/fairy_wings.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingLosyashWings
+  name: Losyash wings
+  description: The wings of the legendary Losyash.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Wings/losyash_wings.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingDemonWings
+  name: Losyash wings
+  description: The wings of the Demon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Wings/demon_wings.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingArchangelWings
+  name: Archangel wings
+  description: The wings of the Archangel.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Wings/archangel_wings.rsi
+
  #Для ивентов
 
 - type: entity

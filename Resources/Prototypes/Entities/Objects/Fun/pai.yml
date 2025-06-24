@@ -96,7 +96,7 @@
   - type: StationAiVision
     range: 1
   - type: TTS
-    voice: FactCore
+    voice: Portal2FactCore
   - type: InnateItem
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered

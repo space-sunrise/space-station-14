@@ -101,7 +101,7 @@
   - type: WiresVisuals
   - type: DontSell # Sunrise-Edit
   - type: TTS
-    voice: FactCore # Sunrise-TTS
+    voice: Portal2FactCore  # Sunrise-TTS
 
 - type: entity
   parent: VendingMachine

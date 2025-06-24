@@ -123,7 +123,7 @@
     speechVerb: Robotic
     speechSounds: Pai #couldn't decide if this should be borg or pai sounds so I flipped a coin.
   - type: TTS
-    voice: FactCore # Sunrise-TTS
+    voice: Portal2FactCore  # Sunrise-TTS
 
 - type: entity
   parent: MobSiliconBase
