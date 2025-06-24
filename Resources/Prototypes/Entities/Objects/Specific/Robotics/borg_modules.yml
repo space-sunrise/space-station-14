@@ -757,7 +757,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     items:
-    - HypoBorgMedical # Sunrise-Edit
+    - HypoBorgMedicalAdvanced # Sunrise-Edit
     - Syringe
     - BorgDropper
     - BorgBeaker

@@ -181,6 +181,45 @@
     - ReagentId: Dermaline
       Quantity: 1
 
+- type: entity
+  parent: HypoBorgStandard
+  id: HypoBorgMedicalAdvanced
+  name: advanced medical robot hypospray
+  description: A cyborg hypospray that can switch between a wide range of advanced medical chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Bruizine
+      Quantity: 1
+    - ReagentId: Puncturase
+      Quantity: 1
+    - ReagentId: Lacerinol
+      Quantity: 1
+    - ReagentId: DexalinPlus
+      Quantity: 1
+    - ReagentId: Sigynate
+      Quantity: 1
+    - ReagentId: Leporazine
+      Quantity: 1
+    - ReagentId: Arithrazine
+      Quantity: 1
+    - ReagentId: Insuzine
+      Quantity: 1
+    - ReagentId: Pyrazine
+      Quantity: 1
+    - ReagentId: Diphenhydramine
+      Quantity: 1
+    - ReagentId: Ambuzol
+      Quantity: 0.1
+    - ReagentId: Oculine
+      Quantity: 1
+    - ReagentId: Saline
+      Quantity: 1
 
 - type: entity
   name: proto-kinetic robot accelerator
@@ -206,7 +245,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-
 
 - type: entity
   parent: HypoBorgStandard

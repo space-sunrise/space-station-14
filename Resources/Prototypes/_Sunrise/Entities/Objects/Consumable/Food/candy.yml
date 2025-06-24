@@ -18,7 +18,7 @@
         - ReagentId: Vitamin
           Quantity: 9
         - ReagentId: Omnizine
-          Quantity: 12
+          Quantity: 6
   - type: Sprite
     sprite: _Sunrise/Objects/Consumable/Food/candy.rsi
     state: lollipop
