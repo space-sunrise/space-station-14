@@ -84,6 +84,10 @@
     ClothingShoesColorOrange: 2
     ClothingShoesColorRed: 2
     ClothingShoesColorPurple: 2
+#Sunrise-start
+    ClothingWraps: 8
+    ClothingWrapsHigh: 8
+#Sunrise-end
     ClothingHeadHatGreysoft: 8
 #Sunrise-start
     ClothingHeadHatBrownsoft: 2

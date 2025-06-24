@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: WrapsCraft
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Wraps
+        steps:
+          - material: Cloth
+            amount: 2
+            doAfter: 4
+    - node: Wraps
+      entity: ClothingWraps
+
+- type: constructionGraph
+  id: WrapsHighCraft
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: WrapsHigh
+        steps:
+          - material: Cloth
+            amount: 4
+            doAfter: 8
+    - node: WrapsHigh
+      entity: ClothingWrapsHigh

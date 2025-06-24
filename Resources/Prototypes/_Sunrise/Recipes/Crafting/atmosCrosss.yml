@@ -1,9 +1,0 @@
-- type: construction
-  name: construction-graph-tag-atmoscross
-  id: AtmosCrossCraft
-  graph: AtmosCrossCraft
-  startNode: start
-  targetNode: cross
-  category: construction-category-clothing
-  description: construction-graph-tag-atmoscross-desc
-  objectType: Item

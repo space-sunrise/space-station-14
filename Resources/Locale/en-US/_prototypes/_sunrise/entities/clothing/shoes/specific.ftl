@@ -8,3 +8,7 @@ ent-ClothingShoesSchoolBlack = school black shoes
     .desc = Stylish and comfortable school shoes in dark color with stockings.
 ent-ClothingShoesSchoolWhite = school white shoes
     .desc = Stylish and comfortable school shoes in light color with stockings.
+ent-ClothingWraps = wraps
+    .desc = Rugged cloth wraps, often used for protection or support in rough environments.
+ent-ClothingWrapsHigh = high wraps
+    .desc = Rugged high cloth wraps, often used for protection or support in rough environments.
