@@ -15,6 +15,17 @@
   equipment:
     neck: ClothingNeckTieDet
 
+- type: loadout
+  id: DetectiveTieHorrific #Sunrise-add
+  equipment:
+    neck: ClothingNeckHorrific
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 #20 hrs
+
 # Jumpsuit
 - type: loadout
   id: DetectiveJumpsuit
