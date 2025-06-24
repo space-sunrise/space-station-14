@@ -76,8 +76,8 @@
   id: MagazineBoxRifleIncendiary
   result: MagazineBoxRifleIncendiary
   materials:
-  Plastic: 375 #Sunrise-edit
-  Plasma: 375 #Sunrise-add
+    Plastic: 375 #Sunrise-edit
+    Plasma: 375 #Sunrise-add
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
