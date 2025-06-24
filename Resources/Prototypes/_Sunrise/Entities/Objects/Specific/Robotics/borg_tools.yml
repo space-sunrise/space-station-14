@@ -240,6 +240,36 @@
       Quantity: 2
 
 - type: entity
+  name: gorlax robot hypospray
+  parent: HypoBorgStandard
+  description: A borg version of hypospray that automatically regenerates epinephrine.
+  id: HypoBorgStandardSyndicate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/syndihypo.rsi
+    state: hypo
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Medical/syndihypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.4
+      - ReagentId: Omnizine
+        Quantity: 0.1
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
+
+- type: entity
   name: robot china lake
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBorg
@@ -449,6 +479,47 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 30
+
+- type: entity
+  name: cyborg's UVL-21
+  id: LaserMinigunBorg
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  description: Cybersun cyborg heavy weapon of mass destruction based on the minigun.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    minAngle: 4
+    maxAngle: 35
+    angleIncrease: 1.5
+    angleDecay: 15
+    fireRate: 5
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -1
+    availableModes:
+    - FullAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaDouble
+    fireCost: 25
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 200
+    autoRechargePause: true
+    autoRechargePauseTime: 12
+  - type: AmmoCounter
 
 - type: entity
   name: cyborg's DL6902

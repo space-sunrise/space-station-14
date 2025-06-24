@@ -52,10 +52,10 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     items:
-    - DL6902Borg
-    # - WeaponLauncherChinaLakeBorg
+    - LaserMinigunBorg
     - HeavyRifleBorg
     - WeaponLauncherDusterBorg
+    - PinpointerNuclear
 
 - type: entity
   id: BorgScoutModuleSyndicateCombat
@@ -208,7 +208,7 @@
     items:
     - SyndicateJawsOfLife
     - PinpointerNuclear
-    - WeaponPistolEchis
+    - HypoBorgStandardSyndicate
 
 - type: entity
   id: BorgModuleSyndicateMedical
@@ -222,6 +222,7 @@
   - type: ItemBorgModule
     items:
     - SawAdvanced
+    - WeaponPistolEchis #Todo: Заменить на вариант Шприцемета с выбором снарядов
     - HypoBorgMedicalSyndicate
     - DefibrillatorOneHandedUnpowered
 
@@ -236,8 +237,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     items:
-    - EnergyDaggerLoud
     - WeaponLightMachineGunL6C
+    - EnergySword
+    - PinpointerNuclear
 
 - type: entity
   id: BorgModuleStandart
