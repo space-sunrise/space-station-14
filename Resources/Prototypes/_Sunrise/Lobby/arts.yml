@@ -87,6 +87,9 @@
   background: /Textures/_Sunrise/Lobby/Arts/traitor.webp
 
 - type: lobbyBackground
+  id: TeslaLoose
+  background: /Textures/_Sunrise/Lobby/Arts/tesla-loose.webp
+
 - type: lobbyBackground
   id: NukieDudes
   background: /Textures/_Sunrise/Lobby/Arts/nukie-dudes.webp
