@@ -168,9 +168,9 @@
   - type: Gun
     minAngle: 6.2 #Max Effect Range 6
     maxAngle: 18.6
-    angleIncrease: 1
+    angleIncrease: 1.25
     angleDecay: 0.5
-    fireRate: 4
+    fireRate: 5
     selectedMode: FullAuto
     availableModes:
     - FullAuto

@@ -48,3 +48,5 @@ recipe-bat-name = бейсбольная бита
 recipe-bat-description = Прочная бейсбольная бита.
 recipe-GrenadeLauncherSecurity-name = гранатомёт безопасности
 recipe-GrenadeLauncherSecurity-description = Модификация сигнального пистолета СБ.
+recipe-Glock22Auto-name = Автоматический Glock 22
+recipe-Glock22Auto-description = Модификация с замененым ресивером для автоматического огня пистолета СБ.

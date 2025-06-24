@@ -8,7 +8,6 @@
         - to: auto
           steps:
             - tag: ModularReceiverAuto
-              amount: 1
               doAfter: 8
           completed:
             - !type:AdminLog
