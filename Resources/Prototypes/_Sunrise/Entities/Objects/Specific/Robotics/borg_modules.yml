@@ -111,7 +111,7 @@
 - type: entity
   id: BorgModuleStun
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
-  name: stuh cyborg module
+  name: stun cyborg module
   components:
   - type: Sprite
     layers:
@@ -152,6 +152,7 @@
     items:
     - CombatKnife
     - WeaponLaserBorg
+    - FlashBorg
     - HoloprojectorSecurityBorg
 
 - type: entity

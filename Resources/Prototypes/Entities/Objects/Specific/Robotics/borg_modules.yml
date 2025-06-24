@@ -737,6 +737,11 @@
   - type: ItemBorgModule
     items:
     - HypoBorgMedical # Sunrise-Edit
+    - Syringe
+    - BorgDropper
+    - BorgVial
+    - BorgVial
+    - BorgVial
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -755,6 +760,7 @@
     - HypoBorgMedical # Sunrise-Edit
     - Syringe
     - BorgDropper
+    - BorgBeaker
     - BorgBeaker
     - BorgBeaker
   - type: BorgModuleIcon

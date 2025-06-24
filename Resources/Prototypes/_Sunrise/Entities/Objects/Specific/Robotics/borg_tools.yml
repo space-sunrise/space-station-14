@@ -95,7 +95,7 @@
       visible: false
       shader: unshaded
   - type: LimitedCharges
-    maxCharges: 10
+    maxCharges: 5
   - type: AutoRecharge
     rechargeDuration: 30
 
@@ -167,19 +167,19 @@
     generated:
       reagents:
       - ReagentId: DexalinPlus
-        Quantity: 2
+        Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
     - ReagentId: DexalinPlus
-      Quantity: 2
+      Quantity: 1
     - ReagentId: Tricordrazine
-      Quantity: 2
+      Quantity: 1
     - ReagentId: Dylovene
-      Quantity: 2
+      Quantity: 1
     - ReagentId: Bicaridine
-      Quantity: 2
+      Quantity: 1
     - ReagentId: Dermaline
-      Quantity: 2
+      Quantity: 1
 
 
 - type: entity
