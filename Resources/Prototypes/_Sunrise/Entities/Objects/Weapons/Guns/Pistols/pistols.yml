@@ -113,7 +113,7 @@
     - WeaponPistolG22
     - Sidearm
   - type: Construction
-    graph: Glock22Auto
+    graph: Glock22AutoCraft
     node: start
   - type: Gun
     fireRate: 4
