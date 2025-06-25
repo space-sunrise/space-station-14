@@ -80,7 +80,6 @@
   addComponents:
   - type: InnateItem
     instantActions:
-    - AtmosAlertsMonitor
     - EngiAlertsMonitor
   # Sunrise-End
 
