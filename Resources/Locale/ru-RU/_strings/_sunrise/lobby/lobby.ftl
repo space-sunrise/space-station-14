@@ -106,6 +106,7 @@ lobby-art-JustAWeekAway = Just A Week Away
 lobby-art-JaniShootout = Jani Shootout
 lobby-art-TeslaLoose = Tesla Loose
 lobby-art-GutsGuts = Guts Guts
+lobby-art-RedAlertMed = Red Alert in Med
 # Parallaxes
 lobby-parallax-Random = Случайный
 lobby-parallax-FastSpace = Fast Space

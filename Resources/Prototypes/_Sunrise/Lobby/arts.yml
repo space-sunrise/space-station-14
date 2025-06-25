@@ -111,6 +111,10 @@
   background: /Textures/_Sunrise/Lobby/Arts/revenant.webp
 
 - type: lobbyBackground
+  id: RedAlertMed
+  background: /Textures/_Sunrise/Lobby/Arts/red-alert-med.webp
+
+- type: lobbyBackground
   id: DeathNettle
   background: /Textures/_Sunrise/Lobby/Arts/deathnettle.webp
 
