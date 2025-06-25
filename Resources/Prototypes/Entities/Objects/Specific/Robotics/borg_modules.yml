@@ -942,7 +942,7 @@
   id: BorgModuleOperative
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule, BaseSyndicateContraband ]
   name: operative cyborg module
-  description: A module that comes with a crowbar, an Emag, an Access Breaker and a syndicate pinpointer.
+  description: A module that comes with a crowbar, an Access Breaker and a syndicate pinpointer.
   components:
     - type: Sprite
       layers:
@@ -951,7 +951,6 @@
     - type: ItemBorgModule
       items:
       - Crowbar
-      - Emag
       - AccessBreaker
       - PinpointerSyndicateNuclear
     - type: BorgModuleIcon
