@@ -5,15 +5,17 @@
   components:
   - type: Sprite
     scale: 2, 2
-    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
     layers:
-    - state: base
+    - state: NT
+    - state: icon-NT
   - type: ItemBorgModule
     items:
     - WeaponPulseCarbineBorg
     - WeaponPulseCarbineBorg
     - PinpointerNuclear
-    - CombatMedipen
+    - ClothingEyesGlassesThermalSec
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base }
 
 - type: entity
   id: BorgModuleERTNlethal
@@ -22,15 +24,18 @@
   components:
   - type: Sprite
     scale: 2, 2
-    sprite: Objects/Weapons/Melee/stunbaton.rsi
     layers:
-    - state: stunbaton_off
+    - state: NT
+    - state: icon-NT
   - type: ItemBorgModule
     items:
     - StunbatonBorg
     - WeaponDisablerSMGBorg
     - FlashBorg
     - CombatMedipen
+    - CombatMedipen
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
 
 - type: entity
   id: BorgToolModuleERT
@@ -39,9 +44,9 @@
   components:
   - type: Sprite
     scale: 2, 2
-    sprite: Objects/Tools/jaws_of_life.rsi
     layers:
-    - state: jaws_pry
+    - state: NT
+    - state: icon-NT
   - type: ItemBorgModule
     items:
     - JawsOfLife
@@ -50,6 +55,8 @@
     - PowerDrill
     - WelderBorg
     - RemoteSignallerAdvanced
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
 
 - type: entity
   id: BorgHeavyModuleSyndicateCombat
