@@ -214,10 +214,6 @@
       0: Alive
       200: Critical
       400: Dead
-  - type: Actions
-    actions:
-    - ActionToggleThermalVision
-    - SwitchNightVision
 
 - type: entity
   id: BorgChassisSyndicateHeavy
