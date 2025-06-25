@@ -4,14 +4,16 @@
   name: ERT cyborg weapon module
   components:
   - type: Sprite
+    scale: 2, 2
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
     layers:
-    - state: NT
-    - state: icon-NT
+    - state: base
   - type: ItemBorgModule
     items:
     - WeaponPulseCarbineBorg
     - WeaponPulseCarbineBorg
     - PinpointerNuclear
+    - CombatMedipen
 
 - type: entity
   id: BorgModuleERTNlethal
@@ -19,14 +21,16 @@
   name: non-lethal ERT cyborg module
   components:
   - type: Sprite
+    scale: 2, 2
+    sprite: Objects/Weapons/Melee/stunbaton.rsi
     layers:
-    - state: NT
-    - state: icon-NT
+    - state: stunbaton_off
   - type: ItemBorgModule
     items:
     - StunbatonBorg
     - WeaponDisablerSMGBorg
     - FlashBorg
+    - CombatMedipen
 
 - type: entity
   id: BorgToolModuleERT
@@ -34,12 +38,18 @@
   name: ERT cyborg tool module
   components:
   - type: Sprite
+    scale: 2, 2
+    sprite: Objects/Tools/jaws_of_life.rsi
     layers:
-    - state: NT
-    - state: icon-NT
+    - state: jaws_pry
   - type: ItemBorgModule
     items:
     - JawsOfLife
+    - WirecutterBorg
+    - Multitool
+    - PowerDrill
+    - WelderBorg
+    - RemoteSignallerAdvanced
 
 - type: entity
   id: BorgHeavyModuleSyndicateCombat

@@ -154,7 +154,7 @@
     sprite:
       sprite: _Sunrise/Mobs/Silicon/chassis.rsi
       state: ert_borg
-    name: clown cyborg
+    name: ERT combat cyborg
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
@@ -162,56 +162,14 @@
       - BorgModuleERT
     hasMindState: ert_borg_e
     noMindState: ert_borg_e_r
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Security
-    - Binary
-    - Common
-    - Science
-    - Command
-    - CentCom
-  - type: ActiveRadio
-    channels:
-    - Security
-    - Binary
-    - Common
-    - Science
-    - Command
-    - CentCom
+  - type: NightVision
+    color: "#82eb6c"
+  - type: ThermalVision
   - type: AccessReader
-    access: [["Security"], ["Command"], ["Research"]]
-  - type: SiliconLawProvider
-    laws: ERTLawset
-  - type: PointLight
-    color: "#9efce0"
-    radius: 6
-    energy: 4
-  - type: TTS
-    voice: Sentrybot
+    access: [["AllAccess"]]
   - type: Access
-    enabled: false
-    tags:
-    - EmergencyShuttleRepealAll
-    - Command
-    - Lawyer
-    - Engineering
-    - Medical
-    - Salvage
-    - Cargo
-    - Research
-    - Service
-    - Maintenance
-    - Brig
-    - Security
-    - External
-    - Janitor
-    - Theatre
-    - Bar
-    - Chemistry
-    - Kitchen
-    - Chapel
-    - Hydroponics
-    - Atmospherics
+    groups: [AllAccess]
+    tags: [CentralCommand]
   - type: RandomMetadata
     nameSegments: [NamesBorg]
   - type: MovementSpeedModifier
@@ -227,6 +185,15 @@
     instantActions:
     - PortableSurveillanceCameraMonitor
     - HandheldCrewMonitorBorg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      400: Dead
+  - type: Actions
+    actions:
+    - ActionToggleThermalVision
+    - SwitchNightVision
 
 - type: entity
   id: BorgChassisSyndicateHeavy
