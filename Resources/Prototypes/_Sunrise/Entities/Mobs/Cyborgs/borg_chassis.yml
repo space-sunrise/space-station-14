@@ -162,11 +162,35 @@
       - BorgModuleERT
     hasMindState: ert_borg_e
     noMindState: ert_borg_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+    - Command
+    - CentCom
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+    - Command
+    - CentCom
   - type: NightVision
     color: "#82eb6c"
   - type: ThermalVision
   - type: AccessReader
     access: [["AllAccess"]]
+  - type: SiliconLawProvider
+    laws: ERTLawset
+  - type: PointLight
+    color: "#9efce0"
+    radius: 6
+    energy: 4
+  - type: TTS
+    voice: Sentrybot
   - type: Access
     groups: [AllAccess]
     tags: [CentralCommand]
