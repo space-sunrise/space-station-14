@@ -78,7 +78,7 @@
   recipeUnlocks:
   - ImplantExtractorMachineCircuitboard
 
-# Sunrise-edit: Moved from CivilianServices and renamed
+# Sunrise-edit: Moved from CivilianServices and renamed a bit to avoid conflict
 - type: technology
   id: MechanizedMedicalTreatment
   name: research-technology-mechanized-medical-treatment

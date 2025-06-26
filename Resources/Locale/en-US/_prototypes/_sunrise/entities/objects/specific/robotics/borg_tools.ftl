@@ -58,3 +58,5 @@ ent-HandheldCrewMonitorBorg = handheld robot crew monitor
     .desc = A hand-held crew monitor that runs off of your own power cells, which displays the status of the crew suit sensors.
 ent-WeaponPlasmaCutterBorg = borg plasma cutter
     .desc = A mining tool that fires low-damage plasma bolts at a short range. This one is modified for cyborg use.
+ent-WeaponCrusherGlaiveBorg = integrated crusher glaive
+    .desc = An early design of the proto-kinetic accelerator, in glaive form. Modified for cyborg use.

@@ -195,6 +195,8 @@
     items:
     - WeaponProtoKineticAcceleratorBorg
     - WeaponCrusherDagger
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
 - type: entity
   id: BorgModuleJetpack
@@ -267,24 +269,3 @@
     - CrowbarBorg
     - FireExtinguisherBorg
     - HypoBorgStandard
-
-- type: entity
-  id: BorgModuleAdvancedMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: advanced mining cyborg module
-  description: Advanced cargo module containing advanced mining equipment. Studies show it advances productivity of a cyborg by 150%.
-  components:
-  - type: Sprite
-    layers:
-    - state: cargo
-    - state: icon-mining-adv
-  - type: ItemBorgModule
-    items:
-    - WeaponCrusherDagger
-    - WeaponPlasmaCutterBorg
-    - MiningDrillDiamond
-    - Shovel
-    - AdvancedMineralScannerUnpowered
-    - OreBagOfHolding
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
