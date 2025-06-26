@@ -275,7 +275,7 @@
 - type: entity
   id: BorgERTModuleStandard
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: fire extinguisher cyborg module
+  name: ERT utility cyborg module
   components:
   - type: Sprite
     layers:
@@ -285,6 +285,6 @@
     items:
     - CrowbarBorg
     - FireExtinguisherBorg
-    - HypoBorgStandard
-    - CombatMedipen
-    - CombatMedipen
+    - HypoBorgStandardERT
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Tools/crowbar.rsi, state: icon }

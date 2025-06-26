@@ -825,3 +825,35 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
+
+- type: entity
+  name: ERT cyborg hypospray
+  parent: HypoBorgStandard
+  description: A borg version of hypospray that automatically regenerates healing chemicals.
+  id: HypoBorgStandardERT
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.3
+      - ReagentId: Omnizine
+        Quantity: 0.1
+      - ReagentId: Saline
+        Quantity: 0.1
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
