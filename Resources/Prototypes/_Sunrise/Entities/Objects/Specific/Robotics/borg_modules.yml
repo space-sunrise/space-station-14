@@ -196,7 +196,7 @@
     - WeaponProtoKineticAcceleratorBorg
     - WeaponCrusherDagger
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
+    icon: { sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi, state: icon }
 
 - type: entity
   id: BorgModuleJetpack
@@ -210,6 +210,8 @@
   - type: ItemBorgModule
     items:
     - JetpackVoidFilled
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 
 - type: entity
   id: BorgModuleSyndicateGeneric

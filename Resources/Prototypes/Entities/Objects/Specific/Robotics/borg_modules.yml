@@ -520,9 +520,8 @@
     - state: icon-mining-adv
   - type: ItemBorgModule
     items:
-    - WeaponCrusherDagger # Sunrise-Edit
-    - WeaponPlasmaCutterBorg
     - MiningDrillDiamond
+    - WeaponPlasmaCutterBorg # Sunrise-Edit
     - Shovel
     - AdvancedMineralScannerUnpowered
     - OreBagOfHolding
