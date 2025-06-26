@@ -123,6 +123,9 @@
         Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -147,6 +150,9 @@
       Quantity: 0.1
     - ReagentId: ChloralHydrate
       Quantity: 2
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -177,6 +183,9 @@
       Quantity: 1
     - ReagentId: Dermaline
       Quantity: 1
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -217,6 +226,9 @@
       Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: proto-kinetic robot accelerator
@@ -273,6 +285,9 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: gorlax robot hypospray
