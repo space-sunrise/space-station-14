@@ -123,9 +123,6 @@
         Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -217,7 +214,7 @@
     - ReagentId: Ambuzol
       Quantity: 0.1
     - ReagentId: Oculine
-      Quantity: 1
+      Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
 
@@ -710,3 +707,49 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellRobotTool
         locked: true
+
+- type: entity
+  name: borg plasma cutter
+  parent: WeaponPlasmaCutter
+  id: WeaponPlasmaCutterBorg
+  description: A mining tool that fires low-damage plasma bolts at a short range. This one is modified for cyborg use.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    layers:
+    - state: plasmacutter_cyborg
+  - type: Item
+    size: Normal
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -23
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    angleDecay: 25
+    minAngle: 24
+    maxAngle: 25
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletPlasma
+    capacity: 1
+    count: 1
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20

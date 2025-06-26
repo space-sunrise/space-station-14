@@ -56,3 +56,5 @@ ent-RadioJammerBorg = глушитель связи диверсанта
     .desc = { ent-BaseItem.desc }
 ent-HandheldCrewMonitorBorg = портативный монитор экипажа киборга
     .desc = { ent-HandheldCrewMonitor.desc }
+ent-WeaponPlasmaCutterBorg = плазменный резак борга
+    .desc = Инструмент для добычи, стреляющий плазменными зарядами с малым уроном на близком расстоянии. Этот модифицирован для использования киборгами.

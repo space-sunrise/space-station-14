@@ -211,7 +211,7 @@
       0: Alive
       200: Critical
       400: Dead
-  - type: PowerCellDraw #Use it to increase battery life further
+  - type: PowerCellDraw # Use it to increase battery life further
     drawRate: 0.5
 
 - type: entity

@@ -4,7 +4,6 @@
   name: ERT cyborg weapon module
   components:
   - type: Sprite
-    scale: 2, 2
     layers:
     - state: NT
     - state: icon-NT
@@ -15,7 +14,7 @@
     - PinpointerNuclear
     - ClothingEyesGlassesThermalSec
   - type: BorgModuleIcon
-    icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base }
+    icon: {sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base}
 
 - type: entity
   id: BorgModuleERTNlethal
@@ -23,7 +22,6 @@
   name: non-lethal ERT cyborg module
   components:
   - type: Sprite
-    scale: 2, 2
     layers:
     - state: NT
     - state: icon-NT
@@ -35,7 +33,7 @@
     - CombatMedipen
     - CombatMedipen
   - type: BorgModuleIcon
-    icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
+    icon: {sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off}
 
 - type: entity
   id: BorgToolModuleERT
@@ -43,20 +41,18 @@
   name: ERT cyborg tool module
   components:
   - type: Sprite
-    scale: 2, 2
     layers:
     - state: NT
     - state: icon-NT
   - type: ItemBorgModule
     items:
     - JawsOfLife
-    - WirecutterBorg
     - Multitool
     - PowerDrill
     - WelderBorg
     - RemoteSignallerAdvanced
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
+    icon: {sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module}
 
 - type: entity
   id: BorgHeavyModuleSyndicateCombat
@@ -271,3 +267,24 @@
     - CrowbarBorg
     - FireExtinguisherBorg
     - HypoBorgStandard
+
+- type: entity
+  id: BorgModuleAdvancedMining
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: advanced mining cyborg module
+  description: Advanced cargo module containing advanced mining equipment. Studies show it advances productivity of a cyborg by 150%.
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-mining-adv
+  - type: ItemBorgModule
+    items:
+    - WeaponCrusherDagger
+    - WeaponPlasmaCutterBorg
+    - MiningDrillDiamond
+    - Shovel
+    - AdvancedMineralScannerUnpowered
+    - OreBagOfHolding
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
