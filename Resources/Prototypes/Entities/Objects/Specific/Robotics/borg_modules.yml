@@ -1247,3 +1247,20 @@
     - CloakingDevice
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye-module }
+
+- type: entity
+  id: BorgERTModuleStandard
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: ERT utility cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: NT
+    - state: icon-NT
+  - type: ItemBorgModule
+    items:
+    - CrowbarBorg
+    - FireExtinguisherBorg
+    - HypoBorgStandard
+    - CombatMedipen
+    - CombatMedipen

@@ -120,7 +120,6 @@
   - BorgModuleAppraisal
   - BorgModuleJetpack # Sunrise-Edit
   - BorgModuleMiningCombat
-  - BorgModuleAdvancedMining
 
   radioChannels:
   - Supply

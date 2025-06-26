@@ -30,8 +30,6 @@
     - StunbatonBorg
     - WeaponDisablerSMGBorg
     - FlashBorg
-    - CombatMedipen
-    - CombatMedipen
   - type: BorgModuleIcon
     icon: {sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off}
 
@@ -271,3 +269,20 @@
     - CrowbarBorg
     - FireExtinguisherBorg
     - HypoBorgStandard
+
+- type: entity
+  id: BorgERTModuleStandard
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: fire extinguisher cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: NT
+    - state: icon-NT
+  - type: ItemBorgModule
+    items:
+    - CrowbarBorg
+    - FireExtinguisherBorg
+    - HypoBorgStandard
+    - CombatMedipen
+    - CombatMedipen

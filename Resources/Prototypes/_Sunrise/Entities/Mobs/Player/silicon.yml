@@ -156,6 +156,7 @@
       borg_brain:
       - Boris
       borg_module:
+      - BorgERTModuleStandard
       - BorgCombatModuleERT
       - BorgModuleERTNlethal
       - BorgToolModuleERT
