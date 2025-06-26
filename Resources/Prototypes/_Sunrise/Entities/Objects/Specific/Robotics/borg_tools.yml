@@ -741,8 +741,8 @@
     visuals:
       enum.AmmoVisuals.HasAmmo:
         empty-icon:
-          True: { visible: False }
-          False: { visible: True }
+          true: {visible: false}
+          false: {visible: true}
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.5
     rechargeSound:
