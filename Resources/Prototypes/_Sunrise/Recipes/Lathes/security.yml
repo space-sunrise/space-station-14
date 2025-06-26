@@ -51,8 +51,9 @@
   id: MagazineLightRifleBoxIncendiary
   result: MagazineLightRifleBoxIncendiary
   materials:
-    Steel: 300
-    Plastic: 1800
+    Steel: 150
+    Plastic: 475
+    Plasma: 475
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
@@ -111,7 +112,7 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 1465
+    Steel: 1100
 
 - type: latheRecipe
   id: MagazineNewVector
@@ -316,6 +317,16 @@
     Steel: 1200
     Plastic: 500
     Silver: 200
+
+- type: latheRecipe
+  id: ModularReceiverAuto
+  result: ModularReceiverAuto
+  categories:
+  - Weapons
+  completetime: 12
+  materials:
+    Steel: 800
+    Plastic: 100
 
 - type: latheRecipe
   id: MagazinePistolHighCapacity

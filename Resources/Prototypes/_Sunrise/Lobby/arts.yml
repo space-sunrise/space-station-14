@@ -87,6 +87,10 @@
   background: /Textures/_Sunrise/Lobby/Arts/traitor.webp
 
 - type: lobbyBackground
+  id: TeslaLoose
+  background: /Textures/_Sunrise/Lobby/Arts/tesla-loose.webp
+
+- type: lobbyBackground
   id: NukieDudes
   background: /Textures/_Sunrise/Lobby/Arts/nukie-dudes.webp
 
@@ -105,6 +109,10 @@
 - type: lobbyBackground
   id: Revenant
   background: /Textures/_Sunrise/Lobby/Arts/revenant.webp
+
+- type: lobbyBackground
+  id: RedAlertMed
+  background: /Textures/_Sunrise/Lobby/Arts/red-alert-med.webp
 
 - type: lobbyBackground
   id: DeathNettle
@@ -133,6 +141,10 @@
 - type: lobbyBackground
   id: GrayTide
   background: /Textures/_Sunrise/Lobby/Arts/gray-tide.webp
+
+- type: lobbyBackground
+  id: GutsGuts
+  background: /Textures/_Sunrise/Lobby/Arts/guts-guts.webp
 
 #- type: lobbyBackground
 #  id: NewYearBar

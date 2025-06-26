@@ -73,25 +73,6 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkMagazineShotgun
-  name: uplink-magazine-shotgun-name
-  description: uplink-magazine-shotgun-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
-  productEntity: MagazineShotgun
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 3
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
-
-- type: listing
   id: UplinkMagazineShotgunIncendiary
   name: uplink-magazine-shotgun-name
   description: uplink-magazine-shotgun-desc
@@ -118,7 +99,23 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
   productEntity: MagazineShotgunUranium
   cost:
-    Telecrystal: 4
+    Telecrystal: 7
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
+  id: UplinkMagazineShotgunUraniumSlug
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
+  productEntity: MagazineShotgunUraniumSlug
+  cost:
+    Telecrystal: 5
   categories:
   - UplinkAmmo
   conditions:
@@ -152,8 +149,6 @@
 
 - type: listing
   id: UplinkMagazineLightRifleBoxIncendiary
-  name: uplink-magazine-lmg-name
-  description: uplink-magazine-lmg-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: red }
   productEntity: MagazineLightRifleBoxIncendiary
   cost:
@@ -168,174 +163,13 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkMagazineLightRifleBoxUranium
-  name: uplink-magazine-lmg-name
-  description: uplink-magazine-lmg-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: uranium }
-  productEntity: MagazineLightRifleBoxUranium
+  id: UplinkAmmoBundleIncendiary
+  productEntity: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 25
   cost:
-    Telecrystal: 8
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-
-- type: listing
-  id: UplinkSMGAmmoKit
-  name: uplink-ammo-smgkit-name
-  description: uplink-ammo-smgkit-desc
-  productEntity: SMGAmmoKit
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkCaselessAmmoKit
-  name: uplink-ammo-caselesskit-name
-  description: uplink-ammo-caselesskit-desc
-  productEntity: CaselessAmmoKit
-  cost:
-    Telecrystal: 18
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkSMGIncendiaryAmmoKit
-  name: uplink-ammo-smgincendiarykit-name
-  description: uplink-ammo-smgincendiarykit-desc
-  productEntity: SMGIncendiaryAmmoKit
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkSMGUraniumAmmoKit
-  name: uplink-ammo-smguraniumkit-name
-  description: uplink-ammo-smguraniumkit-desc
-  productEntity: SMGUraniumAmmoKit
-  cost:
-    Telecrystal: 15
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkShotGunAmmoKit
-  name: uplink-ammo-shotgunkit-name
-  description: uplink-ammo-shotgunkit-desc
-  productEntity: ShotGunKit
-  cost:
-    Telecrystal: 10
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkShotGunIncendiaryAmmoKit
-  name: uplink-ammo-shotgunincendiarykit-name
-  description: uplink-ammo-shotgunincendiarykit-desc
-  productEntity: ShotGunIncendiaryKit
-  cost:
-    Telecrystal: 13
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkShotGunUraniumAmmoKit
-  name: uplink-ammo-shotgunuraniumkit-name
-  description: uplink-ammo-shotgunuraniumkit-desc
-  productEntity: ShotGunUraniumKit
-  cost:
-    Telecrystal: 16
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkLMGAmmoKit
-  name: uplink-ammo-lmgkit-name
-  description: uplink-ammo-lmgkit-desc
-  productEntity: LMGKit
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkLMGIncendiaryAmmoKit
-  name: uplink-ammo-lmgincendiarykit-name
-  description: uplink-ammo-lmgincendiarykit-desc
-  productEntity: LMGIncendiaryKit
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkLMGUraniumAmmoKit
-  name: uplink-ammo-lmguraniumkit-name
-  description: uplink-ammo-lmguraniumkit-desc
-  productEntity: LMGUraniumKit
-  cost:
-    Telecrystal: 16
+    Telecrystal: 35
   categories:
   - UplinkAmmo
   conditions:
@@ -353,9 +187,9 @@
   productEntity: CrateAmmokitBundle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 40
+    Telecrystal: 50
   cost:
-    Telecrystal: 80
+    Telecrystal: 95
   categories:
   - UplinkAmmo
   conditions:
@@ -402,8 +236,6 @@
 
 - type: listing
   id: UplinkMagazineBauer127
-  name: uplink-magazine-bauer127-name
-  description: uplink-magazine-bauer127-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi, state: base }
   productEntity: MagazineBauer127
   discountCategory: usualDiscounts
@@ -422,7 +254,6 @@
 
 - type: listing
   id: UplinkMagazineDragunov
-  # name: uplink-magazine-dragunov-name
   description: uplink-magazine-dragunov-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
   productEntity: MagazineDragunov
@@ -1075,15 +906,13 @@
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 5
   productEntity: EnergySwordBiocode
   cost:
-    Telecrystal: 8
+    Telecrystal: 11
   categories:
   - UplinkWeaponry
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
   - !type:StoreWhitelistCondition
     whitelist:
       tags:

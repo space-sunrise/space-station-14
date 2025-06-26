@@ -145,7 +145,7 @@
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 2.5 #Sunrise-Edit
+    fireRate: 2.25 #Sunrise-Edit
     availableModes:
     - SemiAuto
     soundGunshot:

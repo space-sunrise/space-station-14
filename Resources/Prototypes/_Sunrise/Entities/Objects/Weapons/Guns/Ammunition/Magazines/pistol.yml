@@ -156,7 +156,7 @@
   id: MagazineP90Extended
   components:
   - type: BallisticAmmoProvider
-    capacity: 63
+    capacity: 50
 
 - type: entity
   id: MagazineGlock22

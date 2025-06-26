@@ -93,6 +93,7 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
+  - BoxShotgunUraniumSlug # Sunrise-Add
 
 - type: technology
   id: AdvancedRiotControl

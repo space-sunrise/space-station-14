@@ -80,6 +80,7 @@
   files:
   - /Audio/_Sunrise/Weapons/Guns/Gunshots/deagle-1.ogg
   - /Audio/_Sunrise/Weapons/Guns/Gunshots/deagle-2.ogg
+  - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_DE50.ogg
 
 - type: soundCollection
   id: plasma_pistol

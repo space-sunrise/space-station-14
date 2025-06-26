@@ -41,13 +41,13 @@
   id: ClothingBackpackDuffelWeaponSubMachineGunMP7Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle MP7
-  description: MP7 with 4 raspy magazines.
+  description: MP7 with 3 raspy magazines.
   components:
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunMP7
     - id: MagazinePistolSubMachineGun
-      amount: 4
+      amount: 3
 
 #- type: entity
 #  id: ClothingBackpackDuffelWeaponRifleLecterFilled
@@ -70,7 +70,7 @@
     - type: StorageFill
       contents:
         - id: WeaponSubMachineGunP90
-        - id: MagazineP90
+        - id: MagazineP90Extended
           amount: 3
 
 - type: entity
@@ -120,6 +120,20 @@
         - id: WeaponXM1014
         - id: BoxLethalshot
         - id: BoxShotgunFlare
+        - id: BoxBeanbag
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgun4034Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle Trenchgun 4034
+  description: Trenchgun 4034 with 1 Box ammo.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponShotgunTrenchgun4034
+        - id: BoxLethalshot
+        - id: BoxShotgunFlare
+        - id: BoxBeanbag
 
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgun12Filled
@@ -132,6 +146,31 @@
         - id: WeaponShotgunSPAS12
         - id: BoxLethalshot
         - id: BoxShotgunFlare
+        - id: BoxShotgunSlug
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleAR18Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle AR18
+  description: AR18 with 2 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleAR18
+        - id: MagazineAR18
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleM28Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle M28
+  description: M28 with 3 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleM28
+        - id: MagazineAR18
+          amount: 2
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleBR64Filled

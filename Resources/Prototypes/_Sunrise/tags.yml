@@ -71,7 +71,13 @@
   id: WrappedWeapon
 
 - type: Tag
+  id: WeaponPistolG22
+
+- type: Tag
   id: UpgradeFlareGun
+
+- type: Tag
+  id: ModularReceiverAuto
 
 # Magazines:
 - type: Tag

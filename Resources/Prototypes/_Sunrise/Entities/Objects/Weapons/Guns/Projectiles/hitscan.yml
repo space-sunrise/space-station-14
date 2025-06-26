@@ -435,18 +435,20 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet #slug Нихуя не видно эти слаги
+    state: slug
+
 
 - type: hitscan
   id: PelletShotgun
   damage:
     types:
       Piercing: 8
+      Structural: 3
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: buckshot-flare
+    state: buckshot
   shootModifier: Spread
   spreadCount: 6
   spreadAngle: 15
@@ -485,8 +487,8 @@
   id: PelletShotgunUraniumSpread
   damage:
     types:
-      Radiation: 3
-      Piercing: 3
+      Radiation: 5
+      Piercing: 5
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -494,7 +496,19 @@
     state: depleted-uranium
   shootModifier: Spread
   spreadCount: 5
-  spreadAngle: 6
+  spreadAngle: 10
+
+- type: hitscan
+  id: PelletShotgunUraniumSlug
+  damage:
+    types:
+      Radiation: 15
+      Piercing: 23
+  collisionMask: BulletImpassable
+  reflective: NonEnergy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: slug_uranium
 
 - type: hitscan
   id: BulletRail

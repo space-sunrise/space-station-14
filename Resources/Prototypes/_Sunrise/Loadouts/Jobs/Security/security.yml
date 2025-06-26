@@ -1,4 +1,13 @@
-﻿- type: loadout
+﻿- type: loadoutEffectGroup
+  id: MasterSecurity
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 72000 #20 hrs
+
+- type: loadout
   id: SecurityBodycam
   startingGear: SecurityBodycam
 
@@ -97,3 +106,56 @@
   storage:
     back:
     - HoloprojectorSecurity
+
+- type: loadout
+  id: GlockBox
+  startingGear: GlockBox
+
+- type: startingGear
+  id: GlockBox
+  storage:
+    back:
+    - GlockBox
+
+- type: loadout
+  id: ACP14Box
+  startingGear: ACP14Box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterSecurity
+
+- type: startingGear
+  id: ACP14Box
+  storage:
+    back:
+    - ACP14Box
+
+- type: loadout
+  id: WeaponEnergyGunPistolSecurity
+  startingGear: WeaponEnergyGunPistolSecurity
+
+- type: startingGear
+  id: WeaponEnergyGunPistolSecurity
+  storage:
+    back:
+    - WeaponEnergyGunPistolSecurity
+
+- type: loadout
+  id: WeaponDisabler
+  startingGear: WeaponDisabler
+
+- type: startingGear
+  id: WeaponDisabler
+  storage:
+    back:
+    - WeaponDisabler
+
+- type: loadout
+  id: WeaponTaser
+  startingGear: WeaponTaser
+
+- type: startingGear
+  id: WeaponTaser
+  storage:
+    back:
+    - WeaponTaser

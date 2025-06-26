@@ -291,11 +291,11 @@
     - MagazineACP14
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol  # 57x28
+    proto: CartridgeMagnum  # 57x28
     whitelist:
       tags:
-      - CartridgePistol  # 57x28
-    capacity: 15
+      - CartridgeMagnum  # 57x28
+    capacity: 7
   - type: Item
     size: Small
   - type: ContainerContainer

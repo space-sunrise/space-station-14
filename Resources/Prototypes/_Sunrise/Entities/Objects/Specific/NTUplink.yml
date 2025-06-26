@@ -5,6 +5,7 @@
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: Empty
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -34,6 +35,7 @@
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 75BC, 75C, Amber
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -57,6 +59,7 @@
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 100BC, 100C, Red
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -80,6 +83,7 @@
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 200BC, 200C, Gamma
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -103,6 +107,7 @@
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 8BC, 10C, BlueShield
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -125,7 +130,8 @@
   id: BaseUplinkNTERTDebug
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
-  suffix:  999, Debug
+  suffix: DEBUG
+  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -142,6 +148,7 @@
   - type: Tag
     tags:
     - NTUplink
+    - Debug
 
 #- type: entity
 #  parent: BaseUplinkRadio

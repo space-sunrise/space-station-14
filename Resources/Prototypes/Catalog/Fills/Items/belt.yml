@@ -191,10 +191,12 @@
   components:
   - type: StorageFill
     contents:
-        - id: WeaponRevolverInspector
+        #- id: WeaponRevolverInspector #Sunrise-edit #Moved to loadout
         - id: SpeedLoaderMagnum
         - id: SpeedLoaderMagnum
+        - id: MagazineBoxMagnum
         - id: Telebaton
+        - id: CigarGold
 
 - type: entity
   id: ClothingBeltChefFilled

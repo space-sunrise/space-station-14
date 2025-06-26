@@ -43,7 +43,7 @@
       types:
         Slash: 15
         Heat: 15
-        Structural: 40
+        Structural: 20
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1
@@ -71,8 +71,6 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
-    reflectProb: .35
-    spread: 45
   # Sunrise-start
   - type: Tag
     tags:
@@ -230,9 +228,6 @@
     damage:
       types:
         Blunt: 1
-  - type: Reflect
-    reflectProb: .15
-    spread: 45
   - type: Tag
     tags:
     - Write
@@ -307,7 +302,7 @@
       types:
         Slash: 12
         Heat: 12
-        Structural: 30
+        Structural: 15
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg

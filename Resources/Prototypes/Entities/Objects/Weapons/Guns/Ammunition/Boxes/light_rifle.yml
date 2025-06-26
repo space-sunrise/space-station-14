@@ -9,7 +9,7 @@
     whitelist:
       tags:
         - CartridgeLightRifle
-    proto: CartridgeLightRifle
+    proto: SunriseCartridgeLightRifle #Sunrise-edit
     capacity: 60
   - type: Item
     size: Small
@@ -33,7 +33,7 @@
   components:
   - type: BallisticAmmoProvider
     capacity: 200
-    proto: CartridgeLightRifle
+    proto: SunriseCartridgeLightRifle #Sunrise-edit
   - type: Sprite
     layers:
     - state: base
@@ -48,7 +48,7 @@
   description: A cardboard box of .30 rifle rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
+    proto: SunriseCartridgeLightRifle #Sunrise-edit
   - type: Sprite
     layers:
     - state: base
@@ -63,7 +63,7 @@
   description: A cardboard box of .30 rifle rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRiflePractice
+    proto: SunriseCartridgeLightRiflePractice #Sunrise-edit
   - type: Sprite
     layers:
     - state: base
@@ -79,7 +79,7 @@
   description: A cardboard box of .30 rifle rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleIncendiary
+    proto: SunriseCartridgeLightRifleIncendiary #Sunrise-edit
   - type: Sprite
     layers:
     - state: base
@@ -95,7 +95,7 @@
   description: A cardboard box of .30 rifle rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleUranium
+    proto: SunriseCartridgeLightRifleUranium #Sunrise-edit
   - type: Sprite
     layers:
     - state: base

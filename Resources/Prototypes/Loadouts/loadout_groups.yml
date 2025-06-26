@@ -1204,6 +1204,7 @@
   minLimit: 0
   loadouts:
   - DetectiveTie
+  - DetectiveTieHorrific #Sunrise-add
 
 - type: loadoutGroup
   id: DetectiveJumpsuit

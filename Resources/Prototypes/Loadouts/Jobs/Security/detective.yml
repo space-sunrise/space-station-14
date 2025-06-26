@@ -15,6 +15,17 @@
   equipment:
     neck: ClothingNeckTieDet
 
+- type: loadout
+  id: DetectiveTieHorrific #Sunrise-add
+  equipment:
+    neck: ClothingNeckHorrific
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 #20 hrs
+
 # Jumpsuit
 - type: loadout
   id: DetectiveJumpsuit
@@ -51,3 +62,56 @@
   id: DetectiveCoatGrey
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadoutGrey
+
+#Sunrise-Start
+- type: loadoutEffectGroup
+  id: MasterDetective
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 #20 hrs
+
+- type: loadoutEffectGroup
+  id: MasterDetective50h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 180000 #50 hrs
+
+
+#Weapons Detective
+
+- type: loadout
+  id: DetectiveWeapon
+  equipment:
+    pocket1: WeaponRevolverInspector
+
+- type: loadout
+  id: DetectiveWeapon20h
+  equipment:
+    pocket1: WeaponRevolverDeckard
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadout
+  id: DetectiveWeapon50h
+  equipment:
+    pocket1: WeaponRevolverSpearhead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective50h
+
+- type: loadout
+  id: DetectiveWeapon50h2
+  equipment:
+    pocket1: WeaponRevolverSpearheadBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective50h
+
+#Sunrise-End

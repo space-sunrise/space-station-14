@@ -14,3 +14,17 @@
   - type: Tag
     tags:
     - UpgradeFlareGun
+
+- type: entity
+  parent: BaseItem
+  id: ModularReceiverAuto
+  name: modular Auto receiver
+  description: A vital part used in the creation of Auto firearms.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/modular_receiver.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - ModularReceiverAuto
+    - Metal

@@ -221,9 +221,23 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  #- SunriseWeaponPistolG22
-  - SunriseWeaponEnergyGun
-  - SunriseWeaponTaser
+  - GlockBox
+  - ACP14Box
+  - WeaponEnergyGunPistolSecurity
+  - WeaponDisabler
+  - WeaponTaser
+
+# Security  Detective
+- type: loadoutGroup
+  id: SunriseWeaponDetective
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - DetectiveWeapon
+  - DetectiveWeapon20h
+  - DetectiveWeapon50h
+  - DetectiveWeapon50h2
 
 # Security  HoS
 - type: loadoutGroup

@@ -686,18 +686,6 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunriseClothingNeckCloakVoid
-  name: uplink-sunrise-clothing-neck-cloak-void-name
-  productEntity: ClothingNeckCloakVoid
-  cost:
-    Suntick: 15
-  categories:
-  - Cloaks
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: UplinkSunriseClothingCloakGamer
   name: uplink-sunrise-clothing-cloak-gamer-name
   productEntity: ClothingCloakGamer

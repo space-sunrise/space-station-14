@@ -23,3 +23,17 @@
         amount: 1
       - id: WeaponPistolG22
         amount: 1
+
+- type: entity
+  parent: GlockBox
+  id: ACP14Box
+  name: ACP14 box
+  description: It contains a ACP14 and a magazine for it. Did you want something else?
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineACP14
+        amount: 1
+      - id: WeaponPistolACP14
+        amount: 1
+
