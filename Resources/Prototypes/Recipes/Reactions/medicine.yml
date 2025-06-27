@@ -664,3 +664,19 @@
       amount: 1
   products:
     Haloperidol: 5
+
+- type: reaction
+  id: HemostaticPowder
+  impact: Medium
+  minTemp: 422
+  reactants:
+    Aluminium:
+      amount: 1
+    Iron:
+      amount: 1
+    TranexamicAcid:
+      amount: 1
+    Fersilicite:
+      amount: 1
+  products:
+    HemostaticPowder: 4
