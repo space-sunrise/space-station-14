@@ -120,7 +120,7 @@
     generated:
       reagents:
       - ReagentId: Epinephrine
-        Quantity: 0.1
+        Quantity: 0.5
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
@@ -143,11 +143,11 @@
     generated:
       reagents:
       - ReagentId: Pax
-        Quantity: 0.1
+        Quantity: 0.5
   - type: SolutionRegenerationSwitcher
     options:
     - ReagentId: Pax
-      Quantity: 0.1
+      Quantity: 0.5
     - ReagentId: ChloralHydrate
       Quantity: 2
   - type: Hypospray
@@ -170,19 +170,19 @@
     generated:
       reagents:
       - ReagentId: DexalinPlus
-        Quantity: 1
+        Quantity: 0.5
   - type: SolutionRegenerationSwitcher
     options:
     - ReagentId: DexalinPlus
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Tricordrazine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Dylovene
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Bicaridine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Dermaline
-      Quantity: 1
+      Quantity: 0.5
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
@@ -201,31 +201,31 @@
   - type: SolutionRegenerationSwitcher
     options:
     - ReagentId: Bruizine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Puncturase
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Lacerinol
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: DexalinPlus
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Sigynate
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Leporazine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Arithrazine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Insuzine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Pyrazine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Diphenhydramine
-      Quantity: 1
+      Quantity: 0.5
     - ReagentId: Ambuzol
       Quantity: 0.1
     - ReagentId: Oculine
       Quantity: 0.1
     - ReagentId: Saline
-      Quantity: 1
+      Quantity: 0.5
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
@@ -280,11 +280,11 @@
   - type: SolutionRegenerationSwitcher
     options:
     - ReagentId: Ephedrine
-      Quantity: 2
+      Quantity: 0.5
     - ReagentId: Omnizine
-      Quantity: 2
+      Quantity: 0.5
     - ReagentId: DexalinPlus
-      Quantity: 2
+      Quantity: 0.5
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
@@ -310,7 +310,7 @@
     generated:
       reagents:
       - ReagentId: Epinephrine
-        Quantity: 0.4
+        Quantity: 0.5
       - ReagentId: Omnizine
         Quantity: 0.1
   - type: ExaminableSolution
@@ -741,7 +741,7 @@
     generated:
       reagents:
       - ReagentId: Nocturine
-        Quantity: 0.2
+        Quantity: 0.5
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
@@ -862,7 +862,7 @@
     generated:
       reagents:
       - ReagentId: Epinephrine
-        Quantity: 0.3
+        Quantity: 0.5
       - ReagentId: Omnizine
         Quantity: 0.1
       - ReagentId: Saline
