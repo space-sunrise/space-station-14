@@ -80,6 +80,7 @@
   addComponents:
   - type: InnateItem
     instantActions:
+    - HandheldStationMapUnpowered
     - EngiAlertsMonitor
   # Sunrise-End
 
@@ -118,7 +119,6 @@
   - BorgModuleMining
   - BorgModuleTraversal
   - BorgModuleAppraisal
-  - BorgModuleJetpack # Sunrise-Edit
   - BorgModuleMiningCombat
 
   radioChannels:
@@ -247,6 +247,7 @@
   - type: FabricateCandy
   - type: InnateItem
     instantActions:
+    - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
     worldTargetActions:
     - HandheldHealthAnalyzerUnpowered

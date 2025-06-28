@@ -760,7 +760,7 @@
   - type: ItemBorgModule
     items:
     - HypoBorgMedicalAdvanced # Sunrise-Edit
-    - Syringe
+    - HyposprayMedical
     - BorgDropper
     - BorgBeaker
     - BorgBeaker
