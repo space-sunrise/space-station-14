@@ -207,11 +207,12 @@
     - PortableSurveillanceCameraMonitor
     - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
+    - HandheldMassScannerBorg
   - type: MobThresholds
     thresholds:
       0: Alive
       200: Critical
-      400: Dead
+      300: Dead
   - type: PowerCellDraw # Use it to increase battery life further
     drawRate: 0.5
 

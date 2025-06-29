@@ -127,7 +127,7 @@
     onlyAffectsMobs: true
     injectOnly: true
   - type: UseDelay
-    delay: 2
+    delay: 1
 
 - type: entity
   parent: HypoBorgStandard
