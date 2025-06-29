@@ -126,6 +126,8 @@
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: UseDelay
+    delay: 2
 
 - type: entity
   parent: HypoBorgStandard
