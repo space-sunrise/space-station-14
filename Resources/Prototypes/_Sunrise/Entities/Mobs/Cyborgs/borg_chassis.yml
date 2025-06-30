@@ -51,6 +51,8 @@
     maxModules: 4
     moduleWhitelist:
       tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
       - BorgModuleSyndicate
     hasMindState: syndi_reaper_e
     noMindState: syndi_reaper_e_r
@@ -243,6 +245,8 @@
     maxModules: 2
     moduleWhitelist:
       tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
       - BorgModuleSyndicate
     hasMindState: heavy_e
     noMindState: heavy_e_r
@@ -352,6 +356,8 @@
     maxModules: 4
     moduleWhitelist:
       tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
       - BorgModuleSyndicate
     hasMindState: spider_e
     noMindState: spider_e_r
