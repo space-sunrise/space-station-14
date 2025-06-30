@@ -43,7 +43,7 @@
     Razorium: 1
 
 - type: reaction
-  id: PowderOli
+  id: PowderOligomers
   impact: Medium
   reactants:
     PolypyryliumOligomers:
