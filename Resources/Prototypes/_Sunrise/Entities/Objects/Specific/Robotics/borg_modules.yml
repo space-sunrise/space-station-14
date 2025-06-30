@@ -287,4 +287,4 @@
     - FireExtinguisherBorg
     - HypoBorgStandardERT
   - type: BorgModuleIcon
-    icon: { sprite: Objects/Tools/crowbar.rsi, state: icon }
+    icon: { sprite: _Sunrise/Objects/Tools/items_cyborg.rsi, state: crowbar_cyborg }

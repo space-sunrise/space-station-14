@@ -117,7 +117,7 @@
   id: BorgChassisERT
   parent: BaseBorgChassisNT
   name: ERT combat cyborg
-  description: An NT combat robot designed to support the OBR in combat missions.
+  description: An NT combat robot designed to support the ERT in combat missions.
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Silicon/chassis.rsi
@@ -209,7 +209,7 @@
     - PortableSurveillanceCameraMonitor
     - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
-    - HandheldMassScannerBorg
+    - HandHeldMassScannerUnpowered
   - type: MobThresholds
     thresholds:
       0: Alive

@@ -515,7 +515,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
   - type: Gun
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     fireRate: 1.5
     availableModes:
     - SemiAuto
@@ -874,3 +874,8 @@
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+
+- type: entity
+  id: HandHeldMassScannerUnpowered
+  parent: HandHeldMassScanner
+  suffix: Handheld, Always Powered
