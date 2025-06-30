@@ -45,8 +45,8 @@
   - type: ItemBorgModule
     items:
     - JawsOfLife
-    - Multitool
     - PowerDrill
+    - Multitool
     - WelderBorg
     - RemoteSignallerAdvanced
   - type: BorgModuleIcon

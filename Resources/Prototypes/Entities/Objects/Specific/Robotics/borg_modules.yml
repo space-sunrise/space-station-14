@@ -739,7 +739,7 @@
   - type: ItemBorgModule
     items:
     - HypoBorgMedical # Sunrise-Edit
-    - Syringe
+    - HyposprayMedical
     - BorgDropper
     - BorgVial
     - BorgVial
@@ -760,7 +760,7 @@
   - type: ItemBorgModule
     items:
     - HypoBorgMedicalAdvanced # Sunrise-Edit
-    - HyposprayMedical
+    - Hypospray
     - BorgDropper
     - BorgBeaker
     - BorgBeaker

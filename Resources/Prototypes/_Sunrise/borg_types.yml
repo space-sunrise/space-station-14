@@ -14,6 +14,8 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleSecurity
+    - BorgModuleSyndicate
+    - BorgModuleSyndicateAssault  
 
   defaultModules:
   - BorgModuleStandart
@@ -158,6 +160,8 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleSecurity
+    - BorgModuleSyndicate
+    - BorgModuleSyndicateAssault  
 
   defaultModules:
   - BorgModuleStandart
