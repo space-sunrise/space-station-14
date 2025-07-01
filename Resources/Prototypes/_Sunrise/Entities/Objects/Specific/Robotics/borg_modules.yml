@@ -12,7 +12,6 @@
     - WeaponPulseCarbineBorg
     - WeaponPulseCarbineBorg
     - PinpointerNuclear
-    - ClothingEyesGlassesThermalSec
   - type: BorgModuleIcon
     icon: {sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base}
 

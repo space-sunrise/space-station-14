@@ -217,8 +217,10 @@
       300: Dead
   - type: PowerCellDraw # Use it to increase battery life further
     drawRate: 0.5
-  - type: BorgNightVision
-    color: "#82eb6c"  # Default green color
+  - type: NightVision
+    isOn: true
+    color: "#9efce0"
+    isToggle: true
 
 - type: entity
   id: BorgChassisSyndicateHeavy
