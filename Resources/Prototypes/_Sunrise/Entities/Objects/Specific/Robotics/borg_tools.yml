@@ -114,19 +114,21 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 15
+        maxVol: 10 #Sunrise-Start
+  - type: ExaminableSolution
+    solution: hypospray
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Epinephrine
-        Quantity: 0.1
-  - type: ExaminableSolution
-    solution: hypospray
+        Quantity: 0.4
   - type: Hypospray
-    onlyAffectsMobs: true
+    onlyAffectsMobs: false
+    filterPoison: true
     injectOnly: true
-
+    doAfterTime: 0.5
+    transferAmount: 5 #Sunrise-End
 - type: entity
   parent: HypoBorgStandard
   id: HypoBorgPeace
@@ -161,7 +163,7 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 30
+        maxVol: 15
   - type: SolutionRegeneration
     solution: hypospray
     generated:
@@ -267,6 +269,7 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: true
+    doAfterTime: 0.1 #Sunrise-Edit
     injectOnly: true
 
 - type: entity
