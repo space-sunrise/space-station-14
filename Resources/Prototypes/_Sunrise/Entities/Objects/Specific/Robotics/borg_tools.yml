@@ -125,9 +125,7 @@
         Quantity: 0.4
   - type: Hypospray
     onlyAffectsMobs: false
-    filterPoison: true
     injectOnly: true
-    doAfterTime: 0.5
     transferAmount: 5 #Sunrise-End
 - type: entity
   parent: HypoBorgStandard
