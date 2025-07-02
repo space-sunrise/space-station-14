@@ -570,3 +570,42 @@
     - FullBodyOuter
     - WhitelistChameleon
   # Sunrise-End
+
+- type: entity
+  id: SandevistanVest
+  name: "Бронежилет 'Сандевистан'"
+  description: "Тактический бронежилет со встроенной системой временного ускорения."
+  components:
+    - type: Clothing
+      slots: [outerClothing]
+      showInWardrobe: true
+      sprite: Objects/Clothing/OuterClothing/vests.rsi
+      equippedPrefix: "tactical"
+
+    - type: Item
+      size: 5
+      sprite: Objects/Clothing/OuterClothing/vests.rsi
+
+    - type: Armor
+      modifiers:
+        bludgeoning: 0.5
+        slash: 0.5
+        piercing: 0.4
+        heat: 0.4
+        explosive: 0.5
+        acid: 0.5
+        radiation: 0.5
+
+    - type: SandevistanComponent
+      duration: 7.5
+      speedMultiplier: 2.2
+      projectileReflectChance: 0.85
+
+    - type: Activatable
+      verb: "Активировать Сандевистан"
+      icon: /Textures/Interface/Buttons/sandevistan.png
+      cooldown: 60
+
+    - type: Spawnable
+      category: Clothing
+      subcategory: Armor

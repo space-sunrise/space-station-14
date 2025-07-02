@@ -81,3 +81,14 @@
   - type: SinguloFood
     energy: -10
     energyFactor: 0.97
+
+- type: particle
+  id: SandevistanAura
+  sprite:
+    path: /Textures/Effects/shockwave.rsi
+    state: active
+  color: "#5e1818"
+  emit:
+    rate: 30
+    amount: 10
+  lifetime: 0.3
