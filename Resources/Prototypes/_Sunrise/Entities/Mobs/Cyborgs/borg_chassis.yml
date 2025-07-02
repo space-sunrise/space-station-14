@@ -162,6 +162,9 @@
     moduleWhitelist:
       tags:
       - BorgModuleERT
+      - BorgModuleSecurity
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateAssault
     hasMindState: ert_borg_e
     noMindState: ert_borg_e_r
   - type: IntrinsicRadioTransmitter
