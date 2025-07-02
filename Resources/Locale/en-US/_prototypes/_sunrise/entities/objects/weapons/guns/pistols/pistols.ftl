@@ -15,3 +15,6 @@ ent-WeaponRevolverSpearhead = Spearhead autorevolver
     .desc = A bulky revolver, occasionally carried by assault troops and officers in SWAT, as well as civilian law enforcement. Fires .45 Magnum rounds.
 ent-WeaponRevolverSpearheadBlack = Spearhead autorevolver
     .desc = { ent-WeaponRevolverSpearhead.desc }
+ent-WeaponPistolG22Auto = Glock-22 auto
+    .suffix = Auto
+    .desc = { ent-BaseWeaponPistol.desc }

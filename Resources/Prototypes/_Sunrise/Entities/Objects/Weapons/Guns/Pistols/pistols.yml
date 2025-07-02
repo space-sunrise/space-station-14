@@ -265,15 +265,17 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
   - type: Gun
-    minAngle: 4
-    maxAngle: 16
-    angleIncrease: 4
-    angleDecay: 3
-    fireRate: 2.75
+    minAngle: 4.35
+    maxAngle: 18
+    angleIncrease: 5
+    angleDecay: 9
+    fireRate: 2.35
     availableModes:
     - SemiAuto
     soundGunshot:
-      collection: glock22
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_DE50.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
   - type: ChamberMagazineAmmoProvider
   - type: ItemSlots
     slots:

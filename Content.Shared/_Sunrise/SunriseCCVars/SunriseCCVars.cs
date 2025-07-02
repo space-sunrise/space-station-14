@@ -461,9 +461,10 @@ public sealed partial class SunriseCCVars : CVars
 
     /// <summary>
     /// Включены ли артефакты-предметы? Переключение этого в моменты игры динамически включает и выключает фичу
+    /// НЕ ВКЛЮЧАТЬ!!! АРТФАКТЫ ЛОМАЮТ СЕРВЕРА!!!
     /// </summary>
     public static readonly CVarDef<bool> EnableRandomArtifacts =
-        CVarDef.Create("random_artifacts.enable", true, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("random_artifacts.enable", false, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Соотношение артефактов-предметов к обычным предметам.

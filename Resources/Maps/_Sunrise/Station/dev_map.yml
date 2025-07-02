@@ -10046,13 +10046,6 @@ entities:
     - type: Transform
       pos: 0.30545008,1.5973186
       parent: 179
-- proto: WeaponMinigunMG100
-  entities:
-  - uid: 1040
-    components:
-    - type: Transform
-      pos: 2.8048167,1.3522191
-      parent: 179
 - proto: WeaponParticleDecelerator
   entities:
   - uid: 1689

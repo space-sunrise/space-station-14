@@ -662,6 +662,18 @@
   - !type:ListingLimitedStockCondition
     stock: 2
 
+- type: listing
+  id: NTUplinkSunrisePouchExplosiveFilled
+  productEntity: PouchExplosiveFilled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pouchgrenadefilled }
+  cost:
+    Crystallite: 12
+  categories:
+    - NTexplosive
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
 # Медицина:
 - type: listing
   id: NTUplinkSunriseMaterialBiomass
@@ -1168,6 +1180,30 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+
+- type: listing
+  id: NTUplinkSunrisePouchAmmo
+  productEntity: PouchAmmo
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pouchammo }
+  cost:
+    Crystallite: 3
+  categories:
+    - NTEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 10
+
+- type: listing
+  id: NTUplinkSunrisePouchExplosive
+  productEntity: PouchExplosive
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pouchgrenade }
+  cost:
+    Crystallite: 4
+  categories:
+    - NTEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseJetpackMiniFilled

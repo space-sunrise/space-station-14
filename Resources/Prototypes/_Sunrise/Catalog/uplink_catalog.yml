@@ -33,6 +33,42 @@
       - LoneOpsUplink
 
 - type: listing
+  id: UplinkAmmoPouch
+  icon: { sprite: /Textures/_RMC14/Objects/Clothing/Pouches/large_ammo_mag.rsi, state: icon }
+  productEntity: PouchAmmo
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
+  id: UplinkPouchExplosive
+  icon: { sprite: /Textures/_RMC14/Objects/Clothing/Pouches/large_explosive.rsi, state: icon }
+  productEntity: PouchExplosive
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
   id: UplinkClothingEyesGlassesThermal
   name: uplink-syndie-thermal-name
   description: uplink-syndie-thermal-desc

@@ -55,6 +55,9 @@
   id: PowerpackMinigunMG100
 
 - type: Tag
+  id: PowerpackDL6902
+
+- type: Tag
   id: CartridgeRail
 
 - type: Tag
@@ -94,12 +97,6 @@
 
 - type: Tag
   id: MagazineAK
-
-- type: Tag
-  id: MagazineFamas
-
-- type: Tag
-  id: MagazineG36
 
 - type: Tag
   id: MagazineAR18
@@ -151,9 +148,6 @@
 
 - type: Tag
   id: NoSpinOnThrow
-
-- type: Tag
-  id: MagazineM16A4
 
 - type: Tag
   id: MagazineSTG44
