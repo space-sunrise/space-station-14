@@ -273,7 +273,7 @@
 
 - type: entity
   id: BorgERTModuleStandard
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
   name: ERT utility cyborg module
   components:
   - type: Sprite

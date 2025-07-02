@@ -130,6 +130,30 @@
     collection: FootstepCyborgSpider
     params:
       volume: -15
+      
+  addComponents:
+  - type: BorgJetpack
+    acceleration: 1
+    friction: 0.25
+    weightlessModifier: 1.5
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 5
+      temperature: 293.15
+      moles:
+      - 0.153853429 # oxygen
+      - 0.153853429 # nitrogen
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.JetpackVisuals.Enabled:
+        enum.JetpackVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
   # Sunrise-End
 
   # Visual
@@ -143,7 +167,6 @@
   # Pet
   petSuccessString: petting-success-salvage-cyborg
   petFailureString: petting-failure-salvage-cyborg
-
 
 # Janitor borg
 - type: borgType
