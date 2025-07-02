@@ -832,16 +832,13 @@
           true: {visible: false}
           false: {visible: true}
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.5
+    rechargeCooldown: 0.6
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
     proto: BulletPlasma
     capacity: 3
     count: 3
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 20
 
 - type: entity
   name: ERT cyborg hypospray
