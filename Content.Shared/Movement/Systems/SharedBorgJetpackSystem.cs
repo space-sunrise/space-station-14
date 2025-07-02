@@ -19,12 +19,10 @@ public sealed class SharedBorgJetpackSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
-    private const string JetpackEffect = "JetpackEffect";
-
     public override void Initialize()
     {
         base.Initialize();
-
+        
         SubscribeLocalEvent<BorgJetpackComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BorgJetpackComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<BorgJetpackComponent, ToggleJetpackEvent>(OnJetpackToggle);
