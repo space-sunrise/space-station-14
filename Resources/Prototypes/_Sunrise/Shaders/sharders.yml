@@ -25,3 +25,8 @@
   path: "/Textures/_Sunrise/Shaders/brightness.swsl"
   params:
     brightness: 1.5
+
+- type: shader
+  id: FractalRainbow
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/fractal_rainbow.swsl"

@@ -9,3 +9,6 @@
 
 - type: statusEffect
   id: Fall
+
+- type: statusEffect
+  id: SeeingFractalRainbows

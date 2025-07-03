@@ -142,10 +142,13 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
-    - LoveEffect  # Sunrise-Edit
-    - Jump # Sunrise-Edit
-    - Flip # Sunrise-Edit
-    - Fall # Sunrise-Edit
+    # Sunrise-Start
+    - LoveEffect
+    - Jump
+    - Flip
+    - Fall
+    - SeeingFractalRainbows
+    # Sunrise-End
   - type: Body
     prototype: Human
     requiredLegs: 2
