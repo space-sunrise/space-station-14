@@ -10,9 +10,9 @@
         maxVol: 30
         reagents:
         - ReagentId: Sugar
-          Quantity: 3
+          Quantity: 6
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 6
         - ReagentId: Iron
           Quantity: 3
         - ReagentId: Vitamin
@@ -36,9 +36,9 @@
         reagents:
         - ReagentId: Sugar
           Quantity: 3
-        - ReagentId: Kelotane
+        - ReagentId: Dermaline
           Quantity: 9
-        - ReagentId: Tricordrazine
+        - ReagentId: Saline
           Quantity: 9
         - ReagentId: Dylovene
           Quantity: 9

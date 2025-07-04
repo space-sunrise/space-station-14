@@ -740,7 +740,7 @@
     items:
     - HypoBorgMedical # Sunrise-Edit
     - HyposprayMedical
-    - BorgDropper
+    - Syringe
     - BorgVial
     - BorgVial
     - BorgVial
@@ -761,7 +761,7 @@
     items:
     - HypoBorgMedicalAdvanced # Sunrise-Edit
     - Hypospray
-    - BorgDropper
+    - BluespaceAutoSyringe
     - BorgBeaker
     - BorgBeaker
     - BorgBeaker
