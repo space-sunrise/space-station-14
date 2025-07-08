@@ -19,3 +19,24 @@ ent-MagazineBoxHeavyRifleIncendiary = коробка патронов (7,62ммR
     .desc = Картонная коробка, полная полноразмерных винтовочных патронов 7.62x54ммR. Устаревшие, но всё ещё широко используемые стрелковыми винтовками и средними пулемётами. Зажигательные патроны содержат самовоспламеняющееся вещество, которое поджигает цель.
 ent-MagazineBoxHeavyRifleUranium = коробка патронов (7,62ммR урановые)
     .desc = Картонная коробка, полная полноразмерных винтовочных патронов 7.62x54ммR. Устаревшие, но всё ещё широко используемые стрелковыми винтовками и средними пулемётами. Урановые патроны заменяют свинцовый сердечник пули делящимся материалом, облучая цель изнутри.
+
+## Magazines
+ent-BaseMagazineDragunov = магазин (7,62ммR)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineDragunov = магазин (7,62ммR)
+    .desc = { ent-BaseMagazineDragunov.desc }
+ent-MagazineDragunovExtended = расширеный магазин (7,62ммR)
+    .suffix = Санрайз
+    .desc = { ent-MagazineDragunov.desc }
+ent-MagazineDragunovEmpty = магазин (7,62ммR)
+    .suffix = Санрайз, Пустой
+    .desc = { ent-MagazineDragunov.desc }
+ent-MagazineDragunovIncendiary = магазин (7,62ммR зажигательный)
+    .suffix = Санрайз
+    .desc = { ent-MagazineDragunov.desc }
+ent-MagazineDragunovPractice = магазин (7,62ммR учебный)
+    .suffix = Санрайз
+    .desc = { ent-MagazineDragunov.desc }
+ent-MagazineDragunovUranium = магазин (7,62ммR урановый)
+    .suffix = Санрайз
+    .desc = { ent-MagazineDragunov.desc }

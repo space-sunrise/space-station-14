@@ -9,3 +9,24 @@
       stampedBy:
       - stampedName: stamp-component-stamped-name-centcom
         stampedColor: "#bb3232"
+
+- type: entity
+  name: office paper
+  parent: Paper
+  id: HolographicPaper
+  description: 'A plain sheet of office paper.'
+  components:
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_Sunrise/Interface/Paper/paper_background_holographic.svg.96pdi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 16.0, 16.0, 16.0, 16.0
+    fontAccentColor: "#ffffff"
+  - type: Paper
+    defaultColor: "#07edf5"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/holopaper.rsi
+    layers:
+    - state: paper
+    - state: paper_written
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false

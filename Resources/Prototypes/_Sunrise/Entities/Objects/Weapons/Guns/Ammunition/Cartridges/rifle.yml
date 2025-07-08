@@ -102,7 +102,7 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#65fe08"
 
-#Magasines
+#Magazines
 - type: entity
   id: SunriseBaseMagazineRifle
   name: "magazine (5.56mm)"

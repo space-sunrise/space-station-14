@@ -167740,6 +167740,10 @@ entities:
         stampedName: stamp-component-stamped-name-rd
       - stampedColor: '#CC0000FF'
         stampedName: stamp-component-stamped-name-hos
+      - stampedColor: '#8B0000FF'
+        stampedName: stamp-component-stamped-name-veto
+      - stampedColor: '#0D133AFF'
+        stampedName: stamp-component-stamped-name-redo
       content: >-
         ⣿⣿⡟⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 

@@ -93,7 +93,15 @@ namespace Content.Shared.Movement.Systems
 
             // Relay the fact we had any movement event.
             // TODO: Ideally we'd do these in a tick instead of out of sim.
-            var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
+
+            // Starlight-abductor-start
+            // var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
+            Vector2 vector2 = DirVecForButtons(entity.Comp.HeldMoveButtons);
+            Vector2i vector2i = new Vector2i((int)vector2.X, (int)vector2.Y);
+            Direction dir = (vector2i == Vector2i.Zero) ? Direction.Invalid : vector2i.AsDirection();
+
+            var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons, dir, entity.Comp.HeldMoveButtons != 0);
+            // Starlight-abductor-end
             entity.Comp.HeldMoveButtons = buttons;
             RaiseLocalEvent(entity, ref moveEvent);
             Dirty(entity, entity.Comp);
@@ -118,9 +126,15 @@ namespace Content.Shared.Movement.Systems
             entity.Comp.LastInputTick = GameTick.Zero;
             entity.Comp.LastInputSubTick = 0;
 
+            // Starlight-abductor-start
+            Vector2 vector2 = DirVecForButtons(entity.Comp.HeldMoveButtons);
+            Vector2i vector2i = new Vector2i((int)vector2.X, (int)vector2.Y);
+            Direction dir = (vector2i == Vector2i.Zero) ? Direction.Invalid : vector2i.AsDirection();
+            // Starlight-abductor-end
+
             if (entity.Comp.HeldMoveButtons != state.HeldMoveButtons)
             {
-                var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
+                var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons, dir, state.HeldMoveButtons != 0); // Startlight-abductor-edit
                 entity.Comp.HeldMoveButtons = state.HeldMoveButtons;
                 RaiseLocalEvent(entity.Owner, ref moveEvent);
 
@@ -168,9 +182,18 @@ namespace Content.Shared.Movement.Systems
                 return;
             }
 
+            // Starlight-Abductor-start
+            var xform = XformQuery.GetComponent(uid);
+            if (TryComp(uid, out RelayInputMoverComponent? relay)
+                 && TryComp(relay.RelayEntity, out TransformComponent? relayXform)
+                 && MoverQuery.TryGetComponent(relay.RelayEntity, out var relayMover))
+            {
+                xform = relayXform;
+            }
             // If we updated parent then cancel the accumulator and force it now.
             if (!TryUpdateRelative(uid, mover, XformQuery.GetComponent(uid)) && mover.TargetRelativeRotation.Equals(Angle.Zero))
                 return;
+            // Starlight-Abductor-end
 
             mover.LerpTarget = TimeSpan.Zero;
             mover.TargetRelativeRotation = Angle.Zero;
@@ -179,6 +202,12 @@ namespace Content.Shared.Movement.Systems
 
         private bool TryUpdateRelative(EntityUid uid, InputMoverComponent mover, TransformComponent xform)
         {
+            // Starlight Start
+            if (RelayQuery.TryComp(uid, out var relay)
+                && XformQuery.TryComp(relay.RelayEntity, out var relayXform))
+                xform = relayXform;
+            // Starlight End
+
             var relative = xform.GridUid;
             relative ??= xform.MapUid;
 
@@ -318,6 +347,14 @@ namespace Content.Shared.Movement.Systems
 
             if (!MoverQuery.TryGetComponent(entity, out var moverComp))
                 return;
+            // Starlight-abductor start
+            var moverEntity = new Entity<InputMoverComponent>(entity, moverComp);
+
+            // Relay the fact we had any movement event.
+            // TODO: Ideally we'd do these in a tick instead of out of sim.
+            var moveEvent = new MoveInputEvent(moverEntity, moverComp.HeldMoveButtons, dir, state);
+            RaiseLocalEvent(entity, ref moveEvent);
+            // Starlight-abductor end
 
             // For stuff like "Moving out of locker" or the likes
             // We'll relay a movement input to the parent.

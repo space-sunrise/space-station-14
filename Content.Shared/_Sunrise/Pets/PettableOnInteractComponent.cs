@@ -26,13 +26,13 @@ public sealed partial class PettableOnInteractComponent : Component
     /// Доступные кнопки в меню управления питомца
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HashSet<ProtoId<PetControlPrototype>> AvailableControls = new();
+    public HashSet<ProtoId<PetControlPrototype>> AvailableControls = [];
 
     /// <summary>
     /// Доступные питомцу приказы
     /// </summary>
     [DataField(required: true)]
-    public HashSet<PetOrderType> AllowedOrders = new HashSet<PetOrderType> {PetOrderType.Follow, PetOrderType.Stay};
+    public HashSet<PetOrderType> AllowedOrders = [PetOrderType.Follow, PetOrderType.Stay];
 }
 
 /// <summary>

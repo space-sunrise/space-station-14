@@ -130,8 +130,7 @@
 
 - type: listing
   id: UplinkMagazineShotgunUranium
-  name: uplink-magazine-shotgun-name
-  description: uplink-magazine-shotgun-desc
+  description: uplink-magazine-bulldog-uranium-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
   productEntity: MagazineShotgunUranium
   cost:
@@ -147,11 +146,11 @@
 
 - type: listing
   id: UplinkMagazineShotgunUraniumSlug
-  description: uplink-magazine-shotgun-desc
+  description: uplink-magazine-bulldog-uraniumslug-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
   productEntity: MagazineShotgunUraniumSlug
   cost:
-    Telecrystal: 5
+    Telecrystal: 6
   categories:
   - UplinkAmmo
   conditions:
@@ -164,7 +163,6 @@
 # For the LMG
 - type: listing
   id: UplinkMagazineLightRifleBox
-  name: uplink-magazine-lmg-name
   description: uplink-magazine-lmg-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
   productEntity: MagazineLightRifleBox
@@ -185,6 +183,7 @@
 
 - type: listing
   id: UplinkMagazineLightRifleBoxIncendiary
+  description: uplink-magazine-lmg-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: red }
   productEntity: MagazineLightRifleBoxIncendiary
   cost:
@@ -223,9 +222,9 @@
   productEntity: CrateAmmokitBundle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 50
+    Telecrystal: 75
   cost:
-    Telecrystal: 95
+    Telecrystal: 115
   categories:
   - UplinkAmmo
   conditions:
@@ -234,6 +233,10 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 # For the SIAR52
 - type: listing
@@ -1400,6 +1403,20 @@
     Telecrystal: 1
   cost:
     Telecrystal: 3
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkCreepyLaughImplanter
+  name: uplink-creepy-laugh-implanter-name
+  description: uplink-creepy-laugh-implanter-desc
+  icon: { sprite: Clothing/Mask/gassyndicate.rsi, state: icon }
+  productEntity: CreepyLaughImplanter
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 1
   categories:
   - UplinkImplants
 

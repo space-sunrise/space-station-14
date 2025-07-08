@@ -12,6 +12,8 @@ using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
+using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Robust.Shared.Audio.Systems;
@@ -43,6 +45,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 
@@ -61,7 +65,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         _surgeries.Clear();
     }
 
-    protected bool IsSurgeryValid(EntityUid body, EntityUid targetPart, EntProtoId surgery, EntProtoId stepId, out Entity<SurgeryComponent> surgeryEnt, out Entity<BodyPartComponent> part, out EntityUid step)
+    public bool IsSurgeryValid(EntityUid body, EntityUid targetPart, EntProtoId surgery, EntProtoId stepId, out Entity<SurgeryComponent> surgeryEnt, out Entity<BodyPartComponent> part, out EntityUid step)
     {
         surgeryEnt = default;
         part = default;
@@ -123,6 +127,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     public bool IsLyingDown(EntityUid entity)
     {
         if (_standing.IsDown(entity))
+            return true;
+
+        if (HasComp<ItemComponent>(entity))
             return true;
 
         if (TryComp(entity, out BuckleComponent? buckle) &&

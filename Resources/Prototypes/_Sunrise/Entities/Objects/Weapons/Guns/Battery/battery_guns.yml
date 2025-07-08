@@ -1093,3 +1093,45 @@
   - type: EmpImmune
   - type: StaticPrice
     price: 9000
+
+- type: entity
+  parent: BaseWeaponBatterySmall
+  id: WeaponAlien
+  name: alien pistol
+  components:
+  - type: RestrictByUserTag
+    contains:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Objects/Weapons/Guns/Battery/alien.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    shape:
+    - 0, 0, 1, 1
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 100
+  - type: EnergyGunFireModes
+    fireModes:
+    - hitscanProto: BulletDisabler
+      fireCost: 100
+      name: energy-gun-disable
+      state: base
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
+      fireCost: 100
+      name: energy-gun-lethal
+      shotType: Hitscan
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance

@@ -779,6 +779,7 @@ TableWoodReinforced: null
 BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
+AbductorDispencer: VendingMachineAbductorDispenser # Abductor shit.
 
 # Кто удалил и не добавил в миграции
 PrintedDocumentClosingIndictment: null
