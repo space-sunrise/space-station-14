@@ -86,6 +86,38 @@
         {
             "name": "shaved_unisex",
             "directions": 4
+        },
+        {
+            "name": "hair_long_comb",
+            "directions": 4
+        },
+        {
+            "name": "hair_long_disheveled",
+            "directions": 4
+        },
+        {
+            "name": "hair_medium_disheveled",
+            "directions": 4
+        },
+        {
+            "name": "hair_neat_feminine",
+            "directions": 4
+        },
+        {
+            "name": "hair_neat_man_bun",
+            "directions": 4
+        },
+        {
+            "name": "hair_protruding_strand",
+            "directions": 4
+        },
+        {
+            "name": "hair_quick_instalation",
+            "directions": 4
+        },
+        {
+            "name": "hair_windy",
+            "directions": 4
         }
   ]
 }
