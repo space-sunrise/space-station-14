@@ -200,6 +200,12 @@
     solutions:
       hypospray:
         maxVol: 30
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: DexalinPlus
+        Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
     - ReagentId: Bruizine

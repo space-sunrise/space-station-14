@@ -642,7 +642,8 @@
     - state: icon-mop
   - type: ItemBorgModule
     items:
-    - Bucket # Sunrise-Edit
+    - MopItem
+    - BorgBucket # Sunrise-Edit
     - BorgTrashBag # Sunrise-Edit
     - BorgSprayBottle
     - HoloprojectorJanitorBorg # Sunrise-Edit
@@ -661,6 +662,7 @@
     - state: icon-mop-adv
   - type: ItemBorgModule
     items:
+    - AdvMopItem
     - BorgBucket # Sunrise-Edit
     - BorgTrashBag # Sunrise-Edit
     - HoloprojectorJanitorBorg # Sunrise-Edit

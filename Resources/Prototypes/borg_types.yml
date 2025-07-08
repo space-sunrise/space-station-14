@@ -232,7 +232,13 @@
         maxVol: 500
   - type: Spillable
     solution: absorbed
-
+  - type: SolutionRegeneration
+    solution: absorbed
+    duration: 1
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
 
 # Medical borg
 - type: borgType
