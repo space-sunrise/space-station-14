@@ -13,7 +13,7 @@
           Quantity: 6
         - ReagentId: Nutriment
           Quantity: 6
-        - ReagentId: Iron
+        - ReagentId: Saline
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 9
@@ -39,7 +39,9 @@
         - ReagentId: Dermaline
           Quantity: 9
         - ReagentId: Saline
-          Quantity: 9
+          Quantity: 6
+        - ReagentId: TranexamicAcid 
+          Quantity: 3 
         - ReagentId: Dylovene
           Quantity: 9
   - type: Sprite
