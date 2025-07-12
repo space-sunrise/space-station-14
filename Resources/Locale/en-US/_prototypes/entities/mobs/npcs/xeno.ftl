@@ -49,3 +49,5 @@ ent-MobXenoDroneGhostRole = xeno
 ent-MobXenoPraetorianGhostRole = xeno
     .suffix = GhostRole
     .desc = { ent-MobXenoPraetorian.desc }
+ent-MobXenoLonePraetorianNoGhost = Lone Praetorian
+    .desc = The last of its kind.

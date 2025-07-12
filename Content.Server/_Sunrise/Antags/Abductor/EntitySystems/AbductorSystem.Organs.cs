@@ -20,6 +20,12 @@ using Content.Shared.Damage.Prototypes;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Server.Chat.Systems;
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Jittering;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -30,6 +36,9 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SolutionContainerSystem _solutions = default!;
+    [Dependency] private readonly SolutionContainerSystem _type = default!;
+
 
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();
@@ -38,7 +47,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     public void InitializeOrgans()
     {
         foreach (var specif in _prototypes.EnumeratePrototypes<DamageTypePrototype>())
-            _passiveHealing.DamageDict.Add(specif.ID, -3);
+            _passiveHealing.DamageDict.Add(specif.ID, -1);
         _stopwatch.Start();
     }
 
@@ -68,16 +77,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 victim.LastActivation = _time.CurTime;
                 _damageable.TryChangeDamage(uid, _passiveHealing);
                 break;
-            case AbductorOrganType.Plasma:
-                if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(120))
-                    return;
-                victim.LastActivation = _time.CurTime;
-                var mix = _atmos.GetContainingMixture((uid, Transform(uid)), true, true) ?? new();
-                mix.AdjustMoles(Gas.Plasma, 30);
-                _chat.TryEmoteWithChat(uid, "Cough");
-                break;
             case AbductorOrganType.Gravity:
-                if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(60))
+                if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(120))
                     return;
                 victim.LastActivation = _time.CurTime;
                 var gravity = SpawnAttachedTo("AbductorGravityGlandGravityWell", Transform(uid).Coordinates);
@@ -94,6 +95,16 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                     return;
                 victim.LastActivation = _time.CurTime;
                 SpawnAttachedTo("EggSpiderFertilized", Transform(uid).Coordinates);
+                break;
+            case AbductorOrganType.Ephedrine:
+                if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(120))
+                    return;
+                victim.LastActivation = _time.CurTime;
+                TryComp<SolutionContainerManagerComponent>(uid, out var solution);
+                if (_solutions.TryGetInjectableSolution(uid, out var injectable, out _))
+                {
+                    _solutions.TryAddReagent(injectable.Value, "Ephedrine", 5f);
+                }
                 break;
             default:
                 break;

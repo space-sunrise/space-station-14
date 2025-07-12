@@ -357,25 +357,7 @@ public sealed class ArrivalsSystem : EntitySystem
         if (!HasComp<StationArrivalsComponent>(ev.Station))
             return;
 
-        TryGetArrivals(out var arrivals);
-
-        if (!TryComp(arrivals, out TransformComponent? arrivalsXform))
-            return;
-
-        var mapId = arrivalsXform.MapID;
-
-        var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        var possiblePositions = new List<EntityCoordinates>();
-        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
-        {
-            if (spawnPoint.SpawnType != SpawnPointType.LateJoin || xform.MapID != mapId)
-                continue;
-
-            possiblePositions.Add(xform.Coordinates);
-        }
-
-        if (possiblePositions.Count <= 0)
-            return;
+        var possiblePositions = GetArrivalsSpawnPoints();
 
         var spawnLoc = _random.Pick(possiblePositions);
         ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
@@ -491,7 +473,7 @@ public sealed class ArrivalsSystem : EntitySystem
                 if (xform.MapUid != arrivalsXform.MapUid)
                 {
                     if (arrivals.IsValid())
-                        _shuttles.FTLToDock(uid, shuttle, arrivals, priorityTag: "DockArrivals", ignored: true); // Sunrise-Edit
+                        _shuttles.FTLToDock(uid, shuttle, arrivals, priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
 
                     comp.NextArrivalsTime = _timing.CurTime + TimeSpan.FromSeconds(tripTime);
                 }
@@ -679,7 +661,7 @@ public sealed class ArrivalsSystem : EntitySystem
             EnsureComp<UnbuildableGridComponent>(shuttle.Value); // Sunrise-edit
             EnsureComp<ImmortalGridComponent>(shuttle.Value); // Sunrise-edit
             _shuttles.FTLToDock(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration,
-                priorityTag: "DockArrivals", ignored: true); // Sunrise-Edit
+                priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 

@@ -43,8 +43,8 @@
           angle: 60
           animation: WeaponArcThrust
         - type: StaminaDamageOnHit
-          damage: 225
-          sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+          damage: 55
+          sound: /Audio/Weapons/egloves.ogg
         soundStateActivate:
           collection: sparks
           params:
@@ -85,7 +85,7 @@
           limit: 20
           reagents:
           - ReagentId: Nocturine
-            Quantity: 5
+            Quantity: 2.5
 
       damage: !type:ItemSwitchState
         verb: wonderprode-damage

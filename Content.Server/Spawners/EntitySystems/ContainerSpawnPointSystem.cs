@@ -33,6 +33,9 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
         if (args.DesiredSpawnPointType == SpawnPointType.Observer)
             return;
 
+        if (args.DesiredSpawnPointType == SpawnPointType.Job)
+            return;
+
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
         var cryoContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
 

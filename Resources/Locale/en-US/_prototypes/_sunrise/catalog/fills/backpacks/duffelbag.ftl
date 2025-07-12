@@ -1,5 +1,7 @@
 ent-ClothingBackpackDuffelSyndicateFilledBauer = Bauer-127 bundle
     .desc = The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set.
+ent-ClothingBackpackDuffelSyndicateFilledDragunov = Dragunov bundle
+    .desc = The iconic Dragunov magazine rifle with 2 raspy magazines in the set.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Bundle MP5
     .desc = MP5 with 4 raspy magazines.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP7Filled = Bundle MP7
@@ -28,6 +30,9 @@ ent-ClothingBackpackDuffelWeaponSniperHristovFilled = Bundle Hristov
     .desc = Hristov with 4 raspy .60 10-rounds Box.
 ent-ClothingBackpackDuffelNanotrasenMedicalBundleFilled = nanotrasen medical bundle
     .desc = A large duffel bag for holding any medical army goods.
+ent-ClothingBackpackDuffelAbductorFilled = { ent-ClothingBackpackDuffelAbductorBundle }
+    .suffix = Filled
+    .desc = { ent-ClothingBackpackDuffelAbductorBundle.desc }
 ent-ClothingBackpackDuffelWeaponSubMachineGunWt550Filled = Bundle WT550
     .desc = WT550 with 3 raspy magazines.
 ent-ClothingBackpackDuffelWeaponRifleLecterFilled = Bundlelecter

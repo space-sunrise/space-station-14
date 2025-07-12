@@ -8,8 +8,11 @@
   - type: TimedSpawner
     prototypes:
     - MobGiantSpider
-    intervalSeconds: 60
+    intervalSeconds: 180
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
   - type: TimedDespawn
-    lifetime: 61
+    lifetime: 180
+  - type: Sprite
+    sprite: Objects/Misc/eggspider.rsi
+    state: icon

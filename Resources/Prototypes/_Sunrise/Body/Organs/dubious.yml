@@ -40,18 +40,6 @@
     organ: Health
 
 - type: entity
-  id: OrganDubiousPlasma
-  parent: [BaseOrganDubious]
-  name: gland
-  description: Suspicious alien gland, replaces the heart.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: gland
-  - type: AbductorOrgan
-    organ: Plasma
-
-- type: entity
   id: OrganDubiousGravity
   parent: [BaseOrganDubious]
   name: gland
@@ -98,6 +86,30 @@
     state: vent
   - type: AbductorOrgan
     organ: Vent
+
+- type: entity
+  id: OrganDubiousPacified
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: vent
+  - type: AbductorOrgan
+    organ: Pacified
+
+- type: entity
+  id: OrganDubiousEphedrine
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: vent
+  - type: AbductorOrgan
+    organ: Ephedrine
 
 - type: entity
   id: RandomOrganDubious

@@ -64,3 +64,5 @@ ent-ClothingUniformJumpsuitBlueshieldJS = blueshield's jumpsuit
     .desc = { ent-ClothingUniformBase.desc }
 ent-ClothingUniformJumpsuitMiningSpecialist = mining specialist's jumpsuit
     .desc = A suit passed down through many generations. a fine layer of dust trails behind it.
+ent-ClothingUniformJumpsuitAbductor = abductor uniform
+    .desc = { ent-UnsensoredClothingUniformBase.desc }

@@ -1,0 +1,10 @@
+ent-BaseCartridgeHeavyLightRifle = патрон (7,62ммR)
+    .desc = A classic full-power 7.62x54mmR cartridge used by many combat rifles, marksman rifles, and medium machine guns. Its improved range over intermediate cartridges is generally less practical in cramped spacecraft environments, making it more common in surface combat or legacy weaponry.
+ent-CartridgeHeavyLightRifle = патрон (7,62ммR)
+    .desc = { ent-BaseCartridgeHeavyLightRifle.desc }
+ent-CartridgeHeavyLightRiflePractice = патрон (7,62ммR practice)
+    .desc = A classic full-power 7.62x54mmR cartridge used by many combat rifles, marksman rifles, and medium machine guns. Its improved range over intermediate cartridges is generally less practical in cramped spacecraft environments, making it more common in surface combat or legacy weaponry. Chalk ammunition is generally non-harmful, used for practice.
+ent-CartridgeHeavyLightRifleIncendiary = патрон (7,62ммR incendiary)
+    .desc = A classic full-power 7.62x54mmR cartridge used by many combat rifles, marksman rifles, and medium machine guns. Its improved range over intermediate cartridges is generally less practical in cramped spacecraft environments, making it more common in surface combat or legacy weaponry. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+ent-CartridgeHeavyLightRifleUranium = патрон (7,62ммR uranium)
+    .desc = A classic full-power 7.62x54mmR cartridge used by many combat rifles, marksman rifles, and medium machine guns. Its improved range over intermediate cartridges is generally less practical in cramped spacecraft environments, making it more common in surface combat or legacy weaponry. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.

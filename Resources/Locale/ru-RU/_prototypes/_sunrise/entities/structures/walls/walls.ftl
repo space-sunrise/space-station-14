@@ -1,4 +1,4 @@
-ent-WallSolidChitin = прочный хитин
+ent-WallAbductorDiagonal = стена шаттла
     .desc = { ent-BaseWall.desc }
-ent-WallReinforcedChitin = укрепленный хитин
+ent-WallAbductor = стена шаттла
     .desc = { ent-BaseWall.desc }

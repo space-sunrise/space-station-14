@@ -1,0 +1,12 @@
+ent-SurgeryStepExposeNerves = Expose Nerves
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepExposeBloodVessels = Expose Blood Vessels
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepDeepIncision = Deep Incision
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepRetractSkin = Retract the skin
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepRetractMembrane = Retract the membrane
+    .desc = { ent-SurgeryStepRetractSkin.desc }
+ent-SurgeryStepCoagulateJellyFlow = Coagulate Jelly Flow
+    .desc = { ent-SurgeryStepBase.desc }

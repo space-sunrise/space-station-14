@@ -19,12 +19,11 @@ abductor-pad-not-connected = площадка: [color=red]не найдена[/c
 abductor-dispencer-connected = диспенсер: [color=green]подключён[/color]
 abductor-dispencer-not-connected = диспенсер: [color=red]не найден[/color]
 abductor-target-none = цель: [color=red]ОТСУТСТВУЕТ[/color]
-abductor-target-detected = цель: [color=green]{$state}[/color]
+abductor-target-detected = цель: [color=green]{ $state }[/color]
 abductor-experimentator-connected = эксперементатор: [color=green]подключён[/color]
 abductor-experimentator-not-connected = эксперементатор: [color=red]не подключён[/color]
 abductor-victim-none = жертва: [color=red]ОТСУТСТВУЕТ[/color]
-abductor-victim-detected = жертва: [color=green]{$victim}[/color]
-
+abductor-victim-detected = жертва: [color=green]{ $victim }[/color]
 abductors-ui-shop-Wonderprod = Чудо-палка
 abductors-ui-shop-WeaponAlien = Инопланетный пистолет
 abductors-ui-shop-ClothingHeadHelmetAbductor = Шлем

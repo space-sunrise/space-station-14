@@ -14,6 +14,7 @@ using Content.Shared._Sunrise.Medical.Surgery.Effects.Step;
 using Content.Shared._Sunrise.Medical.Surgery.Events;
 using Content.Shared._Sunrise.Medical.Surgery.Steps.Parts;
 using Content.Shared._Sunrise.VentCraw;
+using Content.Shared.CombatMode.Pacification;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Medical.Surgery;
@@ -92,6 +93,8 @@ public sealed partial class OrganSystem : EntitySystem
             victim.Organ = ent.Comp.Organ;
         if (ent.Comp.Organ == AbductorOrganType.Vent)
             AddComp<VentCrawlerComponent>(args.Body);
+        if (ent.Comp.Organ == AbductorOrganType.Pacified)
+            AddComp<PacifiedComponent>(args.Body);
     }
     private void OnAbductorOrganExtracted(Entity<AbductorOrganComponent> ent, ref SurgeryOrganExtracted args)
     {
@@ -101,6 +104,8 @@ public sealed partial class OrganSystem : EntitySystem
 
         if (ent.Comp.Organ == AbductorOrganType.Vent)
             RemComp<VentCrawlerComponent>(args.Body);
+        if (ent.Comp.Organ == AbductorOrganType.Pacified)
+            RemComp<PacifiedComponent>(args.Body);
     }
 
     //

@@ -1,6 +1,6 @@
 using System.Linq;
+using Content.Server.Popups;
 using Content.Shared._Sunrise.StarlightAction;
-using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
@@ -8,7 +8,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared._Sunrise.Antags.Abductor;
-using Content.Shared._Sunrise.Medical.Surgery;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -25,6 +24,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly InventorySystem _inv = default!;
     [Dependency] private readonly StarlightActionsSystem _starlightActions = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
 
@@ -125,7 +125,11 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         despawnComp.Lifetime = 3.0f;
         _audioSystem.PlayPvs("/Audio/_Sunrise/Abductor/alien_teleport.ogg", effect);
 
-        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(3), new AbductorReturnDoAfterEvent(), ev.Performer);
+        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(3), new AbductorReturnDoAfterEvent(), ev.Performer)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true,
+        };
         _doAfter.TryStartDoAfter(doAfter);
         ev.Handled = true;
     }
@@ -197,6 +201,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnSendAgent(SendAgentEvent ev)
     {
+        // Если будет 2 шаттла абдукторов, то беды не миновать!
+        bool foundAny = false;
         var query = EntityQueryEnumerator<AbductorOnAlienPadComponent>(); // Щиткод, попробую поправить позже
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -211,8 +217,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
             var @event = new AbductorSendYourselfDoAfterEvent(GetNetCoordinates(ev.Target)); // не знаю пригодится ли тут дуафтер, нужно тестить с несколькими клиентами
             var doAfter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(5), @event, uid);
+            foundAny = true;
             _doAfter.TryStartDoAfter(doAfter);
             ev.Handled = true;
+        }
+        if (!foundAny)
+        {
+            _popupSystem.PopupCursor("alian-pad-is-empty", ev.Performer);
         }
     }
 
@@ -249,19 +260,32 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void OnGizmoMark(GizmoMarkEvent ev)
     {
         if (!HasComp<AbductorComponent>(ev.Target))
+        {
+            _popupSystem.PopupCursor(Loc.GetString("target-is-not-abductor"), ev.Performer);
             return;
-
-        if (!_inv.TryGetSlotContainer(ev.Performer, "pocket1", out var pocket1, out _) || !_inv.TryGetSlotContainer(ev.Performer, "pocket2", out var pocket2, out _))
+        }
+        if (!_inv.TryGetSlotContainer(ev.Performer, "pocket1", out var pocket1, out _) ||
+            !_inv.TryGetSlotContainer(ev.Performer, "pocket2", out var pocket2, out _))
+        {
+            _popupSystem.PopupCursor(Loc.GetString("no-gizmo-in-pockets"), ev.Performer);
             return;
-
+        }
         var pocket1PossibleGizmo = pocket1.ContainedEntity;
         var pocket2PossibleGizmo = pocket2.ContainedEntity;
 
         if (TryComp<AbductorGizmoComponent>(pocket1PossibleGizmo, out var pocket1Gizmo))
+        {
             pocket1Gizmo.Target = GetNetEntity(ev.Target);
-        else if (TryComp<AbductorGizmoComponent>(pocket2PossibleGizmo, out var pocket2Gizmo))
+            _popupSystem.PopupCursor(Loc.GetString("gizmo-is-successfully-filled"), ev.Performer);
+            return;
+        }
+        if (TryComp<AbductorGizmoComponent>(pocket2PossibleGizmo, out var pocket2Gizmo))
+        {
             pocket2Gizmo.Target = GetNetEntity(ev.Target);
-
+            _popupSystem.PopupCursor(Loc.GetString("gizmo-is-successfully-filled"), ev.Performer);
+            return;
+        }
+        _popupSystem.PopupCursor(Loc.GetString("gizmo-is-not-in-pockets"), ev.Performer);
     }
 
     private void OnExit(ExitConsoleEvent ev) => OnCameraExit(ev.Performer);

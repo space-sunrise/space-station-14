@@ -1,7 +1,6 @@
 roadmap-available-now = Уже доступно
 roadmap-in-progress = В разработке
 roadmap-planned = Запланировано
-
 fugitive-name = Беглец
 fugitive-desc = Сбежавший заключенный, цель которого - выжить.
 planet-prison-name = Планетарная тюрьма

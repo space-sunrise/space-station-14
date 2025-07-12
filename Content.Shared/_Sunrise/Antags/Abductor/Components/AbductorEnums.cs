@@ -12,11 +12,12 @@ public enum AbductorOrganType : byte
 {
     None,
     Health,
-    Plasma,
     Gravity,
     Egg,
     Spider,
-    Vent
+    Vent,
+    Pacified,
+    Ephedrine,
 }
 [Serializable, NetSerializable]
 public enum AbductorArmorModeType : byte
