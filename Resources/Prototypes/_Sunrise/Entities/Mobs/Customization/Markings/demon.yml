@@ -281,25 +281,25 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
-  sprites: 
+  sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_fishnet
-  
+
   - type: marking
-  id: TailFurHuge
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Demon]
-  sprites: 
-  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
-    state: tail_huge
+    id: TailFurHuge
+    bodyPart: Tail
+    markingCategory: Tail
+    speciesRestriction: [Demon]
+    sprites:
+    - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+      state: tail_huge
 
 - type: marking
   id: TailDoubleFishnet
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
-  sprites: 
+  sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_fishnet_double
 
@@ -308,7 +308,7 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
-  sprites: 
+  sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_two_divorced
 
@@ -317,7 +317,7 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
-  sprites: 
+  sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_very_long
 
@@ -326,7 +326,7 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
-  sprites: 
+  sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_arrow
 
@@ -335,7 +335,7 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
-  sprites: 
+  sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_tifling
 
