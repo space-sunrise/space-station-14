@@ -9,7 +9,7 @@ public sealed class EntityTextureTag : BaseTextureTag
 {
     public override string Name => "enttex";
 
-    public override bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
+    public override bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         control = null;
 

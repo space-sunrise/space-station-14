@@ -10,14 +10,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.UserInterface.RichText;
 
-public abstract class BaseTextureTag : IMarkupTag
+public abstract class BaseTextureTag : IMarkupTagHandler
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 
     public virtual string Name => "example";
 
-    public abstract bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control);
+    public abstract bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control);
 
     protected static bool TryDrawIcon(string rawPath, long scaleValue, [NotNullWhen(true)] out Control? control)
     {

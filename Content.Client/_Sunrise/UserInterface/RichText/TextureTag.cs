@@ -8,7 +8,7 @@ public sealed class TextureTag : BaseTextureTag
 {
     public override string Name => "tex";
 
-    public override bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
+    public override bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         control = null;
 
