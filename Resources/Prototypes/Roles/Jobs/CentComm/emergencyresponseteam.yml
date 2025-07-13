@@ -10,6 +10,13 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 # 5 hours
   accessGroups:
   - AllAccess
   access:
@@ -207,6 +214,13 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hours
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000 # 5 hours
   accessGroups:
   - AllAccess
   access:
@@ -291,6 +305,10 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hours
   accessGroups:
   - AllAccess
   access:
@@ -393,6 +411,13 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hours
   accessGroups:
   - AllAccess
   access:
