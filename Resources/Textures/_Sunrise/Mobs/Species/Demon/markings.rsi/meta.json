@@ -130,6 +130,42 @@
         {
             "name": "horns_thick",
             "directions": 4
+        },
+        {
+            "name": "arcana_ears_alt",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears",
+            "directions": 4
+        },
+        {
+            "name": "tail_arrow",
+            "directions": 4
+        },
+        {
+            "name": "tail_fishnet_double",
+            "directions": 4
+        },
+        {
+            "name": "tail_fishnet",
+            "directions": 4
+        },
+        {
+            "name": "tail_huge",
+            "directions": 4
+        },
+        {
+            "name": "tail_tifling",
+            "directions": 4
+        },
+        {
+            "name": "tail_two_divorced",
+            "directions": 4
+        },
+        {
+            "name": "tail_very_long",
+            "directions": 4
         }
     ]
 }

@@ -275,3 +275,84 @@
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: horns_slim
+
+- type: marking
+  id: TailFishnet
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_fishnet
+  
+  - type: marking
+  id: TailFurHuge
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_huge
+
+- type: marking
+  id: TailDoubleFishnet
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_fishnet_double
+
+- type: marking
+  id: TailDivorced
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_two_divorced
+
+- type: marking
+  id: TailVeryLong
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_very_long
+
+- type: marking
+  id: TailArrow
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_arrow
+
+- type: marking
+  id: TailTifling
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites: 
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_tifling
+
+- type: marking
+  id: EarsArcanaAlt
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: acrana_ears_alt
+
+- type: marking
+  id: EarsArcana
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: arcana_ears
