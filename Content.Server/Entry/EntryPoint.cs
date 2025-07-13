@@ -1,6 +1,7 @@
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.Entry;
 using Content.Server._Sunrise.GuideGenerator;
+using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Acz;
@@ -124,9 +125,10 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
 
-                IoCManager.Resolve<TTSManager>().Initialize(); // Sunrise-TTS
-                IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Hub
-                IoCManager.Resolve<ContributorsManager>().Initialize(); // Sunrise-Hub
+                IoCManager.Resolve<TTSManager>().Initialize(); // Sunrise-Edit
+                IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Edit
+                IoCManager.Resolve<ContributorsManager>().Initialize(); // Sunrise-Edit
+                IoCManager.Resolve<PlayerCacheManager>().Initialize(); // Sunrise-Edit
 
                 // Sunrise-Sponsors-Start
                 SunriseServerEntry.Init();

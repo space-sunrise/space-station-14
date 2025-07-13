@@ -9,6 +9,8 @@
       - Abductor
       - AbductorScientist
       - CanPilot
+      - DoorBumpOpener
+      - FootstepSound
 
 - type: entity
   name: abductor scientist

@@ -18,6 +18,9 @@ public enum AbductorOrganType : byte
     Vent,
     Pacified,
     Ephedrine,
+    Liar,
+    Owo,
+    EMP
 }
 [Serializable, NetSerializable]
 public enum AbductorArmorModeType : byte

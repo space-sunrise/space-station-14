@@ -113,8 +113,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                     && TryComp<MindComponent>(mindContainer.Mind.Value, out var mind)
                     && mind.Objectives.FirstOrDefault(HasComp<AbductConditionComponent>) is EntityUid objId
                     && TryComp<AbductConditionComponent>(objId, out var condition)
-                    && !condition.AbductedHashs.Contains(GetNetEntity(victim)))
+                    && !condition.AbductedHashs.Contains(GetNetEntity(victim))
+                    && !victimComp.IsExperimentCompleted)
                 {
+                    victimComp.IsExperimentCompleted = true;
                     condition.AbductedHashs.Add(GetNetEntity(victim));
                     condition.Abducted++;
                     component.Balance++;

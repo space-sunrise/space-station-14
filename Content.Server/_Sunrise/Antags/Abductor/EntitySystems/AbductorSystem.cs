@@ -100,8 +100,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 _eye.SetTarget(args.Actor, eye, eyeComp);
                 _eye.SetDrawFov(args.Actor, false);
 
-                if (!HasComp<StationAiOverlayComponent>(args.Actor))
-                    AddComp(args.Actor, new StationAiOverlayComponent { AllowCrossGrid = true });
                 if (!TryComp(eye, out RemoteEyeSourceContainerComponent? remoteEyeSourceContainerComponent))
                 {
                     remoteEyeSourceContainerComponent = new RemoteEyeSourceContainerComponent { Actor = args.Actor };
@@ -142,9 +140,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
             if (TryComp(actor, out EyeComponent? eyeComp))
             {
-                if (HasComp<StationAiOverlayComponent>(actor))
-                    RemComp<StationAiOverlayComponent>(actor);
-
                 _eye.SetVisibilityMask(actor, eyeComp.VisibilityMask ^ (int)VisibilityFlags.Abductor, eyeComp);
                 _eye.SetDrawFov(actor, true);
             }

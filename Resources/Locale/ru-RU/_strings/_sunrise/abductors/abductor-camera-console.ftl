@@ -3,6 +3,8 @@
 abductors-ui-beacons = Маяки
 abductors-ui-stations = < Станции
 abductor-camera-console-window = Перехваченные камеры
+abductor-stations = Доступные маяки
+abductor-camera-console-window-stations =  Станции
 
 # Роль призрака, задачи и т.д.
 

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+
+using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
@@ -155,7 +157,7 @@ public abstract class SharedPettingSystem : EntitySystem
     /// </summary>
     /// <param name="pet">Питомец</param>
     /// <param name="silent">Скрывать визуальные эффекты, звуки и попапы?</param>
-    private void Pet(Entity<PettableOnInteractComponent> pet, bool silent = false)
+    public void Pet(Entity<PettableOnInteractComponent> pet, bool silent = false)
     {
         // Проигрываем звук приручения, если он есть
         if (pet.Comp.PettingSuccessfulSound != null && !silent)

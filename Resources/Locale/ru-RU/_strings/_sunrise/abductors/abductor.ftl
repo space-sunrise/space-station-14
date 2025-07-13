@@ -18,3 +18,4 @@ target-is-not-abductor = Цель не является абдуктором!
 no-gizmo-in-pockets = В карманах отсутствует гизмо!
 gizmo-is-successfully-filled = Гизмо успешно заполнен
 gizmo-is-not-in-pockets = В карманах нету гизмо!
+owo-organ-transformation = ВЫ КОШКОФИЦИРОВАЛИСЬ!!

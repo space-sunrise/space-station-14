@@ -418,7 +418,10 @@ public abstract class SharedActionsSystem : EntitySystem
 
         if (user == target)
             return comp.CanTargetSelf;
-
+        // Sunrise-start
+        if (HasComp<AbductorComponent>(target))
+            return true;
+        // Sunrise-end
         var targetAction = Comp<TargetActionComponent>(uid);
         // not using the ValidateBaseTarget logic since its raycast fails if the target is e.g. a wall
         if (targetAction.CheckCanAccess)

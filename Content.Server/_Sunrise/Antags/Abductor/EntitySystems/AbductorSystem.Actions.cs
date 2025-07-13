@@ -27,7 +27,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
-
     private static readonly EntProtoId<InstantActionComponent> _sendAgent = "ActionSendAgent";
     private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";
     private static readonly EntProtoId<InstantActionComponent> _exitAction = "ActionExitConsole";
@@ -185,6 +184,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void OnSendYourself(SendYourselfEvent ev)
     {
         _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { ev.Performer }, Filter.Pvs(ev.Performer, entityManager: EntityManager));
+
         EnsureComp<TransformComponent>(ev.Performer, out var xform);
         var effectEnt = SpawnAttachedTo(_teleportationEffectEntity, xform.Coordinates);
         _xformSys.SetParent(effectEnt, ev.Performer);
@@ -194,8 +194,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         EnsureComp<TimedDespawnComponent>(effect, out var despawnComp);
 
         var @event = new AbductorSendYourselfDoAfterEvent(GetNetCoordinates(ev.Target));
+
         var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(5), @event, ev.Performer);
         _doAfter.TryStartDoAfter(doAfter);
+
         ev.Handled = true;
     }
 
@@ -207,6 +209,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         while (query.MoveNext(out var uid, out var comp))
         {
             _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { uid }, Filter.Pvs(uid, entityManager: EntityManager));
+
             EnsureComp<TransformComponent>(uid, out var xform);
             var effectEnt = SpawnAttachedTo(_teleportationEffectEntity, xform.Coordinates);
             _xformSys.SetParent(effectEnt, uid);
@@ -217,13 +220,17 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
             var @event = new AbductorSendYourselfDoAfterEvent(GetNetCoordinates(ev.Target)); // не знаю пригодится ли тут дуафтер, нужно тестить с несколькими клиентами
             var doAfter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(5), @event, uid);
+
             foundAny = true;
+
             _doAfter.TryStartDoAfter(doAfter);
             ev.Handled = true;
+
+            RemComp<AbductorOnAlienPadComponent>(uid);
         }
         if (!foundAny)
         {
-            _popupSystem.PopupCursor("alian-pad-is-empty", ev.Performer);
+            _popupSystem.PopupCursor(Loc.GetString("alian-pad-is-empty"), ev.Performer);
         }
     }
 
@@ -302,10 +309,16 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void RemoveActions(EntityUid actor)
     {
         EnsureComp<AbductorsAbilitiesComponent>(actor, out var comp);
+
         if (comp.ExitConsole is not null)
             _actions.RemoveAction(actor, comp.ExitConsole);
+
         if (comp.SendYourself is not null)
             _actions.RemoveAction(actor, comp.SendYourself);
+
+        if (comp.SendAgent is not null)
+            _actions.RemoveAction(actor, comp.SendAgent);
+
         if (comp.GizmoMark is not null)
             _actions.RemoveAction(actor, comp.GizmoMark);
 

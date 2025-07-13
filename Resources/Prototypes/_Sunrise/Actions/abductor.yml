@@ -91,7 +91,7 @@
   description: return to the ship.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 10
     priority: -12
     checkConsciousness: false
     checkCanInteract: false
