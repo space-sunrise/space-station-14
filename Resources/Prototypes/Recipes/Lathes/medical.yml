@@ -237,3 +237,28 @@
     Glass: 100
     Plastic: 100
 
+# Cloning Technology Recipes
+
+- type: latheRecipe
+  parent: [ BaseSilverCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: CloningPodMachineCircuitboard
+  result: CloningPodMachineCircuitboard
+  completetime: 8
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: MedicalScannerMachineCircuitboard
+  result: MedicalScannerMachineCircuitboard
+  completetime: 6
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: CloningConsoleComputerCircuitboard
+  result: CloningConsoleComputerCircuitboard
+  completetime: 10
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 300
+    Uranium: 100
+

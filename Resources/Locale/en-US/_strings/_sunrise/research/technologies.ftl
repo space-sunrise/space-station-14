@@ -5,6 +5,7 @@ research-technology-basic-cyberlimbs = Basic cyberlimbs
 research-technology-bluespace-ammo = Bluespace Syringegun Ammo
 research-technology-implant-extractor = Implant extractor
 research-technology-advanced-surgery = Advanced surgery
+research-technology-cloning-technology = Cloning Technology
 
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ

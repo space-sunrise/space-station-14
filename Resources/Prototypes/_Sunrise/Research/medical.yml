@@ -77,3 +77,17 @@
   cost: 12500
   recipeUnlocks:
   - ImplantExtractorMachineCircuitboard
+
+- type: technology
+  id: CloningTechnology
+  name: research-technology-cloning-technology
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  discipline: Biochemical
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - CloningPodMachineCircuitboard
+  - MedicalScannerMachineCircuitboard
+  - CloningConsoleComputerCircuitboard
