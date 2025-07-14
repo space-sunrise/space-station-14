@@ -29,3 +29,5 @@ marking-DemonHornsDirectional = направленные рожки, рога [N
 marking-DemonHornsThick = толстые рожки, рога [NEW]
 marking-DemonHornsSickle = серпообразные рожки, рога [NEW]
 marking-DemonHornsSlim = тонкие рожки, рога [NEW]
+marking-EarsArcanaAlt = ушки арканы альтернативные, уши [NEW]
+marking-EarsArcana = ушки арканы, уши [NEW]

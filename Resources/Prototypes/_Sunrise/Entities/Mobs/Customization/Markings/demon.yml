@@ -275,3 +275,21 @@
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: horns_slim
+
+- type: marking
+  id: EarsArcanaAlt
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: arcana_ears_alt
+
+- type: marking
+  id: EarsArcana
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: arcana_ears
