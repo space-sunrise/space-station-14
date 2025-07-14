@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By Discord @sokol9bl",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "points_moon-arms",
+            "directions": 4
+        },
+        {
+            "name": "points_moon-head",
+            "directions": 4
+        },
+        {
+            "name": "points_moon-legs",
+            "directions": 4
+        },
+        {
+            "name": "points_moon-chest",
+            "directions": 4
+        }
+    ]
+}
