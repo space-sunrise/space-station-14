@@ -54,3 +54,7 @@ ent-ClothingDemonWings = крылья демона
     .desc = Вы чувствуете демоническую силу.
 ent-ClothingArchangelWings = крылья архангела
     .desc = Вы чувствуете священную силу.
+ent-ClothingTechWings = энергетические крылья
+    .desc = Примите светлую сторону силы.
+ent-ClothingVoidWings = крылья бездны
+    .desc = Вы ощущаете взгляд дракона.

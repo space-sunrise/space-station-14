@@ -54,3 +54,7 @@ ent-ClothingDemonWings = demon wings
     .desc = You feel demonic power.
 ent-ClothingArchangelWings = archangel wings
     .desc = You feel the sacred power.
+ent-ClothingTechWings = energy wings
+    .desc = Embrace the light side of the force.
+ent-ClothingVoidWings = void wings
+    .desc = You feel the dragon's gaze.

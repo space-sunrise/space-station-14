@@ -252,6 +252,24 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Wings/archangel_wings.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingTechWings
+  name: Tech wings
+  description: The wings of Tech.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Wings/tech_wings.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingVoidWings
+  name: Void wings
+  description: You feel the void power.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Wings/void_wings.rsi
+
  #Для ивентов
 
 - type: entity
