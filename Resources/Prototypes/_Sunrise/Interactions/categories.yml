@@ -1,0 +1,15 @@
+- type: interactionCategory
+  id: Face
+  name: Лицо
+
+- type: interactionCategory
+  id: Friendly
+  name: Дружба
+
+- type: interactionCategory
+  id: Tail
+  name: Хвост
+
+- type: interactionCategory
+  id: Neck
+  name: Шея

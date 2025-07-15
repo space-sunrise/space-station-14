@@ -19,6 +19,7 @@ ui-options-function-toggle-standing = Лечь/Встать
 ui-options-function-cock-gun = Взвести оружие/Разрядить
 ui-options-function-jump = Прыжок
 ui-options-function-reloading = Перезарядка
+ui-options-function-interact = Открыть панель взаимодействий
 ui-options-function-look-up = Присмотреться/Прицелиться
 ui-options-function-auto-get-up = Автоматически вставать при падении
 ui-options-function-hold-look-up = Удерживать клавишу для прицеливания

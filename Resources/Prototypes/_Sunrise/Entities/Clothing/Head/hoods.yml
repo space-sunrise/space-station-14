@@ -10,6 +10,13 @@
     state: icon
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hoods/blackcloak.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
@@ -30,3 +37,10 @@
       - state: coatybits-equipped-HELMET
         color: "#109992"
       - state: winterbits-equipped-HELMET
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT

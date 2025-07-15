@@ -192,6 +192,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.CockGun);
             AddButton(ContentKeyFunctions.Jump);
             AddButton(ContentKeyFunctions.Reloading);
+            AddButton(ContentKeyFunctions.Interact);
             // Sunrise
 
             AddHeader("ui-options-header-interaction-adv");

@@ -128,7 +128,7 @@
 
 #### Medical
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: ClothingHandsSmooth # SUNRISE EDIT
   id: ClothingHandsGlovesLatex
   name: latex gloves
   description: Thin sterile latex gloves. Basic PPE for any doctor.
@@ -142,7 +142,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: ClothingHandsSmooth # SUNRISE EDIT
   id: ClothingHandsGlovesNitrile
   name: nitrile gloves
   description: High-quality nitrile gloves. Expensive medical PPE.
@@ -211,7 +211,7 @@
   # Sunrise-end
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: [ClothingHandsSmooth, BaseToggleClothing, BaseMajorContraband] # SUNRISE EDIT
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -323,7 +323,7 @@
     fiberColor: fibers-olive
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: ClothingHandsSmooth # SUNRISE EDIT
   id: ClothingHandsGlovesFingerless
   name: fingerless gloves
   description: Plain black gloves without fingertips for the hard working.
@@ -359,7 +359,7 @@
         Heat: 0 # no protection
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: ClothingHandsSmooth # SUNRISE EDIT
   id: ClothingHandsGlovesMercFingerless
   name: mercenary fingerless gloves
   description: Gloves that may not protect you from finger burns, but will make you cooler.
@@ -439,7 +439,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHandsBase, BaseSecurityContraband]
+  parent: [ClothingHandsSmooth, BaseSecurityContraband] # SUNRISE EDIT
   id: ClothingHandsGlovesForensic
   name: forensic gloves
   description: Do not leave fibers or fingerprints. If you work without them, you're A TERRIBLE DETECTIVE.

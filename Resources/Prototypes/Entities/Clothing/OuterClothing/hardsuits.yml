@@ -100,6 +100,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
     - HardsuitSpatio
 
@@ -558,6 +559,7 @@
     tags:
     - MonkeyWearable
     - Hardsuit
+    - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
   - type: StaticPrice
     price: 5000
@@ -578,6 +580,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
   - type: ExplosionResistance #Sunrise-start
     damageCoefficient: 0.35
@@ -708,6 +711,7 @@
   - type: Tag
     tags:
     - MonkeyWearable
+    - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
 
 #Wizard Hardsuit
@@ -916,6 +920,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
 
 #ERT Janitor Hardsuit

@@ -12,6 +12,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -29,6 +30,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -44,6 +46,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -59,6 +62,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -74,6 +78,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -89,6 +94,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -104,6 +110,7 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon
 
 - type: entity
@@ -121,4 +128,5 @@
   - type: Tag
     tags:
       - Medal
+      - OpenNeck # INTERACTIONS
       - WhitelistChameleon

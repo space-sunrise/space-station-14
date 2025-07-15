@@ -1,0 +1,119 @@
+- type: interactionSound
+  id: FacePatsSound
+  name: "Шорох одежды"
+  sound: /Audio/_Sunrise/Interactions/clothes_rub.ogg
+
+- type: interactionSound
+  id: FaceLickDoggyStyleSound1
+  name: "Лизание 1"
+  sound: /Audio/_Sunrise/Interactions/lick1.ogg
+
+- type: interactionSound
+  id: FaceLickDoggyStyleSound2
+  name: "Лизание 2"
+  sound: /Audio/_Sunrise/Interactions/lick2.ogg
+
+- type: interactionSound
+  id: FriendlyHandshakeSound
+  name: "Пожатие рук"
+  sound: /Audio/_Sunrise/Interactions/handshake/handshake.ogg
+
+- type: interactionSound
+  id: FriendlyPatShoulderSound
+  name: "Хлопок по плечу"
+  sound: /Audio/_Sunrise/Interactions/clap/sev_clap.ogg
+
+- type: interactionSound
+  id: FriendlyNeckChockSound1
+  name: "Удушение 1"
+  sound: /Audio/_Sunrise/Interactions/chock/neckchock_1.ogg
+
+- type: interactionSound
+  id: FriendlyNeckChockSound2
+  name: "Удушение 2"
+  sound: /Audio/_Sunrise/Interactions/chock/neckchock_2.ogg
+
+- type: interactionSound
+  id: FriendlyFive1
+  name: "Дать пять 1"
+  sound: /Audio/_Sunrise/Interactions/chock/five1.ogg
+
+- type: interactionSound
+  id: FriendlyFive2
+  name: "Дать пять 2"
+  sound: /Audio/_Sunrise/Interactions/chock/five2.ogg
+
+- type: interactionSound
+  id: FriendlyFive3
+  name: "Дать пять 3"
+  sound: /Audio/_Sunrise/Interactions/chock/five3.ogg
+
+- type: interactionSound
+  id: FriendlyXZ
+  name: "Шелест"
+  sound: /Audio/_Sunrise/Interactions/coolpose/coolpose.ogg
+
+- type: interactionSound
+  id: FriendlySlap1
+  name: "Шлепок 1"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_1.ogg
+
+- type: interactionSound
+  id: FriendlySlap2
+  name: "Шлепок 2"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_2.ogg
+
+- type: interactionSound
+  id: FriendlySlap3
+  name: "Шлепок 3"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_3.ogg
+
+- type: interactionSound
+  id: FriendlySlap4
+  name: "Шлепок 4"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_4.ogg
+
+- type: interactionSound
+  id: FriendlySlap5
+  name: "Шлепок 5"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_5.ogg
+
+- type: interactionSound
+  id: FriendlySlap6
+  name: "Шлепок 6"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_6.ogg
+
+- type: interactionSound
+  id: FriendlySlap7
+  name: "Шлепок 7"
+  sound: /Audio/_Sunrise/Interactions/slap/slap_7.ogg
+
+- type: interactionSound
+  id: FriendlySniff1
+  name: "Обнюхивание 1"
+  sound: /Audio/_Sunrise/Interactions/sniff/sniff_1.ogg
+
+- type: interactionSound
+  id: FriendlySniff2
+  name: "Обнюхивание 2"
+  sound: /Audio/_Sunrise/Interactions/sniff/sniff_2.ogg
+
+- type: interactionSound
+  id: FriendlyStroke
+  name: "Поглаживание"
+  sound: /Audio/_Sunrise/Interactions/stroke/stroke_1.ogg
+
+- type: interactionSound
+  id: FelinidPurrs
+  name: "Мурлыкание"
+  sound: /Audio/_Sunrise/Voice/Felinid/cat_purr1.ogg
+
+- type: interactionSound
+  id: FriendlySalute
+  name: "Салют"
+  sound: /Audio/Effects/Emotes/salute.ogg
+
+- type: interactionSound
+  id: FriendlyThudswoosh
+  name: "Обнимашки"
+  sound: /Audio/Effects/thudswoosh.ogg
