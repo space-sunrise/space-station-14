@@ -527,13 +527,6 @@
   name: ERT leader (Veteran)
   suffix: ERTRole, Amber, Uplink, Veteran
   components:
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: ertleader
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirstLeader
-      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTLeaderAmberVeteran
 
