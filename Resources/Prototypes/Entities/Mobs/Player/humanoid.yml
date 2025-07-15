@@ -183,6 +183,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecter
+  parent: ERTLeaderEVA
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -196,7 +197,6 @@
   - Demon
   - SlimePerson
   - Dwarf
-  parent: ERTLeaderEVA
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
@@ -204,7 +204,7 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
-      job: ERTLeader
+      job: ERTLeaderVeteran
     - type: Loadout
       prototypes: [ ERTLeaderGearEVALecter ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -870,14 +870,6 @@
   name: ERT leader (Veteran)
   suffix: ERTRole, Veteran
   components:
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: ertleader
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirstLeader
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTLeaderVeteran
 
@@ -1233,19 +1225,6 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVAVeteran
-  speciesBlacklist: # Sunrise-edit
-  - Diona
-  - Vox
-  - Felinid
-  - Moth
-  - Arachnid
-  - Reptilian
-  - Vulpkanin
-  - Swine
-  - Tajaran
-  - Demon
-  - SlimePerson
-  - Dwarf
   parent: ERTLeaderEVA
   components:
     - type: GhostRole
@@ -1270,6 +1249,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecterVeteran
+  parent: ERTLeaderEVALecter
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -1283,7 +1263,6 @@
   - Demon
   - SlimePerson
   - Dwarf
-  parent: ERTLeaderEVALecter
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
