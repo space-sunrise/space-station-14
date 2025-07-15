@@ -16,10 +16,10 @@
       time: 36000 # 10 hours
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 36000 # 10 hours
+      time: 18000 # 5 hours
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 # 10 hours
+      time: 18000 # 5 hours
     - !type:DepartmentTimeRequirement
       department: Command
       time: 18000 # 5 hours
@@ -562,7 +562,7 @@
     eyes: ClothingEyesGlassesSunglasses
 
 # --- VETERAN VARIANTS (Strict requirements, for admin/event use) ---
-
+# Sunrise start
 - type: job
   id: ERTLeaderVeteran
   name: job-name-ertleader-veteran
@@ -743,4 +743,5 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+# Sunrise end
 
