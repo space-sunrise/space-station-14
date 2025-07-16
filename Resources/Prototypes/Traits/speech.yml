@@ -104,7 +104,7 @@
   cost: 1
   components:
   - type: ReplacementAccent
-    accent: MoldovanAccent
+    accent: moldovan
 
 # 2 Cost
 

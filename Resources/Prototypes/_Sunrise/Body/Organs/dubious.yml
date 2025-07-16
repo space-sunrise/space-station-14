@@ -165,7 +165,7 @@
   table: !type:GroupSelector
     children:
       - id: OrganDubiousHealth
-      - id: OrganDubiousPlasma
+      #- id: OrganDubiousPlasma
       - id: OrganDubiousGravity
       - id: OrganDubiousEgg
       - id: OrganDubiousSpider

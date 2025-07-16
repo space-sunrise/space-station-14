@@ -402,3 +402,51 @@
 
 - type: Tag
   id: DockMining
+
+### INTERACTION TAGS ###
+# Как одежда закрывает/не закрывает ту или иную область тела
+
+- type: Tag
+  id: CommandSuit
+
+# face
+# Лицо закрыто
+- type: Tag
+  id: FaceCovered
+
+# head
+# Голова полностью закрыта (например шлемом скафандра, капюшоном)
+- type: Tag
+  id: FullCovered
+
+# jumpsuit
+# Открыто снизу (например юбки)
+- type: Tag
+  id: NudeBottom
+
+# jumpsuit
+# Всё открыто (например фартук)
+- type: Tag
+  id: NudeFull
+
+# jumpsuit
+# Открыто сверху (например боксёрские шорты)
+- type: Tag
+  id: NudeTop
+
+# neck
+# Открыта шея (например бейджики, пины)
+- type: Tag
+  id: OpenNeck
+
+# gloves
+# Гладкие перчатки (например медицинские)
+- type: Tag
+  id: SmoothGloves
+
+# head
+# Закрыто только сверху (шлюяпы, кепки)
+- type: Tag
+  id: TopCovered
+
+### INTERACTION TAGS ###

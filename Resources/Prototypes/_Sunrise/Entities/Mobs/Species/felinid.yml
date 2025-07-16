@@ -10,8 +10,6 @@
   - type: Speech
     speechVerb: Felinid
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
-  - type: Sprite
-    scale: 0.72, 0.72
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -521,6 +519,8 @@
       types:
         Blunt: 5
     damageSound: /Audio/Effects/hit_kick.ogg
+  - type: ScaleSprite
+    scale: 0.72, 0.72
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

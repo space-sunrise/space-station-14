@@ -1,7 +1,6 @@
 #Horns
 - type: marking
   id: ReptilianHornsArgali2
-  name: Унатх, рожки (Толстый Аргали)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -11,7 +10,6 @@
 
 - type: marking
   id: ReptilianHornsAyrshire2
-  name: Унатх, рожки (Толстый Аиршир)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -21,7 +19,6 @@
 
 - type: marking
   id: ReptilianHornsBambi
-  name: Унатх, рожки (Оленьи)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -31,7 +28,6 @@
 
 - type: marking
   id: ReptilianHornsBig
-  name: Унатх, рожки (Большие Рога)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -41,7 +37,6 @@
 
 - type: marking
   id: ReptilianHornsBighorn2
-  name: Унатх, рожки (Большой Толсторог)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -51,7 +46,6 @@
 
 - type: marking
   id: ReptilianHornsCorkscrew
-  name: Унатх, рожки (Вытянутые)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -61,7 +55,6 @@
 
 - type: marking
   id: ReptilianHornsDeathclaw
-  name: Унатх, рожки (Коготь смерти)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -71,7 +64,6 @@
 
 - type: marking
   id: ReptilianHornsDeathclawgreat
-  name: Унатх, рожки (Большой Коготь смерти)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -81,7 +73,6 @@
 
 - type: marking
   id: ReptilianHornsDouble2
-  name: Унатх, рожки (Двойные)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -91,7 +82,6 @@
 
 - type: marking
   id: ReptilianHornsDragon
-  name: Унатх, рожки (Дракон)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -101,7 +91,6 @@
 
 - type: marking
   id: ReptilianHornsMohawk
-  name: Унатх, рожки (Шипы)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -111,7 +100,6 @@
 
 - type: marking
   id: ReptilianHornsOlddragon
-  name: Унатх, рожки (Старый Дракон)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -121,7 +109,6 @@
 
 - type: marking
   id: ReptilianHornsMyrsore2
-  name: Унатх, рожки (Толстый Мирсор)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -131,7 +118,6 @@
 
 - type: marking
   id: ReptilianHornsTrike
-  name: Унатх, рожки (Тройные)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -141,7 +127,6 @@
 
 - type: marking
   id: ReptilianHornsFullSpike
-  name: Унатх, рожки (Шипастая голова)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -151,7 +136,6 @@
 
 - type: marking
   id: ReptilianHornsLittleTrike
-  name: Унатх, рожки (Маленький рог)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
@@ -162,7 +146,6 @@
 #Tails
 - type: marking
   id: ReptilianTailCurved
-  name: Унатх, хвост (Изогнутый)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -174,7 +157,6 @@
 
 - type: marking
   id: ReptilianTailFlexible
-  name: Унатх, хвост (Гибкий)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -186,7 +168,6 @@
 
 - type: marking
   id: ReptilianTailSpiky
-  name: Унатх, хвост (Колючий)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -198,7 +179,6 @@
 
 - type: marking
   id: ReptilianTailRidge
-  name: Унатх, хвост (Плавник)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -212,7 +192,6 @@
 
 - type: marking
   id: ReptilianTailSpike
-  name: Унатх, хвост (Шипастый)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -224,7 +203,6 @@
 
 - type: marking
   id: ReptilianTailOverBig
-  name: Унатх, хвост (Длинный)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -236,7 +214,6 @@
 
 - type: marking
   id: ReptilianTailOverBigSpike
-  name: Унатх, хвост (Длинный с шипами)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -248,7 +225,6 @@
 
 - type: marking
   id: ReptilianTailUltraBig
-  name: Унатх, хвост (Очень длинный)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -260,7 +236,6 @@
 
 - type: marking
   id: ReptilianTailUltraBigSpike
-  name: Унатх, хвост (Очень длинный с шипами)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -272,7 +247,6 @@
 
 - type: marking
   id: ReptilianTailUltraBigRidge
-  name: Унатх, хвост (очень длинный с плавником)
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
@@ -287,7 +261,6 @@
 #Body
 - type: marking
   id: ReptilianChestPrickly
-  name: Унатх, шипы на спине (Колючая спина)
   bodyPart: Back
   markingCategory: Back
   speciesRestriction: [Reptilian]
@@ -297,7 +270,6 @@
 
 - type: marking
   id: ReptilianChestRidge
-  name: Унатх, спина (Гребень)
   bodyPart: Back
   markingCategory: Back
   speciesRestriction: [Reptilian]
@@ -307,7 +279,6 @@
 
 - type: marking
   id: ReptilianChestUnderbellyF
-  name: Унатх, тело (женское подбрюшье)
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Reptilian]
@@ -317,7 +288,6 @@
 
 - type: marking
   id: ReptilianChestRidgeDouble
-  name: Унатх, спина (Двойной гребень)
   bodyPart: Back
   markingCategory: Back
   speciesRestriction: [Reptilian]
@@ -327,7 +297,6 @@
 
 - type: marking
   id: ReptilianChestRidgeSmall
-  name: Унатх, спина (Маленький гребень)
   bodyPart: Back
   markingCategory: Back
   speciesRestriction: [Reptilian]
@@ -338,7 +307,6 @@
 #Frills
 - type: marking
   id: ReptilianFrillsCollar
-  name: Унатх, Воротник (Воротник)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -350,7 +318,6 @@
 
 - type: marking
   id: ReptilianFrillsFins
-  name: Унатх, Воротник (Головной плавник)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -362,7 +329,6 @@
 
 - type: marking
   id: ReptilianFrillsFinsKing
-  name: Унатх, Воротник (Королевский плавник)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -374,7 +340,6 @@
 
 - type: marking
   id: ReptilianFrillsFinsBig
-  name: Унатх, Воротник (Головной плавник широкий)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -386,7 +351,6 @@
 
 - type: marking
   id: ReptilianFrillsRidge
-  name: Унатх, Воротник (Плавник)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -396,7 +360,6 @@
 
 - type: marking
   id: ReptilianFrillsRidgeFull
-  name: Унатх, Воротник (Полноголовый плавник)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -406,7 +369,6 @@
 
 - type: marking
   id: ReptilianFrillsRidgeSmall
-  name: Унатх, Воротник (Маленький плавник)
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
@@ -417,7 +379,6 @@
 #Snout
 - type: marking
   id: ReptilianSnoutFlat
-  name: Унатх, Морда (Плоская)
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
@@ -428,7 +389,6 @@
 
 - type: marking
   id: ReptilianSnoutHigh
-  name: Унатх, Морда (Высокая)
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
@@ -439,7 +399,6 @@
 
 - type: marking
   id: ReptilianSnoutCroc
-  name: Унатх, Морда (Крокодил)
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
@@ -450,7 +409,6 @@
 
 - type: marking
   id: ReptilianSnoutTumb
-  name: Унатх, Морда (Горб)
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
@@ -461,7 +419,6 @@
 
 - type: marking
   id: ReptilianSnoutBeak
-  name: Унатх, Морда (Клюв)
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
@@ -472,7 +429,6 @@
 
 - type: marking
   id: ReptilianSnoutSmall
-  name: Унатх, Морда (Маленький нос)
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true

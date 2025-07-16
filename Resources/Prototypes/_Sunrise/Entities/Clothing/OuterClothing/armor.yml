@@ -20,6 +20,12 @@
           Heat: 0.5
     - type: ExplosionResistance
       damageCoefficient: 0.65
+  # SUNRISE EDIT
+    - type: Tag
+      tags:
+      - NudeBottom  # INTERACTIONS
+      - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterArmorBasic
@@ -43,6 +49,12 @@
     damageCoefficient: 0.9
   - type: Item
     size: Huge
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - NudeBottom  # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -77,6 +89,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - FullBodyOuter  # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseCentcommContraband ]

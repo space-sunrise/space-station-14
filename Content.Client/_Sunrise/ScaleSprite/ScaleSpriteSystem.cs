@@ -1,26 +1,23 @@
 using System.Numerics;
 using Content.Shared._Sunrise.ScaleSprite;
-using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Maths;
 
 namespace Content.Client._Sunrise.ScaleSprite;
 
-public sealed class ScaleVisualsSystem : EntitySystem
+public sealed class ScaleSpriteSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ScaleSpriteComponent, AfterAutoHandleStateEvent>(OnComponentInit);
+        SubscribeLocalEvent<ScaleSpriteComponent, AppearanceChangeEvent>(OnChangeData);
     }
 
-    private void OnComponentInit(Entity<ScaleSpriteComponent> ent, ref AfterAutoHandleStateEvent args)
+    private void OnChangeData(EntityUid uid, ScaleSpriteComponent component, ref AppearanceChangeEvent ev)
     {
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
+        if (!ev.AppearanceData.TryGetValue(ScaleSpriteVisuals.Scale, out var scale) || ev.Sprite == null)
             return;
 
-        _sprite.SetScale((ent.Owner, sprite), sprite.Scale * ent.Comp.Scale);
+        _sprite.SetScale((uid, ev.Sprite), (Vector2)scale);
     }
 }

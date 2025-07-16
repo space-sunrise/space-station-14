@@ -18,6 +18,13 @@
     - state: icon_flipped
       map: ["foldedLayer"]
       visible: false
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - TopCovered # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -39,6 +46,14 @@
     - state: icon_flipped
       map: ["foldedLayer"]
       visible: true
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - TopCovered # INTERACTIONS
+  # SUNRISE EDIT
+
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable

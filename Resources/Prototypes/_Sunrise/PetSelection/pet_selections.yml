@@ -3,35 +3,35 @@
   name: pet-selection-rabbit-name
   description: pet-selection-rabbit-description
   petEntity: PetRabbit
-  sponsorOnly: false
+  sponsorOnly: true
 
 - type: petSelection
   id: PetSelectionAnteater
   name: pet-selection-anteater-name
   description: pet-selection-anteater-description
   petEntity: PetAnteater
-  sponsorOnly: false
+  sponsorOnly: true
 
 - type: petSelection
   id: PetSelectionOctopus
   name: pet-selection-octopus-name
   description: pet-selection-octopus-description
   petEntity: PetOctopus
-  sponsorOnly: false
+  sponsorOnly: true
 
 - type: petSelection
   id: PetSelectionOtter
   name: pet-selection-otter-name
   description: pet-selection-otter-description
   petEntity: PetOtter
-  sponsorOnly: false
+  sponsorOnly: true
 
 - type: petSelection
   id: PetSelectionNavySeal
   name: pet-selection-navy-seal-name
   description: pet-selection-navy-seal-description
   petEntity: PetNavySeal
-  sponsorOnly: false
+  sponsorOnly: true
 
 - type: petSelection
   id: PetSelectionAlexander

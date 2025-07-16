@@ -51,8 +51,8 @@
       weight: 3
     - id: SunriseEffectPolyTable
       weight: 3
-    - id: SunriseEffectSwap
-      weight: 3
+    #- id: SunriseEffectSwap
+    #  weight: 3
     - id: SunriseEffectRandomTransformation
       weight: 1
     - id: SunriseEffectMagnetUltra
