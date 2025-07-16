@@ -19,6 +19,8 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
+    private const string DeathSquadLawsetId = "DeathSquadLawset";
+
     protected override void Started(EntityUid uid, StationEventComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
@@ -26,7 +28,7 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
         if (!TryGetRandomStation(out var chosenStation))
             return;
 
-        var lawsetId = "DeathSquadLawset";
+        var lawsetId = DeathSquadLawsetId;
         if (!_prototypeManager.TryIndex<SiliconLawsetPrototype>(lawsetId, out var lawsetProto))
         {
             Logger.GetSawmill("station-event").Error($"Could not find lawset prototype: {lawsetId}");
