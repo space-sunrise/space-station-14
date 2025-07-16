@@ -4,6 +4,11 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
+using Content.Server.Silicons.Borgs;
+using Content.Server.SyndicateTeleporter;
+using Content.Shared.Emag.Systems;
+using Content.Shared.NPC.Components;
+using Content.Shared.Tag;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -11,6 +16,8 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     protected override void Started(EntityUid uid, StationEventComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -37,6 +44,12 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
         var query = EntityQueryEnumerator<SiliconLawProviderComponent>();
         while (query.MoveNext(out var ent, out var provider))
         {
+            // Skip EMAGed borgs
+            if (_emag.CheckFlag(ent, EmagType.Interaction))
+                continue;
+            // Skip Syndicate borgs
+            if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is {} factions && factions.Contains("Syndicate"))
+                continue;
             _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);
         }
     }

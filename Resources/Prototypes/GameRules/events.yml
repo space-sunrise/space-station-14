@@ -706,9 +706,5 @@
   parent: BaseStationEvent
   components:
   - type: StationEvent
-    startAnnouncement: station-event-epsilon-deathsquad-announcement
-    startAnnouncementColor: "#8B0000"
-    startAudio:
-      path: /Audio/Misc/epsilon.ogg
     weight: 0 # Only triggered by code/admin
     duration: 1
