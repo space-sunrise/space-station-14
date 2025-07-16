@@ -975,3 +975,12 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
     state: points_moon-paws
+
+- type: marking
+  id: VulpSnoutSpots
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
+    state: face_spots

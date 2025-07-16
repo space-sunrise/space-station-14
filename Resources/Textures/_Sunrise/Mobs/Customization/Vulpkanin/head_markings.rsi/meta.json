@@ -55,6 +55,10 @@
     {
       "name": "vulpine-lines",
       "directions": 4
+    },
+    {
+      "name": "face_spots",
+      "directions": 4
     }
   ]
 }
