@@ -22,6 +22,14 @@
         {
             "name": "points_moon-chest",
             "directions": 4
+        },
+        {
+            "name": "points_moon-paws",
+            "directions": 4
+        },
+        {
+            "name": "points_moon-hands",
+            "directions": 4
         }
     ]
 }

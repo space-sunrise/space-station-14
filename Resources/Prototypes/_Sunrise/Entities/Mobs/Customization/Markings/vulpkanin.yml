@@ -957,3 +957,21 @@
     state: main_moon
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/ear_markings.rsi
     state: inner_moon
+
+- type: marking
+  id: VulpMoonHands
+  markingCategory: Overlay
+  bodyPart: RHand
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-hands
+
+- type: marking
+  id: VulpMoonPaws
+  markingCategory: Overlay
+  bodyPart: RFoot
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-paws
