@@ -26,7 +26,21 @@ public sealed class AlertLevelSystem : EntitySystem
     {
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
+        // Sunrise start - Epsilon alert silicon lawset event
+        SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+        // Sunrise end
     }
+
+    // Sunrise start - Epsilon alert silicon lawset event
+    [Dependency] private readonly GameTicking.GameTicker _gameTicker = default!;
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    {
+        if (ev.AlertLevel == "epsilon")
+        {
+            _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+        }
+    }
+    // Sunrise end
 
     public override void Update(float time)
     {
