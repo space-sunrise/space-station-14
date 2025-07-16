@@ -793,3 +793,67 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
     state: hair_medium_disheveled
+
+- type: marking
+  id: HairBunWithTail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_bun-with-tail
+
+- type: marking
+  id: HairBunWithTailAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_bun-with-tail2
+
+- type: marking
+  id: HairGluckosa
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_gluckosa
+
+- type: marking
+  id: HairAppleJack
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_applejack
+
+- type: marking
+  id: HairPinkiePie
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_pinkie-pie
+
+- type: marking
+  id: HairRarity
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_rarity
+
+- type: marking
+  id: HairAqua
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_aqua
+
+- type: marking
+  id: HairBairdAndBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: hair_baird-and-bangs
