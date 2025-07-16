@@ -21,7 +21,7 @@ public sealed class AlertLevelSystem : EntitySystem
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
-
+    private const string EpsilonAlertLevel = "epsilon";
     public override void Initialize()
     {
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
@@ -35,7 +35,7 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly GameTicking.GameTicker _gameTicker = default!;
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
-        if (ev.AlertLevel == "epsilon")
+        if (ev.AlertLevel == EpsilonAlertLevel)
         {
             _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
         }
