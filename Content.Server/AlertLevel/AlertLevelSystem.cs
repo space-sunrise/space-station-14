@@ -35,7 +35,15 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly GameTicking.GameTicker _gameTicker = default!;
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
-        if (ev.AlertLevel == "epsilon")
+    private const string EpsilonAlertLevel = "epsilon";
+
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    {
+        if (ev.AlertLevel == EpsilonAlertLevel)
+        {
+            _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+        }
+    }
         {
             _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
         }
