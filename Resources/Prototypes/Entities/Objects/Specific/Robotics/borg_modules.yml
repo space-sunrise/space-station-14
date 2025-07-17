@@ -521,6 +521,7 @@
   - type: ItemBorgModule
     items:
     - MiningDrillDiamond
+    - WeaponPlasmaCutterBorg # Sunrise-Edit
     - Shovel
     - AdvancedMineralScannerUnpowered
     - OreBagOfHolding
@@ -607,6 +608,7 @@
     - GasAnalyzer
     - HolofanProjectorBorg
     - GeigerCounter
+    - AtmosAlertsMonitorUnpowered
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: rcd-module }
 
@@ -640,7 +642,8 @@
     - state: icon-mop
   - type: ItemBorgModule
     items:
-    - Bucket # Sunrise-Edit
+    - MopItem
+    - BorgBucket # Sunrise-Edit
     - BorgTrashBag # Sunrise-Edit
     - BorgSprayBottle
     - HoloprojectorJanitorBorg # Sunrise-Edit
@@ -659,6 +662,7 @@
     - state: icon-mop-adv
   - type: ItemBorgModule
     items:
+    - AdvMopItem
     - BorgBucket # Sunrise-Edit
     - BorgTrashBag # Sunrise-Edit
     - HoloprojectorJanitorBorg # Sunrise-Edit
@@ -737,6 +741,11 @@
   - type: ItemBorgModule
     items:
     - HypoBorgMedical # Sunrise-Edit
+    - HyposprayMedical
+    - Syringe
+    - BorgVial
+    - BorgVial
+    - BorgVial
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -752,9 +761,10 @@
     - state: icon-chemist
   - type: ItemBorgModule
     items:
-    - HypoBorgMedical # Sunrise-Edit
-    - Syringe
-    - BorgDropper
+    - HypoBorgMedicalAdvanced # Sunrise-Edit
+    - Hypospray
+    - SyringeBluespace
+    - BorgBeaker
     - BorgBeaker
     - BorgBeaker
   - type: BorgModuleIcon
@@ -934,7 +944,7 @@
   id: BorgModuleOperative
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule, BaseSyndicateContraband ]
   name: operative cyborg module
-  description: A module that comes with a crowbar, an Emag, an Access Breaker and a syndicate pinpointer.
+  description: A module that comes with a crowbar, an Access Breaker and a syndicate pinpointer.
   components:
     - type: Sprite
       layers:
@@ -943,7 +953,6 @@
     - type: ItemBorgModule
       items:
       - Crowbar
-      - Emag
       - AccessBreaker
       - PinpointerSyndicateNuclear
     - type: BorgModuleIcon

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakCentcomBlack
   name: special operations officer cloak
   description: The NanoTrasen logo embroidered in gold speaks for itself.
@@ -8,7 +8,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/centcom_officer_black.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakCentcomAdmiral
   name: admiral's cloak
   description: A vibrant green cape with gold stitching, worn by Nanotrasen Navy Admirals.
@@ -17,7 +17,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/admiral.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakHOSCloak
   name: head of security's cloak
   description: The black and red cloak of HOS, symbolizes safety and brutality.
@@ -27,7 +27,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakResearchDirector
   name: research director's cloak
   description: The purple cape with the DNA helix depicted, demonstrates your omniscience and phenomenality.
@@ -37,7 +37,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingEliteNeckCloakCaptain
   name: captain's cloak
   description: The large amount of 24 korat gold, lets you understand your status from afar.
@@ -47,7 +47,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckEliteCloakCECloak
   name: chief engineer's cloak
   description: Weighty but very luxurious white coat with gold ribbons. There is a small label on the back "Change fuel at DAM".
@@ -57,7 +57,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakIAACloak
   name: internal affairs agent's cloak
   description: Dark fleece head cover. Effectively combines with the general style of an internal affairs agent.
@@ -67,7 +67,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCMOCloak
   name: chief medical officer's cloak
   description: Only the best of the best get it. Human who wears it has saved hundreds of lives.
@@ -77,7 +77,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakQM
   name: quartermaster's cloak
   description: A cloak ready to walk with you through blood, pain, mats, xenomorphs, or something more exotic. Emphasizes the wearer's wealth with a large chiseled diamond, until you find out it's junk.
@@ -87,7 +87,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakHOPCloak
   name: head of personal's cloak
   description: Head of Personal's cloak. A blue, gold-embroidered cape that reminds you who's the Boss.
@@ -97,7 +97,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakBlackSec
   name: security's cloak
   description: Black and mysterious.
@@ -115,7 +115,7 @@
       toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakDarthHOSCloak
   name: Dark Lord's cloak
   description: A symbolic and awe-inspiring mantle that perfectly depicts the somber majesty of its wearer.
@@ -125,7 +125,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakWhite
   name: republican army officer's shoulder pad
   description: An item of equipment of an elite soldier with the rank of officer.
@@ -135,7 +135,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakAlpha
   name: alpha cloak
   description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
@@ -145,7 +145,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakLima
   name: lima cloak
   description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
@@ -155,7 +155,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakDelta
   name: delta cloak
   description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
@@ -165,7 +165,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakEcho
   name: echo cloak
   description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
@@ -175,7 +175,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNecRepublicBodyguard
   name: imperial guard's robe
   description: The elite uniforms of the Imperial Guard.
@@ -187,7 +187,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/republicbodyguard.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckKailoRen
   name: black cloak
   description: Symbolic and capable of evoking awe and fear. Perfectly emphasizes the dark greatness of its owner.
@@ -199,7 +199,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/kailo_ren.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingCloakGamer
   name: legendary gamer's cloak
   description: It is worn by the most experienced professional gamers.
@@ -208,7 +208,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/gamer.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingCloakAtmosian
   name: atmosian's cloak
   description: The cloak of the legendary Atmosian.
@@ -255,7 +255,7 @@
  #Для ивентов
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakUeg
   name: paratrooper cape
   description: The cloak of the famous space troopers of the United Government of Earth. It is worn only by those truly honored to be OPZ Space Troopers. This cape represents the freedom and democracy that civilization must strive for. Otherwise, democracy and liberation will be brought by the Earth Government.
@@ -264,7 +264,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/ueg_cloak.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckCloakNTRG
   name: trenchcoat NTRG Sqaud
   description: The cloak of the famous space troopers of the United Government of Earth. It is worn only by those truly honored to be OPZ Space Troopers. This cape represents the freedom and democracy that civilization must strive for. Otherwise, democracy and liberation will be brought by the Earth Government.

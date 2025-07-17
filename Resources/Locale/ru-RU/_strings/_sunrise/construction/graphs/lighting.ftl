@@ -1,7 +1,6 @@
 recipe-ColorLight-description = Мощная лампа, внутри которой находится маленький цветной кристалл.
 recipe-CrystalLightTube = кристальная лампа-трубка
 recipe-CrystalLightBlub = кристальная лампа накаливания
-
 recipe-CyanLightBulb-name = голубая { recipe-CrystalLightBlub }
 recipe-CyanLightBulb-description = { recipe-ColorLight-description }
 recipe-CyanLight-name = голубая { recipe-CrystalLightTube }
@@ -34,4 +33,3 @@ recipe-YellowLightBulb-name = жёлтая { recipe-CrystalLightBlub }
 recipe-YellowLightBulb-description = { recipe-ColorLight-description }
 recipe-YellowLight-name = жёлтая { recipe-CrystalLightTube }
 recipe-YellowLight-description = { recipe-ColorLight-description }
-

@@ -1,0 +1,87 @@
+- type: entity
+  parent: [BaseClothingBeltSounds, ClothingBeltStorageBase]
+  id: Pouch
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Pouches/large_explosive.rsi
+    layers:
+    - state: icon
+  - type: Appearance
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - pocket
+
+#Explosives
+- type: entity
+  parent: [Pouch, ContentsExplosionResistanceBase]
+  id: PouchExplosive
+  name: explosive pouch
+  description: It can carry grenades, plastic explosives, mine boxes, and other explosives.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Pouches/large_explosive.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,1
+    whitelist:
+      tags:
+      - HandGrenade
+      - Grenade
+      - HandGrenadeAmmo
+      components:
+      - ProjectileGrenade
+      - FlashOnTrigger
+      - ExplodeOnTrigger
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+    worn: false
+
+- type: entity
+  parent: PouchExplosive
+  id: PouchExplosiveFilled
+  suffix: Filled Grenade
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeIncendiary
+        amount: 1
+      - id: GrenadeShrapnel
+        amount: 1
+      - id: GrenadeStinger
+        amount: 1
+      - id: GrenadeFlashBang
+        amount: 1
+      - id: SmokeGrenade
+        amount: 2
+
+#Ammo
+- type: entity
+  parent: [Pouch]
+  id: PouchAmmo
+  name: ammo pouch
+  description: It can carry ammo boxes and magazines.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Pouches/large_ammo_mag.rsi
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
+    whitelist:
+      components:
+      - BallisticAmmoProvider
+
+- type: entity
+  parent: PouchAmmo
+  id: PouchAmmoFilledSMG
+  suffix: Filled SMG
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGun
+        amount: 4

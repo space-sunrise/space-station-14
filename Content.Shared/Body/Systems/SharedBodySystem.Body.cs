@@ -205,6 +205,12 @@ public partial class SharedBodySystem
         foreach (var (organSlotId, organProto) in organs)
         {
             var slot = CreateOrganSlot((ent, ent), organSlotId);
+
+            // Starlight-surgery start
+            if (organProto == "null")
+                return;
+            // Starlight-surgery end
+
             SpawnInContainerOrDrop(organProto, ent, GetOrganContainerId(organSlotId));
 
             if (slot is null)

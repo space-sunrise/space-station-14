@@ -43,3 +43,5 @@ ent-WeaponSyndieLaserPistol = SAM-300
     .desc = Лазерный пистолет Синдиката, разработанный на базе пистолета капитана НТ.
 ent-WeaponLaserMinigun = UVL-21 «Виверна»
     .desc = Тяжёлое оружие массового поражения разработанное на основе минигана.
+ent-WeaponAlien = пистолет абдукторов
+    .desc = { ent-BaseWeaponBatterySmall.desc }

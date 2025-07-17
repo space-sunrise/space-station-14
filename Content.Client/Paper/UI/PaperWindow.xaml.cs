@@ -283,7 +283,7 @@ namespace Content.Client.Paper.UI
             {
                 msg.AddMarkupPermissive("\r\n");
             }
-            WrittenTextLabel.SetMessage(msg, _allowedTags, DefaultTextColor);
+            WrittenTextLabel.SetMessage(msg, _allowedTags, state.DefaultColor); // Sunrise-edit, перекрашиваемый текст
 
             WrittenTextLabel.Visible = !isEditing && state.Text.Length > 0;
             BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0;

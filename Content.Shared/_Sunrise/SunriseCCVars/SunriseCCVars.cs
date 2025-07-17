@@ -40,6 +40,12 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tts.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Option to disable TTS queue in radio for client
+    /// </summary>
+    public static readonly CVarDef<bool> TTSClientQueueEnabled =
+        CVarDef.Create("tts.queue_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Default volume setting of TTS sound
     /// </summary>
     public static readonly CVarDef<float> TTSVolume =
@@ -106,6 +112,9 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<string> SponsorGhostTheme =
         CVarDef.Create("sponsor.ghost_theme", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> SponsorPet =
+        CVarDef.Create("sponsor.pet", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<string> SponsorProjectName =
         CVarDef.Create("sponsor.project_name", string.Empty, CVar.SERVERONLY);
@@ -276,20 +285,21 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> RunPresetVoteAfterRestart =
         CVarDef.Create("vote.run_preset_vote_after_restart", false);
 
-    public static readonly CVarDef<float> ChancePresetVoteAfterRestart =
-        CVarDef.Create("vote.chance_preset_vote_after_restart", 0.5f);
-
     public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 60);
-
-    public static readonly CVarDef<int> RoundVotingCount = CVarDef.Create("vote.round_voting_count", 3);
-
-    public static readonly CVarDef<string> RoundVotingChancesPrototype =
-        CVarDef.Create("vote.round_voting_chances_prototype", "SunriseVoteSecret");
 
     public static readonly CVarDef<bool> VoteMusicDisable =
         CVarDef.Create("vote.music_disable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_map", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> VoteDisableOOC =
+        CVarDef.Create("vote.disable_ooc", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> VotePause =
+        CVarDef.Create("vote.pause", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_maps", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> ExcludePresets =
+        CVarDef.Create("vote.exclude_presets", true, CVar.SERVERONLY);
 
     /*
      * Preset
@@ -298,12 +308,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ResetPresetAfterRestart =
         CVarDef.Create("game.reset_preset_after_restart", false);
 
+    public static readonly CVarDef<string> GamePresetPool =
+        CVarDef.Create("game.preset_pool", "DefaultPresetPool", CVar.SERVERONLY);
+
     /*
      * Ban links.
      */
-
-    public static readonly CVarDef<string> BanForumLink =
-        CVarDef.Create("cl.forum_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     public static readonly CVarDef<string> BanDiscordLink =
         CVarDef.Create("cl.discord_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
@@ -453,7 +463,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("transithub.arrivals_min_hours", 0, CVar.SERVER | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> ArrivalsRoundStartSpawn =
-        CVarDef.Create("transithub.arrivals_round_start_spawn", true, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("transithub.arrivals_round_start_spawn", false, CVar.SERVER | CVar.ARCHIVE);
 
     /*
      * Random items-artifacts
@@ -463,7 +473,7 @@ public sealed partial class SunriseCCVars : CVars
     /// Включены ли артефакты-предметы? Переключение этого в моменты игры динамически включает и выключает фичу
     /// </summary>
     public static readonly CVarDef<bool> EnableRandomArtifacts =
-        CVarDef.Create("random_artifacts.enable", true, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("random_artifacts.enable", false, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Соотношение артефактов-предметов к обычным предметам.

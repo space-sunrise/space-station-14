@@ -98768,22 +98768,16 @@ entities:
     - type: Transform
       pos: -5.5,11.5
       parent: 2
-    - type: NavMapBeacon
-      text: Arcade
   - uid: 15229
     components:
     - type: Transform
       pos: 70.5,9.5
       parent: 2
-    - type: NavMapBeacon
-      text: Swimming Pool
   - uid: 15230
     components:
     - type: Transform
       pos: -34.5,55.5
       parent: 2
-    - type: NavMapBeacon
-      text: The Garden
 - proto: DefaultStationBeaconAI
   entities:
   - uid: 15231
@@ -98791,15 +98785,11 @@ entities:
     - type: Transform
       pos: 105.5,43.5
       parent: 2
-    - type: NavMapBeacon
-      text: AI Emergency Power
   - uid: 15232
     components:
     - type: Transform
       pos: 103.5,49.5
       parent: 2
-    - type: NavMapBeacon
-      text: AI Upload
 - proto: DefaultStationBeaconAICore
   entities:
   - uid: 15233
@@ -98854,15 +98844,11 @@ entities:
     - type: Transform
       pos: 60.5,-37.5
       parent: 2
-    - type: NavMapBeacon
-      text: Gas Storage
   - uid: 15241
     components:
     - type: Transform
       pos: 79.5,-34.5
       parent: 2
-    - type: NavMapBeacon
-      text: Atmospherics
   - uid: 15242
     components:
     - type: Transform
@@ -98959,15 +98945,11 @@ entities:
     - type: Transform
       pos: 91.5,64.5
       parent: 2
-    - type: NavMapBeacon
-      text: Lifepods
   - uid: 15256
     components:
     - type: Transform
       pos: 62.5,57.5
       parent: 2
-    - type: NavMapBeacon
-      text: Conference
   - uid: 15257
     components:
     - type: Transform
@@ -98978,8 +98960,6 @@ entities:
     - type: Transform
       pos: 48.5,-6.5
       parent: 2
-    - type: NavMapBeacon
-      text: Command Lounge
 - proto: DefaultStationBeaconCourtroom
   entities:
   - uid: 15259
@@ -99034,64 +99014,46 @@ entities:
     - type: Transform
       pos: 104.5,5.5
       parent: 2
-    - type: NavMapBeacon
-      text: Access Corridor
   - uid: 15267
     components:
     - type: Transform
       pos: -35.5,-64.5
       parent: 2
-    - type: NavMapBeacon
-      text: Bay 02
   - uid: 15268
     components:
     - type: Transform
       pos: -37.5,-53.5
       parent: 2
-    - type: NavMapBeacon
-      text: Bay 01
   - uid: 15269
     components:
     - type: Transform
       pos: -35.5,-42.5
       parent: 2
-    - type: NavMapBeacon
-      text: Shuttle Workshop
   - uid: 15270
     components:
     - type: Transform
       pos: 108.5,-1.5
       parent: 2
-    - type: NavMapBeacon
-      text: Engine
   - uid: 15271
     components:
     - type: Transform
       pos: 86.5,-20.5
       parent: 2
-    - type: NavMapBeacon
-      text: Thermal Control
   - uid: 15272
     components:
     - type: Transform
       pos: 93.5,-16.5
       parent: 2
-    - type: NavMapBeacon
-      text: Containment Storage
   - uid: 15273
     components:
     - type: Transform
       pos: 108.5,-9.5
       parent: 2
-    - type: NavMapBeacon
-      text: Containment
   - uid: 15274
     components:
     - type: Transform
       pos: 80.5,-1.5
       parent: 2
-    - type: NavMapBeacon
-      text: Engi Gear
 - proto: DefaultStationBeaconEvac
   entities:
   - uid: 15275
@@ -99169,15 +99131,11 @@ entities:
     - type: Transform
       pos: 34.5,47.5
       parent: 2
-    - type: NavMapBeacon
-      text: Isolation
   - uid: 15286
     components:
     - type: Transform
       pos: 30.5,44.5
       parent: 2
-    - type: NavMapBeacon
-      text: Virology
   - uid: 15287
     components:
     - type: Transform
@@ -99188,8 +99146,6 @@ entities:
     - type: Transform
       pos: 12.5,49.5
       parent: 2
-    - type: NavMapBeacon
-      text: Cloning
   - uid: 15289
     components:
     - type: Transform
@@ -99205,15 +99161,11 @@ entities:
     - type: Transform
       pos: 15.5,67.5
       parent: 2
-    - type: NavMapBeacon
-      text: Breakroom
   - uid: 15292
     components:
     - type: Transform
       pos: 6.5,68.5
       parent: 2
-    - type: NavMapBeacon
-      text: Storage
 - proto: DefaultStationBeaconMorgue
   entities:
   - uid: 15293
@@ -99228,8 +99180,6 @@ entities:
     - type: Transform
       pos: 47.5,25.5
       parent: 2
-    - type: NavMapBeacon
-      text: Prison Yard
   - uid: 15295
     components:
     - type: Transform
@@ -99284,29 +99234,21 @@ entities:
     - type: Transform
       pos: 31.5,-37.5
       parent: 2
-    - type: NavMapBeacon
-      text: Breakroom
   - uid: 15303
     components:
     - type: Transform
       pos: 31.5,-34.5
       parent: 2
-    - type: NavMapBeacon
-      text: Testing Range
   - uid: 15304
     components:
     - type: Transform
       pos: 29.5,-48.5
       parent: 2
-    - type: NavMapBeacon
-      text: Science Lounge
   - uid: 15305
     components:
     - type: Transform
       pos: 26.5,-58.5
       parent: 2
-    - type: NavMapBeacon
-      text: Science Dock
   - uid: 15306
     components:
     - type: Transform
@@ -99317,8 +99259,6 @@ entities:
     - type: Transform
       pos: 38.5,-50.5
       parent: 2
-    - type: NavMapBeacon
-      text: Lab
 - proto: DefaultStationBeaconSecurity
   entities:
   - uid: 15308
@@ -99326,8 +99266,6 @@ entities:
     - type: Transform
       pos: 19.5,18.5
       parent: 2
-    - type: NavMapBeacon
-      text: Evidence
   - uid: 15309
     components:
     - type: Transform
@@ -99338,8 +99276,6 @@ entities:
     - type: Transform
       pos: 44.5,2.5
       parent: 2
-    - type: NavMapBeacon
-      text: Infirmary
   - uid: 15311
     components:
     - type: Transform
@@ -99350,36 +99286,26 @@ entities:
     - type: Transform
       pos: 36.5,12.5
       parent: 2
-    - type: NavMapBeacon
-      text: Sec Gear
   - uid: 15313
     components:
     - type: Transform
       pos: 30.5,21.5
       parent: 2
-    - type: NavMapBeacon
-      text: Squad
   - uid: 15314
     components:
     - type: Transform
       pos: 18.5,22.5
       parent: 2
-    - type: NavMapBeacon
-      text: Interrogation
   - uid: 15315
     components:
     - type: Transform
       pos: 20.5,26.5
       parent: 2
-    - type: NavMapBeacon
-      text: Breakroom
   - uid: 15316
     components:
     - type: Transform
       pos: 36.5,29.5
       parent: 2
-    - type: NavMapBeacon
-      text: Firing Range
   - uid: 15317
     components:
     - type: Transform
@@ -99431,15 +99357,11 @@ entities:
     - type: Transform
       pos: -15.5,34.5
       parent: 2
-    - type: NavMapBeacon
-      text: Storage
   - uid: 15326
     components:
     - type: Transform
       pos: -5.5,28.5
       parent: 2
-    - type: NavMapBeacon
-      text: Freezer
 - proto: DefaultStationBeaconSingularity
   entities:
   - uid: 15327
@@ -99476,15 +99398,11 @@ entities:
     - type: Transform
       pos: -1.5,-11.5
       parent: 2
-    - type: NavMapBeacon
-      text: Storage
   - uid: 15333
     components:
     - type: Transform
       pos: 18.5,-12.5
       parent: 2
-    - type: NavMapBeacon
-      text: Mail
 - proto: DefaultStationBeaconSurgery
   entities:
   - uid: 15334
@@ -167740,6 +167658,10 @@ entities:
         stampedName: stamp-component-stamped-name-rd
       - stampedColor: '#CC0000FF'
         stampedName: stamp-component-stamped-name-hos
+      - stampedColor: '#8B0000FF'
+        stampedName: stamp-component-stamped-name-veto
+      - stampedColor: '#0D133AFF'
+        stampedName: stamp-component-stamped-name-redo
       content: >-
         ⣿⣿⡟⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 

@@ -153,3 +153,18 @@
       key_slots:
       - EncryptionKeyUSSPSec
       - EncryptionKeyUSSPCom
+
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltAbductor
+  name: abductor over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Clothing/Ears/Headsets/abductor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Abductor/Clothing/Ears/Headsets/abductor.rsi

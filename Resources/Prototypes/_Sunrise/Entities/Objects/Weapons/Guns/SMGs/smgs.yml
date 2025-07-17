@@ -28,6 +28,10 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.9
     sprintModifier: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.97
+    sprintModifier: 0.97
+  - type: HeldSpeedModifier
 
 - type: entity
   name: P-90
@@ -46,7 +50,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
-    minAngle: -3.2
+    minAngle: -2.9
     maxAngle: -30
   - type: Gun
     minAngle: 7
@@ -89,8 +93,12 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.87
-    sprintModifier: 0.87
+    walkModifier: 0.86
+    sprintModifier: 0.86
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
 
 - type: entity
   name: MP-38
@@ -169,14 +177,14 @@
     - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -6
+    minAngle: -5
     maxAngle: -17
   - type: Gun
-    minAngle: 7
+    minAngle: 6.6
     maxAngle: 30
-    angleIncrease: 2.2
+    angleIncrease: 1.2
     angleDecay: 28
-    fireRate: 6
+    fireRate: 6.55
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_shot.ogg
   - type: ItemSlots
@@ -317,7 +325,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolHighCapacity
+        startingItem: MagazineScorpion
         insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_unload.ogg
         priority: 2
@@ -325,6 +333,7 @@
           tags:
           - MagazinePistolSubMachineGun
           - MagazinePistolHighCapacity
+          - MagazineScorpion
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol  # 57x28

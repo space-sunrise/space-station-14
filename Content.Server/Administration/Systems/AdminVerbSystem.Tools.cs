@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.ScaleSprite;
 using Content.Server.Administration.Components;
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
@@ -13,6 +14,7 @@ using Content.Server.Stack;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._Sunrise.ScaleSprite;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -55,6 +57,8 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly BatterySystem _batterySystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly ScaleSpriteSystem _scaleSpriteSystem = default!; // Sunris-Edit
+
 
     private void AddTricksVerbs(GetVerbsEvent<Verb> args)
     {
@@ -629,6 +633,27 @@ public sealed partial class AdminVerbSystem
                 Priority = (int) TricksVerbPriorities.HaltMovement,
             };
             args.Verbs.Add(haltMovement);
+
+            // Sunrie-Start
+            Verb spin = new()
+            {
+                Text = "Spin",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png")),
+                Act = () =>
+                {
+                    _quickDialog.OpenDialog<float, float>(player, "Spin", "Speed", "Angular Damping", (float speed, float drag) =>
+                    {
+                        _physics.SetAngularDamping(args.Target, physics, drag);
+                        _physics.SetAngularVelocity(args.Target, speed, body: physics);
+                    });
+                },
+                Impact = LogImpact.Medium,
+                Message = "Заставить объект вращаться",
+                Priority = (int) TricksVerbPriorities.HaltMovement - 1,
+            };
+            args.Verbs.Add(spin);
+            // Sunrie-End
         }
 
         if (TryComp<MapComponent>(args.Target, out var map))
@@ -733,6 +758,26 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(setCapacity);
         }
+
+        // Sunrie-Start
+        Verb scaleSprite = new()
+        {
+            Text = "Set Scale",
+            Category = VerbCategory.Tricks,
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/zoom.png")),
+            Act = () =>
+            {
+                _quickDialog.OpenDialog<float, float>(player, "Set Scale", "Scale X", "Scale Y", (float scaleX, float scaleY) =>
+                {
+                    _scaleSpriteSystem.Scale(args.Target, new Vector2(scaleX, scaleY));
+                });
+            },
+            Impact = LogImpact.Medium,
+            Message = "Изменить визуальный масштаб объекта",
+            Priority = (int) TricksVerbPriorities.AdjustStack - 1,
+        };
+        args.Verbs.Add(scaleSprite);
+        // Sunrie-End
     }
 
     private void RefillEquippedTanks(EntityUid target, Gas gasType)

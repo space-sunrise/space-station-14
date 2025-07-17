@@ -64,6 +64,7 @@
     tags:
     - Vest
     - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
   # Sunrise-End
 
 - type: entity
@@ -107,6 +108,13 @@
     - state: icon-open
       map: ["foldedLayer"]
       visible: true
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   abstract: true

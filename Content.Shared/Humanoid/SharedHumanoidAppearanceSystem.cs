@@ -49,7 +49,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public const string DefaultSpecies = "Human";
 
     [ValidatePrototypeId<BodyTypePrototype>]
-    public const string DefaultBodyType = "HumanNormal"; // Sunrise
+    public const string DefaultBodyType = "HumanNormal";
 
     // Sunrise-TTS-Start
     public const string DefaultVoice = "Voljin";
@@ -550,9 +550,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         {
             return;
         }
-
-        var markingObject = new Marking(marking, colors);
-        markingObject.Forced = forced;
+        // Sunrise-start
+        var markingObject = new Marking(marking, colors)
+        {
+            Forced = forced
+        };
+        // Sunrise-end
         humanoid.MarkingSet.AddBack(prototype.MarkingCategory, markingObject);
 
         if (sync)

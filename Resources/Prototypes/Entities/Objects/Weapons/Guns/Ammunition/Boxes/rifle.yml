@@ -32,7 +32,7 @@
   components:
   - type: BallisticAmmoProvider
     capacity: 200
-    proto: CartridgeRifle
+    proto: SunriseCartridgeRifle #  Sunrise-Edit
   - type: Sprite
     layers:
     - state: base-big
@@ -51,7 +51,7 @@
   name: ammunition box (.20 rifle)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle
+    proto: SunriseCartridgeRifle #  Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
@@ -65,7 +65,7 @@
   name: ammunition box (.20 rifle practice)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRiflePractice
+    proto: SunriseCartridgeRiflePractice #  Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
@@ -80,7 +80,7 @@
   name: ammunition box (.20 rifle incendiary)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleIncendiary
+    proto: SunriseCartridgeRifleIncendiary #  Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
@@ -95,7 +95,7 @@
   name: ammunition box (.20 rifle uranium)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleUranium
+    proto: SunriseCartridgeRifleUranium #  Sunrise-Edit
   - type: Sprite
     layers:
     - state: base

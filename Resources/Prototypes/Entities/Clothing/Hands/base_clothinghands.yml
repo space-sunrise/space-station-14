@@ -95,3 +95,16 @@
   components:
   - type: StaticPrice
     price: 275
+
+# SUNRISE EDIT
+- type: entity
+  abstract: true
+  parent: ClothingHandsBase
+  id: ClothingHandsSmooth
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - SmoothGloves # INTERACTIONS
+    - WhitelistChameleon
+# SUNRISE EDIT

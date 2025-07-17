@@ -55,10 +55,11 @@
   path: /Maps/Shuttles/ShuttleEvent/flatline.yml
   copies: 1
 
-- type: preloadedGrid
-  id: Gym
-  path: /Maps/Shuttles/ShuttleEvent/gym.yml
-  copies: 1
+# Sunrise-Edit
+# - type: preloadedGrid
+#   id: Gym
+#   path: /Maps/Shuttles/ShuttleEvent/gym.yml
+#   copies: 1
 
 - type: preloadedGrid
   id: NTIncorporation

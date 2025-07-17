@@ -14,6 +14,7 @@
         liver: OrganAnimalLiver
         heart: OrganPrimateHeart # Sunrise Edit
         kidneys: OrganAnimalKidneys
+        cavity: null # Sunrise-edit
     hands:
       part: HandsAnimal
     legs:

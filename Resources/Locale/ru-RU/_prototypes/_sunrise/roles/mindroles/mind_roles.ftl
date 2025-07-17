@@ -10,3 +10,5 @@ ent-MindRoleChangeling = Роль Генокрада
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRoleVampire = Роль Вампира
     .desc = { ent-BaseMindRoleAntag.desc }
+ent-MindRoleLoneAbductor = Роль Одинокого Абдуктора
+    .desc = { ent-BaseMindRoleAntag.desc }

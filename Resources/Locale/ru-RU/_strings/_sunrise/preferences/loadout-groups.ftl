@@ -52,7 +52,6 @@ loadout-group-pathologist-neck = Патологоанатом, шея
 loadout-group-pathologist-outerclothing = Патологоанатом, верхняя одежда
 loadout-group-pathologist-shoes = Патологоанатом, ботинки
 loadout-group-pepper-spray = Перцовый баллончик
-loadout-group-pets = Питомцы
 loadout-group-prisoner-jumpsuit = Заключённый, комбинезон
 loadout-group-prison-guard-backpack = Охранник, рюкзак
 loadout-group-prison-guard-head = Охранник, головной убор

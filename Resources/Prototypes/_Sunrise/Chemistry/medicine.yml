@@ -1,0 +1,24 @@
+- type: reagent
+  id: HemostaticPowder
+  name: reagent-name-hemostatic-powder
+  group: Medicine
+  desc: reagent-desc-hemostatic-powder
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#8b0b47"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyBleedAmount
+        amount: -4.2
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -3.2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 10.1
+        damage:
+          types:
+            Poison: 6

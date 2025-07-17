@@ -8,8 +8,6 @@
   - vvread
   - vvwrite
   - vvinvoke
-  - scale
-  - spin
 
 - Flags: DEBUG
   Commands:
@@ -133,6 +131,8 @@
   - fuck
   - replay_recording_start
   - replay_recording_stop
+  - scale
+  - spin
 
 - Flags: QUERY
   Commands:

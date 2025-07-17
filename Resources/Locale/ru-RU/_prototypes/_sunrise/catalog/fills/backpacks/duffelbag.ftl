@@ -1,5 +1,7 @@
 ent-ClothingBackpackDuffelSyndicateFilledBauer = Набор Bauer-127
     .desc = Легендарная винтовка Bauer-127 с двумя магазинами в комплекте.
+ent-ClothingBackpackDuffelSyndicateFilledDragunov = Dragunov bundle
+    .desc = The iconic Dragunov magazine rifle with 2 raspy magazines in the set.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Набор MP5
     .desc = Mp5 c 2мя магазинами.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP7Filled = Bundle MP7
@@ -28,6 +30,9 @@ ent-ClothingBackpackDuffelWeaponSniperHristovFilled = Набор Христов
     .desc = Христов с 4мя коробками на 10 антиматериальных патрон.
 ent-ClothingBackpackDuffelNanotrasenMedicalBundleFilled = набор медикаментов НаноТрейзен
     .desc = Все, что нужно для возвращения в строй ваших товарищей: главным образом, боевые аптечки, дефибриллятор и 4 боевых медипена каждого.
+ent-ClothingBackpackDuffelAbductorFilled = { ent-ClothingBackpackDuffelAbductorBundle }
+    .suffix = Filled
+    .desc = { ent-ClothingBackpackDuffelAbductorBundle.desc }
 ent-ClothingBackpackDuffelWeaponSubMachineGunWt550Filled = Набор WT550
     .desc = WT550 c 3мя магазинами.
 ent-ClothingBackpackDuffelWeaponRifleLecterFilled = Набор Lecter

@@ -34,7 +34,7 @@ public sealed class TeleportRunesListWindowBUI : BoundUserInterface
 
         if (state is TeleportRunesListWindowBUIState newState)
         {
-            _window?.PopulateList(newState.Items, newState.Label);
+            _window?.PopulateList(newState.Items, newState.Label, newState.Distance);
         }
     }
 }
