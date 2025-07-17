@@ -113,7 +113,7 @@
   description: A robust satchel for security related needs.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/security.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/security.rsi #Sunrise-edit
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSecurityContraband]

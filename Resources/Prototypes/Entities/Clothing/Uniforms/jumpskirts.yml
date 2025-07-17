@@ -399,9 +399,9 @@
   description: A jumpskirt made of strong material, providing robust protection.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/security.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/security.rsi #Sunrise-edit
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/security.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/security.rsi #Sunrise-edit
   - type: Item
     inhandVisuals:
       left:
@@ -409,13 +409,13 @@
         color: "#C12D30"
         sprite: Clothing/Uniforms/Jumpskirt/color.rsi
       - state: overlay-inhand-left
-        sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+        sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/security.rsi #Sunrise-edit
       right:
       - state: inhand-right
         color: "#C12D30"
         sprite: Clothing/Uniforms/Jumpskirt/color.rsi
       - state: overlay-inhand-right
-        sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+        sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/security.rsi #Sunrise-edit
 
 
 - type: entity
@@ -697,9 +697,9 @@
   description: A sign of skill and prestige within the security department.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/senior_officer.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/senior_officer.rsi #Sunrise-edit
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/senior_officer.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/senior_officer.rsi #Sunrise-edit
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
