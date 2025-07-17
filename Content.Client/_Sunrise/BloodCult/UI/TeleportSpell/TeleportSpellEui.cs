@@ -36,6 +36,6 @@ public sealed class TeleportSpellEui : BaseEui
             return;
 
         _window.Clear();
-        _window.PopulateList(cast.Runes.Keys.ToList(), cast.Runes.Values.ToList());
+        _window.PopulateList(cast.Runes.Keys.ToList(), cast.Runes.Values.ToList(), cast.Distance);
     }
 }

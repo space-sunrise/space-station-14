@@ -36,6 +36,9 @@
             "name": "variant-service"
         },
         {
+            "name": "variant-law"
+        },
+        {
             "name": "variant-medical"
         },
         {

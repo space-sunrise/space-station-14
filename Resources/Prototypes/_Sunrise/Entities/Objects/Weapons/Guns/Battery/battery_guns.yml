@@ -606,8 +606,8 @@
     availableModes:
     - SemiAuto
   - type: Battery
-    maxCharge: 7000
-    startingCharge: 7000
+    maxCharge: 4000
+    startingCharge: 4000
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause

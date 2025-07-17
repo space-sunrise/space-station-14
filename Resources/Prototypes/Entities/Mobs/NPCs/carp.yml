@@ -90,9 +90,7 @@
     - type: CollectiveMind
       minds:
       - Carp
-    - type: NightVision
-      isToggle: true
-      color: "#808080"
+    - type: ToggleableNightVision
     # Sunrise-End
 
 - type: entity

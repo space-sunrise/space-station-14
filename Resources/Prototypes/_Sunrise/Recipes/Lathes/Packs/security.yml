@@ -8,24 +8,11 @@
     - MagazinePistolHighCapacity
     - MagazinePistolHighCapacityEmpty
     - MagazineMagnum
-    - ClothingHeadHelmetPubg
 
 - type: latheRecipePack
   id: SecurityDynamicSunrise
   recipes:
     - WeaponGunLaserCarbineSemi
-    - WeaponMechCombatImmolationGun
-    - WeaponMechCombatSolarisLaser
-    - WeaponMechCombatFiredartLaser
-    - WeaponMechCombatUltraRifle
-    - WeaponMechCombatMG
-    - WeaponMechCombatIon
-    - WeaponMechCombatXray
-    - WeaponMechCombatShotgun
-    - WeaponMechCombatShotgunIncendiary
-    - WeaponMechCombatDisabler
-    - WeaponMechCombatFlashbangLauncher
-    - WeaponMechCombatMissileRack8
     - WeaponEnergyGun
     - WeaponEnergyGunMini
     - WeaponEnergyGunPistol
@@ -47,7 +34,27 @@
     - ShellEMPArtillery
     - ShellFlashArtillery
     - EnergyDomeDirectionalTurtle
+    - WeaponTemperatureGun
+
+- type: latheRecipePack
+  id: SecurityDynamicSunriseClothing
+  recipes:
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat
-    - WeaponTemperatureGun
+
+- type: latheRecipePack
+  id: SecurityDynamicSunriseMech
+  recipes:
+    - WeaponMechCombatImmolationGun
+    - WeaponMechCombatSolarisLaser
+    - WeaponMechCombatFiredartLaser
+    - WeaponMechCombatUltraRifle
+    - WeaponMechCombatMG
+    - WeaponMechCombatIon
+    - WeaponMechCombatXray
+    - WeaponMechCombatShotgun
+    - WeaponMechCombatShotgunIncendiary
+    - WeaponMechCombatDisabler
+    - WeaponMechCombatFlashbangLauncher
+    - WeaponMechCombatMissileRack8

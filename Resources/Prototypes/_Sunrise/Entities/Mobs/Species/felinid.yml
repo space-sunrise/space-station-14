@@ -521,13 +521,8 @@
     damageSound: /Audio/Effects/hit_kick.ogg
   - type: ScaleSprite
     scale: 0.72, 0.72
-#  - type: DamagedByFlashing
-#    flashDamage:
-#      types:
-#        Shock: 5.0
-#  - type: NightVision
-#    isToggle: true
-#    color: "#808080"
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
 
 - type: entity
   save: false

@@ -65,11 +65,17 @@
                                    StyleClasses="LabelSubText"
                                    HorizontalAlignment="Center"
                                    FontColorOverride="#aaaaaa"/>
-                            <Button Name="SelectButton"
-                                    Text="{Loc 'pet-selection-menu-select-button'}"
-                                    HorizontalAlignment="Center"
-                                    Margin="0 10 0 0"
-                                    MinWidth="120"/>
+                            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <Button Name="RemovePetButton"
+                                        Text="{Loc 'pet-selection-menu-remove-button'}"
+                                        HorizontalAlignment="Left"
+                                        MinWidth="120"
+                                        Margin="0 0 10 0"/>
+                                <Button Name="SelectButton"
+                                        Text="{Loc 'pet-selection-menu-select-button'}"
+                                        HorizontalAlignment="Right"
+                                        MinWidth="120"/>
+                            </BoxContainer>
                         </BoxContainer>
                     </BoxContainer>
                 </PanelContainer>

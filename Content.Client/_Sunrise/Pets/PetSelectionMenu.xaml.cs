@@ -50,6 +50,7 @@ public sealed partial class PetSelectionMenu : DefaultWindow
 
         SearchBar.OnTextChanged += OnSearchTextChanged;
         SelectButton.OnPressed += OnSelectButtonPressed;
+        RemovePetButton.OnPressed += OnRemovePetButtonPressed;
 
         IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
@@ -75,25 +76,25 @@ public sealed partial class PetSelectionMenu : DefaultWindow
         _availablePetSelections = petSelections.Select(p => p.Id).ToList();
         _petSelectionInfos = petSelections.ToDictionary(p => p.Id, p => p);
 
-        if (string.IsNullOrEmpty(_previewedPet))
+        var firstAvailable = petSelections.FirstOrDefault(p => p.IsAvailable)?.Id;
+        var currentPet = GetCurrentPetSelection();
+        if (!string.IsNullOrEmpty(currentPet) && _availablePetSelections.Contains(currentPet) && _petSelectionInfos.TryGetValue(currentPet, out var info) && info.IsAvailable)
         {
-            var currentPet = GetCurrentPetSelection();
-            if (!string.IsNullOrEmpty(currentPet) && _availablePetSelections.Contains(currentPet))
-            {
-                _currentSelectedPet = currentPet;
-                _previewedPet = currentPet;
-                UpdatePreview(_previewedPet);
-            }
-            else if (_availablePetSelections.Count > 0)
-            {
-                _currentSelectedPet = _availablePetSelections[0];
-                _previewedPet = _availablePetSelections[0];
-                UpdatePreview(_previewedPet);
-            }
+            _currentSelectedPet = currentPet;
+            _previewedPet = currentPet;
+            UpdatePreview(_previewedPet);
+        }
+        else if (!string.IsNullOrEmpty(firstAvailable))
+        {
+            _currentSelectedPet = string.Empty;
+            _previewedPet = string.Empty;
+            UpdatePreview("");
         }
         else
         {
-            UpdateSelectButtonState();
+            _currentSelectedPet = string.Empty;
+            _previewedPet = string.Empty;
+            UpdatePreview("");
         }
 
         UpdateButtons();
@@ -216,6 +217,16 @@ public sealed partial class PetSelectionMenu : DefaultWindow
 
     private void UpdatePreview(string petSelection)
     {
+        var hasPet = !string.IsNullOrEmpty(petSelection);
+
+        if (!hasPet)
+        {
+            PreviewTexture.Texture = null;
+            PreviewName.Text = Loc.GetString("pet-selection-menu-no-select");
+            PreviewDescription.Text = Loc.GetString("pet-selection-menu-no-select-decs");
+            UpdateSelectButtonState();
+            return;
+        }
         if (!_prototypeManager.TryIndex(petSelection, out PetSelectionPrototype? petSelectionPrototype))
             return;
 
@@ -232,7 +243,9 @@ public sealed partial class PetSelectionMenu : DefaultWindow
     {
         var isCurrentPet = _previewedPet == _currentSelectedPet;
         var isAvailable = _petSelectionInfos.TryGetValue(_previewedPet, out var petInfo) && petInfo.IsAvailable;
-        SelectButton.Disabled = isCurrentPet || !isAvailable;
+        SelectButton.Disabled = string.IsNullOrEmpty(_previewedPet) || isCurrentPet || !isAvailable;
+        var anyAvailable = _petSelectionInfos.Values.Any(p => p.IsAvailable);
+        RemovePetButton.Disabled = string.IsNullOrEmpty(_currentSelectedPet) || !anyAvailable;
     }
 
     private void ClearButtons()
@@ -253,6 +266,23 @@ public sealed partial class PetSelectionMenu : DefaultWindow
 
             Close();
         }
+    }
+
+    private void OnRemovePetButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        _currentSelectedPet = string.Empty;
+        _previewedPet = string.Empty;
+        OnIdSelected?.Invoke(string.Empty);
+
+        var cache = _playerCache.GetCache();
+        cache.Pet = null;
+        _playerCache.SetCache(cache);
+
+        _cfg.SetCVar(SunriseCCVars.SponsorPet, "");
+        _cfg.SaveToFile();
+
+        UpdateButtons();
+        Close();
     }
 
     private string? GetCurrentPetSelection()

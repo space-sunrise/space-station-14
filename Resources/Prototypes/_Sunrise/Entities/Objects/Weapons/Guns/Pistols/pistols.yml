@@ -433,3 +433,41 @@
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/spearheadblack.rsi
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/spearheadblack.rsi
+
+- type: entity
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolM1984
+  name: D1984
+  description: A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
+  - type: Item
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -3.5
+    maxAngle: -10
+  - type: Gun
+    selectedMode: SemiAuto
+    minAngle: 4.7
+    maxAngle: 25
+    angleIncrease: 1.75
+    angleDecay: 14
+    fireRate: 8.4
+    availableModes:
+    - SemiAuto
+    useKey: true
+    soundGunshot:
+      collection: m1984
+    soundEmpty:
+      path: /Audio/_RMC14/Weapons/Guns/gun_cmb_click1.ogg
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 1
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.99
+    sprintModifier: 0.99

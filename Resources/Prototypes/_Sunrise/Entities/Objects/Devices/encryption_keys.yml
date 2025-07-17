@@ -12,6 +12,9 @@
       layers:
       - state: crypt_silver
       - state: nano_label
+    - type: Tag
+      tags:
+      - EncryptionLaw
 
 - type: entity
   parent: EncryptionKey

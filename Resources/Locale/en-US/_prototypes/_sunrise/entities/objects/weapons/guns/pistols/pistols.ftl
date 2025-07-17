@@ -18,3 +18,5 @@ ent-WeaponRevolverSpearheadBlack = Spearhead autorevolver
 ent-WeaponPistolG22Auto = Glock-22 auto
     .suffix = Auto
     .desc = { ent-BaseWeaponPistol.desc }
+ent-WeaponPistolM1984 = D1984
+    .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.

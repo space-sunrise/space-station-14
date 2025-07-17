@@ -173,9 +173,7 @@
   - type: CollectiveMind
     minds:
     - Carp
-  - type: NightVision
-    isToggle: true
-    color: "#808080"
+  - type: ToggleableNightVision
   - type: Reflect
     reflectProb: 0.25
     spread: 45

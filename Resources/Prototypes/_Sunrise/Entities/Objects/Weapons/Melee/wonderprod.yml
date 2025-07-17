@@ -17,6 +17,8 @@
   - type: Sprite
     sprite: _Sunrise/Abductor/Objects/Weapons/Melee/wonderprod.rsi
     state: icon
+  - type: UseDelay
+    delay: 1
   - type: RestrictByUserTag
     contains:
     - Abductor

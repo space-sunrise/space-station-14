@@ -124,6 +124,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
         var orb = Spawn(component.BlodOrbSpawnId, _transformSystem.GetMapCoordinates(uid));
         var bloodOrb = EnsureComp<CultBloodOrbComponent>(orb);
         bloodOrb.BloodCharges = args.Count;
+        comp.BloodCharges -= args.Count; // По идее теперь забирает столько сколько потрачено на создание
     }
 
     private void OnRequestCreateOrb(EntityUid uid,

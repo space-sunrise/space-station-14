@@ -157,6 +157,7 @@ ignore_list:
   - SS14
   - scar-h
   - N
+  - D1984
 
 ignore_files:
   - 'italian.ftl'

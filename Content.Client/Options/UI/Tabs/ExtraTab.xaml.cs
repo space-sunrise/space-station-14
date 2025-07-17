@@ -38,6 +38,7 @@ public sealed partial class ExtraTab : Control
             scale: ContentAudioSystem.TtsMultiplier);
 
         Control.AddOptionCheckBox(SunriseCCVars.TTSClientEnabled, TtsClientCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.TTSClientQueueEnabled, TtsClientCheckBoxQueue);
         Control.AddOptionCheckBox(SunriseCCVars.TapePlayerClientEnabled, TapePlayerClientCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.JumpSoundDisable, JumpSoundDisableCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.VoteMusicDisable, VoteMusicDisableCheckBox);

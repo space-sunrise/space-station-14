@@ -1,37 +1,77 @@
 - type: entity
   name: NVD
-  id: ClothingEyesNVD
-  parent: [BaseItem, PowerCellSlotSmallItem]
-  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  abstract: true
+  id: BaseNightVisionDevice
+  parent: [BaseItem]
   components:
   - type: Item
+  - type: Sprite
+  - type: Clothing
+    slots: [ Eyes ]
+  - type: Appearance
+  - type: UseDelay
+    delay: 5.0
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+
+
+- type: entity
+  name: NVD
+  id: ClothingEyesNVD
+  parent: [BaseNightVisionDevice, PowerCellSlotSmallItem]
+  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
     layers:
       - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-      - state: light-overlay
+      - state: icon-flash
         visible: false
         shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
+        map: [ "light" ]
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
     quickEquip: true
-    clothingVisuals:
-      eyes:
-      - state: off-equipped-EYES
-      - state: equipped-EYES-unshaded
-        shader: unshaded
     slots: [ Eyes ]
-  - type: Appearance
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#82eb6c"
-    displayShader: NVDDisplay
   - type: PowerCellDraw
     drawRate: 0
     useRate: 20
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      eyes:
+      - state: on-equipped-EYES
+        shader: unshaded
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+  - type: ToggleCellDraw
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
 
 - type: entity
   name: NVD Security
@@ -47,14 +87,10 @@
       - state: icon
       - state: icon-unshaded
         shader: unshaded
-      - state: light-overlay
+      - state: icon-flash
         visible: false
         shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#82eb6c"
-    displayShader: NVDDisplay
+        map: [ "light" ]
 
 - type: entity
   name: Med-Security NVD
@@ -70,14 +106,10 @@
       - state: icon
       - state: icon-unshaded
         shader: unshaded
-      - state: light-overlay
+      - state: icon-flash
         visible: false
         shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#82eb6c"
-    displayShader: NVDDisplay
+        map: [ "light" ]
 
 - type: entity
   parent: [ClothingEyesNVD, ShowSecurityIcons]
@@ -90,15 +122,16 @@
       - state: icon
       - state: icon-unshaded
         shader: unshaded
-      - state: light-overlay
+      - state: icon-flash
         visible: false
         shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
+        map: [ "light" ]
   - type: ShowSyndicateIcons
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#ff6e6e"
-    displayShader: NVDDisplay
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
 
 - type: entity
   parent: ClothingEyesNVD
@@ -111,14 +144,15 @@
       - state: icon
       - state: icon-unshaded
         shader: unshaded
-      - state: light-overlay
+      - state: icon-flash
         visible: false
         shader: unshaded
-        map: [ "enum.NVDVisuals.Light" ]
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#f2fa5c"
-    displayShader: NVDDisplay
+        map: [ "light" ]
   - type: PowerCellDraw
     drawRate: 0
     useRate: 50
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionHandcraft

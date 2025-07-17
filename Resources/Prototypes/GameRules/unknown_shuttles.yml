@@ -13,7 +13,7 @@
     - id: UnknownShuttleCryptid
     - id: UnknownShuttleEternal
     - id: UnknownShuttleFlatline
-    - id: UnknownShuttleGym
+    #- id: UnknownShuttleGym # Sunrise-Edit
     - id: UnknownShuttleNTIncorporation
     - id: UnknownShuttleJoe
     - id: UnknownShuttleLambordeere
@@ -156,15 +156,16 @@
   - type: LoadMapRule
     preloadedGrid: Flatline
 
-- type: entity
-  id: UnknownShuttleGym
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-unknown-shuttle-incoming #!!
-    weight: 5 # Its just a big ship, so it needs to be rarer to be interesting.
-  - type: LoadMapRule
-    preloadedGrid: Gym
+#Sunrise-Edit
+# - type: entity
+#   id: UnknownShuttleGym
+#   parent: BaseUnknownShuttleRule
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: station-event-unknown-shuttle-incoming #!!
+#     weight: 5 # Its just a big ship, so it needs to be rarer to be interesting.
+#   - type: LoadMapRule
+#     preloadedGrid: Gym
 
 - type: entity
   id: UnknownShuttleNTIncorporation
@@ -272,3 +273,16 @@
   - type: LoadMapRule
     preloadedGrid: Spacebus
 
+# Sunrise-Start
+- type: entity
+  id: ERTShuttleGammaMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0 # Если изменить будет двоиться
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ert_medium_gamma.yml"
+# Sunrise-End

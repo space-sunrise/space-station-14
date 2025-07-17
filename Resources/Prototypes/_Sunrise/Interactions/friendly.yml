@@ -198,6 +198,7 @@
   - FriendlySlap5
   - FriendlySlap6
   - FriendlySlap7
+  cooldown: 2
 
 - type: interaction
   id: FriendlyWristSlap
@@ -220,6 +221,7 @@
     - FriendlySlap5
     - FriendlySlap6
     - FriendlySlap7
+  cooldown: 3
 
 - type: interaction
   id: FriendlyNoseBoop
@@ -231,6 +233,7 @@
     allowSelfTargeting: false
   interactionMessages:
   - "%user прикасается пальцем к носу %target, буп!"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyFingerTap
@@ -242,6 +245,7 @@
     allowSelfTargeting: false
   interactionMessages:
   - "%user трогает пальцем спину %target"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyJojoPosing
@@ -257,6 +261,7 @@
   - "%user делает jojo reference"
   interactionSounds:
   - FriendlyXZ
+  cooldown: 3
 
 - type: interaction
   id: NeckСhoke
@@ -274,6 +279,7 @@
   interactionSounds:
   - FriendlyNeckChockSound1
   - FriendlyNeckChockSound2
+  cooldown: 3
 
 - type: interaction
   id: FriendlyBackMassage
@@ -287,6 +293,7 @@
   - "%user массирует спину %target"
   - "%user делает массаж спины %target"
   - "%user разминает спину %target"
+  cooldown: 3
 
 - type: interaction
   id: TailIntertwine
@@ -309,6 +316,7 @@
   - "%user аккуратно сплетает свой хвост с хвостом %target"
   - "%user обволакивает хвост %target своим хвостом"
   - "%user играется своим хвостом с хвостом %target"
+  cooldown: 3
 
 - type: interaction
   id: EarsMrrr
@@ -327,6 +335,7 @@
   - "%user поднося свою голову ближе к %target, начинает мурчать на ушко"
   interactionSounds:
   - FelinidPurrs
+  cooldown: 3
 
 - type: interaction
   id: FriendlyShowTongue
@@ -342,6 +351,7 @@
       requireExposed: true
   interactionMessages:
   - "%user открывает рот и высовывает язык на всю длину"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyVulpaBreath
@@ -358,6 +368,7 @@
   interactionMessages:
   - "%user быстро дышит с высунутым языком"
   - "%user быстро дышит с открытой пастью"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyPushups
@@ -370,6 +381,7 @@
   - "%user отжимается от пола"
   interactionSounds:
   - FriendlySalute
+  cooldown: 1
 
 - type: interaction
   id: FriendlyGrimace
@@ -380,6 +392,7 @@
     - !type:SelfOnlyCondition
   interactionMessages:
   - "%user корчит рожу"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyFuck
@@ -393,6 +406,7 @@
   - "%user элегантно показывает фак"
   interactionSounds:
   - FriendlySalute
+  cooldown: 3
 
 - type: interaction
   id: FriendlyFingerIntertwine
@@ -406,6 +420,7 @@
   - "%user слетается своим пальцем с пальцем %target"
   - "%user нежно берёт палец %target и сплетает со своим"
   - "%user аккуратно сплетает пальцы с %target"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyNoseClick
@@ -417,6 +432,7 @@
     allowSelfTargeting: false
   interactionMessages:
   - "%user бьёт пальцем по носу %target"
+  cooldown: 3
 
 - type: interaction
   id: FriendlyFofan
@@ -439,3 +455,4 @@
     - FriendlySlap5
     - FriendlySlap6
     - FriendlySlap7
+  cooldown: 3

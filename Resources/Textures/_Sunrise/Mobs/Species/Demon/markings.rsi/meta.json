@@ -148,7 +148,14 @@
             "directions": 4
         },
         {
-            "name": "tail_trident",
+            "name": "tail_trident",,
+            "directions": 4
+        },
+            "name": "arcana_ears_alt",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears",
             "directions": 4
         }
     ]

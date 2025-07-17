@@ -38,3 +38,6 @@ ent-Sheetifier = sheet-meister 2000
     .desc = A very sheety machine.
 ent-CutterMachine = cutter machine
     .desc = This is a cutter. It cuts. Add variety to your station floor with eye-pleasing patterns! Don't stick your fingers in.
+ent-CentcomTechFab = centcom techfab
+    .suffix = ERT
+    .desc = Prints equipment for CentCom rapid response squads. "Cost-optimized model" has reduced fabrication speed and limited selection.

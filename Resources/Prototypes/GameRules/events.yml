@@ -700,3 +700,11 @@
       min: 1
       max: 1
       pickPlayer: false
+
+- type: entity
+  id: EpsilonDeathSquadLawset
+  parent: BaseStationEvent
+  components:
+  - type: StationEvent
+    weight: 0 # Only triggered by code/admin
+    duration: 1
