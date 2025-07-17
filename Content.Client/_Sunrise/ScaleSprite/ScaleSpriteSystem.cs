@@ -17,9 +17,7 @@ public sealed class ScaleSpriteSystem : EntitySystem
     {
         if (!ev.AppearanceData.TryGetValue(ScaleSpriteVisuals.Scale, out var scale) || ev.Sprite == null)
             return;
-        if (!ev.AppearanceData.TryGetValue(ScaleSpriteVisuals.OldScale, out var oldScale))
-            oldScale = ev.Sprite.Scale;
 
-        _sprite.SetScale((uid, ev.Sprite), (Vector2)oldScale * (Vector2)scale);
+        _sprite.SetScale((uid, ev.Sprite), (Vector2)scale);
     }
 }

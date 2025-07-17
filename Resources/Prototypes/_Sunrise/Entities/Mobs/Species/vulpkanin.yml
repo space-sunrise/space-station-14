@@ -89,6 +89,8 @@
         Blunt: 2
         Slash: 3
   - type: Carriable
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
 
 
 - type: entity

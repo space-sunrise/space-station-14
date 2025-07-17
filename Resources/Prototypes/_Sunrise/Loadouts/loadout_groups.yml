@@ -227,6 +227,18 @@
   - WeaponDisabler
   - WeaponTaser
 
+# Security Cadet
+- type: loadoutGroup
+  id: SunriseWeaponCadet
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CadetWeaponGlockBox
+  - CadetWeaponACP14Box
+  - CadetWeaponEnergyGunPistolSecurity
+  - CadetWeaponDisabler
+
 # Security  Detective
 - type: loadoutGroup
   id: SunriseWeaponDetective
@@ -238,6 +250,7 @@
   - DetectiveWeapon20h
   - DetectiveWeapon50h
   - DetectiveWeapon50h2
+  - DetectiveWeapon100h
 
 # Security  HoS
 - type: loadoutGroup

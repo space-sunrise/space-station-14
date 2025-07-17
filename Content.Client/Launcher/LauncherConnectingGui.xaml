@@ -28,17 +28,6 @@
                     </BoxContainer>
                 </controls:StripeBack>
 
-                <PanelContainer Margin="0 10">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#464966"
-                                          BorderColor="#A88B5E"
-                                          BorderThickness="2"/>
-                    </PanelContainer.PanelOverride>
-                    <Button Name="Forum"
-                            Text="Forum"
-                            StyleClasses="SocialButton SocialButtonForum"/>
-                </PanelContainer>
-
                 <PanelContainer Margin="0 5">
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#5865F2"/>

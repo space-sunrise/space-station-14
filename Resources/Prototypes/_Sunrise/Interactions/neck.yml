@@ -19,3 +19,4 @@
       checkTarget: true
       categories: [ "шея"]
       requireExposed: true
+  cooldown: 3

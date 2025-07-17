@@ -203,14 +203,18 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnSendAgent(SendAgentEvent ev)
     {
-        // Если будет 2 шаттла абдукторов, то беды не миновать!
         bool foundAny = false;
-        var query = EntityQueryEnumerator<AbductorOnAlienPadComponent>(); // Щиткод, попробую поправить позже
-        while (query.MoveNext(out var uid, out var comp))
+        var query = EntityQueryEnumerator<AbductorOnAlienPadComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var xform))
         {
+            if (!TryComp(ev.Performer, out TransformComponent? perXform))
+                continue;
+
+            if (perXform.GridUid != xform.GridUid)
+                continue;
+
             _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { uid }, Filter.Pvs(uid, entityManager: EntityManager));
 
-            EnsureComp<TransformComponent>(uid, out var xform);
             var effectEnt = SpawnAttachedTo(_teleportationEffectEntity, xform.Coordinates);
             _xformSys.SetParent(effectEnt, uid);
             EnsureComp<TimedDespawnComponent>(effectEnt, out var despawnEffectEntComp);

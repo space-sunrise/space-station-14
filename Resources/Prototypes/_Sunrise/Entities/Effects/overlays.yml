@@ -1,0 +1,43 @@
+- type: entity
+  id: EffectNightVision
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#12ac27"
+    energy: 0.8
+    radius: 20
+    softness: 20
+
+- type: entity
+  id: EffectNightVisioSpecies
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#D6E4FF"
+    energy: 0.1
+    radius: 10
+    softness: 20
+
+- type: entity
+  id: EffectNightVisionHandcraft
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#0ee92b"
+    energy: 0.1
+    radius: 20
+    softness: 20
+
+- type: entity
+  id: EffectNightVisionSyndie
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#d61b1b"
+    energy: 0.8
+    radius: 20
+    softness: 20

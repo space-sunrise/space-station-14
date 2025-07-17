@@ -7,6 +7,8 @@ namespace Content.Shared._Sunrise.BloodCult.UI;
 public sealed class TeleportSpellEuiState : EuiStateBase
 {
     public Dictionary<int, string> Runes = new();
+
+    public List<string> Distance = new();
 }
 
 [Serializable, NetSerializable]

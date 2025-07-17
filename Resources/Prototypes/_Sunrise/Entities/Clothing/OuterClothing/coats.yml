@@ -527,3 +527,14 @@
     maxItemSize: Small
     grid:
     - 0,0,3,1
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterBezBabTshirt
+  name: tshirt bezbab
+  description: Oversize tshirt for men. Without women.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/bez_bab.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/bez_bab.rsi

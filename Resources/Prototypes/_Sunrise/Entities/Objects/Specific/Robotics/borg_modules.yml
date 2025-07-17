@@ -12,6 +12,8 @@
     - WeaponPulseCarbineBorg
     - WeaponPulseCarbineBorg
     - PinpointerNuclear
+  - type: BorgModuleIcon
+    icon: {sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base}
 
 - type: entity
   id: BorgModuleERTNlethal
@@ -27,6 +29,8 @@
     - StunbatonBorg
     - WeaponDisablerSMGBorg
     - FlashBorg
+  - type: BorgModuleIcon
+    icon: {sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off}
 
 - type: entity
   id: BorgToolModuleERT
@@ -40,6 +44,12 @@
   - type: ItemBorgModule
     items:
     - JawsOfLife
+    - PowerDrill
+    - Multitool
+    - WelderBorg
+    - RemoteSignallerAdvanced
+  - type: BorgModuleIcon
+    icon: {sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module}
 
 - type: entity
   id: BorgHeavyModuleSyndicateCombat
@@ -111,7 +121,7 @@
 - type: entity
   id: BorgModuleStun
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
-  name: stuh cyborg module
+  name: stun cyborg module
   components:
   - type: Sprite
     layers:
@@ -152,6 +162,7 @@
     items:
     - CombatKnife
     - WeaponLaserBorg
+    - FlashBorg
     - HoloprojectorSecurityBorg
 
 - type: entity
@@ -181,6 +192,8 @@
     items:
     - WeaponProtoKineticAcceleratorBorg
     - WeaponCrusherDagger
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi, state: icon }
 
 - type: entity
   id: BorgModuleJetpack
@@ -194,6 +207,8 @@
   - type: ItemBorgModule
     items:
     - JetpackVoidFilled
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 
 - type: entity
   id: BorgModuleSyndicateGeneric
@@ -255,3 +270,20 @@
     - CrowbarBorg
     - FireExtinguisherBorg
     - HypoBorgStandard
+
+- type: entity
+  id: BorgERTModuleStandard
+  parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
+  name: ERT utility cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: NT
+    - state: icon-NT
+  - type: ItemBorgModule
+    items:
+    - CrowbarBorg
+    - FireExtinguisherBorg
+    - HypoBorgStandardERT
+  - type: BorgModuleIcon
+    icon: { sprite: _Sunrise/Objects/Tools/items_cyborg.rsi, state: crowbar_cyborg }

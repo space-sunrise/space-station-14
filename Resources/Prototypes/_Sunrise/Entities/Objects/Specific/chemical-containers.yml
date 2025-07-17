@@ -25,3 +25,178 @@
         reagents:
         - ReagentId: PolytrinicAcid
           Quantity: 30
+
+- type: entity
+  parent: Jug
+  id: JugPunctTranexSunrise
+  categories: [ HideSpawnMenu ]
+  suffix: punct & tranex
+  components:
+  - type: Label
+    currentLabel: reagent-name-puncturase-tranexamic
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Puncturase
+          Quantity: 160
+        - ReagentId: TranexamicAcid
+          Quantity: 40
+
+- type: entity
+  parent: Jug
+  id: JugPyraDermaSunrise
+  suffix: pyra & derma
+  components:
+  - type: Label
+    currentLabel: reagent-name-pyrazine-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Pyrazine
+          Quantity: 50
+        - ReagentId: Dermaline
+          Quantity: 150
+
+- type: entity
+  parent: Jug
+  id: JugDexPlusSalineSunrise
+  suffix: dex+ & saline
+  components:
+  - type: Label
+    currentLabel: reagent-name-dexalin-plus-saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 100
+        - ReagentId: Saline
+          Quantity: 100
+
+- type: entity
+  parent: Jug
+  id: JugTricoSunrise
+  suffix: tricordrazine
+  components:
+  - type: Label
+    currentLabel: reagent-name-tricordrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Tricordrazine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  id: JugBloodSunrise
+  suffix: blood
+  components:
+  - type: Label
+    currentLabel: reagent-name-blood
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  id: JugWaterSunrise
+  suffix: water
+  components:
+  - type: Label
+    currentLabel: reagent-name-water
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Water
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: bicaridine
+  id: JugBicaridineSunrise
+  components:
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: dermaline
+  id: JugDermalineSunrise
+  components:
+  - type: Label
+    currentLabel: reagent-name-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: dexalin
+  id: JugDexalinSunrise
+  components:
+  - type: Label
+    currentLabel: reagent-name-dexalin
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Dexalin
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: dexalin+
+  id: JugDexalinPlusSunrise
+  components:
+  - type: Label
+    currentLabel: reagent-name-dexalin-plus
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: dylovene
+  id: JugDyloveneSunrise
+  components:
+  - type: Label
+    currentLabel: reagent-name-dylovene
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Dylovene
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: saline
+  id: JugSalineSunrise
+  components:
+  - type: Label
+    currentLabel: reagent-name-saline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Saline
+          Quantity: 200

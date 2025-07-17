@@ -37,7 +37,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -122,7 +122,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 7 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -926,9 +926,9 @@
   productEntity: ChameleonProjector
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 3 # Sunrise-Edit
   cost:
-    Telecrystal: 7
+    Telecrystal: 6 # Sunrise-Edit
   categories:
   - UplinkDeception
 
@@ -1325,7 +1325,7 @@
   description: uplink-cameraBug-desc
   productEntity: CameraBug
   cost:
-    Telecrystal: 4
+    Telecrystal: 3 # Sunrise-Edit
   categories:
   - UplinkDisruption
 
@@ -1341,7 +1341,7 @@
   discountDownTo:
     Telecrystal: 8
   cost:
-    Telecrystal: 14
+    Telecrystal: 12 # Sunrise-Edit
   categories:
   - UplinkAllies
 
@@ -1560,7 +1560,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 3 # Sunrise-Edit
   categories:
     - UplinkImplants
   #Sunrise-start
@@ -1579,9 +1579,9 @@
   productEntity: EmpImplanter
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 3 # Sunrise-Edit
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Sunrise-Edit
   categories:
     - UplinkImplants
 
@@ -1695,7 +1695,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3 # Sunrise-Edit
   categories:
   - UplinkImplants
 
@@ -1949,7 +1949,7 @@
   description: uplink-clothing-conducting-gloves-desc
   productEntity: ClothingHandsGlovesConducting
   cost:
-    Telecrystal: 2
+    Telecrystal: 1 # Sunrise-Edit
   categories:
   - UplinkWearables
 
@@ -1970,11 +1970,23 @@
   productEntity: ClothingOuterHardsuitChameleon
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 4 # Sunrise-Edit
   cost:
-    Telecrystal: 8
+    Telecrystal: 6 # Sunrise-Edit
   categories:
   - UplinkWearables
+
+#Sunrise-Start
+- type: listing
+  id: UplinkMiscSyndiePowercage
+  name: uplink-objects-power-syndie-powercell-name
+  description: uplink-objects-power-syndie-powercell-desc
+  productEntity: PowerCellSyndicate
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+#Sunrise-End
 
  # Pointless
 

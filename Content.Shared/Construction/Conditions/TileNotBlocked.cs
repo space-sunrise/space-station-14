@@ -1,4 +1,6 @@
+using System.Linq;
 using Content.Shared.Maps;
+using Content.Shared.Physics;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 
@@ -15,7 +17,9 @@ public sealed partial class TileNotBlocked : IConstructionCondition
     public bool Condition(EntityUid user, EntityCoordinates location, Direction direction)
     {
         var tileRef = location.GetTileRef();
-
+        var entManager = IoCManager.Resolve<IEntityManager>();
+        var sysMan = entManager.EntitySysManager;
+        var lookupSys = sysMan.GetEntitySystem<EntityLookupSystem>();
         if (tileRef == null)
         {
             return false;
@@ -30,8 +34,10 @@ public sealed partial class TileNotBlocked : IConstructionCondition
         {
             return false;
         }
-
-        return !tileRef.Value.IsBlockedTurf(_filterMobs);
+        // Sunrise-start, Временное решение. У оффов много что поломано с методом IsTileBlocked
+        // return !tileRef.Value.IsBlockedTurf(_filterMobs);
+        return !lookupSys.GetEntitiesIntersecting(location, LookupFlags.Static).Any();
+        // Sunrise-end
     }
 
     public ConstructionGuideEntry GenerateGuideEntry()

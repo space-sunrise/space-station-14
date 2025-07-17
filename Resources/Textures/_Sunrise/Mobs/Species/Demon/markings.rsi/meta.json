@@ -130,6 +130,33 @@
         {
             "name": "horns_thick",
             "directions": 4
+        },
+        {
+            "name": "tail_arrow",
+            "directions": 4
+        },
+        {
+            "name": "tail_fin",
+            "directions": 4
+        },
+        {
+            "name": "tail_fishnet",
+            "directions": 4
+        },
+        {
+            "name": "tail_mermaid",
+            "directions": 4
+        },
+        {
+            "name": "tail_trident",,
+            "directions": 4
+        },
+            "name": "arcana_ears_alt",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears",
+            "directions": 4
         }
     ]
 }

@@ -60,3 +60,5 @@ ent-ClothingOuterArmorNTRGLeadOpened = trenchcoat NTRG Sqaud
     .desc = { ent-ClothingOuterStorageFoldableBaseOpened.desc }
 ent-ClothingOuterArmorNTRG = heavvy vest
     .desc = heavvy vest for NTRG Sqaud
+ent-ClothingOuterBezBabTshirt = tshirt for men
+    .desc = Oversize Tshirt for men. Without women.

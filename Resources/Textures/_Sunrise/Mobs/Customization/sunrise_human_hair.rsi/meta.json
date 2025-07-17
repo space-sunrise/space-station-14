@@ -88,6 +88,10 @@
             "directions": 4
         },
         {
+            "name": "malet",
+            "directions": 4
+        },
+        {
             "name": "hair_long_comb",
             "directions": 4
         },
@@ -117,6 +121,38 @@
         },
         {
             "name": "hair_windy",
+            "directions": 4
+        },
+        {
+            "name": "hair_applejack",
+            "directions": 4
+        },
+        {
+            "name": "hair_aqua",
+            "directions": 4
+        },
+        {
+            "name": "hair_baird-and-bangs",
+            "directions": 4
+        },
+        {
+            "name": "hair_bun-with-tail",
+            "directions": 4
+        },
+        {
+            "name": "hair_bun-with-tail2",
+            "directions": 4
+        },
+        {
+            "name": "hair_gluckosa",
+            "directions": 4
+        },
+        {
+            "name": "hair_pinkie-pie",
+            "directions": 4
+        },
+        {
+            "name": "hair_rarity",
             "directions": 4
         }
   ]
