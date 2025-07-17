@@ -58,3 +58,5 @@ ent-ClothingTechWings = энергетические крылья
     .desc = Примите светлую сторону силы.
 ent-ClothingVoidWings = крылья бездны
     .desc = Вы ощущаете взгляд дракона.
+ent-ClothingNormalWings = обычные крылья
+    .desc = Порхай как птица! По крайней мере, до первого перелома.

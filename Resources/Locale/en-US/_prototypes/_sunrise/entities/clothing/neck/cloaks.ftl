@@ -58,3 +58,5 @@ ent-ClothingTechWings = energy wings
     .desc = Embrace the light side of the force.
 ent-ClothingVoidWings = void wings
     .desc = You feel the dragon's gaze.
+ent-ClothingNormalWings = normal wings
+    .desc = Float like a bird! At least until the first fracture.
