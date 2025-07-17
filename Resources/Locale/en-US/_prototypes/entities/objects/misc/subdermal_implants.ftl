@@ -46,3 +46,5 @@ ent-DeathRattleImplantBlueShield = blue shield death rattle implant
     .desc = This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
 ent-DeathRattleImplantCentcomm = centcomm death rattle implant
     .desc = This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
+ent-CreepyLaughImplant = creepy laugh implant
+    .desc = This implant lets the user laugh like borg anywhere at any time.

@@ -173,3 +173,184 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: uranium
+
+#Magazine
+- type: entity
+  id: BaseMagazineDragunov
+  name: "magazine Dragunov (7,62mmR)"
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineDragunov
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeHeavyRifle
+    capacity: 10
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineDragunovExtended
+  name: "magazine Dragunov (7,62mmR)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyLightRifle
+    capacity: 20
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi
+    layers:
+    - state: base-1
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineDragunov
+  name: "magazine Dragunov (7,62mmR)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyLightRifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineDragunovEmpty
+  name: "magazine (7,62mmR any)"
+  suffix: Sunrise, empty
+  parent: MagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineDragunovIncendiary
+  name: "magazine (7,62mmR incendiary)"
+  suffix: Sunrise
+  parent: MagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyLightRifleIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#ff6e52"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff6e52"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff6e52"
+
+- type: entity
+  id: MagazineDragunovPractice
+  name: "magazine (7,62mmR practice)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyLightRiflePractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#dbdbdb"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dbdbdb"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dbdbdb"
+
+- type: entity
+  id: MagazineDragunovUranium
+  name: "magazine (7,62mmR uranium)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyLightRifleUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#00cd42"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00cd42"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00cd42"
+

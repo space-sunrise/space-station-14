@@ -17,8 +17,9 @@
     ClothingHeadHatPwig: 2
     ClothingOuterRobesJudge: 2
     ClothingOuterPoncho: 2
-    ClothingFairyWings: 4 #sunrise-edit
-    ClothingLosyashWings: 1 #sunrise-edit
+    ClothingOuterKigurumiPanda: 4 #sunrise-edit
+    ClothingFairyWings: 4 #sunrise-edit - reduce when do more wings
+    ClothingLosyashWings: 3 #sunrise-edit - reduce when do more wings
     ClothingDemonWings : 2 #sunrise-edit
     ClothingArchangelWings: 2 #sunrise-edit
     ClothingHeadHatSantahat: 2

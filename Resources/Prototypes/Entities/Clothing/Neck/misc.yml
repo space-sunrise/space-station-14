@@ -79,7 +79,7 @@
     sprite: Clothing/Neck/Misc/bling.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingCloakBase # SUNRISE EDIT
   id: ClothingNeckLawyerbadge
   name: lawyer badge
   description: A badge to show that the owner is a 'legitimate' lawyer who passed the NT bar exam required to practice law.
@@ -106,3 +106,4 @@
     tags:
     - Trash
     - WhitelistChameleon
+    - OpenNeck # INTERACTIONS

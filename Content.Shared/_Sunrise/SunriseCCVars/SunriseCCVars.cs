@@ -107,6 +107,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> SponsorGhostTheme =
         CVarDef.Create("sponsor.ghost_theme", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<string> SponsorPet =
+        CVarDef.Create("sponsor.pet", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<string> SponsorProjectName =
         CVarDef.Create("sponsor.project_name", string.Empty, CVar.SERVERONLY);
 
@@ -453,7 +456,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("transithub.arrivals_min_hours", 0, CVar.SERVER | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> ArrivalsRoundStartSpawn =
-        CVarDef.Create("transithub.arrivals_round_start_spawn", true, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("transithub.arrivals_round_start_spawn", false, CVar.SERVER | CVar.ARCHIVE);
 
     /*
      * Random items-artifacts
@@ -463,7 +466,7 @@ public sealed partial class SunriseCCVars : CVars
     /// Включены ли артефакты-предметы? Переключение этого в моменты игры динамически включает и выключает фичу
     /// </summary>
     public static readonly CVarDef<bool> EnableRandomArtifacts =
-        CVarDef.Create("random_artifacts.enable", true, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("random_artifacts.enable", false, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Соотношение артефактов-предметов к обычным предметам.

@@ -38,6 +38,7 @@
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.Back" ] # SUNRISE
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
@@ -339,7 +340,7 @@
   - type: ComplexInteraction
   - type: ContainerContainer
   - type: Icon
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: full
   - type: Sprite
     drawdepth: Mobs
@@ -377,6 +378,7 @@
     - map: [ "id" ]
     - map: [ "outerClothing" ]
     - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.Back" ] # SUNRISE
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]

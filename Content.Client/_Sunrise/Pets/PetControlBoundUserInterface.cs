@@ -18,14 +18,14 @@ public sealed class PetControlBoundUserInterface : BoundUserInterface
 
     private bool _selected;
 
-    private ClientPetSystem? _clientPetSystem;
-    private SpriteSystem? _spriteSystem;
+    private readonly PettingSystem _clientPetSystem;
+    private readonly SpriteSystem _spriteSystem;
 
     public PetControlBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);
 
-        _clientPetSystem = _entityManager.System<ClientPetSystem>();
+        _clientPetSystem = _entityManager.System<PettingSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
     }
 
@@ -68,10 +68,10 @@ public sealed class PetControlBoundUserInterface : BoundUserInterface
 
     public void SendPetMessage(PetBaseEvent ev)
     {
-        // May god forgive us
+        // May god forgive us.
         // Чтобы реализовать поддержку ивентов вместо сообщений буи мне пришлось использовать систему-пустышку.
 
-        _clientPetSystem?.RaiseFuckingEvent(Owner, ev);
+        _clientPetSystem.RaiseFuckingEvent(Owner, ev);
     }
 
     protected override void Dispose(bool disposing)

@@ -6,6 +6,7 @@ using Content.Shared.Input;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.Jump;
@@ -18,8 +19,7 @@ public sealed partial class JumpSystem : SharedJumpSystem
     private TimeSpan _lastJumpTime;
     private static TimeSpan _jumpCooldown;
 
-    [ValidatePrototypeId<EmotePrototype>]
-    private const string EmoteJumpProto = "Jump";
+    private static readonly ProtoId<EmotePrototype> EmoteJumpProto = "Jump";
 
     public override void Initialize()
     {
@@ -39,7 +39,7 @@ public sealed partial class JumpSystem : SharedJumpSystem
         _cfg.UnsubValueChanged(SunriseCCVars.JumpSoundDisable, OnJumpSoundEnabledOptionChanged);
     }
 
-    private void OnJumpCooldownChanged(float value)
+    private static void OnJumpCooldownChanged(float value)
     {
         _jumpCooldown = TimeSpan.FromSeconds(value);
     }
@@ -51,8 +51,9 @@ public sealed partial class JumpSystem : SharedJumpSystem
 
     private void Jump(ICommonSession? session)
     {
-        if (session is not { AttachedEntity: { Valid: true } uid } _
-            || !Exists(uid))
+        var player = session?.AttachedEntity;
+
+        if (!Exists(player))
             return;
 
         var currentTime = _gameTiming.CurTime;

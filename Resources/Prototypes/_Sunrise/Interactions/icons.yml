@@ -1,0 +1,84 @@
+- type: interactionIcon
+  id: FaceCheeksPullIcon
+  name: "Потискать за щёчки"
+  icon: /Textures/_Sunrise/Interactions/cheeks_pat.png
+
+- type: interactionIcon
+  id: FacePatsIcon
+  name: "Погладить по лицу"
+  icon: /Textures/_Sunrise/Interactions/pet_head.png
+
+- type: interactionIcon
+  id: FaceLickDoggyStyleIcon
+  name: "Облизать лицо по-собачьи"
+  icon: /Textures/_Sunrise/Interactions/face_lick_doggy_style.png
+
+- type: interactionIcon
+  id: FriendlyPatShoulderIcon
+  name: "Похлопать по плечу"
+  icon: /Textures/_Sunrise/Interactions/pat_shoulder.png
+
+- type: interactionIcon
+  id: FriendlyBlowSlapIcon
+  name: "Пощёчина"
+  icon: /Textures/_Sunrise/Interactions/blow_slap.png
+
+- type: interactionIcon
+  id: FriendlyFaceRubCatIcon
+  name: "Потереться как котик"
+  icon: /Textures/_Sunrise/Interactions/face_rub_cat.png
+
+- type: interactionIcon
+  id: FriendlyIcon
+  name: "Дружеское"
+  icon: /Textures/_Sunrise/Interactions/friendly.png
+
+- type: interactionIcon
+  id: FriendlyFingerTapIcon
+  name: "Потрогать спину пальцем"
+  icon: /Textures/_Sunrise/Interactions/friendly_finger_tap.png
+
+- type: interactionIcon
+  id: FriendlyNoseBoopIcon
+  name: "Тронуть кончик носа пальцем"
+  icon: /Textures/_Sunrise/Interactions/friendly_nose_boop.png
+
+- type: interactionIcon
+  id: FriendlyTailPullIcon
+  name: "Дёрнуть за хвост"
+  icon: /Textures/_Sunrise/Interactions/friendly_tail_pull.png
+
+- type: interactionIcon
+  id: FriendlyHandshakeIcon
+  name: "Рукопожатие"
+  icon: /Textures/_Sunrise/Interactions/hand_shake.png
+
+- type: interactionIcon
+  id: FriendlyHignFiveIcon
+  name: "Дать пять"
+  icon: /Textures/_Sunrise/Interactions/high_five.png
+
+- type: interactionIcon
+  id: FriendlyPatTailIcon
+  name: "Погладить хвост"
+  icon: /Textures/_Sunrise/Interactions/pat_tail.png
+
+- type: interactionIcon
+  id: FriendlyShoulderMassageIcon
+  name: "Массаж спины"
+  icon: /Textures/_Sunrise/Interactions/shoulder_massage.png
+
+- type: interactionIcon
+  id: FriendlyTailHugIcon
+  name: "Сплестись хвостами"
+  icon: /Textures/_Sunrise/Interactions/tail_hug.png
+
+- type: interactionIcon
+  id: FriendlyTailIcon
+  name: "Хвостик"
+  icon: /Textures/_Sunrise/Interactions/tail.png
+
+- type: interactionIcon
+  id: FriendlyPatHornsIcon
+  name: "Гладить рожки"
+  icon: /Textures/_Sunrise/Interactions/horns_pat.png

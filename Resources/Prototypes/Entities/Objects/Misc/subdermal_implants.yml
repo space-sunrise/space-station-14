@@ -80,6 +80,25 @@
       - BikeHorn
       - SubdermalImplant # Sunrsie-Edit
 
+#Sunrise-Start
+- type: entity
+  parent: BaseSubdermalImplant
+  id: CreepyLaughImplant
+  name: creepy laugh implant
+  description: This implant lets the user laugh like borg anywhere at any time.
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionActivateBorgLaughImplant
+    - type: TriggerImplantAction
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+    - type: Tag
+      tags:
+      - CreepyLaugh
+      - SubdermalImplant
+#Sunrise-End
+
 #Security implants
 
 - type: entity

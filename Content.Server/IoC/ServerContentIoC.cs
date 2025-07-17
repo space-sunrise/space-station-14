@@ -1,5 +1,6 @@
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.IoC;
+using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Administration;
@@ -88,6 +89,7 @@ namespace Content.Server.IoC
             // Sunrise-Start
             IoCManager.Register<ServersHubManager>();
             IoCManager.Register<ContributorsManager>();
+            IoCManager.Register<PlayerCacheManager>();
             SunriseServerContentIoC.Register();
             // Sunrise-End
         }

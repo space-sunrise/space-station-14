@@ -10,3 +10,5 @@ ent-MindRoleChangeling = Changeling Role
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRoleVampire = Vampire Role
     .desc = { ent-BaseMindRoleAntag.desc }
+ent-MindRoleLoneAbductor = Lone Abductor Role
+    .desc = { ent-BaseMindRoleAntag.desc }

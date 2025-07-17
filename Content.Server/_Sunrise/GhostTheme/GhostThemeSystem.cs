@@ -5,6 +5,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
 using Content.Sunrise.Interfaces.Shared;
+using Content.Server._Sunrise.SponsorValidation;
+using Content.Server._Sunrise.PlayerCache;
+using Content.Shared._Sunrise.PlayerCache;
 
 namespace Content.Server._Sunrise.GhostTheme;
 
@@ -12,7 +15,8 @@ public sealed class GhostThemeSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    private ISharedSponsorsManager? _sponsorsManager;
+    [Dependency] private readonly SponsorValidationSystem _validationSystem = default!;
+    [Dependency] private readonly PlayerCacheManager _playerCache = default!;
 
     public override void Initialize()
     {
@@ -20,8 +24,6 @@ public sealed class GhostThemeSystem : EntitySystem
         SubscribeLocalEvent<GhostComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<GhostComponent, GhostThemeActionEvent>(OnGhostThemeChange);
         SubscribeLocalEvent<GhostComponent, GhostThemePrototypeSelectedMessage>(OnGhostThemeSelected);
-
-        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void TryOpenUi(EntityUid uid, EntityUid user, GhostComponent? component = null)
@@ -47,19 +49,22 @@ public sealed class GhostThemeSystem : EntitySystem
         if (!TryComp(msg.Actor, out ActorComponent? actorComp))
             return;
 
-        List<string> ghostThemes = [];
-        if (_sponsorsManager != null && _sponsorsManager.TryGetGhostThemes(actorComp.PlayerSession.UserId, out var sponsorGhostThemes))
-        {
-            ghostThemes.AddRange(sponsorGhostThemes);
-        }
+        if (!_validationSystem.ValidateGhostThemeSelection(msg.SelectedGhostTheme, actorComp.PlayerSession.UserId))
+            return;
 
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(msg.SelectedGhostTheme, out var ghostThemePrototype))
             return;
 
-        if (!ghostThemes.Contains(ghostThemePrototype.ID) && ghostThemePrototype.SponsorOnly)
-            return;
-
-        _sponsorsManager?.SetCachedGhostTheme(actorComp.PlayerSession.UserId, ghostThemePrototype.ID);
+        if (_playerCache.TryGetCache(actorComp.PlayerSession.UserId, out var cache))
+        {
+            cache.GhostTheme = ghostThemePrototype.ID;
+            _playerCache.SetCache(actorComp.PlayerSession.UserId, cache);
+        }
+        else
+        {
+            cache = new PlayerCacheData();
+            _playerCache.SetCache(actorComp.PlayerSession.UserId, cache);
+        }
         var ghostTheme = EnsureComp<GhostThemeComponent>(ent);
         ghostTheme.GhostTheme = msg.SelectedGhostTheme;
         Dirty(ent, ghostTheme);
@@ -70,33 +75,18 @@ public sealed class GhostThemeSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        List<string> ghostThemes = [];
-        if (_sponsorsManager != null && _sponsorsManager.TryGetGhostThemes(session.UserId, out var sponsorGhostThemes))
-        {
-            ghostThemes.AddRange(sponsorGhostThemes);
-        }
-
-        var ghostThemesPrototypes = _prototypeManager.EnumeratePrototypes<GhostThemePrototype>();
-
-        var availableGhostThemes = new List<string>();
-
-        foreach (var ghostThemePrototype in ghostThemesPrototypes)
-        {
-            if (!ghostThemes.Contains(ghostThemePrototype.ID) && ghostThemePrototype.SponsorOnly)
-                continue;
-
-            availableGhostThemes.Add(ghostThemePrototype.ID);
-        }
-
-        var state = new GhostThemeBoundUserInterfaceState(availableGhostThemes);
+        var allGhostThemes = _validationSystem.GetGhostThemesForPlayer(session.UserId);
+        var state = new GhostThemeBoundUserInterfaceState(allGhostThemes);
 
         _uiSystem.SetUiState(uid, GhostThemeUiKey.Key, state);
     }
 
     private void OnPlayerAttached(EntityUid uid, GhostComponent component, PlayerAttachedEvent args)
     {
-        if (_sponsorsManager == null ||
-            !_sponsorsManager.TryGetCachedGhostTheme(args.Player.UserId, out var ghostTheme))
+        if (!_playerCache.TryGetCachedGhostTheme(args.Player.UserId, out var ghostTheme))
+            return;
+
+        if (!_validationSystem.ValidateGhostThemeSelection(ghostTheme, args.Player.UserId))
             return;
 
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(ghostTheme, out var ghostThemePrototype))

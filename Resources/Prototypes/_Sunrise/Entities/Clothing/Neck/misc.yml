@@ -10,6 +10,12 @@
     sprite: _Sunrise/Clothing/Neck/Misc/sunrisebadge.rsi
   - type: TypingIndicatorClothing
     proto: sun
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckBase

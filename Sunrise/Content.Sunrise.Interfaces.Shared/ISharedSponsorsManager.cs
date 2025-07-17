@@ -41,8 +41,7 @@ public interface ISharedSponsorsManager
     public bool TryGetPriorityGhostRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? priorityAntags);
     public bool TryGetPriorityAntags(NetUserId userId, [NotNullWhen(true)] out List<string>? priorityAntags);
     public bool TryGetPriorityRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? priorityRoles);
-    public void SetCachedGhostTheme(NetUserId userId, string ghostTheme);
-    public bool TryGetCachedGhostTheme(NetUserId userId, [NotNullWhen(true)] out string? ghostTheme);
+    public bool TryGetPets(NetUserId userId, [NotNullWhen(true)] out List<string>? petSelections);
     public void Update();
 }
 
@@ -75,6 +74,9 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("ghostThemes")]
     public string[] GhostThemes { get; set; } = [];
+
+    [JsonPropertyName("pets")]
+    public string[] Pets { get; set; } = [];
 
     [JsonPropertyName("spawnEquipment")]
     public string? SpawnEquipment { get; set; }

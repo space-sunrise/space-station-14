@@ -51,3 +51,9 @@
   name: collective-mind-blood-cult
   keycode: 'к'
   color: "#8b0000"
+
+- type: collectiveMind
+  id: Abductor
+  name: collective-mind-abductor
+  keycode: 'й'
+  color: "#d600bd"

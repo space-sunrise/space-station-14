@@ -5,5 +5,10 @@ namespace Content.Shared.Silicons.StationAi;
 /// <summary>
 /// Handles the static overlay for station AI.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
-public sealed partial class StationAiOverlayComponent : Component;
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight-Surgery-edit
+public sealed partial class StationAiOverlayComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public bool AllowCrossGrid; // Starlight-Surgery-edit
+}
+

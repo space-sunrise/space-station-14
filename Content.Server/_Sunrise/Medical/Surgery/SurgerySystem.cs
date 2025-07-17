@@ -1,8 +1,10 @@
-﻿using Content.Server.Body.Systems;
+﻿using System.Linq;
+using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
 using Content.Server.Popups;
+using Content.Shared.Body.Part;
 using Content.Shared._Sunrise.Medical.Surgery;
 using Content.Shared._Sunrise.Medical.Surgery.Effects.Step;
 using Content.Shared._Sunrise.Medical.Surgery.Events;
@@ -11,6 +13,7 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
+using Content.Shared.Tag;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -31,6 +34,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
     [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
@@ -61,38 +66,50 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
 
         var surgeries = new Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>>();
-        foreach (var part in _body.GetBodyChildren(body))
+        if (HasComp<BodyPartComponent>(body))
         {
-            if (!TryComp<SurgeryProgressComponent>(part.Id, out var progress))
+            AddSurgeries(body, body, surgeries);
+        }
+        else
+        {
+            foreach (var part in _body.GetBodyChildren(body))
             {
-                progress = new SurgeryProgressComponent();
-                AddComp(part.Id, progress);
-            }
-
-            foreach (var surgery in _surgeries)
-            {
-                if (GetSingleton(surgery) is not { } surgeryEnt
-                    || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp)
-                    || (surgeryComp.Requirement is not null && !progress.CompletedSurgeries.Contains(surgeryComp.Requirement.Value)))
-                    continue;
-
-                var ev = new SurgeryValidEvent(body, part.Id);
-
-                var isCompleted = progress.CompletedSurgeries.Contains(surgery);
-                if (!progress.StartedSurgeries.Contains(surgery) 
-                    && !isCompleted)
-                {
-                    RaiseLocalEvent(surgeryEnt, ref ev);
-
-                    if (ev.Cancelled)
-                        continue;
-                }
-
-                surgeries.GetOrNew(GetNetEntity(part.Id)).Add((surgery, ev.Suffix, isCompleted));
+                AddSurgeries(part.Id, body, surgeries);
             }
         }
 
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState() { Choices = surgeries });
+    }
+
+    private void AddSurgeries(EntityUid part, EntityUid body, Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>> surgeries)
+    {
+        if (!TryComp<SurgeryProgressComponent>(part, out var progress))
+        {
+            progress = new SurgeryProgressComponent();
+            AddComp(part, progress);
+        }
+
+        foreach (var surgery in _surgeries)
+        {
+            if (GetSingleton(surgery) is not { } surgeryEnt
+                || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp)
+                || (surgeryComp.Requirement.Count() > 0 && !progress.CompletedSurgeries.Any(x => surgeryComp.Requirement.Contains(x))))
+                continue;
+
+            var ev = new SurgeryValidEvent(body, part);
+
+            var isCompleted = progress.CompletedSurgeries.Contains(surgery);
+            if (!progress.StartedSurgeries.Contains(surgery)
+                && !isCompleted)
+            {
+                RaiseLocalEvent(surgeryEnt, ref ev);
+
+                if (ev.Cancelled)
+                    continue;
+            }
+
+            surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
+        }
     }
 
     private void OnToolAfterInteract(Entity<SurgeryToolComponent> ent, ref AfterInteractEvent args)
@@ -106,7 +123,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         if (user == args.Target)
         {
-            _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
+            _popup.PopupEntity(Loc.GetString("cant-perform-operation-on-yourself"), user, user);
             return;
         }
 

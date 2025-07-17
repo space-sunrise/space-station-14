@@ -21,10 +21,23 @@ public enum GhostThemeUiKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class GhostThemeBoundUserInterfaceState(List<string> ghostThemes)
+public sealed class GhostThemeInfo
+{
+    public string Id { get; }
+    public bool IsAvailable { get; }
+
+    public GhostThemeInfo(string id, bool isAvailable)
+    {
+        Id = id;
+        IsAvailable = isAvailable;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class GhostThemeBoundUserInterfaceState(List<GhostThemeInfo> ghostThemes)
     : BoundUserInterfaceState
 {
-    public readonly List<string> GhostThemes = ghostThemes;
+    public readonly List<GhostThemeInfo> GhostThemes = ghostThemes;
 }
 
 [Serializable, NetSerializable]

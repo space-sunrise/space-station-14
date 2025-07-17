@@ -1,3 +1,11 @@
 ent-RCDAdvancedSunrise = advanced RCD
     .suffix = CE
     .desc = { ent-RCD.desc }
+ent-WirecutterAbductor = abductor's wirecutter
+    .desc = { ent-BaseItem.desc }
+ent-ScrewdriverAbductor = abductor's screwdriver
+    .desc = { ent-BaseItem.desc }
+ent-WrenchAbductor = abductor's wrench
+    .desc = { ent-Wrench.desc }
+ent-MultitoolAbductor = abductor's multitool
+    .desc = { ent-Multitool.desc }

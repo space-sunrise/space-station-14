@@ -42,3 +42,5 @@ ent-MobXenoDroneGhostRole = ксено
 ent-MobXenoPraetorianGhostRole = ксено
     .suffix = Роль призрака
     .desc = { ent-MobXenoPraetorian.desc }
+ent-MobXenoLonePraetorianNoGhost = Одинокий преторианец
+    .desc = Последний в своем роде.

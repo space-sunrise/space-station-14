@@ -1,0 +1,103 @@
+﻿# Actions
+- type: entity
+  id: ActionExitConsole
+  name: Exit console
+  description: Exit console.
+  components:
+  - type: Action
+    priority: -20
+    itemIconStyle: BigAction
+    checkConsciousness: false
+    checkCanInteract: false
+    icon:
+      sprite: _Sunrise/Abductor/Interface/Actions/actions_abductor.rsi
+      state: exit
+  - type: InstantAction
+    event: !type:ExitConsoleEvent
+
+- type: entity
+  id: ActionSendYourself
+  name: Send yourself
+  description: send yourself.
+  components:
+  - type: Action
+    useDelay: 10
+    priority: -19
+    checkConsciousness: false
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Abductor/Interface/Actions/actions_abductor.rsi
+      state: send-yourself
+  - type: TargetAction
+    checkCanAccess: false
+    range: -1
+  - type: WorldTargetAction
+    event: !type:SendYourselfEvent
+
+- type: entity
+  id: ActionGizmoMark
+  name: Mark
+  description: using gizmo from your pockets to mark agent.
+  components:
+  - type: Action
+    useDelay: 10
+    priority: -18
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Abductor/Interface/Actions/actions_abductor.rsi
+      state: gizmo
+  - type: TargetAction
+    range: -1
+  - type: EntityTargetAction
+    event: !type:GizmoMarkEvent
+
+- type: entity
+  id: ActionSendAgent
+  name: Send agent
+  description: teleport agent from alien pad.
+  components:
+  - type: Action
+    useDelay: 10
+    priority: -17
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Abductor/Interface/Actions/actions_abductor.rsi
+      state: send
+  - type: TargetAction
+    checkCanAccess: false
+    range: -1
+  - type: WorldTargetAction
+    event: !type:SendAgentEvent
+
+- type: entity
+  id: AbductorVestToggleStealth
+  name: Toggle invisibility
+  description: toggles the invisibility of the suit. Don't forget to set stealth mode!
+  components:
+  - type: Action
+    useDelay: 5
+    priority: -18
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  id: ActionReturnToShip
+  name: return
+  description: return to the ship.
+  components:
+  - type: Action
+    useDelay: 10
+    priority: -12
+    checkConsciousness: false
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Abductor/Interface/Actions/actions_abductor.rsi
+      state: implant
+  - type: InstantAction
+    event: !type:AbductorReturnToShipEvent

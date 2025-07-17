@@ -411,7 +411,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
         // Do this AFTER attack so it doesn't spam every tick
-        var ev = new AttemptMeleeEvent();
+        var ev = new AttemptMeleeEvent(user); // Sunrise-edit
         RaiseLocalEvent(weaponUid, ref ev);
 
         if (ev.Cancelled)

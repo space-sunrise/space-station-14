@@ -140,6 +140,8 @@
       - state: active
         shader: unshaded
   - type: Store
+    refundAllowed: false
+    ownerOnly: true
     balance:
       Bluecrystal: 999
       Crystallite: 999

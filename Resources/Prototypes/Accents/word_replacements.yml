@@ -645,7 +645,7 @@
 
 - type: accent
   id: liar
-  replacementChance: 0.15
+  replacementChance: 0.4 # Sunrise-edit
   wordReplacements:
     liar-word-1: liar-word-replacement-1
     liar-word-2: liar-word-replacement-2
@@ -804,3 +804,28 @@
     accent-skeleton-words-7: accent-skeleton-words-replace-7
     accent-skeleton-words-8: accent-skeleton-words-replace-8
     accent-skeleton-words-9: accent-skeleton-words-replace-9
+
+- type: accent
+  id: moldovan
+  wordReplacements:
+    accent-moldovan-words-1: accent-moldovan-words-replace-1
+    accent-moldovan-words-2: accent-moldovan-words-replace-2
+    accent-moldovan-words-2-2: accent-moldovan-words-replace-2
+    accent-moldovan-words-3: accent-moldovan-words-replace-3
+    accent-moldovan-words-4: accent-moldovan-words-replace-4
+    accent-moldovan-words-5: accent-moldovan-words-replace-5
+    accent-moldovan-words-6: accent-moldovan-words-replace-6
+    accent-moldovan-words-7: accent-moldovan-words-replace-7
+    accent-moldovan-words-8: accent-moldovan-words-replace-8
+    accent-moldovan-words-9: accent-moldovan-words-replace-9
+    accent-moldovan-words-10: accent-moldovan-words-replace-10
+    accent-moldovan-words-11: accent-moldovan-words-replace-11
+    accent-moldovan-words-12: accent-moldovan-words-replace-12
+    accent-moldovan-words-13: accent-moldovan-words-replace-13
+    accent-moldovan-words-14: accent-moldovan-words-replace-14
+    accent-moldovan-words-14-2: accent-moldovan-words-replace-14
+    accent-moldovan-words-15: accent-moldovan-words-replace-15
+    accent-moldovan-words-15-2: accent-moldovan-words-replace-15
+    accent-moldovan-words-16: accent-moldovan-words-replace-16
+    accent-moldovan-words-17: accent-moldovan-words-replace-17
+    accent-moldovan-words-18: accent-moldovan-words-replace-18

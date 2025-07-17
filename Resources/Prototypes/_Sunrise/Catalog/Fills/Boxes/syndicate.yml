@@ -44,6 +44,10 @@
   id: CaselessAmmoKit
   name: Siar52 ammo kit
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: Storage
     grid:
     - 0,0,2,3
@@ -57,7 +61,7 @@
     - id: MagazinePistolSubMachineGunSIAR52
   - type: Sprite
     layers:
-    - state: box_of_doom_big
+    - state: box_of_doom
     - state: smg_base
 
 - type: entity
@@ -166,10 +170,10 @@
     - id: MagazineShotgunUranium
     - id: MagazineShotgunUranium
     - id: MagazineShotgunUranium
-    - id: MagazineShotgunUranium
-    - id: MagazineShotgunUranium
-    - id: MagazineShotgunUranium
-    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUraniumSlug
+    - id: MagazineShotgunUraniumSlug
+    - id: MagazineShotgunUraniumSlug
+    - id: MagazineShotgunUraniumSlug
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -180,9 +184,13 @@
   id: LMGKit
   name: L6 Saw ammo kit
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: Storage
     grid:
-    - 0,0,3,3
+    - 0,0,3,2
   - type: StorageFill
     contents:
     - id: MagazineLightRifleBox
@@ -195,13 +203,13 @@
     - state: l6_base
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: LMGKit
   id: LMGIncendiaryKit
   name: L6 Saw Incendiary ammo kit
   components:
   - type: Storage
     grid:
-    - 0,0,3,3
+    - 0,0,3,2
   - type: StorageFill
     contents:
     - id: MagazineLightRifleBoxIncendiary
@@ -214,13 +222,13 @@
     - state: l6_red
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: LMGKit
   id: LMGUraniumKit
   name: L6 Saw Uranium ammo kit
   components:
   - type: Storage
     grid:
-    - 0,0,3,3
+    - 0,0,3,2
   - type: StorageFill
     contents:
     - id: MagazineLightRifleBoxUranium

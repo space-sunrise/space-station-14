@@ -6,3 +6,6 @@ ent-BeltSheathSyndieFilledBox = the Wrapped Rapier of the Syndicate
 ent-ClothingBeltMilitaryWebbingMedSunriseFilled = { ent-ClothingBeltMilitaryWebbingMedSunrise }
     .suffix = Filled
     .desc = { ent-ClothingBeltMilitaryWebbingMedSunrise.desc }
+ent-ClothingAbductorBeltFilled = { ent-ClothingAbductorBelt }
+    .suffix = Filled
+    .desc = { ent-ClothingAbductorBelt.desc }

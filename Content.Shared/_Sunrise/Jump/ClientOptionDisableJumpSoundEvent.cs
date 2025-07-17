@@ -3,11 +3,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Jump;
 
 [Serializable, NetSerializable]
-public sealed class ClientOptionDisableJumpSoundEvent : EntityEventArgs
+public sealed class ClientOptionDisableJumpSoundEvent(bool enabled) : EntityEventArgs
 {
-    public bool Disable { get; }
-    public ClientOptionDisableJumpSoundEvent(bool enabled)
-    {
-        Disable = enabled;
-    }
+    public bool Disable { get; } = enabled; // крутой нейминг придумали
 }

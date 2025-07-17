@@ -174,3 +174,18 @@
   - type: Store
     balance:
       Telecrystal: 99999
+
+# Sunrise-Start
+- type: entity
+  parent: BaseUplinkRadio
+  id: BaseUplinkRadioDebug999
+  suffix: DEBUG, NukeOps
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 999
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+# Sunrise-Start

@@ -18,6 +18,7 @@
         stomach: OrganVulpkaninStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
+        cavity: null
       connections:
       - right_arm
       - left_arm

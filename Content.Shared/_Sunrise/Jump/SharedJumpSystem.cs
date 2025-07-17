@@ -19,43 +19,34 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Jump;
 
-public abstract class SharedJumpSystem : EntitySystem
+public abstract partial class SharedJumpSystem : EntitySystem
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standingState = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly ClimbSystem _climb = default!;
+    [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ClimbSystem _climbSystem = default!;
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
 
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    private const string JumpStatusEffectKey = "Jump";
-    [ValidatePrototypeId<EmotePrototype>]
-    private const string EmoteFallOnNeckProto = "FallOnNeck";
-    private readonly SoundSpecifier _jumpSound = new SoundPathSpecifier("/Audio/_Sunrise/jump_mario.ogg");
+    private static readonly ProtoId<StatusEffectPrototype> JumpStatusEffectKey = "Jump";
+    private static readonly ProtoId<EmotePrototype> EmoteFallOnNeckProto = "FallOnNeck";
 
-    public bool Enable;
-    private static float _deadChance;
-
-    public bool BunnyHopEnable;
-    private static TimeSpan _bunnyHopSpeedBoostWindow;
-    private static float _bunnyHopSpeedUpPerJump;
-    private static float _bunnyHopSpeedLimit;
-    private static float _bunnyHopMinSpeedThreshold;
+    private static readonly SoundSpecifier JumpSound = new SoundPathSpecifier("/Audio/_Sunrise/jump_mario.ogg");
 
     private readonly List<ICommonSession> _ignoredRecipients = [];
 
@@ -80,162 +71,136 @@ public abstract class SharedJumpSystem : EntitySystem
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopSpeedLimit, OnBunnyHopSpeedLimitChanged, true);
     }
 
-    private void OnRefreshMoveSpeed(EntityUid uid, BunnyHopComponent component, RefreshMovementSpeedModifiersEvent args)
+    private static void OnRefreshMoveSpeed(Entity<BunnyHopComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.CanBunnyHop)
-            args.ModifySpeed(component.SpeedMultiplier, component.SpeedMultiplier);
-    }
-
-    private async void OnClientOptionJumpSound(ClientOptionDisableJumpSoundEvent ev, EntitySessionEventArgs args)
-    {
-        if (ev.Disable)
-            _ignoredRecipients.Add(args.SenderSession);
-        else
-            _ignoredRecipients.Remove(args.SenderSession);
-    }
-
-    private void OnJumpEnableChanged(bool enanle)
-    {
-        Enable = enanle;
-    }
-
-    private void OnJumpDeadChanceChanged(float value)
-    {
-        _deadChance = value;
-    }
-
-    private void OnBunnyHopEnableChanged(bool enanle)
-    {
-        BunnyHopEnable = enanle;
-    }
-
-    private void OnBunnyHopMinSpeedThresholdChanged(float value)
-    {
-        _bunnyHopMinSpeedThreshold = value;
-    }
-
-    private void OnBunnyHopSpeedBoostWindowChanged(float value)
-    {
-        _bunnyHopSpeedBoostWindow = TimeSpan.FromSeconds(value);
-    }
-
-    private void OnBunnyHopSpeedUpPerJumpChanged(float value)
-    {
-        _bunnyHopSpeedUpPerJump = value;
-    }
-
-    private void OnBunnyHopSpeedLimitChanged(float value)
-    {
-        _bunnyHopSpeedLimit = value;
+        if (ent.Comp.CanBunnyHop)
+            args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier);
     }
 
     public bool CanJump(EntityUid uid)
     {
-        return !_gravity.IsWeightless(uid) &&
-               !_standingStateSystem.IsDown(uid) &&
-               _mobState.IsAlive(uid) &&
-               !_climbSystem.IsClimbing(uid) &&
-               Enable;
+        if (!_enabled)
+            return false;
+
+        if (_gravity.IsWeightless(uid))
+            return false;
+
+        if (_standingState.IsDown(uid))
+            return false;
+
+        if (!_mobState.IsAlive(uid))
+            return false;
+
+        if (_climb.IsClimbing(uid))
+            return false;
+
+        return true;
     }
 
-    public void TryJump(EntityUid uid)
+    public bool TryJump(EntityUid uid)
     {
-        if (_gravity.IsWeightless(uid) ||
-            _standingStateSystem.IsDown(uid) ||
-            !_mobState.IsAlive(uid) ||
-            _climbSystem.IsClimbing(uid) ||
-            !Enable)
-            return;
+        if (!CanJump(uid))
+            return false;
 
         Jump(uid);
+        return true;
     }
 
     public void Jump(EntityUid uid)
     {
         _statusEffects.TryAddStatusEffect<JumpComponent>(uid,
             JumpStatusEffectKey,
-            TimeSpan.FromMilliseconds(500),
+            JumpComponent.JumpInAirTime,
             false);
     }
 
     private void OnStartup(Entity<JumpComponent> ent, ref ComponentStartup args)
     {
-        if (!_physicsQuery.TryGetComponent(ent.Owner, out var body) ||
-            !_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
+        if (!_physicsQuery.TryGetComponent(ent, out var body) ||
+            !_fixturesQuery.TryGetComponent(ent, out var fixtures))
             return;
 
         // SUNRISE-TODO: Прыжки тратят стамину
         //_staminaSystem.TakeStaminaDamage(uid, 10);
 
         if (_net.IsServer)
-            _audioSystem.PlayEntity(_audioSystem.ResolveSound(_jumpSound), Filter.Pvs(ent.Owner).RemovePlayers(_ignoredRecipients), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
+            _audio.PlayEntity(JumpSound, Filter.Pvs(ent).RemovePlayers(_ignoredRecipients), ent, true, AudioParams.Default.WithVolume(-5f));
 
-        EnsureComp<CanMoveInAirComponent>(ent.Owner);
-        _physics.SetBodyStatus(ent.Owner, body, BodyStatus.InAir);
+        EnsureComp<CanMoveInAirComponent>(ent);
+        _physics.SetBodyStatus(ent, body, BodyStatus.InAir);
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
             ent.Comp.OriginalCollisionMasks[id] = fixture.CollisionMask;
             ent.Comp.OriginalCollisionLayers[id] = fixture.CollisionLayer;
 
-            _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.LowImpassable, manager: fixtures);
+            _physics.RemoveCollisionMask(ent, id, fixture, (int) CollisionGroup.MidImpassable, manager: fixtures);
         }
 
-        if (!BunnyHopEnable)
-            return;
+        TryBunnyHop(ent, body);
+    }
 
-        if (TryComp<PullerComponent>(ent, out var pull) && _pullingSystem.IsPulling(ent, pull))
-            return;
+    private bool TryBunnyHop(Entity<JumpComponent> ent, PhysicsComponent body)
+    {
+        if (!_bunnyHopEnabled)
+            return false;
+
+        if (TryComp<PullerComponent>(ent, out var pull) && _pulling.IsPulling(ent, pull))
+            return false;
 
         var currentSpeed = body.LinearVelocity.Length();
 
         if (currentSpeed < _bunnyHopMinSpeedThreshold)
-            return;
+            return false;
 
-        var bunnyHopComp = EnsureComp<BunnyHopComponent>(ent.Owner);
+        var bunnyHopComp = EnsureComp<BunnyHopComponent>(ent);
         bunnyHopComp.LastLandingTime = _timing.CurTime;
+
         var timeSinceLastLand = _timing.CurTime - bunnyHopComp.LastLandingTime;
         if (timeSinceLastLand <= _bunnyHopSpeedBoostWindow)
         {
             var speedMultiplier = bunnyHopComp.SpeedMultiplier += _bunnyHopSpeedUpPerJump;
             bunnyHopComp.SpeedMultiplier = Math.Min(speedMultiplier, _bunnyHopSpeedLimit);
-            _movementSpeedModifier.RefreshMovementSpeedModifiers(ent.Owner);
+
+            _movementSpeedModifier.RefreshMovementSpeedModifiers(ent);
         }
+
+        return true;
     }
 
     private void OnShutdown(Entity<JumpComponent> ent, ref ComponentShutdown args)
     {
-        if (!_physicsQuery.TryGetComponent(ent.Owner, out var body) ||
-            !_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
+        if (!_physicsQuery.TryComp(ent, out var body)
+            || !_fixturesQuery.TryComp(ent, out var fixtures))
             return;
 
-        RemCompDeferred<CanMoveInAirComponent>(ent.Owner);
-        _physics.SetBodyStatus(ent.Owner, body, BodyStatus.OnGround);
+        RemCompDeferred<CanMoveInAirComponent>(ent);
+        _physics.SetBodyStatus(ent, body, BodyStatus.OnGround);
+
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
             if (ent.Comp.OriginalCollisionMasks.TryGetValue(id, out var originalMask))
             {
-                _physics.SetCollisionMask(ent.Owner, id, fixture, originalMask, manager: fixtures);
+                _physics.SetCollisionMask(ent, id, fixture, originalMask, manager: fixtures);
             }
             if (ent.Comp.OriginalCollisionLayers.TryGetValue(id, out var originalLayer))
             {
-                _physics.SetCollisionLayer(ent.Owner, id, fixture, originalLayer, manager: fixtures);
+                _physics.SetCollisionLayer(ent, id, fixture, originalLayer, manager: fixtures);
             }
         }
 
         if (_random.Prob(_deadChance) && _net.IsServer)
-        {
             RaiseLocalEvent(ent, new PlayEmoteMessage(EmoteFallOnNeckProto));
-        }
 
-        if (TryComp(ent.Owner, out BunnyHopComponent? bunnyHopComp))
-        {
+        if (TryComp<BunnyHopComponent>(ent, out var bunnyHopComp))
             bunnyHopComp.LastLandingTime = _timing.CurTime;
-        }
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        if (!_bunnyHopEnabled)
+            return;
 
         var query = EntityQueryEnumerator<BunnyHopComponent, PhysicsComponent>();
 

@@ -1,3 +1,11 @@
 ent-RCDAdvancedSunrise = продвинутый РСУ
     .desc = Блюспейс-улучшенное РСУ, пассивно регенирурющий заряды.
     .suffix = Старший Инженер, Автозарядка
+ent-WirecutterAbductor = кусачки абдукторов
+    .desc = { ent-BaseItem.desc }
+ent-ScrewdriverAbductor = отвёртка абдукторов
+    .desc = { ent-BaseItem.desc }
+ent-WrenchAbductor = гаечный ключ абдукторов
+    .desc = { ent-Wrench.desc }
+ent-MultitoolAbductor = мультитул абдукторов
+    .desc = { ent-Multitool.desc }

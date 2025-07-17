@@ -8,12 +8,12 @@ namespace Content.Shared._Sunrise.Pets;
 /// <summary>
 /// Вызывается, когда у питомца меняется владелец
 /// </summary>
-public sealed class PetMasterChanged: HandledEntityEventArgs
+public sealed class PetMasterChanged(EntityUid master) : HandledEntityEventArgs
 {
     /// <summary>
     /// Новый владелец питомца
     /// </summary>
-    public EntityUid NewMaster { get; set; }
+    public EntityUid NewMaster = master;
 }
 
 /// <summary>
@@ -21,23 +21,19 @@ public sealed class PetMasterChanged: HandledEntityEventArgs
 /// Нужен, чтобы автоматически привязывать выбращего данный лоадаут человека к питомцу.
 /// Виздены не придумали нормального способа отследить получение лоадаута.
 /// </summary>
-public sealed class LoadoutPetSpawned : EntityEventArgs
+public sealed class LoadoutPetSpawned(EntityUid master) : EntityEventArgs
 {
     /// <summary>
     /// Игрок, выбравший лоадаут с питомцем.
     /// Питомец будет автоматически привязан к этому EntityUid.
     /// </summary>
-    public EntityUid Master { get; set; }
-
-    public LoadoutPetSpawned(EntityUid master)
-    {
-        Master = master;
-    }
+    public EntityUid Master = master;
 }
 
 #endregion
 
 #region Control events
+
 /// <summary>
 /// Базовый ивент, используемый для управления питомцем.
 /// Содержит поле Entity, которое должно содержать EntityUid самого питомца.
@@ -116,13 +112,17 @@ public sealed partial class PetSetName : PetBaseEvent
 }
 
 /// <summary>
-/// Ивент вызываемый при использоваии акшена у хозяина для открытия меню всех питомцев.
+/// Ивент вызываемый при использовании акшена у хозяина для открытия меню всех питомцев.
 /// </summary>
 public sealed partial class PetOpenAllUiEvent : InstantActionEvent {}
 
+/// <summary>
+/// Ивент вызываемый при использовании акшена у хозяина для отмены атаки.
+/// </summary>
+public sealed partial class PetInterruptAttackEvent : InstantActionEvent {}
 
 /// <summary>
-/// Ивент вызываемый при использоваии акшена у хозяина.
+/// Ивент вызываемый при использовании акшена у хозяина.
 /// Выбирает цель для атаки питомцев
 /// </summary>
 public sealed partial class PetAttackTargetEvent : EntityTargetActionEvent {}

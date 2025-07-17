@@ -40,11 +40,23 @@ public sealed class BodyPrototypeSerializer : ITypeReader<BodyPrototype, Mapping
         {
             foreach (var (key, value) in organsNode)
             {
+                // STARLIGHT-SURGERY start
+                // if (key is not ValueDataNode)
+                // {
+                //     nodes.Add(new ErrorNode(key, $"Key is not a value data node"));
+                //     continue;
+                // }
+                // STARLIGHT-SURGERY end
+
                 if (value is not ValueDataNode organ)
                 {
                     nodes.Add(new ErrorNode(value, $"Value is not a value data node"));
                     continue;
                 }
+                // STARLIGHT-SURGERY start
+                if (organ.Value == "null" || organ.Value == null)
+                    continue;
+                // STARLIGHT-SURGERY end
 
                 if (!prototypes.TryIndex(organ.Value, out EntityPrototype? organPrototype))
                 {
