@@ -419,16 +419,6 @@
       max: 2
       playerRatio: 30
 
-- type: entity
-  id: GreenshiftAnnouncement
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: AnnounceRule  # Sunrise
-    enableAnnouncement: true
-    announcementText: station-event-greenshift
-    roundStartAnnouncementDelay: 120
-
 # event schedulers
 
 - type: entityTable

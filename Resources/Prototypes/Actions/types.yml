@@ -382,6 +382,19 @@
     icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
     useDelay: 1
 
+# Sunrise-Start
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateBorgLaughImplant
+  name: "[color=red]Laugh[/color]"
+  description: Activates your creepy laugh implant, which will produce the signature sound of the Syndicate cyborg.
+  components:
+  - type: Action
+    icon: { sprite: Mobs/Species/Terminator/parts.rsi, state: skull_icon }
+    useDelay: 2.75
+    itemIconStyle: BigAction
+# Sunrise-End
+
 - type: entity
   parent: BaseAction
   id: ActionFireStarter

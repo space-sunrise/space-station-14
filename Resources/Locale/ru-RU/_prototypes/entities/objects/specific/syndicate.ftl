@@ -33,3 +33,6 @@ ent-BaseUplinkRadio0TC = { ent-BaseUplinkRadio }
 ent-BaseUplinkRadioDebug = { ent-BaseUplinkRadio }
     .suffix = ДЕБАГ
     .desc = { ent-BaseUplinkRadio.desc }
+ent-BaseUplinkRadioDebug999 = { ent-BaseUplinkRadio }
+    .suffix = ДЕБАГ, Ядерные оперативники
+    .desc = { ent-BaseUplinkRadio.desc }

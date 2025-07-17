@@ -4,8 +4,6 @@
   name: boombox
   description: Be on style.
   components:
-  - type: Item
-    size: Huge
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/boombox.rsi
     layers:
@@ -30,8 +28,6 @@
   name: syndie boombox
   description: Kill with style.
   components:
-  - type: Item
-    size: Huge
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/syndie_boombox.rsi
     layers:

@@ -125,10 +125,13 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 5
-    intensitySlope: 3
-    totalIntensity: 60
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 4
     maxTileBreak: 0
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLethal
+    capacity: 5
 
 # Shells that used for friendship and duster
 

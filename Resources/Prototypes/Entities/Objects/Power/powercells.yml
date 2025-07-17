@@ -296,6 +296,7 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
+  - type: EmpImmune # Мехи теперь имеют прямой урон от ЭМИ.
 
 - type: entity
   id: PowerCageSmall

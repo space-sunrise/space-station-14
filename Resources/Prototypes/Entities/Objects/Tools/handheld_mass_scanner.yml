@@ -61,3 +61,8 @@
         startingItem: PowerCellMicroreactor
         disableEject: true
         swap: false
+
+- type: entity
+  id: HandHeldMassScannerUnpowered
+  parent: HandHeldMassScanner
+  suffix: Handheld, Always Powered

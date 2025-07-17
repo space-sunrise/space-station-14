@@ -79,6 +79,13 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered # INTERACTIONS # INTERACTIONS
+  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -123,6 +130,13 @@
     sprite: Clothing/Head/Misc/richard.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered # INTERACTIONS
+  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -142,6 +156,13 @@
     sprite: Clothing/Head/Misc/skubhead.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered # INTERACTIONS
+  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -275,6 +296,13 @@
     sprite: Clothing/Head/Misc/squiddy.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered # INTERACTIONS
+  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -292,6 +320,13 @@
     sprite: Clothing/Head/Misc/red_racoon.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/red_racoon.rsi
+    # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered # INTERACTIONS
+  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair

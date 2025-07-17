@@ -15,7 +15,7 @@ public partial class TeleportRunesListWindow : DefaultWindow
         RobustXamlLoader.Load(this);
     }
 
-    public void PopulateList(List<int> items, List<string> labels)
+    public void PopulateList(List<int> items, List<string> labels, List<string> distances)
     {
         ItemsContainer.RemoveAllChildren();
 
@@ -26,7 +26,13 @@ public partial class TeleportRunesListWindow : DefaultWindow
             var item = items[i];
             var button = new Button();
 
-            button.Text = labels[i];
+            var text = Loc.GetString(
+                "teleport-button-label",
+                ("label", labels[i]),
+                ("distance", distances[i])
+            );
+
+            button.Text = text;
 
             button.OnPressed += _ => ItemSelected?.Invoke(item, items.IndexOf(item));
 

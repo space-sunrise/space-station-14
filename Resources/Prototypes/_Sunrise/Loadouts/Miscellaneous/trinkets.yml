@@ -88,3 +88,16 @@
   storage:
     back:
     - ClothingNeckReedIndustriesPin
+
+# Wraps
+- type: loadout
+  id: ClothingWraps
+  storage:
+    back:
+    - ClothingWraps
+
+- type: loadout
+  id: ClothingWrapsHigh
+  storage:
+    back:
+    - ClothingWrapsHigh

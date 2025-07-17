@@ -16,3 +16,7 @@ ent-RubberStampAdj = Adjutant's rubber stamp
 ent-RubberStampNpt = Head of Prison rubber stamp
     .suffix = DO NOT MAP
     .desc = { ent-RubberStampBase.desc }
+ent-RubberStampVeto = VETO stamp
+    .desc = { ent-RubberStampBase.desc }
+ent-RubberStampRedo = Redo stamp
+    .desc = { ent-RubberStampBase.desc }

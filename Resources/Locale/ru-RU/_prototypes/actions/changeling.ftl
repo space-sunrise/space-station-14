@@ -1,5 +1,5 @@
-ent-ActionRetractableItemArmBlade = Лезвие руки
-    .desc = Превратите свою плоть в плотское лезвие.
+ent-ActionRetractableItemArmBlade = Рука-клинок
+    .desc = Сбросьте плоть и преобразуйте её в плотоядный клинок.
 ent-ActionEvolutionMenu = Открыть меню эволюции
     .desc = Открывает меню эволюции.
 ent-ActionAbsorbDNA = Поглотить ДНК

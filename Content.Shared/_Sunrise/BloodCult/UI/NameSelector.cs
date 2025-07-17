@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Serialization;
+﻿using Content.Shared.Store;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.BloodCult.UI;
 
@@ -58,16 +59,11 @@ public class TeleportRuneChangeNameMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
-public class TeleportRunesListWindowBUIState : BoundUserInterfaceState
+public sealed class TeleportRunesListWindowBUIState(List<int> items, List<string> labels, List<string> distance) : BoundUserInterfaceState
 {
-    public TeleportRunesListWindowBUIState(List<int> items, List<string> labels)
-    {
-        Items = items;
-        Label = labels;
-    }
-
-    public List<int> Items { get; set; }
-    public List<string> Label { get; set; }
+    public List<int> Items = items;
+    public List<string> Label = labels;
+    public List<string> Distance = distance;
 }
 
 [NetSerializable, Serializable]
@@ -90,16 +86,12 @@ public class SummonCultistListWindowItemSelectedMessage : BoundUserInterfaceMess
 }
 
 [Serializable, NetSerializable]
-public class SummonCultistListWindowBUIState : BoundUserInterfaceState
+public sealed class SummonCultistListWindowBUIState(List<int> items, List<string> labels, List<string> mobState, List<string> distance) : BoundUserInterfaceState
 {
-    public SummonCultistListWindowBUIState(List<int> items, List<string> labels)
-    {
-        Items = items;
-        Label = labels;
-    }
-
-    public List<int> Items { get; set; }
-    public List<string> Label { get; set; }
+    public List<int> Items = items;
+    public List<string> Label = labels;
+    public List<string> MobStates = mobState;
+    public List<string> Distances = distance;
 }
 
 [Serializable, NetSerializable]

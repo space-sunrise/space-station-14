@@ -71,7 +71,7 @@ public sealed class VoidTeleportSystem : EntitySystem
         EntityCoordinates coords = default;
         var attempts = 10;
         //Repeat until proper place for tp is found
-        while (attempts <= 10)
+        while (attempts > 0)
         {
             attempts--;
             //Get coords to where tp
@@ -83,8 +83,10 @@ public sealed class VoidTeleportSystem : EntitySystem
 
             var tile = coords.GetTileRef();
 
-            //Check for walls
-            if (tile != null && _turf.IsTileBlocked(tile.Value, CollisionGroup.AllMask))
+            if (tile == null)
+                continue;
+
+            if (_turf.IsTileBlocked(tile.Value, CollisionGroup.AllMask))
                 continue;
 
             break;

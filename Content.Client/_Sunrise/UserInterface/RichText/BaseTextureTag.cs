@@ -10,22 +10,22 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.UserInterface.RichText;
 
-public abstract class BaseTextureTag : IMarkupTag
+public abstract class BaseTextureTag : IMarkupTagHandler
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 
+    private static SpriteSystem? _spriteSystem;
+
     public virtual string Name => "example";
 
-    public abstract bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control);
+    public abstract bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control);
 
-    protected static bool TryDrawIcon(string rawPath, long scaleValue, [NotNullWhen(true)] out Control? control)
+    protected static bool TryDrawIcon(string path, long scaleValue, [NotNullWhen(true)] out Control? control)
     {
         var texture = new TextureRect();
 
-        rawPath = ClearString(rawPath);
-
-        texture.TexturePath = rawPath;
+        texture.TexturePath = path;
         texture.TextureScale = new Vector2(scaleValue, scaleValue);
 
         control = texture;
@@ -37,13 +37,11 @@ public abstract class BaseTextureTag : IMarkupTag
         control = null;
         var texture = new TextureRect();
 
-        entProtoId = ClearString(entProtoId);
-
         if (!_prototypeManager.TryIndex(entProtoId, out var prototype))
             return false;
 
-        var spriteSystem = _entitySystemManager.GetEntitySystem<SpriteSystem>();
-        texture.Texture = spriteSystem.Frame0(prototype);
+        _spriteSystem ??= _entitySystemManager.GetEntitySystem<SpriteSystem>();
+        texture.Texture = _spriteSystem.Frame0(prototype);
         texture.TextureScale = new Vector2(scaleValue, scaleValue);
 
         control = texture;
@@ -53,8 +51,6 @@ public abstract class BaseTextureTag : IMarkupTag
     protected static bool TryDrawIconEntity(string stringUid, long scaleValue, [NotNullWhen(true)] out Control? control)
     {
         control = null;
-
-        stringUid = ClearString(stringUid);
 
         if (!EntityUid.TryParse(stringUid, out var entityUid))
             return false;
@@ -70,10 +66,11 @@ public abstract class BaseTextureTag : IMarkupTag
     }
 
     /// <summary>
-    /// Очищает строку от мусора, который приходит вместе с ней
+    /// Очищает строку от мусора, который приходит вместе с ней.
+    /// Используется для нестандартных обработчиков.
     /// </summary>
     /// <remarks>
-    /// Почему мне приходят строки в говне
+    /// Перед тем, как использовать это для MarkupParameter убедитесь, что у него нет нужных вам встроенных функций парсинга.
     /// </remarks>
     protected static string ClearString(string str)
     {

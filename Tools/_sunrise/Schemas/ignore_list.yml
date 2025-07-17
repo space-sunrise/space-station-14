@@ -157,6 +157,7 @@ ignore_list:
   - SS14
   - scar-h
   - N
+  - D1984
   - $amount
   - '{$amount ->'
   - '{$linked ->'

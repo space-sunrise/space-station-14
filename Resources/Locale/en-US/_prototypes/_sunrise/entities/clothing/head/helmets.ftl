@@ -18,3 +18,5 @@ ent-ClothingHeadEVAHelmetERTEngineer = ERT engineer EVA helmet
     .desc = An in-atmosphere helmet worn by engineering members of the Nanotrasen Emergency Response Team.
 ent-ClothingHeadEVAHelmetERTJanitor = ERT janitor EVA helmet
     .desc = An in-atmosphere helmet worn by janitorial members of the Nanotrasen Emergency Response Team.
+ent-ClothingHeadHelmetAbductor = helmet
+    .desc = { ent-ClothingHeadHelmetBase.desc }

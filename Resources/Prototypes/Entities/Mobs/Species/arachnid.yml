@@ -79,7 +79,6 @@
   - type: TypingIndicator
     proto: spider
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.
-    scale: 1.1, 1.2 # Sunrise-Edit
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -155,6 +154,8 @@
         layer:
         - MobLayer
   - type: Carriable
+  - type: ScaleSprite
+    scale: 1.1, 1.2
   # Sunrise-end
 
 - type: entity

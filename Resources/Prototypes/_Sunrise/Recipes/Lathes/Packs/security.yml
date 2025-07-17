@@ -8,12 +8,44 @@
     - MagazinePistolHighCapacity
     - MagazinePistolHighCapacityEmpty
     - MagazineMagnum
-    - ClothingHeadHelmetPubg
 
 - type: latheRecipePack
   id: SecurityDynamicSunrise
   recipes:
     - WeaponGunLaserCarbineSemi
+    - WeaponEnergyGun
+    - WeaponEnergyGunMini
+    - WeaponEnergyGunPistol
+    - WeaponGunLaserCarbineAutomatic
+    - FlareGunSecurityUpgrade
+    - BaseMagazinePistolCaselessRifleExtended
+    - MagazinePPSH41Extended
+    - MagazineMP5Extended
+    - MagazineMP7Extended
+    - MagazineP90Extended
+    - SunriseMagazineRifleExtended
+    - MagazineAR18Extended
+    #- MagazineM28Extended
+    - MagazineV31Extended
+    #- MagazineBauer127Extended
+    - MagazineBR64Extended
+    - MagazineDragunovExtended
+    - ShellBlastArtillery
+    - ShellEMPArtillery
+    - ShellFlashArtillery
+    - EnergyDomeDirectionalTurtle
+    - WeaponTemperatureGun
+
+- type: latheRecipePack
+  id: SecurityDynamicSunriseClothing
+  recipes:
+    - ClothingHeadHelmetPubg
+    - ClothingShoesBootsMagSec
+    - ClothingShoesBootsMagCombat
+
+- type: latheRecipePack
+  id: SecurityDynamicSunriseMech
+  recipes:
     - WeaponMechCombatImmolationGun
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser
@@ -26,30 +58,3 @@
     - WeaponMechCombatDisabler
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
-    - WeaponEnergyGun
-    - WeaponEnergyGunMini
-    - WeaponEnergyGunPistol
-    - WeaponGunLaserCarbineAutomatic
-    - FlareGunSecurityUpgrade
-    - BaseMagazinePistolCaselessRifleExtended
-    - MagazinePPSH41Extended
-    - MagazineMP5Extended
-    - MagazineMP7Extended
-    - MagazineP90Extended
-    - MagazineM16A4Extended
-    - MagazineAR18Extended
-    #- MagazineM28Extended
-    - MagazineG36Extended
-    - MagazineFamasExtended
-    - MagazineV31Extended
-    #- MagazineBauer127Extended
-    - MagazineBR64Extended
-    - MagazineDragunovExtended
-    - ShellBlastArtillery
-    - ShellEMPArtillery
-    - ShellFlashArtillery
-    - EnergyDomeDirectionalTurtle
-    - ClothingHeadHelmetPubg
-    - ClothingShoesBootsMagSec
-    - ClothingShoesBootsMagCombat
-    - WeaponTemperatureGun

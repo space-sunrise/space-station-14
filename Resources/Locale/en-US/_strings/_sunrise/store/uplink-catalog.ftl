@@ -15,7 +15,8 @@ uplink-grenade-blast-name = Фугасная граната
 uplink-grenade-blast-desc = Фугасная граната. Совместима с "China-Lake".
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
-
+uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled with uranium slugs. Compatible with the Bulldog.
+uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -73,7 +74,8 @@ uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorl
 uplink-smoke-screen-implanter-name = Smoke Screen Implanter
 uplink-smoke-screen-implanter-desc = Creates a small cloud of smoke for you to slip away in. Can be used up to three times before you run out of gas.
 
-
+uplink-creepy-laugh-implanter-name = Creepy Laugh Implanter
+uplink-creepy-laugh-implanter-desc = An audio implant that plays the signature laugh of a Syndicate cyborg. Annoying, intimidating, and undeniably stylish.
 
 uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.

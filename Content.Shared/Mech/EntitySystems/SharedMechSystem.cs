@@ -27,6 +27,10 @@ using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
+using Content.Shared._Sunrise.Paint;
+using Content.Shared.Humanoid;
+using Content.Shared.SubFloor;
+using Content.Shared.Nutrition.EntitySystems;
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -48,6 +52,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly OpenableSystem _openable = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -62,7 +67,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
-
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
@@ -185,7 +189,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             _actions.SetToggled(component.MechLightsActionEntity, component.Lights);
             var ev = new MechSayEvent(uid, component.Lights ? component.MessageEnableLight : component.MessageDisableLight);
             RaiseLocalEvent(uid, ref ev, true);
-            Dirty(uid ,component);
+            Dirty(uid, component);
         }
     }
 
@@ -486,9 +490,6 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
-
-        var ev = new UpdateAppearanceEvent();
-        RaiseLocalEvent(uid, ev);
     }
 
     private void OnDragDrop(EntityUid uid, MechComponent component, ref DragDropTargetEvent args)
@@ -549,7 +550,3 @@ public sealed partial class MechEntryEvent : SimpleDoAfterEvent
 {
 }
 
-[Serializable, NetSerializable]
-public sealed partial class UpdateAppearanceEvent : EntityEventArgs
-{
-}

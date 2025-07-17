@@ -4,7 +4,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_aquatic
 
 - type: marking
@@ -13,7 +13,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_short
 
 - type: marking
@@ -22,7 +22,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_simple
 
 - type: marking
@@ -31,7 +31,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_divinity
 
 - type: marking
@@ -40,7 +40,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_big
 
 - type: marking
@@ -49,7 +49,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_axolotl
 
 - type: marking
@@ -58,9 +58,9 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_hood_primary
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_hood_secondary
 
 - type: marking
@@ -69,7 +69,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: frills_neckfull
 
 - type: marking
@@ -78,7 +78,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_angler
 
 - type: marking
@@ -87,7 +87,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_curled
 
 - type: marking
@@ -96,7 +96,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_ram
 
 - type: marking
@@ -105,7 +105,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_short
 
 - type: marking
@@ -114,7 +114,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_simple
 
 - type: marking
@@ -123,7 +123,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_double
 
 - type: marking
@@ -132,9 +132,9 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_smooth_primary
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_smooth_secondary
 
 - type: marking
@@ -143,7 +143,7 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_large
 
 - type: marking
@@ -152,7 +152,7 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_spikes
 
 - type: marking
@@ -161,7 +161,7 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_ltiger
 
 - type: marking
@@ -170,7 +170,7 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_dtiger
 
 - type: marking
@@ -179,7 +179,7 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_aquatic
 
 - type: marking
@@ -189,7 +189,7 @@
   forcedColoring: true
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: snout_round
 
 - type: marking
@@ -199,7 +199,7 @@
   forcedColoring: true
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: snout_sharp
 
 - type: marking
@@ -208,9 +208,9 @@
   markingCategory: Snout
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: snout_splotch_primary
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: snout_splotch_secondary
 
 - type: marking
@@ -219,7 +219,7 @@
   markingCategory: Chest
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: body_tiger
 
 - type: marking
@@ -228,7 +228,7 @@
   markingCategory: Head
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: head_tiger
 
 - type: marking
@@ -237,7 +237,7 @@
   markingCategory: Arms
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: l_arm_tiger
 
 - type: marking
@@ -246,7 +246,7 @@
   markingCategory: Legs
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: l_leg_tiger
 
 - type: marking
@@ -255,7 +255,7 @@
   markingCategory: Arms
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: r_arm_tiger
 
 - type: marking
@@ -264,7 +264,7 @@
   markingCategory: Legs
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: r_leg_tiger
 
 - type: marking
@@ -273,7 +273,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_argali
 
 - type: marking
@@ -282,7 +282,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_ayrshire
 
 - type: marking
@@ -291,7 +291,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_myrsore
 
 - type: marking
@@ -300,7 +300,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_bighorn
 
 - type: marking
@@ -309,7 +309,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_demonic
 
 - type: marking
@@ -318,7 +318,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_kobold_ears
 
 - type: marking
@@ -327,7 +327,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: horns_floppy_kobold_ears
 
 - type: marking
@@ -336,16 +336,16 @@
   markingCategory: Chest
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: body_underbelly
 
 - type: marking
   id: LizardChestBackspikes
-  bodyPart: Chest
-  markingCategory: Chest
+  bodyPart: Back # SUNRISE EDIT
+  markingCategory: Back # SUNRISE EDIT
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: body_backspikes
 
 - type: marking
@@ -354,7 +354,7 @@
   markingCategory: Chest
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: body_fin
 
 # Animated
@@ -364,9 +364,9 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
+    - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
       state: tail_smooth_wagging_primary
-    - sprite: Mobs/Customization/reptilian_parts.rsi
+    - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
       state: tail_smooth_wagging_secondary
 
 - type: marking
@@ -375,7 +375,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
+  - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
     state: tail_large_wagging
 
 - type: marking
@@ -384,7 +384,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
+    - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
       state: tail_spikes_wagging
 
 - type: marking
@@ -393,7 +393,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
+    - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
       state: tail_ltiger_wagging
 
 - type: marking
@@ -402,7 +402,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
+    - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
       state: tail_dtiger_wagging
 
 - type: marking
@@ -411,5 +411,5 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
+    - sprite: _Sunrise/Mobs/Species/Reptilian/reptilian_parts.rsi # SUNRISE EDIT
       state: tail_aquatic_wagging

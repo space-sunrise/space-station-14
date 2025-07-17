@@ -106,6 +106,7 @@
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
+          - BorgModuleSecurity
           - BorgModuleSyndicate
           - BorgModuleSyndicateAssault
       hasMindState: synd_sec_e
@@ -168,6 +169,7 @@
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
+          - BorgModuleSecurity
           - BorgModuleMedical
           - BorgModuleSyndicate
       hasMindState: synd_medical_e
@@ -218,6 +220,7 @@
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
+          - BorgModuleSecurity
           - BorgModuleEngineering
           - BorgModuleSyndicate
       hasMindState: synd_engi_e
@@ -226,6 +229,7 @@
       damageContainers:
       - Inorganic
       - Silicon
+      - Mech # Sunrise-edit
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg

@@ -10,20 +10,31 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
+    # Sunrise-start
         tongue: OrganHumanTongue
+        eye_implant: null
+    # Sunrise-end
     torso:
       part: TorsoReptilian
+    # Sunrise-start
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+    # Sunrise-end
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
         stomach: OrganReptilianStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
+        cavity: null # Sunrise-edit
+    #  connections:
+    #  - right arm
+    #  - left arm
+    #  - right leg
+    #  - left leg
     right arm:
       part: RightArmReptilian
       connections:

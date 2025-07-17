@@ -13,7 +13,8 @@
     xmlns:changelog="clr-namespace:Content.Client.Changelog"
     xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile"
     xmlns:texture="clr-namespace:Content.Client._Sunrise.Texture"
-    xmlns:contributors="clr-namespace:Content.Client._Sunrise.Contributors">
+    xmlns:contributors="clr-namespace:Content.Client._Sunrise.Contributors"
+    xmlns:pets="clr-namespace:Content.Client._Sunrise.Pets">
     <!-- Background -->
     <TextureRect Name="LobbyArt" Access="Public" VerticalExpand="True" HorizontalExpand="True"
                  Stretch="KeepAspectCovered" />
@@ -213,8 +214,11 @@
                                 </BoxContainer>
                             </controls:StripeBack>
                             <BoxContainer Orientation="Vertical" Name="CharacterInfoContent" MinHeight="180">
-                                <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" HorizontalExpand="True"
-                                                                    HorizontalAlignment="Stretch" Access="Public" />
+                                <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
+                                              HorizontalAlignment="Stretch" SizeFlagsStretchRatio="2">
+                                    <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" HorizontalExpand="True" Access="Public" />
+                                    <pets:LobbyPetPreviewPanel Name="PetPreview" HorizontalExpand="True" Access="Public" />
+                                </BoxContainer>
                             </BoxContainer>
                         </BoxContainer>
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"

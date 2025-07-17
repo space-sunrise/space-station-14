@@ -60,3 +60,5 @@ ent-ClothingOuterArmorNTRGLeadOpened = плащ-тренч отряда ИСН
     .desc = { ent-ClothingOuterStorageFoldableBaseOpened.desc }
 ent-ClothingOuterArmorNTRG = тяжёлый жилет
     .desc = Тяжёлый жилет для отряда ИСН.
+ent-ClothingOuterBezBabTshirt = футболка для мужчин
+    .desc = Оверсайз футболка для мужчин. Без баб.

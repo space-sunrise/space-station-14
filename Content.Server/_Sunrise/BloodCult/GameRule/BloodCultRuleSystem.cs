@@ -319,8 +319,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var ev = new UpdateCultAppearance();
         RaiseLocalEvent(ev);
 
-        EntityUid? actionId = null;
-        _actionsSystem.AddAction(uid, ref actionId, BloodCultistComponent.BloodMagicAction);
+        _actionsSystem.AddAction(uid, BloodCultistComponent.BloodMagicAction);
     }
 
     private void OnCultistComponentRemoved(EntityUid uid, BloodCultistComponent component, ComponentRemove args)

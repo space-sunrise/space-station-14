@@ -1,0 +1,10 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <Label Name="Summary" HorizontalAlignment="Center" Margin="0 5 0 0"/>
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+            <Control Name="ViewBox" HorizontalExpand="True" VerticalExpand="True" MinHeight="100"/>
+        </BoxContainer>
+        <Button Name="ChangePetButton" Text="{Loc 'pet-selection-select-lobby'}" HorizontalAlignment="Center" MinWidth="80" Margin="5 0 0 0"/>
+    </BoxContainer>
+</Control>

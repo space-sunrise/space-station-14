@@ -383,6 +383,15 @@
 		"name": "stimkit"
 	},
 	{
+		"name": "pouchammo"
+	},
+	{
+		"name": "pouchgrenade"
+	},
+	{
+		"name": "pouchgrenadefilled"
+	},
+	{
 		"name": "stim"
 	}
     ]
