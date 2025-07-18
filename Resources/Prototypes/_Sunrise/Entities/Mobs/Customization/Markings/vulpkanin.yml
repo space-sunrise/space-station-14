@@ -156,8 +156,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle_alt
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnout
@@ -167,8 +165,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutSharp
@@ -178,8 +174,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle_sharp
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutFade
@@ -189,17 +183,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle_fade
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
-
-- type: marking
-  id: VulpSnoutNose
-  bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Vulpkanin]
-  sprites:
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutMask
@@ -209,8 +192,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: mask
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutVulpine
@@ -220,8 +201,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: vulpine
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: vulpine-lines
 
 - type: marking
   id: VulpSnoutSwift
