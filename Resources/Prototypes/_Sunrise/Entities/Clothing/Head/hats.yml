@@ -206,7 +206,7 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi|
+    sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
   # SUNRISE EDIT
   - type: Tag
     tags:
