@@ -15,10 +15,10 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: SpeedLoaderMagnum
     pocket2: BaseUplinkNTERT75BC
   inhand:
-  - WeaponEnergyGun
+  - WeaponRevolverSpearhead
   storage:
     back:
     - BoxErtLeaderKit
@@ -43,10 +43,10 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: SpeedLoaderMagnum
     pocket2: BaseUplinkNTERT100BC
   inhand:
-  - WeaponEnergyGun
+  - WeaponRevolverSpearhead
   storage:
     back:
     - BoxErtLeaderKit
@@ -71,10 +71,10 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: MagazineMagnum
     pocket2: BaseUplinkNTERT200BC
   inhand:
-  - WeaponEnergyGunTactical
+  - WeaponPistolN1984
   storage:
     back:
     - BoxErtLeaderKit
@@ -126,10 +126,10 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilledERT
-    pocket1: WeaponSubMachineGunSkorpion
-    pocket2: MagazinePistolSubMachineGun
+    pocket1: SpeedLoaderMagnum
+    pocket2: SpeedLoaderMagnum
   inhand:
-  - WeaponEnergyGunTactical
+  - WeaponRevolverSpearhead
   storage:
     back:
     - BoxErtBaseKit
@@ -158,13 +158,13 @@
     pocket1: LanternFlash
     pocket2: DrinkWaterBottleFull
   inhand:
-  - WeaponEnergyGun
+  - WeaponRevolverSpearhead
   storage:
     back:
     - BoxErtBaseKit
     - CrowbarRed
     - Bible
-    - Bible
+    - SpeedLoaderMagnum
     - FlippoLighterSunriseBlack
     - Candle
 
@@ -288,7 +288,7 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: MedipenCombatInjector
-    pocket2: LauncherSyringe
+    pocket2: Hypospray
   inhand:
   - MedkitCombatFilled
   - AdvancedDefibrillator
@@ -329,7 +329,7 @@
     pocket1: Holoprojector
     pocket2: HoloprojectorField
   inhand:
-  - WeaponEnergyGun
+  - WeaponLauncherHydra
   - AdvMopItem
   storage:
     back:
@@ -357,7 +357,7 @@
     pocket1: Holoprojector
     pocket2: HoloprojectorField
   inhand:
-  - WeaponEnergyGun
+  - WeaponLauncherHydra
   - AdvMopItem
   storage:
     back:

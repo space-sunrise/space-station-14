@@ -32,7 +32,7 @@
     contents:
     - id: WeaponRifleM16A4
       amount: 2
-    - id: MagazineM16A4
+    - id: SunriseMagazineRifle
       amount: 4
 
 - type: entity

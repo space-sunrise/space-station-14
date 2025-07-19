@@ -41,3 +41,5 @@ trait-spanish-name = Испанский акцент
 trait-spanish-desc = Hola señor, где находится библиотека?
 trait-painnumbness-name = Оцепенение
 trait-painnumbness-desc = Вы не чувствуете боли, не осознавая, насколько вам больно.
+trait-moldovan-name = Молдавский диалект
+trait-moldovan-desc = Цыгания дам ын спацию космик!

@@ -5,6 +5,9 @@
   name: Urist McPredator
   abstract: true
   components:
+  # SUNRISE EDIT
+  - type: Interactions
+  # SUNRISE EDIT
   - type: Absorbable
   - type: Hunger
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
@@ -18,8 +21,6 @@
   - type: Perishable
   - type: HumanoidAppearance
     species: Predator
-  - type: Sprite
-    scale: 1.05, 1.13
   - type: Fixtures
     fixtures:
       fix1:
@@ -59,6 +60,8 @@
     prototype: Predator
   - type: FootprintEmitter
   - type: Carriable
+  - type: ScaleSprite
+    scale: 1.05, 1.13
 
 - type: entity
   parent: BaseSpeciesDummy

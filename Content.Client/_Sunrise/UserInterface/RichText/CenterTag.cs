@@ -8,11 +8,11 @@ using Robust.Shared.Utility;
 namespace Content.Client._Sunrise.UserInterface.RichText;
 
 [UsedImplicitly]
-public sealed class CenterTag : IMarkupTag
+public sealed class CenterTag : IMarkupTagHandler
 {
     public string Name => "center";
 
-    public bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
+    public bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         if (!node.Value.TryGetString(out var text))
         {

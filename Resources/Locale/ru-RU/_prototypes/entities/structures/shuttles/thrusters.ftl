@@ -16,3 +16,5 @@ ent-GyroscopeUnanchored = { ent-Gyroscope }
 ent-DebugGyroscope = { ent-Gyroscope }
     .suffix = ДЕБАГ
     .desc = { ent-Gyroscope.desc }
+ent-RustedThruster = ржавый двигатель
+    .desc = Не подлежащий ремонту двигатель, сломанный из-за износа. Пригоден только для утилизации.

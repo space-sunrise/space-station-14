@@ -20,6 +20,10 @@
   - BioGenLeft4Zed
   - BioGenEZNutrient
   - BioGenRobustHarvest
+  - BioGenUnstableMutagen #Sunrise-add
+  - BioGenNitroKill #Sunrise-add
+  - BioGenInc #Sunrise-add
+  - BioGenDiethylamine #Sunrise-add
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic

@@ -126,6 +126,10 @@ namespace Content.Server.Database
         /// <returns><see cref="ServerBanExemptFlags.None"/> if the user is not exempt from any bans.</returns>
         Task<ServerBanExemptFlags> GetBanExemption(NetUserId userId, CancellationToken cancel = default);
 
+        // Sunrise-Start
+        Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since);
+        Task DeleteServerBanAsync(int banId);
+        // Sunrise-End
         #endregion
 
         #region Role Bans
@@ -583,6 +587,20 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetBanExemption(userId, cancel));
         }
+
+        // Sunrise-Start
+        public Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetServerBansByAdminAsync(adminId, since));
+        }
+
+        public Task DeleteServerBanAsync(int banId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteServerBanAsync(banId));
+        }
+        // Sunrise-End
 
         #region Role Ban
         public Task<ServerRoleBanDef?> GetServerRoleBanAsync(int id)

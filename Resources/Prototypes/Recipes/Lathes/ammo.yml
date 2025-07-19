@@ -428,6 +428,16 @@
     Plastic: 320
     Uranium: 240
 
+# Sunrise-start
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: BoxShotgunUraniumSlug
+  result: BoxShotgunUraniumSlug
+  materials:
+    Plastic: 300
+    Uranium: 200
+# Sunrise-end
+
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
   id: BoxBeanbag

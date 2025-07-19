@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Carrying;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -277,6 +278,13 @@ public sealed class PullingSystem : EntitySystem
             args.ModifySpeed(walkMod, sprintMod);
             return;
         }
+        // Sunrise-start
+        if (TryComp<CarriableComponent>(component.Pulling, out var carriable))
+        {
+            args.ModifySpeed(carriable.WalkSpeedModifier, carriable.SprintSpeedModifier);
+            _popup.PopupPredicted(Loc.GetString("can-carry"), uid, uid, PopupType.SmallCaution);
+        }
+        // Sunrise-end
 
         args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
     }

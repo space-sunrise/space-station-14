@@ -15,3 +15,5 @@ ent-ClothingBeltSheathSyndicate = rapier sheath
     .desc = A sinister, thin sheath, suitable for a rapier.
 ent-ClothingBeltMilitaryWebbingMedSunrise = medical chest rig
     .desc = A set of tactical webbing worn by Gorlex Marauder medic operatives have additional layer of durathread for keeping chemical inside safety.
+ent-ClothingAbductorBelt = abductor belt
+    .desc = Can hold various OUR things.

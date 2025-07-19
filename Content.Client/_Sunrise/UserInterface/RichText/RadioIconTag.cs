@@ -14,53 +14,52 @@ public sealed class RadioIconTag : BaseTextureTag
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceCache _cache = default!;
 
+    private static FontResource? _font;
+
     public override string Name => "radicon";
 
-    public override bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
+    public override bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         control = null;
 
         if (_cfg.GetCVar(SunriseCCVars.ChatIconsEnable))
         {
-            if (!node.Attributes.TryGetValue("path", out var rawPath))
+            if (!node.Attributes.TryGetValue("path", out var rawPath) || !rawPath.TryGetString(out var path))
                 return false;
 
             if (!node.Attributes.TryGetValue("scale", out var scale) || !scale.TryGetLong(out var scaleValue))
-            {
                 scaleValue = 1;
-            }
 
-            if (!TryDrawIcon(rawPath.ToString(), scaleValue.Value, out var texture))
+            if (!TryDrawIcon(path, scaleValue.Value, out var texture))
                 return false;
 
             control = texture;
         }
         else
         {
-            if (!node.Attributes.TryGetValue("text", out var text))
+            if (!node.Attributes.TryGetValue("text", out var text) || !text.TryGetString(out var textValue))
                 return false;
 
-            if (!node.Attributes.TryGetValue("color", out var color))
+            if (!node.Attributes.TryGetValue("color", out var rawColor)|| !rawColor.TryGetString(out var colorText))
                 return false;
 
-            control = DrawText(text.ToString(), color.ToString());
+            control = DrawText(textValue, colorText);
         }
 
         return true;
     }
 
-    private Control DrawText(string text, string color)
+    private Label DrawText(string text, string color)
     {
-        var label = new Label();
+        _font ??= _cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Bold.ttf");
 
-        color = ClearString(color);
-        text = ClearString(text);
-
-        label.Text = text;
-        label.FontColorOverride = Color.FromHex(color);
-        label.FontOverride = new VectorFont(_cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Bold.ttf"), 13);
+        var label = new Label
+        {
+            Text = text,
+            FontColorOverride = Color.FromHex(color),
+            FontOverride = new VectorFont(_font, 13),
+        };
 
         return label;
     }
-
 }

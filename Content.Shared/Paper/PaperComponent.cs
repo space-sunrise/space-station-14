@@ -14,6 +14,11 @@ public sealed partial class PaperComponent : Component
     [DataField("contentSize")]
     public int ContentSize { get; set; } = 10000;
 
+    // Sunrise start
+    [DataField, AutoNetworkedField]
+    public Color DefaultColor = new(25, 25, 25);
+    // Sunrise-end
+
     [DataField("stampedBy"), AutoNetworkedField]
     public List<StampDisplayInfo> StampedBy { get; set; } = new();
 
@@ -38,12 +43,14 @@ public sealed partial class PaperComponent : Component
         public readonly string Text;
         public readonly List<StampDisplayInfo> StampedBy;
         public readonly PaperAction Mode;
+        public readonly Color DefaultColor; // Sunrise-edit
 
-        public PaperBoundUserInterfaceState(string text, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read)
+        public PaperBoundUserInterfaceState(string text, Color defaultColor, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read) // Sunrise-edit
         {
             Text = text;
             StampedBy = stampedBy;
             Mode = mode;
+            DefaultColor = defaultColor; // Sunrise-edit
         }
     }
 

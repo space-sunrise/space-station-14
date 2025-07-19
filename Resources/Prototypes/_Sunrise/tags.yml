@@ -43,6 +43,9 @@
 - type: Tag
   id: Flash
 
+- type: Tag
+  id: CreepyLaugh
+
 # Catridges:
 
 - type: Tag
@@ -53,6 +56,9 @@
 
 - type: Tag
   id: PowerpackMinigunMG100
+
+- type: Tag
+  id: PowerpackDL6902
 
 - type: Tag
   id: CartridgeRail
@@ -94,12 +100,6 @@
 
 - type: Tag
   id: MagazineAK
-
-- type: Tag
-  id: MagazineFamas
-
-- type: Tag
-  id: MagazineG36
 
 - type: Tag
   id: MagazineAR18
@@ -151,9 +151,6 @@
 
 - type: Tag
   id: NoSpinOnThrow
-
-- type: Tag
-  id: MagazineM16A4
 
 - type: Tag
   id: MagazineSTG44
@@ -392,4 +389,64 @@
   id: DockCentComm
 
 - type: Tag
+  id: Abductor
+
+- type: Tag
+  id: AbductorScientist
+
+- type: Tag
+  id: ShowWires
+
+- type: Tag
+  id: CantInteract
+
+- type: Tag
   id: DockMining
+
+### INTERACTION TAGS ###
+# Как одежда закрывает/не закрывает ту или иную область тела
+
+- type: Tag
+  id: CommandSuit
+
+# face
+# Лицо закрыто
+- type: Tag
+  id: FaceCovered
+
+# head
+# Голова полностью закрыта (например шлемом скафандра, капюшоном)
+- type: Tag
+  id: FullCovered
+
+# jumpsuit
+# Открыто снизу (например юбки)
+- type: Tag
+  id: NudeBottom
+
+# jumpsuit
+# Всё открыто (например фартук)
+- type: Tag
+  id: NudeFull
+
+# jumpsuit
+# Открыто сверху (например боксёрские шорты)
+- type: Tag
+  id: NudeTop
+
+# neck
+# Открыта шея (например бейджики, пины)
+- type: Tag
+  id: OpenNeck
+
+# gloves
+# Гладкие перчатки (например медицинские)
+- type: Tag
+  id: SmoothGloves
+
+# head
+# Закрыто только сверху (шлюяпы, кепки)
+- type: Tag
+  id: TopCovered
+
+### INTERACTION TAGS ###

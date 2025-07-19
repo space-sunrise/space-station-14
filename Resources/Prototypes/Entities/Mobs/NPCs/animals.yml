@@ -79,9 +79,7 @@
     tags:
     - VimPilot
   # Sunrise-Start
-  - type: NightVision
-    isToggle: true
-    color: "#808080"
+  - type: ToggleableNightVision
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
   - type: NPCRetaliation
@@ -1956,8 +1954,6 @@
         recursive: false
   # Sunrise-Start
   - type: NightVision
-    isToggle: true
-    color: "#808080"
   - type: HolidayVisuals
     holidays:
       festive:
@@ -2542,8 +2538,6 @@
   - type: NPCRetaliation
   - type: FactionException
   - type: NightVision #Sunrise - Night vision
-    isToggle: true
-    color: "#808080"
   # Sunrise-End
 
 # Code unique spider prototypes or combine them all into one spider and get a
@@ -2768,10 +2762,21 @@
       angle: 0
       animation: WeaponArcBite
       soundHit:
-        path: /Audio/Effects/bite.ogg
+        collection: ClownSpiderBiteSound #Sunrise edit
       damage:
         types:
           Piercing: 8
+    # Sunrise edit start
+    - type: SolutionContainerManager
+      solutions:
+        melee:
+          reagents:
+            - ReagentId: Laughter
+              Quantity: 50
+    - type: MeleeChemicalInjector
+      solution: melee
+      transferAmount: 2
+    # Sunrise edit end
     - type: FootstepModifier
       footstepSoundCollection:
         collection: FootstepClownFast
@@ -3257,8 +3262,6 @@
     baseSprintSpeed: 4
   # Sunrise-start
   - type: NightVision
-    isToggle: true
-    color: "#808080"
   - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
@@ -3324,7 +3327,7 @@
     factions:
     - Syndicate
   - type: Access
-    tags: 
+    tags:
     - NuclearOperative
     - SyndicateAgent
   - type: MeleeWeapon

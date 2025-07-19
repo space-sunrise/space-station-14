@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Sunrise.Antags.Abductor;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
@@ -417,7 +418,10 @@ public abstract class SharedActionsSystem : EntitySystem
 
         if (user == target)
             return comp.CanTargetSelf;
-
+        // Sunrise-start
+        if (HasComp<AbductorComponent>(target))
+            return true;
+        // Sunrise-end
         var targetAction = Comp<TargetActionComponent>(uid);
         // not using the ValidateBaseTarget logic since its raycast fails if the target is e.g. a wall
         if (targetAction.CheckCanAccess)
@@ -444,6 +448,10 @@ public abstract class SharedActionsSystem : EntitySystem
         if (comp.CheckCanAccess)
             return _interaction.InRangeUnobstructed(user, coords, range: comp.Range);
 
+        // Sunrise-start
+        if (HasComp<AbductorAgentComponent>(user) || HasComp<AbductorScientistComponent>(user))
+            return true;
+        // Sunrise-end
         // even if we don't check for obstructions, we may still need to check the range.
         var xform = Transform(user);
         if (xform.MapID != _transform.GetMapId(coords))
@@ -839,6 +847,28 @@ public abstract class SharedActionsSystem : EntitySystem
         if (ent.Comp.Temporary)
             QueueDel(ent);
     }
+
+    // Starlight-Abductor-start
+    public EntityUid[] HideActions(EntityUid performer, ActionsComponent? comp = null)
+    {
+        if (!Resolve(performer, ref comp, false))
+            return [];
+
+        var actions = comp.Actions.ToArray();
+        comp.Actions.Clear();
+        Dirty(performer, comp);
+        return actions;
+    }
+    public void UnHideActions(EntityUid performer, EntityUid[] actions, ActionsComponent? comp = null)
+    {
+        if (!Resolve(performer, ref comp, false))
+            return;
+
+        foreach (var action in actions)
+            comp.Actions.Add(action);
+        Dirty(performer, comp);
+    }
+    // Starlight-Abductor-end
 
     /// <summary>
     /// This method gets called after an action got removed.

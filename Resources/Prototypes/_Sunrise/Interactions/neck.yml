@@ -1,0 +1,22 @@
+- type: interaction
+  id: NeckNuzzle
+  name: interaction-name-neck-nuzzle
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Neck
+  interactionMessages:
+  - "%user нежно трётся мордочкой о шею %target"
+  - "%user мягко касается мордочкой шеи %target, создавая приятное ощущение"
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "лицо"]
+    requireExposed: true
+  - !type:BodyAreaTagCondition
+    checkInitiator: false
+    checkTarget: true
+    categories: [ "шея"]
+    requireExposed: true
+  cooldown: 3

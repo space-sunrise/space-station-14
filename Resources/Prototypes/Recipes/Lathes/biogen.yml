@@ -5,7 +5,7 @@
   - Food
   completetime: 3
   materials:
-    Biomass: 70
+    Biomass: 30 # Sunrise-Edit
 
 - type: latheRecipe
   id: BioGenKoboldCube
@@ -14,7 +14,7 @@
   - Food
   completetime: 3
   materials:
-    Biomass: 70
+    Biomass: 30 # Sunrise-Edit
 
 - type: latheRecipe
   id: BioGenMaterialCloth1
@@ -257,7 +257,7 @@
   - Materials
   completetime: 3
   materials:
-    Biomass: 100
+    Biomass: 75
 
 - type: latheRecipe
   id: BioClothingBeltPlant
@@ -266,7 +266,7 @@
   - Materials
   completetime: 5
   materials:
-    Biomass: 50
+    Biomass: 20
 
 - type: latheRecipe
   id: BioClothingBeltUtility
@@ -275,7 +275,7 @@
   - Materials
   completetime: 5
   materials:
-    Biomass: 50
+    Biomass: 20
 
 - type: latheRecipe
   id: BioClothingBeltMedical
@@ -284,7 +284,7 @@
   - Materials
   completetime: 5
   materials:
-    Biomass: 50
+    Biomass: 20
 
 - type: latheRecipe
   id: BioClothingBeltJanitor
@@ -293,7 +293,7 @@
   - Materials
   completetime: 5
   materials:
-    Biomass: 50
+    Biomass: 20
 
 - type: latheRecipe
   id: BioClothingBeltStorageWaistbag
@@ -302,7 +302,7 @@
   - Materials
   completetime: 5
   materials:
-    Biomass: 50
+    Biomass: 20
 
 - type: latheRecipe
   id: BioClothingBeltChef
@@ -311,19 +311,19 @@
   - Materials
   completetime: 5
   materials:
-    Biomass: 50
+    Biomass: 20
 
 - type: latheRecipe
   id: BioCowCube
   result: CowCube
-  completetime: 30
+  completetime: 3
   materials:
     Biomass: 240
 
 - type: latheRecipe
   id: BioGoatCube
   result: GoatCube
-  completetime: 30
+  completetime: 3
   materials:
     Biomass: 75
 
@@ -337,28 +337,81 @@
 - type: latheRecipe
   id: BioMouseCube
   result: MouseCube
-  completetime: 15
+  completetime: 3
   materials:
     Biomass: 12
 
 - type: latheRecipe
   id: BioCockroachCube
   result: CockroachCube
-  completetime: 15
+  completetime: 3
   materials:
     Biomass: 16
 
 - type: latheRecipe
   id: BioPigCube
   result: PigCube
-  completetime: 15
+  completetime: 3
   materials:
     Biomass: 55
 
 - type: latheRecipe
   id: BioChikenCube
   result: ChikenCube
-  completetime: 15
+  completetime: 3
   materials:
     Biomass: 16
+
+- type: latheRecipe
+  id: BioGenUnstableMutagen
+  resultReagents:
+    UnstableMutagen: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 40
+
+- type: latheRecipe
+  id: BioGenNitroKill
+  resultReagents:
+    NitroKill: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 30
+
+- type: latheRecipe
+  id: BioGenInc
+  resultReagents:
+    Inc: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 2
+
+- type: latheRecipe
+  id: BioGenDiethylamine
+  resultReagents:
+    Diethylamine: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 30
+
 # Sunrise-End

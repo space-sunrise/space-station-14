@@ -10,7 +10,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobMagistrat
@@ -22,7 +21,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobNtrOfficer
@@ -35,7 +33,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -50,7 +47,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobCentCommOfficial
@@ -63,7 +59,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobCentCommOperator
@@ -76,7 +71,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobBlueShieldEnsign
@@ -91,7 +85,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobBlueShieldOfficer
@@ -106,7 +99,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorOfficer
@@ -124,7 +116,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorResearcher
@@ -140,7 +131,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorPhysician
@@ -183,7 +173,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorEngineer
@@ -203,7 +192,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobRoboticist
@@ -220,7 +208,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonEngineer
@@ -236,7 +223,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonPilot
@@ -251,7 +237,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonWorker
@@ -264,7 +249,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonGuard
@@ -280,7 +264,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobSecurityPilot
@@ -297,7 +280,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonChef
@@ -315,7 +297,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonDoctor
@@ -335,7 +316,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobHeadOfPrison
@@ -351,7 +331,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -365,7 +344,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobBarber
@@ -378,7 +356,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobPlanetPrisoner
@@ -388,7 +365,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobAdjutant
@@ -403,7 +379,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: JobMailCarrier
@@ -420,7 +395,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
 - type: roleLoadout
   id: RoleSurvivalAssaultOps
@@ -448,7 +422,6 @@
   - Bra
   - Pants
   - Socks
-  - CommonPets
 
   # Silicons
 

@@ -96,6 +96,25 @@ public sealed partial class HandsComponent : Component
     [DataField]
     public DisplacementData? RightHandDisplacement;
 
+    // Body type specific displacement maps
+    /// <summary>
+    ///     Body type specific displacement maps for hands. Format: "bodytype" -> DisplacementData
+    /// </summary>
+    [DataField]
+    public Dictionary<string, DisplacementData> BodyTypeDisplacements = new();
+
+    /// <summary>
+    ///     Body type specific displacement maps for left hands. Format: "bodytype" -> DisplacementData
+    /// </summary>
+    [DataField]
+    public Dictionary<string, DisplacementData> LeftHandBodyTypeDisplacements = new();
+
+    /// <summary>
+    ///     Body type specific displacement maps for right hands. Format: "bodytype" -> DisplacementData
+    /// </summary>
+    [DataField]
+    public Dictionary<string, DisplacementData> RightHandBodyTypeDisplacements = new();
+
     /// <summary>
     /// If false, hands cannot be stripped, and they do not show up in the stripping menu.
     /// </summary>

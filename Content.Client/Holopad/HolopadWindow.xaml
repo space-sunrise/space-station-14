@@ -2,8 +2,8 @@
                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                Resizable="False"
-               MaxSize="400 800"
-               MinSize="400 150">
+               MaxSize="600 800"
+               MinSize="600 150">  <!-- SUNRISE-edit -->
     <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
 
         <BoxContainer Name="ControlsLockOutContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" ReservesSpace="False" Visible="False">
@@ -13,14 +13,14 @@
                     <RichTextLabel Name="EmergencyBroadcastText" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 10 10 10" ReservesSpace="False"/>
                 </PanelContainer>
             </controls:StripeBack>
-            
+
             <Label Text="{Loc 'holopad-window-controls-locked-out'}" HorizontalAlignment="Center" Margin="10 5 10 0" ReservesSpace="False"/>
             <RichTextLabel Name="LockOutIdText" HorizontalAlignment="Center" Margin="10 5 10 0" ReservesSpace="False"/>
             <Label Name="LockOutCountDownText" Text="{Loc 'holopad-window-controls-unlock-countdown'}" HorizontalAlignment="Center" Margin="10 15 10 10" ReservesSpace="False"/>
         </BoxContainer>
 
         <BoxContainer Name="ControlsContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" ReservesSpace="False">
-        
+
             <!-- Active call controls (either this or the call placement controls will be active) -->
             <BoxContainer Name="ActiveCallControlsContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" ReservesSpace="False">
 

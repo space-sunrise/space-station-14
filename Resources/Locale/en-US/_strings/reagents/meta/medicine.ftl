@@ -147,3 +147,11 @@ reagent-desc-potassium-iodide = Will reduce the damaging effects of radiation by
 
 reagent-name-haloperidol = haloperidol
 reagent-desc-haloperidol = Removes most stimulating and hallucinogenic drugs. Reduces druggy effects and jitteriness. Causes drowsiness.
+
+reagent-name-pyrazine-dermaline = pyrazine-dermaline
+reagent-name-puncturase-tranexamic = puncturase-tranexamic
+reagent-name-dexalin-plus-saline = dexalin plus-saline
+
+reagent-name-hemostatic-powder = hemostatic powder
+reagent-desc-hemostatic-powder = Hemostatic powder based on a mixture of tranexamic acid and iron silicide. When overdosed, it severely poisons the body with toxins.
+

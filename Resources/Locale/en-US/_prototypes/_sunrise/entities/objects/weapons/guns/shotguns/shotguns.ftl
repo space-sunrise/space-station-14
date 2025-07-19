@@ -1,9 +1,14 @@
+ent-BaseWeaponShotgunSunrise = BaseWeaponShotgun
+    .desc = A rooty tooty point and shooty.
 ent-WeaponXM1014 = XM1014
     .desc = { ent-BaseWeaponShotgun.desc }
 ent-WeaponShotgunPaladin12 = Paladin pump shotgun
     .desc = { ent-BaseWeaponShotgun.desc }
 ent-WeaponShotgunSPAS12 = Spas-12
     .desc = { ent-BaseWeaponShotgun.desc }
+ent-WeaponShotgunSPAS12Rubber = { ent-WeaponShotgunSPAS12 }
+    .suffix = Non-Lethal
+    .desc = { ent-WeaponShotgunSPAS12.desc }
 ent-WeaponShotgunTrenchgun4034 = Trenchgun L-4034
     .desc = { ent-BaseWeaponShotgun.desc }
 ent-WeaponShotgunTrenchgun4034Sawn = Sawn Trenchgun L-4034

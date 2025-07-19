@@ -18,25 +18,11 @@
   - extra
   name: extra-title
   showInVote: true
-  hide: false
+  hide: true
   description: extra-description
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - SubGamemodesRule
-  - BasicRoundstartVariation
-
-- type: gamePreset
-  id: SecretExtra #For Admin Use: Runs Extended but shows "Secret" in lobby.
-  alias:
-  - secretextra
-  name: secret-title
-  showInVote: false #Admin Use
-  hide: false
-  description: secret-description
-  rules:
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation

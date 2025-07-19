@@ -76,6 +76,7 @@
     whitelist:
       tags:
       - Grenade
+      - HandGrenadeAmmo
     proto: GrenadeFrag
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
@@ -106,7 +107,8 @@
     whitelist:
       tags:
       - Grenade
-    proto: GrenadeFlash
+      - HandGrenadeAmmo
+    proto: GrenadeFlashBang
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]

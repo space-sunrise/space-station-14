@@ -131,3 +131,210 @@
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: goatee
+
+- type: marking
+  id: DemonHornsDouble
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_double
+
+- type: marking
+  id: DemonHornsDoubleAlt
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_double_alt
+
+- type: marking
+  id: DemonHornsNarrow
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_narrow
+
+- type: marking
+  id: DemonHornsGoatee
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_goatee
+
+- type: marking
+  id: DemonHornsGoateeAlt
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_goatee_alt
+
+- type: marking
+  id: DemonHornsSharp
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_sharp
+
+- type: marking
+  id: DemonHornsGrowths
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_growths
+
+- type: marking
+  id: DemonHornsBrokenOne
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_broken_one
+
+- type: marking
+  id: DemonHornsStout
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_stout
+
+- type: marking
+  id: DemonHornsEnormous
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_enormous
+
+- type: marking
+  id: DemonHornsScythe
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_scythe
+
+- type: marking
+  id: DemonHornsTapering
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_tapering
+
+- type: marking
+  id: DemonHornsDirectional
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_directional
+
+- type: marking
+  id: DemonHornsThick
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_thick
+
+- type: marking
+  id: DemonHornsSickle
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_sickle
+
+- type: marking
+  id: DemonHornsSlim
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: horns_slim
+
+- type: marking
+  id: DemonTailFishnet
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_fishnet
+
+- type: marking
+  id: DemonTailFin
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_fin
+
+- type: marking
+  id: DemonTailMermaid
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_mermaid
+
+- type: marking
+  id: DemonTailArrow
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_arrow
+
+- type: marking
+  id: DemonTailTrident
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_trident
+
+- type: marking
+  id: EarsArcanaAlt
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: arcana_ears_alt
+
+- type: marking
+  id: EarsArcana
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: arcana_ears

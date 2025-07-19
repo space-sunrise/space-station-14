@@ -1,10 +1,10 @@
-ent-BaseMagazineLightRifle = магазин (7,62мм)
+ent-BaseMagazineLightRifle = магазин (5,56мм)
     .desc = { ent-BaseItem.desc }
-ent-MagazineLightRifleBox = короб патронов L6 SAW (.30 винтовочные)
+ent-MagazineLightRifleBox = короб патронов L6 SAW (5,56мм)
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazineLightRifleBoxIncendiary = короб патронов L6 SAW (.30 винтовочные зажигательные)
+ent-MagazineLightRifleBoxIncendiary = короб патронов L6 SAW (5,56мм зажигательные)
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazineLightRifleBoxUranium = короб патронов L6 SAW (.30 винтовочные урановые)
+ent-MagazineLightRifleBoxUranium = короб патронов L6 SAW (5,56мм урановые)
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineLightRifle = магазин (7,62мм)
     .desc = { ent-BaseMagazineLightRifle.desc }

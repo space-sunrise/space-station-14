@@ -169,4 +169,4 @@ ent-PlushieTimofeyTatarchuk = Плюшевый Тимофей Татарчук
 ent-PlushieSansaMontanelli = Плюшевая Санса Монтанелли
     .desc = Маленький бюрократ...Она уже пишет на вас заявление!
 ent-PlushieKalium = Калий Фон Дез
-    .desc = Просто добавте воды!
+    .desc = Просто добавьте воды!

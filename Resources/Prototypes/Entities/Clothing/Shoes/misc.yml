@@ -177,6 +177,8 @@
     - state: icon
   - type: Clothing
     sprite: Clothing/Shoes/Boots/moonboots.rsi
+    equipDelay: 0.75 #  Sunrise-Add
+    unequipDelay: 0.75  #  Sunrise-Add
   - type: AntiGravityClothing
   - type: StaticPrice
     price: 75

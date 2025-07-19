@@ -125,10 +125,13 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 5
-    intensitySlope: 3
-    totalIntensity: 60
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 4
     maxTileBreak: 0
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLethal
+    capacity: 5
 
 # Shells that used for friendship and duster
 
@@ -267,6 +270,85 @@
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLethal
     capacity: 15
+
+- type: entity
+  id: BulletSmokeGrenade
+  name: Smoke grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/smoke.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    duration: 45 # Sunrise-Edit
+    spreadAmount: 50
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/sg_explode.ogg
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+      params:
+        volume: 15
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: BulletTearGasGrenade
+  name: tear gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
+
+- type: entity
+  id: BulletMetalFoamGrenade
+  name: tear gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/metalfoam.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 20
+    smokePrototype: AluminiumMetalFoam
+  - type: TimedDespawn
+    lifetime: 1.75
+
+- type: entity
+  id: BulletCleanerGrenade
+  name: tear gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/janitor.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    duration: 10 # Для баланса вселенной
+    spreadAmount: 50
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 30
 
 - type: entity
   id: BulletGrenadeFlashBang

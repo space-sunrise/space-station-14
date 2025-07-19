@@ -11,6 +11,12 @@
     sprite: Clothing/Neck/Misc/pins.rsi
   - type: Clothing
     sprite: Clothing/Neck/Misc/pins.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase

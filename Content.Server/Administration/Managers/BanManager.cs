@@ -66,6 +66,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private string _webhookName = "Sunrise Ban";
     private string _webhookAvatarUrl = "https://i.ibb.co/WfGqKtG/avatar.png";
     private List<IPAddress?> _ipWhitelist = [];
+    public event EventHandler<BanIssuedEventArgs>? BanIssued;
+    public event EventHandler<BanPardonedEventArgs>? BanPardoned;
     // Sunrise-end
 
     private readonly Dictionary<ICommonSession, List<ServerRoleBanDef>> _cachedRoleBans = new();
@@ -121,6 +123,20 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
 
         _ipWhitelist = ips;
+    }
+
+    public async Task PardonBan(ICommonSession? admin, int banId, ServerBanDef ban)
+    {
+        await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, admin?.UserId, DateTimeOffset.UtcNow));
+        if (admin != null)
+        {
+            BanPardoned?.Invoke(this, new BanPardonedEventArgs
+            {
+                Target = ban.UserId,
+                PardoningAdmin = admin.UserId,
+                Time = DateTimeOffset.UtcNow
+            });
+        }
     }
     // Sunrise-End
 
@@ -248,6 +264,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var hwidString = hwid?.ToString() ?? "null";
         var expiresString = expires == null ? Loc.GetString("server-ban-string-never") : $"{expires}";
 
+        // Sunrise-Start
+        BanIssued?.Invoke(this, new BanIssuedEventArgs
+        {
+            Target = target,
+            BanningAdmin = banningAdmin,
+            Reason = reason,
+            Time = DateTimeOffset.UtcNow
+        });
+        // Sunrise-End
+
         var key = _cfg.GetCVar(CCVars.AdminShowPIIOnBan) ? "server-ban-string" : "server-ban-string-no-pii";
 
         var logMessage = Loc.GetString(
@@ -368,6 +394,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return;
         }
 
+        // Sunrise-Start
+        BanIssued?.Invoke(this, new BanIssuedEventArgs
+        {
+            Target = target,
+            BanningAdmin = banningAdmin,
+            Reason = reason,
+            Time = timeOfBan
+        });
+        // Sunrise-End
+
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
 
@@ -432,6 +468,15 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
 
         await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, DateTimeOffset.UtcNow));
+
+        // Sunrise-Start
+        BanPardoned?.Invoke(this, new BanPardonedEventArgs
+        {
+            Target = ban.UserId,
+            PardoningAdmin = unbanningAdmin,
+            Time = DateTimeOffset.UtcNow
+        });
+        // Sunrise-End
 
         if (ban.UserId is { } player
             && _playerManager.TryGetSessionById(player, out var session)

@@ -11,10 +11,10 @@ public sealed partial class PetOnInteractComponent : Component
     /// <summary>
     /// Список всех прирученных питомцев
     /// </summary>
-    public HashSet<EntityUid> Pets = new();
+    public HashSet<EntityUid> Pets = [];
 
     /// <summary>
     /// Список всех акшенов, которые используются для управления питомцем.
     /// </summary>
-    public HashSet<EntityUid?> PetActions = new();
+    public HashSet<EntityUid> PetActions = [];
 }

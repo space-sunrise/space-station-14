@@ -104,3 +104,89 @@
     delay: 6
   - type: StaticPrice
     price: 300
+
+# Medipens
+- type: entity
+  name: ephedrine injector
+  parent: [ChemicalMedipen, BaseSecurityContraband ]
+  id: StimpackNT
+  description: Contains enough ephedrine for you to have the chemical's effect for 30 seconds. Use it when you're sure you're ready to throw down.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#04319a"
+      - state: base-colorB-inhand-left
+        color: "#04319a"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#13049a"
+      - state: base-colorB-inhand-right
+        color: "#04319a"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: stimpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 20
+        - ReagentId: Epinephrine
+          Quantity: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpen_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 30
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: StaticPrice
+    price: 950
+
+- type: entity
+  name: ephedrine microinjector
+  parent: [ChemicalMedipen, BaseSecurityContraband]
+  id: StimpackMiniNT
+  description: A microinjector of ephedrine that give you about 15 seconds of the chemical's effects.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#13049a"
+      - state: base-colorB-inhand-left
+        color: "#04319a"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#13049a"
+      - state: base-colorB-inhand-right
+        color: "#04319a"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: microstimpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 15
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: microstimpen_empty
+  - type: StaticPrice
+    price: 250
