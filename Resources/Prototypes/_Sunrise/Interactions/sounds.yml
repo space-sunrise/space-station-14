@@ -1,0 +1,129 @@
+- type: interactionSound
+  id: FacePatsSound
+  name: interaction-sound-name-face-pats-sound
+  sound: /Audio/_Sunrise/Interactions/clothes_rub.ogg
+
+- type: interactionSound
+  id: FaceLickDoggyStyleSound1
+  name: interaction-sound-name-face-lick-doggy-style-sound1
+  sound: /Audio/_Sunrise/Interactions/lick1.ogg
+
+- type: interactionSound
+  id: FaceLickDoggyStyleSound2
+  name: interaction-sound-name-face-lick-doggy-style-sound2
+  sound: /Audio/_Sunrise/Interactions/lick2.ogg
+
+- type: interactionSound
+  id: FriendlyHandshakeSound
+  name: interaction-sound-name-friendly-handshake-sound
+  sound: /Audio/_Sunrise/Interactions/handshake/handshake.ogg
+
+- type: interactionSound
+  id: FriendlyPatShoulderSound
+  name: interaction-sound-name-friendly-pat-shoulder-sound
+  sound: /Audio/_Sunrise/Interactions/clap/sev_clap.ogg
+
+- type: interactionSound
+  id: FriendlyNeckChockSound1
+  name: interaction-sound-name-friendly-neck-chock-sound1
+  sound: /Audio/_Sunrise/Interactions/chock/neckchock_1.ogg
+
+- type: interactionSound
+  id: FriendlyNeckChockSound2
+  name: interaction-sound-name-friendly-neck-chock-sound2
+  sound: /Audio/_Sunrise/Interactions/chock/neckchock_2.ogg
+
+- type: interactionSound
+  id: FriendlyFive1
+  name: interaction-sound-name-friendly-five1
+  sound: /Audio/_Sunrise/Interactions/clap/five1.ogg
+
+- type: interactionSound
+  id: FriendlyFive2
+  name: interaction-sound-name-friendly-five2
+  sound: /Audio/_Sunrise/Interactions/clap/five2.ogg
+
+- type: interactionSound
+  id: FriendlyFive3
+  name: interaction-sound-name-friendly-five3
+  sound: /Audio/_Sunrise/Interactions/clap/five3.ogg
+
+- type: interactionSound
+  id: FriendlyXZ
+  name: interaction-sound-name-friendly-xz
+  sound: /Audio/_Sunrise/Interactions/coolpose/coolpose.ogg
+
+- type: interactionSound
+  id: FriendlySlap1
+  name: interaction-sound-name-friendly-slap1
+  sound: /Audio/_Sunrise/Interactions/slap/slap_1.ogg
+
+- type: interactionSound
+  id: FriendlySlap2
+  name: interaction-sound-name-friendly-slap2
+  sound: /Audio/_Sunrise/Interactions/slap/slap_2.ogg
+
+- type: interactionSound
+  id: FriendlySlap3
+  name: interaction-sound-name-friendly-slap3
+  sound: /Audio/_Sunrise/Interactions/slap/slap_3.ogg
+
+- type: interactionSound
+  id: FriendlySlap4
+  name: interaction-sound-name-friendly-slap4
+  sound: /Audio/_Sunrise/Interactions/slap/slap_4.ogg
+
+- type: interactionSound
+  id: FriendlySlap5
+  name: interaction-sound-name-friendly-slap5
+  sound: /Audio/_Sunrise/Interactions/slap/slap_5.ogg
+
+- type: interactionSound
+  id: FriendlySlap6
+  name: interaction-sound-name-friendly-slap6
+  sound: /Audio/_Sunrise/Interactions/slap/slap_6.ogg
+
+- type: interactionSound
+  id: FriendlySlap7
+  name: interaction-sound-name-friendly-slap7
+  sound: /Audio/_Sunrise/Interactions/slap/slap_7.ogg
+
+- type: interactionSound
+  id: FriendlySniff1
+  name: interaction-sound-name-friendly-sniff1
+  sound: /Audio/_Sunrise/Interactions/sniff/sniff_1.ogg
+
+- type: interactionSound
+  id: FriendlySniff2
+  name: interaction-sound-name-friendly-sniff2
+  sound: /Audio/_Sunrise/Interactions/sniff/sniff_2.ogg
+
+- type: interactionSound
+  id: FriendlyStroke
+  name: interaction-sound-name-friendly-stroke
+  sound: /Audio/_Sunrise/Interactions/stroke/stroke_1.ogg
+
+- type: interactionSound
+  id: FelinidPurrs
+  name: interaction-sound-name-felinid-purrs
+  sound: /Audio/_Sunrise/Voice/Felinid/cat_purr1.ogg
+
+- type: interactionSound
+  id: FriendlySalute
+  name: interaction-sound-name-friendly-salute
+  sound: /Audio/Effects/Emotes/salute.ogg
+
+- type: interactionSound
+  id: FriendlyThudswoosh
+  name: interaction-sound-name-friendly-thudswoosh
+  sound: /Audio/Effects/thudswoosh.ogg
+
+- type: interactionSound
+  id: Clap1
+  name: interaction-sound-name-clap1
+  sound: /Audio/_Sunrise/Interactions/clap1.ogg
+
+- type: interactionSound
+  id: Clap2
+  name: interaction-sound-name-clap2
+  sound: /Audio/_Sunrise/Interactions/clap2.ogg

@@ -444,6 +444,13 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletSmokeGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   parent: [ BaseCivilianContraband, SmokeGrenade ]
@@ -461,6 +468,13 @@
       reagents:
       - ReagentId: SpaceCleaner
         Quantity: 30
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletCleanerGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   parent: SmokeGrenade
@@ -478,6 +492,13 @@
       reagents:
       - ReagentId: TearGas
         Quantity: 20
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletTearGasGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   parent: [ BaseEngineeringContraband, SmokeGrenade ]
@@ -495,6 +516,13 @@
     smokePrototype: AluminiumMetalFoam
   - type: StaticPrice
     price: 350
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletMetalFoamGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   parent: [ BaseEngineeringContraband, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade

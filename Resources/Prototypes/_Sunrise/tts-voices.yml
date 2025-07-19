@@ -659,6 +659,7 @@
   sex: Male
   speaker: squidward
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Garrosh
@@ -1700,6 +1701,7 @@
   id: templar_assassin_dota_2
   roundStart: true
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   name: Tidehunter

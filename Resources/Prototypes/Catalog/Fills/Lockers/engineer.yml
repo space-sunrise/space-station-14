@@ -160,7 +160,6 @@
     - id: RCDAmmo
     - id: AirGrenade
     - id: InsulatedGlovesAtmos #sunrise-edit
-
 - type: entityTable
   id: FillAtmosphericsHardsuit
   table: !type:AllSelector
@@ -168,7 +167,7 @@
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
     - id: ClothingMaskBreath
-
+    - id: ClothingShoesBootsMagAtmos  #sunrise-edit
 - type: entity
   id: LockerEngineerFilledHardsuit
   suffix: Filled, Hardsuit

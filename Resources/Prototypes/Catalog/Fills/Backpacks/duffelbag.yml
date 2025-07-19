@@ -132,6 +132,12 @@
         amount: 1
       - id: LMGKit # Sunrise-edit
         amount: 1
+      - id: MedkitCombatFilled # Sunrise-edit
+        amount: 1
+      - id: MagazineRifle  # Sunrise-edit
+        amount: 2
+      - id: MagazineDragunov  # Sunrise-edit
+        amount: 2
 # Sunrise-Start
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -149,6 +155,10 @@
         amount: 1
       - id: MedkitBurnFilled
         amount: 1
+      - id: MagazineRifleIncendiary
+        amount: 2
+      - id: MagazineDragunovIncendiary
+        amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -166,6 +176,10 @@
         amount: 1
       - id: MedkitRadiationFilled
         amount: 1
+      - id: MagazineRifleUranium
+        amount: 2
+      - id: MagazineDragunovUranium
+        amount: 2
 # Sunrise-End
 - type: entity
   parent: ClothingBackpackDuffelClown

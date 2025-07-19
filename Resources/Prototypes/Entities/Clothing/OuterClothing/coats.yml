@@ -8,6 +8,13 @@
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Vest
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
@@ -25,6 +32,13 @@
     - id: FlippoEngravedLighter
   - type: ExplosionResistance
     damageCoefficient: 1 #its a coat. it doesnt do shit
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Vest
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterCoatDetectiveLoadout]
@@ -57,6 +71,13 @@
     sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Vest
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   abstract: true
@@ -100,6 +121,13 @@
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Vest
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageToggleableBase
@@ -140,6 +168,13 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 20
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Vest
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -375,6 +410,13 @@
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Vest
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseSyndicateContraband]

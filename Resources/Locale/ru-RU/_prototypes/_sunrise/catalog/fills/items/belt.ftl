@@ -6,3 +6,6 @@ ent-BeltSheathSyndieFilledBox = Завернутая рапира Синдика
 ent-ClothingBeltMilitaryWebbingMedSunriseFilled = { ent-ClothingBeltMilitaryWebbingMedSunrise }
     .suffix = Заполненый
     .desc = { ent-ClothingBeltMilitaryWebbingMedSunrise.desc }
+ent-ClothingAbductorBeltFilled = { ent-ClothingAbductorBelt }
+    .suffix = Filled
+    .desc = { ent-ClothingAbductorBelt.desc }

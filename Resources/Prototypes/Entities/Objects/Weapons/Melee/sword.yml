@@ -209,8 +209,17 @@
     - Back
     - SuitStorage #Bigger than the other swords, easier to strap to your suit.
   - type: DisarmMalus
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
-#Other/Weird
+
 - type: entity
   name: throngler
   parent: [ BaseSword, BaseMajorContraband ]

@@ -205,3 +205,17 @@
       proto: PelletShotgunUraniumSpread
     - type: SpentAmmoVisuals
       state: "depleted-uranium"
+
+- type: entity
+  id: ShellShotgunUraniumSlug
+  name: shell (.50 slug uranium)
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
+  components:
+    - type: Sprite
+      layers:
+        - state: depleted-uranium
+          map: [ "enum.AmmoVisualLayers.Base" ]
+    - type: HitScanCartridgeAmmo
+      proto: PelletShotgunUraniumSlug
+    - type: SpentAmmoVisuals
+      state: "depleted-uranium"

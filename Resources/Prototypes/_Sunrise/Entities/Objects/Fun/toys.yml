@@ -688,6 +688,8 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-CFB
+  - type: Item
+    heldPrefix: cfb
 
 - type: entity
   id: PlushieSebastian
@@ -1123,11 +1125,34 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
-    state: plushie_kalium
+    state: plushie-kalium
+  - type: Item
+    heldPrefix: kalium
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    equippedPrefix: kalium
+    slots:
+    - NECK
+  - type: UseDelay
+    delay: 1
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-      params:
-        volume: 3
-  - type: UseDelay
-    delay: 1
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg

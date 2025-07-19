@@ -16,11 +16,13 @@
     size: Ginormous
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -35
-    maxAngle: -70
+    minAngle: 0
+    maxAngle: 0
   - type: Gun
-    minAngle: 40
-    maxAngle: 80
+    minAngle: 5.7
+    maxAngle: 75
+    angleIncrease: 1.6
+    angleDecay: 35
     fireRate: 6.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
@@ -61,12 +63,16 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.55
-    sprintModifier: 0.55
+    walkModifier: 0.6
+    sprintModifier: 0.6
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2.5
-    pvsIncrease: 0.25
+    maxOffset: 3.75
+    pvsIncrease: 0.45
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
 
 - type: entity
   name: RPD
@@ -87,13 +93,14 @@
     shape:
     - 0,0,5,3
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
-  - type: GunRequiresWield
   - type: GunWieldBonus
-    minAngle: -30
-    maxAngle: -45
+    minAngle: -20
+    maxAngle: -60
   - type: Gun
-    minAngle: 40
-    maxAngle: 60
+    minAngle: 24
+    maxAngle: 120
+    angleIncrease: 3
+    angleDecay: 25
     fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
@@ -126,13 +133,21 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.5
+    delay: 0.75
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
 
 - type: entity
   name: MG-42
@@ -152,12 +167,14 @@
     size: Ginormous
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -70
+    minAngle: 0
+    maxAngle: 0
   - type: Gun
-    minAngle: 30
-    maxAngle: 90
-    fireRate: 7.5
+    minAngle: 6
+    maxAngle: 140
+    angleIncrease: 5
+    angleDecay: 55
+    fireRate: 12
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -175,11 +192,11 @@
           - MagazineMachineGunMG42
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle  # 556
+        startingItem: CartridgeHeavyRifleNT  # 7.62х51 NT
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle  # 556
+          - CartridgeHeavyRifleNT  # 7.62х51 NT
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -191,18 +208,22 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.5
+    delay: 1
   - type: GunRequiresWield
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.6
+    sprintModifier: 0.6
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 3.25
+    pvsIncrease: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
 
 - type: entity
   name: DL6902 machine gun
@@ -222,11 +243,13 @@
     - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
-    minAngle: -30
-    maxAngle: -40
+    minAngle: 0
+    maxAngle: 0
   - type: Gun
-    minAngle: 40
-    maxAngle: 60
+    minAngle: 12
+    maxAngle: 90
+    angleIncrease: 1.75
+    angleDecay: 35
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -253,7 +276,7 @@
         whitelist:
           tags:
             - MagazineDl6902
-            - MagazineLightRifleBox
+            - MagazineRPD
       gun_chamber:
         name: Chamber
         startingItem: SunriseCartridgeLightRifle
@@ -262,11 +285,11 @@
           tags:
             - CartridgeLightRifle
   - type: SpeedModifiedOnWield
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
   - type: StaticPrice
     price: 10000

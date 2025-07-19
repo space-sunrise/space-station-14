@@ -109,3 +109,15 @@
     contents:
       - id: StimpackMini
         amount: 6
+
+#Sunrse-start
+- type: entity
+  id: StimkitFilledNT
+  suffix: Stimkit, Filled
+  parent: StimkitFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: StimpackMiniNT
+        amount: 6
+#Sunrse-end

@@ -66,6 +66,98 @@
         {
             "name": "up",
             "directions": 4
+        },
+        {
+            "name": "horns_broken_one",
+            "directions": 4
+        },
+        {
+            "name": "horns_directional",
+            "directions": 4
+        },
+        {
+            "name": "horns_double_alt",
+            "directions": 4
+        },
+        {
+            "name": "horns_double",
+            "directions": 4
+        },
+        {
+            "name": "horns_enormous",
+            "directions": 4
+        },
+        {
+            "name": "horns_goatee_alt",
+            "directions": 4
+        },
+        {
+            "name": "horns_goatee",
+            "directions": 4
+        },
+        {
+            "name": "horns_growths",
+            "directions": 4
+        },
+        {
+            "name": "horns_narrow",
+            "directions": 4
+        },
+        {
+            "name": "horns_scythe",
+            "directions": 4
+        },
+        {
+            "name": "horns_sharp",
+            "directions": 4
+        },
+        {
+            "name": "horns_sickle",
+            "directions": 4
+        },
+        {
+            "name": "horns_slim",
+            "directions": 4
+        },
+        {
+            "name": "horns_stout",
+            "directions": 4
+        },
+        {
+            "name": "horns_tapering",
+            "directions": 4
+        },
+        {
+            "name": "horns_thick",
+            "directions": 4
+        },
+        {
+            "name": "tail_arrow",
+            "directions": 4
+        },
+        {
+            "name": "tail_fin",
+            "directions": 4
+        },
+        {
+            "name": "tail_fishnet",
+            "directions": 4
+        },
+        {
+            "name": "tail_mermaid",
+            "directions": 4
+        },
+        {
+            "name": "tail_trident",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears_alt",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears",
+            "directions": 4
         }
     ]
 }

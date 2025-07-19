@@ -28,6 +28,13 @@ public sealed partial class GameTicker
     /// </summary>
     public int? ResetCountdown;
 
+    // Sunrise-Start
+    private readonly HashSet<string> _excludedPresets = new();
+    public IEnumerable<string> ExcludedPresets => _excludedPresets;
+    public void AddExcludedPreset(string presetId) => _excludedPresets.Add(presetId);
+    public void ClearExcludedPresets() => _excludedPresets.Clear();
+    // Sunrise-End
+
     private bool StartPreset(ICommonSession[] origReadyPlayers, bool force)
     {
         var startAttempt = new RoundStartAttemptEvent(origReadyPlayers, force);

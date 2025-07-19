@@ -8,7 +8,6 @@ ent-CartridgeHeavyRifleNTIncendiary = cartridge (7,62mm NT incendiary)
     .desc = A NanoTrasen full-power 7.62x51mm cartridge designed for frontier and planetary combat. While powerful and long-ranged, it's ill-suited for close-quarters shipboard use, making it more common in legacy armories and colonial outposts. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
 ent-CartridgeHeavyRifleNTUranium = cartridge (7,62mm NT uranium)
     .desc = A NanoTrasen full-power 7.62x51mm cartridge designed for frontier and planetary combat. While powerful and long-ranged, it's ill-suited for close-quarters shipboard use, making it more common in legacy armories and colonial outposts. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
-
 ent-BaseMagazineBoxHeavyRifleNT = ammunition box (7,62mm NT)
     .desc = Cardboard box full of 7.62x51mm full-power rifle rounds. Dated, but still widely used by marksman rifles and medium machine guns.
 ent-MagazineBoxHeavyRifleNT = ammunition box (7,62mm NT)

@@ -116,3 +116,52 @@
   components:
   - type: StationAnchor
     switchedOn: false
+
+#Sunrise-Start
+- type: entity
+  id: StationAnchorBaseDespawn
+  abstract: true
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: StationAnchor
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: AmbientSound
+    enabled: false
+    range: 4
+    volume: -4
+    sound:
+      path: /Audio/Effects/shuttle_thruster.ogg
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Null
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerChargeVisuals.Active:
+        unlit:
+          True: { visible: True }
+          False: { visible: False }
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 90
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: StationAnchorBaseDespawn
+  id: StationAnchorDespawn
+  suffix: 5minDelete
+  components:
+  - type: TimedDespawn
+    lifetime: 300
+#Sunrise-End

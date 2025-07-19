@@ -31,6 +31,8 @@
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesHudSecurity #Sunrise-edit
+    belt: ClothingBeltSecurityFilled
     gloves: ClothingHandsGlovesColorGray
     pocket1: HyperLinkBookCorporateLaw # Sunrise-edit
   storage:

@@ -3,6 +3,9 @@
   id: BaseMobVox
   abstract: true
   components:
+  # SUNRISE EDIT
+  - type: Interactions
+  # SUNRISE EDIT
   - type: Absorbable
   - type: Hunger
   - type: Thirst

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
@@ -16,6 +17,7 @@ namespace Content.Server.Administration.Commands
         {
             var player = shell.Player;
             var dbMan = IoCManager.Resolve<IServerDbManager>();
+            var banMan = IoCManager.Resolve<IBanManager>();
 
             if (args.Length != 1)
             {
@@ -52,7 +54,7 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            await dbMan.AddServerUnbanAsync(new ServerUnbanDef(banId, player?.UserId, DateTimeOffset.UtcNow));
+            await banMan.PardonBan(shell.Player, banId, ban); // Sunrise-Edit
 
             shell.WriteLine($"Pardoned ban with id {banId}");
         }

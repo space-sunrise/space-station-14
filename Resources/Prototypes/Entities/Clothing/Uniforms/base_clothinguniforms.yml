@@ -75,3 +75,23 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
+
+  # SUNRISE EDIT
+- type: entity
+  abstract: true
+  parent: ClothingUniformBase
+  id: ClothingUniformCommand
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - CommandSuit
+  # SUNRISE EDIT

@@ -20,6 +20,12 @@
           Heat: 0.5
     - type: ExplosionResistance
       damageCoefficient: 0.65
+  # SUNRISE EDIT
+    - type: Tag
+      tags:
+      - NudeBottom  # INTERACTIONS
+      - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterArmorBasic
@@ -43,6 +49,12 @@
     damageCoefficient: 0.9
   - type: Item
     size: Huge
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - NudeBottom  # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -77,6 +89,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - FullBodyOuter  # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseCentcommContraband ]
@@ -450,3 +468,75 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2
+
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorAbductor
+  name: agent vest
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+    equippedPrefix: stealth
+  - type: Item
+    size: Normal
+  - type: AbductorVest
+  - type: ItemSwitch
+    state: Stealth
+    states:
+      Stealth: !type:ItemSwitchState
+        verb: abductor-armor-stealth
+        hiden: true
+        sprite:
+          sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+          state: icon
+        components:
+        - type: Armor
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Heat: 0.85
+              Piercing: 0.85
+              Radiation: 0.85
+              Caustic: 0.25
+        - type: ExplosionResistance
+          damageCoefficient: 0.85
+        - type: ItemToggle
+          predictable: false
+          onUse: false
+          soundActivate:
+            path: /Audio/_Sunrise/Items/Goggles/activate.ogg # Брал с ПНВ компоненты, звук понравился, решил оставить :)
+          soundDeactivate:
+            path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+          soundFailToActivate:
+            path: /Audio/Machines/button.ogg
+        - type: ToggleClothing
+          action: AbductorVestToggleStealth
+          mustEquip: true
+          disableOnUnequip: true
+        - type: ComponentToggler
+          parent: true
+          components:
+          - type: Stealth
+          - type: StealthOnMove
+      Combat: !type:ItemSwitchState
+        verb: abductor-armor-combat
+        hiden: true
+        sprite:
+          sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+          state: combat-icon
+        components:
+        - type: Armor
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Heat: 0.5
+              Piercing: 0.5
+              Radiation: 0.5
+              Caustic: 0.1
+        - type: ExplosionResistance
+          damageCoefficient: 0.5

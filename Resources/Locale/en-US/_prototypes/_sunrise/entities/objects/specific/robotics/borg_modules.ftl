@@ -34,3 +34,5 @@ ent-BorgModuleSyndicateCombat = combat syndicate cyborg module
     .desc = { ent-BaseBorgModuleSyndicate.desc }
 ent-BorgModuleStandart = fire extinguisher cyborg module
     .desc = { ent-BaseBorgModule.desc }
+ent-BorgERTModuleStandard = ERT utility cyborg module
+    .desc = A versatile NT module containing essential tools and medical supplies for ERT operations.

@@ -70,3 +70,5 @@ ent-ActionToggleRootable = action-name-toggle-rootable
     .desc = action-description-toggle-rootable
 ent-ActionChameleonController = Control clothing
     .desc = Change your entire outfit fast!
+ent-ActionActivateBorgLaughImplant = [color=red]Laugh[/color]
+    .desc = Activates your creepy laugh implant, which will produce the signature sound of the Syndicate cyborg.

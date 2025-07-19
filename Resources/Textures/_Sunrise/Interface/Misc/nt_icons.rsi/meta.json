@@ -354,6 +354,45 @@
 	},
 	{
 		"name": "magazine-acp14"
+	},
+	{
+		"name": "grenadelauncher"
+	},
+	{
+		"name": "gl79"
+	},
+	{
+		"name": "shot4034"
+	},
+	{
+		"name": "truncheon"
+	},
+	{
+		"name": "m28"
+	},
+	{
+		"name": "ar18"
+	},
+	{
+		"name": "spearhead"
+	},
+	{
+		"name": "speedloader45"
+	},
+	{
+		"name": "stimkit"
+	},
+	{
+		"name": "pouchammo"
+	},
+	{
+		"name": "pouchgrenade"
+	},
+	{
+		"name": "pouchgrenadefilled"
+	},
+	{
+		"name": "stim"
 	}
     ]
 }

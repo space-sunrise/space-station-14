@@ -37,7 +37,7 @@
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle
+    proto: SunriseCartridgeRifle # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
@@ -78,7 +78,7 @@
   parent: MagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleIncendiary
+    proto: SunriseCartridgeRifleIncendiary  # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
@@ -104,7 +104,7 @@
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRiflePractice
+    proto: SunriseCartridgeRiflePractice  # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
@@ -130,7 +130,7 @@
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleUranium
+    proto: SunriseCartridgeRifleUranium # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base

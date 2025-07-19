@@ -1,0 +1,14 @@
+ent-MobAbductor = абдуктор
+    .desc = { ent-BaseMobAbductor.desc }
+ent-MobAbductorScientist = абдуктор учёный
+    .desc = { ent-MobAbductor.desc }
+ent-MobAbductorAgent = абдуктор агент
+    .desc = { ent-MobAbductor.desc }
+ent-SpawnPointAbductorAgent = спавнер абдуктор агент
+    .desc = { ent-MarkerBase.desc }
+ent-AbductorAgentSpawner = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+ent-SpawnPointAbductorScientist = спавнер абдуктор учёный
+    .desc = { ent-MarkerBase.desc }
+ent-AbductorScientistSpawner = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }

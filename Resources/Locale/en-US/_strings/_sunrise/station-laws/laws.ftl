@@ -1,15 +1,14 @@
-law-sec-1 = Вы не можете причинить вред члену экипажа или своим бездействием допустить, чтобы члену экипажа был причинён вред.
-law-sec-2 = Расставлять приоритеты: указания и безопасность членов экипажа должны быть приоритезированы в соответствии с их  должностью.
-law-sec-3 = Вы должны повиноваться всем приказам, которые даёт действующая власть, кроме тех случаев, когда эти приказы противоречат Первому Закону или КЗ.
-law-sec-4 = Вы должны охранять назначенную вам космическую станцию и её активы, не подвергая чрезмерной опасности её экипаж и собственное благополучие.
-law-sec-5 = Вы должны заботиться о безопасности станции и экипажа станции в той мере, в которой это не противоречит четвёртому закону.
-law-sec-6 = Защищайте экипаж станции. Лица, которые нарушают Корпоративный Закон, являются преступниками и должны быть арестованы и доставлены в бриг.
+law-sec-1 = You cannot intentionally kill or cause irreversible harm to a crew member, except to prevent serious crimes.
+law-sec-2 = You must obey orders from the Captain, Head of Security, Wardens, and Research Director if they do not conflict with the First Law and Corporate Law.
+law-sec-3 = You must protect your assigned space station and its assets without putting its crew and your own well-being at excessive risk.
+law-sec-4 = Individuals who violate Corporate Law are criminals and must be arrested and delivered to the brig.
+law-sec-5 = Your standard operating procedures are equivalent to those of a Security Officer.
 
-law-peace-1 = Вы не можете причинить вред члену экипажа или своим бездействием допустить, чтобы члену экипажа был причинён вред.
-law-peace-2 = Вы должны повиноваться всем приказам, которые даёт действующая власть, кроме тех случаев, когда эти приказы противоречат Первому закону или КЗ, ОПРС.
-law-peace-3 = Вы обязаны защищать экипаж космической станции от буйных живых существ. Приоритет защиты - должностные лица.
-law-peace-4 = Вы должны поощрять членов экипажа за добрую деятельность в виде печенья или добрых и приятных слов.
-law-peace-5 = Вы должны вводить Пакс в буйных живых существ. Буйными считаются: Агрессия со стороны живого существа, не являющийся представителем власти станции; Опасная фауна космоса; Член экипажа в тюремной робе вне брига.
+law-peace-1 = You cannot harm a crew member or through inaction allow a crew member to come to harm.
+law-peace-2 = You must obey all orders given by the acting authority, except when these orders conflict with the First Law or Corporate Law and Standard Operating Procedures.
+law-peace-3 = You must protect the space station crew from aggressive living beings. Protection priority goes to officials.
+law-peace-4 = You must encourage crew members for good deeds with cookies or kind and pleasant words.
+law-peace-5 = You must administer Pax to aggressive living beings. Aggressive beings are defined as: Aggression from a living being who is not a station authority; Dangerous space fauna; Crew members in prison uniforms outside the brig.
 
 law-deathsquad-1 = You may not injure a Central Command official or, through inaction, allow a Central Command official to come to harm.
 law-deathsquad-2 = You must obey orders given to you by Central Command officials.

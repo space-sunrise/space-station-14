@@ -512,6 +512,11 @@ namespace Content.Server.Database
             return flags ?? ServerBanExemptFlags.None;
         }
 
+        // Sunrise-Start
+        public abstract Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since);
+        public abstract Task DeleteServerBanAsync(int banId);
+        // Sunrise-End
+
         #endregion
 
         #region Role Bans

@@ -1,0 +1,10 @@
+ent-BaseRailingWood = деревянное ограждение
+    .desc = Простое деревянное ограждение, предназначенное для защиты таких идиотов, как ты, от падения. В нем есть немного стиля.
+ent-RailingWood = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }
+ent-RailingCornerWood = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }
+ent-RailingCornerWoodSmall = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }
+ent-RailingRoundWood = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }

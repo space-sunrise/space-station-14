@@ -16,3 +16,5 @@ ent-ClothingOuterArmorAmberMed = ERT Amber Medic armor
     .desc = NT's universal flexible and well-armored suit with a powerful shoulder mounted flashlight ,it does not protect its wearer from space.
 ent-ClothingOuterArmorAmberJan = ERT Amber Janitor armor
     .desc = NT's universal flexible and well-armored suit with a powerful shoulder mounted flashlight ,it does not protect its wearer from space.
+ent-ClothingOuterArmorAbductor = agent vest
+    .desc = { ent-ClothingOuterArmorBasic.desc }

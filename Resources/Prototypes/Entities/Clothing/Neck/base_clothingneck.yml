@@ -45,3 +45,16 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+
+  # SUNRISE EDIT
+- type: entity
+  abstract: true
+  parent: ClothingNeckBase
+  id: ClothingCloakBase
+  components:
+  - type: Tag
+    tags:
+    - OpenNeck # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon
+# SUNRISE EDIT

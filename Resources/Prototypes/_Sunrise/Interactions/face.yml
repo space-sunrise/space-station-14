@@ -1,0 +1,70 @@
+- type: interaction
+  id: FaceCheeksPull
+  name: interaction-name-face-cheeks-pull
+  category: Face
+  icon: FaceCheeksPullIcon
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: false
+    checkTarget: true
+    categories: [ "щёки", "рот" ]
+    requireExposed: true
+  interactionMessages:
+  - "%user нежно треплет щёчки %target"
+  - "%user слегка растягивает щёчки %target"
+  - "%user тискает щечки %target"
+  cooldown: 1
+
+- type: interaction
+  id: FacePats
+  name: interaction-name-face-pats
+  category: Face
+  icon: FacePatsIcon
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: false
+    checkTarget: true
+    categories: [ "лицо" ]
+    requireExposed: true
+  interactionMessages:
+  - "%user нежно проводит ладонью по лицу %target"
+  - "%user ласково гладит ладонью лицо %target"
+  - "%user слегка поглаживает ладонью лицо %target"
+  interactionSounds:
+  - FacePatsSound
+  cooldown: 3
+
+- type: interaction
+  id: FaceLickDoggyStyle
+  name: interaction-name-face-lick-doggy-style
+  category: Face
+  icon: FaceLickDoggyStyleIcon
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "рот" ]
+    requireExposed: true
+  - !type:BodyAreaTagCondition
+    checkInitiator: false
+    checkTarget: true
+    categories: [ "лицо" ]
+    requireExposed: true
+  - !type:SpeciesCondition
+    checkTarget: false
+    checkInitiator: true
+    allowedSpecies: [ Vulpkanin, Felinid ]
+  interactionMessages:
+  - "%user по-собачьи облизывает щёки %target"
+  - "%user по-собачьи облизывает губы %target"
+  - "%user по-собачьи лижет в нос %target"
+  interactionSounds:
+  - FaceLickDoggyStyleSound1
+  - FaceLickDoggyStyleSound2
+  cooldown: 3

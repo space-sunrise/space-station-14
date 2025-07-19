@@ -14,9 +14,16 @@ public readonly struct MoveInputEvent
 
     public bool HasDirectionalMovement => (Entity.Comp.HeldMoveButtons & MoveButtons.AnyDirection) != MoveButtons.None;
 
-    public MoveInputEvent(Entity<InputMoverComponent> entity, MoveButtons oldMovement)
+    // Starlight-Abductor-edited
+
+    public readonly Direction Dir;
+    public readonly bool State;
+
+    public MoveInputEvent(Entity<InputMoverComponent> entity, MoveButtons oldMovement, Direction dir, bool state) // Starlight-Abductor-edited
     {
         Entity = entity;
         OldMovement = oldMovement;
+        Dir = dir;
+        State = state;
     }
 }

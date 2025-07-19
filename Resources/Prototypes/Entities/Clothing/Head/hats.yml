@@ -8,6 +8,13 @@
     sprite: Clothing/Head/Hats/beaver_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beaver_hat.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -75,6 +82,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
@@ -86,6 +94,13 @@
       sprite: Clothing/Head/Hats/casa.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/casa.rsi
+    # Sunrise-Start
+    - type: Tag
+      tags:
+      - ClothMade
+      - WhitelistChameleon
+      - FullCovered
+    # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -225,6 +240,13 @@
     sprite: Clothing/Head/Hats/bowler_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/bowler_hat.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
@@ -242,6 +264,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
@@ -257,6 +280,13 @@
     proto: robot
   - type: IdentityBlocker
   - type: IngestionBlocker
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingHeadBase, BaseCentcommContraband ]
@@ -268,6 +298,13 @@
     sprite: Clothing/Head/Hats/centcom.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/centcom.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -299,6 +336,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
@@ -316,6 +354,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
@@ -327,6 +366,13 @@
     sprite: Clothing/Head/Hats/greyfedora.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/greyfedora.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -355,6 +401,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
@@ -372,6 +419,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
@@ -385,6 +433,13 @@
     sprite: Clothing/Head/Hats/outlawhat.rsi
   - type: StaticPrice
     price: 500
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -396,6 +451,13 @@
     sprite: Clothing/Head/Hats/witchhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/witchhat.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -418,6 +480,13 @@
     sprite: Clothing/Head/Hats/pirate.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pirate.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -434,6 +503,7 @@
     - WhitelistChameleon
     - ClothMade
     - Recyclable
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -479,6 +549,13 @@
     - state: icon-nobeard
       map: [ "foldedLayer" ]
       visible: true
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 
 
@@ -494,6 +571,13 @@
     sprite: Clothing/Head/Hats/sombrero.rsi
   - type: AddAccentClothing
     accent: SpanishAccent
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -511,6 +595,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -532,6 +617,13 @@
       Hair: HEAD
       HeadTop : HEAD
       HeadSide : HEAD
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -548,6 +640,13 @@
       Hair: HEAD
       HeadTop : HEAD
       HeadSide : HEAD
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 
 - type: entity
@@ -591,6 +690,13 @@
     - state: icon-up
       map: ["foldedLayer"]
       visible: false
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -629,6 +735,13 @@
         color: "#a60b0b"
       - state: pompom-equipped-HELMET
         color: "#a60b0b"
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadHatWizardBase
@@ -670,6 +783,7 @@
     - WhitelistChameleon
     - ClothMade
     - Recyclable
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -689,6 +803,13 @@
       Hair: HEAD
       HeadTop : HEAD
       HeadSide : HEAD
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   abstract: true
@@ -696,6 +817,13 @@
   id: ClothingHeadHatWizardBase
   components:
   - type: WizardClothes
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadHatWizardBase
@@ -713,6 +841,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
@@ -735,6 +864,13 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/truckershat.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
@@ -800,6 +936,13 @@
       Hair: HEAD
       HeadTop : HEAD
       HeadSide : HEAD
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -817,6 +960,13 @@
       Hair: HEAD
       HeadTop : HEAD
       HeadSide : HEAD
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -828,6 +978,13 @@
     sprite: Clothing/Head/Hats/fishcap.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/fishcap.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -839,6 +996,13 @@
     sprite: Clothing/Head/Hats/wehcellentcap.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/wehcellentcap.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -883,6 +1047,13 @@
     sprite: Clothing/Head/Hats/safarihat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/safarihat.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -894,6 +1065,13 @@
       sprite: Clothing/Head/Hats/jester.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/jester.rsi
+  # Sunrise-Start
+    - type: Tag
+      tags:
+      - ClothMade
+      - WhitelistChameleon
+      - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadHatJester
@@ -908,6 +1086,13 @@
         Hair: HEAD
         HeadTop : HEAD
         HeadSide : HEAD
+  # Sunrise-Start
+    - type: Tag
+      tags:
+      - ClothMade
+      - WhitelistChameleon
+      - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
@@ -936,6 +1121,13 @@
     sprite: Clothing/Head/Hats/piratetricord.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/piratetricord.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -988,6 +1180,13 @@
     sprite: Clothing/Head/Hats/syndiecap_maa.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/syndiecap_maa.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -1010,6 +1209,13 @@
     sprite: Clothing/Head/Hats/hetman_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/hetman_hat.rsi
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -1043,7 +1249,13 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+  # Sunrise-Start
   - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -1102,6 +1314,13 @@
       Hair: HEAD
       HeadTop : HEAD
       HeadSide : HEAD
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -1168,6 +1387,7 @@
   - type: Tag
     tags:
     - BrimFlatcapGrey
+    - TopCovered # Sunrise-Edit
   - type: Sprite
     sprite: Clothing/Head/Hats/greyflatcap.rsi
   - type: Clothing
@@ -1182,6 +1402,7 @@
   - type: Tag
     tags:
     - BrimFlatcapBrown
+    - TopCovered # Sunrise-Edit
   - type: Sprite
     sprite: Clothing/Head/Hats/brownflatcap.rsi
   - type: Clothing
@@ -1200,6 +1421,13 @@
     - type: AddAccentClothing
       accent: ReplacementAccent
       replacement: cowboy
+  # Sunrise-Start
+    - type: Tag
+      tags:
+      - ClothMade
+      - WhitelistChameleon
+      - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadHatCowboyBrown
@@ -1267,6 +1495,7 @@
   - type: Tag
     tags:
     - HamsterWearable
+    - TopCovered # Sunrise-Edit
   - type: Flammable
     fireSpread: true
     canResistFire: false

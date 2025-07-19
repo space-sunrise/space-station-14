@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "SUNRISE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+        {
+            "name": "ayanami",
+            "directions": 4
+        },
+        {
+            "name": "bubble_gum",
+            "directions": 4
+        },
+        {
+            "name": "cloud",
+            "directions": 4
+        },
+        {
+            "name": "mavis",
+            "directions": 4
+        },
+        {
+            "name": "basarab",
+            "directions": 4
+        },
+        {
+            "name": "crayfish",
+            "directions": 4
+        },
+        {
+            "name": "hank",
+            "directions": 4
+        },
+        {
+            "name": "honor",
+            "directions": 4
+        },
+        {
+            "name": "madscientist",
+            "directions": 4
+        },
+        {
+            "name": "monday",
+            "directions": 4
+        },
+        {
+            "name": "nemesida",
+            "directions": 4
+        },
+        {
+            "name": "punk",
+            "directions": 4
+        },
+        {
+            "name": "turanga",
+            "directions": 4
+        },
+        {
+            "name": "morning_hairstyle",
+            "directions": 4
+        },
+        {
+            "name": "morning_hairstyle_2",
+            "directions": 4
+        },
+        {
+            "name": "ponytail8",
+            "directions": 4
+        },
+        {
+            "name": "prince_charming",
+            "directions": 4
+        },
+        {
+            "name": "shaved_female",
+            "directions": 4
+        },
+        {
+            "name": "moon",
+            "directions": 4
+        },
+        {
+            "name": "shaved_unisex",
+            "directions": 4
+        },
+        {
+            "name": "malet",
+            "directions": 4
+        },
+        {
+            "name": "hair_long_comb",
+            "directions": 4
+        },
+        {
+            "name": "hair_long_disheveled",
+            "directions": 4
+        },
+        {
+            "name": "hair_medium_disheveled",
+            "directions": 4
+        },
+        {
+            "name": "hair_neat_feminine",
+            "directions": 4
+        },
+        {
+            "name": "hair_neat_man_bun",
+            "directions": 4
+        },
+        {
+            "name": "hair_protruding_strand",
+            "directions": 4
+        },
+        {
+            "name": "hair_quick_instalation",
+            "directions": 4
+        },
+        {
+            "name": "hair_windy",
+            "directions": 4
+        },
+        {
+            "name": "hair_applejack",
+            "directions": 4
+        },
+        {
+            "name": "hair_aqua",
+            "directions": 4
+        },
+        {
+            "name": "hair_baird-and-bangs",
+            "directions": 4
+        },
+        {
+            "name": "hair_bun-with-tail",
+            "directions": 4
+        },
+        {
+            "name": "hair_bun-with-tail2",
+            "directions": 4
+        },
+        {
+            "name": "hair_gluckosa",
+            "directions": 4
+        },
+        {
+            "name": "hair_pinkie-pie",
+            "directions": 4
+        },
+        {
+            "name": "hair_rarity",
+            "directions": 4
+        }
+  ]
+}

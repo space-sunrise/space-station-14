@@ -16,7 +16,8 @@ namespace Content.Shared.Humanoid.Markings
         Arms,
         Legs,
         Tail,
-        Overlay
+        Overlay,
+        Back, // SUNRISE
     }
 
     public static class MarkingCategoriesConversion
@@ -42,6 +43,7 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.LFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
+                HumanoidVisualLayers.Back => MarkingCategories.Back, // SUNRISE
                 _ => MarkingCategories.Overlay
             };
         }

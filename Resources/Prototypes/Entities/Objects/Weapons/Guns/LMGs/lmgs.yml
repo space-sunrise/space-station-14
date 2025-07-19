@@ -20,10 +20,10 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -20
+    maxAngle: -50 # Sunrise-Edit
   - type: Gun
     minAngle: 24
-    maxAngle: 45
+    maxAngle: 80  # Sunrise-Edit
     angleIncrease: 4
     angleDecay: 16
     fireRate: 8
@@ -51,11 +51,11 @@
             - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeLightRifle #Sunrise-Edit TODO: 5.56
+        startingItem: SunriseCartridgeRifle #Sunrise-Edit
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle  #Sunrise-Edit
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -96,7 +96,19 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
-  - type: GunRequiresWield # Sunrise add
+  # Sunrise start
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  # Sunrise end
 
 - type: entity
   name: L6C ROW
@@ -137,5 +149,5 @@
       startingCharge: 10000
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 25
+      autoRechargeRate: 75 # Sunrise-Edit
     - type: AmmoCounter

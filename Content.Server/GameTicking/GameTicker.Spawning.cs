@@ -290,18 +290,18 @@ namespace Content.Server.GameTicking
             var overall = _playTimeTracking.GetOverallPlaytime(player);
 
             EntityUid? mobMaybe = null;
-            var spawnPointType = SpawnPointType.Arrivals;
-            if (jobPrototype.AlwaysUseSpawner ||
-                overall < TimeSpan.FromHours(_cfg.GetCVar(SunriseCCVars.ArrivalsMinHours)) ||
-                !_cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn)
-                )
+            var spawnPointType = SpawnPointType.Unset;
+            if (jobPrototype.AlwaysUseSpawner)
             {
                 lateJoin = false;
                 spawnPointType = SpawnPointType.Job;
             }
             else
             {
-                mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, jobPrototype, character);
+                if (_cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn) && overall > TimeSpan.FromHours(_cfg.GetCVar(SunriseCCVars.ArrivalsMinHours)) || RunLevel == GameRunLevel.InRound)
+                {
+                    mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, jobPrototype, character);
+                }
             }
 
             if (mobMaybe == null)

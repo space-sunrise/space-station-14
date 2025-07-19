@@ -91,6 +91,7 @@
     requireAnchored: false
     joinSystem: true
   - type: DoAfter
+  - type: MechVulnerableToEMP # Sunrise-edit
   - type: Repairable
     doAfterDelay: 3
     damage:
