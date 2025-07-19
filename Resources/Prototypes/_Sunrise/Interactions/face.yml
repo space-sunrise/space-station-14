@@ -56,6 +56,10 @@
       checkTarget: true
       categories: [ "лицо" ]
       requireExposed: true
+    - !type:SpeciesCondition
+      checkTarget: false
+      checkInitiator: true
+      allowedSpecies: [ Vulpkanin, Felinid ]
   interactionMessages:
     - "%user по-собачьи облизывает щёки %target"
     - "%user по-собачьи облизывает губы %target"
