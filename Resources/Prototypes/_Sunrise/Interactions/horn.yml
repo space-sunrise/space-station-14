@@ -1,6 +1,6 @@
 - type: interaction
   id: HornsPat
-  name: "Погладить рожки"
+  name: interaction-name-horns-pat
   icon: FriendlyPatHornsIcon
   category: Face
   interactionMessages:

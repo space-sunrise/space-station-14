@@ -1,0 +1,17 @@
+﻿interaction-icon-name-face-cheeks-pull-icon = Потискать за щёчки
+interaction-icon-name-face-pats-icon = Погладить по лицу
+interaction-icon-name-face-lick-doggy-style-icon = Облизать лицо по-собачьи
+interaction-icon-name-friendly-pat-shoulder-icon = Похлопать по плечу
+interaction-icon-name-friendly-blow-slap-icon = Пощёчина
+interaction-icon-name-friendly-face-rub-cat-icon = Потереться как котик
+interaction-icon-name-friendly-icon = Дружеское
+interaction-icon-name-friendly-finger-tap-icon = Потрогать спину пальцем
+interaction-icon-name-friendly-nose-boop-icon = Тронуть кончик носа пальцем
+interaction-icon-name-friendly-tail-pull-icon = Дёрнуть за хвост
+interaction-icon-name-friendly-handshake-icon = Рукопожатие
+interaction-icon-name-friendly-hign-five-icon = Дать пять
+interaction-icon-name-friendly-pat-tail-icon = Погладить хвост
+interaction-icon-name-friendly-shoulder-massage-icon = Массаж спины
+interaction-icon-name-friendly-tail-hug-icon = Сплестись хвостами
+interaction-icon-name-friendly-tail-icon = Хвостик
+interaction-icon-name-friendly-pat-horns-icon = Гладить рожки
