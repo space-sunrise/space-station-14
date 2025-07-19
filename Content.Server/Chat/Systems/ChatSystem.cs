@@ -204,7 +204,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.CollectiveMind);
+        var trySendEvent = new TrySendChatMessageEvent(message, desiredType);
         RaiseLocalEvent(source, trySendEvent);
 
         if (trySendEvent.Cancelled)
@@ -310,7 +310,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.CollectiveMind);
+        var trySendEvent = new TrySendChatMessageEvent(message, oocChatType: type);
         RaiseLocalEvent(source, trySendEvent);
 
         if (trySendEvent.Cancelled)

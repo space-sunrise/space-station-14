@@ -23,12 +23,14 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
     /// <summary>
     /// Расширенный паттерн для обнаружения ссылок.
     /// </summary>
-    private static readonly Regex UrlRegex = new("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)");
+    private static readonly Regex UrlRegex =
+        new("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)", RegexOptions.Compiled);
 
     /// <summary>
     /// ASCII-art фильтр: отбрасывает нестандартные символы, но сохраняет все локали и управляемые символы.
     /// </summary>
-    private static readonly Regex AsciiArtRegex = new("[^\\x09\\x0A\\x0D\\x20-\\x7E\\u0400-\\u04FF]");
+    private static readonly Regex AsciiArtRegex =
+        new("[^\\x09\\x0A\\x0D\\x20-\\x7E\\u0400-\\u04FF]", RegexOptions.Compiled);
 
     private const int MaxAdminAlertMessageLength = 20;
 

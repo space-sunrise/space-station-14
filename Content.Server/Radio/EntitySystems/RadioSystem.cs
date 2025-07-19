@@ -99,7 +99,7 @@ public sealed class RadioSystem : EntitySystem
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true)
     {
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.CollectiveMind);
+        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.Speak);
         RaiseLocalEvent(messageSource, trySendEvent);
 
         if (trySendEvent.Cancelled)
