@@ -264,24 +264,6 @@
   cooldown: 3
 
 - type: interaction
-  id: NeckСhoke
-  name: "Душить"
-  icon: FriendlyHandshakeIcon # TODO новый спрайт
-  category: Friendly
-  appearConditions:
-  - !type:HasTargetCondition
-    allowSelfTargeting: false
-  interactionMessages:
-  - "%user сильно сдавливает шею %target своими пальцами"
-  - "%user обхатывает шею %target рукой, сдавливая её"
-  - "%user схватил за горло %target и с силой сжал его своими пальцами"
-  - "%user хватает рукой шею %target и, сдавливая её, заставляет %target задыхаться"
-  interactionSounds:
-  - FriendlyNeckChockSound1
-  - FriendlyNeckChockSound2
-  cooldown: 3
-
-- type: interaction
   id: FriendlyBackMassage
   name: "Помассировать спину"
   icon: FriendlyShoulderMassageIcon
@@ -351,23 +333,6 @@
       requireExposed: true
   interactionMessages:
   - "%user открывает рот и высовывает язык на всю длину"
-  cooldown: 3
-
-- type: interaction
-  id: FriendlyVulpaBreath
-  name: "Дышать по-собачьи"
-  icon: FriendlyHandshakeIcon # TODO новый спрайт
-  category: Friendly
-  appearConditions:
-    - !type:SelfOnlyCondition
-    - !type:BodyAreaTagCondition
-      checkInitiator: true
-      checkTarget: false
-      categories: [ "рот" ]
-      requireExposed: true
-  interactionMessages:
-  - "%user быстро дышит с высунутым языком"
-  - "%user быстро дышит с открытой пастью"
   cooldown: 3
 
 - type: interaction
