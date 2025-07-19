@@ -95,3 +95,5 @@ flesh-cultist-flash-immunity-evolution-name = Защита глаз
 flesh-cultist-flash-immunity-evolution-desc = Вас больше не будут ослеплять яркие вспышки.
 flesh-cultist-respirator-immunity-evolution-name = Закрытая система дыхания.
 flesh-cultist-respirator-immunity-evolution-desc = Вам больше не нужен кислород.
+flesh-cultist-night-vision-evolution-name = Ночное зрение.
+flesh-cultist-night-vision-evolution-desc = Вы видите в темноте.

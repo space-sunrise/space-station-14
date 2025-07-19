@@ -15,6 +15,21 @@
       stock: 1
 
 - type: listing
+  id: FleshCultistNightVisionMutationEvent
+  name: flesh-cultist-night-vision-evolution-name
+  description: flesh-cultist-night-vision-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFlashImmunityMutation.png
+  productEvent: !type:FleshCultistNightVisionMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 3
+  categories:
+    - FleshCultistPassiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: FleshCultistInsulatedImmunityMutationEvent
   name: flesh-cultist-insulated-immunity-evolution-name
   description: flesh-cultist-insulated-immunity-evolution-desc
