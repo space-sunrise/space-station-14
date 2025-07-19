@@ -25,6 +25,7 @@
   path: "/Textures/_Sunrise/Shaders/brightness.swsl"
   params:
     brightness: 1.5
+<<<<<<< HEAD
 
 - type: shader
   id: FractalRainbow
@@ -40,3 +41,5 @@
     NightVisionThreshold: 0.3
     BlueTintIntensity: 0.6
 
+=======
+>>>>>>> parent of 98d07f731d (Шейдер мету)

@@ -25,14 +25,6 @@
             Asphyxiation: 2
     Narcotic:
       effects:
-      # Sunrise-Start
-      - !type:GenericStatusEffect
-        key: SeeingFractalRainbows
-        component: SeeingFractalRainbows
-        type: Add
-        time: 15
-        refresh: true
-      # Sunrise-End
       - !type:MovespeedModifier
         walkSpeedModifier: 1.35
         sprintSpeedModifier: 1.35
