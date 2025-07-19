@@ -243,7 +243,7 @@ public sealed partial class FleshCultSystem
 
     private void OnNightVisionMutation(EntityUid uid, FleshCultistComponent component, FleshCultistNightVisionMutationEvent args)
     {
-        EnsureComp<NightVisionComponent>(uid);
+        EnsureComp<ToggleableNightVisionComponent>(uid);
     }
 
     private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistInsulatedImmunityMutationEvent args)
