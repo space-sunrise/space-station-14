@@ -14,11 +14,37 @@
       - !type:HealthChange
         damage:
           groups:
-            Brute: -3.5
+            Brute: -3.2
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 10.1
         damage:
           types:
-            Poison: 5
+            Poison: 6
+
+- type: reagent
+  id: retrophalanximinol
+  name: reagent-name-retrophalanximinol
+  group: Medicine
+  desc: reagent-desc-retrophalanximinol
+  physicalDesc: reagent-physical-desc-acrid
+  flavor: medicine
+  color: "#88c77f"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.5
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: -0.83
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15.1
+        damage:
+          types:
+            Bloodloss: 2
+            Radiation: 3
+            Cellular: 1

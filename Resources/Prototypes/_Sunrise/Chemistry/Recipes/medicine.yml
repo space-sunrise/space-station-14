@@ -1,5 +1,5 @@
 - type: reaction
-  id: Powderbicar
+  id: Powderbicardine
   impact: Medium
   reactants:
     HemostaticPowder:
@@ -56,7 +56,7 @@
 - type: reaction
   id: HemostaticPowder
   impact: Medium
-  minTemp: 500
+  mintemp: 500
   reactants:
     Aluminium:
       amount: 1
@@ -69,3 +69,18 @@
   products:
     HemostaticPowder: 2
 
+- type: reaction
+  id: retrophalanximinol
+  impact: Medium
+  mintemp: 398
+  reactants:
+    Radium:
+      amount: 1
+    Hyronalin:
+      amount: 1
+    Phalanximine:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+  products:
+    retrophalanximinol: 1.5
