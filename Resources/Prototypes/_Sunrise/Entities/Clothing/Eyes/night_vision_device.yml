@@ -19,7 +19,7 @@
     parent: true
     components:
       - type: NightVision
-
+        effect: EffectNightVisionGreen
 
 - type: entity
   name: NVD
