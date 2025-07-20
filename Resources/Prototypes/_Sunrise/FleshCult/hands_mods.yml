@@ -1,60 +1,60 @@
-#- type: entity
-#  categories: [ HideSpawnMenu ]
-#  name: Flesh Claw
-#  parent: BaseItem
-#  id: FleshClaw
-#  description: Flesh Claw
-#  suffix: Flesh Cult
-#  components:
-#    - type: FleshHandMod
-#    - type: Unremoveable
-#      deleteOnDrop: true
-#    - type: Sprite
-#      sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
-#      state: icon
-#      netsync: false
-#    - type: Item
-#      size: Huge
-#    - type: ToolTileCompatible
-#    - type: Tool
-#      qualities:
-#        - Prying
-#      useSound: /Audio/Effects/gib2.ogg
-#    - type: Prying
-#      speedModifier: 5
-#      pryPowered: true
-#      force: true
-#    - type: MeleeWeapon
-#      damage:
-#        types:
-#          Slash: 15
-#    - type: MultipleTool
-#      statusShowBehavior: true
-#      entries:
-#        - behavior: Prying
-#          sprite:
-#            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
-#            state: icon
-#          useSound: /Audio/Effects/gib2.ogg
-#          changeSound: /Audio/Effects/gib3.ogg
-#        - behavior: Cutting
-#          sprite:
-#            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
-#            state: icon
-#          useSound: /Audio/Effects/gib2.ogg
-#          changeSound: /Audio/Effects/gib3.ogg
-#        - behavior: Anchoring
-#          sprite:
-#            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
-#            state: icon
-#          useSound: /Audio/Effects/gib2.ogg
-#          changeSound: /Audio/Effects/gib3.ogg
-#        - behavior: Screwing
-#          sprite:
-#            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
-#            state: icon
-#          useSound: /Audio/Effects/gib2.ogg
-#          changeSound: /Audio/Effects/gib3.ogg
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Flesh Claw
+  parent: BaseItem
+  id: FleshClaw
+  description: Flesh Claw
+  suffix: Flesh Cult
+  components:
+    - type: FleshHandMod
+    - type: Unremoveable
+      deleteOnDrop: true
+    - type: Sprite
+      sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
+      state: icon
+      netsync: false
+    - type: Item
+      size: Huge
+    - type: ToolTileCompatible
+    - type: Tool
+      qualities:
+        - Prying
+      useSound: /Audio/Effects/gib2.ogg
+    - type: Prying
+      speedModifier: 5
+      pryPowered: true
+      force: true
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 15
+    - type: MultipleTool
+      statusShowBehavior: true
+      entries:
+        - behavior: Prying
+          sprite:
+            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
+            state: icon
+          useSound: /Audio/Effects/gib2.ogg
+          changeSound: /Audio/Effects/gib3.ogg
+        - behavior: Cutting
+          sprite:
+            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
+            state: icon
+          useSound: /Audio/Effects/gib2.ogg
+          changeSound: /Audio/Effects/gib3.ogg
+        - behavior: Anchoring
+          sprite:
+            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
+            state: icon
+          useSound: /Audio/Effects/gib2.ogg
+          changeSound: /Audio/Effects/gib3.ogg
+        - behavior: Screwing
+          sprite:
+            sprite: _Sunrise/FleshCult/FleshHandMods/flesh_claw.rsi
+            state: icon
+          useSound: /Audio/Effects/gib2.ogg
+          changeSound: /Audio/Effects/gib3.ogg
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -115,7 +115,7 @@
       attackRate: 1.2
       damage:
         types:
-          Piercing: 19
+          Piercing: 20
       resistanceBypass: true
       resistanceBypassOnWide: true
       soundHit:

@@ -7,7 +7,7 @@
     prototype: FleshCultistBlade
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 3
+    StolenMutationPoint: 4
   categories:
     - FleshCultistWeapon
   conditions:
@@ -104,21 +104,21 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: FleshCultistClaw
-#  name: flesh-cultist-claw-evolution-name
-#  description: flesh-cultist-claw-evolution-desc
-#  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
-#  productEvent: !type:FleshCultistUnlockAbilityEvent
-#    prototype: FleshCultistClaw
-#  raiseProductEventOnUser: true
-#  cost:
-#    StolenMutationPoint: 2
-#  categories:
-#    - FleshCultistWeapon
-#  conditions:
-#    - !type:ListingLimitedStockCondition
-#      stock: 1
+- type: listing
+  id: FleshCultistClaw
+  name: flesh-cultist-claw-evolution-name
+  description: flesh-cultist-claw-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistClaw
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 2
+  categories:
+    - FleshCultistWeapon
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
 
 - type: listing
   id: FleshCultistFist
