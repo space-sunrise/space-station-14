@@ -156,7 +156,7 @@
   parent: [ClothingHandsGlovesPowerglove, StorePresetNTUplink, BaseCentcommContraband]
   id: BaseClothingHandsPowerGlovesUplinkNTERT
   name: ERT power gloves
-  description: Ultra-innovative Centcomm Power Gloves, used by ERT team members. They are made of a mix with durathread and plasteel with action self rechargeable internal battery with allow to heavy kick syndi ass.
+  description: A solid argument made of duraplastalloy fibers in any brawl — just hope the other guy doesn’t bring a gun. Comes with a built-in ERT-standard uplink.
   suffix: Uplink, Empty
   components:
   - type: Item
@@ -239,7 +239,7 @@
 - type: entity
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
   id: ClothingHandsPowerGlovesUplinkNTERTRedLeader
-  suffix: Uplink, Amber, Red
+  suffix: Uplink, Red, Leader
   categories: [ HideSpawnMenu ]
   components:
   - type: Store
@@ -261,7 +261,7 @@
 - type: entity
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
   id: ClothingHandsPowerGlovesUplinkNTERTGammaLeader
-  suffix: Uplink, Amber, Gamma
+  suffix: Uplink, Gamma, Leader
   categories: [ HideSpawnMenu ]
   components:
   - type: Store
