@@ -9,3 +9,12 @@
   files:
   - /Audio/_Sunrise/Items/Hit/Sabre/hit1.ogg
   - /Audio/_Sunrise/Items/Hit/Sabre/hit3.ogg
+
+- type: soundCollection
+  id: PunchHard
+  files:
+    - /Audio/_Sunrise/Weapons/powerpunch.ogg
+    - /Audio/_Sunrise/Weapons/powerpunch2.ogg
+    - /Audio/Effects/metal_thud1.ogg
+    - /Audio/Effects/metal_thud2.ogg
+    - /Audio/Effects/metal_thud3.ogg
