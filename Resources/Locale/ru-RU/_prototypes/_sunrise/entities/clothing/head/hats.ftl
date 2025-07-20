@@ -1,7 +1,7 @@
 ent-ClothingHeadCapCentcomBlack = фуражка офицера специальных операций
     .desc = Специальная фуражка высших чинов NanoTrasen с золотой гравировкой, уже давно прошедшая не один блицкриг...
-ent-ClothingHeadCapNTGR = NTRG officer cap
-    .desc = The NanoTrasen Silver-engraved special cap
+ent-ClothingHeadCapNTGR = фуражка ИСН
+    .desc = Особая форменная фуражка с серебряной гравировкой NanoTrasen.
 ent-ClothingHeadCapCentcomNaval = флотская фуражка
     .desc = Фуражка, которую носят на флоте Nanotrasen.
 ent-ClothingHeadHatBeretCentcomNaval = флотский берет
