@@ -51,9 +51,9 @@
   description: A stylish clothing option for security officers.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/beret_security.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Head/Hats/beret_security.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security.rsi #Sunrise-Edit
   - type: Tag
     tags:
     - ClothMade
@@ -162,9 +162,9 @@
   description: A corporate blue beret with a warden's rank emblem. For officers that are more inclined towards style than safety.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/beret_warden.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/beret_warden.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Head/Hats/beret_warden.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/beret_warden.rsi #Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadBase
