@@ -4,18 +4,20 @@
   description: job-description-blueshield-operative
   playTimeTracker: JobBlueShieldOperative
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: BlueShield
-      time: 124000 # 40 hrs
+    # - !type:DepartmentTimeRequirement
+    #   department: BlueShield
+    #   time: 124000 # 40 hrs
     - !type:DepartmentTimeRequirement
       department: Command
       time: 124000 # 40 hrs
-  startingGear: BlueShieldEnsignGear
+  startingGear: BlueShieldOperativeGear
   icon: JobIconNanotrasen
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  accessGroups:
+  - AllAccess
   access:
-    - AllAccess
+  - CentralCommand
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
