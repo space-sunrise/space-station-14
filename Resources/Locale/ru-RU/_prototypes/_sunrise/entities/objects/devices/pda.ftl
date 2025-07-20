@@ -6,6 +6,8 @@ ent-BlueShieldOfficerPDA = КПК офицера «Синий щит»
     .desc = { ent-BasePDA.desc }
 ent-BlueShieldEnsignPDA = КПК лейтенанта «Синий щит»
     .desc = { ent-BasePDA.desc }
+ent-BlueShieldOperativePDA = КПК оперативника «Синий щит»
+    .desc = { ent-BasePDA.desc }
 ent-PathologistPDA = КПК патологоанатома
     .desc = { ent-BaseMedicalPDA.desc }
 ent-PlanetPrisonerPDA = ПДА заключённого
@@ -50,15 +52,9 @@ ent-NtrLeadGuardPDA = КПК командира ИСН
     .desc = { ent-BasePDA.desc }
 ent-MailCarrierPDA = КПК почтальона
     .desc = { ent-BasePDA.desc }
-<<<<<<< HEAD
-ent-MiningPDA = КПК шахтёра
-    .desc = Грязь есть в каждой трещине.
-ent-BlueShieldPDA = КПК офицера «синий щит»
-=======
 ent-MiningPDA = mining PDA
     .desc = there is dirt in every crack.
 ent-BlueShieldPDA = КПК офицера «Синий щит»
->>>>>>> d304c24562 (feat(jobs): add BlueShield Operative role and related assets)
     .desc = { ent-BasePDA.desc }
 ent-PilotPDA = КПК пилота
     .desc = Имеет защиту от космической радиации.
