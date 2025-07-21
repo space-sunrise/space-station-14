@@ -257,7 +257,7 @@
 
 - type: entity
   name: ACP-14
-  parent: WeaponPistolG22
+  parent: BaseWeaponPistolSunrise
   id: WeaponPistolACP14
   components:
   - type: Sprite

@@ -411,7 +411,7 @@
 
 - type: entity
   id: MechRipley2DeathBattery
-  parent: MechRipley2
+  parent: MechRipley2Death
   suffix: Battery
   components:
   - type: ContainerFill
@@ -450,10 +450,10 @@
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.60
     airtight: true
+    #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    #siren: true # Todo: port siren system from starlight
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -1402,7 +1402,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/gygax.rsi
+    sprite: Objects/Specific/Mech/mecha.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
