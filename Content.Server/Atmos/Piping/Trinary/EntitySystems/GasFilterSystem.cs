@@ -53,6 +53,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args)
         {
+<<<<<<< HEAD
+=======
+            // STARLIGHT - Disable outlet node pressure check for inline filter
+>>>>>>> f44dc6f846 (Reword Starlight comment for clarity)
             if (!filter.Enabled
                 || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode)
                 || outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure) // No need to transfer if target is full.
