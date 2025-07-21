@@ -232,6 +232,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
+<<<<<<< HEAD
   alternativePrototypes:
   - GasFilterInline
   - GasFilterInlineAlt1
@@ -460,3 +461,5 @@
   - PressureControlledValveAlt2
   - PressureControlledValveAlt3
   - PressureControlledValveAlt4
+=======
+>>>>>>> 84a8ca2616 (whitespace convention and device construction time)
