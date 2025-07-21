@@ -780,6 +780,7 @@ BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
 AbductorDispencer: VendingMachineAbductorDispenser # Abductor shit.
+SpawnMechRipley: SpawnMechHauler # Карго Вариант Рипли, с установленными модулями переноски
 
 # Кто удалил и не добавил в миграции
 PrintedDocumentClosingIndictment: null

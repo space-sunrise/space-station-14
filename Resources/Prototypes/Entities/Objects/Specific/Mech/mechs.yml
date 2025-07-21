@@ -215,18 +215,18 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/Basic/ripley.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: base
+      state: ripley
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: base
-    openState: base-open
-    brokenState: base-broken
+    baseState: ripley
+    openState: ripley-open
+    brokenState: ripley-broken
     mechToPilotDamageMultiplier: 0.75
     pilotWhitelist:
       components:
@@ -272,6 +272,32 @@
       mech-battery-slot:
       - PowerCageMedium
 
+# Ripley Mk-I Hauler
+- type: entity
+  id: MechHauler
+  parent: MechRipley
+  suffix: Filled
+  name: APLU "Hauler"
+  description: A cargo tech"s best friend — ready to haul crates, ignore traffic rules on-station, and assert dominance over pedestrians. Still the standard APLU model — Autonomous Power Loading Unit — but now with 30% more dents, lost manifests, and spilled kvass.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: hauler
+  - type: Mech
+    baseState: hauler
+    openState: hauler-open
+    brokenState: hauler-broken
+    startingEquipment:
+      - MechEquipmentGrabberSmall
+      - MechEquipmentGrabberSmall
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5.75 # sunrise-edit
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageMedium
+
 # Ripley MK-II
 - type: entity
   id: MechRipley2
@@ -282,18 +308,18 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/Basic/ripleymkii.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: base
+      state: ripleymkii
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: base
-    openState: base-open
-    brokenState: base-broken
+    baseState: ripleymkii
+    openState: ripleymkii-open
+    brokenState: ripleymkii-broken
     mechToPilotDamageMultiplier: 0.40
     airtight: true
     pilotWhitelist:
@@ -352,7 +378,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/Basic/ripleymkii.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
@@ -429,11 +455,11 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/Basic/paddy.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: base
+      state: paddy
     # - state: base-sirens  # Todo: port siren system from starlight
     #   map: [ "enum.MechVisualLayers.Siren" ]
     #   shader: unshaded
@@ -445,9 +471,9 @@
       tags:
       - CombatMech
       - IndustrialMech
-    baseState: base
-    openState: base-open
-    brokenState: base-broken
+    baseState: paddy
+    openState: paddy-open
+    brokenState: paddy-broken
     mechToPilotDamageMultiplier: 0.60
     airtight: true
     #siren: true # Todo: port siren system from starlight
