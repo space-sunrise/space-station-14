@@ -791,4 +791,7 @@ BorgModuleDefibrillator: null
 MagazineM16A4: null
 MagazineG36: null
 MagazineFamas: null
+BaseUplinkNTERT75BC: null
+BaseUplinkNTERT100BC: null
+BaseUplinkNTERT200BC: null
 # Sunrise migrations end
