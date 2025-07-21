@@ -129,7 +129,8 @@
       "name": "phazon-broken"
     },
     {
-      "name": "mauler"
+      "name": "mauler",
+      "directions": 4
     },
     {
       "name": "mauler-open"
