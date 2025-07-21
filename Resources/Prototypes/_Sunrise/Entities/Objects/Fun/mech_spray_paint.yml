@@ -446,6 +446,36 @@
           True: {state: "spray_colors" , color: "#ed5f3b"}
           False: {state: "spray_cap_colors" , color: "#ed5f3b"}
 
+#Durand-Old
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand, Old
+  id: MechPaintDurandOld
+  categories: [ Debug ]
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#55617b"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: durand_old
+    openState: durand-open_old
+    brokenState: durand-broken_old
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#55617b"}
+          False: {state: "spray_cap_colors" , color: "#55617b"}
+
 #Durand-Unathi
 
 - type: entity
