@@ -410,7 +410,7 @@
     access: [["SyndicateAgent"]]
 
 - type: entity
-  id: MechRipley2Battery
+  id: MechRipley2DeathBattery
   parent: MechRipley2
   suffix: Battery
   components:

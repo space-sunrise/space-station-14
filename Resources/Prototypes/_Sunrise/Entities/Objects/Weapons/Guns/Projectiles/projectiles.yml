@@ -63,6 +63,10 @@
     sprite: Effects/emp.rsi
     layers:
     - state: emp_pulse
+  - type: Projectile
+    damage:
+      types:
+        Shock: 8
   - type: EmpOnTrigger
     range: 2
     energyConsumption: 30000
