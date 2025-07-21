@@ -631,9 +631,9 @@
   description: I'm a little busy right now, Calhoun.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/security_blue.rsi #Sunrise-Edit
+    sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/security_blue.rsi #Sunrise-Edit
+    sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
 
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
