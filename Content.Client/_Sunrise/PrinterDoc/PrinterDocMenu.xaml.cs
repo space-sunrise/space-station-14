@@ -29,6 +29,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
 
         PrintButton.OnPressed += _ => OnPrintPressed?.Invoke(_currentTemplate);
         CopyButton.OnPressed += _ => OnCopyPressed?.Invoke();
+
         TemplateList.OnItemSelected += args =>
         {
             var id = args.ItemIndex >= 0 && args.ItemIndex < TemplateList.Count
@@ -39,6 +40,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
         };
         TemplateList.OnItemSelected += TemplateListOnOnItemSelected;
         TemplateList.OnItemDeselected += TemplateListOnOnItemDeselected;
+
         SearchBar.OnTextChanged += _ =>
         {
             _searchText = SearchBar.Text.Trim();
@@ -48,7 +50,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
 
     private void TemplateListOnOnItemSelected(ItemList.ItemListSelectedEventArgs obj)
     {
-        _currentTemplate = (string) obj.ItemList[obj.ItemIndex].Metadata!;
+        _currentTemplate = (string)obj.ItemList[obj.ItemIndex].Metadata!;
         PrintButton.Disabled = _incVolume <= 0.0f;
     }
 
@@ -66,7 +68,9 @@ public sealed partial class PrinterDocMenu : DefaultWindow
         InkAmountLabel.Text = _incVolume.ToString("F1");
         _allTemplates = state.Templates;
 
-        CopyStatusLabel.Text = _canCopy ? Loc.GetString("printerdoc-menu-copy-available") : Loc.GetString("printerdoc-menu-copy-unavailable");
+        CopyStatusLabel.Text = _canCopy
+            ? Loc.GetString("printerdoc-menu-copy-available")
+            : Loc.GetString("printerdoc-menu-copy-unavailable");
 
         PrintButton.Disabled = _currentTemplate == null || _incVolume <= 0.0f;
         CopyButton.Disabled = !_canCopy;
@@ -77,6 +81,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     private void PopulateTemplates()
     {
         TemplateList.Clear();
+
         var filtered = string.IsNullOrWhiteSpace(_searchText)
             ? _allTemplates
             : _allTemplates.Where(id =>
@@ -84,6 +89,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
                  (Loc.GetString(proto.Name).ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) ||
                   id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant())))
             ).ToList();
+
         for (int i = 0; i < filtered.Count; i++)
         {
             var template = filtered[i];

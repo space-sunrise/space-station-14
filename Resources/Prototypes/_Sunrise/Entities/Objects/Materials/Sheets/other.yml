@@ -45,7 +45,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Paper: 100
+      officePaper: 100
   - type: Sprite
     state: paper_3
     layers:
@@ -66,6 +66,7 @@
     tags:
     - SheetOfficePaper
 
+
 - type: entity
   parent: SheetOfficePaper
   id: SheetOfficePaper1
@@ -76,3 +77,4 @@
     state: paper_1
   - type: Stack
     count: 1
+

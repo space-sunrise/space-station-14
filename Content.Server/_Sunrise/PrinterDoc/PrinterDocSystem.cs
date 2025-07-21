@@ -30,7 +30,9 @@ public sealed class PrinterDocSystem : EntitySystem
     [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;    private TimeSpan _roundStartTime;
+    [Dependency] private readonly IConfigurationManager _configManager = default!;
+
+    private TimeSpan _roundStartTime;
     private readonly Dictionary<string, string> _docCache = new();
 
     public override void Initialize()
@@ -48,6 +50,7 @@ public sealed class PrinterDocSystem : EntitySystem
         SubscribeLocalEvent<PrinterDocComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
         SubscribeLocalEvent<PrinterDocComponent, StrappedEvent>(OnStasisStrapped);
         SubscribeLocalEvent<PrinterDocComponent, UnstrappedEvent>(OnStasisUnstrapped);
+
         CacheAllDocuments();
     }
 
@@ -65,55 +68,49 @@ public sealed class PrinterDocSystem : EntitySystem
 
             using var file = _resourceManager.ContentFileReadText(template.Content);
             var fileText = file.ReadToEnd();
-            var match = Regex.Match(fileText, @"<Document>(.*?)</Document>", RegexOptions.Singleline);
+            var match = Regex.Match(fileText, "<Document>(.*?)</Document>", RegexOptions.Singleline);
             var content = match.Success ? match.Groups[1].Value.Trim() : fileText.Trim();
             _docCache[template.ID] = content;
         }
     }
 
-    private void OnStasisStrapped(EntityUid uid, PrinterDocComponent comp, ref StrappedEvent args)
-    {
-        UpdateUserInterface(uid, comp);
-    }
-
-    private void OnStasisUnstrapped(EntityUid uid, PrinterDocComponent comp, ref UnstrappedEvent args)
-    {
-        UpdateUserInterface(uid, comp);
-    }
-
-    private void OnMaterialAmountChanged(EntityUid uid, PrinterDocComponent comp, ref MaterialAmountChangedEvent args)
-    {
-        UpdateUserInterface(uid, comp);
-    }
+    private void OnStasisStrapped(EntityUid uid, PrinterDocComponent comp, ref StrappedEvent args) => UpdateUserInterface(uid, comp);
+    private void OnStasisUnstrapped(EntityUid uid, PrinterDocComponent comp, ref UnstrappedEvent args) => UpdateUserInterface(uid, comp);
+    private void OnMaterialAmountChanged(EntityUid uid, PrinterDocComponent comp, ref MaterialAmountChangedEvent args) => UpdateUserInterface(uid, comp);
+    private void OnItemRemoved(EntityUid uid, PrinterDocComponent comp, EntRemovedFromContainerMessage args) => UpdateUserInterface(uid, comp);
+    private void OnUiOpened(EntityUid uid, PrinterDocComponent comp, BoundUIOpenedEvent args) => UpdateUserInterface(uid, comp);
+    private void OnSolutionChanged(EntityUid uid, PrinterDocComponent comp, SolutionContainerChangedEvent args) => UpdateUserInterface(uid, comp);
 
     private void OnItemInserted(EntityUid uid, PrinterDocComponent comp, EntInsertedIntoContainerMessage args)
     {
-        UpdateUserInterface(uid, comp);
-    }
+        if (args.Container.ID != PrinterDocComponent.CopySlotId)
+            return;
 
-    private void OnItemRemoved(EntityUid uid, PrinterDocComponent comp, EntRemovedFromContainerMessage args)
-    {
-        UpdateUserInterface(uid, comp);
-    }
+        if (!TryComp<PhysicalCompositionComponent>(args.Entity, out var composition))
+            return;
 
-    private void OnUiOpened(EntityUid uid, PrinterDocComponent comp, BoundUIOpenedEvent args)
-    {
+        foreach (var (materialId, amount) in composition.MaterialComposition)
+        {
+            _materialStorage.TryChangeMaterialAmount(uid, materialId, amount);
+        }
+
         UpdateUserInterface(uid, comp);
     }
 
     private void OnPrintMessage(EntityUid uid, PrinterDocComponent comp, PrinterDocPrintMessage msg)
     {
-        TryPrint(uid, comp, msg.TemplateId);
+        comp.JobQueue.Enqueue((PrinterJobType.Print, msg.TemplateId));
     }
 
     private void OnCopyMessage(EntityUid uid, PrinterDocComponent comp, PrinterDocCopyMessage msg)
     {
-        TryCopy(uid, comp);
+        comp.JobQueue.Enqueue((PrinterJobType.Copy, null));
     }
 
     private void OnMapInit(EntityUid uid, PrinterDocComponent comp, MapInitEvent args)
     {
         _itemSlotsSystem.AddItemSlot(uid, PrinterDocComponent.CopySlotId, comp.CopySlot);
+
         if (comp.Templates.Count == 0)
         {
             foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
@@ -121,80 +118,85 @@ public sealed class PrinterDocSystem : EntitySystem
                 comp.Templates.Add(template.ID);
             }
         }
+
         UpdateUserInterface(uid, comp);
     }
 
-    private void OnSolutionChanged(EntityUid uid, PrinterDocComponent comp, SolutionContainerChangedEvent args)
+    public override void Update(float frameTime)
     {
-        UpdateUserInterface(uid, comp);
+        base.Update(frameTime);
+
+        var enumerator = EntityQueryEnumerator<PrinterDocComponent>();
+
+        while (enumerator.MoveNext(out var uid, out var comp))
+        {
+            if (comp.IsProcessing || comp.JobQueue.Count == 0)
+                continue;
+
+            var (type, templateId) = comp.JobQueue.Dequeue();
+            comp.IsProcessing = true;
+
+            Timer.Spawn(TimeSpan.FromSeconds(comp.JobDuration), () =>
+            {
+                if (Deleted(uid))
+                    return;
+
+                var success = false;
+                if (type == PrinterJobType.Print && templateId != null)
+                    success = TryPrint(uid, comp, templateId);
+                else if (type == PrinterJobType.Copy)
+                    success = TryCopy(uid, comp);
+
+                comp.IsProcessing = false;
+                UpdateUserInterface(uid, comp);
+            });
+        }
     }
 
     public bool TryPrint(EntityUid uid, PrinterDocComponent comp, string templateId)
     {
-        if (!_solution.TryGetSolution(uid, comp.Solution, out _, out var solution))
-            return false;
-
-        if (!solution.TryGetReagentQuantity(new ReagentId(comp.IncReagentProto, null), out var incVolume))
-            return false;
-
-        if (incVolume < comp.IncCost)
-            return false;
-
-        if (!_materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, -comp.PaperCost))
+        if (!_solution.TryGetSolution(uid, comp.Solution, out _, out var solution) ||
+            !solution.TryGetReagentQuantity(new ReagentId(comp.IncReagentProto, null), out var incVolume) ||
+            incVolume < comp.IncCost ||
+            !_materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, -comp.PaperCost))
             return false;
 
         solution.RemoveReagent(new ReagentId(comp.IncReagentProto, null), comp.IncCost);
+        var paper = Spawn(comp.PaperProtoId, Transform(uid).Coordinates);
 
-        UpdateUserInterface(uid, comp);
-
-        var coordinates = Transform(uid).Coordinates;
-        var paper = Spawn(comp.PaperProtoId, coordinates);
-        if (!TryComp<PaperComponent>(paper, out var paperComp))
-            return false;
-
-        if (!_docCache.TryGetValue(templateId, out var content))
+        if (!TryComp<PaperComponent>(paper, out var paperComp) || !_docCache.TryGetValue(templateId, out var content))
             return false;
 
         var date = DateTime.UtcNow
             .AddHours(_configManager.GetCVar(SunriseCCVars.PrinterDocTimeOffsetHours))
             .AddYears(_configManager.GetCVar(SunriseCCVars.PrinterDocYearOffset))
             .ToString("dd.MM.yyyy");
+
         var shift = _timing.CurTime - _roundStartTime;
         var timeString = $"{shift:hh\\:mm} {date}";
 
         content = content.Replace("{timeString}", timeString);
-
         _paperSystem.SetContent((paper, paperComp), content);
         return true;
     }
 
     public bool TryCopy(EntityUid uid, PrinterDocComponent comp)
     {
-        if (!_solution.TryGetSolution(uid, comp.Solution, out _, out var solution))
-            return false;
-
-        if (!solution.TryGetReagentQuantity(new ReagentId(comp.IncReagentProto, null), out var incVolume))
-            return false;
-
-        if (incVolume < comp.IncCost)
-            return false;
-
-        if (!_materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, -comp.PaperCost))
+        if (!_solution.TryGetSolution(uid, comp.Solution, out _, out var solution) ||
+            !solution.TryGetReagentQuantity(new ReagentId(comp.IncReagentProto, null), out var incVolume) ||
+            incVolume < comp.IncCost ||
+            !_materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, -comp.PaperCost))
             return false;
 
         solution.RemoveReagent(new ReagentId(comp.IncReagentProto, null), comp.IncCost);
+        var paper = Spawn(comp.PaperProtoId, Transform(uid).Coordinates);
 
-        UpdateUserInterface(uid, comp);
-
-        var coordinates = Transform(uid).Coordinates;
-        var paper = Spawn(comp.PaperProtoId, coordinates);
         if (!TryComp<PaperComponent>(paper, out var paperComp))
             return false;
 
         if (TryComp<StrapComponent>(uid, out var strap) && strap.BuckledEntities.Count != 0)
         {
             var buckled = strap.BuckledEntities.First();
-
             if (TryComp<HumanoidAppearanceComponent>(buckled, out var humanoidAppearance))
             {
                 var buttTexture = _proto.TryIndex(humanoidAppearance.Species, out var species)
@@ -202,21 +204,17 @@ public sealed class PrinterDocSystem : EntitySystem
                     : null;
 
                 var content = $"[tex path=\"{buttTexture}\" scale=15]";
-
                 _paperSystem.SetContent((paper, paperComp), content);
                 paperComp.EditingDisabled = true;
                 return true;
             }
         }
 
-        if (comp.CopySlot.HasItem)
+        if (comp.CopySlot.HasItem && TryComp<PaperComponent>(comp.CopySlot.Item, out var copyPaperComponent))
         {
-            if (TryComp<PaperComponent>(comp.CopySlot.Item, out var copyPaperComponent))
-            {
-                _paperSystem.SetContent((paper, paperComp), copyPaperComponent.Content);
-                paperComp.EditingDisabled = copyPaperComponent.EditingDisabled;
-                return true;
-            }
+            _paperSystem.SetContent((paper, paperComp), copyPaperComponent.Content);
+            paperComp.EditingDisabled = copyPaperComponent.EditingDisabled;
+            return true;
         }
 
         return false;
@@ -245,15 +243,8 @@ public sealed class PrinterDocSystem : EntitySystem
     public bool CanCopy(EntityUid uid, PrinterDocComponent comp)
     {
         var hasCopyPaper = comp.CopySlot.HasItem;
-        var hasBuckleUser = false;
-        if (TryComp<StrapComponent>(uid, out var strap) && strap.BuckledEntities.Count != 0)
-        {
-            var buckled = strap.BuckledEntities.First();
-            if (TryComp<HumanoidAppearanceComponent>(buckled, out var humanoidAppearance))
-            {
-                hasBuckleUser = true;
-            }
-        }
+        var hasBuckleUser = TryComp<StrapComponent>(uid, out var strap) && strap.BuckledEntities.Count != 0 &&
+                            TryComp<HumanoidAppearanceComponent>(strap.BuckledEntities.First(), out _);
 
         return hasBuckleUser || hasCopyPaper;
     }
