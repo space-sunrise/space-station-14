@@ -342,6 +342,89 @@
       mech-battery-slot:
       - PowerCageMedium
 
+# Paddy
+- type: entity
+  id: MechPaddy
+  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  name: Paddy
+  description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/Basic/paddy.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: base
+    # - state: base-sirens  # Todo: port siren system from starlight
+    #   map: [ "enum.MechVisualLayers.Siren" ]
+    #   shader: unshaded
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+      - IndustrialMech
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
+    mechToPilotDamageMultiplier: 0.60
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    #siren: true # Todo: port siren system from starlight
+  - type: Damageable
+    damageModifierSet: MediumArmorNT
+  - type: Reflect
+    reflectProb: 0.20
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 10
+    bluntStaminaDamageFactor: 1.5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
+  - type: PointLight
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 5
+    energy: 5
+    enabled: false
+
+- type: entity
+  id: MechPaddyBattery
+  parent: MechPaddy
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageMedium
+
+- type: entity
+  id: MechPaddyFilled
+  parent: MechPaddyBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechCombatDisabler
+      - WeaponMechCombatFlashbangLauncher
+
 # Clarke
 - type: entity
   id: MechClarke
@@ -822,14 +905,14 @@
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: durand
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: durand
-    openState: durand-open
-    brokenState: durand-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.20
     airtight: true
     pilotWhitelist:

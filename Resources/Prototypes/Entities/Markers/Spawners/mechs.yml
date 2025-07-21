@@ -106,7 +106,7 @@
     layers:
       - state: green
       - sprite: Objects/Specific/Mech/durand.rsi
-        state: durand
+        state: base
   - type: ConditionalSpawner
     prototypes:
       - MechDurandBattery
@@ -285,3 +285,19 @@
   - type: ConditionalSpawner
     prototypes:
       - MechMiningPod
+
+- type: entity
+  name: Paddy Spawner
+  suffix: Filled
+  id: SpawnMechPaddyFilled
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/Basic/paddy.rsi
+        state: base
+      - state: mechicon
+  - type: ConditionalSpawner
+    prototypes:
+      - MechPaddyFilled
