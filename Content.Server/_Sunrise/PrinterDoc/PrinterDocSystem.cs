@@ -17,6 +17,7 @@ using Robust.Shared.Timing;
 using Content.Server.GameTicking.Events;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
+using Content.Server.Station.Systems;
 
 namespace Content.Server._Sunrise.PrinterDoc;
 
@@ -31,6 +32,8 @@ public sealed class PrinterDocSystem : EntitySystem
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+
 
     private TimeSpan _roundStartTime;
     private readonly Dictionary<string, string> _docCache = new();
@@ -195,10 +198,17 @@ public sealed class PrinterDocSystem : EntitySystem
 
         var shift = _timing.CurTime - _roundStartTime;
         var timeString = $"{shift:hh\\:mm} {date}";
+
+        var station = _stationSystem.GetOwningStation(uid);
+        var stationName = station is null ? string.Empty : Name(station.Value);
+
         content = content.Replace("{timeString}", timeString);
+        content = content.Replace("{stationName}", stationName);
+
         _paperSystem.SetContent((paper, paperComp), content);
         return true;
     }
+
 
     private bool TryCopyInternal(EntityUid uid, PrinterDocComponent comp)
     {
