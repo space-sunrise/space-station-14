@@ -1,7 +1,6 @@
 using Content.Server.Bible.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Popups;
-using Content.Server.Saw;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
@@ -159,24 +158,6 @@ namespace Content.Server.Bible
                 return;
             }
 
-            //Sunrise-start
-
-            if (TryPrototype((EntityUid)args.Target, out var prototype)
-                && (prototype.ID == "MobPig" || (prototype.Parents != null && prototype.Parents.Contains<string>("MobPig")))
-                && !HasComp<SawComponent>(args.Target))
-            {
-                if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count >= 5
-                    && _lookUp.GetEntitiesInRange<PrayableComponent>(Transform(uid).Coordinates, 5).Count >= 2)
-                {
-                    _entityManager.AddComponents((EntityUid) args.Target, _prototypeManager.Index("MobSaw").Components, false);
-                    _metaData.SetEntityName((EntityUid)args.Target, "свиноматерь");
-                    _popupSystem.PopupEntity(Loc.GetString("bible-saw-transformation"), (EntityUid) args.Target);
-                    _audio.PlayPvs(component.HealSoundPath, (EntityUid) args.Target);
-                }
-                return;
-            }
-
-            //Sunrise-end
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))
