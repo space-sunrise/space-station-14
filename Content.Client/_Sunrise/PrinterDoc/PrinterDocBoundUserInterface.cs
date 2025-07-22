@@ -21,6 +21,7 @@ public sealed class PrinterDocBoundUserInterface : BoundUserInterface
             if (templateId != null)
                 SendMessage(new PrinterDocPrintMessage(templateId));
         };
+
         _window.OnCopyPressed += () =>
         {
             SendMessage(new PrinterDocCopyMessage());

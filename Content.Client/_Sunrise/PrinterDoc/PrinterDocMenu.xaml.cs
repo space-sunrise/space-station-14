@@ -75,6 +75,14 @@ public sealed partial class PrinterDocMenu : DefaultWindow
         PrintButton.Disabled = _currentTemplate == null || _incVolume <= 0.0f;
         CopyButton.Disabled = !_canCopy;
 
+        CurrentJobLabel.Text = state.CurrentJob?.ToString() ?? Loc.GetString("printerdoc-menu-no-active-job");
+
+        QueueList.Clear();
+        foreach (var job in state.Queue)
+        {
+            QueueList.AddItem(job.ToString());
+        }
+
         PopulateTemplates();
     }
 
@@ -87,8 +95,8 @@ public sealed partial class PrinterDocMenu : DefaultWindow
             : _allTemplates.Where(id =>
                 (_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto) &&
                  (Loc.GetString(proto.Name).ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) ||
-                  id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant())))
-            ).ToList();
+                  id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant()))))
+            .ToList();
 
         for (int i = 0; i < filtered.Count; i++)
         {

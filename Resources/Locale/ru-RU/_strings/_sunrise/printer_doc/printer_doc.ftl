@@ -8,6 +8,9 @@ printerdoc-menu-copy = Копировать
 printerdoc-menu-copy-available = Можно копировать
 printerdoc-menu-copy-unavailable = Нечего копировать
 printerdoc-menu-search-placeholder = Поиск...
+printerdoc-menu-current-job = Текущая задача
+printerdoc-menu-queue = Очередь заданий
+printerdoc-menu-no-active-job = Нет активной задачи
 
 doc-template-appeal-name = Обращение
 doc-template-application-access-name = Заявление на получение доступа

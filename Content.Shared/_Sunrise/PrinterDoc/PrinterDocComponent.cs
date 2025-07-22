@@ -4,6 +4,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Materials;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.PrinterDoc;
 
@@ -11,7 +12,7 @@ namespace Content.Shared._Sunrise.PrinterDoc;
 public sealed partial class PrinterDocComponent : Component
 {
     [DataField]
-    public string? CurrentJobText;
+    public Content.Shared._Sunrise.PrinterDoc.PrinterJobView? CurrentJobView;
 
     /// Время выполнения одной печати, копии(в секундах)
     [DataField]
@@ -86,4 +87,8 @@ public sealed partial class PrinterDocComponent : Component
     /// </summary>
     [DataField]
     public List<ProtoId<DocTemplatePrototype>> Templates = new();
+
+    [Serializable, NetSerializable]
+    public sealed record PrinterJobView(string Type, string? TemplateId);
+
 }
