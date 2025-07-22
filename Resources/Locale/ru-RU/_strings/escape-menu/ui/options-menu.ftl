@@ -41,6 +41,7 @@ ui-options-admin-sounds = Музыка админов
 ui-options-bwoink-sound = Воспроизводить звук уведомления АХелп
 ui-options-tts-enabled = ТТС интеграция
 ui-options-tts-queue = Использовать очередь для TTS рации?
+ui-options-tts-radio-ghost-enabled = ТТС рации в призраке
 ui-options-volume-label = Громкость
 
 ## Graphics menu
