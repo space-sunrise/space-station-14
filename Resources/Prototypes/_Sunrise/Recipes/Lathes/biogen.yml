@@ -1,0 +1,6 @@
+- type: latheRecipe
+  id: BioSheetOfficePaper
+  result: SheetOfficePaper1
+  completetime: 1
+  materials:
+    Biomass: 2
