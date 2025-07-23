@@ -109,9 +109,9 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
         if (ent.Comp.PrototypeBlacklist != null && ent.Comp.PrototypeBlacklist.Contains(proto.ID))
             return false;
 
-        var isWhitelisted = ent.Comp.PrototypeWhitelist != null && ent.Comp.PrototypeWhitelist.Contains(proto.ID);
+        var isException = ent.Comp.PrototypeBlacklistExceptions != null && ent.Comp.PrototypeBlacklistExceptions.Contains(proto.ID);
 
-        if (!isWhitelisted && ent.Comp.PrototypeBlacklist != null && GetAllParentIds(proto.ID)
+        if (!isException && ent.Comp.PrototypeBlacklist != null && GetAllParentIds(proto.ID)
                 .Any(parentId => ent.Comp.PrototypeBlacklist.Contains(parentId)))
             return false;
 
