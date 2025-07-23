@@ -19,5 +19,5 @@ public sealed partial class DocTemplatePrototype : IPrototype
     public string Component { get; private set; } = default!;
 
     [DataField("isPublic")]
-    public bool IsPublic { get; private set; } = true; //
+    public bool IsPublic { get; private set; } = true;
 }

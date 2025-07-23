@@ -46,12 +46,12 @@ public sealed class PrinterJobView
 
     public override string ToString()
     {
-        return Type switch
-        {
-            PrinterJobType.Print => $"Печать документа: {Title}",
-            PrinterJobType.Copy => $"Копирование: {Title}",
-            _ => Title
-        };
+       return Type switch
+       {
+           PrinterJobType.Print => $"{Loc.GetString("printerdoc-print-job")}: {Title}",
+           PrinterJobType.Copy => $"{Loc.GetString("printerdoc-copy-job")}: {Title}",
+           _ => Title
+       };
     }
 }
 

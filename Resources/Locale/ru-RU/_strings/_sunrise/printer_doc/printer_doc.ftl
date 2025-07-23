@@ -12,6 +12,10 @@ printerdoc-menu-current-job = Текущая задача
 printerdoc-menu-queue = Очередь заданий
 printerdoc-menu-no-active-job = Нет активной задачи
 
+
+printerdoc-print-job = Печать документа
+printerdoc-copy-job = Копирование
+
 printerdoc-filter-all = Все
 printerdoc-component-Centcom = ЦентКом
 printerdoc-component-Command = Командование
@@ -24,6 +28,7 @@ printerdoc-component-Security = Безопасность
 printerdoc-component-Service = Сервис
 printerdoc-component-Supply = Снабжение
 printerdoc-component-Syndicate = Š!иÐ!К₳₮
+
 
 
 doc-template-appeal-name = Обращение

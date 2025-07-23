@@ -24,6 +24,12 @@ public sealed partial class PrinterDocComponent : Component
     public float JobDuration = 4f;
 
     [DataField]
+    public int InitialPaperAmount = 700;
+
+    [DataField]
+    public int InitialInkAmount = 7;
+
+    [DataField]
     public Queue<string> PrintQueue = new();
 
     /// <summary>

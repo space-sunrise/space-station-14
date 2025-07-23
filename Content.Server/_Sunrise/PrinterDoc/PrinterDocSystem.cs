@@ -163,16 +163,9 @@ public sealed class PrinterDocSystem : EntitySystem
             comp.CurrentJobView = new PrinterJobView(jobTitle, type);
             UpdateUserInterface(uid, comp);
 
-            if (type == PrinterJobType.Print)
-            {
-                _audioSystem.PlayPvs(comp.PrintSound, uid);
-            }
+            _audioSystem.PlayPvs(comp.PrintSound, uid);
 
-            else if (type == PrinterJobType.Copy)
-            {
-                _audioSystem.PlayPvs(comp.PrintSound, uid);
-            }
-                Timer.Spawn(TimeSpan.FromSeconds(comp.JobDuration), () =>
+            Timer.Spawn(TimeSpan.FromSeconds(comp.JobDuration), () =>
             {
                 if (Deleted(uid))
                     return;
@@ -328,12 +321,12 @@ public sealed class PrinterDocSystem : EntitySystem
                 if (owningStation != args.Station)
                     continue;
 
-                _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, 700);
+                _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, comp.InitialPaperAmount);
 
                 if (_solution.TryGetSolution(uid, comp.Solution, out var solEnt, out var solution))
                 {
                     var reagent = new ReagentId(comp.IncReagentProto, null);
-                    solution.AddReagent(reagent, 7);
+                    solution.AddReagent(reagent, comp.InitialInkAmount);
                     _solution.UpdateChemicals(solEnt.Value, needsReactionsProcessing: false);
                 }
 
