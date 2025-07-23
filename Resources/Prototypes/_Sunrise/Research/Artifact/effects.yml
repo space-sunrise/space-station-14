@@ -199,7 +199,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: XAEShuffle
-    radius: 70
+    radius: 30
 
 - type: entity
   id: SunriseEffectPolyChair
