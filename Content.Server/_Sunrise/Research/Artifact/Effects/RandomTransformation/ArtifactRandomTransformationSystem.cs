@@ -84,10 +84,10 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
 
     private IEnumerable<string> GetAllParentIds(string protoId)
     {
-        if(!_prototype.TryIndex<EntityPrototype>(protoId, out var proto))
+        if (!_prototype.TryIndex<EntityPrototype>(protoId, out var proto))
             yield break;
 
-        if(proto.Parents == null)
+        if (proto.Parents == null)
             yield break;
 
         foreach (var parentId in proto.Parents)
