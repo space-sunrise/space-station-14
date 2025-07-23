@@ -265,31 +265,31 @@
   components:
   - type: ArtifactRandomTransformation
     prototypeBlacklist:
-    - Singularity
-    - TeslaEnergyBall
-    - TeslaMiniEnergyBall
+    - BaseBloodCultGod
+    - BaseCentcommContraband
+    - BaseClone
     - BaseGameRule
-    - MobNarsieBase
+    - BaseGrandTheftContraband
+    - BaseMagicalContraband
+    - BaseMajorContraband
+    - BaseMobFleshCult
+    - BaseSyndicateContraband
+    - BaseXenoborgContraband
+    - ContainmentField
+    - FleshHeart
+    - GasMinerBase
+    - ImmovableRod
     - Incorporeal
+    - MobNarsieBase
+    - MobObserverBase
     - MobRatvarBase
     - MobTerminatorBase
-    - BaseClone
-    - MobObserverBase
-    - BaseCentcommContraband
-    - BaseMajorContraband
-    - BaseSyndicateContraband
-    - BaseMagicalContraband
-    - BaseXenoborgContraband
-    - BaseGrandTheftContraband
-    - NuclearGrenade
-    - SupermatterCrystal
-    - ImmovableRod
-    - BaseBloodCultGod
-    - BaseMobFleshCult
     - MobXenoRounyGhostRole
-    - GasMinerBase
-    - FleshHeart
-    - ContainmentField
+    - NuclearGrenade
+    - Singularity
+    - SupermatterCrystal
+    - TeslaEnergyBall
+    - TeslaMiniEnergyBall
     componentBlacklist:
     - MapGrid
     - SurgeryStep
