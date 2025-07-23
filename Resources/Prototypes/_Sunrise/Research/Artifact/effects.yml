@@ -269,6 +269,19 @@
     - TeslaEnergyBall
     - TeslaMiniEnergyBall
     - BaseGameRule
+    - MobNarsieBase
+    - Incorporeal
+    - MobRatvarBase
+    - MobTerminatorBase
+    - BaseClone
+    - MobObserverBase
+    - BaseCentcommContraband
+    - BaseMajorContraband
+    - BaseSyndicateContraband
+    - BaseMagicalContraband
+    - BaseXenoborgContraband
+    - BaseGrandTheftContraband
+
     categoryBlacklist:
     - HideSpawnMenu
     - Debug
