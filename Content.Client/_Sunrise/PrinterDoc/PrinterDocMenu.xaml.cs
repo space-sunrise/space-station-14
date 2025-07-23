@@ -5,6 +5,8 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
+using System.Numerics;
 
 namespace Content.Client._Sunrise.PrinterDoc;
 
@@ -21,6 +23,8 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     private float _incVolume;
     private string _searchText = string.Empty;
     private List<string> _allTemplates = new();
+    private string? _activeComponentFilter = null;
+    private Button? _activeFilterButton;
 
     public PrinterDocMenu()
     {
@@ -30,31 +34,25 @@ public sealed partial class PrinterDocMenu : DefaultWindow
         PrintButton.OnPressed += _ => OnPrintPressed?.Invoke(_currentTemplate);
         CopyButton.OnPressed += _ => OnCopyPressed?.Invoke();
 
-        TemplateList.OnItemSelected += args =>
-        {
-            var id = args.ItemIndex >= 0 && args.ItemIndex < TemplateList.Count
-                ? TemplateList[args.ItemIndex].Metadata as string
-                : null;
-            if (id != null)
-                _currentTemplate = id;
-        };
-        TemplateList.OnItemSelected += TemplateListOnOnItemSelected;
-        TemplateList.OnItemDeselected += TemplateListOnOnItemDeselected;
+        TemplateList.OnItemSelected += OnTemplateSelected;
+        TemplateList.OnItemDeselected += OnTemplateDeselected;
 
         SearchBar.OnTextChanged += _ =>
         {
             _searchText = SearchBar.Text.Trim();
             PopulateTemplates();
         };
+
+        CreateFilterButtons();
     }
 
-    private void TemplateListOnOnItemSelected(ItemList.ItemListSelectedEventArgs obj)
+    private void OnTemplateSelected(ItemList.ItemListSelectedEventArgs args)
     {
-        _currentTemplate = (string)obj.ItemList[obj.ItemIndex].Metadata!;
+        _currentTemplate = (string) args.ItemList[args.ItemIndex].Metadata!;
         PrintButton.Disabled = _incVolume <= 0.0f;
     }
 
-    private void TemplateListOnOnItemDeselected(ItemList.ItemListDeselectedEventArgs obj)
+    private void OnTemplateDeselected(ItemList.ItemListDeselectedEventArgs args)
     {
         _currentTemplate = null;
         PrintButton.Disabled = true;
@@ -64,9 +62,10 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     {
         _canCopy = state.CanCopy;
         _incVolume = state.InkAmount;
+        _allTemplates = state.Templates;
+
         PaperCountLabel.Text = state.PaperCount.ToString();
         InkAmountLabel.Text = _incVolume.ToString("F1");
-        _allTemplates = state.Templates;
 
         CopyStatusLabel.Text = _canCopy
             ? Loc.GetString("printerdoc-menu-copy-available")
@@ -83,27 +82,90 @@ public sealed partial class PrinterDocMenu : DefaultWindow
             QueueList.AddItem(job.ToString());
         }
 
+        CreateFilterButtons();
         PopulateTemplates();
+    }
+
+    private void CreateFilterButtons()
+    {
+        FilterButtonsContainer.Children.Clear();
+
+        var allowedComponents = new[]
+        {
+            "Centcom", "Command", "Engineering", "Justice", "Medical", "Science",
+            "Security", "Service", "Supply", "Syndicate", "General"
+        };
+
+        var usedComponents = _protoManager
+            .EnumeratePrototypes<DocTemplatePrototype>()
+            .Where(p => _allTemplates.Contains(p.ID) && allowedComponents.Contains(p.Component))
+            .Select(p => p.Component)
+            .Distinct()
+            .OrderBy(c => c)
+            .ToList();
+
+        CreateFilterButton(null, Loc.GetString("printerdoc-filter-all"));
+
+        foreach (var component in usedComponents)
+        {
+            var localized = Loc.GetString($"printerdoc-component-{component}");
+            CreateFilterButton(component, localized);
+        }
+    }
+
+    private void CreateFilterButton(string? component, string text)
+    {
+        var button = new Button
+        {
+            Text = text,
+            Margin = new Thickness(0, 0, 4, 0),
+            ToggleMode = true,
+            HorizontalExpand = false,
+            VerticalExpand = false,
+            MinSize = new Vector2(100, 30)
+        };
+
+        button.OnPressed += _ =>
+        {
+            _activeComponentFilter = component;
+            _searchText = string.Empty;
+            SearchBar.Text = string.Empty;
+
+            if (_activeFilterButton != null && _activeFilterButton != button)
+                _activeFilterButton.Pressed = false;
+
+            _activeFilterButton = button;
+            button.Pressed = true;
+            PopulateTemplates();
+        };
+
+        if (_activeComponentFilter == component)
+        {
+            _activeFilterButton = button;
+            button.Pressed = true;
+        }
+
+        FilterButtonsContainer.AddChild(button);
     }
 
     private void PopulateTemplates()
     {
         TemplateList.Clear();
 
-        var filtered = string.IsNullOrWhiteSpace(_searchText)
-            ? _allTemplates
-            : _allTemplates.Where(id =>
-                (_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto) &&
-                 (Loc.GetString(proto.Name).ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) ||
-                  id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant()))))
+        var filtered = _allTemplates
+            .Where(id =>
+                _protoManager.TryIndex<DocTemplatePrototype>(id, out var proto) &&
+                (_activeComponentFilter == null || proto.Component == _activeComponentFilter) &&
+                (string.IsNullOrWhiteSpace(_searchText) ||
+                 Loc.GetString(proto.Name).ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) ||
+                 id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant())))
             .ToList();
 
-        for (int i = 0; i < filtered.Count; i++)
+        foreach (var id in filtered)
         {
-            var template = filtered[i];
-            if (_protoManager.TryIndex<DocTemplatePrototype>(template, out var templateProto))
+            if (_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto))
             {
-                TemplateList.AddItem(Loc.GetString(templateProto.Name), metadata: template);
+                TemplateList.AddItem(Loc.GetString(proto.Name), metadata: id);
             }
         }
     }

@@ -4,27 +4,47 @@
     Title="{Loc 'printerdoc-menu-title'}"
     MinSize="500 350"
     SetSize="750 400">
+
     <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
 
-        <!-- Левая колонка, где поиск и шаблоны бумаг -->
-        <BoxContainer VerticalExpand="True" HorizontalExpand="True">
-            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
-                <LineEdit Name="SearchBar" PlaceHolder="{Loc 'printerdoc-menu-search-placeholder'}" HorizontalExpand="True"/>
-                <Label Text="{Loc 'printerdoc-menu-templates'}" Margin="0 0 0 5" HorizontalAlignment="Center"/>
-                <PanelContainer VerticalExpand="True">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
-                    </PanelContainer.PanelOverride>
-                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-                        <ItemList Name="TemplateList" VerticalExpand="True" HorizontalExpand="True"/>
-                    </ScrollContainer>
-                </PanelContainer>
-            </BoxContainer>
+        <!-- Левая колонка -->
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
+
+            <!-- Поиск -->
+            <LineEdit Name="SearchBar" PlaceHolder="{Loc 'printerdoc-menu-search-placeholder'}" HorizontalExpand="True"/>
+
+            <!-- Кнопки фильтрации -->
+            <ScrollContainer HorizontalExpand="True"
+                             VerticalExpand="False"
+                             MinHeight="35"
+                             HScrollEnabled="True"
+                             VScrollEnabled="False">
+                <BoxContainer Orientation="Horizontal"
+                              Name="FilterButtonsContainer"
+                              HorizontalExpand="True"
+                              VerticalExpand="False"
+                              VerticalAlignment="Center"
+                              SeparationOverride="5"/>
+            </ScrollContainer>
+
+            <!-- Заголовок списка -->
+            <Label Text="{Loc 'printerdoc-menu-templates'}" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+
+            <!-- Список шаблонов -->
+            <PanelContainer VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <ItemList Name="TemplateList" VerticalExpand="True" HorizontalExpand="True"/>
+                </ScrollContainer>
+            </PanelContainer>
+
         </BoxContainer>
 
         <BoxContainer MinWidth="5"/>
 
-        <!-- Правая колонка, где очередь и список материалов -->
+        <!-- Правая колонка -->
         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
 
             <!-- Статистика -->
@@ -41,13 +61,13 @@
                 <Label Name="CopyStatusLabel" Margin="5 0 0 0"/>
             </BoxContainer>
 
-            <!-- Кнопки копирвать и печатать -->
+            <!-- Кнопки -->
             <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 10 0 0">
                 <Button Name="PrintButton" Text="{Loc 'printerdoc-menu-print'}" HorizontalExpand="True"/>
                 <Button Name="CopyButton" Text="{Loc 'printerdoc-menu-copy'}" HorizontalExpand="True"/>
             </BoxContainer>
 
-            <!-- Что выполняет прямо сейччас -->
+            <!-- Текущая задача -->
             <Label Text="{Loc 'printerdoc-menu-current-job'}" Margin="0 10 0 0"/>
             <Label Name="CurrentJobLabel" Text="..." HorizontalExpand="True"/>
 
@@ -61,7 +81,6 @@
                     <ItemList Name="QueueList" VerticalExpand="True" HorizontalExpand="True"/>
                 </ScrollContainer>
             </PanelContainer>
-
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

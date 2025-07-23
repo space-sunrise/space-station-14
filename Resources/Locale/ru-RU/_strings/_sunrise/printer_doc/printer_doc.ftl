@@ -12,6 +12,20 @@ printerdoc-menu-current-job = Текущая задача
 printerdoc-menu-queue = Очередь заданий
 printerdoc-menu-no-active-job = Нет активной задачи
 
+printerdoc-filter-all = Все
+printerdoc-component-Centcom = ЦентКом
+printerdoc-component-Command = Командование
+printerdoc-component-Engineering = Инженерия
+printerdoc-component-General = Общее
+printerdoc-component-Justice = Юстиция
+printerdoc-component-Medical = Медицина
+printerdoc-component-Science = Наука
+printerdoc-component-Security = Безопасность
+printerdoc-component-Service = Сервис
+printerdoc-component-Supply = Снабжение
+printerdoc-component-Syndicate = Š!иÐ!К₳₮
+
+
 doc-template-appeal-name = Обращение
 doc-template-application-access-name = Заявление на получение доступа
 doc-template-application-appointment-interim-name = Заявление о назначении ВРиО

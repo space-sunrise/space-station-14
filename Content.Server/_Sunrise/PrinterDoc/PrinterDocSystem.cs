@@ -18,6 +18,8 @@ using Content.Server.GameTicking.Events;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
 using Content.Server.Station.Systems;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Emag.Components;
 
 namespace Content.Server._Sunrise.PrinterDoc;
 
@@ -33,6 +35,7 @@ public sealed class PrinterDocSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
 
 
     private TimeSpan _roundStartTime;
@@ -53,6 +56,7 @@ public sealed class PrinterDocSystem : EntitySystem
         SubscribeLocalEvent<PrinterDocComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
         SubscribeLocalEvent<PrinterDocComponent, StrappedEvent>(OnStasisStrapped);
         SubscribeLocalEvent<PrinterDocComponent, UnstrappedEvent>(OnStasisUnstrapped);
+        SubscribeLocalEvent<PrinterDocComponent, GotEmaggedEvent>(OnEmagged);
 
         CacheAllDocuments();
     }
@@ -121,14 +125,17 @@ public sealed class PrinterDocSystem : EntitySystem
 
         if (comp.Templates.Count == 0)
         {
+            var isEmagged = HasComp<EmaggedComponent>(uid);
             foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
             {
-                comp.Templates.Add(template.ID);
+                if (!string.IsNullOrEmpty(template.Component) && (template.IsPublic || isEmagged))
+                    comp.Templates.Add(template.ID);
             }
         }
 
         UpdateUserInterface(uid, comp);
     }
+
 
     public override void Update(float frameTime)
     {
@@ -273,5 +280,24 @@ public sealed class PrinterDocSystem : EntitySystem
                             TryComp<HumanoidAppearanceComponent>(strap.BuckledEntities.First(), out _);
 
         return hasBuckleUser || hasCopyPaper;
+    }
+
+    private void OnEmagged(EntityUid uid, PrinterDocComponent component, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+
+        component.Templates.Clear();
+
+        foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
+        {
+            if (!string.IsNullOrEmpty(template.Component))
+                component.Templates.Add(template.ID);
+        }
+
+        Dirty(uid, component);
+        UpdateUserInterface(uid, component);
     }
 }
