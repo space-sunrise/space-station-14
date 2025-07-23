@@ -21,6 +21,8 @@ using Content.Server.Station.Systems;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Emag.Components;
 using Content.Server.Station.Events;
+using Robust.Server.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Sunrise.PrinterDoc;
 
@@ -37,6 +39,8 @@ public sealed class PrinterDocSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+
 
 
     private TimeSpan _roundStartTime;
@@ -159,7 +163,16 @@ public sealed class PrinterDocSystem : EntitySystem
             comp.CurrentJobView = new PrinterJobView(jobTitle, type);
             UpdateUserInterface(uid, comp);
 
-            Timer.Spawn(TimeSpan.FromSeconds(comp.JobDuration), () =>
+            if (type == PrinterJobType.Print)
+            {
+                _audioSystem.PlayPvs(comp.PrintSound, uid);
+            }
+
+            else if (type == PrinterJobType.Copy)
+            {
+                _audioSystem.PlayPvs(comp.PrintSound, uid);
+            }
+                Timer.Spawn(TimeSpan.FromSeconds(comp.JobDuration), () =>
             {
                 if (Deleted(uid))
                     return;

@@ -5,6 +5,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Materials;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._Sunrise.PrinterDoc;
 
@@ -14,10 +15,13 @@ public sealed partial class PrinterDocComponent : Component
     [DataField]
     public Content.Shared._Sunrise.PrinterDoc.PrinterJobView? CurrentJobView;
 
+    [DataField]
+    public SoundSpecifier PrintSound { get; set; } = new SoundPathSpecifier("/Audio/Machines/printer.ogg");
+
     /// Время выполнения одной печати, копии(в секундах)
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public float JobDuration = 3f;
+    public float JobDuration = 4f;
 
     [DataField]
     public Queue<string> PrintQueue = new();
