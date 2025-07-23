@@ -281,6 +281,22 @@
     - BaseMagicalContraband
     - BaseXenoborgContraband
     - BaseGrandTheftContraband
+    - NuclearGrenade
+    - SupermatterCrystal
+    - ImmovableRod
+    - BaseBloodCultGod
+    - BaseMobFleshCult
+    - MobXenoRounyGhostRole
+    - GasMinerBase
+    - FleshHeart
+    - ContainmentField
+
+    componentBlacklist:
+    - MapGrid
+    - SurgeryStep
+    - SpawnPoint
+    - Contraband
+    - Meteor
 
     categoryBlacklist:
     - HideSpawnMenu
