@@ -20,6 +20,7 @@ using Robust.Shared.Configuration;
 using Content.Server.Station.Systems;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Emag.Components;
+using Content.Server.Station.Events;
 
 namespace Content.Server._Sunrise.PrinterDoc;
 
@@ -57,6 +58,7 @@ public sealed class PrinterDocSystem : EntitySystem
         SubscribeLocalEvent<PrinterDocComponent, StrappedEvent>(OnStasisStrapped);
         SubscribeLocalEvent<PrinterDocComponent, UnstrappedEvent>(OnStasisUnstrapped);
         SubscribeLocalEvent<PrinterDocComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
 
         CacheAllDocuments();
     }
@@ -299,5 +301,31 @@ public sealed class PrinterDocSystem : EntitySystem
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
+    }
+    private void OnStationInitialized(StationInitializedEvent args)
+    {
+        Timer.Spawn(TimeSpan.FromMilliseconds(100), () =>
+        {
+            var query = EntityQueryEnumerator<PrinterDocComponent>();
+
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                var owningStation = _stationSystem.GetOwningStation(uid);
+
+                if (owningStation != args.Station)
+                    continue;
+
+                _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, 700);
+
+                if (_solution.TryGetSolution(uid, comp.Solution, out var solEnt, out var solution))
+                {
+                    var reagent = new ReagentId(comp.IncReagentProto, null);
+                    solution.AddReagent(reagent, 7);
+                    _solution.UpdateChemicals(solEnt.Value, needsReactionsProcessing: false);
+                }
+
+                UpdateUserInterface(uid, comp);
+            }
+        });
     }
 }
