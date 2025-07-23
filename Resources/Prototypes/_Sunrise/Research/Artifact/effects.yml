@@ -290,14 +290,12 @@
     - GasMinerBase
     - FleshHeart
     - ContainmentField
-
     componentBlacklist:
     - MapGrid
     - SurgeryStep
     - SpawnPoint
     - Contraband
     - Meteor
-
     categoryBlacklist:
     - HideSpawnMenu
     - Debug
