@@ -38,6 +38,7 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { ")", "chatsan-smiles" },
         { "((", "chatsan-frowns-deeply" },
         { "(", "chatsan-frowns" },
+        { "?", "" },
         // Russian-Localization-End
         { ":)", "chatsan-smiles" },
         { ":]", "chatsan-smiles" },

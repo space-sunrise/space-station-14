@@ -127,6 +127,38 @@ namespace Content.Server.Database
             return bans;
         }
 
+        // Sunrise-Start
+        public override async Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since)
+        {
+            await using var db = await GetDbImpl();
+            var bans = await db.PgDbContext.Ban
+                .Include(b => b.Unban)
+                .Where(b => b.BanningAdmin == adminId.UserId && b.BanTime >= since.UtcDateTime)
+                .ToListAsync();
+            var result = new List<ServerBanDef>();
+            foreach (var ban in bans)
+            {
+                var banDef = ConvertBan(ban);
+                if (banDef != null)
+                    result.Add(banDef);
+            }
+            return result;
+        }
+
+        public override async Task DeleteServerBanAsync(int banId)
+        {
+            await using var db = await GetDbImpl();
+            var unbans = db.PgDbContext.Unban.Where(u => u.BanId == banId);
+            db.PgDbContext.Unban.RemoveRange(unbans);
+            var ban = await db.PgDbContext.Ban.SingleOrDefaultAsync(b => b.Id == banId);
+            if (ban != null)
+            {
+                db.PgDbContext.Ban.Remove(ban);
+                await db.PgDbContext.SaveChangesAsync();
+            }
+        }
+        // Sunrise-End
+
         private static IQueryable<ServerBan> MakeBanLookupQuery(
             IPAddress? address,
             NetUserId? userId,

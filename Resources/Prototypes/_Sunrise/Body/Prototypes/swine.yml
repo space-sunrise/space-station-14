@@ -18,6 +18,7 @@
         stomach: OrganSwineStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
+        cavity: null
       connections:
       - right arm
       - left arm

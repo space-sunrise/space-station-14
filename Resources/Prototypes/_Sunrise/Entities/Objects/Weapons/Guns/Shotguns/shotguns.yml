@@ -113,6 +113,14 @@
     sprintModifier: 0.95
 
 - type: entity
+  parent: WeaponShotgunSPAS12
+  id: WeaponShotgunSPAS12Rubber
+  suffix: Non-Lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+
+- type: entity
   name: Trenchgun L-4034
   parent: BaseWeaponShotgunSunrise
   id: WeaponShotgunTrenchgun4034

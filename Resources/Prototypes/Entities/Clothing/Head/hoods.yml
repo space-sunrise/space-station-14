@@ -21,6 +21,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - FullCovered # Sunrise-Edit
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -112,6 +113,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -129,6 +131,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -147,6 +150,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -174,6 +178,13 @@
     - Snout
     - HeadTop
     - HeadSide
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - TopCovered
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -188,6 +199,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -206,6 +218,13 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -221,6 +240,13 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadHatHoodCarp
@@ -238,6 +264,13 @@
   # wear carp suit and security helmet, they'll know you are fake
   - type: FactionClothing
     faction: Carps
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - FullCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase
@@ -253,6 +286,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - FullCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -771,6 +805,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - TopCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair

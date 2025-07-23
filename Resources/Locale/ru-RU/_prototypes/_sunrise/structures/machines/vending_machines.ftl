@@ -6,3 +6,5 @@ ent-VendingMachineMNKDrobe = Гардероб МНК
     .desc = Качественная одежда от МоНоКрома.
 ent-PaintVend = КраскоМат
     .desc = КраскоМат — твой напарник в цветных преступлениях против скуки
+ent-VendingMachineAbductorDispenser = инопланетный диспенсер
+    .desc = Раздает что-то странное.

@@ -301,7 +301,8 @@ public sealed partial class ShuttleSystem
         float? startupTime = null,
         float? hyperspaceTime = null,
         string? priorityTag = null,
-        bool ignored = false)
+        bool ignored = false, // Sunrise-Edit
+        bool deletedTrash = false) // Sunrise-Edit
     {
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return;
@@ -316,6 +317,8 @@ public sealed partial class ShuttleSystem
             _gameTiming.CurTime,
             TimeSpan.FromSeconds(hyperspace.StartupTime));
         hyperspace.PriorityTag = priorityTag;
+        hyperspace.Ignored = ignored; // Sunrise-Edit
+        hyperspace.DeleteTrash = deletedTrash; // Sunrise-Edit
 
         _console.RefreshShuttleConsoles(shuttleUid);
 
@@ -492,7 +495,7 @@ public sealed partial class ShuttleSystem
                  !HasComp<MapComponent>(target.EntityId))
         {
             var config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle,
-                priorityTag: entity.Comp1.PriorityTag); // Sunrise-Edit
+                entity.Comp1.Ignored, priorityTag: entity.Comp1.PriorityTag); // Sunrise-Edit
             var mapCoordinates = _transform.ToMapCoordinates(target);
 
             // Couldn't dock somehow so just fallback to regular position FTL.
@@ -502,7 +505,7 @@ public sealed partial class ShuttleSystem
             }
             else
             {
-                FTLDock((uid, xform), config);
+                FTLDock((uid, xform), config, entity.Comp1.DeleteTrash);
             }
 
             mapId = mapCoordinates.MapId;

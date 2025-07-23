@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
@@ -164,7 +164,8 @@ namespace Content.Shared.Interaction
                 // We permit ghosts to open uis unless explicitly blocked
                 if (ev.Message is not OpenBoundInterfaceMessage
                     || !HasComp<GhostComponent>(ev.Actor)
-                    || aUiComp?.BlockSpectators == true)
+                    || aUiComp?.BlockSpectators == true
+                    || _tagSystem.HasTag(ev.Actor, "CantInteract")) // Starlight-Abductor edit
                 {
                     ev.Cancel();
                     return;
@@ -1031,6 +1032,9 @@ namespace Content.Shared.Interaction
                 return false;
 
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
+                return false;
+
+            if (!_actionBlockerSystem.CanInstrumentInteract(user, used, target)) // 🌟Starlight🌟
                 return false;
 
             if (checkCanUse && !_actionBlockerSystem.CanUseHeldEntity(user, used))

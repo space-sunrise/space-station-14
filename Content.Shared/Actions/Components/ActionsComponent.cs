@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.StarlightAction;
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -7,7 +8,7 @@ namespace Content.Shared.Actions.Components;
 /// <summary>
 /// Lets the player controlling this entity use actions.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedActionsSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedActionsSystem), typeof(StarlightActionsSystem))] // Starlight-abductors edit
 public sealed partial class ActionsComponent : Component
 {
     /// <summary>

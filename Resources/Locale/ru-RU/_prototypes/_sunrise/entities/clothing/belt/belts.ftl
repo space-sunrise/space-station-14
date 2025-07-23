@@ -1,6 +1,6 @@
 ent-ClothingBeltSyndieWebbing = РПС Синдиката
     .desc = Довольно вместительное хранилище для боеприпасов.
-ent-ClothingBeltBlueShieldWebbing = рпс офицера «синий щит»
+ent-ClothingBeltBlueShieldWebbing = рпс офицера «Синий щит»
     .desc = Голубой?!
 ent-ClothingBeltPrisonGuardianFilled = { ent-ClothingBeltSecurity }
     .suffix = Заполнен
@@ -15,3 +15,5 @@ ent-ClothingBeltSheathSyndicate = ножны для рапиры
     .desc = Зловещие тонкие ножны, подходящие для рапиры.
 ent-ClothingBeltMilitaryWebbingMedSunrise = армейская РПС медика
     .desc = Ременно-плечевая система тактических ремней, которую носят оперативники-медики Мародёров Горлекса имеет дополнительное дюротканевое покрытие для сохранности химикатов в боевых условиях.
+ent-ClothingAbductorBelt = пояс абдукторов
+    .desc = Может хранить различные НАШИ вещи.

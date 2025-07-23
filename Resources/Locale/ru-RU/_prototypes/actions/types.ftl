@@ -70,3 +70,5 @@ ent-ActionToggleRootable = Укорениться
     .desc = Начать или перестать быть прикреплённым к полу.
 ent-ActionChameleonController = Измените свою одежду
     .desc = Быстро измените свою одежду
+ent-ActionActivateBorgLaughImplant = [color=red]Жуткий Смех[/color]
+    .desc = Активирует ваш имплант зловещего смеха, издающий фирменный звук синдикатовского киборга.

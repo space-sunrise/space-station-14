@@ -13,7 +13,7 @@
 
 - type: entity
   parent: BaseAction
-  id: SwitchNightVision
+  id: ToggleableNightVision
   name: Switches Night Vision
   description: Switches Night Vision
   categories: [ HideSpawnMenu ]
@@ -22,4 +22,4 @@
     useDelay: 1
     icon: { sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi, state: icon }
   - type: InstantAction
-    event: !type:NightVisionToggleEvent
+    event: !type:ToggleNightVisionEvent

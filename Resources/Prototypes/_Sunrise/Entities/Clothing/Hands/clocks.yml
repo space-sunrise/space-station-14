@@ -8,3 +8,8 @@
       sprite: _Sunrise/Clothing/Hands/Clocks/divine_clock.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Clocks/divine_clock.rsi
+  # SUNRISE EDIT
+    - type: Tag
+      tags:
+      - Ring
+  # SUNRISE EDIT

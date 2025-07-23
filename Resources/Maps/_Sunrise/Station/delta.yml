@@ -4,8 +4,8 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/20/2025 18:09:20
-  entityCount: 38443
+  time: 07/13/2025 01:47:15
+  entityCount: 38465
 maps:
 - 1
 grids:
@@ -26468,7 +26468,7 @@ entities:
       pos: 53.5,3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -190995.69
+      secondsUntilStateChange: -191246.81
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -26534,7 +26534,7 @@ entities:
       pos: 8.5,4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -75217.66
+      secondsUntilStateChange: -75468.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -199201,12 +199201,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -64.5,52.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
   - uid: 28632
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -65.5,52.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
 - proto: ReinforcedPlasmaWindow
   entities:
   - uid: 28633
@@ -212883,6 +212895,13 @@ entities:
     - type: Transform
       pos: 79.5,-0.5
       parent: 2
+- proto: SpawnPointIAA
+  entities:
+  - uid: 38465
+    components:
+    - type: Transform
+      pos: -0.5,13.5
+      parent: 2
 - proto: SpawnPointJanitor
   entities:
   - uid: 30900
@@ -212901,6 +212920,98 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-41.5
+      parent: 2
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 38447
+    components:
+    - type: Transform
+      pos: -37.5,69.5
+      parent: 2
+  - uid: 38448
+    components:
+    - type: Transform
+      pos: -36.5,69.5
+      parent: 2
+  - uid: 38449
+    components:
+    - type: Transform
+      pos: -35.5,69.5
+      parent: 2
+  - uid: 38450
+    components:
+    - type: Transform
+      pos: -27.5,69.5
+      parent: 2
+  - uid: 38451
+    components:
+    - type: Transform
+      pos: -28.5,67.5
+      parent: 2
+  - uid: 38452
+    components:
+    - type: Transform
+      pos: -27.5,67.5
+      parent: 2
+  - uid: 38453
+    components:
+    - type: Transform
+      pos: -26.5,67.5
+      parent: 2
+  - uid: 38454
+    components:
+    - type: Transform
+      pos: -25.5,67.5
+      parent: 2
+  - uid: 38455
+    components:
+    - type: Transform
+      pos: -23.5,67.5
+      parent: 2
+  - uid: 38456
+    components:
+    - type: Transform
+      pos: -25.5,69.5
+      parent: 2
+  - uid: 38457
+    components:
+    - type: Transform
+      pos: -24.5,69.5
+      parent: 2
+  - uid: 38458
+    components:
+    - type: Transform
+      pos: -23.5,69.5
+      parent: 2
+  - uid: 38459
+    components:
+    - type: Transform
+      pos: -21.5,67.5
+      parent: 2
+  - uid: 38460
+    components:
+    - type: Transform
+      pos: -16.5,69.5
+      parent: 2
+  - uid: 38461
+    components:
+    - type: Transform
+      pos: -15.5,69.5
+      parent: 2
+  - uid: 38462
+    components:
+    - type: Transform
+      pos: -8.5,69.5
+      parent: 2
+  - uid: 38463
+    components:
+    - type: Transform
+      pos: 13.5,69.5
+      parent: 2
+  - uid: 38464
+    components:
+    - type: Transform
+      pos: 15.5,69.5
       parent: 2
 - proto: SpawnPointLawyer
   entities:
@@ -213299,6 +213410,23 @@ entities:
     components:
     - type: Transform
       pos: -16.5,-46.5
+      parent: 2
+- proto: SpawnPointSalvageSpecialist
+  entities:
+  - uid: 38444
+    components:
+    - type: Transform
+      pos: 30.5,48.5
+      parent: 2
+  - uid: 38445
+    components:
+    - type: Transform
+      pos: 30.5,49.5
+      parent: 2
+  - uid: 38446
+    components:
+    - type: Transform
+      pos: 30.5,50.5
       parent: 2
 - proto: SpawnPointScientist
   entities:

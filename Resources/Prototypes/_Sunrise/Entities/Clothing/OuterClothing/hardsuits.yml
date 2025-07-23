@@ -211,6 +211,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - FullBodyOuter  # SUNRISE EDIT
     - WhitelistChameleon
 
 - type: entity

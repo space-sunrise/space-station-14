@@ -2,6 +2,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using Content.Server._Sunrise.Presets;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
@@ -229,6 +230,16 @@ namespace Content.Server.Voting.Managers
             var presets = GetGamePresets();
 
             // Sunrise-Start
+            if (presets.Count == 1)
+            {
+                var singlePreset = presets.First();
+                _chatManager.DispatchServerAnnouncement(
+                    Loc.GetString("ui-vote-gamemode-auto-set", ("preset", singlePreset.Value)));
+                var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+                ticker.SetGamePreset(singlePreset.Key);
+                return;
+            }
+
             if (presets.Count < 1)
                 return;
             // Sunrise-End
@@ -625,78 +636,73 @@ namespace Content.Server.Voting.Managers
             DirtyCanCallVoteAll();
         }
 
+        // Sunrise-Start
         private Dictionary<string, string> GetGamePresets()
         {
             var presets = new Dictionary<string, string>();
 
-            var prototypeId = _cfg.GetCVar(SunriseCCVars.RoundVotingChancesPrototype);
+            var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            var excluded = ticker.ExcludedPresets.ToHashSet();
+            var validPresets = new List<GamePresetPrototype>();
+            var presetPoolId = _cfg.GetCVar(SunriseCCVars.GamePresetPool);
 
-            if (!_prototypeManager.TryIndex<VoteRandomPrototype>(prototypeId, out var chancesPrototype))
+            if (_prototypeManager.TryIndex<GamePresetPoolPrototype>(presetPoolId, out var presetPoolProto))
             {
-                Logger.Warning($"Не удалось найти прототип шансов с ID: {prototypeId}");
-                return presets;
-            }
-
-            var validPresets = new List<(GamePresetPrototype preset, float chance)>();
-
-            foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
-            {
-                if (!preset.ShowInVote)
-                    continue;
-
-                if (_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
-                    continue;
-
-                if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
-                    continue;
-
-                if (chancesPrototype.Chances.TryGetValue(preset.ID, out var chance))
+                foreach (var (presetId, limits) in presetPoolProto.Presets)
                 {
-                    validPresets.Add((preset, chance));
+                    if (excluded.Contains(presetId))
+                        continue;
+
+                    if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
+                        continue;
+
+                    if (!preset.ShowInVote)
+                        continue;
+
+                    var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
+                    var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
+
+                    if (_playerManager.PlayerCount < minPlayers || _playerManager.PlayerCount > maxPlayers)
+                        continue;
+
+                    validPresets.Add(preset);
+                }
+
+                if (validPresets.Count == 0 && excluded.Count > 0)
+                {
+                    ticker.ClearExcludedPresets();
+                    foreach (var (presetId, limits) in presetPoolProto.Presets)
+                    {
+                        if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
+                            continue;
+
+                        if (!preset.ShowInVote)
+                            continue;
+
+                        var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
+                        var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
+
+                        if (_playerManager.PlayerCount < minPlayers || _playerManager.PlayerCount > maxPlayers)
+                            continue;
+
+                        validPresets.Add(preset);
+                    }
                 }
             }
 
             if (validPresets.Count == 0)
             {
-                Logger.Warning("Нет подходящих игровых режимов для текущего количества игроков.");
+                Logger.Warning("No suitable game modes for the current player count.");
                 return presets;
             }
 
-            var selectedPresets = SelectPresetsByChance(validPresets, _cfg.GetCVar(SunriseCCVars.RoundVotingCount));
-            presets.Add("Secret", "secret-title");
-            foreach (var preset in selectedPresets)
+            foreach (var preset in validPresets)
             {
-                presets[preset.preset.ID] = preset.preset.ModeTitle;
+                presets[preset.ID] = preset.ModeTitle;
             }
 
             return presets;
         }
-
-        private List<(GamePresetPrototype preset, float chance)> SelectPresetsByChance(List<(GamePresetPrototype preset, float chance)> validPresets, int count)
-        {
-            var selectedPresets = new List<(GamePresetPrototype preset, float chance)>();
-            var random = new Random();
-
-            while (selectedPresets.Count < count && validPresets.Count > 0)
-            {
-                var totalChance = validPresets.Sum(p => p.chance);
-
-                var roll = random.NextDouble() * totalChance;
-                float cumulativeChance = 0;
-
-                foreach (var preset in validPresets)
-                {
-                    cumulativeChance += preset.chance;
-                    if (roll < cumulativeChance)
-                    {
-                        selectedPresets.Add(preset);
-                        validPresets.Remove(preset);
-                        break;
-                    }
-                }
-            }
-
-            return selectedPresets;
-        }
+        // Sunrise-End
     }
 }

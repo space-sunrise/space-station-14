@@ -95,7 +95,7 @@
       visible: false
       shader: unshaded
   - type: LimitedCharges
-    maxCharges: 10
+    maxCharges: 5
   - type: AutoRecharge
     rechargeDuration: 30
 
@@ -114,18 +114,21 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 15
+        maxVol: 10 #Sunrise-Start
+  - type: ExaminableSolution
+    solution: hypospray
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Epinephrine
-        Quantity: 0.1
-  - type: ExaminableSolution
-    solution: hypospray
+        Quantity: 0.4
   - type: Hypospray
-    onlyAffectsMobs: true
+    onlyAffectsMobs: false
     injectOnly: true
+    transferAmount: 5 #Sunrise-End
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: HypoBorgStandard
@@ -150,6 +153,9 @@
       Quantity: 0.1
     - ReagentId: ChloralHydrate
       Quantity: 2
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -161,26 +167,77 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
+        maxVol: 15
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: DexalinPlus
+        Quantity: 1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: DexalinPlus
+      Quantity: 1
+    - ReagentId: Tricordrazine
+      Quantity: 1
+    - ReagentId: Dylovene
+      Quantity: 1
+    - ReagentId: Bicaridine
+      Quantity: 1
+    - ReagentId: Dermaline
+      Quantity: 1
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
+
+- type: entity
+  parent: HypoBorgStandard
+  id: HypoBorgMedicalAdvanced
+  name: advanced medical robot hypospray
+  description: A cyborg hypospray that can switch between a wide range of advanced medical chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
         maxVol: 30
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: DexalinPlus
-        Quantity: 2
+        Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
+    - ReagentId: Bruizine
+      Quantity: 1
+    - ReagentId: Puncturase
+      Quantity: 1
+    - ReagentId: Lacerinol
+      Quantity: 1
     - ReagentId: DexalinPlus
-      Quantity: 2
-    - ReagentId: Tricordrazine
-      Quantity: 2
-    - ReagentId: Dylovene
-      Quantity: 2
-    - ReagentId: Bicaridine
-      Quantity: 2
-    - ReagentId: Dermaline
-      Quantity: 2
-
+      Quantity: 1
+    - ReagentId: Sigynate
+      Quantity: 1
+    - ReagentId: Leporazine
+      Quantity: 1
+    - ReagentId: Arithrazine
+      Quantity: 1
+    - ReagentId: Insuzine
+      Quantity: 1
+    - ReagentId: Pyrazine
+      Quantity: 1
+    - ReagentId: Diphenhydramine
+      Quantity: 1
+    - ReagentId: Ambuzol
+      Quantity: 0.1
+    - ReagentId: Oculine
+      Quantity: 0.1
+    - ReagentId: Saline
+      Quantity: 1
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: proto-kinetic robot accelerator
@@ -206,7 +263,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-
 
 - type: entity
   parent: HypoBorgStandard
@@ -238,6 +294,9 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: gorlax robot hypospray
@@ -267,6 +326,7 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: true
+    doAfterTime: 0.1 #Sunrise-Edit
     injectOnly: true
 
 - type: entity
@@ -463,7 +523,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
   - type: Gun
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     fireRate: 1.5
     availableModes:
     - SemiAuto
@@ -741,3 +801,79 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellRobotTool
         locked: true
+
+- type: entity
+  name: borg plasma cutter
+  parent: WeaponPlasmaCutter
+  id: WeaponPlasmaCutterBorg
+  description: A mining tool that fires low-damage plasma bolts at a short range. This one is modified for cyborg use.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/plasma_cutter_industrial.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/plasma_cutter_industrial.rsi
+    size: Normal
+  - type: Gun
+    fireRate: 0.6
+    selectedMode: FullAuto
+    angleDecay: 25
+    minAngle: 1
+    maxAngle: 3
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          true: {visible: false}
+          false: {visible: true}
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.6
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletPlasma
+    capacity: 3
+    count: 3
+
+- type: entity
+  name: ERT cyborg hypospray
+  parent: HypoBorgStandard
+  description: A borg version of hypospray that automatically regenerates healing chemicals.
+  id: HypoBorgStandardERT
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.3
+      - ReagentId: Omnizine
+        Quantity: 0.1
+      - ReagentId: Saline
+        Quantity: 0.1
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: true
+    injectOnly: true

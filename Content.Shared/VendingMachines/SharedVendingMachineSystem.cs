@@ -1,3 +1,5 @@
+using Content.Shared.Emag.Components;
+using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -5,7 +7,6 @@ using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
-using Content.Shared.Emag.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
@@ -13,11 +14,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared._Sunrise.VendingMachines; // Sunrise
 
 namespace Content.Shared.VendingMachines;
 
@@ -36,7 +34,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] protected readonly SharedUserInterfaceSystem UISystem = default!;
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     public override void Initialize()
     {
@@ -52,6 +49,39 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
         });
     }
+
+    //#region starlight
+    /// <summary>
+    /// Restocks one item from the starting inventory, can also be overriden what is restocked on the VendingMachineComponent
+    /// </summary>
+    /// <param name="uid">the EntityUid of the vending machine</param>
+    /// <param name="component">the Vending Machine component of the vending machine</param>
+    public void RestockRandom(EntityUid uid, VendingMachineComponent component)
+    {
+        string? item = null;
+        if (component.RandomRestockTarget != null)
+        {
+            item = component.RandomRestockTarget.ToString();
+        }
+        else
+        {
+            if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
+                return;
+            var startingInventory = packPrototype.StartingInventory;
+            var next = Randomizer.Next(0, startingInventory.Count);
+            var target = packPrototype.StartingInventory.ElementAt(next);
+            item = target.Key;
+        }
+
+        if (item == null)
+            return;
+        var theItem = new Dictionary<string, uint>();
+        theItem.Add(item, 1);
+
+        AddInventoryFromPrototype(uid, theItem, InventoryType.Regular, component);
+        Dirty(uid, component);
+    }
+    //#endregion starlight
 
     private void OnVendingGetState(Entity<VendingMachineComponent> entity, ref ComponentGetState args)
     {
@@ -405,15 +435,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                 {
                     restock = (uint) Math.Floor(amount * result / chanceOfMissingStock);
                 }
-
-                // Sunrise-start
-                if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent) &&
-                    type == InventoryType.Regular)
-                {
-                    restock = (uint) Math.Floor(
-                        amount + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient);
-                }
-                // Sunrise-end
 
                 if (inventory.TryGetValue(id, out var entry))
                     // Prevent a machine's stock from going over three times

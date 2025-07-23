@@ -55,6 +55,15 @@
       Steel: 100
   - type: StaticPrice
     price: 30
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.35
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
 - type: entity
   name: screwdriver

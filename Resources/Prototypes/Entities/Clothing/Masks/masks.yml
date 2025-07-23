@@ -16,6 +16,7 @@
   - type: Tag
     tags:
     - HamsterWearable
+    - FaceCovered # Sunrise-Edit
     - WhitelistChameleon
   - type: HideLayerClothing
     layers:
@@ -34,6 +35,12 @@
     sprite: Clothing/Mask/gassecurity.rsi
   - type: Clothing
     sprite: Clothing/Mask/gassecurity.rsi
+  # Surnise-Start
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  # Surnise-End
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -339,6 +346,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - FaceCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -346,7 +354,7 @@
     - HeadTop
     - HeadSide
     hideOnToggle: true
-  - type: FlashImmunity #BALANCE PR
+  - type: FlashImmunity # Sunrise-Edit
 
 - type: entity
   parent: [ ClothingMaskGas, BaseSecurityCargoContraband ]
@@ -372,6 +380,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - FaceCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -410,6 +419,7 @@
   - type: Tag
     tags:
     - HamsterWearable
+    - FaceCovered # Sunrise-Edit
     - WhitelistChameleon
   - type: HideLayerClothing
     slots:
@@ -431,6 +441,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -447,6 +463,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -463,6 +485,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -479,6 +507,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -495,6 +529,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -511,6 +551,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -654,6 +700,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - FaceCovered # Sunrise-Edit
 
 # Entity tables
 - type: entityTable

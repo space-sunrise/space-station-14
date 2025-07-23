@@ -1,0 +1,71 @@
+- type: reaction
+  id: Powderbicardine
+  impact: Medium
+  reactants:
+    HemostaticPowder:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    Razorium: 1
+
+- type: reaction
+  id: PowderLacerinol
+  impact: Medium
+  reactants:
+    HemostaticPowder:
+      amount: 1
+    Lacerinol:
+      amount: 1
+  products:
+    Razorium: 1
+
+- type: reaction
+  id: PowderBruizine
+  impact: Medium
+  reactants:
+    HemostaticPowder:
+      amount: 1
+    Bruizine:
+      amount: 1
+  products:
+    Razorium: 1
+
+- type: reaction
+  id: PowderPuncturase
+  impact: Medium
+  reactants:
+    HemostaticPowder:
+      amount: 1
+    Puncturase:
+      amount: 1
+  products:
+    Razorium: 1
+
+- type: reaction
+  id: PowderOligomers
+  impact: Medium
+  reactants:
+    PolypyryliumOligomers:
+      amount: 1
+    HemostaticPowder:
+      amount: 1
+  products:
+    Razorium: 1
+
+- type: reaction
+  id: HemostaticPowder
+  impact: Medium
+  minTemp: 500
+  reactants:
+    Aluminium:
+      amount: 1
+    Iron:
+      amount: 1
+    TranexamicAcid:
+      amount: 1
+    Fersilicite:
+      amount: 1
+  products:
+    HemostaticPowder: 2
+

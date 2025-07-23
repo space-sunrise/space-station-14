@@ -1,0 +1,31 @@
+- type: interaction
+  id: HornsPat
+  name: interaction-name-horns-pat
+  icon: FriendlyPatHornsIcon
+  category: Face
+  interactionMessages:
+  - "%user нежно гладит рожки %target"
+  - "%user ласково гладит рожки %target"
+  - "%user с теплотой гладит рожки %target"
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:HasMarkingCondition
+    checkInitiator: false
+    checkTarget: true
+    markingWhitelist: # TODO добавить ВСЕ рожки которые есть
+    - DemonHornsDeer
+    - DemonCowHorns
+    - DemonHornsSmall
+    - LizardHornsAngler
+    - LizardHornsCurled
+    - LizardHornsRam
+    - LizardHornsShort
+    - LizardHornsSimple
+    - LizardHornsDemonic
+    - LizardHornsBighorn
+    - LizardHornsMyrsore
+    - LizardHornsAyrshire
+    - LizardHornsArgali
+    - LizardHornsDouble
+  cooldown: 3

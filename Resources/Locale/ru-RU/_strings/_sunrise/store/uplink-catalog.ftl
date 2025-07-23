@@ -21,7 +21,6 @@ uplink-magazine-bauer127-extended-name = расширенный магазин B
 uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
 uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
 uplink-magazine-bauer127-extended-desc = Магазин для Bauer127. Содержит 15 патронов калибра .60 антиматериальный.
-
 uplink-magazine-dl6902-name = Короб-магазин DL6902 (7,62мм)
 uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов калибра 7,62х39мм.
 uplink-magazine-dragunov-desc = Магазин для Драгунова. Содержит 10 патронов калибра 7,62х54R.
@@ -124,6 +123,11 @@ uplink-launcher-cream-pie-fake-desc = Пирогомёт использующи�
 
 uplink-smoke-screen-implanter-name = Имплантер Дымовой Завесы
 uplink-smoke-screen-implanter-desc = Создает небольшое облако дыма, в котором вы можете скрыться. Можно использовать до трех раз, прежде чем у вас закончится газ.
+
+uplink-creepy-laugh-implanter-name = Имплантер Жуткого Смеха
+uplink-creepy-laugh-implanter-desc = Аудиоимплант, воспроизводящий фирменный смех синди-киборга. Раздражает, пугает, стиль гарантирован.
+
+## Ammo Kits and Bundle
 uplink-ammo-crate-ammokit-bundle-name = ящик супер набора боеприпасов синдиката
 uplink-ammo-crate-ammokit-bundle-desc = Перезаряжаю! Перезаряжаю! Перезаряжаю! Содержит все виды и наборы патронов, исключая боеприпасов для больших пушек.
 uplink-ammo-caselesskit-name = Набор безгильзовых патронов

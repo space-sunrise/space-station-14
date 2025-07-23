@@ -74,7 +74,8 @@ uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorl
 uplink-smoke-screen-implanter-name = Smoke Screen Implanter
 uplink-smoke-screen-implanter-desc = Creates a small cloud of smoke for you to slip away in. Can be used up to three times before you run out of gas.
 
-
+uplink-creepy-laugh-implanter-name = Creepy Laugh Implanter
+uplink-creepy-laugh-implanter-desc = An audio implant that plays the signature laugh of a Syndicate cyborg. Annoying, intimidating, and undeniably stylish.
 
 uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.

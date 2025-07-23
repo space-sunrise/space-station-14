@@ -156,8 +156,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle_alt
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnout
@@ -167,8 +165,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutSharp
@@ -178,8 +174,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle_sharp
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutFade
@@ -189,17 +183,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: muzzle_fade
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
-
-- type: marking
-  id: VulpSnoutNose
-  bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Vulpkanin]
-  sprites:
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutMask
@@ -209,8 +192,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: mask
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: nose
 
 - type: marking
   id: VulpSnoutVulpine
@@ -220,8 +201,6 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
     state: vulpine
-  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
-    state: vulpine-lines
 
 - type: marking
   id: VulpSnoutSwift
@@ -889,3 +868,98 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/facial_hair.rsi
     state: kita
+
+- type: marking
+  id: MoonTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sponsorOnly: false
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+        category: Hair
+      fallbackTypes:
+      - !type:CategoryColoring
+        category: FacialHair
+      - !type:SkinColoring
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_tail.rsi
+    state: tail_doubletone_prime
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_tail.rsi
+    state: tail_doubletone_second
+
+- type: marking
+  id: VulpMoonLegs
+  markingCategory: Legs
+  bodyPart: LLeg
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-legs
+
+- type: marking
+  id: VulpMoonArms
+  markingCategory: Arms
+  bodyPart: LArm
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-arms
+
+- type: marking
+  id: VulpMoonHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-head
+
+- type: marking
+  id: VulpMoonBelly
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-chest
+
+- type: marking
+  id: VulpMoonEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    state: main_moon
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    state: inner_moon
+
+- type: marking
+  id: VulpMoonHands
+  markingCategory: Overlay
+  bodyPart: RHand
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-hands
+
+- type: marking
+  id: VulpMoonPaws
+  markingCategory: Overlay
+  bodyPart: RFoot
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_markings.rsi
+    state: points_moon-paws
+
+- type: marking
+  id: VulpSnoutSpots
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/head_markings.rsi
+    state: face_spots

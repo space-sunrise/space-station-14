@@ -43,3 +43,5 @@ ent-WeaponSyndieLaserPistol = SAM-300
     .desc = The Syndicate's laser pistol, developed from the NT Captain's pistol.
 ent-WeaponLaserMinigun = UVL-21 «Vivern»
     .desc = A heavy weapon of mass destruction based on the minigun.
+ent-WeaponAlien = alien pistol
+    .desc = { ent-BaseWeaponBatterySmall.desc }

@@ -5,9 +5,16 @@ namespace Content.Server._Sunrise.SharpeningSystem;
 [RegisterComponent]
 public sealed partial class SharpenerComponent : Component
 {
+    /// <summary>
+    /// Sunrise - Edit
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public DamageSpecifier DamageBonus;
+    public DamageSpecifier SlashDamageBonus = new();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public DamageSpecifier PiercingDamageBonus = new();
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]

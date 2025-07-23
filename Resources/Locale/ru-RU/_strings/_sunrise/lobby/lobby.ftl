@@ -70,6 +70,7 @@ lobby-art-NukiesHere = Nukies Here
 lobby-art-RegularShift = Regular Shift
 lobby-art-Russellmart = Russellmart
 lobby-art-Sidor = Sidor
+lobby-art-StarBow14 = StarBow14
 lobby-art-Singulord = Singulord
 lobby-art-SpaceMudaki = Space Mudaki
 lobby-art-Traitor = Traitor

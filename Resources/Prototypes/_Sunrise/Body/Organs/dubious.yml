@@ -1,0 +1,177 @@
+- type: entity
+  abstract: true
+  id: BaseOrganDubious
+  parent: [BaseItem, BaseOrganHeart]
+  components:
+  - type: Organ
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: Gibbable
+
+
+- type: entity
+  id: OrganDubiousHealth
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: health
+  - type: AbductorOrgan
+    organ: Health
+
+- type: entity
+  id: OrganDubiousLiar
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: health
+  - type: AbductorOrgan
+    organ: Liar
+
+- type: entity
+  id: OrganDubiousGravity
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: slime
+  - type: AbductorOrgan
+    organ: Gravity
+
+- type: entity
+  id: OrganDubiousOwo # nya~
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: slime
+  - type: AbductorOrgan
+    organ: Owo
+
+- type: entity
+  id: OrganDubiousEgg
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: egg
+  - type: AbductorOrgan
+    organ: Egg
+
+- type: entity
+  id: OrganDubiousEMP
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: egg
+  - type: AbductorOrgan
+    organ: EMP
+
+- type: entity
+  id: OrganDubiousSpider
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: spider
+  - type: AbductorOrgan
+    organ: Spider
+
+- type: entity
+  id: OrganDubiousVent
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: vent
+  - type: AbductorOrgan
+    organ: Vent
+
+- type: entity
+  id: OrganDubiousPacified
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: vent
+  - type: AbductorOrgan
+    organ: Pacified
+
+- type: entity
+  id: OrganDubiousEphedrine
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: vent
+  - type: AbductorOrgan
+    organ: Ephedrine
+
+- type: entity
+  id: RandomOrganDubious
+  name: random gland
+  description: a random abductor gland
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+      state: vent
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: true
+      table: !type:NestedSelector
+        tableId: LootTableAbductorGland
+
+- type: entityTable
+  id: LootTableAbductorGland
+  table: !type:GroupSelector
+    children:
+      - id: OrganDubiousHealth
+      #- id: OrganDubiousPlasma
+      - id: OrganDubiousGravity
+      - id: OrganDubiousEgg
+      - id: OrganDubiousSpider
+      - id: OrganDubiousVent
+      - id: OrganDubiousEphedrine
+      - id: OrganDubiousEMP
+      - id: OrganDubiousOwo
+      - id: OrganDubiousLiar
+      - id: OrganDubiousPacified

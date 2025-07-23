@@ -205,6 +205,14 @@
         "name": "plushie-CFB"
       },
       {
+        "name": "cfb-inhand-right",
+        "directions": 4
+      },
+      {
+        "name": "cfb-inhand-left",
+        "directions": 4
+      },
+      {
         "name": "plushie-sebastian"
       },
       {
@@ -293,7 +301,19 @@
         "name": "plushie_tatarchuk"
       },
       {
-        "name": "plushie_kalium"
+        "name": "plushie-kalium"
+      },
+      {
+        "name": "kalium-inhand-right",
+        "directions": 4
+      },
+      {
+        "name": "kalium-inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "kalium-equipped-NECK",
+        "directions": 4
       }
       ]
   }

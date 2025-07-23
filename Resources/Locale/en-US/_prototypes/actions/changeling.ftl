@@ -1,3 +1,5 @@
+ent-ActionRetractableItemArmBlade = Arm Blade
+    .desc = Shed your flesh and reform it into a fleshy blade.
 ent-ActionEvolutionMenu = Open evolution menu
     .desc = Opens the evolution menu.
 ent-ActionAbsorbDNA = Absorb DNA

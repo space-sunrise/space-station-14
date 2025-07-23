@@ -1,4 +1,5 @@
 ﻿using Content.Shared._Sunrise.BloodCult.Items;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.BloodCult.UI.Torch;
 
@@ -15,8 +16,7 @@ public sealed class TorchWindowBUI : BoundUserInterface
     {
         base.Open();
 
-        _window = new();
-        _window.OpenCentered();
+        _window = this.CreateWindow<TorchWindow>();
         _window.OnClose += Close;
 
         _window.ItemSelected += (uid, item) =>
@@ -38,5 +38,15 @@ public sealed class TorchWindowBUI : BoundUserInterface
         {
             _window?.PopulateList(newState.Items);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (!disposing)
+            return;
+
+        _window?.Close();
     }
 }

@@ -1,3 +1,6 @@
+ent-BaseWeaponPistolSunrise = BasePistol
+    .desc = A rooty tooty point and shooty.
+    .suffix = Sunrise
 ent-WeaponPistolVP78 = combat pistol VP-70
     .desc = { ent-BaseWeaponPistol.desc }
 ent-WeaponPistolG22 = Glock-22
@@ -18,3 +21,5 @@ ent-WeaponRevolverSpearheadBlack = Spearhead autorevolver
 ent-WeaponPistolG22Auto = Glock-22 auto
     .suffix = Auto
     .desc = { ent-BaseWeaponPistol.desc }
+ent-WeaponPistolM1984 = D1984
+    .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.

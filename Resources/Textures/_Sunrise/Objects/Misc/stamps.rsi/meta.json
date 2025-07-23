@@ -27,6 +27,15 @@
     },
     {
       "name": "stamp-npt"
+    },
+    {
+      "name": "stamp-veto"
+    },
+    {
+      "name": "stamp-redo"
+    },
+    {
+      "name": "stamp-specops"
     }
   ]
 }

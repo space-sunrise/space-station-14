@@ -573,7 +573,6 @@
   - MothershipCore5
   obeysTo: laws-owner-xenoborgs
 
-
 # ion storm random lawsets
 - type: weightedRandom
   id: IonStormLawsets
@@ -594,3 +593,73 @@
     NutimovLawset: 0.5
     Drone: 0.5
     Ninja: 0.25
+
+- type: siliconLaw
+  id: Sec1
+  order: 1
+  lawString: law-sec-1
+
+- type: siliconLaw
+  id: Sec2
+  order: 2
+  lawString: law-sec-2
+
+- type: siliconLaw
+  id: Sec3
+  order: 3
+  lawString: law-sec-3
+
+- type: siliconLaw
+  id: Sec4
+  order: 4
+  lawString: law-sec-4
+
+- type: siliconLaw
+  id: Sec5
+  order: 5
+  lawString: law-sec-5
+
+- type: siliconLawset
+  id: SecurityLawset
+  laws:
+  - Sec1
+  - Sec2
+  - Sec3
+  - Sec4
+  - Sec5
+  obeysTo: laws-owner-station
+
+- type: siliconLaw
+  id: Peace1
+  order: 1
+  lawString: law-peace-1
+
+- type: siliconLaw
+  id: Peace2
+  order: 2
+  lawString: law-peace-2
+
+- type: siliconLaw
+  id: Peace3
+  order: 3
+  lawString: law-peace-3
+
+- type: siliconLaw
+  id: Peace4
+  order: 4
+  lawString: law-peace-4
+
+- type: siliconLaw
+  id: Peace5
+  order: 5
+  lawString: law-peace-5
+
+- type: siliconLawset
+  id: PeaceLawset
+  laws:
+  - Peace1
+  - Peace2
+  - Peace3
+  - Peace4
+  - Peace5
+  obeysTo: laws-owner-station

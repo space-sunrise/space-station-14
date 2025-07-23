@@ -4,6 +4,7 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Damage;
 
 namespace Content.Server._Sunrise.SharpeningSystem;
 
@@ -39,8 +40,8 @@ public sealed class SharpeningSystem : EntitySystem
             _popupSystem.PopupEntity(Loc.GetString("sharpening-failed"), target, args.User);
             return;
         }
-
-        if (!meleeWeaponComponent.Damage.DamageDict.ContainsKey("Slash"))
+        /// Sunrise - Edit
+        if (!meleeWeaponComponent.Damage.DamageDict.ContainsKey("Slash") && !meleeWeaponComponent.Damage.DamageDict.ContainsKey("Piercing"))
         {
             _popupSystem.PopupEntity(Loc.GetString("sharpening-failed-blade"), target, args.User);
             return;
@@ -58,7 +59,15 @@ public sealed class SharpeningSystem : EntitySystem
             return;
         }
 
-        EnsureComp<SharpenedComponent>(target).DamageBonus = component.DamageBonus;
+        /// Sunrise - Edit
+        var damageBonus = new DamageSpecifier();
+
+        if (meleeWeaponComponent.Damage.DamageDict.ContainsKey("Piercing"))
+            damageBonus = component.PiercingDamageBonus;
+        else if (meleeWeaponComponent.Damage.DamageDict.ContainsKey("Slash"))
+            damageBonus = component.SlashDamageBonus;
+
+        EnsureComp<SharpenedComponent>(target).DamageBonus = damageBonus;
 
         component.Usages -= 1;
 
