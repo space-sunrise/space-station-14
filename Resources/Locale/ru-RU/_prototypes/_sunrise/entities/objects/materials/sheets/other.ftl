@@ -6,3 +6,5 @@ ent-SheetOfficePaper = печатная бумага
 ent-SheetOfficePaper1 = печатная бумага
     .suffix = Один
     .desc = { ent-SheetOfficePaper.desc }
+ent-OfficePaper = стопка печатной бумаги
+    .desc = Стопка листов печатной бумаги для принтеров и документов.
