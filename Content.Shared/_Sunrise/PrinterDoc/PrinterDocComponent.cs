@@ -28,19 +28,18 @@ public sealed partial class PrinterDocComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float JobDuration = 4f;
+
     /// <summary>
     /// Начальные материалы принтера - бумага
     /// </summary>
     [DataField]
     public int InitialPaperAmount = 100;
+
     /// <summary>
     /// Начальные материалы принтера - чернила
     /// </summary>
     [DataField]
     public int InitialInkAmount = 10;
-
-    [DataField]
-    public Queue<string> PrintQueue = new();
 
     /// <summary>
     /// Очередь заданий на печать или копирование
