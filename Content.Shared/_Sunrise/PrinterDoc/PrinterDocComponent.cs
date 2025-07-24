@@ -12,6 +12,12 @@ namespace Content.Shared._Sunrise.PrinterDoc;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class PrinterDocComponent : Component
 {
+    /// <summary>
+    /// Максимальное количество заданий в очереди принтера
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int MaxQueueSize = 5;
+
     [DataField]
     public Content.Shared._Sunrise.PrinterDoc.PrinterJobView? CurrentJobView;
 
@@ -22,12 +28,16 @@ public sealed partial class PrinterDocComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float JobDuration = 4f;
-
+    /// <summary>
+    /// Начальные материалы принтера - бумага
+    /// </summary>
     [DataField]
-    public int InitialPaperAmount = 700;
-
+    public int InitialPaperAmount = 100;
+    /// <summary>
+    /// Начальные материалы принтера - чернила
+    /// </summary>
     [DataField]
-    public int InitialInkAmount = 7;
+    public int InitialInkAmount = 10;
 
     [DataField]
     public Queue<string> PrintQueue = new();

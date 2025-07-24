@@ -109,6 +109,9 @@ public sealed class PrinterDocSystem : EntitySystem
 
     private void OnPrintMessage(EntityUid uid, PrinterDocComponent comp, PrinterDocPrintMessage msg)
     {
+        if (comp.JobQueue.Count >= comp.MaxQueueSize)
+            return;
+
         if (!TryConsumeResources(uid, comp))
             return;
 
@@ -118,6 +121,9 @@ public sealed class PrinterDocSystem : EntitySystem
 
     private void OnCopyMessage(EntityUid uid, PrinterDocComponent comp, PrinterDocCopyMessage msg)
     {
+        if (comp.JobQueue.Count >= comp.MaxQueueSize)
+            return;
+
         if (!TryConsumeResources(uid, comp))
             return;
 
