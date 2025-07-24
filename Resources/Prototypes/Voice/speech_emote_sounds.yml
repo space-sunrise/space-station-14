@@ -490,7 +490,7 @@
     Hew:
       collection: Hew
     Gasp:
-      collection: MaleGasp
+      collection: FemaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
     Sigh:
