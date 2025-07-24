@@ -33,16 +33,10 @@ public sealed class PrinterDocBoundUserInterfaceState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public sealed class PrinterJobView
+public sealed class PrinterJobView(string title, PrinterJobType type)
 {
-    public string Title { get; }
-    public PrinterJobType Type { get; }
-
-    public PrinterJobView(string title, PrinterJobType type)
-    {
-        Title = title;
-        Type = type;
-    }
+    public readonly string Title = title;
+    public readonly  PrinterJobType Type = type;
 
     public override string ToString()
     {

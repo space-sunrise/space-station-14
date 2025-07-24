@@ -8,3 +8,4 @@ ent-SheetOfficePaper1 = printing paper
     .desc = { ent-SheetOfficePaper.desc }
 ent-OfficePaper = stack of printing paper
     .desc = A stack of printing paper sheets for printers and documents.
+stack-name-stack-office-paper = stack of printing paper

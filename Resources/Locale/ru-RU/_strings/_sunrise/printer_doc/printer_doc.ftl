@@ -29,8 +29,6 @@ printerdoc-component-Service = Сервис
 printerdoc-component-Supply = Снабжение
 printerdoc-component-Syndicate = Š!иÐ!К₳₮
 
-stack-name-stack-office-paper = Стопка печатной бумаги
-
 
 doc-template-appeal-name = Обращение
 doc-template-application-access-name = Заявление на получение доступа

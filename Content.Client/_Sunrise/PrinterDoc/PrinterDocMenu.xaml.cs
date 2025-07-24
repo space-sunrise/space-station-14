@@ -152,14 +152,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     {
         TemplateList.Clear();
 
-        var filtered = _allTemplates
-            .Where(id =>
-                _protoManager.TryIndex<DocTemplatePrototype>(id, out var proto) &&
-                (_activeComponentFilter == null || proto.Component == _activeComponentFilter) &&
-                (string.IsNullOrWhiteSpace(_searchText) ||
-                 Loc.GetString(proto.Name).ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) ||
-                 id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant())))
-            .ToList();
+        var filtered = GetFilteredTemplates();
 
         foreach (var id in filtered)
         {
@@ -169,4 +162,30 @@ public sealed partial class PrinterDocMenu : DefaultWindow
             }
         }
     }
+
+    private List<string> GetFilteredTemplates()
+    {
+        return _allTemplates
+            .Where(id => PassesFilter(id))
+            .ToList();
+    }
+
+    private bool PassesFilter(string id)
+    {
+        if (!_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto))
+            return false;
+
+        if (_activeComponentFilter != null && proto.Component != _activeComponentFilter)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(_searchText))
+            return true;
+
+        var name = Loc.GetString(proto.Name).ToLowerInvariant();
+        var idLower = id.ToLowerInvariant();
+        var search = _searchText.ToLowerInvariant();
+
+        return name.Contains(search) || idLower.Contains(search);
+    }
+
 }

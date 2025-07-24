@@ -57,9 +57,9 @@ public sealed partial class PrinterDocComponent : Component
     /// <summary>
     /// Прототип материала бумаги (используется для проверки количества бумаги в принтере)
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<MaterialPrototype>))]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public string PaperMaterial = "officePaper";
+    public ProtoId<MaterialPrototype> PaperMaterial = "officePaper";
 
     /// <summary>
     /// Прототип сущности бумаги, которую принтер создаёт при печати
@@ -70,9 +70,9 @@ public sealed partial class PrinterDocComponent : Component
     /// <summary>
     /// Прототип реагента чернил, используемых принтером
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public string IncReagentProto = "Inc";
+    public ProtoId<ReagentPrototype> IncReagentProto = "Inc";
 
     /// <summary>
     /// Название раствора с чернилами внутри принтера

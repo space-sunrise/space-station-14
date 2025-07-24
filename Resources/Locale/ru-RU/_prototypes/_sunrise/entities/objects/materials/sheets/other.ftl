@@ -8,3 +8,4 @@ ent-SheetOfficePaper1 = печатная бумага
     .desc = { ent-SheetOfficePaper.desc }
 ent-OfficePaper = стопка печатной бумаги
     .desc = Стопка листов печатной бумаги для принтеров и документов.
+stack-name-stack-office-paper = Стопка печатной бумаги
