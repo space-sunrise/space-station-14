@@ -76,5 +76,6 @@
   - type: Sprite
     state: paper_1
   - type: Stack
-    count: 1
+    stackType: OfficePaper
+    ount: 1
 
