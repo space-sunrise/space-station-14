@@ -153,6 +153,9 @@
   description: artifact-effect-hint-data-deleted
   categories: [ HideSpawnMenu ]
   components:
+  - type: XenoArtifactNode
+    maxDurability: 1
+    triggerDecreasesDurability: true
   - type: ArtifactStartGameRule
     rules:
       EvilTwinSpawn: 2
