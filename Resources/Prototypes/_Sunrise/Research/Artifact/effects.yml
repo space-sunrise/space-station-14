@@ -45,8 +45,8 @@
     - type: RandomWalk
       minSpeed: 12
       maxSpeed: 20
-      minStepCooldown: 1
-      maxStepCooldown: 3
+      minStepCooldown: 5
+      maxStepCooldown: 5
 
 - type: entity
   id: SunriseArtifactThrowThingsAround

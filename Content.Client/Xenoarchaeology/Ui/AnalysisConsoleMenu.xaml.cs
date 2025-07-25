@@ -201,10 +201,20 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
             ("max", node.Value.Comp.MaxDurability)));
 
         var hasInfo = _xenoArtifact.HasUnlockedPredecessor(artifact.Value, node.Value);
-
+        string effectDescription;
+        if (!node.Value.Comp.Locked)
+        {
+            // Show the real effect description if the node has been activated at least once
+            effectDescription = _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription ?? Loc.GetString("artifact-effect-hint-data-deleted");
+        }
+        else
+        {
+            // Otherwise, show the censored string
+            effectDescription = Loc.GetString("artifact-effect-hint-data-deleted");
+        }
         EffectValueLabel.SetMarkup(Loc.GetString("analysis-console-info-effect-value",
             ("state", hasInfo),
-            ("info", Loc.GetString("artifact-effect-hint-data-deleted")))); // _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription ?? string.Empty
+            ("info", effectDescription)));
 
         var predecessorNodes = _xenoArtifact.GetPredecessorNodes(artifact.Value.Owner, node.Value);
         if (!hasInfo)

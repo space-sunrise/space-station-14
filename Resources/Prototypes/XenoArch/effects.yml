@@ -242,10 +242,10 @@
   - type: XAEApplyComponents
     components:
     - type: RandomWalk
-      minSpeed: 12
-      maxSpeed: 20
-      minStepCooldown: 1
-      maxStepCooldown: 3
+      minSpeed: 20
+      maxSpeed: 40
+      minStepCooldown: 4
+      maxStepCooldown: 6
 
 - type: entity
   id: XenoArtifactSolutionStorage
