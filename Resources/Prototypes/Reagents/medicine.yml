@@ -31,6 +31,7 @@
         damage:
           types:
             Poison: -1
+            Mangleness: 0.1 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -93,6 +94,7 @@
         damage:
           types:
             Poison: -3
+            Mangleness: 0.45 #Sunrise-Edit
 
 - type: reagent
   id: Ethylredoxrazine
@@ -113,6 +115,7 @@
         damage:
           types:
             Poison: -0.5
+            Mangleness: 0.1 #Sunrise-Edit
 
 - type: reagent
   id: Arithrazine
@@ -129,6 +132,7 @@
         damage:
           types:
             Radiation: -3
+            Mangleness: 0.45 #Sunrise-Edit
           groups:
             Brute: 1.5
 
@@ -145,6 +149,8 @@
       effects:
       - !type:HealthChange
         damage:
+          types: #Sunrise-Edit
+            Mangleness: 0.1 #Sunrise-Edit
           groups:
             Brute: -2
       - !type:HealthChange
@@ -195,6 +201,10 @@
               Brute: -4
               Burn: -6
               Toxin: -4
+            #Sunrise-Start
+            types:
+             Mangleness: -0.5
+            #Sunrise-End
 
 - type: reagent
   id: Doxarubixadone
@@ -232,6 +242,7 @@
             Heat: -1.5
             Shock: -1.5
             Cold: -1.5
+            Mangleness: 0.1 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -263,6 +274,7 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
+            Mangleness: 0.05 #Sunrise-Edit
       - !type:HealthChange
         conditions:
           - !type:ReagentThreshold
@@ -288,6 +300,7 @@
           types:
             Asphyxiation: -3.5
             Bloodloss: -3
+            Mangleness: 0.15 #Sunrise-Edit
       - !type:AdjustReagent
         conditions:
         - !type:ReagentThreshold
@@ -338,6 +351,15 @@
           groups:
             Brute: -0.5
             Burn: -0.5
+      #Sunrise-Start
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        damage:
+          types:
+            Mangleness: 0.1
+      #Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -392,6 +414,7 @@
         damage:
           types:
             Radiation: -1
+            Mangleness: 0.1 #Sunrise-Edit
       - !type:ChemVomit
         probability: 0.02
       - !type:HealthChange
@@ -443,6 +466,7 @@
         damage:
           types:
             Asphyxiation: -2
+            Mangleness: 0.2 #Sunrise-Edit
       - !type:ModifyBleedAmount
         amount: -0.25
 
@@ -463,6 +487,7 @@
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
+            Mangleness: 0.05 #Sunrise-Edit
       - !type:SatiateThirst
         factor: -10
         conditions:
@@ -494,6 +519,7 @@
         damage:
           types:
             Cold: -4
+            Mangleness: 0.4 #Sunrise-Edit
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
@@ -524,6 +550,12 @@
   metabolisms:
     Medicine:
       effects:
+      #Sunrise-Start
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: 0.05
+      #Sunrise-End
       - !type:HealthChange
         probability: 0.3
         damage:
@@ -582,6 +614,7 @@
             Cellular: -0.3
             Radiation: 0.15
             Caustic: 0.15
+            Mangleness: 0.1 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -615,6 +648,7 @@
             Brute: -3.5
           types:
             Asphyxiation: -2.5
+            Mangleness: 0.1 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -683,6 +717,12 @@
   metabolisms:
     Drink:
       effects:
+        #Sunrise-Start
+        - !type:HealthChange
+          damage:
+            types:
+              Mangleness: 0.2
+        #Sunrise-End
         - !type:SatiateThirst
           factor: 6
           conditions:
@@ -707,6 +747,7 @@
         damage:
           types:
             Caustic: -5
+            Mangleness: 0.15 #Sunrise-Edit
 
 - type: reagent
   id: Stellibinin
@@ -723,6 +764,7 @@
         damage:
           types:
             Poison: -4
+            Mangleness: 0.15 #Sunrise-Edit
       - !type:AdjustReagent
         conditions:
         - !type:ReagentThreshold
@@ -774,6 +816,12 @@
       # but still technically stop your bleeding.
       - !type:ModifyBleedAmount
         amount: -1.5
+      #Sunrise-Start
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: 0.3
+        #Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -805,6 +853,7 @@
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
+            Mangleness: -0.05 #Sunrise-Edit
 
 - type: reagent
   id: Lipozine
@@ -833,6 +882,12 @@
   metabolisms:
     Medicine:
       effects:
+      #Sunrise-Start
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: -0.2
+      #Sunrise-End
       - !type:EvenHealthChange
         damage:
           Burn: -2
@@ -860,6 +915,10 @@
           groups:
             Toxin: -3
             Brute: 0.5
+                #Sunrise-Start
+          types:
+            Mangleness: 0.1
+      #Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -981,6 +1040,7 @@
         damage:
           types:
             Caustic: -3
+            Mangleness: 0.45 # Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1036,6 +1096,7 @@
         damage:
           types:
             Slash: -3
+            Mangleness: 0.3 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1060,6 +1121,7 @@
           types:
             Piercing: -4
             Blunt: 0.1
+            Mangleness: 0.4 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1083,6 +1145,7 @@
         damage:
           types:
             Blunt: -3.5
+            Mangleness: 0.35 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1142,6 +1205,7 @@
             Heat: -0.5
             Shock: -0.5
             Cold: -0.5
+            Mangleness: -0.1
             # Sunrise-End
   reactiveEffects:
     Unholy:
@@ -1188,6 +1252,7 @@
         damage:
           types:
             Heat: -1
+            Mangleness: 0.1 #Sunrise-Edit
       # od causes massive bleeding
       - !type:HealthChange
         conditions:
@@ -1225,6 +1290,7 @@
         damage:
           types:
             Shock: -4
+            Mangleness: 0.6 #Sunrise-Edit
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -4
@@ -1301,6 +1367,7 @@
               Burn: -5
             types:
               Poison: -2
+              Mangleness: -0.5 #Sunrise-Edit
 
 - type: reagent
   id : Aloxadone
