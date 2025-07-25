@@ -18,6 +18,10 @@ public sealed class ExtendedColorSelectorSliders : Control
 
     private readonly BoxContainer _bodyBox;
 
+    private readonly BoxContainer _selectorContainer;
+    private readonly BoxContainer _sliderContainer;
+    private readonly BoxContainer _toggleContainer;
+
     public Action<ExtendedColor>? OnColorChanged;
 
     public ColorType CurrentType
@@ -63,6 +67,17 @@ public sealed class ExtendedColorSelectorSliders : Control
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
         rootBox.AddChild(_bodyBox);
 
+        _selectorContainer = new BoxContainer
+            { Orientation = BoxContainer.LayoutOrientation.Vertical };
+        _bodyBox.AddChild(_selectorContainer);
+
+        _sliderContainer = new BoxContainer
+            { Orientation = BoxContainer.LayoutOrientation.Vertical };
+        _bodyBox.AddChild(_sliderContainer);
+
+        _toggleContainer = new BoxContainer();
+        _bodyBox.AddChild(_toggleContainer);
+
         Color = defaultColor;
         _currentType = defaultColor.Type;
         _typeSelector.TrySelect(_types.IndexOf(_currentType));
@@ -80,12 +95,16 @@ public sealed class ExtendedColorSelectorSliders : Control
         colorSelector.OnColorChanged += _ => OnColorsChanged();
 
         _colorSelectors.Add(key, colorSelector);
-        _bodyBox.AddChild(colorSelector);
+        _selectorContainer.AddChild(colorSelector);
 
         return colorSelector;
     }
 
-    private Slider CreateSlider(string label, float defaultValue, float minValue, float maxValue)
+    private void CreateSlider(string label,
+        int defaultValue,
+        int minValue,
+        int maxValue,
+        Action<float> onValueChanged)
     {
         var slider = new Slider
         {
@@ -98,18 +117,88 @@ public sealed class ExtendedColorSelectorSliders : Control
         slider.MaxValue = maxValue;
 
         _sliders.Add(slider);
-        slider.OnValueChanged += _ => OnColorsChanged();
 
         var sliderContainer = new BoxContainer();
 
         var sliderLabel = new Label();
         sliderLabel.Text = label;
 
+        var spinBox = new SpinBox
+        {
+            IsValid = value => IsSpinBoxValid(value, minValue, maxValue)
+        };
+        spinBox.InitDefaultButtons();
+        spinBox.ValueChanged += value =>
+        {
+            slider.SetValueWithoutEvent(value.Value);
+            OnColorsChanged();
+        };
+        spinBox.Value = defaultValue;
+
+        slider.OnValueChanged += value =>
+        {
+            OnColorsChanged();
+            spinBox.Value = (int)(value.Value);
+        };
+
+
         sliderContainer.AddChild(sliderLabel);
         sliderContainer.AddChild(slider);
-        _bodyBox.AddChild(sliderContainer);
+        sliderContainer.AddChild(spinBox);
+        _sliderContainer.AddChild(sliderContainer);
 
-        return slider;
+        BindSlider(slider, spinBox, onValueChanged);
+    }
+
+    private void BindSlider(Slider slider, SpinBox spinBox, Action<float> setValue)
+    {
+        slider.OnValueChanged += val =>
+        {
+            setValue(val.Value);
+            spinBox.Value = (int)(val.Value);
+
+            OnColorsChanged();
+        };
+
+        spinBox.ValueChanged += val =>
+        {
+            setValue(val.Value);
+            slider.SetValueWithoutEvent(val.Value);
+            OnColorsChanged();
+        };
+    }
+
+    private void CreateToggle(string label, bool defaultValue, Action<bool> onValueChanged)
+    {
+        var button = new Button
+        {
+            Text = label,
+            ToggleMode = true,
+            Pressed = defaultValue,
+        };
+
+        button.OnToggled += _ => OnColorsChanged();
+
+        _toggleContainer.AddChild(button);
+
+        BindToggle(button, onValueChanged);
+    }
+
+    private void BindToggle(Button toggle, Action<bool> setValue)
+    {
+        toggle.OnToggled += val =>
+        {
+            setValue(val.Pressed);
+            OnColorsChanged();
+        };
+    }
+
+    private bool IsSpinBoxValid(int value, float min, float max)
+    {
+        if (value > max)
+            return false;
+
+        return !(value < min);
     }
 
     private void OnColorsChanged()
@@ -127,25 +216,59 @@ public sealed class ExtendedColorSelectorSliders : Control
     private void Populate()
     {
         _colorSelectors.Clear();
-        _bodyBox.DisposeAllChildren();
+        _selectorContainer.DisposeAllChildren();
+        _sliderContainer.DisposeAllChildren();
+        _toggleContainer.DisposeAllChildren();
+
+        // Самый обычный тип, просто добавляем селектор
+        if (CurrentType == ColorType.Color)
+        {
+            CreateSelector();
+            return;
+        }
+
         switch (CurrentType)
         {
-            case ColorType.Color:
-                CreateSelector();
-                break;
             case ColorType.Gradient:
                 CreateSelector();
                 CreateSelector("gradient");
 
                 // TODO: локализация слайдерам
-                var offsetYSlider = CreateSlider("offsetY", 0, -1, 1f);
-                offsetYSlider.OnValueChanged += val => Color.Offset.Y = val.Value;
+                CreateSlider(
+                    "offsetY",
+                    (int)MathF.Round(Color.Offset.Y * 100),
+                    -100,
+                    100,
+                    val => Color.Offset.Y = val / 100f
+                );
 
-                var scaleYSlider = CreateSlider("scaleY", 1, 0.2f, 3f);
-                scaleYSlider.OnValueChanged += val => Color.Size.Y = val.Value;
+                CreateSlider(
+                    "sizeY",
+                    (int)MathF.Round(Color.Size.Y * 100),
+                    30,
+                    500,
+                    val => Color.Size.Y = val / 100f
+                );
 
-                var rotationSlider = CreateSlider("rotation", 0, 0f, 360f);
-                rotationSlider.OnValueChanged += val => Color.Rotation = val.Value;
+                CreateSlider(
+                    "rotation",
+                    (int)MathF.Round(Color.Rotation),
+                    0,
+                    360,
+                    val => Color.Rotation = val
+                );
+
+                CreateToggle(
+                    "pixelation",
+                    Color.Pixelated,
+                    toggle => Color.Pixelated = toggle
+                );
+
+                CreateToggle(
+                    "mirror",
+                    Color.Mirrored,
+                    toggle => Color.Mirrored = toggle
+                );
 
                 break;
         }

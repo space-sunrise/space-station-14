@@ -486,7 +486,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             appearance.FacialHairColorType,
             facialHairExtendedColor);
     }
-
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
     {
         if (maybeOther is not HumanoidCharacterAppearance other) return false;
@@ -499,9 +498,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!Markings.SequenceEqual(other.Markings)) return false;
         // sunrise gradient edit start
         if (!HairColorType.Equals(other.HairColorType)) return false;
-        if (!Equals(HairExtendedColor, other.HairExtendedColor)) return false;
+        if (HairExtendedColor?.Equals(other.HairExtendedColor) != true) return false;
         if (!FacialHairColorType.Equals(other.FacialHairColorType)) return false;
-        if (!Equals(FacialHairExtendedColor, other.FacialHairExtendedColor)) return false;
+        if (FacialHairExtendedColor?.Equals(other.FacialHairExtendedColor) != true) return false;
         // sunrise gradient edit end
         return true;
     }

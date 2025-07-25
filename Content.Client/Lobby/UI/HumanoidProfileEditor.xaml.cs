@@ -318,8 +318,9 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
+                var newExtended = newColor.marking.ExtendedColors[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newColor.marking.ExtendedColors[0])); // sunrise gradient edit
+                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
                 UpdateCMarkingsHair();
                 ReloadPreview();
             };
@@ -337,8 +338,9 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
+                var newExtended = newColor.marking.ExtendedColors[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newColor.marking.ExtendedColors[0])); // sunrise gradient edit
+                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
                 UpdateCMarkingsFacialHair();
                 ReloadPreview();
             };
@@ -1569,7 +1571,7 @@ namespace Content.Client.Lobby.UI
                         Profile.Appearance.HairStyleId,
                         new[] { Profile.Appearance.HairColor },
                         Profile.Appearance.HairExtendedColor is { } hairExt
-                            ? new List<ExtendedColor> { hairExt }
+                            ? new List<ExtendedColor> { hairExt.Clone() }
                             : null)
                 }
             };
@@ -1583,7 +1585,7 @@ namespace Content.Client.Lobby.UI
                         Profile.Appearance.FacialHairStyleId,
                         new[] { Profile.Appearance.FacialHairColor },
                         Profile.Appearance.FacialHairExtendedColor is { } facialExt
-                            ? new List<ExtendedColor> { facialExt }
+                            ? new List<ExtendedColor> { facialExt.Clone() }
                             : null)
                 }
             };
@@ -1629,7 +1631,7 @@ namespace Content.Client.Lobby.UI
                     Profile.Appearance.HairStyleId,
                     new List<Color>() { hairColor.Value },
                     Profile.Appearance.HairExtendedColor is { } hairExt
-                        ? new List<ExtendedColor> { hairExt }
+                        ? new List<ExtendedColor> { hairExt.Clone() }
                         : null);
             }
             else
@@ -1668,7 +1670,7 @@ namespace Content.Client.Lobby.UI
                     Profile.Appearance.FacialHairStyleId,
                     new List<Color>() { facialHairColor.Value },
                     Profile.Appearance.FacialHairExtendedColor is { } facialExt
-                        ? new List<ExtendedColor> { facialExt }
+                        ? new List<ExtendedColor> { facialExt.Clone() }
                         : null);
             }
             else

@@ -262,15 +262,14 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             var colorIndex = i;
             selector.OnColorChanged += color =>
             {
-                var newCol = color.GetColor("base");
+                var newCol = color.Colors["base"];
                 if (marking.MarkingColors[colorIndex] != newCol)
-                {
                     marking.SetColor(colorIndex, newCol);
-                    marking.SetExtendedColor(colorIndex, color);
-                }
+
+                if(marking.ExtendedColors?[colorIndex].Equals(color) != true)
+                    marking.SetExtendedColor(colorIndex, color.Clone());
 
                 OnColorChanged!((_slot, marking));
-                //OnExtendedColorChanged!((_slot, marking));
             };
 
             ColorSelectorContainer.AddChild(selector);

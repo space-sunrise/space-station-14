@@ -4,7 +4,12 @@ uniform highp vec2 texScale;
 uniform highp vec2 offset;
 uniform highp vec2 size;
 uniform highp float rotation;
+uniform bool pixelated;
+uniform bool mirrored;
 
+highp float mirror(highp float x) {
+    return mix(x, abs(fract(x) * 2.0 - 1.0), mirrored);
+}
 
 void fragment() {
 
@@ -19,12 +24,17 @@ void fragment() {
         cos_a, -sin_a,
         sin_a,  cos_a
     );
+
+    uv = mix(uv, floor(uv * texScale) / texScale, pixelated);
+
     uv = rot * uv;
     uv += center;
 
     highp vec4 base = texture2D(TEXTURE, UV);
-    highp vec3 gradient = mix(color2, color1, uv.y * size.y + offset.y);
+    highp float t = mirror(uv.y / size.y + offset.y);
+    highp vec3 gradient = mix(color2, color1, t);
     // gradient = floor(gradient * texScale.y + 0.5) / texScale.y;
 	COLOR = vec4(base.rgb * gradient, base.a);
-    // COLOR = vec4(uv.x, uv.y, 0, 1);
+    // COLOR = vec4(gradient, base.a);
+    // COLOR = vec4(uv.x, uv.y / size.y + offset.y, 0, 1);
 }

@@ -25,6 +25,8 @@ public static class ExtendedColorShaders
                 instance.SetParameter("offset", color.Offset);
                 instance.SetParameter("size", color.Size);
                 instance.SetParameter("rotation", color.Rotation);
+                instance.SetParameter("pixelated", color.Pixelated);
+                instance.SetParameter("mirrored", color.Mirrored);
                 break;
         }
     }
