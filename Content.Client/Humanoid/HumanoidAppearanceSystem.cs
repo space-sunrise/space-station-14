@@ -3,6 +3,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise;
+using Content.Shared._Sunrise.ExtendedColor;
 using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -177,13 +178,17 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             ? profile.Appearance.SkinColor.WithAlpha(hairAlpha)
             : profile.Appearance.HairColor;
         var hair = new Marking(profile.Appearance.HairStyleId,
-            new[] { hairColor });
+            new[] { hairColor },
+            profile.Appearance.HairColorType,
+            profile.Appearance.HairExtendedColor);
 
         var facialHairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _prototypeManager)
             ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha)
             : profile.Appearance.FacialHairColor;
         var facialHair = new Marking(profile.Appearance.FacialHairStyleId,
-            new[] { facialHairColor });
+            new[] { facialHairColor },
+            profile.Appearance.FacialHairColorType,
+            profile.Appearance.FacialHairExtendedColor);
 
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {
@@ -251,7 +256,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype))
                 {
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity);
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity, marking.ExtendedColor); // Sunrise-Edit
                     //if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentTop)
                     //    applyUndergarmentTop = false;
                     //else if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentBottom)
@@ -343,7 +348,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     public void ApplyMarking(MarkingPrototype markingPrototype, // Sunrise-Edit
         IReadOnlyList<Color>? colors,
         bool visible,
-        Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
+        Entity<HumanoidAppearanceComponent, SpriteComponent> entity,
+        ExtendedColor? extendedColor = null)
     {
         var humanoid = entity.Comp1;
         var sprite = entity.Comp2;
@@ -491,7 +497,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             foreach (var marking in markingList)
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype) && markingPrototype.BodyPart == layer)
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite));
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite), marking.ExtendedColor); // Sunrise-Edit
             }
         }
     }

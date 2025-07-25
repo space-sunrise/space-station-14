@@ -1,7 +1,9 @@
 using System.Linq;
+using Content.Shared._Sunrise.ExtendedColor;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared._Sunrise.ExtendedColor;
 
 namespace Content.Shared.Humanoid.Markings
 {
@@ -12,20 +14,34 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("markingColor")]
         private List<Color> _markingColors = new();
 
+        // sunrise gradient edit start
+        [DataField("colorType")]
+        public ColorType ColorType = ColorType.Color;
+        [DataField("extendedColor")]
+        public ExtendedColor? ExtendedColor;
+        // sunrise gradient edit end
+
+
         private Marking()
         {
         }
 
         public Marking(string markingId,
-            List<Color> markingColors)
+            List<Color> markingColors,
+            ColorType colorType = ColorType.Color,
+            ExtendedColor? extendedColor = null)
         {
             MarkingId = markingId;
             _markingColors = markingColors;
+            ColorType = colorType; // sunrise gradient edit
+            ExtendedColor = extendedColor; // sunrise gradient edit
         }
 
         public Marking(string markingId,
-            IReadOnlyList<Color> markingColors)
-            : this(markingId, new List<Color>(markingColors))
+            IReadOnlyList<Color> markingColors,
+            ColorType colorType = ColorType.Color,
+                ExtendedColor? extendedColor = null)
+            : this(markingId, new List<Color>(markingColors), colorType, extendedColor)
         {
         }
 
@@ -130,19 +146,74 @@ namespace Content.Shared.Humanoid.Markings
             foreach (Color color in _markingColors)
                 colorStringList.Add(color.ToHex());
 
-            return $"{sanitizedName}@{String.Join(',', colorStringList)}";
+            if (ColorType == ColorType.Color || ExtendedColor == null)
+                return $"{sanitizedName}@{String.Join(',', colorStringList)}";
+
+            Dictionary<string, string> extColorStringDict = new();
+            foreach ((string key, Color color) in ExtendedColor.Colors)
+                extColorStringDict[key] = color.ToHex();
+
+            var extColorsString = string.Join(",", extColorStringDict.Select(kv => $"{kv.Key}={kv.Value}"));
+            return $"{sanitizedName}@{String.Join(',', colorStringList)}@{ColorType}@{extColorsString}";
         }
 
         public static Marking? ParseFromDbString(string input)
         {
-            if (input.Length == 0) return null;
-            var split = input.Split('@');
-            if (split.Length != 2) return null;
-            List<Color> colorList = new();
-            foreach (string color in split[1].Split(','))
-                colorList.Add(Color.FromHex(color));
+            if (string.IsNullOrEmpty(input))
+                return null;
 
-            return new Marking(split[0], colorList);
+            var split = input.Split('@');
+
+            switch (split.Length)
+            {
+                case 2:
+                {
+                    var name = split[0];
+                    var colorsRaw = split[1];
+                    var colorList = new List<Color>();
+                    foreach (var colorHex in colorsRaw.Split(','))
+                        colorList.Add(Color.FromHex(colorHex));
+
+                    return new Marking(name, colorList);
+                }
+                case 4:
+                {
+                    var name = split[0];
+                    var colorsRaw = split[1];
+                    var colorTypeStr = split[2];
+                    var extColorsRaw = split[3];
+
+                    var colorList = new List<Color>();
+                    foreach (var colorHex in colorsRaw.Split(','))
+                        colorList.Add(Color.FromHex(colorHex));
+
+                    if (!Enum.TryParse<ColorType>(colorTypeStr, out var colorType))
+                        colorType = ColorType.Color;
+
+                    var extColorDict = new Dictionary<string, Color>();
+                    foreach (var kvp in extColorsRaw.Split(','))
+                    {
+                        var pair = kvp.Split('=');
+                        if (pair.Length != 2)
+                            continue;
+                        var key = pair[0];
+                        var valueHex = pair[1];
+                        extColorDict[key] = Color.FromHex(valueHex);
+                    }
+
+                    var extendedColor = new ExtendedColor(colorType, extColorDict);
+
+                    var marking = new Marking(name, colorList)
+                    {
+                        ColorType = colorType,
+                        ExtendedColor = extendedColor
+                    };
+
+                    return marking;
+                }
+                default:
+                    return null;
+            }
         }
     }
 }

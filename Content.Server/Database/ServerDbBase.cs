@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Shared._Sunrise.ExtendedColor;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -282,7 +283,13 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    //sunrise gradient start
+                    (ColorType)profile.HairColorType,
+                    ExtendedColor.FromString(profile.HairExtendedColor),
+                    (ColorType)profile.FacialHairColorType,
+                    ExtendedColor.FromString(profile.FacialHairExtendedColor)
+                    //sunrise gradient end
                 ),
                 spawnPriority,
                 jobs,
@@ -316,6 +323,12 @@ namespace Content.Server.Database
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
+            // sunrise gradient start
+            profile.HairColorType = (int)appearance.HairColorType;
+            profile.HairExtendedColor = appearance.HairExtendedColor?.ToString() ?? "";
+            profile.FacialHairColorType = (int)appearance.FacialHairColorType;
+            profile.FacialHairExtendedColor = appearance.FacialHairExtendedColor?.ToString() ?? "";
+            // sunrise gradient end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
