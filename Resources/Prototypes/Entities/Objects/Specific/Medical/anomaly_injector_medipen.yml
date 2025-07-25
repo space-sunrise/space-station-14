@@ -2,12 +2,16 @@
   name: anomaly injector medipen
   id: AnomalyInjectorMedipen
   parent: BaseItem
-  description: Медипен, заражающий аномалией при использовании на себе или другом игроке. Не содержит реагентов.
+  description: Медипен, заражающий аномалией при использовании на себе или другом игроке.
   components:
     - type: Sprite
       sprite: Objects/Specific/Medical/medipen.rsi
       layers:
         - state: medipen
+    - type: SolutionContainerVisuals
+      maxFillLevels: 1
+      changeColor: false
+      emptySpriteName: medipen_empty
     - type: Item
       sprite: Objects/Specific/Medical/medipen.rsi
       size: Tiny
@@ -31,3 +35,7 @@
             Vox:
               sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
               state: bluespace_VOX
+    - type: SolutionContainerManager
+      solutions:
+        pen:
+          maxVol: 1

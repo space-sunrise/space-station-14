@@ -7,6 +7,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Server.Audio;
+using Content.Shared.Chemistry;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Anomaly.Systems;
 
@@ -27,24 +29,33 @@ public sealed partial class AnomalyInjectorMedipenSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
+        // Если инъектор уже использован — попап и выход
+        if (_entMan.HasComponent<UsedAnomalyInjectorMedipenComponent>(uid))
+        {
+            _popup.PopupEntity("Автоинъектор пуст", uid, args.User);
+            return;
+        }
+
         // Проверяем, что цель — живой моб
         if (!_entMan.HasComponent<MobStateComponent>(target))
             return;
 
-        // Проверяем, что у цели нет уже InnerBodyAnomalyComponent
+        // Если цель уже заражена — попап и выход
         if (_entMan.HasComponent<InnerBodyAnomalyComponent>(target))
         {
-            _popup.PopupEntity("Цель уже заражена аномалией!", target, args.User);
+            _popup.PopupEntity("Кожа не поддается срабатыванию автоинъектора", target, args.User);
             return;
         }
 
         // Добавляем компоненты заражения
         _entMan.AddComponents(target, comp.InjectionComponents);
 
+        // Добавляем компонент, помечающий как использованный
+        _entMan.AddComponent<UsedAnomalyInjectorMedipenComponent>(uid);
+
         // Проигрываем звук напрямую (жестко задаём путь к звуку, как в YAML)
         _audio.PlayPvs("/Audio/Items/hypospray.ogg", uid);
 
-        _popup.PopupEntity("Вы заразили цель аномалией!", target, args.User);
         args.Handled = true;
     }
 }

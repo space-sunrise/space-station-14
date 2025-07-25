@@ -11,3 +11,8 @@ public sealed partial class AnomalyInjectorMedipenComponent : Component
     [DataField(required: true)]
     public ComponentRegistry InjectionComponents = default!;
 }
+
+[RegisterComponent]
+public sealed partial class UsedAnomalyInjectorMedipenComponent : Component
+{
+}
