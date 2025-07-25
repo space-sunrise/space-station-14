@@ -182,11 +182,10 @@
         - !type:ReagentThreshold
           reagent: Nitrium
           min: 0.5
-        scaleByQuantity: true
         ignoreResistances: true
         damage:
-          type:
-            Mangleness: 0.1 
+          types:
+            Mangleness: 0.4
       - !type:HealthChange
         conditions:
           - !type:ReagentThreshold
