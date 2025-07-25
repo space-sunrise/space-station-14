@@ -109,19 +109,6 @@
     state: drone_teeth
 
 - type: marking
-  id: HumanoidXenoHeadPredalien
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [HumanoidXeno]
-  sprites:
-  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
-    state: predalien_head
-  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
-    state: predalien_hair
-  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
-    state: predalien_teeth
-
-- type: marking
   id: HumanoidXenoHeadPretor
   bodyPart: Head
   markingCategory: Head
