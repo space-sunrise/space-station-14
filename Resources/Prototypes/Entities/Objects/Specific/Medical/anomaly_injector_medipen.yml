@@ -1,0 +1,33 @@
+- type: entity
+  name: anomaly injector medipen
+  id: AnomalyInjectorMedipen
+  parent: BaseItem
+  description: Медипен, заражающий аномалией при использовании на себе или другом игроке. Не содержит реагентов.
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Medical/medipen.rsi
+      layers:
+        - state: medipen
+    - type: Item
+      sprite: Objects/Specific/Medical/medipen.rsi
+      size: Tiny
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Items/hypospray.ogg
+    - type: AnomalyInjectorMedipen
+      injectionComponents:
+        - type: Anomaly
+          deleteEntity: false
+          maxPointsPerSecond: 100
+          corePrototype: AnomalyCoreBluespace
+          coreInertPrototype: AnomalyCoreBluespaceInert
+        - type: InnerBodyAnomaly
+          injectionProto: AnomalyInjectionBluespace
+          startMessage: inner-anomaly-start-message-bluespace
+          fallbackSprite:
+            sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+            state: bluespace
+          speciesSprites:
+            Vox:
+              sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+              state: bluespace_VOX
