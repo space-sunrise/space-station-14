@@ -10,6 +10,30 @@
     {
       "name": "long_primary",
       "directions": 4
+    },
+    {
+      "name": "predalien",
+      "directions": 4
+    },
+    {
+      "name": "pretor",
+      "directions": 4
+    },
+    {
+      "name": "queen1",
+      "directions": 4
+    },
+    {
+      "name": "queen2",
+      "directions": 4
+    },
+    {
+      "name": "runner",
+      "directions": 4
+    },
+    {
+      "name": "spitter",
+      "directions": 4
     }
   ]
 }
