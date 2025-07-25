@@ -136,7 +136,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.2
+            Mangleness: 0.1
       #Sunrise-End
       - !type:HealthChange
         conditions:
