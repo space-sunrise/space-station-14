@@ -23,6 +23,7 @@ using Content.Shared.Emag.Components;
 using Content.Server.Station.Events;
 using Robust.Server.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Tag;
 
 namespace Content.Server._Sunrise.PrinterDoc;
 
@@ -96,12 +97,31 @@ public sealed class PrinterDocSystem : EntitySystem
         if (args.Container.ID != PrinterDocComponent.CopySlotId)
             return;
 
-        if (!TryComp<PhysicalCompositionComponent>(args.Entity, out var composition))
-            return;
-
-        foreach (var (materialId, amount) in composition.MaterialComposition)
+        if (!TryComp<PaperComponent>(args.Entity, out var paperComp))
         {
-            _materialStorage.TryChangeMaterialAmount(uid, materialId, amount);
+            UpdateUserInterface(uid, comp);
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(paperComp.Content))
+        {
+            Timer.Spawn(TimeSpan.FromMilliseconds(1), () =>
+            {
+                if (Deleted(uid) || Deleted(args.Entity))
+                    return;
+
+                if (!comp.CopySlot.HasItem || comp.CopySlot.Item != args.Entity)
+                    return;
+
+                if (TryComp<TagComponent>(args.Entity, out var tag) && tag.Tags.Contains("Paper"))
+                {
+                    _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, 100);
+                    QueueDel(args.Entity);
+                    UpdateUserInterface(uid, comp);
+                }
+            });
+
+            return;
         }
 
         UpdateUserInterface(uid, comp);

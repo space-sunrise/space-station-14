@@ -40,6 +40,7 @@
     whitelist:
       tags:
       - SheetOfficePaper
+      - Paper
     storage:
       officePaper: 0
     dropOnDeconstruct: false

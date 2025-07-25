@@ -13,19 +13,8 @@
             <!-- Поиск -->
             <LineEdit Name="SearchBar" PlaceHolder="{Loc 'printerdoc-menu-search-placeholder'}" HorizontalExpand="True"/>
 
-            <!-- Кнопки фильтрации -->
-            <ScrollContainer HorizontalExpand="True"
-                             VerticalExpand="False"
-                             MinHeight="35"
-                             HScrollEnabled="True"
-                             VScrollEnabled="False">
-                <BoxContainer Orientation="Horizontal"
-                              Name="FilterButtonsContainer"
-                              HorizontalExpand="True"
-                              VerticalExpand="False"
-                              VerticalAlignment="Center"
-                              SeparationOverride="5"/>
-            </ScrollContainer>
+            <!-- Фильтр -->
+            <OptionButton Name="FilterDropdown" HorizontalExpand="True" MinHeight="30" Prefix=""/>
 
             <!-- Заголовок списка -->
             <Label Text="{Loc 'printerdoc-menu-templates'}" Margin="0 5 0 0" HorizontalAlignment="Center"/>

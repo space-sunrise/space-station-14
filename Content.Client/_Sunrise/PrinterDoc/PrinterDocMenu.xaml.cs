@@ -24,7 +24,6 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     private string _searchText = string.Empty;
     private List<string> _allTemplates = new();
     private string? _activeComponentFilter = null;
-    private Button? _activeFilterButton;
 
     public PrinterDocMenu()
     {
@@ -43,13 +42,25 @@ public sealed partial class PrinterDocMenu : DefaultWindow
             PopulateTemplates();
         };
 
-        CreateFilterButtons();
+        FilterDropdown.OnItemSelected += args =>
+        {
+            var metadata = FilterDropdown.GetItemMetadata(args.Id) as string;
+            _activeComponentFilter = string.IsNullOrEmpty(metadata) ? null : metadata;
+
+            _searchText = string.Empty;
+            SearchBar.Text = string.Empty;
+
+            FilterDropdown.SelectId(args.Id);
+            PopulateTemplates();
+        };
+
+        CreateFilterDropdown();
     }
 
     private void OnTemplateSelected(ItemList.ItemListSelectedEventArgs args)
     {
-        _currentTemplate = (string) args.ItemList[args.ItemIndex].Metadata!;
-        PrintButton.Disabled = _incVolume <= 0.0f;
+        _currentTemplate = args.ItemList[args.ItemIndex].Metadata as string;
+        PrintButton.Disabled = _incVolume <= 0.0f || _currentTemplate == null;
     }
 
     private void OnTemplateDeselected(ItemList.ItemListDeselectedEventArgs args)
@@ -82,13 +93,13 @@ public sealed partial class PrinterDocMenu : DefaultWindow
             QueueList.AddItem(job.ToString());
         }
 
-        CreateFilterButtons();
+        CreateFilterDropdown();
         PopulateTemplates();
     }
 
-    private void CreateFilterButtons()
+    private void CreateFilterDropdown()
     {
-        FilterButtonsContainer.Children.Clear();
+        FilterDropdown.Clear();
 
         var allowedComponents = new[]
         {
@@ -104,48 +115,34 @@ public sealed partial class PrinterDocMenu : DefaultWindow
             .OrderBy(c => c)
             .ToList();
 
-        CreateFilterButton(null, Loc.GetString("printerdoc-filter-all"));
+        // Добавляем "Все"
+        FilterDropdown.AddItem(Loc.GetString("printerdoc-filter-all"), 0);
+        FilterDropdown.SetItemMetadata(0, string.Empty);
 
-        foreach (var component in usedComponents)
+        for (var i = 0; i < usedComponents.Count; i++)
         {
+            var component = usedComponents[i];
             var localized = Loc.GetString($"printerdoc-component-{component}");
-            CreateFilterButton(component, localized);
-        }
-    }
-
-    private void CreateFilterButton(string? component, string text)
-    {
-        var button = new Button
-        {
-            Text = text,
-            Margin = new Thickness(0, 0, 4, 0),
-            ToggleMode = true,
-            HorizontalExpand = false,
-            VerticalExpand = false,
-            MinSize = new Vector2(100, 30)
-        };
-
-        button.OnPressed += _ =>
-        {
-            _activeComponentFilter = component;
-            _searchText = string.Empty;
-            SearchBar.Text = string.Empty;
-
-            if (_activeFilterButton != null && _activeFilterButton != button)
-                _activeFilterButton.Pressed = false;
-
-            _activeFilterButton = button;
-            button.Pressed = true;
-            PopulateTemplates();
-        };
-
-        if (_activeComponentFilter == component)
-        {
-            _activeFilterButton = button;
-            button.Pressed = true;
+            var id = i + 1;
+            FilterDropdown.AddItem(localized, id);
+            FilterDropdown.SetItemMetadata(id, component);
         }
 
-        FilterButtonsContainer.AddChild(button);
+        // Обновляем отображаемый текст на текущем выбранном
+        var selectedId = 0;
+        if (_activeComponentFilter != null)
+        {
+            foreach (var (data, idx) in usedComponents.Select((c, i) => (c, i + 1)))
+            {
+                if (data == _activeComponentFilter)
+                {
+                    selectedId = idx;
+                    break;
+                }
+            }
+        }
+
+        FilterDropdown.SelectId(selectedId);
     }
 
     private void PopulateTemplates()
@@ -158,7 +155,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
         {
             if (_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto))
             {
-                TemplateList.AddItem(Loc.GetString(proto.Name), metadata: id);
+                TemplateList.AddItem(Loc.GetString(proto.Name)).Metadata = id;
             }
         }
     }
@@ -187,5 +184,4 @@ public sealed partial class PrinterDocMenu : DefaultWindow
 
         return name.Contains(search) || idLower.Contains(search);
     }
-
 }
