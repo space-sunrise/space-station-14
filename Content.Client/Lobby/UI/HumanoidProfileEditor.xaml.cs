@@ -10,6 +10,7 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Sunrise;
+using Content.Shared._Sunrise.ExtendedColor;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -287,7 +288,7 @@ namespace Content.Client.Lobby.UI
                 if (Profile is null)
                     return;
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairExtendedColor(newColor.marking.ExtendedColor));
+                    Profile.Appearance.WithHairExtendedColor(newColor.marking.ExtendedColors[0]));
                 UpdateCMarkingsHair();
                 ReloadPreview();
             };
@@ -297,7 +298,7 @@ namespace Content.Client.Lobby.UI
                 if (Profile is null)
                     return;
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.ExtendedColor));
+                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.ExtendedColors[0]));
                 UpdateCMarkingsFacialHair();
                 ReloadPreview();
             };
@@ -318,7 +319,7 @@ namespace Content.Client.Lobby.UI
                 if (Profile is null)
                     return;
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newColor.marking.ExtendedColor)); // sunrise gradient edit
+                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newColor.marking.ExtendedColors[0])); // sunrise gradient edit
                 UpdateCMarkingsHair();
                 ReloadPreview();
             };
@@ -337,7 +338,7 @@ namespace Content.Client.Lobby.UI
                 if (Profile is null)
                     return;
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newColor.marking.ExtendedColor)); // sunrise gradient edit
+                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newColor.marking.ExtendedColors[0])); // sunrise gradient edit
                 UpdateCMarkingsFacialHair();
                 ReloadPreview();
             };
@@ -1562,25 +1563,29 @@ namespace Content.Client.Lobby.UI
             var hairMarking = Profile.Appearance.HairStyleId switch
             {
                 HairStyles.DefaultHairStyle => new List<Marking>(),
-                _ => new()
+                _ => new List<Marking>
                 {
-                    new(Profile.Appearance.HairStyleId,
-                        new List<Color>() { Profile.Appearance.HairColor },
-                        Profile.Appearance.HairColorType,
-                        Profile.Appearance.HairExtendedColor)
-                },
+                    new(
+                        Profile.Appearance.HairStyleId,
+                        new[] { Profile.Appearance.HairColor },
+                        Profile.Appearance.HairExtendedColor is { } hairExt
+                            ? new List<ExtendedColor> { hairExt }
+                            : null)
+                }
             };
 
             var facialHairMarking = Profile.Appearance.FacialHairStyleId switch
             {
                 HairStyles.DefaultFacialHairStyle => new List<Marking>(),
-                _ => new()
+                _ => new List<Marking>
                 {
-                    new(Profile.Appearance.FacialHairStyleId,
-                        new List<Color>() { Profile.Appearance.FacialHairColor },
-                        Profile.Appearance.FacialHairColorType,
-                        Profile.Appearance.FacialHairExtendedColor)
-                },
+                    new(
+                        Profile.Appearance.FacialHairStyleId,
+                        new[] { Profile.Appearance.FacialHairColor },
+                        Profile.Appearance.FacialHairExtendedColor is { } facialExt
+                            ? new List<ExtendedColor> { facialExt }
+                            : null)
+                }
             };
 
             HairStylePicker.UpdateData(
@@ -1623,8 +1628,9 @@ namespace Content.Client.Lobby.UI
                 Markings.HairMarking = new (
                     Profile.Appearance.HairStyleId,
                     new List<Color>() { hairColor.Value },
-                    Profile.Appearance.HairColorType,
-                    Profile.Appearance.HairExtendedColor);
+                    Profile.Appearance.HairExtendedColor is { } hairExt
+                        ? new List<ExtendedColor> { hairExt }
+                        : null);
             }
             else
             {
@@ -1658,11 +1664,12 @@ namespace Content.Client.Lobby.UI
             }
             if (facialHairColor != null)
             {
-                Markings.FacialHairMarking = new (
+                Markings.FacialHairMarking = new(
                     Profile.Appearance.FacialHairStyleId,
                     new List<Color>() { facialHairColor.Value },
-                    Profile.Appearance.FacialHairColorType,
-                    Profile.Appearance.FacialHairExtendedColor);
+                    Profile.Appearance.FacialHairExtendedColor is { } facialExt
+                        ? new List<ExtendedColor> { facialExt }
+                        : null);
             }
             else
             {

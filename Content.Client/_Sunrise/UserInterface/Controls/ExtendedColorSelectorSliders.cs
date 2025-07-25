@@ -6,22 +6,15 @@ namespace Content.Client._Sunrise.UserInterface.Controls;
 
 public sealed class ExtendedColorSelectorSliders : Control
 {
-    public ExtendedColor Color
-    {
-        get => _currentColor;
-        set => _currentColor = value;
-    }
-
-    private ExtendedColor _currentColor;
-
-    private ExtendedColor? _lastChangedColor;
+    public ExtendedColor Color { get; set; }
 
     private readonly Dictionary<string, ColorSelectorSliders> _colorSelectors = new();
+    private readonly List<Slider> _sliders = new();
 
     private readonly OptionButton _typeSelector;
     private readonly List<ColorType> _types = new();
 
-    private ColorType _currentType = ColorType.Color;
+    private ColorType _currentType;
 
     private readonly BoxContainer _bodyBox;
 
@@ -36,7 +29,7 @@ public sealed class ExtendedColorSelectorSliders : Control
                 return;
 
             _currentType = value;
-            UpdateType();
+            Populate();
         }
     }
 
@@ -70,16 +63,11 @@ public sealed class ExtendedColorSelectorSliders : Control
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
         rootBox.AddChild(_bodyBox);
 
-        _currentColor = defaultColor;
+        Color = defaultColor;
         _currentType = defaultColor.Type;
         _typeSelector.TrySelect(_types.IndexOf(_currentType));
         _typeSelector.OnItemSelected += _ => OnColorsChanged();
-        UpdateType();
-    }
-
-    public void UpdateType()
-    {
-        PopulateSelectors();
+        Populate();
     }
 
     private ColorSelectorSliders CreateSelector(string key = "base")
@@ -97,6 +85,33 @@ public sealed class ExtendedColorSelectorSliders : Control
         return colorSelector;
     }
 
+    private Slider CreateSlider(string label, float defaultValue, float minValue, float maxValue)
+    {
+        var slider = new Slider
+        {
+            HorizontalExpand = true,
+            VerticalAlignment = VAlignment.Center,
+        };
+
+        slider.Value = defaultValue;
+        slider.MinValue = minValue;
+        slider.MaxValue = maxValue;
+
+        _sliders.Add(slider);
+        slider.OnValueChanged += _ => OnColorsChanged();
+
+        var sliderContainer = new BoxContainer();
+
+        var sliderLabel = new Label();
+        sliderLabel.Text = label;
+
+        sliderContainer.AddChild(sliderLabel);
+        sliderContainer.AddChild(slider);
+        _bodyBox.AddChild(sliderContainer);
+
+        return slider;
+    }
+
     private void OnColorsChanged()
     {
         foreach (var (key, selector) in _colorSelectors)
@@ -106,15 +121,10 @@ public sealed class ExtendedColorSelectorSliders : Control
 
         Color.Type = CurrentType;
 
-        if (_lastChangedColor?.Equals(Color) == true)
-            return;
-
-
-        _lastChangedColor = new ExtendedColor(Color.Type, new Dictionary<string, Color>(Color.Colors));
         OnColorChanged?.Invoke(Color);
     }
 
-    private void PopulateSelectors()
+    private void Populate()
     {
         _colorSelectors.Clear();
         _bodyBox.DisposeAllChildren();
@@ -126,6 +136,17 @@ public sealed class ExtendedColorSelectorSliders : Control
             case ColorType.Gradient:
                 CreateSelector();
                 CreateSelector("gradient");
+
+                // TODO: локализация слайдерам
+                var offsetYSlider = CreateSlider("offsetY", 0, -1, 1f);
+                offsetYSlider.OnValueChanged += val => Color.Offset.Y = val.Value;
+
+                var scaleYSlider = CreateSlider("scaleY", 1, 0.2f, 3f);
+                scaleYSlider.OnValueChanged += val => Color.Size.Y = val.Value;
+
+                var rotationSlider = CreateSlider("rotation", 0, 0f, 360f);
+                rotationSlider.OnValueChanged += val => Color.Rotation = val.Value;
+
                 break;
         }
     }

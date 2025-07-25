@@ -57,10 +57,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color skinColor,
         List<Marking> markings,
         //sunrise gradient start
-        ColorType hairColorType,
-        ExtendedColor? hairExtendedColor,
-        ColorType facialHairColorType,
-        ExtendedColor? facialHairExtendedColor
+        ColorType hairColorType = ColorType.Color,
+        ExtendedColor? hairExtendedColor = null,
+        ColorType facialHairColorType = ColorType.Color,
+        ExtendedColor? facialHairExtendedColor = null
         //sunrise gradient end
         )
     {
@@ -459,7 +459,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         ExtendedColor? hairExtendedColor = null;
         if (appearance.HairExtendedColor != null)
         {
-            hairExtendedColor = new(appearance.HairExtendedColor.Type, appearance.HairExtendedColor.Colors);
+            hairExtendedColor = appearance.HairExtendedColor;
             foreach (var (key, value) in hairExtendedColor.Colors)
                 hairExtendedColor.Colors[key] = ClampColor(value);
         }
@@ -467,7 +467,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         ExtendedColor? facialHairExtendedColor = null;
         if (appearance.FacialHairExtendedColor != null)
         {
-            facialHairExtendedColor = new(appearance.FacialHairExtendedColor.Type, appearance.FacialHairExtendedColor.Colors);
+            facialHairExtendedColor = appearance.FacialHairExtendedColor;
             foreach (var (key, value) in facialHairExtendedColor.Colors)
                 facialHairExtendedColor.Colors[key] = ClampColor(value);
         }

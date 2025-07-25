@@ -512,13 +512,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         var markingObject = prototype.AsMarking();
         markingObject.Forced = forced;
-        markingObject.ExtendedColor = extendedColor;
-        markingObject.ColorType = extendedColor?.Type ?? ColorType.Color;
         if (color != null)
         {
             for (var i = 0; i < prototype.Sprites.Count; i++)
             {
                 markingObject.SetColor(i, color.Value);
+                if(extendedColor != null)
+                    markingObject.SetExtendedColor(i, extendedColor);
             }
         }
 

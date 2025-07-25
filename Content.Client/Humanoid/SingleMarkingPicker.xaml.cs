@@ -235,22 +235,22 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         ColorSelectorContainer.DisposeAllChildren();
         ColorSelectorContainer.RemoveAllChildren();
 
-        if (marking.MarkingColors.Count != proto.Sprites.Count)
+        if (marking.MarkingColors.Count != proto.Sprites.Count ||
+            marking.ExtendedColors.Count != proto.Sprites.Count)
         {
             marking = new Marking(marking.MarkingId, proto.Sprites.Count);
         }
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {
-            Logger.Debug(marking.ColorType.ToString());
             ExtendedColor selectorColor;
             var selectorType = ColorType.Color;
-            if(marking.ColorType == ColorType.Color || marking.ExtendedColor == null)
+            if(marking.ExtendedColors == null)
                 selectorColor = new ExtendedColor(marking.MarkingColors[i]);
             else
             {
-                selectorColor = marking.ExtendedColor;
-                selectorType = marking.ColorType;
+                selectorColor = marking.ExtendedColors[i];
+                selectorType = marking.ExtendedColors[i].Type;
             }
 
             var selector = new ExtendedColorSelectorSliders(selectorColor)
@@ -266,10 +266,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
                 if (marking.MarkingColors[colorIndex] != newCol)
                 {
                     marking.SetColor(colorIndex, newCol);
-                    marking.ColorType = color.Type;
-                    marking.ExtendedColor = color;
-
-                    Logger.Debug(marking.ColorType.ToString());
+                    marking.SetExtendedColor(colorIndex, color);
                 }
 
                 OnColorChanged!((_slot, marking));
