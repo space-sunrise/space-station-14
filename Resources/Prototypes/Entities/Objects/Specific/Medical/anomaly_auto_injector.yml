@@ -1,6 +1,6 @@
 - type: entity
   name: автоинъектор аномалий
-  id: AnomalyInjectorMedipen
+  id: AnomalyAutoInjector
   parent: BaseItem
   description: Вводит небольшую дозу аномального реагента, результат непредсказуем
   components:
@@ -14,7 +14,7 @@
     - type: EmitSoundOnUse
       sound:
         path: /Audio/Items/hypospray.ogg
-    - type: AnomalyInjectorMedipen
+    - type: AnomalyAutoInjector
       injectionComponents:
         - type: Anomaly
           deleteEntity: false

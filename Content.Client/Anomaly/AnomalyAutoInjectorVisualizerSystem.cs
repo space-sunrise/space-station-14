@@ -4,22 +4,22 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Client.Anomaly;
 
-public sealed class AnomalyInjectorMedipenVisualizerSystem : EntitySystem
+public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<UsedAnomalyInjectorMedipenComponent, ComponentStartup>(OnUsedStartup);
-        SubscribeLocalEvent<UsedAnomalyInjectorMedipenComponent, ComponentShutdown>(OnUsedShutdown);
+        SubscribeLocalEvent<UsedAnomalyAutoInjectorComponent, ComponentStartup>(OnUsedStartup);
+        SubscribeLocalEvent<UsedAnomalyAutoInjectorComponent, ComponentShutdown>(OnUsedShutdown);
     }
 
-    private void OnUsedStartup(EntityUid uid, UsedAnomalyInjectorMedipenComponent comp, ComponentStartup args)
+    private void OnUsedStartup(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentStartup args)
     {
         if (EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
             sprite.LayerSetState(0, "anomyxine_empty");
     }
 
-    private void OnUsedShutdown(EntityUid uid, UsedAnomalyInjectorMedipenComponent comp, ComponentShutdown args)
+    private void OnUsedShutdown(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentShutdown args)
     {
         if (EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
             sprite.LayerSetState(0, "anomyxine");

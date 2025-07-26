@@ -6,13 +6,12 @@ using Content.Shared.Anomaly.Components;
 namespace Content.Shared.Anomaly.Components;
 
 [RegisterComponent]
-public sealed partial class AnomalyInjectorMedipenComponent : Component
+public sealed partial class AnomalyAutoInjectorComponent : Component
 {
-    [DataField(required: true)]
-    public ComponentRegistry InjectionComponents = default!;
+    // InjectionComponents поле удалено
 }
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class UsedAnomalyInjectorMedipenComponent : Component
+public sealed partial class UsedAnomalyAutoInjectorComponent : Component
 {
 }
