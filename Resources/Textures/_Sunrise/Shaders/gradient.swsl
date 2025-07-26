@@ -8,24 +8,26 @@ uniform bool pixelated;
 uniform bool mirrored;
 
 highp float mirror(highp float x) {
-    return mix(x, abs(fract(x) * 2.0 - 1.0), mirrored);
+    return mix(x, abs(fract(x) * 2.0 - 1.0), float(mirrored));
 }
 
 void fragment() {
 
-    vec2 uv = UV2;
-    float rad = radians(rotation);
-    vec2 center = vec2(0.5);
+    highp vec2 uv = UV2;
+    highp float rad = radians(rotation);
+    highp vec2 center = vec2(0.5);
     uv -= center;
 
-    float cos_a = cos(rad);
-    float sin_a = sin(rad);
-    mat2 rot = mat2(
+    highp float cos_a = cos(rad);
+    highp float sin_a = sin(rad);
+    highp mat2 rot = mat2(
         cos_a, -sin_a,
         sin_a,  cos_a
     );
 
-    uv = mix(uv, floor(uv * texScale) / texScale, pixelated);
+    if (pixelated) {
+        uv = floor(uv * texScale) / texScale;
+    }
 
     uv = rot * uv;
     uv += center;
