@@ -99,15 +99,20 @@ public abstract partial class MarkingEffect
 
         if (typeof(T) == typeof(float))
         {
-            if (!float.TryParse(input, CultureInfo.InvariantCulture, out var result))
+            if (!float.TryParse(input, CultureInfo.InvariantCulture, out var floatResult))
                 return false;
 
-            param = (T)(object)result;
+            param = (T)(object)floatResult;
+        }
+        else if (typeof(T) == typeof(bool))
+        {
+            if (!bool.TryParse(input, out var boolResult))
+                return false;
+
+            param = (T)(object)boolResult;
         }
         else if (typeof(T) == typeof(Vector2))
             param = (T)(object)ParseVector2(input);
-        else if (typeof(T) == typeof(bool))
-            param = (T)(object)(input == "True");
         else
             return false;
 
