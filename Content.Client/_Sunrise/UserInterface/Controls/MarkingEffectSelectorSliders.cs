@@ -15,15 +15,15 @@ public sealed class MarkingEffectSelectorSliders : Control
         { MarkingEffectType.Gradient, new GradientMarkingEffectUiBuilder() },
     };
 
-    private readonly Dictionary<string, ColorSelectorSliders> _colorSelectors = new();
+    private readonly Dictionary<string, CustomColorSelectorSliders> _colorSelectors = new();
 
     private readonly OptionButton _typeSelector;
     private readonly List<MarkingEffectType> _types = new();
 
     private MarkingEffectType _currentType;
 
-    private readonly BoxContainer _selectorContainer;
-    private readonly BoxContainer _sliderContainer;
+    private readonly BoxContainer _selectorsContainer;
+    private readonly BoxContainer _slidersContainer;
     private readonly BoxContainer _toggleContainer;
 
     public Action<MarkingEffect>? OnColorChanged;
@@ -71,13 +71,12 @@ public sealed class MarkingEffectSelectorSliders : Control
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
         rootBox.AddChild(bodyBox);
 
-        _selectorContainer = new BoxContainer
-            { Orientation = BoxContainer.LayoutOrientation.Vertical };
-        bodyBox.AddChild(_selectorContainer);
+        _selectorsContainer = new BoxContainer();
+        bodyBox.AddChild(_selectorsContainer);
 
-        _sliderContainer = new BoxContainer
+        _slidersContainer = new BoxContainer
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
-        bodyBox.AddChild(_sliderContainer);
+        bodyBox.AddChild(_slidersContainer);
 
         _toggleContainer = new BoxContainer();
         bodyBox.AddChild(_toggleContainer);
@@ -90,9 +89,13 @@ public sealed class MarkingEffectSelectorSliders : Control
         Populate(_currentType, defaultEffect);
     }
 
-    public ColorSelectorSliders CreateSelector(string key = "base")
+    public CustomColorSelectorSliders CreateSelector(string key = "base")
     {
-        var colorSelector = new ColorSelectorSliders();
+        //TODO: ЛОКАЛИЗАЦИЯ!!!
+        var colorSelector = new CustomColorSelectorSliders(CustomColorSelectorSliders.ColorSelectorType.Hsv, key);
+
+        colorSelector.HorizontalExpand = true;
+        colorSelector.HorizontalAlignment = HAlignment.Stretch;
 
         if (Effect.Colors.TryGetValue(key, out var defaultColor))
             colorSelector.Color = defaultColor;
@@ -100,7 +103,15 @@ public sealed class MarkingEffectSelectorSliders : Control
         colorSelector.OnColorChanged += _ => OnColorsChanged();
 
         _colorSelectors.Add(key, colorSelector);
-        _selectorContainer.AddChild(colorSelector);
+
+        var selectorContainer = new BoxContainer
+        {
+            HorizontalExpand = true,
+            HorizontalAlignment = HAlignment.Stretch,
+        };
+
+        _selectorsContainer.AddChild(selectorContainer);
+        selectorContainer.AddChild(colorSelector);
 
         return colorSelector;
     }
@@ -148,7 +159,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         sliderContainer.AddChild(sliderLabel);
         sliderContainer.AddChild(slider);
         sliderContainer.AddChild(spinBox);
-        _sliderContainer.AddChild(sliderContainer);
+        _slidersContainer.AddChild(sliderContainer);
 
         BindSlider(slider, spinBox, onValueChanged);
     }
@@ -217,8 +228,8 @@ public sealed class MarkingEffectSelectorSliders : Control
     private void Populate(MarkingEffectType type, MarkingEffect? defaultEffect = null)
     {
         _colorSelectors.Clear();
-        _selectorContainer.DisposeAllChildren();
-        _sliderContainer.DisposeAllChildren();
+        _selectorsContainer.DisposeAllChildren();
+        _slidersContainer.DisposeAllChildren();
         _toggleContainer.DisposeAllChildren();
 
         defaultEffect ??= type switch

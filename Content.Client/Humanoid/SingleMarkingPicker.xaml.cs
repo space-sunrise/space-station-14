@@ -295,6 +295,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         for (var i = 0; i < _markings[Slot].MarkingColors.Count && i < oldMarking.MarkingColors.Count; i++)
         {
             _markings[Slot].SetColor(i, oldMarking.MarkingColors[i]);
+            _markings[Slot].SetMarkingEffect(i, oldMarking.MarkingEffects[i]); // Sunrise-Edit
         }
 
         PopulateColors();
