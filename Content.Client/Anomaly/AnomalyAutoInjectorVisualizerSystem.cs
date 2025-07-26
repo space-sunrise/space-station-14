@@ -1,6 +1,5 @@
 using Content.Shared.Anomaly.Components;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameObjects;
 
 namespace Content.Client.Anomaly;
 

@@ -1,8 +1,8 @@
 - type: entity
-  name: автоинъектор аномалий
+  name: автоинъектор аномалии
   id: AnomalyAutoInjector
   parent: BaseItem
-  description: Вводит небольшую дозу аномального реагента, результат непредсказуем
+  description: Вводит единоразовую дозу аномального реагента, результат непредсказуем
   components:
     - type: Sprite
       sprite: Objects/Specific/Medical/anomaly_injector.rsi
@@ -15,22 +15,6 @@
       sound:
         path: /Audio/Items/hypospray.ogg
     - type: AnomalyAutoInjector
-      injectionComponents:
-        - type: Anomaly
-          deleteEntity: false
-          maxPointsPerSecond: 100
-          corePrototype: AnomalyCoreBluespace
-          coreInertPrototype: AnomalyCoreBluespaceInert
-        - type: InnerBodyAnomaly
-          injectionProto: AnomalyInjectionBluespace
-          startMessage: inner-anomaly-start-message-bluespace
-          fallbackSprite:
-            sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
-            state: bluespace
-          speciesSprites:
-            Vox:
-              sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
-              state: bluespace_VOX
     - type: SolutionContainerManager
       solutions:
         pen:

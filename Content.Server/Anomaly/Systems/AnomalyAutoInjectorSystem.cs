@@ -2,12 +2,9 @@ using Content.Shared.Anomaly.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Server.Audio;
-using Content.Shared.Chemistry;
+using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
 using System.Collections.Generic;
 using Robust.Shared.Random;
@@ -32,17 +29,13 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
     // Все возможные инжекторные аномалии (AnomalyTrap*)
     private static readonly List<string> AllAnomalyTrapProtos = new()
     {
-        "AnomalyTrapPyroclastic",
-        "AnomalyTrapElectricity",
         "AnomalyTrapShadow",
-        "AnomalyTrapIce",
         "AnomalyTrapFlora",
         "AnomalyTrapBluespace",
         "AnomalyTrapFlesh",
         "AnomalyTrapGravity",
         "AnomalyTrapTech",
         "AnomalyTrapRock",
-        "AnomalyTrapSanta"
     };
 
     private void OnAfterInteract(EntityUid uid, AnomalyAutoInjectorComponent comp, AfterInteractEvent args)
@@ -50,10 +43,11 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
-        // Если инъектор уже использован — попап и выход
+        // Если инъектор уже использован — попап и выход (только если цель — гуманоид)
         if (_entMan.HasComponent<UsedAnomalyAutoInjectorComponent>(uid))
         {
-            _popup.PopupEntity("Нечего вводить!", uid, args.User);
+            if (_entMan.HasComponent<Content.Shared.Humanoid.HumanoidAppearanceComponent>(target))
+                _popup.PopupEntity("Нечего вводить!", target, args.User);
             return;
         }
 
@@ -61,10 +55,14 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         if (!_entMan.HasComponent<MobStateComponent>(target))
             return;
 
+        // Новая проверка: только игроки-гуманoиды
+        if (!_entMan.HasComponent<Content.Shared.Humanoid.HumanoidAppearanceComponent>(target))
+            return;
+
         // Если цель уже заражена — попап и выход
         if (_entMan.HasComponent<InnerBodyAnomalyComponent>(target))
         {
-            _popup.PopupEntity("Кожа не поддается введению", target, args.User);
+            _popup.PopupEntity("Неприменимо!", target, args.User);
             return;
         }
 
