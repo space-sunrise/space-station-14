@@ -21,14 +21,25 @@ public sealed class GradientMarkingEffectUiBuilder : IMarkingEffectUiBuilder
         if (effect is not GradientMarkingEffect gradient)
             return;
 
-        parent.CreateSelector();
-        parent.CreateSelector("gradient");
+        parent.CreateSelector(type: MarkingEffectType.Gradient);
+        parent.CreateSelector("gradient", MarkingEffectType.Gradient);
 
-        parent.CreateSlider("offsetY", (int)(gradient.Offset.Y * ToIntScaling), OffsetMin, OffsetMax, v => gradient.Offset.Y = v / ToIntScaling);
-        parent.CreateSlider("sizeY", (int)(gradient.Size.Y * ToIntScaling), SizeMin, SizeMax, v => gradient.Size.Y = v / ToIntScaling);
-        parent.CreateSlider("rotation", (int)gradient.Rotation, RotationMin, RotationMax, v => gradient.Rotation = v);
+        parent.CreateSlider(Loc.GetString("marking-effect-gradient-parameter-offset"),
+            (int)(gradient.Offset.Y * ToIntScaling), OffsetMin, OffsetMax,
+            v => gradient.Offset.Y = v / ToIntScaling
+            );
+        parent.CreateSlider(Loc.GetString("marking-effect-gradient-parameter-size"),
+            (int)(gradient.Size.Y * ToIntScaling), SizeMin, SizeMax,
+            v => gradient.Size.Y = v / ToIntScaling);
+        parent.CreateSlider(Loc.GetString("marking-effect-gradient-parameter-rotation"),
+            (int)gradient.Rotation, RotationMin, RotationMax,
+            v => gradient.Rotation = v);
 
-        parent.CreateToggle("pixelation", gradient.Pixelated, v => gradient.Pixelated = v);
-        parent.CreateToggle("mirror", gradient.Mirrored, v => gradient.Mirrored = v);
+        parent.CreateToggle(Loc.GetString("marking-effect-gradient-parameter-pixelation"),
+            gradient.Pixelated,
+            v => gradient.Pixelated = v);
+        parent.CreateToggle(Loc.GetString("marking-effect-gradient-parameter-mirror"),
+            gradient.Mirrored,
+            v => gradient.Mirrored = v);
     }
 }

@@ -48,8 +48,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         _typeSelector = new OptionButton();
         foreach (var type in Enum.GetValues<MarkingEffectType>())
         {
-            // TODO: локализация
-            _typeSelector.AddItem(type.ToString());
+            _typeSelector.AddItem(Loc.GetString($"marking-effect-type-{type.ToString().ToLower()}"));
             _types.Add(type);
         }
 
@@ -89,10 +88,11 @@ public sealed class MarkingEffectSelectorSliders : Control
         Populate(_currentType, defaultEffect);
     }
 
-    public CustomColorSelectorSliders CreateSelector(string key = "base")
+    public CustomColorSelectorSliders CreateSelector(string key = "base", MarkingEffectType type = MarkingEffectType.Color)
     {
-        //TODO: ЛОКАЛИЗАЦИЯ!!!
-        var colorSelector = new CustomColorSelectorSliders(CustomColorSelectorSliders.ColorSelectorType.Hsv, key);
+        var colorSelector = new CustomColorSelectorSliders(
+            CustomColorSelectorSliders.ColorSelectorType.Hsv,
+            Loc.GetString($"marking-effect-{type.ToString().ToLower()}-color-{key}"));
 
         colorSelector.HorizontalExpand = true;
         colorSelector.HorizontalAlignment = HAlignment.Stretch;
