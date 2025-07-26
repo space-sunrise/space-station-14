@@ -59,6 +59,7 @@ namespace Content.Shared.Humanoid.Markings
         {
             MarkingId = other.MarkingId;
             _markingColors = new(other.MarkingColors);
+            MarkingEffects = other.MarkingEffects.Select(e => e.Clone()).ToList();
             Visible = other.Visible;
             Forced = other.Forced;
         }
