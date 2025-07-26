@@ -455,13 +455,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_markingManager.Markings.TryGetValue(profile.Appearance.HairStyleId, out var hairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, hairPrototype, _proto))
         {
-            AddMarking(uid, profile.Appearance.HairStyleId, hairColor, false, extendedColor: profile.Appearance.HairExtendedColor);
+            AddMarking(uid, profile.Appearance.HairStyleId, hairColor, false, markingEffect: profile.Appearance.HairMarkingEffect);
         }
 
         if (_markingManager.Markings.TryGetValue(profile.Appearance.FacialHairStyleId, out var facialHairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, facialHairPrototype, _proto))
         {
-            AddMarking(uid, profile.Appearance.FacialHairStyleId, facialHairColor, false, extendedColor: profile.Appearance.FacialHairExtendedColor);
+            AddMarking(uid, profile.Appearance.FacialHairStyleId, facialHairColor, false, markingEffect: profile.Appearance.FacialHairMarkingEffect);
         }
 
         humanoid.MarkingSet.EnsureSpecies(profile.Species, profile.Appearance.SkinColor, _markingManager, _proto);
@@ -502,7 +502,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="sync">Whether to immediately sync this marking or not</param>
     /// <param name="forced">If this marking was forced (ignores marking points)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void AddMarking(EntityUid uid, string marking, Color? color = null, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null, ExtendedColor? extendedColor = null)
+    public void AddMarking(EntityUid uid, string marking, Color? color = null, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null, MarkingEffect? markingEffect = null)
     {
         if (!Resolve(uid, ref humanoid)
             || !_markingManager.Markings.TryGetValue(marking, out var prototype))
@@ -517,8 +517,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             for (var i = 0; i < prototype.Sprites.Count; i++)
             {
                 markingObject.SetColor(i, color.Value);
-                if(extendedColor != null)
-                    markingObject.SetExtendedColor(i, extendedColor);
+                if(markingEffect != null)
+                    markingObject.SetMarkingEffect(i, markingEffect);
             }
         }
 

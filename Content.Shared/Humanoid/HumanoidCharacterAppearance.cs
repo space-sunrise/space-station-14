@@ -27,16 +27,16 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     // sunrise gradient edit start
 
     [DataField]
-    public ColorType HairColorType { get; set; } = ColorType.Color;
+    public MarkingEffectType HairMarkingEffectType { get; set; } = MarkingEffectType.Color;
 
     [DataField]
-    public ExtendedColor? HairExtendedColor { get; set; }
+    public MarkingEffect? HairMarkingEffect { get; set; }
 
     [DataField]
-    public ColorType FacialHairColorType { get; set; } = ColorType.Color;
+    public MarkingEffectType FacialHairMarkingEffectType { get; set; } = MarkingEffectType.Color;
 
     [DataField]
-    public ExtendedColor? FacialHairExtendedColor { get; set; }
+    public MarkingEffect? FacialHairMarkingEffect { get; set; }
 
     // sunrise gradient edit end
 
@@ -57,10 +57,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color skinColor,
         List<Marking> markings,
         //sunrise gradient start
-        ColorType hairColorType = ColorType.Color,
-        ExtendedColor? hairExtendedColor = null,
-        ColorType facialHairColorType = ColorType.Color,
-        ExtendedColor? facialHairExtendedColor = null
+        MarkingEffectType hairMarkingEffectType = MarkingEffectType.Color,
+        MarkingEffect? hairMarkingEffect = null,
+        MarkingEffectType facialHairMarkingEffectType = MarkingEffectType.Color,
+        MarkingEffect? facialHairMarkingEffect = null
         //sunrise gradient end
         )
     {
@@ -72,62 +72,62 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         SkinColor = ClampColor(skinColor);
         Markings = markings;
         //sunrise gradient start
-        HairColorType = hairColorType;
-        HairExtendedColor = hairExtendedColor;
-        FacialHairColorType = facialHairColorType;
-        FacialHairExtendedColor = facialHairExtendedColor;
+        HairMarkingEffectType = hairMarkingEffectType;
+        HairMarkingEffect = hairMarkingEffect;
+        FacialHairMarkingEffectType = facialHairMarkingEffectType;
+        FacialHairMarkingEffect = facialHairMarkingEffect;
         //sunrise gradient end
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairColorType, other.HairExtendedColor, other.FacialHairColorType, other.FacialHairExtendedColor) // sunrise gradient edit
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairMarkingEffectType, other.HairMarkingEffect, other.FacialHairMarkingEffectType, other.FacialHairMarkingEffect) // sunrise gradient edit
     {
 
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairColorType, HairExtendedColor, FacialHairColorType, FacialHairExtendedColor); // sunrise gradient edit
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect); // sunrise gradient edit
     }
 
-    public HumanoidCharacterAppearance WithHairColor(Color newColor, ExtendedColor? newExtendedColor = null)
+    public HumanoidCharacterAppearance WithHairColor(Color newColor, MarkingEffect? newExtendedColor = null)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newExtendedColor?.Type ?? HairColorType, newExtendedColor ?? HairExtendedColor, FacialHairColorType, FacialHairExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newExtendedColor?.Type ?? HairMarkingEffectType, newExtendedColor ?? HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, HairColorType, HairExtendedColor, FacialHairColorType, FacialHairExtendedColor);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect);
     }
 
-    public HumanoidCharacterAppearance WithFacialHairColor(Color newColor, ExtendedColor? newFacialExtendedColor = null)
+    public HumanoidCharacterAppearance WithFacialHairColor(Color newColor, MarkingEffect? newFacialExtendedColor = null)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, HairColorType, HairExtendedColor, newFacialExtendedColor?.Type ?? FacialHairColorType, newFacialExtendedColor ?? FacialHairExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, newFacialExtendedColor?.Type ?? FacialHairMarkingEffectType, newFacialExtendedColor ?? FacialHairMarkingEffect); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, HairColorType, HairExtendedColor, FacialHairColorType, FacialHairExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, HairColorType, HairExtendedColor, FacialHairColorType, FacialHairExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, HairColorType, HairExtendedColor, FacialHairColorType, FacialHairExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect); // sunrise gradient edit
     }
 
     // sunrise gradient edit start
-    public HumanoidCharacterAppearance WithHairExtendedColor(ExtendedColor? newExtendedColor)
+    public HumanoidCharacterAppearance WithHairExtendedColor(MarkingEffect? newExtendedColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newExtendedColor?.Type ?? ColorType.Color, newExtendedColor, FacialHairColorType, FacialHairExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newExtendedColor?.Type ?? MarkingEffectType.Color, newExtendedColor, FacialHairMarkingEffectType, FacialHairMarkingEffect); // sunrise gradient edit
     }
-    public HumanoidCharacterAppearance WithFacialHairExtendedColor(ExtendedColor? newFacialExtendedColor)
+    public HumanoidCharacterAppearance WithFacialHairExtendedColor(MarkingEffect? newFacialExtendedColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairColorType, HairExtendedColor, newFacialExtendedColor?.Type ?? ColorType.Color, newFacialExtendedColor); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, newFacialExtendedColor?.Type ?? MarkingEffectType.Color, newFacialExtendedColor); // sunrise gradient edit
     }
     // sunrise gradient edit end
 
@@ -153,9 +153,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             skinColor,
             new (),
             // sunrise gradient edit start
-            ColorType.Color,
+            MarkingEffectType.Color,
             null,
-            ColorType.Color,
+            MarkingEffectType.Color,
             null
             // sunrise gradient edit end
         );
@@ -330,7 +330,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         }
 
         // at the end of all that, we should have new values for each of these, so we set the character appearance to these new values.
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, newMarkings, ColorType.Color, null, ColorType.Color, null);
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, newMarkings, MarkingEffectType.Color, null, MarkingEffectType.Color, null);
 
         // helper functions:
         float RandomizeColor(float channel)
@@ -456,18 +456,18 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         }
 
         // sunrise gradient start
-        ExtendedColor? hairExtendedColor = null;
-        if (appearance.HairExtendedColor != null)
+        MarkingEffect? hairExtendedColor = null;
+        if (appearance.HairMarkingEffect != null)
         {
-            hairExtendedColor = appearance.HairExtendedColor;
+            hairExtendedColor = appearance.HairMarkingEffect;
             foreach (var (key, value) in hairExtendedColor.Colors)
                 hairExtendedColor.Colors[key] = ClampColor(value);
         }
 
-        ExtendedColor? facialHairExtendedColor = null;
-        if (appearance.FacialHairExtendedColor != null)
+        MarkingEffect? facialHairExtendedColor = null;
+        if (appearance.FacialHairMarkingEffect != null)
         {
-            facialHairExtendedColor = appearance.FacialHairExtendedColor;
+            facialHairExtendedColor = appearance.FacialHairMarkingEffect;
             foreach (var (key, value) in facialHairExtendedColor.Colors)
                 facialHairExtendedColor.Colors[key] = ClampColor(value);
         }
@@ -481,9 +481,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             eyeColor,
             skinColor,
             markingSet.GetForwardEnumerator().ToList(),
-            appearance.HairColorType,
+            appearance.HairMarkingEffectType,
             hairExtendedColor,
-            appearance.FacialHairColorType,
+            appearance.FacialHairMarkingEffectType,
             facialHairExtendedColor);
     }
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
@@ -497,10 +497,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
         // sunrise gradient edit start
-        if (!HairColorType.Equals(other.HairColorType)) return false;
-        if (HairExtendedColor?.Equals(other.HairExtendedColor) != true) return false;
-        if (!FacialHairColorType.Equals(other.FacialHairColorType)) return false;
-        if (FacialHairExtendedColor?.Equals(other.FacialHairExtendedColor) != true) return false;
+        if (!HairMarkingEffectType.Equals(other.HairMarkingEffectType)) return false;
+        if (!Equals(HairMarkingEffect, other.HairMarkingEffect)) return false;
+        if (!FacialHairMarkingEffectType.Equals(other.FacialHairMarkingEffectType)) return false;
+        if (!Equals(FacialHairMarkingEffect, other.FacialHairMarkingEffect)) return false;
         // sunrise gradient edit end
         return true;
     }
@@ -517,10 +517,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                SkinColor.Equals(other.SkinColor) &&
                Markings.SequenceEqual(other.Markings) &&
                // sunrise gradient edit start
-               HairColorType.Equals(other.HairColorType) &&
-               HairExtendedColor?.Equals(other.HairExtendedColor) == true &&
-               FacialHairColorType.Equals(other.FacialHairColorType) &&
-               FacialHairExtendedColor?.Equals(other.FacialHairExtendedColor) == true;
+               HairMarkingEffectType.Equals(other.HairMarkingEffectType) &&
+               Equals(HairMarkingEffect, other.HairMarkingEffect) &&
+               FacialHairMarkingEffectType.Equals(other.FacialHairMarkingEffectType) &&
+               Equals(FacialHairMarkingEffect, other.FacialHairMarkingEffect);
                // sunrise gradient edit end
     }
 

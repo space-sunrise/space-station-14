@@ -236,24 +236,24 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         ColorSelectorContainer.RemoveAllChildren();
 
         if (marking.MarkingColors.Count != proto.Sprites.Count ||
-            marking.ExtendedColors.Count != proto.Sprites.Count)
+            marking.MarkingEffects.Count != proto.Sprites.Count)
         {
             marking = new Marking(marking.MarkingId, proto.Sprites.Count);
         }
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {
-            ExtendedColor selectorColor;
-            var selectorType = ColorType.Color;
-            if(marking.ExtendedColors == null)
-                selectorColor = new ExtendedColor(marking.MarkingColors[i]);
+            MarkingEffect selectorColor;
+            var selectorType = MarkingEffectType.Color;
+            if(marking.MarkingEffects == null)
+                selectorColor = new ColorMarkingEffect(marking.MarkingColors[i]);
             else
             {
-                selectorColor = marking.ExtendedColors[i];
-                selectorType = marking.ExtendedColors[i].Type;
+                selectorColor = marking.MarkingEffects[i];
+                selectorType = marking.MarkingEffects[i].Type;
             }
 
-            var selector = new ExtendedColorSelectorSliders(selectorColor)
+            var selector = new MarkingEffectSelectorSliders(selectorColor)
             {
                 HorizontalExpand = true
             };
@@ -266,8 +266,8 @@ public sealed partial class SingleMarkingPicker : BoxContainer
                 if (marking.MarkingColors[colorIndex] != newCol)
                     marking.SetColor(colorIndex, newCol);
 
-                if(marking.ExtendedColors?[colorIndex].Equals(color) != true)
-                    marking.SetExtendedColor(colorIndex, color.Clone());
+                if(marking.MarkingEffects?[colorIndex].Equals(color) != true)
+                    marking.SetMarkingEffect(colorIndex, color.Clone());
 
                 OnColorChanged!((_slot, marking));
             };

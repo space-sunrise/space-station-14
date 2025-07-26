@@ -1,20 +1,27 @@
-﻿using Content.Shared._Sunrise.ExtendedColor;
+﻿using Content.Client._Sunrise.MarkingEffects;
+using Content.Shared._Sunrise.ExtendedColor;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Sunrise.UserInterface.Controls;
 
-public sealed class ExtendedColorSelectorSliders : Control
+public sealed class MarkingEffectSelectorSliders : Control
 {
-    public ExtendedColor Color { get; set; }
+    public MarkingEffect Effect { get; set; }
+
+    private static readonly Dictionary<MarkingEffectType, IMarkingEffectUiBuilder> UiBuilders = new()
+    {
+        { MarkingEffectType.Color, new ColorMarkingEffectUiBuilder() },
+        { MarkingEffectType.Gradient, new GradientMarkingEffectUiBuilder() },
+    };
 
     private readonly Dictionary<string, ColorSelectorSliders> _colorSelectors = new();
     private readonly List<Slider> _sliders = new();
 
     private readonly OptionButton _typeSelector;
-    private readonly List<ColorType> _types = new();
+    private readonly List<MarkingEffectType> _types = new();
 
-    private ColorType _currentType;
+    private MarkingEffectType _currentType;
 
     private readonly BoxContainer _bodyBox;
 
@@ -22,9 +29,9 @@ public sealed class ExtendedColorSelectorSliders : Control
     private readonly BoxContainer _sliderContainer;
     private readonly BoxContainer _toggleContainer;
 
-    public Action<ExtendedColor>? OnColorChanged;
+    public Action<MarkingEffect>? OnColorChanged;
 
-    public ColorType CurrentType
+    public MarkingEffectType CurrentType
     {
         get => _currentType;
         set
@@ -33,16 +40,16 @@ public sealed class ExtendedColorSelectorSliders : Control
                 return;
 
             _currentType = value;
-            Populate();
+            Populate(_currentType);
         }
     }
 
-    public ExtendedColorSelectorSliders(ExtendedColor? defaultColor = null)
+    public MarkingEffectSelectorSliders(MarkingEffect? defaultEffect = null)
     {
-        defaultColor ??= ExtendedColor.White;
+        defaultEffect ??= ColorMarkingEffect.White;
 
         _typeSelector = new OptionButton();
-        foreach (var type in Enum.GetValues<ColorType>())
+        foreach (var type in Enum.GetValues<MarkingEffectType>())
         {
             // TODO: локализация
             _typeSelector.AddItem(type.ToString());
@@ -78,18 +85,19 @@ public sealed class ExtendedColorSelectorSliders : Control
         _toggleContainer = new BoxContainer();
         _bodyBox.AddChild(_toggleContainer);
 
-        Color = defaultColor;
-        _currentType = defaultColor.Type;
+
+        _currentType = defaultEffect.Type;
         _typeSelector.TrySelect(_types.IndexOf(_currentType));
         _typeSelector.OnItemSelected += _ => OnColorsChanged();
-        Populate();
+        Effect = defaultEffect;
+        Populate(_currentType, defaultEffect);
     }
 
-    private ColorSelectorSliders CreateSelector(string key = "base")
+    public ColorSelectorSliders CreateSelector(string key = "base")
     {
         var colorSelector = new ColorSelectorSliders();
 
-        if (Color.Colors.TryGetValue(key, out var defaultColor))
+        if (Effect.Colors.TryGetValue(key, out var defaultColor))
             colorSelector.Color = defaultColor;
 
         colorSelector.OnColorChanged += _ => OnColorsChanged();
@@ -100,7 +108,7 @@ public sealed class ExtendedColorSelectorSliders : Control
         return colorSelector;
     }
 
-    private void CreateSlider(string label,
+    public void CreateSlider(string label,
         int defaultValue,
         int minValue,
         int maxValue,
@@ -150,7 +158,7 @@ public sealed class ExtendedColorSelectorSliders : Control
         BindSlider(slider, spinBox, onValueChanged);
     }
 
-    private void BindSlider(Slider slider, SpinBox spinBox, Action<float> setValue)
+    public void BindSlider(Slider slider, SpinBox spinBox, Action<float> setValue)
     {
         slider.OnValueChanged += val =>
         {
@@ -168,7 +176,7 @@ public sealed class ExtendedColorSelectorSliders : Control
         };
     }
 
-    private void CreateToggle(string label, bool defaultValue, Action<bool> onValueChanged)
+    public void CreateToggle(string label, bool defaultValue, Action<bool> onValueChanged)
     {
         var button = new Button
         {
@@ -184,7 +192,7 @@ public sealed class ExtendedColorSelectorSliders : Control
         BindToggle(button, onValueChanged);
     }
 
-    private void BindToggle(Button toggle, Action<bool> setValue)
+    public void BindToggle(Button toggle, Action<bool> setValue)
     {
         toggle.OnToggled += val =>
         {
@@ -205,73 +213,32 @@ public sealed class ExtendedColorSelectorSliders : Control
     {
         foreach (var (key, selector) in _colorSelectors)
         {
-            Color.Colors[key] = selector.Color;
+            Effect.Colors[key] = selector.Color;
         }
 
-        Color.Type = CurrentType;
-
-        OnColorChanged?.Invoke(Color);
+        OnColorChanged?.Invoke(Effect);
     }
 
-    private void Populate()
+    private void Populate(MarkingEffectType type, MarkingEffect? defaultEffect = null)
     {
         _colorSelectors.Clear();
         _selectorContainer.DisposeAllChildren();
         _sliderContainer.DisposeAllChildren();
         _toggleContainer.DisposeAllChildren();
 
-        // Самый обычный тип, просто добавляем селектор
-        if (CurrentType == ColorType.Color)
+        defaultEffect ??= type switch
         {
-            CreateSelector();
-            return;
-        }
+            MarkingEffectType.Color => ColorMarkingEffect.White,
+            MarkingEffectType.Gradient => new GradientMarkingEffect(),
+            _ => ColorMarkingEffect.White,
+        };
 
-        switch (CurrentType)
-        {
-            case ColorType.Gradient:
-                CreateSelector();
-                CreateSelector("gradient");
+        Effect = defaultEffect;
 
-                // TODO: локализация слайдерам
-                CreateSlider(
-                    "offsetY",
-                    (int)MathF.Round(Color.Offset.Y * 100),
-                    -100,
-                    100,
-                    val => Color.Offset.Y = val / 100f
-                );
-
-                CreateSlider(
-                    "sizeY",
-                    (int)MathF.Round(Color.Size.Y * 100),
-                    30,
-                    500,
-                    val => Color.Size.Y = val / 100f
-                );
-
-                CreateSlider(
-                    "rotation",
-                    (int)MathF.Round(Color.Rotation),
-                    0,
-                    360,
-                    val => Color.Rotation = val
-                );
-
-                CreateToggle(
-                    "pixelation",
-                    Color.Pixelated,
-                    toggle => Color.Pixelated = toggle
-                );
-
-                CreateToggle(
-                    "mirror",
-                    Color.Mirrored,
-                    toggle => Color.Mirrored = toggle
-                );
-
-                break;
-        }
+        if (UiBuilders.TryGetValue(type, out var builder))
+            builder.BuildUI(Effect, this);
+        else
+            Logger.Warning($"No UI builder for marking effect: {type}");
     }
 }
 

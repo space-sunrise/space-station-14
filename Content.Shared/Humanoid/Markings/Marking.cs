@@ -15,8 +15,8 @@ namespace Content.Shared.Humanoid.Markings
         private List<Color> _markingColors = new();
 
         // sunrise gradient edit start
-        [DataField("extendedColors")]
-        public List<ExtendedColor> ExtendedColors = new();
+        [DataField("markingEffects")]
+        public List<MarkingEffect> MarkingEffects = new();
         // sunrise gradient edit end
 
 
@@ -26,20 +26,20 @@ namespace Content.Shared.Humanoid.Markings
 
         public Marking(string markingId,
             List<Color> markingColors,
-            List<ExtendedColor>? extendedColors = null)
+            List<MarkingEffect>? markingEffects = null)
         {
             MarkingId = markingId;
             _markingColors = markingColors;
-            ExtendedColors = extendedColors ?? new(); // sunrise gradient edit
+            MarkingEffects = markingEffects ?? new(); // sunrise gradient edit
         }
 
         public Marking(string markingId,
             IReadOnlyList<Color> markingColors,
-            IReadOnlyList<ExtendedColor>? extendedColors = null)
+            IReadOnlyList<MarkingEffect>? markingEffects = null)
             : this(
                 markingId,
                 new List<Color>(markingColors),
-                extendedColors is not null ? new List<ExtendedColor>(extendedColors) : new List<ExtendedColor>())
+                markingEffects is not null ? new List<MarkingEffect>(markingEffects) : new List<MarkingEffect>())
         {
         }
 
@@ -50,7 +50,7 @@ namespace Content.Shared.Humanoid.Markings
             for (int i = 0; i < colorCount; i++)
             {
                 colors.Add(Color.White);
-                ExtendedColors.Add(ExtendedColor.White);
+                MarkingEffects.Add(ColorMarkingEffect.White);
             }
 
             _markingColors = colors;
@@ -99,14 +99,14 @@ namespace Content.Shared.Humanoid.Markings
             }
         }
 
-        public void SetExtendedColor(int colorIndex, ExtendedColor color) =>
-            ExtendedColors[colorIndex] = color;
+        public void SetMarkingEffect(int colorIndex, MarkingEffect effect) =>
+            MarkingEffects[colorIndex] = effect;
 
-        public void SetExtendedColor(ExtendedColor color)
+        public void SetMarkingEffect(MarkingEffect effect)
         {
-            for (int i = 0; i < ExtendedColors.Count; i++)
+            for (int i = 0; i < MarkingEffects.Count; i++)
             {
-                ExtendedColors[i] = color;
+                MarkingEffects[i] = effect;
             }
         }
 
@@ -156,10 +156,10 @@ namespace Content.Shared.Humanoid.Markings
             string sanitizedName = this.MarkingId.Replace('@', '_');
 
             var colorStringList = _markingColors.Select(c => c.ToHex()).ToList();
-            if (ExtendedColors == null || ExtendedColors.Count == 0)
+            if (MarkingEffects == null || MarkingEffects.Count == 0)
                 return $"{sanitizedName}@{string.Join(',', colorStringList)}";
 
-            var extColorsList = ExtendedColors.Select(ext => ext.ToString());
+            var extColorsList = MarkingEffects.Select(ext => ext.ToString());
 
             var extColorsString = string.Join(";", extColorsList);
             return $"{sanitizedName}@{string.Join(',', colorStringList)}@{extColorsString}";
@@ -187,11 +187,11 @@ namespace Content.Shared.Humanoid.Markings
                 return new Marking(name, colorList);
 
             var extColorsRaw = split[2];
-            var extendedColors = new List<ExtendedColor>();
+            var extendedColors = new List<MarkingEffect>();
 
             foreach (var extColorStr in extColorsRaw.Split(';'))
             {
-                var parsed = ExtendedColor.FromString(extColorStr);
+                var parsed = MarkingEffect.Parse(extColorStr);
                 if (parsed != null)
                     extendedColors.Add(parsed);
             }

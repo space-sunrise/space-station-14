@@ -288,7 +288,7 @@ namespace Content.Client.Lobby.UI
                 if (Profile is null)
                     return;
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairExtendedColor(newColor.marking.ExtendedColors[0]));
+                    Profile.Appearance.WithHairExtendedColor(newColor.marking.MarkingEffects[0]));
                 UpdateCMarkingsHair();
                 ReloadPreview();
             };
@@ -298,7 +298,7 @@ namespace Content.Client.Lobby.UI
                 if (Profile is null)
                     return;
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.ExtendedColors[0]));
+                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.MarkingEffects[0]));
                 UpdateCMarkingsFacialHair();
                 ReloadPreview();
             };
@@ -318,7 +318,7 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
-                var newExtended = newColor.marking.ExtendedColors[0].Clone();
+                var newExtended = newColor.marking.MarkingEffects[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
                 UpdateCMarkingsHair();
@@ -338,7 +338,7 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
-                var newExtended = newColor.marking.ExtendedColors[0].Clone();
+                var newExtended = newColor.marking.MarkingEffects[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
                 UpdateCMarkingsFacialHair();
@@ -1570,8 +1570,8 @@ namespace Content.Client.Lobby.UI
                     new(
                         Profile.Appearance.HairStyleId,
                         new[] { Profile.Appearance.HairColor },
-                        Profile.Appearance.HairExtendedColor is { } hairExt
-                            ? new List<ExtendedColor> { hairExt.Clone() }
+                        Profile.Appearance.HairMarkingEffect is { } hairExt
+                            ? new List<MarkingEffect> { hairExt.Clone() }
                             : null)
                 }
             };
@@ -1584,8 +1584,8 @@ namespace Content.Client.Lobby.UI
                     new(
                         Profile.Appearance.FacialHairStyleId,
                         new[] { Profile.Appearance.FacialHairColor },
-                        Profile.Appearance.FacialHairExtendedColor is { } facialExt
-                            ? new List<ExtendedColor> { facialExt.Clone() }
+                        Profile.Appearance.FacialHairMarkingEffect is { } facialExt
+                            ? new List<MarkingEffect> { facialExt.Clone() }
                             : null)
                 }
             };
@@ -1630,8 +1630,8 @@ namespace Content.Client.Lobby.UI
                 Markings.HairMarking = new (
                     Profile.Appearance.HairStyleId,
                     new List<Color>() { hairColor.Value },
-                    Profile.Appearance.HairExtendedColor is { } hairExt
-                        ? new List<ExtendedColor> { hairExt.Clone() }
+                    Profile.Appearance.HairMarkingEffect is { } hairExt
+                        ? new List<MarkingEffect> { hairExt.Clone() }
                         : null);
             }
             else
@@ -1669,8 +1669,8 @@ namespace Content.Client.Lobby.UI
                 Markings.FacialHairMarking = new(
                     Profile.Appearance.FacialHairStyleId,
                     new List<Color>() { facialHairColor.Value },
-                    Profile.Appearance.FacialHairExtendedColor is { } facialExt
-                        ? new List<ExtendedColor> { facialExt.Clone() }
+                    Profile.Appearance.FacialHairMarkingEffect is { } facialExt
+                        ? new List<MarkingEffect> { facialExt.Clone() }
                         : null);
             }
             else
@@ -1846,7 +1846,6 @@ namespace Content.Client.Lobby.UI
             }
 
             CBodyTypesButton.Select(_bodyTypes.FindIndex(x => x.ID == Profile.BodyType));
-            IsDirty = true;
         }
     }
 }
