@@ -85,7 +85,7 @@
       amount: 2
     - id: ClothingHeadHelmetRiot
       amount: 2
-    - id: WeaponShotgunEnforcerRubber
+    - id: WeaponShotgunSPAS12Rubber #Sunrise-Edit
       amount: 2
     - id: BoxBeanbag
       amount: 2

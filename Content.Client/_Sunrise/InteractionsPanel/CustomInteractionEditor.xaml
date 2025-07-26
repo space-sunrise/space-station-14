@@ -1,0 +1,336 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Content.Client._Sunrise.InteractionsPanel.CustomInteractionEditor"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="Редактор взаимодействия"
+               MinSize="520 720"
+               SetSize="520 720">
+
+    <PanelContainer>
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#0f1419"/>
+        </PanelContainer.PanelOverride>
+
+        <BoxContainer Orientation="Vertical" Margin="0">
+
+            <!-- Header -->
+            <PanelContainer Margin="6 6 6 4">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                </PanelContainer.PanelOverride>
+
+                <BoxContainer Orientation="Vertical" Margin="0">
+                    <Label Text="РЕДАКТОР ВЗАИМОДЕЙСТВИЙ"
+                           FontColorOverride="#00d4ff"
+                           HorizontalAlignment="Center"
+                           StyleClasses="LabelHeading"
+                           Margin="0 12"/>
+
+                    <PanelContainer MinHeight="1" Margin="40 0 40 8">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#243340"/>
+                        </PanelContainer.PanelOverride>
+                    </PanelContainer>
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- Main Content -->
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="6 0 6 0" HScrollEnabled="False">
+                <BoxContainer Orientation="Vertical" Margin="0">
+
+                    <!-- Basic Info -->
+                    <PanelContainer Margin="0 0 0 4">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical" Margin="12">
+                            <Label Text="📋 Основная информация"
+                                   FontColorOverride="#00d4ff"
+                                   StyleClasses="LabelSubText"
+                                   Margin="0 0 0 6"/>
+
+                            <BoxContainer Orientation="Vertical" Margin="0 8 0 4">
+                                <Label Text="Название:"
+                                       FontColorOverride="#b8e6ff"
+                                       Margin="0 0 0 2"/>
+                                <LineEdit Name="NameInput"
+                                         HorizontalExpand="True"
+                                         MinHeight="24"
+                                         PlaceHolder="Введите название взаимодействия"
+                                         StyleClasses="LineEditDark"/>
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Vertical" Margin="0 4">
+                                <Label Text="Описание:"
+                                       FontColorOverride="#b8e6ff"
+                                       Margin="0 0 0 2"/>
+                                <LineEdit Name="DescriptionInput"
+                                         HorizontalExpand="True"
+                                         MinHeight="24"
+                                         PlaceHolder="Введите описание взаимодействия"
+                                         StyleClasses="LineEditDark"/>
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 4" HorizontalExpand="True">
+                                <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="0 0 4 0">
+                                    <Label Text="Категория:"
+                                           FontColorOverride="#b8e6ff"
+                                           Margin="0 0 0 2"/>
+                                    <OptionButton Name="CategoryOption"
+                                                 HorizontalExpand="True"
+                                                 MinHeight="24"/>
+                                </BoxContainer>
+
+                                <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4 0 0 0">
+                                    <Label Text="Иконка:"
+                                           FontColorOverride="#b8e6ff"
+                                           Margin="0 0 0 2"/>
+                                    <OptionButton Name="IconOption"
+                                                 HorizontalExpand="True"
+                                                 MinHeight="24"/>
+                                </BoxContainer>
+                            </BoxContainer>
+
+                            <!-- Preview Section -->
+                            <BoxContainer Orientation="Horizontal" Margin="0 8 0 4" HorizontalExpand="True">
+                                <PanelContainer Margin="0 0 4 0" HorizontalExpand="True">
+                                    <PanelContainer.PanelOverride>
+                                        <gfx:StyleBoxFlat BackgroundColor="#243340" BorderColor="#00d4ff" BorderThickness="1"/>
+                                    </PanelContainer.PanelOverride>
+
+                                    <BoxContainer Orientation="Vertical" Margin="8" HorizontalAlignment="Center">
+                                        <Label Text="Превью иконки"
+                                               FontColorOverride="#b8e6ff"
+                                               HorizontalAlignment="Center"
+                                               StyleClasses="LabelSubText"
+                                               Margin="0 0 0 4"/>
+
+                                        <PanelContainer MinSize="48 48" MaxSize="48 48" Margin="0 4">
+                                            <PanelContainer.PanelOverride>
+                                                <gfx:StyleBoxFlat BackgroundColor="#2c4455"/>
+                                            </PanelContainer.PanelOverride>
+
+                                            <TextureRect Name="IconPreview"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Stretch="KeepAspectCentered"/>
+                                        </PanelContainer>
+                                    </BoxContainer>
+                                </PanelContainer>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Messages -->
+                    <PanelContainer Margin="0 4 0 4">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical" Margin="12">
+                            <Label Text="Сообщения взаимодействия"
+                                   FontColorOverride="#00d4ff"
+                                   StyleClasses="LabelSubText"
+                                   Margin="0 0 0 6"/>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 6" HorizontalExpand="True">
+                                <LineEdit Name="NewMessageInput"
+                                         HorizontalExpand="True"
+                                         MinHeight="24"
+                                         PlaceHolder="Добавить сообщение..."
+                                         StyleClasses="LineEditDark"
+                                         Margin="0 0 4 0"/>
+                                <Button Name="AddMessageButton"
+                                        Text="+"
+                                        StyleClasses="ButtonSquare"
+                                        MinWidth="24"
+                                        MinHeight="24"/>
+                            </BoxContainer>
+
+                            <Label Text="%user — имя вызывающего; %target — имя цели"
+                                   FontColorOverride="#8e8e93"
+                                   StyleClasses="LabelSubText"
+                                   Margin="2 0 2 2"/>
+
+                            <PanelContainer Margin="0 6" HorizontalExpand="True" MinHeight="60">
+                                <PanelContainer.PanelOverride>
+                                    <gfx:StyleBoxFlat BackgroundColor="#243340"/>
+                                </PanelContainer.PanelOverride>
+
+                                <ScrollContainer HorizontalExpand="True" MaxHeight="80" VScrollEnabled="True">
+                                    <BoxContainer Name="MessagesContainer"
+                                                 Orientation="Vertical"
+                                                 HorizontalExpand="True"
+                                                 Margin="4"/>
+                                </ScrollContainer>
+                            </PanelContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Sounds -->
+                    <PanelContainer Margin="0 4 0 4">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical" Margin="12">
+                            <Label Text="🔊 Звуковые эффекты"
+                                   FontColorOverride="#00d4ff"
+                                   StyleClasses="LabelSubText"
+                                   Margin="0 0 0 6"/>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 6" HorizontalExpand="True">
+                                <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="0 0 6 0">
+                                    <OptionButton Name="SoundOption"
+                                                 HorizontalExpand="True"
+                                                 MinHeight="24"/>
+                                </BoxContainer>
+
+                                <BoxContainer Orientation="Vertical" Margin="0 0 6 0">
+                                    <Button Name="AddSoundButton"
+                                            Text="+"
+                                            StyleClasses="ButtonSquare"
+                                            MinWidth="24"
+                                            MinHeight="24"/>
+                                </BoxContainer>
+
+                                <BoxContainer Orientation="Vertical">
+                                    <Button Name="TestSoundButton"
+                                            Text="▶ Тест"
+                                            StyleClasses="ButtonSquare"
+                                            MinWidth="60"
+                                            MinHeight="24" />
+                                </BoxContainer>
+                            </BoxContainer>
+
+                            <Label Text="Выберите звук и нажмите 'Тест' для прослушивания"
+                                   FontColorOverride="#8e8e93"
+                                   StyleClasses="LabelSubText"
+                                   Margin="2 6 6 6"/>
+
+                            <PanelContainer Margin="0 6" HorizontalExpand="True" MinHeight="40">
+                                <PanelContainer.PanelOverride>
+                                    <gfx:StyleBoxFlat BackgroundColor="#243340"/>
+                                </PanelContainer.PanelOverride>
+
+                                <ScrollContainer HorizontalExpand="True" MaxHeight="60">
+                                    <BoxContainer Name="SoundsContainer"
+                                                 Orientation="Vertical"
+                                                 HorizontalExpand="True"
+                                                 Margin="4"/>
+                                </ScrollContainer>
+                            </PanelContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Effects -->
+                    <PanelContainer Margin="0 4 0 4">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical" Margin="12">
+                            <Label Text="Визуальные эффекты"
+                                   FontColorOverride="#00d4ff"
+                                   StyleClasses="LabelSubText"
+                                   Margin="0 0 0 6"/>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 6" HorizontalExpand="True">
+                                <CheckBox Name="SpawnsEffectCheckBox"
+                                         VerticalAlignment="Center"
+                                         Margin="0 0 6 0"/>
+                                <Label Text="Создавать визуальный эффект"
+                                       VerticalAlignment="Center"
+                                       FontColorOverride="#b8e6ff"/>
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 4" HorizontalExpand="True">
+                                <Label Text="Шанс:"
+                                       MinWidth="60"
+                                       VerticalAlignment="Center"
+                                       FontColorOverride="#b8e6ff"/>
+                                <Slider Name="EffectChanceSlider"
+                                        HorizontalExpand="True"
+                                        MinValue="0"
+                                        MaxValue="1"
+                                        Value="0.5"
+                                        Margin="0 0 6 0"/>
+                                <Label Name="EffectChanceLabel"
+                                       Text="50%"
+                                       MinWidth="35"
+                                       VerticalAlignment="Center"
+                                       FontColorOverride="#00d4ff"/>
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 4" HorizontalExpand="True">
+                                <Label Text="Тип:"
+                                       MinWidth="60"
+                                       VerticalAlignment="Center"
+                                       FontColorOverride="#b8e6ff"/>
+                                <OptionButton Name="EffectOption"
+                                             HorizontalExpand="True"
+                                             MinHeight="24"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Cooldown -->
+                    <PanelContainer Margin="0 4 0 4">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical" Margin="12">
+                            <Label Text="⏱ Время восстановления"
+                                   FontColorOverride="#00d4ff"
+                                   StyleClasses="LabelSubText"
+                                   Margin="0 0 0 6"/>
+
+                            <BoxContainer Orientation="Horizontal" Margin="0 6" HorizontalExpand="True">
+                                <Label Text="Кулдаун:"
+                                       MinWidth="60"
+                                       VerticalAlignment="Center"
+                                       FontColorOverride="#b8e6ff"/>
+                                <Slider Name="CooldownSlider"
+                                        HorizontalExpand="True"
+                                        MinValue="3"
+                                        MaxValue="20"
+                                        Value="3"
+                                        Margin="0 0 6 0"/>
+                                <Label Name="CooldownLabel"
+                                       Text="5с"
+                                       MinWidth="35"
+                                       VerticalAlignment="Center"
+                                       FontColorOverride="#00d4ff"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                </BoxContainer>
+            </ScrollContainer>
+
+            <!-- Footer -->
+            <PanelContainer Margin="6 4 6 6">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                </PanelContainer.PanelOverride>
+
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="12 10">
+                    <Button Name="SaveButton"
+                            Text="СОХРАНИТЬ"
+                            StyleClasses="ButtonSquare"
+                            MinWidth="120"
+                            MinHeight="30"
+                            Margin="0 4 0 0"/>
+                    <Button Name="CancelButton"
+                            Text="ОТМЕНА"
+                            StyleClasses="ButtonSquare"
+                            MinWidth="120"
+                            MinHeight="30"
+                            Margin="4 0 0 0"/>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</DefaultWindow>

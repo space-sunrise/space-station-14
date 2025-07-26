@@ -28,3 +28,4 @@ ntuplink-gun-bundlezauer-name = Набор Zauer
 ntuplink-gun-bundlehristov-name = Набор Христов
 ntuplink-gun-bundlexm1014-name = Набор XM1014
 ntuplink-gun-bundlelaw12-name = Набор Law-12
+ntuplink-gun-minigun-desc = Когда одного ствола недостаточно. Боевой роторный зверь для ситуаций, где точность заменяется количеством. Требует решимости, крепких рук и здоровой спины.

@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+
+using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Cloning;
 using Content.Shared.Cloning.Events;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
@@ -14,26 +14,26 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Pets;
 
-public sealed class SharedPettingSystem : EntitySystem
+public abstract class SharedPettingSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     // Стандартный приказ, выдающийся при приручении
     private const PetOrderType DefaultOrder = PetOrderType.Follow;
     private const PetOrderType AttackOrder = PetOrderType.Attack;
 
     // Айди акшенов, которые будут выдаваться хозяину при появлении питомца.
-    private readonly EntProtoId OpenUiAction = "PetOpenAllUiAction";
-    private readonly EntProtoId AttackTargetAction = "PetAttackTargetAction";
+    private static readonly EntProtoId OpenUiAction = "PetOpenAllUiAction";
+    private static readonly EntProtoId AttackTargetAction = "PetAttackTargetAction";
 
     // Эффекты
-    private readonly EntProtoId PettingSuccessEffect = "EffectHearts";
+    private static readonly EntProtoId PettingSuccessEffect = "EffectHearts";
 
     public override void Initialize()
     {
@@ -73,7 +73,7 @@ public sealed class SharedPettingSystem : EntitySystem
             return;
 
         // Проверяем, жив ли таргет.
-        if (TryComp<MobStateComponent>(args.Target, out var state) && !_mobStateSystem.IsAlive(args.Target, state))
+        if (!_mobState.IsAlive(args.Target))
             return;
 
         // Объявляем перменные, чтобы несколько раз не передавать ее длинную расшифровку.
@@ -108,7 +108,7 @@ public sealed class SharedPettingSystem : EntitySystem
         Dirty(master);
 
         // Вызываем ивент, который сообщает о смене владельца
-        RaiseLocalEvent(pet, new PetMasterChanged { NewMaster = master });
+        RaiseLocalEvent(pet, new PetMasterChanged(master));
 
         return true;
     }
@@ -157,7 +157,7 @@ public sealed class SharedPettingSystem : EntitySystem
     /// </summary>
     /// <param name="pet">Питомец</param>
     /// <param name="silent">Скрывать визуальные эффекты, звуки и попапы?</param>
-    private void Pet(Entity<PettableOnInteractComponent> pet, bool silent = false)
+    public void Pet(Entity<PettableOnInteractComponent> pet, bool silent = false)
     {
         // Проигрываем звук приручения, если он есть
         if (pet.Comp.PettingSuccessfulSound != null && !silent)
@@ -207,36 +207,46 @@ public sealed class SharedPettingSystem : EntitySystem
     /// Работает только 1 раз, после первого приручения
     /// </summary>
     /// <param name="master">Entity(PetOnInteractComponent) его хозяина</param>
-    private void TryAddOpenUiAction(Entity<PetOnInteractComponent> master)
+    private bool TryAddOpenUiAction(Entity<PetOnInteractComponent> master)
     {
         // Если питомцев больше одного - это не первое приручение и акшен уже имеется, разворачиваемся
         if (master.Comp.Pets.Count != 1)
-            return;
+            return false;
 
         // Добавляем акшен хозяину и добавляем его в список акшенов
         var action = _actions.AddAction(master, OpenUiAction);
-        master.Comp.PetActions.Add(action);
+
+        if (!action.HasValue)
+            return false;
+
+        master.Comp.PetActions.Add(action.Value);
+        return true;
     }
 
     /// <summary>
-    /// Добавляет акшен выбирающий питомцам цель атаки
+    /// Добавляет акшен выбирающий питомцам цель атаки.
     /// Работает только 1 раз, после добавления питомца с возможностью атаковать.
     /// </summary>
     /// <param name="master">Entity(PetOnInteractComponent) его хозяина</param>
-    private void TryAddAttackAction(Entity<PetOnInteractComponent> master)
+    private bool TryAddAttackAction(Entity<PetOnInteractComponent> master)
     {
         // Список всех питомцев, имеющих возможность атаковать
-        var agressivePetList =
+        var aggressivePetList =
             master.Comp.Pets.Where(x => TryComp<PettableOnInteractComponent>(x, out var petComponent)
                                    && petComponent.AllowedOrders.Contains(PetOrderType.Attack));
 
         // Если таких питомцев больше одного - это не первое приручение и акшен уже имеется, разворачиваемся
-        if (agressivePetList.Count() != 1)
-            return;
+        if (aggressivePetList.Count() != 1)
+            return false;
 
         // Добавляем акшен хозяину и добавляем его в список акшенов
         var action = _actions.AddAction(master, AttackTargetAction);
-        master.Comp.PetActions.Add(action);
+
+        if (!action.HasValue)
+            return false;
+
+        master.Comp.PetActions.Add(action.Value);
+        return true;
     }
 
     private void OnLoadoutSpawn(Entity<PettableOnInteractComponent> pet, ref LoadoutPetSpawned args)

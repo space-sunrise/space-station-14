@@ -1,7 +1,11 @@
 ﻿using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.CCVar;
+using Content.Shared.Ghost;
 using Robust.Client.Audio;
+using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
+using Robust.Shared;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
@@ -23,6 +27,7 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _sharedAudio = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private ISawmill _sawmill = default!;
     private static readonly MemoryContentRoot ContentRoot = new();
@@ -32,7 +37,8 @@ public sealed class TTSSystem : EntitySystem
     private float _radioVolume;
     private int _fileIdx;
     private float _volumeAnnounce;
-
+    private bool _isQueueEnabled;
+    private bool _ghostRadioEnabled;
     private readonly Queue<QueuedTts> _ttsQueue = new();
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
     private static readonly AudioResource EmptyAudioResource = new();
@@ -59,6 +65,8 @@ public sealed class TTSSystem : EntitySystem
         _cfg.OnValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSClientEnabled, OnTtsClientOptionChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSClientQueueEnabled, OnTTSQueueOptionChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSRadioGhostEnabled, OnTtsRadioGhostChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeNetworkEvent<AnnounceTtsEvent>(OnAnnounceTTSPlay);
     }
@@ -70,6 +78,8 @@ public sealed class TTSSystem : EntitySystem
         _cfg.UnsubValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSClientEnabled, OnTtsClientOptionChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.TTSClientQueueEnabled, OnTTSQueueOptionChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.TTSRadioGhostEnabled, OnTtsRadioGhostChanged);
 
         ContentRoot.Clear();
         _currentPlaying = null;
@@ -91,6 +101,10 @@ public sealed class TTSSystem : EntitySystem
         _radioVolume = volume;
     }
 
+    private void OnTTSQueueOptionChanged(bool option)
+    {
+        _isQueueEnabled = option;
+    }
     private void OnTtsAnnounceVolumeChanged(float volume)
     {
         _volumeAnnounce = volume;
@@ -99,6 +113,11 @@ public sealed class TTSSystem : EntitySystem
     private void OnTtsClientOptionChanged(bool option)
     {
         RaiseNetworkEvent(new ClientOptionTTSEvent(option));
+    }
+
+    private void OnTtsRadioGhostChanged(bool option)
+    {
+        _ghostRadioEnabled = option;
     }
 
     private void OnAnnounceTTSPlay(AnnounceTtsEvent ev)
@@ -152,10 +171,17 @@ public sealed class TTSSystem : EntitySystem
 
         if (ev.IsRadio)
         {
-            var entry = new QueuedTts(ev.Data, TtsType.Radio);
+            var localEntity = _playerManager.LocalEntity;
+            if(!_ghostRadioEnabled && localEntity.HasValue && HasComp<GhostComponent>(localEntity.Value))
+                return;
 
-            _ttsQueue.Enqueue(entry);
-            return;
+            if (_isQueueEnabled)
+            {
+                var entry = new QueuedTts(ev.Data, TtsType.Radio);
+
+                _ttsQueue.Enqueue(entry);
+                return;
+            }
         }
 
         volume = SharedAudioSystem.GainToVolume(volume * ev.VolumeModifier);

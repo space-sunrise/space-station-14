@@ -19,7 +19,9 @@ public enum MechAssemblyVisuals : byte
 [Serializable, NetSerializable]
 public enum MechVisualLayers : byte
 {
-    Base
+    Base,
+    Open, // Sunrise-added
+    Broken // Sunrise-added
 }
 
 /// <summary>

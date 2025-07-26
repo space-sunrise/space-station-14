@@ -12,8 +12,8 @@
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeLightRifle
-    proto: SunriseCartridgeLightRifle #Sunrise-Edit
+        - CartridgeRifle
+    proto: SunriseCartridgeRifle #Sunrise-Edit
     capacity: 30
   - type: Item
     size: Small
@@ -44,7 +44,7 @@
     tags:
       - MagazineLightRifleBox
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeLightRifle #Sunrise-Edit
+    proto: SunriseCartridgeRifle #Sunrise-Edit
     capacity: 100
   - type: Item
   - type: Sprite
@@ -62,7 +62,7 @@
   parent: MagazineLightRifleBox
   components:
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeLightRifleIncendiary #Sunrise-Edit
+    proto: SunriseCartridgeRifleIncendiary #Sunrise-Edit
   - type: Sprite
     layers:
     - state: red
@@ -76,7 +76,7 @@
   parent: MagazineLightRifleBox
   components:
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeLightRifleUranium #Sunrise-Edit
+    proto: SunriseCartridgeRifleUranium #Sunrise-Edit
   - type: Sprite
     layers:
     - state: uranium

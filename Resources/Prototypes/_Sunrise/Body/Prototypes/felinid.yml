@@ -14,7 +14,7 @@
       part: TorsoHuman
       connections:
       - right arm
-      - left arm 
+      - left arm
       - left leg
       - right leg
       organs:
@@ -23,6 +23,7 @@
         stomach: OrganReptilianStomach
         liver:  OrganAnimalLiver
         kidneys: OrganHumanKidneys
+        cavity: null
     right arm:
       part: RightArmHuman
       connections:

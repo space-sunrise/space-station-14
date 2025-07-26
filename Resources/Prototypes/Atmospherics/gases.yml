@@ -50,7 +50,7 @@
   gasOverlayState: tritium
   color: 13FF4B
   reagent: Tritium
-  pricePerMole: 1.5 #Sunrise-edit
+  pricePerMole: 0.2 #Sunrise-edit
 
 - type: gas
   id: 5

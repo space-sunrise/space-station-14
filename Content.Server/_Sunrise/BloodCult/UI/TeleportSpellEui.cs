@@ -1,4 +1,5 @@
 ﻿using Content.Server._Sunrise.BloodCult.Runes.Comps;
+using Content.Server._Sunrise.BloodCult.Runes.Systems;
 using Content.Server.EUI;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.BloodCult.Actions;
@@ -6,6 +7,7 @@ using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Eui;
 using Content.Shared.Popups;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -29,7 +31,7 @@ public sealed class TeleportSpellEui : BaseEui
     private EntityUid _target;
     private SharedTransformSystem _transformSystem;
     private SharedAudioSystem _audio;
-
+    private BloodCultSystem _bloodCult;
 
     private bool _used;
 
@@ -41,6 +43,7 @@ public sealed class TeleportSpellEui : BaseEui
         _transformSystem = _entityManager.System<SharedTransformSystem>();
         _audio = _entityManager.System<SharedAudioSystem>();
         _popupSystem = _entityManager.System<PopupSystem>();
+        _bloodCult = _entityManager.System<BloodCultSystem>();
 
         _performer = performer;
         _target = target;
@@ -50,12 +53,13 @@ public sealed class TeleportSpellEui : BaseEui
 
     public override EuiStateBase GetNewState()
     {
-        var runes = _entityManager.EntityQuery<CultRuneTeleportComponent>();
         var state = new TeleportSpellEuiState();
 
-        foreach (var rune in runes)
+        var query = _entityManager.EntityQueryEnumerator<CultRuneTeleportComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var xform))
         {
-            state.Runes.Add((int)rune.Owner, rune.Label!);
+            state.Runes.Add((int)uid, comp.Label!);
+            state.Distance.Add(_bloodCult.GetDistance(_performer, xform));
         }
 
         return state;

@@ -8,6 +8,13 @@
     sprite: _Sunrise/Clothing/Head/Soft/brownsoft.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Soft/brownsoft.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBrownsoft]
@@ -24,6 +31,13 @@
     sprite: _Sunrise/Clothing/Head/Soft/cyansoft.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Soft/cyansoft.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCyansoft]

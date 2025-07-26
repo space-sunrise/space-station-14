@@ -263,7 +263,7 @@
       coverage: EYES
 
 - type: entity
-  parent: [ClothingEyesBase, BaseMajorContraband, PowerCellSlotSmallItem] # Sunrise-Edit
+  parent: [ClothingEyesBase, BaseMajorContraband, PowerCellSlotSmallItem, BaseNightVisionDevice] # Sunrise-Edit
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -274,10 +274,27 @@
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
   # Sunrise-Start
-  - type: NightVisionDevice
-    isPowered: true
-    displayColor: "#44b855"
-    displayShader: NVDDisplay
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+  - type: ToggleCellDraw
   - type: PowerCellDraw
     drawRate: 0
     useRate: 20

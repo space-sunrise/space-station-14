@@ -19,6 +19,7 @@
         stomach: OrganHumanoidXenoStomach
         liver: OrganHumanoidXenoLiver
         kidneys: OrganHumanoidXenoKidneys
+        cavity: null
       connections:
       - right arm
       - left arm

@@ -91,6 +91,14 @@
     {
       "name": "jackal_alt-inner",
       "directions": 4
+    },
+    {
+      "name": "main_moon",
+      "directions": 4
+    },
+    {
+      "name": "inner_moon",
+      "directions": 4
     }
   ]
 }

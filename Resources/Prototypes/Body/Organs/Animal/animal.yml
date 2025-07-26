@@ -128,7 +128,7 @@
 
 - type: entity
   id: OrganAnimalHeart
-  parent: BaseAnimalOrgan
+  parent: [ BaseAnimalOrgan, BaseOrganHeart]
   name: heart
   categories: [ HideSpawnMenu ]
   components:

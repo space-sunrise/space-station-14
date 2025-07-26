@@ -1,0 +1,44 @@
+- type: marking
+  id: FoxTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human]
+  sponsorOnly: false # Sunrise
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: vulp_wag
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: vulp_wag-tip
+
+- type: marking
+  id: BigFoxTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human]
+  sponsorOnly: false # Sunrise
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+        category: Hair
+      fallbackTypes:
+      - !type:CategoryColoring
+        category: FacialHair
+      - !type:SkinColoring
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/big_fox_tail.rsi
+    state: tail_fox_wag_stripes_prime
+  - sprite: _Sunrise/Mobs/Customization/big_fox_tail.rsi
+    state: tail_fox_wag_stripes_second
+  - sprite: _Sunrise/Mobs/Customization/big_fox_tail.rsi
+    state: tail_fox_wag_stripes_third
+
+- type: marking
+  id: SharkTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human]
+  sponsorOnly: false # Sunrise
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
+    state: shark_tail

@@ -13,6 +13,7 @@
     - type: OwOAccent  # Sunrise-traits
     - type: VulpaAccent # Sunrise-traits
     - type: TajaranAccent # Sunrise-traits
+    - type: MoldovanAccent # Sunrise-traits
     - type: LizardAccent
     - type: MothAccent
     - type: ReplacementAccent
@@ -94,6 +95,16 @@
   components:
   - type: ReplacementAccent
     accent: liar
+
+- type: trait
+  id: MoldovanAccent
+  name: trait-moldovan-name
+  description: trait-moldovan-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: ReplacementAccent
+    accent: moldovan
 
 # 2 Cost
 

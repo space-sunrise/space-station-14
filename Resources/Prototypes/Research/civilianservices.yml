@@ -117,17 +117,19 @@
   - CryostasisBeaker
   - SyringeCryostasis
 
-- type: technology # Merge with other T2 medical research if possible!
-  id: MechanizedTreatment
-  name: research-technology-mechanized-treatment
-  icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: medical
-  discipline: CivilianServices
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedChemical
+# Sunrise-Start
+# - type: technology
+#   id: MechanizedTreatment
+#   name: research-technology-mechanized-treatment
+#   icon:
+#     sprite: Mobs/Silicon/chassis.rsi
+#     state: medical
+#   discipline: CivilianServices
+#   tier: 2
+#   cost: 5000
+#   recipeUnlocks:
+#   - BorgModuleAdvancedChemical
+# Sunrise-End
 
 - type: technology
   id: AdvancedCleaning

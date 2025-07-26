@@ -66,6 +66,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - TopCovered # INTERACTIONS
 
 - type: entity
   parent: ClothingHeadHatHardhatBase

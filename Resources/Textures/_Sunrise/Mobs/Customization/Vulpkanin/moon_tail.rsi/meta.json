@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By Discord @sokol9bl",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "tail_doubletone_prime",
+            "directions": 4
+        },
+        {
+            "name": "tail_doubletone_second",
+            "directions": 4
+        }
+    ]
+}

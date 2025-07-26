@@ -1,7 +1,3 @@
-ent-SurgeryStepExposeNerves = Вскрыть нервы
-    .desc = { ent-SurgeryStepBase.desc }
-ent-SurgeryStepExposeBloodVessels = Вскрыть кровеносные сосуды
-    .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryLimbAttachmentStep = прикрепить конечность
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepRejoinNerves = Соединить нервы

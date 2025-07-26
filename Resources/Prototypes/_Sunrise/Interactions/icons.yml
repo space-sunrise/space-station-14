@@ -1,0 +1,84 @@
+- type: interactionIcon
+  id: FaceCheeksPullIcon
+  name: interaction-icon-name-face-cheeks-pull-icon
+  icon: /Textures/_Sunrise/Interactions/cheeks_pat.png
+
+- type: interactionIcon
+  id: FacePatsIcon
+  name: interaction-icon-name-face-pats-icon
+  icon: /Textures/_Sunrise/Interactions/pet_head.png
+
+- type: interactionIcon
+  id: FaceLickDoggyStyleIcon
+  name: interaction-icon-name-face-lick-doggy-style-icon
+  icon: /Textures/_Sunrise/Interactions/face_lick_doggy_style.png
+
+- type: interactionIcon
+  id: FriendlyPatShoulderIcon
+  name: interaction-icon-name-friendly-pat-shoulder-icon
+  icon: /Textures/_Sunrise/Interactions/pat_shoulder.png
+
+- type: interactionIcon
+  id: FriendlyBlowSlapIcon
+  name: interaction-icon-name-friendly-blow-slap-icon
+  icon: /Textures/_Sunrise/Interactions/blow_slap.png
+
+- type: interactionIcon
+  id: FriendlyFaceRubCatIcon
+  name: interaction-icon-name-friendly-face-rub-cat-icon
+  icon: /Textures/_Sunrise/Interactions/face_rub_cat.png
+
+- type: interactionIcon
+  id: FriendlyIcon
+  name: interaction-icon-name-friendly-icon
+  icon: /Textures/_Sunrise/Interactions/friendly.png
+
+- type: interactionIcon
+  id: FriendlyFingerTapIcon
+  name: interaction-icon-name-friendly-finger-tap-icon
+  icon: /Textures/_Sunrise/Interactions/friendly_finger_tap.png
+
+- type: interactionIcon
+  id: FriendlyNoseBoopIcon
+  name: interaction-icon-name-friendly-nose-boop-icon
+  icon: /Textures/_Sunrise/Interactions/friendly_nose_boop.png
+
+- type: interactionIcon
+  id: FriendlyTailPullIcon
+  name: interaction-icon-name-friendly-tail-pull-icon
+  icon: /Textures/_Sunrise/Interactions/friendly_tail_pull.png
+
+- type: interactionIcon
+  id: FriendlyHandshakeIcon
+  name: interaction-icon-name-friendly-handshake-icon
+  icon: /Textures/_Sunrise/Interactions/hand_shake.png
+
+- type: interactionIcon
+  id: FriendlyHignFiveIcon
+  name: interaction-icon-name-friendly-hign-five-icon
+  icon: /Textures/_Sunrise/Interactions/high_five.png
+
+- type: interactionIcon
+  id: FriendlyPatTailIcon
+  name: interaction-icon-name-friendly-pat-tail-icon
+  icon: /Textures/_Sunrise/Interactions/pat_tail.png
+
+- type: interactionIcon
+  id: FriendlyShoulderMassageIcon
+  name: interaction-icon-name-friendly-shoulder-massage-icon
+  icon: /Textures/_Sunrise/Interactions/shoulder_massage.png
+
+- type: interactionIcon
+  id: FriendlyTailHugIcon
+  name: interaction-icon-name-friendly-tail-hug-icon
+  icon: /Textures/_Sunrise/Interactions/tail_hug.png
+
+- type: interactionIcon
+  id: FriendlyTailIcon
+  name: interaction-icon-name-friendly-tail-icon
+  icon: /Textures/_Sunrise/Interactions/tail.png
+
+- type: interactionIcon
+  id: FriendlyPatHornsIcon
+  name: interaction-icon-name-friendly-pat-horns-icon
+  icon: /Textures/_Sunrise/Interactions/horns_pat.png

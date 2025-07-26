@@ -8,19 +8,17 @@ public sealed class TextureTag : BaseTextureTag
 {
     public override string Name => "tex";
 
-    public override bool TryGetControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
+    public override bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         control = null;
 
-        if (!node.Attributes.TryGetValue("path", out var rawPath))
+        if (!node.Attributes.TryGetValue("path", out var rawPath) || !rawPath.TryGetString(out var path))
             return false;
 
         if (!node.Attributes.TryGetValue("scale", out var scale) || !scale.TryGetLong(out var scaleValue))
-        {
             scaleValue = 1;
-        }
 
-        if (!TryDrawIcon(rawPath.ToString(), scaleValue.Value, out var texture))
+        if (!TryDrawIcon(path, scaleValue.Value, out var texture))
             return false;
 
         control = texture;

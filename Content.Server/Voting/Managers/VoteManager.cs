@@ -8,6 +8,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.Vote;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -245,11 +246,15 @@ namespace Content.Server.Voting.Managers
                 true,
                 AudioParams.Default.WithLoop(true).WithVolume(-10f))!.Value.Entity;
 
+            // Sunrise-Start
             if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
             {
-                _entityManager.System<GameTicker>().PauseStart(true);
-                _cfg.SetCVar(CCVars.OocEnabled, false);
+                if (_cfg.GetCVar(SunriseCCVars.VotePause))
+                    _entityManager.System<GameTicker>().PauseStart(true);
+                if (_cfg.GetCVar(SunriseCCVars.VoteDisableOOC))
+                    _cfg.SetCVar(CCVars.OocEnabled, false);
             }
+            // Sunrise-End
 
             var start = _timing.RealTime;
             var end = start + options.Duration;
@@ -487,8 +492,10 @@ namespace Content.Server.Voting.Managers
                 _entityManager.System<SharedAudioSystem>().Stop(_voteAudioStream);
                 if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
                 {
-                    _entityManager.System<GameTicker>().PauseStart(false);
-                    _cfg.SetCVar(CCVars.OocEnabled, true);
+                    if (_cfg.GetCVar(SunriseCCVars.VotePause))
+                        _entityManager.System<GameTicker>().PauseStart(false);
+                    if (_cfg.GetCVar(SunriseCCVars.VoteDisableOOC))
+                        _cfg.SetCVar(CCVars.OocEnabled, true);
                 }
             }
 

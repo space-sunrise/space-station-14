@@ -16,6 +16,14 @@ ent-RubberStampAdj = печать адъютанта
 ent-RubberStampNpt = печать начальника планетарной тюрьмы
     .desc = { ent-RubberStampBase.desc }
     .suffix = НЕ МАППИТЬ
+ent-RubberStampVeto = печать ВЕТО
+    .desc = Последнее слово в споре. Твоё мнение никого не волнует.
+ent-RubberStampRedo = печать прошу доработать
+    .desc = Печать, навечно закрепляющая твой позорный провал в истории бюрократии.
+ent-RubberStampSpecOps = печать спецопераций
+    .desc = Если она стоит, значит вас могут скоро спасти... А может и не...
+    .suffix = НЕ МАППИТЬ
 stamp-component-stamped-name-ntrep = Представитель NT
 stamp-component-stamped-name-path = Патологоанатом
 stamp-component-stamped-name-adj = Адъютант
+

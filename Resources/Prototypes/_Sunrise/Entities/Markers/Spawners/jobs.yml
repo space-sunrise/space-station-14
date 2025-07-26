@@ -404,3 +404,15 @@
       state: service
     - sprite: Mobs/Silicon/chassis.rsi
       state: service_e
+
+- type: entity
+  id: SpawnPointIAA
+  parent: SpawnPointJobBase
+  name: iaa
+  components:
+  - type: SpawnPoint
+    job_id: IAA
+  - type: Sprite
+    layers:
+    - state: green
+    - state: lawyer

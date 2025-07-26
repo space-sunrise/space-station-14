@@ -10,6 +10,7 @@
       - torso
       organs:
         brain: MobTerminatorEndoskeleton
+        cavity: null # Sunrise-edit
     torso:
       part: TorsoHuman
       connections:

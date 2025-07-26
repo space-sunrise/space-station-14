@@ -47127,7 +47127,7 @@ entities:
       pos: 32.5,37.5
       parent: 2
     - type: FaxMachine
-      name: Офицер "Синий Щит"
+      name: Офицер «Синий щит»
 - proto: FaxMachineCaptain
   entities:
   - uid: 7323

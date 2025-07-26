@@ -34,6 +34,10 @@
       map: ["variant-service"]
     - state: variant-command
       map: ["variant-command"]
+# sunrise-start
+    - state: variant-law
+      map: ["variant-law"]
+# sunrise-end
     - state: variant-multiple
       map: ["variant-multiple"]
     - state: telecom-open
@@ -79,6 +83,12 @@
         whitelist:
           tags:
           - EncryptionService
+          # sunrise-start
+      variant-law:
+        whitelist:
+          tags:
+          - EncryptionLaw
+          # sunrise-end
       variant-command:
         whitelist:
           tags:
@@ -122,6 +132,11 @@
         variant-service:
           True: { shader: unshaded }
           False: { shader: shaded }
+# sunrise-start
+        variant-law:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+# sunrise-end
         variant-command:
           True: { shader: unshaded }
           False: { shader: shaded }

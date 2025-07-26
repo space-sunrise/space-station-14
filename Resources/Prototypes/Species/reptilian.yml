@@ -34,6 +34,7 @@
     RLeg: MobReptilianRLeg
     LFoot: MobReptilianLFoot
     RFoot: MobReptilianRFoot
+    Back: MobHumanoidAnyMarking # SUNRISE
 
 - type: bodyType
   id: ReptilianSlim
@@ -90,6 +91,11 @@
     Arms:
       points: 2
       required: false
+# SUNRISE
+    Back:
+      points: 2
+      required: false
+# SUNRISE
 
 - type: humanoidBaseSprite
   id: MobReptilianHead

@@ -1,0 +1,36 @@
+﻿- type: entity
+  id: AbductorAlienPad
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: alien pad
+  description: Beam in the pizzas and dig in.
+  components:
+  - type: AbductorAlienPad
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - TableLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Structures/abductor_alien_pad.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: offline
+      map: [ "enum.CargoTelepadLayers.Base" ]
+    - state: idle
+      map: [ "enum.CargoTelepadLayers.Beam" ]
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: Appearance

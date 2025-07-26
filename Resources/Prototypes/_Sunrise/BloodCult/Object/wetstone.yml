@@ -3,9 +3,13 @@
   parent: BaseItem
   components:
     - type: Sharpener
-      damageBonus:
+      # Sunrise - Edit
+      slashDamageBonus:
         types:
           Slash: 5
+      piercingDamageBonus:
+        types:
+          Piercing: 3
     - type: Sprite
       sprite: _Sunrise/BloodCult/Entities/wetstone.rsi
       layers:
@@ -26,9 +30,12 @@
   id: CultSharpener
   components:
     - type: Sharpener
-      damageBonus:
+      slashDamageBonus:
         types:
           Slash: 15
+      piercingDamageBonus:
+        types:
+          Piercing: 8
     - type: Sprite
       sprite: _Sunrise/BloodCult/Entities/wetstone.rsi
       layers:

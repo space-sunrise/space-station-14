@@ -79,6 +79,10 @@
   background: /Textures/_Sunrise/Lobby/Arts/singulord.webp
 
 - type: lobbyBackground
+  id: StarBow14
+  background: /Textures/_Sunrise/Lobby/Arts/starbow14.webp
+
+- type: lobbyBackground
   id: SpaceMudaki
   background: /Textures/_Sunrise/Lobby/Arts/space-mudaki.webp
 
@@ -154,9 +158,9 @@
 #  id: NewYearSec
 #  background: /Textures/_Sunrise/Lobby/Arts/new-year-sec.webp
 
-#- type: lobbyBackground
-#  id: NewYearSave
-#  background: /Textures/_Sunrise/Lobby/Arts/new-year-save.webp
+- type: lobbyBackground
+  id: NewYearSave
+  background: /Textures/_Sunrise/Lobby/Arts/new-year-save.webp
 
 #- type: lobbyBackground
 #  id: NewYearComfort

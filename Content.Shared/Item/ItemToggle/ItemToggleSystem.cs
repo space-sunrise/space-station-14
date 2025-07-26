@@ -111,6 +111,9 @@ public sealed class ItemToggleSystem : EntitySystem
 
         var user = args.User;
         // Sunrise-Start
+        if (!ent.Comp.CanActivateInhand) // Верб позволяет активировать в руке ПНВ и термалы, а нам это не нужно
+            return;
+
         if (TryComp<HandsComponent>(args.User, out var handsComp))
         {
             if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))

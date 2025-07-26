@@ -46,3 +46,6 @@ ent-SpawnMechSecPodFilled = спавнер Патрульного Пода
 ent-SpawnMechMiningPodFilled = Mining Pod Spawner
     .suffix = Filled
     .desc = { ent-MarkerBase.desc }
+ent-SpawnMechPaddyFilled = спавнер Падди
+    .suffix = Заполнен
+    .desc = { ent-MarkerBase.desc }

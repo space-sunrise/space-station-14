@@ -26,6 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.StatsBoard;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Server.GameTicking
 {
@@ -439,6 +440,11 @@ namespace Content.Server.GameTicking
                 _startingRound = false;
                 return;
             }
+
+            // Sunrise-Start
+            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null)
+                AddExcludedPreset(CurrentPreset.ID);
+            // Sunrise-End
 
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _map.InitializeMap(DefaultMap);

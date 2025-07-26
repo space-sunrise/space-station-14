@@ -19,6 +19,7 @@
         stomach: OrganPredatorStomach
         liver: OrganPredatorLiver
         kidneys: OrganPredatorKidneys
+        cavity: null
       connections:
       - right arm
       - left arm

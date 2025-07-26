@@ -14,6 +14,7 @@
         liver: OrganBloodsuckerLiver
         heart: OrganBloodsuckerHeart
         kidneys: OrganAnimalKidneys
+        cavity: null
     right arm:
       part: RightArmHuman
       connections:

@@ -77,3 +77,16 @@
   cost: 12500
   recipeUnlocks:
   - ImplantExtractorMachineCircuitboard
+
+# Sunrise-edit: Moved from CivilianServices and renamed a bit to avoid conflict
+- type: technology
+  id: MechanizedMedicalTreatment
+  name: research-technology-mechanized-medical-treatment
+  icon:
+    sprite: Mobs/Silicon/chassis.rsi
+    state: medical
+  discipline: Biochemical
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedChemical

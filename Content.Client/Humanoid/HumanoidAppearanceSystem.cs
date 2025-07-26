@@ -3,6 +3,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise;
+using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
@@ -393,11 +394,50 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
             }
 
-            if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
+            var displacementData = GetMarkingDisplacement(entity.Owner, markingPrototype.BodyPart, humanoid);
+            if (displacementData != null && markingPrototype.CanBeDisplaced)
             {
                 _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
             }
         }
+    }
+
+    private DisplacementData? GetMarkingDisplacement(EntityUid uid, HumanoidVisualLayers layer, HumanoidAppearanceComponent humanoid)
+    {
+        string? bodyTypeName = null;
+        if (TryComp(uid, out HumanoidAppearanceComponent? humanoidComp))
+        {
+            bodyTypeName = _prototypeManager.Index(humanoidComp.BodyType).Name;
+        }
+
+        var sex = humanoid.Sex;
+
+        // First try to get body type and sex specific displacement maps
+        if (bodyTypeName != null && humanoid.BodyTypeSexMarkingsDisplacement.TryGetValue(bodyTypeName, out var bodyTypeSexDisplacements))
+        {
+            if (bodyTypeSexDisplacements.TryGetValue(sex, out var sexDisplacements))
+            {
+                if (sexDisplacements.TryGetValue(layer, out var bodyTypeSexDisplacement))
+                    return bodyTypeSexDisplacement;
+            }
+        }
+
+        // Then try body type specific displacement maps
+        if (bodyTypeName != null && humanoid.BodyTypeMarkingsDisplacement.TryGetValue(bodyTypeName, out var bodyTypeDisplacements))
+        {
+            if (bodyTypeDisplacements.TryGetValue(layer, out var bodyTypeDisplacement))
+                return bodyTypeDisplacement;
+        }
+
+        // Try sex specific displacement maps
+        if (humanoid.SexMarkingsDisplacement.TryGetValue(sex, out var sexSpecificDisplacements))
+        {
+            if (sexSpecificDisplacements.TryGetValue(layer, out var sexDisplacement))
+                return sexDisplacement;
+        }
+
+        // Fall back to the original logic
+        return humanoid.MarkingsDisplacement.TryGetValue(layer, out var displacement) ? displacement : null;
     }
 
     public override void SetSkinColor(EntityUid uid, Color skinColor, bool sync = true, bool verify = true, HumanoidAppearanceComponent? humanoid = null)

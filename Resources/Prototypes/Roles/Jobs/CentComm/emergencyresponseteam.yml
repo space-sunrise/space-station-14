@@ -10,6 +10,19 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hours
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000 # 5 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 # 5 hours
   accessGroups:
   - AllAccess
   access:
@@ -207,6 +220,13 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hours
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10 hours
   accessGroups:
   - AllAccess
   access:
@@ -291,6 +311,10 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hours
   accessGroups:
   - AllAccess
   access:
@@ -393,6 +417,13 @@
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 # 10 hours
   accessGroups:
   - AllAccess
   access:
@@ -529,3 +560,188 @@
     head: ClothingHeadHelmetHardsuitERTJanitor
     neck: ClothingNeckScarfStripedPurple
     eyes: ClothingEyesGlassesSunglasses
+
+# --- VETERAN VARIANTS (Strict requirements, for admin/event use) ---
+# Sunrise start
+- type: job
+  id: ERTLeaderVeteran
+  name: job-name-ertleader-veteran
+  description: job-description-ertleader-veteran
+  playTimeTracker: JobERTLeaderVeteran
+  setPreference: false
+  startingGear: ERTLeaderGearEVA
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 # 50 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 72000 # 20 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 # 10 hours
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: job
+  id: ERTChaplainVeteran
+  name: job-name-ertchaplain-veteran
+  description: job-description-ertchaplain-veteran
+  playTimeTracker: JobERTChaplainVeteran
+  setPreference: false
+  startingGear: ERTChaplainGear
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 90000 # 25 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: BibleUser #Lets them heal with bibles
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: job
+  id: ERTEngineerVeteran
+  name: job-name-ertengineer-veteran
+  description: job-description-ertengineer-veteran
+  playTimeTracker: JobERTEngineerVeteran
+  setPreference: false
+  startingGear: ERTEngineerGearEVA
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 # 50 hours
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 90000 # 25 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: job
+  id: ERTSecurityVeteran
+  name: job-name-ertsecurity-veteran
+  description: job-description-ertsecurity-veteran
+  playTimeTracker: JobERTSecurityVeteran
+  setPreference: false
+  startingGear: ERTSecurityGearEVA
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 # 50 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: job
+  id: ERTMedicalVeteran
+  name: job-name-ertmedic-veteran
+  description: job-description-ertmedic-veteran
+  playTimeTracker: JobERTMedicalVeteran
+  setPreference: false
+  startingGear: ERTMedicalGearEVA
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 # 50 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 90000 # 25 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: job
+  id: ERTJanitorVeteran
+  name: job-name-ertjanitor-veteran
+  description: job-description-ertjanitor-veteran
+  playTimeTracker: JobERTJanitorVeteran
+  setPreference: false
+  startingGear: ERTJanitorGearEVA
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 90000 # 25 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: job
+  id: CBURNVeteran
+  name: job-name-cburn-veteran
+  description: job-description-cburn-veteran
+  playTimeTracker: JobCBURNVeteran
+  setPreference: false
+  startingGear: CBURNGear
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 # 50 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 # 10 hours
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+# Sunrise end
+

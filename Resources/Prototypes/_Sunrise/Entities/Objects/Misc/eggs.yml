@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseItem
+  id: EggSpiderFertilized
+  name: egg spider
+  description: Is it a gemstone? Is it an egg? It looks expensive.
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MobGiantSpider
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Sprite
+    sprite: Objects/Misc/eggspider.rsi
+    state: icon

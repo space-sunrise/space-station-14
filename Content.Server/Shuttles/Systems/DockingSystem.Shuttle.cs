@@ -133,12 +133,13 @@ public sealed partial class DockingSystem
         EntityCoordinates coordinates,
         Angle angle,
         bool fallback = true,
+        bool ignored = true,
         string? priorityTag = null) // Sunrise-Edit
     {
         var gridDocks = GetDocks(targetGrid);
         var shuttleDocks = GetDocks(shuttleUid);
 
-        var configs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks, priorityTag); // Sunrise-Edit
+        var configs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks, priorityTag, ignored); // Sunrise-Edit
 
         foreach (var config in configs)
         {

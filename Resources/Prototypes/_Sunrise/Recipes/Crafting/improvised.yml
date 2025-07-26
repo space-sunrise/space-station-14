@@ -37,3 +37,33 @@
   category: construction-category-misc
   objectType: Item
   description: construction-graph-tag-sunflower-crown-desc
+
+- type: construction
+  name: construction-graph-tag-atmoscross
+  id: AtmosCrossCraft
+  graph: AtmosCrossCraft
+  startNode: start
+  targetNode: cross
+  category: construction-category-clothing
+  description: construction-graph-tag-atmoscross-desc
+  objectType: Item
+
+- type: construction
+  name: construction-graph-tag-white-wraps
+  id: Wraps
+  graph: WrapsCraft
+  startNode: start
+  targetNode: Wraps
+  category: construction-category-clothing
+  objectType: Item
+  description: construction-graph-tag-white-wraps-desc
+
+- type: construction
+  name: construction-graph-tag-white-high-wraps
+  id: WrapsHigh
+  graph: WrapsHighCraft
+  startNode: start
+  targetNode: WrapsHigh
+  category: construction-category-clothing
+  objectType: Item
+  description: construction-graph-tag-white-high-wraps-desc

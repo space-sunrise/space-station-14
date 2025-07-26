@@ -411,7 +411,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
         // Do this AFTER attack so it doesn't spam every tick
-        var ev = new AttemptMeleeEvent();
+        var ev = new AttemptMeleeEvent(user); // Sunrise-edit
         RaiseLocalEvent(weaponUid, ref ev);
 
         if (ev.Cancelled)
@@ -690,7 +690,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(entity, attackedEvent);
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
 
-            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin:user);
+            // Sunrise start
+            var resistanceBypass = component.ResistanceBypassOnWide;
+            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
+            // Sunrise End
 
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {
