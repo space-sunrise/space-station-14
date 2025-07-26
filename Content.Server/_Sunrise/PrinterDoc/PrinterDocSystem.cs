@@ -232,9 +232,22 @@ public sealed class PrinterDocSystem : EntitySystem
         if (!TryComp<PaperComponent>(paper, out var paperComp) || !_docCache.TryGetValue(templateId, out var content))
             return false;
 
+        int offsetHours = 3;
+        int offsetYears = 1000;
+
+        try
+        {
+            offsetHours = _configManager.GetCVar(SunriseCCVars.PrinterDocTimeOffsetHours);
+            offsetYears = _configManager.GetCVar(SunriseCCVars.PrinterDocYearOffset);
+        }
+        catch
+        {
+            // Без подключения к серверу эти CVar недоступны используем компоненты
+        }
+
         var date = DateTime.UtcNow
-            .AddHours(_configManager.GetCVar(SunriseCCVars.PrinterDocTimeOffsetHours))
-            .AddYears(_configManager.GetCVar(SunriseCCVars.PrinterDocYearOffset))
+            .AddHours(offsetHours)
+            .AddYears(offsetYears)
             .ToString("dd.MM.yyyy");
 
         var shift = _timing.CurTime - _roundStartTime;
@@ -249,6 +262,7 @@ public sealed class PrinterDocSystem : EntitySystem
         _paperSystem.SetContent((paper, paperComp), content);
         return true;
     }
+
 
 
     private bool TryCopyInternal(EntityUid uid, PrinterDocComponent comp)
