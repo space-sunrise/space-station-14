@@ -24,7 +24,7 @@ public sealed class GradientMarkingEffectUiBuilder : IMarkingEffectUiBuilder
         parent.CreateSelector();
         parent.CreateSelector("gradient");
 
-        parent.CreateSlider("offsetY", (int)(gradient.Offset.Y * ToIntScaling), -OffsetMin, OffsetMax, v => gradient.Offset.Y = v / ToIntScaling);
+        parent.CreateSlider("offsetY", (int)(gradient.Offset.Y * ToIntScaling), OffsetMin, OffsetMax, v => gradient.Offset.Y = v / ToIntScaling);
         parent.CreateSlider("sizeY", (int)(gradient.Size.Y * ToIntScaling), SizeMin, SizeMax, v => gradient.Size.Y = v / ToIntScaling);
         parent.CreateSlider("rotation", (int)gradient.Rotation, RotationMin, RotationMax, v => gradient.Rotation = v);
 

@@ -11,6 +11,6 @@ public sealed class ColorMarkingEffectUiBuilder : IMarkingEffectUiBuilder
         if (effect is not ColorMarkingEffect)
             return;
 
-        var selector = parent.CreateSelector();
+        parent.CreateSelector();
     }
 }
