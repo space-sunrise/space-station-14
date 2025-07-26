@@ -12,7 +12,7 @@ public sealed partial class AnomalyInjectorMedipenComponent : Component
     public ComponentRegistry InjectionComponents = default!;
 }
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class UsedAnomalyInjectorMedipenComponent : Component
 {
 }

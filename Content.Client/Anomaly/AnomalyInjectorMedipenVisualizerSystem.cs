@@ -16,12 +16,12 @@ public sealed class AnomalyInjectorMedipenVisualizerSystem : EntitySystem
     private void OnUsedStartup(EntityUid uid, UsedAnomalyInjectorMedipenComponent comp, ComponentStartup args)
     {
         if (EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(0, "medipen_empty");
+            sprite.LayerSetState(0, "anomyxine_empty");
     }
 
     private void OnUsedShutdown(EntityUid uid, UsedAnomalyInjectorMedipenComponent comp, ComponentShutdown args)
     {
         if (EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(0, "medipen");
+            sprite.LayerSetState(0, "anomyxine");
     }
 }

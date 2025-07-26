@@ -32,7 +32,7 @@ public sealed partial class AnomalyInjectorMedipenSystem : EntitySystem
         // Если инъектор уже использован — попап и выход
         if (_entMan.HasComponent<UsedAnomalyInjectorMedipenComponent>(uid))
         {
-            _popup.PopupEntity("Автоинъектор пуст", uid, args.User);
+            _popup.PopupEntity("Нечего вводить!", uid, args.User);
             return;
         }
 
@@ -43,7 +43,7 @@ public sealed partial class AnomalyInjectorMedipenSystem : EntitySystem
         // Если цель уже заражена — попап и выход
         if (_entMan.HasComponent<InnerBodyAnomalyComponent>(target))
         {
-            _popup.PopupEntity("Кожа не поддается срабатыванию автоинъектора", target, args.User);
+            _popup.PopupEntity("Кожа не поддается введению", target, args.User);
             return;
         }
 

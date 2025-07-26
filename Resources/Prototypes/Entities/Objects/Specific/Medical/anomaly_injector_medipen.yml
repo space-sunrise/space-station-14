@@ -1,19 +1,15 @@
 - type: entity
-  name: anomaly injector medipen
+  name: автоинъектор аномалий
   id: AnomalyInjectorMedipen
   parent: BaseItem
-  description: Медипен, заражающий аномалией при использовании на себе или другом игроке.
+  description: Вводит небольшую дозу аномального реагента, результат непредсказуем
   components:
     - type: Sprite
-      sprite: Objects/Specific/Medical/medipen.rsi
+      sprite: Objects/Specific/Medical/anomaly_injector.rsi
       layers:
-        - state: medipen
-    - type: SolutionContainerVisuals
-      maxFillLevels: 1
-      changeColor: false
-      emptySpriteName: medipen_empty
+        - state: anomyxine
     - type: Item
-      sprite: Objects/Specific/Medical/medipen.rsi
+      sprite: Objects/Specific/Medical/anomaly_injector.rsi
       size: Tiny
     - type: EmitSoundOnUse
       sound:
