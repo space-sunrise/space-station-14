@@ -3,7 +3,7 @@ using System.Linq;
 using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.TTS;
 using System.Numerics;
-using Content.Shared._Sunrise.ExtendedColor;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.CCVar;
 using Content.Shared.Decals;
 using Content.Shared.Examine;

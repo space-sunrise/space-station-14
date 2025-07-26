@@ -3,7 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Sunrise.ExtendedColor;
+namespace Content.Shared._Sunrise.MarkingEffects;
 
 public enum MarkingEffectType
 {

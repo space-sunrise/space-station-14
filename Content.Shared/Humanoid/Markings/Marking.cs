@@ -1,9 +1,8 @@
 using System.Linq;
-using Content.Shared._Sunrise.ExtendedColor;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared._Sunrise.ExtendedColor;
 
 namespace Content.Shared.Humanoid.Markings
 {

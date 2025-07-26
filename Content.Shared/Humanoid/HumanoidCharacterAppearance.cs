@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Shared._Sunrise.ExtendedColor;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;

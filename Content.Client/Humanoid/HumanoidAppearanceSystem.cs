@@ -1,12 +1,12 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client._Sunrise.MarkingEffects;
+using Content.Client._Sunrise.MarkingEffectsClient;
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.ExtendedColor;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;

@@ -1,5 +1,5 @@
-﻿using Content.Client._Sunrise.MarkingEffects;
-using Content.Shared._Sunrise.ExtendedColor;
+﻿using Content.Client._Sunrise.MarkingEffectsClient;
+using Content.Shared._Sunrise.MarkingEffects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.UserInterface.Controls;
 
 public sealed class MarkingEffectSelectorSliders : Control
 {
-    public MarkingEffect Effect { get; set; }
+    private MarkingEffect Effect { get; set; }
 
     private static readonly Dictionary<MarkingEffectType, IMarkingEffectUiBuilder> UiBuilders = new()
     {
@@ -16,14 +16,11 @@ public sealed class MarkingEffectSelectorSliders : Control
     };
 
     private readonly Dictionary<string, ColorSelectorSliders> _colorSelectors = new();
-    private readonly List<Slider> _sliders = new();
 
     private readonly OptionButton _typeSelector;
     private readonly List<MarkingEffectType> _types = new();
 
     private MarkingEffectType _currentType;
-
-    private readonly BoxContainer _bodyBox;
 
     private readonly BoxContainer _selectorContainer;
     private readonly BoxContainer _sliderContainer;
@@ -70,20 +67,20 @@ public sealed class MarkingEffectSelectorSliders : Control
         rootBox.AddChild(headerBox);
         headerBox.AddChild(_typeSelector);
 
-        _bodyBox = new BoxContainer
+        var bodyBox = new BoxContainer
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
-        rootBox.AddChild(_bodyBox);
+        rootBox.AddChild(bodyBox);
 
         _selectorContainer = new BoxContainer
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
-        _bodyBox.AddChild(_selectorContainer);
+        bodyBox.AddChild(_selectorContainer);
 
         _sliderContainer = new BoxContainer
             { Orientation = BoxContainer.LayoutOrientation.Vertical };
-        _bodyBox.AddChild(_sliderContainer);
+        bodyBox.AddChild(_sliderContainer);
 
         _toggleContainer = new BoxContainer();
-        _bodyBox.AddChild(_toggleContainer);
+        bodyBox.AddChild(_toggleContainer);
 
 
         _currentType = defaultEffect.Type;
@@ -124,8 +121,6 @@ public sealed class MarkingEffectSelectorSliders : Control
         slider.MinValue = minValue;
         slider.MaxValue = maxValue;
 
-        _sliders.Add(slider);
-
         var sliderContainer = new BoxContainer();
 
         var sliderLabel = new Label();
@@ -158,7 +153,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         BindSlider(slider, spinBox, onValueChanged);
     }
 
-    public void BindSlider(Slider slider, SpinBox spinBox, Action<float> setValue)
+    private void BindSlider(Slider slider, SpinBox spinBox, Action<float> setValue)
     {
         slider.OnValueChanged += val =>
         {
@@ -192,7 +187,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         BindToggle(button, onValueChanged);
     }
 
-    public void BindToggle(Button toggle, Action<bool> setValue)
+    private void BindToggle(Button toggle, Action<bool> setValue)
     {
         toggle.OnToggled += val =>
         {

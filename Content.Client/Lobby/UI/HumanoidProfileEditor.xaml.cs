@@ -10,7 +10,7 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.ExtendedColor;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;

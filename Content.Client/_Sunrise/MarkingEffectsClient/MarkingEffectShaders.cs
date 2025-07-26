@@ -1,9 +1,9 @@
 ﻿using System.Numerics;
-using Content.Shared._Sunrise.ExtendedColor;
+using Content.Shared._Sunrise.MarkingEffects;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 
-namespace Content.Client._Sunrise.MarkingEffects;
+namespace Content.Client._Sunrise.MarkingEffectsClient;
 
 public static class MarkingEffectShaders
 {
