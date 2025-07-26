@@ -186,16 +186,16 @@ namespace Content.Shared.Humanoid.Markings
                 return new Marking(name, colorList);
 
             var extColorsRaw = split[2];
-            var extendedColors = new List<MarkingEffect>();
+            var markingEffects = new List<MarkingEffect>();
 
             foreach (var extColorStr in extColorsRaw.Split(';'))
             {
                 var parsed = MarkingEffect.Parse(extColorStr);
                 if (parsed != null)
-                    extendedColors.Add(parsed);
+                    markingEffects.Add(parsed);
             }
 
-            return new Marking(name, colorList, extendedColors);
+            return new Marking(name, colorList, markingEffects);
         }
 
     }

@@ -35,8 +35,5 @@ void fragment() {
     highp vec4 base = texture2D(TEXTURE, UV);
     highp float t = mirror(uv.y / size.y + offset.y);
     highp vec3 gradient = mix(color2, color1, t);
-    // gradient = floor(gradient * texScale.y + 0.5) / texScale.y;
 	COLOR = vec4(base.rgb * gradient, base.a);
-    // COLOR = vec4(gradient, base.a);
-    // COLOR = vec4(uv.x, uv.y / size.y + offset.y, 0, 1);
 }
