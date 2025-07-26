@@ -23,3 +23,253 @@
     - WallRockTin
     - WallRockUranium
     rareChance: 0.35
+
+- type: entity
+  name: Спавнер скальной шахты
+  id: MineRockWallSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/rock.rsi
+      state: rock
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы без рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      # Декор
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  name: Спавнер скальной шахты [Рудокраб 15%]
+  id: MineWallRockCrabSpawner
+  parent: MineRockWallSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+      # Скалы с рудами, но после разрушения спавнят крабов
+      - WallRockUraniumCrab
+      - WallRockCoalCrab
+      - WallRockSilverCrab
+      - WallRockQuartzCrab
+      - WallRockGoldCrab
+      - WallRockTinCrab
+      - WallRockBananiumCrab
+      # Дальше всё скопировал из WallRockBaseSpawner
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы с рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      # Декор
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  name: Спавнер скальной шахты [Карпы 10%]
+  id: MineWallRockCarpSpawner
+  parent: MineRockWallSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят карпов
+      - WallRockCarpDungeon
+      - WallRockCarpMagic
+      - WallRockCarpHolo
+      - WallRockCarpRainbow
+      # Дальше всё скопировал из WallRockBaseSpawner
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы с рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      # Декор
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  id: WallRockCarpDungeon
+  parent: WallRock
+  suffix: Carp Dungeon
+  components:
+  - type: OreVein
+    currentOre: OreCarpDungeon
+
+- type: entity
+  id: WallRockCarpMagic
+  parent: WallRock
+  suffix: Carp Magic
+  components:
+  - type: OreVein
+    currentOre: OreCarpMagic
+
+- type: entity
+  id: WallRockCarpHolo
+  parent: WallRock
+  suffix: Carp Holo
+  components:
+  - type: OreVein
+    currentOre: OreCarpHolo
+
+- type: entity
+  id: WallRockCarpRainbow
+  parent: WallRock
+  suffix: Carp Rainbow
+  components:
+  - type: OreVein
+    currentOre: OreCarpRainbow
+
+- type: entity
+  id: WallRockCarpDragon
+  parent: WallRock
+  suffix: Carp Dragon
+  components:
+  - type: OreVein
+    currentOre: OreCarpDragon
+
