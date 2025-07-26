@@ -423,7 +423,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 instance.ApplyShaderParams(markingEffects[j], new Vector2(texWidth, texHeight));
 
                 sprite.LayerSetShader(layerId, instance);
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                _sprite.LayerSetColor(
+                    (entity.Owner, sprite),
+                    layerId,
+                    markingEffects[j].Colors.TryGetValue("base", out var col) ? col : Color.White
+                    );
             }
             else
             {
