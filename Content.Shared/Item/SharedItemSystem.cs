@@ -10,6 +10,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Felinid;
 
 namespace Content.Shared.Item;
 
@@ -115,6 +116,10 @@ public abstract class SharedItemSystem : EntitySystem
 
     private void AddPickupVerb(EntityUid uid, ItemComponent component, GetVerbsEvent<InteractionVerb> args)
     {
+        // Sunrise-start. Предотвращаем появление стандартного верба подбора для фелинидов
+        if (HasComp<FelinidComponent>(uid))
+            return;
+        // Sunrise-end
         if (args.Hands == null ||
             args.Using != null ||
             !args.CanAccess ||

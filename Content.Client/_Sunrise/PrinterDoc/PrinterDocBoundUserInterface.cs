@@ -13,6 +13,7 @@ public sealed class PrinterDocBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+
         _window = this.CreateWindow<PrinterDocMenu>();
 
         _window.OnPrintPressed += templateId =>
@@ -20,6 +21,7 @@ public sealed class PrinterDocBoundUserInterface : BoundUserInterface
             if (templateId != null)
                 SendMessage(new PrinterDocPrintMessage(templateId));
         };
+
         _window.OnCopyPressed += () =>
         {
             SendMessage(new PrinterDocCopyMessage());
@@ -30,6 +32,7 @@ public sealed class PrinterDocBoundUserInterface : BoundUserInterface
     {
         if (state is not PrinterDocBoundUserInterfaceState s || _window == null)
             return;
+
         _window.UpdateState(s);
     }
 }

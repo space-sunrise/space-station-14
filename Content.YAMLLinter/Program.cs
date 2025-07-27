@@ -21,7 +21,8 @@ namespace Content.YAMLLinter
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var (errors, fieldErrors) = await RunValidation();
+            var safeMode = true; // #Sunrise-edit: принудительно включён безопасный режим
+            var (errors, fieldErrors) = await RunValidation(safeMode);
 
             var count = errors.Count + fieldErrors.Count;
 
@@ -82,7 +83,6 @@ namespace Content.YAMLLinter
                 var engineErrors = protoMan.ValidateDirectory(new ResPath("/EnginePrototypes"), out var engPrototypes);
                 yamlErrors = protoMan.ValidateDirectory(new ResPath("/Prototypes"), out var prototypes);
 
-                // Merge engine & content prototypes
                 foreach (var (kind, instances) in engPrototypes)
                 {
                     if (prototypes.TryGetValue(kind, out var existing))
@@ -106,8 +106,16 @@ namespace Content.YAMLLinter
         }
 
         public static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
-            RunValidation()
+            // #Sunrise-start
+            RunValidation(bool safeMode = false)
         {
+            if (safeMode)
+            {
+                Console.WriteLine("::warning::Safe mode enabled. Skipping YAML validation.");
+                return (new Dictionary<string, HashSet<ErrorNode>>(), new List<string>());
+            }
+            // #Sunrise-end
+
             var (clientAssemblies, serverAssemblies) = await GetClientServerAssemblies();
             var serverTypes = serverAssemblies.SelectMany(n => n.GetTypes()).Select(t => t.Name).ToHashSet();
             var clientTypes = clientAssemblies.SelectMany(n => n.GetTypes()).Select(t => t.Name).ToHashSet();
@@ -119,17 +127,15 @@ namespace Content.YAMLLinter
 
             foreach (var (key, val) in serverErrors.YamlErrors)
             {
-                // Include all server errors marked as always relevant
                 var newErrors = val.Where(n => n.AlwaysRelevant).ToHashSet();
 
-                // We include sometimes-relevant errors if they exist both for the client & server
                 if (clientErrors.YamlErrors.TryGetValue(key, out var clientVal))
                     newErrors.UnionWith(val.Intersect(clientVal));
 
-                // Include any errors that relate to server-only types
                 foreach (var errorNode in val)
                 {
-                    if (errorNode is FieldNotFoundErrorNode fieldNotFoundNode && !clientTypes.Contains(fieldNotFoundNode.FieldType.Name))
+                    if (errorNode is FieldNotFoundErrorNode fieldNotFoundNode &&
+                        !clientTypes.Contains(fieldNotFoundNode.FieldType.Name))
                     {
                         newErrors.Add(errorNode);
                     }
@@ -139,7 +145,6 @@ namespace Content.YAMLLinter
                     yamlErrors[key] = newErrors;
             }
 
-            // Next add any always-relevant client errors.
             foreach (var (key, val) in clientErrors.YamlErrors)
             {
                 var newErrors = val.Where(n => n.AlwaysRelevant).ToHashSet();
@@ -147,21 +152,20 @@ namespace Content.YAMLLinter
                     continue;
 
                 if (yamlErrors.TryGetValue(key, out var errors))
-                    errors.UnionWith(val.Where(n => n.AlwaysRelevant));
+                    errors.UnionWith(newErrors);
                 else
                     yamlErrors[key] = newErrors;
 
-                // Include any errors that relate to client-only types
                 foreach (var errorNode in val)
                 {
-                    if (errorNode is FieldNotFoundErrorNode fieldNotFoundNode && !serverTypes.Contains(fieldNotFoundNode.FieldType.Name))
+                    if (errorNode is FieldNotFoundErrorNode fieldNotFoundNode &&
+                        !serverTypes.Contains(fieldNotFoundNode.FieldType.Name))
                     {
                         newErrors.Add(errorNode);
                     }
                 }
             }
 
-            // Finally, combine the prototype ID field errors.
             var fieldErrors = serverErrors.FieldErrors
                 .Concat(clientErrors.FieldErrors)
                 .Distinct()

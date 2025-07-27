@@ -82678,7 +82678,7 @@ entities:
       pos: -88.5,-72.5
       parent: 2
     - type: FaxMachine
-      name: Лейтенант "Синий Щит"
+      name: Лейтенант «Синий щит»
 - proto: FaxMachineCaptain
   entities:
   - uid: 12819

@@ -369,3 +369,21 @@
     sprite: _Sunrise/Abductor/Clothing/Uniforms/Jumpsuit/abductor.rsi
   - type: Clothing
     sprite: _Sunrise/Abductor/Clothing/Uniforms/Jumpsuit/abductor.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformSecurityShortsRed
+  name: security shorts
+  description: These are shorts, not boxers.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Shorts/Color/red.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Shorts/Color/red.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClownSuit
+    - NudeTop # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT

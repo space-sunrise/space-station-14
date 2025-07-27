@@ -653,3 +653,38 @@
   sex: Female
   speaker: warcraft3_jaina
   provider: sunrise
+
+- type: ttsVoice
+  id: LOLAurora
+  name: tts-voice-name-lol-aurora
+  sex: Female
+  speaker: lol_aurora
+  provider: sunrise
+
+- type: ttsVoice
+  id: 314Zabolotniy
+  name: tts-voice-name-314-zabolotniy
+  sex: Male
+  speaker: 314_zabolotniy
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLAkali1
+  name: tts-voice-name-lol-akali1
+  sex: Female
+  speaker: lol_akali1
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLNasus
+  name: tts-voice-name-lol-nasus
+  sex: Male
+  speaker: lol_nasus
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2Overlord1
+  name: tts-voice-name-crysis2-overlord-1
+  sex: Male
+  speaker: crysis2_overlord1
+  provider: sunrise

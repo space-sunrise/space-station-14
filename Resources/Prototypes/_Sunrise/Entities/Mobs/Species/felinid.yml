@@ -5,14 +5,13 @@
   id: MobFelinidBase
   abstract: true
   components:
-  # SUNRISE EDIT
   - type: Interactions
-  # SUNRISE EDIT
+  - type: MultiHandedItem
   - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
-    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -408,8 +407,8 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.20
-        density: 100
+          radius: 0.35
+        density: 40
         restitution: 0.0
         mask:
         - MobMask
@@ -446,12 +445,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Critical
-      150: Dead
+      80: Critical
+      160: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      30: 0.7
-      40: 0.5
+      60: 0.7
+      70: 0.5
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -462,15 +461,8 @@
     damage:
       types:
         Slash: 3
-  - type: DamageOnHighSpeedImpact
-    minimumSpeed: 5
-    damage:
-      types:
-        Blunt: 10
-    soundHit:
-      path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
-    critThreshold: 50
+    critThreshold: 100
   - type: FootprintEmitter
   - type: Vocal
     sounds:
@@ -504,16 +496,14 @@
       - !type:Emote
         emote: Hisses
         showInChat: true
-        probability: 0.35
+        probability: 0.25
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.0
-    baseSprintSpeed: 4.0
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
   - type: Item
     size: Huge
     shape:
     - 0,0,3,3
-  - type: ItemRepickupCooldown
-    cooldown: 5
   - type: Felinid
     damageBonus:
       types:
@@ -523,9 +513,7 @@
         Blunt: 5
     damageSound: /Audio/Effects/hit_kick.ogg
   - type: ScaleSprite
-    scale: 0.72, 0.72
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
+    scale: 0.80, 0.80
 
 - type: entity
   save: false

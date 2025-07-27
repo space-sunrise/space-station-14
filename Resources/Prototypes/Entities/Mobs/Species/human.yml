@@ -306,6 +306,11 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
             state: head
+      belt-body-fat-f:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
+            state: belt
 ## Distrofik
       jumpsuit-body-distrofik-f:
         sizeMaps:
@@ -487,6 +492,11 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
             state: head
+      belt-body-fat-m:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
+            state: belt
 # Distrofik
       jumpsuit-body-distrofik-m:
         sizeMaps:
@@ -685,14 +695,14 @@
   # HANDS DISPLACEMENT
   - type: Inventory
 ### Female
-# Base
+## BASE
     femaleDisplacements:
-      jumpsuit-body-normal:
+      jumpsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
             state: jumpsuit-female
-# Slim
+## SLIM
       jumpsuit-body-slim-f:
         sizeMaps:
           32:
@@ -738,7 +748,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Slim/displacement.rsi
             state: back
-# Giga
+## Giga
       jumpsuit-body-giga-f:
         sizeMaps:
           32:
@@ -774,7 +784,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Giga/displacement.rsi
             state: neck
-# Fat
+## Fat
       jumpsuit-body-fat-f:
         sizeMaps:
           32:
@@ -825,7 +835,12 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
             state: head
-# Distrofik
+      belt-body-fat-f:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
+            state: belt
+## Distrofik
       jumpsuit-body-distrofik-f:
         sizeMaps:
           32:
@@ -872,7 +887,7 @@
             sprite: _Sunrise/Mobs/Species/Human/Distrofik/displacement.rsi
             state: back
 ### Male
-# Slim
+## Slim
     maleDisplacements:
       jumpsuit-body-slim-m:
         sizeMaps:
@@ -1006,6 +1021,11 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
             state: head
+      belt-body-fat-m:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Fat/displacement.rsi
+            state: belt
 # Distrofik
       jumpsuit-body-distrofik-m:
         sizeMaps:

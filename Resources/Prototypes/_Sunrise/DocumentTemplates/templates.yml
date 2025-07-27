@@ -1,314 +1,382 @@
 - type: docTemplate
-  id: ReportStation
-  name: doc-template-report-station-name
-  content: "/ServerInfo/Documents/ReportStation.xml"
-
-- type: docTemplate
-  id: ReportOnEliminationOfViolations
-  name: doc-template-report-on-elimination-of-violations-name
-  content: "/ServerInfo/Documents/ReportOnEliminationOfViolations.xml"
-
-- type: docTemplate
-  id: ReportDepartment
-  name: doc-template-report-department-name
-  content: "/ServerInfo/Documents/ReportDepartment.xml"
-
-- type: docTemplate
-  id: ReportEmployeePerformance
-  name: doc-template-report-employee-performance-name
-  content: "/ServerInfo/Documents/ReportEmployeePerformance.xml"
-
-- type: docTemplate
-  id: ReportOnTheChaptersMeeting
-  name: doc-template-report-on-the-chapters-meeting-name
-  content: "/ServerInfo/Documents/ReportOnTheChaptersMeeting.xml"
-
-- type: docTemplate
-  id: InternalAffairsAgentsReport
-  name: doc-template-internal-affairs-agents-report-name
-  content: "/ServerInfo/Documents/InternalAffairsAgentsReport.xml"
-
-- type: docTemplate
-  id: ConditionReport
-  name: doc-template-condition-report-name
-  content: "/ServerInfo/Documents/ConditionReport.xml"
-
-- type: docTemplate
-  id: ReportStudyObject
-  name: doc-template-report-study-object-name
-  content: "/ServerInfo/Documents/ReportStudyObject.xml"
-
-- type: docTemplate
-  id: ExperimentReport
-  name: doc-template-experiment-report-name
-  content: "/ServerInfo/Documents/ExperimentReport.xml"
-
-- type: docTemplate
-  id: DisposalReport
-  name: doc-template-disposal-report-name
-  content: "/ServerInfo/Documents/DisposalReport.xml"
-
-- type: docTemplate
-  id: ApplicationAppointmentInterim
-  name: doc-template-application-appointment-interim-name
-  content: "/ServerInfo/Documents/ApplicationAppointmentInterim.xml"
-
-- type: docTemplate
-  id: ApplicationEmployment
-  name: doc-template-application-employment-name
-  content: "/ServerInfo/Documents/ApplicationEmployment.xml"
-
-- type: docTemplate
-  id: LetterResignation
-  name: doc-template-letter-resignation-name
-  content: "/ServerInfo/Documents/LetterResignation.xml"
+  id: Appeal
+  name: doc-template-appeal-name
+  content: /ServerInfo/Documents/General/Appeal.xml
+  component: General
 
 - type: docTemplate
   id: ApplicationAccess
   name: doc-template-application-access-name
-  content: "/ServerInfo/Documents/ApplicationAccess.xml"
+  content: /ServerInfo/Documents/Command/ApplicationAccess.xml
+  component: Command
+
+- type: docTemplate
+  id: ApplicationAppointmentInterim
+  name: doc-template-application-appointment-interim-name
+  content: /ServerInfo/Documents/Command/ApplicationAppointmentInterim.xml
+  component: Command
+
+- type: docTemplate
+  id: ApplicationEmployment
+  name: doc-template-application-employment-name
+  content: /ServerInfo/Documents/Command/ApplicationEmployment.xml
+  component: Command
 
 - type: docTemplate
   id: ApplicationEquipment
   name: doc-template-application-equipment-name
-  content: "/ServerInfo/Documents/ApplicationEquipment.xml"
-
-- type: docTemplate
-  id: Appeal
-  name: doc-template-appeal-name
-  content: "/ServerInfo/Documents/Appeal.xml"
-
-- type: docTemplate
-  id: EvacuationShuttleRequest
-  name: doc-template-evacuation-shuttle-request-name
-  content: "/ServerInfo/Documents/EvacuationShuttleRequest.xml"
-
-- type: docTemplate
-  id: ShuttleRegistrationRequest
-  name: doc-template-shuttle-registration-request-name
-  content: "/ServerInfo/Documents/ShuttleRegistrationRequest.xml"
-
-- type: docTemplate
-  id: RequestCallMembersCentralCommitteeDSO
-  name: doc-template-request-call-members-central-committee-dso-name
-  content: "/ServerInfo/Documents/RequestCallMembersCentralCommitteeDSO.xml"
-
-- type: docTemplate
-  id: RequestRequestToEstablishThreatLevel
-  name: doc-template-request-to-establish-threat-level-name
-  content: "/ServerInfo/Documents/RequestRequestToEstablishThreatLevel.xml"
-
-- type: docTemplate
-  id: RequestChangeSalary
-  name: doc-template-request-change-salary-name
-  content: "/ServerInfo/Documents/RequestChangeSalary.xml"
-
-- type: docTemplate
-  id: RequestForNonlistedEmployment
-  name: doc-template-request-for-non-listed-employment-name
-  content: "/ServerInfo/Documents/RequestForNonlistedEmployment.xml"
-
-- type: docTemplate
-  id: RequestForPromotion
-  name: doc-template-request-for-promotion-name
-  content: "/ServerInfo/Documents/RequestForPromotion.xml"
-
-- type: docTemplate
-  id: RequestDocuments
-  name: doc-template-request-documents-name
-  content: "/ServerInfo/Documents/RequestDocuments.xml"
-
-- type: docTemplate
-  id: RequestEuthanasia
-  name: doc-template-request-euthanasia-name
-  content: "/ServerInfo/Documents/RequestEuthanasia.xml"
-
-- type: docTemplate
-  id: RequestConstructionWork
-  name: doc-template-request-construction-work-name
-  content: "/ServerInfo/Documents/RequestConstructionWork.xml"
-
-- type: docTemplate
-  id: RequestModernization
-  name: doc-template-request-modernization-name
-  content: "/ServerInfo/Documents/RequestModernization.xml"
-
-- type: docTemplate
-  id: ComplaintViolationLaborRules
-  name: doc-template-complaint-violation-labor-rules-name
-  content: "/ServerInfo/Documents/ComplaintViolationLaborRules.xml"
-
-- type: docTemplate
-  id: ComplaintOffense
-  name: doc-template-complaint-offense-name
-  content: "/ServerInfo/Documents/ComplaintOffense.xml"
-
-- type: docTemplate
-  id: PermissionEquipment
-  name: doc-template-permission-equipment-name
-  content: "/ServerInfo/Documents/PermissionEquipment.xml"
-
-- type: docTemplate
-  id: PermissionToTravelInCaseOfThreat
-  name: doc-template-permission-to-travel-in-case-of-threat-name
-  content: "/ServerInfo/Documents/PermissionToTravelInCaseOfThreat.xml"
-
-- type: docTemplate
-  id: SearchPermission
-  name: doc-template-search-permission-name
-  content: "/ServerInfo/Documents/SearchPermission.xml"
-
-- type: docTemplate
-  id: PermissionToCarryWeapons
-  name: doc-template-permission-to-carry-weapons-name
-  content: "/ServerInfo/Documents/PermissionToCarryWeapons.xml"
-
-- type: docTemplate
-  id: PrescriptionDrugAuthorization
-  name: doc-template-prescription-drug-authorization-name
-  content: "/ServerInfo/Documents/PrescriptionDrugAuthorization.xml"
-
-- type: docTemplate
-  id: PermissionDisposeBody
-  name: doc-template-permission-dispose-body-name
-  content: "/ServerInfo/Documents/PermissionDisposeBody.xml"
-
-- type: docTemplate
-  id: ConstructionPermit
-  name: doc-template-construction-permit-name
-  content: "/ServerInfo/Documents/ConstructionPermit.xml"
-
-- type: docTemplate
-  id: PermissionToExtendMarriage
-  name: doc-template-permission-to-extend-marriage-name
-  content: "/ServerInfo/Documents/PermissionToExtendMarriage.xml"
-
-- type: docTemplate
-  id: OrderDismissal
-  name: doc-template-order-dismissal-name
-  content: "/ServerInfo/Documents/OrderDismissal.xml"
-
-- type: docTemplate
-  id: OrderDeprivationAccess
-  name: doc-template-order-deprivation-access-name
-  content: "/ServerInfo/Documents/OrderDeprivationAccess.xml"
-
-- type: docTemplate
-  id: OrderEncouragement
-  name: doc-template-order-encouragement-name
-  content: "/ServerInfo/Documents/OrderEncouragement.xml"
-
-- type: docTemplate
-  id: OrderParolePrisoner
-  name: doc-template-order-parole-prisoner-name
-  content: "/ServerInfo/Documents/OrderParolePrisoner.xml"
-
-- type: docTemplate
-  id: OrderRecognizingSentienceCreature
-  name: doc-template-order-recognizing-sentience-creature-name
-  content: "/ServerInfo/Documents/OrderRecognizingSentienceCreature.xml"
-
-- type: docTemplate
-  id: OrderMedicalIntervention
-  name: doc-template-order-medical-intervention-name
-  content: "/ServerInfo/Documents/OrderMedicalIntervention.xml"
-
-- type: docTemplate
-  id: ProductManufacturingOrder
-  name: doc-template-product-manufacturing-order-name
-  content: "/ServerInfo/Documents/ProductManufacturingOrder.xml"
-
-- type: docTemplate
-  id: OrderPurchaseResourcesEquipment
-  name: doc-template-order-purchase-resources-equipment-name
-  content: "/ServerInfo/Documents/OrderPurchaseResourcesEquipment.xml"
-
-- type: docTemplate
-  id: OrderingSpecialEquipment
-  name: doc-template-ordering-special-equipment-name
-  content: "/ServerInfo/Documents/OrderingSpecialEquipment.xml"
-
-- type: docTemplate
-  id: OrderPurchaseWeapons
-  name: doc-template-order-purchase-weapons-name
-  content: "/ServerInfo/Documents/OrderPurchaseWeapons.xml"
+  content: /ServerInfo/Documents/Command/ApplicationEquipment.xml
+  component: Command
 
 - type: docTemplate
   id: Certificate
   name: doc-template-certificate-name
-  content: "/ServerInfo/Documents/Certificate.xml"
+  content: /ServerInfo/Documents/Command/Certificate.xml
+  component: Command
 
 - type: docTemplate
   id: CertificateAdvancedTraining
   name: doc-template-certificate-advanced-training-name
-  content: "/ServerInfo/Documents/CertificateAdvancedTraining.xml"
+  content: /ServerInfo/Documents/Command/CertificateAdvancedTraining.xml
+  component: Command
 
 - type: docTemplate
   id: CertificateOffense
   name: doc-template-certificate-offense-name
-  content: "/ServerInfo/Documents/CertificateOffense.xml"
-
-- type: docTemplate
-  id: DeathCertificate
-  name: doc-template-death-certificate-name
-  content: "/ServerInfo/Documents/DeathCertificate.xml"
-
-- type: docTemplate
-  id: MarriageCertificate
-  name: doc-template-marriage-certificate-name
-  content: "/ServerInfo/Documents/MarriageCertificate.xml"
-
-- type: docTemplate
-  id: DivorceCertificate
-  name: doc-template-divorce-certificate-name
-  content: "/ServerInfo/Documents/DivorceCertificate.xml"
+  content: /ServerInfo/Documents/Security/CertificateOffense.xml
+  component: Security
 
 - type: docTemplate
   id: ClosingIndictment
   name: doc-template-closing-indictment-name
-  content: "/ServerInfo/Documents/ClosingIndictment.xml"
+  content: /ServerInfo/Documents/Security/ClosingIndictment.xml
+  component: Security
 
 - type: docTemplate
-  id: Sentence
-  name: doc-template-sentence-name
-  content: "/ServerInfo/Documents/Sentence.xml"
+  id: ComplaintOffense
+  name: doc-template-complaint-offense-name
+  content: /ServerInfo/Documents/Security/ComplaintOffense.xml
+  component: Security
 
 - type: docTemplate
-  id: Judgment
-  name: doc-template-judgment-name
-  content: "/ServerInfo/Documents/Judgment.xml"
+  id: ComplaintViolationLaborRules
+  name: doc-template-complaint-violation-labor-rules-name
+  content: /ServerInfo/Documents/Justice/ComplaintViolationLaborRules.xml
+  component: Justice
 
 - type: docTemplate
-  id: StatementHealth
-  name: doc-template-statement-health-name
-  content: "/ServerInfo/Documents/StatementHealth.xml"
+  id: ConditionReport
+  name: doc-template-condition-report-name
+  content: /ServerInfo/Documents/Engineering/ConditionReport.xml
+  component: Engineering
+
+- type: docTemplate
+  id: ConstructionPermit
+  name: doc-template-construction-permit-name
+  content: /ServerInfo/Documents/Engineering/ConstructionPermit.xml
+  component: Engineering
+
+- type: docTemplate
+  id: DeathCertificate
+  name: doc-template-death-certificate-name
+  content: /ServerInfo/Documents/Medical/DeathCertificate.xml
+  component: Medical
 
 - type: docTemplate
   id: DecisionToStartTrial
   name: doc-template-decision-to-start-trial-name
-  content: "/ServerInfo/Documents/DecisionToStartTrial.xml"
+  content: /ServerInfo/Documents/Justice/DecisionToStartTrial.xml
+  component: Justice
 
 - type: docTemplate
-  id: ErrorLoadingFormHeader
-  name: doc-template-error-loading-form-header-name
-  content: "/ServerInfo/Documents/ErrorLoadingFormHeader.xml"
+  id: DisposalReport
+  name: doc-template-disposal-report-name
+  content: /ServerInfo/Documents/Supply/DisposalReport.xml
+  component: Supply
 
 - type: docTemplate
-  id: NoticeOfLiquidation
-  name: doc-template-notice-of-liquidation-name
-  content: "/ServerInfo/Documents/NoticeOfLiquidation.xml"
+  id: DivorceCertificate
+  name: doc-template-divorce-certificate-name
+  content: /ServerInfo/Documents/Service/DivorceCertificate.xml
+  component: Service
+
+- type: docTemplate
+  id: EvacuationShuttleRequest
+  name: doc-template-evacuation-shuttle-request-name
+  content: /ServerInfo/Documents/Command/EvacuationShuttleRequest.xml
+  component: Command
+
+- type: docTemplate
+  id: ExperimentReport
+  name: doc-template-experiment-report-name
+  content: /ServerInfo/Documents/Science/ExperimentReport.xml
+  component: Science
+
+- type: docTemplate
+  id: InternalAffairsAgentsReport
+  name: doc-template-internal-affairs-agents-report-name
+  content: /ServerInfo/Documents/Justice/InternalAffairsAgentsReport.xml
+  component: Justice
+
+- type: docTemplate
+  id: Judgment
+  name: doc-template-judgment-name
+  content: /ServerInfo/Documents/Justice/Judgment.xml
+  component: Justice
+
+- type: docTemplate
+  id: LetterResignation
+  name: doc-template-letter-resignation-name
+  content: /ServerInfo/Documents/Command/LetterResignation.xml
+  component: Command
+
+- type: docTemplate
+  id: MarriageCertificate
+  name: doc-template-marriage-certificate-name
+  content: /ServerInfo/Documents/Service/MarriageCertificate.xml
+  component: Service
+
+- type: docTemplate
+  id: OrderDeprivationAccess
+  name: doc-template-order-deprivation-access-name
+  content: /ServerInfo/Documents/Command/OrderDeprivationAccess.xml
+  component: Command
+
+- type: docTemplate
+  id: OrderDismissal
+  name: doc-template-order-dismissal-name
+  content: /ServerInfo/Documents/Command/OrderDismissal.xml
+  component: Command
+
+- type: docTemplate
+  id: OrderEncouragement
+  name: doc-template-order-encouragement-name
+  content: /ServerInfo/Documents/Command/OrderEncouragement.xml
+  component: Command
+
+- type: docTemplate
+  id: OrderingSpecialEquipment
+  name: doc-template-ordering-special-equipment-name
+  content: /ServerInfo/Documents/Centcom/OrderingSpecialEquipment.xml
+  component: Centcom
+
+- type: docTemplate
+  id: OrderMedicalIntervention
+  name: doc-template-order-medical-intervention-name
+  content: /ServerInfo/Documents/General/OrderMedicalIntervention.xml
+  component: General
+
+- type: docTemplate
+  id: OrderParolePrisoner
+  name: doc-template-order-parole-prisoner-name
+  content: /ServerInfo/Documents/Command/OrderParolePrisoner.xml
+  component: Command
+
+- type: docTemplate
+  id: OrderPurchaseResourcesEquipment
+  name: doc-template-order-purchase-resources-equipment-name
+  content: /ServerInfo/Documents/Supply/OrderPurchaseResourcesEquipment.xml
+  component: Supply
+
+- type: docTemplate
+  id: OrderPurchaseWeapons
+  name: doc-template-order-purchase-weapons-name
+  content: /ServerInfo/Documents/Supply/OrderPurchaseWeapons.xml
+  component: Supply
+
+- type: docTemplate
+  id: OrderRecognizingSentienceCreature
+  name: doc-template-order-recognizing-sentience-creature-name
+  content: /ServerInfo/Documents/Science/OrderRecognizingSentienceCreature.xml
+  component: Science
+
+- type: docTemplate
+  id: PermissionDisposeBody
+  name: doc-template-permission-dispose-body-name
+  content: /ServerInfo/Documents/Medical/PermissionDisposeBody.xml
+  component: Medical
+
+- type: docTemplate
+  id: PermissionEquipment
+  name: doc-template-permission-equipment-name
+  content: /ServerInfo/Documents/Command/PermissionEquipment.xml
+  component: Command
+
+- type: docTemplate
+  id: PermissionToCarryWeapons
+  name: doc-template-permission-to-carry-weapons-name
+  content: /ServerInfo/Documents/Command/PermissionToCarryWeapons.xml
+  component: Command
+
+- type: docTemplate
+  id: PermissionToExtendMarriage
+  name: doc-template-permission-to-extend-marriage-name
+  content: /ServerInfo/Documents/Command/PermissionToExtendMarriage.xml
+  component: Command
+
+- type: docTemplate
+  id: PermissionToTravelInCaseOfThreat
+  name: doc-template-permission-to-travel-in-case-of-threat-name
+  content: /ServerInfo/Documents/Command/PermissionToTravelInCaseOfThreat.xml
+  component: Command
+
+- type: docTemplate
+  id: PrescriptionDrugAuthorization
+  name: doc-template-prescription-drug-authorization-name
+  content: /ServerInfo/Documents/Medical/PrescriptionDrugAuthorization.xml
+  component: Medical
+
+- type: docTemplate
+  id: ProductManufacturingOrder
+  name: doc-template-product-manufacturing-order-name
+  content: /ServerInfo/Documents/General/ProductManufacturingOrder.xml
+  component: General
+
+- type: docTemplate
+  id: ReportDepartment
+  name: doc-template-report-department-name
+  content: /ServerInfo/Documents/Command/ReportDepartment.xml
+  component: Command
+
+- type: docTemplate
+  id: ReportEmployeePerformance
+  name: doc-template-report-employee-performance-name
+  content: /ServerInfo/Documents/Command/ReportEmployeePerformance.xml
+  component: Command
+
+- type: docTemplate
+  id: ReportOnEliminationOfViolations
+  name: doc-template-report-on-elimination-of-violations-name
+  content: /ServerInfo/Documents/Command/ReportOnEliminationOfViolations.xml
+  component: Command
+
+- type: docTemplate
+  id: ReportOnTheChaptersMeeting
+  name: doc-template-report-on-the-chapters-meeting-name
+  content: /ServerInfo/Documents/Command/ReportOnTheChaptersMeeting.xml
+  component: Command
+
+- type: docTemplate
+  id: ReportStation
+  name: doc-template-report-station-name
+  content: /ServerInfo/Documents/Command/ReportStation.xml
+  component: Command
+
+- type: docTemplate
+  id: ReportStudyObject
+  name: doc-template-report-study-object-name
+  content: /ServerInfo/Documents/Science/ReportStudyObject.xml
+  component: Science
+
+- type: docTemplate
+  id: RequestCallMembersCentralCommitteeDSO
+  name: doc-template-request-call-members-central-committee-dso-name
+  content: /ServerInfo/Documents/Centcom/RequestCallMembersCentralCommitteeDSO.xml
+  component: Centcom
+
+- type: docTemplate
+  id: RequestChangeSalary
+  name: doc-template-request-change-salary-name
+  content: /ServerInfo/Documents/General/RequestChangeSalary.xml
+  component: General
+
+- type: docTemplate
+  id: RequestConstructionWork
+  name: doc-template-request-construction-work-name
+  content: /ServerInfo/Documents/Engineering/RequestConstructionWork.xml
+  component: Engineering
+
+- type: docTemplate
+  id: RequestDocuments
+  name: doc-template-request-documents-name
+  content: /ServerInfo/Documents/Justice/RequestDocuments.xml
+  component: Justice
+
+- type: docTemplate
+  id: RequestEuthanasia
+  name: doc-template-request-euthanasia-name
+  content: /ServerInfo/Documents/Medical/RequestEuthanasia.xml
+  component: Medical
+
+- type: docTemplate
+  id: RequestForNonlistedEmployment
+  name: doc-template-request-for-non-listed-employment-name
+  content: /ServerInfo/Documents/Command/RequestForNonlistedEmployment.xml
+  component: Command
+
+- type: docTemplate
+  id: RequestForPromotion
+  name: doc-template-request-for-promotion-name
+  content: /ServerInfo/Documents/Command/RequestForPromotion.xml
+  component: Command
+
+- type: docTemplate
+  id: RequestModernization
+  name: doc-template-request-modernization-name
+  content: /ServerInfo/Documents/Science/RequestModernization.xml
+  component: Science
+
+- type: docTemplate
+  id: RequestRequestToEstablishThreatLevel
+  name: doc-template-request-to-establish-threat-level-name
+  content: /ServerInfo/Documents/Science/RequestRequestToEstablishThreatLevel.xml
+  component: Science
+
+- type: docTemplate
+  id: SearchPermission
+  name: doc-template-search-permission-name
+  content: /ServerInfo/Documents/Security/SearchPermission.xml
+  component: Security
+
+- type: docTemplate
+  id: Sentence
+  name: doc-template-sentence-name
+  content: /ServerInfo/Documents/Security/Sentence.xml
+  component: Security
+
+- type: docTemplate
+  id: ShuttleRegistrationRequest
+  name: doc-template-shuttle-registration-request-name
+  content: /ServerInfo/Documents/Security/ShuttleRegistrationRequest.xml
+  component: Security
+
+- type: docTemplate
+  id: StatementHealth
+  name: doc-template-statement-health-name
+  content: /ServerInfo/Documents/Medical/StatementHealth.xml
+  component: Medical
 
 - type: docTemplate
   id: BusinessDeal
   name: doc-template-business-deal-name
-  content: "/ServerInfo/Documents/BusinessDeal.xml"
+  content: /ServerInfo/Documents/Syndicate/BusinessDeal.xml
+  component: Syndicate
+  isPublic: false
+
+- type: docTemplate
+  id: ErrorLoadingFormHeader
+  name: doc-template-error-loading-form-header-name
+  content: /ServerInfo/Documents/Syndicate/ErrorLoadingFormHeader.xml
+  component: Syndicate
+  isPublic: false
+
+- type: docTemplate
+  id: NoticeOfLiquidation
+  name: doc-template-notice-of-liquidation-name
+  content: /ServerInfo/Documents/Syndicate/NoticeOfLiquidation.xml
+  component: Syndicate
+  isPublic: false
 
 - type: docTemplate
   id: NoteBeginningMilitaryActions
   name: doc-template-note-beginning-military-actions-name
-  content: "/ServerInfo/Documents/NoteBeginningMilitaryActions.xml"
+  content: /ServerInfo/Documents/Syndicate/NoteBeginningMilitaryActions.xml
+  component: Syndicate
+  isPublic: false
 
 - type: docTemplate
   id: ReportAccomplishmentGoals
   name: doc-template-report-accomplishment-goals-name
-  content: "/ServerInfo/Documents/ReportAccomplishmentGoals.xml"
+  content: /ServerInfo/Documents/Syndicate/ReportAccomplishmentGoals.xml
+  component: Syndicate
+  isPublic: false

@@ -46,3 +46,6 @@ ent-SpawnMechSecPodFilled = Sec Pod Spawner
 ent-SpawnMechMiningPodFilled = Mining Pod Spawner
     .suffix = Filled
     .desc = { ent-MarkerBase.desc }
+ent-SpawnMechPaddyFilled = Paddy Spawner
+    .suffix = Filled
+    .desc = { ent-MarkerBase.desc }

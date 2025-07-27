@@ -76,6 +76,24 @@
     state: pda-blueshield
 
 - type: entity
+  parent: BasePDA
+  id: BlueShieldOperativePDA
+  name: blue shield operative PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BlueShieldOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-blueshield
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-blueshield
+
+- type: entity
   parent: BaseMedicalPDA
   id: PathologistPDA
   name: Pathologist PDA

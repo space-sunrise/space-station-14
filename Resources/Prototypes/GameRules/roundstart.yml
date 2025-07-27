@@ -127,7 +127,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
   - type: LoadMapRule
     mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -225,7 +225,7 @@
   id: Traitor
   components:
   - type: GameRule
-    minPlayers: 5
+    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
     delay:
       min: 600 # Sunrise-Edit
       max: 900 # Sunrise-Edit
@@ -263,11 +263,11 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
     # Sunrise-Start
     delay:
-      min: 1800
-      max: 2000
+      min: 900
+      max: 1200
     # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
@@ -333,7 +333,7 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
@@ -374,7 +374,7 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
     delay:
       min: 600
       max: 900
