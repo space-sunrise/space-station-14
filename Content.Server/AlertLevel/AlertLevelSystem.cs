@@ -7,6 +7,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Content.Server.GameTicking;
 
 namespace Content.Server.AlertLevel;
 
@@ -21,12 +22,27 @@ public sealed class AlertLevelSystem : EntitySystem
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
+    private const string EpsilonAlertLevel = "epsilon";
 
     public override void Initialize()
     {
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
+        // Sunrise start - Epsilon alert silicon lawset event
+        SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+        // Sunrise end
     }
+
+    // Sunrise start - Epsilon alert silicon lawset event
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    {
+        if (ev.AlertLevel == EpsilonAlertLevel)
+        {
+            _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+        }
+    }
+    // Sunrise end
 
     public override void Update(float time)
     {
