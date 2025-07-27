@@ -11,7 +11,7 @@
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
-    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
