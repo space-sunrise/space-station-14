@@ -52,14 +52,14 @@ public abstract partial class MarkingEffect
         if (spl.Length > 1)
             input = spl[1];
 
-        var lines = input.Split(',');
+        var lines = input.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
         if (lines.Length == 0)
             return null;
 
         return lines
             .Select(line => line.Split('=', 2))
-            .Where(parts => parts.Length == 2)
+            .Where(parts => parts.Length == 2 && !string.IsNullOrWhiteSpace(parts[0]) && !string.IsNullOrWhiteSpace(parts[1]))
             .ToDictionary(parts => parts[0], parts => parts[1]);
     }
 
@@ -83,14 +83,14 @@ public abstract partial class MarkingEffect
         if (param == null)
             return "";
 
-        if (typeof(T) == typeof(float))
-            return ((float)(object)param).ToString(CultureInfo.InvariantCulture);
-        if (typeof(T) == typeof(bool))
-            return ((bool)(object)param).ToString();
-        if (typeof(T) == typeof(Vector2))
-            return Vector2ToString((Vector2)(object)param);
-
-        return "";
+        return param switch
+        {
+            null => "",
+            float f => f.ToString(CultureInfo.InvariantCulture),
+            bool b => b.ToString(),
+            Vector2 v => Vector2ToString(v),
+            _ => "",
+        };
     }
 
     public static bool TryParseParam<T>(string input, out T param)

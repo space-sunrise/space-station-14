@@ -56,6 +56,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         {
             CurrentType = _types[args.Id];
             _typeSelector.Select(args.Id);
+            OnColorsChanged();
         };
 
         var rootBox = new BoxContainer
@@ -83,7 +84,6 @@ public sealed class MarkingEffectSelectorSliders : Control
 
         _currentType = defaultEffect.Type;
         _typeSelector.TrySelect(_types.IndexOf(_currentType));
-        _typeSelector.OnItemSelected += _ => OnColorsChanged();
         Effect = defaultEffect;
         Populate(_currentType, defaultEffect);
     }
