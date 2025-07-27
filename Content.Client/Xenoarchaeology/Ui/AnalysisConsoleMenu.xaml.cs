@@ -205,7 +205,16 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         if (!node.Value.Comp.Locked)
         {
             // Show the real effect description if the node has been activated at least once
-            effectDescription = _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription ?? Loc.GetString("artifact-effect-hint-data-deleted");
+            var rawDescription = _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription;
+            if (!string.IsNullOrEmpty(rawDescription))
+            {
+                // Try to localize the description, fall back to raw description if it fails
+                effectDescription = Loc.TryGetString(rawDescription, out var localized) ? localized : rawDescription;
+            }
+            else
+            {
+                effectDescription = Loc.GetString("artifact-effect-hint-data-deleted");
+            }
         }
         else
         {
