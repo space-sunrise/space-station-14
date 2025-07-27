@@ -56,7 +56,7 @@ public sealed partial class RoughGradientMarkingEffect : MarkingEffect
     {
         Colors = new Dictionary<string, Color>()
         {
-            { "base", Color.Black}
+            { "base", Color.White }
         };
     }
 

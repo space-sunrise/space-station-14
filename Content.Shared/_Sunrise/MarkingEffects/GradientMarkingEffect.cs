@@ -86,7 +86,7 @@ public sealed partial class GradientMarkingEffect : MarkingEffect
     {
         Colors = new Dictionary<string, Color>()
         {
-            { "base", Color.Black}
+            { "base", Color.White }
         };
     }
 

@@ -17,10 +17,14 @@ highp float find_bound(bool forward, bool horizontal) {
     highp float step = horizontal ? TEXTURE_PIXEL_SIZE.x : TEXTURE_PIXEL_SIZE.y;
     highp float current = horizontal ? UV.x : UV.y;
 
+    const highp int MAX_ITERATIONS = 256;
+    highp int iterations = 0;
+
     highp vec4 result = texture2D(TEXTURE, UV);
 
-    while ((forward ? current < 1.0 : current > 0.0) && result.a > 0.0) {
+    while ((forward ? current < 1.0 : current > 0.0) && result.a > 0.0 && iterations < MAX_ITERATIONS) {
         current += forward ? step : -step;
+        iterations++;
 
         highp vec2 probeUV = UV;
         if (horizontal)

@@ -210,10 +210,7 @@ public sealed class MarkingEffectSelectorSliders : Control
 
     private bool IsSpinBoxValid(int value, float min, float max)
     {
-        if (value > max)
-            return false;
-
-        return !(value < min);
+        return (value >= min) && (value <= max);
     }
 
     private void OnColorsChanged()
