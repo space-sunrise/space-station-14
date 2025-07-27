@@ -182,8 +182,8 @@
     - part-container
     - cell_slot
   - type: Lock
-    locked: true
-    unlockOnClick: false
+    locked: false
+    unlockOnClick: true
   - type: ActivatableUIRequiresLock
   - type: LockedWiresPanel
   - type: Damageable
