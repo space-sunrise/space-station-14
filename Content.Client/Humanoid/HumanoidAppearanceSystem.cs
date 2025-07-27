@@ -449,7 +449,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             if (displacementData != null && markingPrototype.CanBeDisplaced)
             {
                 // TODO: в шейдер нужно ещё вставлять displacementSize, сейчас в нём хардкод 127
-                
+
                 // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню (shaderOverride)
                 _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _, shaderOverride); // Sunrise-Edit
             }

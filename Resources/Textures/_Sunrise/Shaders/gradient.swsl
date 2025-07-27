@@ -43,7 +43,7 @@ void fragment() {
     uv = rot * uv;
     uv += center;
 
-    highp vec4 base = texture2D(TEXTURE, UV);
+    // highp vec4 base = texture2D(TEXTURE, UV);
     highp float t = mirror(uv.y / size.y + offset.y);
     highp vec3 gradient = mix(color2, color1, t);
 
@@ -54,5 +54,6 @@ void fragment() {
     color.a *= displacementSample.a;
     // DISPLACEMENT END
 
+    // COLOR = vec4(gradient * base.rgb, base.a);
     COLOR = color * vec4(gradient, 1);
 }
