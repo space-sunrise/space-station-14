@@ -13,6 +13,7 @@ public sealed class MarkingEffectSelectorSliders : Control
     {
         { MarkingEffectType.Color, new ColorMarkingEffectUiBuilder() },
         { MarkingEffectType.Gradient, new GradientMarkingEffectUiBuilder() },
+        { MarkingEffectType.RoughGradient, new RoughGradientMarkingEffectUiBuilder() },
     };
 
     private readonly Dictionary<string, CustomColorSelectorSliders> _colorSelectors = new();
@@ -236,6 +237,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         {
             MarkingEffectType.Color => ColorMarkingEffect.White,
             MarkingEffectType.Gradient => new GradientMarkingEffect(),
+            MarkingEffectType.RoughGradient => new RoughGradientMarkingEffect(),
             _ => ColorMarkingEffect.White,
         };
 

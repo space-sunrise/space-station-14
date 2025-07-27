@@ -5,12 +5,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.MarkingEffects;
 
-public enum MarkingEffectType
-{
-    Color,
-    Gradient,
-}
-
 [ImplicitDataDefinitionForInheritors, Serializable, NetSerializable]
 public abstract partial class MarkingEffect
 {

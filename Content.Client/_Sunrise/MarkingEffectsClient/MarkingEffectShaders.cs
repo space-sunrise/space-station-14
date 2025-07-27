@@ -31,6 +31,13 @@ public static class MarkingEffectShaders
                 instance.SetParameter("pixelated", gradient.Pixelated);
                 instance.SetParameter("mirrored", gradient.Mirrored);
                 break;
+            case MarkingEffectType.RoughGradient:
+                if (color is not RoughGradientMarkingEffect roughGradient)
+                    return;
+                instance.SetParameter("color1", ColorToVec(roughGradient.Colors["base"]));
+                instance.SetParameter("color2", ColorToVec(roughGradient.Colors["gradient"]));
+                instance.SetParameter("horizontal", roughGradient.Horizontal);
+                break;
         }
     }
 }
