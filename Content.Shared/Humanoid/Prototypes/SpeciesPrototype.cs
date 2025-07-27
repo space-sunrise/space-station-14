@@ -147,13 +147,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     ///     Characters must not crumple under earth-like gravity.
     /// </summary>
     [DataField]
-    public float MinWidth = 0.8f;
+    public float MinWidth = 0.95f;
 
     /// <summary>
     ///     Characters must not exhibit a measurable gravitational pull on nearby objects.
     /// </summary>
     [DataField]
-    public float MaxWidth = 1.2f;
+    public float MaxWidth = 1.1f;
 
     /// <summary>
     ///     The normal width for this species.
@@ -171,7 +171,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     ///     You cannot fit in our cloning pods.
     /// </summary>
     [DataField]
-    public float MaxHeight = 1.2f;
+    public float MaxHeight = 1.1f;
 
     /// <summary>
     ///     The normal height for this species.
