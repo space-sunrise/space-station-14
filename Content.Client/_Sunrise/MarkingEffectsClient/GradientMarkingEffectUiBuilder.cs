@@ -7,7 +7,7 @@ public sealed class GradientMarkingEffectUiBuilder : IMarkingEffectUiBuilder
 {
     private const float ToIntScaling = 100;
 
-    private const int OffsetMin = -100;
+    private const int OffsetMin = -200;
     private const int OffsetMax = 100;
 
     private const int SizeMin = 30;
