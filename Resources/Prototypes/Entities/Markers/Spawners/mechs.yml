@@ -13,6 +13,20 @@
       - MechRipleyBattery
 
 - type: entity
+  name: Hauler APLU Spawner
+  id: SpawnMechHauler
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/ripley.rsi
+        state: hauler
+  - type: ConditionalSpawner
+    prototypes:
+      - MechHauler
+
+- type: entity
   name: Ripley APLU MK-II Spawner
   id: SpawnMechRipley2
   parent: MarkerBase
@@ -106,7 +120,7 @@
     layers:
       - state: green
       - sprite: Objects/Specific/Mech/durand.rsi
-        state: durand
+        state: base
   - type: ConditionalSpawner
     prototypes:
       - MechDurandBattery
@@ -285,3 +299,19 @@
   - type: ConditionalSpawner
     prototypes:
       - MechMiningPod
+
+- type: entity
+  name: Paddy Spawner
+  suffix: Filled
+  id: SpawnMechPaddyFilled
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/ripley.rsi
+        state: paddy
+      - state: mechicon
+  - type: ConditionalSpawner
+    prototypes:
+      - MechPaddyFilled

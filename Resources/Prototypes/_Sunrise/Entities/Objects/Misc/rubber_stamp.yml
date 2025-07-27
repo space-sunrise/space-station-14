@@ -107,3 +107,17 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-redo
+
+- type: entity
+  name: Special Operations rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSpecOps
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-specops
+    stampedColor: "#4543b4"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-specops

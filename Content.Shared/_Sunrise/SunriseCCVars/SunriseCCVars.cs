@@ -39,6 +39,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> TTSClientEnabled =
         CVarDef.Create("tts.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<bool> TTSRadioGhostEnabled =
+        CVarDef.Create("tts.radio_ghost_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Option to disable TTS queue in radio for client
     /// </summary>
@@ -309,7 +312,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("game.reset_preset_after_restart", false);
 
     public static readonly CVarDef<string> GamePresetPool =
-        CVarDef.Create("game.preset_pool", "DefaultPresetPool", CVar.SERVERONLY);
+        CVarDef.Create("game.preset_pool", "DefaultHighPopPresetPool", CVar.SERVERONLY);
 
     /*
      * Ban links.
@@ -520,4 +523,13 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смена даты на документах от принтера
+    /// </summary>
+    public static readonly CVarDef<int> PrinterDocTimeOffsetHours =
+        CVarDef.Create("printerdoc.time_offset_hours", 3, CVar.SERVERONLY);
+    public static readonly CVarDef<int> PrinterDocYearOffset =
+        CVarDef.Create("printerdoc.year_offset", 1000, CVar.SERVERONLY);
+
 }

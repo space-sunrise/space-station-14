@@ -146,17 +146,17 @@ public sealed class SharedCarryingSystem : EntitySystem
         if (mod != 0)
             length /= mod;
 
-        if (length >= TimeSpan.FromSeconds(MaxCarryTime))
-        {
-            _popupSystem.PopupPredicted(Loc.GetString("carry-too-heavy"), carried, carrier, PopupType.SmallCaution);
-            return;
-        }
-
         if (!HasComp<KnockedDownComponent>(carried))
             length *= 2f;
 
         if (TryComp<MobStateComponent>(carried, out var mobState) && mobState.CurrentState != MobState.Alive)
             length /= 2f;
+
+        if (length >= TimeSpan.FromSeconds(MaxCarryTime))
+        {
+            _popupSystem.PopupPredicted(Loc.GetString("carry-too-heavy"), carried, carrier, PopupType.SmallCaution);
+            return;
+        }
 
         var ev = new CarryDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, carrier, length, ev, carried, target: carried)

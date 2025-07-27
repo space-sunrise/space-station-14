@@ -151,6 +151,9 @@
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
     - id: FlippoLighterSunriseHop  # Sunrise-Flippo
+    - id: DrinkInc
+    - id: SheetOfficePaper # Sunrise-edit
+      amount: 1
 
 - type: entity
   id: LockerHeadOfPersonnelFilled

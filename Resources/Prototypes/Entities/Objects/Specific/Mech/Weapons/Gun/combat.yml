@@ -417,7 +417,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFlash
+    proto: BulletGrenadeFlashBang # Sunrise-Edit
     fireCost: 60
   - type: Appearance
   - type: AmmoCounter

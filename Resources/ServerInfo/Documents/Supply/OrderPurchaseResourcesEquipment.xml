@@ -1,0 +1,20 @@
+<Document>
+[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_sup.png" scale=1]
+
+[bold]Станция: {stationName}[/bold]
+[bold]Форма НТ/КОМ-ЗАК[/bold]
+[head=3]Приказ на закупку ресурсов, оборудования[/head]
+
+[italic]Время от начала смены и дата: {timeString}[/italic]
+
+Составитель документа:
+Должность составителя:
+
+Перечень товаров для заказа:
+
+Место доставки товара:
+
+Причина:
+
+[italic]Место для печатей[/italic]
+</Document>

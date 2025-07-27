@@ -7,12 +7,11 @@
   components:
   - type: Interactions
   - type: MultiHandedItem
-    handsNeeded: 2
   - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
-    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -409,7 +408,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 100
+        density: 40
         restitution: 0.0
         mask:
         - MobMask
@@ -497,7 +496,7 @@
       - !type:Emote
         emote: Hisses
         showInChat: true
-        probability: 0.35
+        probability: 0.25
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5

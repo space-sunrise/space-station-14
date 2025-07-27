@@ -1,6 +1,6 @@
 ent-ClothingHeadCapCentcomBlack = special operations officer cap
     .desc = The NanoTrasen gold-engraved special cap of the higher ranks, which has long gone through more than one blitzkrieg...
-ent-ClothingHeadCapNTGR = NTRG officer cap
+ent-ClothingHeadCapNTGR = NTRG cap
     .desc = The NanoTrasen Silver-engraved special cap
 ent-ClothingHeadCapCentcomNaval = naval cap
     .desc = A cap worn by those in the Nanotrasen Navy.

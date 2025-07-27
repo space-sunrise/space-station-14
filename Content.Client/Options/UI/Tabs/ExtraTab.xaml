@@ -25,6 +25,7 @@
                 <Label Text="{Loc 'ui-options-sunrise-general-audio'}" StyleClasses="LabelKeyText"/>
                 <CheckBox Name="TtsClientCheckBox" Text="{Loc 'ui-options-tts-enabled'}" />
                 <CheckBox Name="TtsClientCheckBoxQueue" Text="{Loc 'ui-options-tts-queue'}" />
+                <CheckBox Name="TtsRadioGhostCheckBox" Text="{Loc 'ui-options-tts-radio-ghost-enabled'}" />
                 <ui:OptionSlider Name="SliderTts" Title="{Loc 'ui-options-tts-volume'}" />
                 <ui:OptionSlider Name="SliderTtsRadio" Title="{Loc 'ui-options-tts-radio-volume'}" />
                 <ui:OptionSlider Name="SliderTtsAnnounce" Title="{Loc 'ui-options-tts-announce-volume'}" />
