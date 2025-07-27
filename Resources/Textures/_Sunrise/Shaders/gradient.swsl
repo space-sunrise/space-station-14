@@ -47,7 +47,7 @@ void fragment() {
     highp float t = mirror(uv.y / size.y + offset.y);
     highp vec3 gradient = mix(color2, color1, t);
 
-    // DIPLSACEMENT START
+    // DISPLACEMENT START
     highp vec4 displacementSample = texture2D(displacementMap, displacementUVOut);
     highp vec2 displacementValue = (displacementSample.xy - vec2(128.0 / 255.0)) / (1.0 - 128.0 / 255.0);
     highp vec4 color = zTexture(UV + displacementValue * TEXTURE_PIXEL_SIZE * 127 * vec2(1.0, -1.0));
