@@ -244,11 +244,15 @@ namespace Content.Shared.Preferences
 
             var sex = Sex.Unsexed;
             var age = 18;
+            var width = 1f; //Sunrise
+            var height = 1f; //Sunrise
             var bodyType = SharedHumanoidAppearanceSystem.DefaultBodyType;
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
+                width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth); //Sunrise
+                height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight); //Sunrise
                 bodyType = speciesPrototype.BodyTypes.First();
             }
 
