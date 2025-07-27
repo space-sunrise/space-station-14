@@ -412,6 +412,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
             // }
 
+            ShaderInstance? shaderOverride = null;
+
 
             if (markingEffects != null && j < markingEffects.Count && markingEffects[j].Type != MarkingEffectType.Color)
             {
@@ -419,6 +421,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 float texHeight = sprite.AllLayers.Max(x => x.PixelSize.Y);
                 var shaderName = markingEffects[j].Type.ToString();
                 var instance = _prototypeManager.Index<ShaderPrototype>(shaderName).InstanceUnique();
+                shaderOverride = instance;
 
                 instance.ApplyShaderParams(markingEffects[j], new Vector2(texWidth, texHeight));
 
@@ -445,7 +448,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             var displacementData = GetMarkingDisplacement(entity.Owner, markingPrototype.BodyPart, humanoid);
             if (displacementData != null && markingPrototype.CanBeDisplaced)
             {
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
+                // TODO: в шейдер нужно ещё вставлять displacementSize, сейчас в нём хардкод 127
+                
+                // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню (shaderOverride)
+                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _, shaderOverride); // Sunrise-Edit
             }
         }
     }
