@@ -269,10 +269,20 @@ namespace Content.Client.Lobby.UI
 
             WidthSlider.OnValueChanged += args =>
             {
-                SetWidth(args.Value);
+                UpdateSizeText();
             };
 
             HeightSlider.OnValueChanged += args =>
+            {
+                UpdateSizeText();
+            };
+
+            WidthSlider.OnReleased += args =>
+            {
+                SetWidth(args.Value);
+            };
+
+            HeightSlider.OnReleased += args =>
             {
                 SetHeight(args.Value);
             };
@@ -1343,10 +1353,13 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            var height = speciesPrototype.StandardSize * Profile.Appearance.Height;
-            var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * ((Profile.Appearance.Width * Profile.Appearance.Height) - 1);
+            var heightRaw = HeightSlider.Value;
+            var weightRaw = WidthSlider.Value;
+
+            var height = speciesPrototype.StandardSize * heightRaw;
+            var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
             HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
-            WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight, 1)));
+            WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
         }
 
         private void SetWidth(float newWidth)
