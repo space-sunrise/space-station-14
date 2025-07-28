@@ -8,10 +8,10 @@
   },
   "states": [
     {
-      "name": "anomyxine_empty"
+      "name": "medipen"
     },
     {
-      "name": "anomyxine"
+      "name": "medipen_empty"
     }
   ]
 }

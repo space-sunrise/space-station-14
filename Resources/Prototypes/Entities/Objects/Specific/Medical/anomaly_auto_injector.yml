@@ -1,21 +1,11 @@
 - type: entity
   name: автоинъектор аномалии
   id: AnomalyAutoInjector
-  parent: BaseItem
-  description: Вводит единоразовую дозу аномального реагента, результат непредсказуем
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Вводит аномалию в существо. Одноразовый.
   components:
     - type: Sprite
-      sprite: Objects/Specific/Medical/anomaly_injector.rsi
+      sprite: _Sunrise/Objects/Specific/Medical/anomaly_injector.rsi
       layers:
-        - state: anomyxine
-    - type: Item
-      sprite: Objects/Specific/Medical/anomaly_injector.rsi
-      size: Tiny
-    - type: EmitSoundOnUse
-      sound:
-        path: /Audio/Items/hypospray.ogg
+        - state: medipen
     - type: AnomalyAutoInjector
-    - type: SolutionContainerManager
-      solutions:
-        pen:
-          maxVol: 1
