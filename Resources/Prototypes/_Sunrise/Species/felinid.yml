@@ -23,9 +23,9 @@
   defaultHeight: 0.80
   defaultWeight: 0.80
   maxHeight: 1
-  maxWeight: 1
+  maxWidth: 1
   minHeight: 0.7
-  minWeight: 0.7
+  minWidth: 0.7
 
 - type: markingPoints
   id: MobFelinidMarkingLimits
