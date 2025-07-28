@@ -134,9 +134,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
             args.Handled = true;
             UpdateUI(uid, component);
         }
-        else
-        {
-        }
 
         if (module != null && CanInsertModule(uid, used, component, module, args.User))
         {

@@ -51,8 +51,16 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
             if (_emag.CheckFlag(ent, EmagType.Interaction))
                 continue;
             // Skip Syndicate borgs
-            if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is {} factions && factions.Any(f => f == "Syndicate"))
-                continue;
+            if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is {} factions)
+            {
+                foreach (var f in factions)
+                {
+                    if (f == "Syndicate")
+                    {
+                        continue;
+                    }
+                }
+            }
             _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);
         }
     }

@@ -19,6 +19,7 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
@@ -34,7 +35,6 @@ public sealed class AlertLevelSystem : EntitySystem
     }
 
     // Sunrise start - Epsilon alert silicon lawset event
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
         if (ev.AlertLevel == EpsilonAlertLevel)
