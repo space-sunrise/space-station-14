@@ -512,8 +512,6 @@
       types:
         Blunt: 5
     damageSound: /Audio/Effects/hit_kick.ogg
-  - type: ScaleSprite
-    scale: 0.80, 0.80
 
 - type: entity
   save: false

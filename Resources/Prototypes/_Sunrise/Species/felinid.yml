@@ -16,10 +16,16 @@
   markingLimits: MobFelinidMarkingLimits
   dollPrototype: MobFelinidDummy
   skinColoration: HumanToned
-  youngAge: 23
-  oldAge: 25
-  maxAge: 27
+  youngAge: 18
+  oldAge: 30
+  maxAge: 60
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
+  defaultHeight: 0.80
+  defaultWeight: 0.80
+  maxHeight: 1
+  maxWeight: 1
+  minHeight: 0.7
+  minWeight: 0.7
 
 - type: markingPoints
   id: MobFelinidMarkingLimits
