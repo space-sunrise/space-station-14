@@ -12,7 +12,7 @@
     - state: boris_blank
       map: ["base"]
   - type: Input
-    context: human
+    context: "human"
   - type: ToggleableGhostRole
     examineTextMindPresent: boris-installed
     examineTextMindSearching: boris-still-searching
@@ -28,9 +28,10 @@
     stopSearchVerbText: boris-stop-searching-verb-text
     stopSearchVerbPopup: boris-stopped-searching
     job: Borg
-  - type: BlockMovement
   - type: Examiner
   - type: BorgBrain
+  - type: BlockMovement
+    blockInteraction: false
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -80,7 +81,6 @@
       map: ["base"]
   - type: Input
     context: "ghost"
-  - type: BlockMovement
   - type: ToggleableGhostRole
     examineTextMindPresent: sofia-installed
     examineTextMindSearching: sofia-still-searching
@@ -98,6 +98,8 @@
     job: Borg
   - type: Examiner
   - type: BorgBrain
+  - type: BlockMovement
+    blockInteraction: false
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:

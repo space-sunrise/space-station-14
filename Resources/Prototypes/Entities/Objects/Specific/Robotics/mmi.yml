@@ -13,10 +13,11 @@
     - state: mmi_off
       map: ["enum.MMIVisualLayers.Base"]
   - type: Input
-    context: human
+    context: "human"
   - type: MMI
   - type: BorgBrain
   - type: BlockMovement
+    blockInteraction: false
   - type: Examiner
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -76,13 +77,14 @@
   components:
     - type: Organ # Sunrise-Edit
     - type: Brain # Sunrise-Edit
+    - type: BorgBrain # Sunrise-Edit - Allow insertion into borg chassis
     - type: Sprite
       sprite: Objects/Specific/Robotics/mmi.rsi
       layers:
       - state: posibrain
         map: ["base"]
     - type: Input
-      context: human
+      context: "human"
 #    - type: ToggleableGhostRole
 #      examineTextMindPresent: positronic-brain-installed
 #      examineTextMindSearching: positronic-brain-still-searching
@@ -99,6 +101,7 @@
 #      stopSearchVerbPopup: positronic-brain-stopped-searching
 #      job: Borg
     - type: BlockMovement
+      blockInteraction: false
     - type: Examiner
 
     - type: NameIdentifier
