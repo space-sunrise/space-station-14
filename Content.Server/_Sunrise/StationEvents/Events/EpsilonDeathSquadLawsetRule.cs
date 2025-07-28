@@ -22,7 +22,10 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
 
-    protected override void Started(EntityUid uid, StationEventComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Started(EntityUid uid,
+        StationEventComponent comp,
+        GameRuleComponent gameRule,
+        GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
 
@@ -51,16 +54,12 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
             if (_emag.CheckFlag(ent, EmagType.Interaction))
                 continue;
             // Skip Syndicate borgs
-            if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is {} factions)
+            if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is { } factions)
             {
-                foreach (var f in factions)
-                {
-                    if (f == "Syndicate")
-                    {
-                        continue;
-                    }
-                }
+                if (factions.Contains("Syndicate"))
+                    continue;
             }
+
             _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);
         }
     }
