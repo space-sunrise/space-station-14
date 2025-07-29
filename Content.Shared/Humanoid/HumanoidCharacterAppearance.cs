@@ -116,6 +116,11 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
+        var random = IoCManager.Resolve<IRobustRandom>();
+
+        var height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
+        var width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
+
         var skinColor = speciesPrototype.SkinColoration switch
         {
             HumanoidSkinColor.HumanToned => Humanoid.SkinColor.HumanSkinTone(speciesPrototype.DefaultHumanSkinTone),
@@ -134,8 +139,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             skinColor,
             new (),
-            speciesPrototype.DefaultWidth, //Sunrise
-            speciesPrototype.DefaultHeight //Sunrise
+            width, //Sunrise
+            height //Sunrise
         );
     }
 

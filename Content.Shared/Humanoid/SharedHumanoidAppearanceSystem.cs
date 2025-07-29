@@ -131,7 +131,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (string.IsNullOrEmpty(humanoid.Initial)
             || !_proto.TryIndex(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
         {
-            LoadProfile(uid, HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species), humanoid); //Sunrise edit
+            LoadProfile(uid, HumanoidCharacterProfile.DefaultWithSpecies(humanoid.Species), humanoid);
             return;
         }
 
