@@ -5,27 +5,22 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
-using Content.Server.Silicons.Borgs;
-using Content.Server.SyndicateTeleporter;
 using Content.Shared.Emag.Systems;
-using Content.Shared.NPC.Components;
 using Content.Shared.Tag;
-using Robust.Shared.Log;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
+public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEventComponent>
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly ISawmill _sawmill = default!;
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
 
     protected override void Started(EntityUid uid,
-        EpsilonDeathSquadLawsetComponent comp,
+        StationEventComponent comp,
         GameRuleComponent gameRule,
         GameRuleStartedEvent args)
     {
@@ -37,7 +32,7 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
         var lawsetId = DeathSquadLawsetId;
         if (!_prototypeManager.TryIndex<SiliconLawsetPrototype>(lawsetId, out var lawsetProto))
         {
-            _sawmill.Error($"Could not find lawset prototype: {lawsetId}");
+            Sawmill.Error($"Could not find lawset prototype: {lawsetId}");
             return;
         }
 
@@ -54,20 +49,9 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
         var query = EntityQueryEnumerator<SiliconLawProviderComponent>();
         while (query.MoveNext(out var ent, out var provider))
         {
-            // Skip EMAGed borgs
-            if (_emag.CheckFlag(ent, EmagType.Interaction))
-                continue;
-            
             // Skip borgs with blocked law changes
             if (HasComp<BlockLawChangeComponent>(ent))
                 continue;
-            
-            // Skip Syndicate borgs
-            if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is { } factions)
-            {
-                if (factions.Contains("Syndicate"))
-                    continue;
-            }
 
             // Only change laws for borgs on the chosen station
             if (Transform(ent).GridUid != chosenStation)

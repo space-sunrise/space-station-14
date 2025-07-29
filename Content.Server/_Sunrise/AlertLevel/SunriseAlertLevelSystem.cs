@@ -1,6 +1,4 @@
-using Content.Server.AlertLevel;
 using Content.Server.GameTicking;
-using Content.Shared.GameTicking.Components;
 using Robust.Shared.Log;
 
 namespace Content.Server.AlertLevel;
@@ -11,13 +9,14 @@ namespace Content.Server.AlertLevel;
 public sealed class SunriseAlertLevelSystem : EntitySystem
 {
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly ISawmill _sawmill = default!;
 
     private const string EpsilonAlertLevel = "epsilon";
+    private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        _sawmill = Logger.GetSawmill("sunrise-alert-level");
         SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
         _sawmill.Info("SunriseAlertLevelSystem initialized");
     }
@@ -25,11 +24,11 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
         _sawmill.Info($"Alert level changed to {ev.AlertLevel} on station {ev.Station}");
-        
+
         if (ev.AlertLevel == EpsilonAlertLevel)
         {
             _sawmill.Info($"Epsilon alert level triggered on station {ev.Station}, adding Death Squad Lawset event");
             _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
         }
     }
-} 
+}
