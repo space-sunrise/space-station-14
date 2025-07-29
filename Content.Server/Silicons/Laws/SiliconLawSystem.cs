@@ -178,6 +178,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         // Sunrise-Start
         _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+        
+        // Add BlockLawChangeComponent to prevent future law changes
+        EnsureComp<BlockLawChangeComponent>(uid);
         // Sunrise-End
     }
 

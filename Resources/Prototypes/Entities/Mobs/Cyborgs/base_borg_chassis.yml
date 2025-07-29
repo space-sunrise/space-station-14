@@ -405,6 +405,7 @@
   - type: SiliconLawProvider
     laws: SyndicateStatic
     subverted: true
+  - type: BlockLawChange
   - type: IntrinsicRadioTransmitter
     channels:
     - Binary
@@ -481,6 +482,7 @@
   - type: SiliconLawProvider
     laws: XenoborgLawset # custom laws here
     subverted: true
+  - type: BlockLawChange
   - type: IntrinsicRadioTransmitter # can only use binary and xenoborg channel
     channels:
     - Xenoborg

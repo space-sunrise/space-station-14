@@ -10,20 +10,22 @@ using Content.Server.SyndicateTeleporter;
 using Content.Shared.Emag.Systems;
 using Content.Shared.NPC.Components;
 using Content.Shared.Tag;
+using Robust.Shared.Log;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEventComponent>
+public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly ISawmill _sawmill = default!;
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
 
     protected override void Started(EntityUid uid,
-        StationEventComponent comp,
+        EpsilonDeathSquadLawsetComponent comp,
         GameRuleComponent gameRule,
         GameRuleStartedEvent args)
     {
@@ -35,17 +37,19 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
         var lawsetId = DeathSquadLawsetId;
         if (!_prototypeManager.TryIndex<SiliconLawsetPrototype>(lawsetId, out var lawsetProto))
         {
-            Logger.GetSawmill("station-event").Error($"Could not find lawset prototype: {lawsetId}");
+            _sawmill.Error($"Could not find lawset prototype: {lawsetId}");
             return;
         }
 
-        // Convert the prototype's law IDs to actual law objects
-        var laws = new List<SiliconLaw>();
-        foreach (var lawId in lawsetProto.Laws)
-        {
-            if (_prototypeManager.TryIndex<SiliconLawPrototype>(lawId, out var lawProto))
-                laws.Add(lawProto);
-        }
+        // Convert the prototype's law IDs to actual law objects using LINQ
+        var laws = lawsetProto.Laws
+            .Select(lawId => _prototypeManager.Index<SiliconLawPrototype>(lawId))
+            .Select(lawProto => new SiliconLaw
+            {
+                LawString = Loc.GetString(lawProto.LawString),
+                Order = lawProto.Order
+            })
+            .ToList();
 
         var query = EntityQueryEnumerator<SiliconLawProviderComponent>();
         while (query.MoveNext(out var ent, out var provider))
@@ -53,12 +57,21 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
             // Skip EMAGed borgs
             if (_emag.CheckFlag(ent, EmagType.Interaction))
                 continue;
+            
+            // Skip borgs with blocked law changes
+            if (HasComp<BlockLawChangeComponent>(ent))
+                continue;
+            
             // Skip Syndicate borgs
             if (TryComp<NpcFactionMemberComponent>(ent, out var faction) && faction.Factions is { } factions)
             {
                 if (factions.Contains("Syndicate"))
                     continue;
             }
+
+            // Only change laws for borgs on the chosen station
+            if (Transform(ent).GridUid != chosenStation)
+                continue;
 
             _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);
         }

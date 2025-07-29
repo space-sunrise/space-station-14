@@ -701,12 +701,3 @@
       max: 1
       pickPlayer: false
 
-# Sunrise start - Epsilon alert silicon lawset event
-- type: entity
-  id: EpsilonDeathSquadLawset
-  parent: BaseStationEvent
-  components:
-  - type: StationEvent
-    weight: 0 # Only triggered by code/admin
-    duration: 1
-# Sunrise end
