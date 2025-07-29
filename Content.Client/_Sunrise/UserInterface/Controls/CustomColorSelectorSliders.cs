@@ -61,6 +61,7 @@ public sealed class CustomColorSelectorSliders : Control
     }
 
     public Action<Color>? OnColorChanged;
+    public Action<Color>? OnColorReleased;
 
     private bool _updating = false;
     private Color _currentColor = Color.White;
@@ -132,6 +133,11 @@ public sealed class CustomColorSelectorSliders : Control
         _middleColorSlider.OnValueChanged += _ => { OnColorSet(); };
         _bottomColorSlider.OnValueChanged += _ => { OnColorSet(); };
         _alphaSlider.OnValueChanged += _ => { OnColorSet(); };
+
+        _topColorSlider.OnReleased += _ => { OnColorSet(true); };
+        _middleColorSlider.OnReleased += _ => { OnColorSet(true); };
+        _bottomColorSlider.OnReleased += _ => { OnColorSet(true); };
+        _alphaSlider.OnReleased += _ => { OnColorSet(true); };
 
         _topInputBox = new SpinBox
         {
@@ -400,7 +406,7 @@ public sealed class CustomColorSelectorSliders : Control
         return 0.0f;
     }
 
-    private void OnColorSet()
+    private void OnColorSet(bool release = false)
     {
         // stack overflow otherwise due to value sets
         if (_updating)
@@ -417,7 +423,10 @@ public sealed class CustomColorSelectorSliders : Control
         };
 
         Update();
-        OnColorChanged?.Invoke(_currentColor);
+        if (release)
+            OnColorReleased?.Invoke(_currentColor);
+        else
+            OnColorChanged?.Invoke(_currentColor);
     }
 
     private enum ColorSliderOrder

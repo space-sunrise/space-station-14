@@ -33,8 +33,11 @@ public sealed class DisplacementMapSystem : EntitySystem
 
         // Sunrise-Edit start
         // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню
-        if(shaderOverride != null)
+        if (shaderOverride != null)
+        {
             sprite.Comp.LayerSetShader(index, shaderOverride);
+            shaderOverride.SetParameter("useDisplacement", true);
+        }
         // Sunrise-Edit end
         else if(data.ShaderOverride != null)
             sprite.Comp.LayerSetShader(index, data.ShaderOverride);

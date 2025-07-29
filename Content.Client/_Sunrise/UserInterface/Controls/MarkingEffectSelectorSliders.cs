@@ -101,7 +101,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         if (Effect.Colors.TryGetValue(key, out var defaultColor))
             colorSelector.Color = defaultColor;
 
-        colorSelector.OnColorChanged += _ => OnColorsChanged();
+        colorSelector.OnColorReleased += _ => OnColorsChanged();
 
         _colorSelectors.Add(key, colorSelector);
 
@@ -143,18 +143,8 @@ public sealed class MarkingEffectSelectorSliders : Control
             IsValid = value => IsSpinBoxValid(value, minValue, maxValue)
         };
         spinBox.InitDefaultButtons();
-        spinBox.ValueChanged += value =>
-        {
-            slider.SetValueWithoutEvent(value.Value);
-            OnColorsChanged();
-        };
         spinBox.Value = defaultValue;
 
-        slider.OnValueChanged += value =>
-        {
-            OnColorsChanged();
-            spinBox.Value = (int)(value.Value);
-        };
 
 
         sliderContainer.AddChild(sliderLabel);
@@ -167,11 +157,10 @@ public sealed class MarkingEffectSelectorSliders : Control
 
     private void BindSlider(Slider slider, SpinBox spinBox, Action<float> setValue)
     {
-        slider.OnValueChanged += val =>
+        slider.OnReleased += val =>
         {
             setValue(val.Value);
             spinBox.Value = (int)(val.Value);
-
             OnColorsChanged();
         };
 
