@@ -16,12 +16,17 @@ jobs:
       if: ${{GITHUB.REF_NAME == 'master'}}
       run: exit 1
 
-    - uses: actions/checkout@v3.6.0
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - uses: actions/checkout@v4.2.2
       with:
         submodules: 'recursive'
 
     - name: Checkout SunrisePrivate
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4.2.2
       with:
         repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
         path: SunrisePrivate

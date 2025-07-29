@@ -408,7 +408,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 40
+        density: 150
         restitution: 0.0
         mask:
         - MobMask
@@ -445,8 +445,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      160: Dead
+      100: Critical
+      200: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -500,20 +500,11 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,3,3
   - type: Felinid
-    damageBonus:
-      types:
-        Blunt: 15
-    felinidDamage:
-      types:
-        Blunt: 5
     damageSound: /Audio/Effects/hit_kick.ogg
   - type: ScaleSprite
     scale: 0.80, 0.80
+  - type: Carriable
 
 - type: entity
   save: false

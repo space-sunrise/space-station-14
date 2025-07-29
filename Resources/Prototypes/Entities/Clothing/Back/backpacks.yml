@@ -31,7 +31,6 @@
     delay: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: FelinidContainer
   - type: Tag
     tags:
     - WhitelistChameleon

@@ -29,7 +29,7 @@ jobs:
         submodules: 'recursive'
 
     - name: Checkout SunrisePrivate
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4.2.2
       with:
         repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
         path: SunrisePrivate
