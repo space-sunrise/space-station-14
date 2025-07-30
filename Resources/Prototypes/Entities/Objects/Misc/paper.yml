@@ -101,6 +101,11 @@
         type: PaperBoundUserInterface
   - type: FaxableObject
   - type: PaperVisuals
+  # Sunrise edit end
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
+  # Sunrise edit end
 
 - type: entity
   name: paper scrap

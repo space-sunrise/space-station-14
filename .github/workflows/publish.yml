@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Fail if we are attempting to run on the stable branch
+      if: ${{GITHUB.REF_NAME == 'stable'}}
+      run: exit 1
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -25,7 +29,7 @@ jobs:
         submodules: 'recursive'
 
     - name: Checkout SunrisePrivate
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4.2.2
       with:
         repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
         path: SunrisePrivate
@@ -61,26 +65,6 @@ jobs:
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
-
-    - name: Publish discord changelog (SUNRISE)
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_SUNRISE }}
-
-    - name: Publish discord changelog (LUST)
-      continue-on-error: true
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_LUST }}
-
-    - name: Publish discord changelog (FISH)
-      continue-on-error: true
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_FISH }}
 
 #    - name: Publish changelog (RSS)
 #      continue-on-error: true

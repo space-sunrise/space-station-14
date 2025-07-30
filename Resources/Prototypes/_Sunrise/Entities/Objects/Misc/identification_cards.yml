@@ -30,6 +30,20 @@
 
 - type: entity
   parent: IDCardStandard
+  id: BlueShieldOperativeIDCard
+  name: blue shield operative ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: BlueShieldOperative
+
+- type: entity
+  parent: IDCardStandard
   id: RoboticistIDCard
   name: roboticist ID card
   components:
@@ -316,7 +330,7 @@
   - type: Item
     heldPrefix: silver
   - type: PresetIdCard
-    job: Lawyer #NtrGuard
+    job: NtrGuard
 
 - type: entity
   parent: IDCardStandard

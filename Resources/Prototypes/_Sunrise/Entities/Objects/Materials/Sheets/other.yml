@@ -1,1 +1,82 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: SheetOfficePaperBase
+  description: A sheet of office paper, used for documents and printing.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/Objects/Materials/Sheets/office_paper.rsi
+  - type: Item
+    sprite: /Textures/_Sunrise/Objects/Materials/Sheets/office_paper.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - Sheet
+    - SheetOfficePaper
+    - NoPaint
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SolutionContainerManager
+    solutions:
+      officepaper:
+        canReact: false
+
+- type: entity
+  parent: SheetOfficePaperBase
+  id: SheetOfficePaper
+  name: office paper
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: OfficePaper
+    baseLayer: base
+    layerStates:
+    - paper_1
+    - paper_2
+    - paper_3
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      officePaper: 100
+  - type: Sprite
+    state: paper_3
+    layers:
+    - state: paper_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: office_paper
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: officepaper
+  - type: SolutionContainerManager
+    solutions:
+      officepaper:
+        canReact: false
+        reagents:
+        - ReagentId: Cellulose
+          Quantity: 3
+  - type: Tag
+    tags:
+    - SheetOfficePaper
+
+
+- type: entity
+  parent: SheetOfficePaper
+  id: SheetOfficePaper1
+  name: office paper
+  suffix: Single
+  components:
+  - type: Sprite
+    state: paper_1
+  - type: Stack
+    stackType: OfficePaper
+    count: 1
 

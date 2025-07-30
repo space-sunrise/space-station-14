@@ -1190,7 +1190,7 @@
     deleteOnCollide: false
     damage:
       types:
-        Shock: 30 # Sunrise-Edit
+        Shock: 20 # Sunrise-Edit
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: LightningArcShooter

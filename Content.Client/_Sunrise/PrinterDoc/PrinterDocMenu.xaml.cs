@@ -5,6 +5,8 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
+using System.Numerics;
 
 namespace Content.Client._Sunrise.PrinterDoc;
 
@@ -21,6 +23,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     private float _incVolume;
     private string _searchText = string.Empty;
     private List<string> _allTemplates = new();
+    private string? _activeComponentFilter = null;
 
     public PrinterDocMenu()
     {
@@ -29,30 +32,38 @@ public sealed partial class PrinterDocMenu : DefaultWindow
 
         PrintButton.OnPressed += _ => OnPrintPressed?.Invoke(_currentTemplate);
         CopyButton.OnPressed += _ => OnCopyPressed?.Invoke();
-        TemplateList.OnItemSelected += args =>
-        {
-            var id = args.ItemIndex >= 0 && args.ItemIndex < TemplateList.Count
-                ? TemplateList[args.ItemIndex].Metadata as string
-                : null;
-            if (id != null)
-                _currentTemplate = id;
-        };
-        TemplateList.OnItemSelected += TemplateListOnOnItemSelected;
-        TemplateList.OnItemDeselected += TemplateListOnOnItemDeselected;
+
+        TemplateList.OnItemSelected += OnTemplateSelected;
+        TemplateList.OnItemDeselected += OnTemplateDeselected;
+
         SearchBar.OnTextChanged += _ =>
         {
             _searchText = SearchBar.Text.Trim();
             PopulateTemplates();
         };
+
+        FilterDropdown.OnItemSelected += args =>
+        {
+            var metadata = FilterDropdown.GetItemMetadata(args.Id) as string;
+            _activeComponentFilter = string.IsNullOrEmpty(metadata) ? null : metadata;
+
+            _searchText = string.Empty;
+            SearchBar.Text = string.Empty;
+
+            FilterDropdown.SelectId(args.Id);
+            PopulateTemplates();
+        };
+
+        CreateFilterDropdown();
     }
 
-    private void TemplateListOnOnItemSelected(ItemList.ItemListSelectedEventArgs obj)
+    private void OnTemplateSelected(ItemList.ItemListSelectedEventArgs args)
     {
-        _currentTemplate = (string) obj.ItemList[obj.ItemIndex].Metadata!;
-        PrintButton.Disabled = _incVolume <= 0.0f;
+        _currentTemplate = args.ItemList[args.ItemIndex].Metadata as string;
+        PrintButton.Disabled = _incVolume <= 0.0f || _currentTemplate == null;
     }
 
-    private void TemplateListOnOnItemDeselected(ItemList.ItemListDeselectedEventArgs obj)
+    private void OnTemplateDeselected(ItemList.ItemListDeselectedEventArgs args)
     {
         _currentTemplate = null;
         PrintButton.Disabled = true;
@@ -62,35 +73,115 @@ public sealed partial class PrinterDocMenu : DefaultWindow
     {
         _canCopy = state.CanCopy;
         _incVolume = state.InkAmount;
-        PaperCountLabel.Text = state.PaperCount.ToString();
-        InkAmountLabel.Text = _incVolume.ToString("F1");
         _allTemplates = state.Templates;
 
-        CopyStatusLabel.Text = _canCopy ? Loc.GetString("printerdoc-menu-copy-available") : Loc.GetString("printerdoc-menu-copy-unavailable");
+        PaperCountLabel.Text = state.PaperCount.ToString();
+        InkAmountLabel.Text = _incVolume.ToString("F1");
+
+        CopyStatusLabel.Text = _canCopy
+            ? Loc.GetString("printerdoc-menu-copy-available")
+            : Loc.GetString("printerdoc-menu-copy-unavailable");
 
         PrintButton.Disabled = _currentTemplate == null || _incVolume <= 0.0f;
         CopyButton.Disabled = !_canCopy;
 
+        CurrentJobLabel.Text = state.CurrentJob?.ToString() ?? Loc.GetString("printerdoc-menu-no-active-job");
+
+        QueueList.Clear();
+        foreach (var job in state.Queue)
+        {
+            QueueList.AddItem(job.ToString());
+        }
+
+        CreateFilterDropdown();
         PopulateTemplates();
+    }
+
+    private void CreateFilterDropdown()
+    {
+        FilterDropdown.Clear();
+
+        var allowedComponents = new[]
+        {
+            "Centcom", "Command", "Engineering", "Justice", "Medical", "Science",
+            "Security", "Service", "Supply", "Syndicate", "General"
+        };
+
+        var usedComponents = _protoManager
+            .EnumeratePrototypes<DocTemplatePrototype>()
+            .Where(p => _allTemplates.Contains(p.ID) && allowedComponents.Contains(p.Component))
+            .Select(p => p.Component)
+            .Distinct()
+            .OrderBy(c => c)
+            .ToList();
+
+        // Добавляем "Все"
+        FilterDropdown.AddItem(Loc.GetString("printerdoc-filter-all"), 0);
+        FilterDropdown.SetItemMetadata(0, string.Empty);
+
+        for (var i = 0; i < usedComponents.Count; i++)
+        {
+            var component = usedComponents[i];
+            var localized = Loc.GetString($"printerdoc-component-{component}");
+            var id = i + 1;
+            FilterDropdown.AddItem(localized, id);
+            FilterDropdown.SetItemMetadata(id, component);
+        }
+
+        // Обновляем отображаемый текст на текущем выбранном
+        var selectedId = 0;
+        if (_activeComponentFilter != null)
+        {
+            foreach (var (data, idx) in usedComponents.Select((c, i) => (c, i + 1)))
+            {
+                if (data == _activeComponentFilter)
+                {
+                    selectedId = idx;
+                    break;
+                }
+            }
+        }
+
+        FilterDropdown.SelectId(selectedId);
     }
 
     private void PopulateTemplates()
     {
         TemplateList.Clear();
-        var filtered = string.IsNullOrWhiteSpace(_searchText)
-            ? _allTemplates
-            : _allTemplates.Where(id =>
-                (_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto) &&
-                 (Loc.GetString(proto.Name).ToLowerInvariant().Contains(_searchText.ToLowerInvariant()) ||
-                  id.ToLowerInvariant().Contains(_searchText.ToLowerInvariant())))
-            ).ToList();
-        for (int i = 0; i < filtered.Count; i++)
+
+        var filtered = GetFilteredTemplates();
+
+        foreach (var id in filtered)
         {
-            var template = filtered[i];
-            if (_protoManager.TryIndex<DocTemplatePrototype>(template, out var templateProto))
+            if (_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto))
             {
-                TemplateList.AddItem(Loc.GetString(templateProto.Name), metadata: template);
+                TemplateList.AddItem(Loc.GetString(proto.Name)).Metadata = id;
             }
         }
+    }
+
+    private List<string> GetFilteredTemplates()
+    {
+        return _allTemplates
+            .Where(id => PassesFilter(id))
+            .ToList();
+    }
+
+    private bool PassesFilter(string id)
+    {
+        if (!_protoManager.TryIndex<DocTemplatePrototype>(id, out var proto))
+            return false;
+
+        if (_activeComponentFilter != null && proto.Component != _activeComponentFilter)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(_searchText))
+            return true;
+
+        var name = Loc.GetString(proto.Name).ToLowerInvariant();
+        var idLower = id.ToLowerInvariant();
+        var search = _searchText.ToLowerInvariant();
+
+        return name.Contains(search) || idLower.Contains(search);
     }
 }

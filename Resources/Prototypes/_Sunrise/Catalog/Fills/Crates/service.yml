@@ -17,7 +17,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: SheetPaper
+    - id: SheetOfficePaper
       amount: 1
     - id: DrinkInc
       amount: 1
