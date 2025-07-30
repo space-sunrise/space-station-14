@@ -1,0 +1,17 @@
+- type: entity
+  name: автоинъектор аномалии
+  id: AnomalyAutoInjector
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Вводит случайную аномалию в гуманоида. Одноразовый.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi # TODO: определится уже с тем, в какой папке это чудо будет лежать (точно не medipen, ибо не лекарство)
+      layers:
+        - state: anomagen
+    - type: AnomalyAutoInjector
+      anomalyTrapProtos:
+        - AnomalyTrapFlora
+        - AnomalyTrapFlesh
+        - AnomalyTrapTech
+        - AnomalyTrapRock
+        - AnomalyTrapBluespace

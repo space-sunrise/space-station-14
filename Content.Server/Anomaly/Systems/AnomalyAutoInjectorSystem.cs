@@ -1,3 +1,5 @@
+// СУТЬ: заразить цель случайной аномалией с 2 этапами (заражение - эффект глюков и начало таймера, превращение - конец таймера, урон и добавление компонента аномалии), блокирует повторное использование, меняет спрайт и выводит попапы.
+// ГОВНОКОД: звук иньекции воспроизводится напрямую, но зато метаболизма нет :)
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
@@ -27,36 +29,11 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    private const string PopupNothingToInject = "Нечего вводить!";
-    private const string PopupNotApplicable = "Неприменимо!";
-    private const string PopupPending = "Неприменимо! (ожидание)";
-    private const string PopupInfected = "Неприменимо! (заражён)";
-    private const string RainbowEffect = "SeeingRainbows";
-    private const int RainbowDurationSec = 60;
-    private const int AnomalyDelaySec = 60;
-    private const int CellularDamage = 50;
-    private const string HypospraySound = "/Audio/Items/hypospray.ogg";
-
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<AnomalyAutoInjectorComponent, AfterInteractEvent>(OnAfterInteract);
     }
-
-    private static readonly List<string> AllAnomalyTrapProtos = new()
-    {
-        "AnomalyTrapPyroclastic",
-        "AnomalyTrapElectricity",
-        "AnomalyTrapShadow",
-        "AnomalyTrapIce",
-        "AnomalyTrapFlora",
-        "AnomalyTrapBluespace",
-        "AnomalyTrapFlesh",
-        "AnomalyTrapGravity",
-        "AnomalyTrapTech",
-        "AnomalyTrapRock",
-        "AnomalyTrapSanta"
-    };
 
     private bool IsAlreadyInfected(EntityUid target) => _entMan.HasComponent<InnerBodyAnomalyComponent>(target);
     private bool IsPendingInfection(EntityUid target) => _entMan.HasComponent<PendingAnomalyInfectionComponent>(target);
@@ -69,7 +46,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         _popup.PopupEntity(message, target, user);
     }
 
-    private bool IsValidTargetForInjection(EntityUid target, EntityUid injector, out string? popup)
+    private bool IsValidTargetForInjection(EntityUid target, EntityUid injector, AnomalyAutoInjectorComponent comp, out string? popup)
     {
         popup = null;
         if (!IsMob(target))
@@ -77,22 +54,22 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         if (!IsHumanoid(target))
         {
             if (!IsInjectorUsed(injector))
-                popup = PopupNotApplicable;
+                popup = comp.PopupNotApplicable;
             return false;
         }
         if (IsInjectorUsed(injector))
         {
-            popup = PopupNothingToInject;
+            popup = comp.PopupNothingToInject;
             return false;
         }
         if (IsPendingInfection(target))
         {
-            popup = PopupPending;
+            popup = comp.PopupPending;
             return false;
         }
         if (IsAlreadyInfected(target))
         {
-            popup = PopupInfected;
+            popup = comp.PopupInfected;
             return false;
         }
         return true;
@@ -104,37 +81,42 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
             return;
         if (!IsMob(target))
             return;
-        if (!IsValidTargetForInjection(target, uid, out var popup))
+        if (comp is not AnomalyAutoInjectorComponent injectorComp)
+            return;
+        if (!IsValidTargetForInjection(target, uid, injectorComp, out var popup))
         {
             if (popup != null)
                 ShowPopup(popup, target, args.User);
             return;
         }
-        // Только для гуманоидов, все проверки уже пройдены
         _entMan.AddComponent<PendingAnomalyInfectionComponent>(target);
         _entMan.AddComponent<UsedAnomalyAutoInjectorComponent>(uid);
-        _audio.PlayPvs(HypospraySound, uid);
+        if (_entMan.EntityExists(uid) && _entMan.HasComponent<TransformComponent>(uid))
+            _audio.PlayPvs(injectorComp.HypospraySound, uid);
         args.Handled = true;
         EnsureComp<StatusEffectsComponent>(target);
         var statusSys = EntitySystem.Get<StatusEffectsSystem>();
-        statusSys.TryAddStatusEffect(target, RainbowEffect, TimeSpan.FromSeconds(RainbowDurationSec), false, RainbowEffect);
-        Timer.Spawn(TimeSpan.FromSeconds(AnomalyDelaySec), () =>
+        statusSys.TryAddStatusEffect(target, injectorComp.RainbowEffect, TimeSpan.FromSeconds(injectorComp.RainbowDuration), false, injectorComp.RainbowEffect);
+        Timer.Spawn(TimeSpan.FromSeconds(injectorComp.AnomalyDelay), () =>
         {
             var damage = new DamageSpecifier();
-            damage.DamageDict["Cellular"] = CellularDamage;
+            damage.DamageDict["Cellular"] = injectorComp.CellularDamage;
             _damageableSystem.TryChangeDamage(target, damage);
             if (!IsAlreadyInfected(target))
-                TryInfectWithRandomAnomaly(target);
+                TryInfectWithRandomAnomaly(target, injectorComp);
             if (IsPendingInfection(target))
                 _entMan.RemoveComponent<PendingAnomalyInfectionComponent>(target);
         });
     }
 
-    private void TryInfectWithRandomAnomaly(EntityUid target)
+    // можно было бы отдельным файлом сделать
+    private void TryInfectWithRandomAnomaly(EntityUid target, AnomalyAutoInjectorComponent comp)
     {
         if (_entMan.HasComponent<InnerBodyAnomalyComponent>(target))
             return;
-        var protoId = AllAnomalyTrapProtos[_random.Next(AllAnomalyTrapProtos.Count)];
+        if (comp.AnomalyTrapProtos.Count == 0)
+            return;
+        var protoId = comp.AnomalyTrapProtos[_random.Next(comp.AnomalyTrapProtos.Count)];
         if (!_proto.TryIndex<EntityPrototype>(protoId, out var protoTrap))
             return;
         var injectorCompData = protoTrap.Components.Values.FirstOrDefault(c => c.Component is InnerBodyAnomalyInjectorComponent);

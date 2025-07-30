@@ -17,8 +17,6 @@ public sealed class AnomalySystem : SharedAnomalySystem
     public override void Initialize()
     {
         base.Initialize();
-        EntityManager.System<AnomalyAutoInjectorVisualizerSystem>();
-
         SubscribeLocalEvent<AnomalyComponent, AppearanceChangeEvent>(OnAppearanceChanged);
         SubscribeLocalEvent<AnomalyComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AnomalyComponent, AnimationCompletedEvent>(OnAnimationComplete);

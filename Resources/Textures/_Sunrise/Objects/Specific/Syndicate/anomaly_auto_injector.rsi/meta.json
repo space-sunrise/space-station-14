@@ -8,10 +8,10 @@
   },
   "states": [
     {
-      "name": "medipen"
+      "name": "anomagen"
     },
     {
-      "name": "medipen_empty"
+      "name": "anomagen_empty"
     }
   ]
 }
