@@ -51,7 +51,7 @@ public partial class InteractionsPanel
 
         if (_ui.IsUiOpen(player, InteractionWindowUiKey.Key))
         {
-            _ui.CloseUi(player, InteractionWindowUiKey.Key);
+            _ui.ServerSendUiMessage(player, InteractionWindowUiKey.Key, new RequestSavePosAndCloseMessage());
             return;
         }
 

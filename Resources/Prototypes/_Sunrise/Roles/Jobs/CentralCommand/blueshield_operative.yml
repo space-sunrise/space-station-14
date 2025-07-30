@@ -1,0 +1,43 @@
+- type: job
+  id: BlueShieldOperative
+  name: job-name-blueshield-operative
+  description: job-description-blueshield-operative
+  playTimeTracker: JobBlueShieldOperative
+  requirements:
+    # - !type:DepartmentTimeRequirement
+    #   department: BlueShield
+    #   time: 124000 # 40 hrs
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 124000 # 40 hrs
+  startingGear: BlueShieldOperativeGear
+  icon: JobIconNanotrasen
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: BlueShieldOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+    shoes: ClothingShoesBootsBlueShieldFilled
+    eyes: ClothingEyesGlassesBlueShield
+    head: ClothingHeadHatBeretBlueShield
+    outerClothing: ClothingOuterArmorBlueShield
+    id: BlueShieldOperativePDA
+    ears: ClothingHeadsetCentCom
+    belt: ClothingBeltBlueShieldWebbingFilled
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingBSMantle
+    back: ClothingBackpackSatchelBlueShield
+    pocket1: BaseUplinkNTERTBlueShield
+    pocket2: WeaponTaser
+  storage:
+    back:
+    - HandheldCrewMonitor

@@ -41,7 +41,7 @@
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
-      sprite: Structures/Piping/Atmospherics/vent.rsi
+      sprite: _Sunrise/Structures/Piping/Atmospherics/vent.rsi # Sunrise-edit
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeUnaryConnectors
@@ -101,7 +101,7 @@
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
-      sprite: Structures/Piping/Atmospherics/vent.rsi
+      sprite: _Sunrise/Structures/Piping/Atmospherics/vent.rsi # Sunrise-edit
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeUnaryConnectors
@@ -149,7 +149,7 @@
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
-      sprite: Structures/Piping/Atmospherics/scrubber.rsi
+      sprite: _Sunrise/Structures/Piping/Atmospherics/scrubber.rsi # Sunrise-edit
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeUnaryConnectors

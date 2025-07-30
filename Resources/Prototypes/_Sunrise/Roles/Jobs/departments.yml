@@ -18,6 +18,7 @@
 #  roles:
 #    - BlueShieldEnsign
 #    - BlueShieldOfficer
+#    - BlueShieldOperative
 #  primary: false
 #  weight: 50
 
