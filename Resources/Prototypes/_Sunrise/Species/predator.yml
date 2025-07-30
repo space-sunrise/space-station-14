@@ -9,8 +9,14 @@
   markingLimits: MobPredatorMarkingLimits
   dollPrototype: MobPredatorDummy
   skinColoration: None
-  sponsorOnly: true
+  sponsorOnly: false
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
+  defaultHeight: 1.05
+  defaultWidth: 1.1
+  maxHeight: 1.15
+  maxWidth: 1.20
+  minHeight: 0.95
+  minWidth: 1
 
 - type: bodyType
   id: PredatorNormal
