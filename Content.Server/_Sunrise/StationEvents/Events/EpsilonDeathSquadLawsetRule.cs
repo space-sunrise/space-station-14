@@ -1,16 +1,18 @@
 using System.Linq;
 using Content.Server.Silicons.Laws;
-using Content.Server.StationEvents.Components;
+using Content.Server.Station.Components;
+using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
+using EpsilonDeathSquadLawsetComponent = Content.Server._Sunrise.StationEvents.Components.EpsilonDeathSquadLawsetComponent;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Tag;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Sunrise.StationEvents.Events;
 
-public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEventComponent>
+public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -19,15 +21,33 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
 
+
+
     protected override void Started(EntityUid uid,
-        StationEventComponent comp,
+        EpsilonDeathSquadLawsetComponent comp,
         GameRuleComponent gameRule,
         GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
 
-        if (!TryGetRandomStation(out var chosenStation))
+        Sawmill.Info("EpsilonDeathSquadLawsetRule started");
+
+        // Get the target station from the component
+        var targetStation = comp.TargetStation;
+        if (targetStation == EntityUid.Invalid)
+        {
+            Sawmill.Warning("No target station specified for Epsilon Death Squad Lawset");
             return;
+        }
+
+        // Get the station data to access its grids
+        if (!TryComp<StationDataComponent>(targetStation, out var stationData))
+        {
+            Sawmill.Error($"Could not get station data for station {targetStation}");
+            return;
+        }
+
+        Sawmill.Info($"Target station for law changes: {targetStation} with grids: {string.Join(", ", stationData.Grids)}");
 
         var lawsetId = DeathSquadLawsetId;
         if (!_prototypeManager.TryIndex<SiliconLawsetPrototype>(lawsetId, out var lawsetProto))
@@ -35,6 +55,8 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
             Sawmill.Error($"Could not find lawset prototype: {lawsetId}");
             return;
         }
+
+        Sawmill.Info($"Found lawset prototype: {lawsetId} with {lawsetProto.Laws.Count} laws");
 
         // Convert the prototype's law IDs to actual law objects using LINQ
         var laws = lawsetProto.Laws
@@ -46,18 +68,37 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<StationEven
             })
             .ToList();
 
+        Sawmill.Info($"Converted {laws.Count} laws");
+
+        var borgCount = 0;
+        var changedCount = 0;
         var query = EntityQueryEnumerator<SiliconLawProviderComponent>();
+        var stationGrids = stationData.Grids;
         while (query.MoveNext(out var ent, out var provider))
         {
+            borgCount++;
+            var borgGrid = Transform(ent).GridUid;
+            Sawmill.Info($"Found borg {ent} on grid {borgGrid}");
+
             // Skip borgs with blocked law changes
             if (HasComp<BlockLawChangeComponent>(ent))
+            {
+                Sawmill.Info($"Skipping borg {ent} - has BlockLawChangeComponent");
                 continue;
+            }
 
-            // Only change laws for borgs on the chosen station
-            if (Transform(ent).GridUid != chosenStation)
+            // Only change laws for borgs on grids that belong to the chosen station
+            if (borgGrid == null || !stationGrids.Contains(borgGrid.Value))
+            {
+                Sawmill.Info($"Skipping borg {ent} - not on station grids (on {borgGrid}, station grids: {string.Join(", ", stationData.Grids)})");
                 continue;
+            }
 
+            Sawmill.Info($"Changing laws for borg {ent}");
             _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);
+            changedCount++;
         }
+
+        Sawmill.Info($"EpsilonDeathSquadLawsetRule completed: found {borgCount} borgs, changed laws for {changedCount} borgs");
     }
 }

@@ -1,5 +1,5 @@
 using Content.Server.GameTicking;
-using Robust.Shared.Log;
+using EpsilonDeathSquadLawsetComponent = Content.Server._Sunrise.StationEvents.Components.EpsilonDeathSquadLawsetComponent;
 
 namespace Content.Server.AlertLevel;
 
@@ -28,7 +28,13 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
         if (ev.AlertLevel == EpsilonAlertLevel)
         {
             _sawmill.Info($"Epsilon alert level triggered on station {ev.Station}, adding Death Squad Lawset event");
-            _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+            var eventEntity = _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+
+            /*// Store the station information in the event entity
+            if (eventEntity == null)
+                return;
+            var comp = EnsureComp<EpsilonDeathSquadLawsetComponent>(eventEntity);
+            comp.TargetStation = ev.Station;*/
         }
     }
 }
