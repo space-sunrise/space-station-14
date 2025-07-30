@@ -21,7 +21,7 @@
   maxAge: 60
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
   defaultHeight: 0.80
-  defaultWeight: 0.80
+  defaultWidth: 0.80
   maxHeight: 1
   maxWidth: 1
   minHeight: 0.7
