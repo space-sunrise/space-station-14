@@ -13,6 +13,6 @@ public sealed partial class EpsilonDeathSquadLawsetComponent : Component
     /// <summary>
     /// The station where the law changes should be applied.
     /// </summary>
-    [DataField("targetStation")]
+    [DataField]
     public EntityUid TargetStation = EntityUid.Invalid;
 }
