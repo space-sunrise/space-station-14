@@ -28,7 +28,7 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
         if (ev.AlertLevel == EpsilonAlertLevel)
         {
             _sawmill.Info($"Epsilon alert level triggered on station {ev.Station}, adding Death Squad Lawset event");
-            var eventEntity = _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+            // var eventEntity = _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
 
             /*// Store the station information in the event entity
             if (eventEntity == null)
