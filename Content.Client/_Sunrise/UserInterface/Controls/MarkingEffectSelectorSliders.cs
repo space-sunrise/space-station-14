@@ -129,9 +129,9 @@ public sealed class MarkingEffectSelectorSliders : Control
             VerticalAlignment = VAlignment.Center,
         };
 
-        slider.Value = defaultValue;
         slider.MinValue = minValue;
         slider.MaxValue = maxValue;
+        slider.Value = defaultValue;
 
         var sliderContainer = new BoxContainer();
 
