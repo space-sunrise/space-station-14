@@ -31,16 +31,21 @@ public sealed class DisplacementMapSystem : EntitySystem
         if (key.ToString() is null)
             return false;
 
-        // Sunrise-Edit start
+        // Sunrise-Start
+        // sprite.Comp.LayerSetShader(index, data.ShaderOverride);
         // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню
-        if (shaderOverride != null)
+        if (data.ShaderOverride != null)
         {
-            sprite.Comp.LayerSetShader(index, shaderOverride);
-            shaderOverride.SetParameter("useDisplacement", true);
+            if (shaderOverride != null)
+            {
+                shaderOverride.SetParameter("useDisplacement", true);
+                shaderOverride.SetParameter("displacementSize", 127);
+                sprite.Comp.LayerSetShader(index, shaderOverride);
+            }
+            else
+                sprite.Comp.LayerSetShader(index, data.ShaderOverride);
         }
-        // Sunrise-Edit end
-        else if(data.ShaderOverride != null)
-            sprite.Comp.LayerSetShader(index, data.ShaderOverride);
+        // Sunrise-End
 
         _sprite.RemoveLayer(sprite.AsNullable(), displacementKey, false);
 

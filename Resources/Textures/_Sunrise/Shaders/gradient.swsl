@@ -14,19 +14,20 @@ uniform highp vec4 displacementUV;
 varying highp vec2 displacementUVOut;
 
 void vertex() {
-    displacementUVOut = mix(displacementUV.xy, displacementUV.zw, tCoord2);
+    if(useDisplacement == true) {
+        displacementUVOut = mix(displacementUV.xy, displacementUV.zw, tCoord2);
+    }
 }
 
 uniform bool useDisplacement;
 // DISPLACEMENT END
 
 highp float mirror(highp float x) {
-    if(useDisplacement == true) {
-        return mix(x, abs(fract(x) * 2.0 - 1.0), float(mirrored));
-    }
+    return mix(x, abs(fract(x) * 2.0 - 1.0), float(mirrored));
 }
 
 void fragment() {
+    highp vec4 color = texture2D(TEXTURE, UV);
 
     highp vec2 uv = UV2;
     highp float rad = radians(rotation);
@@ -52,13 +53,11 @@ void fragment() {
 
     highp vec3 gradient = mix(color2, color1, t);
 
-    highp vec4 color = texture2D(TEXTURE, UV);
-
     // DISPLACEMENT START
     if(useDisplacement == true) {
         highp vec4 displacementSample = texture2D(displacementMap, displacementUVOut);
         highp vec2 displacementValue = (displacementSample.xy - vec2(128.0 / 255.0)) / (1.0 - 128.0 / 255.0);
-        color = zTexture(UV + displacementValue * TEXTURE_PIXEL_SIZE * 127.0 * vec2(1.0, -1.0));
+        color = zTexture(UV + displacementValue * TEXTURE_PIXEL_SIZE * displacementSize * vec2(1.0, -1.0));
         color.a *= displacementSample.a;
     }
     // DISPLACEMENT END

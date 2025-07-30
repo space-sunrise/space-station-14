@@ -15,6 +15,7 @@ public static class MarkingEffectShaders
 
     public static void ApplyShaderParams(this ShaderInstance instance, MarkingEffect color, Vector2 texScale)
     {
+        instance.SetParameter("useDisplacement", false);
 
         switch (color.Type)
         {

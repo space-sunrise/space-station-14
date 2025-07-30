@@ -59,7 +59,7 @@ void fragment() {
     if(useDisplacement == true) {
         highp vec4 displacementSample = texture2D(displacementMap, displacementUVOut);
         highp vec2 displacementValue = (displacementSample.xy - vec2(128.0 / 255.0)) / (1.0 - 128.0 / 255.0);
-        color = zTexture(UV + displacementValue * TEXTURE_PIXEL_SIZE * 127.0 * vec2(1.0, -1.0));
+        color = zTexture(UV + displacementValue * TEXTURE_PIXEL_SIZE * displacementSize * vec2(1.0, -1.0));
         color.a *= displacementSample.a;
     }
     // DISPLACEMENT END

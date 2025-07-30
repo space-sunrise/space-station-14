@@ -9,8 +9,8 @@ public sealed partial class GradientMarkingEffect : MarkingEffect
 {
     public override MarkingEffectType Type => MarkingEffectType.Gradient;
 
-    public Vector2 Offset = new(0, 0);
-    public Vector2 Size = new(1, 1);
+    public Vector2 Offset = new(0, -190/100f);
+    public Vector2 Size = new(1, 33/100f);
     public float Rotation = 0;
     public float Speed = 1;
     public bool Pixelated = true;
@@ -39,8 +39,8 @@ public sealed partial class GradientMarkingEffect : MarkingEffect
     {
         var colors = new Dictionary<string, Color>();
 
-        var offset = new Vector2(0, 0);
-        var size = new Vector2(1, 1);
+        var offset = new Vector2(0, -190/100f);
+        var size = new Vector2(1, 33/100f);
         var rotation = 0f;
         var speed = 1f;
         var pixelated = true;
