@@ -688,3 +688,31 @@
   sex: Male
   speaker: crysis2_overlord1
   provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2Overlord2
+  name: tts-voice-name-crysis2-overlord-2
+  sex: Male
+  speaker: crysis2_overlord2
+  provider: sunrise
+
+- type: ttsVoice
+  id: DictorVsevolodKuznetsov
+  name: tts-voice-name-dictor-vsevolod-kuznetsov
+  sex: Male
+  speaker: dictor_vsevolod_kuznetsov
+  provider: sunrise
+
+- type: ttsVoice
+  id: DukeNukemForever
+  name: tts-voice-name-duke-nukem-forever
+  sex: Male
+  speaker: duke_nukem_forever
+  provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AiUscaucasian01
+  name: tts-voice-name-crysis2-ai-uscaucasian-01
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_01
+  provider: sunrise
