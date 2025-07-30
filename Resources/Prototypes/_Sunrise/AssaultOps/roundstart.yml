@@ -32,6 +32,10 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
+      - type: RandomMetadata
+        nameSegments:
+        - NamesSyndicateNormal
+        nameFormat: name-format-nukie-commander
       mindRoles:
       - MindRoleAssaultCommander
     - prefRoles: [ AssaultOperative ]
@@ -47,5 +51,9 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
+      - type: RandomMetadata
+        nameSegments:
+        - NamesSyndicateNormal
+        nameFormat: name-format-nukie-operator
       mindRoles:
       - MindRoleAssaultOperative
