@@ -26,3 +26,28 @@
 - type: ore
   id: OreCarpDragon
   oreEntity: MobCarpDragon
+
+- type: ore
+  id: OreMobXeno
+  oreEntity: XenoAISpawner
+
+- type: ore
+  id: OreMobMiningAsteroid
+  oreEntity: SalvageSpawnerMobMiningAsteroid
+
+# космические существа:
+- type: ore
+  id: OreMobSpaceSpider
+  oreEntity: MobSpiderSpaceSalvage
+
+- type: ore
+  id: OreMobSpaceBear
+  oreEntity: MobBearSpaceSalvage
+
+- type: ore
+  id: OreMobSpaceKangaroo
+  oreEntity: MobKangarooSpaceSalvage
+
+- type: ore
+  id: OreMobSpaceCobra
+  oreEntity: MobCobraSpaceSalvage
