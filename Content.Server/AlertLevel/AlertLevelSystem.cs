@@ -23,7 +23,6 @@ public sealed class AlertLevelSystem : EntitySystem
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
-    private const string EpsilonAlertLevel = "epsilon";
 
     public override void Initialize()
     {

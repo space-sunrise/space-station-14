@@ -12,7 +12,7 @@ using Content.Shared.Tag;
 
 namespace Content.Server._Sunrise.StationEvents.Events;
 
-public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
+/*public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -101,4 +101,4 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
 
         Sawmill.Info($"EpsilonDeathSquadLawsetRule completed: found {borgCount} borgs, changed laws for {changedCount} borgs");
     }
-}
+}*/

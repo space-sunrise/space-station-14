@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server._Sunrise.AlertLevel;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -75,7 +76,7 @@ namespace Content.Server.AlertLevel.Commands
                 shell.WriteLine(LocalizationManager.GetString("cmd-setalertlevel-invalid-level"));
                 return;
             }
-
+            _entitySystems.GetEntitySystem<SunriseAlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
             _entitySystems.GetEntitySystem<AlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
         }
 
