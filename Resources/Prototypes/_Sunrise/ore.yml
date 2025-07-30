@@ -1,0 +1,28 @@
+- type: weightedRandomOre
+  id: OreCarpRandom
+  weights:
+    OreCarpDungeon: 60
+    OreCarpMagic: 20
+    OreCarpHolo: 10
+    OreCarpRainbow: 7
+    OreCarpDragon: 3
+
+- type: ore
+  id: OreCarpDungeon
+  oreEntity: MobCarpDungeon
+
+- type: ore
+  id: OreCarpMagic
+  oreEntity: MobCarpMagic
+
+- type: ore
+  id: OreCarpHolo
+  oreEntity: MobCarpHolo
+
+- type: ore
+  id: OreCarpRainbow
+  oreEntity: MobCarpRainbow
+
+- type: ore
+  id: OreCarpDragon
+  oreEntity: MobCarpDragon
