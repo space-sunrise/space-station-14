@@ -34,8 +34,9 @@
         - Syndicate
       - type: RandomMetadata
         nameSegments:
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-commander
+        - NamesFirst
+        - NamesLast
+        nameFormat: name-format-standard
       mindRoles:
       - MindRoleAssaultCommander
     - prefRoles: [ AssaultOperative ]
@@ -53,7 +54,8 @@
         - Syndicate
       - type: RandomMetadata
         nameSegments:
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-operator
+        - NamesFirst
+        - NamesLast
+        nameFormat: name-format-standard
       mindRoles:
       - MindRoleAssaultOperative
