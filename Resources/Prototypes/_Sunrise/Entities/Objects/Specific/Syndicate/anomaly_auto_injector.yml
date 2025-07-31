@@ -15,3 +15,31 @@
         - AnomalyTrapTech
         - AnomalyTrapRock
         - AnomalyTrapBluespace
+
+- type: entity
+  name: автоинъектор аномалии
+  id: AnomalyAutoInjectorUplink
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Вводит случайную аномалию в гуманоида. Одноразовый.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
+      layers:
+        - state: anomagen
+    - type: AnomalyAutoInjector
+      anomalyTrapProtos:
+        - AnomalyTrapFlora
+        - AnomalyTrapFlesh
+        - AnomalyTrapTech
+        - AnomalyTrapRock
+        - AnomalyTrapBluespace
+        # ниже оставшиеся на сегодняшний день аномалии (кроме Santa)
+        - AnomalyTrapPyroclastic
+        - AnomalyTrapElectricity
+        - AnomalyTrapIce
+        - AnomalyTrapShadow
+        - AnomalyTrapGravity
+
+
+
+
