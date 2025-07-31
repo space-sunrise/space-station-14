@@ -42,6 +42,18 @@
     {
       "name": "runner_teeth",
       "directions": 4
+    },
+    {
+      "name": "predalien_head",
+      "directions": 4
+    },
+    {
+      "name": "predalien_mandibles",
+      "directions": 4
+    },
+    {
+      "name": "predalien_teeth",
+      "directions": 4
     }
   ]
 }

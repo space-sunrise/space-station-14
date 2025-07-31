@@ -151,3 +151,16 @@
     state: spitter_head
   - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
     state: spitter_teeth
+
+- type: marking
+  id: HumanoidXenoHeadPredalien
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: predalien_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: predalien_teeth
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: predalien_mandibles
