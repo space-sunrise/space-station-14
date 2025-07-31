@@ -12,6 +12,7 @@ job-name-head-of-prison = начальник тюрьмы
 job-name-prison-chef = тюремный повар
 job-name-prison-doctor = тюремный доктор
 job-name-prison-engineer = тюремный инженер
+job-name-prison-scientist = тюремный учёный
 job-name-prison-pilot = тюремный пилот
 job-name-prison-worker = тюремный разнорабочий
 job-name-prison-guard = тюремный охранник

@@ -208,6 +208,20 @@
   - Bra
   - Pants
   - Socks
+- type: roleLoadout
+  id: JobPrisonScientist
+  groups:
+  - ScientistJumpsuit
+  - ScientistBackpack
+  - ScientistGloves
+  - ScientistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
 
 - type: roleLoadout
   id: JobPrisonEngineer

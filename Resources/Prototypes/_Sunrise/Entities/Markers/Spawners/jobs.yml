@@ -141,6 +141,19 @@
     - state: engineer
 
 - type: entity
+  id: SpawnPointPrisonScientist
+  parent: SpawnPointJobBase
+  name: prison's scientist
+  components:
+  - type: SpawnPoint
+    job_id: PrisonScientist
+  - type: Sprite
+    layers:
+    - state: green
+    - state: scientist
+
+
+- type: entity
   id: SpawnPointPrisonGuard
   parent: SpawnPointJobBase
   name: prison's guard
@@ -416,3 +429,4 @@
     layers:
     - state: green
     - state: lawyer
+

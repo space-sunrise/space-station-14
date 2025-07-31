@@ -80,6 +80,9 @@
   id: JobPrisonEngineer
 
 - type: playTimeTracker
+  id: JobPrisonScientist
+
+- type: playTimeTracker
   id: JobEngineerBorg
 
 - type: playTimeTracker

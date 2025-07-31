@@ -21,6 +21,7 @@
             PrisonChef: [ 1, 1 ]
             PrisonWorker: [ 2, 3 ]
             PrisonEngineer: [ 2, 3 ]
+            PrisonScientist: [ 2, 3 ]
             PrisonGuard: [ 20, -1 ]
             PlanetPrisoner: [ 4, 4 ]
         - type: RelativeJobsCount

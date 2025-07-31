@@ -189,6 +189,19 @@
 
 - type: entity
   parent: BasePDA
+  id: PrisonScientistPDA
+  name: prison scientist's PDA
+  components:
+  - type: Pda
+    id: PrisonScientistIDCard
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-scientist
+
+- type: entity
+  parent: BasePDA
   id: PrisonPilotPDA
   name: prison pilot's PDA
   description: Shiny and technologically advanced, as if it had just been pulled out of the cockpit.

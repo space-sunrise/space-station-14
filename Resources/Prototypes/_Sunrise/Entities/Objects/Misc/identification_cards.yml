@@ -81,6 +81,18 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PrisonScientistIDCard
+  name: prison scientist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idscientist
+  - type: PresetIdCard
+    job: PrisonScientist
+
+- type: entity
+  parent: IDCardStandard
   id: IAAIDCard
   name: internal affairs agent ID card
   components:
