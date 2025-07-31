@@ -235,7 +235,7 @@
     rareChance: 0.01
 
 - type: entity
-  id: WallRockCarpDungeon
+  id: WallRockMobCarpDungeon
   parent: WallRock
   suffix: Carp Dungeon
   components:
@@ -243,7 +243,7 @@
     currentOre: OreCarpDungeon
 
 - type: entity
-  id: WallRockCarpMagic
+  id: WallRockMobCarpMagic
   parent: WallRock
   suffix: Carp Magic
   components:
@@ -251,7 +251,7 @@
     currentOre: OreCarpMagic
 
 - type: entity
-  id: WallRockCarpHolo
+  id: WallRockMobCarpHolo
   parent: WallRock
   suffix: Carp Holo
   components:
@@ -259,7 +259,7 @@
     currentOre: OreCarpHolo
 
 - type: entity
-  id: WallRockCarpRainbow
+  id: WallRockMobCarpRainbow
   parent: WallRock
   suffix: Carp Rainbow
   components:
@@ -267,7 +267,7 @@
     currentOre: OreCarpRainbow
 
 - type: entity
-  id: WallRockCarpDragon
+  id: WallRockMobCarpDragon
   parent: WallRock
   suffix: Carp Dragon
   components:
