@@ -15,6 +15,7 @@ job-description-planet-prisoner = Ну типа вы зек.
 job-description-prison-chef = Готовьте еду для заключённых и персонала тюрьмы.
 job-description-prison-doctor = Лечите побитых заключённых.
 job-description-prison-engineer = Обеспечивайте функционирование тюрьмы.
+job-description-prison-scientist = Изучайте новые технологии для тюрьмы.
 job-description-prison-pilot = Доставляйте заключённых в тюрьму на своём шаттле.
 job-description-prison-worker = Выполняйте работу за которую никто не хочет браться.
 job-description-prison-guard = Следите за заключёнными.

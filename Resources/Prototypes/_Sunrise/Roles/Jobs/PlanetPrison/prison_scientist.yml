@@ -1,0 +1,25 @@
+- type: job
+  id: PrisonScientist
+  name: job-name-prison-scientist
+  description: job-description-prison-scientist
+  playTimeTracker: JobPrisonScientist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 7200 # 2 hrs
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: PrisonScientistGear
+  icon: "JobIconPrisonScientist"
+  overrideConsoleVisibility: false
+  supervisors: job-supervisors-head-of-prison
+  displayWeight: 70
+  access:
+    - Maintenance
+    - Research
+
+- type: startingGear
+  id: PrisonScientistGear
+  equipment:
+    ears: ClothingHeadsetScience
+    id: PrisonScientistPDA
