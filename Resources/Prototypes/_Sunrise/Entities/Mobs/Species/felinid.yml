@@ -502,8 +502,6 @@
     baseSprintSpeed: 4.5
   - type: Felinid
     damageSound: /Audio/Effects/hit_kick.ogg
-  - type: ScaleSprite
-    scale: 0.80, 0.80
   - type: Carriable
 
 - type: entity
