@@ -38,16 +38,16 @@
 # космические существа:
 - type: ore
   id: OreMobSpaceSpider
-  oreEntity: MobSpiderSpaceSalvage
+  oreEntity: MobSpiderSpace
 
 - type: ore
   id: OreMobSpaceBear
-  oreEntity: MobBearSpaceSalvage
+  oreEntity: MobBearSpace
 
 - type: ore
   id: OreMobSpaceKangaroo
-  oreEntity: MobKangarooSpaceSalvage
+  oreEntity: MobKangarooSpace
 
 - type: ore
   id: OreMobSpaceCobra
-  oreEntity: MobCobraSpaceSalvage
+  oreEntity: MobCobraSpace

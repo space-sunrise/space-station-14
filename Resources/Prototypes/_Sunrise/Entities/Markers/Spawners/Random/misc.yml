@@ -27,6 +27,7 @@
 - type: entity
   name: Спавнер скальной шахты
   id: MineRockWallSpawner
+  description: Спавнит скальную породу и декор.
   parent: MarkerBase
   components:
   - type: Sprite
@@ -93,7 +94,7 @@
 
 - type: entity
   name: Спавнер скальной шахты [Рудокраб 15%]
-  description: Спавнит скальную породу, при добыче которой может появиться рандомный рудокраб.
+  description: Спавнит скальную породу, при добыче которой может появиться рандомный Рудокраб.
   id: MineWallRockMobCrabSpawner
   parent: MineRockWallSpawner
   components:
@@ -112,7 +113,6 @@
       - WallRockGoldCrab
       - WallRockTinCrab
       - WallRockBananiumCrab
-      # Дальше всё скопировал из WallRockBaseSpawner
       # Скалы без руды
       - WallRock
       - WallRock
@@ -171,6 +171,7 @@
 
 - type: entity
   name: Спавнер скальной шахты [Карпы 10%]
+  description: Спавнит скальную породу (без плазмы и с камнями), при добыче которой может появиться рандомный Карп.
   id: MineWallRockMobCarpSpawner
   parent: MineRockWallSpawner
   components:
@@ -186,7 +187,6 @@
       - WallRockMobCarpMagic
       - WallRockMobCarpHolo
       - WallRockMobCarpRainbow
-      # Дальше всё скопировал из WallRockBaseSpawner
       # Скалы без руды
       - WallRock
       - WallRock
@@ -275,8 +275,9 @@
     currentOre: OreCarpDragon
 
 - type: entity
-  name: Спавнер скальной шахты [Космические %]
+  name: Спавнер скальной шахты [Космомобы 10%]
   id: MineWallRockMobSpaceSpawner
+  description: Спавнит скальную породу (без руды и балок, больше кристаллов и баррикадов), при добыче которой может появиться рандомный Космический моб.
   parent: MineRockWallSpawner
   components:
   - type: Sprite
@@ -291,7 +292,6 @@
       - WallRockMobSpaceKangaroo
       - WallRockMobSpaceCobra
       - WallRockMobSpaceSpider
-      # Дальше всё скопировал из WallRockBaseSpawner
       # Скалы без руды
       - WallRock
       - WallRock
@@ -310,46 +310,25 @@
       - WallRock
       - WallRock
       - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      # Скалы с рудой
-      - WallRockUranium
-      - WallRockCoal
-      - WallRockSilver
-      - WallRockQuartz
-      - WallRockGold
-      - WallRockTin
-      - WallRockBananium
-      - WallRockUranium
-      - WallRockCoal
-      - WallRockSilver
-      - WallRockQuartz
-      - WallRockGold
-      - WallRockTin
       # Декор
-      - RandomWoodenSupport
-      - RandomWoodenWall
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
       - RandomStalagmiteOrCrystal
+      - Barricade
+      - Barricade
       - Barricade
       # Редкие
     rarePrototypes:
       - WallRockPlasma
       - WallRockArtifactFragment
-    rareChance: 0.01
+    rareChance: 0.05
 
 - type: entity
-  name: Спавнер скальной шахты [Астероидные %]
+  name: Спавнер скальной шахты [Астероид-мобы 10%]
+  description: Спавнит скальную породу (+космогриб), при добыче которой может появиться рандомный Астеоридный моб.
   id: MineWallRockMobAsteroidSpawner
   parent: MineRockWallSpawner
   components:
@@ -362,12 +341,9 @@
     prototypes:
       # Скалы без руды, но после разрушения спавнят астероидных существ
       - WallRockMobMiningAsteroid
-      # Дальше всё скопировал из WallRockBaseSpawner
+      - WallRockMobMiningAsteroid
+      - WallRockMobMiningAsteroid
       # Скалы без руды
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
       - WallRock
       - WallRock
       - WallRock
@@ -402,25 +378,24 @@
       - WallRockGold
       - WallRockTin
       - WallRockBananium
-      - WallRockUranium
-      - WallRockCoal
-      - WallRockSilver
-      - WallRockQuartz
-      - WallRockGold
-      - WallRockTin
       # Декор
       - RandomWoodenSupport
       - RandomWoodenWall
       - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
       - Barricade
+      - Spaceshroom
+      - Spaceshroom
       # Редкие
     rarePrototypes:
       - WallRockPlasma
       - WallRockArtifactFragment
-    rareChance: 0.01
+      - WallRockArtifactFragment
+    rareChance: 0.04
 
 - type: entity
-  name: Спавнер скальной шахты [Ксеноморфы %]
+  name: Спавнер скальной шахты [Ксеноморфы 10%]
+  description: Спавнит скальную породу, при добыче которой может появиться рандомный рудокраб
   id: MineWallRockMobXenoSpawner
   parent: MineRockWallSpawner
   components:
@@ -433,7 +408,7 @@
     prototypes:
       # Скалы без руды, но после разрушения спавнят ксеноморфов
       - WallRockMobXeno
-      # Дальше всё скопировал из WallRockBaseSpawner
+      - WallRockMobXeno
       # Скалы без руды
       - WallRock
       - WallRock
@@ -452,43 +427,21 @@
       - WallRock
       - WallRock
       - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      - WallRock
-      # Скалы с рудой
-      - WallRockUranium
-      - WallRockCoal
-      - WallRockSilver
-      - WallRockQuartz
-      - WallRockGold
-      - WallRockTin
-      - WallRockBananium
-      - WallRockUranium
-      - WallRockCoal
-      - WallRockSilver
-      - WallRockQuartz
-      - WallRockGold
-      - WallRockTin
       # Декор
-      - RandomWoodenSupport
-      - RandomWoodenWall
       - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Barricade
       - Barricade
       # Редкие
     rarePrototypes:
       - WallRockPlasma
       - WallRockArtifactFragment
-    rareChance: 0.01
+    rareChance: 0.07
 
 # Xeno
 - type: entity
@@ -499,7 +452,7 @@
   - type: OreVein
     currentOre: OreMobXeno
 
-# Asteroid
+# Asteroid mob
 - type: entity
   id: WallRockMobMiningAsteroid
   parent: WallRock
@@ -508,7 +461,7 @@
   - type: OreVein
     currentOre: OreMobMiningAsteroid
 
-# Space
+# Space mob
 - type: entity
   id: WallRockMobSpaceSpider
   parent: WallRock
