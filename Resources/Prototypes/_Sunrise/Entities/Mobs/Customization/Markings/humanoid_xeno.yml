@@ -1,0 +1,166 @@
+- type: marking
+  id: HumanoidXenoTailsDefault
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: long_primary
+
+- type: marking
+  id: HumanoidXenoTailsPredalien
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: predalien
+
+- type: marking
+  id: HumanoidXenoTailsPretor
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: pretor
+
+- type: marking
+  id: HumanoidXenoTailsQueen
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: queen1
+
+- type: marking
+  id: HumanoidXenoTailsQueenAlt
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: queen2
+
+- type: marking
+  id: HumanoidXenoTailsRunner
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: runner
+
+- type: marking
+  id: HumanoidXenoTailsSpitter
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: spitter
+
+- type: marking
+  id: HumanoidXenoChestPredalien
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: predalien_chest
+
+- type: marking
+  id: HumanoidXenoChestPretor
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: pretor_chest
+
+- type: marking
+  id: HumanoidXenoChestQueen
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: queen_chest
+
+- type: marking
+  id: HumanoidXenoChestRunner
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: runner_chest
+
+- type: marking
+  id: HumanoidXenoHeadDefault
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: head_m
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: drone_teeth
+
+- type: marking
+  id: HumanoidXenoHeadPretor
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: pretor_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: pretor_teeth
+
+- type: marking
+  id: HumanoidXenoHeadQueen
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: queen_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: queen_teeth
+
+- type: marking
+  id: HumanoidXenoHeadRunner
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: runner_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: runner_teeth
+
+- type: marking
+  id: HumanoidXenoHeadSpitter
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: spitter_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: spitter_teeth
+
+- type: marking
+  id: HumanoidXenoHeadPredalien
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: predalien_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: predalien_teeth
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: predalien_mandibles

@@ -15,7 +15,6 @@
     heldPrefix: nanopaste
   - type: Healing
     damageContainers:
-    - Mech
     - Synth
     - Silicon
     damage:
@@ -25,6 +24,7 @@
         Blunt: -10
         Slash: -10
         Piercing: -10
+        Mangleness: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:

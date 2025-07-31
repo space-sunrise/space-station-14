@@ -2131,6 +2131,19 @@
     whitelist:
     - HeadOfPersonnel
 
+- type: listing
+  id: UplinkSunriseHolographicPaper
+  name: uplink-sunrise-holographic-paper-name
+  productEntity: HolographicPaper
+  cost:
+    Suntick: 3
+  categories:
+  - HOPHeadOfDepartment
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+
 # Security
 
 - type: listing

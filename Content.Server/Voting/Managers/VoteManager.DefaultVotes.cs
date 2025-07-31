@@ -230,6 +230,16 @@ namespace Content.Server.Voting.Managers
             var presets = GetGamePresets();
 
             // Sunrise-Start
+            if (presets.Count == 1)
+            {
+                var singlePreset = presets.First();
+                _chatManager.DispatchServerAnnouncement(
+                    Loc.GetString("ui-vote-gamemode-auto-set", ("preset", singlePreset.Value)));
+                var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+                ticker.SetGamePreset(singlePreset.Key);
+                return;
+            }
+
             if (presets.Count < 1)
                 return;
             // Sunrise-End
@@ -635,43 +645,54 @@ namespace Content.Server.Voting.Managers
             var excluded = ticker.ExcludedPresets.ToHashSet();
             var validPresets = new List<GamePresetPrototype>();
             var presetPoolId = _cfg.GetCVar(SunriseCCVars.GamePresetPool);
-            HashSet<string>? allowedPresets = null;
+
             if (_prototypeManager.TryIndex<GamePresetPoolPrototype>(presetPoolId, out var presetPoolProto))
-                allowedPresets = presetPoolProto.Presets;
-            foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
             {
-                if (allowedPresets != null && !allowedPresets.Contains(preset.ID))
-                    continue;
-                if (excluded.Contains(preset.ID))
-                    continue;
-                if (!preset.ShowInVote)
-                    continue;
-                if (_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
-                    continue;
-                if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
-                    continue;
-                validPresets.Add(preset);
-            }
-            if (validPresets.Count == 0 && excluded.Count > 0)
-            {
-                ticker.ClearExcludedPresets();
-                foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
+                foreach (var (presetId, limits) in presetPoolProto.Presets)
                 {
-                    if (allowedPresets != null && !allowedPresets.Contains(preset.ID))
+                    if (excluded.Contains(presetId))
                         continue;
+
+                    if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
+                        continue;
+
                     if (!preset.ShowInVote)
                         continue;
-                    if (_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
+
+                    var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
+                    var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
+
+                    if (_playerManager.PlayerCount < minPlayers || _playerManager.PlayerCount > maxPlayers)
                         continue;
-                    if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
-                        continue;
+
                     validPresets.Add(preset);
+                }
+
+                if (validPresets.Count == 0 && excluded.Count > 0)
+                {
+                    ticker.ClearExcludedPresets();
+                    foreach (var (presetId, limits) in presetPoolProto.Presets)
+                    {
+                        if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
+                            continue;
+
+                        if (!preset.ShowInVote)
+                            continue;
+
+                        var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
+                        var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
+
+                        if (_playerManager.PlayerCount < minPlayers || _playerManager.PlayerCount > maxPlayers)
+                            continue;
+
+                        validPresets.Add(preset);
+                    }
                 }
             }
 
             if (validPresets.Count == 0)
             {
-                Logger.Warning("Нет подходящих игровых режимов для текущего количества игроков.");
+                Logger.Warning("No suitable game modes for the current player count.");
                 return presets;
             }
 

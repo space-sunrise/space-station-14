@@ -404,6 +404,10 @@ namespace Content.Server.Database
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
         public int Age { get; set; }
+
+        public float Width { get; set; } = 1f; //Sunrise
+        public float Height { get; set; } = 1f; // Sunrise
+
         public string Sex { get; set; } = null!;
 
         public string BodyType { get; set; } = null!;

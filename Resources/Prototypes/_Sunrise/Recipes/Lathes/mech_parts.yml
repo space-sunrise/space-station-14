@@ -423,6 +423,16 @@
     Glass: 200
 
 - type: latheRecipe
+  id: PaintDurandOld
+  result: MechPaintDurandOld
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 300
+    Glass: 100
+
+- type: latheRecipe
   id: PaintDurandExecutor
   result: MechPaintDurandExecutor
   categories:

@@ -780,6 +780,7 @@ BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
 AbductorDispencer: VendingMachineAbductorDispenser # Abductor shit.
+SpawnMechRipley: SpawnMechHauler # Карго Вариант Рипли, с установленными модулями переноски
 
 # Кто удалил и не добавил в миграции
 PrintedDocumentClosingIndictment: null
@@ -791,4 +792,7 @@ BorgModuleDefibrillator: null
 MagazineM16A4: null
 MagazineG36: null
 MagazineFamas: null
+BaseUplinkNTERT75BC: null
+BaseUplinkNTERT100BC: null
+BaseUplinkNTERT200BC: null
 # Sunrise migrations end

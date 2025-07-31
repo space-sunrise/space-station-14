@@ -1,0 +1,26 @@
+- type: entity
+  id: ExosuitFabricatorHyperConvection
+  name: exosuit fabricator hyper convection
+  parent: [BaseMachinePowered, ConstructibleMachine]
+  components:
+  - type: Machine
+    board: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - SheetPaper
+    storage:
+      Paper: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

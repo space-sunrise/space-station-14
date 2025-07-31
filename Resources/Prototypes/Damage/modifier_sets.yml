@@ -265,6 +265,7 @@
     Shock: 0.0
     Slash: 0.25
     Structural: 0.0
+    Mangleness: 0.0 # Sunrise-Edit
 
 - type: damageModifierSet
   id: SlimePet # Very survivable slimes
@@ -370,7 +371,7 @@
     Blunt: 0.8
     Slash: 0.8
     Piercing: 0.9
-    Shock: 1.2
+    Shock: 2
     Heat: 0.8
   flatReductions:
     Blunt: 3
@@ -382,7 +383,7 @@
     Blunt: 0.75
     Slash: 0.75
     Piercing: 0.7
-    Shock: 1.2
+    Shock: 3
     Heat: 0.7
     Structural: 0.5
   flatReductions:
@@ -396,7 +397,7 @@
     Blunt: 0.6
     Slash: 0.6
     Piercing: 0.55
-    Shock: 1.8
+    Shock: 4
     Heat: 0.8
     Structural: 0.5
   flatReductions:
@@ -412,7 +413,7 @@
     Blunt: 0.5
     Slash: 0.5
     Piercing: 0.35
-    Shock: 2.8
+    Shock: 5
     Heat: 0.75
     Structural: 0.5
   flatReductions:
@@ -428,7 +429,7 @@
     Blunt: 0.6
     Slash: 0.6
     Piercing: 0.5
-    Shock: 1.8
+    Shock: 4
     Heat: 0.8
     Structural: 0.5
   flatReductions:
@@ -444,7 +445,7 @@
     Blunt: 0.5
     Slash: 0.5
     Piercing: 0.4
-    Shock: 2.8
+    Shock: 5
     Heat: 0.75
     Structural: 0.5
   flatReductions:

@@ -5,9 +5,7 @@
   name: Urist McXeno
   abstract: true
   components:
-  # SUNRISE EDIT
   - type: Interactions
-  # SUNRISE EDIT
   - type: Absorbable
   - type: Respirator
     damage:
@@ -141,8 +139,6 @@
     - Xeno
   - type: FootprintEmitter
   - type: Carriable
-  - type: ScaleSprite
-    scale: 1.1, 1.2
 
 - type: entity
   parent: BaseSpeciesDummy

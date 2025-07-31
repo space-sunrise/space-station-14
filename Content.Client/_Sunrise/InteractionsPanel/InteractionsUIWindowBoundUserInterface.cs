@@ -36,6 +36,14 @@ public sealed class InteractionsWindowBoundUserInterface : BoundUserInterface
 
     }
 
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (message is RequestSavePosAndCloseMessage save)
+        {
+            _slave?.Close();
+        }
+    }
+
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);

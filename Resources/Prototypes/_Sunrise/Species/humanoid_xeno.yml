@@ -8,9 +8,15 @@
   - HumanoidXenoNormal
   markingLimits: MobHumanoidXenoMarkingLimits
   dollPrototype: MobXenoDummy
-  skinColoration: TintedHues
-  sponsorOnly: true
+  skinColoration: Hues
+  sponsorOnly: false
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
+  defaultHeight: 1.1
+  defaultWidth: 1.2
+  maxHeight: 1.15
+  maxWidth: 1.25
+  minHeight: 0.95
+  minWidth: 1.05
 
 - type: bodyType
   id: HumanoidXenoNormal
@@ -42,11 +48,15 @@
       points: 1
       required: true
       defaultMarkings: [ HumanoidXenoTailsDefault ]
+    Head:
+      points: 1
+      required: true
+      defaultMarkings: [ HumanoidXenoHeadDefault ]
     HeadTop:
       points: 0
       required: false
     Chest:
-      points: 0
+      points: 1
       required: false
     Legs:
       points: 0
@@ -138,12 +148,3 @@
   baseSprite:
     sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
     state: r_foot
-
-- type: marking
-  id: HumanoidXenoTailsDefault
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [HumanoidXeno]
-  sprites:
-  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
-    state: long_primary

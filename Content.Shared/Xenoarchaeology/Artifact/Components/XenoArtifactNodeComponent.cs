@@ -52,6 +52,11 @@ public sealed partial class XenoArtifactNodeComponent : Component
     [DataField, AutoNetworkedField]
     public int MaxDurability = 5;
 
+    // sunrise start
+    [DataField, AutoNetworkedField]
+    public bool TriggerDecreasesDurability;
+    // sunrise end
+
     /// <summary>
     /// The variance from MaxDurability present when a node is created.
     /// </summary>

@@ -263,6 +263,58 @@ namespace Content.Client.Lobby.UI
                 OnSkinColorOnValueChanged();
             };
 
+            //Sunrise start
+            #region Size
+            UpdateSizeControls();
+
+            WidthSlider.OnValueChanged += args =>
+            {
+                UpdateSizeText();
+            };
+
+            HeightSlider.OnValueChanged += args =>
+            {
+                UpdateSizeText();
+            };
+
+            WidthSlider.OnReleased += args =>
+            {
+                SetWidth(args.Value);
+            };
+
+            HeightSlider.OnReleased += args =>
+            {
+                SetHeight(args.Value);
+            };
+
+            WidthResetButton.OnPressed += _ =>
+            {
+                if (Profile is null)
+                {
+                    return;
+                }
+
+                if (_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+                {
+                    WidthSlider.Value = speciesPrototype.DefaultWidth;
+                }
+            };
+
+            HeightResetButton.OnPressed += _ =>
+            {
+                if (Profile is null)
+                {
+                    return;
+                }
+
+                if (_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+                {
+                    HeightSlider.Value = speciesPrototype.DefaultHeight;
+                }
+            };
+            #endregion Size
+            //Sinrise end
+
             #region Skin
 
             Skin.OnValueChanged += _ =>
@@ -805,6 +857,7 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorTextEdit();
             UpdateSexControls();
             UpdateGenderControls();
+            UpdateSizeControls(); //Sunrise edit
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
             UpdateAgeEdit();
@@ -1291,6 +1344,51 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
+        //Sunrise start
+        private void UpdateSizeText()
+        {
+
+            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+            {
+                return;
+            }
+
+            var heightRaw = HeightSlider.Value;
+            var weightRaw = WidthSlider.Value;
+
+            var height = speciesPrototype.StandardSize * heightRaw;
+            var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
+            HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
+            WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
+        }
+
+        private void SetWidth(float newWidth)
+        {
+            if (Profile is null)
+            {
+                return;
+            }
+
+            Profile.Appearance = Profile.Appearance.WithWidth(newWidth);
+
+            UpdateSizeText();
+            ReloadPreview();
+        }
+
+        private void SetHeight(float newHeight)
+        {
+            if (Profile is null)
+            {
+                return;
+            }
+
+            Profile.Appearance = Profile.Appearance.WithHeight(newHeight);
+
+            UpdateSizeText();
+            ReloadPreview();
+        }
+        //Sunrise end
+
         // Sunrise-TTS-Start
         private void SetVoice(string newVoice)
         {
@@ -1311,6 +1409,7 @@ namespace Content.Client.Lobby.UI
             UpdateSexControls(); // update sex for new species
             UpdateBodyTypes();
             UpdateSpeciesGuidebookIcon();
+            UpdateSizeControls();
             ReloadPreview();
         }
 
@@ -1407,6 +1506,26 @@ namespace Content.Client.Lobby.UI
             else
                 SexButton.SelectId((int) sexes[0]);
         }
+
+        //Sunrise start
+        private void UpdateSizeControls()
+        {
+            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+            {
+                return;
+            }
+
+            WidthSlider.MinValue = speciesPrototype.MinWidth;
+            WidthSlider.MaxValue = speciesPrototype.MaxWidth;
+            WidthSlider.Value = Profile.Appearance.Width;
+
+            HeightSlider.MinValue = speciesPrototype.MinHeight;
+            HeightSlider.MaxValue = speciesPrototype.MaxHeight;
+            HeightSlider.Value = Profile.Appearance.Height;
+
+            UpdateSizeText();
+        }
+        //Sunrise end
 
         private void UpdateSkinColor()
         {

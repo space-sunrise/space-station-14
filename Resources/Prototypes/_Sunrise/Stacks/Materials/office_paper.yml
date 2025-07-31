@@ -1,0 +1,6 @@
+- type: stack
+  id: OfficePaper
+  name: stack-office-paper
+  icon: { sprite: /Textures/_Sunrise/Objects/Materials/Sheets/office_paper.rsi, state: paper_3 }
+  spawn: SheetOfficePaper1
+  maxCount: 30

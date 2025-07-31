@@ -77,6 +77,19 @@
     stock: 1
 
 - type: listing
+  id: NTUplinkSunrisePowerpackMinigunMG100
+  description: ntuplink-gun-minigun-desc
+  productEntity: PowerpackMinigunMG100
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
+  cost:
+    Bluecrystal: 45
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleAR18Filled
   productEntity: ClothingBackpackDuffelWeaponRifleAR18Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ar18 }
@@ -195,7 +208,7 @@
   productEntity: WeaponSniperPulseCarbine
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-sc }
   cost:
-    Bluecrystal: 25
+    Bluecrystal: 20
   categories:
   - NTLasers
   conditions:
@@ -219,7 +232,7 @@
   productEntity: WeaponPulseCarbine
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-c }
   cost:
-    Bluecrystal: 24
+    Bluecrystal: 15
   categories:
     - NTLasers
   conditions:
@@ -243,7 +256,7 @@
   productEntity: WeaponEnergyGunTactical
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun_tac }
   cost:
-    Bluecrystal: 12
+    Bluecrystal: 10
   categories:
   - NTLasers
   conditions:

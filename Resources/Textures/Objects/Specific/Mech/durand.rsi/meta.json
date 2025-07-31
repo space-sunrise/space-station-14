@@ -8,11 +8,77 @@
   },
   "states": [
     {
-      "name": "durand",
+        "name": "base",
+        "directions": 4,
+        "delays": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        ]
+      },
+      {
+        "name": "base-open",
+        "delays": [
+          [
+            0.4,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ]
+        ]
+      },
+      {
+        "name": "base-broken",
+        "delays": [
+          [
+            0.5,
+            1,
+            0.5,
+            1
+          ]
+        ]
+      },
+    {
+      "name": "durand_old",
       "directions": 4
     },
     {
-      "name": "durand-open",
+      "name": "durand-open_old",
       "delays": [
         [
           1,
@@ -25,7 +91,7 @@
       ]
     },
     {
-      "name": "durand-broken",
+      "name": "durand-broken_old",
       "delays": [
         [
           0.5,

@@ -19,11 +19,14 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
   - type: Transform
     anchored: true
     noRot: false
+
   - type: Machine
     board: PrinterDocMachineCircuitboard
+
   - type: PrinterDoc
     solution: inc
     copySlot:
@@ -32,16 +35,29 @@
       whitelist:
         tags:
         - Paper
+
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - SheetOfficePaper
+      - Paper
+    storage:
+      officePaper: 0
+    dropOnDeconstruct: false
+
   - type: SolutionContainerManager
     solutions:
       inc:
         maxVol: 250
+
+
   - type: Spillable
     solution: inc
   - type: RefillableSolution
     solution: inc
   - type: ExaminableSolution
     solution: inc
+
   - type: Fixtures
     fixtures:
       fix1:
@@ -53,26 +69,36 @@
         - MachineMask
         layer:
         - MachineLayer
+
   - type: ContainerContainer
     containers:
       paper_copy: !type:ContainerSlot
+
   - type: ItemSlots
+
   - type: WiresPanel
+
   - type: ActivatableUI
     key: enum.PrinterDocUiKey.Key
+
   - type: ActivatableUIRequiresPower
+
   - type: UserInterface
     interfaces:
       enum.PrinterDocUiKey.Key:
         type: PrinterDocBoundUserInterface
+
   - type: Pullable
+
   - type: StaticPrice
     price: 500
+
   - type: Strap
     handBuckle: false
     position: Stand
     buckleOffsets:
     - "0,-0.05"
+
   - type: Destructible
     thresholds:
     - trigger:
@@ -86,20 +112,3 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: MaterialStorage
-    whitelist:
-      tags:
-      - SheetPaper
-    storage:
-      Paper: 0
-
-- type: entity
-  id: ExosuitFabricatorHyperConvection
-  parent: [ExosuitFabricator, BaseHyperlathe]
-  name: hyper convection exosuit fabricator
-  description: A highly-experimental Exosuit Fabricator that harnesses the power of extreme heat to slowly create objects more cost-effectively.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
-  - type: Machine
-    board: ExosuitFabricatorHyperConvectionMachineCircuitboard

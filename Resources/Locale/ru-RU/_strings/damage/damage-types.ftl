@@ -12,3 +12,4 @@ damage-type-shock = Электрические
 damage-type-slash = Порезы
 damage-type-structural = Структурные
 damage-type-holy = Святой
+damage-type-mangleness = Истощение

@@ -8,7 +8,7 @@
     job: BlueShieldEnsign
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
-    owner: лейтенант "Синий Щит"
+    owner: командир «Синий щит»
 
 - type: entity
   parent: BaseCMOStealObjective

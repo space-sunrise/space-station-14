@@ -131,6 +131,13 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         base.Close();
     }
 
+    public void SavePos()
+    {
+        _cfg.SetCVar(InteractionsCVars.WindowPosX, (int)Position.X);
+        _cfg.SetCVar(InteractionsCVars.WindowPosY, (int)Position.Y);
+        _cfg.SaveToFile();
+    }
+
     private bool IsInteractionOnCooldown(string interactionId)
     {
         var userEntity = _owner?.Owner ?? default;

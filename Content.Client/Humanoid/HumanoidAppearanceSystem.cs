@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
@@ -53,6 +54,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
+
+        var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
+
+        _sprite.SetScale(entity.Owner, scale);
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
@@ -226,6 +231,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Species = profile.Species;
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        humanoid.Width = profile.Appearance.Width; // Sunrise
+        humanoid.Height = profile.Appearance.Height; // Sunrise
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }

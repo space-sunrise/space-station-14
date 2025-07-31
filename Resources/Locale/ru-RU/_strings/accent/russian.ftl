@@ -1,5 +1,5 @@
 accent-russian-words-1 = да
-accent-russian-words-replace-1 = дв
+accent-russian-words-replace-1 = даэ
 accent-russian-words-2 = нет
 accent-russian-words-replace-2 = нет
 accent-russian-words-3 = бабушка

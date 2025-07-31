@@ -76,9 +76,9 @@
   description: A suit that protects against biological contamination, kitted out with additional armor.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Bio/security.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Bio/security.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Bio/security.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Bio/security.rsi #Sunrise-Edit
   - type: Armor
     modifiers:
       coefficients:
