@@ -27,6 +27,7 @@
 - type: entity
   name: Спавнер скальной шахты
   id: MineRockWallSpawner
+  description: Спавнит скальную породу и декор.
   parent: MarkerBase
   components:
   - type: Sprite
@@ -37,7 +38,6 @@
   - type: RandomSpawner
     prototypes:
       # Скалы без руды
-      - WallRock
       - WallRock
       - WallRock
       - WallRock
@@ -94,9 +94,15 @@
 
 - type: entity
   name: Спавнер скальной шахты [Рудокраб 15%]
-  id: MineWallRockCrabSpawner
+  description: Спавнит скальную породу, при добыче которой может появиться рандомный Рудокраб.
+  id: MineWallRockMobCrabSpawner
   parent: MineRockWallSpawner
   components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+      state: rock_spawner_crab
   - type: RandomSpawner
     prototypes:
       # Скалы с рудами, но после разрушения спавнят крабов
@@ -107,7 +113,6 @@
       - WallRockGoldCrab
       - WallRockTinCrab
       - WallRockBananiumCrab
-      # Дальше всё скопировал из WallRockBaseSpawner
       # Скалы без руды
       - WallRock
       - WallRock
@@ -166,22 +171,179 @@
 
 - type: entity
   name: Спавнер скальной шахты [Карпы 10%]
-  id: MineWallRockCarpSpawner
+  description: Спавнит скальную породу (без плазмы и с камнями), при добыче которой может появиться рандомный Карп.
+  id: MineWallRockMobCarpSpawner
   parent: MineRockWallSpawner
   components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+      state: rock_spawner_carp
   - type: RandomSpawner
     prototypes:
       # Скалы без руды, но после разрушения спавнят карпов
-      - WallRockCarpDungeon
-      - WallRockCarpMagic
-      - WallRockCarpHolo
-      - WallRockCarpRainbow
-      # Дальше всё скопировал из WallRockBaseSpawner
+      - WallRockMobCarpDungeon
+      - WallRockMobCarpMagic
+      - WallRockMobCarpHolo
+      - WallRockMobCarpRainbow
       # Скалы без руды
       - WallRock
       - WallRock
       - WallRock
       - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы с рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      # Декор
+      - FloraRockSolid
+      - FloraRockSolid
+      - FloraRockSolid
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - CrystalSpawner
+      # Редкие
+    rarePrototypes:
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  id: WallRockMobCarpDungeon
+  parent: WallRock
+  suffix: Carp Dungeon
+  components:
+  - type: OreVein
+    currentOre: OreCarpDungeon
+
+- type: entity
+  id: WallRockMobCarpMagic
+  parent: WallRock
+  suffix: Carp Magic
+  components:
+  - type: OreVein
+    currentOre: OreCarpMagic
+
+- type: entity
+  id: WallRockMobCarpHolo
+  parent: WallRock
+  suffix: Carp Holo
+  components:
+  - type: OreVein
+    currentOre: OreCarpHolo
+
+- type: entity
+  id: WallRockMobCarpRainbow
+  parent: WallRock
+  suffix: Carp Rainbow
+  components:
+  - type: OreVein
+    currentOre: OreCarpRainbow
+
+- type: entity
+  id: WallRockMobCarpDragon
+  parent: WallRock
+  suffix: Carp Dragon
+  components:
+  - type: OreVein
+    currentOre: OreCarpDragon
+
+- type: entity
+  name: Спавнер скальной шахты [Космомобы 10%]
+  id: MineWallRockMobSpaceSpawner
+  description: Спавнит скальную породу (без руды и балок, больше кристаллов и баррикадов), при добыче которой может появиться рандомный Космический моб.
+  parent: MineRockWallSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+      state: rock_spawner_space
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят космических существ
+      - WallRockMobSpaceBear
+      - WallRockMobSpaceKangaroo
+      - WallRockMobSpaceCobra
+      - WallRockMobSpaceSpider
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Декор
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Barricade
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.05
+
+- type: entity
+  name: Спавнер скальной шахты [Астероид-мобы 10%]
+  description: Спавнит скальную породу (+космогриб), при добыче которой может появиться рандомный Астеоридный моб.
+  id: MineWallRockMobAsteroidSpawner
+  parent: MineRockWallSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+      state: rock_spawner_asteroid
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят астероидных существ
+      - WallRockMobMiningAsteroid
+      - WallRockMobMiningAsteroid
+      - WallRockMobMiningAsteroid
+      # Скалы без руды
       - WallRock
       - WallRock
       - WallRock
@@ -216,60 +378,118 @@
       - WallRockGold
       - WallRockTin
       - WallRockBananium
-      - WallRockUranium
-      - WallRockCoal
-      - WallRockSilver
-      - WallRockQuartz
-      - WallRockGold
-      - WallRockTin
       # Декор
       - RandomWoodenSupport
       - RandomWoodenWall
       - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Spaceshroom
+      - Spaceshroom
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+      - WallRockArtifactFragment
+    rareChance: 0.04
+
+- type: entity
+  name: Спавнер скальной шахты [Ксеноморфы 10%]
+  description: Спавнит скальную породу, при добыче которой может появиться рандомный рудокраб
+  id: MineWallRockMobXenoSpawner
+  parent: MineRockWallSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+      state: rock_spawner_xeno
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят ксеноморфов
+      - WallRockMobXeno
+      - WallRockMobXeno
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Декор
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Barricade
       - Barricade
       # Редкие
     rarePrototypes:
       - WallRockPlasma
       - WallRockArtifactFragment
-    rareChance: 0.01
+    rareChance: 0.07
 
+# Xeno
 - type: entity
-  id: WallRockCarpDungeon
+  id: WallRockMobXeno
   parent: WallRock
-  suffix: Carp Dungeon
+  suffix: Xeno
   components:
   - type: OreVein
-    currentOre: OreCarpDungeon
+    currentOre: OreMobXeno
 
+# Asteroid mob
 - type: entity
-  id: WallRockCarpMagic
+  id: WallRockMobMiningAsteroid
   parent: WallRock
-  suffix: Carp Magic
+  suffix: Mining Asteroid
   components:
   - type: OreVein
-    currentOre: OreCarpMagic
+    currentOre: OreMobMiningAsteroid
 
+# Space mob
 - type: entity
-  id: WallRockCarpHolo
+  id: WallRockMobSpaceSpider
   parent: WallRock
-  suffix: Carp Holo
+  suffix: Space Spider
   components:
   - type: OreVein
-    currentOre: OreCarpHolo
+    currentOre: OreMobSpaceSpider
 
 - type: entity
-  id: WallRockCarpRainbow
+  id: WallRockMobSpaceBear
   parent: WallRock
-  suffix: Carp Rainbow
+  suffix: Space Bear
   components:
   - type: OreVein
-    currentOre: OreCarpRainbow
+    currentOre: OreMobSpaceBear
 
 - type: entity
-  id: WallRockCarpDragon
+  id: WallRockMobSpaceKangaroo
   parent: WallRock
-  suffix: Carp Dragon
+  suffix: Space Kangaroo
   components:
   - type: OreVein
-    currentOre: OreCarpDragon
+    currentOre: OreMobSpaceKangaroo
 
+- type: entity
+  id: WallRockMobSpaceCobra
+  parent: WallRock
+  suffix: Space Cobra
+  components:
+  - type: OreVein
+    currentOre: OreMobSpaceCobra
