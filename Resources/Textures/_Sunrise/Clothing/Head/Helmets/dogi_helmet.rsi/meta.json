@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "SUNRISE / bulbo44kkey",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    }
+  ]
+}

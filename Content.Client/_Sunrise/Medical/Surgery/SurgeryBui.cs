@@ -40,8 +40,14 @@ public sealed class SurgeryBui : BoundUserInterface
 
         _system.OnRefresh += UpdateDisabledPanel;
         _hands.OnPlayerItemAdded += OnPlayerItemAdded;
+        _hands.OnPlayerSetActiveHand += OnPlayerSetHand;
     }
     private void OnPlayerItemAdded(string k1, EntityUid k2)
+    {
+        if (!_game.IsFirstTimePredicted) return;
+        RefreshUI();
+    }
+    private void OnPlayerSetHand(string? k1)
     {
         if (!_game.IsFirstTimePredicted) return;
         RefreshUI();
@@ -363,6 +369,9 @@ public sealed class SurgeryBui : BoundUserInterface
                             break;
                         case StepInvalidReason.MissingTool:
                             stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-tool"));
+                            break;
+                        case StepInvalidReason.NeedToolInhand:
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-tool-inhand"));
                             break;
                         case StepInvalidReason.DisabledTool:
                             stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-enable"));

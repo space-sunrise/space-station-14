@@ -296,7 +296,7 @@
         startingItem: PowerCellSmall
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 3.5
     useRate: 20
   # Sunrise-End
 

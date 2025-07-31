@@ -4,34 +4,48 @@
   id: SunriseArtifactEffectsDefaultTable
   table: !type:GroupSelector
     children:
+      # хилит всех энтити в радиусе
     - id: SunriseEffectHeal
       weight: 2
+      # генерирует энергию
     - id: SunriseArtifactGenerateEnergy
       weight: 2
+      # артефакт начинает рандомно двигаться
     - id: SunriseArtifactWandering
       weight: 3
+      # швыряет вещи вокруг
     - id: SunriseArtifactThrowThingsAround
       weight: 3
+      # открывает ближайшие двери и шлюзы, аналогично заклинанию стука
     - id: SunriseArtifactKnock
       weight: 3
+      # спавнит мусор
     - id: SunriseArtifactEffectJunkSpawn
       weight: 3
+      # выбивает все окна
     - id: SunriseArtifactShatterWindows
       weight: 3
+      # болтирует все шлюзы
     - id: SunriseEffectBoltAirlocks
       weight: 3
+      # выдаёт голод всем в радиусе
     - id: SunriseArtifactHunger
       weight: 2
+      # выдаёт жажду всем в радиусе
     - id: SunriseEffectThirst
       weight: 2
+      # стреляет молниями в ближайших энтити некоторое время
     - id: SunriseEffectTeslaDischarge
       weight: 1
+      # спавнит злых двойников
     - id: SunriseEffectSpawnEvilTwin
-      weight: 1
+      weight: 0.6
+      # телепортирует того, кто активировал артефакт
     - id: SunriseArtifactTeleport
       weight: 2
     - id: SunriseArtifactEmp
       weight: 2
+      # поджигает всех в радиусе
     - id: SunriseEffectIgnite
       weight: 1
 
@@ -39,24 +53,33 @@
   id: SunriseArtifactEffectsUltraFunnyTable
   table: !type:GroupSelector
     children:
+    # шаффл всех айтемов в радиусе
     - id: SunriseEffectShuffleUltra
       weight: 2
+      # превращает всех в радиусе в стулья на 2 минуты
     - id: SunriseEffectPolyChair
       weight: 3
+      # превращает всех в радиусе в арбуз на 2 минуты
     - id: SunriseEffectPolyWatermelon
       weight: 3
+      # превращает всех в радиусе аппендицит на 2 минуты
     - id: SunriseEffectPolyAppendix
       weight: 3
+      # превращает всех в радиусе в мусорку на 2 минуты
     - id: SunriseEffectPolyDisposal
       weight: 3
+      # превращает всех в радиусе в стол на 2 минуты
     - id: SunriseEffectPolyTable
       weight: 3
     #- id: SunriseEffectSwap
     #  weight: 3
+      # превращает все предметы в радиусе в рандомные
     - id: SunriseEffectRandomTransformation
-      weight: 1
+      weight: 0.3
+      # временно притягивает к себе
     - id: SunriseEffectMagnetUltra
       weight: 2
+      # даёт смешные акценты всем в радиусе
     - id: SunriseEffectShiftedAsciiTableAccent
       weight: 3
 
@@ -158,7 +181,7 @@
     TriggerPrying: 1
     TriggerScrewing: 1
     TriggerPulsing: 1
-    TriggerTimer: 1 # Sunrise edit - для артефактов предметов. Чтобы виднее были
+    #TriggerTimer: 1 # Sunrise edit  - Timer triggers disabled for artifacts. They are bugged
     TriggerBlood: 1
     TriggerThrow: 1
     TriggerDeath: 1

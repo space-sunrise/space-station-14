@@ -1,0 +1,16 @@
+<Document>
+[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_cmd.png" scale=1]
+
+[bold]Станция: {stationName}[/bold]
+[bold]Форма НТ/КОМ-ГР[/bold]
+[head=2]Грамота[/head]
+
+[italic]Время от начала смены и дата: {timeString}[/italic]
+
+Составитель документа:
+Должность составителя:
+
+(ПОЛНОЕ ИМЯ), в должности (полное наименование должности) награждается грамотой за следующие заслуги:
+
+[italic]Место для печатей[/italic]
+</Document>

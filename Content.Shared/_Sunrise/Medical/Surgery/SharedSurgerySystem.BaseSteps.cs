@@ -11,6 +11,7 @@ using Content.Shared._Sunrise.Medical.Surgery.Steps;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Hands.Components;
 
 namespace Content.Shared._Sunrise.Medical.Surgery;
 // Based on the RMC14.
@@ -179,6 +180,16 @@ public abstract partial class SharedSurgerySystem
         foreach (var reg in ent.Comp.Tools.Values)
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+
+            if (!TryComp<HandsComponent>(args.User, out var hands))
+                return;
+
+            if (!_hands.TryGetActiveItem(args.User, out var inhandItem) || inhandItem != tool)
+            {
+                args.Invalid = StepInvalidReason.NeedToolInhand;
+                return;
+            }
+
             if (tool == default)
             {
                 args.Invalid = StepInvalidReason.MissingTool;

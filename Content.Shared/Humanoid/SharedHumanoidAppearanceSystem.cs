@@ -197,6 +197,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
         SetTTSVoice(target, sourceHumanoid.Voice, targetHumanoid); // Sunrise-TTS
         targetHumanoid.BodyType = sourceHumanoid.BodyType;
+        targetHumanoid.Width = sourceHumanoid.Width; //Sunrise
+        targetHumanoid.Height = sourceHumanoid.Height; //Sunrise
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
 
@@ -489,6 +491,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         humanoid.Age = profile.Age;
+
+        humanoid.Width = profile.Appearance.Width; //Sunrise
+        humanoid.Height = profile.Appearance.Height; //Sunrise
 
         Dirty(uid, humanoid);
     }

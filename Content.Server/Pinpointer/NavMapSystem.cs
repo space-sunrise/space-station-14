@@ -171,7 +171,10 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
     private void OnNavMapBeaconMapInit(EntityUid uid, NavMapBeaconComponent component, MapInitEvent args)
     {
         if (component.DefaultText == null || component.Text != null)
+        {
+            UpdateNavMapBeaconData(uid, component); // Sunrise-edit
             return;
+        }
 
         component.Text = Loc.GetString(component.DefaultText);
         Dirty(uid, component);

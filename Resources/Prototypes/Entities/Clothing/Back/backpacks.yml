@@ -31,7 +31,6 @@
     delay: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: FelinidContainer
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -68,7 +67,7 @@
   description: It's a very robust backpack.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/security.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/security.rsi #Sunrise-Edit
 
 - type: entity
   parent: [ClothingBackpack, BaseSecurityContraband]

@@ -33,6 +33,8 @@
     - Shock
     - Caustic
     - Structural
+    - Mangleness # Sunrise-Edit
+
 
 - type: damageContainer
   id: Shield

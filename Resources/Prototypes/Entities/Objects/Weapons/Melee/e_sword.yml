@@ -72,6 +72,7 @@
         shader: unshaded
   - type: Reflect
   # Sunrise-start
+  - type: SMCuttable
   - type: Tag
     tags:
     - NoPaint

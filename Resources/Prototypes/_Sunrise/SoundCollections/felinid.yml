@@ -28,6 +28,8 @@
   id: FelinidGrowls
   files:
   - /Audio/_Sunrise/Voice/Felinid/cat_growl1.ogg
+  - /Audio/_Sunrise/Voice/Felinid/cat_growl2.ogg
+
 
 - type: soundCollection
   id: FelinidPurrs

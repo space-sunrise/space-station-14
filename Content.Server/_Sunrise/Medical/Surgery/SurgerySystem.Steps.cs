@@ -35,7 +35,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     {
         SubscribeLocalEvent<SurgeryStepBleedEffectComponent, SurgeryStepEvent>(OnStepBleedComplete);
         SubscribeLocalEvent<SurgeryClampBleedEffectComponent, SurgeryStepEvent>(OnStepClampBleedComplete);
-        SubscribeLocalEvent<SurgeryStepEmoteEffectComponent, SurgeryStepEvent>(OnStepEmoteEffectComplete);
+        // SubscribeLocalEvent<SurgeryStepEmoteEffectComponent, SurgeryStepEvent>(OnStepEmoteEffectComplete);
         SubscribeLocalEvent<SurgeryStepSpawnEffectComponent, SurgeryStepEvent>(OnStepSpawnComplete);
 
         SubscribeLocalEvent<SurgeryStepOrganExtractComponent, SurgeryStepEvent>(OnStepOrganExtractComplete);
@@ -135,8 +135,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 RemCompDeferred(args.Body, accent);
     }
 
-    private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
-        => _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+    // private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
+    //     => _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (TryComp(args.Body, out TransformComponent? xform))

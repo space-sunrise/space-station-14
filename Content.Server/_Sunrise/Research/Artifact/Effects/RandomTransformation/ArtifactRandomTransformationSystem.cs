@@ -82,12 +82,40 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
         }
     }
 
-    private static bool CanSpawnEntity(Entity<ArtifactRandomTransformationComponent> ent, EntityPrototype proto)
+    private IEnumerable<string> GetAllParentIds(string protoId)
     {
+        if (!_prototype.TryIndex<EntityPrototype>(protoId, out var proto))
+            yield break;
+
+        if (proto.Parents == null)
+            yield break;
+
+        foreach (var parentId in proto.Parents)
+        {
+            yield return parentId;
+
+            foreach (var parentParentsId in GetAllParentIds(parentId))
+            {
+                yield return parentParentsId;
+            }
+        }
+    }
+
+    private bool CanSpawnEntity(Entity<ArtifactRandomTransformationComponent> ent, EntityPrototype proto)
+    {
+        if (proto.Abstract)
+            return false;
+
         if (ent.Comp.PrototypeBlacklist != null && ent.Comp.PrototypeBlacklist.Contains(proto.ID))
             return false;
 
-        if (proto.Abstract)
+        var isException = ent.Comp.PrototypeBlacklistExceptions != null && ent.Comp.PrototypeBlacklistExceptions.Contains(proto.ID);
+
+        if (!isException && ent.Comp.PrototypeBlacklist != null && GetAllParentIds(proto.ID)
+                .Any(parentId => ent.Comp.PrototypeBlacklist.Contains(parentId)))
+            return false;
+
+        if (ent.Comp.ComponentBlacklist != null && proto.Components.Keys.Any(id => ent.Comp.ComponentBlacklist.Contains(id)))
             return false;
 
         if (ent.Comp.CategoryBlacklist != null && proto.Categories.Any(c => ent.Comp.CategoryBlacklist.Contains(c)))

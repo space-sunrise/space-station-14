@@ -102,6 +102,7 @@
       types:
         Slash: -0.5
         Piercing: -0.5
+        Mangleness: 0.5 #SUNRISE-EDIT
     bloodlossModifier: -4
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"

@@ -1,5 +1,5 @@
 - type: reaction
-  id: Aphrodesiac
+  id: Aphrodisiac
   minTemp: 120
   maxTemp: 300
   effects:
@@ -14,4 +14,4 @@
     Wine:
       amount: 3
   products:
-    Aphrodesiac: 5
+    Aphrodisiac: 5

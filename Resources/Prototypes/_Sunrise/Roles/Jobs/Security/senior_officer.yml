@@ -24,9 +24,9 @@
   access:
   - Security
   - Brig
-  - Maintenance
   - Service
   - External
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
