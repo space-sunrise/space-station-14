@@ -65,6 +65,7 @@
   - type: Tag
     tags:
     - SheetPaper
+    - Sheet
   # Sunrise-End
 
 - type: entity
