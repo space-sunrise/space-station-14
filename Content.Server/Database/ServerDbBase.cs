@@ -282,7 +282,9 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    profile.Width,
+                    profile.Height
                 ),
                 spawnPriority,
                 jobs,
@@ -310,6 +312,8 @@ namespace Content.Server.Database
             profile.Voice = humanoid.Voice; // Sunrise-TTS
             profile.BodyType = humanoid.BodyType;
             profile.Age = humanoid.Age;
+            profile.Width = appearance.Width; //Sunrise
+            profile.Height = appearance.Height; //Sunrise
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;

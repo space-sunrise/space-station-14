@@ -295,7 +295,6 @@
     - FaceCovered # INTERACTIONS
   # SUNRISE EDIT
 
-
 - type: entity
   parent: [ ClothingMaskGasSwat, BaseSecurityContraband ]
   id: ClothingMaskGasBlueShield
@@ -306,6 +305,24 @@
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: [ ClothingMaskBase, BaseMajorContraband ]
+  id: ClothingMaskDogi
+  name: samurai mask
+  description: Traditional Japanese mask.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
+  - type: BreathMask
   # SUNRISE EDIT
   - type: Tag
     tags:

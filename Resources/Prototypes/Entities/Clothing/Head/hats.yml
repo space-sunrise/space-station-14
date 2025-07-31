@@ -58,9 +58,9 @@
   description: A stylish clothing option for security officers.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/beret_security.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Head/Hats/beret_security.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security.rsi #Sunrise-Edit
   - type: Tag
     tags:
     - ClothMade

@@ -357,9 +357,9 @@
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Coats/warden.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/warden.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Coats/warden.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/warden.rsi #Sunrise-Edit
 
 - type: entity
   parent: ClothingOuterStorageBase

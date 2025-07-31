@@ -236,21 +236,21 @@
 - type: entity
   id: XenoArtifactWandering
   parent: BaseOneTimeXenoArtifactEffect
-  description: artifact-effect-hint-data-deleted # Sunrise edit
+  description: artifact-effect-description-wandering
   categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
     components:
     - type: RandomWalk
-      minSpeed: 12
-      maxSpeed: 20
-      minStepCooldown: 1
-      maxStepCooldown: 3
+      minSpeed: 20
+      maxSpeed: 40
+      minStepCooldown: 4
+      maxStepCooldown: 6
 
 - type: entity
   id: XenoArtifactSolutionStorage
   parent: BaseOneTimeXenoArtifactEffect
-  description: artifact-effect-hint-data-deleted # Sunrise edit
+  description: artifact-effect-description-solution-storage
   categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
@@ -279,7 +279,7 @@
 - type: entity
   id: XenoArtifactSpeedUp
   parent: BaseOneTimeXenoArtifactEffect
-  description: artifact-effect-hint-data-deleted # Sunrise edit
+  description: artifact-effect-description-speed-up
   categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
@@ -291,7 +291,7 @@
 - type: entity
   id: XenoArtifactDrill
   parent: BaseOneTimeXenoArtifactEffect
-  description: artifact-effect-hint-data-deleted # Sunrise edit
+  description: artifact-effect-description-drill
   categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
@@ -357,7 +357,7 @@
 - type: entity
   id: XenoArtifactGhost
   parent: BaseOneTimeXenoArtifactEffect
-  description: artifact-effect-hint-data-deleted # Sunrise edit
+  description: artifact-effect-description-ghost
   categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents
@@ -378,7 +378,7 @@
 - type: entity
   id: XenoArtifactOmnitool
   parent: BaseOneTimeXenoArtifactEffect
-  description: artifact-effect-hint-data-deleted # Sunrise edit
+  description: artifact-effect-description-omnitool
   categories: [ HideSpawnMenu ] # Sunrise added
   components:
   - type: XAEApplyComponents

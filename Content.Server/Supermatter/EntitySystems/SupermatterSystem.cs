@@ -26,6 +26,7 @@ using Content.Shared.Examine;
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Kitchen.Components;
+using Content.Shared.Weapons.Melee.EnergySword;
 using Content.Shared.Singularity.Components;
 using System;
 using Robust.Shared.Audio;
@@ -449,19 +450,27 @@ public sealed class SupermatterSystem : EntitySystem
                 return;
             }
 
-            _adminLogger.Add(LogType.Action, LogImpact.High, $"{EntityManager.ToPrettyString(args.User):player} is trying to extract a sliver from the supermatter crystal.");
-            _popup.PopupEntity(Loc.GetString("supermatter-tamper-begin"), args.User, args.User);
-
-            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 30, new SupermatterDoAfterEvent(), uid, target: uid, used: args.Used)
+            if (HasComp<SMCuttableComponent>(args.Used))
             {
-                BreakOnDamage = true,
-                BreakOnHandChange = true,
-                BreakOnMove = true,
-                BreakOnWeightlessMove = false,
-                NeedHand = true,
-                RequireCanInteract = true,
-            };
-            _doAfter.TryStartDoAfter(doAfterArgs);
+                _adminLogger.Add(LogType.Action, LogImpact.High, $"{EntityManager.ToPrettyString(args.User):player} is trying to extract a sliver from the supermatter crystal.");
+                _popup.PopupEntity(Loc.GetString("supermatter-tamper-begin"), args.User, args.User);
+
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 30, new SupermatterDoAfterEvent(), uid, target: uid, used: args.Used)
+                {
+                    BreakOnDamage = true,
+                    BreakOnHandChange = true,
+                    BreakOnMove = true,
+                    BreakOnWeightlessMove = false,
+                    NeedHand = true,
+                    RequireCanInteract = true,
+                };
+
+                _doAfter.TryStartDoAfter(doAfterArgs);
+            }
+            else
+            {
+                Vaporize(args.Used, uid);
+            }    
         }
     }
 

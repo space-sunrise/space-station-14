@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Numerics;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
@@ -32,13 +33,21 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
 
+    [DataField]
+    public float Width { get; set; } = 1f; //Sunrise
+
+    [DataField]
+    public float Height { get; set; } = 1f; //Sunrise
+
     public HumanoidCharacterAppearance(string hairStyleId,
         Color hairColor,
         string facialHairStyleId,
         Color facialHairColor,
         Color eyeColor,
         Color skinColor,
-        List<Marking> markings)
+        List<Marking> markings,
+        float width, //Sunrise
+        float height) //Sunrise
     {
         HairStyleId = hairStyleId;
         HairColor = ClampColor(hairColor);
@@ -47,52 +56,67 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         EyeColor = ClampColor(eyeColor);
         SkinColor = ClampColor(skinColor);
         Markings = markings;
+        Width = width; //Sunrise
+        Height = height; //Sunrise
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings))
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Width, other.Height)
     {
 
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height);
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height);
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height);
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Width, Height);
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Width, Height);
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Width, Height);
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Width, Height);
     }
+
+    //Sunrise start
+    public HumanoidCharacterAppearance WithWidth(float newWidth)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newWidth, Height);
+    }
+
+    public HumanoidCharacterAppearance WithHeight(float newHeight)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, newHeight);
+    }
+    //Sunrise end
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
+
         var skinColor = speciesPrototype.SkinColoration switch
         {
             HumanoidSkinColor.HumanToned => Humanoid.SkinColor.HumanSkinTone(speciesPrototype.DefaultHumanSkinTone),
@@ -110,7 +134,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             Color.Black,
             skinColor,
-            new ()
+            new (),
+            speciesPrototype.DefaultWidth, //Sunrise
+            speciesPrototype.DefaultHeight //Sunrise
         );
     }
 
@@ -154,7 +180,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         // grab the species skin coloration type.
         var skinType = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species).SkinColoration;
 
-        // declare some defaults. ensures that the hair and eyes on hues-colored species don't match the skin or one another. 
+        // declare some defaults. ensures that the hair and eyes on hues-colored species don't match the skin or one another.
         var newSkinColor = colorPalette[0];
         var newHairColor = colorPalette[1];
         var newEyeColor = colorPalette[2];
@@ -224,7 +250,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 newHairStyle = markings.Count > 0 ? random.Pick(markings) : HairStyles.DefaultHairStyle;
             }
 
-            // for every other category, 
+            // for every other category,
             else if (markings.Count > 0)
             {
                 // roll a die. currently a 1 in 3 chance per category, except Tails, which are 1 in 2 (because of the effect they have on the silhouettes of spiders and moths.)
@@ -253,7 +279,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                         if (lastMarking != null && lastMarking == protoToAdd)
                             continue;
 
-                        // set gauze to white. 
+                        // set gauze to white.
                         // side note, I really hate that gauze isn't its own category. please fix that so that i can make this not suck as much.
                         // or, like, give it its own color rules. or something.
                         if (markingToAdd.MarkingId.Contains("gauze", StringComparison.OrdinalIgnoreCase))
@@ -282,8 +308,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             }
         }
 
+        //Sunrise start
+        var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
+        var newWidth = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
+        var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
+        //Sunrise end
+
         // at the end of all that, we should have new values for each of these, so we set the character appearance to these new values.
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, newMarkings);
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, newMarkings, newWidth, newHeight); // Sunrise edit
 
         // helper functions:
         float RandomizeColor(float channel)
@@ -297,11 +329,11 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
             var hVal = hsl.X + angle;
             hVal = hVal >= 0.360 ? hVal - 0.360 : hVal;
-            var positiveHSL = new Vector4((float)hVal, hsl.Y, hsl.Z, hsl.W);
+            var positiveHSL = new Robust.Shared.Maths.Vector4((float)hVal, hsl.Y, hsl.Z, hsl.W);
 
             var hVal1 = hsl.X - angle;
             hVal1 = hVal1 <= 0 ? hVal1 + 0.360 : hVal1;
-            var negativeHSL = new Vector4((float)hVal1, hsl.Y, hsl.Z, hsl.W);
+            var negativeHSL = new Robust.Shared.Maths.Vector4((float)hVal1, hsl.Y, hsl.Z, hsl.W);
 
             var c0 = Color.FromHsl(positiveHSL);
             var c1 = Color.FromHsl(negativeHSL);
@@ -341,7 +373,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             }
 
             // otherwise, create a new color with the H, S, and A of toSquash, but the L of skinColor
-            var newColor = new Vector4(toSquashHSL.X, toSquashHSL.Y, skinColorHSL.Z, toSquashHSL.W);
+            var newColor = new Robust.Shared.Maths.Vector4(toSquashHSL.X, toSquashHSL.Y, skinColorHSL.Z, toSquashHSL.W);
             return Color.FromHsl(newColor);
         }
     }
@@ -359,6 +391,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var hairColor = ClampColor(appearance.HairColor);
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
+
+        var width = appearance.Width; //Sunrise
+        var height = appearance.Height; //Sunrise
 
         var proto = IoCManager.Resolve<IPrototypeManager>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
@@ -403,6 +438,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 skinColor = Humanoid.SkinColor.ValidSkinTone(speciesProto.SkinColoration, skinColor);
             }
 
+            width = Math.Clamp(width, speciesProto.MinWidth, speciesProto.MaxWidth); // Sunrise
+            height = Math.Clamp(height, speciesProto.MinHeight, speciesProto.MaxHeight); // Sunrise
+
             markingSet.EnsureSpecies(species, skinColor, markingManager);
             markingSet.EnsureSexes(sex, markingManager);
             markingSet.FilterSponsor(sponsorPrototypes, markingManager); // Sunrise-Sponsors
@@ -415,7 +453,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             facialHairColor,
             eyeColor,
             skinColor,
-            markingSet.GetForwardEnumerator().ToList());
+            markingSet.GetForwardEnumerator().ToList(),
+            width,
+            height);
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
@@ -428,6 +468,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        if (Width != other.Width) return false; //Sunrise
+        if (Height != other.Height) return false; //Sunrise
         return true;
     }
 
@@ -441,7 +483,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                FacialHairColor.Equals(other.FacialHairColor) &&
                EyeColor.Equals(other.EyeColor) &&
                SkinColor.Equals(other.SkinColor) &&
-               Markings.SequenceEqual(other.Markings);
+               Markings.SequenceEqual(other.Markings) &&
+               Width == other.Width && //starlight
+               Height == other.Height;
     }
 
     public override bool Equals(object? obj)
@@ -451,7 +495,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, new Vector2(Width, Height));
     }
 
     public HumanoidCharacterAppearance Clone()

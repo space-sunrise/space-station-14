@@ -11,6 +11,12 @@
   skinColoration: Hues
   sponsorOnly: false
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
+  defaultHeight: 1.1
+  defaultWidth: 1.2
+  maxHeight: 1.15
+  maxWidth: 1.25
+  minHeight: 0.95
+  minWidth: 1.05
 
 - type: bodyType
   id: HumanoidXenoNormal

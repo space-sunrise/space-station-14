@@ -17,3 +17,9 @@
   dollPrototype: MobDwarfDummy
   skinColoration: HumanToned
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit
+  defaultHeight: 0.80
+  defaultWidth: 1
+  maxHeight: 1
+  maxWidth: 1.1
+  minHeight: 0.8
+  minWidth: 0.90

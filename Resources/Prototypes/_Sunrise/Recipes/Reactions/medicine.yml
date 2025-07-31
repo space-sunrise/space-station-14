@@ -74,3 +74,17 @@
       amount: 3
   products:
     Darvinium: 3
+
+- type: reaction
+  id: Inc
+  reactants:
+    Oil:
+      amount: 5
+    Ethanol:
+      amount: 1
+    Ash:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    Inc: 4
