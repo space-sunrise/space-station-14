@@ -48,7 +48,7 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             Sawmill.Error($"Could not find lawset prototype: {lawsetId}");
             return;
         }
-        
+
         Sawmill.Debug($"Target station for law changes: {targetStation} with grids: {string.Join(", ", stationData.Grids)}");
 
         // Convert the prototype's law IDs to actual law objects using LINQ
@@ -61,7 +61,7 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             })
             .ToList();
 
-        Sawmill.Info($"Converted {laws.Count} laws");
+        Sawmill.Debug($"Converted {laws.Count} laws");
 
         var borgCount = 0;
         var changedCount = 0;
@@ -71,7 +71,7 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
         {
             borgCount++;
             var borgGrid = Transform(ent).GridUid;
-            Sawmill.Info($"Found borg {ent} on grid {borgGrid}");
+            Sawmill.Debug($"Found borg {ent} on grid {borgGrid}");
 
             // Skip borgs with blocked law changes
             if (HasComp<BlockLawChangeComponent>(ent))
@@ -83,17 +83,17 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             // Only change laws for borgs on grids that belong to the chosen station
             if (borgGrid == null || !stationGrids.Contains(borgGrid.Value))
             {
-                Sawmill.Info(
+                Sawmill.Debug(
                     $"Skipping borg {ent} - not on station grids (on {borgGrid}, station grids: {string.Join(", ", stationData.Grids)})");
                 continue;
             }
 
-            Sawmill.Info($"Changing laws for borg {ent}");
+            Sawmill.Debug($"Changing laws for borg {ent}");
             _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);
             changedCount++;
         }
 
-        Sawmill.Info($"EpsilonDeathSquadLawsetRule completed: found {borgCount} borgs, changed laws for {changedCount} borgs");
+        Sawmill.Debug($"EpsilonDeathSquadLawsetRule completed: found {borgCount} borgs, changed laws for {changedCount} borgs");
     }
 
     public void SetTargetStation(EntityUid ruleEntity, EntityUid station)
