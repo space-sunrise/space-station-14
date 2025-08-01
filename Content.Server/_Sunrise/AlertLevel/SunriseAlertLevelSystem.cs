@@ -24,6 +24,7 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
 
     private const string DefaultAlertLevelSet = "stationAlerts";
     private const string EpsilonAlertLevel = "epsilon";
+    private const string EpsilonBorgLawChanges = "EpsilonDeathSquadLawset";
     private ISawmill _sawmill = default!;
 
     public override void Initialize()
@@ -217,7 +218,7 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
         if (level == EpsilonAlertLevel)
         {
             _sawmill.Info($"Epsilon alert level triggered on station {station}, adding Death Squad Lawset event");
-            var eventEnt = _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+            var eventEnt = _gameTicker.AddGameRule(EpsilonBorgLawChanges);
 
             // Используем систему для установки станции
             var epsilonRule = EntityManager.System<EpsilonDeathSquadLawsetRule>();
