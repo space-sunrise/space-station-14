@@ -95,4 +95,12 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
 
         Sawmill.Info($"EpsilonDeathSquadLawsetRule completed: found {borgCount} borgs, changed laws for {changedCount} borgs");
     }
+
+    public void SetTargetStation(EntityUid ruleEntity, EntityUid station)
+    {
+        if (TryComp<EpsilonDeathSquadLawsetComponent>(ruleEntity, out var comp))
+        {
+            comp.TargetStation = station;
+        }
+    }
 }
