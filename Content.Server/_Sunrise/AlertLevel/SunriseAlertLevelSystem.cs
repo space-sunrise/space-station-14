@@ -48,6 +48,7 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
                     RaiseLocalEvent(new AlertLevelDelayFinishedEvent());
                     alert.ActiveDelay = false;
                 }
+
                 continue;
             }
 
@@ -131,11 +132,18 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
         {
             return string.Empty;
         }
+
         return station.Comp.AlertLevels.DefaultLevel;
     }
 
-    public void SetLevel(EntityUid station, string level, bool playSound, bool announce, bool force = false,
-        bool locked = false, MetaDataComponent? dataComponent = null, AlertLevelComponent? component = null)
+    public void SetLevel(EntityUid station,
+        string level,
+        bool playSound,
+        bool announce,
+        bool force = false,
+        bool locked = false,
+        MetaDataComponent? dataComponent = null,
+        AlertLevelComponent? component = null)
     {
         if (!Resolve(station, ref component, ref dataComponent)
             || component.AlertLevels == null
@@ -178,7 +186,8 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
             announcement = locAnnouncement;
         }
 
-        var announcementFull = Loc.GetString("alert-level-announcement", ("name", name), ("announcement", announcement));
+        var announcementFull =
+            Loc.GetString("alert-level-announcement", ("name", name), ("announcement", announcement));
 
         var playDefault = false;
         if (playSound)

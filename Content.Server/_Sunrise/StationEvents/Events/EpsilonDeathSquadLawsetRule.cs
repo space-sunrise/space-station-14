@@ -24,11 +24,12 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
         GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
-
-        Sawmill.Info("EpsilonDeathSquadLawsetRule started");
-
+       var targetStation = StationSystem.GetOwningStation(uid);
+       var nukeXform = Transform(uid);
+       var stationUid = StationSystem.GetStationInMap(nukeXform.MapID);
+        Sawmill.Info("EpsilonDeathSquadLawsetRule started" + targetStation);
+        Sawmill.Info("A+" +stationUid);
         // Get the target station from the component
-        var targetStation = comp.TargetStation;
         if (targetStation == EntityUid.Invalid)
         {
             Sawmill.Warning("No target station specified for Epsilon Death Squad Lawset");

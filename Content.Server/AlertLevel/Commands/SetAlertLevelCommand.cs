@@ -77,7 +77,7 @@ namespace Content.Server.AlertLevel.Commands
                 return;
             }
             _entitySystems.GetEntitySystem<SunriseAlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
-            _entitySystems.GetEntitySystem<AlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
+            //_entitySystems.GetEntitySystem<AlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
         }
 
         private string[] GetStationLevelNames(EntityUid station)
