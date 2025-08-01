@@ -995,15 +995,17 @@
     coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: FireProtection #Sunrise-Eit
+    reduction: 0.3 #Sunrise-Edit
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
         Slash: 0.5
         Piercing: 0.6
-        Heat: 0.1
-        Cold: 0.1
-        Shock: 0.1
+        Heat: 0.4 #Sunrise-Start
+        Cold: 0.4
+        Shock: 0.4 #Sunrise-End
         Radiation: 0.1
         Caustic: 0.1
   - type: ZombificationResistance
