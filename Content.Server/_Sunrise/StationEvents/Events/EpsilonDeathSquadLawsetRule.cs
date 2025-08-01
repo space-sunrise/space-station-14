@@ -48,8 +48,8 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             Sawmill.Error($"Could not find lawset prototype: {lawsetId}");
             return;
         }
-
-        Sawmill.Info($"Found lawset prototype: {lawsetId} with {lawsetProto.Laws.Count} laws");
+        
+        Sawmill.Debug($"Target station for law changes: {targetStation} with grids: {string.Join(", ", stationData.Grids)}");
 
         // Convert the prototype's law IDs to actual law objects using LINQ
         var laws = lawsetProto.Laws

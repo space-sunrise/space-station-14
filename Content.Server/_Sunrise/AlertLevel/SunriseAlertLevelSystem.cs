@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server._Sunrise.StationEvents.Components;
 using Content.Server._Sunrise.StationEvents.Events;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
