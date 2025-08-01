@@ -3,7 +3,8 @@ using Content.Server.Silicons.Laws;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
-using EpsilonDeathSquadLawsetComponent = Content.Server._Sunrise.StationEvents.Components.EpsilonDeathSquadLawsetComponent;
+using EpsilonDeathSquadLawsetComponent =
+    Content.Server._Sunrise.StationEvents.Components.EpsilonDeathSquadLawsetComponent;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
@@ -20,7 +21,6 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
     [Dependency] private readonly TagSystem _tag = default!;
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
-
 
 
     protected override void Started(EntityUid uid,
@@ -90,7 +90,8 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             // Only change laws for borgs on grids that belong to the chosen station
             if (borgGrid == null || !stationGrids.Contains(borgGrid.Value))
             {
-                Sawmill.Info($"Skipping borg {ent} - not on station grids (on {borgGrid}, station grids: {string.Join(", ", stationData.Grids)})");
+                Sawmill.Info(
+                    $"Skipping borg {ent} - not on station grids (on {borgGrid}, station grids: {string.Join(", ", stationData.Grids)})");
                 continue;
             }
 

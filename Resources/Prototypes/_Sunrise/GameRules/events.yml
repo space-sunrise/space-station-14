@@ -135,11 +135,11 @@
       mindRoles:
       - MindRoleLoneAbductor
 
-#- type: entity
- # id: EpsilonDeathSquadLawset
-  #parent: BaseStationEvent
- # components:
-#  - type: StationEvent
-#    weight: 0 # Only triggered by code/admin
-#    duration: 1
-#  - type: EpsilonDeathSquadLawsetRule
+- type: entity
+  id: EpsilonDeathSquadLawset
+  parent: BaseStationEvent
+  components:
+  - type: StationEvent
+    weight: 0 # Only triggered by code/admin
+    duration: 1
+  - type: EpsilonDeathSquadLawsetRule
