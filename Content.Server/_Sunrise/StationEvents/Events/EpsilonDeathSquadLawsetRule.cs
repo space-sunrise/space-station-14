@@ -3,13 +3,10 @@ using Content.Server.Silicons.Laws;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
-using EpsilonDeathSquadLawsetComponent =
-    Content.Server._Sunrise.StationEvents.Components.EpsilonDeathSquadLawsetComponent;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Tag;
+using EpsilonDeathSquadLawsetComponent = Content.Server._Sunrise.StationEvents.Components.EpsilonDeathSquadLawsetComponent;
 
 namespace Content.Server._Sunrise.StationEvents.Events;
 
@@ -17,8 +14,6 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
 

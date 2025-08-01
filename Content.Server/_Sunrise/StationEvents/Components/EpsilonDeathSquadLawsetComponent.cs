@@ -14,4 +14,5 @@ public sealed partial class EpsilonDeathSquadLawsetComponent : Component
     /// </summary>
     [DataField]
     public EntityUid TargetStation = EntityUid.Invalid;
+
 }
