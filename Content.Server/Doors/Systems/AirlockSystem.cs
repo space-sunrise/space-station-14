@@ -7,7 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Wires;
 using Robust.Shared.Player;
-
+using Content.Shared.Silicons.StationAi;
 namespace Content.Server.Doors.Systems;
 
 public sealed class AirlockSystem : SharedAirlockSystem
@@ -62,6 +62,11 @@ public sealed class AirlockSystem : SharedAirlockSystem
             panel.Open &&
             TryComp<ActorComponent>(args.User, out var actor))
         {
+            //Sunrise-start
+            if (HasComp<StationAiHeldComponent>(args.User))
+                return;
+            //Sunrise-end
+
             if (TryComp<WiresPanelSecurityComponent>(uid, out var wiresPanelSecurity) &&
                 !wiresPanelSecurity.WiresAccessible)
                 return;

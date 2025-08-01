@@ -15462,11 +15462,15 @@ entities:
     - type: Transform
       pos: 33.5,60.5
       parent: 2
+    - type: NavMapBeacon
+      text: Air Tunnel
   - uid: 7740
     components:
     - type: Transform
       pos: 21.5,51.5
       parent: 2
+    - type: NavMapBeacon
+      text: AI Foyer
 - proto: DefaultStationBeaconAICore
   entities:
   - uid: 7738
@@ -15530,6 +15534,8 @@ entities:
     - type: Transform
       pos: 25.5,-4.5
       parent: 2
+    - type: NavMapBeacon
+      text: Nightclub
 - proto: DefaultStationBeaconBotany
   entities:
   - uid: 7750
@@ -15731,11 +15737,15 @@ entities:
     - type: Transform
       pos: 58.5,67.5
       parent: 2
+    - type: NavMapBeacon
+      text: Solars North
   - uid: 7742
     components:
     - type: Transform
       pos: -3.5,-10.5
       parent: 2
+    - type: NavMapBeacon
+      text: Solars South
 - proto: DefaultStationBeaconTechVault
   entities:
   - uid: 7777

@@ -41,6 +41,7 @@ namespace Content.Shared.Movement.Pulling.Systems;
 public sealed class PullingSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Sunrise-edit
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
@@ -279,11 +280,8 @@ public sealed class PullingSystem : EntitySystem
             return;
         }
         // Sunrise-start
-        if (TryComp<CarriableComponent>(component.Pulling, out var carriable))
-        {
+        if (TryComp<CarriableComponent>(component.Pulling, out var carriable) && !_mobState.IsAlive(component.Pulling.Value))
             args.ModifySpeed(carriable.WalkSpeedModifier, carriable.SprintSpeedModifier);
-            _popup.PopupPredicted(Loc.GetString("can-carry"), uid, uid, PopupType.SmallCaution);
-        }
         // Sunrise-end
 
         args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);

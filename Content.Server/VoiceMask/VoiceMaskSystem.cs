@@ -38,7 +38,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
 
         InitializeTTS(); // Sunrise-TTS
 
-        //Subs.CVar(_cfgManager, CCVars.MaxNameLength, value => _maxNameLength = value, true);
+        Subs.CVar(_cfgManager, CCVars.MaxNameLength, value => _maxNameLength = value, true);
     }
 
     private void OnTransformSpeakerName(Entity<VoiceMaskComponent> entity, ref InventoryRelayedEvent<TransformSpeakerNameEvent> args)

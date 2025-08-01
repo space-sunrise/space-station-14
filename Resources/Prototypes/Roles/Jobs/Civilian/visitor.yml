@@ -3,6 +3,9 @@
   name: job-name-visitor
   description: job-description-visitor
   playTimeTracker: JobVisitor
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hr # Sunrise-RoleTime
   canBeAntag: false
   icon: JobIconVisitor
   setPreference: false

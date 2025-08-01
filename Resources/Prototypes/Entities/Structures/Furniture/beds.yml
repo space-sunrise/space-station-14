@@ -8,7 +8,12 @@
     damage:
       types:
         Poison: -0.1
+        Heat: -0.05 #SUNRISE-EDIT
+        Cold: -0.1 #SUNRISE-EDIT
         Blunt: -0.1
+        Piercing: -0.05 #SUNRISE-EDIT
+        Slash: -0.05 #SUNRISE-EDIT
+        Mangleness: -0.02 #SUNRISE-EDIT
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -80,8 +85,12 @@
     damage:
       types:
         Poison: -0.2
+        Heat: -0.1 #SUNRISE-EDIT
         Cold: -0.4
         Blunt: -0.2
+        Piercing: -0.1 #SUNRISE-EDIT
+        Slash: -0.1 #SUNRISE-EDIT
+        Mangleness: -0.1 #SUNRISE-EDIT
   - type: Construction
     graph: bed
     node: medicalbed

@@ -70,12 +70,22 @@
     - type: Sprite
       sprite: _Sunrise/FleshCult/FleshHandMods/flesh_fist.rsi
       state: icon
+    - type: UseDelay
+      delay: 6
+    - type: UseDelayOnMeleeHit
+    - type: MeleeThrowOnHit
+      stunTime: 1.5
+      activateOnThrown: true
+      distance: 6
+      speed: 7
     - type: MeleeWeapon
-      attackRate: 0.75
+      attackRate: 0.5
       damage:
         types:
-          Blunt: 45
-          Structural: 300
+          Blunt: 22
+          Structural: 44
+      soundHit:
+        collection: MetalThud
     - type: Item
       size: Ginormous
 
@@ -94,14 +104,25 @@
     - type: Sprite
       sprite: _Sunrise/FleshCult/FleshHandMods/flesh_blade.rsi
       state: icon
+    - type: Prying
+      speedModifier: 2.5
+      pryPowered: true
+      force: true
     - type: MeleeWeapon
+      wideAnimationRotation: 0
+      angle: 0
+      animation: WeaponArcThrust
+      attackRate: 1.2
       damage:
         types:
-          Slash: 30
+          Piercing: 19
+      resistanceBypass: true
+      resistanceBypassOnWide: true
+      soundHit:
+          path: /Audio/Weapons/bladeslice.ogg
     - type: Item
       size: Huge
       sprite: _Sunrise/FleshCult/FleshHandMods/flesh_blade.rsi
-    - type: DisarmMalus
 
 - type: entity
   categories: [ HideSpawnMenu ]

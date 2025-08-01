@@ -24,7 +24,7 @@
     EnergyShotgunStealObjective: 0.5
     # Sunrise-Start
     PlutoniumCoreStealObjective: 0.5
-    MultiphaseEnergygunStealObjective: 1
+    #MultiphaseEnergygunStealObjective: 1 # Sunrise-Edit: ОСЩ больше не появляется на станции
     CMOAdvancedDefibrillatorStealObjective: 1
     StealSupermatterSliverObjective: 1
     HandheldFaxStealObjective: 1

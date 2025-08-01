@@ -6,6 +6,11 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.FleshCult;
 
+public sealed partial class FleshCultistNightVisionMutationEvent : InstantActionEvent
+{
+
+}
+
 public sealed partial class FleshCultistInsulatedImmunityMutationEvent : InstantActionEvent
 {
 

@@ -265,6 +265,7 @@
     Shock: 0.0
     Slash: 0.25
     Structural: 0.0
+    Mangleness: 0.0 # Sunrise-Edit
 
 - type: damageModifierSet
   id: SlimePet # Very survivable slimes

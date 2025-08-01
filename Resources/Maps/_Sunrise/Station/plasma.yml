@@ -71611,6 +71611,9 @@ entities:
     - type: Transform
       pos: -138.5,-5.5
       parent: 2
+    - type: NavMapBeacon
+      color: '#EFB34193'
+      text: TEG Control Room
     - type: WarpPoint
       location: Комната контроля ТЭГа
 - proto: DefaultStationBeaconAIPower
@@ -71742,6 +71745,8 @@ entities:
     - type: Transform
       pos: -36.5,6.5
       parent: 2
+    - type: NavMapBeacon
+      text: Ангар пода СБ
     - type: WarpPoint
       location: Ангар пода СБ
 - proto: DefaultStationBeaconCaptainsQuarters
@@ -71868,6 +71873,8 @@ entities:
     - type: Transform
       pos: -95.5,-2.5
       parent: 2
+    - type: NavMapBeacon
+      text: 'Plasma Pit #045'
     - type: WarpPoint
       location: 'Озеро плазмы #045'
     - type: Label
@@ -71879,6 +71886,8 @@ entities:
     - type: Transform
       pos: -129.5,33.5
       parent: 2
+    - type: NavMapBeacon
+      text: Кристалл супер материи
     - type: WarpPoint
       location: Кристалл суперматерии
   - uid: 11007
@@ -72022,6 +72031,8 @@ entities:
     - type: Transform
       pos: -22.5,-51.5
       parent: 2
+    - type: NavMapBeacon
+      text: Virology
     - type: WarpPoint
       location: Вирусология
   - uid: 11024
@@ -72029,6 +72040,8 @@ entities:
     - type: Transform
       pos: -19.5,-19.5
       parent: 2
+    - type: NavMapBeacon
+      text: Psychology
     - type: WarpPoint
       location: Кабинет Психолога
 - proto: DefaultStationBeaconMorgue

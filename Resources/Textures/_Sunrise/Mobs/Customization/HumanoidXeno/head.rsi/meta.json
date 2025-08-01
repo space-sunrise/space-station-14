@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for sunrise",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pretor_head",
+      "directions": 4
+    },
+    {
+      "name": "queen_head",
+      "directions": 4
+    },
+    {
+      "name": "runner_head",
+      "directions": 4
+    },
+    {
+      "name": "spitter_head",
+      "directions": 4
+    },
+    {
+      "name": "spitter_teeth",
+      "directions": 4
+    },
+    {
+      "name": "queen_teeth",
+      "directions": 4
+    },
+    {
+      "name": "pretor_teeth",
+      "directions": 4
+    },
+    {
+      "name": "drone_teeth",
+      "directions": 4
+    },
+    {
+      "name": "runner_teeth",
+      "directions": 4
+    },
+    {
+      "name": "predalien_head",
+      "directions": 4
+    },
+    {
+      "name": "predalien_mandibles",
+      "directions": 4
+    },
+    {
+      "name": "predalien_teeth",
+      "directions": 4
+    }
+  ]
+}

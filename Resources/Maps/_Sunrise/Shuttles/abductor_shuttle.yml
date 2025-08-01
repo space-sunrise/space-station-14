@@ -4,8 +4,8 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/29/2025 12:03:08
-  entityCount: 301
+  time: 07/29/2025 19:59:42
+  entityCount: 295
 maps: []
 grids:
 - 1
@@ -239,6 +239,11 @@ entities:
     - type: DeviceList
       devices:
       - 295
+      - 102
+      - 278
+      - 292
+      - 6
+      - 225
 - proto: APCBasic
   entities:
   - uid: 147
@@ -813,11 +818,6 @@ entities:
       parent: 1
 - proto: GasPassiveVent
   entities:
-  - uid: 6
-    components:
-    - type: Transform
-      pos: 0.5,4.5
-      parent: 1
   - uid: 100
     components:
     - type: Transform
@@ -830,35 +830,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-5.5
       parent: 1
-  - uid: 278
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,0.5
-      parent: 1
-  - uid: 292
-    components:
-    - type: Transform
-      pos: 4.5,4.5
-      parent: 1
-  - uid: 293
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-3.5
-      parent: 1
-  - uid: 294
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-3.5
-      parent: 1
-  - uid: 301
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,0.5
-      parent: 1
 - proto: GasPipeBend
   entities:
   - uid: 94
@@ -866,22 +837,22 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
+  - uid: 283
+    components:
+    - type: Transform
+      pos: 4.5,-1.5
+      parent: 1
   - uid: 286
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-1.5
       parent: 1
-  - uid: 296
-    components:
-    - type: Transform
-      pos: 5.5,2.5
-      parent: 1
-  - uid: 297
+  - uid: 288
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 5.5,-1.5
+      pos: 4.5,2.5
       parent: 1
 - proto: GasPipeStraight
   entities:
@@ -895,12 +866,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,3.5
-      parent: 1
-  - uid: 102
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,4.5
       parent: 1
   - uid: 163
     components:
@@ -919,11 +884,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-4.5
-      parent: 1
-  - uid: 274
-    components:
-    - type: Transform
-      pos: -0.5,3.5
       parent: 1
   - uid: 276
     components:
@@ -978,17 +938,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-  - uid: 298
+  - uid: 294
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,1.5
-      parent: 1
-  - uid: 299
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-0.5
+      rot: -1.5707963267948966 rad
+      pos: -1.5,4.5
       parent: 1
 - proto: GasPipeTJunction
   entities:
@@ -1010,28 +964,76 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,2.5
       parent: 1
-  - uid: 283
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,2.5
-      parent: 1
   - uid: 287
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-  - uid: 288
+- proto: GasPressurePump
+  entities:
+  - uid: 274
     components:
     - type: Transform
-      pos: 4.5,-1.5
+      pos: -0.5,3.5
       parent: 1
-  - uid: 300
+    - type: GasPressurePump
+      targetPressure: 130
+      enabled: True
+- proto: GasVentPump
+  entities:
+  - uid: 6
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 17
+  - uid: 102
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 5.5,0.5
+      pos: -1.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 17
+  - uid: 225
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 17
+  - uid: 278
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-3.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 17
+  - uid: 292
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-3.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 17
 - proto: GasVentScrubber
   entities:
   - uid: 295

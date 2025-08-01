@@ -113,6 +113,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
+        Mangleness: 5 #SUNRISE-EDIT
     allowSelfRepair: false
   # Sunrise-End
   - type: BorgChassis
