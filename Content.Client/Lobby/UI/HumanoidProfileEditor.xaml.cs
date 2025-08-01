@@ -1379,7 +1379,7 @@ namespace Content.Client.Lobby.UI
             var heightRaw = HeightSlider.Value;
             var weightRaw = WidthSlider.Value;
 
-            var height = speciesPrototype.StandardSize * heightRaw;
+            var height = speciesPrototype.StandardSize * heightRaw + 13; // 13 тут просто как заглушка, чтобы рост получатся 200 метра максимум
             var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
             HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
             WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
