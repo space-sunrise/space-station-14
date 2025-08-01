@@ -17,6 +17,7 @@
   access:
     - Maintenance
     - Research
+    - Security
 
 - type: startingGear
   id: PrisonScientistGear
