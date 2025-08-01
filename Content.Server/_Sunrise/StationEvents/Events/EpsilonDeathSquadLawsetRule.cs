@@ -24,27 +24,24 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
         GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
-       var targetStation = StationSystem.GetOwningStation(uid);
-       var nukeXform = Transform(uid);
-       var stationUid = StationSystem.GetStationInMap(nukeXform.MapID);
-        Sawmill.Info("EpsilonDeathSquadLawsetRule started" + targetStation);
-        Sawmill.Info("A+" +stationUid);
-        // Get the target station from the component
+        // Теперь можете использовать comp.TargetStation
+        var targetStation = comp.TargetStation;
+
+        // Если TargetStation не установлена, можете установить случайную
         if (targetStation == EntityUid.Invalid)
         {
-            Sawmill.Warning("No target station specified for Epsilon Death Squad Lawset");
-            return;
+            if (!TryGetRandomStation(out var chosenStation))
+                return;
+            targetStation = chosenStation.Value;
+            comp.TargetStation = targetStation; // Сохраняем для последующего использования
         }
 
-        // Get the station data to access its grids
+        // Проверяем, что у нас есть валидная станция
         if (!TryComp<StationDataComponent>(targetStation, out var stationData))
         {
-            Sawmill.Error($"Could not get station data for station {targetStation}");
+            Logger.GetSawmill("station-event").Error($"Target station {targetStation} does not have StationDataComponent");
             return;
         }
-
-        Sawmill.Info($"Target station for law changes: {targetStation} with grids: {string.Join(", ", stationData.Grids)}");
-
         var lawsetId = DeathSquadLawsetId;
         if (!_prototypeManager.TryIndex<SiliconLawsetPrototype>(lawsetId, out var lawsetProto))
         {

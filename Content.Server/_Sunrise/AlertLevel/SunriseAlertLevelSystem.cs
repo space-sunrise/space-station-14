@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Sunrise.StationEvents.Components;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
@@ -216,7 +217,13 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
         if (level == EpsilonAlertLevel)
         {
             _sawmill.Info($"Epsilon alert level triggered on station {station}, adding Death Squad Lawset event");
-            _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+            // В SunriseAlertLevelSystem.cs при создании события
+            var eventEnt = _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+            if (TryComp<EpsilonDeathSquadLawsetComponent>(eventEnt, out var comp))
+            {
+                comp.TargetStation = station; // Устанавливаем конкретную станцию
+            }
+            _gameTicker.StartGameRule(eventEnt);
         }
 
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level, previousLevel));

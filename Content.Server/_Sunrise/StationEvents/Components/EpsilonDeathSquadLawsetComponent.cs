@@ -9,4 +9,10 @@ namespace Content.Server._Sunrise.StationEvents.Components;
 [RegisterComponent, Access(typeof(EpsilonDeathSquadLawsetRule))]
 public sealed partial class EpsilonDeathSquadLawsetComponent : Component
 {
+    /// <summary>
+    /// The station where the law changes should be applied.
+    /// </summary>
+    [DataField]
+    public EntityUid TargetStation = EntityUid.Invalid;
+
 }
