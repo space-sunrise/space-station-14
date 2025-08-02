@@ -1,0 +1,7 @@
+- type: construction
+  id: SnapPop
+  graph: SnapPopConstruction
+  startNode: start
+  targetNode: snappop
+  category: construction-category-misc
+  objectType: Item
