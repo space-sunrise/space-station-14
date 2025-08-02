@@ -99,8 +99,9 @@ namespace Content.Shared.Humanoid.Markings
             }
         }
 
-        public void SetMarkingEffect(int colorIndex, MarkingEffect effect) {
-            if(MarkingEffects.Count > colorIndex)
+        public void SetMarkingEffect(int colorIndex, MarkingEffect effect)
+        {
+            if(MarkingEffects.Count > colorIndex && colorIndex >= 0)
                 MarkingEffects[colorIndex] = effect;
         }
 
