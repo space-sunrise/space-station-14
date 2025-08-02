@@ -13,11 +13,14 @@ public sealed partial class GhostGui : UIWidget
     // Sunrise edit - для красивой панельки призрака
     public SunriseGhostTargetWindow TargetWindow { get; }
 
+    public GhostChillZoneWindow GhostChillZoneWindow { get; }
+
     public event Action? RequestWarpsPressed;
     public event Action? ReturnToBodyPressed;
     public event Action? GhostRolesPressed;
     private int _prevNumberRoles;
     public event Action? RespawnPressed; // Sunrise-Edit
+    public event Action? GhostChillZonePressed; // Sunrise-Edit
     public event Action? ChangeServerPressed;
 
     public GhostGui()
@@ -26,6 +29,7 @@ public sealed partial class GhostGui : UIWidget
 
         // Sunrise edit - для красивой панельки призрака
         TargetWindow = new SunriseGhostTargetWindow();
+        GhostChillZoneWindow = new GhostChillZoneWindow();
 
         MouseFilter = MouseFilterMode.Ignore;
 
@@ -34,6 +38,7 @@ public sealed partial class GhostGui : UIWidget
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesButton.StyleClasses.Remove(StyleBase.ButtonCaution);
         RespawnButton.OnPressed += _ => RespawnPressed?.Invoke(); // Sunrise-Edit
+        GhostChillZoneButton.OnPressed += _ => GhostChillZonePressed?.Invoke(); // Sunrise-Edit
         ChangeServerButton.OnPressed += _ => ChangeServerPressed?.Invoke();
     }
 

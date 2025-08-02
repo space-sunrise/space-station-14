@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Sunrise.GhostChillZone;
 using Content.Server.Administration.Logs;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -543,6 +544,14 @@ public sealed class GhostRoleSystem : EntitySystem
 
         if (player.AttachedEntity == null)
             return;
+
+        var ev = new CanGhostWarpEvent();
+        RaiseLocalEvent(player.AttachedEntity.Value, ev);
+
+        if (ev.Cancelled)
+        {
+            return;
+        }
 
         _followerSystem.StartFollowingEntity(player.AttachedEntity.Value, role);
     }

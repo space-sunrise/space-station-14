@@ -6,6 +6,7 @@
             <Button Name="ReturnToBodyButton" Text="{Loc ghost-gui-return-to-body-button}" />
             <Button Name="GhostWarpButton" Text="{Loc ghost-gui-ghost-warp-button}" />
             <Button Name="GhostRolesButton" />
+            <Button Name="GhostChillZoneButton" Text="{Loc ghost-chill-zone-button}"></Button>
         </BoxContainer>
         <!-- Sunrise-Sponsor-Start -->
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">

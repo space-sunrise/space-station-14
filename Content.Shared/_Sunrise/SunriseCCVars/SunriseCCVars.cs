@@ -1,5 +1,6 @@
 ﻿using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
 
@@ -523,4 +524,14 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
+
+    /*
+     * Ghost chill zone configuration.
+     */
+
+    public static readonly CVarDef<bool> GhostChillZoneEnabled =
+        CVarDef.Create("ghost_chill_zone.enable", true, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<string> GhostChillZoneMapPath =
+        CVarDef.Create("ghost_chill_zone.map_path", "Maps/_Sunrise/limbo.yml", CVar.SERVERONLY | CVar.ARCHIVE);
 }

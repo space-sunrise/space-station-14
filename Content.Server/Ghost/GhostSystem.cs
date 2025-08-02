@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.Ghost;
+using Content.Server._Sunrise.GhostChillZone;
 using Content.Server._Sunrise.NewLife;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
@@ -352,6 +353,14 @@ namespace Content.Server.Ghost
                 || !_ghostQuery.HasComp(attached))
             {
                 Log.Warning($"User {args.SenderSession.Name} tried to warp to {msg.Target} without being a ghost.");
+                return;
+            }
+
+            var ev = new CanGhostWarpEvent();
+            RaiseLocalEvent(args.SenderSession.AttachedEntity.Value, ev);
+
+            if (ev.Cancelled)
+            {
                 return;
             }
 

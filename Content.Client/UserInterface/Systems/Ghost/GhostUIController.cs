@@ -6,6 +6,7 @@ using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Content.Client._Sunrise.ServersHub;
+using Content.Shared._Sunrise.GhostChillZone;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
@@ -162,6 +163,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
         Gui.RespawnPressed += Respawn; // Sunrise-Sponsors
+        Gui.GhostChillZonePressed += GhostChillZonePressed; // Sunrise-Sponsors
         Gui.ChangeServerPressed += ChangeServerPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
 
@@ -169,6 +171,14 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         // Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
 
         UpdateGui();
+    }
+
+    private void GhostChillZonePressed()
+    {
+        if (Gui?.GhostChillZoneWindow is not { } window)
+            return;
+
+        Gui.GhostChillZoneWindow.OpenCentered();
     }
 
     public void UnloadGui()
@@ -180,6 +190,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
         Gui.RespawnPressed -= Respawn; // Sunrise-Sponsors
+        Gui.GhostChillZonePressed -= GhostChillZonePressed; // Sunrise-Sponsors
         Gui.ChangeServerPressed -= ChangeServerPressed;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
