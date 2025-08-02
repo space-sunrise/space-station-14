@@ -1,4 +1,4 @@
-marking-effect-type-color = Стандартный
+marking-effect-type-color = Без эффекта
 marking-effect-color-color-base = Цвет
 
 
