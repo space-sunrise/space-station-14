@@ -16,6 +16,6 @@
         icon:
           sprite: Objects/Tools/matches.rsi
           state: match_unlit
-        doAfter: 5
+        doAfter: 2
   - node: snappop
     entity: SnapPop

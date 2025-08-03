@@ -33,12 +33,14 @@
     maxIntensity: 0.01
     intensitySlope: 1
     totalIntensity: 0.01
-  - type: Construction #Sunrise-Add
+#Sunrise-start
+  - type: Construction
     graph: SnapPopConstruction
     node: snappop
   - type: Tag
     tags:
     - SnapPop
+#Sunrise-end
 
 - type: entity
   parent: BaseStorageItem
