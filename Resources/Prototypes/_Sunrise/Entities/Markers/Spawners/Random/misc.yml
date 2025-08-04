@@ -101,7 +101,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
       state: rock_spawner_crab
   - type: RandomSpawner
     prototypes:
@@ -178,7 +178,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
       state: rock_spawner_carp
   - type: RandomSpawner
     prototypes:
@@ -283,7 +283,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
       state: rock_spawner_space
   - type: RandomSpawner
     prototypes:
@@ -335,7 +335,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
       state: rock_spawner_asteroid
   - type: RandomSpawner
     prototypes:
@@ -395,14 +395,14 @@
 
 - type: entity
   name: Спавнер скальной шахты [Ксеноморфы 10%]
-  description: Спавнит скальную породу, при добыче которой может появиться рандомный рудокраб
+  description: Спавнит скальную породу, при добыче которой может появиться рандомный Ксеноморф.
   id: MineWallRockMobXenoSpawner
   parent: MineRockWallSpawner
   components:
   - type: Sprite
     layers:
     - state: red
-    - sprite:  _Sunrise/Structures/Walls/walls.rsi
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
       state: rock_spawner_xeno
   - type: RandomSpawner
     prototypes:
