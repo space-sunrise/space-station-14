@@ -3,7 +3,7 @@
   name: job-name-prison-worker
   description: job-description-prison-worker
   playTimeTracker: JobPrisonWorker
-  startingGear: ServiceWorkerGear
+  startingGear: PrisonWorkerGear
   icon: "JobIconPrisonWorker"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
@@ -11,11 +11,40 @@
   canBeAntag: false
   displayWeight: 40
   access:
-  - Service
+  - Security
+  - Brig
   - Maintenance
+  - External
+  - Service
+  - Chemistry
+  - Medical
+  - Engineering
+  - Atmospherics
   - Janitor
   - Bar
   - Hydroponics
   - Kitchen
-  - Security
-  - External
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+- type: startingGear
+  id: PrisonWorkerGear
+  equipment:
+    id: ServiceWorkerPDA
+    jumpsuit: ClothingUniformJumpsuitSecSummer
+    ears: ClothingHeadsetService
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: WeaponDisabler
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsJack
+    pocket1: Flash
+    pocket2: SecurityWhistle
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Handcuffs
+      - GrenadeFlashBang
+      - FlashlightSeclite

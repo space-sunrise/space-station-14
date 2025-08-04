@@ -3,7 +3,8 @@
   name: job-name-prison-chef
   description: job-description-prison-chef
   playTimeTracker: JobPrisonChef
-  startingGear: ChefGear
+  startingGear: PrisonChefGear
+  startingGear: PrisonChefGear
   requirements:
   - !type:RoleTimeRequirement
     role: JobChef
@@ -15,9 +16,38 @@
   canBeAntag: false
   displayWeight: 50
   access:
-  - Service
+  - Security
+  - Brig
   - Maintenance
+  - Service
   - Kitchen
   - Hydroponics
   - Bar
-  - Security
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonChefGear
+  equipment:
+    id: ChefPDA
+    jumpsuit: ClothingUniformJumpsuitChef
+    ears: ClothingHeadsetService
+    eyes: ClothingEyesGlassesSunglasses
+    head: ClothingHeadHatChef
+    mask: ClothingMaskItalianMoustache
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorRiot
+    belt: ClothingBeltChefFilled
+    back: ClothingBackpackWhite
+    shoes: ClothingShoesBootsJack
+    pocket1: SecurityWhistle
+    pocket2: WeaponDisabler
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Flash
+      - GrenadeFlashBang
+      - Handcuffs
+      - FlashlightSeclite

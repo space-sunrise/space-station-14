@@ -9,13 +9,40 @@
       time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
-  startingGear: DoctorGear
+  startingGear: PrisonDoctortGear
   icon: "JobIconPrisonDoctor"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   displayWeight: 60
   access:
-  - Medical
-  - Maintenance
-  - Chemistry
   - Security
+  - Brig
+  - Maintenance
+  - Medical
+  - Chemistry
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonDoctortGear
+  equipment:
+    id: MedicalPDA
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    ears: ClothingHeadsetMedical
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorRiot
+    belt: ClothingBeltMedicalFilled
+    back: ClothingBackpackMedical
+    shoes: ClothingShoesBootsJack
+    pocket1: SecurityWhistle
+    pocket2: WeaponDisabler
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Flash
+      - GrenadeFlashBang
+      - Handcuffs
+      - FlashlightSeclite

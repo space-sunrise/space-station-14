@@ -15,12 +15,32 @@
   supervisors: job-supervisors-head-of-prison
   displayWeight: 70
   access:
-    - Maintenance
-    - Research
-    - Security
+  - Security
+  - Brig
+  - Maintenance
+  - Research
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: PrisonScientistGear
   equipment:
+    id: SciencePDA
+    jumpsuit: ClothingUniformJumpsuitScientist
     ears: ClothingHeadsetScience
-    id: PrisonScientistPDA
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: WeaponDisabler
+    back: ClothingBackpackScience
+    shoes: ClothingShoesBootsJack
+    pocket1: Flash
+    pocket2: SecurityWhistle
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Handcuffs
+      - GrenadeFlashBang
+      - FlashlightSeclite

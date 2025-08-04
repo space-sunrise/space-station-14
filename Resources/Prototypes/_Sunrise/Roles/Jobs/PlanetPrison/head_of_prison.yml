@@ -32,7 +32,13 @@
     eyes: ClothingEyesGlassesSecurity
     id: HeadOfPrisonPDA
     gloves: ClothingHandsGlovesCombat
-    ears: ClothingHeadsetAltSecurity
+    ears: ClothingHeadsetAltCommand
     belt: ClothingBeltPrisonGuardianFilled
     pocket1: WeaponPistolDeagle
     pocket2: MagazineDeagle
+    outerClothing: ClothingOuterArmorRiot
+
+  storage:
+    belt:
+      - RadioHandheldSecurity
+      - Flash

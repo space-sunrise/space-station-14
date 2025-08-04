@@ -211,14 +211,7 @@
 - type: roleLoadout
   id: JobPrisonScientist
   groups:
-  - ScientistJumpsuit
-  - ScientistBackpack
-  - ScientistGloves
-  - ScientistShoes
-  - Glasses
-  - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -226,14 +219,8 @@
 - type: roleLoadout
   id: JobPrisonEngineer
   groups:
-  - StationEngineerHead
-  - StationEngineerJumpsuit
-  - StationEngineerBackpack
-  - StationEngineerOuterClothing
   - TrinketsEngineering
   - Trinkets
-  - SurvivalExtended
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -241,13 +228,8 @@
 - type: roleLoadout
   id: JobPrisonPilot
   groups:
-  - PrisonGuardJumpsuit
-  - PrisonGuardBackpack
-  - SecurityShoes
   - Trinkets
   - SecurityTrinkets
-  - SurvivalSecurity
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -255,11 +237,7 @@
 - type: roleLoadout
   id: JobPrisonWorker
   groups:
-  - BartenderJumpsuit
-  - CommonBackpack
-  - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -298,16 +276,7 @@
 - type: roleLoadout
   id: JobPrisonChef
   groups:
-  - GroupTankHarness
-  - ChefHead
-  - ChefMask
-  - ChefJumpsuit
-  - CommonBackpack
-  - ChefOuterClothing
-  - Glasses
-  - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -315,18 +284,7 @@
 - type: roleLoadout
   id: JobPrisonDoctor
   groups:
-  - GroupTankHarness
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - Glasses
-  - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
   - Bra
   - Pants
   - Socks

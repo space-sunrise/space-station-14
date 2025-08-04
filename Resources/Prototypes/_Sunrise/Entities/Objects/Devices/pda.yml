@@ -195,8 +195,8 @@
   - type: Pda
     id: PrisonScientistIDCard
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
+    borderColor: "#05000e"
+    accentVColor: "#0d001d"
   - type: Icon
     state: pda-scientist
 
