@@ -43,7 +43,6 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 7.5
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:

@@ -15,7 +15,6 @@
         damage:
           types:
             Poison: 0.65
-            Mangleness: 0.3
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold

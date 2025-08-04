@@ -284,7 +284,6 @@
     damage:
       types:
         Heat: -0.07
-        Mangleness: -0.01 #SUNRISE-EDIT
       groups:
         Brute: -0.07
   - type: Fingerprint

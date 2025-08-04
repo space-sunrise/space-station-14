@@ -211,7 +211,6 @@
         Heat: -5
         Shock: -5
         Caustic: -5
-        Mangleness: 1.5 #Sunrise-edit
 
 - type: entity
   parent: CableApcStack

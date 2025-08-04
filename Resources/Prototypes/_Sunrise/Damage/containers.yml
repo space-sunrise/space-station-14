@@ -7,7 +7,6 @@
   - Shock
   - Caustic
   - Structural
-  - Mangleness
 
 - type: damageContainer
   id: Mech
@@ -18,7 +17,6 @@
   - Shock
   - Caustic
   - Structural
-  - Mangleness
 
 - type: damageContainer
   id: Rift
