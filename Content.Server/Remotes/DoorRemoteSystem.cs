@@ -37,7 +37,8 @@ namespace Content.Shared.Remotes
                 || !_examine.InRangeUnOccluded(args.User,
                     args.Target.Value,
                     SharedInteractionSystem.MaxRaycastRange,
-                    null))
+                    null)
+                || !doorComp.ClickOpen) // Sunrise-Edit
 
             {
                 return;

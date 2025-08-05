@@ -171,8 +171,8 @@ namespace Content.Client.Entry
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffY", 240);
             _configManager.SetCVar("interface.resolutionAutoScaleMinimum", 0.5f);
 
-            _configManager.SetCVar(InteractionsCVars.WindowPosX, 0); // Sunrise-Edit
-            _configManager.SetCVar(InteractionsCVars.WindowPosY, 0); // Sunrise-Edit
+            _configManager.SetCVar("interactions.window_pos_x", 0); // Sunrise-Edit
+            _configManager.SetCVar("interactions.window_pos_y", 0); // Sunrise-Edit
         }
 
         public override void Shutdown()

@@ -134653,7 +134653,7 @@ entities:
   - uid: 2342
     components:
     - type: MetaData
-      name: шкаф Представителя Корпарации
+      name: шкаф Представителя Корпорации
     - type: Transform
       pos: -72.5,2.5
       parent: 2

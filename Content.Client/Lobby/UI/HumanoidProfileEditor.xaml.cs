@@ -295,10 +295,8 @@ namespace Content.Client.Lobby.UI
                     return;
                 }
 
-                if (_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-                {
-                    WidthSlider.Value = speciesPrototype.DefaultWidth;
-                }
+                ResetWidth();
+                ReloadPreview();
             };
 
             HeightResetButton.OnPressed += _ =>
@@ -308,10 +306,8 @@ namespace Content.Client.Lobby.UI
                     return;
                 }
 
-                if (_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-                {
-                    HeightSlider.Value = speciesPrototype.DefaultHeight;
-                }
+                ResetHeight();
+                ReloadPreview();
             };
             #endregion Size
             //Sinrise end
@@ -1383,7 +1379,7 @@ namespace Content.Client.Lobby.UI
             var heightRaw = HeightSlider.Value;
             var weightRaw = WidthSlider.Value;
 
-            var height = speciesPrototype.StandardSize * heightRaw;
+            var height = speciesPrototype.StandardSize * heightRaw + 13; // 13 тут просто как заглушка, чтобы рост получатся 200 метра максимум
             var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
             HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
             WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
@@ -1436,7 +1432,7 @@ namespace Content.Client.Lobby.UI
             UpdateSexControls(); // update sex for new species
             UpdateBodyTypes();
             UpdateSpeciesGuidebookIcon();
-            UpdateSizeControls();
+            ResetSize();
             ReloadPreview();
         }
 
@@ -1535,6 +1531,54 @@ namespace Content.Client.Lobby.UI
         }
 
         //Sunrise start
+
+        private void ResetWidth()
+        {
+            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+            {
+                return;
+            }
+
+            var defaultWidth = speciesPrototype.DefaultWidth;
+
+            WidthSlider.MinValue = speciesPrototype.MinWidth;
+            WidthSlider.MaxValue = speciesPrototype.MaxWidth;
+            WidthSlider.Value = defaultWidth;
+
+            Profile.Appearance = Profile.Appearance.WithWidth(defaultWidth);
+
+            UpdateSizeText();
+        }
+
+        private void ResetHeight()
+        {
+            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+            {
+                return;
+            }
+
+            var defaultHeight = speciesPrototype.DefaultHeight;
+
+            HeightSlider.MinValue = speciesPrototype.MinHeight;
+            HeightSlider.MaxValue = speciesPrototype.MaxHeight;
+            HeightSlider.Value = defaultHeight;
+
+            Profile.Appearance = Profile.Appearance.WithHeight(defaultHeight);
+
+            UpdateSizeText();
+        }
+
+        private void ResetSize()
+        {
+            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
+            {
+                return;
+            }
+
+            ResetWidth();
+            ResetHeight();
+        }
+
         private void UpdateSizeControls()
         {
             if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))

@@ -39,9 +39,6 @@ ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
 ui-options-bwoink-sound = Воспроизводить звук уведомления АХелп
-ui-options-tts-enabled = ТТС интеграция
-ui-options-tts-queue = Использовать очередь для TTS рации?
-ui-options-tts-radio-ghost-enabled = ТТС рации в призраке
 ui-options-volume-label = Громкость
 
 ## Graphics menu
@@ -131,6 +128,7 @@ ui-options-header-text-cursor-select = Выделение текста
 ui-options-header-text-edit = Редактирование текста
 ui-options-header-text-chat = Чат
 ui-options-header-text-other = Другой текстовый ввод
+ui-options-header-extra = Экстра
 
 ui-options-hotkey-keymap = Использовать клавиши QWERTY (США)
 ui-options-hotkey-toggle-walk = Переключать шаг\бег

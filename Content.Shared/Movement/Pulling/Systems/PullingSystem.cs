@@ -454,6 +454,13 @@ public sealed class PullingSystem : EntitySystem
             return false;
         }
 
+        // Sunrise-Start
+        if (TryComp<BuckleComponent>(pullableUid, out var buckleComponent) && buckleComponent.Buckled)
+        {
+            return false;
+        }
+        // Sunrise-End
+
         var getPulled = new BeingPulledAttemptEvent(puller, pullableUid);
         RaiseLocalEvent(pullableUid, getPulled, true);
         var startPull = new StartPullAttemptEvent(puller, pullableUid);

@@ -62,6 +62,34 @@
     {
       "name": "corp_sofaend_right_armrest",
       "directions": 4
+    },
+    {
+      "name": "red_sofacorner",
+      "directions": 4
+    },
+    {
+      "name": "red_sofaend_right",
+      "directions": 4
+    },
+    {
+      "name": "red_sofamiddle",
+      "directions": 4
+    },
+    {
+      "name": "red_sofaend_left",
+      "directions": 4
+    },
+    {
+      "name": "red_sofacorner_armrest",
+      "directions": 4
+    },
+    {
+      "name": "red_sofaend_left_armrest",
+      "directions": 4
+    },
+    {
+      "name": "red_sofaend_right_armrest",
+      "directions": 4
     }
   ]
 }

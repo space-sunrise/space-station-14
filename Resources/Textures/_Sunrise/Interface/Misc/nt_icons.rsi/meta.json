@@ -1,401 +1,402 @@
 {
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Made by Sunrise",
-    "size": {
-        "x": 128,
-        "y": 64
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Sunrise",
+  "size": {
+    "x": 128,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "acp14"
     },
-    "states": [
-	{
-		"name": "ams42"
-	},
-	{
-		"name": "Base_Icon"
-	},
-	{
-		"name": "mg_100"
-	},
-	{
-		"name": "box_magnum_ince"
-	},
-	{
-		"name": "box_magnum_uran"
-	},
-	{
-		"name": "box_rifle"
-	},
-	{
-		"name": "box_shot"
-	},
-	{
-		"name": "box_shot_red"
-	},
-	{
-		"name": "box_shot_slug"
-	},
-	{
-		"name": "box_smg"
-	},
-	{
-		"name": "br64"
-	},
-	{
-		"name": "box_smg_red"
-	},
-	{
-		"name": "zauer"
-	},
-	{
-		"name": "xm1014"
-	},
-	{
-		"name": "spas12"
-	},
-	{
-		"name": "mp7"
-	},
-	{
-		"name": "box_smg_uran"
-	},
-	{
-		"name": "box_wt550"
-	},
-	{
-		"name": "comp_defib"
-	},
-	{
-		"name": "mg42"
-	},
-	{
-		"name": "crate_med"
-	},
-	{
-		"name": "deploy_barrier"
-	},
-	{
-		"name": "energygun"
-	},
-	{
-		"name": "skorpion"
-	},
-	{
-		"name": "nvd"
-	},
-	{
-		"name": "thermals"
-	},
-	{
-		"name": "nuke_pinpointer"
-	},
-	{
-		"name": "universal_pinpointer"
-	},
-	{
-		"name": "hristov"
-	},
-	{
-		"name": "energygun_tac"
-	},
-	{
-		"name": "mp5"
-	},
-	{
-		"name": "g36"
-	},
-	{
-		"name": "port_recharge"
-	},
-	{
-		"name": "box_ertrattle"
-	},
-	{
-		"name": "p90"
-	},
-	{
-		"name": "energygun-psec"
-	},
-	{
-		"name": "ion-r"
-	},
-	{
-		"name": "lecter"
-	},
-	{
-		"name": "mag_br64"
-	},
-	{
-		"name": "mag_magnum"
-	},
-	{
-		"name": "mag_mg342"
-	},
-	{
-		"name": "mag_p90"
-	},
-	{
-		"name": "mech_marauder"
-	},
-	{
-		"name": "mech_ntgygax"
-	},
-	{
-		"name": "cyborg_ert"
-	},
-	{
-		"name": "pulse-c"
-	},
-	{
-		"name": "pulse-p"
-	},
-	{
-		"name": "pulse-r"
-	},
-	{
-		"name": "pulse-sc"
-	},
-	{
-		"name": "mech_seraph"
-	},
-	{
-		"name": "n1984"
-	},
-	{
-		"name": "sec_flaregun"
-	},
-	{
-		"name": "box_shot_flare"
-	},
-	{
-		"name": "nanotrasen_belt"
-	},
-	{
-		"name": "nanotrasen_back"
-	},
-	{
-		"name": "med_bundle"
-	},
-	{
-		"name": "power_cell_nt"
-	},
-	{
-		"name": "powercage_nt"
-	},
-	{
-		"name": "wt550"
-	},
-	{
-		"name": "mateba"
-	},
-	{
-		"name": "g22"
-	},
-	{
-		"name": "acp14"
-	},
-	{
-		"name": "deagle"
-	},
-	{
-		"name": "monkeycube"
-	},
-	{
-		"name": "cloning_equipment"
-	},
-	{
-		"name": "handheldcrewmonitor"
-	},
-	{
-		"name": "defib"
-	},
-	{
-		"name": "med-oxygen"
-	},
-	{
-		"name": "med-brute"
-	},
-	{
-		"name": "med-rad"
-	},
-	{
-		"name": "med-toxin"
-	},
-	{
-		"name": "med-burn"
-	},
-	{
-		"name": "med-black"
-	},
-	{
-		"name": "ambuzol-syringe"
-	},
-	{
-		"name": "pill"
-	},
-	{
-		"name": "hypospray_ert"
-	},
-	{
-		"name": "hypospray_cmo"
-	},
-	{
-		"name": "hypospray_combat"
-	},
-	{
-		"name": "magazine-magnum-p"
-	},
-	{
-		"name": "flare_box"
-	},
-	{
-		"name": "extinguisher"
-	},
-	{
-		"name": "box_mre"
-	},
-	{
-		"name": "flash"
-	},
-	{
-		"name": "stunbaton"
-	},
-	{
-		"name": "lnt620"
-	},
-	{
-		"name": "box_flashbangs"
-	},
-	{
-		"name": "box_stinger"
-	},
-	{
-		"name": "box_shrapnel"
-	},
-	{
-		"name": "box_incendiary"
-	},
-	{
-		"name": "box_handcuffs"
-	},
-	{
-		"name": "disabler"
-	},
-	{
-		"name": "jaws"
-	},
-	{
-		"name": "omnitool"
-	},
-	{
-		"name": "red_crowbar"
-	},
-	{
-		"name": "power_cell_high"
-	},
-	{
-		"name": "network_configurator"
-	},
-	{
-		"name": "multitool"
-	},
-	{
-		"name": "box_bodybags"
-	},
-	{
-		"name": "pest_spray"
-	},
-	{
-		"name": "weed_spray"
-	},
-	{
-		"name": "janitorial_trolley"
-	},
-	{
-		"name": "trash_bag_blue"
-	},
-	{
-		"name": "water_tank"
-	},
-	{
-		"name": "cleaner"
-	},
-	{
-		"name": "adv-mop"
-	},
-	{
-		"name": "jet_blue"
-	},
-	{
-		"name": "mini_jet"
-	},
-	{
-		"name": "void_jet"
-	},
-	{
-		"name": "sec_web"
-	},
-	{
-		"name": "riot_shield"
-	},
-	{
-		"name": "riot_laser_shield"
-	},
-	{
-		"name": "riot_bullet_shield"
-	},
-	{
-		"name": "telescopic_shield"
-	},
-	{
-		"name": "box_light"
-	},
-	{
-		"name": "magazine-glock-22"
-	},
-	{
-		"name": "magazine-vp70"
-	},
-	{
-		"name": "magazine-acp14"
-	},
-	{
-		"name": "grenadelauncher"
-	},
-	{
-		"name": "gl79"
-	},
-	{
-		"name": "shot4034"
-	},
-	{
-		"name": "truncheon"
-	},
-	{
-		"name": "m28"
-	},
-	{
-		"name": "ar18"
-	},
-	{
-		"name": "spearhead"
-	},
-	{
-		"name": "speedloader45"
-	},
-	{
-		"name": "stimkit"
-	},
-	{
-		"name": "pouchammo"
-	},
-	{
-		"name": "pouchgrenade"
-	},
-	{
-		"name": "pouchgrenadefilled"
-	},
-	{
-		"name": "stim"
-	}
-    ]
+    {
+      "name": "adv-mop"
+    },
+    {
+      "name": "ambuzol-syringe"
+    },
+    {
+      "name": "ams42"
+    },
+    {
+      "name": "ar18"
+    },
+    {
+      "name": "Base_Icon"
+    },
+    {
+      "name": "box_bodybags"
+    },
+    {
+      "name": "box_ertrattle"
+    },
+    {
+      "name": "box_flashbangs"
+    },
+    {
+      "name": "box_handcuffs"
+    },
+    {
+      "name": "box_incendiary"
+    },
+    {
+      "name": "box_light"
+    },
+    {
+      "name": "box_magnum_ince"
+    },
+    {
+      "name": "box_magnum_uran"
+    },
+    {
+      "name": "box_mre"
+    },
+    {
+      "name": "box_rifle"
+    },
+    {
+      "name": "box_shot"
+    },
+    {
+      "name": "box_shot_flare"
+    },
+    {
+      "name": "box_shot_red"
+    },
+    {
+      "name": "box_shot_slug"
+    },
+    {
+      "name": "box_shrapnel"
+    },
+    {
+      "name": "box_smg"
+    },
+    {
+      "name": "box_smg_red"
+    },
+    {
+      "name": "box_smg_uran"
+    },
+    {
+      "name": "box_stinger"
+    },
+    {
+      "name": "box_wt550"
+    },
+    {
+      "name": "br64"
+    },
+    {
+      "name": "cleaner"
+    },
+    {
+      "name": "cloning_equipment"
+    },
+    {
+      "name": "comp_defib"
+    },
+    {
+      "name": "crate_med"
+    },
+    {
+      "name": "cyborg_ert"
+    },
+    {
+      "name": "deagle"
+    },
+    {
+      "name": "defib"
+    },
+    {
+      "name": "deploy_barrier"
+    },
+    {
+      "name": "disabler"
+    },
+    {
+      "name": "energygun"
+    },
+    {
+      "name": "energygun-psec"
+    },
+    {
+      "name": "energygun_tac"
+    },
+    {
+      "name": "extinguisher"
+    },
+    {
+      "name": "flash"
+    },
+    {
+      "name": "flare_box"
+    },
+    {
+      "name": "g22"
+    },
+    {
+      "name": "g36"
+  	},
+    {
+      "name": "gl79"
+    },
+    {
+      "name": "grenadelauncher"
+    },
+    {
+      "name": "handheldcrewmonitor"
+    },
+    {
+      "name": "hristov"
+    },
+    {
+      "name": "hypospray_cmo"
+    },
+    {
+      "name": "hypospray_combat"
+    },
+    {
+      "name": "hypospray_ert"
+    },
+    {
+      "name": "ion-r"
+    },
+    {
+      "name": "janitorial_trolley"
+    },
+    {
+      "name": "jaws"
+    },
+    {
+      "name": "jet_blue"
+    },
+    {
+      "name": "lecter"
+    },
+    {
+      "name": "lnt620"
+    },
+    {
+      "name": "m28"
+    },
+    {
+      "name": "mag_br64"
+    },
+    {
+      "name": "mag_magnum"
+    },
+    {
+      "name": "mag_mg342"
+    },
+    {
+      "name": "mag_p90"
+    },
+    {
+      "name": "magazine-acp14"
+    },
+    {
+      "name": "magazine-glock-22"
+    },
+    {
+      "name": "magazine-magnum-p"
+    },
+    {
+      "name": "magazine-vp70"
+    },
+    {
+      "name": "mateba"
+    },
+    {
+      "name": "mech_marauder"
+    },
+    {
+      "name": "mech_ntgygax"
+    },
+    {
+      "name": "mech_seraph"
+    },
+    {
+      "name": "med-black"
+    },
+    {
+      "name": "med-brute"
+    },
+    {
+      "name": "med-burn"
+    },
+    {
+      "name": "med-oxygen"
+    },
+    {
+      "name": "med-rad"
+    },
+    {
+      "name": "med-toxin"
+    },
+    {
+      "name": "med_bundle"
+    },
+    {
+      "name": "mg_100"
+    },
+    {
+      "name": "mg42"
+    },
+    {
+      "name": "mini_jet"
+    },
+    {
+      "name": "monkeycube"
+    },
+    {
+      "name": "mp5"
+    },
+    {
+      "name": "mp7"
+    },
+    {
+      "name": "multitool"
+    },
+    {
+      "name": "n1984"
+    },
+    {
+      "name": "nanotrasen_back"
+    },
+    {
+      "name": "nanotrasen_belt"
+    },
+    {
+      "name": "network_configurator"
+    },
+    {
+      "name": "nuke_pinpointer"
+    },
+    {
+      "name": "nvd"
+    },
+    {
+      "name": "omnitool"
+    },
+    {
+      "name": "p90"
+    },
+    {
+      "name": "pest_spray"
+    },
+    {
+      "name": "pill"
+    },
+    {
+      "name": "port_recharge"
+    },
+    {
+      "name": "pouchammo"
+    },
+    {
+      "name": "pouchgrenade"
+    },
+    {
+      "name": "pouchgrenadefilled"
+    },
+    {
+      "name": "power_cell_high"
+    },
+    {
+      "name": "power_cell_nt"
+    },
+    {
+      "name": "powercage_nt"
+    },
+    {
+      "name": "pulse-c"
+    },
+    {
+      "name": "pulse-p"
+    },
+    {
+      "name": "pulse-r"
+    },
+    {
+      "name": "pulse-sc"
+    },
+    {
+      "name": "red_crowbar"
+    },
+    {
+      "name": "riot_bullet_shield"
+    },
+    {
+      "name": "riot_laser_shield"
+    },
+    {
+      "name": "riot_shield"
+    },
+    {
+      "name": "sec_flaregun"
+    },
+    {
+      "name": "sec_web"
+    },
+    {
+      "name": "shot4034"
+    },
+    {
+      "name": "skorpion"
+    },
+    {
+      "name": "spas12"
+    },
+    {
+      "name": "spearhead"
+    },
+    {
+      "name": "speedloader45"
+    },
+    {
+      "name": "stim"
+    },
+    {
+      "name": "stimkit"
+    },
+    {
+      "name": "stunbaton"
+    },
+    {
+      "name": "telescopic_shield"
+    },
+    {
+      "name": "thermals"
+    },
+    {
+      "name": "trash_bag_blue"
+    },
+    {
+      "name": "truncheon"
+    },
+    {
+      "name": "universal_pinpointer"
+    },
+    {
+      "name": "void_jet"
+    },
+    {
+      "name": "water_tank"
+    },
+    {
+      "name": "weed_spray"
+    },
+    {
+      "name": "wt550"
+    },
+    {
+      "name": "xm1014"
+    },
+    {
+      "name": "zauer"
+    }
+  ]
 }
+

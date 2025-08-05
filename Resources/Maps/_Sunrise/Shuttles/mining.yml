@@ -4,7 +4,7 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/20/2025 17:52:33
+  time: 08/02/2025 20:44:44
   entityCount: 166
 maps: []
 grids:
@@ -549,6 +549,32 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 181
+  - uid: 161
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,1.5
+      parent: 181
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        162:
+        - - DoorStatus
+          - DoorBolt
+  - uid: 162
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.5,1.5
+      parent: 181
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        161:
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockShuttle
   entities:
   - uid: 4
@@ -577,32 +603,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,3.5
       parent: 181
-- proto: AsteroidRockGibtonite
-  entities:
-  - uid: 160
-    components:
-    - type: Transform
-      pos: -5.5,4.5
-      parent: 181
-    - type: CMExplosionEffect
-  - uid: 161
-    components:
-    - type: Transform
-      pos: -5.5,5.5
-      parent: 181
-    - type: CMExplosionEffect
-  - uid: 162
-    components:
-    - type: Transform
-      pos: -6.5,-0.5
-      parent: 181
-    - type: CMExplosionEffect
-  - uid: 163
-    components:
-    - type: Transform
-      pos: 0.5,-6.5
-      parent: 181
-    - type: CMExplosionEffect
 - proto: BlastDoorExterior1
   entities:
   - uid: 37
@@ -1006,6 +1006,14 @@ entities:
     - type: Transform
       pos: -3.5,7.5
       parent: 181
+- proto: Gyroscope
+  entities:
+  - uid: 131
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-5.5
+      parent: 181
 - proto: InflatableDoor
   entities:
   - uid: 93
@@ -1013,22 +1021,12 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 181
-  - uid: 94
-    components:
-    - type: Transform
-      pos: -4.5,1.5
-      parent: 181
 - proto: InflatableWall
   entities:
   - uid: 130
     components:
     - type: Transform
       pos: -5.5,3.5
-      parent: 181
-  - uid: 131
-    components:
-    - type: Transform
-      pos: -6.5,1.5
       parent: 181
   - uid: 133
     components:
@@ -1268,6 +1266,11 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 181
+  - uid: 94
+    components:
+    - type: Transform
+      pos: -5.5,4.5
+      parent: 181
   - uid: 119
     components:
     - type: Transform
@@ -1277,7 +1280,19 @@ entities:
   - uid: 128
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-6.5
+      parent: 181
+  - uid: 160
+    components:
+    - type: Transform
       rot: 1.5707963267948966 rad
+      pos: -6.5,-0.5
+      parent: 181
+  - uid: 163
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 181
 - proto: WallSolid

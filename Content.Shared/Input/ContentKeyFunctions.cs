@@ -68,6 +68,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction Jump = "Jump";
         public static readonly BoundKeyFunction Reloading = "Reloading";
         public static readonly BoundKeyFunction Interact = "Interact";
+        public static readonly BoundKeyFunction LookUp = "LookUp";
         // Sunrise-End
 
         public static readonly BoundKeyFunction ArcadeUp = "ArcadeUp";

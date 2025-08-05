@@ -1,0 +1,83 @@
+- type: decal
+  id: WhiteBoxN
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_n
+
+- type: decal
+  id: WhiteBoxS
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_s
+
+- type: decal
+  id: WhiteBoxW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_w
+
+- type: decal
+  id: WhiteBoxE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_e
+
+- type: decal
+  id: WhiteBoxNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_nw
+
+- type: decal
+  id: WhiteBoxNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_ne
+
+- type: decal
+  id: WhiteBoxSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_sw
+
+- type: decal
+  id: WhiteBoxSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_box_se
+
+- type: decal
+  id: WhiteCrNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_cr_nw
+
+- type: decal
+  id: WhiteCrNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_cr_ne
+
+- type: decal
+  id: WhiteCrSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_cr_sw
+
+- type: decal
+  id: WhiteCrSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitebox.rsi
+    state: white_cr_se
