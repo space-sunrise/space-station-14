@@ -9,7 +9,7 @@
       time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
-  startingGear: PrisonDoctortGear
+  startingGear: PrisonDoctorGear
   icon: "JobIconPrisonDoctor"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
@@ -25,10 +25,11 @@
     implants: [ MindShieldImplant ]
 
 - type: startingGear
-  id: PrisonDoctortGear
+  id: PrisonDoctorGear
   equipment:
-    id: MedicalPDA
+    id: PrisonDoctorPDA
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    head: ClothingHeadHatCapCMO
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

@@ -179,26 +179,105 @@
   id: PrisonEngineerPDA
   name: prison engineer's PDA
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
-    id: PrisonEngineeringIDCard
+    id: PrisonEngineerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-engineer
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
+    borderColor: "#c05905"
+    accentVColor: "#d2d000"
   - type: Icon
-    state: pda-engineer
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-engineer
 
 - type: entity
   parent: BasePDA
   id: PrisonScientistPDA
   name: prison scientist's PDA
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonScientistIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-scientist
   - type: PdaBorderColor
-    borderColor: "#05000e"
-    accentVColor: "#0d001d"
+    borderColor: "#c05905"
+    accentVColor: "#610093"
   - type: Icon
-    state: pda-scientist
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-scientist
+
+- type: entity
+  parent: BasePDA
+  id: PrisonDoctorPDA
+  name: prison doctor's PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonDoctorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-doctor
+  - type: PdaBorderColor
+    borderColor: "#c05905"
+    accentVColor: "#407ca1"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-doctor
+
+- type: entity
+  parent: BasePDA
+  id: PrisonChefPDA
+  name: prison chef's PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonChefIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-chef
+  - type: PdaBorderColor
+    borderColor: "#c05905"
+    accentVColor: "#b59db5"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-chef
+
+- type: entity
+  parent: BasePDA
+  id: PrisonWorkerPDA
+  name: prison worker's PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonWorkerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-worker
+  - type: PdaBorderColor
+    borderColor: "#c05905"
+    accentVColor: "#a02e2c"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-worker
 
 - type: entity
   parent: BasePDA
@@ -239,7 +318,7 @@
         pda-space-prison-boss
   - type: PdaBorderColor
     borderColor: "#A32D26"
-    accentHColor: "#447987"
+    accentHColor: "#111111"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-boss

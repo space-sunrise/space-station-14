@@ -3,13 +3,12 @@
   name: job-name-prison-chef
   description: job-description-prison-chef
   playTimeTracker: JobPrisonChef
-  startingGear: PrisonChefGear
-  startingGear: PrisonChefGear
   requirements:
   - !type:RoleTimeRequirement
-    role: JobChef
+    role: Chef
     time: 7200 #2 hrs
   icon: "JobIconPrisonChef"
+  startingGear: PrisonChefGear
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   alwaysUseSpawner: true
@@ -30,16 +29,16 @@
 - type: startingGear
   id: PrisonChefGear
   equipment:
-    id: ChefPDA
+    id: PrisonChefPDA
     jumpsuit: ClothingUniformJumpsuitChef
+    head: ClothingHeadHatBeretFrench
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses
-    head: ClothingHeadHatChef
     mask: ClothingMaskItalianMoustache
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorRiot
     belt: ClothingBeltChefFilled
-    back: ClothingBackpackWhite
+    back: ClothingBackpackBlack
     shoes: ClothingShoesBootsJack
     pocket1: SecurityWhistle
     pocket2: WeaponDisabler

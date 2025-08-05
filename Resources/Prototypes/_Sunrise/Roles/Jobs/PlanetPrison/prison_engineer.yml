@@ -28,8 +28,9 @@
 - type: startingGear
   id: PrisonEngineerGear
   equipment:
-    id: EngineerPDA
+    id: PrisonEngineerPDA
     jumpsuit: ClothingUniformJumpsuitEngineering
+    head: ClothingHeadHatBeretEngineering
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

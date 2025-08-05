@@ -228,8 +228,14 @@
 - type: roleLoadout
   id: JobPrisonPilot
   groups:
+  - PrisonGuardHead
+  - PrisonGuardJumpsuit
+  - PrisonGuardBackpack
+  - SecurityShoes
+  - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -293,7 +299,7 @@
   id: JobHeadOfPrison
   groups:
   - PrisonGuardHead
-  - PrisonGuardJumpsuit
+  # - PrisonGuardJumpsuit комбенизон должен отличаться от охраны
   - PrisonGuardBackpack
   - SecurityShoes
   - SurvivalSecurity
