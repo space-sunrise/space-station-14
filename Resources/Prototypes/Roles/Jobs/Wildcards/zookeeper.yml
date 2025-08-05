@@ -22,9 +22,9 @@
     shoes: ClothingShoesColorWhite
     id: ZookeeperPDA
     ears: ClothingHeadsetService
-  #storage:
-    #back:
-    #- Stuff
+  storage:
+    back:
+    - ZookeeperMedkitFilled # Аптечка первой помощи для первых пациентов
 
 - type: chameleonOutfit
   id: ZookeeperChameleonOutfit
@@ -37,3 +37,32 @@
     belt: ClothingBeltStorageWaistbag
     gloves: ClothingHandsGlovesColorBrown
 
+- type: entity
+  id: ZookeeperMedkitFilled
+  parent: MedkitFilled
+  name: "аптечка зоотехника"
+  description: "Внутри не только бинты и таблетки, но и специальный шприц с успокоительным."
+  components:
+  - type: StorageFill
+    contents:
+    - id: Brutepack
+    - id: Ointment
+    - id: Gauze
+    - id: PillCanisterTricordrazine
+    - id: ZookeeperSyringeChloralHydrate
+
+- type: entity
+  id: ZookeeperSyringeChloralHydrate
+  parent: PrefilledSyringe
+  name: шприц хлоральгидрата
+  suffix: хлоральгидрат
+  components:
+  - type: Label
+    currentLabel: reagent-name-chloral-hydrate
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 15
