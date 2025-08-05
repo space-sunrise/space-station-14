@@ -61,6 +61,7 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
         SubscribeLocalEvent<RevenantComponent, RevenantLockActionEvent>(OnLockAction); // Sunrise-Edit
+        SubscribeLocalEvent<RevenantComponent, RevenantDrainActionEvent>(OnDrainAction); // Sunrise-Edit
     }
 
     private void OnInteract(EntityUid uid, RevenantComponent component, UserActivateInWorldEvent args)
@@ -351,6 +352,44 @@ public sealed partial class RevenantSystem
 
                     _doorSystem.SetBoltsDown((ent, boltsComp), true, uid);
             }
+        }
+    }
+
+    private void OnDrainAction(EntityUid uid, RevenantComponent component, RevenantDrainActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        TryUseAbility(uid, component, 0, component.DrainDebuffs);
+        args.Handled = true;
+
+        var lookup = _lookup.GetEntitiesInRange(uid, component.DrainRadius);
+
+        float totalEssence = 0;
+
+        foreach (var target in lookup)
+        {
+            if (target == uid || !_mobState.IsAlive(target))
+                continue;
+
+            var amount = _random.Next(1, 9);
+            var damage = new DamageSpecifier();
+            damage.DamageDict.Add("Cellular", amount);
+
+            if (_damage.TryChangeDamage(target, damage, origin: uid) != null)
+                totalEssence += amount;
+        }
+
+        if (totalEssence > 0)
+        {
+            _store.TryAddCurrency(new()
+            {
+                { component.StolenEssenceCurrencyPrototype, (FixedPoint2)(totalEssence * 0.22f) }
+            }, uid);
+
+            component.Essence += (FixedPoint2)(totalEssence * 0.6f);
+            if (component.Essence > component.EssenceRegenCap)
+                component.Essence = component.EssenceRegenCap;
         }
     }
     // Sunrise-End

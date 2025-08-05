@@ -66,6 +66,10 @@ public sealed partial class RevenantMalfunctionActionEvent : InstantActionEvent
 public sealed partial class RevenantLockActionEvent : InstantActionEvent
 {
 }
+
+public sealed partial class RevenantDrainActionEvent : InstantActionEvent
+{
+}
 // Sunrise-End
 
 [NetSerializable, Serializable]
