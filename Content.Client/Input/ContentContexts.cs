@@ -92,6 +92,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Jump);
             human.AddFunction(ContentKeyFunctions.Reloading);
             human.AddFunction(ContentKeyFunctions.Interact);
+            human.AddFunction(ContentKeyFunctions.LookUp);
             // Sunrise-End
 
             // actions should be common (for ghosts, mobs, etc)
@@ -112,7 +113,6 @@ namespace Content.Client.Input
             aghost.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             aghost.AddFunction(ContentKeyFunctions.Drop);
             aghost.AddFunction(ContentKeyFunctions.UseItemInHand);
-            aghost.AddFunction(ContentKeyFunctions.CockGun);
             aghost.AddFunction(ContentKeyFunctions.AltUseItemInHand);
             aghost.AddFunction(ContentKeyFunctions.ActivateItemInWorld);
             aghost.AddFunction(ContentKeyFunctions.ThrowItemInHand);
@@ -120,6 +120,10 @@ namespace Content.Client.Input
             aghost.AddFunction(ContentKeyFunctions.TryPullObject);
             aghost.AddFunction(ContentKeyFunctions.MovePulledObject);
             aghost.AddFunction(ContentKeyFunctions.ReleasePulledObject);
+            // Sunrise-Start
+            aghost.AddFunction(ContentKeyFunctions.CockGun);
+            aghost.AddFunction(ContentKeyFunctions.LookUp);
+            // Sunrise-End
 
             var ghost = contexts.New("ghost", "human");
             ghost.AddFunction(EngineKeyFunctions.MoveUp);

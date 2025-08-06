@@ -157,8 +157,6 @@
         layer:
         - MobLayer
   - type: Carriable
-  - type: ScaleSprite
-    scale: 1.1, 1.2
   # Sunrise-end
 
 - type: entity

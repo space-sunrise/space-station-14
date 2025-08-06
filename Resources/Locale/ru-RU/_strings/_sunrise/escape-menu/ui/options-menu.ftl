@@ -26,3 +26,6 @@ ui-options-function-hold-look-up = Удерживать клавишу для п
 ui-options-chat-icons-enable = Использовать иконки профессий в чате
 ui-options-chat-pointing-visuals-enable = Отображать указывания с иконками в чате
 ui-options-play-heartbeat-sound = Проигрывать звук сердцебиения
+ui-options-tts-enabled = ТТС интеграция
+ui-options-tts-queue = Использовать очередь для TTS рации?
+ui-options-tts-radio-ghost-enabled = ТТС рации в призраке

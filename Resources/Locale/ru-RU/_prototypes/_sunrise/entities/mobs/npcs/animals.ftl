@@ -1,5 +1,3 @@
-ent-MobSaw = пила
-    .desc = Мать.
 ent-MobBaseInferiorVulpkanin = низший вульпканин
     .desc = { ent-MobBaseAncestor.desc }
 ent-MobInferiorVulpkanin = низший вульпканин
@@ -13,3 +11,5 @@ ent-MobInferiorVulpkaninSyndicateAgent = { ent-MobBaseSyndicateInferiorVulpkanin
 ent-MobInferiorVulpkaninSyndicateAgentNukeops = { ent-MobBaseSyndicateInferiorVulpkanin }
     .suffix = Ядерные оперативники
     .desc = { ent-MobBaseSyndicateInferiorVulpkanin.desc }
+ent-MobSaw = пила
+    .desc = Мать.

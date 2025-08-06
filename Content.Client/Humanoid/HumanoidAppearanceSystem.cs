@@ -1,14 +1,19 @@
+using System.Linq;
+using System.Numerics;
+using Content.Client._Sunrise.MarkingEffectsClient;
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -53,6 +58,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
+
+        var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
+
+        _sprite.SetScale(entity.Owner, scale);
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
@@ -176,14 +185,25 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var hairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.Hair, out var hairAlpha, _prototypeManager)
             ? profile.Appearance.SkinColor.WithAlpha(hairAlpha)
             : profile.Appearance.HairColor;
+
+        var hairMarkingEffects = profile.Appearance.HairMarkingEffect != null
+            ? new List<MarkingEffect> { profile.Appearance.HairMarkingEffect }
+            : new List<MarkingEffect>();
+
         var hair = new Marking(profile.Appearance.HairStyleId,
-            new[] { hairColor });
+            new[] { hairColor },
+            hairMarkingEffects);
+
+        var facialHairMarkingEffects = profile.Appearance.FacialHairMarkingEffect != null
+            ? new List<MarkingEffect> { profile.Appearance.FacialHairMarkingEffect }
+            : new List<MarkingEffect>();
 
         var facialHairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _prototypeManager)
             ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha)
             : profile.Appearance.FacialHairColor;
         var facialHair = new Marking(profile.Appearance.FacialHairStyleId,
-            new[] { facialHairColor });
+            new[] { facialHairColor },
+            facialHairMarkingEffects);
 
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {
@@ -226,6 +246,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Species = profile.Species;
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        humanoid.Width = profile.Appearance.Width; // Sunrise
+        humanoid.Height = profile.Appearance.Height; // Sunrise
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -251,7 +273,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype))
                 {
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity);
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity, marking.MarkingEffects); // Sunrise-Edit
                     //if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentTop)
                     //    applyUndergarmentTop = false;
                     //else if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentBottom)
@@ -343,7 +365,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     public void ApplyMarking(MarkingPrototype markingPrototype, // Sunrise-Edit
         IReadOnlyList<Color>? colors,
         bool visible,
-        Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
+        Entity<HumanoidAppearanceComponent, SpriteComponent> entity,
+        IReadOnlyList<MarkingEffect>? markingEffects = null)
     {
         var humanoid = entity.Comp1;
         var sprite = entity.Comp2;
@@ -382,22 +405,55 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 continue;
             }
 
-            // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
-            // and we need to check the index is correct.
-            // So if that happens just default to white?
-            if (colors != null && j < colors.Count)
+            // Sunrise-Edit-Start
+            // // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
+            // // and we need to check the index is correct.
+            // // So if that happens just default to white?
+            // if (colors != null && j < colors.Count)
+            // {
+            //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+            // }
+            // else
+            // {
+            //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+            // }
+
+            ShaderInstance? shaderOverride = null;
+
+
+            if (markingEffects != null && j < markingEffects.Count && markingEffects[j].Type != MarkingEffectType.Color)
             {
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+                float texWidth = sprite.AllLayers.Max(x => x.PixelSize.X);
+                float texHeight = sprite.AllLayers.Max(x => x.PixelSize.Y);
+                var shaderName = markingEffects[j].Type.ToString();
+                var instance = _prototypeManager.Index<ShaderPrototype>(shaderName).InstanceUnique();
+                shaderOverride = instance;
+
+                instance.ApplyShaderParams(markingEffects[j], new Vector2(texWidth, texHeight));
+
+                sprite.LayerSetShader(layerId, instance);
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
             }
             else
             {
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                if (colors != null && j < colors.Count)
+                {
+                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+                }
+                else
+                {
+                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                }
             }
+            //Sunrise-Edit-End
 
             var displacementData = GetMarkingDisplacement(entity.Owner, markingPrototype.BodyPart, humanoid);
             if (displacementData != null && markingPrototype.CanBeDisplaced)
             {
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
+                // TODO: в шейдер нужно ещё вставлять displacementSize, сейчас в нём хардкод 127
+
+                // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню (shaderOverride)
+                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _, shaderOverride); // Sunrise-Edit
             }
         }
     }
@@ -491,7 +547,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             foreach (var marking in markingList)
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype) && markingPrototype.BodyPart == layer)
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite));
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite), marking.MarkingEffects); // Sunrise-Edit
             }
         }
     }

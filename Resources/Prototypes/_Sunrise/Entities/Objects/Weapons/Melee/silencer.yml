@@ -30,5 +30,5 @@
   - type: InjectOnHit
     limit: 20
     reagents:
-    - ReagentId: MuteToxin
+    - ReagentId: MuteToxinAbductor
       Quantity: 5

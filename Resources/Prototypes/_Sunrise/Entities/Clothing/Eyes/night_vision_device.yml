@@ -19,7 +19,7 @@
     parent: true
     components:
       - type: NightVision
-
+        effect: EffectNightVisionGreen
 
 - type: entity
   name: NVD
@@ -40,7 +40,7 @@
     quickEquip: true
     slots: [ Eyes ]
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 3.5
     useRate: 20
   - type: ItemToggle
     predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
@@ -149,7 +149,7 @@
         shader: unshaded
         map: [ "light" ]
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 5
     useRate: 50
   - type: ComponentToggler
     parent: true

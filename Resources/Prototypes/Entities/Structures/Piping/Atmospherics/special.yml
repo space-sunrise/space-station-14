@@ -1,4 +1,4 @@
-# Devices which are not portable but don't link up to anything
+#Devices which are not portable but don't link up to anything
 - type: entity
   id: AtmosDeviceFanTiny
   name: tiny fan

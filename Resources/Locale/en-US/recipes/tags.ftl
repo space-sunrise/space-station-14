@@ -55,6 +55,7 @@ construction-graph-tag-power-cell-small = power cell small
 construction-graph-tag-power-cell = power cell
 construction-graph-tag-potato-battery = a potato battery
 construction-graph-tag-super-compact-ai-chip = a super-compact AI chip
+construction-graph-tag-paper = paper
 
 # other
 construction-graph-tag-light-bulb = light bulb
@@ -75,6 +76,7 @@ construction-graph-tag-corgi-hide = corgi hide
 construction-graph-tag-apron = an apron
 construction-graph-tag-utility-belt = a utility belt
 soil-construction-graph-any-mushroom = any mushroom
+construction-graph-tag-matchstick = matchstick
 
 # toys
 construction-graph-tag-rubber-ducky = a rubber ducky

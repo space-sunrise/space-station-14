@@ -16,4 +16,10 @@ public sealed partial class ArtifactRandomTransformationComponent : Component
 
     [DataField]
     public HashSet<ProtoId<EntityCategoryPrototype>>? CategoryBlacklist;
+
+    [DataField]
+    public HashSet<string>? ComponentBlacklist;
+
+    [DataField]
+    public HashSet<EntProtoId>? PrototypeBlacklistExceptions;
 }

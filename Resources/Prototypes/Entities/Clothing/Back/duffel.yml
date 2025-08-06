@@ -14,7 +14,6 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: FelinidContainer
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -71,7 +70,7 @@
   description: A large duffel bag for holding extra security related goods.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Duffels/security.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/security.rsi #Sunrise-Edit
 
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSecurityContraband]

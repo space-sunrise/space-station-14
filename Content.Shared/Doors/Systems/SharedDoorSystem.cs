@@ -649,7 +649,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
         var otherUid = args.OtherEntity;
 
-        if (Tags.HasTag(otherUid, DoorBumpTag))
+        if (Tags.HasTag(otherUid, DoorBumpTag) && door.ClickOpen)
             TryOpen(uid, door, otherUid, quiet: door.State == DoorState.Denying, predicted: true);
     }
 

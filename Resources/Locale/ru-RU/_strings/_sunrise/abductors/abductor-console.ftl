@@ -29,5 +29,6 @@ abductors-ui-shop-WeaponAlien = Инопланетный пистолет
 abductors-ui-shop-ClothingHeadHelmetAbductor = Шлем
 abductors-ui-shop-AbductorGizmo = Гизмо
 abductors-ui-shop-AbductorExtractor = Экстрактор сердца
-abductors-ui-shop-MedkitCombat = Боевая аптечка
+abductors-ui-shop-MedkitUniversal = Универсальная аптечка
+abductors-ui-shop-Teleporter = Одноразовый телепорт
 abductors-ui-shop-VendingMachineRestockAbductorDispenser = Пополнение диспенсера

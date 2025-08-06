@@ -3,7 +3,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
-  sponsorOnly: true # Sunrise-Sponsors
+  sponsorOnly: false
   sprites:
   - sprite: _Sunrise/Mobs/Customization/fox_parts.rsi
     state: ears_fox_outer

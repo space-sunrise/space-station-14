@@ -17,6 +17,8 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Server.VendingMachines;
 using Content.Shared.VendingMachines;
+using Content.Shared._Sunrise.Carrying;
+using Content.Shared.Popups;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -133,6 +135,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (ent.Comp.Target == null || ent.Comp.AlienPod == null || ent.Comp.Dispencer == null) return;
         var target = GetEntity(ent.Comp.Target.Value);
+
+        if (HasComp<CarryingComponent>(target))
+        {
+            _popupSystem.PopupCursor(Loc.GetString("need-stop-carry"), args.Actor, PopupType.MediumCaution);
+            return;
+        }
+
         EnsureComp<TransformComponent>(target, out var xform);
         var effectEnt = SpawnAttachedTo(_teleportationEffectEntity, xform.Coordinates);
         _xformSys.SetParent(effectEnt, target);

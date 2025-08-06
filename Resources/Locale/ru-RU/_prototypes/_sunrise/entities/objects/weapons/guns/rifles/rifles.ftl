@@ -1,3 +1,5 @@
+ent-BaseWeaponRifleSunrise = BaseWeaponRifleSunrise
+    .desc = A rooty tooty point and shooty.
 ent-WeaponRifleAKM = АКM
     .desc = Культовое оружие войны. Заряжается патронами калибра 7,62х39мм.
 ent-WeaponRifleAKMU = АКМ-У

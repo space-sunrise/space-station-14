@@ -642,4 +642,7 @@ binds:
 - function: Jump # Да, мы прыгаем в 2д игре.
   type: State
   key: Space
+- function: LookUp
+  type: State
+  key: MouseRight
 # Sunrise-End

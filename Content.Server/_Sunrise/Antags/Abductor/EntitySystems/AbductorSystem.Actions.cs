@@ -14,6 +14,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 using Robust.Shared.Physics.Events;
+using Content.Shared._Sunrise.Carrying;
+using Content.Shared.Popups;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -99,6 +101,12 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
             EnsureComp<AbductorScientistComponent>(ev.Performer, out scientistComp);
+
+        if (HasComp<CarryingComponent>(ev.Performer))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("need-stop-carry"), ev.Performer, ev.Performer, PopupType.MediumCaution);
+            return;
+        }
 
         EntityCoordinates? spawnPosition = null;
 

@@ -36,4 +36,3 @@ ent-BaseUplinkRadioDebug = { ent-BaseUplinkRadio }
 ent-BaseUplinkRadioDebug999 = { ent-BaseUplinkRadio }
     .suffix = DEBUG, NukeOps
     .desc = { ent-BaseUplinkRadio.desc }
-

@@ -46,6 +46,26 @@
       - material: Steel
         amount: 2
         doAfter: 1
+    - to: redsofaMiddle
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: redsofaLeft
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: redsofaRight
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: redsofaCorner
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
 
   - node: sofaMiddle
     entity: SofaMiddle
@@ -133,6 +153,54 @@
 
   - node: corpsofaCorner
     entity: CorpSofaCorner
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 1
+
+  - node: redsofaMiddle
+    entity: RedSofaMiddle
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: redsofaLeft
+    entity: RedSofaLeft
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: redsofaRight
+    entity: RedSofaRight
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: redsofaCorner
+    entity: RedSofaCorner
     edges:
     - to: start
       completed:

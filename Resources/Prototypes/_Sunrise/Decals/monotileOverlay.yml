@@ -1,0 +1,95 @@
+- type: decal
+  id: MonoTileOverlayN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_n
+
+- type: decal
+  id: MonoTileOverlayS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_s
+
+- type: decal
+  id: MonoTileOverlayW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_w
+
+- type: decal
+  id: MonoTileOverlayE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_e
+
+- type: decal
+  id: MonoTileOverlayNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_nw
+
+- type: decal
+  id: MonoTileOverlayNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_ne
+
+- type: decal
+  id: MonoTileOverlaySW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_sw
+
+- type: decal
+  id: MonoTileOverlaySE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: monot_se
+
+- type: decal
+  id: MonoCrOverlayNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: cr_monot_nw
+
+- type: decal
+  id: MonoCrOverlayNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: cr_monot_ne
+
+- type: decal
+  id: MonoCrOverlaySW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: cr_monot_sw
+
+- type: decal
+  id: MonoCrOverlaySE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    state: cr_monot_se

@@ -684,7 +684,7 @@ BarSignSpacebucksAlignTile: BarSignSpacebucks
 BarSignMaltroachAlignTile: BarSignMaltroach
 BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
 
-# Sunrise migrations
+# Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
 SurveillanceCameraWirelessRouterBase: SurveillanceCameraWirelessRouterConstructed
@@ -779,10 +779,8 @@ TableWoodReinforced: null
 BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
-AbductorDispencer: VendingMachineAbductorDispenser # Abductor shit.
-SpawnMechRipley: SpawnMechHauler # Карго Вариант Рипли, с установленными модулями переноски
-
-# Кто удалил и не добавил в миграции
+AbductorDispencer: VendingMachineAbductorDispenser
+SpawnMechRipley: SpawnMechHauler
 PrintedDocumentClosingIndictment: null
 PrintedDocumentPermissionDisposeBody: null
 PrintedDocumentDeathCertificate: null
@@ -795,4 +793,7 @@ MagazineFamas: null
 BaseUplinkNTERT75BC: null
 BaseUplinkNTERT100BC: null
 BaseUplinkNTERT200BC: null
-# Sunrise migrations end
+# Удалить только когда все карты будут обновлены под их удаление
+#AtmosDeviceFanTiny: null
+#AtmosDeviceFanDirectional: null
+# Sunrise-End

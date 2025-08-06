@@ -92,3 +92,11 @@
   armorCoefficientPrice: 1
   armorFlatPrice: 1
 
+#Sunrise-Start
+- type: damageType
+  id: Mangleness
+  name: damage-type-mangleness
+  armorCoefficientPrice: 1
+  armorFlatPrice: 1
+#Sunrise-End
+

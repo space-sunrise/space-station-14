@@ -275,28 +275,6 @@
     sprite: _Sunrise/Clothing/Mask/sterile_green.rsi
 
 - type: entity
-  parent: ClothingMaskBase
-  id: ClothingMaskFaceCast
-  name: face cast
-  description: It can steal your personality!
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Mask/facecast.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Mask/facecast.rsi
-  - type: BreathMask
-  - type: HideLayerClothing
-    slots:
-    - Snout
-  - type: FaceCast
-  # SUNRISE EDIT
-  - type: Tag
-    tags:
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
-
-
-- type: entity
   parent: [ ClothingMaskGasSwat, BaseSecurityContraband ]
   id: ClothingMaskGasBlueShield
   name: Blueshild gas mask
@@ -306,6 +284,24 @@
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: [ ClothingMaskBase, BaseMajorContraband ]
+  id: ClothingMaskDogi
+  name: samurai mask
+  description: Traditional Japanese mask.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
+  - type: BreathMask
   # SUNRISE EDIT
   - type: Tag
     tags:

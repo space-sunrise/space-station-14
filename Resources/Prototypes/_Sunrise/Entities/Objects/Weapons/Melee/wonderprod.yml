@@ -45,7 +45,7 @@
           angle: 60
           animation: WeaponArcThrust
         - type: StaminaDamageOnHit
-          damage: 55
+          damage: 60
           sound: /Audio/Weapons/egloves.ogg
         soundStateActivate:
           collection: sparks
@@ -86,7 +86,7 @@
         - type: InjectOnHit
           limit: 20
           reagents:
-          - ReagentId: Nocturine
+          - ReagentId: NocturineAbductor
             Quantity: 2.5
 
       damage: !type:ItemSwitchState

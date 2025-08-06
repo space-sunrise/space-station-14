@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -51,6 +52,7 @@ public sealed partial class ShuttleSystem
     private float FTLCooldown;
     public float FTLMassLimit;
     private TimeSpan _hyperspaceKnockdownTime = TimeSpan.FromSeconds(5);
+    private const float _ftlThrowForce = 20.0f;
 
     /// <summary>
     /// Left-side of the station we're allowed to use
@@ -74,6 +76,7 @@ public sealed partial class ShuttleSystem
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<FTLSmashImmuneComponent> _immuneQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
+    private EntityQuery<MovedByPressureComponent> _movedByPressureQuery;
 
     private void InitializeFTL()
     {
@@ -83,6 +86,7 @@ public sealed partial class ShuttleSystem
         _bodyQuery = GetEntityQuery<BodyComponent>();
         _immuneQuery = GetEntityQuery<FTLSmashImmuneComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
+        _movedByPressureQuery = GetEntityQuery<MovedByPressureComponent>();
 
         _cfg.OnValueChanged(CCVars.FTLStartupTime, time => DefaultStartupTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLTravelTime, time => DefaultTravelTime = time, true);
@@ -375,7 +379,8 @@ public sealed partial class ShuttleSystem
         var uid = entity.Owner;
         var comp = entity.Comp1;
         var xform = _xformQuery.GetComponent(entity);
-        DoTheDinosaur(xform);
+        // Sunrise-Edit
+        //DoTheDinosaur(xform);
 
         comp.State = FTLState.Travelling;
         var fromMapUid = xform.MapUid;
@@ -429,6 +434,10 @@ public sealed partial class ShuttleSystem
         var wowdio = _audio.PlayPvs(comp.TravelSound, uid);
         comp.TravelStream = wowdio?.Entity;
         _audio.SetGridAudio(wowdio);
+
+        // Sunrise-Start
+        DoTheDinosaur(xform, Direction.South.ToVec());
+        // Sunrise-End
     }
 
     /// <summary>
@@ -440,6 +449,16 @@ public sealed partial class ShuttleSystem
         var comp = entity.Comp1;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, DefaultArrivalTime);
         comp.State = FTLState.Arriving;
+
+        // Sunrise-Start
+        // Почему оно здесь а не в UpdateFTLArriving?
+        // Ну потому что когда шаттл выходит из фтл он телепортируется
+        // к докам и меняет угол поворота. А вот брошеная сущность все еще летит
+        // в том направлении когда шаттл был в фтл зоне,
+        // как итог полет будет не назад или вперед а в бок.
+        var xform = _xformQuery.GetComponent(entity.Owner);
+        DoTheDinosaur(xform, Direction.North.ToVec());
+        // Sunrise-End
 
         if (entity.Comp1.VisualizerProto != null)
         {
@@ -467,7 +486,8 @@ public sealed partial class ShuttleSystem
         var xform = _xformQuery.GetComponent(uid);
         var body = _physicsQuery.GetComponent(uid);
         var comp = entity.Comp1;
-        DoTheDinosaur(xform);
+        // Sunrise-Edit
+        //DoTheDinosaur(xform);
         _dockSystem.SetDockBolts(entity, false);
 
         _physics.SetLinearVelocity(uid, Vector2.Zero, body: body);
@@ -610,7 +630,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Puts everyone unbuckled on the floor, paralyzed.
     /// </summary>
-    private void DoTheDinosaur(TransformComponent xform)
+    private void DoTheDinosaur(TransformComponent xform, Vector2 throwDirection) // Sunrise-Edit
     {
         // Get enumeration exceptions from people dropping things if we just paralyze as we go
         var toKnock = new ValueList<EntityUid>();
@@ -625,6 +645,22 @@ public sealed partial class ShuttleSystem
                     continue;
 
                 _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
+
+                // Sunrise-Start
+                if (_physicsQuery.TryGetComponent(child, out var physics))
+                {
+                    if ((physics.BodyType & BodyType.Static) != 0)
+                        continue;
+
+                    _throwing.TryThrow(child,
+                        throwDirection * _ftlThrowForce,
+                        physics,
+                        Transform(child),
+                        _projQuery,
+                        _ftlThrowForce,
+                        playSound: false);
+                }
+                // Sunrise-End
 
                 // If the guy we knocked down is on a spaced tile, throw them too
                 if (grid != null)
@@ -666,6 +702,11 @@ public sealed partial class ShuttleSystem
         {
             if (!_buckleQuery.TryGetComponent(child, out var buckle) || buckle.Buckled)
                 continue;
+
+            // Sunrise-Start
+            if (_movedByPressureQuery.TryComp(child, out var moved) && !moved.Enabled)
+                continue;
+            // Sunrise-End
 
             toKnock.Add(child);
         }
@@ -761,6 +802,7 @@ public sealed partial class ShuttleSystem
             _dockSystem.Dock((dockAUid, dockA), (dockBUid, dockB));
         }
 
+        // Sunrise-Start
         if (deletedTrash &&
             TryComp<FixturesComponent>(shuttle.Owner, out var fixtures) &&
             TryComp<MapGridComponent>(shuttle.Owner, out var shuttleGrid))
@@ -778,11 +820,14 @@ public sealed partial class ShuttleSystem
                 _mapManager.FindGridsIntersecting(shuttle.Comp.MapID, aabb, ref grids, includeMap: false);
                 foreach (var grid in grids)
                 {
-                    if (grid.Owner != config.TargetGrid && grid.Owner != shuttle.Owner)
-                        QueueDel(grid);
+                    if (grid.Owner == config.TargetGrid || grid.Owner == shuttle.Owner)
+                        continue;
+
+                    QueueDel(grid);
                 }
             }
         }
+        // Sunrise-End
     }
 
     /// <summary>

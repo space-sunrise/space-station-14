@@ -1950,17 +1950,19 @@ entities:
     - type: Transform
       pos: 15.5,10.5
       parent: 1
+  - uid: 2711
+    components:
+    - type: Transform
+      pos: 0.5,-4.5
+      parent: 2709
+- proto: AirlockExternalGlassMiningShuttle
+  entities:
   - uid: 2204
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,17.5
       parent: 1
-  - uid: 2711
-    components:
-    - type: Transform
-      pos: 0.5,-4.5
-      parent: 2709
 - proto: AirlockHydroponicsGlass
   entities:
   - uid: 1062

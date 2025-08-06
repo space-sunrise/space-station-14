@@ -608,9 +608,9 @@
   description: A jumpsuit made of strong material, providing robust protection.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/security.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/security.rsi #Sunrise-Edit
   - type: Item
     inhandVisuals:
       left:
@@ -664,9 +664,9 @@
   description: A formal security suit for officers complete with Nanotrasen belt buckle.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/warden.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/warden.rsi #Sunrise-Edit
   - type: Item
     inhandVisuals:
       left:
@@ -1214,9 +1214,9 @@
   description: A sign of skill and prestige within the security department.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/senior_officer.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/senior_officer.rsi #Sunrise-Edit
 
 - type: entity
   parent: ClothingUniformBase

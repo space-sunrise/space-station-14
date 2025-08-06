@@ -7,21 +7,14 @@
   - type: NoEmotions
 
 - type: trait
-  id: TallQuirk
-  name: trait-tall-quirk-name
-  description: trait-tall-quirk-desc
-  category: HeightTraits
+  id: FelinidVocal
+  name: trait-felinid-vocal-name
+  description: trait-felinid-vocal-desc
+  category: VocalTraits
   cost: 1
   components:
-  - type: RescaleSprite
-    scale: 1,1.1
-
-- type: trait
-  id: ShortQuirk
-  name: trait-short-quirk-name
-  description: trait-short-quirk-desc
-  category: HeightTraits
-  cost: 1
-  components:
-  - type: RescaleSprite
-    scale: 1,0.9
+  - type: ReplacementVocal
+    vocal:
+      Male: MaleFelinid
+      Female: FemaleFelinid
+      Unsexed: MaleFelinid

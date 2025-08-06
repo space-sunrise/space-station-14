@@ -15,68 +15,81 @@ stack-reinforced-plasma-glass = армированное плазменное с
 stack-reinforced-uranium-glass = армированное урановое стекло
 stack-gunpowder = порох
 stack-cardboard = картон
-
-stack-bones = {$amount ->
-    [1] кость
-    *[other] кости
-}
-stack-cloth = {$amount ->
-    [1] ткань
-    *[other] ткани
-}
-stack-lv-cable = {$amount ->
-    [1] низковольтный кабель
-    *[other] низковольтные кабели
-}
-stack-mv-cable = {$amount ->
-    [1] средневольтный кабель
-    *[other] средневольтные кабели
-}
-stack-hv-cable = {$amount ->
-    [1] высоковольтный кабель
-    *[other] высоковольтные кабели
-}
-stack-wood-plank = {$amount ->
-    [1] деревянная доска
-    *[other] деревянные доски
-}
-stack-durathread = {$amount ->
-    [1] дюранить
-    *[other] дюранити
-}
-stack-rods = {$amount ->
-    [1] стержень
-    *[other] стержни
-}
-stack-meat-sheet = {$amount ->
-    [1] мясной лист
-    *[other] мясные листы
-}
-stack-space-carp-tooth = зуб космического карпа {$amount ->
-    [1] зуб
-    *[other] зубы
-}
-stack-paper = {$amount ->
-    [1] бумага
-    *[other] бумага
-}
-stack-diamond = {$amount ->
-    [1] алмаз
-    *[other] алмазы
-}
-stack-silk = {$amount ->
-    [1] шёлк
-    *[other] шелка
-}
-stack-cotton = {$amount ->
-    [1] хлопок
-    *[other] хлопка
-}
-stack-artifact-fragment = фрагмент {$amount ->
-    [1] артефакта
-    *[other] артефактов
-}
-
+stack-bones =
+    { $amount ->
+        [1] кость
+       *[other] кости
+    }
+stack-cloth =
+    { $amount ->
+        [1] ткань
+       *[other] ткани
+    }
+stack-lv-cable =
+    { $amount ->
+        [1] низковольтный кабель
+       *[other] низковольтные кабели
+    }
+stack-mv-cable =
+    { $amount ->
+        [1] средневольтный кабель
+       *[other] средневольтные кабели
+    }
+stack-hv-cable =
+    { $amount ->
+        [1] высоковольтный кабель
+       *[other] высоковольтные кабели
+    }
+stack-wood-plank =
+    { $amount ->
+        [1] деревянная доска
+       *[other] деревянные доски
+    }
+stack-durathread =
+    { $amount ->
+        [1] дюранить
+       *[other] дюранити
+    }
+stack-rods =
+    { $amount ->
+        [1] стержень
+       *[other] стержни
+    }
+stack-meat-sheet =
+    { $amount ->
+        [1] мясной лист
+       *[other] мясные листы
+    }
+stack-space-carp-tooth =
+    зуб космического карпа { $amount ->
+        [1] зуб
+       *[other] зубы
+    }
+stack-paper =
+    { $amount ->
+        [1] бумага
+       *[other] бумага
+    }
+stack-diamond =
+    { $amount ->
+        [1] алмаз
+       *[other] алмазы
+    }
+stack-silk =
+    { $amount ->
+        [1] шёлк
+       *[other] шелка
+    }
+stack-cotton =
+    { $amount ->
+        [1] хлопок
+       *[other] хлопка
+    }
+stack-artifact-fragment =
+    фрагмент { $amount ->
+        [1] артефакта
+       *[other] артефактов
+    }
 # best materials
 stack-ground-tobacco = молотый табак
 stack-ground-cannabis = молотый каннабис
@@ -84,16 +97,16 @@ stack-ground-rainbow-cannabis = молотый радужный каннабис
 stack-dried-tobacco-leaves = сушеные листья табака
 stack-dried-cannabis-leaves = сушеные листья каннабиса
 stack-dried-rainbow-cannabis-leaves = сушеные листья радужного каннабиса
-
-stack-cigarette-filter = сигаретный {$amount ->
-    [1] фильтр
-    *[other] фильтры
-}
-stack-rolling-paper = {$amount ->
-    [1] бумага для самокруток
-    *[other] бумага для самокруток
-}
-
+stack-cigarette-filter =
+    сигаретный { $amount ->
+        [1] фильтр
+       *[other] фильтры
+    }
+stack-rolling-paper =
+    { $amount ->
+        [1] бумага для самокруток
+       *[other] бумага для самокруток
+    }
 stack-fulton = фултон
 stack-credit = спесо
 stack-plasma = плазма

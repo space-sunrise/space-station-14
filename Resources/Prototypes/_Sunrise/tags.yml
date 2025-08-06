@@ -453,3 +453,6 @@
   id: TopCovered
 
 ### INTERACTION TAGS ###
+
+- type: Tag
+  id: SnapPop

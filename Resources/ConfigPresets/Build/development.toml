@@ -2,7 +2,7 @@
 # Straight in-game baby
 lobbyenabled = false
 # Dev map for faster loading & convenience
-map = "SunriseDev" # Sunrise-Edit
+map = "Dev"
 role_timers = false
 
 [events]

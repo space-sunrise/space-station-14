@@ -532,4 +532,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> PrinterDocYearOffset =
         CVarDef.Create("printerdoc.year_offset", 1000, CVar.SERVERONLY);
 
+    public static readonly CVarDef<bool> HoldLookUp =
+        CVarDef.Create("scope.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
 }
