@@ -408,4 +408,39 @@
   - type: Tag
     tags:
     - Fruit
-    - Sunflower # TODO add "RedFlower" or "Poppy" tag, when other color flowers will be
+    - Sunflower
+
+- type: entity
+  name: ambrosia gaia
+  parent: FoodProduceBase
+  id: FoodAmbrosiaGaia
+  description: The bringer of light.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - leafy
+      - medicine
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: EarthBlood
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/ambrosia_gaia.rsi
+  - type: Produce
+    seedId: AmbrosiaGaia
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Clothing
+    sprite: _Sunrise/Objects/Specific/Hydroponics/ambrosia_gaia.rsi
+    slots:
+    - HEAD
+  - type: Tag
+    tags:
+    - Ambrosia #TODO как офы ебанут цветки не забудь сюда тег вьебать

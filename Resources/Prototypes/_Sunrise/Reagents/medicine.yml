@@ -1,0 +1,24 @@
+- type: reagent
+  id: EarthBlood
+  name: Earth Blood
+  group: Medicine
+  desc: Ichor from an extremely powerful plant. Great for restoring wounds, but it's a little heavy on the brain.
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#f4bf20"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -3
+            Toxin: -3
+            Airloss: -3
+            Brute: -3
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.25 # Короче тебя круто хилит, но мозг гниёт нахуй, так в 13 было, а у нас тупо клеточный урон пусть сносит, увы.
