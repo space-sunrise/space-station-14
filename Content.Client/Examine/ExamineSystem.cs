@@ -425,7 +425,7 @@ namespace Content.Client.Examine
             RaiseLocalEvent(entity, new ClientExaminedEvent(entity, playerEnt.Value));
         }
 
-        private void CloseTooltip()
+        public  void CloseTooltip() // Sunrise-Edit
         {
             if (_examineTooltipOpen != null)
             {

@@ -22,7 +22,7 @@ namespace Content.Client.FlavorText
 
             var loc = IoCManager.Resolve<ILocalizationManager>();
             CFlavorTextInput.Placeholder = new Rope.Leaf(loc.GetString("flavor-text-placeholder"));
-            CFlavorTextInput.OnTextChanged  += _ => FlavorTextChanged();
+            CFlavorTextInput.OnKeyBindUp  += _ => FlavorTextChanged(); // Sunrise-Edit
 
             if (_sponsorsMgr != null && _sponsorsMgr.ClientAllowedFlavor())
             {

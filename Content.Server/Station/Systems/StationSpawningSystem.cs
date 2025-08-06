@@ -27,7 +27,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
-
+using Content.Shared.White.CharacterExamine;
 namespace Content.Server.Station.Systems;
 
 /// <summary>
@@ -182,7 +182,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||
                     _sponsorsManager != null && session != null && _sponsorsManager.IsAllowedFlavor(session.UserId))
                 {
-                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
+                    var detail = AddComp<DetailExaminableComponent>(entity.Value);
+                    detail.Content = profile.FlavorText;
+                    Dirty(detail);
                 }
             }
             // Sunrise-End
