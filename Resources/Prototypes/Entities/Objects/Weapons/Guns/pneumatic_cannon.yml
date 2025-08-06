@@ -80,6 +80,8 @@
     whitelist:
       components:
       - CreamPie
+      tags:
+      - CreamCannonWhitelist
   - type: Gun
     fireRate: 1
     selectedMode: SemiAuto
