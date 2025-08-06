@@ -13,3 +13,7 @@ body-giga-m = Мускулистое
 body-distrofik-f = Истощённое
 body-distrofik-m = Истощённое
 
+body-curved-small-muzzle = Изогнутые ноги (маленькая морда)
+body-straight-small-muzzle = Прямые ноги (маленькая морда)
+body-curved-big-muzzle = Изогнутые ноги (большая морда)
+body-straight-big-muzzle = Прямые ноги (большая морда)

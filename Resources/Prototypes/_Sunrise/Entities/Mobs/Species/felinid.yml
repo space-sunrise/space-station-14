@@ -501,7 +501,6 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
   - type: Felinid
-    damageSound: /Audio/Effects/hit_kick.ogg
   - type: Carriable
 
 - type: entity

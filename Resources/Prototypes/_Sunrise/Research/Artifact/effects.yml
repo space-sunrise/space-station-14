@@ -273,7 +273,6 @@
     prototypeBlacklist:
     - BaseBloodCultGod
     - BaseCentcommContraband
-    - BaseClone
     - BaseGameRule
     - BaseGrandTheftContraband
     - BaseMagicalContraband
