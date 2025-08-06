@@ -180,6 +180,3 @@ ent-SyringeRomerol = шприц ромерола
 ent-SyringeStimulants = шприц стимулятора
     .desc = { ent-PrefilledSyringe.desc }
     .suffix = гиперзин
-ent-ZookeeperSyringeChloralHydrate = шприц хлоральгидрата
-    .desc = { ent-PrefilledSyringe.desc }
-    .suffix = хлоральгидрат

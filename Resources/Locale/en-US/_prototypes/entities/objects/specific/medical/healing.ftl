@@ -179,6 +179,3 @@ ent-SyringeRomerol = { ent-PrefilledSyringe }
 ent-SyringeStimulants = { ent-PrefilledSyringe }
     .suffix = hyperzine
     .desc = { ent-PrefilledSyringe.desc }
-ent-ZookeeperSyringeChloralHydrate = { ent-PrefilledSyringe }
-    .suffix = chloral hydrate
-    .desc = { ent-PrefilledSyringe.desc }
