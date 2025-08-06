@@ -121,7 +121,7 @@
   parent: BasePDA
   id: PlanetPrisonerPDA
   name: prisoner's PDA
-  description: In the colour of the robe for a complete set.
+  description: "{ ent-PlanetPrisonerPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -140,7 +140,7 @@
   parent: BasePDA
   id: FugitivePrisonerPDA
   name: prisoner's PDA
-  description: In the colour of the robe for a complete set.
+  description: "{ ent-FugitivePrisonerPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -159,7 +159,7 @@
   parent: BasePDA
   id: GuardPDA
   name: prison guard's PDA
-  description: Bent and scuffed, but every scratch is evidence of a continuous struggle for safety.
+  description: "{ ent-GuardPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -178,6 +178,7 @@
   parent: BasePDA
   id: PrisonEngineerPDA
   name: prison engineer's PDA
+  description: "{ ent-PrisonEngineerPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -199,6 +200,7 @@
   parent: BasePDA
   id: PrisonScientistPDA
   name: prison scientist's PDA
+  description: "{ ent-PrisonScientistPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -220,6 +222,7 @@
   parent: BasePDA
   id: PrisonDoctorPDA
   name: prison doctor's PDA
+  description: "{ ent-PrisonDoctorPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -241,6 +244,7 @@
   parent: BasePDA
   id: PrisonChefPDA
   name: prison chef's PDA
+  description: "{ ent-PrisonChefPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -262,6 +266,7 @@
   parent: BasePDA
   id: PrisonWorkerPDA
   name: prison worker's PDA
+  description: "{ ent-PrisonWorkerPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -283,7 +288,7 @@
   parent: BasePDA
   id: PrisonPilotPDA
   name: prison pilot's PDA
-  description: Shiny and technologically advanced, as if it had just been pulled out of the cockpit.
+  description: "{ ent-PrisonPilotPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -305,7 +310,7 @@
   parent: BasePDA
   id: HeadOfPrisonPDA
   name: Prison governor's PDA
-  description: Has the look of a prestigious instrument of power, but a little scratched from constant emergency calls.
+  description: "{ ent-HeadOfPrisonPDA-desc }"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi

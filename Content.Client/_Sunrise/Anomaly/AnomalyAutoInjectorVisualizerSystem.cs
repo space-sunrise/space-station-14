@@ -1,11 +1,15 @@
-// ГОВНОКОД: сделал кастомную визуалку, ибо не получилось подключить визуализатор от medipen к автоинъектору, чтоб было без метаболизма, и после применения шла логика AnomalyAutoInjectorSystem
+// TODO: создана временная визуализация, т.к. визуализатор medipen не подходит из-за метаболизма. В будущем стоит сделать с системой визуализации medipen.
 using Content.Shared.Anomaly.Components;
 using Robust.Client.GameObjects;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Anomaly;
 
 public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {
+    private const int SpriteLayerIndex = 0;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -15,13 +19,13 @@ public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 
     private void OnUsedStartup(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentStartup args)
     {
-        if (EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(0, "anomagen_empty");
+        if (_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
+            sprite.LayerSetState(SpriteLayerIndex, "anomagen_empty");
     }
 
     private void OnUsedShutdown(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentShutdown args)
     {
-        if (EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(0, "anomagen");
+        if (_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
+            sprite.LayerSetState(SpriteLayerIndex, "anomagen");
     }
 }

@@ -38,7 +38,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
     belt: WeaponDisabler
-    back: ClothingMilitaryBackpack
+    back: ClothingBackpackSatchelSecurity
     shoes: ClothingShoesBootsJack
     pocket1: Flash
     pocket2: SecurityWhistle
