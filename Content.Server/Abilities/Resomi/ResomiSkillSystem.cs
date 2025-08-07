@@ -1,7 +1,10 @@
 using Content.Server.Actions;
+using Content.Server.Standing;
+using Content.Shared._Sunrise.Abilities;
 using Content.Shared.Abilities.Resomi;
 using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Abilities.Resomi;
 
@@ -10,6 +13,7 @@ public sealed class ResomiSkillSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -26,6 +30,11 @@ public sealed class ResomiSkillSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (args.Handled || _standing.IsDown(uid))
+            return;
+
+        var preventLaying = EnsureComp<ActiveAbilityComponent>(uid);
+
         args.Handled = true;
         var xform = Transform(uid);
         var mapCoords = args.Target.ToMap(EntityManager, _transform);
@@ -35,5 +44,11 @@ public sealed class ResomiSkillSystem : EntitySystem
             direction = direction.Normalized() * component.MaxThrow;
 
         _throwing.TryThrow(uid, direction, component.ThrowSpeed, uid, component.ThrowRange);
+
+        Timer.Spawn(TimeSpan.FromSeconds(1), () =>
+        {
+            if (Exists(uid))
+                RemComp<ActiveAbilityComponent>(uid);
+        });
     }
 }

@@ -14,9 +14,9 @@ namespace Content.Server.Abilities.Resomi
         public float ThrowSpeed = 7F;
 
         [DataField]
-        public float ThrowRange = 7F;
+        public float ThrowRange = 5F;
 
         [DataField]
-        public float MaxThrow = 7f;
+        public float MaxThrow = 5f;
     }
 }

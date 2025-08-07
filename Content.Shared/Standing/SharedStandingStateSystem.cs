@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Sunrise.Abilities;
 using Content.Shared._Sunrise.Jump;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.ActionBlocker;
@@ -243,6 +244,9 @@ public abstract class SharedStandingStateSystem : EntitySystem
     public void Fall(EntityUid uid)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
+            return;
+
+        if (HasComp<ActiveAbilityComponent>(uid))
             return;
 
         var velocity = physics.LinearVelocity;
