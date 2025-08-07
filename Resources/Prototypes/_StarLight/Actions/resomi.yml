@@ -1,0 +1,15 @@
+- type: entity
+  id: Jump
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: _Sunrise/Actions/zombie.rsi
+      state: jump
+    itemIconStyle: NoItem
+  - type: TargetAction
+    range: 200
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ResomiJumpActionEvent
