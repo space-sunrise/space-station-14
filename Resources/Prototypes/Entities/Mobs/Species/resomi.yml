@@ -126,6 +126,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: feet
       neck:
         sizeMaps:
           32:
