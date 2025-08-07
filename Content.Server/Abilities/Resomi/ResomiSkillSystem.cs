@@ -18,9 +18,9 @@ public sealed class ResomiSkillSystem : EntitySystem
         SubscribeLocalEvent<ResomiSkillComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ResomiSkillComponent, ResomiJumpActionEvent>(OnJump);
     }
-    
+
     private void OnStartup(EntityUid uid, ResomiSkillComponent component, ComponentStartup args) => _action.AddAction(uid, component.ActionJumpId);
-    
+
     private void OnJump(EntityUid uid, ResomiSkillComponent component, ResomiJumpActionEvent args)
     {
         if (args.Handled)
@@ -34,6 +34,6 @@ public sealed class ResomiSkillSystem : EntitySystem
         if (direction.Length() > component.MaxThrow)
             direction = direction.Normalized() * component.MaxThrow;
 
-        _throwing.TryThrow(uid, direction, 7F, uid, 10F);
+        _throwing.TryThrow(uid, direction, component.ThrowSpeed, uid, component.ThrowRange);
     }
 }

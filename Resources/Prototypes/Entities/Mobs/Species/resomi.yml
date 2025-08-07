@@ -61,7 +61,7 @@
       140: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      40: 0.7  #Basicly 60% and 80%
+      40: 0.7
       55: 0.5
   - type: MeleeWeapon
     soundHit:
@@ -72,7 +72,7 @@
       types:
         Slash: 5
   - type: Temperature
-    heatDamageThreshold: 317
+    heatDamageThreshold: 313
     coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 42
