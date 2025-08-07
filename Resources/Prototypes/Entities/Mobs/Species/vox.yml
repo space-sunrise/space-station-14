@@ -195,6 +195,7 @@
   - type: Body
     prototype: Vox
   - type: Inventory
+    templateId: nonUnderwear # Sunrise-Edit
     speciesId: vox
     displacements:
       jumpsuit:

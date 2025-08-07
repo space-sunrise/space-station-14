@@ -7,7 +7,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.5 # This makes space and crit more lethal to arachnids.
+        Asphyxiation: 1.5 # This makes space and crit more lethal to resomi.
     damageRecovery:
       types:
         Asphyxiation: -0.5

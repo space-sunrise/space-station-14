@@ -238,7 +238,7 @@
   - type: HumanoidAppearance
     species: Resomi
   - type: Inventory
-    templateId: resomi
+    templateId: nonUnderwear
     speciesId: resomi
     displacements:
       jumpsuit:
