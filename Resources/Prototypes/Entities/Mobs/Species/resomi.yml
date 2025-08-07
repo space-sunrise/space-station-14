@@ -130,7 +130,7 @@
         sizeMaps:
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
-            state: feet
+            state: socks
       neck:
         sizeMaps:
           32:
@@ -192,6 +192,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: socks
       neck:
         sizeMaps:
           32:
@@ -279,6 +284,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: socks
       neck:
         sizeMaps:
           32:
@@ -340,6 +350,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: socks
       neck:
         sizeMaps:
           32:
