@@ -9,41 +9,41 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganResomiEyes
     torso:
       part: TorsoResomi
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
+      - right arm
+      - left arm
+      - right leg
+      - left leg
       organs:
         heart: OrganHumanHeart
         lungs: OrganHumanLungs
         stomach: OrganHumanStomach
         liver: OrganHumanLiver
         kidneys: OrganHumanKidneys
-    right_arm:
+    right arm:
       part: RightArmResomi
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmResomi
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandResomi
-    left_hand:
+    left hand:
       part: LeftHandResomi
-    right_leg:
+    right leg:
       part: RightLegResomi
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegResomi
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootResomi
-    left_foot:
+    left foot:
       part: LeftFootResomi

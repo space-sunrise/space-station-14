@@ -1,0 +1,14 @@
+- type: entity
+  id: OrganResomiEyes
+  parent: OrganHumanEyes
+  name: eye
+  description: "I see you!"
+  components:
+  - type: FunctionalOrgan
+    comps:
+     - type: ToggleableNightVision
+       effect: EffectNightVisioSpecies
+     - type: DamagedByFlashing
+       flashDamage:
+         types:
+           Shock: 5.0
