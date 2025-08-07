@@ -9,7 +9,7 @@
         - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganTajaranEyes
     torso:
       part: TorsoTajaran
       organs:
