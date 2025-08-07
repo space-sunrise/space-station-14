@@ -206,7 +206,6 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-    - Resomi
 
 - type: entity
   parent: BaseSpeciesDummy

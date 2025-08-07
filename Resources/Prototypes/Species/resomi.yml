@@ -3,7 +3,8 @@
   name: species-name-resomi
   roundStart: true
   prototype: MobResomi
-  sprites: MobResomiSprites
+  bodyTypes:
+  - ResomiNormal
   defaultSkinTone: "#faf7f7"
   markingLimits: MobResomiMarkingLimits
   maleFirstNames: names_resomi_male
@@ -12,8 +13,9 @@
   dollPrototype: MobResomiDummy
   skinColoration: Hues
 
-- type: speciesBaseSprites
-  id: MobResomiSprites
+- type: bodyType
+  id: ResomiNormal
+  name: body-normal
   sprites:
     Head: MobResomiHead
     Hair: MobResomiHair
