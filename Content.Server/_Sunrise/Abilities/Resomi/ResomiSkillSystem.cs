@@ -26,9 +26,6 @@ public sealed class ResomiSkillSystem : EntitySystem
 
     private void OnJump(EntityUid uid, ResomiSkillComponent component, ResomiJumpActionEvent args)
     {
-        if (args.Handled)
-            return;
-
         if (args.Handled || _standing.IsDown(uid))
             return;
 
