@@ -6,3 +6,4 @@ species-name-predator = Яутжа
 species-name-xeno = Ксеноморф
 species-name-demon = Аркана
 species-name-abductor = Абдуктор
+species-name-resomi = Резоми
