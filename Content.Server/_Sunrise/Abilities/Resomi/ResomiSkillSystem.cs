@@ -1,12 +1,11 @@
 using Content.Server.Actions;
 using Content.Server.Standing;
-using Content.Shared._Sunrise.Abilities;
-using Content.Shared.Abilities.Resomi;
+using Content.Shared._Sunrise.Abilities.Resomi;
 using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Abilities.Resomi;
+namespace Content.Server._Sunrise.Abilities.Resomi;
 
 public sealed class ResomiSkillSystem : EntitySystem
 {
