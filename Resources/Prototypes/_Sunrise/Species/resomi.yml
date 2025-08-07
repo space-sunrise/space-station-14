@@ -9,7 +9,8 @@
   markingLimits: MobResomiMarkingLimits
   maleFirstNames: names_resomi_first
   femaleFirstNames: names_resomi_first
-  lastNames: names_resomi_packs
+  maleLastNames: names_resomi_packs
+  femaleLastNames: names_resomi_packs
   naming: FirstLast
   dollPrototype: MobResomiDummy
   skinColoration: Hues
