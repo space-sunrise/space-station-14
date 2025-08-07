@@ -496,25 +496,27 @@
     Sigh:
       collection: FemaleSigh
     Crying:
-      collection: ResomiCry
+      collection: FemaleCry
     Cough:
       collection: FemaleCoughs
     Yawn:
       collection: FemaleYawn
     Hisses:
-      collection: FelionoidHisses
+      collection: FelinidHisses
     Purr:
-      collection: FelionoidPurrs
+      collection: FelinidPurrs
     Growl:
-      collection: FelionoidGrowls
-    Trill:
-      collection: FelionoidTrills
+      collection: FelinidGrowls
     Scree:
       collection: ResomiScrees
     Call:
       collection: ResomiCalls
     Squawk:
       collection: ResomiSquawk
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: UnisexSiliconXenoborg

@@ -10,7 +10,7 @@
     - /Audio/Voice/Resomi/resomi_laugh1.ogg
     - /Audio/Voice/Resomi/resomi_laugh2.ogg
     - /Audio/Voice/Resomi/resomi_laugh3.ogg
-  
+
 - type: soundCollection
   id: ResomiChirp
   files:
@@ -19,14 +19,6 @@
     - /Audio/Voice/Resomi/resomi_chirp3.ogg
     - /Audio/Voice/Resomi/resomi_chirp4.ogg
     - /Audio/Voice/Resomi/resomi_chirp5.ogg
-
-- type: soundCollection
-  id: ResomiCry
-  files:
-    - /Audio/Voice/Resomi/imitated_cry_female_1.ogg
-    - /Audio/Voice/Resomi/imitated_cry_female_2.ogg
-    - /Audio/Voice/Resomi/imitated_cry_female_3.ogg
-    - /Audio/Voice/Resomi/imitated_cry_female_4.ogg
 
 - type: soundCollection
   id: FemaleLaugh
