@@ -12,6 +12,10 @@
   naming: First
   dollPrototype: MobResomiDummy
   skinColoration: Hues
+  minAge: 19
+  youngAge: 36
+  oldAge: 90
+  maxAge: 140
 
 - type: bodyType
   id: ResomiNormal
