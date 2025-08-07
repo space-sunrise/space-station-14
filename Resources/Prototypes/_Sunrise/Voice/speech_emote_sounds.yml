@@ -184,13 +184,13 @@
     variation: 0.125
   sounds:
     Scream:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/_Sunrise/Voice/Resomi/resomi_scream.ogg
     Laugh:
       collection: ResomiLaugh
     Honk:
       collection: BikeHorn
     Whistle:
-      path: /Audio/Voice/Resomi/resomi_whistle.ogg
+      path: /Audio/_Sunrise/Voice/Resomi/resomi_whistle.ogg
     Chirp:
       collection: ResomiChirp
     Weh:
