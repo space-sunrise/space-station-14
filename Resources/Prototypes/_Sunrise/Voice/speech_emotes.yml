@@ -99,6 +99,7 @@
   name: chat-emote-name-growls
   category: Vocal
   available: false
+  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
   whitelist:
     components:
     - Vocal

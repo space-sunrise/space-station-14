@@ -3,7 +3,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 25
+    useDelay: 20
     icon:
       sprite: _Sunrise/Actions/zombie.rsi
       state: jump

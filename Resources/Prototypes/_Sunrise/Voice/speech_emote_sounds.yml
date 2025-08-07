@@ -201,18 +201,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
-    Sigh:
-      collection: FemaleSigh
-    Crying:
-      collection: FemaleCry
     Cough:
       collection: FemaleCoughs
-    Yawn:
-      collection: FemaleYawn
     Hisses:
       collection: FelinidHisses
-    Purr:
-      collection: FelinidPurrs
     Growl:
       collection: FelinidGrowls
     Scree:
