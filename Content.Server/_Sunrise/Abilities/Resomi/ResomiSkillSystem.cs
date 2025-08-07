@@ -29,7 +29,7 @@ public sealed class ResomiSkillSystem : EntitySystem
         if (args.Handled || _standing.IsDown(uid))
             return;
 
-        EnsureComp<ActiveAbilityComponent>(uid);
+        EnsureComp<ResomiActiveAbilityComponent>(uid);
 
         args.Handled = true;
         var xform = Transform(uid);

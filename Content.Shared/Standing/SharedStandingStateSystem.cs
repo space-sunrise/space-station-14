@@ -246,7 +246,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
             return;
 
-        if (HasComp<ActiveAbilityComponent>(uid))
+        if (HasComp<ResomiActiveAbilityComponent>(uid))
             return;
 
         var velocity = physics.LinearVelocity;
