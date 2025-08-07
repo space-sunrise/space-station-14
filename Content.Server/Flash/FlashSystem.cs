@@ -53,14 +53,15 @@ namespace Content.Server.Flash
             SubscribeLocalEvent<FlashImmunityComponent, FlashAttemptEvent>(OnFlashImmunityFlashAttempt);
             SubscribeLocalEvent<PermanentBlindnessComponent, FlashAttemptEvent>(OnPermanentBlindnessFlashAttempt);
             SubscribeLocalEvent<TemporaryBlindnessComponent, FlashAttemptEvent>(OnTemporaryBlindnessFlashAttempt);
+            SubscribeLocalEvent<FlashModifierComponent, FlashAttemptEvent>(OnModifierFlashAttempt); // Sunrise-Edit Переместить в shared систему при апстриме
         }
-        
+
         private void OnExamine(Entity<FlashImmunityComponent> ent, ref ExaminedEvent args)
 
         {
             args.PushMarkup(Loc.GetString("flash-protection"));
         }
-        
+
         private void OnFlashMeleeHit(EntityUid uid, FlashComponent comp, MeleeHitEvent args)
         {
             if (!args.IsHit ||
@@ -130,6 +131,9 @@ namespace Content.Server.Flash
 
             if (attempt.Cancelled)
                 return;
+
+            if (attempt.Multiplier != 1f) // Sunrise-Edit Переместить в shared систему при апстриме
+                flashDuration *= attempt.Multiplier;
 
             // don't paralyze, slowdown or convert to rev if the target is immune to flashes
             if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, TimeSpan.FromSeconds(flashDuration / 1000f), true))
@@ -217,6 +221,8 @@ namespace Content.Server.Flash
         {
             args.Cancel();
         }
+
+        private void OnModifierFlashAttempt(EntityUid uid, FlashModifierComponent component, FlashAttemptEvent args) => args.Multiplier = component.Modifier; // Sunrise-Edit Перенести в shared систему при апстриме
     }
 
     /// <summary>
@@ -228,12 +234,14 @@ namespace Content.Server.Flash
         public readonly EntityUid Target;
         public readonly EntityUid? User;
         public readonly EntityUid? Used;
+        public float Multiplier; // Sunrise-Edit Перенести в shared систему при апстриме
 
-        public FlashAttemptEvent(EntityUid target, EntityUid? user, EntityUid? used)
+        public FlashAttemptEvent(EntityUid target, EntityUid? user, EntityUid? used, float multiplier = 1f) // Sunrise-Edit Перенести в shared систему при апстриме
         {
             Target = target;
             User = user;
             Used = used;
+            Multiplier = multiplier; // Sunrise-Edit Перенести в shared систему при апстриме
         }
     }
     /// <summary>

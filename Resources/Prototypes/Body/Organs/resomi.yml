@@ -6,9 +6,7 @@
   components:
   - type: FunctionalOrgan
     comps:
-     - type: ToggleableNightVision
-       effect: EffectNightVisioSpecies
-     - type: DamagedByFlashing
-       flashDamage:
-         types:
-           Shock: 5.0
+    - type: ToggleableNightVision
+      effect: EffectNightVisioSpecies
+    - type: FlashModifier
+      modifier: 2
