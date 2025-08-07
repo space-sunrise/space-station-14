@@ -29,7 +29,7 @@ public sealed class ResomiSkillSystem : EntitySystem
         if (args.Handled || _standing.IsDown(uid))
             return;
 
-        var preventLaying = EnsureComp<ActiveAbilityComponent>(uid);
+        EnsureComp<ActiveAbilityComponent>(uid);
 
         args.Handled = true;
         var xform = Transform(uid);
@@ -44,7 +44,7 @@ public sealed class ResomiSkillSystem : EntitySystem
         Timer.Spawn(TimeSpan.FromSeconds(1), () =>
         {
             if (Exists(uid))
-                RemComp<ActiveAbilityComponent>(uid);
+                RemComp<ResomiActiveAbilityComponent>(uid);
         });
     }
 }

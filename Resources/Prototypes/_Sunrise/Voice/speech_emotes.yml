@@ -28,6 +28,7 @@
   name: chat-emote-name-meows
   category: Vocal
   available: false
+  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
   whitelist:
     components:
     - Vocal
@@ -259,6 +260,9 @@
   - screes.
   - screes!
   - screes?
+  - скри
+  - скри.
+  - скри!
 
 - type: emote
   id: Call
@@ -286,6 +290,9 @@
   - calls.
   - calls!
   - calls?
+  - зовёт
+  - зовёт.
+  - зовёт!
 
 - type: emote
   id: Squawk
@@ -313,3 +320,6 @@
   - squawks.
   - squawks!
   - squawks?
+  - скрипит
+  - скрипит.
+  - скрипит!
