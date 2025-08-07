@@ -13,8 +13,8 @@
   naming: FirstLast
   dollPrototype: MobResomiDummy
   skinColoration: Hues
-  minAge: 19
-  youngAge: 36
+  minAge: 26
+  youngAge: 50
   oldAge: 90
   maxAge: 140
   minWidth: 0.9

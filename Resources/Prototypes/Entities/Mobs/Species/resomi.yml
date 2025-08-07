@@ -89,6 +89,7 @@
           sprite: Mobs/Species/Resomi/displacement.rsi
           state: inHand
   - type: Inventory
+    templateId: nonUnderwear
     speciesId: resomi
     displacements:
       jumpsuit:
@@ -126,11 +127,6 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
-      socks:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: socks
       neck:
         sizeMaps:
           32:
@@ -192,11 +188,6 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
-      socks:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: socks
       neck:
         sizeMaps:
           32:
@@ -247,6 +238,7 @@
   - type: HumanoidAppearance
     species: Resomi
   - type: Inventory
+    templateId: resomi
     speciesId: resomi
     displacements:
       jumpsuit:
@@ -284,11 +276,6 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
-      socks:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: socks
       neck:
         sizeMaps:
           32:
@@ -350,11 +337,6 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: feet
-      socks:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: socks
       neck:
         sizeMaps:
           32:
