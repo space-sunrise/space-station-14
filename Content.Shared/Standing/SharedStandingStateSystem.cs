@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared._Sunrise.Abilities;
+using Content.Shared._Sunrise.Abilities.Resomi;
 using Content.Shared._Sunrise.Jump;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.ActionBlocker;
