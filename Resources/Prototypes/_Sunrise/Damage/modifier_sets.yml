@@ -68,4 +68,8 @@
   coefficients:
     Heat: 1.15
 
-
+- type: damageModifierSet
+  id: Resomi
+  coefficients:
+    Cold: 0.75
+    Heat: 1.25
