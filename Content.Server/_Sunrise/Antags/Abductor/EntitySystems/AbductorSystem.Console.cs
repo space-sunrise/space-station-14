@@ -16,6 +16,7 @@ using Content.Shared.VendingMachines;
 using Content.Shared._Sunrise.Carrying;
 using Content.Shared.Popups;
 using Content.Shared.Starlight.ItemSwitch;
+using Robust.Shared.Audio;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
