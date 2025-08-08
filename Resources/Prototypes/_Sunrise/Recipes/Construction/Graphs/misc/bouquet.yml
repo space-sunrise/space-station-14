@@ -1,0 +1,31 @@
+- type: constructionGraph
+  id: LilyBouquetConstruction
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: lilybouquet
+      steps:
+      - tag: Paper
+        name: construction-graph-tag-paper
+        icon:
+          sprite: Objects/Misc/bureaucracy.rsi
+          state: paper
+      - tag: Lily
+        name: construction-graph-tag-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          state: produce
+      - tag: Lily
+        name: construction-graph-tag-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          state: produce
+      - tag: Lily
+        name: construction-graph-tag-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          state: produce
+        doAfter: 5 # ну энивей обвернуть 3 цветка бумажкой не займет у вас вечность
+  - node: lilybouquet
+    entity: LilyBouquet

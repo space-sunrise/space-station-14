@@ -7,3 +7,19 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/bouquet.rsi
     state: item
+
+- type: entity
+  parent: BaseItem
+  id: LilyBouquet
+  name: lily flowers bouquet
+  description: A bouquet of white flowers. It looks fascinating and smells delicious.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/lilybouquet.rsi
+    state: item
+  - type: Construction
+    graph: LilyBouquetConstruction
+    node: lilybouquet
+  - type: Tag
+    tags:
+    - LilyBouquet

@@ -78,3 +78,30 @@
         doAfter: 6
   - node: SunflowerCrown
     entity: SunflowerCrown
+
+- type: constructionGraph
+  id: LilyWreath
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: LilyWreath
+      steps:
+      - tag: Lily
+        name: construction-graph-tag-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          state: produce
+      - tag: Lily
+        name: construction-graph-tag-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          state: produce
+      - tag: Lily
+        name: construction-graph-tag-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          state: produce
+        doAfter: 5
+  - node: lilywreath
+    entity: LilyWreath

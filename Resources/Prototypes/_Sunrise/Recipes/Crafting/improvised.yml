@@ -67,3 +67,13 @@
   category: construction-category-clothing
   objectType: Item
   description: construction-graph-tag-white-high-wraps-desc
+
+- type: construction
+  name: construction-graph-tag-lily-wreath
+  id: LilyWreath
+  graph: LilyWreath
+  startNode: start
+  targetNode: lilywreath
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-lily-wreath-desc

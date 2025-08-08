@@ -17,3 +17,11 @@
   category: construction-category-misc
   description: construction-graph-tag-trashlasergun-desc
   objectType: Item
+
+- type: construction
+  id: construction-graph-tag-lilybouquet
+  graph: LilyBouquetConstruction
+  startNode: start
+  targetNode: lilybouquet
+  category: construction-category-misc
+  objectType: Item

@@ -1220,7 +1220,7 @@
   name: seeds-lily-name
   noun: seeds-noun-seeds
   displayName: seeds-lily-display-name
-  plantRsi: Objects/Specific/Hydroponics/lily.rsi
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/lily.rsi # Sunrise-Edit
   packetPrototype: LilySeeds
   productPrototypes:
     - FoodLily

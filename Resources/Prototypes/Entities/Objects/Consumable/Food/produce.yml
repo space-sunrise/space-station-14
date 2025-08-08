@@ -1580,7 +1580,7 @@
         - ReagentId: Bicaridine
           Quantity: 20
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/lily.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi # Sunrise-Edit
   - type: Produce
     seedId: lily
   - type: Extractable
@@ -1588,6 +1588,7 @@
   - type: Tag
     tags:
     - Flower
+    - Lily # Sunrise-Add
   - type: FoodSequenceElement
     entries:
       Taco: Lily

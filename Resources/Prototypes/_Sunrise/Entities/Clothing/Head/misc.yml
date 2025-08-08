@@ -48,3 +48,20 @@
   - type: Construction
     graph: SunflowerCrown
     node: SunflowerCrown
+
+- type: entity
+  parent: ClothingHeadBase
+  id: LilyWreath
+  name: lily wreath
+  description: A delicate lily wreath - pure, graceful, timeless
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/lily_wreath.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/lily_wreath.rsi
+    slots:
+    - HEAD
+  - type: Construction
+    graph: LilyWreath
+    node: lilywreath

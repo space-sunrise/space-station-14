@@ -456,3 +456,9 @@
 
 - type: Tag
   id: SnapPop
+
+- type: Tag
+  id: Lily
+
+- type: Tag
+  id: LilyBouquet
