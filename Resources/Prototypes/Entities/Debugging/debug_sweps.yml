@@ -4,7 +4,6 @@
   id: WeaponPistolDebug
   description: ded
   suffix: DEBUG
-  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
@@ -78,13 +77,12 @@
   name: bang, ded cartridge
   parent: BaseCartridgePistol
   suffix: DEBUG
-  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:
       - Debug
-  - type: HitScanCartridgeAmmo # Sunrise-Edit
-    proto: BulletDebug
+  - type: HitScanCartridgeAmmo
+    hitscan: DebugBulletTrace
 
 - type: entity
   name: bang stick gibber
@@ -92,7 +90,6 @@
   id: MeleeDebugGib
   description: hit hard ye
   suffix: DEBUG
-  categories: [ Debug ] # Sunrise added
   components:
   - type: Tag
     tags:

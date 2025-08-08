@@ -57,7 +57,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SpeedLoaderLightRifle
+      - id: SpeedLoaderHeavyRifleRFMJ
         amount: 16
 
 - type: entity

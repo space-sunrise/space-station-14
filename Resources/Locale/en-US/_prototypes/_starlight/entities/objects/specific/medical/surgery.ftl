@@ -1,0 +1,14 @@
+ent-CauteryCyber = cautery
+    .desc = { ent-Cautery.desc }
+ent-ScalpelCyber = scalpel
+    .desc = { ent-Scalpel.desc }
+ent-DrillCyber = drill
+    .desc = { ent-Drill.desc }
+ent-RetractorCyber = retractor
+    .desc = A surgical tool used to hold open incisions.
+ent-HemostatCyber = hemostat
+    .desc = A surgical tool used to compress blood vessels to prevent bleeding.
+ent-BoneSetterCyber = bone setter
+    .desc = A surgical tool used for setting bones. It also breaks them quite well.
+ent-SawCyber = circular saw
+    .desc = You think you can cut anything with it.

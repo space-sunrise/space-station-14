@@ -1,0 +1,30 @@
+- type: entity
+  id: BaseCartridgeBattery
+  name: cartridge (laser)
+  parent: [ BaseCartridge, BaseRestrictedContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeBattery
+  - type: HitScanCartridgeAmmo
+    hitscan: RedLaserBeam
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/laser_casing.rsi
+    scale: 0.80, 0.80
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: Contraband
+    allowedDepartments: [ Security, CentralCommand, Command, Cargo ]
+
+- type: entity
+  id: CartridgeBattery
+  name: cartridge (laser) # Sunrise-TODO: Другие типы боеприпасов и виды лазеров
+  parent: BaseCartridgeBattery
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: RedLaserBeam

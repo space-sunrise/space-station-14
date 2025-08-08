@@ -1,11 +1,11 @@
 using System.Linq;
-using Content.Shared._Sunrise.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using JetBrains.Annotations;
 
 namespace Content.Shared.Eye.Blinding.Systems;

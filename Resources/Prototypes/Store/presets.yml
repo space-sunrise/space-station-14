@@ -12,13 +12,14 @@
     - UplinkDeception
     - UplinkDisruption
     - UplinkImplants
+    - UplinkCybernetics #Sunrise-added
     - UplinkAllies
     - UplinkWearables
     - UplinkJob
     - UplinkPointless
     - UplinkObjectives
     - UplinkLootBoxes # Sunrise-Edit
-    - UplinkMechs #Sunrise-mechs
+    - UplinkMechs #Sunrise-added
     currencyWhitelist:
     - Telecrystal
     balance:

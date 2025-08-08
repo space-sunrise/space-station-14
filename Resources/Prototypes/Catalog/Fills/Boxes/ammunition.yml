@@ -42,8 +42,14 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazineLightRifle
-        amount: 4
+    - id: MagazineLightRifleSP
+      amount: 1
+    - id: MagazineLightRifleHP
+      amount: 1
+    - id: MagazineLightRifleFMJ
+      amount: 1
+    - id: MagazineLightRifleAP
+      amount: 1
 
 - type: entity
   name: box of .30 rifle (practice) magazines
@@ -117,11 +123,11 @@
   name: box of machine pistol .35 auto magazines
   parent: BoxMagazine
   id: BoxMagazinePistolHighCapacity
-  description: A box full of machine pistol .35 auto magazines.
+  description: A box full of machine pistol .35 auto SP magazines.
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolHighCapacity
+      - id: MagazinePistolHighCapacitySP
         amount: 4
 
 - type: entity
@@ -224,3 +230,4 @@
     contents:
       - id: MagazineRiflePractice
         amount: 4
+

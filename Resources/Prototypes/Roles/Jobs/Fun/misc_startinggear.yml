@@ -84,6 +84,8 @@
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat
+  inhand:
+   - WeaponSubMachineGunDrozd # Sunrise-Edit
   storage:
     back:
     - BoxSurvivalSecurity

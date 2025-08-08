@@ -86,19 +86,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<ExtinguishOnInteractComponent, ActivateInWorldEvent>(OnExtinguishActivateInWorld);
 
             SubscribeLocalEvent<IgniteOnHeatDamageComponent, DamageChangedEvent>(OnDamageChanged);
-            SubscribeLocalEvent<IgniteOnAmmoHitComponent, HitscanAmmoShotEvent>(HandleHitscanHit); // Sunrise-Edit
         }
-
-        // Sunrise-Start
-        private void HandleHitscanHit(EntityUid uid, IgniteOnAmmoHitComponent component, ref HitscanAmmoShotEvent args)
-        {
-            if (!EntityManager.TryGetComponent(args.Target, out FlammableComponent? flammable))
-                return;
-
-            flammable.FireStacks += component.FireStacks;
-            Ignite(args.Target, uid, flammable);
-        }
-        // Sunrise-End
 
         private void OnExtinguishEvent(Entity<FlammableComponent> ent, ref ExtinguishEvent args)
         {

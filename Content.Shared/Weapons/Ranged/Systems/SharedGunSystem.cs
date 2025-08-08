@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
@@ -25,6 +26,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
+using Content.Shared.Starlight.Utility;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -174,6 +176,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
+        // Sunrise-Start
         gun.Targets.Clear();
         foreach (var target in msg.Targets)
         {
@@ -183,6 +186,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                 gun.Targets.Add(targetUid);
             }
         }
+        // Sunrise-End
         AttemptShoot(user.Value, ent, gun);
     }
 
@@ -198,8 +202,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
             user = mechPilot.Mech;
 
-        if (!TryGetGun(user.Value, out var ent, out var gun)
-            || ent != gunUid)
+        if (!TryGetGun(user.Value, out var ent, out var gun))
+            return;
+
+        if (ent != gunUid)
             return;
 
         StopShooting(gunUid, gun);
@@ -211,6 +217,18 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
 
         return true;
+    }
+    //🌟Starlight🌟
+    public bool IsChamberClosed(EntityUid gunEntity)
+        => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
+
+    // 🌟Starlight🌟
+    public void DelayFire(Entity<GunComponent?> entity, TimeSpan delay)
+    {
+        if (!Resolve(entity, ref entity.Comp, logMissing: false))
+            return;
+
+        entity.Comp.NextFire = Timing.CurTime + delay;
     }
 
     public bool TryGetGun(EntityUid entity, out EntityUid gunEntity, [NotNullWhen(true)] out GunComponent? gunComp)
@@ -428,6 +446,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
+        var nonEmptyGunShotEvent = new OnNonEmptyGunShotEvent(user, ev.Ammo);
+        RaiseLocalEvent(gunUid, ref nonEmptyGunShotEvent);
+
         // Handle burstfire
         if (gun.SelectedMode == SelectiveFire.Burst)
         {
@@ -449,11 +470,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gunUid, ref shotEv);
 
-        if (userImpulse && TryComp<PhysicsComponent>(user, out var userPhysics))
-        {
-            if (_gravity.IsWeightless(user, userPhysics))
-                CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
-        }
+        if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
+            return;
+
+        var shooterEv = new ShooterImpulseEvent();
+        RaiseLocalEvent(user, ref shooterEv);
+
+        if (shooterEv.Push || _gravity.IsWeightless(user, userPhysics)) // TODO: Make IsWeightless Event Based
+            CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
     }
 
     public void Shoot(
@@ -519,13 +543,13 @@ public abstract partial class SharedGunSystem : EntitySystem
         cartridge.Spent = spent;
         Appearance.SetData(uid, AmmoVisuals.Spent, spent);
     }
-
-    protected void SetHitscanCartridgeSpent(EntityUid uid, HitScanCartridgeAmmoComponent hitScanCartridgeAmmo, bool spent)
+    // 🌟Starlight🌟
+    protected void SetCartridgeSpent(EntityUid uid, HitScanCartridgeAmmoComponent cartridge, bool spent)
     {
-        if (hitScanCartridgeAmmo.Spent != spent)
-            Dirty(uid, hitScanCartridgeAmmo);
+        if (cartridge.Spent != spent)
+            DirtyField(uid, cartridge, nameof(HitScanCartridgeAmmoComponent.Spent));
 
-        hitScanCartridgeAmmo.Spent = spent;
+        cartridge.Spent = spent;
         Appearance.SetData(uid, AmmoVisuals.Spent, spent);
     }
 
@@ -562,11 +586,11 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     protected IShootable EnsureShootable(EntityUid uid)
     {
+        if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitscanCartridge))
+            return hitscanCartridge;
+
         if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
             return cartridge;
-
-        if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitscan))
-            return hitscan;
 
         return EnsureComp<AmmoComponent>(uid);
     }
@@ -574,7 +598,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected void RemoveShootable(EntityUid uid)
     {
         RemCompDeferred<CartridgeAmmoComponent>(uid);
-        RemCompDeferred<HitScanCartridgeAmmoComponent>(uid);
         RemCompDeferred<AmmoComponent>(uid);
     }
 
@@ -689,7 +712,20 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Serializable, NetSerializable]
     public sealed class HitscanEvent : EntityEventArgs
     {
-        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float distance, EffectType effectType)> Sprites = new();
+        public ProtoId<HitscanPrototype> Hitscan;
+        public required Effect[][] Effects { get; init; }
+    }
+    [Serializable, NetSerializable]
+    public struct Effect
+    {
+        public Angle Angle;
+        public float Distance;
+
+        public NetCoordinates? MuzzleCoordinates;
+        public NetCoordinates? TravelCoordinates;
+        public NetCoordinates ImpactCoordinates;
+        public NetEntity? ImpactEnt;
+
     }
 }
 
@@ -712,15 +748,18 @@ public record struct AttemptShootEvent(EntityUid User, string? Message, bool Can
 [ByRefEvent]
 public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
 
+[ByRefEvent]
+public record struct OnNonEmptyGunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
+
+[ByRefEvent]
+public record struct ShooterImpulseEvent()
+{
+    public bool Push;
+};
+
 public enum EffectLayers : byte
 {
     Unshaded,
-}
-
-public enum EffectType : byte
-{
-    Tracer,
-    Static
 }
 
 [Serializable, NetSerializable]

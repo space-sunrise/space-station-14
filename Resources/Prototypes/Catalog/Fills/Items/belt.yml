@@ -192,9 +192,9 @@
   - type: StorageFill
     contents:
         #- id: WeaponRevolverInspector #Sunrise-edit #Moved to loadout
-        - id: SpeedLoaderMagnum
-        - id: SpeedLoaderMagnum
-        - id: MagazineBoxMagnum
+        - id: SpeedLoaderMagnumSP
+        - id: SpeedLoaderMagnumSP
+        - id: MagazineBoxMagnumSP
         - id: Telebaton
         - id: CigarGold
 

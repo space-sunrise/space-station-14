@@ -1,0 +1,279 @@
+# - type: entity
+#   id: MagazinePistolSubMachineGunUzi
+#   name: Uzi magazine (.35 auto rubber)
+#   parent: BaseMagazinePistolSubMachineGun
+#   components:
+#   - type: BallisticAmmoProvider
+#     proto: CartridgePistolSP
+#     capacity: 32
+#   - type: Sprite
+#     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/uzi.rsi
+#     layers:
+#     - state: base
+#       map: ["enum.GunVisualLayers.Base"]
+#     - state: mag-1
+#       map: ["enum.GunVisualLayers.Mag"]
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left-mag
+#       - state: inhand-left-stripe
+#         color: "#28E7DC"
+#       right:
+#       - state: inhand-right-mag
+#       - state: inhand-right-stripe
+#         color: "#28E7DC"
+#   - type: Tag
+#     tags:
+#       - MagazineSMGUzi
+
+- type: entity
+  id: MagazinePistolSubMachineGunImprovised
+  name: Improvised SMG magazine (.35 auto)
+  parent: [ BaseMagazinePistolSubMachineGun, BaseMinorContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    capacity: 20
+    whitelist:
+      tags:
+        - CartridgePistol
+        - CartridgePistolImprovised
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/improvised_smg_magazine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+  - type: Tag
+    tags:
+      - MagazineSMGImprovised
+  - type: Construction
+    graph: ImprovisedMagazinePistolSubMachineGunGraph
+    node: shell
+
+- type: entity
+  id: MagazinePistolSubMachineGunImprovisedFilled
+  name: Improvised SMG magazine (.35 auto)
+  parent: MagazinePistolSubMachineGunImprovised
+  suffix: Filled
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolImprovised
+    capacity: 20
+
+- type: entity
+  id: MagazinePistolSubMachineGunPPSH
+  name: PPSH magazine
+  parent: BaseMagazinePistolSubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+    capacity: 35
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+  - type: Tag
+    tags:
+      - MagazineSMGPPSH
+
+- type: entity
+  id: MagazinePistol40Base
+  name: "Pistol Magazine (.40)"
+  parent: BaseMagazinePistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40SP
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistolDP
+    capacity: 10
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Tag
+    tags:
+      - MagazinePistolDP
+
+- type: entity
+  id: MagazinePistol40Empty
+  name: "Pistol Magazine (.40 any)"
+  suffix: empty
+  parent: MagazinePistol40Base
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistol40SP
+  name: "Pistol Magazine (.40 SP)"
+  parent: MagazinePistol40Base
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40SP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazinePistol40HP
+  name: "Pistol Magazine (.40 HP)"
+  parent: MagazinePistol40Base
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40HP
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazinePistol40FMJ
+  name: "Pistol Magazine (.40 FMJ)"
+  parent: MagazinePistol40Base
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40FMJ
+  - type: Sprite
+    layers:
+    - state: fmj
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#080706"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#080706"
+
+- type: entity
+  id: MagazinePistol40AP
+  name: "Pistol Magazine (.40 AP)"
+  parent: MagazinePistol40Base
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40AP
+  - type: Sprite
+    layers:
+    - state: ap
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72E374"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72E374"
+
+- type: entity
+  id: MagazinePistolImprovised
+  name: "Improvised Pistol Magazine (.35)"
+  parent: BaseMagazinePistol
+  components:
+  - type: Item
+    size: Tiny
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: null
+    whitelist:
+      tags:
+        - CartridgePistol
+        - CartridgePistolImprovised
+    capacity: 6
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/improvised_pistol_magazine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Tag
+    tags:
+      - MagazinePistolImprovised
+  - type: Construction
+    graph: ImprovisedPistolMagazineGraph
+    node: shell
+
+- type: entity
+  id: MagazinePistolImprovisedFilled
+  parent: MagazinePistolImprovised
+  suffix: Filled
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolImprovised
+    capacity: 6

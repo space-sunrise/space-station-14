@@ -131,6 +131,36 @@ stack-ointment = мазь
 stack-aloe-cream = крем с алоэ
 stack-gauze = марля
 stack-brutepack = набор для грубой силы
+stack-blueointment =
+    { $amount ->
+        [1] blueointment
+       *[other] blueointments
+    }
+stack-redointment =
+    { $amount ->
+        [1] redointment
+       *[other] redointments
+    }
+stack-redbrutepack =
+    { $amount ->
+        [1] redbrutepack
+       *[other] redbrutepacks
+    }
+stack-redpunctpack =
+    { $amount ->
+        [1] redpunctpack
+       *[other] redpunctpacks
+    }
+stack-redlacepack =
+    { $amount ->
+        [1] redlacepack
+       *[other] redlacepacks
+    }
+stack-redbruizpack =
+    { $amount ->
+        [1] redbruizpack
+       *[other] redbruizpacks
+    }
 stack-bloodpack = пакет крови
 stack-medicated-suture = медикаментозный шов
 stack-regenerative-mesh = регенеративная сетка

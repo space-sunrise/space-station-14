@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Examine;
@@ -6,6 +7,8 @@ using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Toolshed.Commands.Values;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -16,53 +19,11 @@ public sealed partial class GunSystem
         base.InitializeCartridge();
         SubscribeLocalEvent<CartridgeAmmoComponent, ExaminedEvent>(OnCartridgeExamine);
         SubscribeLocalEvent<CartridgeAmmoComponent, DamageExamineEvent>(OnCartridgeDamageExamine);
+
         SubscribeLocalEvent<HitScanCartridgeAmmoComponent, ExaminedEvent>(OnHitScanCartridgeExamine);
         SubscribeLocalEvent<HitScanCartridgeAmmoComponent, DamageExamineEvent>(OnHitScanCartridgeDamageExamine);
     }
 
-    private void OnHitScanCartridgeDamageExamine(EntityUid uid, HitScanCartridgeAmmoComponent component, ref DamageExamineEvent args)
-    {
-        var damageSpec = GetHitscanDamage(component.Prototype);
-
-        if (damageSpec == null)
-            return;
-
-        var shotCount = 1;
-        var shootModifier = ShootModifier.None;
-        var hitScanPrototype = _proto.Index<HitscanPrototype>(component.Prototype);
-        if (hitScanPrototype.ShootModifier == ShootModifier.Split)
-        {
-            shotCount = hitScanPrototype.SplitCount;
-            shootModifier = ShootModifier.Split;
-        }
-        else if (hitScanPrototype.ShootModifier == ShootModifier.Spread)
-        {
-            shotCount = hitScanPrototype.SpreadCount;
-            shootModifier = ShootModifier.Spread;
-        }
-
-        _damageExamine.AddDamageExamineWithModifier(args.Message, damageSpec, shotCount, shootModifier, Loc.GetString("damage-hitscan"));
-    }
-
-    private DamageSpecifier? GetHitscanDamage(string proto)
-    {
-        if (!ProtoManager.TryIndex<HitscanPrototype>(proto, out var hitscanProto))
-            return null;
-
-        return hitscanProto.Damage ?? null;
-    }
-
-    private void OnHitScanCartridgeExamine(EntityUid uid, HitScanCartridgeAmmoComponent component, ExaminedEvent args)
-    {
-        if (component.Spent)
-        {
-            args.PushMarkup(Loc.GetString("gun-cartridge-spent"));
-        }
-        else
-        {
-            args.PushMarkup(Loc.GetString("gun-cartridge-unspent"));
-        }
-    }
 
     private void OnCartridgeDamageExamine(EntityUid uid, CartridgeAmmoComponent component, ref DamageExamineEvent args)
     {
@@ -71,16 +32,7 @@ public sealed partial class GunSystem
         if (damageSpec == null)
             return;
 
-        var shotCount = 1;
-        var shootModifier = ShootModifier.None;
-        var prototype = _proto.Index<EntityPrototype>(component.Prototype);
-        if (prototype.TryGetComponent<ProjectileSpreadComponent>(out var ammoSpreadComp, _componentFactory))
-        {
-            shotCount = ammoSpreadComp.Count;
-            shootModifier = ShootModifier.Spread;
-        }
-
-        _damageExamine.AddDamageExamineWithModifier(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, Loc.GetString("damage-projectile"));
+        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-projectile"));
     }
 
     private DamageSpecifier? GetProjectileDamage(string proto)
@@ -113,4 +65,64 @@ public sealed partial class GunSystem
             args.PushMarkup(Loc.GetString("gun-cartridge-unspent"));
         }
     }
+
+    private void OnHitScanCartridgeDamageExamine(EntityUid uid, HitScanCartridgeAmmoComponent component, ref DamageExamineEvent args) {
+        var damageSpec = GetHitscanProjectileDamage(component.Hitscan);
+        if (damageSpec == null)
+            return;
+
+        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-projectile"));
+
+        var ArmorMessage = GetArmorPenetrationExplain(component.Hitscan);
+
+        args.Message.AddMessage(ArmorMessage);
+
+    }
+
+    private FormattedMessage GetArmorPenetrationExplain(string proto) {
+        var msg = new FormattedMessage();
+        if (!ProtoManager.TryIndex<HitscanPrototype>(proto,out var entityProto))
+            return msg;
+
+        if (entityProto.ArmorPenetration == 0) {
+            return msg;
+        }
+        if (entityProto.ArmorPenetration > 0){
+            msg.PushNewline();
+            msg.TryAddMarkup(Loc.GetString("damage-examine-penetration-positive",("penetration", MathF.Round(entityProto.ArmorPenetration * 100, 1))), out var error);
+        }
+        if(entityProto.ArmorPenetration < 0) {
+            msg.PushNewline();
+            msg.TryAddMarkup(Loc.GetString("damage-examine-penetration-negative",("penetration", MathF.Round(entityProto.ArmorPenetration * -100, 1))), out var error);
+        }
+        return msg;
+    }
+
+    private DamageSpecifier? GetHitscanProjectileDamage(string proto) {
+        if (!ProtoManager.TryIndex<HitscanPrototype>(proto,out var entityProto))
+            return null;
+
+        if (entityProto.Damage == null) {
+            return null;
+        }
+
+        if (!entityProto.Damage.Empty) {
+            return entityProto.Damage * Damageable.UniversalHitscanDamageModifier;
+        }
+
+        return null;
+    }
+
+        private void OnHitScanCartridgeExamine(EntityUid uid, HitScanCartridgeAmmoComponent component, ExaminedEvent args)
+    {
+        if (component.Spent)
+        {
+            args.PushMarkup(Loc.GetString("gun-cartridge-spent"));
+        }
+        else
+        {
+            args.PushMarkup(Loc.GetString("gun-cartridge-unspent"));
+        }
+    }
+
 }

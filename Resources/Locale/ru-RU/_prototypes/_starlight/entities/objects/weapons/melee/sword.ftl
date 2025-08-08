@@ -1,0 +1,10 @@
+ent-SwordMakeshift = makeshift sword
+    .desc = Some sharp steel affixed to a metal rod, it can hardly be called a sword.
+ent-SwordImprovised = improvised sword
+    .desc = Not too sharp, but it does the job just fine.
+ent-SwordForged = forged sword
+    .desc = Made with plasteel, a single touch of the blade is enough to draw blood.
+ent-SwordFlaming = dawnbreaker
+    .desc = How do you perfect upon perfection? Why, use fire of course! Be the shining light through maints and fight valiantly!
+ent-ClaymoreForged = tidebreaker
+    .desc = The perfect weapon for an aspiring maints knight!

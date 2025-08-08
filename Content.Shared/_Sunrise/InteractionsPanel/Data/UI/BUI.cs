@@ -1,4 +1,5 @@
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.InteractionsPanel.Data.UI;

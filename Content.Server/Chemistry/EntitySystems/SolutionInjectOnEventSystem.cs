@@ -36,15 +36,9 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         SubscribeLocalEvent<SolutionInjectOnEmbedComponent, EmbedEvent>(HandleEmbed);
         SubscribeLocalEvent<MeleeChemicalInjectorComponent, MeleeHitEvent>(HandleMeleeHit);
         SubscribeLocalEvent<SolutionInjectWhileEmbeddedComponent, InjectOverTimeEvent>(OnInjectOverTime);
-        SubscribeLocalEvent<SolutionInjectOnProjectileHitComponent, HitscanAmmoShotEvent>(HandleHitscanHit);
     }
 
     private void HandleProjectileHit(Entity<SolutionInjectOnProjectileHitComponent> entity, ref ProjectileHitEvent args)
-    {
-        DoInjection((entity.Owner, entity.Comp), args.Target, args.Shooter);
-    }
-
-    private void HandleHitscanHit(Entity<SolutionInjectOnProjectileHitComponent> entity, ref HitscanAmmoShotEvent args)
     {
         DoInjection((entity.Owner, entity.Comp), args.Target, args.Shooter);
     }

@@ -176,7 +176,8 @@ public enum HandLocation : byte
 {
     Left,
     Middle,
-    Right
+    Right,
+    Functional
 }
 
 /// <summary>
@@ -187,7 +188,8 @@ public enum HandLocation : byte
 public enum HandUILocation : byte
 {
     Left,
-    Right
+    Right,
+    Functional
 }
 
 /// <summary>
@@ -206,6 +208,7 @@ public static class HandLocationExt
             HandLocation.Left => HandUILocation.Left,
             HandLocation.Middle => HandUILocation.Right,
             HandLocation.Right => HandUILocation.Right,
+            HandLocation.Functional => HandUILocation.Functional,
             _ => throw new ArgumentOutOfRangeException(nameof(location), location, null)
         };
     }

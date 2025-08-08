@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared._Sunrise.Events;
 using Content.Shared.Administration.Logs;
@@ -120,7 +120,8 @@ public sealed class ReflectSystem : EntitySystem
 
             var difference = newVelocity - existingVelocity;
             _physics.SetLinearVelocity(projectile, physics.LinearVelocity + difference, body: physics);
-            _transform.SetLocalRotation(projectile, overrideAngle);
+            var velocityAngle = (float)Math.Atan2(newVelocity.Y, newVelocity.X);
+            _transform.SetWorldRotation(projectile, velocityAngle - reflector.Comp.OverrideAngle.Value);
         }
         else
         {
@@ -178,8 +179,19 @@ public sealed class ReflectSystem : EntitySystem
 
         PlayAudioAndPopup(reflector.Comp, user);
 
-        var spread = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2);
-        newDirection = -spread.RotateVec(direction);
+        // Sunrise-Start
+        if (reflector.Comp.OverrideAngle is { } newAngle)
+        {
+            var overrideAngle = _transform.GetWorldRotation(reflector) + newAngle;
+            newDirection = new Vector2((float)Math.Cos(overrideAngle), (float)Math.Sin(overrideAngle));
+            newDirection = newDirection.Value.Normalized();
+        }
+        else
+        {
+            var spread = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2);
+            newDirection = -spread.RotateVec(direction);
+        }
+        // Sunrise-End
 
         if (shooter != null)
             _adminLogger.Add(LogType.HitScanHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected hitscan from {ToPrettyString(shotSource)} shot by {ToPrettyString(shooter.Value)}");

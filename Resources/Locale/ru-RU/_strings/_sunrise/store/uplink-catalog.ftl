@@ -9,12 +9,18 @@ uplink-magazine-shotgun-name = Барабан (.50 ружейный).
 uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
 uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
-uplink-grenade-frag-name = Осколочная граната
-uplink-grenade-frag-desc = Осколочная граната. Совместима с "China-Lake".
-uplink-grenade-blast-name = Фугасная граната
-uplink-grenade-blast-desc = Фугасная граната. Совместима с "China-Lake".
-uplink-grenade-emp-name = ЭМИ граната
-uplink-grenade-emp-desc = ЭМИ граната. Совместима с "China-Lake".
+uplink-grenade-frag-timer-name = безконтактная Осколочная граната
+uplink-grenade-frag-timer-desc = Осколочная граната. Совместима с "China-Lake" и "GL-79". Взрывается через 2 секунды после выстрела.
+uplink-grenade-blast-timer-name = безконтактная Фугасная граната
+uplink-grenade-blast-timer-desc = Фугасная граната. Совместима с "China-Lake" и "GL-79". Взрывается через 2 секунды после выстрела.
+uplink-grenade-emp-timer-name = безконтактная ЭМИ граната
+uplink-grenade-emp-timer-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-79". Взрывается через 2 секунды после выстрела.
+uplink-grenade-frag-contact-name = контактная Осколочная граната
+uplink-grenade-frag-contact-desc = Осколочная граната. Совместима с "China-Lake" и "GL-79". Взрывается при контакте с целью.
+uplink-grenade-blast-contact-name = контактная Фугасная граната
+uplink-grenade-blast-contact-desc = Фугасная граната. Совместима с "China-Lake" и "GL-79". Взрывается при контакте с целью.
+uplink-grenade-emp-contact-name = контактная ЭМИ граната
+uplink-grenade-emp-contact-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-79". Взрывается при контакте с целью.
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 антиматериальные)
@@ -27,6 +33,8 @@ uplink-magazine-dragunov-desc = Магазин для Драгунова. Сод
 uplink-magazine-dragunov-extended-desc = Магазин для Драгунова. Содержит 20 патронов калибра 7,62х54R.
 uplink-magazine-bulldog-uraniumslug-desc = Барабанный магазин на 8 урановых пулевых патронов. Совместим с "Бульдогом".
 uplink-magazine-bulldog-uranium-desc = Барабанный магазин на 8 патронов урановой дроби. Совместим с "Бульдогом".
+uplink-pistol-magnum-magazine-name = Магазин для Deagle
+uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 
 ## Misc
 
@@ -69,6 +77,8 @@ uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
 uplink-weapon-bauer-127-name = винтовка Bauer SR-127
 uplink-weapon-dragunov-name = Набор Драгунов
 uplink-weapon-dragunov-desc = Культовая снайперская винтовка и два магазина на 10 патронов, известная своей меткостью и стрельбой на дальние дистанции. Использует винтовочные патроны калибра 7.62x54R.
+uplink-deagle-name = пистолет «Desert Eagle»
+uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
 
 ## Cyborgs
 

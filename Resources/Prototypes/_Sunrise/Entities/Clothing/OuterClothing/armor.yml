@@ -11,6 +11,8 @@
     - type: ClothingSpeedModifier
       walkModifier: 1
       sprintModifier: 1
+    - type: Pierceable
+      level: Metal
     - type: Armor
       modifiers:
         coefficients:
@@ -20,12 +22,10 @@
           Heat: 0.5
     - type: ExplosionResistance
       damageCoefficient: 0.65
-  # SUNRISE EDIT
     - type: Tag
       tags:
-      - NudeBottom  # INTERACTIONS
+      - NudeBottom
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterArmorBasic
@@ -37,6 +37,8 @@
     sprite: _Sunrise/Clothing/OuterClothing/Armor/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Armor/blueshield.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -49,12 +51,11 @@
     damageCoefficient: 0.9
   - type: Item
     size: Huge
-  # SUNRISE EDIT
   - type: Tag
     tags:
-    - NudeBottom  # INTERACTIONS
+    - Vest
+    - NudeBottom
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -66,12 +67,16 @@
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Pierceable
+    level: Rock
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.55
         Slash: 0.55
-        Piercing: 0.55
+        Piercing: 0.50
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
@@ -84,17 +89,15 @@
     heatingCoefficient: 0.5
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  # SUNRISE EDIT
   - type: Tag
     tags:
-    - FullBodyOuter  # INTERACTIONS
+    - FullBodyOuter
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseCentcommContraband ]
@@ -111,6 +114,8 @@
       shader: unshaded
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Armor/amber_armor_com.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -469,7 +474,6 @@
     autoRecharge: true
     autoRechargeRate: 2
 
-
 - type: entity
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorAbductor
@@ -493,6 +497,8 @@
           sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
           state: icon
         components:
+        - type: Pierceable
+          level: Metal
         - type: Armor
           modifiers:
             coefficients:
@@ -529,6 +535,8 @@
           sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
           state: combat-icon
         components:
+        - type: Pierceable
+          level: Metal
         - type: Armor
           modifiers:
             coefficients:
