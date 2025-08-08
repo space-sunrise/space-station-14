@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionMastercamWhistle
+  name: whistle
+  description: Make a loud whistle to stop the intruder.
+  components:
+  - type: Action
+    icon: { sprite: Objects/Fun/whistles.rsi, state: sec }
+    useDelay: 5
+  - type: InstantAction
+    event: !type:WhistleEvent {}
