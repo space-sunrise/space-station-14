@@ -450,9 +450,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             {
                 var hasMind = _mindSystem.TryGetMind(victim.Value, out var mindId, out var mind);
 
-                var canConvert  = !HasComp<MindShieldComponent>(victim.Value)
-                                      && !HasComp<BibleUserComponent>(victim.Value)
-                                      && !isTarget;
+                var canConvert = !HasComp<MindShieldComponent>(victim.Value)
+                                      && !HasComp<BibleUserComponent>(victim.Value);
 
                 if (hasMind && canConvert )
                 {
