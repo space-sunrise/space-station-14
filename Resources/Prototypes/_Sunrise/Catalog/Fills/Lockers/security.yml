@@ -32,7 +32,7 @@
     contents:
     - id: WeaponRifleM16A4
       amount: 2
-    - id: SunriseMagazineRifle
+    - id: MagazineRifleSP
       amount: 4
 
 - type: entity
@@ -45,7 +45,7 @@
     contents:
     - id: WeaponSubMachineGunNewVector
       amount: 2
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGunSP
       amount: 4
 
 - type: entity
@@ -58,7 +58,7 @@
     contents:
     - id: WeaponSubMachineGunMP7
       amount: 2
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolHighCapacityFMJ
       amount: 4
 
 - type: entity
@@ -71,7 +71,7 @@
     contents:
     - id: WeaponSubMachineGunSkorpion
       amount: 4
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGunSP
       amount: 6
 
 - type: entity

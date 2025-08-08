@@ -402,6 +402,13 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Distrofik/displacement.rsi
             state: back
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Felinid
   - type: Fixtures
     fixtures:
       fix1:

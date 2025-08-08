@@ -20,6 +20,9 @@
                 <CheckBox Name="DamageOverlayEnableCheckBox" Text="{Loc 'ui-options-damage-overlay-enable'}" />
                 <CheckBox Name="DamageOverlaySelfCheckBox" Text="{Loc 'ui-options-damage-overlay-self'}" />
                 <CheckBox Name="DamageOverlayStructuresCheckBox" Text="{Loc 'ui-options-damage-overlay-structures'}" />
+                <CheckBox Name="TracesCheckBox"
+                          Text="{Loc 'ui-options-trace'}"
+                          ToolTip="{Loc 'ui-options-trace-tooltip'}" />
 
                 <!-- Audio -->
                 <Label Text="{Loc 'ui-options-sunrise-general-audio'}" StyleClasses="LabelKeyText"/>

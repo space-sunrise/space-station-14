@@ -7,3 +7,5 @@ ent-WeaponGrenadeLauncherGL70Flash = GL-79
     .desc = { ent-WeaponGrenadeLauncherGL70.desc }
 ent-WeaponGrenadeLauncherSecurity = гранатомёт безопасности
     .desc = Модификация сигнального пистолета СБ, обеспечивающая безопасный запуск любых ручных гранат на дальнюю дистанцию. "Внимание" Стрельба в упор или в препятствия под прямым углом не рекомендуется — возможен возврат гранаты.
+ent-WeaponLauncherM79 = m79 grenade launcher
+    .desc = A single-shot, break-action grenade launcher. It is a powerful weapon that can fire a variety of grenades and hand granades.

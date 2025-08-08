@@ -196,6 +196,8 @@
     - Snout
     - HeadTop
     - HeadSide
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   abstract: true

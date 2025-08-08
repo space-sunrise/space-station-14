@@ -1,9 +1,9 @@
 ent-MagazineV31 = магазин для рельсотрона
     .desc = Стандартный тяжёлый магазин типа EarthGov.
-ent-MagazineAR18 = магазин (7,62мм NT)
-    .desc = Использует патроны калибра 7,62х51 NT
 ent-MagazineV31Extended = расширенный магазин V31
     .desc = { ent-MagazineV31.desc }
+ent-MagazineAR18 = магазин (7,62мм NT)
+    .desc = Использует патроны калибра 7,62х51 NT
 ent-MagazineAR18Extended = расширенный магазин AR18
     .desc = { ent-MagazineAR18.desc }
 ent-MagazineFamas = магазин автомата автомата фамаз

@@ -1,0 +1,37 @@
+- type: constructionGraph
+  id: LecterSecurity
+  start: start
+  graph:
+    - node: start
+      entity: WeaponRifleLecter
+      edges:
+        - to: upgradelecter
+          steps:
+            - tag: UpgradeLecter
+              name: construction-graph-tag-upgradelecter
+              doAfter: 10
+          completed:
+            - !type:AdminLog
+              message: "Converted Lecter to Lecter Mk2"
+              impact: High
+    - node: upgradelecter
+      entity: WeaponRifleLecterMk2Empty
+
+- type: constructionGraph
+  id: DrozdSecurity
+  start: start
+  graph:
+    - node: start
+      entity: WeaponSubMachineGunDrozd
+      edges:
+        - to: upgradedrozd
+          steps:
+            - tag: UpgradeDrozd
+              name: construction-graph-tag-upgradedrozd
+              doAfter: 10
+          completed:
+            - !type:AdminLog
+              message: "Converted Drozd to Drozd Mk2"
+              impact: High
+    - node: upgradedrozd
+      entity: WeaponSubMachineGunDrozdMk2Empty

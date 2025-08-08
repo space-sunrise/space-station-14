@@ -747,6 +747,8 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: PointLight
     color: cyan
+  - type: Pierceable
+    level: HardenedMetal
   - type: Armor
     modifiers:
       coefficients:
@@ -831,6 +833,8 @@
     lowPressureMultiplier: 1000
   - type: FireProtection
     reduction: 0.2
+  - type: Pierceable
+    level: Rock
   - type: Armor
     modifiers:
       coefficients:

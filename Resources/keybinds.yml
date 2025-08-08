@@ -645,4 +645,7 @@ binds:
 - function: LookUp
   type: State
   key: MouseRight
+- function: MeleeGunAttack
+  type: State
+  key: MouseMiddle
 # Sunrise-End

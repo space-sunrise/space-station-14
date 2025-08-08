@@ -49,6 +49,12 @@
         - JawsOfLife
         - GPS
         - WeldingMask
+
+        - ImprovisedCrowbar # Sunrise-Add
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
       components:
         - StationMap
         - SprayPainter
@@ -71,10 +77,12 @@
         whitelist:
           tags:
           - Wirecutter
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:
           - Crowbar
+          - ImprovisedCrowbar
       crowbar_red:
         whitelist:
           tags:
@@ -87,10 +95,12 @@
         whitelist:
           tags:
           - Screwdriver
+          - ImprovisedScrewdriver
       wrench:
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
       multitool:
         whitelist:
           tags:
@@ -135,6 +145,14 @@
         - HolofanProjector
         - Multitool
         - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar # Sunrise-Add
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
       components:
         - StationMap
         - SprayPainter
@@ -158,10 +176,12 @@
         whitelist:
           tags:
           - Wirecutter
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:
           - Crowbar
+          - ImprovisedCrowbar
       crowbar_red:
         whitelist:
           tags:
@@ -174,6 +194,7 @@
         whitelist:
           tags:
           - Screwdriver
+          - ImprovisedScrewdriver
       multitool:
         whitelist:
           tags:
@@ -182,6 +203,7 @@
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -294,6 +316,7 @@
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -360,6 +383,7 @@
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -614,7 +638,11 @@
     whitelist:
       tags:
         - ShellShotgun
-    capacity: 14
+        - CartridgeMagnum
+        - CartridgePistolImprovised
+        - CartridgeLightRifleImprovised
+        - CartridgeMagnumImprovised
+    capacity: 21 # Sunrise-edit
 
 - type: entity
   parent: ClothingBeltBase

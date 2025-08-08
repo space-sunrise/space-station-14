@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise.Antags.Abductor;
-using Content.Shared._Sunrise.Medical.Surgery;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;

@@ -19,6 +19,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    pump: true  # Sunrise-Edit
     fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
@@ -26,11 +27,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: BallisticAmmoProvider
-    capacity: 10
-    proto: CartridgeHeavyLightRifle #Sunrise-Edit 7,62x54R
+    capacity: 5 # Sunrise-Edit
+    proto: CartridgeHeavyRifleRFMJ
     whitelist:
       tags:
-      - CartridgeHeavyRifle #Sunrise-Edit
+      - CartridgeHeavyRifleR # Sunrise-Edit
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -50,7 +51,15 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
-    pvsIncrease: 0.3
+    pvsIncrease: 0.35
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 4
+        staminaMultiplier: 15
+      Felinid:
+        knockback: 2
+        staminaMultiplier: 15
   # Sunrise end
 
 - type: entity
@@ -75,6 +84,9 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: Gun
+    pump: true
+    fireRate: 1
   - type: AltFireMelee
     attackType: Heavy
   # Sunrise end
@@ -91,7 +103,8 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 0.4
+    pump: true # Sunrise-Edit
+    fireRate: 0.55 # Sunrise-Edit
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -109,8 +122,8 @@
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 10 # Sunrise-Edit
-    pvsIncrease: 1 # Sunrise-Edit
+    maxOffset: 14 # Sunrise-Edit
+    pvsIncrease: 1.5 # Sunrise-Edit
   - type: StaticPrice
     price: 3500
 
@@ -180,7 +193,7 @@
       tags:
         - CartridgeMagnum # changed from Anti-material rifle rounds because it's a flintlock pistol not a Hristov
     capacity: 1
-    proto: CartridgeMagnum
+    proto: CartridgeMagnumAP
   - type: StaticPrice
     price: 0
 

@@ -22,3 +22,7 @@ ent-WeaponRifleV31 = V-31 assault rifle
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleScarH = scar-h
     .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleLecterMk2 = Lecter Mk2
+    .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleLecterMk2Empty = Lecter Mk2
+    .desc = { ent-WeaponRifleLecterMk2.desc }

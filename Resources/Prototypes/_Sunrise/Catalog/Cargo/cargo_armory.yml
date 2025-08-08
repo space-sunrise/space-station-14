@@ -1,30 +1,10 @@
 - type: cargoProduct
-  id: ArmoryM16A4
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
-    state: icon
-  product: CrateArmoryM16A4
-  cost: 14000
-  category: cargoproduct-category-name-armory
-  group: market
-
-#- type: cargoProduct
-#  id: ArmoryAKMS
-#  icon:
-#    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
-#    state: icon
-#  product: CrateArmoryAKMS
-#  cost: 26800
-#  category: cargoproduct-category-name-armory
-#  group: market
-
-- type: cargoProduct
   id: ArmoryMP5
   icon:
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
     state: icon
   product: CrateArmoryMP5
-  cost: 10220
+  cost: 8000
   category: cargoproduct-category-name-armory
   group: market
 
@@ -34,27 +14,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
     state: icon
   product: CrateArmoryIK30
-  cost: 5100
-  category: cargoproduct-category-name-armory
-  group: market
-
-#- type: cargoProduct
-#  id: ArmoryMagazineBoxLightRifleBig
-#  icon:
-#    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
-#    state: base-big
-#  product: CrateArmoryMagazineBoxLightRifleBig
-#  cost: 2000
-#  category: cargoproduct-category-name-armory
-#  group: market
-
-- type: cargoProduct
-  id: ArmoryMagazineBoxRifleBig
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-    state: base-big
-  product: CrateArmoryMagazineBoxRifleBig
-  cost: 2150
+  cost: 3600
   category: cargoproduct-category-name-armory
   group: market
 
@@ -68,23 +28,13 @@
   category: cargoproduct-category-name-armory
   group: market
 
-#- type: cargoProduct #In cargo_armory.yml
-#  id: ArmoryShotgun
-#  icon:
-#    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/big.rsi
-#    state: icon
-#  product: CrateArmoryWeaponXM1014
-#  cost: 8750
-#  category: cargoproduct-category-name-armory
-#  group: market
-
 - type: cargoProduct
   id: ArmoryShotgunAmmo
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
     state: lethal
   product: CrateArmoryShotgunAmmo
-  cost: 4000
+  cost: 2250
   category: cargoproduct-category-name-armory
   group: market
 
@@ -94,7 +44,7 @@
     sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi
     state: icon
   product: CrateShelfMosin
-  cost: 2250
+  cost: 3250
   category: cargoproduct-category-name-armory
   group: market
 
@@ -104,6 +54,6 @@
     sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
     state: icon
   product: CrateAmmunitionSmallLightRifle
-  cost: 500
+  cost: 925
   category: cargoproduct-category-name-armory
   group: market

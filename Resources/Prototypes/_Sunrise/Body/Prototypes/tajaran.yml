@@ -10,6 +10,8 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganTajaranEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
     torso:
       part: TorsoTajaran
       organs:

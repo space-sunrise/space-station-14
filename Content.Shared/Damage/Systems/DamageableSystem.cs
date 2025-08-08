@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -18,7 +19,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
-using Content.Shared._Sunrise.Medical.Damage;
 
 namespace Content.Shared.Damage
 {
@@ -49,7 +49,7 @@ namespace Content.Shared.Damage
         public float UniversalTopicalsHealModifier { get; private set; } = 1f;
         public float UniversalMobDamageModifier { get; private set; } = 1f;
 
-        public float Variance = 0.15f; // Sunrise-Edit
+        public float Variance = 0.3f; // Sunrise-Edit
         public float DamageModifier = 1f; // Sunrise-Edit
         public float HealModifier = 1f; // Sunrise-Edit
 
@@ -187,7 +187,8 @@ namespace Content.Shared.Damage
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
         public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
-            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null, bool useVariance = true, bool useModifier = true)
+            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null,
+            bool useVariance = true, bool useModifier = true, float armorPenetration = 0f)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -228,7 +229,7 @@ namespace Content.Shared.Damage
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
 
-                var ev = new DamageModifyEvent(damage, origin);
+                var ev = new DamageModifyEvent(damage, origin, armorPenetration);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
 
@@ -238,9 +239,7 @@ namespace Content.Shared.Damage
                 }
             }
 
-            damage = ApplyUniversalAllModifiers(damage);
-
-            // Sunrise-start
+            // 🌟Starlight🌟 start
             var finalEv = new DamageBeforeApplyEvent
             {
                 Damage = damage,
@@ -249,7 +248,9 @@ namespace Content.Shared.Damage
             RaiseLocalEvent(uid.Value, finalEv);
             if (finalEv.Cancelled)
                 return damage;
-            // Sunrise-end
+            // 🌟Starlight🌟 end
+
+            damage = ApplyUniversalAllModifiers(damage);
 
             // TODO DAMAGE PERFORMANCE
             // Consider using a local private field instead of creating a new dictionary here.
@@ -439,12 +440,14 @@ namespace Content.Shared.Damage
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
+        public float ArmorPenetration;
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f)
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
+            ArmorPenetration = armorPenetration;
         }
     }
 

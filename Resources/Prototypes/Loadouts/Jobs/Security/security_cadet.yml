@@ -59,6 +59,13 @@
     proto: MasterCadet5h
 
 - type: loadout
+  id: CadetWeaponMK58Box
+  startingGear: MK58Box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCadet5h
+
+- type: loadout
   id: CadetWeaponDisabler
   startingGear: WeaponDisabler
 

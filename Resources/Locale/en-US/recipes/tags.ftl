@@ -32,7 +32,9 @@ construction-graph-tag-sun-glasses = sun glasses
 construction-graph-tag-security-helmet = security helmet
 construction-graph-tag-strobe-shield = strobe riot shield
 construction-graph-tag-flash = security flash
-construction-graph-tag-UpgradeFlareGun = upgrade kit (security flare gun)
+construction-graph-tag-upgradeflaregun = upgrade kit (security flare gun)
+construction-graph-tag-upgradedrozd = upgrade kit (Drozd)
+construction-graph-tag-upgradelecter = upgrade kit (Lecter)
 construction-graph-tag-ModularReceiverAuto = modular auto receiver
 
 # materials

@@ -164,6 +164,7 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-extra");
             AddButton(ContentKeyFunctions.ToggleStanding);
             AddButton(ContentKeyFunctions.CockGun);
+            AddButton(ContentKeyFunctions.MeleeGunAttack);
             AddButton(ContentKeyFunctions.Jump);
             AddButton(ContentKeyFunctions.Reloading);
             AddButton(ContentKeyFunctions.Interact);

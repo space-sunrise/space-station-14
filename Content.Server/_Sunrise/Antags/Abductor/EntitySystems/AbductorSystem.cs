@@ -17,6 +17,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
 using Robust.Shared.Toolshed.TypeParsers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -35,6 +36,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
+    private readonly EntProtoId _nanoStation = "StandardNanotrasenStation";
 
     private EntityUid? _opener;
 
@@ -143,12 +145,18 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         foreach (var station in stations)
         {
+            if (!TryComp(station, out MetaDataComponent? meta) || meta.EntityPrototype == null)
+                continue;
+
+            if (meta.EntityPrototype.ID != _nanoStation)
+                continue;
+
             if (_stationSystem.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid
                 || !TryComp(station, out MetaDataComponent? stationMetaData))
-                return;
+                continue;
 
             if (!_entityManager.TryGetComponent<NavMapComponent>(grid, out var navMap))
-                return;
+                continue;
 
             result.Add(station.Id, new StationBeacons
             {
