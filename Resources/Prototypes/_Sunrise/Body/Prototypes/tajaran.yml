@@ -9,7 +9,7 @@
         - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganTajaranEyes
+        eyes: OrganHumanEyes
         tongue: OrganHumanTongue
         eye_implant: null
     torso:
