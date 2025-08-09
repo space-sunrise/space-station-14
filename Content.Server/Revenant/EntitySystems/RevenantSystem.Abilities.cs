@@ -231,8 +231,6 @@ public sealed partial class RevenantSystem
 
         args.Handled = true;
 
-        //var coords = Transform(uid).Coordinates;
-        //var gridId = coords.GetGridUid(EntityManager);
         var xform = Transform(uid);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
             return;
@@ -341,6 +339,7 @@ public sealed partial class RevenantSystem
             return;
 
         if (!TryUseAbility(uid, component, component.MalfunctionCost, component.LockDebuffs))
+            return;
 
         args.Handled = true;
 
@@ -349,7 +348,6 @@ public sealed partial class RevenantSystem
             if (TryComp<DoorComponent>(ent, out var doorComp) && TryComp<DoorBoltComponent>(ent, out var boltsComp))
             {
                 if (!boltsComp.BoltWireCut)
-
                     _doorSystem.SetBoltsDown((ent, boltsComp), true, uid);
             }
         }
@@ -360,21 +358,29 @@ public sealed partial class RevenantSystem
         if (args.Handled)
             return;
 
-        TryUseAbility(uid, component, 0, component.DrainDebuffs);
+        if (!TryUseAbility(uid, component, 0, component.DrainDebuffs))
+            return;
+
         args.Handled = true;
 
         var lookup = _lookup.GetEntitiesInRange(uid, component.DrainRadius);
 
         float totalEssence = 0;
 
+        // Безопасная нормализация границ
+        var min = Math.Min(component.DrainDamageMin, component.DrainDamageMax);
+        var max = Math.Max(component.DrainDamageMin, component.DrainDamageMax);
+
         foreach (var target in lookup)
         {
             if (target == uid || !_mobState.IsAlive(target))
                 continue;
 
-            var amount = _random.Next(1, 9);
+            // _random.Next верхнюю границу не включает — поэтому +1
+            var amount = _random.Next(min, max + 1);
+
             var damage = new DamageSpecifier();
-            damage.DamageDict.Add("Cellular", amount);
+            damage.DamageDict.Add(component.DrainDamageType, amount);
 
             if (_damage.TryChangeDamage(target, damage, origin: uid) != null)
                 totalEssence += amount;
@@ -384,10 +390,10 @@ public sealed partial class RevenantSystem
         {
             _store.TryAddCurrency(new()
             {
-                { component.StolenEssenceCurrencyPrototype, (FixedPoint2)(totalEssence * 0.22f) }
+                { component.StolenEssenceCurrencyPrototype, (FixedPoint2)(totalEssence * component.StolenEssenceCurrencyRate) }
             }, uid);
 
-            component.Essence += (FixedPoint2)(totalEssence * 0.6f);
+            component.Essence += (FixedPoint2)(totalEssence * component.EssenceGainRate);
             if (component.Essence > component.EssenceRegenCap)
                 component.Essence = component.EssenceRegenCap;
         }
