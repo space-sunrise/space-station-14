@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.Flash.Components; // Sunrise-Edit
 using Content.Server.Flash.Components;
 using Content.Shared.Flash.Components;
 using Content.Server.Light.EntitySystems;
