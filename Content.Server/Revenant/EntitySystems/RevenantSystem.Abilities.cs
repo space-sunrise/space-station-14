@@ -367,7 +367,6 @@ public sealed partial class RevenantSystem
 
         float totalEssence = 0;
 
-        // Безопасная нормализация границ
         var min = Math.Min(component.DrainDamageMin, component.DrainDamageMax);
         var max = Math.Max(component.DrainDamageMin, component.DrainDamageMax);
 
@@ -376,7 +375,6 @@ public sealed partial class RevenantSystem
             if (target == uid || !_mobState.IsAlive(target))
                 continue;
 
-            // _random.Next верхнюю границу не включает — поэтому +1
             var amount = _random.Next(min, max + 1);
 
             var damage = new DamageSpecifier();
