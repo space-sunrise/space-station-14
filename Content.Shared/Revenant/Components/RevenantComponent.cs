@@ -212,32 +212,23 @@ public sealed partial class RevenantComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("drainRadius")]
     public float DrainRadius = 2.2f;
 
-    /// <summary>
-    /// Min random damage per target for Drain.
-    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMin")]
     public int DrainDamageMin = 1;
-
-    /// <summary>
-    /// Max random damage per target for Drain (inclusive).
-    /// </summary>
+    
     [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMax")]
     public int DrainDamageMax = 9;
 
-    /// <summary>
-    /// Damage type id used by Drain (e.g. "Cellular").
-    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageType")]
     public string DrainDamageType = "Cellular";
 
     /// <summary>
-    /// Portion of total drained damage converted to stolen currency.
+    /// Part of damage converted to currency
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("stolenEssenceCurrencyRate")]
     public float StolenEssenceCurrencyRate = 0.22f;
 
     /// <summary>
-    /// Portion of total drained damage converted to revenant Essence.
+    /// Part of damage converted to essence
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("essenceGainRate")]
     public float EssenceGainRate = 0.6f;
