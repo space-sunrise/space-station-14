@@ -202,7 +202,7 @@ public sealed partial class RevenantComponent : Component
     #endregion
 
     // Sunrise-Start
-    [DataField("LockDebuffs")]
+    [DataField("lockDebuffs")]
     public Vector2 LockDebuffs = new(2, 8);
 
     #region Drain Ability
