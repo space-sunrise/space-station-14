@@ -246,7 +246,9 @@ public abstract class SharedStandingStateSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
             return;
 
-        if (HasComp<ResomiActiveAbilityComponent>(uid))
+        var ev = new FallAttemptEvent();
+        RaiseLocalEvent(uid, ref ev);
+        if (ev.Cancelled)
             return;
 
         var velocity = physics.LinearVelocity;
