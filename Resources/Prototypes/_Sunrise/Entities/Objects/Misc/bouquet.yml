@@ -12,7 +12,7 @@
   parent: BaseItem
   id: LilyBouquet
   name: lily flowers bouquet
-  description: A bouquet of white flowers. It looks fascinating and smells delicious.
+  description: A bouquet of white flowers. It looks fascinating and smells delicious... and oddly sharp.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/lilybouquet.rsi
@@ -20,6 +20,16 @@
   - type: Construction
     graph: LilyBouquetConstruction
     node: lilybouquet
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 3
+    attackRate: 1.5
+    arc:
+      width: 45
+      radius: 1.5
+    hitSound:
+      path: /Audio/Items/punch.ogg
   - type: Tag
     tags:
     - LilyBouquet

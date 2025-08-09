@@ -85,7 +85,7 @@
   graph:
   - node: start
     edges:
-    - to: LilyWreath
+    - to: lilywreath
       steps:
       - tag: Lily
         name: construction-graph-tag-lily
