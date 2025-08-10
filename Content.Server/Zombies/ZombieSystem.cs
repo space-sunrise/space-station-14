@@ -308,7 +308,10 @@ namespace Content.Server.Zombies
             // always play zombie emote sounds and ignore others
             if (args.Handled)
                 return;
-            args.Handled = _chat.TryPlayEmoteSound(uid, component.EmoteSounds, args.Emote);
+
+            _protoManager.TryIndex(component.EmoteSoundsId, out var sounds);
+
+            args.Handled = _chat.TryPlayEmoteSound(uid, sounds, args.Emote);
         }
 
         private void OnMobState(EntityUid uid, ZombieComponent component, MobStateChangedEvent args)

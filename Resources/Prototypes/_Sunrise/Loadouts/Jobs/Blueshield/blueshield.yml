@@ -25,7 +25,6 @@
 
 - type: loadout
   id: BlueShieldCoat
-  #sponsorOnly: true
   equipment:
     neck: ClothingOuterCoatBlueshield
 
@@ -36,13 +35,11 @@
 
 - type: loadout
   id: BlueShieldMantle
-  #sponsorOnly: true
   equipment:
     neck: ClothingBSMantle
 
 - type: loadout
   id: AssaultBeltBS
-  #sponsorOnly: true
   equipment:
     belt: ClothingBeltAssaultFilled
 

@@ -402,6 +402,13 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Distrofik/displacement.rsi
             state: back
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Felinid
   - type: Fixtures
     fixtures:
       fix1:
@@ -501,9 +508,6 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
   - type: Felinid
-    damageSound: /Audio/Effects/hit_kick.ogg
-  - type: ScaleSprite
-    scale: 0.80, 0.80
   - type: Carriable
 
 - type: entity

@@ -2,7 +2,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Content.Shared._Sunrise.Aphrodesiac;
+using Content.Shared._Sunrise.Aphrodisiac;
 using System.Numerics;
 using Content.Shared.CCVar;
 using Content.Shared.StatusEffect;

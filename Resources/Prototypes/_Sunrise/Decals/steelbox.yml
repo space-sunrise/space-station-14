@@ -1,0 +1,83 @@
+- type: decal
+  id: SteelBoxN
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_n
+
+- type: decal
+  id: SteelBoxS
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_s
+
+- type: decal
+  id: SteelBoxW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_w
+
+- type: decal
+  id: SteelBoxE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_e
+
+- type: decal
+  id: SteelBoxNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_nw
+
+- type: decal
+  id: SteelBoxNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_ne
+
+- type: decal
+  id: SteelBoxSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_sw
+
+- type: decal
+  id: SteelBoxSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_box_se
+
+- type: decal
+  id: SteelCrNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_cr_nw
+
+- type: decal
+  id: SteelCrNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_cr_ne
+
+- type: decal
+  id: SteelCrSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_cr_sw
+
+- type: decal
+  id: SteelCrSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelbox.rsi
+    state: steel_cr_se

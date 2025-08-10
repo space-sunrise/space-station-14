@@ -55,6 +55,7 @@ namespace Content.Client.Input
             human.AddFunction(EngineKeyFunctions.MoveLeft);
             human.AddFunction(EngineKeyFunctions.MoveRight);
             human.AddFunction(EngineKeyFunctions.Walk);
+            human.AddFunction(ContentKeyFunctions.ToggleKnockdown);
             human.AddFunction(ContentKeyFunctions.SwapHands);
             human.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             human.AddFunction(ContentKeyFunctions.Drop);
@@ -89,9 +90,11 @@ namespace Content.Client.Input
             // Sunrise-Start
             human.AddFunction(ContentKeyFunctions.ToggleStanding);
             human.AddFunction(ContentKeyFunctions.CockGun);
+            human.AddFunction(ContentKeyFunctions.MeleeGunAttack);
             human.AddFunction(ContentKeyFunctions.Jump);
             human.AddFunction(ContentKeyFunctions.Reloading);
             human.AddFunction(ContentKeyFunctions.Interact);
+            human.AddFunction(ContentKeyFunctions.LookUp);
             // Sunrise-End
 
             // actions should be common (for ghosts, mobs, etc)
@@ -112,7 +115,6 @@ namespace Content.Client.Input
             aghost.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             aghost.AddFunction(ContentKeyFunctions.Drop);
             aghost.AddFunction(ContentKeyFunctions.UseItemInHand);
-            aghost.AddFunction(ContentKeyFunctions.CockGun);
             aghost.AddFunction(ContentKeyFunctions.AltUseItemInHand);
             aghost.AddFunction(ContentKeyFunctions.ActivateItemInWorld);
             aghost.AddFunction(ContentKeyFunctions.ThrowItemInHand);
@@ -120,6 +122,11 @@ namespace Content.Client.Input
             aghost.AddFunction(ContentKeyFunctions.TryPullObject);
             aghost.AddFunction(ContentKeyFunctions.MovePulledObject);
             aghost.AddFunction(ContentKeyFunctions.ReleasePulledObject);
+            // Sunrise-Start
+            aghost.AddFunction(ContentKeyFunctions.CockGun);
+            aghost.AddFunction(ContentKeyFunctions.MeleeGunAttack);
+            aghost.AddFunction(ContentKeyFunctions.LookUp);
+            // Sunrise-End
 
             var ghost = contexts.New("ghost", "human");
             ghost.AddFunction(EngineKeyFunctions.MoveUp);

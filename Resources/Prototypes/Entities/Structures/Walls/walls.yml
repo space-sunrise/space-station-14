@@ -3,7 +3,7 @@
   parent: BaseStructure
   id: BaseStructureWall
   name: basewall
-  description: Keeps the air in and the greytide out.
+  description: Keeps the air in and the assistants out.
   placement:
     mode: SnapgridCenter
     snap:
@@ -51,6 +51,8 @@
     resistance: 2
   - type: BlockWeather
   - type: SunShadowCast
+  - type: Ricochetable
+    chance: 0.4
 
 - type: entity
   abstract: true
@@ -83,10 +85,10 @@
       fix1:
         shape:
           !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
+          vertices:
+          - "-0.5,-0.5"
+          - "0.5,0.5"
+          - "0.5,-0.5"
         mask:
         - FullTileMask
         layer:
@@ -97,6 +99,13 @@
   id: WallBrick
   name: brick wall
   components:
+  - type: Pierceable
+    level: Metal
+  - type: Ricochetable
+    chance: 0.2
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/brick.rsi
   - type: Icon
@@ -203,8 +212,8 @@
   components:
   - type: Tag
     tags:
-      - Wall
-      - Structure
+    - Wall
+    - Structure
   - type: Sprite
     sprite: Structures/Walls/meat.rsi
   - type: Icon
@@ -269,8 +278,8 @@
   components:
   - type: Tag
     tags:
-      - Wall
-      - Debug
+    - Wall
+    - Debug
   - type: Sprite
     sprite: Structures/Walls/debug.rsi
   - type: Icon
@@ -297,6 +306,8 @@
   id: WallDiamond
   name: diamond wall
   components:
+  - type: Ricochetable
+    chance: 1
   - type: Sprite
     sprite: Structures/Walls/diamond.rsi
   - type: Icon
@@ -450,6 +461,8 @@
   id: WallPlastic
   name: plastic wall
   components:
+  - type: Ricochetable
+    chance: 0.1
   - type: Sprite
     sprite: Structures/Walls/plastic.rsi
   - type: Icon
@@ -493,29 +506,31 @@
   name: plastitanium wall
   suffix: indestructible
   components:
-    - type: Sprite
-      sprite: Structures/Walls/plastitanium.rsi
-    - type: Icon
-      sprite: Structures/Walls/plastitanium.rsi
-    - type: IconSmooth
-      key: walls
-      base: plastitanium
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.5,-0.5,0.5,0.5"
-          mask:
-          - FullTileMask
-          layer:
-          - WallLayer
-          density: 4000
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: StructuralMetallicStrong
-    - type: RadiationBlocker
-      resistance: 5
+  - type: Ricochetable
+    chance: 1
+  - type: Sprite
+    sprite: Structures/Walls/plastitanium.rsi
+  - type: Icon
+    sprite: Structures/Walls/plastitanium.rsi
+  - type: IconSmooth
+    key: walls
+    base: plastitanium
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5
 
 - type: entity
   parent: WallPlastitaniumIndestructible
@@ -523,19 +538,19 @@
   name: plastitanium wall
   suffix: ""
   components:
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 1000
-          behaviors:
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                Girder:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: WallDiagonalBase
@@ -575,22 +590,26 @@
         !type:DamageTrigger
         damage: 1000
       behaviors:
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            Girder:
-              min: 1
-              max: 1
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
 
 - type: entity
   parent: BaseWall
   id: WallReinforced
   name: reinforced wall
   components:
+  - type: Pierceable
+    level: HardenedMetal
+  - type: Ricochetable
+    chance: 0.75
   - type: Sprite
     sprite: Structures/Walls/solid.rsi
   - type: Icon
@@ -716,11 +735,11 @@
         !type:DamageTrigger
         damage: 600
       behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
     - trigger:
         !type:DamageTrigger
         damage: 300
@@ -852,8 +871,10 @@
   - type: Icon
     sprite: Structures/Walls/shuttle_diagonal.rsi
     state: state0
-  - type: Reflect
-    reflectProb: 1
+  - type: Physics
+    bodyType: Static
+  - type: Ricochetable
+    chance: 1
   - type: Pullable
   - type: Airtight
     noAirWhenFullyAirBlocked: false
@@ -865,10 +886,10 @@
       fix1:
         shape:
           !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
+          vertices:
+          - "-0.5,-0.5"
+          - "0.5,0.5"
+          - "0.5,-0.5"
         mask:
         - FullTileMask
         layer:
@@ -883,11 +904,11 @@
         !type:DamageTrigger
         damage: 600
       behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
     - trigger:
         !type:DamageTrigger
         damage: 300
@@ -965,7 +986,10 @@
           4: { state: shuttle_construct-4, visible: true}
           5: { state: shuttle_construct-5, visible: true}
   - type: Reflect
+    reflects: Energy
     reflectProb: 1
+  - type: Ricochetable
+    chance: 1
   - type: Fixtures
     fixtures:
       fix1:
@@ -1033,6 +1057,8 @@
   - type: Icon
     sprite: Structures/Walls/solid_diagonal.rsi
     state: state0
+  - type: Ricochetable
+    chance: 0.4
   - type: Destructible
     thresholds:
     - trigger:
@@ -1100,6 +1126,8 @@
   id: WallSolidChitin
   name: solid chitin
   components:
+  - type: Ricochetable
+    chance: 0.1
   - type: Tag
     tags:
       - Wall
@@ -1203,6 +1231,8 @@
   id: WallUranium
   name: uranium wall
   components:
+  - type: Ricochetable
+    chance: 1
   - type: Sprite
     sprite: Structures/Walls/uranium.rsi
   - type: Icon
@@ -1253,8 +1283,10 @@
   parent: BaseWall
   id: WallWood
   name: wood wall
-  description: The traditional greytide defense.
+  description: The traditional assistant defense.
   components:
+  - type: Ricochetable
+    chance: 0
   - type: Sprite
     sprite: Structures/Walls/wood.rsi
   - type: Icon
@@ -1292,8 +1324,11 @@
   parent: BaseWall
   id: WallWeb
   name: web wall
-  description: Keeps the spiders in and the greytide out.
+  description: Keeps the spiders in and the assistants out.
   components:
+  - type: Ricochetable
+    chance: 0
+  - type: Clickable
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -1485,7 +1520,7 @@
     lifetime: 15
   - type: Tag
     tags:
-      - Wall
+    - Wall
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -1493,7 +1528,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.5,-0.5,0.5,0.5"
+          bounds: "-0.5,-0.5,0.5,0.5"
         mask:
         - FullTileMask
         layer:
@@ -1633,3 +1668,74 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+
+# Cardboard
+
+- type: entity
+  id: Cardwall
+  parent: BaseStructure
+  name: cardboard wall
+  description: Budget cuts are hitting hard.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/pierce.ogg"
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    drawdepth: SmallObjects #so bullets pass 'through'
+    sprite: Structures/Walls/card.rsi
+  - type: Icon
+    sprite: Structures/Walls/card.rsi
+    state: full
+  - type: Construction
+    graph: Cardwall
+    node: cardwall
+    deconstructionTarget: start
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Card
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - FlimsyLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCardboard:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: cards
+    base: card
+  - type: Occluder 
+  - type: BlockWeather
+  - type: SunShadowCast

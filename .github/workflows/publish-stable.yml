@@ -12,14 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Fail if we are attempting to run on the master branch
-      if: ${{GITHUB.REF_NAME == 'master'}}
+    - name: Fail if not on stable branch
+      if: ${{GITHUB.REF_NAME != 'stable'}}
       run: exit 1
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+
+    - name: Install Dependencies
+      run: pip install pyyaml requests
 
     - uses: actions/checkout@v4.2.2
       with:
@@ -63,22 +66,18 @@ jobs:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
-    - name: Publish discord changelog (SUNRISE)
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
+    - name: Publish server update info
+      continue-on-error: true
+      run: Tools/_sunrise/discord_publish_announce.py
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_SUNRISE }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_WEBHOOK }}
+        DISCORD_ROLE_ID: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_ROLE_ID }}
+        BUILD_PATH: ./release/SS14.Client.zip
 
-    - name: Publish discord changelog (LUST)
+    - name: Publish discord changelog
       continue-on-error: true
       run: Tools/_sunrise/actions_changelogs_since_last_run.py
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_LUST }}
-
-    - name: Publish discord changelog (FISH)
-      continue-on-error: true
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_FISH }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+        CHANGELOG_FILE: 'Resources/Changelog/ChangelogSunrise.yml'

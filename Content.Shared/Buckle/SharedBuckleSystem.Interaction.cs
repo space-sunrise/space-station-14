@@ -107,11 +107,26 @@ public abstract partial class SharedBuckleSystem
         }
 
         // Unbuckle others
-        if (component.BuckledEntities.TryFirstOrNull(out var buckled) && TryUnbuckle(buckled.Value, args.User))
+        // Sunrise-Start
+        if (component.BuckledEntities.TryFirstOrNull(out var buckled))
         {
-            args.Handled = true;
-            return;
+            if (CanUnbuckle(buckled.Value, args.User, false))
+            {
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, buckle.UnbuckleDoafterTime, new UnbuckleDoAfterEvent(), buckled.Value, buckled.Value)
+                {
+                    BreakOnMove = true,
+                    BreakOnDamage = true,
+                    AttemptFrequency = AttemptFrequency.EveryTick
+                };
+
+                if (_doAfter.TryStartDoAfter(doAfterArgs))
+                {
+                    args.Handled = true;
+                    return;
+                }
+            }
         }
+        // Sunrise-End
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
     }
@@ -122,7 +137,31 @@ public abstract partial class SharedBuckleSystem
             return;
 
         if (ent.Comp.BuckledTo != null)
-            args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+        {
+            // Sunrise-Start
+            if (CanUnbuckle((ent.Owner, ent.Comp), args.User, false))
+            {
+                if (ent.Owner == args.User)
+                {
+                    args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+                }
+                else
+                {
+                    var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.UnbuckleDoafterTime, new UnbuckleDoAfterEvent(), ent.Owner, ent.Owner)
+                    {
+                        BreakOnMove = true,
+                        BreakOnDamage = true,
+                        AttemptFrequency = AttemptFrequency.EveryTick
+                    };
+
+                    if (_doAfter.TryStartDoAfter(doAfterArgs))
+                    {
+                        args.Handled = true;
+                    }
+                }
+            }
+            // Sunrise-End
+        }
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
     }
@@ -143,9 +182,31 @@ public abstract partial class SharedBuckleSystem
             if (!_interaction.InRangeUnobstructed(args.User, args.Target, range: buckledComp.Range))
                 continue;
 
+            // Sunrise-Start
+            if (!CanUnbuckle(entity, args.User, false))
+                continue;
+            // Sunrise-End
+
             var verb = new InteractionVerb()
             {
-                Act = () => TryUnbuckle(entity, args.User, buckleComp: buckledComp),
+                // Sunrise-Start
+                Act = () => {
+                    if (entity == args.User)
+                    {
+                        TryUnbuckle(entity, args.User, buckleComp: buckledComp);
+                    }
+                    else
+                    {
+                        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, buckledComp.UnbuckleDoafterTime, new UnbuckleDoAfterEvent(), entity, entity)
+                        {
+                            BreakOnMove = true,
+                            BreakOnDamage = true,
+                            AttemptFrequency = AttemptFrequency.EveryTick
+                        };
+                        _doAfter.TryStartDoAfter(doAfterArgs);
+                    }
+                },
+                // Sunrise-End
                 Category = VerbCategory.Unbuckle,
                 Text = entity == args.User
                     ? Loc.GetString("verb-self-target-pronoun")
@@ -212,7 +273,24 @@ public abstract partial class SharedBuckleSystem
 
         InteractionVerb verb = new()
         {
-            Act = () => TryUnbuckle(uid, args.User, buckleComp: component),
+            // Sunrise-Start
+            Act = () => {
+                if (uid == args.User)
+                {
+                    TryUnbuckle(uid, args.User, buckleComp: component);
+                }
+                else
+                {
+                    var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.UnbuckleDoafterTime, new UnbuckleDoAfterEvent(), uid, uid)
+                    {
+                        BreakOnMove = true,
+                        BreakOnDamage = true,
+                        AttemptFrequency = AttemptFrequency.EveryTick
+                    };
+                    _doAfter.TryStartDoAfter(doAfterArgs);
+                }
+            },
+            // Sunrise-End
             Text = Loc.GetString("verb-categories-unbuckle"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/unbuckle.svg.192dpi.png"))
         };

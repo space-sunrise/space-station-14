@@ -218,13 +218,14 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  # Sunrise-Start
   - type: Tag
     tags:
+    - CorgiWearable
     - ClothMade
     - WhitelistChameleon
+    # Sunrise-Start
     - FullCovered
-  # Sunrise-End
+    # Sunrise-End
 
 - type: entity
   parent: ClothingHeadBase

@@ -195,12 +195,12 @@
 
 #ammo kits
 - type: entity
-  name: box of 7,62 NT rifle magazines
+  name: box of .308 SP magazines
   parent: BoxMagazine
   id: BoxMagazineRifleNanotrasen
-  description: A box full of 7,62x51 Nanotrasen magazines.
+  description: A box full of 7,62x51 Nanotrasen Soft Point magazines.
   components:
   - type: StorageFill
     contents:
-      - id: MagazineAR18
+      - id: MagazineRifleHeavySP
         amount: 4

@@ -844,6 +844,15 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_color");
 
+                    b.Property<int>("FacialHairColorType")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("facial_hair_color_type");
+
+                    b.Property<string>("FacialHairExtendedColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("facial_hair_extended_color");
+
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -864,10 +873,23 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color");
 
+                    b.Property<int>("HairColorType")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("hair_color_type");
+
+                    b.Property<string>("HairExtendedColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("hair_extended_color");
+
                     b.Property<string>("HairName")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_name");
+
+                    b.Property<float>("Height")
+                        .HasColumnType("REAL")
+                        .HasColumnName("height");
 
                     b.Property<byte[]>("Markings")
                         .HasColumnType("jsonb")
@@ -908,6 +930,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
+
+                    b.Property<float>("Width")
+                        .HasColumnType("REAL")
+                        .HasColumnName("width");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");

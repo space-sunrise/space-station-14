@@ -25,6 +25,7 @@ shop-disease-category-evolution = Улучшение
 # Uplink
 store-category-objectives = Цели
 store-category-mechs = Мехи
+store-category-cybernetics = Кибернетика
 # ntUplink
 store-category-ntautogun = Автоматы
 store-category-ntlasers = Лазерное оружие

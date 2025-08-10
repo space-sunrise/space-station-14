@@ -146,6 +146,13 @@
     Blunt: 5
 
 - type: damageModifierSet
+  id: Card
+  coefficients:
+    Slash: 2.0
+    Piercing: 0.1 # Holes easily poked through, but do little to structural integrity 
+    Heat: 3.0
+
+- type: damageModifierSet
   id: Web # Very flammable, can be easily hacked and slashed, but shooting or hitting it is another story.
   coefficients:
     Blunt: 0.7
@@ -265,6 +272,7 @@
     Shock: 0.0
     Slash: 0.25
     Structural: 0.0
+    Mangleness: 0.0 # Sunrise-Edit
 
 - type: damageModifierSet
   id: SlimePet # Very survivable slimes

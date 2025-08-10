@@ -24,9 +24,27 @@
   - type: Paper
     defaultColor: "#07edf5"
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/holopaper.rsi
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
     layers:
-    - state: paper
-    - state: paper_written
+    - state: holo_paper
+    - state: holo_paper_written
       map: ["enum.PaperVisualLayers.Writing"]
       visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/multitool_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/multitool_drop.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/Abductor/holopaper_open.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      collection: WeakHit
+  - type: EmitSoundOnThrow
+    sound:
+      collection: WeakHit

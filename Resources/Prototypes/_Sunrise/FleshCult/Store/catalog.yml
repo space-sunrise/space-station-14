@@ -7,9 +7,24 @@
     prototype: FleshCultistBlade
   raiseProductEventOnUser: true
   cost:
-    StolenMutationPoint: 5
+    StolenMutationPoint: 4
   categories:
     - FleshCultistWeapon
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistNightVisionMutationEvent
+  name: flesh-cultist-night-vision-evolution-name
+  description: flesh-cultist-night-vision-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFlashImmunityMutation.png
+  productEvent: !type:FleshCultistNightVisionMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 3
+  categories:
+    - FleshCultistPassiveSkills
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1

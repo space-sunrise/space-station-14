@@ -180,6 +180,7 @@ uplink-sunrise-clothing-elite-mask-gas-name = Противогаз главы п
 uplink-sunrise-clothing-head-hat-hop-name = Фуражка главы персонала
 uplink-sunrise-clothing-outer-elite-coat-name = Шинель главы персонала
 uplink-sunrise-clothing-neck-cloak-hop-cloak-name = Плащ главы персонала
+uplink-sunrise-holographic-paper-name = Голо-планшет
 
 ## Security
 

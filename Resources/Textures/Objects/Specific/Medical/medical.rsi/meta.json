@@ -12,6 +12,15 @@
 		{
 			"name": "brutepack"
 		},
+        {
+            "name": "bluebrutepack"
+        },
+        {
+            "name": "bluebrutepack2"
+        },
+        {
+            "name": "bluebrutepack3"
+        },
 		{
 			"name": "brutepack-inhand-left",
 			"directions": 4
@@ -51,6 +60,15 @@
 		{
 			"name": "ointment"
 		},
+        {
+            "name": "blueointment"
+        },
+        {
+            "name": "blueointment2"
+        },
+        {
+            "name": "blueointment3"
+        },
 		{
 			"name": "ointment-inhand-left",
 			"directions": 4

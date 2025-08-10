@@ -41,6 +41,7 @@ namespace Content.Shared.Movement.Pulling.Systems;
 public sealed class PullingSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Sunrise-edit
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
@@ -110,16 +111,12 @@ public sealed class PullingSystem : EntitySystem
 
         // Try find hand that is doing this pull.
         // and clear it.
-        foreach (var hand in component.Hands.Values)
+        foreach (var held in _handsSystem.EnumerateHeld((uid, component)))
         {
-            if (hand.HeldEntity == null
-                || !TryComp(hand.HeldEntity, out VirtualItemComponent? virtualItem)
-                || virtualItem.BlockingEntity != args.PulledUid)
-            {
+            if (!TryComp(held, out VirtualItemComponent? virtualItem) || virtualItem.BlockingEntity != args.PulledUid)
                 continue;
-            }
 
-            _handsSystem.TryDrop(args.PullerUid, hand, handsComp: component);
+            _handsSystem.TryDrop((args.PullerUid, component), held);
             break;
         }
     }
@@ -231,7 +228,7 @@ public sealed class PullingSystem : EntitySystem
         if (component.Pulling != args.BlockingEntity)
             return;
 
-        if (EntityManager.TryGetComponent(args.BlockingEntity, out PullableComponent? comp))
+        if (TryComp(args.BlockingEntity, out PullableComponent? comp))
         {
             TryStopPull(args.BlockingEntity, comp);
         }
@@ -279,11 +276,8 @@ public sealed class PullingSystem : EntitySystem
             return;
         }
         // Sunrise-start
-        if (TryComp<CarriableComponent>(component.Pulling, out var carriable))
-        {
+        if (TryComp<CarriableComponent>(component.Pulling, out var carriable) && !_mobState.IsAlive(component.Pulling.Value))
             args.ModifySpeed(carriable.WalkSpeedModifier, carriable.SprintSpeedModifier);
-            _popup.PopupPredicted(Loc.GetString("can-carry"), uid, uid, PopupType.SmallCaution);
-        }
         // Sunrise-end
 
         args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
@@ -436,7 +430,7 @@ public sealed class PullingSystem : EntitySystem
             return false;
         }
 
-        if (!EntityManager.TryGetComponent<PhysicsComponent>(pullableUid, out var physics))
+        if (!TryComp<PhysicsComponent>(pullableUid, out var physics))
         {
             return false;
         }
@@ -455,6 +449,13 @@ public sealed class PullingSystem : EntitySystem
         {
             return false;
         }
+
+        // Sunrise-Start
+        if (TryComp<BuckleComponent>(pullableUid, out var buckleComponent) && buckleComponent.Buckled)
+        {
+            return false;
+        }
+        // Sunrise-End
 
         var getPulled = new BeingPulledAttemptEvent(puller, pullableUid);
         RaiseLocalEvent(pullableUid, getPulled, true);

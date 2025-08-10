@@ -29,6 +29,14 @@
   - type: EmitSoundOnLand
     sound:
       collection: RiflesDrop
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 10
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 5
+        staminaMultiplier: 8
   # Sunrise end
 
 - type: entity
@@ -49,6 +57,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    pump: true
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -60,8 +69,8 @@
     whitelist:
       tags:
         - Grenade
-    capacity: 3
-    proto: GrenadeFrag
+    capacity: 3 # Sunrise-Edit
+    proto: GrenadeFragTimer
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: GunRequiresWield

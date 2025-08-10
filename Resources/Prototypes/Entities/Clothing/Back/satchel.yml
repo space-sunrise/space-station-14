@@ -112,7 +112,7 @@
   description: A robust satchel for security related needs.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/security.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/security.rsi #Sunrise-Edit
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSecurityContraband]
@@ -178,3 +178,13 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+
+- type: entity
+  parent: ClothingBackpackSatchelHolding
+  id: ClothingBackpackSatchelAdmin
+  name: satchel of administration
+  suffix: Admin
+  description: If you are somehow seeing this, no you're not.
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0

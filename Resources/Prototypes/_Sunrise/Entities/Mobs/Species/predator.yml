@@ -58,8 +58,6 @@
     prototype: Predator
   - type: FootprintEmitter
   - type: Carriable
-  - type: ScaleSprite
-    scale: 1.05, 1.13
 
 - type: entity
   parent: BaseSpeciesDummy

@@ -1,7 +1,7 @@
 - type: entity
   name: BaseWeaponShotgun
   parent: BaseItem
-  id: BaseWeaponShotgun
+  id: BaseWeaponShotgunAny
   description: A rooty tooty point and shooty.
   abstract: true
   components:
@@ -28,6 +28,31 @@
       collection: xm1014 # Sunrise-Edit
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 500
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 3
+        staminaMultiplier: 20
+      Felinid:
+        knockback: 1.5 #half of what resomi take
+        staminaMultiplier: 20
+
+- type: entity
+  parent: BaseWeaponShotgunAny
+  id: BaseWeaponShotgun
+  abstract: true
+  components:
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -36,23 +61,6 @@
     proto: ShellShotgun
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
-  - type: StaticPrice
-    price: 500
-  # Sunrise start
-  - type: EmitSoundOnPickup
-    sound:
-      collection: ShotgunsPickUp
-  - type: EmitSoundOnDrop
-    sound:
-      collection: ShotgunsDrop
-  - type: EmitSoundOnLand
-    sound:
-      collection: ShotgunsDrop
-  # Sunrise end
 
 - type: entity
   name: Bulldog
@@ -77,7 +85,7 @@
     - Back
     - suitStorage
   - type: AmmoCounter
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  #- type: GunRequiresWield #remove when inaccuracy on spreads is fixed # Sunrise-Edit
   - type: Gun
     fireRate: 2
     selectedMode: FullAuto
@@ -130,8 +138,8 @@
     fireRate: 3
     soundGunshot:
       collection: m3 # Sunrise-Edit
-  - type: GunSpreadModifier # Sunrise-add #Port WZ #37731
-    spread: 0.6 # Sunrise-add
+  - type: GunSpreadModifier
+    spread: 0.6
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -166,6 +174,7 @@
   - type: Gun
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
+    pump: true # Sunrise-Edit
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -199,6 +208,7 @@
     fireRate: 1
     soundGunshot:
       collection: m3 # Sunrise-Edit
+    pump: true # Sunrise-Edit
   - type: GunSpreadModifier
     spread: 0.6
   - type: Tag
@@ -222,8 +232,8 @@
     fireRate: 3
     soundGunshot:
       collection: m3 # Sunrise-Edit
-  - type: GunSpreadModifier # Sunrise-add #Port WZ #37731
-    spread: 1.4 # Sunrise-add
+  - type: GunSpreadModifier
+    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction

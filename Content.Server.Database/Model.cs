@@ -404,6 +404,10 @@ namespace Content.Server.Database
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
         public int Age { get; set; }
+
+        public float Width { get; set; } = 1f; //Sunrise
+        public float Height { get; set; } = 1f; // Sunrise
+
         public string Sex { get; set; } = null!;
 
         public string BodyType { get; set; } = null!;
@@ -416,6 +420,12 @@ namespace Content.Server.Database
         public string HairColor { get; set; } = null!;
         public string FacialHairName { get; set; } = null!;
         public string FacialHairColor { get; set; } = null!;
+        // sunrise gradient start
+        public int HairColorType { get; set; } = 0;
+        public string HairExtendedColor { get; set; } = null!;
+        public int FacialHairColorType { get; set; } = 0;
+        public string FacialHairExtendedColor { get; set; } = null!;
+        // sunrise gradient end
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
         public int SpawnPriority { get; set; } = 0;

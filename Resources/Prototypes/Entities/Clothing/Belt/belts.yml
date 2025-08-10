@@ -29,7 +29,9 @@
     maxItemSize: Normal
     storageInsertSound: # Sunrise
       path: /Audio/Items/belt_equip.ogg
-    # TODO: Fill this out more.
+    # Don't add more than absolutely needed to this whitelist!
+    # Utility belts shouldn't just be free extra storage.
+    # This is only intended for basic engineering equipment.
     whitelist:
       tags:
         - Powerdrill
@@ -49,9 +51,18 @@
         - JawsOfLife
         - GPS
         - WeldingMask
+        - RemoteSignaller
+        # Sunrise-Start
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        # Sunrise-End
       components:
         - StationMap
         - SprayPainter
+        - SprayPainterAmmo
         - NetworkConfigurator
         - RCD
         - RCDAmmo
@@ -71,10 +82,12 @@
         whitelist:
           tags:
           - Wirecutter
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:
           - Crowbar
+          - ImprovisedCrowbar
       crowbar_red:
         whitelist:
           tags:
@@ -87,10 +100,12 @@
         whitelist:
           tags:
           - Screwdriver
+          - ImprovisedScrewdriver
       wrench:
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
       multitool:
         whitelist:
           tags:
@@ -135,9 +150,18 @@
         - HolofanProjector
         - Multitool
         - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar # Sunrise-Add
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
       components:
         - StationMap
         - SprayPainter
+        - SprayPainterAmmo
         - NetworkConfigurator
         - RCD
         - RCDAmmo
@@ -158,10 +182,12 @@
         whitelist:
           tags:
           - Wirecutter
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:
           - Crowbar
+          - ImprovisedCrowbar
       crowbar_red:
         whitelist:
           tags:
@@ -174,6 +200,7 @@
         whitelist:
           tags:
           - Screwdriver
+          - ImprovisedScrewdriver
       multitool:
         whitelist:
           tags:
@@ -182,6 +209,7 @@
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -276,6 +304,8 @@
         - WetFloorSign
         - HolosignProjector
         - Plunger
+        - GoldenPlunger
+        - WireBrush
       components:
         - LightReplacer
         - SmokeOnTrigger
@@ -294,6 +324,7 @@
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -360,6 +391,7 @@
         whitelist:
           tags:
           - Wrench
+          - ImprovisedWrench
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -614,7 +646,11 @@
     whitelist:
       tags:
         - ShellShotgun
-    capacity: 14
+        - CartridgeMagnum
+        - CartridgePistolImprovised
+        - CartridgeLightRifleImprovised
+        - CartridgeMagnumImprovised
+    capacity: 21 # Sunrise-edit
 
 - type: entity
   parent: ClothingBeltBase

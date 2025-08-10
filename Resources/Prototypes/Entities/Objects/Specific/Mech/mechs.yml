@@ -101,6 +101,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
+        Mangleness: 7.5 # Sunrise-Edit
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -244,7 +245,7 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 5.5 # sunrise-edit
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.5
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -340,7 +341,7 @@
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.10
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -415,7 +416,7 @@
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -483,7 +484,7 @@
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.10
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -574,7 +575,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -664,7 +665,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -735,7 +736,7 @@
       species:
       - Felinid
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.35
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -744,7 +745,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      350: Critical
+      450: Critical
     showOverlays: false
     allowRevives: true
 
@@ -810,7 +811,7 @@
     baseWalkSpeed: 2.4
     baseSprintSpeed: 5.2 # sunrise-edit
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -970,7 +971,7 @@
     baseWalkSpeed: 2
     baseSprintSpeed: 5.2 # sunrise-edit
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1047,7 +1048,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1195,7 +1196,7 @@
     baseWalkSpeed: 2
     baseSprintSpeed: 4.7 # sunrise-edit
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1291,7 +1292,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1378,7 +1379,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1468,7 +1469,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1558,7 +1559,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1643,7 +1644,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:

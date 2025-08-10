@@ -33,6 +33,22 @@
     state: impact_laser
 
 - type: hitscan
+  id: IgnitionRedLaser
+  igniteOnCollision: true
+  damage:
+    types:
+      Heat: 14
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: hitscan
   id: RedLaserPractice
   damage:
     types:
@@ -125,11 +141,11 @@
 
 - type: hitscan
   id: RedShuttleLaser
-  maxLength: 60
+  maxLength: 80 # Sunrise-edit
   damage:
     types:
       Heat: 45
-      Structural: 100 #Sunrise-edit
+      Structural: 100 # Sunrise-edit
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_beam_heavy2
@@ -139,3 +155,22 @@
   impactFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_beam_heavy2
+
+#Sunrise-start
+- type: hitscan
+  id: RedShuttleMediumLaser
+  maxLength: 80 # Sunrise-edit
+  damage:
+    types:
+      Heat: 17
+      Structural: 13
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+#Sunrise-end

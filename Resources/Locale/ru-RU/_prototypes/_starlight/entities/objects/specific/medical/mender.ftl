@@ -1,0 +1,12 @@
+ent-BaseAutoMender = automender
+    .desc = A device used to heal patients brute, burn or both damage types.
+ent-AutoMenderBrute = brute automender
+    .desc = A device used to heal patients brute, burn or both damage types. Uses bicaridine to work.
+ent-AutoMenderBruteFilled = { ent-AutoMenderBrute }
+    .suffix = Filled
+    .desc = { ent-AutoMenderBrute.desc }
+ent-AutoMenderBurn = burn automender
+    .desc = A device used to heal patients brute, burn or both damage types. Uses dermalin to work.
+ent-AutoMenderBurnFilled = { ent-AutoMenderBurn }
+    .suffix = Filled
+    .desc = { ent-AutoMenderBurn.desc }

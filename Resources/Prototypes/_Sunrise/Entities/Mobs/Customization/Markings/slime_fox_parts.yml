@@ -3,7 +3,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [SlimePerson]
-  sponsorOnly: true # Sunrise-Sponsors
+  sponsorOnly: false
   sprites:
   - sprite: _Sunrise/Mobs/Customization/slime_fox_parts.rsi
     state: ears_slime_fox_outer
