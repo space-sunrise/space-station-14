@@ -280,6 +280,13 @@ public sealed class EpsilonLawsetSystem : EntitySystem
 
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
+        var eventEnt = _gameTicker.AddGameRule(EpsilonBorgLawChanges);
+
+        // Use the system to set the station
+        var epsilonRule = EntityManager.System<EpsilonDeathSquadLawsetRule>();
+        epsilonRule.SetTargetStation(eventEnt, station);
+
+        _gameTicker.StartGameRule(eventEnt);
         // Check if the alert level is Epsilon
         if (ev.AlertLevel.Equals("Epsilon", StringComparison.OrdinalIgnoreCase))
         {
