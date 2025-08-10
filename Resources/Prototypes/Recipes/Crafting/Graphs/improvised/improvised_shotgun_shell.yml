@@ -8,7 +8,7 @@
           steps:
             - material: Steel
               amount: 1
-              doAfter: 0.5 
+              doAfter: 0.5
             - material: Plastic
               amount: 1
               doAfter: 0.5
@@ -24,75 +24,75 @@
         - to: shell
           steps:
             - tag: ShellShotgunEmpty
-              name: empty shotgun shell
+              name: construction-graph-step-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard2
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard3
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5
     - node: shell
       entity: ShellShotgunImprovised
-# Sunrise-start
-- type: constructionGraph 
+
+- type: constructionGraph
   id: ImprovisedIncendiaryShotgunShellGraph
   start: start
   graph:
@@ -107,67 +107,67 @@
               quantity: 5
           steps:
             - tag: ShellShotgunEmpty
-              name: empty shotgun shell
+              name: construction-graph-step-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard2
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: GlassShard
-              name: glass shard
+              name: construction-graph-tag-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard3
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
@@ -184,71 +184,71 @@
         - to: shell
           steps:
             - tag: ShellShotgunEmpty
-              name: empty shotgun shell
+              name: construction-graph-tag-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: UraniumGlassShard
-              name: uranium glass shard
+              name: construction-graph-tag-uranium-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
                 color: "#8eff7a"
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: UraniumGlassShard
-              name: uranium glass shard
+              name: construction-graph-tag-uranium-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard2
                 color: "#8eff7a"
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: UraniumGlassShard
-              name: uranium glass shard
+              name: construction-graph-tag-uranium-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
                 color: "#8eff7a"
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: UraniumGlassShard
-              name: uranium glass shard
+              name: construction-graph-tag-uranium-glass-shard
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard3
                 color: "#8eff7a"
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
@@ -265,65 +265,64 @@
         - to: shell
           steps:
             - tag: ShellShotgunEmpty
-              name: empty shotgun shell
+              name: construction-graph-step-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Coin
-              name: coin
+              name: construction-graph-tag-coin
               icon:
                 sprite: Objects/Misc/coins.rsi
                 state: coin_iron
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Coin
-              name: coin
+              name: construction-graph-tag-coin
               icon:
                 sprite: Objects/Misc/coins.rsi
                 state: coin_iron
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Coin
-              name: coin
+              name: construction-graph-tag-coin
               icon:
                 sprite: Objects/Misc/coins.rsi
                 state: coin_iron
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
-              doAfter: 0.5 
+              doAfter: 0.5
             - tag: Matchstick
-              name: match stick
+              name: construction-graph-tag-match-stick
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5
     - node: shell
       entity: ShellShotgunCoin
-# Sunrise-end

@@ -53,7 +53,7 @@
   # Sunrise-Start
   - WeaponMechCombatFiredartLaser
   - WeaponEnergyGun
-  - WeaponEnergyGunMini
+  - WeaponMiniEnergyGun
   # Sunrise-End
 
 - type: technology

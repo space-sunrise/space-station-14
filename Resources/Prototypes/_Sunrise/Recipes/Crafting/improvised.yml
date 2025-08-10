@@ -69,66 +69,66 @@
   description: construction-graph-tag-white-high-wraps-desc
 
 - type: construction
-  name: empty improvised shell
+  name: construction-graph-tag-shell-shotgun-improvised-empty
   id: ShellShotgunImprovisedEmpty
   graph: ImprovisedShotgunShellEmptyGraph
   startNode: start
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: A hollow homemade shotgun shell that can be filled with a somewhat deadly variety of makeshift pellets.
+  description: construction-graph-tag-shell-shotgun-improvised-empty-desc
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: improvised-empty
 
 - type: construction
-  name: improvised shell (glass)
+  name: construction-graph-tag-shell-shotgun-improvised
   id: ShellShotgunImprovised
   graph: ImprovisedShotgunShellGraph
   startNode: start
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: Stuff a handful of glass shards and match sticks into an empty shotgun shell.
+  description: construction-graph-tag-shell-shotgun-improvised-desc
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: improvised
 
 - type: construction
-  name: improvised shell (incendiary)
+  name: construction-graph-tag-shell-shotgun-improvised-incendiary
   id: ShellShotgunImprovisedIncendiary
   graph: ImprovisedIncendiaryShotgunShellGraph
   startNode: start
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: Fill an empty shotgun shell with welding fuel and stuff it with a handful of glass shards and match sticks.
+  description: construction-graph-tag-shell-shotgun-improvised-incendiary-desc
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: improvised-incendiary
 
 - type: construction
-  name: improvised shell (uranium glass)
+  name: construction-graph-tag-shell-shotgun-improvised-uranium
   id: ShellShotgunImprovisedUranium
   graph: ImprovisedUraniumShotgunShellGraph
   startNode: start
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: Stuff a handful of uranium glass shards and match sticks into an empty shotgun shell.
+  description: construction-graph-tag-shell-shotgun-improvised-uranium-desc
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: improvised-uranium
 
 - type: construction
-  name: improvised shell (coin slug)
+  name: construction-graph-tag-shell-shotgun-coin
   id: ShellShotgunCoin
   graph: CoinShotgunShellGraph
   startNode: start
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: Push a stack of rock hard coins and a handful of match sticks into an empty shotgun shell.
+  description: construction-graph-tag-shell-shotgun-coin-desc
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: coinshot

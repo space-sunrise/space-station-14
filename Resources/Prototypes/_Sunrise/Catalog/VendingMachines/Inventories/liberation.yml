@@ -74,7 +74,6 @@
     WeaponAMS-42: 1
     WeaponAJ100: 1
     WeaponSIAR52: 1
-    WeaponDisablerSMG: 1
     WeaponSubMachineGunSP91RC: 1
     WeaponSubMachineGunPPSH: 1
     WeaponSubMachineGunMakeshift: 1
@@ -122,6 +121,7 @@
 
     WeaponDisablerPractice: 1
     WeaponDisabler: 1
+    WeaponDisablerSMG: 1
     WeaponTaser: 1
     WeaponAdvancedTaser: 1
     WeaponMiniEnergyGun: 1
@@ -145,7 +145,7 @@
     WeaponGunLaserCarbineAutomatic: 1
     WeaponM1911: 1
     WeaponPDW9: 1
-    LWAP: 1
+    WeaponEnergySniper: 1 #LWAP
     WeaponANNIHILATOR: 1
     WeaponToecloner: 1
     WeaponMiniEnergyCrossbow: 1

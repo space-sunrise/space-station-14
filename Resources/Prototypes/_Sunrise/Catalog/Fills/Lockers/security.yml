@@ -6,7 +6,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGunMini
+    - id: WeaponMiniEnergyGun
       amount: 5
 
 - type: entity
