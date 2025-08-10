@@ -45,22 +45,22 @@ public sealed class ConsumableAmmoSystem : EntitySystem
             return;
         }
 
-        var chargesPerItem = (1.0f / ent.Comp.ItemsPerCharge) * multiplier;
-        var chargesCanAdd = ent.Comp.MaxCharges - ent.Comp.CurrentCharges;
-        var itemsNeeded = (int)Math.Ceiling(chargesCanAdd / chargesPerItem);
-        var itemsToConsume = Math.Min(itemsNeeded, stack.Count);
+        var chargesPerItem = (1.0f / ent.Comp.ItemsPerCharge) * multiplier; // сколько зарядов даёт один предмет с учётом множителя
+        var chargesCanAdd = ent.Comp.MaxCharges - ent.Comp.CurrentCharges;  // сколько зарядов можно ещё добавить
+        var itemsNeeded = (int)Math.Ceiling(chargesCanAdd / chargesPerItem); // сколько нужно для полного заряда
+        var itemsToConsume = Math.Min(itemsNeeded, stack.Count); // округляем в большую сторону
 
         if (itemsToConsume == 0)
             return;
 
-        var potentialChargesAdded = (int)Math.Floor(itemsToConsume * chargesPerItem);
+        var potentialChargesAdded = (int)Math.Floor(itemsToConsume * chargesPerItem); // потенциально добавленные заряды
         if (potentialChargesAdded <= 0)
             return;
 
         if (!_stack.Use(args.Used, itemsToConsume, stack))
             return;
 
-        var actualChargesAdded = Math.Min(potentialChargesAdded, chargesCanAdd);
+        var actualChargesAdded = Math.Min(potentialChargesAdded, chargesCanAdd); // узнаём сколько реально добавить нужно
         ent.Comp.CurrentCharges += actualChargesAdded;
 
         // это чтоб не спамило "нет зарядов" при попытке стрелять без них
@@ -116,7 +116,8 @@ public sealed class ConsumableAmmoSystem : EntitySystem
             args.Reason = Loc.GetString("consumable-ammo-empty");
             return;
         }
-        ent.Comp.CurrentCharges -= args.Shots * ent.Comp.ChargesPerShot;
+
+        ent.Comp.CurrentCharges -= args.Shots * ent.Comp.ChargesPerShot; // вычитаем использованные заряды
         for (var i = 0; i < args.Shots; i++)
         {
             var projectile = Spawn(ent.Comp.ProjectilePrototypeId, args.Coordinates);
@@ -129,6 +130,6 @@ public sealed class ConsumableAmmoSystem : EntitySystem
 
     private void OnExamine(Entity<ConsumableAmmoComponent> ent, ref ExaminedEvent args)
     {
-        args.PushMarkup(Loc.GetString("charges-count-text", ("chargesText", ent.Comp.CurrentCharges)));
+        args.PushMarkup(Loc.GetString("charges-count-text", ("chargesText", ent.Comp.CurrentCharges))); // отображение количества зарядов
     }
 }
