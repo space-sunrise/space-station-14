@@ -37,6 +37,7 @@ namespace Content.Server.Revenant.EntitySystems;
 
 public sealed partial class RevenantSystem
 {
+    [Dependency] private readonly EmagSystem _emagSystem = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -61,6 +62,7 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
         SubscribeLocalEvent<RevenantComponent, RevenantLockActionEvent>(OnLockAction); // Sunrise-Edit
+        SubscribeLocalEvent<RevenantComponent, RevenantDrainActionEvent>(OnDrainAction); // Sunrise-Edit
     }
 
     private void OnInteract(EntityUid uid, RevenantComponent component, UserActivateInWorldEvent args)
@@ -230,8 +232,6 @@ public sealed partial class RevenantSystem
 
         args.Handled = true;
 
-        //var coords = Transform(uid).Coordinates;
-        //var gridId = coords.GetGridUid(EntityManager);
         var xform = Transform(uid);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
             return;
@@ -340,6 +340,7 @@ public sealed partial class RevenantSystem
             return;
 
         if (!TryUseAbility(uid, component, component.MalfunctionCost, component.LockDebuffs))
+            return;
 
         args.Handled = true;
 
@@ -348,9 +349,52 @@ public sealed partial class RevenantSystem
             if (TryComp<DoorComponent>(ent, out var doorComp) && TryComp<DoorBoltComponent>(ent, out var boltsComp))
             {
                 if (!boltsComp.BoltWireCut)
-
                     _doorSystem.SetBoltsDown((ent, boltsComp), true, uid);
             }
+        }
+    }
+
+    private void OnDrainAction(EntityUid uid, RevenantComponent component, RevenantDrainActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryUseAbility(uid, component, 0, component.DrainDebuffs))
+            return;
+
+        args.Handled = true;
+
+        var lookup = _lookup.GetEntitiesInRange(uid, component.DrainRadius);
+
+        float totalEssence = 0;
+
+        var min = Math.Min(component.DrainDamageMin, component.DrainDamageMax);
+        var max = Math.Max(component.DrainDamageMin, component.DrainDamageMax);
+
+        foreach (var target in lookup)
+        {
+            if (target == uid || !_mobState.IsAlive(target))
+                continue;
+
+            var amount = _random.Next(min, max + 1);
+
+            var damage = new DamageSpecifier();
+            damage.DamageDict.Add(component.DrainDamageType, amount);
+
+            if (_damage.TryChangeDamage(target, damage, origin: uid) != null)
+                totalEssence += amount;
+        }
+
+        if (totalEssence > 0)
+        {
+            _store.TryAddCurrency(new()
+            {
+                { component.StolenEssenceCurrencyPrototype, (FixedPoint2)(totalEssence * component.StolenEssenceCurrencyRate) }
+            }, uid);
+
+            component.Essence += (FixedPoint2)(totalEssence * component.EssenceGainRate);
+            if (component.Essence > component.EssenceRegenCap)
+                component.Essence = component.EssenceRegenCap;
         }
     }
     // Sunrise-End
@@ -371,8 +415,7 @@ public sealed partial class RevenantSystem
                 _whitelistSystem.IsBlacklistPass(component.MalfunctionBlacklist, ent))
                 continue;
 
-            var ev = new GotEmaggedEvent(uid, EmagType.Interaction | EmagType.Access);
-            RaiseLocalEvent(ent, ref ev);
+            _emagSystem.TryEmagEffect(uid, uid, ent);
         }
     }
 }
