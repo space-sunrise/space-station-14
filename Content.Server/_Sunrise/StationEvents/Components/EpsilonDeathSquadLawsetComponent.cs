@@ -4,15 +4,9 @@ namespace Content.Server._Sunrise.StationEvents.Components;
 
 /// <summary>
 /// Component for the Epsilon Death Squad Lawset event.
-/// Marker component for entities affected by the Epsilon Death Squad Lawset event.
 /// </summary>
 [RegisterComponent, Access(typeof(EpsilonDeathSquadLawsetRule))]
 public sealed partial class EpsilonDeathSquadLawsetComponent : Component
 {
-    /// <summary>
-    /// The station where the law changes should be applied.
-    /// </summary>
-    [DataField]
-    public EntityUid TargetStation = EntityUid.Invalid;
 
 }

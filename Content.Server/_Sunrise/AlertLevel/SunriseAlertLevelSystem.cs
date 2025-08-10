@@ -9,6 +9,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Content.Server.GameTicking;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._Sunrise.AlertLevel;
 
@@ -21,6 +22,7 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    //private readonly EpsilonDeathSquadLawsetRule _epsilonDeathSquadLawsetRule;
 
     private const string DefaultAlertLevelSet = "stationAlerts";
     private const string EpsilonAlertLevel = "epsilon";
@@ -73,7 +75,8 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
         var defaultLevel = alertLevelComponent.AlertLevels.DefaultLevel;
         if (string.IsNullOrEmpty(defaultLevel))
         {
-            defaultLevel = alertLevelComponent.AlertLevels.Levels.Keys.First();
+            // Детерминированный выбор defaultLevel
+            defaultLevel = alertLevelComponent.AlertLevels.Levels.Keys.OrderBy(k => k).First();
         }
 
         SetLevel(args.Station, defaultLevel, false, false, true);
@@ -98,7 +101,7 @@ public sealed class SunriseAlertLevelSystem : EntitySystem
                 var defaultLevel = comp.AlertLevels.DefaultLevel;
                 if (string.IsNullOrEmpty(defaultLevel))
                 {
-                    defaultLevel = comp.AlertLevels.Levels.Keys.First();
+                    defaultLevel = comp.AlertLevels.Levels.Keys.OrderBy(k => k).First();
                 }
 
                 SetLevel(uid, defaultLevel, true, true, true);
@@ -250,5 +253,25 @@ public sealed class AlertLevelChangedEvent : EntityEventArgs
         Station = station;
         AlertLevel = alertLevel;
         PreviousLevel = previousLevel;
+    }
+}
+
+public sealed class EpsilonLawsetSystem : EntitySystem
+{
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly EpsilonDeathSquadLawsetRule _epsilonLawsetRule = default!;
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+    }
+
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    {
+        // Проверяем, что уровень тревоги - эпсилон
+        if (ev.AlertLevel.Equals("Epsilon", StringComparison.OrdinalIgnoreCase))
+        {
+            _epsilonLawsetRule.SetTargetStation(ev.Station);
+        }
     }
 }
