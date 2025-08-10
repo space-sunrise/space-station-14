@@ -33,12 +33,12 @@ public sealed partial class PrinterDocComponent : Component
     /// Начальные материалы принтера - бумага
     /// </summary>
     [DataField]
-    public int InitialPaperAmount = 10000;
+    public int InitialPaperAmount = 999999999;
     /// <summary>
     /// Начальные материалы принтера - чернила
     /// </summary>
     [DataField]
-    public int InitialInkAmount = 100;
+    public int InitialInkAmount = 999999999;
 
     /// <summary>
     /// Очередь заданий на печать или копирование

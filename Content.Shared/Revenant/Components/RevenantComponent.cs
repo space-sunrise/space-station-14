@@ -27,7 +27,7 @@ public sealed partial class RevenantComponent : Component
     /// <summary>
     /// Prototype to spawn when the entity dies.
     /// </summary>
-    [DataField("spawnOnDeathPrototype", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField("spawnOnDeathPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SpawnOnDeathPrototype = "Ectoplasm";
 
     /// <summary>
@@ -202,9 +202,39 @@ public sealed partial class RevenantComponent : Component
     #endregion
 
     // Sunrise-Start
-    [DataField("LockDebuffs")]
+    [DataField("lockDebuffs")]
     public Vector2 LockDebuffs = new(2, 8);
+
+    #region Drain Ability
+    [DataField("drainDebuffs")]
+    public Vector2 DrainDebuffs = new(2, 8);
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainRadius")]
+    public float DrainRadius = 2.2f;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMin")]
+    public int DrainDamageMin = 1;
+    
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMax")]
+    public int DrainDamageMax = 9;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageType")]
+    public string DrainDamageType = "Cellular";
+
+    /// <summary>
+    /// Part of damage converted to currency
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("stolenEssenceCurrencyRate")]
+    public float StolenEssenceCurrencyRate = 0.22f;
+
+    /// <summary>
+    /// Part of damage converted to essence
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("essenceGainRate")]
+    public float EssenceGainRate = 0.6f;
+    #endregion
     // Sunrise-End
+
     [DataField]
     public ProtoId<AlertPrototype> EssenceAlert = "Essence";
 
@@ -220,4 +250,5 @@ public sealed partial class RevenantComponent : Component
     #endregion
 
     [DataField] public EntityUid? Action;
+    [DataField] public EntityUid? DrainAction; // Sunrise-edit
 }
