@@ -137,8 +137,8 @@
     sprite: Objects/Weapons/Melee/gorilla.rsi
     state: storage
   - type: HeldSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.8
+    walkModifier: 1
+    sprintModifier: 0.9
   - type: Reflect
     reflectProb: 0.08
   - type: UseDelay
