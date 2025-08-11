@@ -468,7 +468,7 @@
 
 #Laser pulser Arms
 - type: entity
-  id: LeftArmCyberLaserPulser
+  id: LeftArmCyberLaserEmmiter
   name: "left bulwark emmiter arm"
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
   components:
@@ -493,7 +493,7 @@
         left hand: LeftHandCyber
 
 - type: entity
-  id: RightArmCyberLaserPulser
+  id: RightArmCyberLaserEmmiter
   name: "right bulwark emmiter arm"
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
   components:

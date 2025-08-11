@@ -46,7 +46,12 @@
   - RightArmCyberMechwright
   - LeftArmCyberBulwark
   - RightArmCyberBulwark
-
+  - LeftArmCyberGorrila
+  - RightArmCyberGorrila
+  - LeftArmCyberMantisBladeMaxGuard
+  - RightArmCyberMantisBladeMaxGuard
+  - LeftArmCyberLaserEmmiter
+  - RightArmCyberLaserEmmiter
 - type: latheRecipePack
   id: MedicalCyberOrgansDynamic
   recipes:
