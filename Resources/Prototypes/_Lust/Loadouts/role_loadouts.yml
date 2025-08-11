@@ -1,6 +1,11 @@
 - type: roleLoadout
   id: JobComMaid
   groups:
+  - ComMaidHead
+  - ComMaidJumpsuit
+  - ComMaidNeck
+  - ComMaidShoes
+  - ComMaidGloves
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
