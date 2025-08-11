@@ -165,8 +165,8 @@
   tier: 3
   cost: 3500
   recipeUnlocks:
-    - LeftArmCyberGorrilla
-    - RightArmCyberGorrilla
+    - LeftArmCyberGorilla
+    - RightArmCyberGorilla
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - AnomalyCoreHarnessing

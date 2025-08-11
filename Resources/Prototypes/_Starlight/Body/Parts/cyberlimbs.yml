@@ -417,7 +417,7 @@
 
 #Gorrila Arms
 - type: entity
-  id: LeftArmCyberGorrilla
+  id: LeftArmCyberGorilla
   name: "left G.O.R.I.L.L.A. arm"
   parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
   components:
@@ -442,7 +442,7 @@
         left hand: LeftHandCyber
 
 - type: entity
-  id: RightArmCyberGorrilla
+  id: RightArmCyberGorilla
   name: "right G.O.R.I.L.L.A. arm"
   parent: [PartCyber, BaseRightArm, BaseScienceContraband]
   components:
