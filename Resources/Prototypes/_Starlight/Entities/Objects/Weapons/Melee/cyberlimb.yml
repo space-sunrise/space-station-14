@@ -130,7 +130,7 @@
 - type: entity
   name: gorrila arm
   parent: [BaseItem, BaseScienceContraband]
-  id: CyberGorrilaArm
+  id: CyberGorillaArm
   description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
   components:
   - type: Sprite

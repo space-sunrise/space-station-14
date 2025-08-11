@@ -415,7 +415,7 @@
       parts:
         right hand: RightHandCyber
 
-#Gorrila Arms
+#Gorilla Arms
 - type: entity
   id: LeftArmCyberGorilla
   name: "left G.O.R.I.L.L.A. arm"
@@ -436,7 +436,7 @@
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - CyberGorrilaArm
+        - CyberGorillaArm
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
@@ -461,7 +461,7 @@
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - CyberGorrilaArm
+        - CyberGorillaArm
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber

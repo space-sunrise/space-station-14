@@ -211,7 +211,7 @@
     sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
     state: r_mantissec_blade_arm_BLADE
 
-#Gorrila Arms
+#Gorilla Arms
 - type: humanoidBaseSprite
   id: CyberLArmGorilla
   matchSkin: false
