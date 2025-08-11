@@ -245,13 +245,6 @@
     state: r_sci_arm_GAUNTLET
 
 #Security Laser Emmitter
-- type: humanoidBaseSprite
-  id: CyberLArmBulwark
-  matchSkin: false
-  markingsMatchSkin: false
-  baseSprite:
-    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-    state: l_bulwark_arm
 
 - type: humanoidBaseSprite
   id: CyberLArmBulwarkToggledEmitter
@@ -260,14 +253,6 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
     state: l_bulwark_arm_EMMITTER
-
-- type: humanoidBaseSprite
-  id: CyberRArmBulwark
-  matchSkin: false
-  markingsMatchSkin: false
-  baseSprite:
-    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-    state: r_bulwark_arm
 
 - type: humanoidBaseSprite
   id: CyberRArmBulwarkToggledEmmitter

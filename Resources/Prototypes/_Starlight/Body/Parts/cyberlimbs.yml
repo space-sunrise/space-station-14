@@ -417,7 +417,7 @@
 
 #Gorrila Arms
 - type: entity
-  id: LeftArmCyberGorrila
+  id: LeftArmCyberGorrilla
   name: "left G.O.R.I.L.L.A. arm"
   parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
   components:
@@ -442,7 +442,7 @@
         left hand: LeftHandCyber
 
 - type: entity
-  id: RightArmCyberGorrila
+  id: RightArmCyberGorrilla
   name: "right G.O.R.I.L.L.A. arm"
   parent: [PartCyber, BaseRightArm, BaseScienceContraband]
   components:
@@ -468,7 +468,7 @@
 
 #Laser pulser Arms
 - type: entity
-  id: LeftArmCyberLaserEmmiter
+  id: LeftArmCyberLaserEmitter
   name: "left bulwark emmiter arm"
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
   components:
@@ -493,7 +493,7 @@
         left hand: LeftHandCyber
 
 - type: entity
-  id: RightArmCyberLaserEmmiter
+  id: RightArmCyberLaserEmitter
   name: "right bulwark emmiter arm"
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
   components:

@@ -129,8 +129,8 @@
     Glass: 100
 #
 - type: latheRecipe
-  id: LeftArmCyberGorrila
-  result: LeftArmCyberGorrila
+  id: LeftArmCyberGorrilla
+  result: LeftArmCyberGorrilla
   categories:
   - Cyberlimbs
   completetime: 10
@@ -142,8 +142,8 @@
     Plasma: 200
 
 - type: latheRecipe
-  id: RightArmCyberGorrila
-  result: RightArmCyberGorrila
+  id: RightArmCyberGorrilla
+  result: RightArmCyberGorrilla
   categories:
   - Cyberlimbs
   completetime: 10

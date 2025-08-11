@@ -165,8 +165,8 @@
   tier: 3
   cost: 3500
   recipeUnlocks:
-    - LeftArmCyberGorrila
-    - RightArmCyberGorrila
+    - LeftArmCyberGorrilla
+    - RightArmCyberGorrilla
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - AnomalyCoreHarnessing
@@ -204,8 +204,8 @@
   tier: 3
   cost: 4500
   recipeUnlocks:
-    - LeftArmCyberLaserEmmiter
-    - RightArmCyberLaserEmmiter
+    - LeftArmCyberLaserEmitter
+    - RightArmCyberLaserEmitter
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - WeaponizedLaserManipulation

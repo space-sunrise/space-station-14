@@ -797,8 +797,8 @@
     Plasma: 100
 #
 - type: latheRecipe
-  id: LeftArmCyberLaserEmmiter
-  result: LeftArmCyberLaserEmmiter
+  id: LeftArmCyberLaserEmitter
+  result: LeftArmCyberLaserEmitter
   categories:
   - Cyberlimbs
   completetime: 10
@@ -810,8 +810,8 @@
     Plasma: 100
 
 - type: latheRecipe
-  id: RightArmCyberLaserEmmiter
-  result: RightArmCyberLaserEmmiter
+  id: RightArmCyberLaserEmitter
+  result: RightArmCyberLaserEmitter
   categories:
   - Cyberlimbs
   completetime: 10
