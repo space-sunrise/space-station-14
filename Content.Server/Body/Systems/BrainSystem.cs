@@ -1,46 +1,47 @@
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Pointing;
 
-namespace Content.Server.Body.Systems;
-
-public sealed class BrainSystem : EntitySystem
+namespace Content.Server.Body.Systems
 {
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-
-    public override void Initialize()
+    public sealed class BrainSystem : EntitySystem
     {
-        base.Initialize();
+        [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
-        SubscribeLocalEvent<BrainComponent, OrganAddedToBodyEvent>((uid, _, args) => HandleMind(args.Body, uid));
-        SubscribeLocalEvent<BrainComponent, OrganRemovedFromBodyEvent>((uid, _, args) => HandleMind(uid, args.OldBody));
-        SubscribeLocalEvent<BrainComponent, PointAttemptEvent>(OnPointAttempt);
-    }
+        public override void Initialize()
+        {
+            base.Initialize();
 
-    private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
-    {
-        if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
-            return;
+            SubscribeLocalEvent<BrainComponent, OrganAddedToBodyEvent>((uid, _, args) => HandleMind(args.Body, uid));
+            SubscribeLocalEvent<BrainComponent, OrganRemovedFromBodyEvent>((uid, _, args) => HandleMind(uid, args.OldBody));
+            SubscribeLocalEvent<BrainComponent, PointAttemptEvent>(OnPointAttempt);
+        }
 
-        EnsureComp<MindContainerComponent>(newEntity);
-        EnsureComp<MindContainerComponent>(oldEntity);
+        private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
+        {
+            if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
+                return;
 
-        var ghostOnMove = EnsureComp<GhostOnMoveComponent>(newEntity);
-        ghostOnMove.MustBeDead = HasComp<MobStateComponent>(newEntity); // Don't ghost living players out of their bodies.
+            EnsureComp<MindContainerComponent>(newEntity);
+            EnsureComp<MindContainerComponent>(oldEntity);
 
-        if (!_mindSystem.TryGetMind(oldEntity, out var mindId, out var mind))
-            return;
+            var ghostOnMove = EnsureComp<GhostOnMoveComponent>(newEntity);
+            if (HasComp<BodyComponent>(newEntity))
+                ghostOnMove.MustBeDead = true;
 
-        _mindSystem.TransferTo(mindId, newEntity, mind: mind);
-    }
+            if (!_mindSystem.TryGetMind(oldEntity, out var mindId, out var mind))
+                return;
 
-    private void OnPointAttempt(Entity<BrainComponent> ent, ref PointAttemptEvent args)
-    {
-        args.Cancel();
+            _mindSystem.TransferTo(mindId, newEntity, mind: mind);
+        }
+
+        private void OnPointAttempt(Entity<BrainComponent> ent, ref PointAttemptEvent args)
+        {
+            args.Cancel();
+        }
     }
 }
-

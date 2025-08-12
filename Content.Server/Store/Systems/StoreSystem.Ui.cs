@@ -365,7 +365,7 @@ public sealed partial class StoreSystem
 
             _actionContainer.RemoveAction(purchase, logMissing: false);
 
-            Del(purchase);
+            EntityManager.DeleteEntity(purchase);
         }
 
         component.BoughtEntities.Clear();

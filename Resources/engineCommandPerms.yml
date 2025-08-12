@@ -38,9 +38,6 @@
   - hwid
   - showaudio
   - showpos
-  - showvel
-  - showrot
-  - showangvel
   - showray
   - showchunkbb
   - showgridnodes
@@ -61,7 +58,7 @@
   - watch
   - sendgarbage
   - setinputcontext
-  - showplayervelocity
+  - showvelocities
   - tilelookup
   - net_entityreport
   - scene
@@ -134,6 +131,7 @@
   - fuck
   - replay_recording_start
   - replay_recording_stop
+  - scale
   - spin
 
 - Flags: QUERY

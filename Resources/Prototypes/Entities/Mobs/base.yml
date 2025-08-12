@@ -44,7 +44,6 @@
   - type: MovementSpeedModifier
   - type: RequireProjectileTarget
     active: False
-  - type: StunVisuals
   # Sunrise-Start
   - type: TTS
   - type: DamageOverlay

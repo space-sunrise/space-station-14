@@ -120,7 +120,6 @@
       10: Dead
   - type: Stamina
     critThreshold: 10
-    animationThreshold: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1094,10 +1093,10 @@
     growthDelay: 20
   - type: ExaminableHunger
   - type: Wooly
-  - type: Edible
-    destroyOnEmpty: false
+  - type: Food
     solution: wool
     requiresSpecialDigestion: true
+    # Wooly prevents eating wool deleting the goat so its fine
     requireDead: false
   - type: FlavorProfile
     flavors:
@@ -1541,9 +1540,6 @@
         Piercing: 4
       groups:
         Burn: 3
-    catchingFailDamage:
-      types:
-        Blunt: 1
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
 
@@ -1727,9 +1723,6 @@
         Piercing: 7
       groups:
         Burn: 3
-    catchingFailDamage:
-      types:
-        Blunt: 1
     clumsySound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
@@ -2290,10 +2283,9 @@
 
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
-  parent: [ SimpleMobBase, FlyingMobBase ]
-  id: MobParrotBase
   name: parrot
-  abstract: true
+  parent: [ SimpleMobBase, FlyingMobBase ]
+  id: MobParrot
   description: Infiltrates your domain, spies on you, and somehow still a cool pet.
   components:
   - type: MovementSpeedModifier
@@ -2304,7 +2296,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: parrot
-      sprite: Mobs/Animals/parrot/parrot.rsi
+      sprite: Mobs/Animals/parrot.rsi
   - type: Fixtures
     fixtures:
       fix1:
@@ -2334,29 +2326,7 @@
   - type: Vocal
     sounds:
       Unsexed: Parrot
-  - type: ActiveListener
-  - type: Vocalizer
-  - type: RadioVocalizer
-  - type: ParrotListener
-  - type: ParrotMemory
-  - type: Inventory
-    templateId: parrot
-    speciesId: parrot
-    # transparent displacement map to hide the headset. this should be an animated displacement map to follow the parrot
-    # as it bobs up and down, but this in turn needs some way to change the displacement map on inventory entities when
-    # the parrot dies, otherwise the visuals will be broken
-    displacements:
-      ears:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/parrot/displacement.rsi
-            state: ears
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
+  - type: ParrotAccent
   - type: InteractionPopup
     successChance: 0.6
     interactSuccessString: petting-success-bird
@@ -2372,12 +2342,6 @@
   - type: NPCRetaliation
   - type: FactionException
   # Sunrise-End
-
-- type: entity
-  parent: MobParrotBase
-  id: MobParrot
-  components:
-  - type: ParrotAccent # regular parrots have a parrotaccent. Polly is special and does not
 
 - type: entity
   name: penguin
@@ -2499,8 +2463,7 @@
   - type: Item
     size: Normal
     sprite: Mobs/Animals/grenadepenguin.rsi
-  - type: TriggerOnUse
-  - type: TimerTrigger
+  - type: OnUseTimerTrigger
     delay: 10
     beepSound:
       path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg #funny sfx use
@@ -2513,8 +2476,6 @@
     intensitySlope: 20
     totalIntensity: 225
   - type: ExplodeOnTrigger
-    keysIn:
-    - timer
   - type: Destructible
     thresholds:
     - trigger:
@@ -3053,7 +3014,6 @@
   - type: HTN
     rootTask:
       task: RuminantHostileCompound
-  - type: MessyDrinker
   - type: Tag
     tags:
     - VimPilot
@@ -3104,7 +3064,6 @@
       gender: epicene
   - type: MobPrice
     price: 200
-  - type: MessyDrinker
   - type: DogVision  # Sunrise-DogVision
 
 - type: entity
@@ -3526,7 +3485,6 @@
   - type: Grammar
     attributes:
       gender: epicene
-  - type: SlowAccent
   - type: Tag
     tags:
     - VimPilot
@@ -4056,18 +4014,13 @@
       belt:
         sizeMaps:
           32:
-            sprite: Mobs/Pets/displacements.rsi
-            state: corgi_belt_displacement
+            sprite: Mobs/Pets/corgi.rsi
+            state: belt_displacement
       ears:
         sizeMaps:
           32:
-            sprite: Mobs/Pets/displacements.rsi
-            state: corgi_belt_displacement
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Pets/displacements.rsi
-            state: corgi_head_displacement
+            sprite: Mobs/Pets/corgi.rsi
+            state: belt_displacement
   - type: Hands # HANDS!
   - type: Puller
   - type: Cuffable # bad dog!
@@ -4091,6 +4044,3 @@
     - DoorBumpOpener
   - type: StatusIcon # marks them as crew
     bounds: -0.5,-0.5,0.5,0.5
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen

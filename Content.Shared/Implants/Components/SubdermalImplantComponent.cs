@@ -71,6 +71,11 @@ public sealed partial class OpenStorageImplantEvent : InstantActionEvent
 
 }
 
+public sealed partial class UseFreedomImplantEvent : InstantActionEvent
+{
+
+}
+
 /// <summary>
 /// Used for triggering trigger events on the implant via action
 /// </summary>
@@ -83,6 +88,16 @@ public sealed partial class ActivateImplantEvent : InstantActionEvent
 /// Used for opening the uplink implant via action.
 /// </summary>
 public sealed partial class OpenUplinkImplantEvent : InstantActionEvent
+{
+
+}
+
+public sealed partial class UseScramImplantEvent : InstantActionEvent
+{
+
+}
+
+public sealed partial class UseDnaScramblerImplantEvent : InstantActionEvent
 {
 
 }

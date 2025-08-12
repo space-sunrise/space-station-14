@@ -445,9 +445,9 @@
 # Tastes like jelly-donut, fizzy tutti frutti.
 
 - type: entity
-  name: scurret jelly-donut
+  name: slugcat jelly-donut
   parent: FoodDonutBase
-  id: FoodDonutJellyScurret
+  id: FoodDonutJellySlugcat
   description: No holes in this donut in case a suspicious looking pole shows up.
   components:
   - type: Sprite

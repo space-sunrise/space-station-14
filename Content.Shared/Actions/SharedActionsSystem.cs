@@ -111,7 +111,7 @@ public abstract class SharedActionsSystem : EntitySystem
     /// </summary>
     public Entity<ActionComponent>? GetAction(Entity<ActionComponent?>? action, bool logError = true)
     {
-        if (action is not {} ent || Deleted(ent))
+        if (action is not {} ent || TerminatingOrDeleted(ent))
             return null;
 
         if (!_actionQuery.Resolve(ent, ref ent.Comp, logError))
@@ -423,23 +423,17 @@ public abstract class SharedActionsSystem : EntitySystem
             return true;
         // Sunrise-end
         var targetAction = Comp<TargetActionComponent>(uid);
-
         // not using the ValidateBaseTarget logic since its raycast fails if the target is e.g. a wall
         if (targetAction.CheckCanAccess)
-            return _interaction.InRangeAndAccessible(user, target, targetAction.Range, targetAction.AccessMask);
+            return _interaction.InRangeAndAccessible(user, target, range: targetAction.Range);
 
-        // Just check normal in range, allowing <= 0 range to mean infinite range.
-        if (targetAction.Range > 0
-            && !_transform.InRange(user, target, targetAction.Range))
-            return false;
+        // if not just checking pure range, let stored entities be targeted by actions
+        // if it's out of range it probably isn't stored anyway...
 
-        // Sunrise-Start
         if (targetAction.IgnoreContainer)
             return true;
-        // Sunrise-End
 
-        // If checkCanAccess isn't set, we allow targeting things in containers
-        return _interaction.IsAccessible(user, target);
+        return _interaction.CanAccessViaStorage(user, target);
     }
 
     public bool ValidateWorldTarget(EntityUid user, EntityCoordinates target, Entity<WorldTargetActionComponent> ent)
@@ -599,7 +593,7 @@ public abstract class SharedActionsSystem : EntitySystem
     #region AddRemoveActions
 
     public EntityUid? AddAction(EntityUid performer,
-        [ForbidLiteral] string? actionPrototypeId,
+        string? actionPrototypeId,
         EntityUid container = default,
         ActionsComponent? component = null)
     {
@@ -619,7 +613,7 @@ public abstract class SharedActionsSystem : EntitySystem
     /// <param name="container">The entity that contains/enables this action (e.g., flashlight).</param>
     public bool AddAction(EntityUid performer,
         [NotNullWhen(true)] ref EntityUid? actionId,
-        [ForbidLiteral] string? actionPrototypeId,
+        string? actionPrototypeId,
         EntityUid container = default,
         ActionsComponent? component = null)
     {
@@ -630,7 +624,7 @@ public abstract class SharedActionsSystem : EntitySystem
     public bool AddAction(EntityUid performer,
         [NotNullWhen(true)] ref EntityUid? actionId,
         [NotNullWhen(true)] out ActionComponent? action,
-        [ForbidLiteral] string? actionPrototypeId,
+        string? actionPrototypeId,
         EntityUid container = default,
         ActionsComponent? component = null)
     {
@@ -1104,20 +1098,6 @@ public abstract class SharedActionsSystem : EntitySystem
     public bool IsCooldownActive(ActionComponent action, TimeSpan? curTime = null)
     {
         // TODO: Check for charge recovery timer
-        curTime ??= GameTiming.CurTime;
         return action.Cooldown.HasValue && action.Cooldown.Value.End > curTime;
-    }
-
-    /// <summary>
-    /// Marks the action as temporary.
-    /// Temporary actions get deleted upon being removed from an entity.
-    /// </summary>
-    public void SetTemporary(Entity<ActionComponent?> ent, bool temporary)
-    {
-        if (!Resolve(ent.Owner, ref ent.Comp, false))
-            return;
-
-        ent.Comp.Temporary = temporary;
-        Dirty(ent);
     }
 }

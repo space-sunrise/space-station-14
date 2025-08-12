@@ -1,10 +1,10 @@
 using Content.Server.Administration.Logs;
+using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Payload.Components;
 using Content.Shared.Tag;
-using Content.Shared.Trigger;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization.Manager;
@@ -54,22 +54,18 @@ public sealed class PayloadSystem : EntitySystem
 
     private void OnCaseTriggered(EntityUid uid, PayloadCaseComponent component, TriggerEvent args)
     {
-        // TODO: Adjust to the new trigger system
-
         if (!TryComp(uid, out ContainerManagerComponent? contMan))
             return;
 
         // Pass trigger event onto all contained payloads. Payload capacity configurable by construction graphs.
         foreach (var ent in GetAllPayloads(uid, contMan))
         {
-            RaiseLocalEvent(ent, ref args, false);
+            RaiseLocalEvent(ent, args, false);
         }
     }
 
     private void OnTriggerTriggered(EntityUid uid, PayloadTriggerComponent component, TriggerEvent args)
     {
-        // TODO: Adjust to the new trigger system
-
         if (!component.Active)
             return;
 
@@ -79,7 +75,7 @@ public sealed class PayloadSystem : EntitySystem
         // Ensure we don't enter a trigger-loop
         DebugTools.Assert(!_tagSystem.HasTag(uid, PayloadTag));
 
-        RaiseLocalEvent(parent, ref args);
+        RaiseLocalEvent(parent, args, false);
     }
 
     private void OnEntityInserted(EntityUid uid, PayloadCaseComponent _, EntInsertedIntoContainerMessage args)
@@ -106,7 +102,7 @@ public sealed class PayloadSystem : EntitySystem
 
             var temp = (object) component;
             _serializationManager.CopyTo(data.Component, ref temp);
-            AddComp(uid, (Component) temp!);
+            EntityManager.AddComponent(uid, (Component) temp!);
 
             trigger.GrantedComponents.Add(registration.Type);
         }
@@ -121,7 +117,7 @@ public sealed class PayloadSystem : EntitySystem
 
         foreach (var type in trigger.GrantedComponents)
         {
-            RemComp(uid, type);
+            EntityManager.RemoveComponent(uid, type);
         }
 
         trigger.GrantedComponents.Clear();
@@ -150,7 +146,6 @@ public sealed class PayloadSystem : EntitySystem
 
     private void HandleChemicalPayloadTrigger(Entity<ChemicalPayloadComponent> entity, ref TriggerEvent args)
     {
-        // TODO: Adjust to the new trigger system
         if (entity.Comp.BeakerSlotA.Item is not EntityUid beakerA
             || entity.Comp.BeakerSlotB.Item is not EntityUid beakerB
             || !TryComp(beakerA, out FitsInDispenserComponent? compA)

@@ -64,10 +64,10 @@ public sealed class SmartEquipSystem : EntitySystem
             return;
 
         // early out if we don't have any hands or a valid inventory slot
-        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHandId == null)
+        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHand == null)
             return;
 
-        var handItem = _hands.GetActiveItem((uid, hands));
+        var handItem = hands.ActiveHand.HeldEntity;
 
         // can the user interact, and is the item interactable? e.g. virtual items
         if (!_actionBlocker.CanInteract(uid, handItem))
@@ -80,7 +80,7 @@ public sealed class SmartEquipSystem : EntitySystem
         }
 
         // early out if we have an item and cant drop it at all
-        if (handItem != null && !_hands.CanDropHeld(uid, hands.ActiveHandId))
+        if (handItem != null && !_hands.CanDropHeld(uid, hands.ActiveHand))
         {
             _popup.PopupClient(Loc.GetString("smart-equip-cant-drop"), uid, uid);
             return;
@@ -121,50 +121,10 @@ public sealed class SmartEquipSystem : EntitySystem
                 return;
             }
 
-            _hands.TryDrop((uid, hands), hands.ActiveHandId!);
+            _hands.TryDrop(uid, hands.ActiveHand, handsComp: hands);
             _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter:true);
             return;
-        }
-
-        // case 2 (storage item):
-        if (TryComp<StorageComponent>(slotItem, out var storage))
-        {
-            switch (handItem)
-            {
-                case null when storage.Container.ContainedEntities.Count == 0:
-                    _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                    return;
-                case null:
-                    var removing = storage.Container.ContainedEntities[^1];
-                    _container.RemoveEntity(slotItem, removing);
-                    _hands.TryPickup(uid, removing, handsComp: hands);
-                    return;
-            }
-
-            if (!_storage.CanInsert(slotItem, handItem.Value, out var reason))
-            {
-                if (reason != null)
-                    _popup.PopupClient(Loc.GetString(reason), uid, uid);
-
-                return;
-            }
-
-            _hands.TryDrop((uid, hands), hands.ActiveHandId!);
-            _storage.Insert(slotItem, handItem.Value, out var stacked, out _);
-
-            // if the hand item stacked with the things in inventory, but there's no more space left for the rest
-            // of the stack, place the stack back in hand rather than dropping it on the floor
-            if (stacked != null && !_storage.CanInsert(slotItem, handItem.Value, out _))
-            {
-                if (TryComp<StackComponent>(handItem.Value, out var handStack) && handStack.Count > 0)
-                    _hands.TryPickup(uid, handItem.Value, handsComp: hands);
-            }
-
-            return;
-        }
-
-        // case 3 (itemslot item):
-        if (TryComp<ItemSlotsComponent>(slotItem, out var slots))
+        } else if (TryComp<ItemSlotsComponent>(slotItem, out var slots)) // case 3 (itemslot item): // Sunrise-edit
         {
             if (handItem == null)
             {

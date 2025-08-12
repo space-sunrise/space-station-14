@@ -34,7 +34,7 @@ lanternextrabright: LanternFlash
 
 # 2023-08-04
 BoxMagazineLightRifleHighVelocity: BoxMagazineLightRifle
-BoxMagazineMagnumSubMachineGunHighVelocity: null
+BoxMagazineMagnumSubMachineGunHighVelocity: BoxMagazineMagnumSubMachineGun
 BoxMagazinePistolCaselessRifleHighVelocity: BoxMagazinePistolCaselessRifle
 BoxMagazinePistolHighCapacityHighVelocity: BoxMagazinePistolHighCapacity
 BoxMagazinePistolHighVelocity: BoxMagazinePistol
@@ -56,9 +56,9 @@ MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP
 MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ
 MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ
 MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
-MagazineCaselessRifleShortHighVelocity: null
+MagazineCaselessRifleShortHighVelocity: MagazineCaselessRifleShort
 MagazineLightRifleHighVelocity: MagazineLightRifleFMJ
-MagazineMagnumSubMachineGunHighVelocity: null
+MagazineMagnumSubMachineGunHighVelocity: MagazineMagnumSubMachineGun
 MagazinePistolCaselessRifleHighVelocity: MagazinePistolCaselessRifle
 MagazinePistolHighCapacityHighVelocity: MagazinePistolHighCapacityFMJ
 MagazinePistolHighVelocity: MagazinePistolFMJ
@@ -301,11 +301,11 @@ CartridgeCaselessRifleRubber: CartridgeCaselessRifle
 MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 # MagazineMagnumRubber: MagazineMagnum # Its me! Rubber!
-MagazineMagnumSubMachineGunRubber: null
+MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
 MagazineLightRifleRubber: MagazineLightRifleSP
 MagazineRifleRubber: MagazineRifleSP
 MagazineCaselessRifleRubber: MagazineCaselessRifle
-MagazineCaselessRifleShortRubber: null
+MagazineCaselessRifleShortRubber: MagazineCaselessRifleShort
 SpeedLoaderPistolRubber: SpeedLoaderPistol
 # SpeedLoaderMagnumRubber: SpeedLoaderMagnumSP # Its me! Rubber!
 MagazineBoxPistolRubber: MagazineBoxPistolSP
@@ -322,7 +322,7 @@ BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
 BoxMagazineLightRifleRubber: BoxMagazineLightRifle
 BoxMagazineRifleRubber: BoxMagazineRifle
 BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
-BoxMagazineMagnumSubMachineGunRubber: null
+BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
 WeaponPistolMk58Nonlethal: WeaponPistolMk58
 WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
@@ -654,22 +654,6 @@ SpawnHonkBot: SpawnMobHonkBot
 CrateFoodPizzaLarge: CrateFoodPizza
 CrateFoodSoftdrinksLarge: CrateFoodSoftdrinks
 
-# 2025-06-06
-MagazineLightRifleMaxim: null
-MagazineLightRiflePkBox: null
-MagazineCaselessRifle10x24: null
-BaseMagazineCaselessRifleShort: null
-MagazineCaselessRifleShort: null
-MagazineCaselessRifleShortPractice: null
-BaseMagazineMagnumSubMachineGun: null
-MagazineMagnumSubMachineGunEmpty: null
-MagazineMagnumSubMachineGun: null
-MagazineMagnumSubMachineGunPractice: null
-MagazineMagnumSubMachineGunUranium: null
-MagazineMagnumSubMachineGunPiercing: null
-BoxMagazineMagnumSubMachineGun: null
-BoxMagazineMagnumSubMachineGunPractice: null
-
 # 2025-06-09
 BarSignAlignTile: BarSign
 BarSignComboCafeAlignTile: BarSignComboCafe
@@ -697,12 +681,6 @@ BarSignEmprahAlignTile: BarSignEmprah
 BarSignSpacebucksAlignTile: BarSignSpacebucks
 BarSignMaltroachAlignTile: BarSignMaltroach
 BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
-
-# 2025-06-21
-ClothingNeckHeadphones: ClothingMultipleHeadphones
-
-# 2025-08-01
-FoodDonutJellySlugcat: FoodDonutJellyScurret
 
 # Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
@@ -780,6 +758,13 @@ LauncherSyringeMed: null
 PlushieUunaMiira: null
 AbductorDispencer: VendingMachineAbductorDispenser
 SpawnMechRipley: SpawnMechHauler
+BoxMagazineRifle: BoxMagazineRifleSP
+MagazineBoxLightRifle: MagazineBoxLightRifleSP
+MagazineBoxPistol: MagazineBoxPistolSP
+MagazineLightRifleBox: MagazineLightRifleBoxSP
+MagazineLightRifle: MagazineLightRifleSP
+MagazinePistolSubMachineGun: MagazinePistolSubMachineGunSP
+MagazineRifle: MagazineRifleSP
 PrintedDocumentClosingIndictment: null
 PrintedDocumentPermissionDisposeBody: null
 PrintedDocumentDeathCertificate: null
@@ -809,15 +794,4 @@ GrenadeBlast: GrenadeBlastTimer
 GrenadeEMP: GrenadeEMPTimer
 GrenadeFlash: GrenadeFlashTimer
 GrenadeFrag: GrenadeFragTimer
-BoxMagazineRifle: BoxMagazineRifleSP
-MagazineBoxLightRifle: MagazineBoxLightRifleSP
-MagazineBoxPistol: MagazineBoxPistolSP
-MagazineLightRifleBox: MagazineLightRifleBoxSP
-MagazineLightRifle: MagazineLightRifleSP
-MagazinePistolSubMachineGun: MagazinePistolSubMachineGunSP
-MagazineRifle: MagazineRifleSP
-MagazineBoxMagnum: MagazineBoxMagnumSP
-SpeedLoaderMagnum: SpeedLoaderMagnumSP
-MagazineBoxRifle: MagazineBoxRifleSP
-BaseCartridgeLightRifle: BaseCartridgeLightRifleSP
 # Sunrise-End

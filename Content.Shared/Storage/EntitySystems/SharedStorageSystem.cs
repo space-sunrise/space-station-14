@@ -83,7 +83,8 @@ public abstract class SharedStorageSystem : EntitySystem
     /// </summary>
     public bool NestedStorage = true;
 
-    public static readonly ProtoId<ItemSizePrototype> DefaultStorageMaxItemSize = "Normal";
+    [ValidatePrototypeId<ItemSizePrototype>]
+    public const string DefaultStorageMaxItemSize = "Normal";
 
     public const float AreaInsertDelayPerItem = 0.075f;
     private static AudioParams _audioParams = AudioParams.Default
@@ -232,14 +233,7 @@ public abstract class SharedStorageSystem : EntitySystem
             StoredItems = storedItems,
             SavedLocations = component.SavedLocations,
             Whitelist = component.Whitelist,
-            Blacklist = component.Blacklist,
-            QuickInsert = component.QuickInsert,
-            AreaInsert = component.AreaInsert,
-            StorageInsertSound = component.StorageInsertSound,
-            StorageRemoveSound = component.StorageRemoveSound,
-            StorageOpenSound = component.StorageOpenSound,
-            StorageCloseSound = component.StorageCloseSound,
-            DefaultStorageOrientation = component.DefaultStorageOrientation,
+            Blacklist = component.Blacklist
         };
     }
 
@@ -260,7 +254,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
     private void UpdatePrototypeCache()
     {
-        _defaultStorageMaxItemSize = _prototype.Index(DefaultStorageMaxItemSize);
+        _defaultStorageMaxItemSize = _prototype.Index<ItemSizePrototype>(DefaultStorageMaxItemSize);
         _sortedSizes.Clear();
         _sortedSizes.AddRange(_prototype.EnumeratePrototypes<ItemSizePrototype>());
         _sortedSizes.Sort();
@@ -353,44 +347,6 @@ public abstract class SharedStorageSystem : EntitySystem
                 new("/Textures/Interface/VerbIcons/open.svg.192dpi.png"));
         }
         args.Verbs.Add(verb);
-    }
-
-    /// <summary>
-    /// Copy this component's datafields from one entity to another.
-    /// This can't use CopyComp because we don't want to copy the references to the items inside the storage.
-    /// <summary>
-    public void CopyComponent(Entity<StorageComponent?> source, EntityUid target)
-    {
-        if (!Resolve(source, ref source.Comp))
-            return;
-
-        var targetComp = EnsureComp<StorageComponent>(target);
-        targetComp.Grid = new List<Box2i>(source.Comp.Grid);
-        targetComp.MaxItemSize = source.Comp.MaxItemSize;
-        targetComp.QuickInsert = source.Comp.QuickInsert;
-        targetComp.QuickInsertCooldown = source.Comp.QuickInsertCooldown;
-        targetComp.OpenUiCooldown = source.Comp.OpenUiCooldown;
-        targetComp.ClickInsert = source.Comp.ClickInsert;
-        targetComp.OpenOnActivate = source.Comp.OpenOnActivate;
-        targetComp.AreaInsert = source.Comp.AreaInsert;
-        targetComp.AreaInsertRadius = source.Comp.AreaInsertRadius;
-        targetComp.Whitelist = source.Comp.Whitelist;
-        targetComp.Blacklist = source.Comp.Blacklist;
-        targetComp.StorageInsertSound = source.Comp.StorageInsertSound;
-        targetComp.StorageRemoveSound = source.Comp.StorageRemoveSound;
-        targetComp.StorageOpenSound = source.Comp.StorageOpenSound;
-        targetComp.StorageCloseSound = source.Comp.StorageCloseSound;
-        targetComp.DefaultStorageOrientation = source.Comp.DefaultStorageOrientation;
-        targetComp.HideStackVisualsWhenClosed = source.Comp.HideStackVisualsWhenClosed;
-        targetComp.SilentStorageUserTag = source.Comp.SilentStorageUserTag;
-        targetComp.ShowVerb = source.Comp.ShowVerb;
-
-        UpdateOccupied((target, targetComp));
-        Dirty(target, targetComp);
-
-        var targetUI = EnsureComp<UserInterfaceComponent>(target);
-
-        UI.SetUi((target, targetUI), StorageComponent.StorageUiKey.Key, new InterfaceData("StorageBoundUserInterface"));
     }
 
     /// <summary>
@@ -733,7 +689,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return;
 
         // If the user's active hand is empty, try pick up the item.
-        if (!_sharedHandsSystem.TryGetActiveItem(player.AsNullable(), out var activeItem))
+        if (player.Comp.ActiveHandEntity == null)
         {
             _adminLog.Add(
                 LogType.Storage,
@@ -753,11 +709,11 @@ public abstract class SharedStorageSystem : EntitySystem
         _adminLog.Add(
             LogType.Storage,
             LogImpact.Low,
-            $"{ToPrettyString(player):player} is interacting with {ToPrettyString(item):item} while it is stored in {ToPrettyString(storage):storage} using {ToPrettyString(activeItem):used}");
+            $"{ToPrettyString(player):player} is interacting with {ToPrettyString(item):item} while it is stored in {ToPrettyString(storage):storage} using {ToPrettyString(player.Comp.ActiveHandEntity):used}");
 
         // Else, interact using the held item
         if (_interactionSystem.InteractUsing(player,
-                activeItem.Value,
+                player.Comp.ActiveHandEntity.Value,
                 item,
                 Transform(item).Coordinates,
                 checkCanInteract: false))
@@ -1252,10 +1208,10 @@ public abstract class SharedStorageSystem : EntitySystem
     {
         if (!Resolve(ent.Owner, ref ent.Comp)
             || !Resolve(player.Owner, ref player.Comp)
-            || !_sharedHandsSystem.TryGetActiveItem(player, out var activeItem))
+            || player.Comp.ActiveHandEntity == null)
             return false;
 
-        var toInsert = activeItem;
+        var toInsert = player.Comp.ActiveHandEntity;
 
         if (!CanInsert(ent, toInsert.Value, out var reason, ent.Comp))
         {
@@ -1263,7 +1219,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return false;
         }
 
-        if (!_sharedHandsSystem.CanDrop(player, toInsert.Value))
+        if (!_sharedHandsSystem.CanDrop(player, toInsert.Value, player.Comp))
         {
             _popupSystem.PopupClient(Loc.GetString("comp-storage-cant-drop", ("entity", toInsert.Value)), ent, player);
             return false;
@@ -1341,7 +1297,7 @@ public abstract class SharedStorageSystem : EntitySystem
         Angle startAngle;
         if (storageEnt.Comp.DefaultStorageOrientation == null)
         {
-            startAngle = Angle.Zero;
+            startAngle = Angle.FromDegrees(-itemEnt.Comp.StoredRotation);
         }
         else
         {
@@ -1977,7 +1933,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
         if (held)
         {
-            if (!_sharedHandsSystem.IsHolding(player.AsNullable(), itemUid, out _))
+            if (!_sharedHandsSystem.IsHolding(player, itemUid, out _))
                 return false;
         }
         else
@@ -2002,17 +1958,15 @@ public abstract class SharedStorageSystem : EntitySystem
     protected sealed class StorageComponentState : ComponentState
     {
         public Dictionary<NetEntity, ItemStorageLocation> StoredItems = new();
+
         public Dictionary<string, List<ItemStorageLocation>> SavedLocations = new();
+
         public List<Box2i> Grid = new();
+
         public ProtoId<ItemSizePrototype>? MaxItemSize;
+
         public EntityWhitelist? Whitelist;
+
         public EntityWhitelist? Blacklist;
-        public bool QuickInsert;
-        public bool AreaInsert;
-        public SoundSpecifier? StorageInsertSound;
-        public SoundSpecifier? StorageRemoveSound;
-        public SoundSpecifier? StorageOpenSound;
-        public SoundSpecifier? StorageCloseSound;
-        public StorageDefaultOrientation? DefaultStorageOrientation;
     }
 }

@@ -9,7 +9,7 @@ namespace Content.Shared.Warps;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class WarpPointComponent : Component
 {
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public string? Location;
 
     /// <summary>

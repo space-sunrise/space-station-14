@@ -1,14 +1,13 @@
 - type: entity
-  parent: DrinkBase
+  parent: BaseItem
   id: Bucket
   name: bucket
   description: It's a boring old bucket.
   components:
-  - type: Clickable
-  - type: Edible
-    edible: Drink
+  - type: Drink
     solution: bucket
-    destroyOnEmpty: false
+    ignoreEmpty: true
+  - type: Clickable
   - type: Sprite
     sprite: Objects/Tools/bucket.rsi
     layers:

@@ -1,6 +1,5 @@
 using Content.Server.Chat.Systems;
-using Content.Shared.Speech;
-using Content.Shared.Speech.Components;
+using Content.Server.Speech.Components;
 
 namespace Content.Server.Speech.EntitySystems;
 

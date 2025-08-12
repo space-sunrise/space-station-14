@@ -1,7 +1,6 @@
 using Content.Shared.Emag.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared._Sunrise.VendingMachines;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Advertise.Components;
@@ -15,7 +14,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -35,7 +33,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] private   readonly SharedSpeakOnUIClosedSystem _speakOn = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UISystem = default!;
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
 
     public override void Initialize()
@@ -438,15 +435,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                 {
                     restock = (uint) Math.Floor(amount * result / chanceOfMissingStock);
                 }
-
-                // Sunrise-start
-                if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent) &&
-                    type == InventoryType.Regular)
-                {
-                    restock = (uint) Math.Floor(
-                        amount + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient);
-                }
-                // Sunrise-end
 
                 if (inventory.TryGetValue(id, out var entry))
                     // Prevent a machine's stock from going over three times

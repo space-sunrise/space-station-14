@@ -229,4 +229,3 @@
       - MobMover
   - type: SpawnOnTrigger
     proto: EffectGravityPulse
-    predicted: true

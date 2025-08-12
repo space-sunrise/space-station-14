@@ -93,7 +93,7 @@
     disableWhenFirstOpened: true
     whitelist:
       components:
-        - MobState
+        - Body
   - type: LockVisuals
     stateLocked: cursed_door
     stateUnlocked: decursed_door
@@ -161,7 +161,6 @@
 
 - type: entity
   id: ProjectilePolyboltBase
-  abstract: true
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
@@ -176,8 +175,6 @@
         Poison: 5
   - type: TriggerOnCollide
     fixtureID: projectile
-  - type: PolymorphOnTrigger
-    targetUser: true
 
 - type: entity
   id: ProjectilePolyboltCarp
@@ -188,10 +185,10 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: WizardForcedCarp
-  - type: WhitelistTriggerCondition
-    userWhitelist:
+  - type: TriggerWhitelist
+    whitelist:
       components:
-      - MobState
+      - Body
 
 - type: entity
   id: ProjectilePolyboltMonkey
@@ -202,10 +199,10 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: WizardForcedMonkey
-  - type: WhitelistTriggerCondition
-    userWhitelist:
+  - type: TriggerWhitelist
+    whitelist:
       components:
-      - MobState
+      - Body
 
 - type: entity
   id: ProjectilePolyboltDoor
@@ -221,8 +218,8 @@
       color: brown
   - type: PolymorphOnTrigger
     polymorph: WizardWallDoor
-  - type: WhitelistTriggerCondition
-    userWhitelist:
+  - type: TriggerWhitelist
+    whitelist:
       components:
       - Airlock
       - Firelock
@@ -272,10 +269,10 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: WizardForcedCluwne
-  - type: WhitelistTriggerCondition
-    userWhitelist:
+  - type: TriggerWhitelist
+    whitelist:
       components:
-      - MobState
+      - Body
 
 - type: entity
   id: ProjectileIcicle
@@ -302,7 +299,7 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: BreadMorph
-  - type: WhitelistTriggerCondition
-    userWhitelist:
+  - type: TriggerWhitelist
+    whitelist:
       components:
-      - MobState
+      - Body

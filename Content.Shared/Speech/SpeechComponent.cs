@@ -16,26 +16,29 @@ namespace Content.Shared.Speech
         [Access(typeof(SpeechSystem), Friend = AccessPermissions.ReadWrite, Other = AccessPermissions.Read)]
         public bool Enabled = true;
 
-        [DataField, AutoNetworkedField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public ProtoId<SpeechSoundsPrototype>? SpeechSounds;
 
         /// <summary>
         ///     What speech verb prototype should be used by default for displaying this entity's messages?
         /// </summary>
-        [DataField, AutoNetworkedField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public ProtoId<SpeechVerbPrototype> SpeechVerb = "Default";
 
         /// <summary>
         ///     What emotes allowed to use event if emote <see cref="EmotePrototype.Available"/> is false
         /// </summary>
-        [DataField, AutoNetworkedField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public List<ProtoId<EmotePrototype>> AllowedEmotes = new();
 
         /// <summary>
         ///     A mapping from chat suffixes loc strings to speech verb prototypes that should be conditionally used.
         ///     For things like '?' changing to 'asks' or '!!' making text bold and changing to 'yells'. Can be overridden if necessary.
         /// </summary>
-        [DataField, AutoNetworkedField]
+        [DataField]
         public Dictionary<string, ProtoId<SpeechVerbPrototype>> SuffixSpeechVerbs = new()
         {
             { "chat-speech-verb-suffix-exclamation-strong", "DefaultExclamationStrong" },
@@ -48,6 +51,7 @@ namespace Content.Shared.Speech
         [DataField]
         public AudioParams AudioParams = AudioParams.Default.WithVolume(-2f).WithRolloffFactor(4.5f);
 
+        [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
         public float SoundCooldownTime { get; set; } = 0.5f;
 

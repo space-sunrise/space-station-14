@@ -115,11 +115,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
   - type: Tag
     tags:
-    - CorgiWearable
+    - FullBodyOuter
     - WhitelistChameleon
-    - FullBodyOuter # Sunrise-Edit
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -311,11 +312,12 @@
     node: suit
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
   - type: Tag
     tags:
-    - CorgiWearable
+    - FullBodyOuter
     - WhitelistChameleon
-    - FullBodyOuter # Sunrise-Edit
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase

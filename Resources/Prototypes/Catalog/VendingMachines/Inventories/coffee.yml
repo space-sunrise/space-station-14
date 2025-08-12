@@ -8,5 +8,6 @@
     DrinkHotCoco: 5
   contrabandInventory:
     DrinkTeapot: 2
-    DrinkNothing: 2
     DrinkChamomileTincture: 5 # Sunrise-edit
+  emaggedInventory:
+    DrinkNothing: 2

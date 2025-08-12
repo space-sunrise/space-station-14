@@ -102,7 +102,6 @@
     layers:
       - state: box_medical
       - state: bodybags
-  - type: Storage
     whitelist:
       tags:
         - BodyBag

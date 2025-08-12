@@ -45,10 +45,9 @@ public sealed partial class RevenantSystem : EntitySystem
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
 
-    private static readonly EntProtoId RevenantShopId = "ActionRevenantShop";
-    private static readonly EntProtoId RevenantDrainActionId = "ActionRevenantDrain";  // Sunrise-Edit
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string RevenantShopId = "ActionRevenantShop";
 
     public override void Initialize()
     {
@@ -98,7 +97,6 @@ public sealed partial class RevenantSystem : EntitySystem
     private void OnMapInit(EntityUid uid, RevenantComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.Action, RevenantShopId);
-        _action.AddAction(uid, ref component.DrainAction, RevenantDrainActionId);  // Sunrise-Edit
     }
 
     private void OnStatusAdded(EntityUid uid, RevenantComponent component, StatusEffectAddedEvent args)
@@ -166,7 +164,7 @@ public sealed partial class RevenantSystem : EntitySystem
             return false;
         }
 
-        var tileref = _turf.GetTileRef(Transform(uid).Coordinates);
+        var tileref = Transform(uid).Coordinates.GetTileRef();
         if (tileref != null)
         {
             if(_physics.GetEntitiesIntersectingBody(uid, (int) CollisionGroup.Impassable).Count > 0)
@@ -179,7 +177,7 @@ public sealed partial class RevenantSystem : EntitySystem
         ChangeEssenceAmount(uid, -abilityCost, component, false);
 
         _statusEffects.TryAddStatusEffect<CorporealComponent>(uid, "Corporeal", TimeSpan.FromSeconds(debuffs.Y), false);
-        _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(debuffs.X));
+        _stun.TryStun(uid, TimeSpan.FromSeconds(debuffs.X), false);
 
         return true;
     }

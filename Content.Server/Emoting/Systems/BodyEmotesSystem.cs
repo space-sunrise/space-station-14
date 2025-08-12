@@ -14,8 +14,15 @@ public sealed class BodyEmotesSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
+        SubscribeLocalEvent<BodyEmotesComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BodyEmotesComponent, EmoteEvent>(OnEmote);
+    }
+
+    private void OnStartup(EntityUid uid, BodyEmotesComponent component, ComponentStartup args)
+    {
+        if (component.SoundsId == null)
+            return;
+        _proto.TryIndex(component.SoundsId, out component.Sounds);
     }
 
     private void OnEmote(EntityUid uid, BodyEmotesComponent component, ref EmoteEvent args)
@@ -36,9 +43,6 @@ public sealed class BodyEmotesSystem : EntitySystem
         if (!TryComp(uid, out HandsComponent? hands) || hands.Count <= 0)
             return false;
 
-        if (!_proto.Resolve(component.SoundsId, out var sounds))
-            return false;
-
-        return _chat.TryPlayEmoteSound(uid, sounds, emote);
+        return _chat.TryPlayEmoteSound(uid, component.Sounds, emote);
     }
 }

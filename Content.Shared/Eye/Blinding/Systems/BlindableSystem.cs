@@ -1,4 +1,3 @@
-using Content.Shared.Camera;
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -22,8 +21,6 @@ public sealed class BlindableSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<BlindableComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BlindableComponent, EyeDamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<BlindableComponent, GetEyePvsScaleAttemptEvent>(OnGetEyePvsScaleAttemptEvent);
-        SubscribeLocalEvent<BlindableComponent, GetEyeOffsetAttemptEvent>(OnGetEyeOffsetAttemptEvent);
     }
 
     private void OnRejuvenate(Entity<BlindableComponent> ent, ref RejuvenateEvent args)
@@ -35,18 +32,6 @@ public sealed class BlindableSystem : EntitySystem
     {
         _blurriness.UpdateBlurMagnitude((ent.Owner, ent.Comp));
         _eyelids.UpdateEyesClosable((ent.Owner, ent.Comp));
-    }
-
-    private void OnGetEyePvsScaleAttemptEvent(Entity<BlindableComponent> ent, ref GetEyePvsScaleAttemptEvent args)
-    {
-        if (ent.Comp.IsBlind)
-            args.Cancelled = true;
-    }
-
-    private void OnGetEyeOffsetAttemptEvent(Entity<BlindableComponent> ent, ref GetEyeOffsetAttemptEvent args)
-    {
-        if (ent.Comp.IsBlind)
-            args.Cancelled = true;
     }
 
     [PublicAPI]

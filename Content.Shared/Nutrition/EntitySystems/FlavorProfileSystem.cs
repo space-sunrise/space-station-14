@@ -19,29 +19,21 @@ public sealed class FlavorProfileSystem : EntitySystem
 
     private int FlavorLimit => _configManager.GetCVar(CCVars.FlavorLimit);
 
-    public string GetLocalizedFlavorsMessage(Entity<FlavorProfileComponent?> entity, EntityUid user, Solution? solution)
+    public string GetLocalizedFlavorsMessage(EntityUid uid, EntityUid user, Solution solution,
+        FlavorProfileComponent? flavorProfile = null)
     {
-        HashSet<string> flavors = new();
-        HashSet<string>? ignore = null;
-
-        if (Resolve(entity, ref entity.Comp, false))
+        if (!Resolve(uid, ref flavorProfile, false))
         {
-            flavors = entity.Comp.Flavors;
-            ignore = entity.Comp.IgnoreReagents;
+            return Loc.GetString(BackupFlavorMessage);
         }
 
-
-        if (solution != null)
-            flavors.UnionWith(GetFlavorsFromReagents(solution, FlavorLimit - flavors.Count, ignore));
+        var flavors = new HashSet<string>(flavorProfile.Flavors);
+        flavors.UnionWith(GetFlavorsFromReagents(solution, FlavorLimit - flavors.Count, flavorProfile.IgnoreReagents));
 
         var ev = new FlavorProfileModificationEvent(user, flavors);
-
         RaiseLocalEvent(ev);
-        RaiseLocalEvent(entity, ev);
+        RaiseLocalEvent(uid, ev);
         RaiseLocalEvent(user, ev);
-
-        if (flavors.Count == 0)
-            return Loc.GetString(BackupFlavorMessage);
 
         return FlavorsToFlavorMessage(flavors);
     }

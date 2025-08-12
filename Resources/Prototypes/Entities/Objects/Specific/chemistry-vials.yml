@@ -43,7 +43,6 @@
     solution: beaker
   - type: ExaminableSolution
     solution: beaker
-    exactVolume: true
   - type: DrawableSolution
     solution: beaker
   - type: SolutionTransfer
@@ -138,7 +137,6 @@
     solution: beaker
   - type: ExaminableSolution
     solution: beaker
-    exactVolume: true
   - type: DrawableSolution
     solution: beaker
   - type: SolutionTransfer

@@ -77,8 +77,6 @@ namespace Content.IntegrationTests.Tests
             "Exo",
         };
 
-        private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";
-
         // Sunrise-Start
         private static readonly string[] SunriseNoSpawnMaps =
         {
@@ -287,7 +285,7 @@ namespace Content.IntegrationTests.Tests
                 return;
 
             var yamlEntities = node["entities"];
-            if (!protoManager.TryIndex(DoNotMapCategory, out var dnmCategory))
+            if (!protoManager.TryIndex<EntityCategoryPrototype>("DoNotMap", out var dnmCategory))
                 return;
 
             Assert.Multiple(() =>

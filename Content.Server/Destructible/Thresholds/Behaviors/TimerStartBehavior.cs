@@ -5,6 +5,6 @@ public sealed partial class TimerStartBehavior : IThresholdBehavior
 {
     public void Execute(EntityUid owner, DestructibleSystem system, EntityUid? cause = null)
     {
-        system.TriggerSystem.ActivateTimerTrigger(owner, cause);
+        system.TriggerSystem.StartTimer(owner, cause);
     }
 }
