@@ -13,6 +13,12 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Huge
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lr30.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
@@ -79,6 +85,12 @@
           tags:
             - MagazineBattery
         whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: AmmoCounter
   - type: ContainerContainer
     containers:
