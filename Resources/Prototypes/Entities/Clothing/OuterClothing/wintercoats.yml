@@ -13,6 +13,8 @@
     coolingCoefficient: 0.1
   - type: Item
     size: Normal
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -234,6 +236,8 @@
     clothingVisuals:
       outerClothing:
       - state: CHEM-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -264,6 +268,8 @@
     clothingVisuals:
       outerClothing:
       - state: CMO-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -327,6 +333,8 @@
     clothingVisuals:
       outerClothing:
       - state: GENE-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -443,6 +451,8 @@
     clothingVisuals:
       outerClothing:
       - state: JANI-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -473,6 +483,8 @@
     clothingVisuals:
       outerClothing:
       - state: MED-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -549,6 +561,8 @@
     clothingVisuals:
       outerClothing:
       - state: PARA-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -603,6 +617,8 @@
     clothingVisuals:
       outerClothing:
       - state: RD-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -657,6 +673,8 @@
     clothingVisuals:
       outerClothing:
       - state: SCI-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -710,6 +728,8 @@
     clothingVisuals:
       outerClothing:
       - state: VIRO-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:

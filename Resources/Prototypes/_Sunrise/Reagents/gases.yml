@@ -179,6 +179,15 @@
         sprintSpeedModifier: 1.4
       - !type:HealthChange
         conditions:
+        - !type:ReagentThreshold
+          reagent: Nitrium
+          min: 0.5
+        ignoreResistances: true
+        damage:
+          types:
+            Mangleness: 0.4
+      - !type:HealthChange
+        conditions:
           - !type:ReagentThreshold
             min: 80
         damage:

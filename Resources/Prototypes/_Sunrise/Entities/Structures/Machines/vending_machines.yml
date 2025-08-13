@@ -9,8 +9,9 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: BarberAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: BarberAds
   - type: AccessReader
     access: [["Barber", "Service"]]
   - type: SpeakOnUIClosed
@@ -41,8 +42,9 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
-  - type: Advertise
-    pack: DiscountDansAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: DiscountDansAds
   - type: SpeakOnUIClosed
     pack: DiscountDansGoodbyes
   - type: Speech
@@ -75,8 +77,9 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: HonkersAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: HonkersAds
   - type: AccessReader
     access: [["Theatre"]]
   - type: SpeakOnUIClosed

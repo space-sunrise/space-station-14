@@ -6,6 +6,7 @@ using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
@@ -69,14 +70,16 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<HandsComponent>(args.User, out var handsComponent))
             return;
 
-        var currentHand = handsComponent.ActiveHand;
+        var currentHand = _handsSystem.GetActiveHand((args.User, handsComponent));
 
         if (currentHand == null)
             return;
 
-        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Value != currentHand);
+        var enumerateHands = _handsSystem.EnumerateHands((args.User, handsComponent));
 
-        if (!_handsSystem.CanPickupToHand(args.User, entity.Owner, otherHand.Value))
+        var otherHand = enumerateHands.FirstOrDefault(hand => hand != currentHand);
+
+        if (otherHand == null || !_handsSystem.CanPickupToHand(args.User, entity.Owner, otherHand))
         {
             _popupSystem.PopupEntity($"Рука занята",
                 args.User,
@@ -91,16 +94,16 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<HandsComponent>(args.User, out var handsComponent))
             return;
 
-        var currentHand = handsComponent.ActiveHand;
+        var currentHand = _handsSystem.GetActiveHand(args.User);
 
         if (currentHand == null)
             return;
 
-        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Value != currentHand);
+        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Key != currentHand);
 
-        _handsSystem.TryPickup(args.User, entity.Owner, otherHand.Value, checkActionBlocker: false);
+        _handsSystem.TryPickup(args.User, entity.Owner, otherHand.Key, checkActionBlocker: false);
 
-        _handsSystem.SetActiveHand(args.User, otherHand.Value);
+        _handsSystem.SetActiveHand(args.User, otherHand.Key);
     }
 
     private void OnExamine(EntityUid uid, CultBloodSpellComponent component, ExaminedEvent args)
@@ -330,7 +333,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
                 if (lossBlood > 0)
                 {
                     fillBlood = FixedPoint2.Min(lossBlood, availableCharges / 2);
-                    _bloodstreamSystem.TryModifyBloodLevel(target, fillBlood, bloodstreamComponent);
+                    _bloodstreamSystem.TryModifyBloodLevel((target, bloodstreamComponent), fillBlood);
                     availableCharges -= fillBlood * 2;
                     bloodCultistComponent.BloodCharges -= fillBlood * 2;
                 }

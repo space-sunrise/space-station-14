@@ -86,19 +86,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<ExtinguishOnInteractComponent, ActivateInWorldEvent>(OnExtinguishActivateInWorld);
 
             SubscribeLocalEvent<IgniteOnHeatDamageComponent, DamageChangedEvent>(OnDamageChanged);
-            SubscribeLocalEvent<IgniteOnAmmoHitComponent, HitscanAmmoShotEvent>(HandleHitscanHit); // Sunrise-Edit
         }
-
-        // Sunrise-Start
-        private void HandleHitscanHit(EntityUid uid, IgniteOnAmmoHitComponent component, ref HitscanAmmoShotEvent args)
-        {
-            if (!EntityManager.TryGetComponent(args.Target, out FlammableComponent? flammable))
-                return;
-
-            flammable.FireStacks += component.FireStacks;
-            Ignite(args.Target, uid, flammable);
-        }
-        // Sunrise-End
 
         private void OnExtinguishEvent(Entity<FlammableComponent> ent, ref ExtinguishEvent args)
         {
@@ -133,7 +121,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             var otherEnt = args.OtherEntity;
 
-            if (!EntityManager.TryGetComponent(otherEnt, out FlammableComponent? flammable))
+            if (!TryComp(otherEnt, out FlammableComponent? flammable))
                 return;
 
             //Only ignite when the colliding fixture is projectile or ignition.
@@ -408,7 +396,7 @@ namespace Content.Server.Atmos.EntitySystems
             flammable.Resisting = true;
 
             _popup.PopupEntity(Loc.GetString("flammable-component-resist-message"), uid, uid);
-            _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(2f), true);
+            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2f));
 
             // TODO FLAMMABLE: Make this not use TimerComponent...
             uid.SpawnTimer(2000, () =>

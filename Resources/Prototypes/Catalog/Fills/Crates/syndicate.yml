@@ -66,22 +66,6 @@
       - id: DoubleEmergencyNitrogenTankFilled
 
 #Sunrise-start
-
-- type: entity
-  id: CrateAmmokitBundle
-  suffix: Filled
-  parent: CrateSyndicate
-  name: Syndicate super ammo bundle
-  description: Contains everything except a big gun to go postal.
-  components:
-  - type: StorageFill
-    contents:
-      - id: CaselessAmmoKit
-      - id: ClothingBackpackDuffelSyndicateAmmoFilled
-      - id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
-      - id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
-
-
 - type: entity
   id: CrateCybersunDarkGygaxBundle
   suffix: Filled

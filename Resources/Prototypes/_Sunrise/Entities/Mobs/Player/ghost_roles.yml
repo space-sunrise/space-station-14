@@ -14,8 +14,8 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: SpeedLoaderMagnum
-    pocket2: SpeedLoaderMagnum
+    pocket1: SpeedLoaderMagnumSP
+    pocket2: SpeedLoaderMagnumSP
   inhand:
   - WeaponRevolverSpearhead
   storage:
@@ -42,8 +42,8 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: SpeedLoaderMagnum
-    pocket2: SpeedLoaderMagnum
+    pocket1: SpeedLoaderMagnumSP
+    pocket2: SpeedLoaderMagnumSP
   inhand:
   - WeaponRevolverSpearhead
   storage:
@@ -97,8 +97,8 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazinePistolSubMachineGun
-    pocket2: MagazinePistolSubMachineGun
+    pocket1: MagazinePistolSubMachineGunSP
+    pocket2: MagazinePistolSubMachineGunSP
   inhand:
   - WeaponSubMachineGunSkorpion
   storage:
@@ -124,8 +124,8 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilledERT
-    pocket1: SpeedLoaderMagnum
-    pocket2: SpeedLoaderMagnum
+    pocket1: SpeedLoaderMagnumSP
+    pocket2: SpeedLoaderMagnumSP
   inhand:
   - WeaponRevolverSpearhead
   storage:
@@ -162,7 +162,7 @@
     - BoxErtBaseKit
     - CrowbarRed
     - Bible
-    - SpeedLoaderMagnum
+    - SpeedLoaderMagnumSP
     - FlippoLighterSunriseBlack
     - Candle
     - ClothingHandsPowerGlovesUplinkNTERTAmber

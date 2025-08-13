@@ -2,3 +2,8 @@
   license: "CC-BY-4.0"
   copyright: 'Darkrell'
   source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["holopaper_open"]
+  license: "Custom"
+  copyright: 'ZAPSPLAT'
+  source: "https://www.zapsplat.com/sound-effect-category/rollover/"

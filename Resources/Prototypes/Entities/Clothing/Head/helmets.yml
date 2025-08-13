@@ -74,6 +74,8 @@
     sprite: Clothing/Head/Helmets/swat.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/swat.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor #This is intentionally not spaceproof, when the time comes to port the values from SS13 this should be buffed from what it was.
     modifiers:
       coefficients:
@@ -117,6 +119,8 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/light_riot.rsi
   - type: IngestionBlocker
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -148,6 +152,8 @@
   - type: IngestionBlocker
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -193,6 +199,8 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/cult.rsi
   - type: IngestionBlocker
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -335,6 +343,7 @@
     tags:
     - WhitelistChameleon
     - FireHelmet
+    - CorgiWearable
     - FullCovered # INTERACTIONS
   - type: HideLayerClothing
     layers:
@@ -353,6 +362,8 @@
     sprite: Clothing/Head/Helmets/linghelmet.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/linghelmet.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor #admeme item so it should be fine being overpowered while helmets are still intentionally kneecapped.
     modifiers:
       coefficients:
@@ -450,6 +461,8 @@
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:
@@ -591,22 +604,24 @@
   - type: InstantAction
     event: !type:ToggleActionEvent
 
+#card helmet
 - type: entity
-  parent: ClothingHeadBase
-  id: ChangelingClothingHeadHelmet
-  name: chitinous helmet
-  description: An all-consuming chitinous mass of armor.
-  suffix: Unremoveable
+  parent: ClothingHeadHelmetBase
+  id: CardHelmet
+  name: cardboard helmet
+  description: A medieval helmet built from cardboard.
   components:
   - type: Sprite
-    sprite: Changeling/ling_armor_helmet.rsi
+    sprite: Clothing/Head/Helmets/card_helmet.rsi
   - type: Clothing
-    sprite: Changeling/ling_armor_helmet.rsi
+    sprite: Clothing/Head/Helmets/card_helmet.rsi
+  - type: IngestionBlocker
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-  - type: Unremoveable
+        Blunt: 0.95
+  - type: StaminaResistance
+    damageCoefficient: 0.95
+  - type: Construction
+    graph: cardHelmet
+    node: cardhelmet

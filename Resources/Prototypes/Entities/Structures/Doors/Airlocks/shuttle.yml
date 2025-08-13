@@ -34,6 +34,7 @@
   - type: Wires
     layoutId: Docking
   - type: Door
+    clickOpen: false # Sunrise-Edit
     closeTimeTwo: 0.4
     openTimeTwo: 0.4
     crushDamage:
@@ -52,14 +53,13 @@
   - type: Tag
     tags:
       - ForceNoFixRotations
-  - type: PaintableAirlock
-    group: Shuttle
-    department: null
   - type: Construction
     graph: AirlockShuttle
     node: airlock
   - type: StaticPrice
     price: 350
+  - type: Paintable
+    group: null
 
 - type: entity
   id: AirlockGlassShuttle
@@ -72,8 +72,6 @@
     sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
   - type: Occluder
     enabled: false
-  - type: PaintableAirlock
-    group: ShuttleGlass
   - type: Door
     occludes: false
   - type: Fixtures

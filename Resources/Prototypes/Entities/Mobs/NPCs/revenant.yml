@@ -6,6 +6,8 @@
   name: revenant
   description: A spooky ghostie.
   components:
+  - type: Emag
+    emagType: All
   # Sunrise edit start
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-revenant-name
@@ -24,7 +26,6 @@
     - state: active
   - type: StatusEffects
     allowed:
-    - Stun
     - Corporeal
   - type: Damageable
     damageContainer: ManifestedSpirit
@@ -61,10 +62,10 @@
       - EmaggableMedibot
       # borg become killer
       - EmagSiliconLaw
-  - type: PointLight
-    color: MediumPurple
-    radius: 2
-    softness: 1
+#  - type: PointLight
+#    color: MediumPurple
+#    radius: 2
+#    softness: 1
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
@@ -87,18 +88,19 @@
   - type: Reactive
     groups:
       Acidic: [Touch]
-  # Sunrise-start
   - type: Tag
     tags:
-    - NoPaint
+    - SlowImmune
+    - KnockdownImmune
+    - NoPaint # Sunrise-Edit
+  # Sunrise-start
   - type: TTS
     voice: HermaeusMora
-  # Sunrise-end
-  # Sunrise-start
   - type: Electrified
     onHandInteract: false
     onInteractUsing: false
     onBump: false
     requirePower: false
     shockDamage: 30
+  - type: ToggleableNightVision
   # Sunrise-end

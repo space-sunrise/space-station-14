@@ -41,7 +41,7 @@
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: DerelictCyborgSpawn
-    #- id: AbductorsSpawn # Starlight-Abductors, убрал на время теста геймрула
+    - id: AbductorsSpawn
     - id: WizardSpawn
 
 - type: entity

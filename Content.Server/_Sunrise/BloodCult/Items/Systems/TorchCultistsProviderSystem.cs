@@ -10,6 +10,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Mind.Components;
 using Content.Shared.Physics;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -178,7 +179,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
 
         if (_station.GetStationInMap(ownerTransform.MapID) is not { } station ||
             !TryComp<StationDataComponent>(station, out var data) ||
-            _station.GetLargestGrid(data) is not { } grid)
+            _station.GetLargestGrid((station, data)) is not { } grid)
         {
             if (ownerTransform.GridUid == null)
                 return;

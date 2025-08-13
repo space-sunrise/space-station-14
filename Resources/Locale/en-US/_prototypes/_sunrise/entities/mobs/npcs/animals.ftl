@@ -1,5 +1,3 @@
-ent-MobSaw = saw
-    .desc = The Mother.
 ent-MobBaseInferiorVulpkanin = inferior vulpkanin
     .desc = { ent-MobBaseAncestor.desc }
 ent-MobInferiorVulpkanin = inferior vulpkanin

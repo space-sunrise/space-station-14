@@ -9,3 +9,16 @@
     useDelay: 25
   - type: InstantAction
     event: !type:RevenantLockActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionRevenantDrain
+  name: Drain Essence
+  description: Steals essence from nearby victims.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: _Sunrise/Interface/Actions/icon.png
+    useDelay: 27
+  - type: InstantAction
+    event: !type:RevenantDrainActionEvent

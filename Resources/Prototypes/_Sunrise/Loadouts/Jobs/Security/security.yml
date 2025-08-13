@@ -7,6 +7,15 @@
       role: JobSecurityOfficer
       time: 72000 #20 hrs
 
+- type: loadoutEffectGroup
+  id: MasterShitcurity
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 360000 #100 hrs
+
 - type: loadout
   id: SecurityBodycam
   startingGear: SecurityBodycam
@@ -118,6 +127,16 @@
     - GlockBox
 
 - type: loadout
+  id: MK58Box
+  startingGear: MK58Box
+
+- type: startingGear
+  id: MK58Box
+  storage:
+    back:
+    - MK58Box
+
+- type: loadout
   id: ACP14Box
   startingGear: ACP14Box
   effects:
@@ -129,6 +148,19 @@
   storage:
     back:
     - ACP14Box
+
+- type: loadout
+  id: MK58GoldBox
+  startingGear: MK58GoldBox
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterShitcurity
+
+- type: startingGear
+  id: MK58GoldBox
+  storage:
+    back:
+    - MK58GoldBox
 
 - type: loadout
   id: WeaponEnergyGunPistolSecurity

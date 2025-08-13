@@ -77,7 +77,7 @@
     state: display
   discipline: CivilianServices
   tier: 1
-  cost: 4500 #Sunrise-edit
+  cost: 7500
   recipeUnlocks:
   - FatExtractorMachineCircuitboard
   # - BiofabricatorMachineCircuitboard #Sunrise-edit
@@ -101,35 +101,6 @@
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
-
-- type: technology
-  id: BiochemicalStasis
-  name: research-technology-biochemical-stasis
-  icon:
-    sprite: Structures/Machines/stasis_bed.rsi
-    state: icon
-  discipline: CivilianServices
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - StasisBedMachineCircuitboard
-  - CryoPodMachineCircuitboard
-  - CryostasisBeaker
-  - SyringeCryostasis
-
-# Sunrise-Start
-# - type: technology
-#   id: MechanizedTreatment
-#   name: research-technology-mechanized-treatment
-#   icon:
-#     sprite: Mobs/Silicon/chassis.rsi
-#     state: medical
-#   discipline: CivilianServices
-#   tier: 2
-#   cost: 5000
-#   recipeUnlocks:
-#   - BorgModuleAdvancedChemical
-# Sunrise-End
 
 - type: technology
   id: AdvancedCleaning
@@ -214,6 +185,7 @@
   cost: 4000
   recipeUnlocks:
   - PushHorn
+  - BorgModuleAdvancedClowning
 
 # Tier 3
 
@@ -228,29 +200,3 @@
   cost: 10000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
-
-- type: technology
-  id: BluespaceChemistry
-  name: research-technology-bluespace-chemistry
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
-    state: beakerbluespace
-  discipline: CivilianServices
-  tier: 3
-  cost: 10000
-  recipeUnlocks:
-  - BluespaceBeaker
-  - SyringeBluespace
-
-- type: technology
-  id: LauncherSyringe
-  name: research-technology-launcher-syringe
-  icon:
-    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
-    state: syringe_gun
-  discipline: CivilianServices
-  tier: 3
-  cost: 15000
-  recipeUnlocks:
-  - LauncherSyringe
-  - MiniSyringe

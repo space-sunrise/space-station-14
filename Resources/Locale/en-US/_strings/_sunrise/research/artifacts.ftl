@@ -1,0 +1,57 @@
+artifact-trigger-hint-health-analyzer = Сканирование
+artifact-effect-hint-data-deleted = ██████████ █████
+
+# Artifact Effect Descriptions
+artifact-effect-description-wandering = Causes the artifact to move randomly around the area
+artifact-effect-description-heal = Heals nearby living beings
+artifact-effect-description-generate-energy = Generates electrical power
+artifact-effect-description-throw-things = Throws nearby objects around violently
+artifact-effect-description-knock = Knocks down nearby entities
+artifact-effect-description-junk-spawn = Spawns random junk items
+artifact-effect-description-shatter-windows = Shatters nearby windows
+artifact-effect-description-bolt-airlocks = Bolts nearby airlocks
+artifact-effect-description-hunger = Increases hunger in nearby beings
+artifact-effect-description-thirst = Increases thirst in nearby beings
+artifact-effect-description-tesla-discharge = Creates tesla discharges
+artifact-effect-description-spawn-evil-twin = Spawns an evil twin
+artifact-effect-description-teleport = Teleports nearby entities
+artifact-effect-description-emp = Creates electromagnetic pulses
+artifact-effect-description-ignite = Sets nearby objects on fire
+artifact-effect-description-shuffle-ultra = Shuffles positions of nearby entities
+artifact-effect-description-polymorph-chair = Transforms nearby objects into chairs
+artifact-effect-description-polymorph-watermelon = Transforms nearby objects into watermelons
+artifact-effect-description-polymorph-appendix = Transforms nearby objects into appendices
+artifact-effect-description-polymorph-disposal = Transforms nearby objects into disposal units
+artifact-effect-description-polymorph-table = Transforms nearby objects into tables
+artifact-effect-description-swap = Swaps nearby entities
+artifact-effect-description-random-transformation = Randomly transforms nearby objects
+artifact-effect-description-magnet-ultra = Creates powerful magnetic fields
+artifact-effect-description-shifted-ascii = Makes speech completely incoherent and incomprehensible
+
+# Additional Vanilla Effect Descriptions
+artifact-effect-description-solution-storage = Creates internal storage for chemicals
+artifact-effect-description-speed-up = Increases movement speed when held
+artifact-effect-description-drill = Transforms into a drilling tool
+artifact-effect-description-ghost = Allows ghost possession
+artifact-effect-description-omnitool = Transforms into a multi-purpose tool
+artifact-effect-description-bad-feeling = Causes negative mental effects
+artifact-effect-description-good-feeling = Causes positive mental effects
+artifact-effect-description-light-flicker = Causes lights to flicker
+artifact-effect-description-potassium-wave = Creates potassium and bananas
+artifact-effect-description-flora-spawn = Spawns plant life
+artifact-effect-description-chemical-puddle = Creates chemical puddles
+artifact-effect-description-cold-wave = Creates cold temperatures
+artifact-effect-description-heat-wave = Creates hot temperatures
+artifact-effect-description-foam-mild = Creates foam
+artifact-effect-description-random-instrument = Spawns musical instruments
+artifact-effect-description-monkey-spawn = Spawns monkeys
+artifact-effect-description-radioactive = Emits radiation
+artifact-effect-description-charge-battery = Charges nearby batteries
+artifact-effect-description-magnet = Creates magnetic attraction
+artifact-effect-description-magnet-negative = Creates magnetic repulsion
+artifact-effect-description-stealth = Makes the artifact invisible
+artifact-effect-description-rare-material-silver = Spawns silver ore
+artifact-effect-description-rare-material-plasma = Spawns plasma ore
+artifact-effect-description-rare-material-gold = Spawns gold ore
+artifact-effect-description-rare-material-uranium = Spawns uranium ore
+artifact-effect-description-angry-carp-spawn = Spawns aggressive space carp 

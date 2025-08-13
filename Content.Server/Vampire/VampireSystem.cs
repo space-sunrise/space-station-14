@@ -75,6 +75,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedVampireSystem _vampire = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private readonly TurfSystem _turfSystem = default!;
 
     public override void Initialize()
     {
@@ -196,7 +197,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, VampireComponent component, ExaminedEvent args)
     {
-        if (HasComp<VampireFangsExtendedComponent>(uid) && args.IsInDetailsRange && !_food.IsMouthBlocked(uid))
+        if (HasComp<VampireFangsExtendedComponent>(uid) && args.IsInDetailsRange)
             args.AddMarkup($"{Loc.GetString("vampire-fangs-extended-examine")}{Environment.NewLine}");
     }
     private bool AddBloodEssence(Entity<VampireComponent> vampire, FixedPoint2 quantity)
@@ -349,7 +350,7 @@ public sealed partial class VampireSystem : EntitySystem
             return true;
         if (!_mapSystem.TryGetTileRef(vampireUid, grid, vampireTransform.Coordinates, out var tileRef))
             return true;
-        return tileRef.Tile.IsEmpty || tileRef.IsSpace() || tileRef.Tile.GetContentTileDefinition().ID == "Lattice";
+        return tileRef.Tile.IsEmpty || _turfSystem.IsSpace(tileRef) || _turfSystem.GetContentTileDefinition(tileRef.Tile).ID == "Lattice";
     }
 
     private bool IsNearPrayable(EntityUid vampireUid)

@@ -105,9 +105,9 @@
       sprite: _Sunrise/Objects/Weapons/Melee/shields.rsi
       layers:
       - state: riot-icon
-        map: [ "enum.FlashVisuals.BaseLayer" ]
+        map: [ "enum.FlashVisualLayers.BaseLayer" ]
       - state: flashing
-        map: [ "enum.FlashVisuals.LightLayer" ]
+        map: [ "enum.FlashVisualLayers.LightLayer" ]
         visible: false
         shader: unshaded
     - type: Flash
@@ -131,10 +131,10 @@
     - type: GenericVisualizer
       visuals:
         enum.FlashVisuals.Burnt:
-          enum.FlashVisuals.BaseLayer:
+          enum.FlashVisualLayers.BaseLayer:
             True: {state: burnt}
         enum.FlashVisuals.Flashing:
-          enum.FlashVisuals.LightLayer:
+          enum.FlashVisualLayers.LightLayer:
             True: {visible: true}
             False: {visible: false}
     - type: StaticPrice
@@ -291,6 +291,61 @@
                   max: 5
     - type: StaticPrice
       price: 150
+
+- type: entity
+  name: cardboard shield
+  parent: BaseShield
+  id: CardShield
+  description: A shield that wont shield you from much.
+  components:
+    - type: Sprite
+      state: cardshield-icon
+    - type: Item
+      heldPrefix: cardshield
+    - type: StaminaResistance
+      damageCoefficient: 0.95
+      worn: true
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1
+          Slash: 2
+          Piercing: 0.6
+          Heat: 3
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 1.8
+          Piercing: 0.5
+          Heat: 2.5
+        flatReductions:
+          Blunt: 0.5
+    - type: Construction
+      graph: CardShield
+      node: cardShield
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 25
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 10 #Very very weak shield
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound: /Audio/Items/Toys/ToyFall2.ogg
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialCardboard:
+              min: 2
+              max: 4
+    - type: StaticPrice
+      price: 20
 
 - type: entity
   name: makeshift shield
@@ -657,36 +712,4 @@
                   min: 2
                   max: 2
     - type: StaticPrice
-      price: 250
-
-- type: entity
-  parent: BaseShield
-  id: ChangelingShield
-  name: oraganic shield
-  description: A large, fleshy shield.
-  suffix: Unremoveable
-  components:
-    - type: Unremoveable
-    - type: Sprite
-      sprite: Changeling/shields.rsi
-      state: ling-icon
-    - type: Item
-      sprite: Changeling/shields.rsi
-      heldPrefix: ling
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 120
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 110
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: MetalBreak
+      price: 150

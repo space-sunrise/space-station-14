@@ -49,7 +49,7 @@
 # Catridges:
 
 - type: Tag
-  id: CartridgeRifleMachine
+  id: CartridgeHeavyRifleR
 
 - type: Tag
   id: FireThrowerBall
@@ -61,17 +61,13 @@
   id: PowerpackDL6902
 
 - type: Tag
-  id: CartridgeRail
-
-- type: Tag
-  id: CartridgeHeavyRifleNT
-
-- type: Tag
   id: MiniSyringe
 
 - type: Tag
   id: HandGrenadeAmmo
 
+- type: Tag
+  id: SpeedLoaderShotgun
 # Weapons
 - type: Tag
   id: WrappedWeapon
@@ -84,6 +80,12 @@
 
 - type: Tag
   id: ModularReceiverAuto
+
+- type: Tag
+  id: UpgradeDrozd
+
+- type: Tag
+  id: UpgradeLecter
 
 # Magazines:
 - type: Tag
@@ -130,6 +132,9 @@
 
 - type: Tag
   id: MagazineLightMachineGunMG60
+
+- type: Tag
+  id: MagazineMachineGunHeavyRifle # .308 calibler
 
 - type: Tag
   id: MagazineVP70
@@ -406,6 +411,12 @@
 - type: Tag
   id: DockMining
 
+- type: Tag
+  id: Felinid
+
+- type: Tag
+  id: Resomi
+
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
 
@@ -453,3 +464,9 @@
   id: TopCovered
 
 ### INTERACTION TAGS ###
+
+- type: Tag
+  id: SnapPop
+
+- type: Tag
+  id: Table

@@ -2598,7 +2598,7 @@ entities:
       parent: 532
     - type: Physics
       canCollide: False
-- proto: GrenadeFrag
+- proto: GrenadeFragTimer
   entities:
   - uid: 522
     components:

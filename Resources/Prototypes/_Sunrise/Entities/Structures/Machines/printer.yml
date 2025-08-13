@@ -48,7 +48,7 @@
   - type: SolutionContainerManager
     solutions:
       inc:
-        maxVol: 250
+        maxVol: 999999999
 
 
   - type: Spillable

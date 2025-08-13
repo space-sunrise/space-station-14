@@ -107,7 +107,9 @@ construction-graph-tag-ambrosia = { ent-FoodAmbrosiaVulgaris }
 construction-graph-tag-human-head = { ent-HeadHuman }
 construction-graph-tag-light-bulb = { ent-LightBulb }
 construction-graph-tag-radio = { ent-RadioHandheld }
-construction-graph-tag-UpgradeFlareGun = { ent-FlareGunSecurityUpgrade }
+construction-graph-tag-upgradeflaregun = { ent-FlareGunSecurityUpgrade }
+construction-graph-tag-upgradedrozd = { ent-DrozdUpgrade }
+construction-graph-tag-upgradelecter = { ent-LecterUpgrade }
 construction-graph-tag-ModularReceiverAuto = { ent-ModularReceiverAuto }
 # Щиты и защита
 construction-graph-tag-strobe-shield = { ent-RiotShield }
@@ -183,9 +185,15 @@ construction-graph-tag-sofa-left = { ent-SofaLeft }
 construction-graph-tag-sofa-right = { ent-SofaRight }
 construction-graph-tag-sofa-corner = { ent-SofaCorner }
 construction-graph-tag-black-sofa = { ent-CorpSofaMiddle }
+construction-graph-tag-black-sofa-desc = { ent-CorpSofaMiddle.desc }
 construction-graph-tag-black-sofa-left = { ent-CorpSofaLeft }
 construction-graph-tag-black-sofa-right = { ent-CorpSofaRight }
 construction-graph-tag-black-sofa-corner = { ent-CorpSofaCorner }
+construction-graph-tag-red-sofa = { ent-RedSofaMiddle }
+construction-graph-tag-red-sofa-desc = { ent-RedSofaMiddle.desc }
+construction-graph-tag-red-sofa-left = { ent-RedSofaLeft }
+construction-graph-tag-red-sofa-right = { ent-RedSofaRight }
+construction-graph-tag-red-sofa-corner = { ent-RedSofaCorner }
 # Предметы крафта
 construction-graph-tag-atmoscross = { ent-ClothingNeckAtmosCross }
 construction-graph-tag-atmoscross-desc = { ent-ClothingNeckAtmosCross.desc }

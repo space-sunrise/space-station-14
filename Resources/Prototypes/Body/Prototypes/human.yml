@@ -11,6 +11,7 @@
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
         tongue: OrganHumanTongue # Sunrise-edit
+        eye_implant: null
     torso:
       part: TorsoHuman
       connections:

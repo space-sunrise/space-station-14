@@ -25,6 +25,7 @@
 
 - type: accent
   id: italian
+  replacementChance: 0.7 # Sunrise-edit
   wordReplacements:
     accent-italian-words-1: accent-italian-words-replace-1
     accent-italian-words-2: accent-italian-words-replace-2
@@ -693,6 +694,7 @@
 
 - type: accent
   id: german
+  replacementChance: 0.7 # Sunrise-edit
   wordReplacements:
     accent-german-words-1: accent-german-words-replace-1
     accent-german-words-1-2: accent-german-words-replace-1
@@ -772,6 +774,7 @@
 
 - type: accent
   id: russian
+  replacementChance: 0.7 # Sunrise-edit
   wordReplacements:
     accent-russian-words-1: accent-russian-words-replace-1
     accent-russian-words-2: accent-russian-words-replace-2
@@ -806,7 +809,8 @@
     accent-skeleton-words-9: accent-skeleton-words-replace-9
 
 - type: accent
-  id: moldovan
+  id: moldovan # Sunrise-edit
+  replacementChance: 0.7
   wordReplacements:
     accent-moldovan-words-1: accent-moldovan-words-replace-1
     accent-moldovan-words-2: accent-moldovan-words-replace-2
@@ -827,5 +831,26 @@
     accent-moldovan-words-15: accent-moldovan-words-replace-15
     accent-moldovan-words-15-2: accent-moldovan-words-replace-15
     accent-moldovan-words-16: accent-moldovan-words-replace-16
+    accent-moldovan-words-16-2: accent-moldovan-words-replace-16
+    accent-moldovan-words-16-3: accent-moldovan-words-replace-16
     accent-moldovan-words-17: accent-moldovan-words-replace-17
     accent-moldovan-words-18: accent-moldovan-words-replace-18
+    accent-moldovan-words-19: accent-moldovan-words-replace-19
+    accent-moldovan-words-20: accent-moldovan-words-replace-20
+    accent-moldovan-words-20-2: accent-moldovan-words-replace-20
+    accent-moldovan-words-21: accent-moldovan-words-replace-21
+    accent-moldovan-words-21-2: accent-moldovan-words-replace-21
+    accent-moldovan-words-21-3: accent-moldovan-words-replace-21
+    accent-moldovan-words-22: accent-moldovan-words-replace-22
+    accent-moldovan-words-23: accent-moldovan-words-replace-23
+    accent-moldovan-words-24: accent-moldovan-words-replace-24
+    accent-moldovan-words-25: accent-moldovan-words-replace-25
+    accent-moldovan-words-26: accent-moldovan-words-replace-26
+    accent-moldovan-words-26-2: accent-moldovan-words-replace-26
+    accent-moldovan-words-27: accent-moldovan-words-replace-27
+    accent-moldovan-words-28: accent-moldovan-words-replace-28
+    accent-moldovan-words-29: accent-moldovan-words-replace-29
+    accent-moldovan-words-30: accent-moldovan-words-replace-30
+    accent-moldovan-words-31: accent-moldovan-words-replace-31
+    accent-moldovan-words-32: accent-moldovan-words-replace-32
+    accent-moldovan-words-33: accent-moldovan-words-replace-33

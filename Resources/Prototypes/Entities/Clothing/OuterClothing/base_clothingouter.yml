@@ -151,6 +151,8 @@
   - type: HeldSpeedModifier
   - type: Item
     size: Ginormous
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -178,6 +180,7 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: ArmorSparkEffect #starlight
 
 - type: entity
   abstract: true

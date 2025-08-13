@@ -8,7 +8,6 @@
 # SUNRISE EDIT
   - type: Interactions
 # SUNRISE EDIT
-  - type: Absorbable
   - type: Hunger
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
@@ -28,7 +27,7 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-# MARKINGS START
+    # MARKINGS START
     bodyTypeMarkingsDisplacement:
       body-fat-m:
         Hair:
@@ -557,7 +556,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-# MARKINGS START
+  # MARKINGS START
     bodyTypeMarkingsDisplacement:
       body-fat-m:
         Hair:

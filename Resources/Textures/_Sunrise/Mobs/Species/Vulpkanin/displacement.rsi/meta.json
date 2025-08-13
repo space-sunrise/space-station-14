@@ -1,0 +1,27 @@
+﻿{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Made by Odleer",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "load": {
+        "srgb": false
+    },
+    "states": [
+        {
+            "name": "head_big_muzzle",
+            "directions": 4
+        },
+        {
+            "name": "head_small_muzzle",
+            "directions": 4
+        },
+        {
+            "name": "mask",
+            "directions": 4
+        }
+    ]
+}
+
