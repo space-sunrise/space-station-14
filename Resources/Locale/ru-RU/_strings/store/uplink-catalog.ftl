@@ -151,6 +151,16 @@ uplink-micro-bomb-implanter-name = Имплантер Микробомба
 uplink-micro-bomb-implanter-desc = Взрывается при ручной активации или гибели носителя этого импланта. Уничтожает тело пользователя со всем снаряжением.
 uplink-radio-implanter-name = Радиоимплант
 uplink-radio-implanter-desc = Вживляемое радио Синдиката для скрытой связи. Не требует гарнитуры.
+# Cybernetics
+uplink-nightvision-eyes = Кибер-глаза ночного видения
+uplink-nightvision-eyes-desc = Позволяют видеть в темноте, но делают вас более уязвимым к светошумовым гранатам. (Внимание: Требуется помощь хирурга.)
+#
+uplink-thermalvision-eyes = Кибер-глаза с тепловым зрением
+uplink-thermalvision-eyes-desc = Позволяют видеть в темноте и обнаруживать существ сквозь стены, но делают вас более уязвимым к светошумовым гранатам. (Внимание: Требуется помощь хирурга.)
+#
+uplink-mantis-blade-arms-name = Набор с клинками-богомолами
+uplink-mantis-blade-arms-desc = Изначально использовались как простой строительный инструмент, теперь превращены в скрытые клинки, которые могут выдвигаться из руки, сохраняя при этом способность к разрушительному вскрытию конструкций. Поистине впечатляющее зрелище. (Внимание: Требуется помощь хирурга.)
+
 # Bundles
 uplink-observation-kit-name = Набор наблюдателя
 uplink-observation-kit-desc = В комплект входят консольная плата монитора камер наблюдения, и охранный визор, замаскированный под солнцезащитные очки.
@@ -175,8 +185,12 @@ uplink-c20r-bundle-name = Набор "C-20r"
 uplink-c20r-bundle-desc = Старый добрый: Классический пистолет-пулемёт C-20r в комплекте с тремя магазинами.
 uplink-buldog-bundle-name = Набор "Бульдог"
 uplink-buldog-bundle-desc = Простой и надёжный: Содержит популярный дробовик Бульдог, барабан пуль и 3 барабана дроби.
-uplink-grenade-launcher-bundle-name = Набор "China-Lake"
-uplink-grenade-launcher-bundle-desc = Старый гранатомёт China-Lake, снабжённый 11 гранатами различной поражающей способности.
+uplink-grenade-launcher-china-lake-name = China-Lake
+uplink-grenade-launcher-china-lake-desc = Старый гранатомёт China-Lake. Может стрелять как контактными, так и неконтактными гранатами.
+uplink-grenade-launcher-m79-name = М79
+uplink-grenade-launcher-m79-desc = Старый однозарядный гранатомёт. Может стрелять как контактными, так и неконтактными гранатами.
+uplink-grenade-launcher-gl70-name = Гранатомёт GL-70
+uplink-grenade-launcher-gl70-desc = Многозарядный автоматический гранатомёт с барабаном. Может стрелять как контактными, так и неконтактными гранатами.
 uplink-l6-saw-bundle-name = Набор "L6 Saw"
 uplink-l6-saw-bundle-desc = Ещё больше дакки: культовый лёгкий пулемёт L6 в комплекте с 2 коробами патронов.
 uplink-zombie-bundle-name = Зомби-набор Синдиката

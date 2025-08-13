@@ -4,16 +4,18 @@
 
 #Basic armor vest for inheritance
 - type: entity
+  abstract: true
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterArmorBase
   name: armor vest
-  abstract: true
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
     modifiers:
       coefficients:
@@ -23,26 +25,25 @@
         Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 0.90
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - Vest
     - NudeBottom # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
+  - type: ArmorSparkEffect #starlight
+  # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
   parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
   id: ClothingOuterArmorBasic
-  # Sunrise-Start
   components:
   - type: Tag
     tags:
-    - Vest
-    - NudeBottom # INTERACTIONS
+    - CorgiWearable
     - WhitelistChameleon
-  # Sunrise-End
+    - NudeBottom # Sunrise-Add
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -67,6 +68,8 @@
     sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -87,6 +90,8 @@
     sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -143,6 +148,12 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
@@ -246,6 +257,8 @@
       shader: unshaded
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
+  - type: Pierceable
+    level: Rock
   - type: Armor
     modifiers:
       coefficients:
@@ -256,7 +269,7 @@
         Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.35
-  - type: StaminaResistance
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -299,8 +312,8 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
+        startValue: 0.1
+        endValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -327,6 +340,8 @@
     sprite: Clothing/OuterClothing/Armor/riot.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/riot.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -356,12 +371,14 @@
     sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.6
+        Piercing: 0.5
         Heat: 0.5
   - type: GroupExamine
   # Sunrise-Start
@@ -465,6 +482,8 @@
     sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -499,6 +518,8 @@
     sprite: Clothing/OuterClothing/Armor/bone_armor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/bone_armor.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -534,6 +555,8 @@
     sprite: Clothing/OuterClothing/Armor/podwars_armor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/podwars_armor.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -552,36 +575,21 @@
   # Sunrise-End
 
 - type: entity
-  parent: ClothingOuterBaseLarge
-  id: ChangelingClothingOuterArmor
-  name: chitinous armor
-  description: An all-consuming chitinous mass of armor.
-  suffix: Unremoveable
+  parent: ClothingOuterArmorBase
+  id: CardArmour
+  name: cardboard armour
+  description: A medieval chestpiece built from cardboard.
   components:
   - type: Sprite
-    sprite: Changeling/ling_armor.rsi
+    sprite: Clothing/OuterClothing/Armor/card_armour.rsi
   - type: Clothing
-    sprite: Changeling/ling_armor.rsi
+    sprite: Clothing/OuterClothing/Armor/card_armour.rsi
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.65
-  - type: HeldSpeedModifier
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: GroupExamine
-  - type: Unremoveable
-  # Sunrise-Start
-  - type: Tag
-    tags:
-    - FullBodyOuter
-    - WhitelistChameleon
-  # Sunrise-End
+        Blunt: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.90
+  - type: Construction
+    graph: cardArmour
+    node: cardarmour

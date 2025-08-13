@@ -1,0 +1,18 @@
+- type: parallax
+  id: AngleStation
+  layers:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.95
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.94
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/Angle.png"
+      slowness: 0.93
+      scale: 1,1

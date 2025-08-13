@@ -1,0 +1,83 @@
+- type: decal
+  id: WhiteMonoN
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_n
+
+- type: decal
+  id: WhiteMonoS
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_s
+
+- type: decal
+  id: WhiteMonoW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_w
+
+- type: decal
+  id: WhiteMonoE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_e
+
+- type: decal
+  id: WhiteMonoNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_nw
+
+- type: decal
+  id: WhiteMonoNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_ne
+
+- type: decal
+  id: WhiteMonoSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_sw
+
+- type: decal
+  id: WhiteMonoSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: white_mono_se
+
+- type: decal
+  id: WhiteMCrNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: whitem_cr_nw
+
+- type: decal
+  id: WhiteMCrNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: whitem_cr_ne
+
+- type: decal
+  id: WhiteMCrSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: whitem_cr_sw
+
+- type: decal
+  id: WhiteMCrSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/whitemono.rsi
+    state: whitem_cr_se

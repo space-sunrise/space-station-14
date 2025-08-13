@@ -57,7 +57,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SpeedLoaderLightRifle
+      - id: SpeedLoaderHeavyRifleRFMJ
         amount: 16
 
 - type: entity
@@ -99,10 +99,8 @@
       - id: WrappedMosin
         amount: 4
   - type: EntityStorageVisuals
-    stateBase: base
     stateDoorOpen: open
     stateDoorClosed: closed
-    stateWelded: welded
   - type: EntityStorage
     isWeldable: true
   - type: UserInterface

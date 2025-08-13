@@ -11,11 +11,8 @@ printerdoc-menu-search-placeholder = Поиск...
 printerdoc-menu-current-job = Текущая задача
 printerdoc-menu-queue = Очередь заданий
 printerdoc-menu-no-active-job = Нет активной задачи
-
-
 printerdoc-print-job = Печать документа
 printerdoc-copy-job = Копирование
-
 printerdoc-filter-all = Все
 printerdoc-component-Centcom = ЦентКом
 printerdoc-component-Command = Командование
@@ -28,8 +25,6 @@ printerdoc-component-Security = Безопасность
 printerdoc-component-Service = Сервис
 printerdoc-component-Supply = Снабжение
 printerdoc-component-Syndicate = Š!иÐ!К₳₮
-
-
 doc-template-appeal-name = Обращение
 doc-template-application-access-name = Заявление на получение доступа
 doc-template-application-appointment-interim-name = Заявление о назначении ВРиО
@@ -88,8 +83,6 @@ doc-template-search-permission-name = Разрешение на обыск
 doc-template-sentence-name = Приговор
 doc-template-shuttle-registration-request-name = Запрос на регистрацию шаттла
 doc-template-statement-health-name = Заключение о состоянии здоровья
-
-
 doc-template-business-deal-name = ДЕЛОВАЯ СДЕЛКА
 doc-template-error-loading-form-header-name = ОШИБКА загрузки заголовка формы
 doc-template-note-beginning-military-actions-name = ЗАМЕТКА о начале военных действий

@@ -140,7 +140,8 @@
     - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+    #- SecurityAmmoStatic
+    - SecurityStaticSunrise
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -234,6 +235,9 @@
     - SecurityDynamicSunrise # Sunrise-Add
     - SecurityDynamicSunriseClothing # Sunrise-Add
     - SecurityDynamicSunriseMech # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -418,7 +422,7 @@
     staticPacks:
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    #- SecurityAmmoStatic
     - SecurityWeaponsStatic
     - SecurityStaticSunrise # Sunrise-Add
     dynamicPacks:
@@ -472,8 +476,8 @@
     materialUseMultiplier: 1
     timeMultiplier: 1.75
     staticPacks:
-    - SecurityAmmoStatic
-    - SecurityStaticSunrise
+    #- SecurityAmmoStatic
+    - SecurityStaticSunrise # Sunrise-Add
     dynamicPacks:
     - SecurityEquipment
     - SecurityExplosives
@@ -514,7 +518,8 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+      #- SecurityAmmoStatic
+      - SecurityStaticSunrise # Sunrise-Add
     - type: MaterialStorage
       whitelist:
         tags:
@@ -558,6 +563,9 @@
     - Chemistry
     - SurgeryDynamicSunrise # Sunrise-Add
     - MedicalDynamicSunrise # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

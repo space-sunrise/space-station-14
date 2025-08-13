@@ -50,7 +50,7 @@
     - id: ClothingHeadsetAltCommand
     #- id: ClothingOuterArmorCaptainCarapace # Sunrise-Edit
     - id: CommsComputerCircuitboard
-    - id: DoorRemoteCommand
+    - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
     - id: PinpointerNuclear

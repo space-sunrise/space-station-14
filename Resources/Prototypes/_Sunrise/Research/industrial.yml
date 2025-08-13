@@ -1,14 +1,14 @@
 # Tier 1
 
-- type: technology
+- type: technology # Sunrise-TODO: Сделать получение через крафт
   id: HandcraftNVD
   name: research-technology-handcraft-nvd
   icon:
     sprite: _Sunrise/Clothing/Eyes/Glasses/handcrafted_nvd.rsi
     state: icon
   discipline: Industrial
-  tier: 1
-  cost: 2500
+  tier: 2
+  cost: 5500
   recipeUnlocks:
   - HandCraftedNVD
 
@@ -76,9 +76,11 @@
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 5000
+  cost: 7000
   recipeUnlocks:
   - BasicNVD
+  technologyPrerequisites:
+  - HandcraftNVD
 
 - type: technology
   id: BasicThermals
@@ -87,7 +89,7 @@
     sprite: Clothing/Eyes/Glasses/thermal.rsi
     state: icon
   discipline: Industrial
-  tier: 2
-  cost: 5000
+  tier: 3
+  cost: 9000
   recipeUnlocks:
   - BasicThermals

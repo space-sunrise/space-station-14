@@ -224,6 +224,20 @@
   #Sunrise-end
 
 - type: listing
+  id: UplinkEstocBundle
+  name: uplink-estoc-bundle-name
+  description: uplink-estoc-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledRifle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 11
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkBulldogBundle
   name: uplink-buldog-bundle-name
   description: uplink-buldog-bundle-desc
@@ -245,16 +259,38 @@
   #Sunrise-end
 
 - type: listing
-  id: UplinkGrenadeLauncherBundle
-  name: uplink-grenade-launcher-bundle-name
-  description: uplink-grenade-launcher-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
+  id: UplinkGrenadeLauncherM79
+  name: uplink-grenade-launcher-m79-name
+  description: uplink-grenade-launcher-m79-desc
+  icon: { sprite: /Textures/_RMC14/Objects/Weapons/Guns/Launchers/m79/big.rsi, state: base }
+  productEntity: WeaponLauncherM79Biocode
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 20
+    Telecrystal: 8
   cost:
-    Telecrystal: 25
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+#Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+#Sunrise-end
+
+- type: listing
+  id: UplinkGrenadeLauncherChinaLake
+  name: uplink-grenade-launcher-china-lake-name
+  description: uplink-grenade-launcher-china-lake-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
+  productEntity: WeaponLauncherChinaLakeBiocode
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 14
+  cost:
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -274,9 +310,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledLMG
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 24
+    Telecrystal: 18 # Sunrise-Edit
   cost:
-    Telecrystal: 30
+    Telecrystal: 25 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -570,10 +606,10 @@
 
 - type: listing
   id: UplinkPistol9mmMagazine
-  name: uplink-pistol-magazine-name
+  #name: uplink-pistol-magazine-name  # Sunrise-Edit
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHighCapacity
+  productEntity: MagazinePistolHighCapacitySP # Sunrise-Edit
   cost:
     Telecrystal: 1
   categories:
@@ -585,7 +621,7 @@
   name: uplink-pistol-magazine-c20r-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGun
+  productEntity: MagazinePistolSubMachineGunSP # Sunrise-Edit
   cost:
     Telecrystal: 2
   categories:
@@ -657,7 +693,7 @@
   id: UplinkMosinAmmo
   name: uplink-mosin-ammo-name
   description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxLightRifle
+  productEntity: MagazineBoxRifleMachineFMJ # Sunrise-Edit
   cost:
     Telecrystal: 1
   categories:
@@ -669,6 +705,17 @@
       tags:
       - AssaultOpsUplink
   #Sunrise-end
+
+# For the Estoc
+- type: listing
+  id: UplinkEstocAmmo
+  name: uplink-estoc-ammo-name
+  description: uplink-estoc-ammo-desc
+  productEntity: MagazineRifle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
 
 # for the hristov
 - type: listing
@@ -697,7 +744,7 @@
   discountDownTo:
     Telecrystal: 15
   cost:
-    Telecrystal: 25
+    Telecrystal: 24 # Sunrise-Edit
   categories:
   - UplinkAmmo
   conditions:
@@ -1775,20 +1822,6 @@
   categories:
   - UplinkWearables
 
-# TODO: Revert back to normal thieving gloves when clothes dyeing is added
-- type: listing
-  id: UplinkgClothingThievingGloves
-  name: uplink-clothing-chameleon-thieving-gloves-name
-  description: uplink-clothing-chameleon-thieving-gloves-desc
-  productEntity: ClothingHandsChameleonThief
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5
-  categories:
-  - UplinkWearables
-
 - type: listing
   id: UplinkClothingOuterVestWeb
   name: uplink-clothing-outer-vest-web-name
@@ -2441,6 +2474,17 @@
     - Mime
 
 - type: listing
+  id: UplinkContrabandLighter
+  name: uplink-contraband-lighter-name
+  description: uplink-contraband-lighter-desc
+  icon: { sprite:  Objects/Tools/Lighters/syndielighter.rsi, state: icon}
+  productEntity: UplinkLighterBox
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
+- type: listing
   id: UplinkSmugglerSatchel
   name: uplink-smuggler-satchel-name
   description: uplink-smuggler-satchel-desc
@@ -2452,6 +2496,24 @@
     Telecrystal: 2
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkAcolyteArmor
+  name: uplink-acolyte-armor-name
+  description: uplink-acolyte-armor-desc
+  icon: { sprite: Clothing/OuterClothing/Armor/cult_armour.rsi, state: icon}
+  productEntity: ClothingBackpackDuffelAcolyteBundle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chaplain
 
 - type: listing
   id: UplinkSawAdvanced

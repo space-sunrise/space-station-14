@@ -83,7 +83,7 @@
           - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistolFMJ
         priority: 1
         whitelist:
           tags:
@@ -137,7 +137,7 @@
           - MagazineGlock22
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -180,7 +180,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineGlock22
+        startingItem: null
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
@@ -191,7 +191,7 @@
           - MagazineGlock22
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: null
         priority: 1
         whitelist:
           tags:
@@ -241,7 +241,7 @@
           - MagazineHIBrowning
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistolFMJ
         priority: 1
         whitelist:
           tags:
@@ -269,7 +269,7 @@
     maxAngle: 18
     angleIncrease: 5
     angleDecay: 9
-    fireRate: 2.35
+    fireRate: 2.25
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -291,7 +291,7 @@
           - MagazineACP14
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnum
+        startingItem: CartridgeMagnumSP
         priority: 1
         whitelist:
           tags:
@@ -321,6 +321,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
+# Sidearm HOS and Nukies.
 - type: entity
   name: Desert Eagle
   parent: BaseWeaponPistolSunrise
@@ -333,9 +334,9 @@
   - type: Gun
     minAngle: 4
     maxAngle: 16
-    angleIncrease: 4
-    angleDecay: 3
-    fireRate: 3.75
+    angleIncrease: 6
+    angleDecay: 7
+    fireRate: 5
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -358,7 +359,7 @@
           - MagazineDeagle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnum
+        startingItem: CartridgeMagnumSP
         priority: 1
         whitelist:
           tags:
@@ -372,6 +373,7 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
+# Sidearm for detectives.
 - type: entity
   parent: BaseWeaponRevolver
   id: WeaponRevolverSpearhead
@@ -413,17 +415,17 @@
   - type: EyeCursorOffset
     maxOffset: 2.75
     pvsIncrease: 1
-  - type: MeleeWeapon
-    angle: 60
-    range: 0.9
-    damage:
-      types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 2.0
-    attackRate: 1
-    autoAttack: false
-  - type: AltFireMelee
-    attackType: Light
+  # - type: MeleeWeapon
+  #   angle: 60
+  #   range: 0.9
+  #   damage:
+  #     types:
+  #       Blunt: 10
+  #   bluntStaminaDamageFactor: 2.0
+  #   attackRate: 1
+  #   autoAttack: false
+  # - type: AltFireMelee
+  #   attackType: Light
 
 - type: entity
   parent: WeaponRevolverSpearhead
@@ -454,9 +456,9 @@
     selectedMode: SemiAuto
     minAngle: 4.7
     maxAngle: 25
-    angleIncrease: 1.75
+    angleIncrease: 2
     angleDecay: 14
-    fireRate: 8.4
+    fireRate: 8
     availableModes:
     - SemiAuto
     useKey: true
@@ -467,7 +469,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
-    pvsIncrease: 1
+    pvsIncrease: 0.25
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99

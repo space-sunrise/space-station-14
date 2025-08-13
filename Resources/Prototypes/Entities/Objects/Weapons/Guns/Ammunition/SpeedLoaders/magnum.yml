@@ -13,20 +13,10 @@
       tags:
         - CartridgeMagnum
     capacity: 6
-  - type: Sprite
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
         ents: []
-
-- type: entity
-  id: SpeedLoaderMagnum
-  name: "speed loader (.45 magnum)"
-  parent: BaseSpeedLoaderMagnum
-  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold general-purpose kinetic ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnum
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
     layers:
@@ -34,6 +24,9 @@
         map: [ "enum.GunVisualLayers.Base" ]
       - state: base-6
         map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#C7B458"
   - type: MagazineVisuals
     magState: base
     steps: 7
@@ -51,8 +44,7 @@
 - type: entity
   id: SpeedLoaderMagnumEmpty
   name: "speed loader (.45 magnum any)"
-  parent: SpeedLoaderMagnum
-  description: Designed to quickly refill an empty revolver, it fits up to six rounds for the big iron on your hip. #Big Iron reference (duh)
+  parent: BaseSpeedLoaderMagnum
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -74,13 +66,124 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: SpeedLoaderMagnumIncendiary
-  name: "speed loader (.45 magnum incendiary)"
-  parent: SpeedLoaderMagnum
-  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+  id: SpeedLoaderMagnumSP
+  name: "speed loader (.45 magnum SP)"
+  parent: BaseSpeedLoaderMagnum
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumIncendiary
+    proto: CartridgeMagnumSP
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#3F47DB"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#3F47DB"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#3F47DB"
+
+- type: entity
+  id: SpeedLoaderMagnumRubber
+  name: "speed loader (.45 magnum rubber)"
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumRubber
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#00c1b8"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#00c1b8"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#00c1b8"
+
+- type: entity
+  id: SpeedLoaderMagnumHP
+  name: "speed loader (.45 magnum HP)"
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#F5514C"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: SpeedLoaderMagnumFMJ
+  name: "speed loader (.45 magnum FMJ)"
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumFMJ
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#C7B458"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#C7B458"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#C7B458"
 
 - type: entity
   id: SpeedLoaderMagnumPractice
@@ -95,29 +198,27 @@
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
-      - state: practice-6
+      - state: base-6
         map: [ "enum.GunVisualLayers.Mag" ]
-  - type: MagazineVisuals
-    magState: practice
-    steps: 7
-    zeroVisible: false
-  - type: Appearance
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#dbdbdb"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-ammo
       - state: inhand-left-stripe
-        color: "#ea5800"
+        color: "#dbdbdb"
       right:
       - state: inhand-right-mag
       - state: inhand-right-ammo
       - state: inhand-right-stripe
-        color: "#ea5800"
+        color: "#dbdbdb"
 
 - type: entity
   id: SpeedLoaderMagnumAP
-  name: "speed loader (.45 magnum armor-piercing)"
+  name: "speed loader (.45 magnum AP)"
   parent: BaseSpeedLoaderMagnum
   description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold rare armor-piercing ammunition.
   components:
@@ -128,13 +229,11 @@
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
-      - state: piercing-6
+      - state: base-6
         map: [ "enum.GunVisualLayers.Mag" ]
-  - type: MagazineVisuals
-    magState: piercing
-    steps: 7
-    zeroVisible: false
-  - type: Appearance
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#540000"
   - type: Item
     inhandVisuals:
       left:
@@ -147,6 +246,36 @@
       - state: inhand-right-ammo
       - state: inhand-right-stripe
         color: "#540000"
+
+- type: entity
+  id: SpeedLoaderMagnumIncendiary
+  name: "speed loader (.45 magnum incendiary)"
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#ff6e52"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#ff6e52"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#ff6e52"
 
 - type: entity
   id: SpeedLoaderMagnumUranium
@@ -161,22 +290,20 @@
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
-      - state: uranium-6
+      - state: base-6
         map: [ "enum.GunVisualLayers.Mag" ]
-  - type: MagazineVisuals
-    magState: uranium
-    steps: 7
-    zeroVisible: false
-  - type: Appearance
+      - state: base-tip-6
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#65fe08"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-ammo
       - state: inhand-left-stripe
-        color: "#00cd42"
+        color: "#65fe08"
       right:
       - state: inhand-right-mag
       - state: inhand-right-ammo
       - state: inhand-right-stripe
-        color: "#00cd42"
+        color: "#65fe08"

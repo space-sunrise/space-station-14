@@ -61,7 +61,6 @@ ent-RandomHumanoidSpawnerERTMedicalGamma = медик ОБР
 ent-RandomHumanoidSpawnerERTMedicalGammaLock = { ent-RandomHumanoidSpawnerERTMedicalGamma }
     .suffix = РольОБР, Гамма, Время
     .desc = { ent-RandomHumanoidSpawnerERTLeaderRed.desc }
-
 # Veteran USSP ERT Spawners
 ent-RandomHumanoidSpawnerERTLeaderAmberVeteran = лидер ОБР
     .suffix = РольОБР, Амбер, Аплинк, Ветеран

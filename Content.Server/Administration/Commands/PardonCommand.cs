@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Shared.Administration;
@@ -7,16 +7,14 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Ban)]
-    public sealed class PardonCommand : IConsoleCommand
+    public sealed class PardonCommand : LocalizedCommands
     {
-        public string Command => "pardon";
-        public string Description => "Pardons somebody's ban";
-        public string Help => $"Usage: {Command} <ban id>";
+        [Dependency] private readonly IServerDbManager _dbManager = default!;
 
-        public async void Execute(IConsoleShell shell, string argStr, string[] args)
+        public override string Command => "pardon";
+
+        public override async void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var player = shell.Player;
-            var dbMan = IoCManager.Resolve<IServerDbManager>();
             var banMan = IoCManager.Resolve<IBanManager>();
 
             if (args.Length != 1)
@@ -27,11 +25,11 @@ namespace Content.Server.Administration.Commands
 
             if (!int.TryParse(args[0], out var banId))
             {
-                shell.WriteLine($"Unable to parse {args[0]} as a ban id integer.\n{Help}");
+                shell.WriteLine(Loc.GetString($"cmd-pardon-unable-to-parse", ("id", args[0]), ("help", Help)));
                 return;
             }
 
-            var ban = await dbMan.GetServerBanAsync(banId);
+            var ban = await _dbManager.GetServerBanAsync(banId);
 
             if (ban == null)
             {
@@ -41,22 +39,22 @@ namespace Content.Server.Administration.Commands
 
             if (ban.Unban != null)
             {
-                var response = new StringBuilder("This ban has already been pardoned");
-
                 if (ban.Unban.UnbanningAdmin != null)
                 {
-                    response.Append($" by {ban.Unban.UnbanningAdmin.Value}");
+                    shell.WriteLine(Loc.GetString($"cmd-pardon-already-pardoned-specific",
+                        ("admin", ban.Unban.UnbanningAdmin.Value),
+                        ("time", ban.Unban.UnbanTime)));
                 }
 
-                response.Append($" in {ban.Unban.UnbanTime}.");
+                else
+                    shell.WriteLine(Loc.GetString($"cmd-pardon-already-pardoned"));
 
-                shell.WriteLine(response.ToString());
                 return;
             }
 
             await banMan.PardonBan(shell.Player, banId, ban); // Sunrise-Edit
 
-            shell.WriteLine($"Pardoned ban with id {banId}");
+            shell.WriteLine(Loc.GetString($"cmd-pardon-success", ("id", banId)));
         }
     }
 }
