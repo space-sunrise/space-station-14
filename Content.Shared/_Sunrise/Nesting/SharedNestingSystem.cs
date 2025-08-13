@@ -172,11 +172,11 @@ public abstract class SharedNestingSystem : EntitySystem
         if (!TryComp<HandsComponent>(args.Args.User, out var hands))
             return;
 
-        if (!_hands.TryGetEmptyHand(args.Args.User, out var emptyHand, hands))
+        if (!_hands.TryGetEmptyHand(args.Args.User, out var emptyHand))
             return;
 
         if (TryComp<MultiHandedItemComponent>(args.Args.Target.Value, out var multiHanded)
-            && hands.CountFreeHands() < multiHanded!.HandsNeeded)
+            && _hands.CountFreeHands(args.Args.User) < multiHanded!.HandsNeeded)
         {
             _popup.PopupPredictedCursor(Loc.GetString("multi-handed-item-pick-up-fail",
                 ("number", multiHanded.HandsNeeded - 1), ("item", ent.Owner)), args.Args.User);
