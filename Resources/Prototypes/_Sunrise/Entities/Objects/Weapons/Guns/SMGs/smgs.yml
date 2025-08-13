@@ -592,7 +592,6 @@
           - MagazinePistol
           - MagazinePistolHighCapacity
           - MagazinePistolCaselessRifle
-          - MagazineMagnumSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolSP
@@ -648,7 +647,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineCaselessRifle10x24
+        startingItem: MagazineCaselessRifle
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2

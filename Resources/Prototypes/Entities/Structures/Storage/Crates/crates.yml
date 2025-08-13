@@ -917,14 +917,14 @@
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: AccessReader
     access: [["Janitor"]]
-  - type: Paintable
-    group: null
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
       blue: BlueAlertAccessesHOS
       gamma: GammaAlertAccesses
     # Sunrise-end
+  - type: Paintable
+    group: null
 
 - type: entity
   parent: CrateBaseWeldable

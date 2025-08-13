@@ -1,6 +1,4 @@
 using Content.Server.Bible.Components;
-using Content.Server.Body.Components;
-using Content.Server.Flash;
 using Content.Server.Speech.Components;
 using Content.Server.Storage.Components;
 using Content.Server.Objectives.Components;
@@ -569,7 +567,7 @@ public sealed partial class VampireSystem
         if (args.Cancelled)
             return;
 
-        _statusEffects.TryAddStatusEffect<SleepingComponent>(args.Target.Value, VampireComponent.SleepStatusEffectProto, args.Duration ?? TimeSpan.FromSeconds(30), false);
+        _statusEffects.TryAddStatusEffectDuration(args.Target.Value, SleepingSystem.StatusEffectForcedSleeping, args.Duration ?? TimeSpan.FromSeconds(30));
     }
     #endregion
 

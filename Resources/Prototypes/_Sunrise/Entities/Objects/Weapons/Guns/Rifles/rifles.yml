@@ -248,7 +248,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineCaselessRifleShort
+        startingItem: MagazineCaselessRifle
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
