@@ -235,11 +235,20 @@
 
 #Grenade Thrower
 - type: entity
-  name: Grenade Thrower "Rumbler" # "Грохотун"
+  name: Grenade Thrower "Rumbler"
   parent: [WeaponGrenadeLauncherSecurity, BaseMajorContraband]
   id: CyberGrenadeThrower
   description: A single-shot, break-action integrated grenade launcher. Capable of firing a variety of grenades and hand grenades and artillery casing.
   components:
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 120
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg #armor_ricochet #collection
+    reflects:
+    - NonEnergy
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Cyber/grenade_thrower.rsi
     layers:
