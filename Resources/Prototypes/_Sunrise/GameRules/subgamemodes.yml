@@ -1,32 +1,5 @@
 - type: entity
   parent: BaseGameRule
-  id: Changeling
-  components:
-  - type: GameRule
-    delay:
-      min: 600
-      max: 900
-  - type: ChangelingRule
-  - type: AntagObjectives
-    objectives:
-    - ChangelingStealDNAObjective
-    - ChangelingSurviveObjective
-  - type: AntagRandomObjectives
-    sets:
-    - groups: ChangelingObjectiveGroups
-    maxDifficulty: 7
-  - type: AntagSelection
-    agentName: changeling-roundend-name
-    definitions:
-    - prefRoles: [ Changeling ]
-      max: 3
-      playerRatio: 30
-      lateJoinAdditional: true
-      mindRoles:
-      - MindRoleChangeling
-
-- type: entity
-  parent: BaseGameRule
   id: Vampire
   components:
   - type: GameRule

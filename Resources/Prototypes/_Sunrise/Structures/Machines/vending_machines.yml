@@ -31,8 +31,9 @@
   #  brokenState: broken
   #  normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  #- type: Advertise
-  #  pack: MailDrobeAds
+#  - type: Vocalizer
+#  - type: DatasetVocalizer
+#    dataset: MailDrobeAds
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/maildrobe.rsi
     layers:
@@ -80,8 +81,9 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: PaintVendAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: PaintVendAds
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/paintvend.rsi
     layers:

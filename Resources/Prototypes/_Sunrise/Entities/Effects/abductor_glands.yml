@@ -16,7 +16,7 @@
   suffix: Gravity
   parent: GlandEffectBase
   components:
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     removeOnTrigger: true
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg

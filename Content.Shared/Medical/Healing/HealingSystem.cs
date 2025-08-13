@@ -2,7 +2,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using System.Linq;
-using Content.Server.Medical.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;

@@ -60,7 +60,7 @@
       Structural: 226
   staminaDamage: 35
   armorPenetration: 0.35
-  pierceChance: 0.95
+  pierceChance: 0.80
   pierceLevel: Rock
   ricochetChance: 0.95
   steps: 20
@@ -200,7 +200,7 @@
   damage:
     types:
       Piercing: 25 #- 30%
-  armorPenetration: 0.69
+  armorPenetration: 0.50
   pierceChance: 0.81
   derivation: 0.05
   ricochetChance: 0.48
@@ -325,7 +325,7 @@
   damage:
     types:
       Piercing: 11 #- 30%
-  armorPenetration: 0.69
+  armorPenetration: 0.50
   pierceChance: 0.81
   derivation: 0.2
   ricochetChance: 0.48
@@ -506,7 +506,7 @@
   damage:
     types:
       Piercing: 13 #- 40%
-  armorPenetration: 0.69
+  armorPenetration: 0.50
   pierceChance: 0.81
   derivation: 0.05
   ricochetChance: 0.48
@@ -612,7 +612,7 @@
   damage:
     types:
       Piercing: 12 #- 30%
-  armorPenetration: 0.69
+  armorPenetration: 0.50
   pierceChance: 0.81
   ricochetChance: 0.48
   pierceLevel: HardenedMetal
@@ -1017,8 +1017,8 @@
     polymorph: AdmemeForcedJohnToe
   - type: TriggerOnCollide
     fixtureID: projectile
-  - type: TriggerWhitelist
-    whitelist:
+  - type: WhitelistTriggerCondition
+    userWhitelist:
       components:
       - Body
 

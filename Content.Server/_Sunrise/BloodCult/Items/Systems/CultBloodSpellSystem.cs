@@ -70,14 +70,16 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<HandsComponent>(args.User, out var handsComponent))
             return;
 
-        var currentHand = handsComponent.ActiveHand;
+        var currentHand = _handsSystem.GetActiveHand((args.User, handsComponent));
 
         if (currentHand == null)
             return;
 
-        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Value != currentHand);
+        var enumerateHands = _handsSystem.EnumerateHands((args.User, handsComponent));
 
-        if (!_handsSystem.CanPickupToHand(args.User, entity.Owner, otherHand.Value))
+        var otherHand = enumerateHands.FirstOrDefault(hand => hand != currentHand);
+
+        if (otherHand == null || !_handsSystem.CanPickupToHand(args.User, entity.Owner, otherHand))
         {
             _popupSystem.PopupEntity($"Рука занята",
                 args.User,
@@ -331,7 +333,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
                 if (lossBlood > 0)
                 {
                     fillBlood = FixedPoint2.Min(lossBlood, availableCharges / 2);
-                    _bloodstreamSystem.TryModifyBloodLevel(target, fillBlood, bloodstreamComponent);
+                    _bloodstreamSystem.TryModifyBloodLevel((target, bloodstreamComponent), fillBlood);
                     availableCharges -= fillBlood * 2;
                     bloodCultistComponent.BloodCharges -= fillBlood * 2;
                 }

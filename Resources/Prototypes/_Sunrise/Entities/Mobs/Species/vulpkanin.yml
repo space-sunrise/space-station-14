@@ -14,7 +14,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: Speech
     speechVerb: Vulpkanin
     allowedEmotes: ['Growl', 'Bark', 'Howl', 'Whines']

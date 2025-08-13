@@ -13,6 +13,7 @@ using Content.Shared.Silicons.StationAi;
 using Content.Shared.UserInterface;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
@@ -151,7 +152,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             if (meta.EntityPrototype.ID != _nanoStation)
                 continue;
 
-            if (_stationSystem.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid
+            if (_stationSystem.GetLargestGrid(station) is not { } grid
                 || !TryComp(station, out MetaDataComponent? stationMetaData))
                 continue;
 
@@ -204,12 +205,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (!TryComp<HandsComponent>(uid, out var hands))
             return;
 
-        foreach (var hand in _hands.EnumerateHands(uid, hands))
+        foreach (var hand in _hands.EnumerateHands((uid, hands)))
         {
-            if (hand.HeldEntity == null || HasComp<UnremoveableComponent>(hand.HeldEntity))
+            var heldItem = _hands.GetHeldItem((uid, hands), hand);
+            if (HasComp<UnremoveableComponent>(heldItem))
                 continue;
 
-            _hands.DoDrop(uid, hand, true, hands);
+            _hands.DoDrop(uid, hand);
         }
 
         if (_virtualItem.TrySpawnVirtualItemInHand(console, uid, out var virtItem1))

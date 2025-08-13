@@ -1576,7 +1576,7 @@
         Blunt: 5
     deleteOnCollide: false
   - type: StartTimerOnShoot
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 2
   - type: Fixtures
     fixtures:

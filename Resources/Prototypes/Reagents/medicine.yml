@@ -146,12 +146,15 @@
   metabolisms:
     Medicine:
       effects:
+        #Sunrise-Start
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: 0.1
+        #Sunrise-End
       - !type:EvenHealthChange
         damage:
-          types: #Sunrise-Edit
-            Mangleness: 0.1 #Sunrise-Edit
-          groups:
-            Brute: -1.5
+          Brute: -1.5
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
