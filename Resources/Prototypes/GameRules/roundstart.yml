@@ -22,8 +22,6 @@
     rules:
     - id: Thief
       prob: 0.3
-    - id: Changeling
-      prob: 0.3
     - id: Vampire
       prob: 0.3
     - id: SubWizard
@@ -36,8 +34,6 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.3
-    - id: Changeling
       prob: 0.3
     - id: Vampire
       prob: 0.3
@@ -265,6 +261,8 @@
   - type: GameRule
     minPlayers: 25
   - type: AntagSelection
+    agentName: changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Changeling ]
       max: 3
@@ -282,6 +280,9 @@
         - ActionRetractableItemArmBlade # Temporary addition, will inevitably be a purchasable in the bio-store
       mindRoles:
       - MindRoleChangeling
+  - type: AntagObjectives
+    objectives:
+    - ChangelingSurviveObjective
 
 - type: entity
   id: Revolutionary

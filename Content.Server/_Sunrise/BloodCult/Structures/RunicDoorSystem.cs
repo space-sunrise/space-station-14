@@ -65,7 +65,7 @@ public sealed class RunicDoorSystem : EntitySystem
         _throwing.TryThrow(user, direction, component.ThrowSpeed, airlock, 10F);
         _damage.TryChangeDamage(user, component.Damage, origin: airlock);
 
-        _stunSystem.TryParalyze(user, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+        _stunSystem.TryAddParalyzeDuration(user, TimeSpan.FromSeconds(component.ParalyzeTime));
         return false;
     }
 }

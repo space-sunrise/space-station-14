@@ -5,7 +5,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger

@@ -286,7 +286,7 @@ public sealed class SickSystem : SharedSickSystem
             case "Insult":
                 if (TryComp<DiseaseRoleComponent>(component.owner, out var dis))
                 {
-                    _stun.TryParalyze(uid, TimeSpan.FromSeconds(5), false);
+                    _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5));
                     if (_prototypeManager.TryIndex<DamageTypePrototype>("Shock", out var damagePrototype))
                     {
                         _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.35f * dis.Lethal), true, origin: uid);

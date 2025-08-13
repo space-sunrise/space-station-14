@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Sunrise.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -9,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
@@ -29,6 +31,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Sunrise-edit
 
     public override void Initialize()
     {
@@ -53,9 +56,115 @@ public abstract class SharedAbsorbentSystem : EntitySystem
         if (!args.CanReach || args.Handled || args.Target is not { } target)
             return;
 
-        Mop(ent, args.User, target);
+        // Sunrise-Start
+        if (args.Target != null &&
+            (HasComp<PuddleComponent>(args.Target) ||
+             HasComp<RefillableSolutionComponent>(args.Target)) &&
+            !HasComp<FootprintComponent>(args.Target))
+        {
+            Mop(args.User, args.Target.Value, args.Used, ent.Comp);
+            args.Handled = true;
+            return;
+        }
+
+        var coordinates = args.ClickLocation;
+        var footPrints = new HashSet<Entity<FootprintComponent>>();
+
+        var gridUid = _transform.GetGrid(coordinates);
+        if (!TryComp<MapGridComponent>(gridUid, out var grid))
+            return;
+
+        var tileCoordinates = _mapSystem.CoordinatesToTile(gridUid.Value, grid, coordinates);
+        var tileRef = _mapSystem.GetTileRef(gridUid.Value, grid, tileCoordinates);
+        var entities = _lookup.GetLocalEntitiesIntersecting(tileRef, 0);
+
+        foreach (var entity in entities)
+        {
+            if (TryComp<FootprintComponent>(entity, out var footprint))
+            {
+                footPrints.Add((entity, footprint));
+            }
+        }
+
+        if (footPrints.Count > 0)
+        {
+            if (!SolutionContainer.TryGetSolution(args.Used, ent.Comp.SolutionName, out var absorberSoln))
+                return;
+
+            var tileCenterPos = _mapSystem.GridTileToLocal(gridUid.Value, grid, tileRef.GridIndices);
+            CleanFootprints(args.User, args.Used, ent.Comp, absorberSoln.Value, footPrints, tileCenterPos);
+            args.Handled = true;
+            return;
+        }
+        // Sunrise-End
+
         args.Handled = true;
     }
+
+    // Sunrise-Start
+    public void CleanFootprints(EntityUid user, EntityUid used, AbsorbentComponent absorber,
+        Entity<SolutionComponent> absorberSoln, HashSet<Entity<FootprintComponent>> footPrints,
+        EntityCoordinates targetCoords)
+    {
+        var soundPlayed = false;
+
+        foreach (var (footstepUid, comp) in footPrints)
+        {
+            if (!SolutionContainer.ResolveSolution(footstepUid, comp.ContainerName, ref comp.SolutionContainer, out var targetStepSolution) || targetStepSolution.Volume <= 0)
+                continue;
+
+            if (Puddle.CanFullyEvaporate(targetStepSolution))
+                continue; // no spam
+
+            var absorberSolution = absorberSoln.Comp.Solution;
+            var available = absorberSolution.GetTotalPrototypeQuantity(Puddle.GetAbsorbentReagents(absorberSolution));
+
+            // No material
+            if (available == FixedPoint2.Zero)
+            {
+                _popups.PopupEntity(Loc.GetString("mopping-system-no-water", ("used", used)), user, user);
+                return;
+            }
+
+            var transferMax = absorber.PickupAmount;
+            var transferAmount = FixedPoint2.Min(transferMax, available);
+
+            var puddleSplit = targetStepSolution.SplitSolutionWithout(transferAmount, Puddle.GetAbsorbentReagents(targetStepSolution));
+            var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume, Puddle.GetAbsorbentReagents(absorberSolution));
+
+            var gridUid = targetCoords.GetGridUid(EntityManager);
+            if (TryComp<MapGridComponent>(gridUid, out var mapGrid))
+            {
+                var tileRef = _mapSystem.GetTileRef(gridUid.Value, mapGrid, targetCoords);
+                Puddle.DoTileReactions(tileRef, absorberSplit);
+            }
+
+            SolutionContainer.AddSolution(comp.SolutionContainer.Value, absorberSplit);
+            SolutionContainer.AddSolution(absorberSoln, puddleSplit);
+
+            if (!soundPlayed)
+            {
+                soundPlayed = true; // to prevent sound spam
+                _audio.PlayPvs(absorber.PickupSound, footstepUid);
+            }
+
+            // Без этой хуйни некоторые лужи будут пустыми и не будут удаляться
+            var ev = new SolutionContainerChangedEvent(targetStepSolution, comp.ContainerName);
+            RaiseLocalEvent(footstepUid, ref ev);
+
+            // Sunrise-Start
+            var absorberEv = new AbsorberFootPrintEvent(user);
+            RaiseLocalEvent(user, ref absorberEv);
+            // Sunrise-End
+        }
+
+        var userXform = Transform(user);
+        var localPos = Vector2.Transform(targetCoords.Position, _transform.GetWorldMatrix(userXform));
+        localPos = userXform.LocalRotation.RotateVec(localPos);
+
+        _melee.DoLunge(user, used, Angle.Zero, localPos, null, false);
+    }
+    // Sunrise-End
 
     private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionContainerChangedEvent args)
     {
@@ -350,6 +459,11 @@ public abstract class SharedAbsorbentSystem : EntitySystem
         localPos = userXform.LocalRotation.RotateVec(localPos);
 
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
+
+        // Sunrise-Start
+        var ev = new AbsorberPudleEvent(user);
+        RaiseLocalEvent(user, ref ev);
+        // Sunrise-End
 
         return true;
     }

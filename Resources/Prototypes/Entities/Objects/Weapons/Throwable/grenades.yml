@@ -495,7 +495,7 @@
     - timer
     duration: 45 # Sunrise-Edit
     spreadAmount: 50
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Sunrise/sg_explode.ogg # Sunrise-Edit
       params:
@@ -652,7 +652,7 @@
     sound:
       path: /Audio/Effects/Emotes/parp1.ogg
   - type: Appearance
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"
       params:

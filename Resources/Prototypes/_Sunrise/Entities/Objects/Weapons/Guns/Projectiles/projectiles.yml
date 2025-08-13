@@ -232,7 +232,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -345,17 +345,14 @@
       - state: primed
   - type: FlashOnTrigger
     range: 7
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
       params:
         volume: 20
-  - type: EmitSoundOnTrigger
-    sound:
-      path: "/Audio/Effects/flash_bang.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 2.75
@@ -384,7 +381,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 5
@@ -415,7 +412,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -445,7 +442,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -475,7 +472,7 @@
       path: "/Audio/Effects/flash_bang.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5

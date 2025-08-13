@@ -207,10 +207,6 @@
       fireCost: 40
       magState: disable
       visualState: disable-unshaded
-    - proto: TaserBolt
-      fireCost: 100
-      magState: stun
-      visualState: stun-unshaded
     - proto: RedLaserBeam
       fireCost: 75
       magState: kill
