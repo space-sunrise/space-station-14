@@ -524,6 +524,13 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 
+    /*
+     *  Printer
+     */
+
+    public static readonly CVarDef<string> PrinterDocTemplatePack =
+        CVarDef.Create("printerdoc.template_pack", "sunrise", CVar.SERVERONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Смена даты на документах от принтера
     /// </summary>
