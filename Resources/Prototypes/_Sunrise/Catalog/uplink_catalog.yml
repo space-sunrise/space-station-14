@@ -657,6 +657,7 @@
     Telecrystal: 11
   categories:
   - UplinkWearables
+  conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
