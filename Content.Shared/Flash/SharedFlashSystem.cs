@@ -1,4 +1,3 @@
-using Content.Shared._Sunrise.Flash.Components; // Sunrise-Edit
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
@@ -61,7 +60,6 @@ public abstract class SharedFlashSystem : EntitySystem
         SubscribeLocalEvent<TemporaryBlindnessComponent, FlashAttemptEvent>(OnTemporaryBlindnessFlashAttempt);
         Subs.SubscribeWithRelay<FlashImmunityComponent, FlashAttemptEvent>(OnFlashImmunityFlashAttempt, held: false);
         SubscribeLocalEvent<FlashImmunityComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<FlashModifierComponent, FlashAttemptEvent>(OnModifierFlashAttempt); // Sunrise-Edit
 
         _statusEffectsQuery = GetEntityQuery<StatusEffectsComponent>();
         _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
@@ -151,20 +149,16 @@ public abstract class SharedFlashSystem : EntitySystem
         EntityUid? user,
         EntityUid? used,
         TimeSpan flashDuration,
-        float multiplier, // Sunrise-Edit
         float slowTo,
         bool displayPopup = true,
         bool melee = false,
         TimeSpan? stunDuration = null)
     {
-        var attempt = new FlashAttemptEvent(target, user, used, multiplier); // Sunrise-Edit
+        var attempt = new FlashAttemptEvent(target, user, used);
         RaiseLocalEvent(target, ref attempt, true);
 
         if (attempt.Cancelled)
             return;
-
-        if (attempt.Multiplier != 1f) // Sunrise-Edit
-            flashDuration *= attempt.Multiplier;
 
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
         if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
@@ -270,6 +264,4 @@ public abstract class SharedFlashSystem : EntitySystem
     {
         args.PushMarkup(Loc.GetString("flash-protection"));
     }
-
-    private void OnModifierFlashAttempt(EntityUid uid, FlashModifierComponent component, FlashAttemptEvent args) => args.Multiplier = component.Modifier; // Sunrise-Edit
 }
