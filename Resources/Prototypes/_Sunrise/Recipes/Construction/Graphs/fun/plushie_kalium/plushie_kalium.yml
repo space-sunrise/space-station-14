@@ -8,7 +8,7 @@
         - to: auto
           steps:
             - tag: PlushieKalium
-              name: construction-graph-tag-PlushieKalium
+              name: construction-graph-tag-plushiekalium
               doAfter: 3
     - node: auto
       entity: PlushieKaliumDouble
