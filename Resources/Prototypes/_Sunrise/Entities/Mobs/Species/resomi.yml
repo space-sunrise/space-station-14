@@ -86,6 +86,15 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
+  - type: InteractionPopup
+    successChance: 0.9
+    interactSuccessString: petting-success-monkey
+    interactFailureString: petting-failure-monkey
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      collection: ResomiChirp
+    interactFailureSound:
+      path: /Audio/Items/wirecutter.ogg
   - type: Hands
     handDisplacement:
       sizeMaps:
