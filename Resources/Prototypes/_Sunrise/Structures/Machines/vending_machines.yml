@@ -140,7 +140,7 @@
     soundVend:
       path: /Audio/_Sunrise/Items/merikayeah.ogg
       params:
-        volume: 20
+        volume: 40
   - type: Vocalizer
   - type: DatasetVocalizer
     dataset: LiberationVendAds

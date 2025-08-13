@@ -77,9 +77,9 @@
   category: construction-category-weapons
   objectType: Item
   description: construction-graph-tag-shell-shotgun-improvised-empty-desc
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: improvised-empty
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised-empty
 
 - type: construction
   name: construction-graph-tag-shell-shotgun-improvised
@@ -90,9 +90,9 @@
   category: construction-category-weapons
   objectType: Item
   description: construction-graph-tag-shell-shotgun-improvised-desc
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: improvised
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised
 
 - type: construction
   name: construction-graph-tag-shell-shotgun-improvised-incendiary
@@ -103,9 +103,9 @@
   category: construction-category-weapons
   objectType: Item
   description: construction-graph-tag-shell-shotgun-improvised-incendiary-desc
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: improvised-incendiary
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised-incendiary
 
 - type: construction
   name: construction-graph-tag-shell-shotgun-improvised-uranium
@@ -116,9 +116,9 @@
   category: construction-category-weapons
   objectType: Item
   description: construction-graph-tag-shell-shotgun-improvised-uranium-desc
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: improvised-uranium
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised-uranium
 
 - type: construction
   name: construction-graph-tag-shell-shotgun-coin
@@ -129,6 +129,6 @@
   category: construction-category-weapons
   objectType: Item
   description: construction-graph-tag-shell-shotgun-coin-desc
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: coinshot
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: coinshot
