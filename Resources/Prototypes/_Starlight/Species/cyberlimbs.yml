@@ -254,7 +254,7 @@
     state: l_bulwark_arm_EMMITTER
 
 - type: humanoidBaseSprite
-  id: CyberRArmBulwarkToggledEmmitter
+  id: CyberRArmBulwarkToggledEmitter
   matchSkin: false
   markingsMatchSkin: false
   baseSprite:
