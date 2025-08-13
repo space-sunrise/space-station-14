@@ -524,10 +524,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 
-    /*
-     *  Printer
-     */
-
     /// <summary>
     /// Определяет, какие шаблоны будут доступны. (например, "sunrise" или "lust")
     /// </summary>
