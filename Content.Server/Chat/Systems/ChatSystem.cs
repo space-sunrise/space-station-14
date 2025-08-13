@@ -975,7 +975,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         return message;
     }
 
-    public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize_Accent = "chatsanitize_sunrise"; // Sunrise-Edit
+    public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitizeAccent = "chatsanitize_sunrise"; // Sunrise-Edit
 
     public string SanitizeMessageReplaceWords(string message)
     {

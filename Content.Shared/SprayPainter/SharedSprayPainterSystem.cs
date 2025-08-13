@@ -14,7 +14,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using PaintedComponent = Content.Shared._Sunrise.Paint.PaintedComponent;  // Sunrise-edit
 
 namespace Content.Shared.SprayPainter;
 

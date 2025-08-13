@@ -16,9 +16,11 @@ using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -42,8 +44,7 @@ public sealed class SlipperySystem : EntitySystem
 
     // Sunrise-Start
     private static float _deadChance;
-    [ValidatePrototypeId<EmotePrototype>]
-    private const string EmoteFallOnNeckProto = "FallOnNeck";
+    private static ProtoId<EmotePrototype> EmoteFallOnNeckProto = "FallOnNeck";
     // Sunrise-End
 
     private EntityQuery<KnockedDownComponent> _knockedDownQuery;

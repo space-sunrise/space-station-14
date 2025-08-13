@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class SharedPaintSystem : EntitySystem
 {
-    public virtual void UpdateAppearance(EntityUid uid, PaintedComponent? component = null)
+    public virtual void UpdateAppearance(EntityUid uid, SprayPaintedComponent? component = null)
     {
     }
 }

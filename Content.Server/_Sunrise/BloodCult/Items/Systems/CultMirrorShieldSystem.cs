@@ -11,6 +11,7 @@ using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared._Sunrise.Events;
 using Content.Shared.Blocking;
+using Content.Shared.Body.Events;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;

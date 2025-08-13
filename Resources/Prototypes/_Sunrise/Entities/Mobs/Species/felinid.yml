@@ -507,7 +507,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Felinid
   - type: Carriable
 
 - type: entity

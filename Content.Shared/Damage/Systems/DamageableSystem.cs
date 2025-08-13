@@ -31,7 +31,6 @@ namespace Content.Shared.Damage
         [Dependency] private readonly IConfigurationManager _config = default!;
         [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
@@ -96,9 +95,9 @@ namespace Content.Shared.Damage
             Subs.CVar(_config, CCVars.PlaytestTopicalsHealModifier, value => UniversalTopicalsHealModifier = value, true);
             Subs.CVar(_config, CCVars.PlaytestMobDamageModifier, value => UniversalMobDamageModifier = value, true);
 
-            _configurationManager.OnValueChanged(SunriseCCVars.DamageVariance, UpdateVariance, true); // Sunrise-Edit
-            _configurationManager.OnValueChanged(SunriseCCVars.DamageModifier, UpdateDamageModifier, true); // Sunrise-Edit
-            _configurationManager.OnValueChanged(SunriseCCVars.HealModifier, UpdateHealModifier, true); // Sunrise-Edit
+            _config.OnValueChanged(SunriseCCVars.DamageVariance, UpdateVariance, true); // Sunrise-Edit
+            _config.OnValueChanged(SunriseCCVars.DamageModifier, UpdateDamageModifier, true); // Sunrise-Edit
+            _config.OnValueChanged(SunriseCCVars.HealModifier, UpdateHealModifier, true); // Sunrise-Edit
         }
 
         /// <summary>
