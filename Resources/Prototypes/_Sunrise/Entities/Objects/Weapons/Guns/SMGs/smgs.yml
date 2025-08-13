@@ -592,7 +592,6 @@
           - MagazinePistol
           - MagazinePistolHighCapacity
           - MagazinePistolCaselessRifle
-          - MagazineMagnumSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolSP
