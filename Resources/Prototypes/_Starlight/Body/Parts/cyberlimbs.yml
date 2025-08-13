@@ -518,8 +518,52 @@
         right hand: RightHandCyber
 
 #Grenade Thrower Arms
-# - type: entity
-#   id: LeftArmCyberGrenadeThrower
+- type: entity
+  id: LeftArmCyberGrenadeThrower
+  name: "left hephaestus thrower arm"
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmHephaestus
+    - type: BaseLayerIdToggled
+      layer: CyberRArmHephaestusThrowerToggled
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_hephaestus_titan"
+    - type: Icon
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_hephaestus_titan_thrower"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandLeft
+      sound:
+        collection: LasersPickUp
+      items:
+        - CyberGrenadeThrower
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyber
 
-# - type: entity
-#   id: RightArmCyberGrenadeThrower
+- type: entity
+  id: RightArmCyberGrenadeThrower
+  name: "right hephaestus thrower arm"
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmHephaestus
+    - type: BaseLayerIdToggled
+      layer: CyberRArmHephaestusThrowerToggled
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_hephaestus_titan"
+    - type: Icon
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_hephaestus_titan_thrower"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandRight
+      sound:
+        collection: LasersPickUp
+      items:
+        - CyberGrenadeThrower
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyber

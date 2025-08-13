@@ -232,3 +232,39 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+
+#Grenade Thrower
+- type: entity
+  name: Grenade Thrower "Rumbler" # "Грохотун"
+  parent: [WeaponGrenadeLauncherSecurity, BaseMajorContraband]
+  id: CyberGrenadeThrower
+  description: A single-shot, break-action integrated grenade launcher. Capable of firing a variety of grenades and hand grenades and artillery casing.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Cyber/grenade_thrower.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    projectileSpeed: 18
+    bigTrigger: true
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.85
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: GrenadeFlashTimer
+        priority: 1
+        whitelist:
+          tags:
+          - Grenade
+          - HandGrenadeAmmo
+          - ArtilleryShell

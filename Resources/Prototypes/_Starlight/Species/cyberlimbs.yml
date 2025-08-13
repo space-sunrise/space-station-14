@@ -244,8 +244,7 @@
     sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
     state: r_sci_arm_GAUNTLET
 
-#Security Laser Emmitter
-
+# Security Laser Emmitter
 - type: humanoidBaseSprite
   id: CyberLArmBulwarkToggledEmitter
   matchSkin: false
@@ -261,3 +260,36 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
     state: r_bulwark_arm_EMMITTER
+
+# Hephaestus grenade thrower
+- type: humanoidBaseSprite
+  id: CyberLArmHephaestus
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_hephaestus_titan
+
+- type: humanoidBaseSprite
+  id: CyberRArmHephaestus
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_hephaestus_titan
+
+- type: humanoidBaseSprite
+  id: CyberLArmHephaestusThrowerToggled
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_hephaestus_titan_thrower
+
+- type: humanoidBaseSprite
+  id: CyberRArmHephaestusThrowerToggled
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_hephaestus_titan_thrower
