@@ -170,3 +170,5 @@ ent-PlushieSansaMontanelli = Плюшевая Санса Монтанелли
     .desc = Маленький бюрократ...Она уже пишет на вас заявление!
 ent-PlushieKalium = Калий Фон Дез
     .desc = Просто добавьте воды!
+ent-PlushieKaliumDouble = Калий Фон Дез
+    .desc = Просто добавьте воды!
