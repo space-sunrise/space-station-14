@@ -81,6 +81,7 @@
   recipeUnlocks:
     - EyeImplantWelding
     - EyeImplantMedical
+    - EyeImplantChemical
     - EyeImplantSecurity
   technologyPrerequisites:
     - CyberLimbsTech
@@ -141,7 +142,7 @@
     state: cyber-hand-left
   discipline: Biochemical
   tier: 3
-  cost: 9320
+  cost: 9220
   recipeUnlocks:
     - LeftArmCyberReaper
     - RightArmCyberReaper
@@ -206,6 +207,8 @@
   recipeUnlocks:
     - LeftArmCyberLaserEmitter
     - RightArmCyberLaserEmitter
+    - LeftArmCyberGrenadeThrower
+    - RightArmCyberGrenadeThrower
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - WeaponizedLaserManipulation
@@ -221,7 +224,7 @@
     state: eyes_night
   discipline: Biochemical
   tier: 3
-  cost: 7680
+  cost: 7500
   recipeUnlocks:
     - CyberEyeNightVision
   technologyPrerequisites:
@@ -238,7 +241,7 @@
     state: eyes_thermal
   discipline: Biochemical
   tier: 3
-  cost: 9320
+  cost: 8500
   recipeUnlocks:
     - CyberEyeThermal
   technologyPrerequisites:

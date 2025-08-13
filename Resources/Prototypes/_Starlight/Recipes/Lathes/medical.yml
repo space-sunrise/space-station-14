@@ -182,6 +182,17 @@
     Glass: 100
 
 - type: latheRecipe
+  id: EyeImplantChemical
+  result: EyeImplantChemical
+  categories:
+  - Implants
+  completetime: 3
+  materials:
+    Steel: 200
+    Plasma: 100
+    Glass: 100
+
+- type: latheRecipe
   id: EyeImplantSecurity
   result: EyeImplantSecurity
   categories:

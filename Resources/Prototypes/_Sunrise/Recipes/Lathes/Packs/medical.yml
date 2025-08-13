@@ -52,6 +52,9 @@
   - RightArmCyberMantisBladeMaxGuard
   - LeftArmCyberLaserEmitter
   - RightArmCyberLaserEmitter
+  - LeftArmCyberGrenadeThrower
+  - RightArmCyberGrenadeThrower
+
 - type: latheRecipePack
   id: MedicalCyberOrgansDynamic
   recipes:
@@ -64,3 +67,4 @@
   - EyeImplantWelding
   - EyeImplantMedical
   - EyeImplantSecurity
+  - EyeImplantChemical

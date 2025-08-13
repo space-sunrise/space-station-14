@@ -85,3 +85,15 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: ShowSyndicateIcons
+
+- type: entity
+  id: EyeImplantChemical
+  name: Chemical HUD Implant
+  description: Enables you to see information about chemical without chem glasses.
+  parent: [BaseEntityEyeImplant, BaseMedicalScienceContraband]
+  components:
+  - type: Sprite
+    state: eye_implant_medical
+  - type: FunctionalOrgan
+    comps:
+    - type: SolutionScanner
