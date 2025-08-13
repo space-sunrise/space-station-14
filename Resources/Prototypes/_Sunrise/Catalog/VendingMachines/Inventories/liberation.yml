@@ -138,39 +138,36 @@
     WeaponEnergyCrossbow: 1
 
     BowImprovised: 1
-
     WeaponFlareGun: 1
-
     WeaponImprovisedPneumaticCannon: 1
+
+    WeaponMechCombatPulseRifle: 1
+    WeaponMechCombatImmolationGun: 1
+    WeaponMechCombatHeavyRifle: 1
+    WeaponMechCombatSolarisLaser: 1
+    WeaponMechCombatFiredartLaser: 1
+    WeaponMechCombatTeslaCannon: 1
+    WeaponMechCombatDisabler: 1
+    WeaponMechCombatTaser: 1
+    WeaponMechCombatShotgun: 1
+    WeaponMechCombatShotgunIncendiary: 1
+    WeaponMechCombatUltraRifle: 1
+    WeaponMechCombatIon: 1
+    WeaponMechCombatAMLG90: 1
+    WeaponMechCombatXray: 1
+    WeaponMechCombatMissileRack8: 1
+    WeaponMechCombatMissileRack6: 1
+    WeaponMechCombatFlashbangLauncher: 1
+    WeaponMechChainSword: 1
+    WeaponMechCombatVindictor: 1
+    WeaponMechCombatMaxim: 1
+    WeaponMechCombatMG: 1
+    WeaponMechCombatPirateCannon: 1
+    WeaponMechCombatPirateGrapeshot: 1
+    WeaponMechCombatPirateGlassshot: 1
+    WeaponMechCombatUVM31: 1
+    WeaponMechCombatDuster: 1
 
     WeaponWaterPistol: 1
     WeaponWaterBlaster: 1
     WeaponWaterBlasterSuper: 1
-
-    # Mech Weapons
-    WeaponMechCombatPulseRifle
-    WeaponMechCombatImmolationGun
-    WeaponMechCombatHeavyRifle
-    WeaponMechCombatSolarisLaser
-    WeaponMechCombatFiredartLaser
-    WeaponMechCombatTeslaCannon
-    WeaponMechCombatDisabler
-    WeaponMechCombatTaser
-    WeaponMechCombatShotgun
-    WeaponMechCombatShotgunIncendiary
-    WeaponMechCombatUltraRifle
-    WeaponMechCombatIon
-    WeaponMechCombatAMLG90
-    WeaponMechCombatXray
-    WeaponMechCombatMissileRack8
-    WeaponMechCombatMissileRack6
-    WeaponMechCombatFlashbangLauncher
-    WeaponMechChainSword
-    WeaponMechCombatVindictor
-    WeaponMechCombatMaxim
-    WeaponMechCombatMG
-    WeaponMechCombatPirateCannon
-    WeaponMechCombatPirateGrapeshot
-    WeaponMechCombatPirateGlassshot
-    WeaponMechCombatUVM31
-    WeaponMechCombatDuster
