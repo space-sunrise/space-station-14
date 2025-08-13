@@ -43,7 +43,6 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
-    <!-- not needed because of new emote ui system
     <ui:MenuButton
         Name="EmotesButton"
         Access="Internal"
@@ -54,7 +53,6 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
-    -->
     <ui:MenuButton
         Name="CraftingButton"
         Access="Internal"

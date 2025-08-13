@@ -6,6 +6,7 @@ using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
@@ -91,16 +92,16 @@ public sealed class CultBloodSpellSystem : EntitySystem
         if (!TryComp<HandsComponent>(args.User, out var handsComponent))
             return;
 
-        var currentHand = handsComponent.ActiveHand;
+        var currentHand = _handsSystem.GetActiveHand(args.User);
 
         if (currentHand == null)
             return;
 
-        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Value != currentHand);
+        var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Key != currentHand);
 
-        _handsSystem.TryPickup(args.User, entity.Owner, otherHand.Value, checkActionBlocker: false);
+        _handsSystem.TryPickup(args.User, entity.Owner, otherHand.Key, checkActionBlocker: false);
 
-        _handsSystem.SetActiveHand(args.User, otherHand.Value);
+        _handsSystem.SetActiveHand(args.User, otherHand.Key);
     }
 
     private void OnExamine(EntityUid uid, CultBloodSpellComponent component, ExaminedEvent args)

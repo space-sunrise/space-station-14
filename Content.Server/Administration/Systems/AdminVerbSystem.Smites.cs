@@ -1167,7 +1167,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<BloodstreamComponent>(target, out var bloodstream))
         {
-            _bloodstreamSystem.SpillAllSolutions(target, bloodstream);
+            _bloodstreamSystem.SpillAllSolutions((target, bloodstream));
         }
 
         var damageSpecifier = new DamageSpecifier()

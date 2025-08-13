@@ -1,15 +1,14 @@
-using Content.Server.Chemistry.Components;
-using Content.Server.Popups;
-using Content.Shared._Sunrise.SolutionRegenerationSwitcher;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Popups;
 
-namespace Content.Server._Sunrise.SolutionRegenerationSwitcher
+namespace Content.Shared._Sunrise.SolutionRegenerationSwitcher
 {
     public sealed class SolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
     {
         [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = null!;
-        [Dependency] private readonly PopupSystem _popups = null!;
+        [Dependency] private readonly SharedPopupSystem _popups = null!;
 
         private ISawmill _sawmill = null!;
 

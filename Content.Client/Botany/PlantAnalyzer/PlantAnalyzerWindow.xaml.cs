@@ -190,7 +190,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
                 ("gases", gases),
                 ("potency", Loc.GetString(msg.ProduceData.Potency)),
                 ("seedless", msg.ProduceData.Seedless),
-                ("firstProduce", msg.ProduceData.Produce.FirstOrDefault() ?? ""),
+                ("firstProduce", msg.ProduceData.Produce.FirstOrDefault().Id ?? ""),
                 ("produce", produce),
                 ("producePlural", producePlural),
                 ("chemCount", msg.ProduceData.Chemicals.Count),

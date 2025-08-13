@@ -51,8 +51,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
                 baseLayerStorage.Layer = customBaseLayer.Id;
             else
             {
-                var speciesProto = _prototypes.Index(humanoid.Species);
-                var baseSprites = _prototypes.Index<BodyTypePrototype>(speciesProto.BodyTypes.First());
+                var speciesProto = _prototype.Index(humanoid.Species);
+                var baseSprites = _prototype.Index<BodyTypePrototype>(speciesProto.BodyTypes.First());
                 if (baseSprites.Sprites.TryGetValue(layer.Value, out var baseLayer))
                     baseLayerStorage.Layer = baseLayer;
             }

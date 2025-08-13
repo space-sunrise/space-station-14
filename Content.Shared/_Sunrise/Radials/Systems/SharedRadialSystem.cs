@@ -1,5 +1,6 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
 using Robust.Shared.Containers;
@@ -11,6 +12,7 @@ public abstract class SharedRadialSystem : EntitySystem
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
+        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
         public override void Initialize()
         {
@@ -75,7 +77,7 @@ public abstract class SharedRadialSystem : EntitySystem
             EntityUid? @using = null;
             if (TryComp(user, out HandsComponent? hands) && (force || _actionBlockerSystem.CanUseHeldEntity(user, target)))
             {
-                @using = hands.ActiveHandEntity;
+                @using = _handsSystem.GetActiveItem(user);
 
                 // Check whether the "Held" entity is a virtual pull entity. If yes, set that as the entity being "Used".
                 // This allows you to do things like buckle a dragged person onto a surgery table, without click-dragging

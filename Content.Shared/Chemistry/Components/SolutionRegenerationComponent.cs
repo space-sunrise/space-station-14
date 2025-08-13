@@ -1,5 +1,5 @@
-using Content.Server._Sunrise.SolutionRegenerationSwitcher;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Shared._Sunrise.SolutionRegenerationSwitcher;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;

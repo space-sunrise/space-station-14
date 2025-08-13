@@ -37,7 +37,6 @@ public abstract partial class SharedStunSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
 
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
@@ -58,15 +57,11 @@ public abstract partial class SharedStunSystem
         SubscribeLocalEvent<KnockedDownComponent, RefreshFrictionModifiersEvent>(OnRefreshFriction);
         SubscribeLocalEvent<KnockedDownComponent, TileFrictionEvent>(OnKnockedTileFriction);
 
-        // DoAfter event subscriptions
-        SubscribeLocalEvent<KnockedDownComponent, TryStandDoAfterEvent>(OnStandDoAfter);
-
         // Knockdown Extenders
         SubscribeLocalEvent<KnockedDownComponent, DamageChangedEvent>(OnDamaged);
 
         // Handling Alternative Inputs
         SubscribeAllEvent<ForceStandUpEvent>(OnForceStandup);
-        SubscribeLocalEvent<KnockedDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(HandleToggleKnockdown, handle: false))
@@ -84,7 +79,7 @@ public abstract partial class SharedStunSystem
             if (!knockedDown.AutoStand || knockedDown.DoAfterId.HasValue || knockedDown.NextUpdate > GameTiming.CurTime)
                 continue;
 
-            TryStanding(uid);
+            _standing.TryStandUp(uid);
         }
     }
 
@@ -101,7 +96,7 @@ public abstract partial class SharedStunSystem
     private void OnKnockInit(Entity<KnockedDownComponent> entity, ref ComponentInit args)
     {
         // Other systems should handle dropping held items...
-        _standingState.Down(entity, true, false);
+        _standing.Down(entity, true, false);
         RefreshKnockedMovement(entity);
     }
 
@@ -111,7 +106,7 @@ public abstract partial class SharedStunSystem
         entity.Comp.FrictionModifier = 1f;
         entity.Comp.SpeedModifier = 1f;
 
-        _standingState.Stand(entity);
+        _standing.Stand(entity);
         Alerts.ClearAlert(entity, KnockdownAlert);
     }
 
@@ -246,38 +241,8 @@ public abstract partial class SharedStunSystem
         var stand = !component.DoAfterId.HasValue;
         SetAutoStand(playerEnt, stand);
 
-        if (!stand || !TryStanding(playerEnt))
+        if (!stand || !_standing.TryStandUp(playerEnt))
             CancelKnockdownDoAfter((playerEnt, component));
-    }
-
-    public bool TryStanding(Entity<KnockedDownComponent?, StandingStateComponent?> entity)
-    {
-        // If we aren't knocked down or can't be knocked down, then we did technically succeed in standing up
-        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, false))
-            return true;
-
-        if (!TryStand((entity.Owner, entity.Comp1)))
-            return false;
-
-        var ev = new GetStandUpTimeEvent(entity.Comp2.StandTime);
-        RaiseLocalEvent(entity, ref ev);
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, entity, ev.DoAfterTime, new TryStandDoAfterEvent(), entity, entity)
-        {
-            BreakOnDamage = true,
-            DamageThreshold = 5,
-            CancelDuplicate = true,
-            RequireCanInteract = false,
-            BreakOnHandChange = true
-        };
-
-        // If we try standing don't try standing again
-        if (!DoAfter.TryStartDoAfter(doAfterArgs, out var doAfterId))
-            return false;
-
-        entity.Comp1.DoAfterId = doAfterId.Value.Index;
-        DirtyField(entity, entity.Comp1, nameof(KnockedDownComponent.DoAfterId));
-        return true;
     }
 
     /// <summary>
@@ -308,130 +273,12 @@ public abstract partial class SharedStunSystem
         return !ev.Cancelled;
     }
 
-    private bool StandingBlocked(Entity<KnockedDownComponent> entity)
-    {
-        if (!TryStand(entity))
-            return true;
-
-        if (!IntersectingStandingColliders(entity.Owner))
-            return false;
-
-        _popup.PopupClient(Loc.GetString("knockdown-component-stand-no-room"), entity, entity, PopupType.SmallCaution);
-        SetAutoStand(entity.Owner);
-        return true;
-
-    }
-
     private void OnForceStandup(ForceStandUpEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not {} user)
             return;
 
-        ForceStandUp(user);
-    }
-
-    public void ForceStandUp(Entity<KnockedDownComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp, false))
-            return;
-
-        // That way if we fail to stand, the game will try to stand for us when we are able to
-        SetAutoStand(entity, true);
-
-        if (!HasComp<StandingStateComponent>(entity) || StandingBlocked((entity, entity.Comp)))
-            return;
-
-        if (!_hands.TryGetEmptyHand(entity.Owner, out _))
-            return;
-
-        if (!TryForceStand(entity.Owner))
-            return;
-
-        // If we have a DoAfter, cancel it
-        CancelKnockdownDoAfter(entity);
-        // Remove Component
-        RemComp<KnockedDownComponent>(entity);
-
-        _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(entity):user} has force stood up from knockdown.");
-    }
-
-    private void OnKnockedDownAlert(Entity<KnockedDownComponent> entity, ref KnockedDownAlertEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        // If we're already trying to stand, or we fail to stand try forcing it
-        if (!TryStanding(entity.Owner))
-            ForceStandUp((entity.Owner, entity.Comp));
-
-        args.Handled = true;
-    }
-
-    private bool TryForceStand(Entity<StaminaComponent?> entity)
-    {
-        // Can't force stand if no Stamina.
-        if (!Resolve(entity, ref entity.Comp, false))
-            return false;
-
-        var ev = new TryForceStandEvent(entity.Comp.ForceStandStamina);
-        RaiseLocalEvent(entity, ref ev);
-
-        if (!Stamina.TryTakeStamina(entity, ev.Stamina, entity.Comp, visual: true))
-        {
-            _popup.PopupClient(Loc.GetString("knockdown-component-pushup-failure"), entity, entity, PopupType.MediumCaution);
-            return false;
-        }
-
-        _popup.PopupClient(Loc.GetString("knockdown-component-pushup-success"), entity, entity);
-        _audio.PlayPredicted(entity.Comp.ForceStandSuccessSound, entity.Owner, entity.Owner, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
-
-        return true;
-    }
-
-    /// <summary>
-    ///     Checks if standing would cause us to collide with something and potentially get stuck.
-    ///     Returns true if we will collide with something, and false if we will not.
-    /// </summary>
-    private bool IntersectingStandingColliders(Entity<TransformComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return false;
-
-        var intersecting = _physics.GetEntitiesIntersectingBody(entity, StandingStateSystem.StandingCollisionLayer, false);
-
-        if (intersecting.Count == 0)
-            return false;
-
-        var fixtureQuery = GetEntityQuery<FixturesComponent>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-
-        var ourAABB = _entityLookup.GetAABBNoContainer(entity, entity.Comp.LocalPosition, entity.Comp.LocalRotation);
-
-        foreach (var ent in intersecting)
-        {
-            if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
-                continue;
-
-            if (!xformQuery.TryComp(ent, out var xformComp))
-                continue;
-
-            var xform = new Transform(xformComp.LocalPosition, xformComp.LocalRotation);
-
-            foreach (var fixture in fixtures.Fixtures.Values)
-            {
-                if (!fixture.Hard || (fixture.CollisionMask & StandingStateSystem.StandingCollisionLayer) != StandingStateSystem.StandingCollisionLayer)
-                    continue;
-
-                for (var i = 0; i < fixture.Shape.ChildCount; i++)
-                {
-                    var intersection = fixture.Shape.ComputeAABB(xform, i).IntersectPercentage(ourAABB);
-                    if (intersection > 0.1f)
-                        return true;
-                }
-            }
-        }
-
-        return false;
+        _standing.TryStandUp(user);
     }
 
     #endregion
@@ -462,25 +309,6 @@ public abstract partial class SharedStunSystem
     {
         if (args.User == entity && entity.Comp.NextUpdate > GameTiming.CurTime)
             args.Cancelled = true;
-    }
-
-    #endregion
-
-    #region DoAfter
-
-    private void OnStandDoAfter(Entity<KnockedDownComponent> entity, ref TryStandDoAfterEvent args)
-    {
-        entity.Comp.DoAfterId = null;
-
-        if (args.Cancelled || StandingBlocked(entity))
-        {
-            DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.DoAfterId));
-            return;
-        }
-
-        RemComp<KnockedDownComponent>(entity);
-
-        _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(entity):user} has stood up from knockdown.");
     }
 
     #endregion

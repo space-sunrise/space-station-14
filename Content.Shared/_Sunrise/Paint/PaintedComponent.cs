@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Paint;
 /// Component applied to target entity when painted.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class PaintedComponent : Component
+public sealed partial class SprayPaintedComponent : Component
 {
     /// <summary>
     ///  Color of the paint.

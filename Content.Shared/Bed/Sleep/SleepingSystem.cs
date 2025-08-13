@@ -18,6 +18,7 @@ using Content.Shared.Slippery;
 using Content.Shared.Sound;
 using Content.Shared.Sound.Components;
 using Content.Shared.Speech;
+using Content.Shared.Standing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Traits.Assorted;
@@ -40,6 +41,7 @@ public sealed partial class SleepingSystem : EntitySystem
     [Dependency] private readonly SharedEmitSoundSystem _emitSound = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
 
     public static readonly EntProtoId SleepActionId = "ActionSleep";
     public static readonly EntProtoId WakeActionId = "ActionWake";
@@ -129,7 +131,7 @@ public sealed partial class SleepingSystem : EntitySystem
         }
 
         _stun.TryUnstun(ent.Owner);
-        _stun.TryStanding(ent.Owner);
+        _standing.TryStandUp(ent.Owner);
 
         RemComp<SpamEmitSoundComponent>(ent);
     }
