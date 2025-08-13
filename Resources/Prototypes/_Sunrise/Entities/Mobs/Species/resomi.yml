@@ -1,10 +1,11 @@
 - type: entity
   save: false
   name: Urist McRaptor
-  parent: BaseMobSpeciesOrganic
+  parent: [ BaseMobSpeciesOrganic, BaseSpeciesPickupable ]
   id: BaseMobResomi
   abstract: true
   components:
+  - type: Interactions
   - type: Absorbable
   - type: ResomiSkill
   - type: DamageVisuals

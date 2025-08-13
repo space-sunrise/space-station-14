@@ -2,12 +2,15 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Sunrise.Nesting;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class NestingMobComponent : Component
 {
     [DataField]
-    public TimeSpan DoAfter = TimeSpan.FromSeconds(5.0);
+    public float DefaultDoAfterLength = 3.0f;
 
-    [ViewVariables]
+    [DataField]
+    public float DeadDoAfterLength = 1.0f;
+
+    [DataField, AutoNetworkedField]
     public bool InContainer;
 }
