@@ -96,8 +96,6 @@
   - type: Vocalizer
   - type: DatasetVocalizer
     dataset: ATMAds
-    minimumWait: 120
-    maximumWait: 240
   - type: SpeakOnUIClosed
     pack: BlockGameGoodbyes
   - type: Damageable

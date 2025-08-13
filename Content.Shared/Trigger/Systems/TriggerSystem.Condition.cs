@@ -1,6 +1,9 @@
-﻿using Content.Shared.Random.Helpers;
+﻿using Content.Shared.Projectiles;
+using Content.Shared.Random.Helpers;
+using Content.Shared.Trigger.Components;
 using Content.Shared.Trigger.Components.Conditions;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Trigger.Systems;
@@ -17,7 +20,16 @@ public sealed partial class TriggerSystem
         SubscribeLocalEvent<ToggleTriggerConditionComponent, GetVerbsEvent<AlternativeVerb>>(OnToggleGetAltVerbs);
 
         SubscribeLocalEvent<RandomChanceTriggerConditionComponent, AttemptTriggerEvent>(OnRandomChanceTriggerAttempt);
+        SubscribeLocalEvent<StartTimerOnShootComponent, ProjectileShotEvent>(StartTimerOnShoot); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void StartTimerOnShoot(EntityUid uid, StartTimerOnShootComponent component, ProjectileShotEvent args)
+    {
+        if (TryComp<ProjectileComponent>(uid, out var projectile))
+            ActivateTimerTrigger(uid, projectile.Shooter);
+    }
+    // Sunrise-End
 
     private void OnWhitelistTriggerAttempt(Entity<WhitelistTriggerConditionComponent> ent, ref AttemptTriggerEvent args)
     {

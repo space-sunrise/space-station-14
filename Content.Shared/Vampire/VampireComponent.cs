@@ -17,13 +17,8 @@ namespace Content.Shared.Vampire.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class VampireComponent : Component
 {
-    //Static prototype references
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    public static readonly string SleepStatusEffectProto = "ForcedSleep";
-    [ValidatePrototypeId<EmotePrototype>]
-    public static readonly string ScreamEmoteProto = "Scream";
-    [ValidatePrototypeId<CurrencyPrototype>]
-    public static readonly string CurrencyProto = "BloodEssence";
+    public static ProtoId<EmotePrototype> ScreamEmoteProto = "Scream";
+    public static ProtoId<CurrencyPrototype> CurrencyProto = "BloodEssence";
 
     [ViewVariables(VVAccess.ReadOnly), DataField("defaultMutation")]
     public VampireMutationsType DefaultMutation = VampireMutationsType.None;
@@ -67,7 +62,7 @@ public sealed partial class VampireComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? MutationsAction;
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     public bool BloodScaleActive { get; set; }
 

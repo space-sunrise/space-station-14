@@ -149,3 +149,6 @@ construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
 
 # clothing
 construction-graph-tag-backpack = backpack
+
+construction-graph-tag-paper = paper
+construction-graph-tag-matchstick = matchstick

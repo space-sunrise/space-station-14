@@ -1,6 +1,5 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Bed.Sleep;
-using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
 using System.Numerics;
 
@@ -8,10 +7,7 @@ namespace Content.Server.Traits.Assorted;
 
 public sealed class SleepySystem : EntitySystem
 {
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    private const string StatusEffectKey = "ForcedSleep"; // Same one used by N2O and other sleep chems.
-
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
@@ -61,8 +57,7 @@ public sealed class SleepySystem : EntitySystem
             // Make sure the sleep time doesn't cut into the time to next incident.
             narcolepsy.NextIncidentTime += duration;
 
-            _statusEffects.TryAddStatusEffect<SleepingComponent>(uid, StatusEffectKey,
-                TimeSpan.FromSeconds(duration), false);
+            _statusEffects.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(duration));
         }
     }
 }

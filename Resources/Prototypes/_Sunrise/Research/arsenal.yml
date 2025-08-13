@@ -159,8 +159,8 @@
   - Security
 
 - type: technology
-  id: Advanced Laser Manipulation
-  name: research-technology-advance-laser #
+  id: AdvancedLaserManipulation
+  name: research-technology-advance-laser
   icon:
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
     state: icon
