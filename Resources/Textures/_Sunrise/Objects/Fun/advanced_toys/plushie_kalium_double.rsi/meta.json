@@ -11,7 +11,7 @@
         "name": "plushie-kalium"
       },
       {
-        "name": "potasium-unshaded",
+        "name": "potasium-double-unshaded",
         "delays": [
           [
             0.1,
@@ -28,7 +28,7 @@
         ]
       },
       {
-        "name": "potasium_shaded"
+        "name": "potasium-double-shaded"
       },
       {
         "name": "kalium-inhand-left",
