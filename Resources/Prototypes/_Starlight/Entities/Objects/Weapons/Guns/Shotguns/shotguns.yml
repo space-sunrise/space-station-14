@@ -181,7 +181,7 @@
     spread: 20
     fireRate: 3
     burstFireRate: 4
-    burstCooldown: 1
+    burstCooldown: 0.5
     selectedMode: Burst
     shotsPerBurst: 3
     availableModes:

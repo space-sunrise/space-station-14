@@ -279,8 +279,8 @@
     sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 5 # Sunrise-Edit
+    pvsIncrease: 0.5 # Sunrise-Edit
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
