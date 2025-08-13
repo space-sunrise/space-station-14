@@ -104,7 +104,7 @@ public sealed partial class PrinterDocMenu : DefaultWindow
         var allowedComponents = new[]
         {
             "Centcom", "Command", "Engineering", "Justice", "Medical", "Science",
-            "Security", "Service", "Supply", "Syndicate", "General"
+            "Security", "Service", "Supply", "Syndicate", "General", "Prison"
         };
 
         var usedComponents = _protoManager
