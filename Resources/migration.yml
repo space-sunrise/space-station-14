@@ -805,10 +805,17 @@ CrateArmoryMagazineBoxLightRifleBig: null
 CrateArmoryMagazineBoxRifleBig: null
 CrateArmoryM16A4: null
 CrateArmoryMP7: null
+WeaponShotgunPaladin12: null
+GunSafeShotgunPaladin: null
+WeaponXM1014: null
+WeaponShotgunZauer: null
+HandheldCamera: null # Не надо маппить, оно есть в автоматах
 GrenadeBlast: GrenadeBlastTimer
 GrenadeEMP: GrenadeEMPTimer
 GrenadeFlash: GrenadeFlashTimer
 GrenadeFrag: GrenadeFragTimer
+WeaponEnergyGunMini: WeaponMiniEnergyGun
+# SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
 MagazineBoxPistol: MagazineBoxPistolSP
@@ -819,5 +826,4 @@ MagazineRifle: MagazineRifleSP
 MagazineBoxMagnum: MagazineBoxMagnumSP
 SpeedLoaderMagnum: SpeedLoaderMagnumSP
 MagazineBoxRifle: MagazineBoxRifleSP
-BaseCartridgeLightRifle: BaseCartridgeLightRifleSP
 # Sunrise-End

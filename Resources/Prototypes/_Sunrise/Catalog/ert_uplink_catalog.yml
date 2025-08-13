@@ -153,7 +153,7 @@
 - type: listing
   id: ERTUplinkWeaponShotgunZauer
   name: ntuplink-gun-bundlezauer-name
-  productEntity: ClothingBackpackDuffelWeaponShotgunZauerFilled
+  productEntity: ClothingBackpackDuffelWeaponShotgunCycler
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: zauer }
   cost:
     Bluecrystal: 20
@@ -174,19 +174,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
-
-# - type: listing
-#   id: ERTUplinkWeaponXM1014
-#   name: ntuplink-gun-bundlexm1014-name
-#   productEntity: ClothingBackpackDuffelWeaponXM1014Filled
-#   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: xm1014 }
-#   cost:
-#     Bluecrystal: 10
-#   categories:
-#   - NTAutoGun
-#   conditions:
-#   - !type:ListingLimitedStockCondition
-#     stock: 5
 
 - type: listing
   id: ERTUplinkWeaponShotgun12
@@ -323,17 +310,17 @@
   - !type:ListingLimitedStockCondition
     stock: 4
 
-- type: listing
-  id: ERTUplinkWeaponEnergyGunPistolSecurity
-  productEntity: WeaponEnergyGunPistolSecurity
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun-psec }
-  cost:
-    Bluecrystal: 4
-  categories:
-  - NTPistols
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
+# - type: listing
+#   id: ERTUplinkWeaponEnergyGunPistolSecurity
+#   productEntity: WeaponEnergyGunPistolSecurity
+#   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun-psec }
+#   cost:
+#     Bluecrystal: 4
+#   categories:
+#   - NTPistols
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 4
 
 - type: listing
   id: ERTUplinkWeaponPistolN1984

@@ -163,14 +163,21 @@
     - MK58GoldBox
 
 - type: loadout
-  id: WeaponEnergyGunPistolSecurity
-  startingGear: WeaponEnergyGunPistolSecurity
+  id: WeaponDominator
+  startingGear: WeaponDominator
 
 - type: startingGear
-  id: WeaponEnergyGunPistolSecurity
+  id: WeaponDominator
   storage:
     back:
-    - WeaponEnergyGunPistolSecurity
+    - WeaponDominator
+
+
+- type: startingGear
+  id: WeaponMiniEnergyGun
+  storage:
+    back:
+    - WeaponMiniEnergyGun
 
 - type: loadout
   id: WeaponDisabler

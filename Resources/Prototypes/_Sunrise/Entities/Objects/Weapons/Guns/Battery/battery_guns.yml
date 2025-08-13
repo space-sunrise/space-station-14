@@ -293,50 +293,70 @@
 
 - type: entity
   name: miniature energy gun
-  parent: BaseWeaponBatterySmall
-  id: WeaponEnergyGunMini
-  description: A light version of the Energy gun with a smaller capacity.
+  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  id: WeaponMiniEnergyGun
+  description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/mini_energygun.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+    - state: base-overlay
       shader: unshaded
-    - state: disable
-      map: ["enum.FireModesLayers.FireMode"]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/mini_energygun.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: Battery
-    maxCharge: 600
-    startingCharge: 600
+      visible: false
+      map: [ "light" ]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
   - type: HitscanBatteryAmmoProvider
     proto: DisablerBolt
-    fireCost: 50
+    fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
-      fireCost: 50
-      name: energy-gun-disable
-      visualState: disable
-      heldPrefix: disable
-    - proto: RedLaserBeam
       fireCost: 100
-      name: energy-gun-lethal
-      visualState: lethal
-      heldPrefix: lethal
+    - proto: RedLaserBeam
+      fireCost: 175
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
   - type: MagazineVisuals
     magState: mag
-    steps: 5
-    zeroVisible: false
+    steps: 4
+    zeroVisible: true
+  # - type: PointLight
+  #   enabled: false
+  #   mask: /Textures/Effects/LightMasks/cone.png
+  #   autoRot: true
+  #   radius: 6
+  #   netsync: false
   - type: Appearance
+  # - type: HandheldLight # Sunrise-TODO: Fix this
+  #   needsCharge: false
+  #   addPrefix: false
+  #   wattage: 0.2
+  #   blinkingBehaviourId: blinking
+  #   radiatingBehaviourId: radiating
+  # - type: LightBehaviour
+  #   behaviours:
+  #   - !type:FadeBehaviour
+  #     id: radiating
+  #     maxDuration: 2.0
+  #     startValue: 3.0
+  #     endValue: 2.0
+  #     isLooped: true
+  #     reverseWhenFinished: true
+  #   - !type:PulseBehaviour
+  #     id: blinking
+  #     interpolate: Nearest
+  #     maxDuration: 1.0
+  #     minValue: 0.1
+  #     maxValue: 2.0
+  #     isLooped: true
+  # - type: ToggleableLightVisuals
+  #   spriteLayer: light
 
 - type: entity
   name: PDW-9 Energy Pistol
@@ -1074,6 +1094,8 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: -2,-5
   - type: MagazineVisuals
     magState: stun
     steps: 5
@@ -1124,6 +1146,8 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    size: Large
   - type: MagazineVisuals
     magState: stun
     steps: 5
@@ -1185,7 +1209,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,4,1
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 2
@@ -1242,7 +1266,9 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
   - type: Item
-    size: Ginormous
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 1.5

@@ -17,7 +17,14 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunWieldBonus # Sunrise-start
+    minAngle: -20
+    maxAngle: -30
   - type: Gun
+    minAngle: 23
+    maxAngle: 90
+    angleIncrease: 1.75
+    angleDecay: 15  # Sunrise-end
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -277,8 +284,8 @@
     sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 5 # Sunrise-Edit
+    pvsIncrease: 0.5 # Sunrise-Edit
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

@@ -60,7 +60,7 @@
       Structural: 226
   staminaDamage: 35
   armorPenetration: 0.35
-  pierceChance: 0.80
+  pierceChance: 0.95
   pierceLevel: Rock
   ricochetChance: 0.95
   steps: 20
@@ -694,18 +694,6 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: slug
 
-# - type: hitscan # Нигде не используется
-#   id: PelletShotgunFlareTrace
-#   parent: BulletTrace
-#   damage:
-#     types:
-#       Piercing: 28
-#   pierceChance: 0.08
-#   bullet:
-#     sprite:
-#       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-#       state: slug
-
 - type: hitscan
   id: PelletShotgunSpreadTrace
   parent: BulletTrace
@@ -757,8 +745,9 @@
     types:
       Piercing: 2
       Slash: 2
-  pierceChance: 0
-  count: 14
+  pierceChance: 0.01
+  ricochetChance: 0.05
+  count: 18
   spread: 45
   bullet:
     sprite:
@@ -780,6 +769,64 @@
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: depleted-uranium
+
+#### shotgun improvised Sunrise
+- type: hitscan
+  id: PelletShotgunImprovisedIncendiarySpreadTrace
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 1
+      Slash: 1
+      Heat: 3
+  staminaDamage: 3
+  pierceChance: 0.02
+  ricochetChance: 0.05
+  igniteOnCollision: true
+  count: 16
+  spread: 45
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      scale: 0.85,0.85
+      state: buckshot-flare
+
+- type: hitscan
+  id: PelletShotgunImprovisedUraniumSpreadTrace
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 1
+      Slash: 1
+      Radiation: 2
+  staminaDamage: 3
+  pierceChance: 0.05
+  ricochetChance: 0.05
+  pierceLevel: HardenedMetal
+  count: 14
+  spread: 45
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: depleted-uranium
+
+- type: hitscan
+  id: PelletShotgunCoinSpreadTrace
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 20
+  staminaDamage: 8
+  pierceChance: 0.15
+  armorPenetration: 0.35
+  ricochetChance: 0.25
+  pierceLevel: Metal
+  count: 2
+  spread: 8
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: coinstack
 
 ## energy
 

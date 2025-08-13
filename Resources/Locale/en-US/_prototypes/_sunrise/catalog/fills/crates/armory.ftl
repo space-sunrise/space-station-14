@@ -1,7 +1,5 @@
 ent-CrateArmoryShotgunTrenchgun4034Sawn = Trenchgun4034 crate
     .desc = Contains three Trenchgun4034 with three Bandolier. Requires Armory access to open.
-ent-CrateArmoryWeaponXM1014 = Combat Shotgun crate
-    .desc = Contains three XM1014 with three Bandolier. Requires Armory access to open.
 ent-CrateArmoryShotgunAmmo = Shotgun Ammo crate
     .desc = Contains four Box Shotgun ammo. Requires Armory access to open.
 ent-CrateArmoryAKMS = AKMS crate
@@ -10,6 +8,8 @@ ent-CrateArmoryMP5 = MP5 crate
     .desc = Contains two MP5 submachine gun with two mags. Requires Armory access to open.
 ent-CrateArmoryIK30 = IK-30 crate
     .desc = Contains three IK-30 semi laser battery gun. Requires Armory access to open.
+ent-CrateArmoryIK30Magazines = IK-30`s magazine crate
+    .desc = Contains six magazine for semi laser battery gun. Requires Armory access to open.
 ent-CrateArmoryM16A4 = M16A4 crate
     .desc = Contains three M16A4 assault rifle. Requires Armory access to open.
 ent-CrateArmoryMP7 = MP7 crate

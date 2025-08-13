@@ -64,6 +64,25 @@
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
 
 - type: entity
+  parent: BaseWeaponShotgunAny
+  id: BaseWeaponShotgunPump
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 1.5
+    pump: true
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 7
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Shotguns/trenchgun_l4034/trenchgun_l4034_pump.ogg
+
+- type: entity
   name: Bulldog
   # Don't parent to BaseWeaponShotgun because it differs significantly
   parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband]
@@ -134,8 +153,6 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 3
-    soundGunshot:
-      collection: m3 # Sunrise-Edit
   - type: GunSpreadModifier
     spread: 0.6
   - type: BallisticAmmoProvider
@@ -172,7 +189,6 @@
   - type: Gun
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
-    pump: true # Sunrise-Edit
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -187,10 +203,9 @@
 
 - type: entity
   name: Kammerer
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunPump, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunKammerer
   description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
-  categories: [ HideSpawnMenu ]
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
@@ -201,9 +216,6 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 1
-    soundGunshot:
-      collection: m3 # Sunrise-Edit
-    pump: true # Sunrise-Edit
   - type: GunSpreadModifier
     spread: 0.6
   - type: Tag
