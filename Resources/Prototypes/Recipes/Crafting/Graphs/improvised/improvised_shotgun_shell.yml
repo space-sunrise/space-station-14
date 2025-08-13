@@ -24,7 +24,7 @@
         - to: shell
           steps:
             - tag: ShellShotgunEmpty
-              name: construction-graph-step-empty-shotgun-shell
+              name: construction-graph-tag-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty
@@ -107,7 +107,7 @@
               quantity: 5
           steps:
             - tag: ShellShotgunEmpty
-              name: construction-graph-step-empty-shotgun-shell
+              name: construction-graph-tag-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty
@@ -265,7 +265,7 @@
         - to: shell
           steps:
             - tag: ShellShotgunEmpty
-              name: construction-graph-step-empty-shotgun-shell
+              name: construction-graph-tag-empty-shotgun-shell
               icon:
                 sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
                 state: improvised-empty

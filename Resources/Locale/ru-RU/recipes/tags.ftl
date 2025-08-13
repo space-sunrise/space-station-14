@@ -71,7 +71,7 @@ construction-graph-tag-shell-shotgun-improvised-uranium = { ent-ShellShotgunImpr
 construction-graph-tag-shell-shotgun-improvised-uranium-desc = { ent-ShellShotgunImprovisedUranium.desc }
 construction-graph-tag-shell-shotgun-coin = { ent-ShellShotgunCoin }
 construction-graph-tag-shell-shotgun-coin-desc = { ent-ShellShotgunCoin.desc }
-construction-graph-step-empty-shotgun-shell = { ent-ShellShotgunImprovisedEmpty }
+construction-graph-tag-empty-shotgun-shell = { ent-ShellShotgunImprovisedEmpty }
 
 # Клоунские предметы
 construction-graph-tag-purple-crayon = { ent-CrayonPurple }
@@ -124,7 +124,6 @@ construction-graph-tag-upgradeflaregun = { ent-FlareGunSecurityUpgrade }
 construction-graph-tag-upgradedrozd = { ent-DrozdUpgrade }
 construction-graph-tag-upgradelecter = { ent-LecterUpgrade }
 construction-graph-tag-ModularReceiverAuto = { ent-ModularReceiverAuto }
-construction-graph-tag-empty-shotgun-shell = { ent-ShellShotgunEmpty }
 construction-graph-tag-coin = { ent-TreasureCoinIron }
 # Щиты и защита
 construction-graph-tag-strobe-shield = { ent-RiotShield }
