@@ -1119,40 +1119,69 @@
     delay: 1
 
 - type: entity
-  id: PlushieKalium
   parent: BasePlushie
+  id: PlushieKalium
   name: Kalium Fon Dez
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Fun/toys.rsi
-    state: plushie-kalium
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium.rsi
+    layers:
+    - state: icon
+    - state: potasium-unshaded
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: EnergySword
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
   - type: Item
-    heldPrefix: kalium
-  - type: Clothing
-    quickEquip: false
-    sprite: _Sunrise/Objects/Fun/toys.rsi
-    equippedPrefix: kalium
-    slots:
-    - NECK
+    size: Small
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
   - type: UseDelay
-    delay: 1
+    delay: 1.0
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: white
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+  - type: ItemTogglePointLight
+  - type: DisarmMalus
+    malus: 0
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: MeleeWeapon
-    soundHit:
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
       path: /Audio/Weapons/eblade1.ogg
       params:
-        volume: 100
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-  - type: EmitSoundOnCollide
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
