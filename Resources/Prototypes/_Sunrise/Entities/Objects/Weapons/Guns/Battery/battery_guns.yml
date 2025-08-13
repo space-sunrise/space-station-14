@@ -333,30 +333,30 @@
     radius: 6
     netsync: false
   - type: Appearance
-  - type: HandheldLight
-    needsCharge: false
-    addPrefix: false
-    wattage: 0.2
-    blinkingBehaviourId: blinking
-    radiatingBehaviourId: radiating
-  - type: LightBehaviour
-    behaviours:
-    - !type:FadeBehaviour
-      id: radiating
-      maxDuration: 2.0
-      startValue: 3.0
-      endValue: 2.0
-      isLooped: true
-      reverseWhenFinished: true
-    - !type:PulseBehaviour
-      id: blinking
-      interpolate: Nearest
-      maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
-      isLooped: true
-  - type: ToggleableLightVisuals
-    spriteLayer: light
+  # - type: HandheldLight # Sunrise-TODO: Fix this
+  #   needsCharge: false
+  #   addPrefix: false
+  #   wattage: 0.2
+  #   blinkingBehaviourId: blinking
+  #   radiatingBehaviourId: radiating
+  # - type: LightBehaviour
+  #   behaviours:
+  #   - !type:FadeBehaviour
+  #     id: radiating
+  #     maxDuration: 2.0
+  #     startValue: 3.0
+  #     endValue: 2.0
+  #     isLooped: true
+  #     reverseWhenFinished: true
+  #   - !type:PulseBehaviour
+  #     id: blinking
+  #     interpolate: Nearest
+  #     maxDuration: 1.0
+  #     minValue: 0.1
+  #     maxValue: 2.0
+  #     isLooped: true
+  # - type: ToggleableLightVisuals
+  #   spriteLayer: light
 
 - type: entity
   name: PDW-9 Energy Pistol

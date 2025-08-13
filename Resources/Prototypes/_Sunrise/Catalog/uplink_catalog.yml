@@ -648,7 +648,7 @@
   id: UplinkHardsuitInfiltration
   name: uplink-hardsuit-infiltration-name
   description: uplink-hardsuit-infiltration-desc
-  icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
+  icon: { sprite: /Textures/_Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
   discountCategory: veryRareDiscounts
   discountDownTo:

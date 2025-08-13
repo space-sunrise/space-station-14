@@ -71,6 +71,7 @@ construction-graph-tag-shell-shotgun-improvised-uranium = { ent-ShellShotgunImpr
 construction-graph-tag-shell-shotgun-improvised-uranium-desc = { ent-ShellShotgunImprovisedUranium.desc }
 construction-graph-tag-shell-shotgun-coin = { ent-ShellShotgunCoin }
 construction-graph-tag-shell-shotgun-coin-desc = { ent-ShellShotgunCoin.desc }
+construction-graph-step-empty-shotgun-shell = { ent-ShellShotgunImprovisedEmpty }
 
 # Клоунские предметы
 construction-graph-tag-purple-crayon = { ent-CrayonPurple }

@@ -806,6 +806,7 @@ CrateArmoryMagazineBoxRifleBig: null
 CrateArmoryM16A4: null
 CrateArmoryMP7: null
 WeaponShotgunPaladin12: null
+GunSafeShotgunPaladin: null
 WeaponXM1014: null
 WeaponShotgunZauer: null
 HandheldCamera: null # Не надо маппить, оно есть в автоматах

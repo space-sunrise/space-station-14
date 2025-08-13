@@ -138,7 +138,7 @@
     - type: StorageFill
       contents:
         - id: WeaponShotgunCycler
-        - id: SpeedLoaderShotgun
+        - id: SpeedLoaderShellShotgun
           amount: 4
         - id: SpeedLoaderShotgunSlug
           amount: 2

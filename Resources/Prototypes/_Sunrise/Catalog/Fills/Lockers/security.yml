@@ -76,21 +76,6 @@
 
 - type: entity
   parent: GunSafe
-  id: GunSafeShotgunPaladin
-  name: safe
-  suffix: Paladin 12
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunPaladin12
-      amount: 2
-    - id: BoxLethalshot
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-
-- type: entity
-  parent: GunSafe
   id: GunSafeShotgunTrenchgun4034
   name: safe
   suffix: Trenchgun 4034
