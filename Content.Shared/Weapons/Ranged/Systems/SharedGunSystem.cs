@@ -75,7 +75,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -291,7 +290,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.ShootCoordinates = toCoordinates;
         AttemptShoot(user, gunUid, gun);
         gun.ShotCounter = 0;
-        gun.Target = target;
+        if (target.HasValue)
+            gun.Targets = new HashSet<EntityUid>{target.Value};
         DirtyField(gunUid, gun, nameof(GunComponent.ShotCounter));
     }
 

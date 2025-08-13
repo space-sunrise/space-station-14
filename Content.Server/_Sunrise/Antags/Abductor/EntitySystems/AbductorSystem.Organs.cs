@@ -30,8 +30,6 @@ using Content.Server.Speech.Components;
 using Content.Server.Humanoid;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Coordinates;
-using Discord.Rest;
-using Content.Shared._Sunrise.Felinid;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -136,7 +134,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             case AbductorOrganType.Owo:
                 if (curTime > victim.TransformationTime)
                 {
-                    if (HasComp<FelinidComponent>(uid))
+                    if (HasComp<OwOAccentComponent>(uid))
                         return;
                     EnsureComp<AbductorOwoTransformatedComponent>(uid);
                     _popup.PopupEntity(Loc.GetString("owo-organ-transformation"), uid, PopupType.LargeCaution);

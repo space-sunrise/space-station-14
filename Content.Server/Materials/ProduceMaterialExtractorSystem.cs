@@ -69,8 +69,8 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
 
         if (changed == 0)
         {
-            _popup.PopupEntity(Loc.GetString("material-extractor-comp-wrongreagent", ("used", args.Used)), args.User, args.User);
-            return;
+            _popup.PopupEntity(Loc.GetString("material-extractor-comp-wrongreagent", ("used", used)), ent);
+            return false;
         }
 
         _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.ExtractedMaterial, changed);

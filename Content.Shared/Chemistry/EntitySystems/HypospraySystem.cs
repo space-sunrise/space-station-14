@@ -16,12 +16,6 @@ using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
-using Content.Server.Interaction;
-using Content.Server.Body.Components;
-using Robust.Shared.GameStates;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Robust.Server.Audio;
 // Sunrise-Start
 using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Reagent;
@@ -119,7 +113,7 @@ public sealed class HypospraySystem : EntitySystem
     {
         // if target is ineligible but is a container, try to draw from the container if allowed
         if (entity.Comp.CanContainerDraw
-            && !EligibleEntity(target, EntityManager, entity)
+            && !EligibleEntity(target, entity.Comp)
             && _solutionContainers.TryGetDrawableSolution(target, out var drawableSolution, out _))
         {
             return TryDraw(entity, target, drawableSolution.Value, user);
@@ -205,18 +199,6 @@ public sealed class HypospraySystem : EntitySystem
         else if (target == user)
             msgFormat = "hypospray-component-inject-self-message";
 
-        if (!_solutionContainers.TryGetSolution(uid, component.SolutionName, out var hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
-        {
-            _popup.PopupClient(Loc.GetString("hypospray-component-empty-message"), target, user);
-            return true;
-        }
-
-        if (!_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
-        {
-            _popup.PopupClient(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
-            return false;
-        }
-
         // Sunrise-Start
         if (!InjectionFailureCheck(entity, target, user, out var hypoSpraySoln, out var targetSoln, out var targetSolution, out var returnValue)
             || hypoSpraySoln == null
@@ -301,7 +283,7 @@ public sealed class HypospraySystem : EntitySystem
             }
         }
 
-        var removedSolution = _solutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
+        var removedSolution = _solutionContainers.Draw(target, targetSolution, realTransferAmount);
         // Sunrise-End
 
         if (!_solutionContainers.TryAddSolution(soln.Value, removedSolution))

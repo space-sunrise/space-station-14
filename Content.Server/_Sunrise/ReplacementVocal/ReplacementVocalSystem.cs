@@ -31,7 +31,10 @@ public sealed class ReplacementVocalSystem : EntitySystem
 
         LoadEmotes(uid, vocalComponent);
 
-        foreach (var emote in vocalComponent.EmoteSounds!.Sounds.Keys)
+        if (!_proto.TryIndex(vocalComponent.EmoteSounds, out var soundIndex))
+            return;
+
+        foreach (var emote in soundIndex.Sounds.Keys)
         {
             if (speechComponent.AllowedEmotes.Contains(emote))
                 continue;

@@ -39,6 +39,7 @@ public abstract partial class SharedStunSystem : EntitySystem
     [Dependency] protected readonly SharedDoAfterSystem DoAfter = default!;
     [Dependency] protected readonly SharedStaminaSystem Stamina = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -218,7 +219,7 @@ public abstract partial class SharedStunSystem : EntitySystem
             if (drop)
             {
                 var ev = new DropHandItemsEvent();
-                RaiseLocalEvent(entity, ref ev);
+                RaiseLocalEvent(entity, ev);
             }
 
             // Only update Autostand value if it's our first time being knocked down...

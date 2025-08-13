@@ -5,11 +5,10 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
 using static Robust.Client.GameObjects.SpriteComponent;
-using PaintedComponent = Content.Shared._Sunrise.Paint.PaintedComponent;
 
 namespace Content.Client._Sunrise.Paint
 {
-    public sealed class PaintedVisualizerSystem : VisualizerSystem<PaintedComponent>
+    public sealed class PaintedVisualizerSystem : VisualizerSystem<SprayPaintedComponent>
     {
         /// <summary>
         /// Visualizer for Paint which applies a shader and colors the entity.
@@ -24,12 +23,12 @@ namespace Content.Client._Sunrise.Paint
         {
             base.Initialize();
 
-            SubscribeLocalEvent<PaintedComponent, HeldVisualsUpdatedEvent>(OnHeldVisualsUpdated);
-            SubscribeLocalEvent<PaintedComponent, ComponentShutdown>(OnShutdown);
-            SubscribeLocalEvent<PaintedComponent, EquipmentVisualsUpdatedEvent>(OnEquipmentVisualsUpdated);
+            SubscribeLocalEvent<SprayPaintedComponent, HeldVisualsUpdatedEvent>(OnHeldVisualsUpdated);
+            SubscribeLocalEvent<SprayPaintedComponent, ComponentShutdown>(OnShutdown);
+            SubscribeLocalEvent<SprayPaintedComponent, EquipmentVisualsUpdatedEvent>(OnEquipmentVisualsUpdated);
         }
 
-        protected override void OnAppearanceChange(EntityUid uid, PaintedComponent component, ref AppearanceChangeEvent args)
+        protected override void OnAppearanceChange(EntityUid uid, SprayPaintedComponent component, ref AppearanceChangeEvent args)
         {
             // ShaderPrototype sadly in Robust.Client, cannot move to shared component.
             Shader = _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance();
@@ -56,7 +55,7 @@ namespace Content.Client._Sunrise.Paint
             }
         }
 
-        private void OnHeldVisualsUpdated(EntityUid uid, PaintedComponent component, HeldVisualsUpdatedEvent args)
+        private void OnHeldVisualsUpdated(EntityUid uid, SprayPaintedComponent component, HeldVisualsUpdatedEvent args)
         {
             if (args.RevealedLayers.Count == 0)
                 return;
@@ -74,7 +73,7 @@ namespace Content.Client._Sunrise.Paint
             }
         }
 
-        private void OnEquipmentVisualsUpdated(EntityUid uid, PaintedComponent component, EquipmentVisualsUpdatedEvent args)
+        private void OnEquipmentVisualsUpdated(EntityUid uid, SprayPaintedComponent component, EquipmentVisualsUpdatedEvent args)
         {
             if (args.RevealedLayers.Count == 0)
                 return;
@@ -92,7 +91,7 @@ namespace Content.Client._Sunrise.Paint
             }
         }
 
-        private void OnShutdown(EntityUid uid, PaintedComponent component, ref ComponentShutdown args)
+        private void OnShutdown(EntityUid uid, SprayPaintedComponent component, ref ComponentShutdown args)
         {
             if (!TryComp(uid, out SpriteComponent? sprite))
                 return;
