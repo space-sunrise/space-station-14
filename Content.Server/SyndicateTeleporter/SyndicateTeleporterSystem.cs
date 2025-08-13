@@ -86,7 +86,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
         Spawn(TeleportEffectPrototype, Transform(user).Coordinates);
 
-        var tile = coords.GetTileRef(EntityManager, _mapMan); // get info about place where we just teleported. theare a walls?
+        var tile = _turf.GetTileRef(coords); // get info about place where we just teleported. theare a walls?
         if (tile == null)
             return;
 
@@ -104,7 +104,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         var offsetValue = Transform(comp.UserComp).LocalPosition;
         var coords = transform.Coordinates.WithPosition(offsetValue);
 
-        var tile = coords.GetTileRef(EntityManager, _mapMan);
+        var tile = _turf.GetTileRef(coords);
         if (tile == null)
             return;
 
@@ -138,7 +138,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
                 break;
             }
 
-            tile = coords.GetTileRef(EntityManager, _mapMan);
+            tile = _turf.GetTileRef(coords);
             if (tile == null)
             {
                 return;

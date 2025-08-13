@@ -5,6 +5,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization.Systems;
 
 namespace Content.Server._Sunrise.GridDock;
@@ -36,7 +37,10 @@ public sealed class GridDockSystem : EntitySystem
         if (!TryComp<ShuttleComponent>(rootUid.Value.Owner, out var shuttleComp))
             return;
 
-        var target = _station.GetLargestGrid(Comp<StationDataComponent>(uid));
+        if (!TryComp<StationDataComponent>(uid, out var stationData))
+            return;
+
+        var target = _station.GetLargestGrid((uid, stationData));
 
         if (target == null)
         {

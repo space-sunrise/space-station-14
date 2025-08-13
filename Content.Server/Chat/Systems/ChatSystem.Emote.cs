@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using Content.Server.Popups;
+using Content.Shared._Sunrise.Animations;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Emoting;
@@ -13,8 +14,6 @@ namespace Content.Server.Chat.Systems;
 // emotes using emote prototype
 public partial class ChatSystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-
     private FrozenDictionary<string, EmotePrototype> _wordEmoteDict = FrozenDictionary<string, EmotePrototype>.Empty;
 
     protected override void OnPrototypeReload(PrototypesReloadedEventArgs obj)
@@ -104,7 +103,7 @@ public partial class ChatSystem
             var ev = new AnimationEmoteAttemptEvent(source, emote);
             RaiseLocalEvent(source, ev, true);
             if (ev.Cancelled)
-                return;
+                return false;
         }
         // Sunrise-End
 

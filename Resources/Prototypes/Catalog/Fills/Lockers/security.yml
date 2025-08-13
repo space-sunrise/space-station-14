@@ -169,7 +169,7 @@
     - id: HoloprojectorSecurity
     - id: BoxEvidenceMarkers
     - id: HandLabeler
-      - id: PortableSurveillanceCameraMonitor # Sunrise-edit
+    - id: PortableSurveillanceCameraMonitor # Sunrise-edit
 
 - type: entity
   id: ClosetBombFilled

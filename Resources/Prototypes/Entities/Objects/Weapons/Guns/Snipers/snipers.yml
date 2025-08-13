@@ -113,21 +113,9 @@
   - type: StaticPrice
     price: 500
   # Sunrise start
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Piercing: 15
-        Bloodloss: 2
-    angle: 0
-    animation: WeaponArcThrust
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
   - type: Gun
     pump: true
     fireRate: 1
-  - type: AltFireMelee
-    attackType: Heavy
   # Sunrise end
 
 - type: entity

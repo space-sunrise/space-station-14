@@ -52,6 +52,7 @@ using Content.Shared.Pinpointer;
 using Robust.Server.GameObjects;
 using System.Collections.Generic;
 using Content.Server.PowerCell;
+using Content.Shared.Body.Components;
 using Content.Shared.Cargo;
 
 namespace Content.Server.Weapons.Ranged.Systems;
@@ -310,11 +311,9 @@ public sealed partial class GunSystem : SharedGunSystem
 
                         if (TryComp<StatusEffectsComponent>(hitEntity, out var status))
                         {
-                            _stunSystem.TryStun(hitEntity, TimeSpan.FromSeconds(hitscan.StunAmount), true, status);
+                            _stunSystem.TryAddParalyzeDuration(hitEntity, TimeSpan.FromSeconds(hitscan.StunAmount));
 
-                            _stunSystem.TryKnockdown(hitEntity, TimeSpan.FromSeconds(hitscan.KnockdownAmount), true, status: status);
-
-                            _stunSystem.TrySlowdown(hitEntity, TimeSpan.FromSeconds(hitscan.SlowdownAmount), true, hitscan.WalkSpeedMultiplier, hitscan.RunSpeedMultiplier, status);
+                            _stunSystem.TryKnockdown(hitEntity, TimeSpan.FromSeconds(hitscan.KnockdownAmount), true);
                         }
 
                         if (hitscan.Ignite)

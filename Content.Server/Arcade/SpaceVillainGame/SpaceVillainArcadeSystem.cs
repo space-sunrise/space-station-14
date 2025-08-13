@@ -4,7 +4,6 @@ using Content.Server.Advertise.EntitySystems;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Arcade;
 using Content.Server.Advertise;
-using Content.Server.Advertise.Components;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;

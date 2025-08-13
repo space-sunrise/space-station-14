@@ -1,5 +1,5 @@
-using Content.Server._Sunrise.SolutionRegenerationSwitcher;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Shared._Sunrise.SolutionRegenerationSwitcher;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -10,7 +10,7 @@ namespace Content.Shared.Chemistry.Components;
 /// Passively increases a solution's quantity of a reagent.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause, AutoGenerateComponentState, NetworkedComponent]
-[Access(typeof(SolutionRegenerationSystem), typeof(SolutionRegenerationSwitcherSystem))] // Sunrise-Edit
+[Access(typeof(SolutionRegenerationSystem), typeof(SharedSolutionRegenerationSwitcherSystem))] // Sunrise-Edit
 public sealed partial class SolutionRegenerationComponent : Component
 {
     /// <summary>

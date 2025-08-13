@@ -3,6 +3,8 @@ using Content.Server._Sunrise.Speech.Components;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Speech;
+
 namespace Content.Server._Sunrise.Speech.EntitySystems;
 public sealed class TransliterationAccentSystem : EntitySystem
 {
@@ -116,7 +118,7 @@ public sealed class TransliterationAccentSystem : EntitySystem
                 'n' => 'т',
                 'm' => 'ь',
                 ',' => 'б',
-                '`' => 'ё',             
+                '`' => 'ё',
                 'Q' => 'Й',
                 'W' => 'Ц',
                 'E' => 'У',

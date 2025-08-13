@@ -2,12 +2,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using System.Linq;
-using Content.Server.Administration.Logs;
-using Content.Server.Body.Components;
-using Content.Server.Body.Systems;
-using Content.Server.Medical.Components;
-using Content.Server.Popups;
-using Content.Server.Stack;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -221,14 +215,14 @@ public sealed class HealingSystem : EntitySystem
             return false;
 
         // Starlight start
-        if (component.SolutionDrain && TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager))
+        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
         {
             Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(uid, "injector", ref solutionEntity, out var solution))
+            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
             {
-                if (!solution.Contents.Any(sol => component.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", uid)), uid, user);
+                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);
                     return false;
                 }
             }

@@ -1,4 +1,6 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+
+using Content.Shared.Body.Components;
 using Robust.Shared.Configuration;
 namespace Content.Server._Sunrise.Disease;
 using Robust.Shared.Prototypes;
@@ -34,7 +36,7 @@ public sealed class MinimumBleedSystem : EntitySystem
             {
                 if (blood.BleedAmount < component.MinValue)
                 {
-                    _bloodstream.TryModifyBleedAmount(uid, component.MinValue, blood);
+                    _bloodstream.TryModifyBleedAmount((uid, blood), component.MinValue);
                 }
             }
         }
