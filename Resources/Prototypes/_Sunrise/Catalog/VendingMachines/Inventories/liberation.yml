@@ -16,7 +16,6 @@
     WeaponRevolverPirate: 1
     RevolverCapGun: 1
     RevolverCapGunFake: 1
-    #Sunrise
     WeaponRevolverMakeshift: 1
     WeaponRevolverImprovised: 1
     WeaponRevolverForged: 1
@@ -37,7 +36,6 @@
     WeaponSTG44: 1
     WeaponRifleM90GrenadeLauncher: 1
     WeaponRifleLecter: 1
-    #Sunrise
     WeaponRifleM16A4: 1
 
     WeaponShotgunBulldog: 1
@@ -49,7 +47,6 @@
     WeaponShotgunImprovised: 1
     Musket: 1
     WeaponEnergyShotgun: 1
-    #Sunrise
     WeaponShotgunTrenchgun4034: 1
     WeaponShotgunRiot: 1
     WeaponShotgunRiotSawn: 1

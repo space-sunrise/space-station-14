@@ -136,16 +136,20 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: LiberationVendAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
+    # denyState: deny-unshaded
+    soundVend:
+      path: /Audio/_Sunrise/Items/merikayeah.ogg
+      params:
+        volume: 20
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: LiberationVendAds
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/ammo.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
+    - state: "normal-unshaded"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - state: panel
@@ -154,4 +158,4 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock
