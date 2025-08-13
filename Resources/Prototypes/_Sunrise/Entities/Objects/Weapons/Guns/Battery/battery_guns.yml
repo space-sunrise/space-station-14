@@ -530,7 +530,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disable
-    - proto: LaserTrace
+    - proto: RedLaserBeam
       fireCost: 70
       name: energy-gun-lethal
       visualState: lethal
