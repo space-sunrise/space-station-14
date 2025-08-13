@@ -325,7 +325,6 @@
   id: WeaponPDW9
   description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
-  - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pdw9.rsi
     layers:
@@ -357,6 +356,7 @@
       fireCost: 100
       magState: kill
       visualState: kill
+  - type: Appearance
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500

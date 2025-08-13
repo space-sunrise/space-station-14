@@ -326,12 +326,12 @@
     magState: mag
     steps: 4
     zeroVisible: true
-  - type: PointLight
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    radius: 6
-    netsync: false
+  # - type: PointLight
+  #   enabled: false
+  #   mask: /Textures/Effects/LightMasks/cone.png
+  #   autoRot: true
+  #   radius: 6
+  #   netsync: false
   - type: Appearance
   # - type: HandheldLight # Sunrise-TODO: Fix this
   #   needsCharge: false
