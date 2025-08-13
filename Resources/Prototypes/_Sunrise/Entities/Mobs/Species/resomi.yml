@@ -6,7 +6,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: ResomiSkill
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
