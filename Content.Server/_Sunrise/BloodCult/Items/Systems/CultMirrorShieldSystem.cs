@@ -287,7 +287,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
             {
                 if (heldItems.Count == 0 || !HasComp<CultMirrorShieldComponent>(heldItems[0]))
                 {
-                    _hands.TrySetActiveHand(mobUid, hand.Name);
+                    _hands.TrySetActiveHand(mobUid, hand);
                 }
                 if (heldItems.Count != 0)
                 {

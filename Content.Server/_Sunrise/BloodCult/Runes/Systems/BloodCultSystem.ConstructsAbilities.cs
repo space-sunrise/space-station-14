@@ -65,7 +65,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
             }
 
-            var tileRef = transform.Coordinates.GetTileRef();
+            var tileRef = _turf.GetTileRef(transform.Coordinates);
 
             if (!tileRef.HasValue)
             {
@@ -139,7 +139,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             var offsetValue = xform.LocalRotation.ToWorldVec().Normalized();
             var coords = xform.Coordinates.Offset(offsetValue).SnapToGrid(_entityManager);
-            var tile = coords.GetTileRef(_entityManager, _mapMan);
+            var tile = _turf.GetTileRef(coords);
             if (tile == null)
                 return false;
 

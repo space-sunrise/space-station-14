@@ -7,7 +7,6 @@
   components:
   - type: Interactions
   - type: MultiHandedItem
-  - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid

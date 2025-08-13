@@ -10,7 +10,7 @@ namespace Content.Shared.Chemistry.Components;
 /// Passively increases a solution's quantity of a reagent.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause, AutoGenerateComponentState, NetworkedComponent]
-[Access(typeof(SolutionRegenerationSystem), typeof(SolutionRegenerationSwitcherSystem))] // Sunrise-Edit
+[Access(typeof(SolutionRegenerationSystem), typeof(SharedSolutionRegenerationSwitcherSystem))] // Sunrise-Edit
 public sealed partial class SolutionRegenerationComponent : Component
 {
     /// <summary>

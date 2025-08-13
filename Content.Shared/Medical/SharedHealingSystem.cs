@@ -1,6 +1,6 @@
 using System.Linq;
-using Content.Server.Medical.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Medical.Healing;
 
 namespace Content.Shared.Medical;
 

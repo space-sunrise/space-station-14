@@ -13,12 +13,12 @@ namespace Content.Server._Sunrise.ReplacementVocal;
 [RegisterComponent]
 public sealed partial class ReplacementVocalComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(PrototypeIdValueDictionarySerializer<Sex, EmoteSoundsPrototype>), required: true)]
+    [DataField(required: true)]
     public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>> Vocal;
 
     [DataField]
     public HashSet<string> AddedEmotes = new();
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdValueDictionarySerializer<Sex, EmoteSoundsPrototype>))]
+    [DataField]
     public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? PreviousVocal;
 }

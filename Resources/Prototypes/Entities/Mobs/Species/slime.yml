@@ -47,7 +47,6 @@
         type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
-  - type: Absorbable
       # Sunrise-end
   - type: UseDelay
     delay: 0.5

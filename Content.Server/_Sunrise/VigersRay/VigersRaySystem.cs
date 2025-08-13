@@ -15,6 +15,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
+using Content.Shared.Light.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
