@@ -127,6 +127,15 @@
     WeaponIonRifle: 1
     WeaponIonCarbine: 1
     WeaponLaserImmolator: 1
+    WeaponGunLaserCarbineSemi: 1
+    WeaponGunLaserCarbineAutomatic: 1
+    WeaponM1911: 1
+    WeaponPDW9: 1
+    WeaponEnergySniper: 1 #LWAP
+    WeaponANNIHILATOR: 1
+    WeaponToecloner: 1
+    WeaponMiniEnergyCrossbow: 1
+    WeaponEnergyCrossbow: 1
 
     BowImprovised: 1
 
@@ -138,12 +147,30 @@
     WeaponWaterBlaster: 1
     WeaponWaterBlasterSuper: 1
 
-    WeaponGunLaserCarbineSemi: 1
-    WeaponGunLaserCarbineAutomatic: 1
-    WeaponM1911: 1
-    WeaponPDW9: 1
-    WeaponEnergySniper: 1 #LWAP
-    WeaponANNIHILATOR: 1
-    WeaponToecloner: 1
-    WeaponMiniEnergyCrossbow: 1
-    WeaponEnergyCrossbow: 1
+    # Mech Weapons
+    WeaponMechCombatPulseRifle
+    WeaponMechCombatImmolationGun
+    WeaponMechCombatHeavyRifle
+    WeaponMechCombatSolarisLaser
+    WeaponMechCombatFiredartLaser
+    WeaponMechCombatTeslaCannon
+    WeaponMechCombatDisabler
+    WeaponMechCombatTaser
+    WeaponMechCombatShotgun
+    WeaponMechCombatShotgunIncendiary
+    WeaponMechCombatUltraRifle
+    WeaponMechCombatIon
+    WeaponMechCombatAMLG90
+    WeaponMechCombatXray
+    WeaponMechCombatMissileRack8
+    WeaponMechCombatMissileRack6
+    WeaponMechCombatFlashbangLauncher
+    WeaponMechChainSword
+    WeaponMechCombatVindictor
+    WeaponMechCombatMaxim
+    WeaponMechCombatMG
+    WeaponMechCombatPirateCannon
+    WeaponMechCombatPirateGrapeshot
+    WeaponMechCombatPirateGlassshot
+    WeaponMechCombatUVM31
+    WeaponMechCombatDuster

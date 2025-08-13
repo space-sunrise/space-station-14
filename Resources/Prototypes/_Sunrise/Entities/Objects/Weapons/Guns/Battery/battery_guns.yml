@@ -1094,6 +1094,8 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: -2,-5
   - type: MagazineVisuals
     magState: stun
     steps: 5
@@ -1144,6 +1146,8 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    size: Large
   - type: MagazineVisuals
     magState: stun
     steps: 5
@@ -1205,7 +1209,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,4,1
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 2
@@ -1262,7 +1266,9 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
   - type: Item
-    size: Ginormous
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 1.5
