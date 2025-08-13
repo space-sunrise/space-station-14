@@ -1,39 +1,39 @@
 ﻿- type: nameIdentifierGroup
   id: Boris
-  prefix: БОРИС
+  format: name-identifier-format-boris
   minValue: 10
   maxValue: 99
 
 - type: nameIdentifierGroup
   id: Sofia
-  prefix: СОФИЯ
+  format: name-identifier-format-sofia
   minValue: 10
   maxValue: 99
 
 - type: nameIdentifierGroup
   id: SyndieSecRobot
-  prefix: GRX-ATK
+  format: name-identifier-format-syndie-sec-robot
   fullName: true
   minValue: 10000
   maxValue: 99999
 
 - type: nameIdentifierGroup
   id: SyndieMedRobot
-  prefix: GRX-MED
+  format: name-identifier-format-syndie-med-robot
   fullName: true
   minValue: 10000
   maxValue: 99999
 
 - type: nameIdentifierGroup
   id: SyndieReaperRobot
-  prefix: Жнец
+  format: name-identifier-format-syndie-reaper-robot
   minValue: 10000
   maxValue: 99999
 
 - type: nameIdentifierGroup
   id: InferiorVulpkanin
-  prefix: НВ
+  format: name-identifier-format-inferior-vulpkanin
 
 - type: nameIdentifierGroup
   id: Felinid
-  prefix: ФЕ
+  format: name-identifier-format-felinid

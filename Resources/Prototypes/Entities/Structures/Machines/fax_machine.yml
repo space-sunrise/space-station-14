@@ -191,7 +191,6 @@
       map: [ "enum.FaxMachineVisuals.VisualState" ]
     - state: scanner
       shader: unshaded
-    verbImage: null
   - type: Tag
     tags:
     - HighRiskItem
