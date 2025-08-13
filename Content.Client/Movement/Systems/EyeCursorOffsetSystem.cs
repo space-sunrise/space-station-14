@@ -1,11 +1,17 @@
 using System.Numerics;
 using Content.Client.Movement.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Camera;
+using Content.Shared.Input;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Shared.Map;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
+using Robust.Shared.Input;
+using Robust.Shared.Input.Binding;
 
 namespace Content.Client.Movement.Systems;
 
@@ -15,6 +21,13 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
     [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IClyde _clyde = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly InputSystem _inputSystem = default!;
+
+    // Sunrise-Start
+    private bool _holdLookUp;
+    private bool _toggled;
+    // Sunrise-End
 
     // This value is here to make sure the user doesn't have to move their mouse
     // all the way out to the edge of the screen to get the full offset.
@@ -24,8 +37,20 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
     {
         base.Initialize();
 
+        // Sunrise-Start
         SubscribeLocalEvent<EyeCursorOffsetComponent, GetEyeOffsetEvent>(OnGetEyeOffsetEvent);
+        _cfg.OnValueChanged(SunriseCCVars.HoldLookUp, OnHoldLookUpChanged, true);
+        // Sunrise-End
     }
+
+    // Sunrise-Start
+    private void OnHoldLookUpChanged(bool val)
+    {
+        _holdLookUp = val;
+        var input = val ? null : InputCmdHandler.FromDelegate(_ => _toggled = !_toggled);
+        _inputManager.SetInputCommand(ContentKeyFunctions.LookUp, input);
+    }
+    // Sunrise-End
 
     private void OnGetEyeOffsetEvent(EntityUid uid, EyeCursorOffsetComponent component, ref GetEyeOffsetEvent args)
     {
@@ -38,6 +63,20 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
 
     public Vector2? OffsetAfterMouse(EntityUid uid, EyeCursorOffsetComponent? component)
     {
+        // Sunrise-Start
+        if (_holdLookUp)
+        {
+            if (_inputSystem.CmdStates.GetState(ContentKeyFunctions.LookUp) != BoundKeyState.Down)
+            {
+                return Vector2.Zero;
+            }
+        }
+        else if (!_toggled)
+        {
+            return Vector2.Zero;
+        }
+        // Sunrise-End
+
         var localPlayer = _player.LocalEntity;
         var mousePos = _inputManager.MouseScreenPosition;
         var screenControl = _eyeManager.MainViewport as Control;

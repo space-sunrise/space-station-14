@@ -61,3 +61,28 @@
 - type: lobbyParallax
   id: Box
   parallax: BoxStation
+
+- type: lobbyParallax
+  id: AsteroidParallax
+  parallax: AsteroidParallax
+
+- type: lobbyParallax
+  id: Earth
+  parallax: Earth
+
+- type: lobbyParallax
+  id: MirStation
+  parallax: MirStation
+
+- type: lobbyParallax
+  id: Purple
+  parallax: Purple
+
+- type: lobbyParallax
+  id: PilgrimAiur
+  parallax: PilgrimAiur
+
+- type: lobbyParallax
+  id: SillyIsland
+  parallax: SillyIsland
+

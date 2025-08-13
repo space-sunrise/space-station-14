@@ -1,22 +1,4 @@
 - type: npcFaction
-  id: Changeling
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - SimpleHostile
-  - Xeno
-  - Zombie
-  - PetsNT
-  - Revolutionary
-  - AllHostile
-  - Thief
-  - Carps
-  - Vampire
-  - Flesh
-  - FleshHuman
-  - BloodCult
-
-- type: npcFaction
   id: Thief
   hostile:
   - NanoTrasen
@@ -26,7 +8,6 @@
   - Zombie
   - AllHostile
   - Carps
-  - Changeling
   - Vampire
   - Flesh
   - FleshHuman
@@ -47,7 +28,6 @@
   - AllHostile
   - Thief
   - Vampire
-  - Changeling
   - Flesh
   - FleshHuman
   - BloodCult
@@ -65,7 +45,6 @@
   - AllHostile
   - Thief
   - Carps
-  - Changeling
   - Flesh
   - FleshHuman
   - BloodCult

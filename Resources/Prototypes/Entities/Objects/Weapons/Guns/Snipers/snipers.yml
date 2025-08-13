@@ -10,7 +10,7 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
-    size: Huge
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
     quickEquip: false
@@ -19,6 +19,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    pump: true  # Sunrise-Edit
     fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
@@ -26,11 +27,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: BallisticAmmoProvider
-    capacity: 10
-    proto: CartridgeHeavyLightRifle #Sunrise-Edit 7,62x54R
+    capacity: 5 # Sunrise-Edit
+    proto: CartridgeHeavyRifleRFMJ
     whitelist:
       tags:
-      - CartridgeHeavyRifle #Sunrise-Edit
+      - CartridgeHeavyRifleR # Sunrise-Edit
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -50,7 +51,15 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
-    pvsIncrease: 0.3
+    pvsIncrease: 0.35
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 4
+        staminaMultiplier: 15
+      Felinid:
+        knockback: 2
+        staminaMultiplier: 15
   # Sunrise end
 
 - type: entity
@@ -61,37 +70,72 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: GunRequiresWield
-  - type: StaticPrice
-    price: 500
-  # Sunrise start
+    layers:
+    - state: base
+    - state: base1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: base
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 1
+    equippedFillBaseName: -fill-
+    equippedMaxFillLevels: 1
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 15
-        Bloodloss: 2
+        Piercing: 12
     angle: 0
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeRequiresWield
   - type: AltFireMelee
     attackType: Heavy
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: Sharp
+    butcherDelayModifier: 2 #It's a bayonet
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 500
+  # Sunrise start
+  - type: Gun
+    pump: true
+    fireRate: 1
   # Sunrise end
 
 - type: entity
   name: Hristov
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponSniperHristov
-  description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo.
+  description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 0.4
+    pump: true # Sunrise-Edit
+    fireRate: 0.55 # Sunrise-Edit
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -109,8 +153,8 @@
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 10 # Sunrise-Edit
-    pvsIncrease: 1 # Sunrise-Edit
+    maxOffset: 14 # Sunrise-Edit
+    pvsIncrease: 1.5 # Sunrise-Edit
   - type: StaticPrice
     price: 3500
 
@@ -167,7 +211,7 @@
     shape:
     - 0,0,1,0
     - 0,1,0,1
-    storedRotation: 0
+    storedOffset: 0,-5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi
   - type: Clothing
@@ -180,7 +224,7 @@
       tags:
         - CartridgeMagnum # changed from Anti-material rifle rounds because it's a flintlock pistol not a Hristov
     capacity: 1
-    proto: CartridgeMagnum
+    proto: CartridgeMagnumAP
   - type: StaticPrice
     price: 0
 

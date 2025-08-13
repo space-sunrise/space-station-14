@@ -16,28 +16,25 @@ public sealed partial class TileNotBlocked : IConstructionCondition
 
     public bool Condition(EntityUid user, EntityCoordinates location, Direction direction)
     {
-        var tileRef = location.GetTileRef();
-        var entManager = IoCManager.Resolve<IEntityManager>();
-        var sysMan = entManager.EntitySysManager;
-        var lookupSys = sysMan.GetEntitySystem<EntityLookupSystem>();
-        if (tileRef == null)
+        if (!IoCManager.Resolve<IEntityManager>().TrySystem<TurfSystem>(out var turfSystem))
+            return false;
+
+        if (!turfSystem.TryGetTileRef(location, out var tileRef))
         {
             return false;
         }
 
-        if (tileRef.Value.IsSpace() && _failIfSpace)
+        if (turfSystem.IsSpace(tileRef.Value) && _failIfSpace)
         {
             return false;
         }
 
-        if (!tileRef.Value.GetContentTileDefinition().Sturdy && _failIfNotSturdy)
+        if (!turfSystem.GetContentTileDefinition(tileRef.Value).Sturdy && _failIfNotSturdy)
         {
             return false;
         }
-        // Sunrise-start, Временное решение. У оффов много что поломано с методом IsTileBlocked
-        // return !tileRef.Value.IsBlockedTurf(_filterMobs);
-        return !lookupSys.GetEntitiesIntersecting(location, LookupFlags.Static).Any();
-        // Sunrise-end
+
+        return !turfSystem.IsTileBlocked(tileRef.Value, _filterMobs ? CollisionGroup.MobMask : CollisionGroup.Impassable);
     }
 
     public ConstructionGuideEntry GenerateGuideEntry()

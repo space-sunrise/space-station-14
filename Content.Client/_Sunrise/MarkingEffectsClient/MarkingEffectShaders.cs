@@ -8,9 +8,9 @@ namespace Content.Client._Sunrise.MarkingEffectsClient;
 public static class MarkingEffectShaders
 {
 
-    public static Robust.Shared.Maths.Vector3 ColorToVec(Color col)
+    public static Vector3 ColorToVec(Color col)
     {
-        return new Robust.Shared.Maths.Vector3(col.R, col.G, col.B);
+        return new Vector3(col.R, col.G, col.B);
     }
 
     public static void ApplyShaderParams(this ShaderInstance instance, MarkingEffect color, Vector2 texScale)

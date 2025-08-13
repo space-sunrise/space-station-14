@@ -6,3 +6,5 @@ ent-HandHeldMassScannerEmpty = { ent-HandHeldMassScanner }
 ent-HandHeldMassScannerBorg = { ent-HandHeldMassScanner }
     .suffix = Борг
     .desc = { ent-HandHeldMassScanner.desc }
+ent-HandHeldMassScannerUnpowered = сканер массы киборга
+    .desc = Ручной сканер массы, работающий от ваших собственных элементов питания.

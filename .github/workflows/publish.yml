@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Fail if we are attempting to run on the stable branch
-      if: ${{GITHUB.REF_NAME == 'stable'}}
+    - name: Fail if not on master branch
+      if: ${{GITHUB.REF_NAME != 'master'}}
       run: exit 1
 
     - name: Set up Python
@@ -65,9 +65,3 @@ jobs:
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
-
-#    - name: Publish changelog (RSS)
-#      continue-on-error: true
-#      run: Tools/actions_changelog_rss.py
-#      env:
-#        CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}

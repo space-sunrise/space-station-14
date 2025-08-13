@@ -3,15 +3,15 @@
 - type: gameMapPool
   id: SunriseMapPool
   maps:
-  - SunriseDelta # Прибытие стыкуется, но лишь 2 доками. Эвак стыкуется лишь 2 доками.
-  #- SunrisePlasma # Прибытие стыкуется лишь 1 доком с доступом командования. Эвак стыкуется лишь 2 доками.
-  #- SunriseBox # Прибытие не стыкуется, эвак стыкуется лишь 1 доком.
-  #- SunriseBarratry # Прибытие не стыкуется. Эвак залазит в станцию.
-  #- SunriseFland # Прибытие не стыкуется. Эвак залазит в станцию.
-  #- SunriseMarathon # Прибытие не стыкуется. Эвак залазит в станцию.
-  #- SunriseBagel # Прибытие стыкуется но не туда. Эвак залазит в станцию.
-  #- SunrisePacked # Прибытие не стыкуется. Эвак залазит в станцию.
-  #- SunriseOasis # Прибытие не стыкуется. Эвак залазит в станцию.
+  - SunriseDelta
+#  - SunriseBox # НЕ ГОТОВО ПРИБЫТИЕ/ОТБЫТИЕ ДЛЯ БОЛЬШОГО ШАТТЛА
+#  - SunrisePlasma # НЕ ГОТОВО ПРИБЫТИЕ/ОТБЫТИЕ ДЛЯ БОЛЬШОГО ШАТТЛА
+  #- SunriseBarratry
+  #- SunriseFland
+  #- SunriseMarathon
+  #- SunriseBagel
+  #- SunrisePacked
+  #- SunriseOasis
   # НЕИГРАБЕЛЬНЫЕ:
   #- SunriseReach
   #- SunriseRelic

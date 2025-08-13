@@ -30,32 +30,30 @@
   - WeaponFlareGunSecurity
 
 # Shared between secfab and emagged autolathe
-- type: latheRecipePack
-  id: SecurityAmmoStatic
-  recipes:
-  - BoxLethalshot
-  - BoxShotgunSlug
-  - MagazineBoxLightRifle
-  - MagazineBoxMagnum
-  - MagazineBoxPistol
-  - MagazineBoxRifle
-  - MagazineLightRifle
-  - MagazineLightRifleEmpty
-  # Sunrise-Remove
+#- type: latheRecipePack
+#  id: SecurityAmmoStatic
+#  recipes:
+  #- BoxLethalshot
+  #- BoxShotgunSlug
+  #- MagazineBoxLightRifle
+  #- MagazineBoxMagnum
+  #- MagazineBoxPistol
+  #- MagazineBoxRifle
+  #- MagazineLightRifle
+  #- MagazineLightRifleEmpty
   #- MagazinePistol
   #- MagazinePistolEmpty
-  - MagazinePistolSubMachineGun
-  - MagazinePistolSubMachineGunEmpty
-  - MagazinePistolSubMachineGunTopMounted
-  - MagazinePistolSubMachineGunTopMountedEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazineShotgun
-  - MagazineShotgunEmpty
-  - MagazineShotgunSlug
-  - SpeedLoaderMagnum
-  - SpeedLoaderMagnumEmpty
-  - MagazineP90 # Sunrise-P90
+  #- MagazinePistolSubMachineGun
+  #- MagazinePistolSubMachineGunEmpty
+  #- MagazinePistolSubMachineGunTopMounted
+  #- MagazinePistolSubMachineGunTopMountedEmpty
+  #- MagazineRifle
+  #- MagazineRifleEmpty
+  #- MagazineShotgun
+  #- MagazineShotgunEmpty
+  #- MagazineShotgunSlug
+  #- SpeedLoaderMagnum
+  #- SpeedLoaderMagnumEmpty
 
 - type: latheRecipePack
   id: SecurityWeaponsStatic
@@ -77,6 +75,7 @@
   - PowerCageMedium
   - PowerCageSmall
   - TelescopicShield
+  - ClothingBackpackHarmpack
 
 - type: latheRecipePack
   id: SecurityBoards
@@ -104,7 +103,6 @@
   - BoxBeanbag
   - BoxShotgunIncendiary
   - BoxShotgunUranium
-  - BoxShotgunUraniumSlug
   - BoxShellTranquilizer
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxLightRifleUranium

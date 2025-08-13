@@ -16,6 +16,7 @@ using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared._Sunrise.BloodCult.Runes;
 using Content.Shared._Sunrise.BloodCult.UI;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Coordinates;
 using Content.Shared.Cuffs.Components;
@@ -245,7 +246,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!TryComp<BloodstreamComponent>(user, out var bloodstreamComponent))
                 return;
 
-            _bloodstreamSystem.TryModifyBloodLevel(user, howMuchBloodTake, bloodstreamComponent);
+            _bloodstreamSystem.TryModifyBloodLevel((user, bloodstreamComponent), howMuchBloodTake);
 
             SpawnRune(user, rune);
 
@@ -450,9 +451,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             {
                 var hasMind = _mindSystem.TryGetMind(victim.Value, out var mindId, out var mind);
 
-                var jobAllowConvert = !HasComp<MindShieldComponent>(victim.Value);
+                var canConvert = !HasComp<MindShieldComponent>(victim.Value)
+                                      && !HasComp<BibleUserComponent>(victim.Value);
 
-                if (hasMind && jobAllowConvert)
+                if (hasMind && canConvert )
                 {
                     if (args.Cultists.Count < component.ConvertMinCount)
                     {
@@ -557,7 +559,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             }
 
             _bloodCultRuleSystem.MakeCultist(target, rule);
-            _stunSystem.TryStun(target, TimeSpan.FromSeconds(2f), false);
+            _stunSystem.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(2f));
             HealCultist(target);
 
             if (TryComp<CuffableComponent>(target, out var cuffs) && cuffs.Container.ContainedEntities.Count >= 1)
@@ -1131,7 +1133,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 if (!TryComp<BloodstreamComponent>(cultist, out var bloodstreamComponent))
                     return false;
 
-                _bloodstreamSystem.TryModifyBloodLevel(cultist, -40, bloodstreamComponent);
+                _bloodstreamSystem.TryModifyBloodLevel((cultist, bloodstreamComponent), -40);
             }
 
             _random.Shuffle(list);
@@ -1285,7 +1287,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         {
             var transform = Transform(uid);
             var gridUid = transform.GridUid;
-            var tile = transform.Coordinates.GetTileRef();
+            var tile = _turf.GetTileRef(transform.Coordinates);
 
             if (!gridUid.HasValue)
             {

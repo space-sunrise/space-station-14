@@ -1,22 +1,4 @@
-﻿- type: entity
-  id: GrenadeFragLight
-  name: frag grenade
-  parent: BaseGrenade
-  components:
-  - type: CartridgeAmmo
-    proto: BulletGrenadeFragLight
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    scale: 0.85, 0.85
-    layers:
-    - state: frag
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: frag
-    suffix: false
-
-# Shells that used for friendship and duster
+﻿# Shells that used for friendship and duster
 
 - type: entity
   id: BaseArtilleryShell
@@ -137,8 +119,76 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlast
+    proto: BulletGrenadeBlastContact
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: fuzeball
+
+- type: entity
+  id: GrenadeBlastTimer
+  name: timer blast grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeBlastTimer
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+
+- type: entity
+  id: GrenadeFlashTimer
+  name: timer flash grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFlashTimer
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: flash
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: flash
+    suffix: false
+
+- type: entity
+  id: GrenadeFragTimer
+  name: timer frag grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragTimer
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: frag
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+
+- type: entity
+  id: GrenadeEMPTimer
+  name: timer EMP grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeEMPTimer
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: emp
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false

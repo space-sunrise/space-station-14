@@ -40,6 +40,8 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+  - type: Pierceable
+    level: Metal
   # Surnise-End
 
 - type: entity
@@ -54,6 +56,8 @@
     sprite: Clothing/Mask/gassyndicate.rsi
   - type: FlashImmunity
   - type: EyeProtection
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   parent: ClothingMaskGas
@@ -138,6 +142,8 @@
     sprite: Clothing/Mask/medicalsecurity.rsi
   - type: Clothing
     sprite: Clothing/Mask/medicalsecurity.rsi
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -278,6 +284,8 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
+  - type: StaticPrice
+    price: 5
 
 - type: entity
   parent: ClothingMaskBase
@@ -296,6 +304,9 @@
   - type: IngestionBlocker
   - type: AddAccentClothing
     accent: MumbleAccent
+  - type: EmoteBlocker
+    blocksCategories:
+    - Vocal
   - type: Construction
     graph: Muzzle
     node: muzzle
@@ -354,6 +365,8 @@
     - HeadTop
     - HeadSide
     hideOnToggle: true
+  - type: Pierceable
+    level: Metal
   - type: FlashImmunity # Sunrise-Edit
 
 - type: entity
@@ -366,6 +379,8 @@
     sprite: Clothing/Mask/merc.rsi
   - type: Clothing
     sprite: Clothing/Mask/merc.rsi
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -388,6 +403,8 @@
     hideOnToggle: true
   - type: FlashImmunity
   - type: EyeProtection
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   parent: ClothingMaskGasERT
@@ -399,6 +416,8 @@
     sprite: Clothing/Mask/squadron.rsi
   - type: Clothing
     sprite: Clothing/Mask/squadron.rsi
+  - type: Pierceable
+    level: Rock
   - type: HideLayerClothing
     slots:
     - Hair

@@ -1,6 +1,6 @@
-﻿using Content.Shared._Sunrise.Antags.Abductor;
+﻿using Content.Client._Starlight;
+using Content.Shared._Sunrise.Antags.Abductor;
 using JetBrains.Annotations;
-using Content.Client._Sunrise.Choice;
 using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
 namespace Content.Client._Sunrise.Antags.Abductor;

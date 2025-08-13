@@ -2,6 +2,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Trigger;
 using JetBrains.Annotations;
 
 namespace Content.Server._Sunrise.SplashOnTrigger;

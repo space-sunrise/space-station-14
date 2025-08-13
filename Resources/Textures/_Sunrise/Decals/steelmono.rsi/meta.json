@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Made by DeasTrouGht",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "steel_mono_s"
+        },
+        {
+            "name": "steel_mono_w"
+        },
+        {
+            "name": "steel_mono_n"
+        },
+        {
+            "name": "steel_mono_e"
+        },
+        {
+            "name": "steel_mono_se"
+        },
+        {
+            "name": "steel_mono_sw"
+        },
+        {
+            "name": "steel_mono_ne"
+        },
+        {
+            "name": "steel_mono_nw"
+        },        
+	{
+            "name": "steel_cr_se"
+        },
+        {
+            "name": "steel_cr_sw"
+        },
+        {
+            "name": "steel_cr_ne"
+        },
+        {
+            "name": "steel_cr_nw"
+	}        
+]
+}
