@@ -80,7 +80,7 @@ public sealed partial class RepairableSystem : EntitySystem
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairFinishedEvent(), ent.Comp.FuelCost);
     }
 
-            // Sunrise-start
+        // Sunrise-start
         private bool CanRepair(Dictionary<string, FixedPoint2> damage, RepairableComponent component)
         {
             if (component.Damage == null)
