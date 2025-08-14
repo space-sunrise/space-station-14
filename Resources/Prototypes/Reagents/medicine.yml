@@ -1042,7 +1042,7 @@
         damage:
           types:
             Caustic: -0.6 # 6 per u
-            Mangleness: 0.45 # Sunrise-Edit
+            Mangleness: 0.05 # Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1099,7 +1099,7 @@
         damage:
           types:
             Slash: -0.6 # 6 Per u
-            Mangleness: 0.3 #Sunrise-Edit
+            Mangleness: 0.05 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1125,7 +1125,7 @@
           types:
             Piercing: -0.6 # 6 per u
             Blunt: 0.05 # 0.5 per u
-            Mangleness: 0.4 #Sunrise-Edit
+            Mangleness: 0.05 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1150,7 +1150,7 @@
         damage:
           types:
             Blunt: -0.6 # 6 per u
-            Mangleness: 0.35 #Sunrise-Edit
+            Mangleness: 0.05 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1296,7 +1296,7 @@
         damage:
           types:
             Shock: -0.5 # 5 per u
-            Mangleness: 0.6 #Sunrise-Edit
+            Mangleness: 0.07 #Sunrise-Edit
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -4
