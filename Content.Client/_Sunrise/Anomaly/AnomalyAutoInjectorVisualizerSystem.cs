@@ -20,12 +20,12 @@ public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
     private void OnUsedStartup(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentStartup args)
     {
         if (_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(SpriteLayerIndex, "anomagen_empty");
+            sprite.LayerSetState(SpriteLayerIndex, comp.SpriteStateEmpty);
     }
 
     private void OnUsedShutdown(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentShutdown args)
     {
         if (_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(SpriteLayerIndex, "anomagen");
+            sprite.LayerSetState(SpriteLayerIndex, comp.SpriteStateFull);
     }
 }

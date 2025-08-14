@@ -1,0 +1,6 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectSeeingRainbowWeak
+  name: hallucinations
+  components:
+  - type: SeeingRainbowsWeakStatusEffect
