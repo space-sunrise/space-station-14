@@ -41,11 +41,11 @@ public sealed class FootprintSystem : EntitySystem
     private EntityQuery<PhysicsComponent> _physicsQuery;
     #endregion
 
-    public static readonly float FootsVolume = 5;
+    public static readonly float FootsVolume = 4;
     public static readonly float BodySurfaceVolume = 15;
 
     // Dictionary to track footprints per tile to prevent overcrowding
-    private const int MaxFootprintsPerTile = 6;
+    private const int MaxFootprintsPerTile = 4;
     private const int MaxMarksPerTile = 3;
 
     #region Initialization
