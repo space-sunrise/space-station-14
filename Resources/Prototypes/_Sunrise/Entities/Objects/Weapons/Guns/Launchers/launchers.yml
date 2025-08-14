@@ -56,6 +56,9 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
+    slots:
+    - Back
+    - suitStorage
   - type: Item
     size: Huge
     shape:
