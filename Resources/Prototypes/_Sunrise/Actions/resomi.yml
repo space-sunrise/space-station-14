@@ -1,6 +1,8 @@
 - type: entity
   id: Jump
   categories: [ HideSpawnMenu ]
+  name: resomi-jump-action-name
+  description: resomi-jump-action-description
   components:
   - type: Action
     useDelay: 20
