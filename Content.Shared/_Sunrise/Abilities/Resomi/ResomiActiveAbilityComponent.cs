@@ -10,4 +10,4 @@ namespace Content.Shared._Sunrise.Abilities.Resomi;
 /// Добавляется/снимается на сервере ResomiSkillSystem; читается в SharedStandingStateSystem.
 /// </remarks>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ResomiActiveAbilityComponent : Component {}
+public sealed partial class ResomiActiveAbilityComponent  : Component {}
