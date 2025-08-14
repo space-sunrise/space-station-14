@@ -225,7 +225,7 @@
   - ACP14Box
   - MK58Box
   - MK58GoldBox
-  - WeaponEnergyGunPistolSecurity
+  - WeaponDominator
   - WeaponDisabler
 #  - WeaponTaser
 
@@ -240,7 +240,7 @@
   - CadetWeaponACP14Box
   - CadetWeaponMK58Box
   - MK58GoldBox
-  - CadetWeaponEnergyGunPistolSecurity
+  - CadetWeaponMiniEnergyGun
   - CadetWeaponDisabler
 
 # Security  Detective

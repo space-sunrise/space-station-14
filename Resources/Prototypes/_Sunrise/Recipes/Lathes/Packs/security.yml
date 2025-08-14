@@ -93,7 +93,7 @@
   id: SecurityDynamicSunrise
   recipes:
     - WeaponEnergyGun
-    - WeaponEnergyGunMini
+    - WeaponMiniEnergyGun
     - WeaponEnergyGunPistol
     - WeaponGunLaserCarbineAutomatic
     - MagazineBatteryLr30

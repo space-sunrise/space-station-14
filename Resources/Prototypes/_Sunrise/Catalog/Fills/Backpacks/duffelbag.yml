@@ -130,29 +130,18 @@
           amount: 4
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponShotgunZauerFilled
+  id: ClothingBackpackDuffelWeaponShotgunCycler
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle zauer
-  description: Zauer with 2 raspy magazines.
+  name: Bundle Assault Shotgun
+  description: Assault Shotgun with 6 raspy speedloaders.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponShotgunZauer
-        - id: MagazineShotgun
+        - id: WeaponShotgunCycler
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: SpeedLoaderShotgunSlug
           amount: 2
-
-- type: entity
-  id: ClothingBackpackDuffelWeaponXM1014Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle xm1014
-  description: XM1014 with 1 Box ammo.
-  components:
-    - type: StorageFill
-      contents:
-        - id: WeaponXM1014
-        - id: BoxLethalshot
-        - id: BoxShotgunFlare
-        - id: BoxBeanbag
 
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgun4034Filled
@@ -322,3 +311,17 @@
     - id: LeftArmCyberMantisBlade
     - id: RightHandCyber
     - id: LeftHandCyber
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledInfiltration
+  name: infiltration hardsuit bundle
+  description: "Contains the latest in Syndicate chameleon technology, the infiltration hardsuit."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitInfiltrationBiocode
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombatCQC
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled

@@ -10,8 +10,8 @@
     Plastic: 500
 
 - type: latheRecipe
-  id: WeaponEnergyGunMini
-  result: WeaponEnergyGunMini
+  id: WeaponMiniEnergyGun
+  result: WeaponMiniEnergyGun
   categories:
   - Weapons
   completetime: 4

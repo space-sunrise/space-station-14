@@ -68,6 +68,12 @@
 
 - type: Tag
   id: SpeedLoaderShotgun
+
+- type: Tag
+  id: ShellShotgunEmpty
+
+- type: Tag
+  id: Coin
 # Weapons
 - type: Tag
   id: WrappedWeapon
