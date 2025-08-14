@@ -1540,3 +1540,23 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+
+- type: listing
+  id: UplinkAnomalyAutoInjector
+  name: uplink-anomaly-auto-injector-name
+  description: uplink-anomaly-auto-injector-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi, state: anomagen }
+  productEntity: AnomalyAutoInjectorUplink # Sunrise-edit
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - SubdermalImplant
+      - NukeOpsUplink
+  - !type:BuyerDepartmentCondition
+    whitelist:
+      - Science
