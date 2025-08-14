@@ -510,10 +510,10 @@
   - type: StationAiVision
     range: 2
   - type: Item
-    sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
+    sprite: _Sunrise/Objects/Devices/master_handheld_camera.rsi
   - type: Sprite
     state: icon
-    sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
+    sprite: _Sunrise/Objects/Devices/master_handheld_camera.rsi
   - type: Clothing
     quickEquip: true
     slots:

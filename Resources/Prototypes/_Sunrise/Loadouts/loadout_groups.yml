@@ -167,6 +167,7 @@
   - SecurityTourniquet
   - SecurityWeaponMeleeNeedle
   - SecurityHoloprojector
+  - SecurityMasterBodycam
 
 - type: loadoutGroup
   id: CorporateLaw
