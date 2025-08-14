@@ -30,6 +30,13 @@
       sprite: _Sunrise/Clothing/OuterClothing/Coats/warden_alt.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Coats/warden_alt.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.75
+          Heat: 0.9
 
 - type: entity
   parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityContraband]
@@ -44,9 +51,9 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.8
-          Slash: 0.8
-          Piercing: 0.75
+          Blunt: 0.65
+          Slash: 0.65
+          Piercing: 0.7
           Heat: 0.9
 
 - type: entity
@@ -199,6 +206,12 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
@@ -217,6 +230,12 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
@@ -235,6 +254,10 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatCMOOvercoat]
@@ -259,6 +282,12 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
