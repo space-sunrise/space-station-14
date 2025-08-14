@@ -160,7 +160,7 @@
 
 - type: entity
   name: AKM-U
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponRifleSunrise
   id: WeaponRifleAKMU
   components:
   - type: Sprite
