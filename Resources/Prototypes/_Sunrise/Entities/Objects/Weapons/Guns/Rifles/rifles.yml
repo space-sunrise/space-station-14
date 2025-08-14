@@ -59,18 +59,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  # - type: MeleeWeapon
-  #   angle: 60
-  #   range: 1
-  #   damage:
-  #     types:
-  #       Blunt: 11
-  #       Structural: 4
-  #   bluntStaminaDamageFactor: 2.0
-  #   attackRate: 0.9
-  #   autoAttack: false
-  # - type: AltFireMelee
-  #   attackType: Heavy
   - type: StaticPrice
     price: 500
   - type: EmitSoundOnPickup
