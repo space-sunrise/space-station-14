@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Popups;
-using Content.Shared._Sunrise.StarlightAction;
+using Content.Shared._Starlight.Action;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;

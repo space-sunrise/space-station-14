@@ -170,3 +170,5 @@ ent-PlushieSansaMontanelli = Sansa Montanelli
     .desc = { ent-BasePlushie.desc }
 ent-PlushieKalium = Kalium Fon Dez
     .desc = { ent-BasePlushie.desc }
+ent-PlushieKaliumDouble = Kalium Fon Dez
+    .desc = { ent-BasePlushie.desc }

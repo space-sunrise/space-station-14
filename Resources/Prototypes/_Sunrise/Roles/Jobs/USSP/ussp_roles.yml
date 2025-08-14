@@ -222,8 +222,8 @@
   storage:
     back:
     - DrinkVodkaBottleFull
-    - SpeedLoaderMagnum
-    - SpeedLoaderMagnum
+    - SpeedLoaderMagnumSP
+    - SpeedLoaderMagnumSP
     - DrinkFlask
     - CigPackSyndicate
     - FlippoLighterSunriseContractor

@@ -62,6 +62,28 @@ public abstract partial class SharedMoverController
         Dirty(relayEntity, targetComp);
         _blocker.UpdateCanMove(uid);
     }
+    // Sunrise-start
+    public void RemoveRelay(EntityUid uid)
+    {
+        if (!TryComp<RelayInputMoverComponent>(uid, out var moverComp))
+            return;
+
+        var relay = moverComp.RelayEntity;
+
+        if (TryComp(relay, out MovementRelayTargetComponent? targetComp))
+        {
+            targetComp.Source = EntityUid.Invalid;
+            Dirty(relay, targetComp);
+            RemCompDeferred<MovementRelayTargetComponent>(relay);
+            PhysicsSystem.UpdateIsPredicted(relay);
+        }
+
+        Dirty(uid, moverComp);
+        RemCompDeferred<RelayInputMoverComponent>(uid);
+        PhysicsSystem.UpdateIsPredicted(uid);
+        _blocker.UpdateCanMove(uid);
+    }
+    // Sunrise-end
 
     private void OnRelayShutdown(Entity<RelayInputMoverComponent> entity, ref ComponentShutdown args)
     {

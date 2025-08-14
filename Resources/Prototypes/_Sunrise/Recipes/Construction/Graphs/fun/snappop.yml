@@ -1,0 +1,21 @@
+- type: constructionGraph
+  id: SnapPopConstruction
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: snappop
+      steps:
+      - tag: Paper
+        name: construction-graph-tag-paper
+        icon:
+          sprite: Objects/Misc/bureaucracy.rsi
+          state: paper
+      - tag: Matchstick
+        name: construction-graph-tag-matchstick
+        icon:
+          sprite: Objects/Tools/matches.rsi
+          state: match_unlit
+        doAfter: 2
+  - node: snappop
+    entity: SnapPop

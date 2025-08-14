@@ -21,9 +21,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.3
-    - id: Changeling
-      prob: 0.3
+      prob: 0.5
     - id: Vampire
       prob: 0.3
     - id: SubWizard
@@ -36,9 +34,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.3
-    - id: Changeling
-      prob: 0.3
+      prob: 0.5
     - id: Vampire
       prob: 0.3
 
@@ -127,7 +123,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
+    minPlayers: 50
   - type: LoadMapRule
     mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -182,8 +178,8 @@
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 4
-      playerRatio: 15
+      max: 3
+      playerRatio: 10
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -216,7 +212,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 7
+    maxDifficulty: 5
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
 
@@ -225,7 +221,7 @@
   id: Traitor
   components:
   - type: GameRule
-    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
+    minPlayers: 5
     delay:
       min: 600 # Sunrise-Edit
       max: 900 # Sunrise-Edit
@@ -234,7 +230,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 8
-      playerRatio: 15 # Sunrise-Edit
+      playerRatio: 10
       pickCommandStaff: true # Sunrise-Edit
       maxCommandStaff: 1 # Sunrise-Edit
       blacklist:
@@ -259,11 +255,41 @@
       - MindRoleTraitorReinforcement
 
 - type: entity
+  id: Changeling
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 25
+  - type: AntagSelection
+    agentName: changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 3
+      playerRatio: 15
+      briefing:
+        text: changeling-role-greeting
+        color: Red
+        sound: /Audio/Ambience/Antag/changeling_start.ogg
+      components:
+      - type: ChangelingDevour
+      - type: ChangelingIdentity
+      - type: ChangelingTransform
+      - type: ActionGrant
+        actions:
+        - ActionRetractableItemArmBlade # Temporary addition, will inevitably be a purchasable in the bio-store
+      mindRoles:
+      - MindRoleChangeling
+  - type: AntagObjectives
+    objectives:
+    - ChangelingSurviveObjective
+
+- type: entity
   id: Revolutionary
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
+    minPlayers: 15
     # Sunrise-Start
     delay:
       min: 900
@@ -322,7 +348,7 @@
     - WizardSurviveObjective
     - WizardDemonstrateObjective
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/wizard.yml
+    mapPath: /Maps/Nonstations/wizardsden.yml
   - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
@@ -333,7 +359,7 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
+    minPlayers: 10
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
@@ -374,7 +400,7 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
+    minPlayers: 20
     delay:
       min: 600
       max: 900
@@ -453,10 +479,10 @@
   components:
   - type: BasicStationEventScheduler
     # Sunrise-Start
-    minimumTimeUntilFirstEvent: 480 # 8 mins
+    minimumTimeUntilFirstEvent: 600 # 10 mins
     minMaxEventTiming:
-      min: 360 # 6 mins
-      max: 720 # 12 mins
+      min: 600 # 10 mins
+      max: 900 # 15 mins
     # Sunrise-End
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
@@ -503,17 +529,15 @@
   - type: RoundstartStationVariationRule
     rules:
     - id: BasicPoweredLightVariationPass
-    # Sunrise-Edit
-    #- id: BasicTrashVariationPass
+    - id: BasicTrashVariationPass
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
-    # Sunrise-Edit
-    #- id: BasicPuddleMessVariationPass
-    #  prob: 0.99
-    #  orGroup: puddleMess
-    #- id: BloodbathPuddleMessVariationPass
-    #  prob: 0.01
-    #  orGroup: puddleMess
+    - id: BasicPuddleMessVariationPass
+      prob: 0.99
+      orGroup: puddleMess
+    - id: BloodbathPuddleMessVariationPass
+      prob: 0.01
+      orGroup: puddleMess
     - id: SmugglerStashVariationPass
       prob: 0.90
     - id: SolarPanelDamageVariationPass

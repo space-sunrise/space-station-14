@@ -48,13 +48,21 @@
 - type: loadout
   id: HeadofSecurityWeapon50h2
   equipment:
-    pocket1: WeaponRevolverMatebaNew
+    pocket1: WeaponSubMachineGunWt550
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterHoS50h
 
 - type: loadout
   id: HeadofSecurityWeapon100h
+  equipment:
+    pocket1: WeaponRevolverMatebaNew
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS100h
+
+- type: loadout
+  id: HeadofSecurityWeapon100h2
   equipment:
     pocket1: WeaponPistolDeagle
   effects:
@@ -68,36 +76,42 @@
   id: HeadofSecurityJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoS
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: HeadofSecurityJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtHoS
+  groupBy: "jumpskirt"
 
 - type: loadout
   id: HeadofSecurityTurtleneck
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoSAlt
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: HeadofSecurityTurtleneckSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtHoSAlt
+  groupBy: "jumpskirt"
 
 - type: loadout
   id: HeadofSecurityFormalSuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitHosFormal
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: HeadofSecurityFormalSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtHosFormal
+  groupBy: "jumpskirt"
 
 #Sunrise-Start
 - type: loadout
   id: HeadofSecurityJumpsuitHoSOld
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoSOld
   effects:
@@ -106,7 +120,7 @@
 
 - type: loadout
   id: HeadofSecurityJumpsuitUSSPBlack
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     jumpsuit: ClothingUniformJumpsuitUSSPBlack
 #Sunrise-End
@@ -133,13 +147,13 @@
 
 - type: loadout
   id: HeadofSecurityCapUSSPBlack
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     head: ClothingHeadHatCapUSSPBlack
 
 - type: loadout
   id: HeadofSecurityCapLeather
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     head: ClothingHeadHatCapLeatherHoS
 #Sunrise-End
@@ -165,13 +179,13 @@
 
 - type: loadout
   id: HeadofSecurityCloakHOSCloak
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     neck: ClothingNeckCloakHOSCloak
 
 - type: loadout
   id: HeadofSecurityDarthHOSCloak
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     neck: ClothingNeckCloakDarthHOSCloak
   effects:
@@ -200,7 +214,7 @@
 
 - type: loadout
   id: HeadofSecurityGreatcoatBlack
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatHOSOvercoatBlack
   effects:
@@ -209,13 +223,13 @@
 
 - type: loadout
   id: HeadofSecurityUSSPBlack
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatUSSPOvercoatBlack
 
 - type: loadout
   id: HeadofSecurityOvercoat
-  sponsorOnly: true
+  sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatHoSOvercoat
 #Sunrise-End

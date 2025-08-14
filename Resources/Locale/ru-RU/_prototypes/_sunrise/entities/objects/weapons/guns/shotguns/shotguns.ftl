@@ -1,9 +1,3 @@
-ent-BaseWeaponShotgunSunrise = дробовик
-    .desc = Целься и стреляй.
-ent-WeaponXM1014 = XM1014
-    .desc = Боевой дробовик Earth Armories XM1014 - это полуавтоматический дробовик, используемый стрелками в отрядах армии Земли. Использует патроны калибра .50 ружейный.
-ent-WeaponShotgunPaladin12 = дробовик Паладин
-    .desc = Пятизарядный укороченный помповый дробовик, созданный под нужны сотрудников правоохранительных органов. Использует патроны калибра .50 ружейный.
 ent-WeaponShotgunSPAS12 = LAW-12
     .desc = Полицейский полуавтоматический Дробовик. Может использовать широкую номенклатуру боеприпасов  калибра .50 ружейный.
 ent-WeaponShotgunSPAS12Rubber = { ent-WeaponShotgunSPAS12 }
@@ -16,5 +10,3 @@ ent-WeaponShotgunTrenchgun4034Sawn = обрез Trenchgun L-4034
 ent-WeaponShotgunTrenchgun4034SawnEmpty = обрез Trenchgun L-4034
     .desc = { ent-WeaponShotgunTrenchgun4034Sawn.desc }
     .suffix = Пусто
-ent-WeaponShotgunZauer = Zauer
-    .desc = Это магазинный дробовик, предназначенный для ближнего боя. Использует патрон калибра .50 мм.

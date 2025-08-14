@@ -40,7 +40,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -50,7 +50,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -59,18 +59,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: MeleeWeapon
-    angle: 60
-    range: 1
-    damage:
-      types:
-        Blunt: 11
-        Structural: 4
-    bluntStaminaDamageFactor: 2.0
-    attackRate: 0.9
-    autoAttack: false
-  - type: AltFireMelee
-    attackType: Heavy
   - type: StaticPrice
     price: 500
   - type: EmitSoundOnPickup
@@ -82,17 +70,20 @@
   - type: EmitSoundOnLand
     sound:
       collection: RiflesDrop
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.85
-    sprintModifier: 0.85
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2.5
-    pvsIncrease: 0.25
+    maxOffset: 4.5
+    pvsIncrease: 0.45
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 0.1
+      Felinid:
+        knockback: 0.1
 
 - type: entity
   name: AKMS
@@ -125,7 +116,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -134,11 +125,11 @@
             - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeLightRifle  # 762x39
+        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle  # 762x39
+            - CartridgeLightRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -157,7 +148,7 @@
 
 - type: entity
   name: AKM-U
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponRifleSunrise
   id: WeaponRifleAKMU
   components:
   - type: Sprite
@@ -187,7 +178,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -196,11 +187,11 @@
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeLightRifle  # 762x39
+        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 762x39
+          - CartridgeLightRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -245,7 +236,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineCaselessRifleShort
+        startingItem: MagazineRifleFMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -302,8 +293,8 @@
     maxAngle: 28
     angleIncrease: 1.65
     angleDecay: 18
-    fireRate: 5.45
-    burstFireRate: 8
+    fireRate: 5.25
+    burstFireRate: 12
     selectedMode: Burst
     availableModes:
     - Burst
@@ -318,7 +309,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifleFMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_unload.ogg
         priority: 2
@@ -327,7 +318,7 @@
             - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeRifle
+        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -379,7 +370,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SunriseMagazineRifle
+        startingItem: MagazineRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
@@ -388,7 +379,7 @@
             - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeRifle
+        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -407,8 +398,8 @@
     delay: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.45
+    maxOffset: 6
+    pvsIncrease: 0.6
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -437,27 +428,27 @@
     maxAngle: 18
     angleIncrease: 0.85
     angleDecay: 8
-    fireRate: 5.5
+    fireRate: 4.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineAR18
+        startingItem: MagazineRifleHeavySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineAR18 #MagazineM28 Одно и тоже
+            - MagazineHeavyRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeHeavyRifleNT #7.62х51 NT
+        startingItem: CartridgeRifleHeavySP
         priority: 1
         whitelist:
           tags:
-            - CartridgeHeavyRifleNT #7.62х51 NT
+            - CartridgeHeavyRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -472,8 +463,8 @@
     delay: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.35
+    maxOffset: 5
+    pvsIncrease: 0.5
   - type: SpeedModifiedOnWield
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -502,27 +493,27 @@
     maxAngle: 24
     angleIncrease: 1.25
     angleDecay: 8
-    fireRate: 5.5
+    fireRate: 4.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineAR18
+        startingItem: MagazineRifleHeavySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineAR18
+          - MagazineHeavyRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeHeavyRifleNT  # 7.62х51
+        startingItem: CartridgeRifleHeavySP
         priority: 1
         whitelist:
           tags:
-          - CartridgeHeavyRifleNT  #7.62х51 NT
+          - CartridgeHeavyRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -567,7 +558,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SunriseMagazineRifle
+        startingItem: MagazineRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -576,11 +567,11 @@
           - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeRifle  # 556
+        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle  # 556
+          - CartridgeRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -636,11 +627,11 @@
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeLightRifle  # 762x39
+        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 762x39
+          - CartridgeLightRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -746,11 +737,11 @@
         priority: 3
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeHeavyRifleNT  # 7.62 NT
+        startingItem: CartridgeRifleHeavySP
         priority: 1
         whitelist:
           tags:
-            - CartridgeHeavyRifleNT  # 7.62 NT
+            - CartridgeHeavyRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -766,3 +757,63 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_cocked.ogg
+
+- type: entity
+  name: Lecter Mk2
+  parent: [WeaponRifleLecter, GunLight]
+  id: WeaponRifleLecterMk2
+  description: A high end military grade assault rifle. Uses .20 rifle ammo.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/lecter.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/lecter.rsi
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: Appearance
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.55
+  - type: StaticPrice
+    price: 975
+  - type: Contraband
+    allowedDepartments: [ CentralCommand, Security ]
+
+- type: entity
+  name: Lecter Mk2
+  parent: WeaponRifleLecterMk2
+  id: WeaponRifleLecterMk2Empty
+  categories: [HideSpawnMenu]
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle

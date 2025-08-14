@@ -1,3 +1,7 @@
+ent-AtmosDeviceFanTinyDev = tiny DEBUG fan
+    .desc = { "" }
+ent-AtmosDeviceFanDirectionalDev = directional DEBUG fan
+    .desc = { "" }
 ent-AtmosDeviceFanTiny = tiny fan
     .desc = A tiny fan, releasing a thin gust of air.
 ent-AtmosDeviceFanDirectional = directional fan

@@ -86,6 +86,10 @@ namespace Content.Client.Chemistry.UI
 
             PillDosage.InitDefaultButtons();
             PillNumber.InitDefaultButtons();
+            // Starlight-start
+            PatchDosage.InitDefaultButtons();
+            PatchNumber.InitDefaultButtons();
+            // Starlight-end
             BottleDosage.InitDefaultButtons();
 
             // Ensure label length is within the character limit.
@@ -143,19 +147,24 @@ namespace Content.Client.Chemistry.UI
         public void UpdateState(BoundUserInterfaceState state)
         {
             var castState = (ChemMasterBoundUserInterfaceState)state;
+            // Starlight Start
+            var outputCreationSolutionVariable = new Label
+            {
+                Text = $" {castState.InputContainerInfo?.CurrentVolume ?? 0}u",
+            }; //Starlight End Creates a variable for how much solution is in the input beaker to be used for Pill/Patches creation
 
             if (castState.UpdateLabel)
                 LabelLine = GenerateLabel(castState);
 
             // Ensure the Panel Info is updated, including UI elements for Buffer Volume, Output Container and so on
             UpdatePanelInfo(castState);
-
-            BufferCurrentVolume.Text = $" {castState.BufferCurrentVolume?.Int() ?? 0}u";
+            BufferCurrentVolume.Text = outputCreationSolutionVariable.Text; // Starlight Beaker Changes for Pills/Patches creation
 
             InputEjectButton.Disabled = castState.InputContainerInfo is null;
             OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
             CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
             CreatePillButton.Disabled = castState.OutputContainerInfo?.Entities == null;
+            CreatePatchButton.Disabled = castState.OutputContainerInfo?.Entities == null; // Starlight-edit
 
             UpdateDosageFields(castState);
         }
@@ -168,14 +177,19 @@ namespace Content.Client.Chemistry.UI
             var holdsReagents = output?.Reagents != null;
             var pillNumberMax = holdsReagents ? 0 : remainingCapacity;
             var bottleAmountMax = holdsReagents ? remainingCapacity : 0;
-            var bufferVolume = castState.BufferCurrentVolume?.Int() ?? 0;
+            var beakerVolume = castState.InputContainerInfo?.CurrentVolume.Int() ?? 0;
 
-            PillDosage.Value = (int)Math.Min(bufferVolume, castState.PillDosageLimit);
+            PillDosage.Value = (int)Math.Min(beakerVolume, castState.PillDosageLimit); // Starlight-edit
+            PatchDosage.Value = (int)Math.Min(beakerVolume, castState.PatchDosageLimit); // Starlight-edit
 
             PillTypeButtons[castState.SelectedPillType].Pressed = true;
 
             PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
             PillDosage.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
+            // Starlight-start
+            PatchNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
+            PatchDosage.IsValid = x => x > 0 && x <= castState.PatchDosageLimit;
+            // Starlight-end
             BottleDosage.IsValid = x => x >= 0 && x <= bottleAmountMax;
 
             if (PillNumber.Value > pillNumberMax)
@@ -183,17 +197,31 @@ namespace Content.Client.Chemistry.UI
             if (BottleDosage.Value > bottleAmountMax)
                 BottleDosage.Value = bottleAmountMax;
 
+            if (PatchNumber.Value > pillNumberMax)
+                PatchNumber.Value = pillNumberMax;
+
             // Avoid division by zero
             if (PillDosage.Value > 0)
             {
-                PillNumber.Value = Math.Min(bufferVolume / PillDosage.Value, pillNumberMax);
+                PillNumber.Value = Math.Min(beakerVolume / PillDosage.Value, pillNumberMax);
             }
             else
             {
                 PillNumber.Value = 0;
             }
 
-            BottleDosage.Value = Math.Min(bottleAmountMax, bufferVolume);
+            // Starlight-start
+            if (PatchDosage.Value > 0)
+            {
+                PatchNumber.Value = Math.Min(beakerVolume / PatchDosage.Value, pillNumberMax);
+            }
+            else
+            {
+                PatchNumber.Value = 0;
+            }
+
+            BottleDosage.Value = Math.Min(bottleAmountMax, beakerVolume);
+            // Starlight-end
         }
         /// <summary>
         /// Generate a product label based on reagents in the buffer.

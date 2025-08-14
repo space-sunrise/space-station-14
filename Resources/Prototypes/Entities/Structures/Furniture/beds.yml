@@ -96,7 +96,7 @@
     node: medicalbed
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
   - type: CanSleepOnBuckle # Sunrise-Edit
 
 - type: entity

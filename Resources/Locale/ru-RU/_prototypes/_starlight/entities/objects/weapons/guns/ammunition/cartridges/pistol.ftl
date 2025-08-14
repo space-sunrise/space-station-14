@@ -1,0 +1,10 @@
+ent-CartridgePistol40SP = cartridge (.40 SP)
+    .desc = { ent-BaseCartridgePistol.desc }
+ent-CartridgePistol40HP = cartridge (.40 HP)
+    .desc = { ent-CartridgePistol40SP.desc }
+ent-CartridgePistol40FMJ = cartridge (.40 FMJ)
+    .desc = { ent-CartridgePistol40SP.desc }
+ent-CartridgePistol40AP = cartridge (.40 AP)
+    .desc = { ent-CartridgePistol40SP.desc }
+ent-CartridgePistolImprovised = improvised cartridge (.35 auto)
+    .desc = A handmade pistol bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective.

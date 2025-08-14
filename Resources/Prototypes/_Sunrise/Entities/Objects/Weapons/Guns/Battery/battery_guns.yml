@@ -87,36 +87,36 @@
     steps: 5
     zeroVisible: true
 
-- type: entity
-  name:  IK-30 laser carbine
-  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
-  id: WeaponGunLaserCarbineSemi
-  description: "A semi-automatic battery laser carbine."
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Gun
-    selectedMode: SemiAuto
-    fireRate: 2.75
-    availableModes:
-      - SemiAuto
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,4,1
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
+# - type: entity
+#   name:  IK-30 laser carbine
+#   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+#   id: WeaponGunLaserCarbineSemi
+#   description: "A semi-automatic battery laser carbine."
+#   components:
+#   - type: Sprite
+#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+#     layers:
+#     - state: base
+#       map: ["enum.GunVisualLayers.Base"]
+#     - state: mag-unshaded-4
+#       map: ["enum.GunVisualLayers.MagUnshaded"]
+#       shader: unshaded
+#   - type: Gun
+#     selectedMode: SemiAuto
+#     fireRate: 2.75
+#     availableModes:
+#       - SemiAuto
+#   - type: Clothing
+#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+#   - type: Item
+#     size: Huge
+#     shape:
+#     - 0,0,4,1
+#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+#   - type: MagazineVisuals
+#     magState: mag
+#     steps: 5
+#     zeroVisible: true
 
 - type: entity
   name: energy gun
@@ -129,9 +129,8 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mode-disabler
-      shader: unshaded
-      map: [ "Firemode" ]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
@@ -149,30 +148,26 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: EnergyGunFireModes
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 60
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
+    - proto: DisablerBolt
       fireCost: 60
       name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
+      visualState: disable
+      heldPrefix: disable
+    - proto: RedLaserBeam
       fireCost: 100
       name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
+      visualState: lethal
+      heldPrefix: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
-          Special: { state: mode-stun } # Unused
 
 - type: entity
   name: x-01 multiphase energy gun
@@ -189,9 +184,8 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mode-disabler
-      shader: unshaded
-      map: [ "Firemode" ]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
@@ -203,42 +197,33 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
-    autoRechargePause: true
-    autoRechargePauseTime: 30
-  - type: EnergyGunFireModes
+    maxCharge: 2000
+    startingCharge: 2000
+  # - type: BatterySelfRecharger # Description says: lacks the ability to recharge over time.
+  #   autoRecharge: true
+  #   autoRechargeRate: 25
+  #   autoRechargePause: true
+  #   autoRechargePauseTime: 30
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 65
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
-      fireCost: 50
+    - proto: DisablerBolt
+      fireCost: 65
       name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
+      visualState: disable
+      heldPrefix: disable
+    - proto: RedLaserBeam
       fireCost: 100
       name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
-    # - projectileProto: BulletEnergyGunIon
-    #   fireCost: 250
-    #   name: ion
-    #   state: special
-    #  shotType: Projectile
+      visualState: lethal
+      heldPrefix: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
-          Special: { state: mode-ion }
   - type: Tag
     tags:
     - HighRiskItem
@@ -259,9 +244,8 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mode-disabler
-      shader: unshaded
-      map: [ "Firemode" ]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
@@ -281,29 +265,26 @@
     autoRechargeRate: 60
     autoRechargePause: true
     autoRechargePauseTime: 6
-  - type: EnergyGunFireModes
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 90
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
+    - proto: DisablerBolt
       fireCost: 90
       name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser #BulletPulse
+      visualState: disable
+      heldPrefix: disable
+    - proto: RedLaserBeam #BulletPulse
       fireCost: 110
       name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
+      visualState: lethal
+      heldPrefix: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
   - type: Tag
     tags:
     - Sidearm
@@ -312,55 +293,70 @@
 
 - type: entity
   name: miniature energy gun
-  parent: BaseWeaponBatterySmall
-  id: WeaponEnergyGunMini
-  description: A light version of the Energy gun with a smaller capacity.
+  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  id: WeaponMiniEnergyGun
+  description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/mini_energygun.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+    - state: base-overlay
       shader: unshaded
-    - state: mode-disabler
+      visible: false
+      map: [ "light" ]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-      map: [ "Firemode" ]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/mini_energygun.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: Battery
-    maxCharge: 600
-    startingCharge: 600
-  - type: EnergyGunFireModes
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
-      fireCost: 50
-      name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
+    - proto: DisablerBolt
       fireCost: 100
-      name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
+    - proto: RedLaserBeam
+      fireCost: 175
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
   - type: MagazineVisuals
     magState: mag
-    steps: 5
-    zeroVisible: false
+    steps: 4
+    zeroVisible: true
+  # - type: PointLight
+  #   enabled: false
+  #   mask: /Textures/Effects/LightMasks/cone.png
+  #   autoRot: true
+  #   radius: 6
+  #   netsync: false
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
-          Special: { state: mode-stun } # Unused
+  # - type: HandheldLight # Sunrise-TODO: Fix this
+  #   needsCharge: false
+  #   addPrefix: false
+  #   wattage: 0.2
+  #   blinkingBehaviourId: blinking
+  #   radiatingBehaviourId: radiating
+  # - type: LightBehaviour
+  #   behaviours:
+  #   - !type:FadeBehaviour
+  #     id: radiating
+  #     maxDuration: 2.0
+  #     startValue: 3.0
+  #     endValue: 2.0
+  #     isLooped: true
+  #     reverseWhenFinished: true
+  #   - !type:PulseBehaviour
+  #     id: blinking
+  #     interpolate: Nearest
+  #     maxDuration: 1.0
+  #     minValue: 0.1
+  #     maxValue: 2.0
+  #     isLooped: true
+  # - type: ToggleableLightVisuals
+  #   spriteLayer: light
 
 - type: entity
   name: PDW-9 Energy Pistol
@@ -377,9 +373,8 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mode-disabler
-      shader: unshaded
-      map: [ "Firemode" ]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
@@ -393,70 +388,67 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: EnergyGunFireModes
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 50
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
+    - proto: DisablerBolt
       fireCost: 50
       name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
+      visualState: disable
+      heldPrefix: disable
+    - proto: RedLaserBeam
       fireCost: 100
       name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
+      visualState: lethal
+      heldPrefix: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
   - type: Tag
     tags:
     - Sidearm
   - type: StaticPrice
     price: 750
 
-- type: entity
-  name: IK-60 laser carbine
-  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
-  id: WeaponGunLaserCarbineAutomatic
-  description: "A burst automatic battery laser carbine."
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Gun
-    minAngle: 1.5
-    maxAngle: 20
-    angleIncrease: 1.25
-    angleDecay: 12
-    selectedMode: Burst
-    shotsPerBurst: 5
-    burstCooldown: 0.15
-    burstFireRate: 8
-    availableModes:
-    - Burst
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,4,1
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
+# - type: entity
+#   name: IK-60 laser carbine
+#   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+#   id: WeaponGunLaserCarbineAutomatic
+#   description: "A burst automatic battery laser carbine."
+#   components:
+#   - type: Sprite
+#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
+#     layers:
+#     - state: base
+#       map: ["enum.GunVisualLayers.Base"]
+#     - state: mag-unshaded-4
+#       map: ["enum.GunVisualLayers.MagUnshaded"]
+#       shader: unshaded
+#   - type: Gun
+#     minAngle: 1.5
+#     maxAngle: 20
+#     angleIncrease: 1.25
+#     angleDecay: 12
+#     selectedMode: Burst
+#     shotsPerBurst: 5
+#     burstCooldown: 0.15
+#     burstFireRate: 8
+#     availableModes:
+#     - Burst
+#   - type: Item
+#     size: Huge
+#     shape:
+#     - 0,0,4,1
+#   - type: Clothing
+#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
+#   - type: MagazineVisuals
+#     magState: mag
+#     steps: 5
+#     zeroVisible: true
 
 - type: entity
   name: Energy Pistol «Judge»
@@ -469,9 +461,8 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mode-disabler
-      shader: unshaded
-      map: [ "Firemode" ]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
@@ -485,29 +476,26 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: EnergyGunFireModes
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 50
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
+    - proto: DisablerBolt
       fireCost: 50
       name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
+      visualState: disable
+      heldPrefix: disable
+    - proto: RedLaserBeam
       fireCost: 100
       name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
+      visualState: lethal
+      heldPrefix: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
   - type: Tag
     tags:
     - Sidearm
@@ -525,9 +513,8 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mode-disabler
-      shader: unshaded
-      map: [ "Firemode" ]
+    - state: disable
+      map: ["enum.FireModesLayers.FireMode"]
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
@@ -553,29 +540,26 @@
     autoRechargeRate: 14 # ~2 minute
     autoRechargePause: true
     autoRechargePauseTime: 30
-  - type: EnergyGunFireModes
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 49
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisablerSmg
+    - proto: DisablerBoltSmg
       fireCost: 49
       name: energy-gun-disable
-      state: disabler
-      shotType: Hitscan
-    - hitscanProto: BulletLaser
+      visualState: disable
+      heldPrefix: disable
+    - proto: RedLaserBeam
       fireCost: 70
       name: energy-gun-lethal
-      state: lethal
-      shotType: Hitscan
+      visualState: lethal
+      heldPrefix: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.EnergyGunFireModeVisuals.State:
-        Firemode:
-          Disabler: { state: mode-disabler }
-          Lethal: { state: mode-lethal }
 
 - type: entity
   parent: [BaseWeaponBattery, BaseGunPulseSound]
@@ -615,9 +599,9 @@
     autoRechargePauseTime: 60
   - type: Wieldable
   - type: GunRequiresWield
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletEMP
-    fireCost: 1000
+  - type: HitscanBatteryAmmoProvider
+    proto: EmpPulse
+    fireCost: 250
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -629,8 +613,8 @@
     sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 4
+    pvsIncrease: 0.4
 
 # Sunrise Colonial Marines
 
@@ -651,7 +635,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: RedLaser
     fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
@@ -701,7 +685,7 @@
     maxCharge: 3000
     startingCharge: 3000
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: RedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -746,7 +730,7 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: RedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -795,7 +779,7 @@
     maxCharge: 8000
     startingCharge: 8000
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: RedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -894,7 +878,7 @@
     maxCharge: 1800
     startingCharge: 1800
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedHeavyLaser
+    proto: RedHeavyLaser
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
@@ -904,51 +888,8 @@
     sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
-
-- type: entity
-  name: heavy pulse carbine
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
-  id: WeaponSniperPulseCarbine
-  description: "A high tech heavy carbine. favoured by the NT-ERT operatives."
-  components:
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,4,2
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
-  - type: Gun
-    selectedMode: SemiAuto
-    fireRate: 2.2
-    availableModes:
-      - SemiAuto
-      - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: EmpImmune
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletPulse
-    fireCost: 125
-  - type: Battery
-    maxCharge: 5000
-    startingCharge: 5000
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 6
+    pvsIncrease: 0.6
 
 - type: entity
   name: S-13 «Black mamba»
@@ -985,7 +926,7 @@
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaTriple
+    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 40
   - type: Wieldable
   - type: GunWieldBonus
@@ -997,8 +938,8 @@
   - type: EmpImmune
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 6
+    pvsIncrease: 0.6
   - type: StaticPrice
     price: 3500
 
@@ -1037,7 +978,7 @@
       - SemiAuto
       - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
+    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -1084,7 +1025,7 @@
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
+    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 25
   - type: MultiHandedItem
   - type: Battery
@@ -1117,21 +1058,246 @@
     shape:
     - 0, 0, 1, 1
   - type: HitscanBatteryAmmoProvider
-    proto: BulletDisabler
+    proto: DisablerBolt
     fireCost: 50
-  - type: EnergyGunFireModes
+  - type: BatteryWeaponFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
+    - proto: DisablerBolt
       fireCost: 50
       name: energy-gun-disable
-      state: base
-      shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
+      #state: base
+    - proto: RedLaserBeam
       fireCost: 50
       name: energy-gun-lethal
-      shotType: Hitscan
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
+
+###### PULSE WEAPONS ######
+
+- type: entity
+  name: pulse pistol
+  parent: [BaseWeaponBatterySmall, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponPulsePistol
+  description: A state of the art energy pistol favoured as a sidearm by the NT operatives.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    storedOffset: -2,-5
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: AdvancedDisablerBolt
+    fireCost: 1000
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AdvancedDisablerBolt
+      fireCost: 1000
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 2000
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 4000
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+
+- type: entity
+  name: pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponPulseCarbine
+  description: A high tech energy carbine favoured by the NT-ERT operatives.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Large
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 1500
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 4000
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 60000
+    startingCharge: 60000
+
+- type: entity
+  name: heavy pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponSniperPulseCarbine
+  description: "A high tech heavy carbine. favoured by the NT-ERT operatives."
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: AdvancedDisablerBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AdvancedDisablerBolt
+      fireCost: 1500
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 4000
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 80000
+    startingCharge: 80000
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 6
+    pvsIncrease: 0.6
+
+- type: entity
+  name: pulse rifle
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponPulseRifle
+  description: A weapon that is almost as infamous as its users.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: HitscanBatteryAmmoProvider
+    proto: AdvancedDisablerBolt
+    fireCost: 1500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AdvancedDisablerBolt
+      fireCost: 1500
+      magState: stun
+      visualState: stun
+    - proto: PulseBeam
+      fireCost: 1500
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 4000
+      magState: destroy
+      visualState: destroy
+  - type: Battery
+    maxCharge: 400000
+    startingCharge: 400000

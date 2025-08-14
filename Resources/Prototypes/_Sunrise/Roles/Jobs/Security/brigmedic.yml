@@ -35,6 +35,7 @@
     eyes: ClothingEyesHudMedSec
     head: ClothingHeadHatBeretSecurityMedic
     id: BrigmedicPDA
+    pocket1: HandheldBrigmedicCrewMonitor
     ears: ClothingHeadsetBrigmedic
     belt: ClothingBeltMedicalFilled
   storage:

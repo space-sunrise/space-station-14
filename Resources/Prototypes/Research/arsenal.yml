@@ -36,7 +36,8 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - MagazineLightRifleBoxIncendiary #Sunrise-Add
+  - MagazinePistolSubMachineGunTopMountedIncendiary #Sunrise-Add
+  - MagazinePistolHighCapacityIncendiary # Sunrise-Add
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -52,14 +53,14 @@
   # Sunrise-Start
   - WeaponMechCombatFiredartLaser
   - WeaponEnergyGun
-  - WeaponEnergyGunMini
+  - WeaponMiniEnergyGun
   # Sunrise-End
 
 - type: technology
   id: NonlethalAmmunition
   name: research-technology-nonlethal-ammunition
   icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
     state: beanbag
   discipline: Arsenal
   tier: 1
@@ -93,7 +94,8 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - BoxShotgunUraniumSlug # Sunrise-Add
+  - MagazinePistolSubMachineGunTopMountedUranium #Sunrise-Add
+  - MagazinePistolHighCapacityUranium # Sunrise-Add
 
 - type: technology
   id: AdvancedRiotControl
@@ -206,6 +208,18 @@
   technologyPrerequisites:
   - SalvageWeapons
 
+- type: technology
+  id: DualWieldingTechnology
+  name: research-technology-dual-wielding-technology
+  icon:
+    sprite: Clothing/Back/Specific/harmpack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingBackpackHarmpack
+
 # Tier 3
 
 - type: technology
@@ -222,7 +236,6 @@
   - PortableRecharger
   - WeaponMechCombatImmolationGun # Sunrise-Add
   - WeaponMechCombatIon # Sunrise-Add
-  - WeaponGunLaserCarbineSemi #Sunrise-Add
 
 - type: technology
   id: ThermalWeaponry

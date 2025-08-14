@@ -28,7 +28,7 @@
   - type: PointLight
     color: "#D6E4FF"
     energy: 0.1
-    radius: 10
+    radius: 7
     softness: 20
 
 - type: entity
@@ -39,7 +39,7 @@
   - type: PointLight
     color: "#0ee92b"
     energy: 0.1
-    radius: 20
+    radius: 14
     softness: 20
 
 - type: entity

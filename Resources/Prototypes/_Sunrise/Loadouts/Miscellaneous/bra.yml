@@ -8,7 +8,7 @@
 
 - type: loadout
   id: WhiteNekoBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -17,7 +17,7 @@
 
 - type: loadout
   id: BlackNekoBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -26,7 +26,7 @@
 
 - type: loadout
   id: AssblastusaBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -35,7 +35,7 @@
 
 - type: loadout
   id: BikiniBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -44,7 +44,7 @@
 
 - type: loadout
   id: BraletteBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -53,7 +53,7 @@
 
 - type: loadout
   id: CommieBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -62,7 +62,7 @@
 
 - type: loadout
   id: KinkyBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -71,7 +71,7 @@
 
 - type: loadout
   id: LaceBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -80,7 +80,7 @@
 
 - type: loadout
   id: SportBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -89,7 +89,7 @@
 
 - type: loadout
   id: ThongBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -98,7 +98,7 @@
 
 - type: loadout
   id: UkBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -107,7 +107,7 @@
 
 - type: loadout
   id: ChristmasBra
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment

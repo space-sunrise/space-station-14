@@ -1,0 +1,14 @@
+ent-BaseSpeedLoaderShotgun = speed loader (.50)
+    .desc = { ent-BaseItem.desc }
+ent-SpeedLoaderShotgunEmpty = speed loader (.50 any)
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }
+ent-SpeedLoaderShellShotgun = speed loader (.50 pellet)
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }
+ent-SpeedLoaderShotgunBeanbag = speed loader (.50 beanbag)
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }
+ent-SpeedLoaderShotgunSlug = speed loader (.50 slug)
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }
+ent-SpeedLoaderShotgunUranium = speed loader (.50 uranium)
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }
+ent-SpeedLoaderShotgunIncendiary = speed loader (.50 incendiary)
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }

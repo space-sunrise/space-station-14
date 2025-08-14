@@ -374,3 +374,26 @@
     - state: idstationminer
   - type: PresetIdCard
     job: MiningSpecialist
+
+- type: entity
+  parent: [ IDCardStandard ]
+  id: AbductorIDCard
+  name: abductor ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: abductor
+    - type: Access # get your access from your victims.
+    - type: AgentIDCard
+    - type: IdCard
+      bypassLogging: true
+      canMicrowave: false
+      jobTitle: job-name-unknown
+    - type: ActivatableUI
+      key: enum.AgentIDCardUiKey.Key
+      inHandsOnly: true
+    - type: UserInterface
+      interfaces:
+        enum.AgentIDCardUiKey.Key:
+          type: AgentIDCardBoundUserInterface

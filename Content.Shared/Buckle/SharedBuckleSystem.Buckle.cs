@@ -60,6 +60,14 @@ public abstract partial class SharedBuckleSystem
         {
             BuckleDoafterEarly((uid, comp), ev.Event, ev);
         });
+
+        // Sunrise-Start
+        SubscribeLocalEvent<BuckleComponent, UnbuckleDoAfterEvent>(OnUnbuckleDoafter);
+        SubscribeLocalEvent<BuckleComponent, DoAfterAttemptEvent<UnbuckleDoAfterEvent>>((uid, comp, ev) =>
+        {
+            UnbuckleDoafterEarly((uid, comp), ev.Event, ev);
+        });
+        // Sunrise-End
     }
 
     private void OnBuckleComponentShutdown(Entity<BuckleComponent> ent, ref ComponentShutdown args)
@@ -74,6 +82,11 @@ public abstract partial class SharedBuckleSystem
         // Prevent people pulling the chair they're on, etc.
         if (ent.Comp.BuckledTo == args.Pulled && !ent.Comp.PullStrap)
             args.Cancel();
+
+        // Sunrise-Start
+        if (ent.Comp.Buckled)
+            args.Cancel();
+        // Sunrise-End
     }
 
     private void OnBeingPulledAttempt(Entity<BuckleComponent> ent, ref BeingPulledAttemptEvent args)
@@ -282,7 +295,7 @@ public abstract partial class SharedBuckleSystem
             return false;
         }
 
-        if (buckleComp.Buckled && !TryUnbuckle(buckleUid, user, buckleComp))
+        if (buckleComp.Buckled) // && !TryUnbuckle(buckleUid, user, buckleComp) Sunrise-Edit
         {
             if (popup)
             {
@@ -604,4 +617,27 @@ public abstract partial class SharedBuckleSystem
             TryBuckle(args.Target.Value, args.User, args.Used.Value, popup: false);
         }
     }
+
+    // Sunrise-Start
+    private void OnUnbuckleDoafter(Entity<BuckleComponent> entity, ref UnbuckleDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Target == null)
+            return;
+
+        args.Handled = TryUnbuckle(args.Target.Value, args.User, popup: false);
+    }
+
+    private void UnbuckleDoafterEarly(Entity<BuckleComponent> entity, UnbuckleDoAfterEvent args, CancellableEntityEventArgs ev)
+    {
+        if (args.Target == null)
+            return;
+
+        if (TryComp<CuffableComponent>(args.Target, out var targetCuffableComp) && targetCuffableComp.CuffedHandCount > 0
+            || _mobState.IsIncapacitated(args.Target.Value))
+        {
+            ev.Cancel();
+            TryUnbuckle(args.Target.Value, args.User, popup: false);
+        }
+    }
+    // Sunrise-End
 }

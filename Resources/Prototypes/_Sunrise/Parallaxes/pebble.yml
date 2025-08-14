@@ -1,0 +1,18 @@
+- type: parallax
+  id: PebbleStation
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/Pebble.png"
+      slowness: 0.98
+      scale: 0.5,0.5
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.97
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.96

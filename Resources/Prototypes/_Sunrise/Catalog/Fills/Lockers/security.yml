@@ -1,131 +1,18 @@
+# Energy Guns
 - type: entity
-  parent: GunSafe
+  parent: GunSafeBaseSecure
   id: GunSafeEnergyGunMini
   name: mini energy cannons safe
   suffix: SUNRISE
   components:
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGunMini
+    - id: WeaponMiniEnergyGun
       amount: 5
 
 - type: entity
-  parent: GunSafe
-  id: GunSafePistolG22
-  name: safe
-  suffix: Glock-22
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolG22
-      amount: 4
-    - id: MagazinePistol
-      amount: 8
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeRifleM16A4
-  name: safe
-  suffix: M16A4
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleM16A4
-      amount: 2
-    - id: SunriseMagazineRifle
-      amount: 4
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeSubMachineGunVector
-  name: safe
-  suffix: Vector
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunNewVector
-      amount: 2
-    - id: MagazinePistolSubMachineGun
-      amount: 4
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeSubMachineGunMP7
-  name: safe
-  suffix: MP7, SUNRISE
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunMP7
-      amount: 2
-    - id: MagazinePistolSubMachineGun
-      amount: 4
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeSubMachineGunSkorpion
-  name: safe
-  suffix: Skorpion, SUNRISE
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunSkorpion
-      amount: 4
-    - id: MagazinePistolSubMachineGun
-      amount: 6
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeShotgunPaladin
-  name: safe
-  suffix: Paladin 12
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunPaladin12
-      amount: 2
-    - id: BoxLethalshot
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeShotgunTrenchgun4034
-  name: safe
-  suffix: Trenchgun 4034
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunTrenchgun4034
-      amount: 2
-    - id: BoxLethalshot
-      amount: 1
-    - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeShotgunSPAS12
-  name: safe
-  suffix: LAW-12
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunSPAS12
-      amount: 2
-    - id: BoxLethalshot
-      amount: 1
-    - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-
-- type: entity
   id: GunSafeEnergyGunPistolSecurity
-  parent: GunSafe
+  parent: GunSafeBaseSecure
   name: safe
   suffix: Energy Pistol «Judge»
   components:
@@ -135,20 +22,18 @@
       amount: 4
 
 - type: entity
-  id: GunSafeCombineSmallArms
-  parent: GunSafe
+  id: GunSafeEnergyPistolDominator
+  parent: GunSafeBaseSecure
   name: safe
-  suffix: Energy Pistol/Glock22
+  suffix: Energy Pistol «Dominator»
   components:
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGunPistolSecurity
-      amount: 3
-    - id: GlockBox
-      amount: 3
+    - id: WeaponDominator
+      amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: GunSafeBaseSecure
   id: GunSafeEnergyGun
   name: safe
   suffix: Tactical Energy guns
@@ -157,3 +42,479 @@
     contents:
     - id: WeaponEnergyGunTactical
       amount: 2
+
+## Pistols and revolvers safes
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafePistolG22
+  name: safe
+  suffix: Glock-22
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolG22
+      amount: 4
+    - id: MagazineGlock22
+      amount: 8
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafePistolM1984
+  name: safe
+  suffix: M1984
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolM1984
+      amount: 4
+    - id: MagazinePistol
+      amount: 8
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSnubRevolver
+  name: safe
+  suffix: Snub Revolver
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverSnubRevolver
+      amount: 4
+    - id: SpeedLoaderMagnumSP
+      amount: 6
+    - id: SpeedLoaderMagnumRubber
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafePistolVP78
+  name: safe
+  suffix: VP-78
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolVP78
+      amount: 4
+    - id: MagazineVP70
+      amount: 8
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafePistolACP14
+  name: safe
+  suffix: ACP-14
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolACP14
+      amount: 4
+    - id: MagazineACP14
+      amount: 8
+
+# Safes for SMGs
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSubMachineGunVector
+  name: safe
+  suffix: Vector
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunNewVector
+      amount: 2
+    - id: MagazinePistolSubMachineGunSP
+      amount: 6
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSubMachineGunMP7
+  name: safe
+  suffix: MP7, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP7
+      amount: 2
+    - id: MagazinePistolHighCapacityFMJ
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSubMachineGunSkorpion
+  name: safe
+  suffix: Skorpion, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunSkorpion
+      amount: 3
+    - id: MagazinePistolSubMachineGunSP
+      amount: 6
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSubMachineGunMP5
+  name: safe
+  suffix: MP5, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP5
+      amount: 2
+    - id: MagazinePistolSubMachineGunSP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSubMachineGunDrozdMk2
+  name: safe
+  suffix: Drozd Mk2, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunDrozdMk2
+      amount: 2
+    - id: MagazinePistolSubMachineGunSP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeSubMachineGunSP91RC
+  name: safe
+  suffix: SP91RC, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunSP91RC
+      amount: 2
+    - id: MagazinePistolSubMachineGunSP
+      amount: 4
+
+# Rifles safes
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeRifleM16A4
+  name: safe
+  suffix: M16A4
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleM16A4
+      amount: 2
+    - id: MagazineRifleSP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeRifleAKMU
+  name: safe
+  suffix: AKMU
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAKMU
+      amount: 2
+    - id: MagazineLightRifleSP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeRifleLecterMk2
+  name: safe
+  suffix: Lecter Mk2
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecterMk2
+      amount: 2
+    - id: MagazineRifleSP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeRifleAR18
+  name: safe
+  suffix: AR-18
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAR18
+      amount: 2
+    - id: MagazineRifleHeavySP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeRifleFamas
+  name: safe
+  suffix: Famas
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleFamas
+      amount: 2
+    - id: MagazineRifleSP
+      amount: 4
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeWeaponRifleG36
+  name: safe
+  suffix: G-36
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleG36
+      amount: 2
+    - id: MagazineRifleSP
+      amount: 4
+
+# Shotguns safes
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeShotgunTrenchgun4034
+  name: safe
+  suffix: Trenchgun 4034
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunTrenchgun4034
+      amount: 2
+    - id: SpeedLoaderShellShotgun
+      amount: 4
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+    - id: BoxShotgunFlare
+      amount: 1
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeShotgunRiot
+  name: safe
+  suffix: Shotgun Riot
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunRiot
+      amount: 2
+    - id: SpeedLoaderShellShotgun
+      amount: 4
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+    - id: BoxShotgunFlare
+      amount: 1
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeShotgunSPAS12
+  name: safe
+  suffix: LAW-12
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunSPAS12
+      amount: 2
+    - id: SpeedLoaderShellShotgun
+      amount: 4
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+    - id: BoxShotgunFlare
+      amount: 1
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeShotgunCombat
+  name: safe
+  suffix: Shotgun Combat
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunCombat
+      amount: 2
+    - id: SpeedLoaderShellShotgun
+      amount: 4
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+    - id: BoxShotgunFlare
+      amount: 1
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeDoubleBarreled
+  name: safe
+  description: According to the paperwork — state-of-the-art tactical shotguns. In reality — antique double-barrels.
+  suffix: Shotgun Double-Barreled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunDoubleBarreled
+      amount: 4
+    - id: SpeedLoaderShellShotgun
+      amount: 4
+    - id: BoxBeanbag
+      amount: 1
+    - id: SpeedLoaderShotgunIncendiary
+      amount: 4
+    - id: BoxShotgunFlare
+      amount: 1
+
+# Small Arms Spawner
+- type: entity
+  name: Armory Safe Spawner
+  id: SpawnerSafeSmallArms
+  parent: MarkerBase
+  suffix: Spawner Safe Pistols
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: SmallArmsSafes
+
+- type: entityTable
+  id: SmallArmsSafes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 85
+      children:
+      - id: GunSafePistolMk58
+      - id: GunSafePistolG22
+      - id: GunSafeEnergyGunPistolSecurity
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: GunSafePistolACP14
+      - id: GunSafeEnergyPistolDominator
+      - id: GunSafePistolVP78
+      - id: GunSafeSnubRevolver
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: GunSafePistolM1984
+      - id: GunSafeSubMachineGunSkorpion
+
+# ShotGuns Spawner
+- type: entity
+  name: Armory Safe Spawner
+  id: SpawnerSafeShotguns
+  parent: MarkerBase
+  suffix: Spawner Safe ShotGuns
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: ShotgunSafes
+
+- type: entityTable
+  id: ShotgunSafes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 90
+      children:
+      - id: GunSafeShotgunTrenchgun4034
+      - id: GunSafeShotgunKammerer
+      - id: GunSafeShotgunRiot
+    - !type:GroupSelector
+      weight: 9
+      children:
+      - id: GunSafeShotgunSPAS12
+      - id: GunSafeShotgunEnforcer
+      - id: GunSafeShotgunCombat
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - id: GunSafeDoubleBarreled
+
+# Rifle Spawner
+- type: entity
+  name: Armory Safe Spawner
+  id: SpawnerSafeRifle
+  parent: MarkerBase
+  suffix: Spawner Safe Rifle
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: RifleSafes
+
+- type: entityTable
+  id: RifleSafes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 85
+      children:
+      - id: GunSafeRifleLecter
+      - id: GunSafeRifleM16A4
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: GunSafeRifleAKMU
+      - id: GunSafeRifleLecterMk2
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: GunSafeRifleAR18
+      - id: GunSafeRifleFamas
+      - id: GunSafeWeaponRifleG36
+
+# SMG Spawner
+- type: entity
+  name: Armory Safe Spawner
+  id: SpawnerSafeSMG
+  parent: MarkerBase
+  suffix: Spawner Safe SMG
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: SMGSafes
+
+- type: entityTable
+  id: SMGSafes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 80
+      children:
+      - id: GunSafeSubMachineGunMP7
+      - id: GunSafeSubMachineGunMP5
+      - id: GunSafeSubMachineGunDrozd
+    - !type:GroupSelector
+      weight: 15
+      children:
+      - id: GunSafeSubMachineGunDrozdMk2
+      - id: GunSafeSubMachineGunVector
+      - id: GunSafeSubMachineGunWt550
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: GunSafeRifleAR18
+      - id: WeaponSubMachineGunSkorpion
+
