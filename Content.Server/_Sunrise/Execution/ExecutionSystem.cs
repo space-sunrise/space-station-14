@@ -1,5 +1,6 @@
 ﻿using Content.Server.Kitchen.Components;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -361,6 +362,18 @@ public sealed class ExecutionSystem : EntitySystem
         var ammoUid = ev.Ammo[0].Entity;
         switch (ev.Ammo[0].Shootable)
         {
+            //🌟Starlight🌟 start
+            case HitScanCartridgeAmmoComponent cartridge:
+                var hitscanProto = _prototypeManager.Index(cartridge.Hitscan);
+                if (hitscanProto.Damage is not null)
+                    damage = hitscanProto.Damage * hitscanProto.Count;
+
+                cartridge.Spent = true;
+                _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
+                Dirty(ammoUid.Value, cartridge);
+
+                break;
+            //🌟Starlight🌟 end
             case CartridgeAmmoComponent cartridge:
                 // Get the damage value
                 var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
@@ -379,29 +392,6 @@ public sealed class ExecutionSystem : EntitySystem
                 cartridge.Spent = true;
                 _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
                 Dirty(ammoUid.Value, cartridge);
-
-                break;
-
-            case HitScanCartridgeAmmoComponent hitScanCartridge:
-                // Get the damage value
-                var hitScanPrototype = _prototypeManager.Index<HitscanPrototype>(hitScanCartridge.Prototype);
-                if (hitScanPrototype.Damage != null)
-                {
-                    damage = hitScanPrototype.Damage;
-                    if (hitScanPrototype.ShootModifier == ShootModifier.Split)
-                    {
-                        damage *= hitScanPrototype.SplitCount;
-                    }
-                    else if (hitScanPrototype.ShootModifier == ShootModifier.Spread)
-                    {
-                        damage *= hitScanPrototype.SpreadCount;
-                    }
-
-                    // Expend the cartridge
-                    hitScanCartridge.Spent = true;
-                    _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
-                    Dirty(ammoUid.Value, hitScanCartridge);
-                }
 
                 break;
 

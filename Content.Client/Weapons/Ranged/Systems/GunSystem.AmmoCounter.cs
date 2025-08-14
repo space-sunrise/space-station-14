@@ -311,16 +311,15 @@ public sealed partial class GunSystem
                 {
                     MinSize = texture.Size * scale,
                 };
-                // Sunrise-Edit: А как играть в рускую рулетку с этой хуйней?
-                // if (i == currentIndex)
-                // {
-                //     box.AddChild(new TextureRect
-                //     {
-                //         Texture = texture,
-                //         TextureScale = new Vector2(scale, scale),
-                //         ModulateSelfOverride = Color.LimeGreen,
-                //     });
-                // }
+                if (i == currentIndex)
+                {
+                    box.AddChild(new TextureRect
+                    {
+                        Texture = texture,
+                        TextureScale = new Vector2(scale, scale),
+                        ModulateSelfOverride = Color.LimeGreen,
+                    });
+                }
                 Color color;
                 Texture bulletTexture = texture;
 

@@ -257,6 +257,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             {
                 HorizontalExpand = true
             };
+            //selector.Color = marking.MarkingColors[i];
             selector.CurrentType = selectorType;
 
             var colorIndex = i;

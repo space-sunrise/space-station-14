@@ -46,20 +46,52 @@
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunMP7
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolHighCapacityFMJ
       amount: 3
 
-#- type: entity
-#  id: ClothingBackpackDuffelWeaponRifleLecterFilled
-#  parent: ClothingBackpackDuffelMilitary
-#  name: Bundlelecter
-#  description: Lecter with 3 raspy magazines.
-#  components:
-#    - type: StorageFill
-#      contents:
-#        - id: WeaponRifleLecter
-#        - id: MagazineRifle
-#          amount: 3
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunWt550
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle WT550
+  description: WT550 with 3 raspy magazines FMJ and 2 HP.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunWt550
+    - id: MagazinePistolSubMachineGunTopMounted
+      amount: 3
+    - id: MagazinePistolSubMachineGunTopMountedHP
+      amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunDrozdMk2
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle Drozd Mk2
+  description: Drozd Mk2 with 3 raspy magazines FMJ and 2 HP.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunDrozdMk2
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 3
+    - id: MagazinePistolSubMachineGunHP
+      amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleLecterFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle lecter Mk2
+  description: Lecter Mk2 with 3 raspy FMJ magazines and 2 HP.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecterMk2
+    - id: MagazineRifleFMJ
+      amount: 3
+    - id: MagazineRifleHP
+      amount: 2
+    - id: MagazineRifleSP
+      amount: 1
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
@@ -70,7 +102,7 @@
     - type: StorageFill
       contents:
         - id: WeaponSubMachineGunP90
-        - id: MagazineP90Extended
+        - id: MagazineP90
           amount: 3
 
 - type: entity
@@ -82,7 +114,7 @@
     - type: StorageFill
       contents:
         - id: WeaponAMS-42
-        - id: SunriseMagazineRifleExtended
+        - id: MagazineRifleSP
           amount: 4
 
 - type: entity
@@ -94,33 +126,22 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleG36
-        - id: SunriseMagazineRifle
+        - id: MagazineRifleSP
           amount: 4
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponShotgunZauerFilled
+  id: ClothingBackpackDuffelWeaponShotgunCycler
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle zauer
-  description: Zauer with 2 raspy magazines.
+  name: Bundle Assault Shotgun
+  description: Assault Shotgun with 6 raspy speedloaders.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponShotgunZauer
-        - id: MagazineShotgun
+        - id: WeaponShotgunCycler
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: SpeedLoaderShotgunSlug
           amount: 2
-
-- type: entity
-  id: ClothingBackpackDuffelWeaponXM1014Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle xm1014
-  description: XM1014 with 1 Box ammo.
-  components:
-    - type: StorageFill
-      contents:
-        - id: WeaponXM1014
-        - id: BoxLethalshot
-        - id: BoxShotgunFlare
-        - id: BoxBeanbag
 
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgun4034Filled
@@ -157,7 +178,7 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleAR18
-        - id: MagazineAR18
+        - id: MagazineRifleHeavySP
           amount: 2
 
 - type: entity
@@ -169,8 +190,8 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleM28
-        - id: MagazineAR18
-          amount: 2
+        - id: MagazineRifleHeavySP
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleBR64Filled
@@ -181,7 +202,7 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleBR64
-        - id: MagazineBR64Extended
+        - id: MagazineRifleHeavyFMJ
           amount: 2
 
 #- type: entity
@@ -250,3 +271,57 @@
       - id: NitrousOxideTankFilled
       - id: NitrousOxideTankFilled
       - id: ClothingMaskBreath
+
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledMinotaurShotgun
+  name: Minotaur bundle
+  description: "Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums."
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunMinotaurBiocode
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledDeagle
+  name: Desert Eagle bundle
+  description: "Contains high damage Desert Eagle, a 3 magnum magazines."
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolDeagle
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDufelSyndicateFilledMantisBladeArms
+  name: Mantis Blade bundle
+  description: "Contains a pair of cybernetic arms, watch out. You got a psycho on the loose."
+  components:
+  - type: StorageFill
+    contents:
+    - id: RightArmCyberMantisBlade
+    - id: LeftArmCyberMantisBlade
+    - id: RightHandCyber
+    - id: LeftHandCyber
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledInfiltration
+  name: infiltration hardsuit bundle
+  description: "Contains the latest in Syndicate chameleon technology, the infiltration hardsuit."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitInfiltrationBiocode
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombatCQC
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled

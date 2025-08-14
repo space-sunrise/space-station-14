@@ -113,9 +113,6 @@
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-patologoanatom
-  - type: GuideHelp
-    guides:
-    - Medical Doctor
 
 - type: entity
   parent: BasePDA

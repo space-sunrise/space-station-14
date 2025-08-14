@@ -33,7 +33,7 @@ public sealed class LoveVisionOverlay : Overlay
     private readonly Robust.Client.Graphics.Texture _heartTexture;
     private const string HeartTexturePath = "/Textures/_Sunrise/Interface/LoveVision/hearts.png";
 
-    private readonly Robust.Shared.Maths.Vector3 _gradientColor = new(1.0f, 0.3f, 0.7f); // Розово-фиолетовый
+    private readonly Vector3 _gradientColor = new(1.0f, 0.3f, 0.7f); // Розово-фиолетовый
     private readonly List<HeartData> _hearts = [];
 
     private struct HeartData

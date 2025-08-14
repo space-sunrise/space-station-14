@@ -181,9 +181,9 @@
         {
             "name": "HeadRevolutionary"
         },
-        {
-            "name": "Magistrat"
-        },
+		{
+			"name": "Magistrat"
+		},
         {
             "name": "MindShield",
             "delays": [
@@ -210,9 +210,6 @@
         },
         {
             "name": "ParadoxClone"
-        },
-        {
-            "name": "Changeling"
         },
         {
             "name": "Vampire"

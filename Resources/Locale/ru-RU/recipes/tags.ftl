@@ -60,6 +60,19 @@ construction-graph-tag-black-crayon = { ent-BlackCrayon }
 construction-graph-tag-suspenders = { ent-Suspenders }
 construction-graph-tag-wheat-bushel = { ent-WheatBushel }
 construction-graph-tag-rubber-ducky = { ent-RubberDucky }
+## Improvised ammo ##
+construction-graph-tag-shell-shotgun-improvised-empty = { ent-ShellShotgunImprovisedEmpty }
+construction-graph-tag-shell-shotgun-improvised-empty-desc = { ent-ShellShotgunImprovisedEmpty.desc }
+construction-graph-tag-shell-shotgun-improvised = { ent-ShellShotgunImprovised }
+construction-graph-tag-shell-shotgun-improvised-desc = { ent-ShellShotgunImprovised.desc }
+construction-graph-tag-shell-shotgun-improvised-incendiary = { ent-ShellShotgunImprovisedIncendiary }
+construction-graph-tag-shell-shotgun-improvised-incendiary-desc = { ent-ShellShotgunImprovisedIncendiary.desc }
+construction-graph-tag-shell-shotgun-improvised-uranium = { ent-ShellShotgunImprovisedUranium }
+construction-graph-tag-shell-shotgun-improvised-uranium-desc = { ent-ShellShotgunImprovisedUranium.desc }
+construction-graph-tag-shell-shotgun-coin = { ent-ShellShotgunCoin }
+construction-graph-tag-shell-shotgun-coin-desc = { ent-ShellShotgunCoin.desc }
+construction-graph-tag-empty-shotgun-shell = { ent-ShellShotgunImprovisedEmpty }
+
 # Клоунские предметы
 construction-graph-tag-purple-crayon = { ent-CrayonPurple }
 construction-graph-tag-yellow-crayon = { ent-CrayonYellow }
@@ -107,8 +120,11 @@ construction-graph-tag-ambrosia = { ent-FoodAmbrosiaVulgaris }
 construction-graph-tag-human-head = { ent-HeadHuman }
 construction-graph-tag-light-bulb = { ent-LightBulb }
 construction-graph-tag-radio = { ent-RadioHandheld }
-construction-graph-tag-UpgradeFlareGun = { ent-FlareGunSecurityUpgrade }
+construction-graph-tag-upgradeflaregun = { ent-FlareGunSecurityUpgrade }
+construction-graph-tag-upgradedrozd = { ent-DrozdUpgrade }
+construction-graph-tag-upgradelecter = { ent-LecterUpgrade }
 construction-graph-tag-ModularReceiverAuto = { ent-ModularReceiverAuto }
+construction-graph-tag-coin = { ent-TreasureCoinIron }
 # Щиты и защита
 construction-graph-tag-strobe-shield = { ent-RiotShield }
 construction-graph-tag-security-helmet = { ent-ClothingHeadHelmetBasic }

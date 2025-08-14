@@ -58,7 +58,7 @@ namespace Content.Server._Sunrise.Fugitive
                     fugitive, entity, ExamineRange, null)), true,
                 Shared.Popups.PopupType.LargeCaution);
 
-            _stun.TryParalyze(fugitive, TimeSpan.FromSeconds(2), false);
+            _stun.TryAddParalyzeDuration(fugitive, TimeSpan.FromSeconds(2));
             _audioSystem.PlayPvs(component.SpawnSoundPath, uid, AudioParams.Default.WithVolume(-6f));
 
             if (!TryComp<MapGridComponent>(xform.GridUid, out var map))

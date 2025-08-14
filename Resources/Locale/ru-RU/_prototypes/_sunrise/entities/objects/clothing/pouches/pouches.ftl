@@ -1,0 +1,12 @@
+ent-Pouch = { ent-BaseClothingBeltSounds }
+    .desc = { ent-BaseClothingBeltSounds.desc }
+ent-PouchExplosive = подсумок для гранат
+    .desc = Надёжный контейнер для хранения и транспортировки гранат и взрывчатки. Обладает взрывозащищённым корпусом, предотвращающим цепную детонацию при повреждении.
+ent-PouchExplosiveFilled = подсумок для гранат
+    .suffix = Заполненный Гранаты
+    .desc = { ent-PouchExplosive.desc }
+ent-PouchAmmo = подсумок для магазинов
+    .desc = Предназначен для хранения различных магазинов и коробок с патронами.
+ent-PouchAmmoFilledSMG = подсумок для магазинов
+    .suffix = Заполненный ПП
+    .desc = { ent-PouchAmmo.desc }

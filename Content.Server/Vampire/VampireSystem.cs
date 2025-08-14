@@ -3,7 +3,6 @@ using Content.Server.Atmos.Rotting;
 using Content.Server.Beam;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Mind;
@@ -23,7 +22,6 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Prayer;
-using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
@@ -36,6 +34,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Server.Vampire;
 
@@ -65,7 +65,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -75,6 +74,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedVampireSystem _vampire = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private readonly TurfSystem _turfSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -196,7 +197,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, VampireComponent component, ExaminedEvent args)
     {
-        if (HasComp<VampireFangsExtendedComponent>(uid) && args.IsInDetailsRange && !_food.IsMouthBlocked(uid))
+        if (HasComp<VampireFangsExtendedComponent>(uid) && args.IsInDetailsRange)
             args.AddMarkup($"{Loc.GetString("vampire-fangs-extended-examine")}{Environment.NewLine}");
     }
     private bool AddBloodEssence(Entity<VampireComponent> vampire, FixedPoint2 quantity)
@@ -349,7 +350,7 @@ public sealed partial class VampireSystem : EntitySystem
             return true;
         if (!_mapSystem.TryGetTileRef(vampireUid, grid, vampireTransform.Coordinates, out var tileRef))
             return true;
-        return tileRef.Tile.IsEmpty || tileRef.IsSpace() || tileRef.Tile.GetContentTileDefinition().ID == "Lattice";
+        return tileRef.Tile.IsEmpty || _turfSystem.IsSpace(tileRef) || _turfSystem.GetContentTileDefinition(tileRef.Tile).ID == "Lattice";
     }
 
     private bool IsNearPrayable(EntityUid vampireUid)

@@ -1,5 +1,3 @@
-
-
 - type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
@@ -11,8 +9,37 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
+  radioChannels:
+  - Security
 
-- type: technology #Sunrise
+- type: technology
+  id: ArmorPenetrationMunitions
+  name: research-technology-armor-penetration
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: ap
+  discipline: Arsenal
+  tier: 2
+  cost: 11500
+  recipeUnlocks:
+  - SpeedLoaderMagnumAP
+  - MagazinePistolAP
+  #- MagazinePistol40AP
+  - MagazineRifleAP
+  - MagazineLightRifleAP
+  - MagazineBoxMagnumAP
+  - MagazineBoxPistolAP
+  #- MagazineBoxPistol40AP
+  - MagazineBoxRifleAP
+  - MagazineBoxLightRifleAP
+  - LightRifleHeavyMagazineAP
+  - MagazinePistolSubMachineGunAP
+  - MagazinePistolSubMachineGunTopMountedAP
+  - MagazinePistolHighCapacityAP
+  radioChannels:
+  - Security
+
+- type: technology
   id: Gygax
   name: research-technology-gygax
   icon:
@@ -37,6 +64,8 @@
   - PaintGygaxOld
   technologyPrerequisites:
   - Ripley2
+  radioChannels:
+  - Security
 
 - type: technology
   id: ExplosiveMechAmmunition
@@ -51,7 +80,8 @@
   - WeaponMechCombatMissileRack8
   technologyPrerequisites:
   - ExplosiveTechnology
-
+  radioChannels:
+  - Security
 
 - type: technology
   id: Durand
@@ -82,30 +112,31 @@
   - PowerCageHigh
   technologyPrerequisites:
   - Gygax
+  radioChannels:
+  - Security
 
 # Tier 2
 
-- type: technology
-  id: ExtendedAmunitions
-  name: research-technology-extended-amunitions
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
-    state: base
-  discipline: Arsenal
-  tier: 2
-  cost: 12500
-  recipeUnlocks:
-  - BaseMagazinePistolCaselessRifleExtended
-  - MagazinePPSH41Extended
-  - MagazineMP5Extended
-  - MagazineMP7Extended
-  - MagazineP90Extended
-  - SunriseMagazineRifleExtended
-  - MagazineAR18Extended
-  #- MagazineM28Extended
-  - MagazineV31Extended
-  - MagazineBR64Extended
-  - MagazineDragunovExtended
+# Sunrise-TODO: Требует ребаланса с учетом новых типов боеприпасов
+#- type: technology
+#  id: ExtendedAmunitions
+#  name: research-technology-extended-amunitions
+#  icon:
+#    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
+#    state: base
+#  discipline: Arsenal
+#  tier: 2
+#  cost: 12500
+#  recipeUnlocks:
+#  - BaseMagazinePistolCaselessRifleExtended
+#  - MagazinePPSH41Extended
+#  - MagazineMP5Extended
+#  - MagazineMP7Extended
+#  - MagazineRifleExtended
+#  - MagazineV31Extended
+#  - MagazineDragunovExtended
+#  radioChannels:
+#  - Security
 
 
 - type: technology
@@ -120,12 +151,16 @@
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
   - ModularReceiverAuto
+  - LecterUpgrade
+  - DrozdUpgrade
   technologyPrerequisites:
   - AdvancedRiotControl
+  radioChannels:
+  - Security
 
 - type: technology
-  id: Advanced Laser Manipulation
-  name: research-technology-advance-laser #
+  id: AdvancedLaserManipulation
+  name: research-technology-advance-laser
   icon:
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
     state: icon
@@ -134,4 +169,7 @@
   cost: 12500
   recipeUnlocks:
   - WeaponGunLaserCarbineAutomatic
+  - MagazineBatteryLr30
   - WeaponEnergyGunPistol
+  radioChannels:
+  - Security

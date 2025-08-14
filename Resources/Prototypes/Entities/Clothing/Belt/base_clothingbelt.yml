@@ -47,6 +47,7 @@
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
+    fillDelay: 0.1 # Sunrise added
   - type: Item
     size: Ginormous
   - type: ContainerContainer

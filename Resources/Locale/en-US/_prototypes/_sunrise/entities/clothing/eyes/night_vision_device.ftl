@@ -1,3 +1,5 @@
+ent-BaseNightVisionDevice = NVD
+    .desc = { ent-BaseItem.desc }
 ent-ClothingEyesNVD = NVD
     .desc = Night vision device. Provides an image of the terrain in low-light conditions.
 ent-ClothingEyesNVDSec = NVD Security

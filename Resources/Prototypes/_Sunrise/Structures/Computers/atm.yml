@@ -93,10 +93,9 @@
       visible: false
   - type: Computer
     board: FPIATMComputerCircuitboard
-  - type: Advertise
-    pack: ATMAds
-    minimumWait: 120
-    maximumWait: 240
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: ATMAds
   - type: SpeakOnUIClosed
     pack: BlockGameGoodbyes
   - type: Damageable

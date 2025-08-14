@@ -6,7 +6,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGunMini
+    - id: WeaponMiniEnergyGun
       amount: 5
 
 - type: entity
@@ -32,7 +32,7 @@
     contents:
     - id: WeaponRifleM16A4
       amount: 2
-    - id: SunriseMagazineRifle
+    - id: MagazineRifleSP
       amount: 4
 
 - type: entity
@@ -45,7 +45,7 @@
     contents:
     - id: WeaponSubMachineGunNewVector
       amount: 2
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGunSP
       amount: 4
 
 - type: entity
@@ -58,7 +58,7 @@
     contents:
     - id: WeaponSubMachineGunMP7
       amount: 2
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolHighCapacityFMJ
       amount: 4
 
 - type: entity
@@ -71,23 +71,8 @@
     contents:
     - id: WeaponSubMachineGunSkorpion
       amount: 4
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGunSP
       amount: 6
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeShotgunPaladin
-  name: safe
-  suffix: Paladin 12
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunPaladin12
-      amount: 2
-    - id: BoxLethalshot
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
 
 - type: entity
   parent: GunSafe

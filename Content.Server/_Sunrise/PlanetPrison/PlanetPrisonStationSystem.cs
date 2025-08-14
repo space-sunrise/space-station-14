@@ -28,7 +28,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly BiomeSystem _biomeSystem = default!;
@@ -96,7 +95,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             return;
         }
 
-        if (!_prototypeManager.TryIndex<GameMapPrototype>(station, out var gameMap))
+        if (!_protoManager.TryIndex<GameMapPrototype>(station, out var gameMap))
         {
             _sawmill.Warning("No Prison map found, skipping setup.");
             return;

@@ -1,3 +1,4 @@
+using Content.Server.Hands.Systems;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC;
@@ -29,7 +30,14 @@ public sealed partial class CloseBoltOperator : HTNOperator
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
-        if (!_entManager.TryGetComponent<HandsComponent>(owner, out var hands) || hands.ActiveHandEntity is not { } heldEntity)
+        if (!_entManager.TryGetComponent<HandsComponent>(owner, out var hands))
+            return HTNOperatorStatus.Failed;
+
+        var handsSystem = _entManager.System<HandsSystem>();
+
+        var heldEntity = handsSystem.GetActiveItem((owner, hands));
+
+        if (heldEntity == null)
             return HTNOperatorStatus.Failed;
 
         if (!_entManager.TryGetComponent<ChamberMagazineAmmoProviderComponent>(heldEntity, out var chamber))
@@ -40,8 +48,8 @@ public sealed partial class CloseBoltOperator : HTNOperator
             return HTNOperatorStatus.Finished;
         }
 
-        _gunSystem.ToggleBolt(heldEntity, chamber, owner);
+        _gunSystem.ToggleBolt(heldEntity.Value, chamber, owner);
 
         return HTNOperatorStatus.Finished;
     }
-} 
+}

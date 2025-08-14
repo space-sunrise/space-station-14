@@ -3,7 +3,7 @@ using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Client._Sunrise.SolutionRegenerationSwitcher;
 
-public sealed class ClientSolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
+public sealed class SolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
 {
     protected override void SwitchToNextReagent(EntityUid uid,
         SolutionRegenerationSwitcherComponent component,

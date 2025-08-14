@@ -18,6 +18,7 @@ ntuplink-engineering-powercellnt-name = Батарея НаноТрейзен
 ntuplink-engineering-powercellnt-desc = Высокотехнологичная батарея НаноТрейзен, имеет огромный запас в двое больший чем запас высокоёмкой батареи а так же имеет защитное покрытие от ЭМИ воздействия.
 ntuplink-gun-bundlemp5-name = Набор MP-5
 ntuplink-gun-bundlemp7-name = Набор MP-7
+ntuplink-gun-bundlewt550-name = Набор WT550
 ntuplink-gun-bundlelecter-name = Набор Lecter
 ntuplink-gun-bundlep90-name = Набор P-90
 ntuplink-gun-bundleams42-name = Набор AMS-42

@@ -11,6 +11,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Sunrise.Paws;
 using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Systems;
+using Content.Shared.Body.Events;
 using Content.Shared.Construction;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.ForceSay;

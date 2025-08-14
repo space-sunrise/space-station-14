@@ -2379,7 +2379,7 @@ entities:
     - type: Transform
       pos: -0.17729092,2.357732
       parent: 1
-- proto: GrenadeFrag
+- proto: GrenadeFragTimer
   entities:
   - uid: 58
     components:

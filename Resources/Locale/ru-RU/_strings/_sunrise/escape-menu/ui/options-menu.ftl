@@ -17,6 +17,7 @@ ui-options-vote-music-disable = Отключить музыку голосова
 ui-options-mute-new-ghost-roles = Отключить звук новых гост-ролей
 ui-options-function-toggle-standing = Лечь/Встать
 ui-options-function-cock-gun = Взвести оружие/Разрядить
+ui-options-function-melee-gun-attack = Удар прикладом/штыком
 ui-options-function-jump = Прыжок
 ui-options-function-reloading = Перезарядка
 ui-options-function-interact = Открыть панель взаимодействий
@@ -26,6 +27,10 @@ ui-options-function-hold-look-up = Удерживать клавишу для п
 ui-options-chat-icons-enable = Использовать иконки профессий в чате
 ui-options-chat-pointing-visuals-enable = Отображать указывания с иконками в чате
 ui-options-play-heartbeat-sound = Проигрывать звук сердцебиения
+ui-options-trace = Display the bullet's trace
+ui-options-trace-tooltip =
+    If you're lagging while shooting, uncheck this box,
+    and the hitscan won't display the texture of the smoke behind the flying bullet.
 ui-options-tts-enabled = ТТС интеграция
 ui-options-tts-queue = Использовать очередь для TTS рации?
 ui-options-tts-radio-ghost-enabled = ТТС рации в призраке
