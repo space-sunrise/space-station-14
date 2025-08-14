@@ -6,11 +6,14 @@
   abstract: true
   components:
   - type: SpeedModifiedOnWield
-    walkModifier: 0.95
+    walkModifier: 1
     sprintModifier: 0.95
   - type: HeldSpeedModifier
-    walkModifier: 0.95
+    walkModifier: 1
     sprintModifier: 0.95
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
   - type: Item
     size: Small
   - type: UseDelay
@@ -21,11 +24,14 @@
   abstract: true
   components:
   - type: SpeedModifiedOnWield
-    walkModifier: 0.9
+    walkModifier: 1
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-    walkModifier: 0.9
+    walkModifier: 1
     sprintModifier: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.98
+    sprintModifier: 0.98
   - type: Item
     size: Normal
   - type: UseDelay
@@ -36,11 +42,14 @@
   abstract: true
   components:
   - type: SpeedModifiedOnWield
-    walkModifier: 0.85
+    walkModifier: 0.95
     sprintModifier: 0.85
   - type: HeldSpeedModifier
-    walkModifier: 0.85
+    walkModifier: 0.95
     sprintModifier: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: Item
     size: Large
   - type: UseDelay
@@ -51,11 +60,14 @@
   abstract: true
   components:
   - type: SpeedModifiedOnWield
-    walkModifier: 0.75
+    walkModifier: 0.85
     sprintModifier: 0.75
   - type: HeldSpeedModifier
-    walkModifier: 0.75
+    walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Item
     size: Ginormous
   - type: UseDelay

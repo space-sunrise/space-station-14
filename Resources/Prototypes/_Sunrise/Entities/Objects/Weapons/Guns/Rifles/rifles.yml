@@ -306,7 +306,7 @@
     angleIncrease: 1.65
     angleDecay: 18
     fireRate: 5.25
-    burstFireRate: 9
+    burstFireRate: 12
     selectedMode: Burst
     availableModes:
     - Burst
@@ -772,7 +772,7 @@
 
 - type: entity
   name: Lecter Mk2
-  parent: WeaponRifleLecter
+  parent: [WeaponRifleLecter, GunLight]
   id: WeaponRifleLecterMk2
   description: A high end military grade assault rifle. Uses .20 rifle ammo.
   components:
@@ -796,9 +796,6 @@
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: Appearance
-  - type: ClothingSpeedModifier
-    walkModifier: 0.97
-    sprintModifier: 0.97
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.55
