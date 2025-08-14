@@ -40,3 +40,6 @@ ent-ClothingHandsPowerGlovesUplinkNTERTGammaLeader = ERT Power Gloves
 ent-ClothingHandsPowerGlovesUplinkNTERTCBURN = CBURN Power Gloves
     .desc = Duraplast fireproof gloves laced with a drop of phlogiston — a custom modification developed for CBURN squads. Deliver NanoTrasen’s bureaucratic greetings to the infection — in flames.
     .suffix = Uplink, CBURN
+ent-BaseUplinkNTERTBlueShield = Bluespace ERT visionary
+    .desc = Ultra-innovative portable bluespace teleporter.
+    .suffix = 8BC, 10C, BlueShield

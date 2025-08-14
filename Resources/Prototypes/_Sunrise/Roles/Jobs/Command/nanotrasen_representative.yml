@@ -43,7 +43,7 @@
     - Ntrep
   special:
     - !type:AddImplantSpecial
-      implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
+      implants: [ MindShieldImplant, TrackingImplant ]
     - !type:AddComponentSpecial
       components:
       - type: CommandStaff

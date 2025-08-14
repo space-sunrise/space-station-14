@@ -168589,7 +168589,7 @@ entities:
     - type: Transform
       pos: 24.5,-0.5
       parent: 2
-- proto: SpawnPointBlueShieldEnsign
+- proto: LockerBlueShieldOfficerFilled
   entities:
   - uid: 25301
     components:

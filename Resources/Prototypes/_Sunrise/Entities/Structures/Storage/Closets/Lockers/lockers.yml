@@ -26,14 +26,6 @@
       access: [["BlueShield"]]
 
 - type: entity
-  id: LockerBlueShieldEnsign
-  parent: LockerBlueShield
-  name: blue shield ensign locker
-  components:
-  - type: AccessReader
-    access: [["BlueShieldEnsign"]]
-
-- type: entity
   id: LockerPilot
   parent: LockerBaseSecure
   name: security pilot's locker

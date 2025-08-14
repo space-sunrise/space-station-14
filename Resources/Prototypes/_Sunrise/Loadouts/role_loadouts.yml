@@ -73,20 +73,6 @@
   - Socks
 
 - type: roleLoadout
-  id: JobBlueShieldEnsign
-  groups:
-  - BlueShieldJumpsuit
-  - BlueShieldBackpack
-  - BlueShieldBelt
-  - BlueShieldNeck
-  - Trinkets
-  - SurvivalSecurity
-  - GroupSpeciesBreathTool
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
   id: JobBlueShieldOfficer
   groups:
   - BlueShieldJumpsuit

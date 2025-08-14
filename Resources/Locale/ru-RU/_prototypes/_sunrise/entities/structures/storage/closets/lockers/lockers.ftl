@@ -1,7 +1,5 @@
 ent-LockerBlueShield = шкафчик синего офицера щита
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerBlueShieldEnsign = шкафчик лейтенанта синего щита
-    .desc = { ent-LockerBlueShield.desc }
 ent-LockerPilot = шкаф Пилота
     .desc = { ent-LockerBaseSecure.desc }
 ent-GunSafeIonRifle = оружейный сейф с ионной пушкой

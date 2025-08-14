@@ -94424,7 +94424,7 @@ entities:
     - type: Transform
       pos: -31.5,39.5
       parent: 2
-- proto: SpawnPointBlueShieldEnsign
+- proto: LockerBlueShieldOfficerFilled
   entities:
   - uid: 13207
     components:

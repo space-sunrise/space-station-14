@@ -7,13 +7,3 @@
     contents:
     - id: EncryptionKeyLaw
       amount: 4
-
-- type: entity
-  name: blue shield encryption key box
-  parent: BoxEncryptionKeyPassenger
-  id: BoxEncryptionKeyBlueShield
-  components:
-  - type: StorageFill
-    contents:
-    - id: EncryptionKeyBlueShield
-      amount: 4
