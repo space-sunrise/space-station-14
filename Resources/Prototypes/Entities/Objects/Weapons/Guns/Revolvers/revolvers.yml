@@ -80,7 +80,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 2.25 #Sunrise-Edit
+    fireRate: 2
   - type: RevolverAmmoProvider
     capacity: 5
     chambers: [ True, True, True, True, True ]
@@ -105,9 +105,6 @@
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
   - type: Item
     storedOffset: 0,-2
-  - type: Gun #Sunrise-Start
-    selectedMode: SemiAuto
-    fireRate: 2 #Sunrise-End
   - type: RevolverAmmoProvider
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
@@ -152,7 +149,7 @@
     storedOffset: 0,-2
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 2.25 #Sunrise-Edit
+    fireRate: 2
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -188,7 +185,7 @@
   - type: Item
     storedOffset: 1,-5
   - type: Gun
-    fireRate: 1.75 #Sunrise-Edit
+    fireRate: 1.25 #Sunrise-Edit
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container
