@@ -70,7 +70,7 @@ public sealed class PrinterDocSystem : EntitySystem
         SubscribeLocalEvent<PrinterDocComponent, StrappedEvent>(OnStasisStrapped);
         SubscribeLocalEvent<PrinterDocComponent, UnstrappedEvent>(OnStasisUnstrapped);
         SubscribeLocalEvent<PrinterDocComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
+        SubscribeLocalEvent<PrinterDocComponent, ComponentStartup>(OnPrinterStartup);
 
         _configManager.OnValueChanged(SunriseCCVars.PrinterDocTemplatePack, _ =>
         {
@@ -417,31 +417,30 @@ public sealed class PrinterDocSystem : EntitySystem
         UpdateUserInterface(uid, component);
     }
 
-    private void OnStationInitialized(StationInitializedEvent args)
+    private void OnPrinterStartup(EntityUid uid, PrinterDocComponent comp, ref ComponentStartup args)
     {
-        Timer.Spawn(TimeSpan.FromMilliseconds(100), () =>
+        TryInitPrinterResources(uid, comp);
+    }
+
+    private void TryInitPrinterResources(EntityUid uid, PrinterDocComponent comp)
+    {
+        if (Deleted(uid) || comp.Initialized)
+            return;
+
+        if (!_solution.TryGetSolution(uid, comp.Solution, out var solEnt, out var solution))
         {
-            var query = EntityQueryEnumerator<PrinterDocComponent>();
+            Timer.Spawn(TimeSpan.Zero, () => TryInitPrinterResources(uid, comp));
+            return;
+        }
 
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                var owningStation = _stationSystem.GetOwningStation(uid);
+        _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, comp.InitialPaperAmount);
 
-                if (owningStation != args.Station)
-                    continue;
+        var reagent = new ReagentId(comp.IncReagentProto, null);
+        solution.AddReagent(reagent, comp.InitialInkAmount);
+        _solution.UpdateChemicals(solEnt.Value, needsReactionsProcessing: false);
 
-                _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, comp.InitialPaperAmount);
-
-                if (_solution.TryGetSolution(uid, comp.Solution, out var solEnt, out var solution))
-                {
-                    var reagent = new ReagentId(comp.IncReagentProto, null);
-                    solution.AddReagent(reagent, comp.InitialInkAmount);
-                    _solution.UpdateChemicals(solEnt.Value, needsReactionsProcessing: false);
-                }
-
-                UpdateUserInterface(uid, comp);
-            }
-        });
+        comp.Initialized = true;
+        UpdateUserInterface(uid, comp);
     }
 
     // Система для переключения используемых шаблонов документов через CVar
