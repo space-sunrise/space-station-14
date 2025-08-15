@@ -2,6 +2,7 @@
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Client._Sunrise.ChatIcons;
 
@@ -14,6 +15,7 @@ public sealed class ChatIconsSystem : EntitySystem
     {
         base.Initialize();
 
+        _cfg.SetCVar("chat_icon.enable", false, true); // Sunrise TEMP FIX REMOVE
         _cfg.OnValueChanged(SunriseCCVars.ChatIconsEnable, OnRadioIconsChanged, true);
     }
 
