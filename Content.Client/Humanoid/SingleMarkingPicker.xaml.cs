@@ -257,7 +257,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             {
                 HorizontalExpand = true
             };
-            //selector.Color = marking.MarkingColors[i];
+            // selector.Color = marking.MarkingColors[i];
             selector.CurrentType = selectorType;
 
             var colorIndex = i;
@@ -296,6 +296,10 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         for (var i = 0; i < _markings[Slot].MarkingColors.Count && i < oldMarking.MarkingColors.Count; i++)
         {
             _markings[Slot].SetColor(i, oldMarking.MarkingColors[i]);
+        }
+
+        for (var i = 0; i < _markings[Slot].MarkingEffects.Count && i < oldMarking.MarkingEffects.Count; i++)
+        {
             _markings[Slot].SetMarkingEffect(i, oldMarking.MarkingEffects[i]); // Sunrise-Edit
         }
 
