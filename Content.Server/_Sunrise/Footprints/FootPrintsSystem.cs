@@ -63,6 +63,12 @@ public sealed class FootprintSystem : EntitySystem
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentInit>(OnFootprintEmitterInit);
+        SubscribeLocalEvent<FootprintComponent, SolutionContainerChangedEvent>(OnSolutionUpdate);
+    }
+
+    private void OnSolutionUpdate(Entity<FootprintComponent> entity, ref SolutionContainerChangedEvent args)
+    {
+        UpdateAppearance(entity, args.Solution);
     }
 
     private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
@@ -187,24 +193,35 @@ public sealed class FootprintSystem : EntitySystem
         var coords = CalculateFootprintPosition(gridUid, emitter, transform, stand);
         var entity = Spawn(stand ? emitter.FootprintPrototype : emitter.DragMarkPrototype, coords);
 
-        if (_appearanceQuery.TryComp(entity, out var appearance))
-        {
-            var visualType = DetermineVisualState(emitterOwner, stand);
-            _appearanceSystem.SetData(entity,
-                FootprintVisualParameter.VisualState,
-                GetStateId(visualType, emitter),
-                appearance);
+        var appearance = UpdateAppearance(entity, emitterSolution);
 
-            var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
-            var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0.5f, 1f);
+        if (appearance == null)
+            return entity;
 
-            _appearanceSystem.SetData(entity,
-                FootprintVisualParameter.TrackColor,
-                emitterSolution.GetColor(_prototypeManager).WithAlpha(alpha),
-                appearance);
-        }
+        var visualType = DetermineVisualState(emitterOwner, stand);
+        _appearanceSystem.SetData(entity,
+            FootprintVisualParameter.VisualState,
+            GetStateId(visualType, emitter),
+            appearance);
 
         return entity;
+    }
+
+    private AppearanceComponent? UpdateAppearance(EntityUid entity, Solution emitterSolution)
+    {
+        if (!_appearanceQuery.TryComp(entity, out var appearance))
+            return null;
+
+        var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
+        var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0.5f, 1f);
+
+        _appearanceSystem.SetData(entity,
+            FootprintVisualParameter.TrackColor,
+            emitterSolution.GetColor(_prototypeManager).WithAlpha(alpha),
+            appearance);
+
+        return appearance;
+
     }
 
     private string GetStateId(FootprintVisualType visualType, FootprintEmitterComponent emitter)
