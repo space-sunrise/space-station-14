@@ -41,3 +41,7 @@
   - type: StorageFill
     contents:
     - id: WeaponEnergyGunMultiphase
+    - id: WeaponRifleLecterMk2
+    - id: MagazineRifleSP
+      amount: 2
+    - id: MagazineRifleFMJ
