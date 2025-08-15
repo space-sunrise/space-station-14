@@ -146,7 +146,7 @@ public sealed partial class FootprintEmitterComponent : Component
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeFoot = 0.5f;
+    public float TransferVolumeFoot = 1f;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public float TransferVolumeDragMark = 1.0f;
