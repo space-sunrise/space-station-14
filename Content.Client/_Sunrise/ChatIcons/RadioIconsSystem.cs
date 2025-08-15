@@ -10,7 +10,6 @@ public sealed class ChatIconsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IUserInterfaceManager _uiMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
