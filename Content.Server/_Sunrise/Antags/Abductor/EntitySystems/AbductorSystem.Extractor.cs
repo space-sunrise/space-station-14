@@ -2,11 +2,11 @@ using Content.Shared._Sunrise.Antags.Abductor;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
-using Content.Shared._Sunrise.Medical.Surgery;
 using Content.Shared.DoAfter;
 using Content.Shared.Body.Systems;
-using Content.Shared._Sunrise.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Organ;
+using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 

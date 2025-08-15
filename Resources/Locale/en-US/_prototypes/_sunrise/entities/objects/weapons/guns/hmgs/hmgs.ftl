@@ -4,3 +4,7 @@ ent-PowerpackMinigunMG100 = { ent-BasePowerpackMG100 }
     .desc = { ent-BasePowerpackMG100.desc }
 ent-BasePowerpackMG100 = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
+ent-WeaponDL6902PowerPack = DL6902 machine gun
+    .desc = { ent-BaseItem.desc }
+ent-PowerpackDL6902 = DL6902 Powerpack
+    .desc = { ent-BasePowerpackMG100.desc }

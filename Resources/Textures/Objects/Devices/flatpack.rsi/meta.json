@@ -48,6 +48,12 @@
         },
         {
             "name": "hydroponics-tray"
+        },
+        {
+            "name": "large"
+        },
+        {
+            "name": "microwave"
         }
     ]
 }

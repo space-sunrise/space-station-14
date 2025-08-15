@@ -167,6 +167,7 @@
   - SecurityTourniquet
   - SecurityWeaponMeleeNeedle
   - SecurityHoloprojector
+  - SecurityMasterBodycam
 
 - type: loadoutGroup
   id: CorporateLaw
@@ -223,9 +224,11 @@
   loadouts:
   - GlockBox
   - ACP14Box
-  - WeaponEnergyGunPistolSecurity
+  - MK58Box
+  - MK58GoldBox
+  - WeaponDominator
   - WeaponDisabler
-  - WeaponTaser
+#  - WeaponTaser
 
 # Security Cadet
 - type: loadoutGroup
@@ -236,7 +239,9 @@
   loadouts:
   - CadetWeaponGlockBox
   - CadetWeaponACP14Box
-  - CadetWeaponEnergyGunPistolSecurity
+  - CadetWeaponMK58Box
+  - MK58GoldBox
+  - CadetWeaponMiniEnergyGun
   - CadetWeaponDisabler
 
 # Security  Detective
@@ -259,14 +264,17 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - SunriseWeaponPistolG22
-  - SunriseWeaponTaser
+  - GlockBox
+  - MK58Box
+  - ACP14Box
+  - MK58GoldBox
   - HeadofSecurityWeapon20h
   - HeadofSecurityWeapon50h
   - HeadofSecurityWeapon50h2
   - HeadofSecurityWeapon100h
-# Medical
+  - HeadofSecurityWeapon100h2
 
+# Medical
 - type: loadoutGroup
   id: SeniorPhysicianJumpsuit
   name: loadout-group-senior-physician-jumpsuit

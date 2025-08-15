@@ -5,6 +5,7 @@ namespace Content.Shared.Input
     [KeyFunctions]
     public static class ContentKeyFunctions
     {
+        public static readonly BoundKeyFunction ToggleKnockdown = "ToggleKnockdown";
         public static readonly BoundKeyFunction UseItemInHand = "ActivateItemInHand";
         public static readonly BoundKeyFunction AltUseItemInHand = "AltActivateItemInHand";
         public static readonly BoundKeyFunction ActivateItemInWorld = "ActivateItemInWorld";
@@ -64,6 +65,7 @@ namespace Content.Shared.Input
         // Sunrise-Start
         public static readonly BoundKeyFunction FocusCollectiveMindChat = "FocusCollectiveMindChatWindow";
         public static readonly BoundKeyFunction CockGun = "CockGun";
+        public static readonly BoundKeyFunction MeleeGunAttack = "MeleeGunAttack";
         public static readonly BoundKeyFunction ToggleStanding = "ToggleStanding";
         public static readonly BoundKeyFunction Jump = "Jump";
         public static readonly BoundKeyFunction Reloading = "Reloading";

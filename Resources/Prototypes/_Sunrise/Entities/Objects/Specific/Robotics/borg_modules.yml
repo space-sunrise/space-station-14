@@ -8,10 +8,10 @@
     - state: NT
     - state: icon-NT
   - type: ItemBorgModule
-    items:
-    - WeaponPulseCarbineBorg
-    - WeaponPulseCarbineBorg
-    - PinpointerNuclear
+    hands:
+    - item: WeaponPulseCarbineBorg
+    - item: WeaponPulseCarbineBorg
+    - item: PinpointerNuclear
   - type: BorgModuleIcon
     icon: {sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base}
 
@@ -25,10 +25,10 @@
     - state: NT
     - state: icon-NT
   - type: ItemBorgModule
-    items:
-    - StunbatonBorg
-    - WeaponDisablerSMGBorg
-    - FlashBorg
+    hands:
+    - item: StunbatonBorg
+    - item: WeaponDisablerSMGBorg
+    - item: FlashBorg
   - type: BorgModuleIcon
     icon: {sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off}
 
@@ -42,12 +42,12 @@
     - state: NT
     - state: icon-NT
   - type: ItemBorgModule
-    items:
-    - JawsOfLife
-    - PowerDrill
-    - Multitool
-    - WelderBorg
-    - RemoteSignallerAdvanced
+    hands:
+    - item: JawsOfLife
+    - item: PowerDrill
+    - item: Multitool
+    - item: WelderBorg
+    - item: RemoteSignallerAdvanced
   - type: BorgModuleIcon
     icon: {sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module}
 
@@ -61,11 +61,11 @@
     - state: syndicate
     - state: icon-syndicate
   - type: ItemBorgModule
-    items:
-    - LaserMinigunBorg
-    - HeavyRifleBorg
-    - WeaponLauncherDusterBorg
-    - PinpointerNuclear
+    hands:
+    - item: LaserMinigunBorg
+    - item: HeavyRifleBorg
+    - item: WeaponLauncherDusterBorg
+    - item: PinpointerNuclear
 
 - type: entity
   id: BorgScoutModuleSyndicateCombat
@@ -77,10 +77,10 @@
     - state: syndicate
     - state: icon-syndicate
   - type: ItemBorgModule
-    items:
-    - WeaponIAR52Borg
-    - CombatKnife
-    - HypoBorgSaboteurSyndicate
+    hands:
+    - item: WeaponIAR52Borg
+    - item: CombatKnife
+    - item: HypoBorgSaboteurSyndicate
 
 - type: entity
   id: BorgScoutModuleSyndicateTool
@@ -92,13 +92,13 @@
     - state: syndicate
     - state: icon-syndicate
   - type: ItemBorgModule
-    items:
-    - RadioJammerBorg
-    - JetpackVoidFilled
-    - trayScanner
-    - WelderExperimental
-    - Multitool
-    - PowerDrill
+    hands:
+    - item: RadioJammerBorg
+    - item: JetpackVoidFilled
+    - item: trayScanner
+    - item: WelderExperimental
+    - item: Multitool
+    - item: PowerDrill
 
 - type: entity
   id: BaseBorgModuleSecurity
@@ -128,10 +128,10 @@
     - state: security
     - state: icon-stuh
   - type: ItemBorgModule
-    items:
-    - WeaponDisablerBorg
-    - StunbatonBorg
-    - FlashBorg
+    hands:
+    - item: WeaponDisablerBorg
+    - item: StunbatonBorg
+    - item: FlashBorg
 
 - type: entity
   id: BorgModuleAdvancedCombat
@@ -143,11 +143,11 @@
     - state: security
     - state: icon-combat
   - type: ItemBorgModule
-    items:
-    - Truncheon
-    - WeaponLaserBorg
-    - WeaponLaserBorg
-    - HoloprojectorSecurityBorg
+    hands:
+    - item: Truncheon
+    - item: WeaponLaserBorg
+    - item: WeaponLaserBorg
+    - item: HoloprojectorSecurityBorg
 
 - type: entity
   id: BorgModuleCombat
@@ -159,11 +159,11 @@
     - state: security
     - state: icon-combat
   - type: ItemBorgModule
-    items:
-    - CombatKnife
-    - WeaponLaserBorg
-    - FlashBorg
-    - HoloprojectorSecurityBorg
+    hands:
+    - item: CombatKnife
+    - item: WeaponLaserBorg
+    - item: FlashBorg
+    - item: HoloprojectorSecurityBorg
 
 - type: entity
   id: BorgModulePeace
@@ -175,9 +175,9 @@
     - state: security
     - state: icon-peace
   - type: ItemBorgModule
-    items:
-    - FlashBorg
-    - HypoBorgPeace
+    hands:
+    - item: FlashBorg
+    - item: HypoBorgPeace
 
 - type: entity
   id: BorgModuleMiningCombat
@@ -189,9 +189,9 @@
     - state: cargo
     - state: icon-mining
   - type: ItemBorgModule
-    items:
-    - WeaponProtoKineticAcceleratorBorg
-    - WeaponCrusherDagger
+    hands:
+    - item: WeaponProtoKineticAcceleratorBorg
+    - item: WeaponCrusherDagger
   - type: BorgModuleIcon
     icon: { sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi, state: icon }
 
@@ -205,8 +205,8 @@
     - state: cargo
     - state: icon-mining
   - type: ItemBorgModule
-    items:
-    - JetpackVoidFilled
+    hands:
+    - item: JetpackVoidFilled
   - type: BorgModuleIcon
     icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 
@@ -220,10 +220,10 @@
     - state: syndicate
     - state: icon-syndicate
   - type: ItemBorgModule
-    items:
-    - SyndicateJawsOfLife
-    - PinpointerNuclear
-    - HypoBorgStandardSyndicate
+    hands:
+    - item: SyndicateJawsOfLife
+    - item: PinpointerNuclear
+    - item: HypoBorgStandardSyndicate
 
 - type: entity
   id: BorgModuleSyndicateMedical
@@ -235,11 +235,11 @@
     - state: syndicate
     - state: icon-syndicate-treatment
   - type: ItemBorgModule
-    items:
-    - SawAdvanced
-    - WeaponPistolEchis #Todo: Заменить на вариант Шприцемета с выбором снарядов
-    - HypoBorgMedicalSyndicate
-    - DefibrillatorOneHandedUnpowered
+    hands:
+    - item: SawAdvanced
+    - item: WeaponPistolEchis #Todo: Заменить на вариант Шприцемета с выбором снарядов
+    - item: HypoBorgMedicalSyndicate
+    - item: DefibrillatorOneHandedUnpowered
 
 - type: entity
   id: BorgModuleSyndicateCombat
@@ -251,10 +251,10 @@
     - state: syndicate
     - state: icon-syndicate
   - type: ItemBorgModule
-    items:
-    - WeaponLightMachineGunL6C
-    - EnergySword
-    - PinpointerNuclear
+    hands:
+    - item: WeaponLightMachineGunL6C
+    - item: EnergySword
+    - item: PinpointerNuclear
 
 - type: entity
   id: BorgModuleStandart
@@ -266,10 +266,10 @@
     - state: generic
     - state: icon-fire-extinguisher
   - type: ItemBorgModule
-    items:
-    - CrowbarBorg
-    - FireExtinguisherBorg
-    - HypoBorgStandard
+    hands:
+    - item: CrowbarBorg
+    - item: FireExtinguisherBorg
+    - item: HypoBorgStandard
 
 - type: entity
   id: BorgERTModuleStandard
@@ -281,9 +281,9 @@
     - state: NT
     - state: icon-NT
   - type: ItemBorgModule
-    items:
-    - CrowbarBorg
-    - FireExtinguisherBorg
-    - HypoBorgStandardERT
+    hands:
+    - item: CrowbarBorg
+    - item: FireExtinguisherBorg
+    - item: HypoBorgStandardERT
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Objects/Tools/items_cyborg.rsi, state: crowbar_cyborg }

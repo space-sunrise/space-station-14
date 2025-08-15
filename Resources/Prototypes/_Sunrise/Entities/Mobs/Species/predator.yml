@@ -6,7 +6,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: Hunger
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi

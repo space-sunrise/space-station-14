@@ -1,40 +1,188 @@
 - type: latheRecipePack
   id: SecurityStaticSunrise
   recipes:
+    ######################BOX#######################
+    # Light Rifle
+    - MagazineBoxLightRifleSP
+    - MagazineBoxLightRifleHP
+    - MagazineBoxLightRifleFMJ
+    # Magnum
+    - MagazineBoxMagnumSP
+    - MagazineBoxMagnumHP
+    - MagazineBoxMagnumFMJ
+    - MagazineBoxMagnumRubber
+    - MagazineMagnumRubber
+    - MagazineMagnum
     - MagazineMagnumEmpty
-    - MagazineMagnum
-    - MagazineP90
-    - MagazineBR64
-    - MagazinePistolHighCapacity
+    # Pistol
+    - MagazineBoxPistolSP
+    - MagazineBoxPistolHP
+    - MagazineBoxPistolFMJ
+    - MagazineBoxPistolRubber
+    - MagazineBoxPistol40SP
+    - MagazineBoxPistol40HP
+    - MagazineBoxPistol40FMJ
+    # Rifle
+    - MagazineBoxRifleSP
+    - MagazineBoxRifleHP
+    - MagazineBoxRifleFMJ
+    # Shotgun
+    - BoxLethalshot
+    - BoxShotgunSlug
+    - BoxShellTranquilizer
+    #####################MAGAZINE#######################
+    # LMG
+    - LightRifleHeavyMagazineSP
+    - LightRifleHeavyMagazineHP
+    - LightRifleHeavyMagazineFMJ
+    - LightRifleHeavyMagazineEmpty
+    # Light Rifle
+    - MagazineLightRifleSP
+    - MagazineLightRifleHP
+    - MagazineLightRifleFMJ
+    - MagazineLightRifleEmpty
+    # Magnum
+    - SpeedLoaderMagnumSP
+    - SpeedLoaderMagnumHP
+    - SpeedLoaderMagnumFMJ
+    - SpeedLoaderMagnumRubber
+    - SpeedLoaderMagnumEmpty
+    # Pistol
+    - MagazinePistolSP
+    - MagazinePistolHP
+    - MagazinePistolFMJ
+    - MagazinePistolRubber
+    - MagazinePistolEmpty
+    - MagazinePistol40SP
+    - MagazinePistol40HP
+    - MagazinePistol40FMJ
+    - MagazinePistol40Empty
+    # Pistol High Capacity
+    - MagazinePistolHighCapacitySP
+    - MagazinePistolHighCapacityHP
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityRubber
     - MagazinePistolHighCapacityEmpty
-    - MagazineMagnum
+    # SMG
+    - MagazinePistolSubMachineGunSP
+    - MagazinePistolSubMachineGunHP
+    - MagazinePistolSubMachineGunFMJ
+    - MagazinePistolSubMachineGunEmpty
+    # SMG Top Mounted
+    - MagazinePistolSubMachineGunTopMounted # FMJ
+    - MagazinePistolSubMachineGunTopMountedSP
+    - MagazinePistolSubMachineGunTopMountedHP
+    - MagazinePistolSubMachineGunTopMountedEmpty
+    # Rifle
+    - MagazineRifleSP
+    - MagazineRifleHP
+    - MagazineRifleFMJ
+    - MagazineRifleEmpty
+    # Shotgun Magazine
+    - MagazineShotgun
+    - MagazineShotgunEmpty
+    - MagazineShotgunSlug
+    # Shotgun Speedloader
+    - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunEmpty
+    - SpeedLoaderShotgunSlug
+    - SpeedLoaderShotgunBeanbag
+####################################################
 
 - type: latheRecipePack
   id: SecurityDynamicSunrise
   recipes:
-    - WeaponGunLaserCarbineSemi
     - WeaponEnergyGun
-    - WeaponEnergyGunMini
+    - WeaponMiniEnergyGun
     - WeaponEnergyGunPistol
     - WeaponGunLaserCarbineAutomatic
+    - MagazineBatteryLr30
     - FlareGunSecurityUpgrade
-    - BaseMagazinePistolCaselessRifleExtended
-    - MagazinePPSH41Extended
-    - MagazineMP5Extended
-    - MagazineMP7Extended
-    - MagazineP90Extended
-    - SunriseMagazineRifleExtended
-    - MagazineAR18Extended
-    #- MagazineM28Extended
-    - MagazineV31Extended
-    #- MagazineBauer127Extended
-    - MagazineBR64Extended
-    - MagazineDragunovExtended
+# Sunrise-TODO: Нужен ребаланс с учетом типов боеприпасов
+#    - BaseMagazinePistolCaselessRifleExtended
+#    - MagazinePPSH41Extended
+#    - MagazineMP5Extended
+#    - MagazineMP7Extended
+#    - MagazineRifleExtended
+#    - MagazineAR18Extended
+#    - MagazineM28Extended
+#    - MagazineV31Extended
+#   - MagazineBauer127Extended
+#    - MagazineBR64Extended
+#    - MagazineDragunovExtended
     - ShellBlastArtillery
     - ShellEMPArtillery
     - ShellFlashArtillery
     - EnergyDomeDirectionalTurtle
     - WeaponTemperatureGun
+    - ModularReceiverAuto
+    - LecterUpgrade
+    - DrozdUpgrade
+  #####################BOX#######################
+  # Light Rifle
+    - MagazineBoxLightRifleIncendiary
+    - MagazineBoxLightRifleUranium
+    - MagazineBoxLightRifleAP
+  # Magnum
+    - MagazineBoxMagnumIncendiary
+    - MagazineBoxMagnumUranium
+    - MagazineBoxMagnumAP
+  # Pistol
+    - MagazineBoxPistolIncendiary
+    - MagazineBoxPistolUranium
+    - MagazineBoxPistolAP
+    #- MagazineBoxPistol40AP
+  # Rifle
+    - MagazineBoxRifleIncendiary
+    - MagazineBoxRifleUranium
+    - MagazineBoxRifleAP
+  # Shotgun
+    - BoxBeanbag
+    - BoxShotgunIncendiary
+    - BoxShotgunUranium
+    - BoxShellTranquilizer
+  #####################MAGAZINE#######################
+  # LMG
+    - LightRifleHeavyMagazineIncendiary
+    - LightRifleHeavyMagazineUranium
+    - LightRifleHeavyMagazineAP
+  # Light Rifle
+    - MagazineLightRifleIncendiary
+    - MagazineLightRifleUranium
+    - MagazineLightRifleAP
+  # Magnum
+    - SpeedLoaderMagnumIncendiary
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumAP
+  # Pistol
+    - MagazinePistolIncendiary
+    - MagazinePistolUranium
+    - MagazinePistolAP
+    #- MagazinePistol40AP
+  # Pistol High Capacity
+    - MagazinePistolHighCapacityIncendiary
+    - MagazinePistolHighCapacityUranium
+    - MagazinePistolHighCapacityAP
+  # SMG
+    - MagazinePistolSubMachineGunIncendiary
+    - MagazinePistolSubMachineGunUranium
+    - MagazinePistolSubMachineGunAP
+    # SMG Top Mounted
+    - MagazinePistolSubMachineGunTopMountedAP
+    - MagazinePistolSubMachineGunTopMountedIncendiary
+    - MagazinePistolSubMachineGunTopMountedUranium
+  # Rifle
+    - MagazineRifleIncendiary
+    - MagazineRifleUranium
+    - MagazineRifleAP
+  # Shotgun
+    - MagazineShotgunBeanbag
+    - MagazineShotgunIncendiary
+    - SpeedLoaderShotgunIncendiary
+    - SpeedLoaderShotgunUranium
+  # Grenade
+    - MagazineGrenadeEmpty
+####################################################
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseClothing

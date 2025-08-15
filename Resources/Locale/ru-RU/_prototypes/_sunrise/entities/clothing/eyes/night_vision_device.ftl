@@ -1,3 +1,5 @@
+ent-BaseNightVisionDevice = NVD
+    .desc = { ent-BaseItem.desc }
 ent-ClothingEyesNVD = ПНВ
     .desc = Прибор ночного видения. Обеспечивает улучшение видимости в условиях низкой освещенности.
 ent-ClothingEyesNVDSec = ПНВ СБ

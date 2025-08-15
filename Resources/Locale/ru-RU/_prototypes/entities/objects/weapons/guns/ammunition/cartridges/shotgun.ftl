@@ -1,7 +1,5 @@
 ent-BaseShellShotgun = ружейный патрон (.50)
     .desc = { ent-BaseCartridge.desc }
-ent-BaseShellHitscanShotgun = ружейный патрон (.50)
-    .desc = { ent-BaseCartridge.desc }
 ent-ShellShotgunBeanbag = ружейный патрон (.50 травматический)
     .desc = { ent-BaseShellShotgun.desc }
 ent-ShellShotgunSlug = ружейный патрон (.50 пуля)
@@ -20,5 +18,7 @@ ent-ShellShotgunImprovised = самодельный ружейный патро�
     .desc = Самодельный дробовой патрон, выстреливающий острой стеклянной шрапнелью. Разброс так велик, что и по слону попасть невозможно.
 ent-ShellShotgunUranium = ружейный патрон (.50 урановый)
     .desc = { ent-BaseShellShotgun.desc }
+ent-BaseShellHitscanShotgun = ружейный патрон (.50)
+    .desc = { ent-BaseCartridge.desc }
 ent-ShellShotgunUraniumSlug = ружейный патрон (.50 урановая пуля)
     .desc = { ent-BaseShellShotgun.desc }

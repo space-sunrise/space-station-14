@@ -1,20 +1,20 @@
 - type: cargoProduct
   id: ArmorySmg
   icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/big.rsi  # Sunrise-Edit
+    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
     state: icon
-  product: CrateArmoryMP7 # Sunrise-Edit
-  cost: 13850  # Sunrise-Edit
+  product: CrateArmorySMG
+  cost: 9000
   category: cargoproduct-category-name-armory
   group: market
 
 - type: cargoProduct
   id: ArmoryShotgun
   icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/big.rsi  # Sunrise-Edit
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
     state: icon
-  product: CrateArmoryWeaponXM1014  # Sunrise-Edit
-  cost: 8850  # Sunrise-Edit
+  product: CrateArmoryShotgun
+  cost: 9250
   category: cargoproduct-category-name-armory
   group: market
 

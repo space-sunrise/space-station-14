@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared._Sunrise.Events;
 using Content.Shared.Administration.Logs;
@@ -16,6 +16,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Examine;
+using Content.Shared.Localizations;
 
 namespace Content.Shared.Weapons.Reflect;
 
@@ -46,6 +48,7 @@ public sealed class ReflectSystem : EntitySystem
         SubscribeLocalEvent<ReflectComponent, GotUnequippedEvent>(OnReflectUnequipped);
         SubscribeLocalEvent<ReflectComponent, GotEquippedHandEvent>(OnReflectHandEquipped);
         SubscribeLocalEvent<ReflectComponent, GotUnequippedHandEvent>(OnReflectHandUnequipped);
+        SubscribeLocalEvent<ReflectComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnReflectUserCollide(Entity<ReflectComponent> ent, ref ProjectileReflectAttemptEvent args)
@@ -120,7 +123,8 @@ public sealed class ReflectSystem : EntitySystem
 
             var difference = newVelocity - existingVelocity;
             _physics.SetLinearVelocity(projectile, physics.LinearVelocity + difference, body: physics);
-            _transform.SetLocalRotation(projectile, overrideAngle);
+            var velocityAngle = (float)Math.Atan2(newVelocity.Y, newVelocity.X);
+            _transform.SetWorldRotation(projectile, velocityAngle - reflector.Comp.OverrideAngle.Value);
         }
         else
         {
@@ -178,8 +182,19 @@ public sealed class ReflectSystem : EntitySystem
 
         PlayAudioAndPopup(reflector.Comp, user);
 
-        var spread = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2);
-        newDirection = -spread.RotateVec(direction);
+        // Sunrise-Start
+        if (reflector.Comp.OverrideAngle is { } newAngle)
+        {
+            var overrideAngle = _transform.GetWorldRotation(reflector) + newAngle;
+            newDirection = new Vector2((float)Math.Cos(overrideAngle), (float)Math.Sin(overrideAngle));
+            newDirection = newDirection.Value.Normalized();
+        }
+        else
+        {
+            var spread = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2);
+            newDirection = -spread.RotateVec(direction);
+        }
+        // Sunrise-End
 
         if (shooter != null)
             _adminLogger.Add(LogType.HitScanHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected hitscan from {ToPrettyString(shotSource)} shot by {ToPrettyString(shooter.Value)}");
@@ -222,4 +237,30 @@ public sealed class ReflectSystem : EntitySystem
         ent.Comp.InRightPlace = false;
         Dirty(ent);
     }
+
+    #region Examine
+    private void OnExamine(Entity<ReflectComponent> ent, ref ExaminedEvent args)
+    {
+        // This isn't examine verb or something just because it looks too much bad.
+        // Trust me, universal verb for the potential weapons, armor and walls looks awful.
+        var value = MathF.Round(ent.Comp.ReflectProb * 100, 1);
+
+        if (!_toggle.IsActivated(ent.Owner) || value == 0 || ent.Comp.Reflects == ReflectType.None)
+            return;
+
+        var compTypes = ent.Comp.Reflects.ToString().Split(", ");
+
+        List<string> typeList = new(compTypes.Length);
+
+        for (var i = 0; i < compTypes.Length; i++)
+        {
+            var type = Loc.GetString(("reflect-component-" + compTypes[i]).ToLower());
+            typeList.Add(type);
+        }
+
+        var msg = ContentLocalizationManager.FormatList(typeList);
+
+        args.PushMarkup(Loc.GetString("reflect-component-examine", ("value", value), ("type", msg)));
+    }
+    #endregion
 }

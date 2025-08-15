@@ -2095,7 +2095,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 43.5,48.5
       parent: 1
-- proto: AtmosDeviceFanDirectional
+- proto: AtmosDeviceFanDirectionalDev
   entities:
   - uid: 574
     components:
@@ -2462,7 +2462,7 @@ entities:
     - type: Transform
       pos: 0.5,-4.5
       parent: 2709
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanTinyDev
   entities:
   - uid: 1412
     components:
@@ -11263,7 +11263,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: GrenadeFrag
+- proto: GrenadeFragTimer
   entities:
   - uid: 2081
     components:
@@ -11473,7 +11473,7 @@ entities:
     - type: Transform
       pos: 70.625,39.375
       parent: 1
-- proto: HandheldHealthAnalyzer
+- proto: VendingMachineWeaponDev
   entities:
   - uid: 2707
     components:
@@ -13718,13 +13718,6 @@ entities:
     - type: Transform
       pos: 74.5,35.5
       parent: 1
-  - uid: 2706
-    components:
-    - type: Transform
-      pos: 70.5,39.5
-      parent: 1
-    - type: Physics
-      canCollide: False
   - uid: 2780
     components:
     - type: Transform
@@ -15597,6 +15590,48 @@ entities:
     - type: Transform
       pos: 32.5,16.5
       parent: 1
+- proto: SpawnMobHumanAgentGear
+  entities:
+  - uid: 3161
+    components:
+    - type: Transform
+      pos: 80.5,39.5
+      parent: 1
+- proto: SpawnMobHumanBasicArmor
+  entities:
+  - uid: 2014
+    components:
+    - type: Transform
+      pos: 73.5,44.5
+      parent: 1
+- proto: SpawnMobHumanBulletproof
+  entities:
+  - uid: 1964
+    components:
+    - type: Transform
+      pos: 72.5,46.5
+      parent: 1
+- proto: SpawnMobHumanJuggernaut
+  entities:
+  - uid: 3159
+    components:
+    - type: Transform
+      pos: 80.5,42.5
+      parent: 1
+- proto: SpawnMobHumanNukieGear
+  entities:
+  - uid: 3160
+    components:
+    - type: Transform
+      pos: 80.5,36.5
+      parent: 1
+- proto: SpawnMobHumanSWAT
+  entities:
+  - uid: 1966
+    components:
+    - type: Transform
+      pos: 68.5,46.5
+      parent: 1
 - proto: SpawnMobHuman
   entities:
   - uid: 1104
@@ -15609,25 +15644,10 @@ entities:
     - type: Transform
       pos: 57.5,38.5
       parent: 1
-  - uid: 1964
-    components:
-    - type: Transform
-      pos: 72.5,46.5
-      parent: 1
-  - uid: 1966
-    components:
-    - type: Transform
-      pos: 68.5,46.5
-      parent: 1
   - uid: 2012
     components:
     - type: Transform
       pos: 67.5,44.5
-      parent: 1
-  - uid: 2014
-    components:
-    - type: Transform
-      pos: 73.5,44.5
       parent: 1
   - uid: 2643
     components:

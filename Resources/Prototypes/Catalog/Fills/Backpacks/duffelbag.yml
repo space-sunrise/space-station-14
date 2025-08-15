@@ -63,6 +63,18 @@
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledRifle
+  name: Estoc DMR bundle
+  description: "For medium-range sharpshooting, the Estoc DMR. Bundled with three magazines."
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleEstocBiocode # Sunrise-edit
+    - id: MagazineRifle
+      amount: 2
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledRevolver
   name: Python bundle
   description: "Go loud and proud with a fully loaded Magnum Python, bundled with two speed loaders."
@@ -82,23 +94,25 @@
   - type: StorageFill
     contents:
       - id: WeaponLightMachineGunL6Biocode # Sunrise-edit
-      - id: MagazineLightRifleBox
+      - id: MagazineLightRifleBoxSP
+        amount: 2 #Sunrise-add
+      - id: MagazineBoxRifleSP #Sunrise-add
 
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
-  name: China-Lake bundle
-  description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
-      - id: GrenadeBlast
-        amount: 4
-      - id: GrenadeFrag
-        amount: 4
-      - id: GrenadeEMP
-        amount: 4
+#- type: entity
+#  parent: ClothingBackpackDuffelSyndicateBundle
+#  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
+#  name: China-Lake bundle
+#  description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
+#  components:
+#  - type: StorageFill
+#    contents:
+#      - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
+#      - id: GrenadeBlast
+#        amount: 4
+#      - id: GrenadeFrag
+#        amount: 4
+#      - id: GrenadeEMP
+#        amount: 4
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -111,18 +125,18 @@
       - id: WeaponRifleM90GrenadeLauncherBiocode # Sunrise-edit
       - id: MagazineRifle
         amount: 2
-      - id: GrenadeBlast
+      - id: GrenadeBlastTimer # Sunrise-edit
         amount: 2
-      - id: GrenadeFlash
+      - id: GrenadeFlashTimer # Sunrise-edit
         amount: 2
-      - id: GrenadeFrag
+      - id: GrenadeFragTimer # Sunrise-edit
         amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoFilled
   name: ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW."
   components:
   - type: StorageFill
     contents:
@@ -132,55 +146,11 @@
         amount: 1
       - id: LMGKit # Sunrise-edit
         amount: 1
-      - id: MedkitCombatFilled # Sunrise-edit
-        amount: 1
-      - id: MagazineRifle  # Sunrise-edit
+      - id: MagazineRifleSP  # Sunrise-edit
         amount: 2
       - id: MagazineDragunov  # Sunrise-edit
         amount: 2
-# Sunrise-Start
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateAmmo
-  id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
-  name: Incendiary ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW. contains Medkit Burn"
-  components:
-  - type: StorageFill
-    contents:
-      - id: SMGIncendiaryAmmoKit
-        amount: 1
-      - id: ShotGunIncendiaryKit
-        amount: 1
-      - id: LMGIncendiaryKit
-        amount: 1
-      - id: MedkitBurnFilled
-        amount: 1
-      - id: MagazineRifleIncendiary
-        amount: 2
-      - id: MagazineDragunovIncendiary
-        amount: 2
 
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateAmmo
-  id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
-  name: Uranium ammo bundle
-  description: "Reloading! Contains Uranium Ammo Kit for the C-20r, Uranium Kit for the Bulldog, and Uranium Kit for the L6 SAW. Medkit Radiation"
-  components:
-  - type: StorageFill
-    contents:
-      - id: SMGUraniumAmmoKit
-        amount: 1
-      - id: ShotGunUraniumKit
-        amount: 1
-      - id: LMGUraniumKit
-        amount: 1
-      - id: MedkitRadiationFilled
-        amount: 1
-      - id: MagazineRifleUranium
-        amount: 2
-      - id: MagazineDragunovUranium
-        amount: 2
-# Sunrise-End
 - type: entity
   parent: ClothingBackpackDuffelClown
   id: ClothingBackpackDuffelSyndicateCostumeClown
@@ -376,6 +346,19 @@
         amount: 2
       - id: SyndieTrickyBomb
         amount: 2
+
+- type: entity
+  parent: [ ClothingBackpackDuffelBundle, BaseMajorContraband ]
+  id: ClothingBackpackDuffelAcolyteBundle
+  name: acolyte armor bundle
+  description: "Contains the Acolyte Armor, the must have of any cult leader."
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorCult
+    - id: ClothingHeadHelmetCult
+    - id: ClothingShoesCult
+    - id: BedsheetCult
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

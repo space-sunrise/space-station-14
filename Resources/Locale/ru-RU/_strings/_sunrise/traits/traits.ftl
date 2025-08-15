@@ -1,4 +1,4 @@
-trait-category-height =  Рост
+trait-category-height = Рост
 trait-category-vocal = Голос
 trait-colorblindness-name = Дальтонизм
 trait-colorblindness-desc = Вы видите мир не так, как все.

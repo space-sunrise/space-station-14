@@ -36,3 +36,35 @@
   - BoneSetterAdvanced
   - SawAdvanced
   - HemostatAdvanced
+
+- type: latheRecipePack
+  id: MedicalCyberlimbDynamic
+  recipes:
+  - LeftArmCyberReaper
+  - RightArmCyberReaper
+  - LeftArmCyberMechwright
+  - RightArmCyberMechwright
+  - LeftArmCyberBulwark
+  - RightArmCyberBulwark
+  - LeftArmCyberGorilla
+  - RightArmCyberGorilla
+  - LeftArmCyberMantisBladeMaxGuard
+  - RightArmCyberMantisBladeMaxGuard
+  - LeftArmCyberLaserEmitter
+  - RightArmCyberLaserEmitter
+  - LeftArmCyberGrenadeThrower
+  - RightArmCyberGrenadeThrower
+
+- type: latheRecipePack
+  id: MedicalCyberOrgansDynamic
+  recipes:
+  - CyberEyeNightVision
+  - CyberEyeThermal
+
+- type: latheRecipePack
+  id: MedicalImplantDynamic
+  recipes:
+  - EyeImplantWelding
+  - EyeImplantMedical
+  - EyeImplantSecurity
+  - EyeImplantChemical

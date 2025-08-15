@@ -153,3 +153,75 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/mantis_jumpskirt.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/mantis_jumpskirt.rsi
+
+#белое свадебное платье SUNRISE
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformWhiteBrideDress
+  name: white wedding dress
+  description: A striking white wedding dress with intricate lace detailing. For those who vow eternal love.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/white_wedding_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/white_wedding_dress.rsi
+
+#чёрное свадебное платье SUNRISE
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBlackBrideDress
+  name: black wedding dress
+  description: A striking black wedding dress with intricate lace detailing. For those who vow eternal love.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_wedding_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_wedding_dress.rsi
+
+#белое свадебное платье с цветком SUNRISE
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformWhiteBrideDressFlower
+  name: white wedding dress with flower
+  description: A striking white wedding dress with intricate lace detailing. For those who vow eternal love.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/white_wedding_dress_flower.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/white_wedding_dress_flower.rsi
+
+#чёрное свадебное платье с цветком SUNRISE
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBlackBrideDressFlower
+  name: black wedding dress with flower
+  description: A striking black wedding dress with intricate lace detailing. For those who vow eternal love.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_wedding_dress_flower.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_wedding_dress_flower.rsi
+
+#белый свадебный смокинг SUNRISE
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformWhiteGroomSuit
+  name: white wedding suit
+  description: A pristine ensemble of ivory and silver, radiating timeless grace.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/white_groom_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/white_groom_suit.rsi
+
+#чёрный свадебный смокинг SUNRISE
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBlackGroomSuit
+  name: black wedding suit
+  description: A tailored masterpiece of shadow and elegance, crafted from fine onyx-hued fabric
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_groom_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_groom_suit.rsi

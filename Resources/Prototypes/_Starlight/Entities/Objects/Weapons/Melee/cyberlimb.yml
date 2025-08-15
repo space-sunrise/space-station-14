@@ -1,0 +1,279 @@
+- type: entity
+  name: energy chainsword
+  parent: [BaseMeleeWeaponEnergy, BaseSecurityContraband]
+  id: CyberEnergyChainsword
+  description: Slam this into the individual you wish to destroy, mentally and physically.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cyberchainsaw.rsi
+    layers:
+    - state: cyberchainsawoff
+    - state: cyberchainsaw
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+     path: /Audio/Weapons/chainsaw.ogg
+     params:
+       variation: 0.250
+    activatedSoundOnHitNoDamage:
+     path: /Audio/Weapons/chainsaw.ogg
+     params:
+       variation: 0.250
+       volume: -10
+    activatedSoundOnSwing:
+     path: /Audio/Weapons/eblademiss.ogg
+     params:
+       variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 5
+        Heat: 5
+        Structural: 15
+  - type: MeleeWeapon
+    angle: 0
+    wideAnimationRotation: -135
+    attackRate: 4
+    autoAttack: true
+    damage:
+      types:
+        Blunt: 0.5
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/cyberchainsaw.rsi
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.01
+    startSound:
+      path: /Audio/Weapons/chainsaw.ogg
+    endSound:
+      path: /Audio/Weapons/chainsaw.ogg
+  - type: Reflect
+    reflectProb: 0.1
+
+#Mantis Blade
+- type: entity
+  name: mantis blade
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: CyberMantisBlade
+  description: A sharp blade that extended from your own arm, time to burn down a corporation.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
+    state: cybermantisblade
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 260
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg #armor_ricochet #collection
+    reflects:
+    - NonEnergy
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2.4
+    autoAttack: false
+    damage:
+      types:
+        Slash: 12
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+    soundNoDamage:
+      path: /Audio/Weapons/punchmiss.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+  - type: Item
+  - type: Sharp
+  - type: Prying
+    speedModifier: 1.25
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+
+#Mantis Blade Max-Guard
+- type: entity
+  name: Max-Guard mantis blade
+  parent: [BaseItem, BaseSecurityContraband]
+  id: CyberMantisBladeMaxGuard
+  description: A high-grade retractable blade integrated into the forearm, designed for rapid close-quarters takedowns and breaching in security operations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
+    state: cybermantisbladesec
+  - type: Reflect
+    reflectProb: 0.09
+    spread: 260
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg #armor_ricochet #collection
+    reflects:
+    - NonEnergy
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2.4
+    autoAttack: false
+    damage:
+      types:
+        Slash: 9
+        Structural: 10
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+    soundNoDamage:
+      path: /Audio/Weapons/punchmiss.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+  - type: Item
+  - type: Sharp
+  - type: Prying
+    speedModifier: 1
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+
+#G.O.R.I.L.L.A. cyber arm
+- type: entity
+  name: gorrila arm
+  parent: [BaseItem, BaseScienceContraband]
+  id: CyberGorillaArm
+  description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/gorilla.rsi
+    state: storage
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Reflect
+    reflectProb: 0.08
+  - type: UseDelay
+    delay: 2
+  - type: UseDelayOnMeleeHit
+  - type: MeleeWeapon
+    attackRate: 1
+    angle: 0
+    animation: WeaponArcFist
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 30
+        Structural: 25
+    soundHit:
+      path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
+  - type: CorePoweredThrower
+  - type: MeleeThrowOnHit
+    unanchorOnHit: true
+    stunTime: 1.5
+  - type: ItemSlots
+    slots:
+      core_slot:
+        name: anomaly-gorilla-core-slot-name
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        whitelist:
+          components:
+          - AnomalyCore
+  - type: ContainerContainer
+    containers:
+      core_slot: !type:ContainerSlot
+  - type: DamageOnAttackedProtection
+    damageProtection:
+      flatReductions:
+        Heat: 100
+        Cold: 100
+        Radiation: 100
+    slots: NONE
+  - type: Item
+  - type: Tool
+    qualities:
+      - Prying
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Prying
+    speedModifier: 1
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+
+# Laser pulser arms
+- type: entity
+  name: laser rapid emitter
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
+  id: CyberLaserEmitter
+  description: A Nanotrasen forearm-mounted laser emitter. Optimized for high rate of fire and controlled output, providing reliable suppression against lightly armored threats while minimizing collateral damage.
+  components:
+  #- type: AlterLevelGunBlocker #FIXMEVIGERS
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    layers:
+    - state: laser_cyborg
+      map: ["enum.GunVisualLayers.Base"]
+    - state: laser_cyborg-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    fireRate: 10
+    minAngle: 4.5
+    maxAngle: 35
+    angleIncrease: 2.25
+    angleDecay: 12
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 75
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 125
+    autoRechargePauseTime: 8
+  - type: MagazineVisuals
+    magState: laser_cyborg
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+#Grenade Thrower
+- type: entity
+  name: Grenade Thrower "Rumbler"
+  parent: [WeaponGrenadeLauncherSecurity, BaseMajorContraband]
+  id: CyberGrenadeThrower
+  description: A single-shot, break-action integrated grenade launcher. Capable of firing a variety of grenades and hand grenades and artillery casing.
+  components:
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 120
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg #armor_ricochet #collection
+    reflects:
+    - NonEnergy
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Cyber/grenade_thrower.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    projectileSpeed: 18
+    bigTrigger: true
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.85
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: GrenadeFlashTimer
+        priority: 1
+        whitelist:
+          tags:
+          - Grenade
+          - HandGrenadeAmmo
+          - ArtilleryShell

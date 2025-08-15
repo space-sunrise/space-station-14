@@ -164,6 +164,7 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-extra");
             AddButton(ContentKeyFunctions.ToggleStanding);
             AddButton(ContentKeyFunctions.CockGun);
+            AddButton(ContentKeyFunctions.MeleeGunAttack);
             AddButton(ContentKeyFunctions.Jump);
             AddButton(ContentKeyFunctions.Reloading);
             AddButton(ContentKeyFunctions.Interact);
@@ -182,6 +183,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.Walk);
             AddCheckBox("ui-options-hotkey-toggle-walk", _cfg.GetCVar(CCVars.ToggleWalk), HandleToggleWalk);
             InitToggleWalk();
+            AddButton(ContentKeyFunctions.ToggleKnockdown);
 
             AddHeader("ui-options-header-camera");
             AddButton(EngineKeyFunctions.CameraRotateLeft);

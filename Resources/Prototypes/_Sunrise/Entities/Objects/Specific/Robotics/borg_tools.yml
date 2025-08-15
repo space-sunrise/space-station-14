@@ -67,7 +67,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: RedLaser
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -89,9 +89,9 @@
     sprite: Objects/Weapons/Melee/flash.rsi
     layers:
     - state: burnt
-      map: [ "enum.FlashVisuals.BaseLayer" ]
+      map: [ "enum.FlashVisualLayers.BaseLayer" ]
     - state: flashing
-      map: [ "enum.FlashVisuals.LightLayer" ]
+      map: [ "enum.FlashVisualLayers.LightLayer" ]
       visible: false
       shader: unshaded
   - type: LimitedCharges
@@ -345,7 +345,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: Appearance
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFrag
+    proto: GrenadeFragTimer
     fireCost: 1000
   - type: Battery
     maxCharge: 10000
@@ -530,8 +530,8 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletPulse
+  - type: HitscanBatteryAmmoProvider #ProjectileBatteryAmmoProvider
+    proto: Pulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000
@@ -569,7 +569,7 @@
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
+    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -609,7 +609,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletLightRifle
+    proto: BulletRifleTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -677,7 +677,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFragLight
+    proto: GrenadeFragTimer
     fireCost: 250
   - type: Battery
     maxCharge: 1500
@@ -719,7 +719,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletPistol
+    proto: BulletPistolTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 5000

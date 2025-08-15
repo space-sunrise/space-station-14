@@ -256,13 +256,13 @@ public sealed partial class SunriseCCVars : CVars
      */
 
     public static readonly CVarDef<float> DamageVariance =
-        CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("damage.variance", 0.3f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> DamageModifier =
         CVarDef.Create("damage.damage_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> HealModifier =
-        CVarDef.Create("damage.heal_modifier", 1.2f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("damage.heal_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
 
     /*
      * NPCs
@@ -524,6 +524,8 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 
+    public static readonly CVarDef<bool> TracesEnabled =
+        CVarDef.Create("opt.traces_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
     /// <summary>
     /// Смена даты на документах от принтера
     /// </summary>

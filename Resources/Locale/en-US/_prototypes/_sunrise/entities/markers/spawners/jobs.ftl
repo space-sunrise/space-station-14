@@ -62,5 +62,7 @@ ent-SpawnPointSecurityBorg = cyborg
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointServiceBorg = cyborg
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointIAA = iaa
+    .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBlueShield = blueshield
     .desc = { ent-SpawnPointJobBase.desc }

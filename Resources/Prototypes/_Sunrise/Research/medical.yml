@@ -10,16 +10,16 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-  - BoneSetter
-  - BoneGel
-  - Scalpel
-  - Retractor
-  - Cautery
-  - Saw
-  - Hemostat
+    - BoneSetter
+    - BoneGel
+    - Scalpel
+    - Retractor
+    - Cautery
+    - Saw
+    - Hemostat
 
 - type: technology
-  id: CyberLimbsTechAdvanced
+  id: CyberLimbsTech
   name: research-technology-basic-cyberlimbs
   icon:
     sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
@@ -28,32 +28,16 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-  - LeftArmCyber
-  - RightArmCyber
-  - LeftHandCyber
-  - RightHandCyber
-  - LeftLegCyber
-  - RightLegCyber
-  - LeftFootCyber
-  - RightFootCyber
+    - LeftArmCyber
+    - RightArmCyber
+    - LeftHandCyber
+    - RightHandCyber
+    - LeftLegCyber
+    - RightLegCyber
+    - LeftFootCyber
+    - RightFootCyber
 
-- type: technology
-  id: SurgeryTechAdvanced
-  name: research-technology-advanced-surgery
-  icon:
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: advanced
-  discipline: Biochemical
-  tier: 2
-  cost: 7000
-  recipeUnlocks:
-  - Drill
-  - SawAdvanced
-  - ScalpelAdvanced
-  - BoneSetterAdvanced
-  - RetractorAdvanced
-  - HemostatAdvanced
-
+# Tier 2
 - type: technology
   id: MedicalHyposprays
   name: research-technology-medical-hyposprays
@@ -67,16 +51,61 @@
   - HyposprayMedical
 
 - type: technology
-  id: ImplantExtractor
-  name: research-technology-implant-extractor
+  id: SurgeryTechAdvanced
+  name: research-technology-advanced-surgery
   icon:
-    sprite: _Sunrise/Structures/Machines/interrogator.rsi
-    state: open
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: advanced
   discipline: Biochemical
-  tier: 3
-  cost: 12500
+  tier: 2
+  cost: 7000
   recipeUnlocks:
-  - ImplantExtractorMachineCircuitboard
+    - Drill
+    - SawAdvanced
+    - ScalpelAdvanced
+    - BoneSetterAdvanced
+    - RetractorAdvanced
+    - HemostatAdvanced
+  technologyPrerequisites:
+    - SurgeryTech
+
+- type: technology
+  id: CyberImplantsTech
+  name: research-technology-basic-eye-implants
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eye_implant_welding
+  discipline: Biochemical
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+    - EyeImplantWelding
+    - EyeImplantMedical
+    - EyeImplantChemical
+    - EyeImplantSecurity
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Security
+  - Medical
+
+# Sunrise, moved from civilian to medical. Ave Starlight!
+- type: technology
+  id: BiochemicalStasis
+  name: research-technology-biochemical-stasis
+  icon:
+    sprite: Structures/Machines/stasis_bed.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - StasisBedMachineCircuitboard
+  - CryoPodMachineCircuitboard
+  - CryostasisBeaker
+  - SyringeCryostasis
+  radioChannels:
+  - Medical
 
 # Sunrise-edit: Moved from CivilianServices and renamed a bit to avoid conflict
 - type: technology
@@ -90,3 +119,165 @@
   cost: 5000
   recipeUnlocks:
   - BorgModuleAdvancedChemical
+
+# Tier 3
+- type: technology
+  id: ImplantExtractor
+  name: research-technology-implant-extractor
+  icon:
+    sprite: _Sunrise/Structures/Machines/interrogator.rsi
+    state: open
+  discipline: Biochemical
+  tier: 3
+  cost: 12500
+  recipeUnlocks:
+  - ImplantExtractorMachineCircuitboard
+
+
+- type: technology
+  id: FunctionalCyberLimbsTech
+  name: research-technology-functional-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 3
+  cost: 9220
+  recipeUnlocks:
+    - LeftArmCyberReaper
+    - RightArmCyberReaper
+    - LeftArmCyberMechwright
+    - RightArmCyberMechwright
+    - LeftArmCyberBulwark
+    - RightArmCyberBulwark
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
+  id: ScienceCyberLimbsTech
+  name: research-technology-science-cyberlimbs
+  icon:
+    sprite: Objects/Weapons/Melee/gorilla.rsi
+    state: storage
+  discipline: Biochemical
+  tier: 3
+  cost: 3500
+  recipeUnlocks:
+    - LeftArmCyberGorilla
+    - RightArmCyberGorilla
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AnomalyCoreHarnessing
+  radioChannels:
+  - Security
+  - Medical
+  - Science
+
+- type: technology
+  id: SecurityMeleeCyberLimbsTech
+  name: research-technology-secmelee-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
+    state: cybermantisbladesec
+  discipline: Biochemical
+  tier: 3
+  cost: 4000
+  recipeUnlocks:
+    - LeftArmCyberMantisBladeMaxGuard
+    - RightArmCyberMantisBladeMaxGuard
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - CombatEquipment
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
+  id: SecurityRangeCyberLimbsTech
+  name: research-technology-secrange-cyberlimbs
+  icon:
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    state: laser_cyborg
+  discipline: Biochemical
+  tier: 3
+  cost: 4500
+  recipeUnlocks:
+    - LeftArmCyberLaserEmitter
+    - RightArmCyberLaserEmitter
+    - LeftArmCyberGrenadeThrower
+    - RightArmCyberGrenadeThrower
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - WeaponizedLaserManipulation
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
+  id: CyberEyeNightVision
+  name: research-technology-nightvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_night
+  discipline: Biochemical
+  tier: 3
+  cost: 7500
+  recipeUnlocks:
+    - CyberEyeNightVision
+  technologyPrerequisites:
+    - CyberImplantsTech
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
+  id: CyberEyeThermalVision
+  name: research-technology-thermalvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_thermal
+  discipline: Biochemical
+  tier: 3
+  cost: 8500
+  recipeUnlocks:
+    - CyberEyeThermal
+  technologyPrerequisites:
+    - CyberEyeNightVision
+  radioChannels:
+  - Security
+  - Medical
+
+# Sunrise, moved from civilian to medical
+- type: technology
+  id: BluespaceChemistry
+  name: research-technology-bluespace-chemistry
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
+    state: beakerbluespace
+  discipline: Biochemical
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - BluespaceBeaker
+  - SyringeBluespace
+  radioChannels:
+  - Medical
+
+# Sunrise, moved from civilian to medical
+- type: technology
+  id: LauncherSyringe
+  name: research-technology-launcher-syringe
+  icon:
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe_gun
+  discipline: Biochemical
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - LauncherSyringe
+  - MiniSyringe
+  radioChannels:
+  - Medical

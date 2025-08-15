@@ -12,7 +12,6 @@ pet-selection-select-lobby = Изменить питомца
 pet-selection-summary-name = Это { $name }, ваш питомец.
 pet-selection-summary-no-select = Питомец не выбран
 pet-selection-summary-invalid = Неизвестный питомец
-
 # Названия питомцев
 pet-selection-rabbit-name = Пушистик
 pet-selection-anteater-name = Носатик
@@ -36,7 +35,6 @@ pet-selection-goose-name = Шипящий Гоша
 pet-selection-clown-goblin-name = Шутник Гремлин
 pet-selection-corgi-ian-pup-name = Малыш Иэнчик
 pet-selection-parrot-name = Болтун Кеша
-
 # Описания питомцев
 pet-selection-rabbit-description = Милый пушистый кролик
 pet-selection-anteater-description = Длинноносый муравьед

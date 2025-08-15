@@ -1,0 +1,10 @@
+ent-BaseMagazineBoxPistol40 = ammunition box (.40)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineBoxPistol40SP = ammunition box (.40 SP)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }
+ent-MagazineBoxPistol40HP = ammunition box (.40 HP)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }
+ent-MagazineBoxPistol40FMJ = ammunition box (.40 FMJ)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }
+ent-MagazineBoxPistol40AP = ammunition box (.40 AP)
+    .desc = { ent-BaseMagazineBoxPistol40.desc }

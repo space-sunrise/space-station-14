@@ -266,7 +266,7 @@
     preventSuicide: true
     mobState:
     - Critical
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3
     initialBeepDelay: 0
     beepInterval: 3
@@ -377,7 +377,7 @@
     preventSuicide: true
     mobState:
     - Critical
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3
     initialBeepDelay: 0
     beepInterval: 3

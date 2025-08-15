@@ -7,6 +7,15 @@
       role: JobSecurityOfficer
       time: 72000 #20 hrs
 
+- type: loadoutEffectGroup
+  id: MasterShitcurity
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 360000 #100 hrs
+
 - type: loadout
   id: SecurityBodycam
   startingGear: SecurityBodycam
@@ -118,6 +127,16 @@
     - GlockBox
 
 - type: loadout
+  id: MK58Box
+  startingGear: MK58Box
+
+- type: startingGear
+  id: MK58Box
+  storage:
+    back:
+    - MK58Box
+
+- type: loadout
   id: ACP14Box
   startingGear: ACP14Box
   effects:
@@ -131,14 +150,34 @@
     - ACP14Box
 
 - type: loadout
-  id: WeaponEnergyGunPistolSecurity
-  startingGear: WeaponEnergyGunPistolSecurity
+  id: MK58GoldBox
+  startingGear: MK58GoldBox
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterShitcurity
 
 - type: startingGear
-  id: WeaponEnergyGunPistolSecurity
+  id: MK58GoldBox
   storage:
     back:
-    - WeaponEnergyGunPistolSecurity
+    - MK58GoldBox
+
+- type: loadout
+  id: WeaponDominator
+  startingGear: WeaponDominator
+
+- type: startingGear
+  id: WeaponDominator
+  storage:
+    back:
+    - WeaponDominator
+
+
+- type: startingGear
+  id: WeaponMiniEnergyGun
+  storage:
+    back:
+    - WeaponMiniEnergyGun
 
 - type: loadout
   id: WeaponDisabler
@@ -159,3 +198,25 @@
   storage:
     back:
     - WeaponTaser
+
+- type: loadoutEffectGroup
+  id: MasterSecurityCam
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 #50 hrs
+
+- type: loadout
+  id: SecurityMasterBodycam
+  startingGear: MasterHandheldCamera
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterSecurityCam
+
+- type: startingGear
+  id: MasterHandheldCamera
+  storage:
+    back:
+    - MasterHandheldCamera

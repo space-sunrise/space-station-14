@@ -11,6 +11,7 @@
       organs:
         brain: OrganHumanoidXenoBrain
         eyes: OrganHumanoidXenoEyes
+        eye_implant: null # Ну какие глаза у ксено?!
     torso:
       part: TorsoHumanoidXeno
       organs:

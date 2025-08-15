@@ -116,27 +116,6 @@
     reflective:
     - Energy
 
-- type: entity
-  id: BulletGrenadeFragLight
-  name: light frag grenade
-  parent: BaseBulletGrenade
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-      - state: grenade
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 2
-    intensitySlope: 1
-    totalIntensity: 4
-    maxTileBreak: 0
-  - type: ProjectileGrenade
-    fillPrototype: PelletClusterLethal
-    capacity: 5
-
 # Shells that used for friendship and duster
 
 - type: entity
@@ -206,9 +185,11 @@
   - type: FlashOnTrigger
     range: 7
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: GrenadeFlashEffect
+    predicted: true
   - type: ActiveTimerTrigger
-    timeRemaining: 0.3
   - type: DeleteOnTrigger
 
 - type: entity
@@ -253,7 +234,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -366,17 +347,14 @@
       - state: primed
   - type: FlashOnTrigger
     range: 7
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
       params:
         volume: 20
-  - type: EmitSoundOnTrigger
-    sound:
-      path: "/Audio/Effects/flash_bang.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 2.75
@@ -405,7 +383,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 5
@@ -436,7 +414,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -466,7 +444,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -496,7 +474,7 @@
       path: "/Audio/Effects/flash_bang.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -505,3 +483,120 @@
       path: /Audio/Effects/countdown.ogg
   - type: TimedDespawn
     lifetime: 3.5
+
+- type: entity
+  id: BulletKineticTrash
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _Sunrise/Objects/Weapons/Projectiles/projectiles.rsi
+    layers:
+    - state: bullet_trash
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 20
+        Structural: 25
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: PointLight
+    radius: 2.5
+    color: white
+    energy: 0.5
+  - type: GatheringProjectile
+
+- type: entity
+  id: BulletGrenadeBlastTimer
+  name: blast grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 150 # a ~2 tile radius
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+
+- type: entity
+  id: BulletGrenadeFlashTimer
+  name: flash grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: FlashOnTrigger
+    keysIn:
+    - timer
+    range: 7
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+  - type: DeleteOnTrigger
+
+# This is supposed to spawn shrapnel and stuff so uhh... TODO?
+- type: entity
+  id: BulletGrenadeFragTimer
+  name: frag grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 30
+
+- type: entity
+  id: BulletGrenadeEMPTimer
+  name: EMP rocket
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: EmpOnTrigger
+    keysIn:
+    - timer
+    range: 10
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
+  - type: DeleteOnTrigger

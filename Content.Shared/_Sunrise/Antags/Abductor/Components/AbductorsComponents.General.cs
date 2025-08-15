@@ -1,9 +1,7 @@
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Actions;
-using Content.Shared.Communications;
-using Content.Shared.Ninja.Systems;
+using Content.Shared.Roles.Components;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Antags.Abductor;
@@ -46,6 +44,16 @@ public sealed partial class AbductorConsoleComponent : Component
 }
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem))]
 public sealed partial class AbductorAlienPadComponent : Component
+{
+}
+
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem))]
+public sealed partial class AbductorVictimRoleComponent : BaseMindRoleComponent
+{
+}
+
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem))]
+public sealed partial class AbductorVictimRuleComponent : Component
 {
 }
 

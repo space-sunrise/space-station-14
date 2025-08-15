@@ -39,7 +39,7 @@ public sealed partial class DeconvertCultist : EntityEffect
             return;
 
         args.EntityManager.System<SharedStunSystem>()
-            .TryParalyze(uid, TimeSpan.FromSeconds(5f), true);
+            .TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5f));
         var target = Identity.Name(uid, args.EntityManager);
         args.EntityManager.System<SharedPopupSystem>()
             .PopupEntity(Loc.GetString("holy-water-started-converting", ("target", target)), uid);

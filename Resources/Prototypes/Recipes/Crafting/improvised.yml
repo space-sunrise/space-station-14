@@ -86,13 +86,13 @@
   category: construction-category-weapons
   objectType: Item
 
-- type: construction
-  id: ShellShotgunImprovised
-  graph: ImprovisedShotgunShellGraph
-  startNode: start
-  targetNode: shell
-  category: construction-category-weapons
-  objectType: Item
+# - type: construction # Sunrise-edit # Moved to improvised.yml
+#   id: ShellShotgunImprovised
+#   graph: ImprovisedShotgunShellGraph
+#   startNode: start
+#   targetNode: shell
+#   category: construction-category-weapons
+#   objectType: Item
 
 - type: construction
   id: riflestock

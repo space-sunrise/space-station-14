@@ -31,8 +31,9 @@
   #  brokenState: broken
   #  normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  #- type: Advertise
-  #  pack: MailDrobeAds
+#  - type: Vocalizer
+#  - type: DatasetVocalizer
+#    dataset: MailDrobeAds
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/maildrobe.rsi
     layers:
@@ -80,8 +81,9 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: PaintVendAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: PaintVendAds
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/paintvend.rsi
     layers:
@@ -121,3 +123,39 @@
     - type: WirelessNetworkConnection
       range: 200
     - type: AbductorDispencer
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineWeaponDev
+  name: liberation station
+  categories: [ Debug ]
+  description: An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
+  components:
+  - type: VendingMachine
+    pack: LiberationInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # denyState: deny-unshaded
+    soundVend:
+      path: /Audio/_Sunrise/Items/merikayeah.ogg
+      params:
+        volume: 40
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: LiberationVendAds
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/ammo.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "normal-unshaded"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: PlayerCountDependentStock

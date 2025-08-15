@@ -1,92 +1,6 @@
 - type: entity
-  name: BaseWeaponShotgun
-  parent: BaseWeaponShotgun
-  id: BaseWeaponShotgunSunrise
-  description: A rooty tooty point and shooty.
-  abstract: true
-  components:
-  - type: Gun
-    fireRate: 2
-    useKey: true
-    selectedMode: SemiAuto
-  - type: MeleeWeapon
-    angle: 60
-    range: 1.1
-    damage:
-      types:
-        Blunt: 12
-        Structural: 8
-    bluntStaminaDamageFactor: 2.0
-    attackRate: 0.85
-    autoAttack: false
-  - type: AltFireMelee
-    attackType: Heavy
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
-
-- type: entity
-  name: XM1014
-  parent: BaseWeaponShotgunSunrise
-  id: WeaponXM1014
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/big.rsi
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,5,1
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/tiny.rsi
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/tiny.rsi
-  - type: BallisticAmmoProvider
-    capacity: 7
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-  - type: GunRequiresWield
-  - type: Gun
-    fireRate: 2
-    soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Shotguns/XM1014/xm1014_shot.ogg # SUNRISE sounds
-
-- type: entity
-  name: Paladin pump shotgun
-  parent: BaseWeaponShotgun
-  id: WeaponShotgunPaladin12
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/paladin-12/big.rsi
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,1
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/paladin-12/tiny.rsi
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/paladin-12/tiny.rsi
-  - type: BallisticAmmoProvider
-    capacity: 6
-    soundRack:
-      path: /Audio/_Sunrise/Weapons/Guns/Shotguns/Different/pump.ogg
-    soundInsert:
-      path: /Audio/_Sunrise/Weapons/Guns/Shotguns/Different/insert.ogg
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.25
-  - type: GunRequiresWield
-  - type: Gun
-    fireRate: 2
-    soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Shotguns/paladin_12/paladin12_shot.ogg
-      params:
-        volume: 1
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.95
-    sprintModifier: 0.95
-
-- type: entity
   name: Spas-12
-  parent: BaseWeaponShotgunSunrise
+  parent: [BaseWeaponShotgun, GunMeleeMedium, BaseSecurityContraband]
   id: WeaponShotgunSPAS12
   components:
   - type: Sprite
@@ -101,16 +15,11 @@
   - type: BallisticAmmoProvider
     capacity: 8
   - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
   - type: GunRequiresWield
   - type: Gun
     fireRate: 2
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Shotguns/spas_12/spas12_shot.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.95
-    sprintModifier: 0.95
 
 - type: entity
   parent: WeaponShotgunSPAS12
@@ -122,10 +31,11 @@
 
 - type: entity
   name: Trenchgun L-4034
-  parent: BaseWeaponShotgunSunrise
+  parent: [BaseWeaponShotgun, GunMedium, GunMeleeMedium, BaseSecurityContraband]
   id: WeaponShotgunTrenchgun4034
   components:
   - type: Sprite
+    scale: 0.85, 0.85
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi
   - type: Item
     size: Large
@@ -144,13 +54,12 @@
     tags:
     - WeaponShotgunKammerer
   - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 1
+    pump: true
+    fireRate: 1.5
   - type: GunSpreadModifier
-    spread: 0.6
+    spread: 0.8
   - type: Construction
     graph: ShotgunTrenchgun4034Sawn
     node: start
@@ -158,13 +67,15 @@
 
 - type: entity
   name: Sawn Trenchgun L-4034
-  parent: WeaponShotgunTrenchgun4034
+  parent: [ WeaponShotgunTrenchgun4034, GunMeleeLight ]
   id: WeaponShotgunTrenchgun4034Sawn
   components:
   - type: Sprite
+    scale: 0.85, 0.85
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034_sawn/big.rsi
   - type: Gun
-    fireRate: 1
+    pump: true
+    fireRate: 1.5
     useKey: true
     selectedMode: SemiAuto
   - type: GunSpreadModifier
@@ -211,42 +122,3 @@
     graph: ShotgunTrenchgun4034Sawn
     node: shotgun4034sawn
     deconstructionTarget: null
-
-- type: entity
-  name: Zauer
-  parent: WeaponShotgunBulldog
-  id: WeaponShotgunZauer
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/zauer/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/zauer/tiny.rsi
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/zauer/tiny.rsi
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-  - type: GunRequiresWield
-  - type: Gun
-    fireRate: 2
-  - type: GunSpreadModifier
-    spread: 1.2
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: MeleeWeapon
-    angle: 60
-    range: 1
-    damage:
-      types:
-        Blunt: 8
-    bluntStaminaDamageFactor: 2.0
-    attackRate: 1
-    autoAttack: false
-  - type: AltFireMelee
-    attackType: Light

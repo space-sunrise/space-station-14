@@ -1,4 +1,4 @@
-﻿interaction-sound-name-face-pats-sound = Шорох одежды
+interaction-sound-name-face-pats-sound = Шорох одежды
 interaction-sound-name-face-lick-doggy-style-sound1 = Лизание 1
 interaction-sound-name-face-lick-doggy-style-sound2 = Лизание 2
 interaction-sound-name-friendly-handshake-sound = Пожатие рук
