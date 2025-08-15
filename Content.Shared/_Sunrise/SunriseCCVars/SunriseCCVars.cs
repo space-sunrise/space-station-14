@@ -432,7 +432,7 @@ public sealed partial class SunriseCCVars : CVars
      */
 
     public static readonly CVarDef<bool> ChatIconsEnable =
-        CVarDef.Create("chat_icon.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("chat_icon.enable", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
      * Pointing chat visuals
