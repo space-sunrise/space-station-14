@@ -110,10 +110,9 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         }
 
         EnsureComp<UsedAnomalyAutoInjectorComponent>(uid);
+        args.Handled = true;
         if (Exists(uid))
             _audio.PlayPvs(comp.HypospraySound, uid);
-
-        args.Handled = true;
 
         _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
         if (TryComp<SeeingRainbowsWeakStatusEffectComponent>(target, out var rainbowComp))
@@ -179,6 +178,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
                 break;
             }
         }
+
         if (anomalyInjector == null)
             return false;
 

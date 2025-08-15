@@ -60,8 +60,7 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 		if (_player.LocalEntity != args.Target)
 			return;
 		_overlay.Phase = _random.NextFloat(MathF.Tau);
-		// Кэшируем время окончания эффекта
-		// Используем фиксированную длительность, так как точное время окончания недоступно
+		// Кэшируем время окончания эффекта (фиксированная длительность)
 		_overlay.CachedEndTime = _timing.CurTime + TimeSpan.FromSeconds(60.0f);
 		if (!_overlayAdded)
 		{
@@ -72,7 +71,7 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 
 	private void OnPlayerAttached(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerAttachedEvent> args)
 	{
-		// Если события будут ретранслироваться не только локальной цели
+		// Защита от ретрансляции событий нелокальной цели
 		if (_player.LocalEntity != ent)
 			return;
 		if (!_overlayAdded)
@@ -106,7 +105,7 @@ public sealed class RainbowSmoothOverlay : Overlay
 	[Dependency] private readonly IPlayerManager _playerManager = default!;
 	[Dependency] private readonly IEntitySystemManager _sysMan = default!;
 	[Dependency] private readonly IGameTiming _timing = default!;
-	private readonly StatusEffectsSystem _statusEffects = default!;
+
 
 	public override OverlaySpace Space => OverlaySpace.WorldSpace;
 	public override bool RequestScreenTexture => true;
@@ -118,6 +117,7 @@ public sealed class RainbowSmoothOverlay : Overlay
 
 	private float _timeScale = 0.0f;
 	private float _warpScale = 0.0f;
+	private const float FadeSeconds = 10.0f;
 	public TimeSpan? CachedEndTime { get; set; }
 
 	private float EffectScale => Intoxication;
@@ -125,7 +125,7 @@ public sealed class RainbowSmoothOverlay : Overlay
 	public RainbowSmoothOverlay()
 	{
 		IoCManager.InjectDependencies(this);
-		_statusEffects = _sysMan.GetEntitySystem<StatusEffectsSystem>();
+
 		_rainbowShader = _prototypeManager.Index(Shader).InstanceUnique();
 		_config.OnValueChanged(CCVars.ReducedMotion, OnReducedMotionChanged, invokeImmediately: true);
 	}
@@ -149,28 +149,23 @@ public sealed class RainbowSmoothOverlay : Overlay
 
 		TimeTicker += args.DeltaSeconds;
 
-		const float fadeSeconds = 10.0f;
-		var fadeIn = Math.Clamp(TimeTicker / fadeSeconds, 0.0f, 1.0f);
-		var fadeOut = Math.Clamp(timeLeft / fadeSeconds, 0.0f, 1.0f);
+		var fadeIn = Math.Clamp(TimeTicker / FadeSeconds, 0.0f, 1.0f);
+		var fadeOut = Math.Clamp(timeLeft / FadeSeconds, 0.0f, 1.0f);
 		var envelope = MathF.Min(fadeIn, fadeOut);
 
-		float baseStrength = 0.1f;
-		if (_entityManager.TryGetComponent(playerEntity, out SeeingRainbowsWeakStatusEffectComponent? comp))
-			baseStrength = comp.Intensity;
-		float colorScale = baseStrength;
-		Intoxication = Math.Clamp(colorScale * envelope, 0.0f, 1.0f);
+		float intensity = _entityManager.TryGetComponent(playerEntity, out SeeingRainbowsWeakStatusEffectComponent? comp)
+			? comp.Intensity
+			: 0.1f;
+		Intoxication = Math.Clamp(intensity * envelope, 0.0f, 1.0f);
 	}
 
 	protected override bool BeforeDraw(in OverlayDrawArgs args)
 	{
 		var player = _playerManager.LocalEntity;
-		if (player == null)
-			return false;
-		if (!_entityManager.TryGetComponent(player, out EyeComponent? eyeComp))
-			return false;
-		if (args.Viewport.Eye != eyeComp.Eye)
-			return false;
-		return EffectScale > 0;
+		return player != null &&
+			   _entityManager.TryGetComponent(player, out EyeComponent? eyeComp) &&
+			   args.Viewport.Eye == eyeComp.Eye &&
+			   EffectScale > 0;
 	}
 
 	protected override void Draw(in OverlayDrawArgs args)
