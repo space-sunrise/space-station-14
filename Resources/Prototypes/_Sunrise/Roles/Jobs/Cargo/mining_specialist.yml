@@ -29,3 +29,10 @@
   storage:
     back:
     - EnergyPickaxe # Временно.
+
+- type: chameleonOutfit
+  id: MiningSpecialistChameleonOutfit
+  job: MiningSpecialist
+  equipment:
+    mask: ClothingMaskGas
+    outerClothing: ClothingOuterWinterMiner

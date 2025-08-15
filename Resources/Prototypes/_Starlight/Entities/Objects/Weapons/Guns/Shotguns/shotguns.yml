@@ -1,6 +1,6 @@
 - type: entity
   name: riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunPump, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiot
   description: A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control.
   components:
@@ -8,7 +8,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_inhands_64x.rsi
   - type: Gun
     spread: 20
-    pump: true
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
   - type: Clothing
@@ -23,7 +22,7 @@
 
 - type: entity
   name: sawn-off riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunPump, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
   components:
@@ -36,7 +35,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn_inhands_64x.rsi
   - type: Gun
     spread: 30
-    pump: true
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 4

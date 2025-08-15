@@ -522,6 +522,8 @@
     layers:
     - state: grenade
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: Default
     totalIntensity: 150 # a ~2 tile radius
@@ -540,6 +542,8 @@
     layers:
     - state: grenade
   - type: FlashOnTrigger
+    keysIn:
+    - timer
     range: 7
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
@@ -558,6 +562,8 @@
     layers:
     - state: grenade
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: Default
     totalIntensity: 50
@@ -582,6 +588,8 @@
     layers:
     - state: grenade
   - type: EmpOnTrigger
+    keysIn:
+    - timer
     range: 10
     energyConsumption: 50000
     disableDuration: 10

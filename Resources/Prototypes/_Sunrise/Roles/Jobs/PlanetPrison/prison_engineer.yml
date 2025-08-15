@@ -48,3 +48,7 @@
       - GrenadeFlashBang
       - Handcuffs
       - FlashlightSeclite
+
+- type: chameleonOutfit
+  id: PrisonEngineerChameleonOutfit
+  job: PrisonEngineer

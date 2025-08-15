@@ -198,3 +198,25 @@
   storage:
     back:
     - WeaponTaser
+
+- type: loadoutEffectGroup
+  id: MasterSecurityCam
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 #50 hrs
+
+- type: loadout
+  id: SecurityMasterBodycam
+  startingGear: MasterHandheldCamera
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterSecurityCam
+
+- type: startingGear
+  id: MasterHandheldCamera
+  storage:
+    back:
+    - MasterHandheldCamera

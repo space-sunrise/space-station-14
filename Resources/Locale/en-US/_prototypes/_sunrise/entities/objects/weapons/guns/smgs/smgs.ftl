@@ -1,5 +1,3 @@
-ent-BaseWeaponSMGSunrise = BaseWeaponSMGSunrise
-    .desc = A rooty tooty point and shooty.
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunMP38 = MP-38

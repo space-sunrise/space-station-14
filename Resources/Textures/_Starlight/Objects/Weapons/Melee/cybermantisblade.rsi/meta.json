@@ -15,6 +15,15 @@
           0.3
         ]
       ]
+    },
+    {
+      "name": "cybermantisbladesec",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
     }
   ]
 }

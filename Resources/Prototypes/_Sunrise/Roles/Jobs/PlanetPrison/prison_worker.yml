@@ -27,6 +27,7 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+
 - type: startingGear
   id: PrisonWorkerGear
   equipment:
@@ -49,3 +50,9 @@
       - Handcuffs
       - GrenadeFlashBang
       - FlashlightSeclite
+
+- type: chameleonOutfit
+  id: PrisonWorkerChameleonOutfit
+  job: PrisonWorker
+  equipment:
+    mask: ClothingMaskBreath

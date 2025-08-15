@@ -39,8 +39,13 @@
     pocket1: WeaponPistolDeagle
     pocket2: MagazineDeagle
     outerClothing: ClothingOuterArmorRiot
-
   storage:
     belt:
       - RadioHandheldSecurity
       - Flash
+
+- type: chameleonOutfit
+  id: HeadOfPrisonChameleonOutfit
+  job: HeadOfPrison
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSGrey

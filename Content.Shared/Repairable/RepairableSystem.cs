@@ -1,6 +1,7 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.FixedPoint;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -59,6 +60,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
             return;
 
+        // Sunrise-start
+        if (!CanRepair(damageable.Damage.DamageDict, ent.Comp))
+            return;
+        // Sunrise-end
+
         float delay = ent.Comp.DoAfterDelay;
 
         // Add a penalty to how long it takes if the user is repairing itself
@@ -73,6 +79,26 @@ public sealed partial class RepairableSystem : EntitySystem
         // Run the repairing doafter
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairFinishedEvent(), ent.Comp.FuelCost);
     }
+
+        // Sunrise-start
+        private bool CanRepair(Dictionary<string, FixedPoint2> damage, RepairableComponent component)
+        {
+            if (component.Damage == null)
+            {
+                return true;
+            }
+
+            foreach (var type in component.Damage.DamageDict)
+            {
+                if (damage[type.Key].Value > 0 && type.Key != "Mangleness")
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        // Sunrise-end
 }
 
 /// <summary>

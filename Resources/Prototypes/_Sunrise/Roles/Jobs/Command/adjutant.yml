@@ -47,3 +47,11 @@
     - Flash
     - Telebaton
     - RubberStampAdj
+
+- type: chameleonOutfit
+  id: AdjutantChameleonOutfit
+  job: Adjutant
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorBlack

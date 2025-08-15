@@ -108,7 +108,9 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi
   - type: Item
-    size: Ginormous
+    size: Normal
+    shape:
+    - 0,0,0,6 
   - type: ItemSlots
     slots:
       item:

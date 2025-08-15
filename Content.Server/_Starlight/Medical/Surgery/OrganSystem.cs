@@ -1,6 +1,5 @@
-﻿using Content.Server.Humanoid;
+using Content.Server.Humanoid;
 using Content.Shared._Sunrise.Antags.Abductor;
-using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.Damage;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
@@ -9,6 +8,7 @@ using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 
 namespace Content.Server._Starlight.Medical.Surgery;
+
 public sealed partial class OrganSystem : EntitySystem
 {
 
@@ -28,9 +28,6 @@ public sealed partial class OrganSystem : EntitySystem
 
         SubscribeLocalEvent<OrganTongueComponent, SurgeryOrganImplantationCompleted>(OnTongueImplanted);
         SubscribeLocalEvent<OrganTongueComponent, SurgeryOrganExtracted>(OnTongueExtracted);
-
-        SubscribeLocalEvent<AbductorOrganComponent, SurgeryOrganImplantationCompleted>(OnAbductorOrganImplanted);
-        SubscribeLocalEvent<AbductorOrganComponent, SurgeryOrganExtracted>(OnAbductorOrganExtracted);
 
         SubscribeLocalEvent<DamageableComponent, SurgeryOrganImplantationCompleted>(OnOrganImplanted);
         SubscribeLocalEvent<DamageableComponent, SurgeryOrganExtracted>(OnOrganExtracted);
@@ -75,27 +72,6 @@ public sealed partial class OrganSystem : EntitySystem
         if (change is not null)
             _damageableSystem.TryChangeDamage(ent.Owner, change.Invert(), true, false, ent.Comp);
     }
-
-    //
-
-    private void OnAbductorOrganImplanted(Entity<AbductorOrganComponent> ent, ref SurgeryOrganImplantationCompleted args)
-    {
-        if (TryComp<AbductorVictimComponent>(args.Body, out var victim))
-            victim.Organ = ent.Comp.Organ;
-        if (ent.Comp.Organ == AbductorOrganType.Vent)
-            AddComp<VentCrawlerComponent>(args.Body);
-    }
-    private void OnAbductorOrganExtracted(Entity<AbductorOrganComponent> ent, ref SurgeryOrganExtracted args)
-    {
-        if (TryComp<AbductorVictimComponent>(args.Body, out var victim))
-            if (victim.Organ == ent.Comp.Organ)
-                victim.Organ = AbductorOrganType.None;
-
-        if (ent.Comp.Organ == AbductorOrganType.Vent)
-            RemComp<VentCrawlerComponent>(args.Body);
-    }
-
-    //
 
     private void OnTongueImplanted(Entity<OrganTongueComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {

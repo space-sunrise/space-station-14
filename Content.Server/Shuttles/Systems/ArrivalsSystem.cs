@@ -591,7 +591,7 @@ public sealed class ArrivalsSystem : EntitySystem
 
         if (possiblePositions.Count == 0)
         {
-            Logger.Error("No valid arrival points found!");
+            Log.Warning("No valid arrival points found!");
             return null;
         }
 

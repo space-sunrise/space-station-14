@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponRifle
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, GunMedium]
   id: BaseWeaponRifle
   description: A rooty tooty point and shooty.
   abstract: true
@@ -76,10 +76,6 @@
         knockback: 0.1
       Felinid:
         knockback: 0.1
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: HeldSpeedModifier
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 4.5

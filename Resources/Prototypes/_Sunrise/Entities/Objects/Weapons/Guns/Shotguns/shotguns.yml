@@ -1,6 +1,6 @@
 - type: entity
   name: Spas-12
-  parent: [BaseWeaponShotgun, GunLight, GunMeleeMedium, BaseSecurityContraband]
+  parent: [BaseWeaponShotgun, GunMeleeMedium, BaseSecurityContraband]
   id: WeaponShotgunSPAS12
   components:
   - type: Sprite
