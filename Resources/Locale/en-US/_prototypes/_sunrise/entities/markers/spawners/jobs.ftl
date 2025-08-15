@@ -4,6 +4,7 @@ ent-SpawnPointNtrep = NanoTrasen Representative
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBrigmedic = brigmedic
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointBlueShieldOfficer = blue shield officer
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBlueShieldEnsign = blue shield ensign
     .desc = { ent-SpawnPointJobBase.desc }
