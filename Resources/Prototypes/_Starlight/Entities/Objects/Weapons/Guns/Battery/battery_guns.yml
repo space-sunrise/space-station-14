@@ -50,71 +50,6 @@
       heldPrefix: stun4
 
 - type: entity
-  name: miniature energy gun
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponMiniEnergyGun
-  description: An energy gun capable of switching between lethal and debilitating lasers.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: base-overlay
-      shader: unshaded
-      visible: false
-      map: [ "light" ]
-    - state: mag-unshaded-0
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 150
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: DisablerBolt
-      fireCost: 150
-    - proto: RedLaserBeam
-      fireCost: 200
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: PointLight
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    radius: 6
-    netsync: false
-  - type: Appearance
-  - type: HandheldLight
-    needsCharge: false
-    addPrefix: false
-    wattage: 0.2
-    blinkingBehaviourId: blinking
-    radiatingBehaviourId: radiating
-  - type: LightBehaviour
-    behaviours:
-    - !type:FadeBehaviour
-      id: radiating
-      maxDuration: 2.0
-      startValue: 3.0
-      endValue: 2.0
-      isLooped: true
-      reverseWhenFinished: true
-    - !type:PulseBehaviour
-      id: blinking
-      interpolate: Nearest
-      maxDuration: 1.0
-      isLooped: true
-  - type: ToggleableLightVisuals
-    spriteLayer: light
-
-- type: entity
   name: dominator
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponDominator
@@ -390,7 +325,6 @@
   id: WeaponPDW9
   description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
-  - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pdw9.rsi
     layers:
@@ -422,6 +356,7 @@
       fireCost: 100
       magState: kill
       visualState: kill
+  - type: Appearance
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500

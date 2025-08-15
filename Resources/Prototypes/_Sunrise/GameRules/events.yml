@@ -136,3 +136,31 @@
         - SimpleHostile
       mindRoles:
       - MindRoleLoneAbductor
+
+- type: entity
+  id: AbductorVictim
+  parent: BaseGameRule
+  components:
+  - type: AntagObjectives
+    objectives:
+    - AbductorEscapeShuttleObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: AbductorObjectiveGroups
+      maxPicks: 1
+    maxDifficulty: 10
+  - type: GameRule
+    minPlayers: 1
+  - type: AbductorVictimRule
+  - type: AntagSelection
+    definitions:
+    - blacklist:
+        components:
+        - AntagImmune
+        - MindShield
+      briefing:
+        text: abductor-victim-role-greeting
+        color: Plum
+        sound: /Audio/_Sunrise/Abductor/abductor.ogg
+      mindRoles:
+      - AbductorVictimRole

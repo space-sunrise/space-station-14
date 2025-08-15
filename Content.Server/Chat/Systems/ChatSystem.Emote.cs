@@ -97,16 +97,6 @@ public partial class ChatSystem
 
         var didEmote = TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
 
-        // Sunrise-Start
-        if (emote.Animation)
-        {
-            var ev = new AnimationEmoteAttemptEvent(source, emote);
-            RaiseLocalEvent(source, ev, true);
-            if (ev.Cancelled)
-                return false;
-        }
-        // Sunrise-End
-
         // check if proto has valid message for chat
         if (didEmote && emote.ChatMessages.Count != 0)
         {
@@ -114,6 +104,14 @@ public partial class ChatSystem
             var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
             SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
         }
+
+        // Sunrise-Start
+        if (didEmote && emote.PopupMessages.Count != 0)
+        {
+            var action = Loc.GetString(_random.Pick(emote.PopupMessages), ("entity", source));
+            _popupSystem.PopupEntity(action, source);
+        }
+        // Sunrise-End
 
         return didEmote;
     }

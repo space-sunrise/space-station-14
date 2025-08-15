@@ -1,6 +1,6 @@
 - type: entity
   name: BaseSMG
-  parent: BaseItem
+  parent: [BaseItem, GunLight]
   id: BaseWeaponSubMachineGun
   description: A rooty tooty point and shooty.
   abstract: true
@@ -13,6 +13,8 @@
   - type: Sprite
   - type: Item
     size: Large
+    shape:
+    - 0,0,2,1
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
     quickEquip: false
@@ -72,13 +74,6 @@
   - type: EmitSoundOnLand
     sound:
       collection: RiflesDrop
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: ClothingSpeedModifier
-    walkModifier: 0.97
-    sprintModifier: 0.97
-  - type: HeldSpeedModifier
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -235,12 +230,17 @@
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
+  - type: Wieldable # Sunrise-start
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -3
+    maxAngle: -14 # Sunrise-end
   - type: Gun
     fireRate: 5.5
-    minAngle: 1
-    maxAngle: 6
+    minAngle: 4 # Sunrise-edit
+    maxAngle: 20  # Sunrise-edit
     angleIncrease: 1.5
-    angleDecay: 6
+    angleDecay: 12  # Sunrise-edit
     selectedMode: FullAuto
     shotsPerBurst: 5
     burstCooldown: 0.2

@@ -17,7 +17,6 @@
       types:
         Piercing: 17
     resistanceBypass: true
-    resistanceBypassOnWide: true
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: SolutionContainerManager
@@ -35,14 +34,13 @@
   - type: Reflect
     reflects:
     - NonEnergy
-    reflectProb: 0.20
+    reflectProb: 0.4
     spread: 90
   - type: Item
+    size: Ginormous
     storedSprite:
       state: storage
       sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier_storage_64x.rsi
-    shape:
-    - 0,0,0,4 #1x5
   - type: Tag
     tags:
     - SyndicateRapier

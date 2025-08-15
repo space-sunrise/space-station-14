@@ -1,45 +1,6 @@
 - type: entity
-  name: BaseWeaponSMGSunrise
-  parent: BaseWeaponSubMachineGun
-  id: BaseWeaponSMGSunrise
-  description: A rooty tooty point and shooty.
-  abstract: true
-  components:
-  - type: Gun
-    minAngle: 7
-    maxAngle: 19
-    angleIncrease: 1
-    angleDecay: 0.5
-    fireRate: 5
-    useKey: true
-    selectedMode: FullAuto
-  # - type: MeleeWeapon
-  #   angle: 60
-  #   range: 1
-  #   damage:
-  #     types:
-  #       Blunt: 9
-  #       Structural: 4
-  #   bluntStaminaDamageFactor: 2.0
-  #   attackRate: 0.9
-  #   autoAttack: false
-  # - type: AltFireMelee
-  #   attackType: Heavy
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: ClothingSpeedModifier
-    walkModifier: 0.97
-    sprintModifier: 0.97
-  - type: HeldSpeedModifier
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.35
-
-- type: entity
   name: P-90
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunP90
   components:
   - type: Item
@@ -106,7 +67,7 @@
 
 - type: entity
   name: MP-38
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunMP38
   components:
   - type: Sprite
@@ -163,7 +124,7 @@
 
 - type: entity
   name: MP7
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunMP7
   components:
   - type: Sprite
@@ -222,7 +183,7 @@
 
 - type: entity
   name: MP5
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunMP5
   components:
   - type: Sprite
@@ -293,7 +254,7 @@
 
 - type: entity
   name: Scorpion VZ-61
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunSkorpion
   components:
   - type: Item
@@ -354,7 +315,7 @@
 
 - type: entity
   name: New Vector
-  parent: BaseWeaponSMGSunrise
+  parent: WeaponSubMachineGunDrozd
   id: WeaponSubMachineGunNewVector
   components:
   - type: Sprite
@@ -371,22 +332,8 @@
     shape:
     - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
-  - type: GunWieldBonus
-    minAngle: -3
-    maxAngle: -16
   - type: Gun
-    minAngle: 6
-    maxAngle: 30
-    angleIncrease: 2.5
-    angleDecay: 0.5
-    fireRate: 7
-    burstFireRate: 12
-    selectedMode: Burst
-    availableModes:
-    - Burst
-    - FullAuto
-    shotsPerBurst: 3
-    burstCooldown: 0.15
+    burstFireRate: 22
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/vector_shot.ogg
   - type: ItemSlots
@@ -419,7 +366,7 @@
 
 - type: entity
   name: PPSH-41
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunPPSH41
   components:
   - type: Sprite
@@ -484,7 +431,7 @@
 
 - type: entity
   name: MS-42
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponAMS-42
   description: A more advanced version of Lecter.
   components:
@@ -542,7 +489,7 @@
 
 - type: entity
   name: AJ-100
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponAJ100
   description: High-speed SMG, equipped with a universal connector for other types of pistol magazines.
   components:
@@ -608,7 +555,7 @@
 
 - type: entity
   name: SIAR-52 SMG
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponSubMachineGun
   id: WeaponSIAR52
   description: A high rate of fire weapon, equipped with integrated silencer.
   components:
@@ -647,7 +594,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineCaselessRifle
+        startingItem: MagazinePistolSubMachineGunSIAR52
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2

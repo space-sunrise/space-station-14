@@ -30,10 +30,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.9
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.25
+        Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
@@ -481,3 +483,74 @@
           Caustic: 0.5
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetEVA
+
+#Syndicate Infiltration Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, AllowSuitStorageClothing, BaseToggleClothing, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitInfiltration
+  name: syndicate infiltration hardsuit
+  description: The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+  - type: Item
+    size: Huge
+    sprite: _Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    # - type: Stealth
+    #   minVisibility: 0.3
+    #   maxVisibility: 0.3
+    #   lastVisibility: 0.3
+    - type: Stealth
+      mirage: false # Sunrise-Edit
+      hadOutline: true
+      examineThreshold: 0.9 # Sunrise-Edit
+    - type: StealthOnMove
+      passiveVisibilityRate: -0.15 # Sunrise-Edit
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitInfiltration

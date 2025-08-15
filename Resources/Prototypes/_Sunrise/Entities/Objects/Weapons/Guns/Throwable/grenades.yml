@@ -17,6 +17,8 @@
     fillPrototype: PelletClusterLethal
     capacity: 15
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: Default
     maxIntensity: 10

@@ -22,3 +22,14 @@
   storage:
     back:
     - BarberRazor
+
+- type: chameleonOutfit
+  id: BarberChameleonOutfit
+  job: Barber
+  equipment:
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterCoat
+    gloves: ClothingHandsGlovesColorBlack
+    neck: ClothingNeckScarfStripedBrown

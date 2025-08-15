@@ -19,7 +19,7 @@ public sealed partial class StandingStatePrecondition : HTNPrecondition
         if (!_entManager.TryGetComponent<StandingStateComponent>(owner, out var standing))
             return false;
 
-        return IsStanding && standing.CurrentState == StandingState.Standing ||
-               !IsStanding && standing.CurrentState != StandingState.Standing;
+        return IsStanding && standing.Standing ||
+               !IsStanding && !standing.Standing;
     }
-} 
+}

@@ -69,7 +69,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleEstoc
+    - id: WeaponRifleEstocBiocode # Sunrise-edit
     - id: MagazineRifle
       amount: 2
 

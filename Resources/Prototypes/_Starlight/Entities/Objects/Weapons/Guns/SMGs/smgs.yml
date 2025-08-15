@@ -1,6 +1,6 @@
 - type: entity
   name: SP-91-RC
-  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  parent: [WeaponSubMachineGunDrozdMk2, BaseSecurityContraband]
   id: WeaponSubMachineGunSP91RC
   description: Compact submachine gun designed for riot control.
   components:

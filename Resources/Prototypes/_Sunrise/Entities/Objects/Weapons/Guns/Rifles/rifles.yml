@@ -59,18 +59,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  # - type: MeleeWeapon
-  #   angle: 60
-  #   range: 1
-  #   damage:
-  #     types:
-  #       Blunt: 11
-  #       Structural: 4
-  #   bluntStaminaDamageFactor: 2.0
-  #   attackRate: 0.9
-  #   autoAttack: false
-  # - type: AltFireMelee
-  #   attackType: Heavy
   - type: StaticPrice
     price: 500
   - type: EmitSoundOnPickup
@@ -160,7 +148,7 @@
 
 - type: entity
   name: AKM-U
-  parent: BaseWeaponSMGSunrise
+  parent: BaseWeaponRifleSunrise
   id: WeaponRifleAKMU
   components:
   - type: Sprite
@@ -248,7 +236,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineCaselessRifle
+        startingItem: MagazineRifleFMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -306,7 +294,7 @@
     angleIncrease: 1.65
     angleDecay: 18
     fireRate: 5.25
-    burstFireRate: 9
+    burstFireRate: 12
     selectedMode: Burst
     availableModes:
     - Burst
@@ -772,7 +760,7 @@
 
 - type: entity
   name: Lecter Mk2
-  parent: WeaponRifleLecter
+  parent: [WeaponRifleLecter, GunLight]
   id: WeaponRifleLecterMk2
   description: A high end military grade assault rifle. Uses .20 rifle ammo.
   components:
@@ -796,9 +784,6 @@
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: Appearance
-  - type: ClothingSpeedModifier
-    walkModifier: 0.97
-    sprintModifier: 0.97
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.55

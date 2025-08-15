@@ -1,6 +1,6 @@
 - type: entity
   name: riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunPump, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiot
   description: A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control.
   components:
@@ -8,7 +8,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_inhands_64x.rsi
   - type: Gun
     spread: 20
-    pump: true
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
   - type: Clothing
@@ -23,7 +22,7 @@
 
 - type: entity
   name: sawn-off riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunPump, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
   components:
@@ -36,7 +35,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn_inhands_64x.rsi
   - type: Gun
     spread: 30
-    pump: true
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 4
@@ -77,39 +75,46 @@
 
 - type: entity
   name: cycler shotgun
-  parent: [BaseWeaponShotgunSunrise, BaseGunWieldable] # , BaseSecuritySalvageContraband
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunCycler
   description: An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types.
   components:
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cycler.rsi
-  - type: Gun
-    spread: 20
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cycler.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cycler.rsi
+    size: Large
+  - type: Gun
+    spread: 24
+    fireRate: 2
+    burstFireRate: 4
+    burstCooldown: 0.45
+    selectedMode: Burst
+    shotsPerBurst: 2
+    availableModes:
+    - Burst
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cycler.rsi
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
-    capacity: 7
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-      - ShellShotgun
-      - SpeedLoaderShotgun
-    proto: ShellShotgun
-    capacity: 9
-    chambers: [ True, True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null, null ]
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+    capacity: 14
 
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
-  parent: [BaseWeaponShotgunSunrise] # , BaseSecuritySalvageContraband
+  parent: [BaseWeaponShotgunAny, BaseSecurityContraband] # , BaseSecuritySalvageContraband
   id: WeaponShotgunGA12
   description: An outdated sidearm rarely seen in use by certain PMCs that operate throughout the frontier systems, featuring a three-shell cylinder. Thats right, shell, this one shoots twelve gauge.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/ga12.rsi
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/ga12.rsi
     size: Small
@@ -125,11 +130,13 @@
   - type: Tag
     tags:
     - Sidearm
+  - type: AmmoCounter
   - type: Gun
     spread: 30
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/ga12.rsi
-  - type: GunRequiresWield
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+    - SemiAuto
   - type: BallisticAmmoProvider
     capacity: 3
   - type: RevolverAmmoProvider
@@ -143,6 +150,14 @@
     ammoSlots: [ null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 3
+        staminaMultiplier: 20
+      Felinid:
+        knockback: 1.5 #half of what resomi take
+        staminaMultiplier: 20
 
 - type: entity
   name: "AS-12 'Minotaur' Shotgun"
@@ -164,7 +179,7 @@
     spread: 20
     fireRate: 3
     burstFireRate: 4
-    burstCooldown: 1
+    burstCooldown: 0.5
     selectedMode: Burst
     shotsPerBurst: 3
     availableModes:

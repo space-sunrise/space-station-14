@@ -6,7 +6,6 @@
   - type: StorageFill
     contents:
     - id: ClothingHeadsetSecurity
-    - id: WeaponEnergyGunPistolSecurity
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingOuterHardsuitPilot

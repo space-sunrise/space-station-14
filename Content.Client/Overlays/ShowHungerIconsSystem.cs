@@ -9,7 +9,7 @@ namespace Content.Client.Overlays;
 public sealed class ShowHungerIconsSystem : EquipmentHudSystem<ShowHungerIconsComponent>
 {
     [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -23,7 +23,7 @@ public sealed class ShowHungerIconsSystem : EquipmentHudSystem<ShowHungerIconsCo
         if (!IsActive)
             return;
 
-        if (!_standing.IsStanding(uid))
+        if (!_standing.IsDown(uid))
             return;
 
         if (_hunger.TryGetStatusIconPrototype(component, out var iconPrototype))

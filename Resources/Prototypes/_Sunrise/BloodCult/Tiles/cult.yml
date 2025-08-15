@@ -1,7 +1,7 @@
 ﻿- type: tile
   id: CultFloor
   name: tiles-cult-floor
-  sprite: /Textures/_Sunrise/BloodCult/Tiles/cult_tile.rsi/cult.png
+  sprite: /Textures/_Sunrise/BloodCult/Tiles/cult.png
   variants: 1
   baseTurf: Plating
   isSubfloor: false

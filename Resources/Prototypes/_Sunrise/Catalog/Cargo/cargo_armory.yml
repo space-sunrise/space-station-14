@@ -1,14 +1,4 @@
 - type: cargoProduct
-  id: ArmoryMP5
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
-    state: icon
-  product: CrateArmoryMP5
-  cost: 8000
-  category: cargoproduct-category-name-armory
-  group: market
-
-- type: cargoProduct
   id: ArmoryLaserik30
   icon:
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
@@ -19,12 +9,22 @@
   group: market
 
 - type: cargoProduct
+  id: ArmoryIK30Magazines
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Battery/lr30_mag.rsi
+    state: base
+  product: CrateArmoryIK30Magazines
+  cost: 1200
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
   id: ArmoryShotgunRiot
   icon:
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi
     state: icon
   product: CrateArmoryShotgunTrenchgun4034Sawn
-  cost: 5750
+  cost: 5250
   category: cargoproduct-category-name-armory
   group: market
 
@@ -55,5 +55,15 @@
     state: icon
   product: CrateAmmunitionSmallLightRifle
   cost: 925
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryShotgunCombat
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
+    state: icon
+  product: CrateArmoryCombatShotgun
+  cost: 7400
   category: cargoproduct-category-name-armory
   group: market

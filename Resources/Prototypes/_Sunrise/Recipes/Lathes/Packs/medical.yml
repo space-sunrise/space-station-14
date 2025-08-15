@@ -46,6 +46,14 @@
   - RightArmCyberMechwright
   - LeftArmCyberBulwark
   - RightArmCyberBulwark
+  - LeftArmCyberGorilla
+  - RightArmCyberGorilla
+  - LeftArmCyberMantisBladeMaxGuard
+  - RightArmCyberMantisBladeMaxGuard
+  - LeftArmCyberLaserEmitter
+  - RightArmCyberLaserEmitter
+  - LeftArmCyberGrenadeThrower
+  - RightArmCyberGrenadeThrower
 
 - type: latheRecipePack
   id: MedicalCyberOrgansDynamic
@@ -59,3 +67,4 @@
   - EyeImplantWelding
   - EyeImplantMedical
   - EyeImplantSecurity
+  - EyeImplantChemical

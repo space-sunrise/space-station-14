@@ -351,13 +351,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         }
         // sunrise gradient end
 
-        //Sunrise start
-        var random = IoCManager.Resolve<IRobustRandom>();
-        var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
-        var newWidth = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
-        var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
-        //Sunrise end
-
         return new HumanoidCharacterAppearance(
             hairStyleId,
             hairColor,
@@ -370,8 +363,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             hairExtendedColor,
             appearance.FacialHairMarkingEffectType,
             facialHairExtendedColor,
-            newWidth,
-            newHeight);
+            width,
+            height);
     }
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
     {
