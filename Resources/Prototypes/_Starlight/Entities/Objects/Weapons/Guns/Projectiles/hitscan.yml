@@ -60,7 +60,7 @@
       Structural: 226
   staminaDamage: 35
   armorPenetration: 0.35
-  pierceChance: 0.95
+  pierceChance: 0.80
   pierceLevel: Rock
   ricochetChance: 0.95
   steps: 20

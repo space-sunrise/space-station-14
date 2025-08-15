@@ -16,6 +16,7 @@ printerdoc-copy-job = Копирование
 printerdoc-filter-all = Все
 printerdoc-component-Centcom = ЦентКом
 printerdoc-component-Command = Командование
+printerdoc-component-Prison = Тюрьма
 printerdoc-component-Engineering = Инженерия
 printerdoc-component-General = Общее
 printerdoc-component-Justice = Юстиция

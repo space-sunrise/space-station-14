@@ -106,6 +106,9 @@ public sealed partial class PrinterDocComponent : Component
     [DataField]
     public List<ProtoId<DocTemplatePrototype>> Templates = new();
 
+    [DataField]
+    public bool Initialized = false;
+
     [Serializable, NetSerializable]
     public sealed record PrinterJobView(string Type, string? TemplateId);
 

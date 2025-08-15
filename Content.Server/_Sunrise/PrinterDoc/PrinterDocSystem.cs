@@ -1,29 +1,30 @@
 using System.Linq;
+using System.Text.RegularExpressions;
+using Content.Server.GameTicking.Events;
 using Content.Server.Materials;
+using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.PrinterDoc;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Humanoid;
-using Content.Shared.Paper;
-using Robust.Server.GameObjects;
-using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Materials;
+using Content.Shared.Paper;
+using Content.Shared.Tag;
+using Content.Shared.Labels.Components;
+using Content.Shared.Labels.EntitySystems;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.ContentPack;
-using System.Text.RegularExpressions;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Server.GameTicking.Events;
-using Content.Shared._Sunrise.SunriseCCVars;
-using Robust.Shared.Configuration;
-using Content.Server.Station.Systems;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Emag.Components;
-using Content.Server.Station.Events;
-using Robust.Server.Audio;
-using Robust.Shared.Audio.Systems;
-using Content.Shared.Tag;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.PrinterDoc;
 
@@ -41,11 +42,17 @@ public sealed class PrinterDocSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-
+    [Dependency] private readonly LabelSystem _labelSystem = default!;
 
 
     private TimeSpan _roundStartTime;
     private readonly Dictionary<string, string> _docCache = new();
+
+    private static readonly Regex DocRegex =
+        new("<Document>(.*?)</Document>", RegexOptions.Singleline | RegexOptions.Compiled);
+
+    private const string SunriseRoot = "/ServerInfo/Documents/_Sunrise"; //Стандартные шаблоны
+    private const string LustRoot = "/ServerInfo/Documents/_Lust"; //Путь к документам Qillu для Lust_Station
 
     public override void Initialize()
     {
@@ -63,25 +70,71 @@ public sealed class PrinterDocSystem : EntitySystem
         SubscribeLocalEvent<PrinterDocComponent, StrappedEvent>(OnStasisStrapped);
         SubscribeLocalEvent<PrinterDocComponent, UnstrappedEvent>(OnStasisUnstrapped);
         SubscribeLocalEvent<PrinterDocComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
+        SubscribeLocalEvent<PrinterDocComponent, ComponentStartup>(OnPrinterStartup);
+
+        _configManager.OnValueChanged(SunriseCCVars.PrinterDocTemplatePack, _ =>
+        {
+            CacheAllDocuments();
+            RebuildAllPrinters();
+        }, false);
 
         CacheAllDocuments();
     }
 
-    private void OnRoundStart(RoundStartingEvent ev) => _roundStartTime = _timing.CurTime;
+    private void OnRoundStart(RoundStartingEvent ev)
+    {
+        _roundStartTime = _timing.CurTime;
+    }
 
     private void CacheAllDocuments()
     {
+        _docCache.Clear();
+
         foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
         {
-            if (!_resourceManager.ContentFileExists(template.Content))
+            if (template.Content == default)
                 continue;
 
-            using var file = _resourceManager.ContentFileReadText(template.Content);
+            var resolved = ResolveTemplatePath(template.Content);
+            if (resolved is null)
+                continue;
+
+            using var file = _resourceManager.ContentFileReadText(resolved.Value);
             var fileText = file.ReadToEnd();
-            var match = Regex.Match(fileText, "<Document>(.*?)</Document>", RegexOptions.Singleline);
+            var match = DocRegex.Match(fileText);
             var content = match.Success ? match.Groups[1].Value.Trim() : fileText.Trim();
+
             _docCache[template.ID] = content;
+        }
+    }
+
+    // Мгновенная смена шаблонов в принтерах при смене CVar-а
+    private void RebuildAllPrinters()
+    {
+        var query = EntityQueryEnumerator<PrinterDocComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            comp.Templates.Clear();
+
+            var isEmagged = HasComp<EmaggedComponent>(uid);
+
+            foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
+            {
+                if (string.IsNullOrEmpty(template.Component))
+                    continue;
+
+                if (template.Content == default)
+                    continue;
+
+                var resolved = ResolveTemplatePath(template.Content);
+                if (!resolved.HasValue)
+                    continue;
+
+                if (template.IsPublic || isEmagged)
+                    comp.Templates.Add(template.ID);
+            }
+
+            UpdateUserInterface(uid, comp);
         }
     }
 
@@ -155,19 +208,28 @@ public sealed class PrinterDocSystem : EntitySystem
     {
         _itemSlotsSystem.AddItemSlot(uid, PrinterDocComponent.CopySlotId, comp.CopySlot);
 
-        if (comp.Templates.Count == 0)
+        comp.Templates.Clear();
+
+        var isEmagged = HasComp<EmaggedComponent>(uid);
+
+        foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
         {
-            var isEmagged = HasComp<EmaggedComponent>(uid);
-            foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
-            {
-                if (!string.IsNullOrEmpty(template.Component) && (template.IsPublic || isEmagged))
-                    comp.Templates.Add(template.ID);
-            }
+            if (string.IsNullOrEmpty(template.Component))
+                continue;
+
+            if (template.Content == default)
+                continue;
+
+            var resolved = ResolveTemplatePath(template.Content);
+            if (!resolved.HasValue)
+                continue;
+
+            if (template.IsPublic || isEmagged)
+                comp.Templates.Add(template.ID);
         }
 
         UpdateUserInterface(uid, comp);
     }
-
 
     public override void Update(float frameTime)
     {
@@ -182,7 +244,8 @@ public sealed class PrinterDocSystem : EntitySystem
             var (type, templateId) = comp.JobQueue.Dequeue();
             comp.IsProcessing = true;
 
-            string jobTitle = type == PrinterJobType.Print && templateId != null && _proto.TryIndex<DocTemplatePrototype>(templateId, out var proto)
+            string jobTitle = type == PrinterJobType.Print && templateId != null &&
+                              _proto.TryIndex<DocTemplatePrototype>(templateId, out var proto)
                 ? Loc.GetString(proto.Name)
                 : templateId ?? "Документ";
 
@@ -196,7 +259,7 @@ public sealed class PrinterDocSystem : EntitySystem
                 if (Deleted(uid))
                     return;
 
-                bool success = type switch
+                _ = type switch
                 {
                     PrinterJobType.Print when templateId != null => TryPrintInternal(uid, comp, templateId),
                     PrinterJobType.Copy => TryCopyInternal(uid, comp),
@@ -242,7 +305,6 @@ public sealed class PrinterDocSystem : EntitySystem
         }
         catch
         {
-            // Без подключения к серверу эти CVar недоступны используем компоненты
         }
 
         var date = DateTime.UtcNow
@@ -263,12 +325,9 @@ public sealed class PrinterDocSystem : EntitySystem
         return true;
     }
 
-
-
     private bool TryCopyInternal(EntityUid uid, PrinterDocComponent comp)
     {
         var paper = Spawn(comp.PaperProtoId, Transform(uid).Coordinates);
-
         if (!TryComp<PaperComponent>(paper, out var paperComp))
             return false;
 
@@ -285,10 +344,18 @@ public sealed class PrinterDocSystem : EntitySystem
             }
         }
 
-        if (comp.CopySlot.HasItem && TryComp<PaperComponent>(comp.CopySlot.Item, out var copyPaperComponent))
+        if (comp.CopySlot.HasItem && TryComp<PaperComponent>(comp.CopySlot.Item, out var srcPaper))
         {
-            _paperSystem.SetContent((paper, paperComp), copyPaperComponent.Content);
-            paperComp.EditingDisabled = copyPaperComponent.EditingDisabled;
+            _paperSystem.SetContent((paper, paperComp), srcPaper.Content);
+            paperComp.EditingDisabled = srcPaper.EditingDisabled;
+
+            if (srcPaper.StampState != null && srcPaper.StampedBy != null)
+                foreach (var stamp in srcPaper.StampedBy)
+                    _paperSystem.TryStamp((paper, paperComp), stamp, srcPaper.StampState);
+
+            if (TryComp<LabelComponent>(comp.CopySlot.Item, out var srcLabel) && !string.IsNullOrWhiteSpace(srcLabel.CurrentLabel))
+                _labelSystem.Label(paper, srcLabel.CurrentLabel);
+
             return true;
         }
 
@@ -311,7 +378,8 @@ public sealed class PrinterDocSystem : EntitySystem
             currentJob: comp.CurrentJobView,
             queue: comp.JobQueue.Select(j =>
             {
-                string title = j.Type == PrinterJobType.Print && j.TemplateId != null && _proto.TryIndex<DocTemplatePrototype>(j.TemplateId, out var proto)
+                string title = j.Type == PrinterJobType.Print && j.TemplateId != null &&
+                               _proto.TryIndex<DocTemplatePrototype>(j.TemplateId, out var proto)
                     ? Loc.GetString(proto.Name)
                     : j.TemplateId ?? "Документ";
                 return new PrinterJobView(title, j.Type);
@@ -348,30 +416,56 @@ public sealed class PrinterDocSystem : EntitySystem
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
     }
-    private void OnStationInitialized(StationInitializedEvent args)
+
+    private void OnPrinterStartup(EntityUid uid, PrinterDocComponent comp, ref ComponentStartup args)
     {
-        Timer.Spawn(TimeSpan.FromMilliseconds(100), () =>
+        TryInitPrinterResources(uid, comp);
+    }
+
+    private void TryInitPrinterResources(EntityUid uid, PrinterDocComponent comp)
+    {
+        if (Deleted(uid) || comp.Initialized)
+            return;
+
+        if (!_solution.TryGetSolution(uid, comp.Solution, out var solEnt, out var solution))
         {
-            var query = EntityQueryEnumerator<PrinterDocComponent>();
+            Timer.Spawn(TimeSpan.Zero, () => TryInitPrinterResources(uid, comp));
+            return;
+        }
 
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                var owningStation = _stationSystem.GetOwningStation(uid);
+        _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, comp.InitialPaperAmount);
 
-                if (owningStation != args.Station)
-                    continue;
+        var reagent = new ReagentId(comp.IncReagentProto, null);
+        solution.AddReagent(reagent, comp.InitialInkAmount);
+        _solution.UpdateChemicals(solEnt.Value, needsReactionsProcessing: false);
 
-                _materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, comp.InitialPaperAmount);
+        comp.Initialized = true;
+        UpdateUserInterface(uid, comp);
+    }
 
-                if (_solution.TryGetSolution(uid, comp.Solution, out var solEnt, out var solution))
-                {
-                    var reagent = new ReagentId(comp.IncReagentProto, null);
-                    solution.AddReagent(reagent, comp.InitialInkAmount);
-                    _solution.UpdateChemicals(solEnt.Value, needsReactionsProcessing: false);
-                }
+    // Система для переключения используемых шаблонов документов через CVar
+    private string GetTemplateRoot()
+    {
+        string pack;
+        try { pack = _configManager.GetCVar(SunriseCCVars.PrinterDocTemplatePack); }
+        catch { pack = "sunrise"; }
 
-                UpdateUserInterface(uid, comp);
-            }
-        });
+        if (string.IsNullOrWhiteSpace(pack))
+            pack = "sunrise";
+
+        pack = pack.Trim();
+        return pack.Equals("lust", StringComparison.OrdinalIgnoreCase) ? LustRoot : SunriseRoot;
+    }
+
+    private ResPath? ResolveTemplatePath(ResPath contentPath)
+    {
+        var root = GetTemplateRoot();
+        var content = contentPath.ToString();
+
+        if (!content.StartsWith(root, StringComparison.OrdinalIgnoreCase))
+            return null;
+
+        var rp = new ResPath(content);
+        return _resourceManager.ContentFileExists(rp) ? rp : (ResPath?)null;
     }
 }
