@@ -2,7 +2,7 @@
 // 1. Заражение - визуальный эффект галлюцинаций и запуск таймера
 // 2. Превращение - конец таймера, применение урона и добавление компонента аномалии
 // дальше блокирует повторное использование, меняет спрайт и выводит попапы (звук инъекции воспроизводится напрямую)
-using Content.Shared.Anomaly.Components;
+using Content.Shared._Sunrise.Anomaly.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -16,16 +16,20 @@ using System;
 using Robust.Shared.Timing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Log;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Humanoid;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.Drugs;
+using Content.Shared.Anomaly.Components;
 
 namespace Content.Server._Sunrise.Anomaly.Systems;
 
 public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> CellularDamageType = "Cellular";
+
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -41,11 +45,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         SubscribeLocalEvent<AnomalyAutoInjectorComponent, AfterInteractEvent>(OnAfterInteract);
     }
 
-    private bool IsAlreadyInfected(EntityUid target) => HasComp<InnerBodyAnomalyComponent>(target);
-    private bool IsPendingInfection(EntityUid target) => HasComp<PendingAnomalyInfectionComponent>(target);
-    private bool IsInjectorUsed(EntityUid injector) => HasComp<UsedAnomalyAutoInjectorComponent>(injector);
-    private bool IsHumanoid(EntityUid target) => HasComp<HumanoidAppearanceComponent>(target);
-    private bool IsMob(EntityUid target) => HasComp<MobStateComponent>(target);
+
 
     // ShowPopup wrapper removed per review
 
@@ -53,34 +53,34 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
     {
         popup = null;
 
-        if (!IsMob(target))
+        if (!HasComp<MobStateComponent>(target))
         {
             popup = comp.PopupNotApplicable;
             return false;
         }
 
-        if (!IsHumanoid(target))
+        if (!HasComp<HumanoidAppearanceComponent>(target))
         {
-            if (!IsInjectorUsed(injector))
+            if (!HasComp<UsedAnomalyAutoInjectorComponent>(injector))
                 popup = comp.PopupNotApplicable;
             else
                 popup = comp.PopupNothingToInject;
             return false;
         }
 
-        if (IsInjectorUsed(injector))
+        if (HasComp<UsedAnomalyAutoInjectorComponent>(injector))
         {
             popup = comp.PopupNothingToInject;
             return false;
         }
 
-        if (IsPendingInfection(target))
+        if (HasComp<PendingAnomalyInfectionComponent>(target))
         {
             popup = comp.PopupPending;
             return false;
         }
 
-        if (IsAlreadyInfected(target))
+        if (HasComp<InnerBodyAnomalyComponent>(target))
         {
             popup = comp.PopupInfected;
             return false;
@@ -92,9 +92,6 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
     private void OnAfterInteract(EntityUid uid, AnomalyAutoInjectorComponent comp, AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach || args.Target is not { } target)
-            return;
-
-        if (!IsMob(target))
             return;
 
         if (!IsValidTargetForInjection(target, uid, comp, out var popup))
@@ -113,33 +110,16 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         args.Handled = true;
 
         var added = _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
-        Robust.Shared.Log.Logger.Info($"[DEBUG] StatusEffect add: {added}, target={ToPrettyString(target)}, effect={comp.RainbowEffect}");
         if (TryComp<SeeingRainbowsWeakStatusEffectComponent>(target, out var rainbowComp))
         {
             rainbowComp.Intensity = comp.RainbowEffectIntensity;
         }
         pending.EndAt = _timing.CurTime + TimeSpan.FromSeconds(comp.AnomalyDelay);
         pending.CellularDamage = comp.CellularDamage;
-        pending.SelectedAnomalyTrapProtoId = comp.AnomalyTrapProtos.Count > 0 ? _random.Pick(comp.AnomalyTrapProtos) : null;
+        pending.SelectedAnomalyTrapProtoId = comp.AnomalyTrapProtos.Count > 0 ? _random.Pick(comp.AnomalyTrapProtos) : default(EntProtoId);
     }
 
-    private void TryInfectWithRandomAnomaly(EntityUid target, AnomalyAutoInjectorComponent comp)
-    {
-        if (HasComp<InnerBodyAnomalyComponent>(target))
-            return;
 
-        if (comp.AnomalyTrapProtos.Count == 0)
-            return;
-
-        var protoId = _random.Pick(comp.AnomalyTrapProtos);
-        if (!TryGetInjectionComponents(protoId, out var injectionComponents))
-            return;
-
-        EntityManager.AddComponents(target, injectionComponents);
-
-        if (HasComp<PendingAnomalyInfectionComponent>(target))
-            RemComp<PendingAnomalyInfectionComponent>(target);
-    }
 
     public override void Update(float frameTime)
     {
@@ -153,18 +133,14 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
                 continue;
 
             if (!Exists(uid))
-            {
-                RemCompDeferred<PendingAnomalyInfectionComponent>(uid);
                 continue;
-            }
 
-            var damage = new DamageSpecifier();
-            damage.DamageDict["Cellular"] = pending.CellularDamage;
+            var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>(CellularDamageType), pending.CellularDamage);
             _damageableSystem.TryChangeDamage(uid, damage);
 
-            if (!IsAlreadyInfected(uid) && pending.SelectedAnomalyTrapProtoId != null)
+            if (!HasComp<InnerBodyAnomalyComponent>(uid) && pending.SelectedAnomalyTrapProtoId.HasValue)
             {
-                if (TryGetInjectionComponents(pending.SelectedAnomalyTrapProtoId, out var comps))
+                if (TryGetInjectionComponents(pending.SelectedAnomalyTrapProtoId.Value, out var comps))
                     EntityManager.AddComponents(uid, comps);
             }
 
@@ -172,7 +148,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         }
     }
 
-    private bool TryGetInjectionComponents(string protoId, [NotNullWhen(true)] out ComponentRegistry? injectionComponents)
+    private bool TryGetInjectionComponents(EntProtoId protoId, [NotNullWhen(true)] out ComponentRegistry? injectionComponents)
     {
         injectionComponents = null;
 

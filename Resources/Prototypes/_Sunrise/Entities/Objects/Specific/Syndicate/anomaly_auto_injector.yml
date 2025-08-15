@@ -9,8 +9,8 @@
       sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
       layers:
         - state: anomagen
+          map: ["base"]
     - type: AnomalyAutoInjector
-      rainbowEffectIntensity: 0.1
 
 - type: entity
   id: AnomalyAutoInjector
@@ -19,6 +19,7 @@
   components:
     - type: AnomalyAutoInjector
       anomalyTrapProtos:
+      # без имбовых (Pyroclastic,Electricity,Ice,Shadow,Santa) + (Gravity) - грузит сервак и бесполезен для зека
         - AnomalyTrapFlora
         - AnomalyTrapFlesh
         - AnomalyTrapTech
@@ -37,7 +38,7 @@
         - AnomalyTrapTech
         - AnomalyTrapRock
         - AnomalyTrapBluespace
-        # ниже оставшиеся на сегодняшний день аномалии (кроме Santa)
+        # (кроме Santa)
         - AnomalyTrapPyroclastic
         - AnomalyTrapElectricity
         - AnomalyTrapIce

@@ -2,7 +2,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Anomaly.Components;
+namespace Content.Shared._Sunrise.Anomaly.Components;
 
 [RegisterComponent]
 public sealed partial class AnomalyAutoInjectorComponent : Component // ниже значения по умолчанию, если не указали в yml
@@ -17,14 +17,20 @@ public sealed partial class AnomalyAutoInjectorComponent : Component // ниже
     [DataField("popupPending"), ViewVariables] public string PopupPending = "Кожа не поддаётся инъекции!"; // стадия заражения после инъекции
     [DataField("popupInfected"), ViewVariables] public string PopupInfected = "Кожа не поддаётся инъекции!"; // уже когда превратился в аномалию
     [DataField("hypospraySound"), ViewVariables] public string HypospraySound = "/Audio/Items/hypospray.ogg";
-    [DataField("anomalyTrapProtos"), ViewVariables] public List<string> AnomalyTrapProtos = new()
+    [DataField("anomalyTrapProtos"), ViewVariables] public List<EntProtoId> AnomalyTrapProtos = new()
     {
-        // без имбовых (Pyroclastic,Electricity,Ice,Shadow,Santa) + (Gravity) - грузит сервак и бесполезен для зека
+        // все существующие аномалии на данный момент (включая ивентовый Santa)
         "AnomalyTrapFlora",
         "AnomalyTrapFlesh",
         "AnomalyTrapTech",
         "AnomalyTrapRock",
         "AnomalyTrapBluespace",
+        "AnomalyTrapPyroclastic",
+        "AnomalyTrapElectricity",
+        "AnomalyTrapIce",
+        "AnomalyTrapShadow",
+        "AnomalyTrapGravity",
+        "AnomalyTrapSanta",
     };
 }
 
