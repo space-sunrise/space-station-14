@@ -31,7 +31,7 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     #endregion
 

@@ -765,12 +765,8 @@ EngineeringTechFabCircuitboard: null
 WeaponPistolDeagle: null #Пока не обновят кабинеты ГСБ на картах.
 MagazineDeagle: null
 MagazineMagnum: null
-LockerBlueShieldFilledUplink: LockerBlueShieldEnsignFilled
-LockerBlueShieldFilledUplinkMultiphase: LockerBlueShieldEnsignFilled
-GunSafeBlueShield: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
 SuitStorageBlueShield: null
-LockerBlueShieldEnsignFilled: null
 LockerBlueShieldOfficerFilled: null
 PoweredLightBlueInterior: null
 RandomItem: null

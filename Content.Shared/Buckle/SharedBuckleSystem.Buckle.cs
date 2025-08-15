@@ -505,20 +505,23 @@ public abstract partial class SharedBuckleSystem
 
         if (buckleXform.ParentUid == strap.Owner && !Terminating(oldBuckledXform.ParentUid))
         {
-            _transform.PlaceNextTo((buckle, buckleXform), (strap.Owner, oldBuckledXform));
-            buckleXform.ActivelyLerping = false;
+            // Sunrise-start
+            // Combine position + rotation in a single transform update.
+            var targetWorldPos = _transform.GetWorldPosition(strap);
+            var targetWorldRot = _transform.GetWorldRotation(strap);
 
-            var oldBuckledToWorldRot = _transform.GetWorldRotation(strap);
-            _transform.SetWorldRotationNoLerp((buckle, buckleXform), oldBuckledToWorldRot);
+            // Apply strap offset if any
+            if (strap.Comp.CurrentOffsets.TryGetValue(buckle.Owner, out var offset) && offset != Vector2.Zero)
+                targetWorldPos += offset;
 
-            // Sunrise-Start
-            // TODO: This is doing 4 moveevents this is why I left the warning in, if you're going to remove it make it only do 1 moveevent.
-            if (strap.Comp.CurrentOffsets[buckle.Owner] != Vector2.Zero)
-            {
-                buckleXform.Coordinates = oldBuckledXform.Coordinates.Offset(strap.Comp.CurrentOffsets[buckle.Owner]);
-            }
+            // Remove offset now that we're done
             strap.Comp.CurrentOffsets.Remove(buckle.Owner);
-            // Sunrise-End
+
+            // Set both position & rotation at once (one move event)
+            _transform.SetWorldPositionRotation(buckle, targetWorldPos, targetWorldRot);
+
+            buckleXform.ActivelyLerping = false;
+            // Sunrise-end
         }
 
         _rotationVisuals.ResetHorizontalAngle(buckle.Owner);

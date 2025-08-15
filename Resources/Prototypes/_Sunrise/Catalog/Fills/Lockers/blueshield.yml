@@ -5,23 +5,43 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingHeadsetBlueShield
       - id: CigarGoldCase
         prob: 0.25
       - id: ClothingMaskGasBlueShield
+      - id: ClothingHeadsetAltCommand
       - id: HandheldCrewMonitor # Sunrise-TODO: Мониторинг командования.
+      - id: TrackingImplanter
+        amount: 8
 
 - type: entity
-  id: LockerBlueShieldEnsignFilled
-  suffix: Ensign, Filled
-  parent: LockerBlueShieldEnsign
+  id: LockerBlueshieldFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerBlueShield
   components:
   - type: StorageFill
     contents:
-      - id: ClothingHeadsetBlueShieldEnsign
-      - id: CigarGoldCase
-        prob: 0.25
-      - id: ClothingMaskGasBlueShield
-      - id: WeaponEnergyGunMultiphase
-      - id: BoxEncryptionKeyBlueShield
-      - id: HandheldCrewMonitor # Sunrise-TODO: Мониторинг командования.
+    - id: WeaponDisabler
+    - id: ClothingHeadsetAltCommand
+    - id: CigarGoldCase
+      prob: 0.25
+    - id: ClothingMaskGasBlueShield
+    - id: TrackingImplanter
+      amount: 8
+    - id: ClothingOuterHardsuitBlueShield
+    - id: OxygenTankFilled
+    - id: ClothingMaskBreathMedicalSecurity
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeBlueShield
+  name: blue shield safe
+  components:
+  - type: AccessReader
+    access: [["BlueShield"]]
+  - type: StorageFill
+    contents:
+    - id: WeaponEnergyGunMultiphase
+    - id: WeaponRifleLecterMk2
+    - id: MagazineRifleSP
+      amount: 2
+    - id: MagazineRifleFMJ

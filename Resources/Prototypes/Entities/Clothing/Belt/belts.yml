@@ -605,7 +605,9 @@
   - type: Clothing
     sprite: Clothing/Belt/sheath.rsi
   - type: Item
-    size: Ginormous
+    shape:
+    - 0,0,0,6 # Sunrise edit
+    size: Normal
   - type: ItemSlots
     slots:
       item:

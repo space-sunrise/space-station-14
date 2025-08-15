@@ -6,7 +6,7 @@ namespace Content.Shared.Morgue;
 
 public sealed class EntityStorageLayingDownOverrideSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public override void Initialize()
     {

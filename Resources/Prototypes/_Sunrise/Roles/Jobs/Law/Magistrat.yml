@@ -60,3 +60,7 @@
     - GavelBlock
     - Flash
     - Telebaton
+
+- type: chameleonOutfit
+  id: MagistratChameleonOutfit
+  job: Magistrat

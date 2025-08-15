@@ -1,0 +1,85 @@
+- type: entity
+  parent: ScatteringGrenadeBase
+  id: FirecrackerBundle
+  name: firecracker bundle
+  description: This item emits a pungent smell of cheap plastic.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Grenades/clusterpetard.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ScatteringGrenade
+    capacity: 10
+    fillPrototype: Firecracker
+    distance: 3
+  - type: TimerTrigger # todo: make it activate through welder/lighter/fire instead
+    delay: 5
+    examinable: false
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg
+  - type: TimerTriggerVisuals
+  - type: RandomTimerTrigger
+    min: 1
+    max: 10
+  - type: ExplodeOnTrigger
+
+- type: entity
+  parent: BaseItem
+  id: Firecracker
+  name: firecracker
+  description: This item emits a pungent smell of cheap plastic.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Grenades/fireworkpetard.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/_Sunrise/Misc/petard.ogg
+          params:
+            variation: 0.2
+      - !type:ExplodeBehavior
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 0.01
+    intensitySlope: 1
+    totalIntensity: 0.01
+
+- type: entity
+  parent: BaseStorageItem
+  id: FirecrackerBox
+  name: firecrackers box
+  description: Contains firecrackers for a New Year's mood.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Grenades/firecrackerbox.rsi
+    state: box
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    areaInsert: true
+    maxItemSize: Tiny
+  - type: StorageFill
+    contents:
+      - id: Firecracker
+        amount: 10
+  - type: Dumpable
+

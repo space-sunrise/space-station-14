@@ -17,6 +17,8 @@
   maxWidth: 1.20
   minHeight: 0.95
   minWidth: 1
+  minHeightCm: 155
+  maxHeightCm: 205
 
 - type: bodyType
   id: PredatorNormal

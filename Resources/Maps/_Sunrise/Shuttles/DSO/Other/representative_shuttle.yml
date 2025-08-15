@@ -4052,7 +4052,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.7481457,16.90559
       parent: 1
-- proto: LockerBlueShieldEnsignFilled
+- proto: LockerBlueShieldOfficerFilled
   entities:
   - uid: 249
     components:

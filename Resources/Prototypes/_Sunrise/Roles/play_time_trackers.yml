@@ -138,3 +138,6 @@
 
 - type: playTimeTracker
   id: AbductorTimeTracker
+
+- type: playTimeTracker
+  id: AbductorVictimTracker

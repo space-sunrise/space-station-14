@@ -45,3 +45,10 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltPrisonGuardianFilled
     pocket1: WeaponPistolG22
+
+- type: chameleonOutfit
+  id: PrisonPilotChameleonOutfit
+  job: PrisonPilot
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasPilot

@@ -26,6 +26,8 @@
   maxWidth: 1.2
   minHeight: 0.8
   minWidth: 0.8
+  minHeightCm: 130
+  maxHeightCm: 190
 
 - type: markingPoints
   id: MobFelinidMarkingLimits

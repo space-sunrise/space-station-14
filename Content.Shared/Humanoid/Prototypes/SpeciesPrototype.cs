@@ -165,7 +165,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     ///     Sentient microbial lifeforms are not currently hireable under contract.
     /// </summary>
     [DataField]
-    public float MinHeight = 0.8f;
+    public float MinHeight = 0.9f;
 
     /// <summary>
     ///     You cannot fit in our cloning pods.
@@ -180,22 +180,25 @@ public sealed partial class SpeciesPrototype : IPrototype
     public float DefaultHeight = 1f;
 
     /// <summary>
-    ///     The height of this species in CM if it were 1x tall
+    ///     The min and max height of this species in SS14 in cm
     /// </summary>
     [DataField]
-    public int StandardSize = 170;
+    public float MinHeightCm = 150f;
+
+    [DataField]
+    public float MaxHeightCm = 200f;
 
     /// <summary>
     ///     The weight of this species in KG if it were 1x tall and 1x wide
     /// </summary>
     [DataField]
-    public int StandardWeight = 70;
+    public int StandardWeight = 75;
 
     /// <summary>
     ///     How much this species' weight increases or decreases depending on unit size, measured in KG/units^2
     /// </summary>
     [DataField]
-    public int StandardDensity = 110;
+    public int StandardDensity = 120;
     //Sunrise end
 
 
