@@ -17,21 +17,7 @@ public sealed partial class AnomalyAutoInjectorComponent : Component // ниже
     [DataField("popupPending"), ViewVariables] public string PopupPending = "Кожа не поддаётся инъекции!"; // стадия заражения после инъекции
     [DataField("popupInfected"), ViewVariables] public string PopupInfected = "Кожа не поддаётся инъекции!"; // уже когда превратился в аномалию
     [DataField("hypospraySound"), ViewVariables] public string HypospraySound = "/Audio/Items/hypospray.ogg";
-    [DataField("anomalyTrapProtos"), ViewVariables] public List<EntProtoId> AnomalyTrapProtos = new()
-    {
-        // все существующие аномалии на данный момент (включая ивентовый Santa)
-        "AnomalyTrapFlora",
-        "AnomalyTrapFlesh",
-        "AnomalyTrapTech",
-        "AnomalyTrapRock",
-        "AnomalyTrapBluespace",
-        "AnomalyTrapPyroclastic",
-        "AnomalyTrapElectricity",
-        "AnomalyTrapIce",
-        "AnomalyTrapShadow",
-        "AnomalyTrapGravity",
-        "AnomalyTrapSanta",
-    };
+    [DataField("anomalyTrapProtos"), ViewVariables] public List<EntProtoId> AnomalyTrapProtos = new();
 }
 
 [RegisterComponent, NetworkedComponent] // Используется для смены спрайта и блокировки повторного использования инъектора

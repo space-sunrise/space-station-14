@@ -109,7 +109,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
 
         args.Handled = true;
 
-        var added = _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
+        _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
         if (TryComp<SeeingRainbowsWeakStatusEffectComponent>(target, out var rainbowComp))
         {
             rainbowComp.Intensity = comp.RainbowEffectIntensity;

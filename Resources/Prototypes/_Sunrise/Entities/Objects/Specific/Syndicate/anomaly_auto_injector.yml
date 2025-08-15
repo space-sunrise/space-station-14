@@ -11,6 +11,19 @@
         - state: anomagen
           map: ["base"]
     - type: AnomalyAutoInjector
+      anomalyTrapProtos:
+        # все существующие аномалии на данный момент
+        - AnomalyTrapFlora
+        - AnomalyTrapFlesh
+        - AnomalyTrapTech
+        - AnomalyTrapRock
+        - AnomalyTrapBluespace
+        - AnomalyTrapPyroclastic
+        - AnomalyTrapElectricity
+        - AnomalyTrapIce
+        - AnomalyTrapShadow
+        - AnomalyTrapGravity
+        - AnomalyTrapSanta
 
 - type: entity
   id: AnomalyAutoInjector
@@ -33,12 +46,12 @@
   components:
     - type: AnomalyAutoInjector
       anomalyTrapProtos:
+      # все аномалии (кроме Santa)
         - AnomalyTrapFlora
         - AnomalyTrapFlesh
         - AnomalyTrapTech
         - AnomalyTrapRock
         - AnomalyTrapBluespace
-        # (кроме Santa)
         - AnomalyTrapPyroclastic
         - AnomalyTrapElectricity
         - AnomalyTrapIce

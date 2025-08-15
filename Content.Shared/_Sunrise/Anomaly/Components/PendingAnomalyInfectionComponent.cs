@@ -11,8 +11,8 @@ namespace Content.Shared._Sunrise.Anomaly.Components
     [RegisterComponent]
     public sealed partial class PendingAnomalyInfectionComponent : Component
     {
-        public TimeSpan EndAt;
-        public int CellularDamage;
-        public EntProtoId? SelectedAnomalyTrapProtoId;
+        [ViewVariables] public TimeSpan EndAt;
+        [ViewVariables] public int CellularDamage;
+        [ViewVariables] public EntProtoId? SelectedAnomalyTrapProtoId;
     }
 }
