@@ -23,74 +23,17 @@
       edges:
         - to: shell
           steps:
-            - tag: ShellShotgunEmpty
-              name: construction-graph-tag-empty-shotgun-shell
-              icon:
-                sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-                state: improvised-empty
+            - material: Steel
+              amount: 1
               doAfter: 0.5
-            - tag: GlassShard
-              name: construction-graph-tag-glass-shard
-              icon:
-                sprite: Objects/Materials/Shards/shard.rsi
-                state: shard1
+            - material: Plastic
+              amount: 1
               doAfter: 0.5
-            - tag: GlassShard
-              name: construction-graph-tag-glass-shard
-              icon:
-                sprite: Objects/Materials/Shards/shard.rsi
-                state: shard2
-              doAfter: 0.5
-            - tag: GlassShard
-              name: construction-graph-tag-glass-shard
-              icon:
-                sprite: Objects/Materials/Shards/shard.rsi
-                state: shard1
-              doAfter: 0.5
-            - tag: GlassShard
-              name: construction-graph-tag-glass-shard
-              icon:
-                sprite: Objects/Materials/Shards/shard.rsi
-                state: shard3
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-    - node: shell
-      entity: ShellShotgunImprovised
+            - material: Glass
+              amount: 3
+              doAfter: 1.5
+            - material: CrushedPhosphorus
+              amount: 4
 
 - type: constructionGraph
   id: ImprovisedIncendiaryShotgunShellGraph
@@ -136,42 +79,8 @@
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard3
               doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
+            - material: CrushedPhosphorus
+              amount: 3
     - node: shell
       entity: ShellShotgunImprovisedIncendiary
 
@@ -217,42 +126,8 @@
                 state: shard3
                 color: "#8eff7a"
               doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
+            - material: CrushedPhosphorus
+              amount: 3
     - node: shell
       entity: ShellShotgunImprovisedUranium
 
@@ -288,41 +163,7 @@
                 sprite: Objects/Misc/coins.rsi
                 state: coin_iron
               doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
-            - tag: Matchstick
-              name: construction-graph-tag-match-stick
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5
+            - material: CrushedPhosphorus
+              amount: 3
     - node: shell
       entity: ShellShotgunCoin

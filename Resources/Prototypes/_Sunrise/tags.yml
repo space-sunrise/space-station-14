@@ -74,6 +74,10 @@
 
 - type: Tag
   id: Coin
+
+- type: Tag
+  id: ImprovisedAmmoBox
+
 # Weapons
 - type: Tag
   id: WrappedWeapon

@@ -458,11 +458,11 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 7
-      Blunt: 7
-  armorPenetration: -0.35
+      Piercing: 8
+      Blunt: 8
+  armorPenetration: -0.15
   staminaDamage: 3
-  pierceChance: 0.20
+  pierceChance: 0.50
   derivation: 0.05
   ricochetChance: 0.30
   pierceLevel: Metal
