@@ -1,5 +1,6 @@
-ent-BaseWeaponRifleSunrise = BaseWeaponRifleSunrise
-    .desc = A rooty tooty point and shooty.
+ent-BaseWeaponRifleSunrise = базовая винтовка от санрайза
+    .desc = { ent-BaseWeaponRifle.desc }
+    .suffix = DEBUG
 ent-WeaponRifleAKM = АКM
     .desc = Культовое оружие войны. Заряжается патронами калибра 7,62х39мм.
 ent-WeaponRifleAKMU = АКМ-У
