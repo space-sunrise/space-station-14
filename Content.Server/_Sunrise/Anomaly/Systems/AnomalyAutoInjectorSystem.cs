@@ -101,9 +101,15 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
             return;
         }
 
-        var pending = EnsureComp<PendingAnomalyInfectionComponent>(target);
-        EnsureComp<UsedAnomalyAutoInjectorComponent>(uid);
+        // Проверка конфигурации до любых побочных эффектов.
+        if (comp.AnomalyTrapProtos.Count == 0)
+        {
+            Logger.Error($"AnomalyAutoInjector {ToPrettyString(uid)} has empty AnomalyTrapProtos list");
+            args.Handled = true;
+            return;
+        }
 
+        EnsureComp<UsedAnomalyAutoInjectorComponent>(uid);
         if (Exists(uid))
             _audio.PlayPvs(comp.HypospraySound, uid);
 
@@ -113,13 +119,10 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         if (TryComp<SeeingRainbowsWeakStatusEffectComponent>(target, out var rainbowComp))
         {
             rainbowComp.Intensity = comp.RainbowEffectIntensity;
+            Dirty(target, rainbowComp);
         }
-        if (comp.AnomalyTrapProtos.Count == 0)
-        {
-            Logger.Error($"AnomalyAutoInjector {ToPrettyString(uid)} has empty AnomalyTrapProtos list");
-            RemComp<PendingAnomalyInfectionComponent>(target);
-            return;
-        }
+
+        var pending = EnsureComp<PendingAnomalyInfectionComponent>(target);
         pending.EndAt = _timing.CurTime + TimeSpan.FromSeconds(comp.AnomalyDelay);
         pending.CellularDamage = comp.CellularDamage;
         pending.SelectedAnomalyTrapProtoId = _random.Pick(comp.AnomalyTrapProtos);
@@ -147,7 +150,13 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
             if (!HasComp<InnerBodyAnomalyComponent>(uid))
             {
                 if (TryGetInjectionComponents(pending.SelectedAnomalyTrapProtoId!.Value, out var comps))
+                {
                     EntityManager.AddComponents(uid, comps);
+                }
+                else
+                {
+                    Logger.Error($"Failed to resolve injection components for proto {pending.SelectedAnomalyTrapProtoId!.Value} on {ToPrettyString(uid)}");
+                }
             }
 
             RemCompDeferred<PendingAnomalyInfectionComponent>(uid);
