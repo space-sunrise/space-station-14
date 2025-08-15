@@ -3,7 +3,7 @@ using Content.Shared.Anomaly.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 
-namespace Content.Client.Anomaly;
+namespace Content.Client._Sunrise.Anomaly;
 
 public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {

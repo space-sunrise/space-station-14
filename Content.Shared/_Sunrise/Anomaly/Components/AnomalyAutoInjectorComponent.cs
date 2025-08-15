@@ -10,7 +10,8 @@ public sealed partial class AnomalyAutoInjectorComponent : Component // ниже
     [DataField("cellularDamage"), ViewVariables] public int CellularDamage = 50; // урон лечится фалангимином и доксарубиксадоном
     [DataField("anomalyDelay"), ViewVariables] public int AnomalyDelay = 60; // через сколько сек цель первратится в аномалию после иньекции
     [DataField("rainbowDuration"), ViewVariables] public int RainbowDuration = 60; // появляется от 20сек!
-    [DataField("rainbowEffect"), ViewVariables] public EntProtoId RainbowEffect = "StatusEffectSeeingRainbowWeak"; // слабый эффект галлюцинаций
+    [DataField("rainbowEffect"), ViewVariables] public EntProtoId RainbowEffect = "StatusEffectSeeingRainbows"; // слабый эффект галлюцинаций
+    [DataField("rainbowEffectIntensity"), ViewVariables] public float RainbowEffectIntensity = 0.1f; // интенсивность эффекта галлюцинаций
     [DataField("popupNothingToInject"), ViewVariables] public string PopupNothingToInject = "Нечего вводить!";
     [DataField("popupNotApplicable"), ViewVariables] public string PopupNotApplicable = "Неприменимо!"; // остальные мобы, кроме гуманодов
     [DataField("popupPending"), ViewVariables] public string PopupPending = "Кожа не поддаётся инъекции!"; // стадия заражения после инъекции

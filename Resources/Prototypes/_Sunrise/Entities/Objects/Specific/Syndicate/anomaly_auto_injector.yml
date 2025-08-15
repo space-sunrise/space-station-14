@@ -9,6 +9,8 @@
       sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
       layers:
         - state: anomagen
+    - type: AnomalyAutoInjector
+      rainbowEffectIntensity: 0.1
 
 - type: entity
   id: AnomalyAutoInjector

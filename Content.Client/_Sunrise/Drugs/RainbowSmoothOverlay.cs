@@ -1,3 +1,5 @@
+// ванильный RainbowOverlay не даёт нужного поведения (там резкий рост/падение интенсивности)
+// RainbowSmoothOverlay рисует эффект с плавной огибающей (fadeIn/fadeOut)
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise.Drugs;
 using Content.Shared.StatusEffectNew;
@@ -19,6 +21,7 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 	[Dependency] private readonly IRobustRandom _random = default!;
 
 	private RainbowSmoothOverlay _overlay = default!;
+	private bool _overlayAdded;
 
 	public override void Initialize()
 	{
@@ -30,13 +33,24 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 		_overlay = new();
 	}
 
+	public override void Shutdown()
+	{
+		base.Shutdown();
+		_overlayMan.RemoveOverlay(_overlay);
+		_overlayAdded = false;
+	}
+
 	private void OnRemoved(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
 	{
 		if (_player.LocalEntity != args.Target)
 			return;
 		_overlay.Intoxication = 0;
 		_overlay.TimeTicker = 0;
-		_overlayMan.RemoveOverlay(_overlay);
+		if (_overlayAdded)
+		{
+			_overlayMan.RemoveOverlay(_overlay);
+			_overlayAdded = false;
+		}
 	}
 
 	private void OnApplied(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
@@ -44,19 +58,31 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 		if (_player.LocalEntity != args.Target)
 			return;
 		_overlay.Phase = _random.NextFloat(MathF.Tau);
-		_overlayMan.AddOverlay(_overlay);
+		if (!_overlayAdded)
+		{
+			_overlayMan.AddOverlay(_overlay);
+			_overlayAdded = true;
+		}
 	}
 
 	private void OnPlayerAttached(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerAttachedEvent> args)
 	{
-		_overlayMan.AddOverlay(_overlay);
+		if (!_overlayAdded)
+		{
+			_overlayMan.AddOverlay(_overlay);
+			_overlayAdded = true;
+		}
 	}
 
 	private void OnPlayerDetached(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerDetachedEvent> args)
 	{
 		_overlay.Intoxication = 0;
 		_overlay.TimeTicker = 0;
-		_overlayMan.RemoveOverlay(_overlay);
+		if (_overlayAdded)
+		{
+			_overlayMan.RemoveOverlay(_overlay);
+			_overlayAdded = false;
+		}
 	}
 }
 
@@ -118,13 +144,19 @@ public sealed class RainbowSmoothOverlay : Overlay
 		var fadeOut = Math.Clamp(timeLeft / fadeSeconds, 0.0f, 1.0f);
 		var envelope = MathF.Min(fadeIn, fadeOut);
 
-		const float baseStrength = 0.2f;
-		Intoxication = baseStrength * envelope;
+		float baseStrength = 0.1f;
+		if (_entityManager.TryGetComponent(playerEntity, out SeeingRainbowsWeakStatusEffectComponent? comp))
+			baseStrength = comp.Intensity;
+		float colorScale = baseStrength;
+		Intoxication = colorScale * envelope;
 	}
 
 	protected override bool BeforeDraw(in OverlayDrawArgs args)
 	{
-		if (!_entityManager.TryGetComponent(_playerManager.LocalEntity, out EyeComponent? eyeComp))
+		var player = _playerManager.LocalEntity;
+		if (player == null)
+			return false;
+		if (!_entityManager.TryGetComponent(player, out EyeComponent? eyeComp))
 			return false;
 		if (args.Viewport.Eye != eyeComp.Eye)
 			return false;

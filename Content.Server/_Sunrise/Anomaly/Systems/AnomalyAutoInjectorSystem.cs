@@ -20,6 +20,7 @@ using Robust.Shared.Log;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Humanoid;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.Drugs;
 
 namespace Content.Server._Sunrise.Anomaly.Systems;
 
@@ -111,7 +112,12 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
 
         args.Handled = true;
 
-        _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
+        var added = _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
+        Robust.Shared.Log.Logger.Info($"[DEBUG] StatusEffect add: {added}, target={ToPrettyString(target)}, effect={comp.RainbowEffect}");
+        if (TryComp<SeeingRainbowsWeakStatusEffectComponent>(target, out var rainbowComp))
+        {
+            rainbowComp.Intensity = comp.RainbowEffectIntensity;
+        }
         pending.EndAt = _timing.CurTime + TimeSpan.FromSeconds(comp.AnomalyDelay);
         pending.CellularDamage = comp.CellularDamage;
         pending.SelectedAnomalyTrapProtoId = comp.AnomalyTrapProtos.Count > 0 ? _random.Pick(comp.AnomalyTrapProtos) : null;
