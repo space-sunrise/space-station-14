@@ -7,3 +7,13 @@
   - type: StorageFill
     contents:
       - id: VariantCubeBoxSunrise
+
+- type: entity
+  id: CrateReagentGrinderIndustrial
+  parent: CrateHydroponics
+  name: industrial reagent grinder tray crate
+  description: Contains a industrial reagent grinder.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ReagentGrinderIndustrialFlatpack

@@ -1,0 +1,15 @@
+﻿- type: entity
+  parent: BaseFlatpack
+  id: ReagentGrinderIndustrialFlatpack
+  name: industrial reagent grinder flatpack
+  description: A flatpack used for constructing a industrial reagent grinder.
+  components:
+  - type: Flatpack
+    entity: ReagentGrinderIndustrial
+  - type: Sprite
+    layers:
+    - state: hydroponics-tray
+  - type: GuideHelp
+    guides:
+    - Botany
+    - Chemicals
