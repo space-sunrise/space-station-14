@@ -47,3 +47,7 @@
     - Flash
     - Telebaton
     - RubberStampAdj
+
+- type: chameleonOutfit
+  id: AdjutantChameleonOutfit
+  job: Adjutant

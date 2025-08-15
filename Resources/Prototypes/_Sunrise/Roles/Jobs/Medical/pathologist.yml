@@ -20,10 +20,14 @@
     id: PathologistPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-    
+
 - type: jobIcon
   parent: JobIcon
   id: JobIconPathologist
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: Pathologist
+
+- type: chameleonOutfit
+  id: MedicalPathologistChameleonOutfit
+  job: MedicalPathologist

@@ -41,3 +41,7 @@
   storage:
     back:
     - WeaponDisablerSMG
+
+- type: chameleonOutfit
+  id: SeniorOfficerChameleonOutfit
+  job: SeniorOfficer

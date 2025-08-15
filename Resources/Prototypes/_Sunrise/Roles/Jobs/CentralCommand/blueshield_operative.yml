@@ -41,3 +41,7 @@
   storage:
     back:
     - HandheldCrewMonitor
+
+- type: chameleonOutfit
+  id: BlueShieldOperativeChameleonOutfit
+  job: BlueShieldOperative

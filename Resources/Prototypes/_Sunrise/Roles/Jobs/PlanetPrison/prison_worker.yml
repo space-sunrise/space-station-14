@@ -17,3 +17,7 @@
   - Bar
   - Hydroponics
   - Kitchen
+
+- type: chameleonOutfit
+  id: PrisonWorkerChameleonOutfit
+  job: PrisonWorker

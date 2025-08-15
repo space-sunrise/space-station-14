@@ -41,3 +41,7 @@
   storage:
     back:
     - Flash
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic

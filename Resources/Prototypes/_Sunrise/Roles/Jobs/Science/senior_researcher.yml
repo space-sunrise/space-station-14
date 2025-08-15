@@ -25,3 +25,7 @@
   storage:
     back:
     - WeaponPistolCHIMP
+
+- type: chameleonOutfit
+  id: SeniorResearcherChameleonOutfit
+  job: SeniorResearcher

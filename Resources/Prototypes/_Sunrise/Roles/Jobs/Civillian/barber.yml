@@ -22,3 +22,7 @@
   storage:
     back:
     - BarberRazor
+
+- type: chameleonOutfit
+  id: BarberChameleonOutfit
+  job: Barber

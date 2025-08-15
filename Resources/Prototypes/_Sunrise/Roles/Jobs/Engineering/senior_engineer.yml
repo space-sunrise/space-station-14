@@ -1,4 +1,3 @@
-
 - type: job
   id: SeniorEngineer
   name: job-name-senior-engineer
@@ -34,3 +33,9 @@
   storage:
     back:
     - ClothingOuterHardsuitEngineeringCompact
+
+- type: chameleonOutfit
+  id: SeniorEngineerChameleonOutfit
+  job: SeniorEngineer
+  equipment:
+    mask: ClothingMaskGas

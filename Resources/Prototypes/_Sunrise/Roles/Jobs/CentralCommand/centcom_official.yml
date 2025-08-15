@@ -38,3 +38,7 @@
     back:
     - PenCentcom
     - BoxFolderBlack
+
+- type: chameleonOutfit
+  id: CentCommOfficialChameleonOutfit
+  job: CentCommOfficial
