@@ -114,9 +114,15 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         {
             rainbowComp.Intensity = comp.RainbowEffectIntensity;
         }
+        if (comp.AnomalyTrapProtos.Count == 0)
+        {
+            Logger.Error($"AnomalyAutoInjector {ToPrettyString(uid)} has empty AnomalyTrapProtos list");
+            RemComp<PendingAnomalyInfectionComponent>(target);
+            return;
+        }
         pending.EndAt = _timing.CurTime + TimeSpan.FromSeconds(comp.AnomalyDelay);
         pending.CellularDamage = comp.CellularDamage;
-        pending.SelectedAnomalyTrapProtoId = comp.AnomalyTrapProtos.Count > 0 ? _random.Pick(comp.AnomalyTrapProtos) : default(EntProtoId);
+        pending.SelectedAnomalyTrapProtoId = _random.Pick(comp.AnomalyTrapProtos);
     }
 
 
@@ -138,9 +144,9 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
             var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>(CellularDamageType), pending.CellularDamage);
             _damageableSystem.TryChangeDamage(uid, damage);
 
-            if (!HasComp<InnerBodyAnomalyComponent>(uid) && pending.SelectedAnomalyTrapProtoId.HasValue)
+            if (!HasComp<InnerBodyAnomalyComponent>(uid))
             {
-                if (TryGetInjectionComponents(pending.SelectedAnomalyTrapProtoId.Value, out var comps))
+                if (TryGetInjectionComponents(pending.SelectedAnomalyTrapProtoId!.Value, out var comps))
                     EntityManager.AddComponents(uid, comps);
             }
 
