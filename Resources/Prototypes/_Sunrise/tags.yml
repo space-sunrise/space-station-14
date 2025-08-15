@@ -68,6 +68,12 @@
 
 - type: Tag
   id: SpeedLoaderShotgun
+
+- type: Tag
+  id: ShellShotgunEmpty
+
+- type: Tag
+  id: Coin
 # Weapons
 - type: Tag
   id: WrappedWeapon
@@ -464,6 +470,9 @@
   id: TopCovered
 
 ### INTERACTION TAGS ###
+# Fun
+- type: Tag
+  id: PlushieKalium
 
 - type: Tag
   id: SnapPop

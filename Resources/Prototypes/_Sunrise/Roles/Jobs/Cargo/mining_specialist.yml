@@ -34,6 +34,5 @@
   id: MiningSpecialistChameleonOutfit
   job: MiningSpecialist
   equipment:
+    mask: ClothingMaskGas
     outerClothing: ClothingOuterWinterMiner
-    gloves: ClothingHandsGlovesFingerless
-    neck: ClothingNeckScarfStripedBrown

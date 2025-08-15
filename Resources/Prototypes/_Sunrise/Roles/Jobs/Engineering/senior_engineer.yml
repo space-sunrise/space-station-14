@@ -1,3 +1,4 @@
+
 - type: job
   id: SeniorEngineer
   name: job-name-senior-engineer
@@ -39,3 +40,8 @@
   job: SeniorEngineer
   equipment:
     mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatYellow
+    outerClothing: ClothingOuterVestHazard
+    shoes: ClothingShoesBootsMag
+    neck: ClothingNeckScarfStripedOrange

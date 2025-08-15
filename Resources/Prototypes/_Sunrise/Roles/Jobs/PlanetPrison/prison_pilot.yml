@@ -49,3 +49,6 @@
 - type: chameleonOutfit
   id: PrisonPilotChameleonOutfit
   job: PrisonPilot
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasPilot

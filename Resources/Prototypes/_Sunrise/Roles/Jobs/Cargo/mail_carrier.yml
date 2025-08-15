@@ -29,3 +29,5 @@
 - type: chameleonOutfit
   id: MailCarrierChameleonOutfit
   job: MailCarrier
+  equipment:
+    mask: ClothingMaskBreath

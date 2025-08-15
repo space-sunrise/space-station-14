@@ -20,7 +20,7 @@
     id: PathologistPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-
+    
 - type: jobIcon
   parent: JobIcon
   id: JobIconPathologist
@@ -31,3 +31,9 @@
 - type: chameleonOutfit
   id: MedicalPathologistChameleonOutfit
   job: MedicalPathologist
+  equipment:
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatBeretPatologoanatom
+    mask: ClothingMaskBreath
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatPatologoanatom

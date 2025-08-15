@@ -23,3 +23,5 @@
   maxWidth: 1.1
   minHeight: 0.8
   minWidth: 0.90
+  minHeightCm: 130
+  maxHeightCm: 200

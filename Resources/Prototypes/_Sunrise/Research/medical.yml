@@ -81,6 +81,7 @@
   recipeUnlocks:
     - EyeImplantWelding
     - EyeImplantMedical
+    - EyeImplantChemical
     - EyeImplantSecurity
   technologyPrerequisites:
     - CyberLimbsTech
@@ -141,7 +142,7 @@
     state: cyber-hand-left
   discipline: Biochemical
   tier: 3
-  cost: 9320
+  cost: 9220
   recipeUnlocks:
     - LeftArmCyberReaper
     - RightArmCyberReaper
@@ -156,6 +157,66 @@
   - Medical
 
 - type: technology
+  id: ScienceCyberLimbsTech
+  name: research-technology-science-cyberlimbs
+  icon:
+    sprite: Objects/Weapons/Melee/gorilla.rsi
+    state: storage
+  discipline: Biochemical
+  tier: 3
+  cost: 3500
+  recipeUnlocks:
+    - LeftArmCyberGorilla
+    - RightArmCyberGorilla
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AnomalyCoreHarnessing
+  radioChannels:
+  - Security
+  - Medical
+  - Science
+
+- type: technology
+  id: SecurityMeleeCyberLimbsTech
+  name: research-technology-secmelee-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
+    state: cybermantisbladesec
+  discipline: Biochemical
+  tier: 3
+  cost: 4000
+  recipeUnlocks:
+    - LeftArmCyberMantisBladeMaxGuard
+    - RightArmCyberMantisBladeMaxGuard
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - CombatEquipment
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
+  id: SecurityRangeCyberLimbsTech
+  name: research-technology-secrange-cyberlimbs
+  icon:
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    state: laser_cyborg
+  discipline: Biochemical
+  tier: 3
+  cost: 4500
+  recipeUnlocks:
+    - LeftArmCyberLaserEmitter
+    - RightArmCyberLaserEmitter
+    - LeftArmCyberGrenadeThrower
+    - RightArmCyberGrenadeThrower
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - WeaponizedLaserManipulation
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
   id: CyberEyeNightVision
   name: research-technology-nightvision-eyes
   icon:
@@ -163,7 +224,7 @@
     state: eyes_night
   discipline: Biochemical
   tier: 3
-  cost: 7680
+  cost: 7500
   recipeUnlocks:
     - CyberEyeNightVision
   technologyPrerequisites:
@@ -180,7 +241,7 @@
     state: eyes_thermal
   discipline: Biochemical
   tier: 3
-  cost: 9320
+  cost: 8500
   recipeUnlocks:
     - CyberEyeThermal
   technologyPrerequisites:

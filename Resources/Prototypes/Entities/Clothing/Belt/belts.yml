@@ -29,7 +29,9 @@
     maxItemSize: Normal
     storageInsertSound: # Sunrise
       path: /Audio/Items/belt_equip.ogg
-    # TODO: Fill this out more.
+    # Don't add more than absolutely needed to this whitelist!
+    # Utility belts shouldn't just be free extra storage.
+    # This is only intended for basic engineering equipment.
     whitelist:
       tags:
         - Powerdrill
@@ -49,15 +51,18 @@
         - JawsOfLife
         - GPS
         - WeldingMask
-
-        - ImprovisedCrowbar # Sunrise-Add
+        - RemoteSignaller
+        # Sunrise-Start
+        - ImprovisedCrowbar
         - ImprovisedScrewdriver
         - ImprovisedWirecutter
         - ImprovisedWrench
         - ImprovisedMultitool
+        # Sunrise-End
       components:
         - StationMap
         - SprayPainter
+        - SprayPainterAmmo
         - NetworkConfigurator
         - RCD
         - RCDAmmo
@@ -156,6 +161,7 @@
       components:
         - StationMap
         - SprayPainter
+        - SprayPainterAmmo
         - NetworkConfigurator
         - RCD
         - RCDAmmo
@@ -298,6 +304,8 @@
         - WetFloorSign
         - HolosignProjector
         - Plunger
+        - GoldenPlunger
+        - WireBrush
       components:
         - LightReplacer
         - SmokeOnTrigger

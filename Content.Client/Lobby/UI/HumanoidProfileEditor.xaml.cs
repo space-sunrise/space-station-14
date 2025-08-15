@@ -109,8 +109,7 @@ namespace Content.Client.Lobby.UI
 
         private bool _isDirty;
 
-        [ValidatePrototypeId<GuideEntryPrototype>]
-        private const string DefaultSpeciesGuidebook = "Species";
+        private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
 
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
@@ -320,6 +319,7 @@ namespace Content.Client.Lobby.UI
             };
 
             RgbSkinColorContainer.AddChild(_rgbSkinColorSelector = new ColorSelectorSliders());
+            _rgbSkinColorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
             _rgbSkinColorSelector.OnColorChanged += _ =>
             {
                 OnSkinColorOnValueChanged();
@@ -932,9 +932,9 @@ namespace Content.Client.Lobby.UI
             var species = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
             var page = DefaultSpeciesGuidebook;
             if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
-                page = species;
+                page = new ProtoId<GuideEntryPrototype>(species.Id); // Gross. See above todo comment.
 
-            if (_prototypeManager.TryIndex<GuideEntryPrototype>(DefaultSpeciesGuidebook, out var guideRoot))
+            if (_prototypeManager.TryIndex(DefaultSpeciesGuidebook, out var guideRoot))
             {
                 var dict = new Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry>();
                 dict.Add(DefaultSpeciesGuidebook, guideRoot);
@@ -1168,7 +1168,7 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection, _sponsorsMgr)
             {
-                Title = Loc.GetString($"{jobProto?.ID}-loadout"),
+                Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{jobProto?.LocalizedName}")),
             };
 
             // Refresh the buttons etc.
@@ -1367,10 +1367,8 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        //Sunrise start
         private void UpdateSizeText()
         {
-
             if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
             {
                 return;
@@ -1379,10 +1377,28 @@ namespace Content.Client.Lobby.UI
             var heightRaw = HeightSlider.Value;
             var weightRaw = WidthSlider.Value;
 
-            var height = speciesPrototype.StandardSize * heightRaw + 13; // 13 тут просто как заглушка, чтобы рост получатся 200 метра максимум
+            var height = ConvertSliderToHeight(
+                sliderValue: heightRaw,
+                minSlider: speciesPrototype.MinHeight,
+                maxSlider: speciesPrototype.MaxHeight,
+                minHeightCm: speciesPrototype.MinHeightCm,
+                maxHeightCm: speciesPrototype.MaxHeightCm
+            );
+
             var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
             HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
             WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
+        }
+
+        private float ConvertSliderToHeight(float sliderValue, float minSlider, float maxSlider, float minHeightCm, float maxHeightCm)
+        {
+            var denom = maxSlider - minSlider;
+            if (MathF.Abs(denom) < 0.0001f)
+                return minHeightCm;
+
+            var normalized = (sliderValue - minSlider) / denom;
+            normalized = MathF.Min(1f, MathF.Max(0f, normalized));
+            return minHeightCm + normalized * (maxHeightCm - minHeightCm);
         }
 
         private void SetWidth(float newWidth)
@@ -1725,33 +1741,13 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
-            var hairMarking = Profile.Appearance.HairStyleId switch
-            {
-                HairStyles.DefaultHairStyle => new List<Marking>(),
-                _ => new List<Marking>
-                {
-                    new(
-                        Profile.Appearance.HairStyleId,
-                        new[] { Profile.Appearance.HairColor },
-                        Profile.Appearance.HairMarkingEffect is { } hairExt
-                            ? new List<MarkingEffect> { hairExt.Clone() }
-                            : null)
-                }
-            };
+            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
+                ? new List<Marking>()
+                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) };
 
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId switch
-            {
-                HairStyles.DefaultFacialHairStyle => new List<Marking>(),
-                _ => new List<Marking>
-                {
-                    new(
-                        Profile.Appearance.FacialHairStyleId,
-                        new[] { Profile.Appearance.FacialHairColor },
-                        Profile.Appearance.FacialHairMarkingEffect is { } facialExt
-                            ? new List<MarkingEffect> { facialExt.Clone() }
-                            : null)
-                }
-            };
+            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
+                ? new List<Marking>()
+                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) };
 
             HairStylePicker.UpdateData(
                 hairMarking,

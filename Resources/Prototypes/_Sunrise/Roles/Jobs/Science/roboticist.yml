@@ -35,3 +35,6 @@
 - type: chameleonOutfit
   id: RoboticistChameleonOutfit
   job: Roboticist
+  equipment:
+    mask: ClothingMaskGas
+    shoes: ClothingShoesColorBlack

@@ -12,9 +12,6 @@ using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
-using PaintComponent = Content.Shared._Sunrise.Paint.PaintComponent;
-using PaintDoAfterEvent = Content.Shared._Sunrise.Paint.PaintDoAfterEvent;
-using PaintedComponent = Content.Shared._Sunrise.Paint.PaintedComponent;
 
 namespace Content.Server._Sunrise.Paint;
 
@@ -103,7 +100,7 @@ public sealed class PaintSystem : SharedPaintSystem
             return;
         }
 
-        if (HasComp<PaintedComponent>(target) || HasComp<RandomSpriteComponent>(target))
+        if (HasComp<SprayPaintedComponent>(target) || HasComp<RandomSpriteComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("paint-failure-painted", ("target", args.Target)), args.User, args.User, PopupType.Medium);
             return;
@@ -118,7 +115,7 @@ public sealed class PaintSystem : SharedPaintSystem
 
         if (TryPaint(entity, target))
         {
-            EnsureComp<PaintedComponent>(target, out PaintedComponent? paint);
+            EnsureComp<SprayPaintedComponent>(target, out SprayPaintedComponent? paint);
             EnsureComp<AppearanceComponent>(target);
 
             paint.Color = entity.Comp.Color; // set the target color to the color specified in the spray paint yml.
@@ -137,7 +134,7 @@ public sealed class PaintSystem : SharedPaintSystem
                         if (slotEnt == null)
                             return;
 
-                        if (HasComp<PaintedComponent>(slotEnt.Value) || entity.Comp.Blacklist != null &&
+                        if (HasComp<SprayPaintedComponent>(slotEnt.Value) || entity.Comp.Blacklist != null &&
                                                                      _whitelist.IsValid(entity.Comp.Blacklist,
                                                                          slotEnt.Value)
                                                                      || HasComp<RandomSpriteComponent>(slotEnt.Value) ||
@@ -145,7 +142,7 @@ public sealed class PaintSystem : SharedPaintSystem
                                                                          slotEnt.Value))
                             return;
 
-                        EnsureComp<PaintedComponent>(slotEnt.Value, out PaintedComponent? slotpaint);
+                        EnsureComp<SprayPaintedComponent>(slotEnt.Value, out SprayPaintedComponent? slotpaint);
                         EnsureComp<AppearanceComponent>(slotEnt.Value);
                         slotpaint.Color = entity.Comp.Color;
                         _appearanceSystem.SetData(slotEnt.Value, PaintVisuals.Painted, true);

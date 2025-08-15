@@ -20,12 +20,14 @@
   oldAge: 30
   maxAge: 60
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
-  defaultHeight: 0.80
-  defaultWidth: 0.80
-  maxHeight: 1
-  maxWidth: 1
+  defaultHeight: 1
+  defaultWidth: 1
+  maxHeight: 1.2
+  maxWidth: 1.2
   minHeight: 0.8
   minWidth: 0.8
+  minHeightCm: 130
+  maxHeightCm: 190
 
 - type: markingPoints
   id: MobFelinidMarkingLimits

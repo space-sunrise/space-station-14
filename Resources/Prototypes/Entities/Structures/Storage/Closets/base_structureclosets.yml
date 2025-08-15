@@ -134,26 +134,21 @@
     node: done
     containers:
     - entity_storage
+  - type: Paintable
+    group: Closet
 
 #Wall Closet
 - type: entity
+  parent: BaseWallmountMetallic
   id: BaseWallCloset
-  placement:
-    mode: SnapgridCenter
   abstract: true
   name: wall closet
   description: A standard-issue Nanotrasen storage unit, now on walls.
   components:
-  - type: InteractionOutline
-  - type: Clickable
   - type: ResistLocker
   - type: Weldable
-  - type: WallMount
-    arc: 175
   - type: StaticPrice
     price: 75
-  - type: Transform
-    noRot: false
   - type: Sprite
     drawdepth: WallMountedItems
     noRot: false
@@ -178,9 +173,6 @@
     containers:
       entity_storage: !type:Container
         ents: []
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -215,6 +207,8 @@
     node: done
     containers:
     - entity_storage
+  - type: Paintable
+    group: WallCloset
 
 #Wall locker
 - type: entity
@@ -238,6 +232,8 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Paintable
+    group: WallLocker
 
 #Base suit storage unit
 #I am terribly sorry for duplicating the closet almost-wholesale, but the game malds at me if I don't so here we are.
@@ -326,7 +322,7 @@
             max: 1
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBase: base
+    # stateBase: base  // This field does not exist. this is probably a bug. TODO
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals

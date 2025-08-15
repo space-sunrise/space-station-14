@@ -44,3 +44,6 @@
 - type: chameleonOutfit
   id: PrisonGuardChameleonOutfit
   job: PrisonGuard
+  equipment:
+    head: ClothingHeadHelmetBasic
+

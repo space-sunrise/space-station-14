@@ -17,23 +17,33 @@
     ClothingOuterPlagueSuit: 1
     ClothingMaskPlague: 1
     ClothingHeadsetService: 2
-    ClothingHeadHatWithPaces: 1 # Sunrise
-    ClothingNeckStoleTallit: 1 # Sunrise
     BoxCandle: 2
     BoxCandleSmall: 2
     Urn: 5
     Bible: 1
-    RedFlowers: 3 # Sunrise
-    BlueFlowers: 3 # Sunrise
+    # Sunrise-Start
+    ClothingHeadHatWithPaces: 1
+    ClothingNeckStoleTallit: 1
+    ClothingUniformWhiteBrideDress: 1
+    ClothingUniformBlackBrideDress: 1
+    ClothingUniformWhiteGroomSuit: 1
+    ClothingUniformBlackGroomSuit: 1
+    ClothingHeadWhiteVeil: 1
+    ClothingHeadBlackVeil: 1
+    RedFlowers: 3
+    BlueFlowers: 3 
+    # Sunrise-End
   contrabandInventory:
     FoodBakedBunHotX: 2
     DrinkWineBottleFull: 1
     ToyFigurineChaplain: 1
+    ClothingNeckScarfStripedBlack: 3
+    # Sunrise-Start
+    ClothingUniformWhiteBrideDressFlower: 1
+    ClothingUniformBlackBrideDressFlower: 1
+    # Sunrise-End
   emaggedInventory:
-    ClothingOuterArmorCult: 1
-    ClothingHeadHelmetCult: 1
     ClothingOuterRobesCult: 3
     ClothingHeadHatHoodCulthood: 3
     ClothingShoesCult: 4
     BedsheetCult: 4
-    ClothingNeckScarfStripedBlack: 3

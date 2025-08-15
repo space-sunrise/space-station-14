@@ -111,11 +111,12 @@ public abstract class SharedStandingStateSystem : EntitySystem
             return;
 
         var worldRotation = _transform.GetWorldRotation(uid).ToVec();
-        foreach (var hand in handsComp.Hands.Values)
+        foreach (var hand in handsComp.Hands.Keys)
         {
-            if (hand.HeldEntity is not { } held)
+            var heldEntity = _handsSystem.GetHeldItem(uid, hand);
+            if (heldEntity is not { } held)
                 continue;
-            if (!_handsSystem.TryDrop(uid, hand, checkActionBlocker: false, handsComp: handsComp))
+            if (!_handsSystem.TryDrop(uid, hand, checkActionBlocker: false))
                 continue;
 
             _throwing.TryThrow(
@@ -188,7 +189,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
             }
 
             var totalHands = handsComponent.Hands.Count;
-            var freeHands = handsComponent.CountFreeHands();
+            var freeHands = _handsSystem.CountFreeHands((uid, handsComponent));
 
             var occupiedHandsRatio = (float)(totalHands - freeHands) / totalHands;
             var speedModifier = baseSpeedModify * (1 - occupiedHandsRatio * 0.5f);

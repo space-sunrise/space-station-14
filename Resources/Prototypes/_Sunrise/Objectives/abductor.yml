@@ -24,3 +24,384 @@
     title: objective-condition-abduct-title
     description: objective-condition-abduct-description
   - type: AbductCondition
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseAbductorVictimObjective
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-abductor-victim
+  - type: RoleRequirement
+    roles:
+    - AbductorVictimRole
+
+- type: entity
+  parent: [BaseAbductorVictimObjective, BaseKillObjective]
+  categories: [ HideSpawnMenu ]
+  id: AbductorKillObjective
+  description: I need to find and kill this person.
+  components:
+  - type: Objective
+    difficulty: 1
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireMaroon: true
+
+- type: entity
+  parent: [BaseAbductorVictimObjective, BaseLivingObjective]
+  id: AbductorEscapeShuttleObjective
+  name: Escape to centcomm alive and unrestrained.
+  description: I want to be FREEE.
+  components:
+  - type: Objective
+    difficulty: 1
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+# Цели вора. ЧЕСТНО, я бы не хотел повторятся, но это почти единственный нормальный вариант реализации.
+# Суть проблемы в стирании целей при извлечении органа - когда там проверяется роль, то могут исчезнуть и цели вора
+# Если вор был захвачен абдукторами и ими был внедрен орган.
+
+- type: entity
+  abstract: true
+  parent: [BaseAbductorVictimObjective, BaseStealObjective]
+  id: BaseAbductorVictimStealObjective
+  components:
+  - type: StealCondition
+    verifyMapExistence: false
+    descriptionText: objective-condition-thief-description
+    checkStealAreas: true
+
+- type: entity
+  abstract: true
+  parent: [BaseAbductorVictimObjective, BaseAbductorVictimStealObjective]
+  id: BaseAbductorVictimStealCollectionObjective
+  components:
+  - type: StealCondition
+    verifyMapExistence: true
+
+- type: entity
+  abstract: true
+  parent: [BaseAbductorVictimObjective, BaseAbductorVictimStealObjective]
+  id: BaseAbductorVictimStealStructureObjective
+  components:
+  - type: StealCondition
+    verifyMapExistence: true
+  - type: Objective
+    difficulty: 2 # it's hard to hide
+
+- type: entity
+  abstract: true
+  parent: [BaseAbductorVictimObjective, BaseAbductorVictimStealObjective]
+  id: BaseAbductorVictimStealAnimalObjective
+  components:
+  - type: StealCondition
+    verifyMapExistence: false
+    checkAlive: true
+    objectiveNoOwnerText: objective-condition-steal-title-alive-no-owner
+    descriptionText: objective-condition-thief-animal-description
+  - type: Objective
+    difficulty: 2 # it's hard to hide
+
+# Collections
+
+- type: entity
+  parent: BaseAbductorVictimStealCollectionObjective
+  id: AbductorVictimTechnologyDiskStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    job: Scientist
+  - type: StealCondition
+    stealGroup: TechnologyDisk
+    minCollectionSize: 5
+    maxCollectionSize: 15
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 0.8
+
+- type: entity
+  parent: BaseAbductorVictimStealCollectionObjective
+  id: AbductorVictimMailStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    job: CargoTechnician
+  - type: StealCondition
+    stealGroup: Mail
+    minCollectionSize: 4
+    maxCollectionSize: 8
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 0.8
+
+- type: entity
+  parent: BaseAbductorVictimStealCollectionObjective
+  id: AbductorVictimIDCardsStealCollectionObjective
+  components:
+  - type: StealCondition
+    stealGroup: IDCard
+    minCollectionSize: 5
+    maxCollectionSize: 10
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 0.7
+
+
+
+- type: entity
+  parent: BaseAbductorVictimStealCollectionObjective
+  id: AbductorVictimLAMPStealCollectionObjective
+  components:
+  - type: SpeciesRequirement
+    allowedSpecies:
+    - Moth
+  - type: StealCondition
+    stealGroup: LAMP
+    minCollectionSize: 1
+    maxCollectionSize: 10
+    verifyMapExistence: true
+  - type: Objective
+    difficulty: 0.5 # just for fun, collectings LAMP on Moth
+
+- type: entity
+  parent: BaseAbductorVictimStealObjective
+  id: AbductorVictimMedicalTechFabCircuitboardStealObjective
+  components:
+  - type: NotJobRequirement
+    job: MedicalDoctor
+  - type: StealCondition
+    stealGroup: MedicalTechFabCircuitboard
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseAbductorVictimStealObjective
+  id: AbductorVictimClothingHeadsetAltMedicalStealObjective
+  components:
+  - type: NotJobRequirement
+    job: ChiefMedicalOfficer
+  - type: StealCondition
+    stealGroup: ClothingHeadsetAltMedical
+  - type: Objective
+    difficulty: 1
+
+- type: entity                                      #Engineering subgroup
+  parent: BaseAbductorVictimStealObjective
+  id: AbductorVictimFireAxeStealObjective
+  components:
+  - type: NotJobRequirement
+    job: AtmosphericTechnician
+  - type: StealCondition
+    stealGroup: FireAxe
+  - type: Objective
+    difficulty: 0.8
+
+- type: entity                                      #Service subgroup
+  parent: BaseAbductorVictimStealObjective
+  id: AbductorVictimClothingEyesHudBeerStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Bartender
+  - type: StealCondition
+    stealGroup: ClothingEyesHudBeer
+  - type: Objective
+    difficulty: 0.3
+
+- type: entity
+  parent: BaseAbductorVictimStealObjective
+  id: AbductorVictimBibleStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Chaplain
+  - type: StealCondition
+    stealGroup: Bible
+  - type: Objective
+    difficulty: 0.4
+
+# Structures
+
+- type: entity
+  parent: BaseAbductorVictimStealStructureObjective
+  id: AbductorVictimXenoArtifactStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Scientist
+  - type: StealCondition
+    stealGroup: XenoArtifact
+  - type: Objective
+    difficulty: 0.5
+
+- type: entity
+  parent: BaseAbductorVictimStealStructureObjective
+  id: AbductorVictimFreezerHeaterStealObjective
+  components:
+  - type: NotJobRequirement
+    job: AtmosphericTechnician
+  - type: StealCondition
+    stealGroup: FreezerHeater
+  - type: Objective
+    difficulty: 0.5
+
+- type: entity
+  parent: BaseAbductorVictimStealStructureObjective
+  id: AbductorVictimBoozeDispenserStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Bartender
+  - type: StealCondition
+    stealGroup: BoozeDispenser
+  - type: Objective
+    difficulty: 0.5
+
+- type: entity
+  parent: BaseAbductorVictimStealStructureObjective
+  id: AbductorVictimAltarNanotrasenStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Chaplain
+  - type: StealCondition
+    stealGroup: AltarNanotrasen
+  - type: Objective
+    difficulty: 0.5
+
+# Animal
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimIanStealObjective
+  components:
+  - type: NotJobRequirement
+    job: HeadOfPersonnel
+  - type: StealCondition
+    stealGroup: AnimalIan
+  - type: Objective
+    difficulty: 2.5
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimBingusStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AnimalNamedCat
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimMcGriffStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Detective
+  - type: StealCondition
+    stealGroup: AnimalMcGriff
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimWalterStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Chemist
+  - type: StealCondition
+    stealGroup: AnimalWalter
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimMortyStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AnimalMorty
+  - type: Objective
+    difficulty: 0.5
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimRenaultStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Captain
+  - type: StealCondition
+    stealGroup: AnimalRenault
+  - type: Objective
+    difficulty: 2
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimShivaStealObjective
+  components:
+  - type: NotJobRequirement
+    job: SecurityOfficer
+  - type: StealCondition
+    stealGroup: AnimalShiva
+  - type: Objective
+    difficulty: 2
+
+- type: entity
+  parent: BaseAbductorVictimStealAnimalObjective
+  id: AbductorVictimTropicoStealObjective
+  components:
+  - type: NotJobRequirement
+    job: AtmosphericTechnician
+  - type: StealCondition
+    stealGroup: AnimalTropico
+  - type: Objective
+    difficulty: 1
+
+- type: weightedRandom
+  id: AbductorObjectiveGroups
+  weights:
+    AbductorVictimObjectiveGroupCollection: 1
+    AbductorVictimObjectiveGroupItem: 1
+    AbductorVictimObjectiveGroupStructure: 1
+    AbductorVictimObjectiveGroupAnimal: 1
+    AbductorKillGroup: 0.5
+
+- type: weightedRandom
+  id: AbductorVictimObjectiveGroupCollection
+  weights:
+    AbductorVictimTechnologyDiskStealCollectionObjective: 1
+    AbductorVictimMailStealCollectionObjective: 1
+    AbductorVictimIDCardsStealCollectionObjective: 1
+    AbductorVictimLAMPStealCollectionObjective: 2
+
+- type: weightedRandom
+  id: AbductorVictimObjectiveGroupItem
+  weights:
+    AbductorVictimClothingHeadsetAltMedicalStealObjective: 1
+    AbductorVictimFireAxeStealObjective: 1
+    AbductorVictimClothingEyesHudBeerStealObjective: 1
+    AbductorVictimBibleStealObjective: 1
+
+- type: weightedRandom
+  id: AbductorVictimObjectiveGroupStructure
+  weights:
+    AbductorVictimXenoArtifactStealObjective: 1
+    AbductorVictimFreezerHeaterStealObjective: 1
+    AbductorVictimBoozeDispenserStealObjective: 1
+    AbductorVictimAltarNanotrasenStealObjective: 1
+
+- type: weightedRandom
+  id: AbductorVictimObjectiveGroupAnimal
+  weights:
+    AbductorVictimIanStealObjective: 1
+    AbductorVictimBingusStealObjective: 1
+    AbductorVictimMcGriffStealObjective: 1
+    AbductorVictimWalterStealObjective: 1
+    AbductorVictimMortyStealObjective: 1
+    AbductorVictimRenaultStealObjective: 1
+    AbductorVictimShivaStealObjective: 1
+    AbductorVictimTropicoStealObjective: 1
+
+- type: weightedRandom
+  id: AbductorKillGroup
+  weights:
+    AbductorKillObjective: 1

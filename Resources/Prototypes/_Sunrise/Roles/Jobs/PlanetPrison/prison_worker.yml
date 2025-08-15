@@ -21,3 +21,5 @@
 - type: chameleonOutfit
   id: PrisonWorkerChameleonOutfit
   job: PrisonWorker
+  equipment:
+    mask: ClothingMaskBreath

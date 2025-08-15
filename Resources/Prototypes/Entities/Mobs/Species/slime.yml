@@ -47,7 +47,6 @@
         type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
-  - type: Absorbable
       # Sunrise-end
   - type: UseDelay
     delay: 0.5
@@ -74,6 +73,7 @@
     damage:
       types:
         Heat: -0.14
+        Mangleness: -0.02 #Sunrise-Edit
       groups:
         Brute: -0.14
   - type: DamageVisuals

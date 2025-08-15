@@ -45,3 +45,7 @@
 - type: chameleonOutfit
   id: SeniorOfficerChameleonOutfit
   job: SeniorOfficer
+  equipment:
+    neck: Dinkystar
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesCombat

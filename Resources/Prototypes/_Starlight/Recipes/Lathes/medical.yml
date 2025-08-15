@@ -127,6 +127,33 @@
     Steel: 550
     Silver: 100
     Glass: 100
+#
+- type: latheRecipe
+  id: LeftArmCyberGorilla
+  result: LeftArmCyberGorilla
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 125
+    Steel: 550
+    Silver: 250
+    Glass: 100
+    Plasma: 200
+
+- type: latheRecipe
+  id: RightArmCyberGorilla
+  result: RightArmCyberGorilla
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 125
+    Steel: 550
+    Silver: 250
+    Glass: 100
+    Plasma: 200
+#
 # IMPLANTS
 
 # Eye
@@ -152,6 +179,17 @@
   materials:
     Steel: 200
     Plasma: 300
+    Glass: 100
+
+- type: latheRecipe
+  id: EyeImplantChemical
+  result: EyeImplantChemical
+  categories:
+  - Implants
+  completetime: 3
+  materials:
+    Steel: 200
+    Plasma: 100
     Glass: 100
 
 - type: latheRecipe

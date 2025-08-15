@@ -30,12 +30,7 @@ construction-graph-tag-medical-hud = medical hud
 # security
 construction-graph-tag-sun-glasses = sun glasses
 construction-graph-tag-security-helmet = security helmet
-construction-graph-tag-strobe-shield = strobe riot shield
-construction-graph-tag-flash = security flash
-construction-graph-tag-upgradeflaregun = upgrade kit (security flare gun)
-construction-graph-tag-upgradedrozd = upgrade kit (Drozd)
-construction-graph-tag-upgradelecter = upgrade kit (Lecter)
-construction-graph-tag-ModularReceiverAuto = modular auto receiver
+construction-graph-tag-empty-shotgun-shell = empty shotgun shell
 
 # materials
 construction-graph-tag-manipulator = modular machine part
@@ -57,7 +52,6 @@ construction-graph-tag-power-cell-small = power cell small
 construction-graph-tag-power-cell = power cell
 construction-graph-tag-potato-battery = a potato battery
 construction-graph-tag-super-compact-ai-chip = a super-compact AI chip
-construction-graph-tag-paper = paper
 
 # other
 construction-graph-tag-light-bulb = light bulb
@@ -78,7 +72,7 @@ construction-graph-tag-corgi-hide = corgi hide
 construction-graph-tag-apron = an apron
 construction-graph-tag-utility-belt = a utility belt
 soil-construction-graph-any-mushroom = any mushroom
-construction-graph-tag-matchstick = matchstick
+construction-graph-tag-mop-basic = mop
 
 # toys
 construction-graph-tag-rubber-ducky = a rubber ducky
@@ -156,3 +150,6 @@ construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
 
 # clothing
 construction-graph-tag-backpack = backpack
+
+construction-graph-tag-paper = paper
+construction-graph-tag-matchstick = matchstick

@@ -17,6 +17,8 @@
   maxWidth: 1.25
   minHeight: 0.95
   minWidth: 1.05
+  minHeightCm: 155
+  maxHeightCm: 215
 
 - type: bodyType
   id: HumanoidXenoNormal

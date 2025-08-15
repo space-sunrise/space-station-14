@@ -19,8 +19,11 @@ namespace Content.Client.SurveillanceCamera.UI;
 [GenerateTypedNameReferences]
 public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
 {
+    private static readonly ProtoId<ShaderPrototype> CameraStaticShader = "CameraStatic";
+
     private readonly IPrototypeManager _prototypeManager; // Sunrise-edit
     private readonly IEntityManager _entManager; // Sunrise-edit
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     public event Action<string, string>? CameraSelected;
     public event Action? CameraRefresh;
@@ -49,8 +52,8 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
         // Sunrise-end
 
         // This could be done better. I don't want to deal with stylesheets at the moment.
-        var texture = resourceCache.GetTexture("/Textures/Interface/Nano/square_black.png"); // Sunrise-edit
-        var shader = _prototypeManager.Index<ShaderPrototype>("CameraStatic").Instance().Duplicate();
+        var texture = _resourceCache.GetTexture("/Textures/Interface/Nano/square_black.png");
+        var shader = _prototypeManager.Index(CameraStaticShader).Instance().Duplicate();
 
         // Sunrise-edit
         _blipTexture = spriteSystem.Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));

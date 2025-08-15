@@ -53,8 +53,8 @@
     - 0,0,2,3
   - type: StorageFill
     contents:
-    - id: MagazineCaselessRifle10x24
-    - id: MagazineCaselessRifle10x24
+    - id: MagazinePistolSubMachineGunSIAR52
+    - id: MagazinePistolSubMachineGunSIAR52
     - id: MagazinePistolSubMachineGunSIAR52
     - id: MagazinePistolSubMachineGunSIAR52
     - id: MagazinePistolSubMachineGunSIAR52

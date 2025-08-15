@@ -56,6 +56,9 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
+    slots:
+    - Back
+    - suitStorage
   - type: Item
     size: Huge
     shape:
@@ -154,7 +157,7 @@
 
 - type: entity
   name: m79 grenade launcher
-  parent: [WeaponGrenadeLauncherSecurity, BaseGunWieldable, BaseMajorContraband]
+  parent: [WeaponGrenadeLauncherSecurity, BaseMajorContraband]
   id: WeaponLauncherM79
   description: A single-shot, break-action grenade launcher. It is a powerful weapon that can fire a variety of grenades and hand granades.
   components:
@@ -195,7 +198,6 @@
           tags:
           - Grenade
           - HandGrenadeAmmo
-  - type: GunRequiresWield
   - type: StaticPrice
     price: 4000
   - type: EmitSoundOnPickup

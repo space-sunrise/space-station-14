@@ -1,0 +1,543 @@
+- type: decal
+  id: TrimlineN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_n
+
+- type: decal
+  id: TrimlineS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_s
+
+- type: decal
+  id: TrimlineW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_w
+
+- type: decal
+  id: TrimlineE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_e
+
+- type: decal
+  id: TrimlineCornerNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_nw
+
+- type: decal
+  id: TrimlineCornerNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_ne
+
+- type: decal
+  id: TrimlineCornerSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_sw
+
+- type: decal
+  id: TrimlineCornerSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_se
+
+- type: decal
+  id: TrimlineCornerSmallNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_small_nw
+
+- type: decal
+  id: TrimlineCornerSmallNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_small_ne
+
+- type: decal
+  id: TrimlineCornerSmallSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_small_sw
+
+- type: decal
+  id: TrimlineCornerSmallSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_corner_small_se
+
+- type: decal
+  id: TrimlineEndN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_end_n
+
+- type: decal
+  id: TrimlineEndS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_end_s
+
+- type: decal
+  id: TrimlineEndW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_end_w
+
+- type: decal
+  id: TrimlineEndE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_end_e
+
+- type: decal
+  id: TrimlineCenter
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_center
+
+- type: decal
+  id: TrimlineFillN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_n
+
+- type: decal
+  id: TrimlineFillS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_s
+
+- type: decal
+  id: TrimlineFillW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_w
+
+- type: decal
+  id: TrimlineFillE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_e
+
+- type: decal
+  id: TrimlineFillCornerNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_nw
+
+- type: decal
+  id: TrimlineFillCornerNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_ne
+
+- type: decal
+  id: TrimlineFillCornerSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_sw
+
+- type: decal
+  id: TrimlineFillCornerSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_se
+
+- type: decal
+  id: TrimlineFillCornerSmallNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_small_nw
+
+- type: decal
+  id: TrimlineFillCornerSmallNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_small_ne
+
+- type: decal
+  id: TrimlineFillCornerSmallSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_small_sw
+
+- type: decal
+  id: TrimlineFillCornerSmallSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_corner_small_se
+
+- type: decal
+  id: TrimlineFillEndN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_end_n
+
+- type: decal
+  id: TrimlineFillEndS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_end_s
+
+- type: decal
+  id: TrimlineFillEndW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_end_w
+
+- type: decal
+  id: TrimlineFillEndE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_end_e
+
+- type: decal
+  id: TrimlineFillCenter
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_fill_center
+
+- type: decal
+  id: TrimlineWarnN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_n
+
+- type: decal
+  id: TrimlineWarnS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_s
+
+- type: decal
+  id: TrimlineWarnW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_w
+
+- type: decal
+  id: TrimlineWarnE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_e
+
+- type: decal
+  id: TrimlineWarnCornerNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_nw
+
+- type: decal
+  id: TrimlineWarnCornerNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_ne
+
+- type: decal
+  id: TrimlineWarnCornerSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_sw
+
+- type: decal
+  id: TrimlineWarnCornerSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_se
+
+- type: decal
+  id: TrimlineWarnCornerSmallNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_small_nw
+
+- type: decal
+  id: TrimlineWarnCornerSmallNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_small_ne
+
+- type: decal
+  id: TrimlineWarnCornerSmallSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_small_sw
+
+- type: decal
+  id: TrimlineWarnCornerSmallSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_corner_small_se
+
+- type: decal
+  id: TrimlineWarnEndN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_end_n
+
+- type: decal
+  id: TrimlineWarnEndS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_end_s
+
+- type: decal
+  id: TrimlineWarnEndW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_end_w
+
+- type: decal
+  id: TrimlineWarnEndE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_end_e
+
+- type: decal
+  id: TrimlineWarnCenter
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_center
+
+- type: decal
+  id: TrimlineWarnFillN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_n
+
+- type: decal
+  id: TrimlineWarnFillS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_s
+
+- type: decal
+  id: TrimlineWarnFillW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_w
+
+- type: decal
+  id: TrimlineWarnFillE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_e
+
+- type: decal
+  id: TrimlineWarnFillCornerNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_nw
+
+- type: decal
+  id: TrimlineWarnFillCornerNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_ne
+
+- type: decal
+  id: TrimlineWarnFillCornerSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_sw
+
+- type: decal
+  id: TrimlineWarnFillCornerSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_se
+
+- type: decal
+  id: TrimlineWarnFillCornerSmallNW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_small_nw
+
+- type: decal
+  id: TrimlineWarnFillCornerSmallNE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_small_ne
+
+- type: decal
+  id: TrimlineWarnFillCornerSmallSW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_small_sw
+
+- type: decal
+  id: TrimlineWarnFillCornerSmallSE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_corner_small_se
+
+- type: decal
+  id: TrimlineWarnFillEndN
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_end_n
+
+- type: decal
+  id: TrimlineWarnFillEndS
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_end_s
+
+- type: decal
+  id: TrimlineWarnFillEndW
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_end_w
+
+- type: decal
+  id: TrimlineWarnFillEndE
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_end_e
+
+- type: decal
+  id: TrimlineWarnFillCenter
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Sunrise/Decals/trimline.rsi
+    state: trimline_warn_fill_center

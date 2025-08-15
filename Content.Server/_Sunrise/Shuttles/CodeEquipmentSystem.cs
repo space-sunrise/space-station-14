@@ -9,6 +9,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
@@ -89,7 +90,10 @@ public sealed class CodeEquipmentSystem : EntitySystem
         if (ev.AlertLevel != comp.TargetCode)
             return;
 
-        var target = _station.GetLargestGrid(Comp<StationDataComponent>(ev.Station));
+        if (!TryComp<StationDataComponent>(ev.Station, out var stationData))
+            return;
+
+        var target = _station.GetLargestGrid((ev.Station, stationData));
 
         if (target == null)
             return;

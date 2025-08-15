@@ -11,10 +11,10 @@
 - type: cargoProduct
   id: ArmoryShotgun
   icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/big.rsi  # Sunrise-Edit
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
     state: icon
-  product: CrateArmoryWeaponXM1014  # Sunrise-Edit
-  cost: 8400 # Sunrise-Edit
+  product: CrateArmoryShotgun
+  cost: 9250
   category: cargoproduct-category-name-armory
   group: market
 

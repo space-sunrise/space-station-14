@@ -9,7 +9,6 @@ using Content.Server.Emoting.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Pinpointer;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Roles;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Bed.Sleep;
@@ -25,6 +24,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
@@ -43,13 +43,11 @@ namespace Content.Server.Zombies
         [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
-        [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
         [Dependency] private readonly EmoteOnDamageSystem _emoteOnDamage = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedRoleSystem _role = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwing = default!;
         [Dependency] private readonly ActionsSystem _action = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
@@ -109,7 +107,7 @@ namespace Content.Server.Zombies
             if (!_mobState.IsAlive(args.Target))
                 return;
 
-            _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), false);
+            _stun.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime));
             _damageable.TryChangeDamage(args.Target, component.Damage, origin: args.Thrown);
 
         }
@@ -197,13 +195,13 @@ namespace Content.Server.Zombies
             }
 
             _throwing.TryThrow(uid, direction, 7F, uid, 10F);
-            _chatSystem.TryEmoteWithChat(uid, "ZombieGroan");
+            _chat.TryEmoteWithChat(uid, "ZombieGroan");
         }
         // Sunnrise-End
 
         private void OnPendingMapInit(EntityUid uid, IncurableZombieComponent component, MapInitEvent args)
         {
-            _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
+            _action.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
             _faction.AddFaction(uid, Faction);
 
             if (HasComp<ZombieComponent>(uid) || HasComp<ZombieImmuneComponent>(uid))
@@ -293,10 +291,6 @@ namespace Content.Server.Zombies
 
         private void OnStartup(EntityUid uid, ZombieComponent component, ComponentStartup args)
         {
-            if (component.EmoteSoundsId == null)
-                return;
-            _protoManager.TryIndex(component.EmoteSoundsId, out component.EmoteSounds);
-
             // Sunnrise-Start
             _action.AddAction(uid, component.ActionJumpId);
             _action.AddAction(uid, component.ActionFlairId);
@@ -308,7 +302,10 @@ namespace Content.Server.Zombies
             // always play zombie emote sounds and ignore others
             if (args.Handled)
                 return;
-            args.Handled = _chat.TryPlayEmoteSound(uid, component.EmoteSounds, args.Emote);
+
+            _protoManager.TryIndex(component.EmoteSoundsId, out var sounds);
+
+            args.Handled = _chat.TryPlayEmoteSound(uid, sounds, args.Emote);
         }
 
         private void OnMobState(EntityUid uid, ZombieComponent component, MobStateChangedEvent args)

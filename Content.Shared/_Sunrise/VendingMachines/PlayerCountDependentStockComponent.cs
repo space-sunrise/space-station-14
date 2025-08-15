@@ -7,5 +7,5 @@
 public sealed partial class PlayerCountDependentStockComponent : Component
 {
     [DataField("coefficient")]
-    public float Coefficient = 0.5f;
+    public float Coefficient = 1f;
 }
