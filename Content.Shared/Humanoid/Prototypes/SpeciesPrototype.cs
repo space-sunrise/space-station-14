@@ -199,6 +199,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int StandardDensity = 120;
+
+    [DataField]
+    public bool StationRecordsHidden;
     //Sunrise end
 
 

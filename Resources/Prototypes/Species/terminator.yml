@@ -12,6 +12,7 @@
   dollPrototype: MobSkeletonPersonDummy
   skinColoration: TintedHues
   buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit
+  stationRecordsHidden: true
 
 - type: bodyType
   id: TerminatorNormal
