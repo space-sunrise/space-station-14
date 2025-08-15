@@ -1,0 +1,57 @@
+- type: job
+  id: BlueShieldEnsign
+  name: job-name-blueshield-ensign
+  description: job-description-blueshield-ensign
+  playTimeTracker: JobBlueShieldEnsign
+#  requirements:
+#    - !type:DepartmentTimeRequirement
+#      department: BlueShield
+#      time: 62000 # 20 hrs
+#    - !type:DepartmentTimeRequirement
+#      department: Command
+#      time: 62000 # 20 hrs
+#    - !type:AgeRequirement
+#      requiredAge: 35
+#  startingGear: BlueShieldEnsignGear
+#  icon: JobIconBlueShield
+#  supervisors: job-supervisors-centcom
+#  canBeAntag: false
+#  access:
+#    - Command
+#    - Bar
+#    - Service
+#    - Maintenance
+#    - Janitor
+#    - Theatre
+#    - Kitchen
+#    - Chapel
+#    - Hydroponics
+#    - External
+#    - Chemistry
+#    - Engineering
+#    - Research
+#    - Salvage
+#    - Cargo
+#    - Atmospherics
+#    - Cargo
+#    - Medical
+#    - BlueShield
+#    - BlueShieldEnsign
+#  special:
+#    - !type:AddImplantSpecial
+#      implants: [ MindShieldImplant ]
+#
+#- type: startingGear
+#  id: BlueShieldEnsignGear
+#  equipment:
+#    shoes: ClothingShoesBootsBlueShieldFilled
+#    eyes: ClothingEyesGlassesBlueShield
+#    head: ClothingHeadHatBeretBlueShield
+#    outerClothing: ClothingOuterArmorBlueShield
+#    id: BlueShieldEnsignPDA
+#    ears: ClothingHeadsetBlueShieldEnsign
+#    belt: ClothingBeltBlueShieldWebbingFilled
+#    gloves: ClothingHandsGlovesCombat
+#  storage:
+#    back:
+#    - HandheldBSOCrewMonitor

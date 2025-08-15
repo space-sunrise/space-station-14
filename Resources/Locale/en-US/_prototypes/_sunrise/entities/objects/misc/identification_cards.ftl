@@ -1,5 +1,9 @@
 ent-BlueShieldOfficerIDCard = blue shield officer ID card
     .desc = { ent-IDCardStandard.desc }
+ent-BlueShieldEnsignIDCard = blue shield ensign ID card
+    .desc = { ent-IDCardStandard.desc }
+ent-BlueShieldOperativeIDCard = blue shield operative ID card
+    .desc = { ent-IDCardStandard.desc }
 ent-RoboticistIDCard = roboticist ID card
     .desc = { ent-IDCardStandard.desc }
 ent-SecurityPilotIDCard = security pilot ID card

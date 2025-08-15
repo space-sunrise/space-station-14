@@ -15,6 +15,35 @@
 
 - type: entity
   parent: IDCardStandard
+  id: BlueShieldEnsignIDCard
+  name: blue shield ensign ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+    - state: idblueshield
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: BlueShieldEnsign
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldOperativeIDCard
+  name: blue shield operative ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: BlueShieldOperative
+
+- type: entity
+  parent: IDCardStandard
   id: RoboticistIDCard
   name: roboticist ID card
   components:

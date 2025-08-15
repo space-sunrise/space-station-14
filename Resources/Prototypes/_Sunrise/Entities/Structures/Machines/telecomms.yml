@@ -10,6 +10,16 @@
 
 - type: entity
   parent: TelecomServer
+  id: TelecomServerFilledBlueShield
+  suffix: BlueShield
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBlueShield
+
+- type: entity
+  parent: TelecomServer
   id: TelecomServerFilledUSSP
   suffix: USSP
   components:

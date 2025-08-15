@@ -44,7 +44,7 @@
     - BlueShield
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
 
 - type: startingGear
   id: NtrLeaderGear

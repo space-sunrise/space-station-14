@@ -78,6 +78,39 @@
 
 - type: entity
   parent: ClothingHeadset
+  id: ClothingHeadsetBlueShieldEnsign
+  name: blue shield ensign headset
+  description:
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBlueShield
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetBlueShield
+  name: blue shield headset
+  description: A headset for blue shield.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBlueShield
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: ClothingHeadset
   id: ClothingHeadsetUSSP
   name: Headset USSP
   description: A headset for internal affairs agent to hear the captain's last words.
