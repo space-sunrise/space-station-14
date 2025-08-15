@@ -48,7 +48,7 @@ public sealed partial class PuddleFootprintComponent : Component
     /// Ratio determining how much of puddle's color transfers to footprints
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolume = 20f;
+    public float TransferVolume = 30f;
 
     /// <summary>
     /// Percentage of water content above which footprints won't be created

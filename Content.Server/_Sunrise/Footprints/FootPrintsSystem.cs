@@ -45,7 +45,7 @@ public sealed class FootprintSystem : EntitySystem
     public static readonly float BodySurfaceVolume = 15;
 
     // Dictionary to track footprints per tile to prevent overcrowding
-    private const int MaxFootprintsPerTile = 4;
+    private const int MaxFootprintsPerTile = 6;
     private const int MaxMarksPerTile = 3;
 
     #region Initialization
