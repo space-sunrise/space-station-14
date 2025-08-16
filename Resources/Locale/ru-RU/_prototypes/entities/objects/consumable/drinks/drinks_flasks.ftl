@@ -1,5 +1,7 @@
 ent-FlaskBase = { ent-DrinkBase }
     .desc = { ent-DrinkBase.desc }
+ent-DrinkFlaskVisualsOpenable = { "" }
+    .desc = { "" }
 ent-DrinkShinyFlask = блестящая фляга
     .desc = Блестящая металлическая фляга. Похоже, на ней нарисован греческий символ.
 ent-DrinkMREFlask = фляга ИРП
@@ -18,5 +20,3 @@ ent-DrinkLithiumFlask = литиевая фляга
     .desc = Фляга с нарисованным на ней символом атома лития.
 ent-DrinkVacuumFlask = термос
     .desc = Поддерживает ваши напитки в идеальной температуре с 1892 года.
-ent-Pitcher = металлический кувшин
-    .desc = Кувшин из нержавеющей стали с теплоизоляцией. Лучший друг каждого утром.
