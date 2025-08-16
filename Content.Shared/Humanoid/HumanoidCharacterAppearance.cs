@@ -202,7 +202,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         //Sunrise end
 
         // at the end of all that, we should have new values for each of these, so we set the character appearance to these new values.
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newWidth, newHeight); // Sunrise edit
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, newMarkings, newWidth, newHeight); // Sunrise edit
 
         float RandomizeColor(float channel)
         {
