@@ -280,7 +280,7 @@ binds:
   type: State
   key: R
   mod1: Shift
-- function: FlipObject
+- function: Interact # default: FlipObject (но он что-то не работает, поэтому бинд для панели будет)
   type: State
   key: F
 - function: TextCursorLeft
@@ -635,13 +635,9 @@ binds:
 - function: CockGun # Это не то о чем вы подумали, товарищ визард.
   type: State
   key: C
-- function: Reloading # Да, перезарядка в РП игре на кнопочку.
-  type: State
-  key: R
 - function: ToggleStanding # Упал-отжался.
   type: State
-  key: Control
-  mod1: Alt
+  key: R
 - function: Jump # Да, мы прыгаем в 2д игре.
   type: State
   key: Space

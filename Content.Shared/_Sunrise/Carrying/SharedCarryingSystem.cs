@@ -51,7 +51,7 @@ public sealed class SharedCarryingSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingState = default!;
+    [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
@@ -87,7 +87,7 @@ public sealed class SharedCarryingSystem : EntitySystem
             if (!TryComp(uid, out StandingStateComponent? standing))
                 continue;
 
-            if (standing.CurrentState == StandingState.Laying)
+            if (!standing.Standing)
             {
                 _popupSystem.PopupClient(Loc.GetString("carry-lying-cancel"), carrier.Carried, uid, PopupType.MediumCaution);
                 DropCarried(uid, carrier.Carried);

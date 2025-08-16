@@ -132,6 +132,7 @@
     partType: Leg
     symmetry: Left
   - type: MovementBodyPart
+    maxDensity: 155
 
 - type: entity
   id: RightLegHumanoidXeno
@@ -149,6 +150,7 @@
     partType: Leg
     symmetry: Right
   - type: MovementBodyPart
+    maxDensity: 155
 
 - type: entity
   id: LeftFootHumanoidXeno

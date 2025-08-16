@@ -526,13 +526,24 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<bool> TracesEnabled =
         CVarDef.Create("opt.traces_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
-    /// Смена даты на документах от принтера
+    /// Определяет, какие шаблоны будут доступны. (например, "sunrise" или "lust")
     /// </summary>
-    public static readonly CVarDef<int> PrinterDocTimeOffsetHours =
-        CVarDef.Create("printerdoc.time_offset_hours", 3, CVar.SERVERONLY);
-    public static readonly CVarDef<int> PrinterDocYearOffset =
-        CVarDef.Create("printerdoc.year_offset", 1000, CVar.SERVERONLY);
+    public static readonly CVarDef<string> CopyMachineTemplatePool =
+        CVarDef.Create("copy_machine.template_pool", "Sunrise", CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смещение автозаполнения времени (в часах)
+    /// </summary>
+    public static readonly CVarDef<int> CopyMachineTimeOffsetHours =
+        CVarDef.Create("copy_machine.time_offset_hours", 3, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смещение автозаполнения времени (в годах)
+    /// </summary>
+    public static readonly CVarDef<int> CopyMachineYearOffset =
+        CVarDef.Create("copy_machine.year_offset", 1000, CVar.SERVERONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> HoldLookUp =
         CVarDef.Create("scope.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);

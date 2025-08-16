@@ -36,3 +36,10 @@
     pocket2: HyperLinkBookCorporateLaw
   inhand:
     - BriefcaseIAAFilled
+  
+- type: chameleonOutfit
+  id: IAAChameleonOutfit
+  job: IAA
+  equipment:
+    neck: ClothingNeckCloakIAACloak
+    outerClothing: ClothingOuterCoatIAA

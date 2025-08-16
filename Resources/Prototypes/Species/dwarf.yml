@@ -16,10 +16,15 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobDwarfDummy
   skinColoration: HumanToned
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit
   defaultHeight: 0.80
   defaultWidth: 1
   maxHeight: 1
   maxWidth: 1.1
   minHeight: 0.8
   minWidth: 0.90
+  minHeightCm: 130
+  maxHeightCm: 200
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human

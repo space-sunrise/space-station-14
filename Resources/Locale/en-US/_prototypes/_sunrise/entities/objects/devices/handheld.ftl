@@ -69,3 +69,5 @@ ent-EngiAlertsMonitorEmpty = { ent-EngiAlertsMonitor }
 ent-EngiAlertsMonitorUnpowered = { ent-BaseEngiAlertsMonitor }
     .suffix = Handheld, Unpowered
     .desc = { ent-BaseEngiAlertsMonitor.desc }
+ent-MasterHandheldCamera = Master Body Camera
+    .desc = A hand-held camera that allows you to monitor the crew from anywhere.

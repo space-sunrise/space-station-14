@@ -1,8 +1,8 @@
 ent-BaseReinforcedSecretDoor = укрепленная стена
     .desc = Удерживает воздух внутри, а ассистентов снаружи.
     .suffix = Потайная дверь
-ent-ReinforcedSecretDoorAssembly = reinforced secret door assembly
-    .desc = It opens, it closes, and maybe crushes you.
+ent-ReinforcedSecretDoorAssembly = каркас укрепленной секретной двери
+    .desc = Оно пока что не открывается и не закрывается. Но определенно сможет вас раздавить.
 ent-ReinforcedSecretDoor = укрепленная стена
     .desc = { ent-BaseSecretDoor.desc }
 ent-BaseReinforcedSecretDoorAssembly = каркас укрепленной потайной двери

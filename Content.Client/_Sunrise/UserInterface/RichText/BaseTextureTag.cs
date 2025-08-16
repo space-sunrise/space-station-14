@@ -21,11 +21,16 @@ public abstract class BaseTextureTag : IMarkupTagHandler
 
     public abstract bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control);
 
-    protected static bool TryDrawIcon(string path, long scaleValue, [NotNullWhen(true)] out Control? control)
+    protected bool TryDrawIcon(string path, long scaleValue, [NotNullWhen(true)] out Control? control)
     {
         var texture = new TextureRect();
 
+        SplitRsiPath(path, out var rsiPath, out var state);
+        var resourceCache = new SpriteSpecifier.Rsi(new ResPath(rsiPath), state);
+
         texture.TexturePath = path;
+        _spriteSystem ??= _entitySystemManager.GetEntitySystem<SpriteSystem>();
+        texture.Texture = _spriteSystem.Frame0(resourceCache);
         texture.TextureScale = new Vector2(scaleValue, scaleValue);
 
         control = texture;
@@ -79,5 +84,19 @@ public abstract class BaseTextureTag : IMarkupTagHandler
         str = str.Trim();
 
         return str;
+    }
+
+    protected static void SplitRsiPath(string fullPath, out string rsiPath, out string state)
+    {
+        var lastSlash = fullPath.LastIndexOf('/');
+        var lastDot = fullPath.LastIndexOf('.');
+        if (lastSlash == -1 || lastDot == -1 || lastDot < lastSlash)
+        {
+            rsiPath = fullPath;
+            state = string.Empty;
+            return;
+        }
+        rsiPath = fullPath.Substring(0, lastSlash);
+        state = fullPath.Substring(lastSlash + 1, lastDot - lastSlash - 1);
     }
 }

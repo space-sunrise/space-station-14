@@ -9,6 +9,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Emoting;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -16,7 +17,8 @@ namespace Content.Server._Sunrise.Animations;
 
 public sealed class EmoteAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStandingStateSystem _sharedStanding = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedJumpSystem _jumpSystem = default!;
     [Dependency] private readonly SharedFlipSystem _flipSystem = default!;
@@ -29,13 +31,6 @@ public sealed class EmoteAnimationSystem : EntitySystem
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EmoteAnimationComponent, EmoteEvent>(OnEmote);
         SubscribeLocalEvent<EmoteAnimationComponent, PlayEmoteMessage>(OnPlayEmote);
-        SubscribeLocalEvent<EmoteAnimationComponent, AnimationEmoteAttemptEvent>(CheckEmote);
-    }
-
-    private void CheckEmote(EntityUid uid, EmoteAnimationComponent component, AnimationEmoteAttemptEvent args)
-    {
-        if (args.Emote.ID == "Jump" && !_jumpSystem.CanJump(uid))
-            args.Cancel();
     }
 
     private void OnPlayEmote(EntityUid uid, EmoteAnimationComponent component, PlayEmoteMessage args)
@@ -66,10 +61,10 @@ public sealed class EmoteAnimationSystem : EntitySystem
             if (_gravity.IsWeightless(uid))
                 return;
 
-            if (_sharedStanding.IsDown(uid))
-                _sharedStanding.TryStandUp(uid);
+            if (_standing.IsDown(uid))
+                _stun.TryStanding(uid);
             else
-                _sharedStanding.TryLieDown(uid);
+                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(0.5), true, false, false);
 
             return;
         }

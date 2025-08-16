@@ -185,9 +185,16 @@ namespace Content.Shared.Damage
         ///     Returns a <see cref="DamageSpecifier"/> with information about the actual damage changes. This will be
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
-        public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
-            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null,
-            bool useVariance = true, bool useModifier = true, float armorPenetration = 0f)
+        public DamageSpecifier? TryChangeDamage(EntityUid? uid,
+            DamageSpecifier damage,
+            bool ignoreResistances = false,
+            bool interruptsDoAfters = true,
+            DamageableComponent? damageable = null,
+            EntityUid? origin = null,
+            bool useVariance = true,
+            bool useModifier = true,
+            float armorPenetration = 0f, // 🌟Starlight🌟
+            bool canHeal = true) // 🌟Starlight🌟
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -228,7 +235,7 @@ namespace Content.Shared.Damage
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
 
-                var ev = new DamageModifyEvent(damage, origin, armorPenetration);
+                var ev = new DamageModifyEvent(damage, origin, armorPenetration, canHeal);    // 🌟Starlight🌟
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
 
@@ -439,14 +446,16 @@ namespace Content.Shared.Damage
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
-        public float ArmorPenetration;
+        public float ArmorPenetration;   // 🌟Starlight🌟
+        public bool CanHeal;  // 🌟Starlight🌟
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f, bool canHeal = false) // 🌟Starlight🌟
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
-            ArmorPenetration = armorPenetration;
+            ArmorPenetration = armorPenetration;   // 🌟Starlight🌟
+            CanHeal = canHeal; // 🌟Starlight🌟
         }
     }
 

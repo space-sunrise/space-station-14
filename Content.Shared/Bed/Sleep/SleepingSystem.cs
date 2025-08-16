@@ -41,7 +41,7 @@ public sealed partial class SleepingSystem : EntitySystem
     [Dependency] private readonly SharedEmitSoundSystem _emitSound = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public static readonly EntProtoId SleepActionId = "ActionSleep";
     public static readonly EntProtoId WakeActionId = "ActionWake";
@@ -131,7 +131,7 @@ public sealed partial class SleepingSystem : EntitySystem
         }
 
         _stun.TryUnstun(ent.Owner);
-        _standing.TryStandUp(ent.Owner);
+        _standing.Stand(ent.Owner);
 
         RemComp<SpamEmitSoundComponent>(ent);
     }

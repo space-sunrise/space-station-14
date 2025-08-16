@@ -1,4 +1,6 @@
+using System.Numerics;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Fax;
 
@@ -40,12 +42,20 @@ public sealed class FaxFileMessage : BoundUserInterfaceMessage
     public string? Label;
     public string Content;
     public bool OfficePaper;
+    // Sunrise-Start
+    public SpriteSpecifier? ImageContent { get; set; }
+    public Vector2 ImageScale { get; set; }
+    // Sunrise-End
 
-    public FaxFileMessage(string? label, string content, bool officePaper)
+    public FaxFileMessage(string? label, string content, bool officePaper, SpriteSpecifier? imageContent = null, Vector2 imageScale = default)
     {
         Label = label;
         Content = content;
         OfficePaper = officePaper;
+        // Sunrise-Start
+        ImageContent = imageContent;
+        ImageScale = imageScale;
+        // Sunrise-End
     }
 }
 

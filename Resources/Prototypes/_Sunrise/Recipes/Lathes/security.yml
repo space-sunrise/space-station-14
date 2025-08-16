@@ -771,6 +771,82 @@
 
 #Cybernetics
 - type: latheRecipe
+  id: LeftArmCyberMantisBladeMaxGuard
+  result: LeftArmCyberMantisBladeMaxGuard
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
+- type: latheRecipe
+  id: RightArmCyberMantisBladeMaxGuard
+  result: RightArmCyberMantisBladeMaxGuard
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+#
+- type: latheRecipe
+  id: LeftArmCyberGrenadeThrower
+  result: LeftArmCyberGrenadeThrower
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 550
+    Steel: 650
+    Gold: 100
+    Glass: 100
+
+- type: latheRecipe
+  id: RightArmCyberGrenadeThrower
+  result: RightArmCyberGrenadeThrower
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 550
+    Steel: 650
+    Gold: 100
+    Glass: 100
+#
+- type: latheRecipe
+  id: LeftArmCyberLaserEmitter
+  result: LeftArmCyberLaserEmitter
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
+- type: latheRecipe
+  id: RightArmCyberLaserEmitter
+  result: RightArmCyberLaserEmitter
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+#
+- type: latheRecipe
   id: LeftArmCyberBulwark
   result: LeftArmCyberBulwark
   categories:

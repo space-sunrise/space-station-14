@@ -9,7 +9,10 @@
   dollPrototype: MobGingerbreadDummy
   skinColoration: HumanToned
   defaultSkinTone: "#9a7c5a"
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
 
 - type: bodyType
   id: GingerbreadNormal

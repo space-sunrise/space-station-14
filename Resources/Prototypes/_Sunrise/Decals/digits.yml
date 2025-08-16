@@ -1,0 +1,69 @@
+- type: decal
+  id: digits_1
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 1
+
+- type: decal
+  id: digits_2
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 2
+
+- type: decal
+  id: digits_3
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 3
+
+- type: decal
+  id: digits_4
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 4
+
+- type: decal
+  id: digits_5
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 5
+
+- type: decal
+  id: digits_6
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 6
+
+- type: decal
+  id: digits_7
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 7
+
+- type: decal
+  id: digits_8
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 8
+
+- type: decal
+  id: digits_9
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 9
+
+- type: decal
+  id: digits_0
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/digits.rsi
+    state: 0

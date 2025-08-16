@@ -1,0 +1,215 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA 3.0",
+    "copyright": "taken from Skyrat",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "trimline_n"
+        },
+        {
+            "name": "trimline_s"
+        },
+        {
+            "name": "trimline_w"
+        },
+        {
+            "name": "trimline_e"
+        },
+        {
+            "name": "trimline_corner_nw"
+        },
+        {
+            "name": "trimline_corner_ne"
+        },
+        {
+            "name": "trimline_corner_sw"
+        },
+        {
+            "name": "trimline_corner_se"
+        },
+        {
+            "name": "trimline_corner_small_nw"
+        },
+        {
+            "name": "trimline_corner_small_ne"
+        },
+        {
+            "name": "trimline_corner_small_sw"
+        },
+        {
+            "name": "trimline_corner_small_se"
+        },
+        {
+            "name": "trimline_end_n"
+        },
+        {
+            "name": "trimline_end_s"
+        },
+        {
+            "name": "trimline_end_w"
+        },
+        {
+            "name": "trimline_end_e"
+        },
+        {
+            "name": "trimline_center"
+        },
+        {
+            "name": "trimline_fill_n"
+        },
+        {
+            "name": "trimline_fill_s"
+        },
+        {
+            "name": "trimline_fill_w"
+        },
+        {
+            "name": "trimline_fill_e"
+        },
+        {
+            "name": "trimline_fill_corner_nw"
+        },
+        {
+            "name": "trimline_fill_corner_ne"
+        },
+        {
+            "name": "trimline_fill_corner_sw"
+        },
+        {
+            "name": "trimline_fill_corner_se"
+        },
+        {
+            "name": "trimline_fill_corner_small_nw"
+        },
+        {
+            "name": "trimline_fill_corner_small_ne"
+        },
+        {
+            "name": "trimline_fill_corner_small_sw"
+        },
+        {
+            "name": "trimline_fill_corner_small_se"
+        },
+        {
+            "name": "trimline_fill_end_n"
+        },
+        {
+            "name": "trimline_fill_end_s"
+        },
+        {
+            "name": "trimline_fill_end_w"
+        },
+        {
+            "name": "trimline_fill_end_e"
+        },
+        {
+            "name": "trimline_fill_center"
+        },
+	{
+            "name": "trimline_warn_n"
+        },
+        {
+            "name": "trimline_warn_s"
+        },
+        {
+            "name": "trimline_warn_w"
+        },
+        {
+            "name": "trimline_warn_e"
+        },
+        {
+            "name": "trimline_warn_corner_nw"
+        },
+        {
+            "name": "trimline_warn_corner_ne"
+        },
+        {
+            "name": "trimline_warn_corner_sw"
+        },
+        {
+            "name": "trimline_warn_corner_se"
+        },
+        {
+            "name": "trimline_warn_corner_small_nw"
+        },
+        {
+            "name": "trimline_warn_corner_small_ne"
+        },
+        {
+            "name": "trimline_warn_corner_small_sw"
+        },
+        {
+            "name": "trimline_warn_corner_small_se"
+        },
+        {
+            "name": "trimline_warn_end_n"
+        },
+        {
+            "name": "trimline_warn_end_s"
+        },
+        {
+            "name": "trimline_warn_end_w"
+        },
+        {
+            "name": "trimline_warn_end_e"
+        },
+        {
+            "name": "trimline_warn_center"
+        },
+        {
+            "name": "trimline_warn_fill_n"
+        },
+        {
+            "name": "trimline_warn_fill_s"
+        },
+        {
+            "name": "trimline_warn_fill_w"
+        },
+        {
+            "name": "trimline_warn_fill_e"
+        },
+        {
+            "name": "trimline_warn_fill_corner_nw"
+        },
+        {
+            "name": "trimline_warn_fill_corner_ne"
+        },
+        {
+            "name": "trimline_warn_fill_corner_sw"
+        },
+        {
+            "name": "trimline_warn_fill_corner_se"
+        },
+        {
+            "name": "trimline_warn_fill_corner_small_nw"
+        },
+        {
+            "name": "trimline_warn_fill_corner_small_ne"
+        },
+        {
+            "name": "trimline_warn_fill_corner_small_sw"
+        },
+        {
+            "name": "trimline_warn_fill_corner_small_se"
+        },
+        {
+            "name": "trimline_warn_fill_end_n"
+        },
+        {
+            "name": "trimline_warn_fill_end_s"
+        },
+        {
+            "name": "trimline_warn_fill_end_w"
+        },
+        {
+            "name": "trimline_warn_fill_end_e"
+        },
+        {
+            "name": "trimline_warn_fill_center"
+        }
+        ]
+}

@@ -36,3 +36,7 @@
     back:
     - Flash
     - ClothingEyesGlassesSecurity
+
+- type: chameleonOutfit
+  id: SecurityPilotChameleonOutfit
+  job: SecurityPilot

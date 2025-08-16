@@ -25,3 +25,9 @@
     id: MailCarrierPDA
     ears: ClothingHeadsetCargo
     belt: MailBag
+
+- type: chameleonOutfit
+  id: MailCarrierChameleonOutfit
+  job: MailCarrier
+  equipment:
+    mask: ClothingMaskBreath

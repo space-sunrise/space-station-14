@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponShotgun
-  parent: BaseItem
+  parent: [BaseItem, GunMedium]
   id: BaseWeaponShotgunAny
   description: A rooty tooty point and shooty.
   abstract: true
@@ -64,7 +64,7 @@
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
 
 - type: entity
-  parent: BaseWeaponShotgunAny
+  parent: [BaseWeaponShotgunAny, GunLight]
   id: BaseWeaponShotgunPump
   abstract: true
   components:
@@ -85,7 +85,7 @@
 - type: entity
   name: Bulldog
   # Don't parent to BaseWeaponShotgun because it differs significantly
-  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband]
+  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband, GunLight]
   id: WeaponShotgunBulldog
   description: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids. Uses .50 shotgun shells.
   components:

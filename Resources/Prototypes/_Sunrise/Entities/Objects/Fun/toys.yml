@@ -1119,40 +1119,112 @@
     delay: 1
 
 - type: entity
-  id: PlushieKalium
   parent: BasePlushie
-  name: Kalium Fon Dez
+  id: PlushieKalium
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Fun/toys.rsi
-    state: plushie-kalium
-  - type: Item
-    heldPrefix: kalium
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium-unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
   - type: Clothing
     quickEquip: false
-    sprite: _Sunrise/Objects/Fun/toys.rsi
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium.rsi
     equippedPrefix: kalium
     slots:
     - NECK
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Tag
+    tags:
+    - PlushieKalium
   - type: UseDelay
-    delay: 1
+    delay: 1.0
+  - type: PointLight
+    enabled: false
+    radius: 1.3
+    energy: 2
+    color: red
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: DisarmMalus
+    malus: 0
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: MeleeWeapon
-    soundHit:
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
       path: /Audio/Weapons/eblade1.ogg
       params:
-        volume: 100
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
   - type: EmitSoundOnTrigger
     sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-  - type: EmitSoundOnCollide
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+      collection: VulpkaninBarks
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+      collection: VulpkaninBarks
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/_Sunrise/Voice/Vulpkanin/dog_bark2.ogg
+      collection: VulpkaninBarks
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: Construction
+    graph: PlushieKaliumDouble1
+    node: start
+
+- type: entity
+  parent: PlushieKalium
+  id: PlushieKaliumDouble
+  name: Kalium Fon Dez
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_double.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium-double-unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-agent
+  - type: Clothing
+    quickEquip: false
+    equippedPrefix: kalium
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+
+

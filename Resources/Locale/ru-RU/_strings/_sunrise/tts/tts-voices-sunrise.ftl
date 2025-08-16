@@ -98,4 +98,5 @@ tts-voice-name-crysis2-overlord-1 = (NEW) [Crysis 2] Overlord 1
 tts-voice-name-crysis2-overlord-2 = (NEW) [Crysis 2] Overlord 2
 tts-voice-name-dictor-vsevolod-kuznetsov = (NEW) [Диктор] Всеволод Кузнецов
 tts-voice-name-duke-nukem-forever = (NEW) Дюк Нюкем/Шрек
-tts-voice-name-crysis2-ai-uscaucasian-01 = (NEW) [Crysis 2] Оперативник 1
+tts-voice-name-crysis2-ai-uscaucasian-01 = (NEW) [Crysis 2] Оперативник 4
+tts-voice-name-crysis2-ai-blackops-04 = (NEW) [Crysis 2] Оперативник Blackops 04
