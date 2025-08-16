@@ -1,7 +1,7 @@
 device-pda-slot-component-slot-name-cartridge = Картридж
 default-program-name = Программа
 notekeeper-program-name = Заметки
-nano-task-program-name = NanoTask
+nano-task-program-name = НаноЗадачи
 news-read-program-name = Новости станции
 crew-manifest-program-name = Манифест экипажа
 crew-manifest-cartridge-loading = Загрузка...
@@ -55,7 +55,7 @@ nano-task-ui-new-task = Новая задача
 nano-task-ui-description-label = Описание:
 nano-task-ui-description-placeholder = Взять что-то важное
 nano-task-ui-requester-label = Запрашивающий:
-nano-task-ui-requester-placeholder = Иван Нанотрейзен
+nano-task-ui-requester-placeholder = Иван НаноТрейзен
 nano-task-ui-item-title = Редактировать задачу
 nano-task-printed-description = Описание: { $description }
 nano-task-printed-requester = Запрашивающий: { $requester }
