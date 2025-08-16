@@ -1594,6 +1594,7 @@
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
+      - NukeOpsUplink
       - LoneOpsUplink
       - AssaultOpsUplink
       - SyndieAgentUplink
