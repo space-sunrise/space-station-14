@@ -1743,26 +1743,28 @@ namespace Content.Client.Lobby.UI
             }
             var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
                 ? new List<Marking>()
-                : new()
+                : new List<Marking>()
                 {
                     new(
                         Profile.Appearance.HairStyleId,
                         new[] { Profile.Appearance.HairColor },
                         Profile.Appearance.HairMarkingEffect is { } hairExt
                             ? new List<MarkingEffect> { hairExt.Clone() }
-                            : null)
+                            : null
+                        ),
                 };
 
             var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
                 ? new List<Marking>()
-                : new()
+                : new List<Marking>()
                 {
                     new(
                         Profile.Appearance.FacialHairStyleId,
                         new[] { Profile.Appearance.FacialHairColor },
                         Profile.Appearance.FacialHairMarkingEffect is { } facialExt
                             ? new List<MarkingEffect> { facialExt.Clone() }
-                            : null)
+                            : null
+                        ),
                 };
 
             HairStylePicker.UpdateData(
