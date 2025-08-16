@@ -1393,7 +1393,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase, BaseSpeciesPickupable]
+  parent: [SimpleMobBase, StripableInventoryBase, BaseSpeciesPickupable] # Sunrise-Edit
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
