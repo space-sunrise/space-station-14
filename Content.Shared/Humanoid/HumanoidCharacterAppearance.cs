@@ -46,8 +46,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color eyeColor,
         Color skinColor,
         List<Marking> markings,
-        float width = 1, //Sunrise
-        float height = 1) //Sunrise
+        float width, //Sunrise
+        float height) //Sunrise
     {
         HairStyleId = hairStyleId;
         HairColor = ClampColor(hairColor);
