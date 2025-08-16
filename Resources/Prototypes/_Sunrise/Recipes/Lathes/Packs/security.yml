@@ -68,11 +68,13 @@
     - MagazinePistolSubMachineGunHP
     - MagazinePistolSubMachineGunFMJ
     - MagazinePistolSubMachineGunEmpty
+    - MagazinePistolSubMachineGunRubber
     # SMG Top Mounted
     - MagazinePistolSubMachineGunTopMounted # FMJ
     - MagazinePistolSubMachineGunTopMountedSP
     - MagazinePistolSubMachineGunTopMountedHP
     - MagazinePistolSubMachineGunTopMountedEmpty
+    - MagazinePistolSubMachineGunTopMountedRubber
     # Rifle
     - MagazineRifleSP
     - MagazineRifleHP

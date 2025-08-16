@@ -628,6 +628,20 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedRubber
+  result: MagazinePistolSubMachineGunTopMountedRubber
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunRubber
+  result: MagazinePistolSubMachineGunRubber
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePistolSubMachineGunTopMountedHP
   result: MagazinePistolSubMachineGunTopMountedHP
   materials:
