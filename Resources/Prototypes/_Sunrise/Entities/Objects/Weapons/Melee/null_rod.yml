@@ -1,4 +1,4 @@
-- type: entity #TODO: Добавить больше вариантов и сделать круговое меню
+- type: entity #TODO: Добавить больше вариантов и сделать круговое меню выбора
   name: null rod
   parent: BaseItem
   id: NullRod
