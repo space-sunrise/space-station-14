@@ -1594,7 +1594,9 @@
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
-      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+      - SyndieAgentUplink
   #Sunrise-end
 
 - type: listing
