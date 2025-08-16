@@ -1741,31 +1741,19 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
-            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-                ? new List<Marking>()
-                : new List<Marking>()
-                {
-                    new(
-                        Profile.Appearance.HairStyleId,
-                        new[] { Profile.Appearance.HairColor },
-                        Profile.Appearance.HairMarkingEffect is { } hairExt
-                            ? new List<MarkingEffect> { hairExt.Clone() }
-                            : null
-                        ),
-                };
 
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                ? new List<Marking>()
-                : new List<Marking>()
-                {
-                    new(
-                        Profile.Appearance.FacialHairStyleId,
-                        new[] { Profile.Appearance.FacialHairColor },
-                        Profile.Appearance.FacialHairMarkingEffect is { } facialExt
-                            ? new List<MarkingEffect> { facialExt.Clone() }
-                            : null
-                        ),
-                };
+            var hairMarking = CreateHairMarkings(
+                Profile.Appearance.HairStyleId,
+                HairStyles.DefaultHairStyle,
+                Profile.Appearance.HairColor,
+                Profile.Appearance.HairMarkingEffect);
+
+            var facialHairMarking = CreateHairMarkings(
+                Profile.Appearance.FacialHairStyleId,
+                HairStyles.DefaultFacialHairStyle,
+                Profile.Appearance.FacialHairColor,
+                Profile.Appearance.FacialHairMarkingEffect);
+
 
             HairStylePicker.UpdateData(
                 hairMarking,
@@ -1775,6 +1763,29 @@ namespace Content.Client.Lobby.UI
                 facialHairMarking,
                 Profile.Species,
                 1);
+        }
+
+        private static List<Marking> CreateHairMarkings(
+            string styleId,
+            string defaultStyleId,
+            Color color,
+            MarkingEffect? effect)
+        {
+            if (styleId == defaultStyleId)
+                return new List<Marking>();
+
+            var effects = effect is { } ext
+                ? new List<MarkingEffect> { ext.Clone() }
+                : null;
+
+            return new List<Marking>()
+            {
+                new(
+                    styleId,
+                    new[] { color },
+                    effects
+                )
+            };
         }
 
         private void UpdateCMarkingsHair()
