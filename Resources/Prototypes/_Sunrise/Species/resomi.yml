@@ -18,12 +18,14 @@
   youngAge: 50
   oldAge: 90
   maxAge: 140
-  minWidth: 0.9
+  minWidth: 0.93
   defaultWidth: 1
-  maxWidth: 1.2
-  minHeight: 0.8
+  maxWidth: 1.07
+  minHeight: 0.93
   defaultHeight: 1
-  maxHeight: 1.1
+  maxHeight: 1.07
+  minHeightCm: 125
+  maxHeightCm: 165
   standardWeight: 40
   standardDensity: 17
 
