@@ -1,7 +1,5 @@
 ent-WeaponAdvancedTaser = hybrid taser
     .desc = A low-capacity, energy-based stun gun used by security teams to subdue targets at range.
-ent-WeaponMiniEnergyGun = miniature energy gun
-    .desc = An energy gun capable of switching between lethal and debilitating lasers.
 ent-WeaponDominator = dominator
     .desc = A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
 ent-WeaponMultiphaseGun = X-01 multiphase energy gun
