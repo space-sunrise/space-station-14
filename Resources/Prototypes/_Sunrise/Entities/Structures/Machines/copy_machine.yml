@@ -1,0 +1,111 @@
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: CopyMachine
+  name: copy machine
+  description: Bureaucratic perfection. Stores a database of all Nanotrasen documents, and lets you print them as long as you have paper.
+  components:
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/copy_machine.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: idle
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Machine
+    board: CopyMachineMachineCircuitboard
+  - type: CopyMachine
+    solution: inc
+    copySlot:
+      insertSound: /Audio/Effects/packetrip.ogg
+      ejectSound: /Audio/Effects/packetrip.ogg
+      whitelist:
+        tags:
+        - Paper
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - SheetOfficePaper
+    storage:
+      officePaper: 0
+    dropOnDeconstruct: false
+  - type: SolutionContainerManager
+    solutions:
+      inc:
+        maxVol: 250
+  - type: Spillable
+    solution: inc
+  - type: RefillableSolution
+    solution: inc
+  - type: ExaminableSolution
+    solution: inc
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ContainerContainer
+    containers:
+      paper_copy: !type:ContainerSlot
+  - type: ItemSlots
+  - type: WiresPanel
+  - type: ActivatableUI
+    key: enum.CopyMachineUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.CopyMachineUiKey.Key:
+        type: CopyMachineBoundUserInterface
+  - type: Pullable
+  - type: StaticPrice
+    price: 500
+  - type: Strap
+    handBuckle: false
+    position: Stand
+    buckleOffsets:
+    - "0,-0.05"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: CopyMachine
+  id: CopyMachineFilled
+  name: copy machine
+  suffix: Filled
+  components:
+  - type: MaterialStorage
+    storage:
+      officePaper: 3000
+  - type: SolutionContainerManager
+    solutions:
+      inc:
+        reagents:
+        - ReagentId: Inc
+          Quantity: 30

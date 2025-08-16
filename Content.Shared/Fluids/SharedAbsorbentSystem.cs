@@ -76,7 +76,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
         var tileCoordinates = _mapSystem.CoordinatesToTile(gridUid.Value, grid, coordinates);
         var tileRef = _mapSystem.GetTileRef(gridUid.Value, grid, tileCoordinates);
-        var entities = _lookup.GetLocalEntitiesIntersecting(tileRef, 0);
+        var entities = _lookup.GetLocalEntitiesIntersecting(tileRef, ent.Comp.FootprintEnlargement);
 
         foreach (var entity in entities)
         {

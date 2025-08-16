@@ -199,6 +199,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int StandardDensity = 120;
+
+    [DataField]
+    public bool StationRecordsHidden;
     //Sunrise end
 
 
@@ -207,7 +210,7 @@ public sealed partial class SpeciesPrototype : IPrototype
         new SpriteSpecifier.Rsi(new ResPath("/Textures/Mobs/Species/Human/parts.rsi"), "full");
 
     [DataField]
-    public string ButtScanTexture = "/Textures/_Sunrise/ButtsScans/human.png";
+    public SpriteSpecifier ButtScan = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/CopyMachine/butts_scans.rsi"), "human");
 }
 
 public enum SpeciesNaming : byte

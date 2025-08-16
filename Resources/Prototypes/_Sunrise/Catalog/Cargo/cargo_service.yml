@@ -1,19 +1,19 @@
 - type: cargoProduct
-  id: ServicePrinterDocMachine
+  id: ServiceCopyMachineMachine
   icon:
-    sprite: _Sunrise/Structures/Machines/printer.rsi
+    sprite: _Sunrise/Structures/Machines/copy_machine.rsi
     state: icon
-  product: CrateServicePrinterDoc
+  product: CrateServiceCopyMachine
   cost: 2000
   category: cargoproduct-category-name-service
   group: market
 
 - type: cargoProduct
-  id: CrateServicePrinterDocRestock
+  id: CrateServiceCopyMachineRestock
   icon:
     sprite: Objects/Misc/pens.rsi
     state: pen
-  product: CrateServicePrinterDocRestock
+  product: CrateServiceCopyMachineRestock
   cost: 1000
   category: cargoproduct-category-name-service
   group: market

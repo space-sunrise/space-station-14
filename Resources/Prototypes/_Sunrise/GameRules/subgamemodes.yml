@@ -23,3 +23,5 @@
       lateJoinAdditional: true
       mindRoles:
       - MindRoleVampire
+  - type: DynamicRuleCost
+    cost: 150
