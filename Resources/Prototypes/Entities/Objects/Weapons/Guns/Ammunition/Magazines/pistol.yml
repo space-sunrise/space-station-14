@@ -327,9 +327,9 @@
 # Sunrise-Start
 
 - type: entity
+  parent: MagazinePistolSubMachineGunTopMounted
   id: MagazinePistolSubMachineGunTopMountedRubber
   name: WT550 magazine (.35 auto top-mounted rubber)
-  parent: MagazinePistolSubMachineGunTopMounted
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
@@ -345,13 +345,14 @@
   - type: Item
     inhandVisuals:
       left:
-      - state: inhand-left-mag
+      - state: inhand-left
       - state: inhand-left-stripe
         color: "#00c1b8"
       right:
-      - state: inhand-right-mag
+      - state: inhand-right
       - state: inhand-right-stripe
         color: "#00c1b8"
+
 
 - type: entity
   parent: MagazinePistolSubMachineGunTopMounted

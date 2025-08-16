@@ -8,7 +8,7 @@
   },
   "states": [
     {
-      "name": "cybershield",
+      "name": "cybershield-on",
       "delays": [
         [
           0.3,
@@ -17,13 +17,21 @@
       ]
     },
     {
-      "name": "cybershieldoff",
+      "name": "cybershield-icon",
       "delays": [
         [
           0.3,
           0.3
         ]
       ]
+    },
+    {
+      "name": "inhand-right-shield",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-shield",
+      "directions": 4
     }
   ]
 }

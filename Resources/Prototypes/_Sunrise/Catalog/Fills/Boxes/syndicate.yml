@@ -288,13 +288,11 @@
   components:
   - type: Storage
     grid:
-    - 0,0,1,3
+    - 0,0,1,1
   - type: StorageFill
     contents:
     - id: RightArmCyberMantisBlade
     - id: LeftArmCyberMantisBlade
-    - id: RightHandCyber
-    - id: LeftHandCyber
   - type: Sprite
     layers:
     - state: box_of_doom_big

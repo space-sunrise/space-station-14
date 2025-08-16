@@ -367,7 +367,7 @@
 #Max-Guard Mantis Blade
 - type: entity
   id: LeftArmCyberMantisBladeMaxGuard
-  name: "left mantis blade arm"
+  name: "left Max-Guard blade arm"
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
   components:
     - type: BaseLayerId
@@ -392,7 +392,7 @@
 
 - type: entity
   id: RightArmCyberMantisBladeMaxGuard
-  name: "right mantis blade arm"
+  name: "right Max-Guard blade arm"
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
   components:
     - type: BaseLayerId
