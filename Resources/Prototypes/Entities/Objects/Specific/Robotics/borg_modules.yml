@@ -824,6 +824,8 @@
     - state: icon-pen
   - type: ItemBorgModule
     items:
+    - BorgShakerSoda
+    - BorgShakerBooze
     - Pen
     #- BooksBag (Add back when hand whitelisting exists, at the moment they can only use it like an orebag.)
     - HandLabeler
@@ -848,6 +850,7 @@
     - SynthesizerInstrument
     - ElectricGuitarInstrument
     - SaxophoneInstrument
+    - SuperSynthesizerInstrument
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
