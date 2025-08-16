@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared._Sunrise.MarkingEffects;
 using System.Numerics;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -24,6 +25,22 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public Color FacialHairColor { get; set; } = Color.Black;
 
+    // sunrise gradient edit start
+
+    [DataField]
+    public MarkingEffectType HairMarkingEffectType { get; set; } = MarkingEffectType.Color;
+
+    [DataField]
+    public MarkingEffect? HairMarkingEffect { get; set; }
+
+    [DataField]
+    public MarkingEffectType FacialHairMarkingEffectType { get; set; } = MarkingEffectType.Color;
+
+    [DataField]
+    public MarkingEffect? FacialHairMarkingEffect { get; set; }
+
+    // sunrise gradient edit end
+
     [DataField]
     public Color EyeColor { get; set; } = Color.Black;
 
@@ -46,6 +63,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color eyeColor,
         Color skinColor,
         List<Marking> markings,
+        //sunrise gradient start
+        MarkingEffectType hairMarkingEffectType = MarkingEffectType.Color,
+        MarkingEffect? hairMarkingEffect = null,
+        MarkingEffectType facialHairMarkingEffectType = MarkingEffectType.Color,
+        MarkingEffect? facialHairMarkingEffect = null,
+        //sunrise gradient end
         float width, //Sunrise
         float height) //Sunrise
     {
@@ -56,9 +79,18 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         EyeColor = ClampColor(eyeColor);
         SkinColor = ClampColor(skinColor);
         Markings = markings;
+        //sunrise gradient start
+        HairMarkingEffectType = hairMarkingEffectType;
+        HairMarkingEffect = hairMarkingEffect;
+        FacialHairMarkingEffectType = facialHairMarkingEffectType;
+        FacialHairMarkingEffect = facialHairMarkingEffect;
         Width = width; //Sunrise
         Height = height; //Sunrise
+        //sunrise gradient end
     }
+
+    public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairMarkingEffectType, other.HairMarkingEffect, other.FacialHairMarkingEffectType, other.FacialHairMarkingEffect, other.Width, other.Height); // sunrise gradient edit
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
         this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Width, other.Height)
@@ -68,50 +100,49 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
 
-    public HumanoidCharacterAppearance WithHairColor(Color newColor)
+    public HumanoidCharacterAppearance WithHairColor(Color newColor, MarkingEffect? newExtendedColor = null)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newExtendedColor?.Type ?? HairMarkingEffectType, newExtendedColor ?? HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height);
     }
 
-    public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
+    public HumanoidCharacterAppearance WithFacialHairColor(Color newColor, MarkingEffect? newFacialExtendedColor = null)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, Width, Height);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, newFacialExtendedColor?.Type ?? FacialHairMarkingEffectType, newFacialExtendedColor ?? FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, Width, Height);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, Width, Height);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, Width, Height);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
 
-    //Sunrise start
-    public HumanoidCharacterAppearance WithWidth(float newWidth)
+    // sunrise gradient edit start
+    public HumanoidCharacterAppearance WithHairExtendedColor(MarkingEffect? newExtendedColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newWidth, Height);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newExtendedColor?.Type ?? MarkingEffectType.Color, newExtendedColor, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, Height); // sunrise gradient edit
     }
-
-    public HumanoidCharacterAppearance WithHeight(float newHeight)
+    public HumanoidCharacterAppearance WithFacialHairExtendedColor(MarkingEffect? newFacialExtendedColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, newHeight);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, newFacialExtendedColor?.Type ?? MarkingEffectType.Color, newFacialExtendedColor, Width, Height); // sunrise gradient edit
     }
-    //Sunrise end
+    // sunrise gradient edit end
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
@@ -135,6 +166,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             skinColor,
             new (),
+            // sunrise gradient edit start
+            MarkingEffectType.Color,
+            null,
+            MarkingEffectType.Color,
+            null,
+            // sunrise gradient edit end
             speciesPrototype.DefaultWidth, //Sunrise
             speciesPrototype.DefaultHeight //Sunrise
         );
@@ -201,8 +238,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
         //Sunrise end
 
-        // at the end of all that, we should have new values for each of these, so we set the character appearance to these new values.
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, newMarkings, newWidth, newHeight); // Sunrise edit
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), MarkingEffectType.Color, null, MarkingEffectType.Color, null, newWidth, newHeight);
 
         float RandomizeColor(float channel)
         {
@@ -278,6 +314,24 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             markingSet.FilterSponsor(sponsorPrototypes, markingManager); // Sunrise-Sponsors
         }
 
+        // sunrise gradient start
+        MarkingEffect? hairExtendedColor = null;
+        if (appearance.HairMarkingEffect != null)
+        {
+            hairExtendedColor = appearance.HairMarkingEffect;
+            foreach (var (key, value) in hairExtendedColor.Colors)
+                hairExtendedColor.Colors[key] = ClampColor(value);
+        }
+
+        MarkingEffect? facialHairExtendedColor = null;
+        if (appearance.FacialHairMarkingEffect != null)
+        {
+            facialHairExtendedColor = appearance.FacialHairMarkingEffect;
+            foreach (var (key, value) in facialHairExtendedColor.Colors)
+                facialHairExtendedColor.Colors[key] = ClampColor(value);
+        }
+        // sunrise gradient end
+
         return new HumanoidCharacterAppearance(
             hairStyleId,
             hairColor,
@@ -286,10 +340,13 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             eyeColor,
             skinColor,
             markingSet.GetForwardEnumerator().ToList(),
+            appearance.HairMarkingEffectType,
+            hairExtendedColor,
+            appearance.FacialHairMarkingEffectType,
+            facialHairExtendedColor,
             width,
             height);
     }
-
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
     {
         if (maybeOther is not HumanoidCharacterAppearance other) return false;
@@ -300,6 +357,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        // sunrise gradient edit start
+        if (!HairMarkingEffectType.Equals(other.HairMarkingEffectType)) return false;
+        if (!Equals(HairMarkingEffect, other.HairMarkingEffect)) return false;
+        if (!FacialHairMarkingEffectType.Equals(other.FacialHairMarkingEffectType)) return false;
+        if (!Equals(FacialHairMarkingEffect, other.FacialHairMarkingEffect)) return false;
+        // sunrise gradient edit end
         if (Width != other.Width) return false; //Sunrise
         if (Height != other.Height) return false; //Sunrise
         return true;
@@ -316,6 +379,11 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                EyeColor.Equals(other.EyeColor) &&
                SkinColor.Equals(other.SkinColor) &&
                Markings.SequenceEqual(other.Markings) &&
+               // sunrise gradient edit start
+               HairMarkingEffectType.Equals(other.HairMarkingEffectType) &&
+               Equals(HairMarkingEffect, other.HairMarkingEffect) &&
+               FacialHairMarkingEffectType.Equals(other.FacialHairMarkingEffectType) &&
+               Equals(FacialHairMarkingEffect, other.FacialHairMarkingEffect) &&
                Width == other.Width && //starlight
                Height == other.Height;
     }
