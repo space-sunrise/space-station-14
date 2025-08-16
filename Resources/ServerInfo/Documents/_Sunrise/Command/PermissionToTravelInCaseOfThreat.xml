@@ -1,6 +1,4 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_cmd.png" scale=1]
-
 [bold]Станция: {stationName}[/bold]
 [bold]Форма НТ/КОМ-РППУ[/bold]
 [head=3]Разрешение на передвижение при угрозе[/head]

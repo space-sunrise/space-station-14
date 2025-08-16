@@ -32,10 +32,13 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 // sunrise-start
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Server.Containers;
 using Content.Server.Storage.EntitySystems;
+using Robust.Shared.Utility;
+
 // sunrise-end
 
 namespace Content.Server.Fax;
@@ -313,8 +316,10 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperImageData, out SpriteSpecifier? imageContent);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperImageScaleData, out Vector2 scaleImage);
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false);
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, imageContent, scaleImage);
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -442,7 +447,7 @@ public sealed class FaxSystem : EntitySystem
 
         var name = Loc.GetString("fax-machine-printed-paper-name");
 
-        var printout = new FaxPrintout(args.Content, name, args.Label, prototype);
+        var printout = new FaxPrintout(args.Content, name, args.Label, prototype, imageContent: args.ImageContent, imageScale: args.ImageScale);
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
 
@@ -487,7 +492,9 @@ public sealed class FaxSystem : EntitySystem
                                        metadata.EntityPrototype?.ID ?? component.PrintPaperId,
                                        paper.StampState,
                                        paper.StampedBy,
-                                       paper.EditingDisabled);
+                                       paper.EditingDisabled,
+                                       paper.ImageContent,
+                                       paper.ImageScale);
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -609,6 +616,10 @@ public sealed class FaxSystem : EntitySystem
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
+            // Sunrise-Start
+            if (printout.ImageContent != null)
+                _paperSystem.SetImageContent((printed, paper), printout.ImageContent, printout.ImageScale);
+            // Sunrise-End
 
             // Apply stamps
             if (printout.StampState != null)
@@ -666,6 +677,10 @@ public sealed class FaxSystem : EntitySystem
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {
                         _paperSystem.SetContent((printed.Value, paper), printout.Content);
+                        // Sunrise-Start
+                        if (printout.ImageContent != null)
+                            _paperSystem.SetImageContent((printed.Value, paper), printout.ImageContent, printout.ImageScale);
+                        // Sunrise-End
 
                         // Apply stamps
                         if (printout.StampState != null)

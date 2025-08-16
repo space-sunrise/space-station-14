@@ -11,6 +11,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 using Robust.Client.UserInterface.RichText;
 using Content.Client.UserInterface.RichText;
+using Robust.Client.GameObjects;
 using Robust.Shared.Input;
 
 namespace Content.Client.Paper.UI
@@ -20,6 +21,7 @@ namespace Content.Client.Paper.UI
     {
         [Dependency] private readonly IInputManager _inputManager = default!;
         [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
 
@@ -47,8 +49,7 @@ namespace Content.Client.Paper.UI
             typeof(HeadingTag),
             typeof(ItalicTag),
             typeof(MonoTag),
-            typeof(CenterTag),
-            typeof(TextureTag) // Не дай бог игроки узнают что можно использовать данный ТЭГ для рофлов.
+            typeof(CenterTag)
         };
 
         public event Action<string>? OnSaved;
@@ -287,6 +288,17 @@ namespace Content.Client.Paper.UI
 
             WrittenTextLabel.Visible = !isEditing && state.Text.Length > 0;
             BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0;
+
+            // Sunrise-Start
+            var sprite = _entitySystemManager.GetEntitySystem<SpriteSystem>();
+            if (state.ImageContent != null)
+            {
+                ImageContent.Texture = sprite.Frame0(state.ImageContent);
+                if (state.ImageScale != null)
+                    ImageContent.TextureScale = state.ImageScale.Value;
+                BlankPaperIndicator.Visible = false;
+            }
+            // Sunrise-End
 
             StampDisplay.RemoveAllChildren();
             StampDisplay.RemoveStamps();

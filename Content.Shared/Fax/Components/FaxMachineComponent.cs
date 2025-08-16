@@ -1,9 +1,11 @@
+using System.Numerics;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Paper;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Fax.Components;
 
@@ -170,11 +172,18 @@ public sealed partial class FaxPrintout
     [DataField]
     public bool Locked { get; private set; }
 
+    // Sunrise-Start
+    [DataField]
+    public SpriteSpecifier? ImageContent { get; set; }
+    [DataField]
+    public Vector2? ImageScale { get; set; }
+    // Sunrise-End
+
     private FaxPrintout()
     {
     }
 
-    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false)
+    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false, SpriteSpecifier? imageContent = null, Vector2? imageScale = null)
     {
         Content = content;
         Name = name;
@@ -183,5 +192,9 @@ public sealed partial class FaxPrintout
         StampState = stampState;
         StampedBy = stampedBy ?? new List<StampDisplayInfo>();
         Locked = locked;
+        // Sunrise-Start
+        ImageContent = imageContent;
+        ImageScale = imageScale;
+        // Sunrise-End
     }
 }

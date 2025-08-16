@@ -10,7 +10,6 @@
   dollPrototype: MobXenoDummy
   skinColoration: Hues
   sponsorOnly: false
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
   defaultHeight: 1.1
   defaultWidth: 1.2
   maxHeight: 1.15
@@ -19,6 +18,9 @@
   minWidth: 1.05
   minHeightCm: 155
   maxHeightCm: 215
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
 
 - type: bodyType
   id: HumanoidXenoNormal

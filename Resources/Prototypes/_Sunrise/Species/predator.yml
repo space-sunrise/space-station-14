@@ -10,7 +10,6 @@
   dollPrototype: MobPredatorDummy
   skinColoration: None
   sponsorOnly: false
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png
   defaultHeight: 1.05
   defaultWidth: 1.1
   maxHeight: 1.15
@@ -19,6 +18,9 @@
   minWidth: 1
   minHeightCm: 155
   maxHeightCm: 205
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
 
 - type: bodyType
   id: PredatorNormal
