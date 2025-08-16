@@ -1,6 +1,4 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_med.png" scale=1]
-
 [bold]Станция: {stationName}[/bold]
 [bold]Форма НТ/МЕД-ЗСЗ[/bold]
 [head=2]Заключение о состоянии здоровья[/head]

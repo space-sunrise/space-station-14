@@ -1,6 +1,4 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_cmd.png" scale=1]
-
 [bold]Станция: {stationName}[/bold]
 [bold]Форма СНД/КОМ-ЗУВАЛ[/bold]
 [head=2]Заявление об увольнении[/head]

@@ -1,6 +1,4 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_mag.png" scale=1]
-
 [bold]Станция: {stationName}[/bold]
 [bold]Форма НТ/СУД-ЗКЛ[/bold]
 [head=2]Заключение суда[/head]

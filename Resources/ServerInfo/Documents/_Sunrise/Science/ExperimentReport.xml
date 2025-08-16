@@ -1,6 +1,4 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_rnd.png" scale=1]
-
 [bold]Станция: {stationName}[/bold]
 [bold]Форма НТ/НИО-ОЭКС[/bold]
 [head=2]Отчет об эксперименте[/head]

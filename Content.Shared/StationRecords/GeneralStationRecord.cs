@@ -1,4 +1,9 @@
+using Content.Shared._Sunrise.Helpers;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Preferences;
+using Content.Shared.Roles;
 using Robust.Shared.Enums;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.StationRecords;
@@ -69,6 +74,43 @@ public sealed record GeneralStationRecord
     [DataField]
     public string? DNA;
 
+    // Sunrise added start
     [DataField]
-    public bool Silicon; // Sunrise-Edit
+    public bool Silicon;
+
+    [DataField]
+    public HumanoidCharacterProfile? HumanoidProfile;
+
+    [DataField]
+    public string Personality = string.Empty;
+
+    [NonSerialized] private const int MaxNameLength = 64;
+    [NonSerialized] private const int MaxAge = 10000;
+    [NonSerialized] private const int MaxFingerprintLength = 32;
+    [NonSerialized] private const int MaxDnaLength = 16;
+    [NonSerialized] private const int MaxPersonalityLength = 1024;
+
+    [NonSerialized] private static readonly ProtoId<JobPrototype> FallbackJobPrototype = "Passenger";
+    [NonSerialized] private static readonly ProtoId<SpeciesPrototype> FallbackSpeciesPrototype = "Human";
+
+    /// <summary>
+    /// Санитизирует данные, требуется для механики изменения и сохранения данных в консоли станционного учета.
+    /// </summary>
+    public static GeneralStationRecord SanitizeRecord(GeneralStationRecord original, in IPrototypeManager prototype)
+    {
+        var updated = original with
+        {
+            Name = original.Name.SanitizeInput(MaxNameLength),
+            Age = original.Age <= MaxAge ? original.Age : MaxAge,
+            Species = prototype.TryIndex<SpeciesPrototype>(original.Species, out var species) ? species.ID : FallbackSpeciesPrototype,
+            JobPrototype = prototype.TryIndex<JobPrototype>(original.JobPrototype, out var job) ? job.ID : FallbackJobPrototype,
+            Fingerprint = original.Fingerprint.SanitizeInput(MaxFingerprintLength),
+            DNA = original.DNA.SanitizeInput(MaxDnaLength),
+            Personality = original.Personality.SanitizeInput(MaxPersonalityLength),
+        };
+
+        return updated;
+    }
+
+    // Sunrise added end
 }

@@ -179,6 +179,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             Fingerprint = mobFingerprint,
             DNA = dna,
             Silicon = silicon, // Sunrise-Edit
+            HumanoidProfile = profile, // Sunrise edit
         };
 
         var key = AddRecordEntry(station, record);

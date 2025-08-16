@@ -8,7 +8,9 @@
   markingLimits: MobSwineMarkingLimits
   dollPrototype: MobSwineDummy
   skinColoration: None
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # SUNRISE-TODO: Спрайт жопы свинов
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human # SUNRISE-TODO: Спрайт жопы свинов
 
 - type: bodyType
   id: SwineNormal

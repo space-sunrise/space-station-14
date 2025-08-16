@@ -14,7 +14,10 @@
   naming: First
   sexes:
   - Unsexed
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/vox.png # Sunrise-Edit
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human # Sunrise-Edit
 
 - type: bodyType
   id: VoxNormal

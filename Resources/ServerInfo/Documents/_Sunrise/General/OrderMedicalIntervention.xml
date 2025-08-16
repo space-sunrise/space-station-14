@@ -1,6 +1,4 @@
 <Document>
-[tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header.png" scale=1]
-
 [bold]Станция: {stationName}[/bold]
 [bold]Форма НТ/МЕД[/bold]
 [head=3]Приказ о медицинском вмешательстве[/head]
