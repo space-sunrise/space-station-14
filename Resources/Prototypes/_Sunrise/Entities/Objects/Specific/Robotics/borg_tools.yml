@@ -879,7 +879,7 @@
     injectOnly: true
 
 - type: entity
-  name: раздатчик сервисного киборга (газировка)
+  name: service cyborg dispenser (soda)
   parent: BaseBorgShaker
   id: BorgShakerSoda
   categories: [ HideSpawnMenu ]
@@ -932,7 +932,7 @@
       Quantity: 1
 
 - type: entity
-  name: раздатчик сервисного киборга (алкоголь)
+  name: service cyborg dispenser (booze)
   parent: BaseBorgShaker
   id: BorgShakerBooze
   categories: [ HideSpawnMenu ]
@@ -973,8 +973,8 @@
 - type: entity
   parent: BaseItem
   id: BaseBorgShaker
-  name: раздатчик сервисного киборга
-  description: Раздатчик, который может переключаться между несколькими реагентами.
+  name: service cyborg dispenser
+  description: A dispenser that can switch between several reagents.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
