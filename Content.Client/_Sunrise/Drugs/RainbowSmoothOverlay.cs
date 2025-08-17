@@ -20,6 +20,8 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 	[Dependency] private readonly IOverlayManager _overlayMan = default!;
 	[Dependency] private readonly IRobustRandom _random = default!;
 	[Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    private StatusEffectsSystem _status = default!;
 
 	private RainbowSmoothOverlay _overlay = default!;
 	private bool _overlayAdded;
@@ -32,13 +34,17 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 		SubscribeLocalEvent<SeeingRainbowsWeakStatusEffectComponent, StatusEffectRelayedEvent<LocalPlayerAttachedEvent>>(OnPlayerAttached);
 		SubscribeLocalEvent<SeeingRainbowsWeakStatusEffectComponent, StatusEffectRelayedEvent<LocalPlayerDetachedEvent>>(OnPlayerDetached);
 		_overlay = new();
+        _status = _sysMan.GetEntitySystem<StatusEffectsSystem>();
 	}
 
 	public override void Shutdown()
 	{
 		base.Shutdown();
-		_overlayMan.RemoveOverlay(_overlay);
-		_overlayAdded = false;
+        if (_overlayAdded)
+        {
+            _overlayMan.RemoveOverlay(_overlay);
+            _overlayAdded = false;
+        }
 	}
 
 	private void OnRemoved(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
@@ -60,8 +66,11 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 		if (_player.LocalEntity != args.Target)
 			return;
 		_overlay.Phase = _random.NextFloat(MathF.Tau);
-		// Кэшируем время окончания эффекта (фиксированная длительность)
-		_overlay.CachedEndTime = _timing.CurTime + TimeSpan.FromSeconds(60.0f);
+        // Кэшируем реальное время окончания эффекта
+        if (_status.TryGetEffectsEndTimeWithComp<SeeingRainbowsWeakStatusEffectComponent>(args.Target, out var endTime))
+            _overlay.CachedEndTime = endTime ?? TimeSpan.MaxValue;
+        else
+            _overlay.CachedEndTime = _timing.CurTime + TimeSpan.FromSeconds(60.0f); // fallback
 		if (!_overlayAdded)
 		{
 			_overlayMan.AddOverlay(_overlay);
@@ -71,27 +80,30 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 
 	private void OnPlayerAttached(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerAttachedEvent> args)
 	{
-		// Защита от ретрансляции событий нелокальной цели
-		if (_player.LocalEntity != ent)
-			return;
-		if (!_overlayAdded)
-		{
-			_overlayMan.AddOverlay(_overlay);
-			_overlayAdded = true;
-		}
+        // Защита от ретрансляции событий нелокальной цели
+        if (_player.LocalEntity != args.Args.Entity)
+            return;
+        if (!_overlayAdded)
+        {
+            _overlayMan.AddOverlay(_overlay);
+            _overlayAdded = true;
+        }
+        // Восстановить CachedEndTime если возможно
+        if (_status.TryGetEffectsEndTimeWithComp<SeeingRainbowsWeakStatusEffectComponent>(args.Args.Entity, out var endTime))
+            _overlay.CachedEndTime = endTime ?? TimeSpan.MaxValue;
 	}
 
 	private void OnPlayerDetached(Entity<SeeingRainbowsWeakStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerDetachedEvent> args)
 	{
-		if (_player.LocalEntity != ent)
-			return;
-		_overlay.Intoxication = 0;
-		_overlay.TimeTicker = 0;
-		if (_overlayAdded)
-		{
-			_overlayMan.RemoveOverlay(_overlay);
-			_overlayAdded = false;
-		}
+        if (_player.LocalEntity != args.Args.Entity)
+            return;
+        _overlay.Intoxication = 0;
+        _overlay.TimeTicker = 0;
+        if (_overlayAdded)
+        {
+            _overlayMan.RemoveOverlay(_overlay);
+            _overlayAdded = false;
+        }
 	}
 }
 

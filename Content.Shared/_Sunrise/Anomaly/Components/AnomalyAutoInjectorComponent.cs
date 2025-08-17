@@ -25,4 +25,5 @@ public sealed partial class UsedAnomalyAutoInjectorComponent : Component
 {
 	[DataField("spriteStateFull"), ViewVariables] public string SpriteStateFull = "anomagen";
 	[DataField("spriteStateEmpty"), ViewVariables] public string SpriteStateEmpty = "anomagen_empty";
+	[DataField("spriteLayerName"), ViewVariables] public string SpriteLayerName = "base";
 }

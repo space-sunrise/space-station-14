@@ -7,7 +7,6 @@ namespace Content.Client._Sunrise.Anomaly;
 
 public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {
-    private const string SpriteLayerName = "base";
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public override void Initialize()
@@ -29,8 +28,9 @@ public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 
     private void SetSpriteState(EntityUid uid, string state)
     {
-        if (_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite) &&
-            sprite.LayerMapTryGet(SpriteLayerName, out var layer))
+        if (TryComp<UsedAnomalyAutoInjectorComponent>(uid, out var comp) &&
+            TryComp<SpriteComponent>(uid, out var sprite) &&
+            sprite.LayerMapTryGet(comp.SpriteLayerName, out var layer))
         {
             sprite.LayerSetState(layer, state);
         }
