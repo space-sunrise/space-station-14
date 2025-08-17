@@ -179085,17 +179085,6 @@ entities:
       parent: 2
     - type: Item
       heldPrefix: disabler
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 60
-        hitscanProto: BulletDisabler
-        projectileProto: null
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 60
-      proto: BulletDisabler
   - uid: 27275
     components:
     - type: Transform
@@ -179103,17 +179092,6 @@ entities:
       parent: 2
     - type: Item
       heldPrefix: disabler
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 60
-        hitscanProto: BulletDisabler
-        projectileProto: null
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 60
-      proto: BulletDisabler
 - proto: WeaponEnergyGunMini
   entities:
   - uid: 27276
@@ -179121,56 +179099,23 @@ entities:
     - type: Transform
       pos: -68.560646,7.4587765
       parent: 2
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
-        projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
   - uid: 27277
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -51.938316,-7.3348694
       parent: 2
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
-        projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
   - uid: 27278
     components:
     - type: Transform
       pos: -51.23091,0.47285366
       parent: 2
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
-        projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
 - proto: WeaponEnergyGunTactical
   entities:
   - uid: 27279
@@ -179180,17 +179125,6 @@ entities:
       parent: 2
     - type: Item
       heldPrefix: disabler
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 49
-        hitscanProto: BulletDisablerSmg
-        projectileProto: null
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 49
-      proto: BulletDisablerSmg
 - proto: WeaponEnergyTurretAI
   entities:
   - uid: 27280

@@ -9,9 +9,7 @@
         prob: 0.25
       - id: ClothingMaskGasBlueShield
       - id: ClothingHeadsetAltCommand
-      - id: HandheldCrewMonitor # Sunrise-TODO: Мониторинг командования.
-      - id: TrackingImplanter
-        amount: 8
+      - id: HandheldBSOCrewMonitor
 
 - type: entity
   id: LockerBlueshieldFilledHardsuit
@@ -25,8 +23,6 @@
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingMaskGasBlueShield
-    - id: TrackingImplanter
-      amount: 8
     - id: ClothingOuterHardsuitBlueShield
     - id: OxygenTankFilled
     - id: ClothingMaskBreathMedicalSecurity
@@ -41,7 +37,7 @@
   - type: StorageFill
     contents:
     - id: WeaponEnergyGunMultiphase
-    - id: WeaponRifleLecterMk2
+    - id: WeaponRifleM16A4
     - id: MagazineRifleSP
       amount: 2
     - id: MagazineRifleFMJ

@@ -765,7 +765,6 @@ EngineeringTechFabCircuitboard: null
 WeaponPistolDeagle: null #Пока не обновят кабинеты ГСБ на картах.
 MagazineDeagle: null
 MagazineMagnum: null
-GunSafeBlueShield: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
 SuitStorageBlueShield: null
 LockerBlueShieldOfficerFilled: null
@@ -826,3 +825,5 @@ MagazineBoxMagnum: MagazineBoxMagnumSP
 SpeedLoaderMagnum: SpeedLoaderMagnumSP
 MagazineBoxRifle: MagazineBoxRifleSP
 # Sunrise-End
+PrinterDoc: CopyMachineFilled
+PrinterDocFlatpack: CopyMachineFlatpack

@@ -1,382 +1,571 @@
 - type: docTemplate
   id: Appeal
   name: doc-template-appeal-name
-  content: /ServerInfo/Documents/General/Appeal.xml
+  content: /ServerInfo/Documents/_Sunrise/General/Appeal.xml
   component: General
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ApplicationAccess
   name: doc-template-application-access-name
-  content: /ServerInfo/Documents/Command/ApplicationAccess.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ApplicationAccess.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ApplicationAppointmentInterim
   name: doc-template-application-appointment-interim-name
-  content: /ServerInfo/Documents/Command/ApplicationAppointmentInterim.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ApplicationAppointmentInterim.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ApplicationEmployment
   name: doc-template-application-employment-name
-  content: /ServerInfo/Documents/Command/ApplicationEmployment.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ApplicationEmployment.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ApplicationEquipment
   name: doc-template-application-equipment-name
-  content: /ServerInfo/Documents/Command/ApplicationEquipment.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ApplicationEquipment.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: Certificate
   name: doc-template-certificate-name
-  content: /ServerInfo/Documents/Command/Certificate.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/Certificate.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: CertificateAdvancedTraining
   name: doc-template-certificate-advanced-training-name
-  content: /ServerInfo/Documents/Command/CertificateAdvancedTraining.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/CertificateAdvancedTraining.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: CertificateOffense
   name: doc-template-certificate-offense-name
-  content: /ServerInfo/Documents/Security/CertificateOffense.xml
+  content: /ServerInfo/Documents/_Sunrise/Security/CertificateOffense.xml
   component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ClosingIndictment
   name: doc-template-closing-indictment-name
-  content: /ServerInfo/Documents/Security/ClosingIndictment.xml
+  content: /ServerInfo/Documents/_Sunrise/Security/ClosingIndictment.xml
   component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ComplaintOffense
   name: doc-template-complaint-offense-name
-  content: /ServerInfo/Documents/Security/ComplaintOffense.xml
+  content: /ServerInfo/Documents/_Sunrise/Security/ComplaintOffense.xml
   component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ComplaintViolationLaborRules
   name: doc-template-complaint-violation-labor-rules-name
-  content: /ServerInfo/Documents/Justice/ComplaintViolationLaborRules.xml
+  content: /ServerInfo/Documents/_Sunrise/Justice/ComplaintViolationLaborRules.xml
   component: Justice
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ConditionReport
   name: doc-template-condition-report-name
-  content: /ServerInfo/Documents/Engineering/ConditionReport.xml
+  content: /ServerInfo/Documents/_Sunrise/Engineering/ConditionReport.xml
   component: Engineering
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ConstructionPermit
   name: doc-template-construction-permit-name
-  content: /ServerInfo/Documents/Engineering/ConstructionPermit.xml
+  content: /ServerInfo/Documents/_Sunrise/Engineering/ConstructionPermit.xml
   component: Engineering
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: DeathCertificate
   name: doc-template-death-certificate-name
-  content: /ServerInfo/Documents/Medical/DeathCertificate.xml
+  content: /ServerInfo/Documents/_Sunrise/Medical/DeathCertificate.xml
   component: Medical
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: DecisionToStartTrial
   name: doc-template-decision-to-start-trial-name
-  content: /ServerInfo/Documents/Justice/DecisionToStartTrial.xml
+  content: /ServerInfo/Documents/_Sunrise/Justice/DecisionToStartTrial.xml
   component: Justice
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: DisposalReport
   name: doc-template-disposal-report-name
-  content: /ServerInfo/Documents/Supply/DisposalReport.xml
+  content: /ServerInfo/Documents/_Sunrise/Supply/DisposalReport.xml
   component: Supply
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: DivorceCertificate
   name: doc-template-divorce-certificate-name
-  content: /ServerInfo/Documents/Service/DivorceCertificate.xml
+  content: /ServerInfo/Documents/_Sunrise/Service/DivorceCertificate.xml
   component: Service
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: EvacuationShuttleRequest
   name: doc-template-evacuation-shuttle-request-name
-  content: /ServerInfo/Documents/Command/EvacuationShuttleRequest.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/EvacuationShuttleRequest.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ExperimentReport
   name: doc-template-experiment-report-name
-  content: /ServerInfo/Documents/Science/ExperimentReport.xml
+  content: /ServerInfo/Documents/_Sunrise/Science/ExperimentReport.xml
   component: Science
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: InternalAffairsAgentsReport
   name: doc-template-internal-affairs-agents-report-name
-  content: /ServerInfo/Documents/Justice/InternalAffairsAgentsReport.xml
+  content: /ServerInfo/Documents/_Sunrise/Justice/InternalAffairsAgentsReport.xml
   component: Justice
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: Judgment
   name: doc-template-judgment-name
-  content: /ServerInfo/Documents/Justice/Judgment.xml
+  content: /ServerInfo/Documents/_Sunrise/Justice/Judgment.xml
   component: Justice
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: LetterResignation
   name: doc-template-letter-resignation-name
-  content: /ServerInfo/Documents/Command/LetterResignation.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/LetterResignation.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: MarriageCertificate
   name: doc-template-marriage-certificate-name
-  content: /ServerInfo/Documents/Service/MarriageCertificate.xml
+  content: /ServerInfo/Documents/_Sunrise/Service/MarriageCertificate.xml
   component: Service
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderDeprivationAccess
   name: doc-template-order-deprivation-access-name
-  content: /ServerInfo/Documents/Command/OrderDeprivationAccess.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/OrderDeprivationAccess.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderDismissal
   name: doc-template-order-dismissal-name
-  content: /ServerInfo/Documents/Command/OrderDismissal.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/OrderDismissal.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderEncouragement
   name: doc-template-order-encouragement-name
-  content: /ServerInfo/Documents/Command/OrderEncouragement.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/OrderEncouragement.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderingSpecialEquipment
   name: doc-template-ordering-special-equipment-name
-  content: /ServerInfo/Documents/Centcom/OrderingSpecialEquipment.xml
+  content: /ServerInfo/Documents/_Sunrise/Centcom/OrderingSpecialEquipment.xml
   component: Centcom
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderMedicalIntervention
   name: doc-template-order-medical-intervention-name
-  content: /ServerInfo/Documents/General/OrderMedicalIntervention.xml
+  content: /ServerInfo/Documents/_Sunrise/General/OrderMedicalIntervention.xml
   component: General
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderParolePrisoner
   name: doc-template-order-parole-prisoner-name
-  content: /ServerInfo/Documents/Command/OrderParolePrisoner.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/OrderParolePrisoner.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderPurchaseResourcesEquipment
   name: doc-template-order-purchase-resources-equipment-name
-  content: /ServerInfo/Documents/Supply/OrderPurchaseResourcesEquipment.xml
+  content: /ServerInfo/Documents/_Sunrise/Supply/OrderPurchaseResourcesEquipment.xml
   component: Supply
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderPurchaseWeapons
   name: doc-template-order-purchase-weapons-name
-  content: /ServerInfo/Documents/Supply/OrderPurchaseWeapons.xml
+  content: /ServerInfo/Documents/_Sunrise/Supply/OrderPurchaseWeapons.xml
   component: Supply
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: OrderRecognizingSentienceCreature
   name: doc-template-order-recognizing-sentience-creature-name
-  content: /ServerInfo/Documents/Science/OrderRecognizingSentienceCreature.xml
+  content: /ServerInfo/Documents/_Sunrise/Science/OrderRecognizingSentienceCreature.xml
   component: Science
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: PermissionDisposeBody
   name: doc-template-permission-dispose-body-name
-  content: /ServerInfo/Documents/Medical/PermissionDisposeBody.xml
+  content: /ServerInfo/Documents/_Sunrise/Medical/PermissionDisposeBody.xml
   component: Medical
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: PermissionEquipment
   name: doc-template-permission-equipment-name
-  content: /ServerInfo/Documents/Command/PermissionEquipment.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/PermissionEquipment.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: PermissionToCarryWeapons
   name: doc-template-permission-to-carry-weapons-name
-  content: /ServerInfo/Documents/Command/PermissionToCarryWeapons.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/PermissionToCarryWeapons.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: PermissionToExtendMarriage
   name: doc-template-permission-to-extend-marriage-name
-  content: /ServerInfo/Documents/Command/PermissionToExtendMarriage.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/PermissionToExtendMarriage.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: PermissionToTravelInCaseOfThreat
   name: doc-template-permission-to-travel-in-case-of-threat-name
-  content: /ServerInfo/Documents/Command/PermissionToTravelInCaseOfThreat.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/PermissionToTravelInCaseOfThreat.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: PrescriptionDrugAuthorization
   name: doc-template-prescription-drug-authorization-name
-  content: /ServerInfo/Documents/Medical/PrescriptionDrugAuthorization.xml
+  content: /ServerInfo/Documents/_Sunrise/Medical/PrescriptionDrugAuthorization.xml
   component: Medical
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ProductManufacturingOrder
   name: doc-template-product-manufacturing-order-name
-  content: /ServerInfo/Documents/General/ProductManufacturingOrder.xml
+  content: /ServerInfo/Documents/_Sunrise/General/ProductManufacturingOrder.xml
   component: General
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportDepartment
   name: doc-template-report-department-name
-  content: /ServerInfo/Documents/Command/ReportDepartment.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ReportDepartment.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportEmployeePerformance
   name: doc-template-report-employee-performance-name
-  content: /ServerInfo/Documents/Command/ReportEmployeePerformance.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ReportEmployeePerformance.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportOnEliminationOfViolations
   name: doc-template-report-on-elimination-of-violations-name
-  content: /ServerInfo/Documents/Command/ReportOnEliminationOfViolations.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ReportOnEliminationOfViolations.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportOnTheChaptersMeeting
   name: doc-template-report-on-the-chapters-meeting-name
-  content: /ServerInfo/Documents/Command/ReportOnTheChaptersMeeting.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ReportOnTheChaptersMeeting.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportStation
   name: doc-template-report-station-name
-  content: /ServerInfo/Documents/Command/ReportStation.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/ReportStation.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportStudyObject
   name: doc-template-report-study-object-name
-  content: /ServerInfo/Documents/Science/ReportStudyObject.xml
+  content: /ServerInfo/Documents/_Sunrise/Science/ReportStudyObject.xml
   component: Science
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestCallMembersCentralCommitteeDSO
   name: doc-template-request-call-members-central-committee-dso-name
-  content: /ServerInfo/Documents/Centcom/RequestCallMembersCentralCommitteeDSO.xml
+  content: /ServerInfo/Documents/_Sunrise/Centcom/RequestCallMembersCentralCommitteeDSO.xml
   component: Centcom
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestChangeSalary
   name: doc-template-request-change-salary-name
-  content: /ServerInfo/Documents/General/RequestChangeSalary.xml
+  content: /ServerInfo/Documents/_Sunrise/General/RequestChangeSalary.xml
   component: General
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestConstructionWork
   name: doc-template-request-construction-work-name
-  content: /ServerInfo/Documents/Engineering/RequestConstructionWork.xml
+  content: /ServerInfo/Documents/_Sunrise/Engineering/RequestConstructionWork.xml
   component: Engineering
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestDocuments
   name: doc-template-request-documents-name
-  content: /ServerInfo/Documents/Justice/RequestDocuments.xml
+  content: /ServerInfo/Documents/_Sunrise/Justice/RequestDocuments.xml
   component: Justice
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestEuthanasia
   name: doc-template-request-euthanasia-name
-  content: /ServerInfo/Documents/Medical/RequestEuthanasia.xml
+  content: /ServerInfo/Documents/_Sunrise/Medical/RequestEuthanasia.xml
   component: Medical
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestForNonlistedEmployment
   name: doc-template-request-for-non-listed-employment-name
-  content: /ServerInfo/Documents/Command/RequestForNonlistedEmployment.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/RequestForNonlistedEmployment.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestForPromotion
   name: doc-template-request-for-promotion-name
-  content: /ServerInfo/Documents/Command/RequestForPromotion.xml
+  content: /ServerInfo/Documents/_Sunrise/Command/RequestForPromotion.xml
   component: Command
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestModernization
   name: doc-template-request-modernization-name
-  content: /ServerInfo/Documents/Science/RequestModernization.xml
+  content: /ServerInfo/Documents/_Sunrise/Science/RequestModernization.xml
   component: Science
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: RequestRequestToEstablishThreatLevel
   name: doc-template-request-to-establish-threat-level-name
-  content: /ServerInfo/Documents/Science/RequestRequestToEstablishThreatLevel.xml
+  content: /ServerInfo/Documents/_Sunrise/Science/RequestRequestToEstablishThreatLevel.xml
   component: Science
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: SearchPermission
   name: doc-template-search-permission-name
-  content: /ServerInfo/Documents/Security/SearchPermission.xml
+  content: /ServerInfo/Documents/_Sunrise/Security/SearchPermission.xml
   component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: Sentence
   name: doc-template-sentence-name
-  content: /ServerInfo/Documents/Security/Sentence.xml
+  content: /ServerInfo/Documents/_Sunrise/Security/Sentence.xml
   component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ShuttleRegistrationRequest
   name: doc-template-shuttle-registration-request-name
-  content: /ServerInfo/Documents/Security/ShuttleRegistrationRequest.xml
+  content: /ServerInfo/Documents/_Sunrise/Security/ShuttleRegistrationRequest.xml
   component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: StatementHealth
   name: doc-template-statement-health-name
-  content: /ServerInfo/Documents/Medical/StatementHealth.xml
+  content: /ServerInfo/Documents/_Sunrise/Medical/StatementHealth.xml
   component: Medical
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: BusinessDeal
   name: doc-template-business-deal-name
-  content: /ServerInfo/Documents/Syndicate/BusinessDeal.xml
+  content: /ServerInfo/Documents/_Sunrise/Syndicate/BusinessDeal.xml
   component: Syndicate
   isPublic: false
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ErrorLoadingFormHeader
   name: doc-template-error-loading-form-header-name
-  content: /ServerInfo/Documents/Syndicate/ErrorLoadingFormHeader.xml
+  content: /ServerInfo/Documents/_Sunrise/Syndicate/ErrorLoadingFormHeader.xml
   component: Syndicate
   isPublic: false
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: NoticeOfLiquidation
   name: doc-template-notice-of-liquidation-name
-  content: /ServerInfo/Documents/Syndicate/NoticeOfLiquidation.xml
+  content: /ServerInfo/Documents/_Sunrise/Syndicate/NoticeOfLiquidation.xml
   component: Syndicate
   isPublic: false
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: NoteBeginningMilitaryActions
   name: doc-template-note-beginning-military-actions-name
-  content: /ServerInfo/Documents/Syndicate/NoteBeginningMilitaryActions.xml
+  content: /ServerInfo/Documents/_Sunrise/Syndicate/NoteBeginningMilitaryActions.xml
   component: Syndicate
   isPublic: false
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header
 
 - type: docTemplate
   id: ReportAccomplishmentGoals
   name: doc-template-report-accomplishment-goals-name
-  content: /ServerInfo/Documents/Syndicate/ReportAccomplishmentGoals.xml
+  content: /ServerInfo/Documents/_Sunrise/Syndicate/ReportAccomplishmentGoals.xml
   component: Syndicate
   isPublic: false
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header

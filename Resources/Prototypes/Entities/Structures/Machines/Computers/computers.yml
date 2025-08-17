@@ -408,6 +408,10 @@
   name: station records computer
   description: This can be used to check station records.
   components:
+  # Sunrise added start
+  - type: AccessReader
+    access: [["Security"], ["HeadOfPersonnel"]]
+  # Sunrise added end
   - type: GeneralStationRecordConsole
   - type: UserInterface
     interfaces:
