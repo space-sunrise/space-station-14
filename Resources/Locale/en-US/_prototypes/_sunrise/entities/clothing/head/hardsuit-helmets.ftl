@@ -26,3 +26,5 @@ ent-ClothingHeadHelmetHardsuitPirateCapSun = pirate captain's hardsuit helmet
 ent-ClothingHeadHelmetHardsuitPirateSun = pirate hardsuit helmet
     .desc = A special hardsuit helmet, made for Scooner.
     .suffix = Pirate, Sunrise
+ent-ClothingHeadHelmetHardsuitInfiltration = syndicate infiltration hardsuit helmet
+    .desc = { ent-ClothingHeadHardsuitBase.desc }

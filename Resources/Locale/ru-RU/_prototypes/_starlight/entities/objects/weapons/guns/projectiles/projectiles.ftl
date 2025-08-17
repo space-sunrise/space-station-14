@@ -1,6 +1,6 @@
-ent-BaseBulletStarlight = BaseBullet
-    .desc = If you can see this you're probably dead!
-ent-BulletAdvTaser = taser bolt
+ent-BaseBulletStarlight = Базовая пуля
+    .desc = Если вы это видите, вы, вероятно, мертвы!
+ent-BulletAdvTaser = разряд тазера
     .desc = { ent-BaseBulletStarlight.desc }
 ent-BaseBulletRubber = { ent-BaseBulletStarlight }
     .desc = { ent-BaseBulletStarlight.desc }

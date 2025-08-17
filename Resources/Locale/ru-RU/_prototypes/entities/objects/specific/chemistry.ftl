@@ -1,7 +1,5 @@
 ent-BaseBeaker = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-BorgBeaker = встроенная колба
-    .desc = Внутренний отсек, установленный в киборга. Рассчитан на 50 единиц любой жидкости.
 ent-BaseBeakerMetallic = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-Beaker = мензурка
@@ -35,3 +33,5 @@ ent-Pill = таблетка
     .desc = Это не свеча.
 ent-PillCanister = баночка для таблеток
     .desc = Вмещает до 10 таблеток.
+ent-BorgBeaker = встроенная колба
+    .desc = Внутренний отсек, установленный в киборга. Рассчитан на 50 единиц любой жидкости.

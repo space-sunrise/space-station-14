@@ -1,2 +1,2 @@
-ent-BaseMagazineBoxImprovised = improvised ammunition box (.any)
-    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing ontop. Mixing ammo is not advised.
+ent-BaseMagazineBoxImprovised = импровизированный ящик для боеприпасов (.any)
+    .desc = Это подозрительно похоже на коробку с магазинами калибра .20 с грубым рисунком пули сверху. Смешивать боеприпасы не рекомендуется.
