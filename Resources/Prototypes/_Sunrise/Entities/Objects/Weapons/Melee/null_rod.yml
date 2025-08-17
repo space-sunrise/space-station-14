@@ -1,6 +1,7 @@
 - type: entity #TODO: Добавить больше вариантов и сделать круговое меню выбора
   name: Null Rod
   parent: BaseItem
+  suffix: WIP 
   id: NullRod
   description: Old classic. In fact, it doesn't do anything special.
   components:
