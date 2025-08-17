@@ -1,8 +1,8 @@
-ent-ClothingOuterArmorMakeshift = makeshift vest
-    .desc = Might catch a bullet. Might.
-ent-ClothingOuterArmorImprovised = improvised vest
-    .desc = Interlocking metal plates ensure you're decently protected against stabs, but not much else.
-ent-ClothingOuterArmorForged = forged vest
-    .desc = A product of high-quality tidesmithing, the additional leather padding and the swap for plasteel over steel ensures the armor is lightweight and effective.
-ent-ClothingOuterArmorPaladin = paladin suit
-    .desc = Be the paladin you want to be! Swing swords in maints at the terrified security officer! Battle MONSTERS that are totally not vent creatures! Get shot by lasers and die-! Wait what?
+ent-ClothingOuterArmorMakeshift = самодельный жилет
+    .desc = Может остановить пулю. Может быть.
+ent-ClothingOuterArmorImprovised = импровизированный жилет
+    .desc = Скрепленные металлические пластины обеспечивают приличную защиту от колющих ударов, но больше ни от чего.
+ent-ClothingOuterArmorForged = кованый жилет
+    .desc = Изделие высококачественной приливной ковки; дополнительная кожаная подкладка и замена стали на пласталь делают эту броню легкой и эффективной.
+ent-ClothingOuterArmorPaladin = костюм паладина
+    .desc = Стань паладином, которым ты хочешь быть! Размахивай мечами в техах на испуганного сотрудника службы безопасности! Сражайся с МОНСТРАМИ, которые совершенно точно не являются вентиляционными существами! Будь застрелен лазерами и умри-! Погодите-ка?

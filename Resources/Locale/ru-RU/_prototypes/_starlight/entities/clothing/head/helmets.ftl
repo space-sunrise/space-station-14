@@ -1,8 +1,8 @@
-ent-ClothingHeadHelmetMakeshift = makeshift helmet
-    .desc = Cobbled together steel held together with lv cables in the vauge shape of a helmet. Barely does anything.
-ent-ClothingHeadHelmetImprovised = improvised helmet
-    .desc = Interlocking steel plates provides some decent protection, but is still barely better than nothing.
-ent-ClothingHeadHelmetForged = forged helmet
-    .desc = A high-quality helmet made by some of the best Tidersmiths, it is finally worthwhile to have it on your head.
-ent-ClothingHeadHelmetPaladin = paladin helmet
-    .desc = No true paladin can go without their helmet!
+ent-ClothingHeadHelmetMakeshift = самодельный шлем
+    .desc = Сляпанная из стали конструкция, скрепленная низковольтными кабелями, отдаленно напоминающая шлем. Почти бесполезна.
+ent-ClothingHeadHelmetImprovised = импровизированный шлем
+    .desc = Переплетающиеся стальные пластины обеспечивают приличную защиту, но всё ещё едва ли лучше, чем ничего.
+ent-ClothingHeadHelmetForged = кованый шлем
+    .desc = Высококачественный шлем, сделанный лучшими Кузнецами Тайдов. Наконец-то его стоит носить.
+ent-ClothingHeadHelmetPaladin = шлем паладина
+    .desc = Ни один истинный паладин не может обойтись без своего шлема!

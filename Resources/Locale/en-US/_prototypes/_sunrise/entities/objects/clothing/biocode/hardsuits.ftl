@@ -16,3 +16,6 @@ ent-ClothingOuterHardsuitJuggernautBiocode = { ent-ClothingOuterHardsuitJuggerna
 ent-ClothingOuterArmorRaidBiocode = { ent-ClothingOuterArmorRaid }
     .suffix = BIOCODE
     .desc = { ent-ClothingOuterArmorRaid.desc }
+ent-ClothingOuterHardsuitInfiltrationBiocode = { ent-ClothingOuterHardsuitInfiltration }
+    .suffix = BIOCODE
+    .desc = { ent-ClothingOuterHardsuitInfiltration.desc }

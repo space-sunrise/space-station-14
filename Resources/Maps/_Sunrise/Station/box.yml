@@ -74878,38 +74878,6 @@ entities:
     - type: Transform
       pos: -8.5,-23.5
       parent: 2
-- proto: CartridgeMagnum
-  entities:
-  - uid: 21508
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 21491
-    - type: EmitSoundOnCollide
-      nextSound: -168264.15
-    - type: Physics
-      canCollide: False
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
-  - uid: 21577
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 21491
-    - type: EmitSoundOnCollide
-      nextSound: -168264.15
-    - type: Physics
-      canCollide: False
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
 - proto: Catwalk
   entities:
   - uid: 122
@@ -147619,13 +147587,6 @@ entities:
     - type: Transform
       pos: 10.5,24.5
       parent: 2
-- proto: HandheldCamera
-  entities:
-  - uid: 11392
-    components:
-    - type: Transform
-      pos: 27.723858,20.510345
-      parent: 2
 - proto: HandheldGPSBasic
   entities:
   - uid: 7742
@@ -152329,8 +152290,6 @@ entities:
     - type: Transform
       pos: 71.54529,-29.021149
       parent: 2
-    - type: NetworkConfigurator
-      linkModeActive: False
   - uid: 21158
     components:
     - type: Transform
@@ -174279,7 +174238,7 @@ entities:
       parent: 2
     - type: SpamEmitSound
       enabled: False
-- proto: SpawnMechMaulerSyndieFilled
+- proto: SpawnMechPaddyFilled
   entities:
   - uid: 2038
     components:
@@ -174538,7 +174497,7 @@ entities:
     - type: Transform
       pos: 24.5,-0.5
       parent: 2
-- proto: LockerBlueShieldOfficerFilled
+- proto: SpawnPointBlueShieldEnsign
   entities:
   - uid: 6808
     components:
@@ -211246,30 +211205,22 @@ entities:
     - type: Transform
       pos: 10.497869,38.547455
       parent: 2
-    - type: Item
-      heldPrefix: disabler
   - uid: 25786
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -14.44616,28.93035
       parent: 2
-    - type: Item
-      heldPrefix: disabler
   - uid: 26404
     components:
     - type: Transform
       pos: -1.4828072,-6.3837767
       parent: 2
-    - type: Item
-      heldPrefix: disabler
   - uid: 28869
     components:
     - type: Transform
       pos: 4.4614744,33.066376
       parent: 2
-    - type: Item
-      heldPrefix: disabler
 - proto: WeaponEnergyGunTactical
   entities:
   - uid: 28938
@@ -211277,22 +211228,16 @@ entities:
     - type: Transform
       pos: -2.4649508,40.71463
       parent: 2
-    - type: Item
-      heldPrefix: disabler
   - uid: 29966
     components:
     - type: Transform
       pos: -2.4805758,40.449005
       parent: 2
-    - type: Item
-      heldPrefix: disabler
   - uid: 30306
     components:
     - type: Transform
       pos: -2.467518,40.599785
       parent: 2
-    - type: Item
-      heldPrefix: disabler
 - proto: WeaponEnergyTurretAI
   entities:
   - uid: 7471
@@ -211479,63 +211424,6 @@ entities:
     - type: Transform
       pos: 14.467563,28.798439
       parent: 2
-- proto: WeaponRevolverInspector
-  entities:
-  - uid: 21491
-    mapInit: true
-    paused: true
-    components:
-    - type: MetaData
-      name: сломанный Инспектор
-    - type: Transform
-      pos: -44.534096,4.450368
-      parent: 2
-    - type: Gun
-      lastFire: 168225.2
-      currentAngle: 0.03490658503988659 rad
-      fireRate: 0
-      projectileSpeedModified: 25
-      nextFire: -38.95
-    - type: RevolverAmmoProvider
-      chambers:
-      - True
-      - True
-      - True
-      - True
-      - null
-      - null
-      ammoSlots:
-      - null
-      - null
-      - null
-      - null
-      - 21508
-      - 21577
-      currentSlot: 4
-    - type: UseDelay
-      delays:
-        default:
-          endTime: 0
-          startTime: 0
-          length: 0.66
-    - type: ContainerContainer
-      containers:
-        revolver-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 21508
-          - 21577
-    - type: EmitSoundOnCollide
-      nextSound: -168264.15
-    - type: Physics
-      angularDamping: 20
-      linearDamping: 20
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
 - proto: WeaponShotgunDoubleBarreledRubber
   entities:
   - uid: 23593

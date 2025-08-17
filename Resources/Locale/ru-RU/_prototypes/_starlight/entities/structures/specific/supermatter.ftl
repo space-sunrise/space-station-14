@@ -1,0 +1,14 @@
+ent-SupermatterCrystal = кристалл суперматерии
+    .desc = Странно прозрачный и переливающийся кристалл.
+ent-Cascad1 = Каскад
+    .desc = Последствия каскадного отказа кристалла суперматерии.
+ent-Cascad2 = { ent-Cascad1 }
+    .desc = { ent-Cascad1.desc }
+ent-Cascad3 = { ent-Cascad1 }
+    .desc = { ent-Cascad1.desc }
+ent-Cascad4 = { ent-Cascad1 }
+    .desc = { ent-Cascad1.desc }
+ent-Cascad5 = { ent-Cascad1 }
+    .desc = { ent-Cascad1.desc }
+ent-Cascad6 = { ent-Cascad1 }
+    .desc = { ent-Cascad1.desc }

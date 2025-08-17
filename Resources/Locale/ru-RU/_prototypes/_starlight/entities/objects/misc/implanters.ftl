@@ -1,4 +1,4 @@
-ent-BaseImplantOnlyImplanterSyndi_StarLight = syndicate implanter
-    .desc = A compact disposable syringe exclusively designed for the injection of subdermal implants.
-ent-MagillitisSerumImplanter = magillitis serum implanter
+ent-BaseImplantOnlyImplanterSyndi_StarLight = синдикатский имплантер
+    .desc = Компактный одноразовый шприц, специально разработанный для введения подкожных имплантов.
+ent-MagillitisSerumImplanter = имплантер сыворотки магиллита
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }

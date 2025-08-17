@@ -1,10 +1,10 @@
-ent-BaseMagazineBoxPistol40 = ammunition box (.40)
+ent-BaseMagazineBoxPistol40 = ящик с патронами (.40)
     .desc = { ent-BaseItem.desc }
-ent-MagazineBoxPistol40SP = ammunition box (.40 SP)
+ent-MagazineBoxPistol40SP = ящик с патронами (.40 SP)
     .desc = { ent-BaseMagazineBoxPistol40.desc }
-ent-MagazineBoxPistol40HP = ammunition box (.40 HP)
+ent-MagazineBoxPistol40HP = ящик с патронами (.40 HP)
     .desc = { ent-BaseMagazineBoxPistol40.desc }
-ent-MagazineBoxPistol40FMJ = ammunition box (.40 FMJ)
+ent-MagazineBoxPistol40FMJ = ящик с патронами (.40 FMJ)
     .desc = { ent-BaseMagazineBoxPistol40.desc }
-ent-MagazineBoxPistol40AP = ammunition box (.40 AP)
+ent-MagazineBoxPistol40AP = ящик с патронами (.40 AP)
     .desc = { ent-BaseMagazineBoxPistol40.desc }

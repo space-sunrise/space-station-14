@@ -195,7 +195,6 @@
   id: CyberLaserEmitter
   description: A Nanotrasen forearm-mounted laser emitter. Optimized for high rate of fire and controlled output, providing reliable suppression against lightly armored threats while minimizing collateral damage.
   components:
-  #- type: AlterLevelGunBlocker #FIXMEVIGERS
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.85
