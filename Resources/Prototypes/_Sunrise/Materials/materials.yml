@@ -32,16 +32,6 @@
 
 - type: entity
   parent: CrushedPhosphorus
-  id: CrushedPhosphorus10
-  suffix: 10
-  components:
-  - type: Sprite
-    state: phosphorus
-  - type: Stack
-    count: 10
-
-- type: entity
-  parent: CrushedPhosphorus
   id: CrushedPhosphorus1
   suffix: Single
   components:

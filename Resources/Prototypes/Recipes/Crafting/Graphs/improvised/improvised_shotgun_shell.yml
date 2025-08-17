@@ -23,17 +23,19 @@
       edges:
         - to: shell
           steps:
-            - material: Steel
-              amount: 1
-              doAfter: 0.5
-            - material: Plastic
-              amount: 1
+            - tag: ShellShotgunEmpty
+              name: construction-graph-tag-empty-shotgun-shell
+              icon:
+                sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+                state: improvised-empty
               doAfter: 0.5
             - material: Glass
               amount: 3
               doAfter: 1.5
             - material: CrushedPhosphorus
-              amount: 4
+              amount: 2
+    - node: shell
+      entity: ShellShotgunImprovised
 
 - type: constructionGraph
   id: ImprovisedIncendiaryShotgunShellGraph

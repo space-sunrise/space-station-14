@@ -85,14 +85,14 @@
           name: crafting-menu-name-IMGB
           doAfter: 10
         - material: Steel
-          amount: 25
+          amount: 15
+          doAfter: 0.5
+        - material: Plastic
+          amount: 15
           doAfter: 0.5
         - material: Glass
-          amount: 25
+          amount: 30
           doAfter: 1.5
-        - material: CrushedPhosphorus
-          amount: 25
-          doAfter: 0.5
         - material: CrushedPhosphorus
           amount: 25
           doAfter: 0.5
