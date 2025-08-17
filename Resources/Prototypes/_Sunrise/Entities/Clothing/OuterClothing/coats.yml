@@ -30,16 +30,9 @@
       sprite: _Sunrise/Clothing/OuterClothing/Coats/warden_alt.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Coats/warden_alt.rsi
-    - type: Armor
-      modifiers:
-        coefficients:
-          Blunt: 0.7
-          Slash: 0.7
-          Piercing: 0.65
-          Heat: 0.75
 
 - type: entity
-  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
+  parent: ClothingOuterCoatWarden
   id: ClothingOuterCoatSecurityOvercoat
   name: security overcoat
   description: Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of Nanotrasen Security.
@@ -48,13 +41,6 @@
       sprite: _Sunrise/Clothing/OuterClothing/Coats/sec_leather.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Coats/sec_leather.rsi
-    - type: Armor
-      modifiers:
-        coefficients:
-          Blunt: 0.7
-          Slash: 0.7
-          Piercing: 0.65
-          Heat: 0.8
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -197,7 +183,7 @@
   # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterWinterCoat, BaseCommandContraband]
   id: ClothingOuterCoatAdjutant
   name: adjutant's winter jacket
   description: heavy jacket made of 'synthetic' animal fur.
@@ -206,12 +192,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
@@ -221,7 +201,7 @@
   # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterCoatAdjutant, BaseCommandContraband]
   id: ClothingOuterCoatCEOvercoatWhite
   name: chef engineer's coat
   description: Chef Engineer's Coat. A luxurious coat with gilded inserts pretending to protect you from any threats.
@@ -230,12 +210,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
@@ -245,7 +219,7 @@
   # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterCoatLabCmo
   id: ClothingOuterCoatCMOOvercoat
   name: chief medical officer's lab coat
   description: 99% Nitrile.
@@ -254,10 +228,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Caustic: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatCMOOvercoat]
@@ -273,7 +243,7 @@
   # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterCoatHOP, BaseCommandContraband]
   id: ClothingOuterEliteCoatHOP
   name: head of personality's overcoat
   description: Comfortable fitted navy blue overcoat with leather straps. Decorative epaulettes are visible on the shoulders.
@@ -282,12 +252,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
@@ -440,7 +404,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ClothingOuterCoatHoSTrench, ClothingOuterStorageBase]
+  parent: ClothingOuterCoatHoSTrench
   id: ClothingOuterCoatUSSPOvercoatBlack
   name: USSP armored overcoat
   description: Old stuff, straight out of USSP.
