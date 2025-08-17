@@ -1,2 +1,2 @@
-ent-ActionActivateMagillitisSerumImplant = Magillitis Serum
-    .desc = An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
+ent-ActionActivateMagillitisSerumImplant = Сыворотка Магиллитиса
+    .desc = Экспериментальный биочип, вызывающий необратимый быстрый рост мышц у гоминидов. Побочные эффекты могут включать гипертрихоз, приступы агрессии и нескончаемую тягу к бананам.

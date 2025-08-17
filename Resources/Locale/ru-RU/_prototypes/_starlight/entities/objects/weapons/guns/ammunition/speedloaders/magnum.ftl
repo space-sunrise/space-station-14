@@ -1,2 +1,2 @@
-ent-SpeedLoaderMagnumImprovised = speed loader (.45 magnum)
+ent-SpeedLoaderMagnumImprovised = спидлоадер (.45 магнум)
     .desc = { ent-BaseSpeedLoaderMagnum.desc }

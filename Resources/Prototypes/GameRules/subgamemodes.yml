@@ -26,7 +26,7 @@
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
       components:
-      - type: Pacified
+      #- type: Pacified Sunrise-Edit
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true
