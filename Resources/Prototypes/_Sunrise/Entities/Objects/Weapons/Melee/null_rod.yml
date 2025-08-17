@@ -1,5 +1,5 @@
 - type: entity #TODO: Добавить больше вариантов и сделать круговое меню выбора
-  name: null rod
+  name: Null Rod
   parent: BaseItem
   id: NullRod
   description: Old classic. In fact, it doesn't do anything special.
@@ -8,8 +8,8 @@
     sprite: _Sunrise/Objects/Weapons/Melee/null_rod.rsi
     state: nullrod
   - type: MeleeWeapon #TODO: Сделать так, что бы только святой человек мог бить жезлом
-    attackRate: 1
+    attackRate: 1.2
     damage:
       types:
         Blunt: 10
-        Holy: 50
+        Holy: 25
