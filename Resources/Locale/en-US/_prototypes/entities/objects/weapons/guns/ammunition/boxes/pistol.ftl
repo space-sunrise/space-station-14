@@ -19,4 +19,4 @@ ent-MagazineBoxPistolUranium = ammunition box (.35 auto uranium)
 ent-MagazineBoxPistol = ammunition box (.35 auto)
     .desc = A cardboard box of .35 auto rounds. Intended to hold general-purpose kinetic ammunition.
 ent-MagazineBoxImprovisedPistol = ammunition box (.35 auto improvised)
-    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing ontop. Mixing ammo is not advised.
+    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing on top. Mixing ammo is not advised.

@@ -2,7 +2,7 @@
   parent: BaseItem
   id: BaseMagazineBoxImprovised
   name: improvised ammunition box (.any)
-  description: This looks suspiciously like a .20 magazine box with a crude bullet drawing ontop. Mixing ammo is not advised.
+  description: This looks suspiciously like a .20 magazine box with a crude bullet drawing on top. Mixing ammo is not advised.
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true

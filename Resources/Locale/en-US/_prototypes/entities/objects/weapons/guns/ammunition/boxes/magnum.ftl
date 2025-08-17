@@ -19,4 +19,4 @@ ent-MagazineBoxMagnumAP = ammunition box (.45 magnum armor-piercing)
 ent-MagazineBoxMagnum = ammunition box (.45 magnum)
     .desc = A cardboard box of .45 magnum rounds. Intended to hold general-purpose kinetic ammunition.
 ent-MagazineBoxImprovisedMagnum = improvised ammunition box (.45 magnum improvised)
-    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing ontop. Mixing ammo is not advised.
+    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing on top. Mixing ammo is not advised.

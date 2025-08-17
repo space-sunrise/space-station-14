@@ -19,4 +19,4 @@ ent-BoxShotgunPractice = ammunition box (.50 practice)
 ent-BoxShellTranquilizer = ammunition box (.50 tranquilizer)
     .desc = { ent-AmmoProviderShotgunShell.desc }
 ent-MagazineBoxImprovisedShotgun = improvised ammunition box (.50 pellet improvised)
-    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing ontop. Mixing ammo is not advised.
+    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing on top. Mixing ammo is not advised.
