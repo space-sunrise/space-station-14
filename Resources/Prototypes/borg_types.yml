@@ -252,7 +252,7 @@
   dummyPrototype: BorgChassisMedical
 
   # Functional
-  extraModuleCount: 5
+  extraModuleCount: 6
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -263,6 +263,7 @@
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
+  - BorgModuleDiagnosis
 
   radioChannels:
   - Science
@@ -287,8 +288,6 @@
     instantActions:
     - HandheldStationMapUnpoweredInnateItem
     - HandheldCrewMonitorBorgInnateItem
-    worldTargetActions:
-    - HandheldHealthAnalyzerUnpoweredInnateItem
   # Sunrise-End
 
   # Visual
