@@ -106,6 +106,9 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.PlantAnalyzerUiKey.Key:
+        type: PlantAnalyzerBoundUserInterface #Sunrise-Add
+
   - type: Tag
     tags:
     - DoorBumpOpener
