@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЗСН[/bold]
+[bold]Форма NT/КОМ-ЗСН[/bold]
 [head=3]Заявление на получение cнаряжения[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

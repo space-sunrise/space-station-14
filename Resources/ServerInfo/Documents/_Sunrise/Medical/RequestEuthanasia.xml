@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/МЕД-ЗЭВТ[/bold]
+[bold]Форма NT/МЕД-ЗЭВТ[/bold]
 [head=3]Запрос на проведение эвтаназии[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

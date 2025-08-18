@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/СУД-РНСП[/bold]
+[bold]Форма NT/СУД-РНСП[/bold]
 [head=3]Решение о начале судебного процесса[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

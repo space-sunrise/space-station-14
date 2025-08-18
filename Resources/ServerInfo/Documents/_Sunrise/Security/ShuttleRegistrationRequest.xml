@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/СБ-ЗРЕГШ[/bold]
+[bold]Форма NT/СБ-ЗРЕГШ[/bold]
 [head=3]Запрос на регистрацию шаттла[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

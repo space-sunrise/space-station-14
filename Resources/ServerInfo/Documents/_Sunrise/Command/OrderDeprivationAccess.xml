@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ПЛД[/bold]
+[bold]Форма NT/КОМ-ПЛД[/bold]
 [head=3]Приказ о лишении доступа[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

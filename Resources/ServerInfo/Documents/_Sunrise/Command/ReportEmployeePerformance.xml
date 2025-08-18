@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ОРО[/bold]
+[bold]Форма NT/КОМ-ОРО[/bold]
 [head=2]Отчет о работе сотрудника[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]
