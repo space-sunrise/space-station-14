@@ -28,9 +28,9 @@ flesh-cult-round-end-leader = [bold]Лидером культа плоти бы�
 preset-flesh-cult-objective-issuer-flesh-cult = [color=#e0106a]Культ плоти[/color]
 objective-issuer-flesh-cult = [color=#e0106a]Культ плоти[/color]
 # Shown at the end of a round of Traitor
-flesh-cult-objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
+flesh-cult-objective-condition-success = { $condition } | [color=green]Успех![/color]
 # Shown at the end of a round of Traitor
-flesh-cult-objective-condition-fail = { $condition } | [color={ $markupColor }]Провал![/color] ({ $progress }%)
+flesh-cult-objective-condition-fail = { $condition } | [color=red]Провал![/color] ({ $progress }%)
 flesh-cult-title = Культ плоти
 flesh-cult-description = На станции появился культ, который желает захватить станцию.
 flesh-cult-not-enough-ready-players = Недостаточно игроков готовы к игре! Из { $minimumPlayers } необходимых игроков готовы { $readyPlayersCount }.

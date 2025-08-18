@@ -90,8 +90,7 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - PowerCell
-            - PowerCellSmall
+            - PowerCage # Sunrise-edit
   - type: HitscanBatteryAmmoProvider
     proto: RedShuttleMediumLaser #RedLightLaser
     fireCost: 30 # Sunrise-edit #changed from 50 to 30

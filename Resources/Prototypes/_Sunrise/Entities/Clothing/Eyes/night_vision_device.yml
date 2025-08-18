@@ -58,16 +58,6 @@
       eyes:
       - state: on-equipped-EYES
         shader: unshaded
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
   - type: ToggleCellDraw
   - type: HideLayerClothing
     layers:

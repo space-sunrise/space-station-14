@@ -48,6 +48,11 @@ namespace Content.Client.Chemistry.UI
                     (uint) _window.BottleDosage.Value, _window.LabelLine));
             _window.BufferSortButton.OnPressed += _ => SendMessage(
                     new ChemMasterSortingTypeCycleMessage());
+            // Starlight-start
+            _window.CreatePatchButton.OnPressed += _ => SendMessage(
+                new ChemMasterCreatePatchesMessage(
+                    (uint)_window.PatchDosage.Value, (uint)_window.PatchNumber.Value, _window.LabelLine));
+            // Starlight-end
 
             for (uint i = 0; i < _window.PillTypeButtons.Length; i++)
             {

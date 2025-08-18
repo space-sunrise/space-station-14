@@ -58,11 +58,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
-
+        // Sunrise-start
         var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 
         _sprite.SetScale(entity.Owner, scale);
-
+        // Sunrise-end
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
 

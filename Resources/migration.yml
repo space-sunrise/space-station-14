@@ -704,6 +704,10 @@ ClothingNeckHeadphones: ClothingMultipleHeadphones
 # 2025-08-01
 FoodDonutJellySlugcat: FoodDonutJellyScurret
 
+# 2025-08-11
+ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
+ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
+
 # Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
@@ -722,6 +726,18 @@ PoweredLightPostSmallRed: PoweredlightRed
 PoweredSmallLightMaintenanceRed: PoweredDimSmallLight
 FoodCondimentBottleSmallVinegar: FoodCondimentBottleVinegar
 PoweredLightColoredRed: PoweredlightRed
+PoweredLightColoredBlack: PoweredlightBlack
+PoweredLightColoredFrostyBlue: PoweredlightBlue
+RandomBook: null
+SpawnPointShipwreckHecate: null
+SpawnPointShipwreckTraveller: null
+SpawnMobGolemCult: null
+SpawnMobRobotMedical: null
+WindoorCommandLocked: null
+WindoorSecurityLocked: null
+SpawnMobRobotStandard: null
+OilJar`Ghee: null
+Painting`MothBigCatch: null
 AtmTerminal: ATM
 Shinai: ToySword
 PosterLegitSMMeth: RandomPosterLegit
@@ -762,7 +778,6 @@ ScienceTechFab: null
 ReverseEngineeringMachine: null
 ScienceTechFabCircuitboard: null
 EngineeringTechFabCircuitboard: null
-WeaponPistolDeagle: null #Пока не обновят кабинеты ГСБ на картах.
 MagazineDeagle: null
 MagazineMagnum: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
@@ -811,7 +826,6 @@ GrenadeEMP: GrenadeEMPTimer
 GrenadeFlash: GrenadeFlashTimer
 GrenadeFrag: GrenadeFragTimer
 WeaponEnergyGunMini: WeaponMiniEnergyGun
-# Safes
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
@@ -824,6 +838,6 @@ MagazineRifle: MagazineRifleSP
 MagazineBoxMagnum: MagazineBoxMagnumSP
 SpeedLoaderMagnum: SpeedLoaderMagnumSP
 MagazineBoxRifle: MagazineBoxRifleSP
-# Sunrise-End
 PrinterDoc: CopyMachineFilled
 PrinterDocFlatpack: CopyMachineFlatpack
+# Sunrise-End
