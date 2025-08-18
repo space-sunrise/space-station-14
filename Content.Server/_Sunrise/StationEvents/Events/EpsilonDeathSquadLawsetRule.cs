@@ -72,11 +72,13 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             }
 
             // Only change laws for borgs on grids that belong to the chosen station
-            if (
-                borgGrid == null
-                || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData)
-                || !stationData.Grids.Contains(borgGrid.Value)
-            )
+            if (borgGrid == null || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData))
+            {
+                continue;
+            }
+
+            var stationGrids = stationData.Grids as IReadOnlySet<EntityUid>;
+            if (stationGrids == null || !stationGrids.Contains(borgGrid.Value))
             {
                 continue;
             }
