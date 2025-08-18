@@ -288,3 +288,32 @@
     proto: PelletGlass
     count: 5
     spread: 10
+
+# Sunrise-start
+- type: entity
+  id: PelletShotgunBooze
+  name: pellet (.50 booze)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletPractice
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 35
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 35
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+# Sunrise-end
