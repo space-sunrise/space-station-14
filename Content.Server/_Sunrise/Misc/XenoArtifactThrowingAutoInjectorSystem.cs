@@ -40,6 +40,8 @@ public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
 
     private void OnStartCollide(EntityUid uid, XenoArtifactThrowingAutoInjectorComponent comp, ref StartCollideEvent args)
     {
+        if (comp.Used)
+            return;
         if (HasComp<UsedXenoArtifactThrowingAutoInjectorComponent>(uid))
             return;
 
@@ -56,6 +58,8 @@ public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
                 EntityManager.AddComponent<XenoArtifactComponent>(target);
                 EnsureComp<UsedXenoArtifactThrowingAutoInjectorComponent>(uid);
                 RemCompDeferred<EmbeddableProjectileComponent>(uid);
+                comp.Used = true;
+                _audio.PlayPvs(comp.HypospraySound, uid);
             }
         }
     }

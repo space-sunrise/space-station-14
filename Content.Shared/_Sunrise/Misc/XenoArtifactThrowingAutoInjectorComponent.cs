@@ -7,6 +7,11 @@ namespace Content.Shared._Sunrise.Misc;
 public sealed partial class XenoArtifactThrowingAutoInjectorComponent : Component
 {
     [DataField("hypospraySound")] public SoundSpecifier HypospraySound = new SoundPathSpecifier("/Audio/Items/hypospray.ogg");
+    /// <summary>
+    /// Был ли уже использован автоинъектор (в кого-то вонзился)
+    /// </summary>
+    [ViewVariables]
+    public bool Used = false;
 }
 
 [RegisterComponent, NetworkedComponent]
