@@ -44,7 +44,7 @@ public sealed class GridDockSystem : EntitySystem
         }
 
         var baseOffset = new Vector2(0, 0);
-        var offsetStep = new Vector2(100, 0);
+        var offsetStep = new Vector2(100, 100);
         var usedGridDocks = new HashSet<EntityUid>();
         var currentOffset = baseOffset;
         foreach (var entry in component.Grids)
@@ -53,7 +53,10 @@ public sealed class GridDockSystem : EntitySystem
                     entry.GridPath,
                     out var rootUid,
                     offset: currentOffset))
+            {
+                currentOffset += offsetStep;
                 continue;
+            }
 
             if (!TryComp<ShuttleComponent>(rootUid.Value.Owner, out var shuttleComp))
                 continue;
@@ -101,8 +104,6 @@ public sealed class GridDockSystem : EntitySystem
                     priorityTag: entry.PriorityTag,
                     ignored: false);
             }
-
-            currentOffset += offsetStep;
         }
     }
 }
