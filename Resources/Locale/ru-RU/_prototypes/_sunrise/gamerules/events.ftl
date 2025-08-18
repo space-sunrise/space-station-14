@@ -10,3 +10,5 @@ ent-VentbullMigration = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-AbductorsSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
+ent-AbductorVictim = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }

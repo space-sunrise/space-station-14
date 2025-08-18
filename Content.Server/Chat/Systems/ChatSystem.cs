@@ -380,6 +380,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts && announcementSound != null)
         {
+            //_audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
             var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, _audio.ResolveSound(announcementSound), announceVoice);
             RaiseLocalEvent(announcementEv);
         }
@@ -419,6 +420,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts && announcementSound != null)
         {
+            //_audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
             RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
         }
         // Sunrise-edit
@@ -468,6 +470,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts && announcementSound != null)
         {
+            //_audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
             RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
         }
         // Sunrise-edit

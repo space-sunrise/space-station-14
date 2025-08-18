@@ -21,9 +21,10 @@
   - type: Contraband
     allowedDepartments: [ Security, CentralCommand, Command, Cargo ]
 
+# Sunrise-TODO: Другие типы боеприпасов и виды лазеров
 - type: entity
   id: CartridgeBattery
-  name: cartridge (laser) # Sunrise-TODO: Другие типы боеприпасов и виды лазеров
+  name: cartridge (laser)
   parent: BaseCartridgeBattery
   components:
   - type: HitScanCartridgeAmmo

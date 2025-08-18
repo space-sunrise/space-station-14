@@ -14,7 +14,7 @@ icarus-fire-announcement =
        *[other] секунд
     }.
 # UI
-icarus-ui-window-title = Терминал Icarus
+icarus-ui-window-title = Терминал Икарус
 icarus-ui-fire-button = Огонь
 icarus-ui-timer-label = Время до выстрела:
 icarus-ui-cooldown-label = Перезарядка:

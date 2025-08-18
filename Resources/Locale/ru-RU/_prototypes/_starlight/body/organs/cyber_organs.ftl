@@ -1,6 +1,6 @@
-ent-OrganCyber = cyber organ
+ent-OrganCyber = киберорган
     .desc = { ent-BaseItem.desc }
-ent-CyberEyeNightVision = NightVision cyber eyes
-    .desc = Enables you to see in the dark.
-ent-CyberEyeThermal = ThermalVision cyber eyes
-    .desc = Enables you to see in the dark and detect warm objects through walls.
+ent-CyberEyeNightVision = киберглаза ночного видения
+    .desc = Позволяют видеть в темноте.
+ent-CyberEyeThermal = киберглаза теплового видения
+    .desc = Позволяют видеть в темноте и обнаруживать теплые объекты сквозь стены.

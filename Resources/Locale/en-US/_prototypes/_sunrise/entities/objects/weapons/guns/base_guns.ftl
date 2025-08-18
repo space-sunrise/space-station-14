@@ -1,0 +1,14 @@
+ent-GunLight = { "" }
+    .desc = { "" }
+ent-GunMedium = { "" }
+    .desc = { "" }
+ent-GunHeavy = { "" }
+    .desc = { "" }
+ent-GunVeryHeavy = { "" }
+    .desc = { "" }
+ent-GunMeleeLight = { "" }
+    .desc = { "" }
+ent-GunMeleeMedium = { "" }
+    .desc = { "" }
+ent-GunMeleeHeavy = { "" }
+    .desc = { "" }

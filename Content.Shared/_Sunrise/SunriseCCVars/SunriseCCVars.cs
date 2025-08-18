@@ -299,7 +299,7 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> VotePause =
         CVarDef.Create("vote.pause", true, CVar.SERVERONLY);
 
-    public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_maps", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_maps", true, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> ExcludePresets =
         CVarDef.Create("vote.exclude_presets", true, CVar.SERVERONLY);

@@ -59,6 +59,7 @@ marking-SynthChestBishop = Грудь епископа
 marking-SynthHeadBishop = Голова епископа
 marking-SynthHeadHesphiastos = Голова Гефеста
 marking-SynthLArmHesphiastos = Левая рука Гефеста
+
 marking-SynthLHandHesphiastos = Левая рука Гефеста
 marking-SynthRArmHesphiastos = Правая рука Гефеста
 marking-SynthRHandHesphiastos = Правая рука Гефеста

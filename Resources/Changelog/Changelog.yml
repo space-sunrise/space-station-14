@@ -1,35 +1,4 @@
 ﻿Entries:
-- author: lzk228
-  changes:
-  - message: Seashell is small size.
-    type: Tweak
-  id: 8344
-  time: '2025-04-25T05:54:49.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/32262
-- author: Blackern5000
-  changes:
-  - message: Inaprovaline now heals slower, but lingers in the bloodstream for much
-      longer, making it much more useful for stabilizing critical patients for an
-      extended duration rather than outright treating damage.
-    type: Tweak
-  id: 8345
-  time: '2025-04-25T06:03:04.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/32293
-- author: kosticia
-  changes:
-  - message: Moths can no longer eat rubber toys.
-    type: Fix
-  id: 8346
-  time: '2025-04-25T07:20:09.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/34543
-- author: chromiumboy
-  changes:
-  - message: Gas vent under-pressure lockout releases are now performed using the
-      right-click menu - a screwdriver is no longer required
-    type: Tweak
-  id: 8347
-  time: '2025-04-25T07:21:00.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/36910
 - author: chromiumboy
   changes:
   - message: Ghosts will now follow the AI when it activates a holopad or answers
@@ -3954,3 +3923,34 @@
   id: 8856
   time: '2025-08-16T01:50:13.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/39680
+- author: CaramelOrdnance
+  changes:
+  - message: Lye reagent
+    type: Add
+  - message: Recipes for all soap bars
+    type: Add
+  id: 8857
+  time: '2025-08-16T06:59:58.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/39303
+- author: youtissoum
+  changes:
+  - message: The usage delay of the bananium horn is now 3 seconds.
+    type: Tweak
+  id: 8858
+  time: '2025-08-16T23:04:12.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/39674
+- author: august-sun
+  changes:
+  - message: Pacifists can now use the practice disabler, practice laser rifle, disabler,
+      and disabler SMG.
+    type: Tweak
+  id: 8859
+  time: '2025-08-17T19:25:31.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/37164
+- author: Velcroboy
+  changes:
+  - message: Changed hamster crates are now able to be placed on top of tables.
+    type: Tweak
+  id: 8860
+  time: '2025-08-17T19:30:41.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/37953
