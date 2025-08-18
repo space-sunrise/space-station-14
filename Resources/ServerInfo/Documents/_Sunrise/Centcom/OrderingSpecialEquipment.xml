@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЦК-ЗАКССН[/bold]
+[bold]Форма NT/КОМ-ЦК-ЗАКССН[/bold]
 [head=3]Заказ специального снаряжения[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

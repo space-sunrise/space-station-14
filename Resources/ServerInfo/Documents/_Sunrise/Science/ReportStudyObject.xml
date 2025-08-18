@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/НИО-СИТ[/bold]
+[bold]Форма NT/НИО-СИТ[/bold]
 [head=3]Отчет об исследовании объекта[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

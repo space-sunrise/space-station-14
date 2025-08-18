@@ -129,6 +129,7 @@
   - Rootable # diona
   - Sericulture # arachnids
   - MovementSpeedModifier # moths when weightless
+  - JumpAbility # vulp leaping
   copyEquipment: null
   copyInternalStorage: false
   copyImplants: false

@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/СБ-РНО[/bold]
+[bold]Форма NT/СБ-РНО[/bold]
 [head=2]Разрешение на обыск[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

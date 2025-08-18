@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЗВТУ[/bold]
+[bold]Форма NT/КОМ-ЗВТУ[/bold]
 [head=3]Запрос на внеперечневое трудоустройство[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

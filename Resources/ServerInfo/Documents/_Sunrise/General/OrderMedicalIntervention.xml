@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/МЕД[/bold]
+[bold]Форма NT/МЕД[/bold]
 [head=3]Приказ о медицинском вмешательстве[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

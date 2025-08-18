@@ -16,6 +16,11 @@ public sealed partial class TTSSystem
     private string Sanitize(string text)
     {
         text = text.Trim();
+        text = Regex.Replace(text, "[іІ]", "и");
+        text = Regex.Replace(text, "[їЇ]", "ё");
+        text = Regex.Replace(text, "[єЄ]", "е");
+        text = Regex.Replace(text, "[ґҐ]", "г");
+        text = Regex.Replace(text, "[еЕ]", "э");
         text = Regex.Replace(text, @"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]", "");
         text = Regex.Replace(text, @"[a-zA-Z]", ReplaceLat2Cyr, RegexOptions.Multiline | RegexOptions.IgnoreCase);
         text = Regex.Replace(text, @"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", ReplaceMatchedWord, RegexOptions.Multiline | RegexOptions.IgnoreCase);
@@ -137,6 +142,8 @@ public sealed partial class TTSSystem
             {"с4", "Си 4"}, // cyrillic
             {"c4", "Си 4"}, // latinic
             {"бсс", "Бэ Эс Эс"},
+            {"квилу", "Ху Ил Лу"},
+            {"qillu", "Ху Ил Лу"},
         };
 
     private static readonly IReadOnlyDictionary<string, string> ReverseTranslit =
@@ -176,9 +183,6 @@ public sealed partial class TTSSystem
             {"eh", "э"},
             {"ju", "ю"},
             {"ja", "я"},
-            {"і", "и"},
-            {"ї", "ё"},
-            {"є", "е"}
         };
 }
 

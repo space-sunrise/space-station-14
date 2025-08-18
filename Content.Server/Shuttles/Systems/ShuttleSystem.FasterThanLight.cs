@@ -345,6 +345,39 @@ public sealed partial class ShuttleSystem
         }
     }
 
+    // Sunrise-Start
+    public void FTLToDockСonfig(
+        EntityUid shuttleUid,
+        ShuttleComponent component,
+        DockingConfig config,
+        float? startupTime = null,
+        float? hyperspaceTime = null,
+        string? priorityTag = null,
+        bool ignored = false,
+        bool deletedTrash = false)
+    {
+        if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
+            return;
+
+        startupTime ??= DefaultStartupTime;
+        hyperspaceTime ??= DefaultTravelTime;
+
+        hyperspace.StartupTime = startupTime.Value;
+        hyperspace.TravelTime = hyperspaceTime.Value;
+        hyperspace.StateTime = StartEndTime.FromStartDuration(
+            _gameTiming.CurTime,
+            TimeSpan.FromSeconds(hyperspace.StartupTime));
+        hyperspace.PriorityTag = priorityTag;
+        hyperspace.Ignored = ignored; // Sunrise-Edit
+        hyperspace.DeleteTrash = deletedTrash; // Sunrise-Edit
+
+        _console.RefreshShuttleConsoles(shuttleUid);
+
+        hyperspace.TargetCoordinates = config.Coordinates;
+        hyperspace.TargetAngle = config.Angle;
+    }
+    // Sunrise-End
+
     private bool TrySetupFTL(EntityUid uid, ShuttleComponent shuttle, [NotNullWhen(true)] out FTLComponent? component)
     {
         component = null;
@@ -833,7 +866,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     /// <param name="minOffset">Min offset for the final FTL.</param>
     /// <param name="maxOffset">Max offset for the final FTL from the box we spawn.</param>
-    private bool TryGetFTLProximity(
+    public bool TryGetFTLProximity( // Sunrise-Edit
         EntityUid shuttleUid,
         EntityCoordinates targetCoordinates,
         out EntityCoordinates coordinates, out Angle angle,

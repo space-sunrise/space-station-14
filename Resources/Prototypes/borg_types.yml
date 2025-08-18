@@ -85,8 +85,8 @@
     - Mech
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpowered
-    - EngiAlertsMonitor
+    - HandheldStationMapUnpoweredInnateItem
+    - EngiAlertsMonitorInnateItem
   # Sunrise-End
 
   # Visual
@@ -135,7 +135,7 @@
     collection: FootstepCyborgSpider
     params:
       volume: -15
-      
+
   addComponents:
   - type: BorgJetpack
     acceleration: 1
@@ -167,7 +167,7 @@
           False: {state: icon}
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpowered
+    - HandheldStationMapUnpoweredInnateItem
   # Sunrise-End
 
   # Visual
@@ -285,10 +285,10 @@
   - type: FabricateCandy
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - HandheldStationMapUnpoweredInnateItem
+    - HandheldCrewMonitorBorgInnateItem
     worldTargetActions:
-    - HandheldHealthAnalyzerUnpowered
+    - HandheldHealthAnalyzerUnpoweredInnateItem
   # Sunrise-End
 
   # Visual

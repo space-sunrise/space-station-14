@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОД-КОД[/bold]
+[bold]Форма NT/КОД-КОД[/bold]
 [head=3]Заказ на производство продукта[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

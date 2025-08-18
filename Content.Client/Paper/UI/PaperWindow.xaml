@@ -12,8 +12,10 @@
                 <PanelContainer Name="PaperContent" VerticalExpand="True" HorizontalExpand="True" MaxWidth="600">
                     <BoxContainer Orientation="Vertical" VerticalAlignment="Stretch">
                         <TextureButton Name="HeaderImage" HorizontalAlignment="Center" VerticalAlignment="Top" MouseFilter="Ignore"/>
+                        <!-- Sunrise-start -->
                         <TextureRect Name="ImageContent" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                                      HorizontalExpand="True" VerticalExpand="True" Stretch="KeepAspectCentered" MouseFilter="Ignore"/>
+                        <!-- Sunrise-end -->
                         <Control Name="TextAlignmentPadding" VerticalAlignment="Top"/>
                         <RichTextLabel Name="BlankPaperIndicator" StyleClasses="LabelSecondaryColor" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                         <RichTextLabel StyleClasses="PaperWrittenText" Name="WrittenTextLabel" VerticalAlignment="Top"/>
