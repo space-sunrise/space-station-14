@@ -1198,9 +1198,9 @@
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
   loadouts:
+  - ArmorVestSec
   - ArmorVest
   - ArmorVestSlim
-  - ArmorVestSec
   - SecurityOfficerWintercoat
 
 - type: loadoutGroup
