@@ -49,11 +49,11 @@ public sealed class UkrainianAccentSystem : EntitySystem
     private void OnSanitize(EntityUid uid, UkrainianAccentComponent component, TTSSanitizeEvent args)
     {
         var text = args.Text.Trim();
-        text = Regex.Replace(text, "[іІ]", "и");
-        text = Regex.Replace(text, "[їЇ]", "ё");
-        text = Regex.Replace(text, "[єЄ]", "е");
-        text = Regex.Replace(text, "[ґҐ]", "г");
-        text = Regex.Replace(text, "[еЕ]", "э");
+        text = Regex.Replace(text, "[іІ]", "[иИ]");
+        text = Regex.Replace(text, "[їЇ]", "[ёЁ]");
+        text = Regex.Replace(text, "[єЄ]", "[еЕ]");
+        text = Regex.Replace(text, "[ґҐ]", "[гГ]");
+        text = Regex.Replace(text, "[еЕ]", "[эЭ]");
         text = text.Trim();
         args.Text = text;
     }
