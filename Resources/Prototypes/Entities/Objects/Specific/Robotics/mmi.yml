@@ -17,6 +17,7 @@
   - type: MMI
   - type: BorgBrain
   - type: BlockMovement
+    blockInteraction: false
   - type: Examiner
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -99,6 +100,7 @@
 #      stopSearchVerbPopup: positronic-brain-stopped-searching
 #      job: Borg
     - type: BlockMovement
+      blockInteraction: false
     - type: Examiner
 
     - type: NameIdentifier

@@ -28,9 +28,10 @@
     stopSearchVerbText: boris-stop-searching-verb-text
     stopSearchVerbPopup: boris-stopped-searching
     job: Borg
-  - type: BlockMovement
   - type: Examiner
   - type: BorgBrain
+  - type: BlockMovement
+    blockInteraction: false
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
