@@ -121,11 +121,6 @@
     fireRate: 4
     useKey: true
     selectedMode: SemiAuto
-  - type: MeleeWeapon
-    wideAnimationRotation: 45
-    damage:
-      types:
-        Blunt: 5
   - type: StaminaDamageOnHit
     damage: 5
   - type: Wieldable
@@ -133,6 +128,11 @@
     damage:
       types:
         Blunt: 3
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    damage:
+      types:
+        Blunt: 5
     bluntStaminaDamageFactor: 2.0
     attackRate: 1
     autoAttack: false
