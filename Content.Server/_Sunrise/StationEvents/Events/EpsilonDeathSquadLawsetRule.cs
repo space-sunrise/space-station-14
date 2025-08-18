@@ -7,6 +7,7 @@ using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -71,13 +72,12 @@ private void RunEpsilonLawset(EntityUid ruleEntity)
             continue;
         }
 
-        /*// Only change laws for borgs on grids that belong to the chosen station
-        if (borgGrid == null || !_stationSystem.TryGetOwningStation(borgGrid, out var owningStation) || owningStation != _targetStation)
+        // Only change laws for borgs on grids that belong to the chosen station
+        if (borgGrid == null || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData) || !(stationData.Grids as IReadOnlySet<EntityUid>).Contains(borgGrid.Value))
         {
-            Sawmill.Debug(
-                $"Skipping borg {ent} - not on target station (on grid {borgGrid}, owning station: {owningStation})");
+            Sawmill.Info($"Skipping borg {ent} - not on grid");
             continue;
-        }*/
+        }
 
         Sawmill.Debug($"Changing laws for borg {ent}");
         _siliconLaw.SetLaws(laws, ent, provider.LawUploadSound);

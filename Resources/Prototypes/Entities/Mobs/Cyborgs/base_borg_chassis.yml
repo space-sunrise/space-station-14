@@ -438,6 +438,7 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
+  - type: BlockLawChange
   # Sunrise-end
 
 - type: entity
