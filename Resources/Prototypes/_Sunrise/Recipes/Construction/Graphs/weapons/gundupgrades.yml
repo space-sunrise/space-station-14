@@ -35,3 +35,22 @@
               impact: High
     - node: upgradedrozd
       entity: WeaponSubMachineGunDrozdMk2Empty
+
+- type: constructionGraph
+  id: VestArmorSecurity
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterVestArmorSec
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeVestSec
+              name: construction-graph-tag-upgradevestsec
+              doAfter: 8
+          completed:
+            - !type:AdminLog
+              message: "Converted Vest Sec to WebVest Sec"
+              impact: High
+    - node: upgraded
+      entity: ClothingOuterVestWebSec

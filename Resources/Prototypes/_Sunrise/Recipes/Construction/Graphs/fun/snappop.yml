@@ -12,7 +12,7 @@
           sprite: Objects/Misc/bureaucracy.rsi
           state: paper
       - tag: Matchstick
-        name: construction-graph-tag-matchstick
+        name: construction-graph-tag-match-stick
         icon:
           sprite: Objects/Tools/matches.rsi
           state: match_unlit

@@ -32,6 +32,8 @@
     - NudeBottom # INTERACTIONS
     - WhitelistChameleon
   - type: ArmorSparkEffect #starlight
+  - type: StaminaResistance # Sunrise-Add
+    damageCoefficient: 0.85 # Sunrise-Add
   # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders
@@ -44,6 +46,8 @@
     - CorgiWearable
     - WhitelistChameleon
     - NudeBottom # Sunrise-Add
+  - type: StaminaResistance # Sunrise-Add
+    damageCoefficient: 0.85 # Sunrise-Add
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -177,6 +181,8 @@
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -188,6 +194,8 @@
     damageCoefficient: 0.8
   - type: StaticPrice
     price: 1500
+  - type: StaminaResistance # Sunrise-Add
+    damageCoefficient: 0.85 # Sunrise-Add
 
 #Elite web vest
 - type: entity
@@ -203,6 +211,8 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -218,6 +228,8 @@
     reduction: 0.85
   - type: StaticPrice
     price: 2500
+  - type: StaminaResistance # Sunrise-Add
+    damageCoefficient: 0.8 # Sunrise-Add
 
 #Mercenary web vest
 - type: entity
@@ -588,8 +600,6 @@
     modifiers:
       coefficients:
         Blunt: 0.9
-  - type: StaminaResistance
-    damageCoefficient: 0.90
   - type: Construction
     graph: cardArmour
     node: cardarmour

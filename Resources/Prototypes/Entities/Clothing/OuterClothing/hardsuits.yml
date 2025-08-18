@@ -798,7 +798,7 @@
       coefficients:
         Blunt: 0.2
         Slash: 0.2
-        Piercing: 0.2
+        Piercing: 0.1 #Sunrise-edit # Наныли
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
@@ -1075,7 +1075,7 @@
     reduction: 0.8
   - type: Pierceable
     level: Metal
-  - type: StaminaResistance
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Armor
     modifiers:

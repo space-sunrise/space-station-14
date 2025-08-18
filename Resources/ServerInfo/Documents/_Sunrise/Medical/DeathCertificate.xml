@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/МЕД-ССМ[/bold]
+[bold]Форма NT/МЕД-ССМ[/bold]
 [head=2]Свидетельство о смерти[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

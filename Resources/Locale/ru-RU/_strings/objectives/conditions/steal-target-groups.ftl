@@ -46,7 +46,7 @@ steal-target-groups-clothing-neck-clownmedal = медаль клоуна
 # Thief structures
 steal-target-groups-teg = часть термоэлектрического генератора
 steal-target-groups-freezer-heater = охладительная термомашина или нагревательная термомашина
-steal-target-groups-altar-nanotrasen = алтарь НТ (любой)
+steal-target-groups-altar-nanotrasen = алтарь NT (любой)
 steal-target-groups-nuclear-bomb = ядерная боеголовка
 steal-target-groups-fax-machine-captain = факс дальнего действия капитана
 steal-target-groups-chem-dispenser = раздатчик химикатов

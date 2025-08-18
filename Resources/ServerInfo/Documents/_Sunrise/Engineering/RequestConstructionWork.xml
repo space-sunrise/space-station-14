@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/ИНЖ-ЗСР[/bold]
+[bold]Форма NT/ИНЖ-ЗСР[/bold]
 [head=3]Запрос на проведение строительных работ[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

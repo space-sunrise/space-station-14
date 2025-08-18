@@ -2,7 +2,7 @@
 [tex path="/Textures/_Sunrise/Paper/nanotrasen_form_header_sec.png" scale=1]
 
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/СБ-ПРИГ[/bold]
+[bold]Форма NT/СБ-ПРИГ[/bold]
 [head=2]Приговор[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

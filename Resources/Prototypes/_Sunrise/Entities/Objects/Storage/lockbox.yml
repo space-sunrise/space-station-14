@@ -23,6 +23,18 @@
   - type: EntityStorageVisuals
     stateDoorOpen: icon
     stateDoorClosed: icon
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cardboardbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
 
 
 - type: entity
@@ -31,3 +43,38 @@
   components:
   - type: AccessReader
     access: [["Captain"]]
+
+- type: entity
+  parent: [ Lockbox, BaseMedicalContraband ]
+  id: BaseImplantCase
+  name: implant case
+  description: A small ID locked case safety containing a cyber implant.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    layers:
+    - state: box_security
+    - state: implant
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: Item
+    size: Normal
+  - type: AccessReader
+    access: [ [ "Armory" ],[ "Medical" ],[ "ResearchDirector" ] ] # ГСБ/Вард РД и Мед Отдел
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseNightVision
+  components:
+  - type: StorageFill
+    contents:
+    - id: CyberEyeNightVision
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseThermal
+  components:
+  - type: StorageFill
+    contents:
+    - id: CyberEyeThermal

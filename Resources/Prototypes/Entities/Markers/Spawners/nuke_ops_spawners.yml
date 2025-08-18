@@ -78,7 +78,7 @@
     children:
     - id: MagazinePistolSubMachineGun
     - id: MagazineRifle
-    - id: MagazineBoxLightRifle
+    - id: MagazineBoxLightRifleSP # Sunrise-Edit
       weight: 0.5
     - id: MagazineShotgunSlug
       weight: 0.5

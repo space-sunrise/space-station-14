@@ -29,9 +29,9 @@
        variation: 0.125
     activatedDamage:
       types:
-        Slash: 5
-        Heat: 5
-        Structural: 15
+        Slash: 4
+        Heat: 4
+        Structural: 10
   - type: MeleeWeapon
     angle: 0
     wideAnimationRotation: -135
@@ -63,7 +63,7 @@
     sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
     state: cybermantisblade
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.18
     spread: 260
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg #armor_ricochet #collection
     reflects:
@@ -100,7 +100,7 @@
     sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
     state: cybermantisbladesec
   - type: Reflect
-    reflectProb: 0.09
+    reflectProb: 0.10
     spread: 260
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg #armor_ricochet #collection
     reflects:
@@ -140,9 +140,9 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: Reflect
-    reflectProb: 0.08
+    reflectProb: 0.10
   - type: UseDelay
-    delay: 2
+    delay: 1.20
   - type: UseDelayOnMeleeHit
   - type: MeleeWeapon
     attackRate: 1
@@ -184,7 +184,7 @@
       - Prying
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Prying
-    speedModifier: 1
+    speedModifier: 1.25
     pryPowered: true
     useSound: /Audio/Items/jaws_pry.ogg
 
@@ -212,7 +212,7 @@
     fireRate: 10
     minAngle: 4.5
     maxAngle: 35
-    angleIncrease: 2.25
+    angleIncrease: 2.35
     angleDecay: 12
     selectedMode: FullAuto
     availableModes:
@@ -224,7 +224,7 @@
     fireCost: 75
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 125
+    autoRechargeRate: 120
     autoRechargePauseTime: 8
   - type: MagazineVisuals
     magState: laser_cyborg
@@ -247,7 +247,7 @@
     - NonEnergy
   - type: HeldSpeedModifier
     walkModifier: 1
-    sprintModifier: 0.85
+    sprintModifier: 0.8
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Cyber/grenade_thrower.rsi
     layers:
@@ -264,7 +264,7 @@
     bigTrigger: true
   - type: UseDelayOnShoot
   - type: UseDelay
-    delay: 0.85
+    delay: 1
   - type: ItemSlots
     slots:
       gun_chamber:
