@@ -39,9 +39,10 @@ public sealed class AlertLevelSystem : EntitySystem
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
     }
-    public override void Update(float frameTime)
+    public override void Update(float time)
     {
         var query = EntityQueryEnumerator<AlertLevelComponent>();
+
         while (query.MoveNext(out var station, out var alert))
         {
             if (alert.CurrentDelay <= 0)
@@ -53,7 +54,7 @@ public sealed class AlertLevelSystem : EntitySystem
                 }
                 continue;
             }
-            alert.CurrentDelay -= frameTime;
+            alert.CurrentDelay -= time;
         }
     }
 
@@ -138,7 +139,7 @@ public sealed class AlertLevelSystem : EntitySystem
     /// <param name="announce">Say the alert level's announcement.</param>
     /// <param name="force">Force the alert change. This applies if the alert level is not selectable or not.</param>
     /// <param name="locked">Will it be possible to change level by crew.</param>
-      public void SetLevel(EntityUid station, string level, bool playSound, bool announce, bool force = false,
+    public void SetLevel(EntityUid station, string level, bool playSound, bool announce, bool force = false,
         bool locked = false, MetaDataComponent? dataComponent = null, AlertLevelComponent? component = null)
     {
         if (!Resolve(station, ref component, ref dataComponent)
@@ -225,7 +226,7 @@ public sealed class AlertLevelChangedEvent : EntityEventArgs
 {
     public EntityUid Station { get; }
     public string AlertLevel { get; }
-    public string PreviousLevel; // Sunrise: previous level for auto access system
+    public string PreviousLevel { get; } // Sunrise: previous level for auto access system
     public AlertLevelChangedEvent(EntityUid station, string alertLevel, string previousLevel)
     {
         Station = station;

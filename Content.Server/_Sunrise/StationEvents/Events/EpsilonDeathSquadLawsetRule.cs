@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._Sunrise.Silicons.Laws.Components;
 using Content.Server._Sunrise.StationEvents.Components;
 using Content.Server.Silicons.Laws;
@@ -24,7 +23,6 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
     public void StartEvent(EntityUid ruleEntity, EntityUid station)
     {
         _targetStation = station;
-        // You can call the logic from Started here, or refactor the logic into a private method and call it from both.
         RunEpsilonLawset(ruleEntity);
     }
 
@@ -43,14 +41,21 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             return;
         }
 
-        var laws = lawsetProto.Laws
-            .Select(lawId => _prototypeManager.Index<SiliconLawPrototype>(lawId))
-            .Select(lawProto => new SiliconLaw
+        var laws = new List<SiliconLaw>();
+        foreach (var lawId in lawsetProto.Laws)
+        {
+            if (!_prototypeManager.TryIndex<SiliconLawPrototype>(lawId, out var lawProto))
+            {
+                Sawmill.Error($"Could not find law prototype: {lawId}");
+                return;
+            }
+
+            laws.Add(new SiliconLaw
             {
                 LawString = Loc.GetString(lawProto.LawString),
                 Order = lawProto.Order
-            })
-            .ToList();
+            });
+        }
 
 
         var borgCount = 0;
@@ -67,10 +72,11 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             }
 
             // Only change laws for borgs on grids that belong to the chosen station
-            // Only change laws for borgs on grids that belong to the chosen station
-                        if (borgGrid == null
-                                             || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData)
-                                             || !stationData.Grids.Contains(borgGrid.Value))
+            if (
+                borgGrid == null
+                || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData)
+                || !stationData.Grids.Contains(borgGrid.Value)
+            )
             {
                 continue;
             }
