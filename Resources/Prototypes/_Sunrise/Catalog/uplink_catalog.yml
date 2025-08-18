@@ -1704,3 +1704,22 @@
     - ResearchAssistant
     - Scientist
     - ResearchDirector
+
+- type: listing
+  id: UplinkXenoArtifactThrowingAutoInjector
+  name: uplink-xeno-artifact-throwing-auto-injector-name
+  description: uplink-xeno-artifact-throwing-auto-injector-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Syndicate/xeno_artifact_throwing_auto_injector.rsi, state: open }
+  productEntity: XenoArtifactThrowingAutoInjector
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerDepartmentCondition
+    whitelist:
+      - Science
