@@ -3,8 +3,9 @@
   abstract: true
   components:
   - type: SpawnGridAndDockToStation
-    gridPath: /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
-    priorityTag: DockCentComm
+    grids:
+    - gridPath: /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
+      priorityTag: DockCentComm
 
 - type: entity
   id: BaseStationCentComm
