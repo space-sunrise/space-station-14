@@ -10,6 +10,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Content.Server.GameTicking;
 using Content.Server._Sunrise.StationEvents.Events;
+using Content.Server.AlertLevel;
 
 namespace Content.Server._Sunrise.AlertLevel;
 

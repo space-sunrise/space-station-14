@@ -6,7 +6,6 @@ namespace Content.Server._Sunrise.StationEvents.Components;
 /// Component for tracking Epsilon Death Squad Lawset state on an entity.
 /// </summary>
 [RegisterComponent]
-public sealed class EpsilonDeathSquadLawsetComponent : Component
+public sealed partial class EpsilonDeathSquadLawsetComponent : Component
 {
-    // Add fields if needed for tracking state
 }

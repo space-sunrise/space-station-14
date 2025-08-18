@@ -175,12 +175,12 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             Order = component.Lawset.Laws.Max(law => law.Order) + 1
         });
 
-        // Sunrise-Start
         _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+        // Sunrise-Start
         // Add BlockLawChangeComponent to prevent law changes for borgs under Epsilon lawset
-        if (HasComp<BlockLawChangeComponent>(uid) == false)
+        if (HasComp<_Sunrise.Silicons.Laws.Components.BlockLawChangeComponent>(uid) == false)
         {
-            EntityManager.AddComponent<BlockLawChangeComponent>(uid);
+            EntityManager.AddComponent<_Sunrise.Silicons.Laws.Components.BlockLawChangeComponent>(uid);
         }
         // Sunrise-End
     }
