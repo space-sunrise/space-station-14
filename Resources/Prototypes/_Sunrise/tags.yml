@@ -93,6 +93,9 @@
 - type: Tag
   id: UpgradeLecter
 
+- type: Tag
+  id: UpgradeVestSec
+
 # Magazines:
 - type: Tag
   id: MagazineM28

@@ -284,6 +284,18 @@
     Silver: 200
 
 - type: latheRecipe
+  id: VestSecUpgrade
+  result: VestSecUpgrade
+  categories:
+  - Weapons
+  completetime: 60
+  materials:
+    Plastic: 1000
+    Steel: 500
+    Glass: 500
+    Plasma: 25
+
+- type: latheRecipe
   id: ModularReceiverAuto
   result: ModularReceiverAuto
   categories:

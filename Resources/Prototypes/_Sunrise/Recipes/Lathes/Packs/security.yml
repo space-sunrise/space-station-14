@@ -190,6 +190,7 @@
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat
+    - VestSecUpgrade
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech
