@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server._Sunrise.Silicons.Laws.Components;
-using Content.Server.Station.Systems;
 using Content.Server._Sunrise.StationEvents.Components;
 using Content.Server.Silicons.Laws;
 using Content.Server.StationEvents.Events;
@@ -17,7 +16,6 @@ namespace Content.Server._Sunrise.StationEvents.Events;
 public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
 {
     private EntityUid? _targetStation;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
@@ -69,8 +67,10 @@ public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeat
             }
 
             // Only change laws for borgs on grids that belong to the chosen station
-            if (borgGrid == null || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData) ||
-                !(stationData.Grids as IReadOnlySet<EntityUid>).Contains(borgGrid.Value))
+            // Only change laws for borgs on grids that belong to the chosen station
+                        if (borgGrid == null
+                                             || !TryComp<StationDataComponent>(_targetStation.Value, out var stationData)
+                                             || !stationData.Grids.Contains(borgGrid.Value))
             {
                 continue;
             }
