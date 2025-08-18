@@ -171,8 +171,8 @@
       Welder:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 1000
-        maxVol: 1000
+          Quantity: 500 # Sunrise-Edit
+        maxVol: 500 # Sunrise-Edit
   - type: PointLight
     enabled: false
     radius: 1.5
@@ -182,7 +182,7 @@
     generated:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 1
+        Quantity: 0.5 # Sunrise-Edit
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
 

@@ -418,6 +418,12 @@
   id: DockMining
 
 - type: Tag
+  id: DockSecurity
+
+- type: Tag
+  id: DockPersonal
+
+- type: Tag
   id: Felinid
 
 - type: Tag

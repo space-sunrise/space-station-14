@@ -144,7 +144,7 @@
       baseSprintSpeed : 4.5
     - type: InnateItem
       worldTargetActions:
-      - AccessBreaker
+      - AccessBreakerInnateItem
     # Sunrise-End
 
 - type: entity
@@ -194,8 +194,8 @@
       baseSprintSpeed: 5
     - type: InnateItem
       worldTargetActions:
-      - Emag
-      - HandheldHealthAnalyzerUnpowered
+      - EmagInnateItem
+      - HandheldHealthAnalyzerUnpoweredInnateItem
     # Sunrise-End
 
 - type: entity

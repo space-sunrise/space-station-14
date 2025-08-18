@@ -12,5 +12,5 @@ ent-StationAnchorOff = { ent-StationAnchor }
 ent-StationAnchorBaseDespawn = { "" }
     .desc = { "" }
 ent-StationAnchorDespawn = { ent-StationAnchorBaseDespawn }
-    .suffix = 5minDelete
+    .suffix = 5 минут
     .desc = { ent-StationAnchorBaseDespawn.desc }

@@ -106,7 +106,7 @@
     nameSegments: [NamesBorg]
   - type: InnateItem
     worldTargetActions:
-    - Emag
+    - EmagInnateItem
 
 - type: startingGear
   id: SyndiReaperHardsuitGear
@@ -209,10 +209,10 @@
     - EmagImmune
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitor
-    - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
-    - HandHeldMassScannerUnpowered
+    - PortableSurveillanceCameraMonitorUnpoweredInnateItem
+    - HandheldStationMapUnpoweredInnateItem
+    - HandheldCrewMonitorBorgInnateItem
+    - HandHeldMassScannerBorgInnateItem
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -330,7 +330,7 @@
     baseSprintSpeed : 3
   - type: InnateItem
     worldTargetActions:
-    - Emag
+    - EmagInnateItem
 
 - type: entity
   id: BorgChassisSyndicateSpider
@@ -411,4 +411,4 @@
     baseSprintSpeed : 5
   - type: InnateItem
     worldTargetActions:
-    - Emag
+    - EmagInnateItem

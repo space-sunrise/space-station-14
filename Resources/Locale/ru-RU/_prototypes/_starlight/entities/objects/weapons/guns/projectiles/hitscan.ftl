@@ -1,4 +1,4 @@
 ent-ImpactEffect = { "" }
     .desc = { "" }
-ent-ProjectilePolyboltJohnToe = john toe polybolt
-    .desc = Nooo, I don't wanna be john toe!
+ent-ProjectilePolyboltJohnToe = полиболт Джон Тоу
+    .desc = Нееет, я не хочу быть Джон Тоу!

@@ -141,3 +141,5 @@ ent-CherrySeeds = пакет семян вишни
     .desc = { ent-SeedBase.desc }
 ent-AnomalyBerrySeeds = пакет семян (аномальная ягода)
     .desc = { ent-SeedBase.desc }
+ent-BloonionSeeds = пакет семян (блуниона)
+    .desc = { ent-SeedBase.desc }

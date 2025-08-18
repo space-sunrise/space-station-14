@@ -51,8 +51,17 @@
   abstract: true
   components:
     - type: SpawnGridAndDockToStation
-      gridPath: /Maps/_Sunrise/Shuttles/mining.yml
-      priorityTag: DockMining
+      grids:
+        - gridPath: /Maps/_Sunrise/Shuttles/mining.yml
+          priorityTag: DockMining
+        - gridPath: /Maps/_Sunrise/Shuttles/security.yml
+          priorityTag: DockSecurity
+        - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
+          priorityTag: DockPersonal
+        - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
+          priorityTag: DockPersonal
+        - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
+          priorityTag: DockPersonal
 #    - type: StationCargoShuttle
 #      path: /Maps/Shuttles/cargo.yml
     - type: GridSpawn

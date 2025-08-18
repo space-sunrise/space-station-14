@@ -234,7 +234,7 @@
 
 #Make a scanner category when these actually function and we get the trayson
 - type: entity
-  parent: [ClothingEyesBase, BaseToggleClothing]
+  parent: [ClothingEyesBase, BaseToggleClothing, PowerCellSlotSmallItem] # Sunrise-edit
   id: ClothingEyesGlassesThermal
   name: optical thermal scanner
   description: Thermals in the shape of glasses.
@@ -259,6 +259,20 @@
     parent: true
     components:
     - type: ThermalVision
+  - type: PowerCellDraw
+    drawRate: 3.5
+    useRate: 20
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
   # Sunrise-End
 
 - type: entity
