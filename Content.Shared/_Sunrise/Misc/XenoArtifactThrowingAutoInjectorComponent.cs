@@ -1,11 +1,12 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._Sunrise.Misc;
 
 [RegisterComponent]
 public sealed partial class XenoArtifactThrowingAutoInjectorComponent : Component
 {
-    [DataField("hypospraySound")] public string HypospraySound = "/Audio/Items/hypospray.ogg";
+    [DataField("hypospraySound")] public SoundSpecifier HypospraySound = new SoundPathSpecifier("/Audio/Items/hypospray.ogg");
 }
 
 [RegisterComponent, NetworkedComponent]

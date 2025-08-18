@@ -1,5 +1,6 @@
 using Content.Shared._Sunrise.Misc;
 using Robust.Client.GameObjects;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._Sunrise.Misc;
 

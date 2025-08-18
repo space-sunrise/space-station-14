@@ -1711,6 +1711,9 @@
   description: uplink-xeno-artifact-throwing-auto-injector-desc
   icon: { sprite: _Sunrise/Objects/Specific/Syndicate/xeno_artifact_throwing_auto_injector.rsi, state: open }
   productEntity: XenoArtifactThrowingAutoInjector
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
     Telecrystal: 4
   categories:
@@ -1720,6 +1723,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
   - !type:BuyerDepartmentCondition
     whitelist:
       - Science
