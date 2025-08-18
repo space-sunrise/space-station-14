@@ -1529,6 +1529,9 @@
   description: uplink-anomaly-auto-injector-desc
   icon: { sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi, state: anomagen }
   productEntity: AnomalyAutoInjectorUplink
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
   cost:
     Telecrystal: 8
   categories:
@@ -1537,7 +1540,7 @@
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
-      - SubdermalImplant
+      - LoneOpsUplink
       - NukeOpsUplink
   - !type:BuyerDepartmentCondition
     whitelist:
