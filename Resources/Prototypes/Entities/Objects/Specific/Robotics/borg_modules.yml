@@ -886,7 +886,7 @@
     - item: HypoBorgMedicalAdvanced # Sunrise-Edit
     - item: BorgHypo
     - item: Syringe
-    - item: BorgDropper
+   # - item: BorgDropper # Sunrise-Edit
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty

@@ -165,7 +165,7 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 3
+      maxModules: 4
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
@@ -195,7 +195,6 @@
     - type: InnateItem
       worldTargetActions:
       - EmagInnateItem
-      - HandheldHealthAnalyzerUnpoweredInnateItem
     # Sunrise-End
 
 - type: entity

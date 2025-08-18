@@ -237,6 +237,7 @@
     - item: WeaponPistolEchis #Todo: Заменить на вариант Шприцемета с выбором снарядов
     - item: HypoBorgMedicalSyndicate
     - item: DefibrillatorOneHandedUnpowered
+    - item: HandheldHealthAnalyzerUnpowered
 
 - type: entity
   id: BorgModuleSyndicateCombat
