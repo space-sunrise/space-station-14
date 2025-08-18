@@ -205,7 +205,7 @@ public sealed class AlertLevelSystem : EntitySystem
             var eventEnt = _gameTicker.AddGameRule(EpsilonBorgLawChanges);
             // Use the system to set the station
             var epsilonRule = EntityManager.System<EpsilonDeathSquadLawsetRule>();
-            epsilonRule.SetTargetStation(eventEnt, station);
+            epsilonRule.StartEvent(eventEnt, station);
             _gameTicker.StartGameRule(eventEnt);
         }
         // Sunrise-End

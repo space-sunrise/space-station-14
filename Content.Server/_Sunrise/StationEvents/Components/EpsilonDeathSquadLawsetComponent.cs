@@ -1,11 +1,12 @@
-using Robust.Shared.GameObjects;
+using Content.Server._Sunrise.StationEvents.Events;
 
 namespace Content.Server._Sunrise.StationEvents.Components;
 
 /// <summary>
-/// Component for tracking Epsilon Death Squad Lawset state on an entity.
+/// Component for the Epsilon Death Squad Lawset event.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, Access(typeof(EpsilonDeathSquadLawsetRule))]
 public sealed partial class EpsilonDeathSquadLawsetComponent : Component
 {
+
 }
