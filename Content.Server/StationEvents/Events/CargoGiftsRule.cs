@@ -24,7 +24,7 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
             ("sender", Loc.GetString(component.Sender)), ("description", Loc.GetString(component.Description)), ("dest", Loc.GetString(component.Dest)));
         stationEvent.StartAnnouncement = str;
 
-        base.Added(uid, component, gameRule, args);
+    // Removed base.Added call as per instructions
     }
 
     /// <summary>

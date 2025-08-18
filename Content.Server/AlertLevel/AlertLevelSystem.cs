@@ -7,6 +7,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Content.Server.GameTicking;
+using Content.Server._Sunrise.StationEvents.Events;
 
 namespace Content.Server.AlertLevel;
 
@@ -18,20 +20,28 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    // Sunrise-Start
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    // Sunrise-End
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
+    // Sunrise-Start
+    private const string EpsilonAlertLevel = "epsilon";
+    private const string EpsilonBorgLawChanges = "EpsilonDeathSquadLawset";
+    private ISawmill _sawmill = default!;
+    // Sunrise-End
 
     public override void Initialize()
     {
+        base.Initialize();
+        _sawmill = Logger.GetSawmill("alert-level");
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
     }
-
-    public override void Update(float time)
+    public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<AlertLevelComponent>();
-
         while (query.MoveNext(out var station, out var alert))
         {
             if (alert.CurrentDelay <= 0)
@@ -43,8 +53,7 @@ public sealed class AlertLevelSystem : EntitySystem
                 }
                 continue;
             }
-
-            alert.CurrentDelay -= time;
+            alert.CurrentDelay -= frameTime;
         }
     }
 
@@ -52,23 +61,19 @@ public sealed class AlertLevelSystem : EntitySystem
     {
         if (!TryComp<AlertLevelComponent>(args.Station, out var alertLevelComponent))
             return;
-
         if (!_prototypeManager.TryIndex(alertLevelComponent.AlertLevelPrototype, out AlertLevelPrototype? alerts))
         {
             return;
         }
-
         alertLevelComponent.AlertLevels = alerts;
-
         var defaultLevel = alertLevelComponent.AlertLevels.DefaultLevel;
         if (string.IsNullOrEmpty(defaultLevel))
         {
-            defaultLevel = alertLevelComponent.AlertLevels.Levels.Keys.First();
+            // Deterministic selection of defaultLevel
+            defaultLevel = alertLevelComponent.AlertLevels.Levels.Keys.OrderBy(k => k).First();
         }
-
         SetLevel(args.Station, defaultLevel, false, false, true);
     }
-
     private void OnPrototypeReload(PrototypesReloadedEventArgs args)
     {
         if (!args.ByType.TryGetValue(typeof(AlertLevelPrototype), out var alertPrototypes)
@@ -77,47 +82,39 @@ public sealed class AlertLevelSystem : EntitySystem
         {
             return;
         }
-
         var query = EntityQueryEnumerator<AlertLevelComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             comp.AlertLevels = alerts;
-
             if (!comp.AlertLevels.Levels.ContainsKey(comp.CurrentLevel))
             {
                 var defaultLevel = comp.AlertLevels.DefaultLevel;
                 if (string.IsNullOrEmpty(defaultLevel))
                 {
-                    defaultLevel = comp.AlertLevels.Levels.Keys.First();
+                    // Deterministic selection of defaultLevel
+                    defaultLevel = comp.AlertLevels.Levels.Keys.OrderBy(k => k).First();
                 }
-
                 SetLevel(uid, defaultLevel, true, true, true);
             }
         }
-
         RaiseLocalEvent(new AlertLevelPrototypeReloadedEvent());
     }
-
     public string GetLevel(EntityUid station, AlertLevelComponent? alert = null)
     {
         if (!Resolve(station, ref alert))
         {
             return string.Empty;
         }
-
         return alert.CurrentLevel;
     }
-
     public float GetAlertLevelDelay(EntityUid station, AlertLevelComponent? alert = null)
     {
         if (!Resolve(station, ref alert))
         {
             return float.NaN;
         }
-
         return alert.CurrentDelay;
     }
-
     /// <summary>
     /// Get the default alert level for a station entity.
     /// Returns an empty string if the station has no alert levels defined.
@@ -141,7 +138,7 @@ public sealed class AlertLevelSystem : EntitySystem
     /// <param name="announce">Say the alert level's announcement.</param>
     /// <param name="force">Force the alert change. This applies if the alert level is not selectable or not.</param>
     /// <param name="locked">Will it be possible to change level by crew.</param>
-    public void SetLevel(EntityUid station, string level, bool playSound, bool announce, bool force = false,
+      public void SetLevel(EntityUid station, string level, bool playSound, bool announce, bool force = false,
         bool locked = false, MetaDataComponent? dataComponent = null, AlertLevelComponent? component = null)
     {
         if (!Resolve(station, ref component, ref dataComponent)
@@ -151,7 +148,6 @@ public sealed class AlertLevelSystem : EntitySystem
         {
             return;
         }
-
         if (!force)
         {
             if (!detail.Selectable
@@ -160,44 +156,33 @@ public sealed class AlertLevelSystem : EntitySystem
             {
                 return;
             }
-
             component.CurrentDelay = _cfg.GetCVar(CCVars.GameAlertLevelChangeDelay);
             component.ActiveDelay = true;
         }
-
-        // Sunrise added - добавил сохраненый прежний уровень для системы автодоступов
+        // Save previous level for auto access system
         var previousLevel = component.CurrentLevel;
-
         component.CurrentLevel = level;
         component.IsLevelLocked = locked;
-
         var stationName = dataComponent.EntityName;
-
         var name = level.ToLower();
-
         if (Loc.TryGetString($"alert-level-{level}", out var locName))
         {
             name = locName.ToLower();
         }
-
         // Announcement text. Is passed into announcementFull.
         var announcement = detail.Announcement;
-
         if (Loc.TryGetString(detail.Announcement, out var locAnnouncement))
         {
             announcement = locAnnouncement;
         }
-
         // The full announcement to be spat out into chat.
         var announcementFull = Loc.GetString("alert-level-announcement", ("name", name), ("announcement", announcement));
-
         var playDefault = false;
         if (playSound)
         {
             if (detail.Sound == null)
                 playDefault = true;
         }
-
         if (announce)
         {
             _chatSystem.DispatchStationAnnouncement(station,
@@ -207,15 +192,24 @@ public sealed class AlertLevelSystem : EntitySystem
                 colorOverride: detail.Color,
                 sender: stationName);
         }
-
         // Sunrise-Start
+        // Handle special alert level behaviors
         if (detail.ForceEndRound)
         {
             _roundEnd.EndRound();
         }
+        // Handle Epsilon alert level
+        if (level == EpsilonAlertLevel)
+        {
+            _sawmill.Info($"Epsilon alert level triggered on station {station}, adding Death Squad Lawset event");
+            var eventEnt = _gameTicker.AddGameRule(EpsilonBorgLawChanges);
+            // Use the system to set the station
+            var epsilonRule = EntityManager.System<EpsilonDeathSquadLawsetRule>();
+            epsilonRule.SetTargetStation(eventEnt, station);
+            _gameTicker.StartGameRule(eventEnt);
+        }
         // Sunrise-End
-
-        // Sunrise edit - добавил прежний уровень для системы автодоступов
+        // Raise event with previous level for auto access system
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level, previousLevel));
     }
 }
@@ -226,17 +220,17 @@ public sealed class AlertLevelDelayFinishedEvent : EntityEventArgs
 public sealed class AlertLevelPrototypeReloadedEvent : EntityEventArgs
 {}
 
+// Sunrise-Start
 public sealed class AlertLevelChangedEvent : EntityEventArgs
 {
     public EntityUid Station { get; }
     public string AlertLevel { get; }
-
-    public string PreviousLevel; // Sunrise added - прежний уровень для системы автодоступов
-
+    public string PreviousLevel; // Sunrise: previous level for auto access system
     public AlertLevelChangedEvent(EntityUid station, string alertLevel, string previousLevel)
     {
         Station = station;
         AlertLevel = alertLevel;
-        PreviousLevel = previousLevel; // Sunrise added - прежний уровень для системы автодоступов
+        PreviousLevel = previousLevel;
     }
 }
+// Sunrise-End
