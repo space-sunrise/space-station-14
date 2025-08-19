@@ -1249,10 +1249,14 @@
     soundActivate:
       path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
     soundDeactivate:
-      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+      path: /Audio/Weapons/Guns/EmptyAlarm/lmg_empty_alarm.ogg
+      params:
+        volume: -4
   - type: ItemToggleActiveSound
     activeSound:
-      collection: armor_ricochet
+      path: /Audio/_Sunrise/Objects/Fun/plushie_kalium/armor_rikoshet.ogg
+      params:
+        volume: -6
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicateNormal
@@ -1267,8 +1271,8 @@
     delay: 1.0
   - type: PointLight
     enabled: true
-    radius: 1.5
-    energy: 2.0
+    radius: 1.2
+    energy: 1.5
     color: "#FFD700"
     netsync: false
   - type: Appearance
@@ -1277,16 +1281,18 @@
   - type: ItemTogglePointLight
   - type: EmitSoundOnTrigger
     sound:
-      collection: VulpkaninBarks
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_open.ogg
   - type: EmitSoundOnLand
     sound:
-      collection: VulpkaninBarks
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
   - type: EmitSoundOnActivate
     sound:
-      collection: VulpkaninBarks
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_open.ogg
   - type: EmitSoundOnUse
     sound:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: MeleeWeapon
+    soundHit:
       collection: PlushieVulpkaninGrowls
-  - type: Construction
-    graph: PlushieKaliumDouble1
-    node: start
+      params:
+        volume: 100
