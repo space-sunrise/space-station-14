@@ -143,7 +143,8 @@ namespace Content.IntegrationTests.Tests.Damageable
                 type3b = sPrototypeManager.Index<DamageTypePrototype>(TestDamage3b);
                 type3c = sPrototypeManager.Index<DamageTypePrototype>(TestDamage3c);
 
-                sConfigManager.SetCVar(SunriseCCVars.DamageVariance, 0f); // Sunrise-Edit
+                sConfigManager.SetCVar(SunriseCCVars.DamageNegativeVariance, 0f); // Sunrise-Edit
+                sConfigManager.SetCVar(SunriseCCVars.DamagePositiveVariance, 0f); // Sunrise-Edit
             });
 
             await server.WaitRunTicks(5);
