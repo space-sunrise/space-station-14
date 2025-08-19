@@ -30,7 +30,7 @@
   - type: InjectableSolution
     solution: melee
   - type: SolutionTransfer
-    maxTransferAmount: 1
+    maxTransferAmount: 0.75
   - type: Reflect
     reflects:
     - NonEnergy

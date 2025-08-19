@@ -72,12 +72,6 @@ public sealed partial class MeleeWeaponComponent : Component
     public bool ResistanceBypass = false;
 
     /// <summary>
-    /// Sunrise Edit bypass OnWide
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ResistanceBypassOnWide = false;
-
-    /// <summary>
     /// Base damage for this weapon. Can be modified via heavy damage or other means.
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
