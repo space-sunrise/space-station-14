@@ -113,7 +113,7 @@
     raffle:
       settings: default
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleLoneops
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
