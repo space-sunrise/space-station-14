@@ -163,11 +163,11 @@
       items:
         - ScalpelCyber
         - RetractorCyber
-        - CauteryCyber
-        - DrillCyber
+        # - CauteryCyber #Заменяет ScalpelCyber
         - SawCyber
-        - HemostatCyber
-        - BoneSetterCyber
+        # - HemostatCyber
+        - BoneGelSetterCyber #Заменяет BoneSetterCyberЭ
+        - DrillCyber
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
@@ -194,14 +194,15 @@
       items:
         - ScalpelCyber
         - RetractorCyber
-        - CauteryCyber
-        - DrillCyber
+        # - CauteryCyber
         - SawCyber
-        - HemostatCyber
-        - BoneSetterCyber
+        # - HemostatCyber
+        - BoneGelSetterCyber
+        - DrillCyber
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+
 #Mechwright
 - type: entity
   id: LeftArmCyberMechwright
