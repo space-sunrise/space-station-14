@@ -1,3 +1,14 @@
+second = секунда
+second[one] = секунда
+second[few] = секунды
+second[many] = секунд
+second[other] = секунд
+
+dead = мёртвый
+dead[one] = мёртвый
+dead[few] = мёртвых
+dead[many] = мёртвых
+dead[other] = мёртвых
 -create-3rd-person =
     { $chance ->
         [1] Создаёт

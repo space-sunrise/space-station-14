@@ -15,17 +15,20 @@
 - type: reaction
   id: H-32
   reactants:
-    Arithrazine:
-      amount: 1
-    Bicaridine:
-      amount: 1
     Cryoxadone:
+      amount: 1
+    Radium:
+      amount: 1
+    Mannitol:
+      amount: 1
+    Bensol:
       amount: 1
     Plasma:
       amount: 1
       catalyst: true
   products:
     H-32: 4
+    Plasma: 1
 
 - type: reaction
   id: Celliminol
