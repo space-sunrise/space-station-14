@@ -1227,4 +1227,66 @@
   - type: ToggleableVisuals
     spriteLayer: light
 
-
+- type: entity
+  parent: BasePlushie
+  id: PlushieKaliumJuggernaut
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_juggernaut.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium_jager_unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_juggernaut.rsi
+    equippedPrefix: kalium
+    slots:
+    - NECK
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      collection: armor_ricochet
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-operator
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Tag
+    tags:
+    - PlushieKalium
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: true
+    radius: 1.5
+    energy: 2.0
+    color: "#FFD700"
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: VulpkaninBarks
+  - type: EmitSoundOnLand
+    sound:
+      collection: VulpkaninBarks
+  - type: EmitSoundOnActivate
+    sound:
+      collection: VulpkaninBarks
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: Construction
+    graph: PlushieKaliumDouble1
+    node: start
