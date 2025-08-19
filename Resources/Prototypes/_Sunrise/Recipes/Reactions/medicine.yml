@@ -21,14 +21,13 @@
       amount: 1
     Mannitol:
       amount: 1
-    Bensol:
+    Benzene:
       amount: 1
     Plasma:
       amount: 1
       catalyst: true
   products:
     H-32: 4
-    Plasma: 1
 
 - type: reaction
   id: Celliminol

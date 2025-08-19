@@ -21,7 +21,6 @@
     access: [["Cryogenics"]]
   - type: InteractionOutline
   - type: Cryostorage
-  - type: AntiRottingContainer
   - type: Fixtures
     fixtures:
       fix1:

@@ -3,6 +3,7 @@ second[one] = секунда
 second[few] = секунды
 second[many] = секунд
 second[other] = секунд
+seconds = секунд
 
 dead = мёртвый
 dead[one] = мёртвый
