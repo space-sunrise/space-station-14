@@ -1685,3 +1685,20 @@
     - ResearchAssistant
     - Scientist
     - ResearchDirector
+
+- type: listing
+  id: UplinkGorillaUpgradeKit
+  name: uplink-gorilla-upgrade-kit-name
+  description: uplink-gorilla-upgrade-kit-desc
+  productEntity: GauntletGORILLAUpgradeKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Science

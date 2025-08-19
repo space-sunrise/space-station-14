@@ -100,6 +100,9 @@
 - type: Tag
   id: UpgradeVestSec
 
+- type: Tag
+  id: GorillaUpgradeKit
+
 # Magazines:
 - type: Tag
   id: MagazineM28
