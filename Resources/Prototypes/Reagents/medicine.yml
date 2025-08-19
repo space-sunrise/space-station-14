@@ -1577,7 +1577,7 @@
             Radiation: 1
             Cellular: 1
       - !type:ReduceRotting
-        seconds: 0.5
+        seconds: 1
         conditions:
         - !type:Temperature
           max: 180.0
