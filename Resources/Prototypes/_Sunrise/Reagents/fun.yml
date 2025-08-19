@@ -26,9 +26,6 @@
         frequency: 5
 
 - type: reagent
-
-
-- type: reagent
   id: Celliminol
   name: reagent-name-celliminol
   group: Medicine
