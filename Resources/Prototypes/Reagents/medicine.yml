@@ -1563,6 +1563,7 @@
   worksOnTheDead: true
   metabolisms:
     Medicine:
+      metabolismRate: 1.0
       effects:
       - !type:HealthChange
         conditions:
