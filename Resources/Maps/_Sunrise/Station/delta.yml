@@ -227879,64 +227879,6 @@ entities:
       parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
-  - uid: 32055
-    components:
-    - type: Transform
-      pos: -71.5,54.5
-      parent: 2
-  - uid: 32056
-    components:
-    - type: Transform
-      pos: -73.5,50.5
-      parent: 2
-  - uid: 32057
-    components:
-    - type: Transform
-      pos: -71.5,50.5
-      parent: 2
-  - uid: 32058
-    components:
-    - type: Transform
-      pos: -72.5,54.5
-      parent: 2
-  - uid: 32059
-    components:
-    - type: Transform
-      pos: -73.5,54.5
-      parent: 2
-  - uid: 32060
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 39.5,-68.5
-      parent: 2
-  - uid: 32061
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 37.5,-66.5
-      parent: 2
-  - uid: 32062
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 41.5,-68.5
-      parent: 2
-  - uid: 32063
-    components:
-    - type: Transform
-      pos: -71.5,-4.5
-      parent: 2
-  - uid: 32064
-    components:
-    - type: Transform
-      pos: -67.5,-4.5
-      parent: 2
-  - uid: 32065
-    components:
-    - type: Transform
-      pos: -69.5,-4.5
-      parent: 2
   - uid: 32001
     components:
     - type: Transform
@@ -228216,6 +228158,66 @@ entities:
     components:
     - type: Transform
       pos: 62.5,13.5
+      parent: 2
+- proto: ReinforcedUraniumWindow
+  entities:
+  - uid: 32055
+    components:
+    - type: Transform
+      pos: -71.5,54.5
+      parent: 2
+  - uid: 32056
+    components:
+    - type: Transform
+      pos: -73.5,50.5
+      parent: 2
+  - uid: 32057
+    components:
+    - type: Transform
+      pos: -71.5,50.5
+      parent: 2
+  - uid: 32058
+    components:
+    - type: Transform
+      pos: -72.5,54.5
+      parent: 2
+  - uid: 32059
+    components:
+    - type: Transform
+      pos: -73.5,54.5
+      parent: 2
+  - uid: 32060
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 39.5,-68.5
+      parent: 2
+  - uid: 32061
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,-66.5
+      parent: 2
+  - uid: 32062
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 41.5,-68.5
+      parent: 2
+  - uid: 32063
+    components:
+    - type: Transform
+      pos: -71.5,-4.5
+      parent: 2
+  - uid: 32064
+    components:
+    - type: Transform
+      pos: -67.5,-4.5
+      parent: 2
+  - uid: 32065
+    components:
+    - type: Transform
+      pos: -69.5,-4.5
       parent: 2
 - proto: ReinforcedWindow
   entities:
@@ -235081,6 +235083,13 @@ entities:
       parent: 2
     - type: Physics
       canCollide: False
+- proto: ShardGlassUranium
+  entities:
+  - uid: 33335
+    components:
+    - type: Transform
+      pos: 3.6489005,-1.0075705
+      parent: 2
 - proto: SheetGlass
   entities:
   - uid: 33336
@@ -255301,6 +255310,54 @@ entities:
     components:
     - type: Transform
       pos: -30.5,-15.5
+      parent: 2
+- proto: UraniumReinforcedWindowDirectional
+  entities:
+  - uid: 36440
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36441
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36442
+    components:
+    - type: Transform
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36443
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36444
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36445
+    components:
+    - type: Transform
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36446
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,3.5
+      parent: 2
+  - uid: 36447
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 9.5,3.5
       parent: 2
 - proto: Vaccinator
   entities:
