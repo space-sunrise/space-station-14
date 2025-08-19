@@ -11,8 +11,8 @@ public sealed class FrenchAccentSystem : EntitySystem
 {
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
 
-    private static readonly Regex RegexK = new(@"[кК]", RegexOptions.Compiled); // Sunrise-Edit: global, case-aware
-    private static readonly Regex RegexR = new(@"[рР]", RegexOptions.Compiled); // Sunrise-Edit: global, case-aware
+    private static readonly Regex RegexK = new(@"[кК]", RegexOptions.Compiled | RegexOptions.NonBacktracking); // Sunrise-Edit: global, case-aware
+    private static readonly Regex RegexR = new(@"[рР]", RegexOptions.Compiled | RegexOptions.NonBacktracking); // Sunrise-Edit: global, case-aware
     private static readonly Regex RegexSpacePunctuation = new(@"(?<=\w\w)[!?;:](?!\w)", RegexOptions.IgnoreCase);
 
     public override void Initialize()
