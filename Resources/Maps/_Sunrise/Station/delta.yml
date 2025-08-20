@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 266.0.0
   forkId: sunrise_station
-  forkVersion: ab94ab3bcdc2058c615dfeaf8b7910276b894551
-  time: 08/19/2025 13:02:28
-  entityCount: 43402
+  forkVersion: 65cc1375f29544c1e17019ee64bf90050b989980
+  time: 08/20/2025 00:32:04
+  entityCount: 43407
 maps:
 - 1
 grids:
@@ -32283,7 +32283,7 @@ entities:
       pos: -58.5,91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -164849.88
+      secondsUntilStateChange: -184556.95
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32299,7 +32299,7 @@ entities:
       pos: 79.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -87977.234
+      secondsUntilStateChange: -107684.31
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32365,7 +32365,7 @@ entities:
       pos: 52.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -521.75006
+      secondsUntilStateChange: -20228.828
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -33011,7 +33011,7 @@ entities:
       pos: -35.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -390835.84
+      secondsUntilStateChange: -410542.9
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34262,7 +34262,7 @@ entities:
       pos: -26.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -178463.2
+      secondsUntilStateChange: -198170.28
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -35798,7 +35798,7 @@ entities:
       pos: 81.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -496508.78
+      secondsUntilStateChange: -516215.84
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -68027,11 +68027,6 @@ entities:
     components:
     - type: Transform
       pos: 38.5,-44.5
-      parent: 2
-  - uid: 6904
-    components:
-    - type: Transform
-      pos: 34.5,-37.5
       parent: 2
   - uid: 6905
     components:
@@ -106319,6 +106314,16 @@ entities:
     - type: Transform
       pos: 30.5,-21.5
       parent: 2
+  - uid: 26066
+    components:
+    - type: Transform
+      pos: -5.5,33.5
+      parent: 2
+  - uid: 36479
+    components:
+    - type: Transform
+      pos: -55.5,11.5
+      parent: 2
 - proto: Carpet
   entities:
   - uid: 1416
@@ -126670,6 +126675,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -55.5,12.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        36479:
+        - - OrderSender
+          - OrderReceiver
 - proto: ComputerCargoOrdersMedical
   entities:
   - uid: 17714
@@ -126706,6 +126716,18 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         14536:
+        - - OrderSender
+          - OrderReceiver
+- proto: ComputerCargoOrdersService
+  entities:
+  - uid: 31924
+    components:
+    - type: Transform
+      pos: -4.5,33.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        26066:
         - - OrderSender
           - OrderReceiver
 - proto: ComputerComms
@@ -130117,7 +130139,7 @@ entities:
       pos: 38.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -396101.1
+      secondsUntilStateChange: -415808.16
       state: Closing
   - uid: 18122
     components:
@@ -132176,6 +132198,11 @@ entities:
       parent: 2
 - proto: DisposalJunctionFlipped
   entities:
+  - uid: 6904
+    components:
+    - type: Transform
+      pos: 29.5,-31.5
+      parent: 2
   - uid: 18419
     components:
     - type: Transform
@@ -135516,12 +135543,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 29.5,-28.5
       parent: 2
-  - uid: 18986
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 29.5,-31.5
-      parent: 2
   - uid: 18987
     components:
     - type: Transform
@@ -138840,6 +138861,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 24.5,9.5
       parent: 2
+  - uid: 42860
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 30.5,-31.5
+      parent: 2
+  - uid: 43093
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 31.5,-31.5
+      parent: 2
 - proto: DisposalTrunk
   entities:
   - uid: 2611
@@ -139367,6 +139400,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 25.5,8.5
+      parent: 2
+  - uid: 43094
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 32.5,-31.5
       parent: 2
 - proto: DisposalUnit
   entities:
@@ -140561,7 +140600,7 @@ entities:
       pos: 39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -390721.03
+      secondsUntilStateChange: -410428.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -141561,6 +141600,14 @@ entities:
     components:
     - type: Transform
       pos: -36.627064,49.329052
+      parent: 2
+- proto: EffectHearts
+  entities:
+  - uid: 42859
+    components:
+    - type: Transform
+      rot: 1.0182609457842773E-06 rad
+      pos: 6.1538057,-19.284048
       parent: 2
 - proto: ElectricGuitarInstrument
   entities:
@@ -144078,13 +144125,6 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Офис КМ
-  - uid: 26066
-    components:
-    - type: Transform
-      pos: 9.5,2.5
-      parent: 2
-    - type: FaxMachine
-      name: Капитан
   - uid: 32483
     components:
     - type: Transform
@@ -144092,6 +144132,15 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Офис ГП
+- proto: FaxMachineCaptain
+  entities:
+  - uid: 18986
+    components:
+    - type: Transform
+      pos: 9.5,2.5
+      parent: 2
+    - type: FaxMachine
+      name: Капитан
 - proto: FenceMetalBroken
   entities:
   - uid: 20332
@@ -146388,7 +146437,7 @@ entities:
       pos: 15.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -210550.3
+      secondsUntilStateChange: -230257.38
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146402,7 +146451,7 @@ entities:
       pos: -16.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -97738.85
+      secondsUntilStateChange: -117445.93
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146603,7 +146652,7 @@ entities:
       pos: -39.5,-73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -518316.78
+      secondsUntilStateChange: -538023.9
       state: Closing
   - uid: 20628
     components:
@@ -207719,6 +207768,9 @@ entities:
         30732:
         - - Pressed
           - Toggle
+        42829:
+        - - Pressed
+          - Toggle
     - type: Fixtures
       fixtures: {}
 - proto: LockableButtonHydroponics
@@ -227516,11 +227568,6 @@ entities:
     - type: Transform
       pos: -58.5,18.5
       parent: 2
-  - uid: 31924
-    components:
-    - type: Transform
-      pos: -4.5,33.5
-      parent: 2
   - uid: 31925
     components:
     - type: Transform
@@ -237067,6 +237114,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -16.5,8.5
       parent: 2
+  - uid: 42829
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -16.5,4.5
+      parent: 2
 - proto: ShuttersRadiation
   entities:
   - uid: 33643
@@ -243461,12 +243514,11 @@ entities:
     - type: Transform
       pos: 28.5,56.5
       parent: 2
-- proto: SpawnMobParrot
+- proto: SpawnMobPollyParrot
   entities:
   - uid: 28440
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: -63.5,7.5
       parent: 2
 - proto: SpawnMobShiva
@@ -255881,11 +255933,6 @@ entities:
       name: cigarette machine
     - type: Transform
       pos: 55.5,-30.5
-      parent: 2
-  - uid: 36479
-    components:
-    - type: Transform
-      pos: -5.5,33.5
       parent: 2
 - proto: VendingMachineClothing
   entities:
