@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: sunrise_station
   forkVersion: 65cc1375f29544c1e17019ee64bf90050b989980
-  time: 08/20/2025 00:32:04
-  entityCount: 43407
+  time: 08/20/2025 07:51:11
+  entityCount: 43406
 maps:
 - 1
 grids:
@@ -32283,7 +32283,7 @@ entities:
       pos: -58.5,91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -184556.95
+      secondsUntilStateChange: -184676.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32299,7 +32299,7 @@ entities:
       pos: 79.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -107684.31
+      secondsUntilStateChange: -107803.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32365,7 +32365,7 @@ entities:
       pos: 52.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20228.828
+      secondsUntilStateChange: -20348.078
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -33011,7 +33011,7 @@ entities:
       pos: -35.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -410542.9
+      secondsUntilStateChange: -410662.16
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34262,7 +34262,7 @@ entities:
       pos: -26.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -198170.28
+      secondsUntilStateChange: -198289.53
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -35798,7 +35798,7 @@ entities:
       pos: 81.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -516215.84
+      secondsUntilStateChange: -516335.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -130139,7 +130139,7 @@ entities:
       pos: 38.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -415808.16
+      secondsUntilStateChange: -415927.4
       state: Closing
   - uid: 18122
     components:
@@ -140600,7 +140600,7 @@ entities:
       pos: 39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -410428.1
+      secondsUntilStateChange: -410547.34
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -141600,14 +141600,6 @@ entities:
     components:
     - type: Transform
       pos: -36.627064,49.329052
-      parent: 2
-- proto: EffectHearts
-  entities:
-  - uid: 42859
-    components:
-    - type: Transform
-      rot: 1.0182609457842773E-06 rad
-      pos: 6.1538057,-19.284048
       parent: 2
 - proto: ElectricGuitarInstrument
   entities:
@@ -146437,7 +146429,7 @@ entities:
       pos: 15.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -230257.38
+      secondsUntilStateChange: -230376.62
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146451,7 +146443,7 @@ entities:
       pos: -16.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -117445.93
+      secondsUntilStateChange: -117565.18
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146652,7 +146644,7 @@ entities:
       pos: -39.5,-73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -538023.9
+      secondsUntilStateChange: -538143.1
       state: Closing
   - uid: 20628
     components:
