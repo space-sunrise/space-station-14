@@ -11,6 +11,7 @@ using Robust.Shared.Physics.Events;
 using Content.Shared.Throwing;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Hands;
+using Content.Shared.Humanoid;
 
 namespace Content.Server._Sunrise.Misc;
 
@@ -23,6 +24,7 @@ public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<XenoArtifactThrowingAutoInjectorComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<XenoArtifactThrowingAutoInjectorComponent, ThrownEvent>(OnThrown);
         SubscribeLocalEvent<XenoArtifactThrowingAutoInjectorComponent, GotEquippedHandEvent>(OnGotEquippedHand);
@@ -46,11 +48,8 @@ public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
             return;
 
         var target = args.OtherEntity;
-        // Универсальная проверка: все живые (MobStateComponent), кроме боргов и ии.
-        var isLiving = HasComp<Content.Shared.Mobs.Components.MobStateComponent>(target);
-        var isBorg = HasComp<Content.Shared.Silicons.Borgs.Components.BorgChassisComponent>(target);
-        var isStationAi = HasComp<Content.Shared.Silicons.StationAi.StationAiCoreComponent>(target);
-        if (isLiving && !isBorg && !isStationAi)
+        // Проверка: только гуманоиды
+        if (HasComp<HumanoidAppearanceComponent>(target))
         {
             if (!HasComp<XenoArtifactThrowingAutoInjectorMarkComponent>(target))
             {

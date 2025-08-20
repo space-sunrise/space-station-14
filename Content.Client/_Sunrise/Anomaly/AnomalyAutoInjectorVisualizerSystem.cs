@@ -7,32 +7,28 @@ namespace Content.Client._Sunrise.Anomaly;
 
 public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<UsedAnomalyAutoInjectorComponent, ComponentStartup>(OnUsedStartup);
         SubscribeLocalEvent<UsedAnomalyAutoInjectorComponent, ComponentShutdown>(OnUsedShutdown);
     }
 
     private void OnUsedStartup(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentStartup args)
     {
-        SetSpriteState(uid, comp.SpriteStateEmpty);
+        SetSpriteState(uid, comp.SpriteStateEmpty, comp.SpriteLayer);
     }
 
     private void OnUsedShutdown(EntityUid uid, UsedAnomalyAutoInjectorComponent comp, ComponentShutdown args)
     {
-        SetSpriteState(uid, comp.SpriteStateFull);
+        SetSpriteState(uid, comp.SpriteStateFull, comp.SpriteLayer);
     }
 
-    private void SetSpriteState(EntityUid uid, string state)
+    private void SetSpriteState(EntityUid uid, string state, AnomalyAutoInjectorVisualLayers layer)
     {
-        if (TryComp<UsedAnomalyAutoInjectorComponent>(uid, out var comp) &&
-            TryComp<SpriteComponent>(uid, out var sprite) &&
-            sprite.LayerMapTryGet(comp.SpriteLayerName, out var layer))
-        {
-            sprite.LayerSetState(layer, state);
-        }
+        _spriteSystem.LayerSetRsiState(uid, layer, state);
     }
 }

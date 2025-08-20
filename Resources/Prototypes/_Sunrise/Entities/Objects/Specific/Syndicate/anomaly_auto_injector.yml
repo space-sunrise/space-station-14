@@ -9,7 +9,7 @@
       sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
       layers:
         - state: anomagen
-          map: ["base"]
+          map: ["enum.AnomalyAutoInjectorVisualLayers.Base"]
     - type: AnomalyAutoInjector
       anomalyTrapProtos:
         # все существующие аномалии на данный момент

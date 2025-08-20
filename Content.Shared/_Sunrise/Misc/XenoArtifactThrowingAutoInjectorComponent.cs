@@ -6,7 +6,9 @@ namespace Content.Shared._Sunrise.Misc;
 [RegisterComponent]
 public sealed partial class XenoArtifactThrowingAutoInjectorComponent : Component
 {
-    [DataField("hypospraySound")] public SoundSpecifier HypospraySound = new SoundPathSpecifier("/Audio/Items/hypospray.ogg");
+    [DataField]
+    public SoundSpecifier HypospraySound = new SoundPathSpecifier("/Audio/Items/hypospray.ogg");
+
     /// <summary>
     /// Был ли уже использован автоинъектор (в кого-то вонзился)
     /// </summary>
@@ -14,12 +16,20 @@ public sealed partial class XenoArtifactThrowingAutoInjectorComponent : Componen
     public bool Used = false;
 }
 
+public enum XenoArtifactThrowingAutoInjectorVisualLayers : byte
+{
+    Base
+}
+
 [RegisterComponent, NetworkedComponent]
 public sealed partial class UsedXenoArtifactThrowingAutoInjectorComponent : Component
 {
-    [DataField("spriteStateFull")] public string SpriteStateFull = "open";
-    [DataField("spriteStateEmpty")] public string SpriteStateEmpty = "closed";
-    [DataField("spriteLayerName")] public string SpriteLayerName = "base";
+    [DataField]
+    public string SpriteStateFull = "open";
+    [DataField]
+    public string SpriteStateEmpty = "closed";
+    [DataField]
+    public XenoArtifactThrowingAutoInjectorVisualLayers SpriteLayer = XenoArtifactThrowingAutoInjectorVisualLayers.Base;
 }
 
 [RegisterComponent, NetworkedComponent]

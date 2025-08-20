@@ -8,7 +8,7 @@
       sprite: _Sunrise/Objects/Specific/Syndicate/xeno_artifact_throwing_auto_injector.rsi
       layers:
         - state: closed
-          map: ["base"]
+          map: ["enum.XenoArtifactThrowingAutoInjectorVisualLayers.Base"]
     - type: XenoArtifactThrowingAutoInjector
     - type: EmbeddableProjectile
       embedOnThrow: true

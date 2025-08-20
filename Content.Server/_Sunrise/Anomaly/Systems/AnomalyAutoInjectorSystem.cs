@@ -45,26 +45,13 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         SubscribeLocalEvent<AnomalyAutoInjectorComponent, AfterInteractEvent>(OnAfterInteract);
     }
 
-
-
-    // ShowPopup wrapper removed per review
-
     private bool IsValidTargetForInjection(EntityUid target, EntityUid injector, AnomalyAutoInjectorComponent comp, [NotNullWhen(false)] out string? popup)
     {
         popup = null;
 
-        if (!HasComp<MobStateComponent>(target))
-        {
-            popup = comp.PopupNotApplicable;
-            return false;
-        }
-
         if (!HasComp<HumanoidAppearanceComponent>(target))
         {
-            if (!HasComp<UsedAnomalyAutoInjectorComponent>(injector))
-                popup = comp.PopupNotApplicable;
-            else
-                popup = comp.PopupNothingToInject;
+            popup = comp.PopupNotApplicable;
             return false;
         }
 
@@ -101,19 +88,19 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
             return;
         }
 
-        // Проверка конфигурации до любых побочных эффектов.
         if (comp.AnomalyTrapProtos.Count == 0)
         {
-            Logger.Error($"AnomalyAutoInjector {ToPrettyString(uid)} has empty AnomalyTrapProtos list");
             args.Handled = true;
             return;
         }
 
+        if (TryComp<UsedAnomalyAutoInjectorComponent>(uid, out var usedComp))
+        {
+            return;
+        }
         EnsureComp<UsedAnomalyAutoInjectorComponent>(uid);
         args.Handled = true;
-        if (Exists(uid))
-            _audio.PlayPvs(comp.HypospraySound, uid);
-
+        _audio.PlayPvs(comp.HypospraySound, uid);
         _statusEffects.TryAddStatusEffectDuration(target, comp.RainbowEffect, TimeSpan.FromSeconds(comp.RainbowDuration));
         if (TryComp<SeeingRainbowsWeakStatusEffectComponent>(target, out var rainbowComp))
         {
@@ -151,10 +138,6 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
                 if (TryGetInjectionComponents(pending.SelectedAnomalyTrapProtoId!.Value, out var comps))
                 {
                     EntityManager.AddComponents(uid, comps);
-                }
-                else
-                {
-                    Logger.Error($"Failed to resolve injection components for proto {pending.SelectedAnomalyTrapProtoId!.Value} on {ToPrettyString(uid)}");
                 }
             }
 

@@ -6,28 +6,28 @@ namespace Content.Client._Sunrise.Misc;
 
 public sealed class XenoArtifactThrowingAutoInjectorVisualizerSystem : EntitySystem
 {
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<UsedXenoArtifactThrowingAutoInjectorComponent, ComponentStartup>(OnUsedStartup);
         SubscribeLocalEvent<UsedXenoArtifactThrowingAutoInjectorComponent, ComponentShutdown>(OnUsedShutdown);
     }
 
     private void OnUsedStartup(EntityUid uid, UsedXenoArtifactThrowingAutoInjectorComponent comp, ComponentStartup args)
     {
-        SetSpriteState(uid, comp.SpriteStateEmpty, comp.SpriteLayerName);
+        SetSpriteState(uid, comp.SpriteStateEmpty, comp.SpriteLayer);
     }
 
     private void OnUsedShutdown(EntityUid uid, UsedXenoArtifactThrowingAutoInjectorComponent comp, ComponentShutdown args)
     {
-        SetSpriteState(uid, comp.SpriteStateFull, comp.SpriteLayerName);
+        SetSpriteState(uid, comp.SpriteStateFull, comp.SpriteLayer);
     }
 
-    private void SetSpriteState(EntityUid uid, string state, string layerName)
+    private void SetSpriteState(EntityUid uid, string state, XenoArtifactThrowingAutoInjectorVisualLayers layer)
     {
-        if (TryComp<SpriteComponent>(uid, out var sprite) && sprite.LayerMapTryGet(layerName, out var layer))
-        {
-            sprite.LayerSetState(layer, state);
-        }
+        _spriteSystem.LayerSetRsiState(uid, layer, state);
     }
 }
