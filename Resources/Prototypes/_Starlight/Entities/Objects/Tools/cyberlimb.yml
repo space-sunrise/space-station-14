@@ -219,8 +219,8 @@
       Welder:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 100
-        maxVol: 100
+          Quantity: 250 # Sunrise-edit
+        maxVol: 250 # Sunrise-edit
   - type: Tool
     speedModifier: 1.75
     useSound:
@@ -235,6 +235,7 @@
   - type: ItemTogglePointLight
   - type: Appearance
   - type: RequiresEyeProtection
+    statusEffectTime: 5 # sunglasses can block it # Sunrise-TODO: Сделать отдельную улучшенную версию руки с продвинутыми инструментами.
   - type: PhysicalComposition
     materialComposition:
       Steel: 200
