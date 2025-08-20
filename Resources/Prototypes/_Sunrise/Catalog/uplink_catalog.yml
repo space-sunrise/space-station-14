@@ -1702,3 +1702,21 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Science
+
+- type: listing
+  id: UplinkAnomalyCoreContainer
+  name: uplink-anomaly-core-name
+  description: uplink-anomaly-core-desc
+  productEntity: HandheldArtifactContainerSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Science
+
