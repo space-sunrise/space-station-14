@@ -684,7 +684,7 @@
   damage:
     types:
       Piercing: 28
-      Structural: 15
+      Structural: 25
   armorPenetration: 0.40
   staminaDamage: 15
   pierceChance: 0.35
