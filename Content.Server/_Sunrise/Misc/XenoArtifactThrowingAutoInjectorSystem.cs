@@ -42,24 +42,19 @@ public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
 
     private void OnStartCollide(EntityUid uid, XenoArtifactThrowingAutoInjectorComponent comp, ref StartCollideEvent args)
     {
-        if (comp.Used)
-            return;
-        if (HasComp<UsedXenoArtifactThrowingAutoInjectorComponent>(uid))
+        var target = args.OtherEntity;
+
+        if (!HasComp<HumanoidAppearanceComponent>(target))
             return;
 
-        var target = args.OtherEntity;
-        // Проверка: только гуманоиды
-        if (HasComp<HumanoidAppearanceComponent>(target))
-        {
-            if (!HasComp<XenoArtifactThrowingAutoInjectorMarkComponent>(target))
-            {
-                EntityManager.AddComponent<XenoArtifactThrowingAutoInjectorMarkComponent>(target);
-                EntityManager.AddComponent<XenoArtifactComponent>(target);
-                EnsureComp<UsedXenoArtifactThrowingAutoInjectorComponent>(uid);
-                RemCompDeferred<EmbeddableProjectileComponent>(uid);
-                comp.Used = true;
-                _audio.PlayPvs(comp.HypospraySound, uid);
-            }
-        }
+        if (HasComp<XenoArtifactThrowingAutoInjectorMarkComponent>(target))
+            return;
+
+        EntityManager.AddComponent<XenoArtifactThrowingAutoInjectorMarkComponent>(target);
+        EntityManager.AddComponent<XenoArtifactComponent>(target);
+        EnsureComp<UsedXenoArtifactThrowingAutoInjectorComponent>(uid);
+        RemCompDeferred<EmbeddableProjectileComponent>(uid);
+        comp.Used = true;
+        _audio.PlayPvs(comp.HypospraySound, uid);
     }
 }

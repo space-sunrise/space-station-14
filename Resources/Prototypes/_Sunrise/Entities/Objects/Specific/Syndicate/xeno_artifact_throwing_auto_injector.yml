@@ -2,7 +2,7 @@
   id: XenoArtifactThrowingAutoInjector
   parent: [BaseItem, BaseSyndicateContraband]
   name: метательный автоинъектор артефакта
-  description: Активируется при броске, вонзаясь в живое существо и единоразово вводя частицы артефакта.
+  description: "{ uplink-xeno-artifact-throwing-auto-injector-desc }"
   components:
     - type: Sprite
       sprite: _Sunrise/Objects/Specific/Syndicate/xeno_artifact_throwing_auto_injector.rsi

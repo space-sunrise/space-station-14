@@ -84,7 +84,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
         if (!IsValidTargetForInjection(target, uid, comp, out var popup))
         {
             if (popup != null)
-                _popup.PopupEntity(popup, target, args.User);
+                _popup.PopupEntity(Loc.GetString(popup), target, args.User);
             return;
         }
 
@@ -94,10 +94,6 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
             return;
         }
 
-        if (TryComp<UsedAnomalyAutoInjectorComponent>(uid, out var usedComp))
-        {
-            return;
-        }
         EnsureComp<UsedAnomalyAutoInjectorComponent>(uid);
         args.Handled = true;
         _audio.PlayPvs(comp.HypospraySound, uid);

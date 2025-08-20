@@ -92,12 +92,12 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
 	{
         if (_player.LocalEntity != args.Args.Entity)
             return;
-        if (_overlay != null)
-        {
-            _overlay.Intoxication = 0;
-            _overlay.TimeTicker = 0;
-            _overlayMan.RemoveOverlay(_overlay);
-        }
+        if (_overlay == null)
+            return;
+        _overlay.Intoxication = 0;
+        _overlay.TimeTicker = 0;
+        _overlay.CachedEndTime = null;
+        _overlayMan.RemoveOverlay(_overlay);
 	}
 }
 

@@ -30,19 +30,19 @@ public sealed partial class AnomalyAutoInjectorComponent : Component // ниже
     // Для локализации: ключи, а не строки. Использовать Loc.GetString(Popup...) при показе.
     [DataField]
     [ViewVariables]
-    public string PopupNothingToInject { get; set; } = "anomaly-injector-popup-nothing-to-inject";
+    public string PopupNothingToInject = "uplink-anomaly-auto-injector-popup-nothing-to-inject";
 
     [DataField]
     [ViewVariables]
-    public string PopupNotApplicable { get; set; } = "anomaly-injector-popup-not-applicable"; // остальные мобы, кроме гуманодов
+    public string PopupNotApplicable = "uplink-anomaly-auto-injector-popup-not-applicable"; // остальные мобы, кроме гуманодов
 
     [DataField]
     [ViewVariables]
-    public string PopupPending { get; set; } = "anomaly-injector-popup-pending"; // стадия заражения после инъекции
+    public string PopupPending = "uplink-anomaly-auto-injector-popup-pending"; // стадия заражения после инъекции
 
     [DataField]
     [ViewVariables]
-    public string PopupInfected { get; set; } = "anomaly-injector-popup-infected"; // уже когда превратился в аномалию
+    public string PopupInfected = "uplink-anomaly-auto-injector-popup-infected"; // уже когда превратился в аномалию
 
     [DataField]
     [ViewVariables]

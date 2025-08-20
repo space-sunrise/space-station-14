@@ -3,7 +3,7 @@
   id: BaseAnomalyAutoInjector
   abstract: true
   parent: [BaseItem, BaseSyndicateContraband]
-  description: Вводит случайную аномалию в гуманоида. Одноразовый.
+  description: "{ uplink-anomaly-auto-injector-desc }"
   components:
     - type: Sprite
       sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
