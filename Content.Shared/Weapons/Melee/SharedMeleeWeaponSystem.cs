@@ -580,7 +580,7 @@ var resistanceBypass = GetResistanceBypass(meleeUid, user, component); // Sunris
         var distance = Math.Min(component.Range, direction.Length());
 
         var damage = GetDamage(meleeUid, user, component);
-        var resistanceBypass = false; // Sunrise-edit ЛКМ пробивает броню
+        var resistanceBypass = false; // Sunrise-edit ПКМ не пробивает броню
         var entities = GetEntityList(ev.Entities);
 
         entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); //Sunrise-edit
