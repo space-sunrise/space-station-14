@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЦК-ЗПЦК[/bold]
+[bold]Форма NT/КОМ-ЦК-ЗПЦК[/bold]
 [head=3]Запрос на вызов членов ЦК, ДСО [/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

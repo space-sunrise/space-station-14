@@ -133,6 +133,22 @@
     tag: DockMining
 
 - type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassSecurityShuttle
+  suffix: External, Security, Glass, Docking, AutoDock
+  components:
+  - type: PriorityDock
+    tag: DockSecurity
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassPersonalShuttle
+  suffix: External, Personal, Glass, Docking, AutoDock
+  components:
+  - type: PriorityDock
+    tag: DockPersonal
+
+- type: entity
   parent: AirlockExternalGlassShuttleArrivals
   id: AirlockExternalGlassShuttleArrivalsLockedCentComm
   suffix: External, Arrivals, Glass, Docking, Locked, CentComm

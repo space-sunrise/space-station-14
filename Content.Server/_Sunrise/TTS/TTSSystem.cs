@@ -106,7 +106,11 @@ public sealed partial class TTSSystem : EntitySystem
             return;
         }
 
-        HandleRadio(args.Receivers, args.Message, protoVoice);
+        var accentEvent = new TTSSanitizeEvent(args.Message);
+        RaiseLocalEvent(args.Source, accentEvent);
+        var message = accentEvent.Text;
+
+        HandleRadio(args.Receivers, message, protoVoice);
     }
 
     private bool GetVoicePrototype(string voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
@@ -155,13 +159,17 @@ public sealed partial class TTSSystem : EntitySystem
             return;
         }
 
+        var accentEvent = new TTSSanitizeEvent(args.Message);
+        RaiseLocalEvent(uid, accentEvent);
+        var message = accentEvent.Text;
+
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, args.Message, protoVoice);
+            HandleWhisper(uid, message, protoVoice);
             return;
         }
 
-        HandleSay(uid, args.Message, protoVoice);
+        HandleSay(uid, message, protoVoice);
     }
 
     private async void HandleSay(EntityUid uid, string message, TTSVoicePrototype voicePrototype)
@@ -267,5 +275,15 @@ public sealed class TransformSpeakerVoiceEvent : EntityEventArgs
     {
         Sender = sender;
         VoiceId = voiceId;
+    }
+}
+
+public sealed class TTSSanitizeEvent : EntityEventArgs
+{
+    public string Text;
+
+    public TTSSanitizeEvent(string text)
+    {
+        Text = text;
     }
 }

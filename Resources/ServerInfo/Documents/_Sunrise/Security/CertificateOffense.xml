@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/СБ-СВП[/bold]
+[bold]Форма NT/СБ-СВП[/bold]
 [head=3]Свидетельство о правонарушении[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

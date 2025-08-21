@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЦК-ЗЭВАК[/bold]
+[bold]Форма NT/КОМ-ЦК-ЗЭВАК[/bold]
 [head=3]Запрос эвакуационного шаттла[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

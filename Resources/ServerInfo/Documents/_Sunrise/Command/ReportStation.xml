@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЦК-СИТ[/bold]
+[bold]Форма NT/КОМ-ЦК-СИТ[/bold]
 [head=3]Отчет о ситуации на станции[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

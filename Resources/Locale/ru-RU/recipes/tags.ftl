@@ -126,6 +126,7 @@ construction-graph-tag-upgradedrozd = улучшение Дрозда
 construction-graph-tag-upgradelecter = улучшение Лектера
 construction-graph-tag-ModularReceiverAuto = автоматический модульный ресивер
 construction-graph-tag-coin = монета
+construction-graph-tag-upgradevestsec = улучшение бронежилета СБ
 # Щиты и защита
 construction-graph-tag-strobe-shield = стробоскопический щит
 construction-graph-tag-security-helmet = защитный шлем

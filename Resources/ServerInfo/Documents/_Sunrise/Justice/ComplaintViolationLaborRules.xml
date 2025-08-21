@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/ЮДВН-ЖБТП[/bold]
+[bold]Форма NT/ЮДВН-ЖБТП[/bold]
 [head=3]Жалоба на нарушение трудового порядка[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

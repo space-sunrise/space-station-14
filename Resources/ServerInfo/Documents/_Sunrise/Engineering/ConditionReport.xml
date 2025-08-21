@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/ИНЖ-ОТС[/bold]
+[bold]Форма NT/ИНЖ-ОТС[/bold]
 [head=3]Отчет о техническом состоянии[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

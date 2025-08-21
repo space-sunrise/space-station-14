@@ -1,0 +1,59 @@
+- type: entity
+  id: HandHeldMassScannerBorgInnateItem
+  parent: HandHeldMassScannerBorg
+  components:
+  - type: Action
+
+- type: entity
+  id: HandheldStationMapUnpoweredInnateItem
+  parent: BaseHandheldStationMap
+  components:
+  - type: Action
+
+- type: entity
+  id: EngiAlertsMonitorInnateItem
+  parent: EngiAlertsMonitor
+  components:
+  - type: Action
+
+- type: entity
+  parent: HandheldCrewMonitorBorg
+  id: HandheldCrewMonitorBorgInnateItem
+  components:
+  - type: Action
+
+- type: entity
+  id: PortableSurveillanceCameraMonitorUnpoweredInnateItem
+  parent: PortableSurveillanceCameraMonitorUnpowered
+  components:
+  - type: Action
+
+- type: entity
+  id: HandheldCriminalRecordsMonitorUnpoweredInnateItem
+  parent: HandheldCriminalRecordsMonitorUnpowered
+  components:
+  - type: Action
+
+- type: entity
+  id: HandheldHealthAnalyzerUnpoweredInnateItem
+  parent: HandheldHealthAnalyzerUnpowered
+  components:
+  - type: Action
+
+- type: entity
+  parent: Emag
+  id: EmagInnateItem
+  components:
+  - type: Action
+
+- type: entity
+  parent: AccessBreaker
+  id: AccessBreakerInnateItem
+  components:
+  - type: Action
+
+- type: entity
+  parent: ForensicScanner
+  id: ForensicScannerInnateItem
+  components:
+  - type: Action

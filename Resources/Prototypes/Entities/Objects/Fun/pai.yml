@@ -99,11 +99,11 @@
     voice: Portal2FactCore
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitorUnpowered
-    - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - PortableSurveillanceCameraMonitorUnpoweredInnateItem
+    - HandheldStationMapUnpoweredInnateItem
+    - HandheldCrewMonitorBorgInnateItem
     worldTargetActions:
-    - HandheldHealthAnalyzerUnpowered
+    - HandheldHealthAnalyzerUnpoweredInnateItem
   - type: BorgBrain
   # Sunrise-End
   - type: ChangeVoiceInContainer
@@ -161,8 +161,8 @@
     enabled: false
   - type: InnateItem
     worldTargetActions:
-    - AccessBreaker
-    - HandheldHealthAnalyzerUnpowered
+    - AccessBreakerInnateItem
+    - HandheldHealthAnalyzerUnpoweredInnateItem
   - type: Biocode
     factions:
     - Syndicate
