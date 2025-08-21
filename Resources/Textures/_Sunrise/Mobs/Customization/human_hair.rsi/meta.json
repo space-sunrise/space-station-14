@@ -286,10 +286,6 @@
     {
       "name": "ziegler",
       "directions": 4
-    },
-    {
-      "name": "maletalternative",
-      "directions": 4
-    }    
+    }
   ]
 }

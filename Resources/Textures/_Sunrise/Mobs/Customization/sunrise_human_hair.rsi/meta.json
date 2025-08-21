@@ -154,6 +154,10 @@
         {
             "name": "hair_rarity",
             "directions": 4
+        },
+        {
+            "name": "maletalternative",
+            "directions": 4
         }
   ]
-}
+} 
