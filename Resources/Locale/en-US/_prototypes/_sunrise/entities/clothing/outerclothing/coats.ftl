@@ -62,3 +62,8 @@ ent-ClothingOuterArmorNTRG = heavvy vest
     .desc = heavvy vest for NTRG Sqaud
 ent-ClothingOuterBezBabTshirt = tshirt for men
     .desc = Oversize Tshirt for men. Without women.
+ent-ClothingOuterCoatJilldress = Jill dress
+    .desc = this is the Snow Maiden dress.
+ent-ClothingOuterCoatMansport = Sports sweatshirt
+    .desc = Hoodies or sweatshirts? I choose T-shirts.
+
