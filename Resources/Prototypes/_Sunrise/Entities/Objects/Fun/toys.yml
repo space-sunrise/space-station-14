@@ -1254,11 +1254,6 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/lmg_empty_alarm.ogg
       params:
         volume: -4
-  - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/_Sunrise/Objects/Fun/plushie_kalium/armor_rikoshet.ogg
-      params:
-        volume: -6
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicateNormal
