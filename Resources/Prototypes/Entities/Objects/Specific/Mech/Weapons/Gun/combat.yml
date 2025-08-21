@@ -334,8 +334,8 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: XrayLaser
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeXrayBeam
     fireCost: 60
   - type: Appearance
   - type: AmmoCounter
