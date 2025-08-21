@@ -9,6 +9,13 @@
         path: /Audio/Weapons/ebladeon.ogg
       soundDeactivate:
         path: /Audio/Weapons/ebladeoff.ogg
+      # Sunrise-Start
+      predictable: false
+      soundFailToActivate:
+        path: /Audio/Machines/button.ogg
+        params:
+          variation: 0.250
+      # Sunrise-End
     - type: ItemToggleActiveSound
       activeSound:
         path: /Audio/Weapons/ebladehum.ogg
@@ -21,8 +28,8 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
       layers:
-        - state: cybershieldoff
-        - state: cybershield
+        - state: cybershield-icon
+        - state: cybershield-on
           color: "#FFFFFF"
           visible: false
           shader: unshaded
@@ -30,11 +37,18 @@
     - type: Item
       size: Small
       sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
-      heldPrefix: cybershieldoff
+      heldPrefix: cybershield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: inhand-left-shield
+            shader: unshaded
+        right:
+          - state: inhand-right-shield
+            shader: unshaded
     - type: PointLight
       netsync: false
       enabled: false
@@ -43,7 +57,7 @@
       color: "#a22529"
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 0.1
+      reflectProb: 0.15
       reflects:
         - Energy
     - type: Blocking
@@ -65,28 +79,40 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 150
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            #- !type:SpawnEntitiesBehavior - Breaks arm. Who'da thunk?
-              #spawn:
-                #BrokenEnergyShieldCyber:
-                  #min: 1
-                  #max: 1
+    - type: BatterySelfRecharger
+      autoRechargeRate: 75
+      autoRecharge: true
+      autoRechargePause: true
+      autoRechargePauseTime: 5
+    - type: EnergyShield
+    - type: ExaminableBattery
+    - type: Battery
+      maxCharge: 1500
+      startingCharge: 1500
+    - type: PowerCellDraw
+      useRate: 2.5
+    # - type: Destructible
+    #   thresholds:
+    #     - trigger:
+    #         !type:DamageTrigger
+    #         damage: 150
+    #       behaviors:
+    #         - !type:DoActsBehavior
+    #           acts: [ "Destruction" ]
+    #     - trigger:
+    #         !type:DamageTrigger
+    #         damage: 100
+    #       behaviors:
+    #         - !type:DoActsBehavior
+    #           acts: [ "Destruction" ]
+    #         - !type:PlaySoundBehavior
+    #           sound:
+    #             collection: GlassBreak
+    #         #- !type:SpawnEntitiesBehavior - Breaks arm. Who'da thunk?
+    #           #spawn:
+    #             #BrokenEnergyShieldCyber:
+    #               #min: 1
+    #               #max: 1
     - type: StaticPrice
       price: 350
 

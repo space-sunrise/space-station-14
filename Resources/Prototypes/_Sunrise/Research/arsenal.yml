@@ -150,6 +150,7 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
+  - VestSecUpgrade
   - ModularReceiverAuto
   - LecterUpgrade
   - DrozdUpgrade

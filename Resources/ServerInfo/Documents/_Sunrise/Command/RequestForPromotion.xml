@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЗПОВ[/bold]
+[bold]Форма NT/КОМ-ЗПОВ[/bold]
 [head=2]Запрос на повышение[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

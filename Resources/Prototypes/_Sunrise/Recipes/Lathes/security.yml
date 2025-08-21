@@ -284,6 +284,18 @@
     Silver: 200
 
 - type: latheRecipe
+  id: VestSecUpgrade
+  result: VestSecUpgrade
+  categories:
+  - Weapons
+  completetime: 60
+  materials:
+    Plastic: 1000
+    Steel: 500
+    Glass: 500
+    Plasma: 25
+
+- type: latheRecipe
   id: ModularReceiverAuto
   result: ModularReceiverAuto
   categories:
@@ -625,6 +637,20 @@
   result: MagazinePistolSubMachineGunTopMountedSP
   materials:
     Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedRubber
+  result: MagazinePistolSubMachineGunTopMountedRubber
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunRubber
+  result: MagazinePistolSubMachineGunRubber
+  materials:
+    Steel: 200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

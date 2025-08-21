@@ -25,7 +25,7 @@ traitor-role-greeting =
     Вы - агент организации { $corporation } на задании [color = darkred]Синдиката.[/color].
     Ваши цели и кодовые слова перечислены в меню персонажа.
     Воспользуйтесь аплинком, встроенным в ваш КПК, чтобы приобрести всё необходимое для выполнения работы.
-    Смерть Nanotrasen!
+    Смерть NanoTrasen!
 traitor-role-codewords =
     Кодовые слова следующие: [color = lightgray]
     { $codewords }.[/color]

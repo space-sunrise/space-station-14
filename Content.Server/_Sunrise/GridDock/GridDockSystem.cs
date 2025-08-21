@@ -6,8 +6,9 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Station.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server._Sunrise.GridDock;
 
@@ -17,7 +18,7 @@ public sealed class GridDockSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly DockingSystem _dockSystem = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -43,17 +44,23 @@ public sealed class GridDockSystem : EntitySystem
             return;
         }
 
-        var baseOffset = new Vector2(0, 0);
-        var offsetStep = new Vector2(100, 0);
+        var index = 0f;
         var usedGridDocks = new HashSet<EntityUid>();
-        var currentOffset = baseOffset;
         foreach (var entry in component.Grids)
         {
             if (!_loader.TryLoadGrid(xformMap.MapID,
                     entry.GridPath,
-                    out var rootUid,
-                    offset: currentOffset))
+                    out var rootUid))
                 continue;
+
+            var grid = Comp<MapGridComponent>(rootUid.Value.Owner);
+            var width = grid.LocalAABB.Width;
+            var shuttleCenter = grid.LocalAABB.Center;
+
+            var coordinates = new EntityCoordinates(ftlMap, new Vector2(index + width / 2f, 0f) - shuttleCenter);
+            _transform.SetCoordinates(rootUid.Value.Owner, coordinates);
+
+            index += width + 5f;
 
             if (!TryComp<ShuttleComponent>(rootUid.Value.Owner, out var shuttleComp))
                 continue;
@@ -66,6 +73,8 @@ public sealed class GridDockSystem : EntitySystem
             int maxNewDocks = 0;
             foreach (var cfg in configs)
             {
+                if (cfg.Docks.Any(pair => usedGridDocks.Contains(pair.DockBUid)))
+                    continue;
                 var newDocks = cfg.Docks.Count(pair => !usedGridDocks.Contains(pair.DockBUid));
                 if (newDocks > maxNewDocks)
                 {
@@ -74,7 +83,7 @@ public sealed class GridDockSystem : EntitySystem
                 }
             }
 
-            if (chosenConfig != null && chosenConfig.Docks.All(pair => !usedGridDocks.Contains(pair.DockBUid)))
+            if (chosenConfig != null)
             {
                 foreach (var pair in chosenConfig.Docks)
                 {
@@ -85,24 +94,23 @@ public sealed class GridDockSystem : EntitySystem
                     rootUid.Value.Owner,
                     shuttleComp,
                     chosenConfig,
-                    5f,
+                    0f,
                     30f,
                     priorityTag: entry.PriorityTag,
                     ignored: false);
             }
             else
             {
-                _shuttles.FTLToDock(
-                    rootUid.Value.Owner,
-                    shuttleComp,
-                    target.Value,
-                    5f,
-                    30f,
-                    priorityTag: entry.PriorityTag,
-                    ignored: false);
+                if (_shuttles.TryGetFTLProximity(rootUid.Value.Owner, new EntityCoordinates(target.Value, Vector2.Zero), out var coords, out var targAngle))
+                {
+                    _shuttles.FTLToCoordinates(rootUid.Value.Owner,
+                        shuttleComp,
+                        coords,
+                        targAngle,
+                        0f,
+                        30f);
+                }
             }
-
-            currentOffset += offsetStep;
         }
     }
 }

@@ -18,3 +18,5 @@ ent-MagazineBoxMagnumAP = коробка патронов (.45 магнум бр
     .desc = { ent-BaseMagazineBoxMagnum.desc }
 ent-MagazineBoxMagnum = коробка патронов (.45 магнум)
     .desc = { ent-BaseMagazineBoxMagnum.desc }
+ent-MagazineBoxImprovisedMagnum = коробка патронов (.45 магнум импровизированные)
+    .desc = Кустарная коробка для патронов .45 Магнум, с нарисованным от руки символом пули сверху. Смешивание калибров не рекомендовано.

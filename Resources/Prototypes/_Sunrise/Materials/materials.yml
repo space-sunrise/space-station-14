@@ -6,3 +6,39 @@
   color: "#d9d9d9"
   price: 0.02
 
+- type: entity
+  parent: MaterialBase
+  id: CrushedPhosphorus
+  name: crushed phosphorus
+  suffix: Full
+  components:
+  - type: Material
+  - type: Stack
+    stackType: CrushedPhosphorus
+    baseLayer: base
+    layerStates:
+    - phosphorus
+    - phosphorus_2
+    - phosphorus_3
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/phosphorus.rsi
+    state: phosphorus_3
+    layers:
+    - state: phosphorus_3
+      map: ["base"]
+  - type: Appearance
+  - type: Item
+    heldPrefix: phosphorus
+
+- type: entity
+  parent: CrushedPhosphorus
+  id: CrushedPhosphorus1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: phosphorus
+  - type: Stack
+    count: 1
+  - type: Construction
+    graph: CrushedPhosphorus
+    node: crushed

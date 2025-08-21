@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЦК-ЗЗП[/bold]
+[bold]Форма NT/КОМ-ЦК-ЗЗП[/bold]
 [head=3]Запрос на изменение заработной платы[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

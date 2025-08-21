@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ПУВАЛ[/bold]
+[bold]Форма NT/КОМ-ПУВАЛ[/bold]
 [head=3]Приказ об увольнении[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

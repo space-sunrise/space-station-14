@@ -74,6 +74,10 @@
 
 - type: Tag
   id: Coin
+
+- type: Tag
+  id: ImprovisedAmmoBox
+
 # Weapons
 - type: Tag
   id: WrappedWeapon
@@ -92,6 +96,9 @@
 
 - type: Tag
   id: UpgradeLecter
+
+- type: Tag
+  id: UpgradeVestSec
 
 # Magazines:
 - type: Tag

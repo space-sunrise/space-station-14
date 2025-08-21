@@ -866,7 +866,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     /// <param name="minOffset">Min offset for the final FTL.</param>
     /// <param name="maxOffset">Max offset for the final FTL from the box we spawn.</param>
-    private bool TryGetFTLProximity(
+    public bool TryGetFTLProximity( // Sunrise-Edit
         EntityUid shuttleUid,
         EntityCoordinates targetCoordinates,
         out EntityCoordinates coordinates, out Angle angle,

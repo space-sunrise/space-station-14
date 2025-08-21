@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ЗВРИО[/bold]
+[bold]Форма NT/КОМ-ЗВРИО[/bold]
 [head=3]Заявление о назначении ВрИО[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

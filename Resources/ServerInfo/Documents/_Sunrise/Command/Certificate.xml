@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/КОМ-ГР[/bold]
+[bold]Форма NT/КОМ-ГР[/bold]
 [head=2]Грамота[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]
