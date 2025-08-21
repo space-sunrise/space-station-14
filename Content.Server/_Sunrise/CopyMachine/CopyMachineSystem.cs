@@ -268,8 +268,11 @@ public sealed class CopyMachineSystem : EntitySystem
         var station = _stationSystem.GetOwningStation(uid);
         var stationName = station is null ? string.Empty : Name(station.Value);
 
+        var corpString = _configManager.GetCVar(SunriseCCVars.CopyMachineCorporationName);
+
         content = content.Replace("{timeString}", timeString);
         content = content.Replace("{stationName}", stationName);
+        content = content.Replace("{corpString}", corpString);
 
         _paperSystem.SetContent((paper, paperComp), content);
         if (templateProto.Header != null)

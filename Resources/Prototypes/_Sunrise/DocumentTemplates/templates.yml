@@ -14,7 +14,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ApplicationAppointmentInterim
@@ -23,7 +23,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ApplicationEmployment
@@ -32,7 +32,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ApplicationEquipment
@@ -41,7 +41,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: Certificate
@@ -50,7 +50,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: CertificateAdvancedTraining
@@ -59,7 +59,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: CertificateOffense
@@ -68,7 +68,7 @@
   component: Security
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
   id: ClosingIndictment
@@ -77,7 +77,7 @@
   component: Security
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
   id: ComplaintOffense
@@ -86,7 +86,7 @@
   component: Security
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
   id: ComplaintViolationLaborRules
@@ -95,7 +95,7 @@
   component: Justice
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_just
 
 - type: docTemplate
   id: ConditionReport
@@ -104,7 +104,7 @@
   component: Engineering
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_eng
 
 - type: docTemplate
   id: ConstructionPermit
@@ -113,7 +113,7 @@
   component: Engineering
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_eng
 
 - type: docTemplate
   id: DeathCertificate
@@ -122,7 +122,7 @@
   component: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_med
 
 - type: docTemplate
   id: DecisionToStartTrial
@@ -131,7 +131,7 @@
   component: Justice
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_just
 
 - type: docTemplate
   id: DisposalReport
@@ -140,7 +140,7 @@
   component: Supply
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sup
 
 - type: docTemplate
   id: DivorceCertificate
@@ -149,7 +149,7 @@
   component: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_serv
 
 - type: docTemplate
   id: EvacuationShuttleRequest
@@ -158,7 +158,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ExperimentReport
@@ -167,7 +167,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: InternalAffairsAgentsReport
@@ -176,7 +176,7 @@
   component: Justice
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_just
 
 - type: docTemplate
   id: Judgment
@@ -185,7 +185,7 @@
   component: Justice
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_just
 
 - type: docTemplate
   id: LetterResignation
@@ -194,7 +194,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: MarriageCertificate
@@ -203,7 +203,7 @@
   component: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_serv
 
 - type: docTemplate
   id: OrderDeprivationAccess
@@ -212,7 +212,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: OrderDismissal
@@ -221,7 +221,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: OrderEncouragement
@@ -230,7 +230,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: OrderingSpecialEquipment
@@ -239,7 +239,7 @@
   component: Centcom
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_centcom
 
 - type: docTemplate
   id: OrderMedicalIntervention
@@ -248,7 +248,7 @@
   component: General
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_med
 
 - type: docTemplate
   id: OrderParolePrisoner
@@ -257,7 +257,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: OrderPurchaseResourcesEquipment
@@ -266,7 +266,7 @@
   component: Supply
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sup
 
 - type: docTemplate
   id: OrderPurchaseWeapons
@@ -275,7 +275,7 @@
   component: Supply
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sup
 
 - type: docTemplate
   id: OrderRecognizingSentienceCreature
@@ -284,7 +284,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: PermissionDisposeBody
@@ -293,7 +293,7 @@
   component: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_med
 
 - type: docTemplate
   id: PermissionEquipment
@@ -302,7 +302,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: PermissionToCarryWeapons
@@ -311,7 +311,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: PermissionToExtendMarriage
@@ -320,7 +320,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: PermissionToTravelInCaseOfThreat
@@ -329,7 +329,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: PrescriptionDrugAuthorization
@@ -338,7 +338,7 @@
   component: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_med
 
 - type: docTemplate
   id: ProductManufacturingOrder
@@ -356,7 +356,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ReportEmployeePerformance
@@ -365,7 +365,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ReportOnEliminationOfViolations
@@ -374,7 +374,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ReportOnTheChaptersMeeting
@@ -383,7 +383,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ReportStation
@@ -392,7 +392,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: ReportStudyObject
@@ -401,7 +401,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: RequestCallMembersCentralCommitteeDSO
@@ -410,7 +410,7 @@
   component: Centcom
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_centcom
 
 - type: docTemplate
   id: RequestChangeSalary
@@ -428,7 +428,7 @@
   component: Engineering
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_eng
 
 - type: docTemplate
   id: RequestDocuments
@@ -437,7 +437,7 @@
   component: Justice
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_just
 
 - type: docTemplate
   id: RequestEuthanasia
@@ -446,7 +446,7 @@
   component: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_med
 
 - type: docTemplate
   id: RequestForNonlistedEmployment
@@ -455,7 +455,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: RequestForPromotion
@@ -464,7 +464,7 @@
   component: Command
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_cmd
 
 - type: docTemplate
   id: RequestModernization
@@ -473,7 +473,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: RequestRequestToEstablishThreatLevel
@@ -482,7 +482,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: SearchPermission
@@ -491,7 +491,7 @@
   component: Security
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
   id: Sentence
@@ -500,7 +500,7 @@
   component: Security
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
   id: ShuttleRegistrationRequest
@@ -509,7 +509,7 @@
   component: Security
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
   id: StatementHealth
@@ -518,7 +518,7 @@
   component: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: nanotrasen_form_header_med
 
 - type: docTemplate
   id: BusinessDeal
@@ -528,7 +528,7 @@
   isPublic: false
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: syndicate_form_header
 
 - type: docTemplate
   id: ErrorLoadingFormHeader
@@ -538,7 +538,7 @@
   isPublic: false
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: syndicate_form_header
 
 - type: docTemplate
   id: NoticeOfLiquidation
@@ -548,7 +548,7 @@
   isPublic: false
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: syndicate_form_header
 
 - type: docTemplate
   id: NoteBeginningMilitaryActions
@@ -558,7 +558,7 @@
   isPublic: false
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: syndicate_form_header
 
 - type: docTemplate
   id: ReportAccomplishmentGoals
@@ -568,4 +568,4 @@
   isPublic: false
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header
+    state: syndicate_form_header

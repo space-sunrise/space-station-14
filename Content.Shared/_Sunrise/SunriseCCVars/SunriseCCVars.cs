@@ -548,6 +548,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> CopyMachineYearOffset =
         CVarDef.Create("copy_machine.year_offset", 1000, CVar.SERVERONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<string> CopyMachineCorporationName =
+        CVarDef.Create("copy_machine.corporation_name", "НТ", CVar.SERVERONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> HoldLookUp =
         CVarDef.Create("scope.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
 }

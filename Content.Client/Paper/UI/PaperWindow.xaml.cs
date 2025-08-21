@@ -290,17 +290,17 @@ namespace Content.Client.Paper.UI
             BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0;
 
             // Sunrise-Start
-            var sprite = _entitySystemManager.GetEntitySystem<SpriteSystem>();
-            if (state.ImageContent != null)
-            {
-                ImageContent.Texture = sprite.Frame0(state.ImageContent);
-                if (state.ImageScale != null)
-                    ImageContent.TextureScale = state.ImageScale.Value;
-                ImageContent.Visible = true;
-                BlankPaperIndicator.Visible = false;
-            }
-            else
-                ImageContent.Visible = false;
+            var spriteSys = _entitySystemManager.GetEntitySystem<SpriteSystem>();
+
+            Robust.Client.Graphics.Texture? tex = null;
+            if (state.ImageContent is {} spec)
+                tex = spriteSys.Frame0(spec);
+
+            ImageContent.Visible = tex != null;
+            ImageContent.Texture = tex;
+
+            ImageContent.HorizontalExpand = false;
+            ImageContent.VerticalExpand = false;
             // Sunrise-End
 
             StampDisplay.RemoveAllChildren();
