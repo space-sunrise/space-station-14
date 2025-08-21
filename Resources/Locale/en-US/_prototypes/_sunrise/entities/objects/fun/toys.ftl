@@ -176,3 +176,5 @@ ent-PlushieKaliumJuggernaut = Kalium Fon Dez
     .desc = { ent-BasePlushie.desc }
 ent-PlushieKaliumOperative = Kalium Fon Dez
     .desc = { ent-BasePlushie.desc }
+ent-PlushieKaliumNukieCommander = Kalium Fon Dez
+    .desc = { ent-BasePlushie.desc }

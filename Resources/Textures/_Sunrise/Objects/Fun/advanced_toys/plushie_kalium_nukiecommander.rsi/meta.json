@@ -11,12 +11,13 @@
         "name": "plushie-kalium"
       },
       {
-        "name": "potasium_nuclearop_unshaded"
-      },
-      {
-        "name": "potasium_nuclearop_shaded",
+        "name": "potasium_nuclearcom_unshaded",
         "delays": [
           [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
             0.1,
             0.1,
             0.1,
