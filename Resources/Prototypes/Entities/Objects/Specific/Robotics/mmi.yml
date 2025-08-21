@@ -67,7 +67,7 @@
         startingItem: OrganHumanBrain
         whitelist:
           components:
-            - Brain
+            - OrganBrain
 
 - type: entity
   parent: BaseItem
