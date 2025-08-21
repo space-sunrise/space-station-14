@@ -133,6 +133,8 @@
       gender: male
   - type: Sharp
   # Sunrise-start
+  - type: InsulatedComponent
+  - type: FlashImmunity
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5
@@ -326,6 +328,9 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  # Sunrise-Start
+  - type: FlashImmunity
+  # Sunrise-End
 
 - type: weightedRandomEntity
   id: RatKingLoot
