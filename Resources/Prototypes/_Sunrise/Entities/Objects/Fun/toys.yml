@@ -1128,8 +1128,6 @@
     - state: plushie-kalium
     - state: potasium-unshaded
       visible: false
-      shader: unshaded
-      map: [ "light" ]
     - state: potasium-unshaded
       visible: false
       shader: unshaded
