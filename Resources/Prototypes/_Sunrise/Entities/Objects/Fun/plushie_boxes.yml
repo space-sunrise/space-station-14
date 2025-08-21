@@ -16,6 +16,8 @@
         orGroup: PlushieKalium
       - id: PlushieKaliumJuggernaut
         orGroup: PlushieKalium
+    sound:
+      path: /Audio/Effects/unwrap.ogg
 
 - type: entity
   parent: PresentRandom
