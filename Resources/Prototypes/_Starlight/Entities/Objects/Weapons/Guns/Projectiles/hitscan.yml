@@ -60,9 +60,9 @@
       Structural: 226
   staminaDamage: 35
   armorPenetration: 0.35
-  pierceChance: 0.80
+  pierceChance: 0.95 # Sunrise-TODO: Отдельный патрон Пенетратор как в ЫЫ13
   pierceLevel: Rock
-  ricochetChance: 0.95
+  ricochetChance: 0.6
   steps: 20
   derivation: 0.005
 

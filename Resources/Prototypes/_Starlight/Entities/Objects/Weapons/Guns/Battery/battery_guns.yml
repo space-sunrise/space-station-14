@@ -159,6 +159,7 @@
   parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
   id: WeaponIonRifle
   name: ion rifle
+  suffix: Ion Centcomm
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_rifle.rsi
@@ -178,7 +179,7 @@
     fireRate: 0.6
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargeRate: 40 #25sec+60Sec Pause
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: HitscanBatteryAmmoProvider
@@ -194,7 +195,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 8
-    pvsIncrease: 0.3
+    pvsIncrease: 0.5
 
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]

@@ -586,15 +586,15 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
-    fireRate: 0.6
+    fireRate: 0.5
     availableModes:
     - SemiAuto
   - type: Battery
-    maxCharge: 4000
-    startingCharge: 4000
+    maxCharge: 1000
+    startingCharge: 1000
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargeRate: 40 #25sec+60Sec Pause
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: Wieldable
@@ -613,8 +613,8 @@
     sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
+    maxOffset: 8
+    pvsIncrease: 0.5
 
 # Sunrise Colonial Marines
 
