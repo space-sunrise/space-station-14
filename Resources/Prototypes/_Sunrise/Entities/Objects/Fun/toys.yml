@@ -1126,10 +1126,13 @@
     sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium.rsi
     layers:
     - state: plushie-kalium
-    - state: potasium-unshaded
+    - state: potasium_nuclearop_unshaded
       visible: false
       shader: unshaded
       map: [ "light" ]
+    - state: potasium_nuclearop_shaded
+      visible: false
+      shader: shaded
   - type: Clothing
     quickEquip: false
     sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium.rsi
@@ -1288,6 +1291,75 @@
   - type: EmitSoundOnActivate
     sound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_open.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKaliumOperative
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_operative.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium_nuclearop_shaded
+      visible: false
+      shader: shaded
+      map: [ "light" ]
+    - state: potasium_nuclearop_unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_operative.rsi
+    equippedPrefix: kalium
+    slots:
+    - NECK
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/Guns/Bolt/rifle_bolt_closed.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+      params:
+        volume: -4
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-operator
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Tag
+    tags:
+    - PlushieKalium
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: true
+    radius: 1.2
+    energy: 2
+    color: "#FFD700"
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieVulpkaninGrowls
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
