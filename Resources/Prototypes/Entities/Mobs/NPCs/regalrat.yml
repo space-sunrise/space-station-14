@@ -133,7 +133,7 @@
       gender: male
   - type: Sharp
   # Sunrise-start
-  - type: InsulatedComponent
+  - type:Insulated
   - type: FlashImmunity
   - type: Bloodstream
     bleedReductionAmount: 1
