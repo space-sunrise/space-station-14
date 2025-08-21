@@ -13,6 +13,7 @@
     HyposprayMedical: 2 # Sunrise-Edit
     AutoMenderBruteFilled: 3 # Sunrise-Edit
     AutoMenderBurnFilled: 3 # Sunrise-Edit
+    PatchPack: 2 # Sunrise-Edit
   contrabandInventory:
     FoodApple: 1
     MiniSyringe: 3 # Sunrise Edit
