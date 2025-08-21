@@ -297,7 +297,6 @@
   parent: [
       ClothingEyesBase,
       BaseMajorContraband,
-      PowerCellSlotSmallItem,
       BaseNightVisionDevice,
     ] # Sunrise-Edit
   id: ClothingEyesVisorNinja
@@ -320,20 +319,9 @@
       path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-  - type: ToggleCellDraw
-  - type: PowerCellDraw
-    drawRate: 3.5
-    useRate: 20
+  - type: NinjaSuitDraw
+    drawRate: 0.5
+  - type: ToggleNinjaSuitDraw
   # Sunrise-End
 
 - type: entity
