@@ -3,6 +3,8 @@
   abstract: true
   components:
   - type: OrganBrain
+  - type: BlockMovement
+    blockInteraction: false
 
 - type: entity
   id: BaseOrganEyes
