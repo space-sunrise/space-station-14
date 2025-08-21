@@ -19,6 +19,8 @@
   - SyringeBluespace
   - SyringeCryostasis
   - HyposprayMedical
+  - AutoMenderBurn
+  - AutoMenderBrute
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
