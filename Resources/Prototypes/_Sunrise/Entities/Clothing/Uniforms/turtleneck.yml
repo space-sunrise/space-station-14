@@ -1,0 +1,44 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTurleneckBlack
+  name: black turtleneck
+  description: Practical and comfortable turtleneck sweater in black.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTurleneckBlackWomen
+  name: black skirt turtleneck
+  description: Practical and comfortable turtleneck sweater in black.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_black_women.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_black_women.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTurleneckBlackSleeveless
+  name: black sleveless turtleneck
+  description: Practical and comfortable turtleneck sweater in black.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_blacksleeveless.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_blacksleeveless.rsi
+
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTurleneckBlackWomenSleeveless
+  name: black sleveless skirt turtleneck
+  description: Practical and comfortable turtleneck sweater in black.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_black_womensleeveless.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Turtleneck/turtleneck_black_womensleeveless.rsi
