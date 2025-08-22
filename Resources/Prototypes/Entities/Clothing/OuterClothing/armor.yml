@@ -200,7 +200,7 @@
   - type: StaticPrice
     price: 1500
   - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+    damageCoefficient: 0.75 # Sunrise-Add
 
 #Elite web vest
 - type: entity
