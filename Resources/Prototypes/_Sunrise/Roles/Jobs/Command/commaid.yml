@@ -40,5 +40,5 @@
   parent: JobIcon
   id: JobIconComMaid
   icon:
-    sprite: /Textures/_Lust/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: commaid

@@ -497,7 +497,7 @@
   name: Command maid PDA
   components:
   - type: Sprite
-    sprite: _Lust/Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: CommaidIDCard
   - type: Appearance
@@ -506,5 +506,5 @@
         !type:String
         pda-commaid
   - type: Icon
-    sprite: _Lust/Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-commaid
