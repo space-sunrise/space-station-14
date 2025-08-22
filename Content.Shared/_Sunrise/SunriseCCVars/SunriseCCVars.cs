@@ -533,15 +533,27 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> HoldLookUp =
         CVarDef.Create("scope.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Название корпорации для подстановки в документы
+    /// </summary>
     public static readonly CVarDef<string> DocumentCorporationName =
-        CVarDef.Create("doc.corp_name", "Nanotrasen", CVar.CLIENT | CVar.ARCHIVE);
+        CVarDef.Create("doc.corp_name", "Nanotrasen", CVar.SERVER | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Смешение автозаполнения времени в часах
+    /// </summary>
     public static readonly CVarDef<int> DocumentTimeOffsetHours =
-        CVarDef.Create("doc.time_offset_hours", 3, CVar.CLIENT | CVar.ARCHIVE);
+        CVarDef.Create("doc.time_offset_hours", 3, CVar.SERVER | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Смешение автозаполнения времени в годах
+    /// </summary>
     public static readonly CVarDef<int> DocumentYearOffset =
-        CVarDef.Create("doc.year_offset", 1000, CVar.CLIENT | CVar.ARCHIVE);
+        CVarDef.Create("doc.year_offset", 1000, CVar.SERVER | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Пул шаблонов документов, используемых при создании документов на принтере("Sunrise", "Lust")
+    /// </summary>
     public static readonly CVarDef<string> DocumentTemplatePool =
-        CVarDef.Create("doc.template_pool", "Sunrise", CVar.CLIENT | CVar.ARCHIVE);
+        CVarDef.Create("doc.template_pool", "Sunrise", CVar.SERVER | CVar.ARCHIVE);
 }
