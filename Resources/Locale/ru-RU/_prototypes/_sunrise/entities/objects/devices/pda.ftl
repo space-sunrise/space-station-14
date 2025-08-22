@@ -58,3 +58,5 @@ ent-BlueShieldPDA = КПК офицера «Синий щит»
     .desc = { ent-BasePDA.desc }
 ent-PilotPDA = КПК пилота
     .desc = Имеет защиту от космической радиации.
+ent-CommaidPDA = КПК горничной командования
+    .desc = { ent-BasePDA.desc }

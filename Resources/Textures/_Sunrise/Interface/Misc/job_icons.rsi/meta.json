@@ -1,104 +1,14 @@
 {
     "version": 1,
     "license": "CLA",
-    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt, some icons were redesigned by Gardsnake",
+    "copyright": "Created by pacable for Lust Station",
     "size": {
         "x": 8,
         "y": 8
     },
     "states": [
         {
-            "name": "EngineerBorg"
-        },
-        {
-            "name": "JanitorBorg"
-        },
-        {
-            "name": "MedicalBorg"
-        },
-        {
-            "name": "MiningBorg"
-        },
-        {
-            "name": "ServiceBorg"
-        },
-        {
-            "name": "SecurityBorg"
-        },
-        {
-            "name": "PeaceBorg"
-        },
-        {
-            "name": "ClownBorg"
-        },
-        {
-            "name": "SecurityPilot"
-        },
-        {
-            "name": "BlueShield"
-        },
-        {
-            "name": "SecurityCombatBorg"
-        },
-        {
-            "name": "PrisonPilot"
-        },
-        {
-            "name": "PrisonGuard"
-        },
-        {
-            "name": "HeadOfPrison"
-        },
-        {
-            "name": "PrisonDoctor"
-        },
-        {
-            "name": "PrisonWorker"
-        },
-        {
-            "name": "PrisonChef"
-        },
-        {
-            "name": "PrisonEngineer"
-        },
-        {
-            "name": "Barber"
-        },
-        {
-            "name": "NanotrasenGuard"
-        },
-        {
-            "name": "NanotrasenLeader"
-        },
-        {
-            "name": "Pathologist"
-        },
-        {
-            "name": "CaptainUSSP"
-        },
-        {
-            "name": "CrewUSSP"
-        },
-        {
-            "name": "OfficerUSSP"
-        },
-        {
-            "name": "OfficerAltUSSP"
-        },
-        {
-            "name": "SoldierUSSP"
-        },
-        {
-            "name": "MailCarrier"
-        },
-        {
-            "name": "Musician"
-        },
-        {
-            "name": "Borg"
-        },
-        {
-            "name": "Brigmedic"
+            "name": "commaid"
         }
     ]
 }

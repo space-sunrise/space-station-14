@@ -33,37 +33,7 @@
             "directions": 4
         },
         {
-            "name": "pda"
-        },
-        {
-            "name": "pda-adj"
-        },
-        {
-            "name": "pda-blueshield"
-        },
-        {
-            "name": "pda-mining"
-        },
-        {
-            "name": "pda-patologoanatom"
-        },
-        {
-            "name": "pda-space-prison-boss"
-        },
-        {
-            "name": "pda-space-prison-guardian"
-        },
-        {
-            "name": "pda-space-prison-pilot"
-        },
-        {
-            "name": "pda-isn-operator"
-        },
-        {
-            "name": "pda-space-prison-prisoner"
-        },
-        {
-            "name": "pda-ussp"
+            "name": "pda-commaid"
         }
     ]
 }
