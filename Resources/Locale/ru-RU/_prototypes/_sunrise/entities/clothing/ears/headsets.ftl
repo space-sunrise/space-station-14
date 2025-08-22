@@ -21,4 +21,4 @@ ent-ClothingHeadsetAltUSSP = полноразмерная гарнитура к�
 ent-ClothingHeadsetAltAbductor = наушники похитителей
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetCommaid = гарнитура горничной командования
-    { ent-ClothingHeadset.desc }
+    .desc = { ent-ClothingHeadset.desc }
