@@ -3,6 +3,15 @@
   name: exosuit fabricator hyper convection
   parent: [BaseMachinePowered, ConstructibleMachine]
   components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
+    layers:
+      - state: fab-idle
+        map: ["enum.LatheVisualLayers.IsRunning"]
+      - state: fab-load
+        map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      - state: fab-o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: ExosuitFabricatorHyperConvectionMachineCircuitboard
   - type: MaterialStorage
