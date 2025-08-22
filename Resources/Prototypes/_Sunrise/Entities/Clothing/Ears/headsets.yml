@@ -181,6 +181,6 @@
       - EncryptionKeyCommon
       - EncryptionKeyCommand
   - type: Sprite
-    sprite: _Lust/Clothing/Ears/commaid_headset.rsi
+    sprite: _Sunrise/Clothing/Ears/commaid_headset.rsi
   - type: Clothing
-    sprite: _Lust/Clothing/Ears/commaid_headset.rsi
+    sprite: _Sunrise/Clothing/Ears/commaid_headset.rsi
