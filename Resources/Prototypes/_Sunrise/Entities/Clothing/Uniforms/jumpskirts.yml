@@ -233,6 +233,6 @@
   description: Just another maid suit made by one really horny person.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/lustmaid.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/lustmaid.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
