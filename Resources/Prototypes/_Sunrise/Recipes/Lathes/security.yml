@@ -179,15 +179,6 @@
     Steel: 565
 
 - type: latheRecipe
-  id: MagazineRifleHeavySP
-  result: MagazineRifleHeavySP
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 500
-
-- type: latheRecipe
   id: MagazineDragunov
   result: MagazineDragunov
   categories:
@@ -749,6 +740,61 @@
   materials:
     Steel: 650
     Uranium: 350
+
+## Heavy rifle Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifleUranium
+  result: MagazineBoxHeavyRifleUranium
+  materials:
+    Steel: 25
+    Plastic: 200
+    Uranium: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifleIncendiary
+  result: MagazineBoxHeavyRifleIncendiary
+  materials:
+    Steel: 25
+    Plastic: 200
+    Plasma: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifleSP
+  result: MagazineBoxHeavyRifleSP
+  materials:
+    Steel: 425
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifleHP
+  result: MagazineBoxHeavyRifleHP
+  materials:
+    Steel: 425
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifleFMJ
+  result: MagazineBoxHeavyRifleFMJ
+  materials:
+    Steel: 525
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifleAP
+  result: MagazineBoxHeavyRifleAP
+  materials:
+    Steel: 425
+    Uranium: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRiflePractice
+  result: MagazineBoxHeavyRiflePractice
+  materials:
+    Steel: 225
 
 - type: latheRecipe # Sunrise-Todo: Отдельной дешевой Т2 технологией с зависимостью от Uranium Munitions и Incendiary Ammunition
   parent: BaseEmptyAmmoRecipe

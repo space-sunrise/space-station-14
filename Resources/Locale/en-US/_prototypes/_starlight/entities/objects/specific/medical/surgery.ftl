@@ -13,4 +13,4 @@ ent-BoneSetterCyber = bone setter
 ent-SawCyber = circular saw
     .desc = You think you can cut anything with it.
 ent-BoneGelSetterCyber = bone-gel setter
-    .desc = A surgical tool used for setting bones and has internal bone-gel storage. It also breaks them quite well.
+    .desc = A surgical tool used for setting bones that features internal bone-gel storage. It also breaks them quite well.

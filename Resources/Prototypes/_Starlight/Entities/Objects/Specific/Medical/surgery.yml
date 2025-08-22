@@ -95,7 +95,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
-    state: bonesetter_bonegell
+    state: bonesetter_bonegel
   - type: BoneGel
   - type: SurgeryTool
     speed: 0.5
