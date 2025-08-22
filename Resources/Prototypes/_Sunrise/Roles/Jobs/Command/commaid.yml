@@ -5,7 +5,7 @@
   playTimeTracker: JobComMaid
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Service
+      department: Civilian
       time: 36000
     - !type:DepartmentTimeRequirement
       department: Command
@@ -25,8 +25,6 @@
   - Bar
   - Theatre
   - Maintenance
-  sexBlacklist:
-  - Male
 
 - type: startingGear
   id: ComMaidGear
@@ -42,3 +40,4 @@
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: commaid
+

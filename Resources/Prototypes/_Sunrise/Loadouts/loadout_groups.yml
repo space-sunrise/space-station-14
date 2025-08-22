@@ -1273,7 +1273,7 @@
   name: loadout-group-commaid-jumpsuit
   loadouts:
   - ComMaidElegantJumpskirt
-  - ComMaidLustJumpskirt
+  - ComMaidSunriseJumpskirt
   - ComMaidBunnyUniform
   - ComMaidTacticalJumpskirt
 
@@ -1281,10 +1281,6 @@
   id: ComMaidNeck
   name: loadout-group-commaid-neck
   loadouts:
-  - ComMaidCollarYellow
-  - ComMaidCollarPink
-  - ComMaidCollarPlain
-  - ComMaidCollarHeart
   - ComMaidBunnyButterfly
 
 - type: loadoutGroup
@@ -1301,3 +1297,4 @@
   - ComMaidBunnyManjets
   - ComMaidGlovesWhite
   - ComMaidGlovesTactical
+

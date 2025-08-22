@@ -141,3 +141,6 @@
 
 - type: playTimeTracker
   id: AbductorVictimTracker
+
+- type: playTimeTracker
+  id: JobComMaid

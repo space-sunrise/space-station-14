@@ -15,9 +15,9 @@
     jumpsuit: ClothingUniformJumpskirtElegantMaid
 
 - type: loadout
-  id: ComMaidLustJumpskirt
+  id: ComMaidSunriseJumpskirt
   equipment:
-    jumpsuit: ClothingUniformSkirtLustMaid
+    jumpsuit: ClothingUniformSkirtSunriseMaid
 
 - type: loadout
   id: ComMaidBunnyUniform
@@ -52,25 +52,6 @@
     proto: MasterMaid
 
 # Neck
-- type: loadout
-  id: ComMaidCollarYellow
-  equipment:
-    neck: ClothingNeckBellCollarYellow
-
-- type: loadout
-  id: ComMaidCollarPink
-  equipment:
-    neck: ClothingNeckBellCollarPink
-
-- type: loadout
-  id: ComMaidCollarPlain
-  equipment:
-    neck: ClothingNeckBellCollarPlain
-
-- type: loadout
-  id: ComMaidCollarHeart
-  equipment:
-    neck: ClothingNeckCollar1 # WTF?!
 
 - type: loadout
   id: ComMaidBunnyButterfly
@@ -107,3 +88,4 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterMaid
+
