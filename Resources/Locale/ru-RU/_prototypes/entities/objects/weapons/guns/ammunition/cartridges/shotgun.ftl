@@ -30,3 +30,5 @@ ent-BaseShellHitscanShotgun = ружейный патрон (.50)
     .desc = { ent-BaseCartridge.desc }
 ent-ShellShotgunUraniumSlug = ружейный патрон (.50 урановая пуля)
     .desc = { ent-BaseShellShotgun.desc }
+ent-ShellShotgunBooze = ружейный патрон (.50 травиматический)
+    .desc = { ent-BaseShellShotgun.desc }

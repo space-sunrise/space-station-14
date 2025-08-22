@@ -1687,6 +1687,31 @@
     - ResearchDirector
 
 - type: listing
+  id: UplinkCaneShotgun
+  name: uplink-cane-shotgun-name
+  description: uplink-cane-shotgun-desc
+  icon: { sprite:  Objects/Weapons/Melee/cane.rsi, state: cane}
+  productEntity: CaneShotgunBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
+    - Mime
+    - Bartender
+    - Lawyer
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkGorillaUpgradeKit
   name: uplink-gorilla-upgrade-kit-name
   description: uplink-gorilla-upgrade-kit-desc
@@ -1719,4 +1744,3 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Science
-

@@ -99,3 +99,53 @@
     containers:
       item:
       - CaneBlade
+
+- type: entity
+  parent: WeaponFlareGun #VoiceLock
+  id: CaneShotgun
+  name: cane
+  description: A wooden cane.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/cane_shotgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/cane_shotgun.rsi
+  - type: Appearance
+  - type: Gun
+    fireRate: 4
+    useKey: true
+    selectedMode: SemiAuto
+  - type: StaminaDamageOnHit
+    damage: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 3
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    damage:
+      types:
+        Blunt: 5
+    bluntStaminaDamageFactor: 2.0
+    attackRate: 1
+    autoAttack: false
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: ShellShotgunBooze
+        priority: 1
+        whitelist:
+          tags:
+            - ShellShotgun
+  - type: UseDelay
+    delay: 1
