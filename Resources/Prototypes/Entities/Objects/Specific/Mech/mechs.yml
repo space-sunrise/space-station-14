@@ -232,9 +232,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -326,9 +323,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -339,7 +333,7 @@
     baseWalkSpeed: 1.5
     baseSprintSpeed: 4.3 # sunrise-edit
   - type: Damageable
-    damageModifierSet: MediumArmorNT
+    damageModifierSet: LightArmor
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -396,9 +390,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8
@@ -412,7 +403,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 4.5 # sunrise-edit
+    baseSprintSpeed: 4.5
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: Reflect
@@ -560,9 +551,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -584,7 +572,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      320: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -638,9 +626,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -732,9 +717,6 @@
     pilotWhitelist:
       components:
       - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: Reflect
     reflectProb: 0.35
     spread: 180
@@ -798,8 +780,6 @@
     pilotWhitelist:
       tags:
       - Hamster
-      species:
-      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -820,7 +800,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      150: Critical
+      200: Critical
     showOverlays: false
     allowRevives: true
 
@@ -877,8 +857,6 @@
     pilotWhitelist:
       tags:
       - VimPilot
-      species:
-      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -893,7 +871,7 @@
     tags:
     - Maintenance
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -902,7 +880,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      150: Critical
+      200: Critical
     showOverlays: false
     allowRevives: true
   # Sunrise-Start
@@ -953,9 +931,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8
@@ -969,7 +944,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 5.2 # sunrise-edit
+    baseSprintSpeed: 5.2
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -1026,9 +1001,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8
