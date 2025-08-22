@@ -1071,15 +1071,12 @@
     baseState: phazon
     openState: phazon-open
     brokenState: phazon-broken
-    mechToPilotDamageMultiplier: 0.50
+    mechToPilotDamageMultiplier: 0.25
     maxEquipmentAmount: 6
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1089,9 +1086,11 @@
         Structural: 80
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
-    baseSprintSpeed: 6 # sunrise-edit
+    baseSprintSpeed: 5.5 # sunrise-edit
+  - type: Damageable
+    damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.65
+    reflectProb: 0.5
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1101,7 +1100,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      280: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
