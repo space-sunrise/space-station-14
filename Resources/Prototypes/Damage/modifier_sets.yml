@@ -149,7 +149,7 @@
   id: Card
   coefficients:
     Slash: 2.0
-    Piercing: 0.1 # Holes easily poked through, but do little to structural integrity 
+    Piercing: 0.1 # Holes easily poked through, but do little to structural integrity
     Heat: 3.0
 
 - type: damageModifierSet
@@ -357,8 +357,8 @@
     # bonk
     Blunt: 1.0
     # alloy too hard to cut or shoot
-    Slash: 0.0
-    Piercing: 0.0
+    Slash: 0.3
+    Piercing: 0.3
     # no burning anymore
     Heat: 0.0
     # zap zap
@@ -381,8 +381,8 @@
     Shock: 2
     Heat: 0.8
   flatReductions:
-    Blunt: 3
-    Heat: 2
+    Blunt: 2
+    Heat: 1
 
 - type: damageModifierSet
   id: LightArmor
@@ -394,9 +394,9 @@
     Heat: 0.7
     Structural: 0.5
   flatReductions:
-    Blunt: 5
-    Heat: 5
-    Structural: 5
+    Blunt: 3
+    Heat: 3
+    Structural: 3
 
 - type: damageModifierSet
   id: MediumArmorNT
@@ -408,11 +408,11 @@
     Heat: 0.8
     Structural: 0.5
   flatReductions:
-    Blunt: 10
-    Heat: 10
-    Slash: 5
-    Piercing: 2
-    Structural: 10
+    Blunt: 6
+    Heat: 6
+    Slash: 3
+    Piercing: 1
+    Structural: 6
 
 - type: damageModifierSet
   id: HeavyArmorNT
@@ -424,14 +424,14 @@
     Heat: 0.75
     Structural: 0.5
   flatReductions:
-    Blunt: 15
-    Heat: 15
-    Slash: 7
-    Piercing: 5
-    Structural: 15
+    Blunt: 10
+    Heat: 10
+    Slash: 4
+    Piercing: 3
+    Structural: 10
 
 - type: damageModifierSet
-  id: MediumArmorSyndi #40 40 50 -180 20
+  id: MediumArmorSyndi
   coefficients:
     Blunt: 0.6
     Slash: 0.6
@@ -440,14 +440,14 @@
     Heat: 0.8
     Structural: 0.5
   flatReductions:
-    Blunt: 8
-    Heat: 8
-    Slash: 4
-    Piercing: 2
-    Structural: 8
+    Blunt: 5
+    Heat: 5
+    Slash: 2
+    Piercing: 1
+    Structural: 5
 
 - type: damageModifierSet
-  id: HeavyArmorSyndi #50 50 60 -280 25
+  id: HeavyArmorSyndi
   coefficients:
     Blunt: 0.5
     Slash: 0.5
@@ -456,8 +456,8 @@
     Heat: 0.75
     Structural: 0.5
   flatReductions:
-    Blunt: 14
-    Heat: 14
-    Slash: 7
-    Piercing: 5
-    Structural: 14
+    Blunt: 9
+    Heat: 9
+    Slash: 4
+    Piercing: 3
+    Structural: 9
