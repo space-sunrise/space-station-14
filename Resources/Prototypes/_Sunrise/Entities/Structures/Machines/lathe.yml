@@ -1,7 +1,9 @@
+
 - type: entity
   id: ExosuitFabricatorHyperConvection
+  parent: [ExosuitFabricator, BaseHyperlathe]
   name: exosuit fabricator hyper convection
-  parent: [BaseMachinePowered, ConstructibleMachine]
+  description: A highly-experimental exosuit fabricator that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
@@ -14,22 +16,3 @@
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: ExosuitFabricatorHyperConvectionMachineCircuitboard
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - SheetPaper
-    storage:
-      Paper: 0
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
