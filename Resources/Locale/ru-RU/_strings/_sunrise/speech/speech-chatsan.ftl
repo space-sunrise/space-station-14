@@ -584,3 +584,7 @@ russian-chatsan-word-292 = гш
 russian-chatsan-replacement-292 = мирный сектор
 russian-chatsan-word-293 = пцк
 russian-chatsan-replacement-293 = представитель центрального командования
+russian-chatsan-word-294 = нра
+russian-chatsan-replacement-170 = научного руководителя
+russian-chatsan-word-295 = нру
+russian-chatsan-replacement-170 = научному руководителю
