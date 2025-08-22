@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
-  engineVersion: 262.0.0
+  category: Grid
+  engineVersion: 266.0.0
   forkId: sunrise_station
-  forkVersion: 9aaed62bb32a77e08327bc9143c14cc4744d256d
-  time: 08/07/2025 19:18:39
-  entityCount: 358
-maps:
-- 1
+  forkVersion: 65cc1375f29544c1e17019ee64bf90050b989980
+  time: 08/20/2025 07:35:46
+  entityCount: 354
+maps: []
 grids:
 - 2
-orphans: []
+orphans:
+- 2
 nullspace: []
 tilemap:
   4: Space
@@ -28,23 +28,13 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: Broadphase
-    - type: OccluderTree
   - uid: 2
     components:
     - type: MetaData
       name: grid
     - type: Transform
       pos: -0.75789183,-0.6592672
-      parent: 1
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -363,6 +353,8 @@ entities:
       - 196
       - 119
       - 120
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 4
@@ -461,6 +453,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: BlastDoorOpen
   entities:
   - uid: 15
@@ -1031,6 +1025,8 @@ entities:
           - 28
           - 27
           - 26
+    - type: Fixtures
+      fixtures: {}
 - proto: ComputerIFFSyndicate
   entities:
   - uid: 106
@@ -1785,14 +1781,12 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 2
-- proto: PlushieKalium
+- proto: PlushieKaliumDouble
   entities:
-  - uid: 211
+  - uid: 1
     components:
-    - type: MetaData
-      desc: Профессиональный агент из далёкого космоса. В NT за его голову платят хорошие деньги.
     - type: Transform
-      pos: -5.4784346,-3.5331328
+      pos: -5.325442,-3.4946597
       parent: 2
 - proto: PosterContrabandFreeSyndicateEncryptionKey
   entities:
@@ -1802,6 +1796,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,1.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandMoth
   entities:
   - uid: 213
@@ -1810,6 +1806,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSyndicateRecruitment
   entities:
   - uid: 214
@@ -1818,6 +1816,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 215
@@ -2111,32 +2111,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-1.5
       parent: 2
-  - uid: 356
-    components:
-    - type: Transform
-      anchored: False
-      pos: 5.7421083,-6.1592674
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-  - uid: 357
-    components:
-    - type: Transform
-      anchored: False
-      rot: 1.5707963267948966 rad
-      pos: 7.7421083,5.8407326
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-  - uid: 358
-    components:
-    - type: Transform
-      anchored: False
-      rot: 1.5707963267948966 rad
-      pos: 8.742108,4.8407326
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
 - proto: ReinforcedPlasmaWindow
   entities:
   - uid: 264
@@ -2230,6 +2204,8 @@ entities:
         216:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: StairStageDark
   entities:
   - uid: 273
@@ -2280,6 +2256,8 @@ entities:
     - type: Transform
       pos: -1.5,4.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SyndieHandyFlag
   entities:
   - uid: 279
