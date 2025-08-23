@@ -345,6 +345,9 @@
     - MechParts
     - MechEquipment
     - RoboticsDynamicSunrise # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
   - type: MaterialStorage
     whitelist:
       tags:
@@ -446,52 +449,6 @@
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
-
-  # Sunrise-Start
-- type: entity
-  id: CentcomTechFab
-  parent: BaseLatheLube
-  name: centcom techfab
-  suffix: ERT
-  description: Prints equipment for CentCom rapid response squads. "Cost-optimized model" has reduced fabrication speed and limited selection.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Machines/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: centcom
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: AmmoTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    materialUseMultiplier: 1
-    timeMultiplier: 1.75
-    staticPacks:
-    #- SecurityAmmoStatic
-    - SecurityStaticSunrise # Sunrise-Add
-    dynamicPacks:
-    - SecurityEquipment
-    - SecurityExplosives
-    - SecurityAmmo
-    - SecurityWeapons
-    - SecurityDynamicSunrise
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: OreSiloClient
-  # Sunrise-End
 
 - type: entity
   id: AmmoTechFab

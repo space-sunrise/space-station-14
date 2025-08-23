@@ -9,6 +9,7 @@
   - ClothingHandsGlovesNitrileBlue
   - ClothingEyesGlassesChemical
   - WhiteCane
+  - PatchPack
 
 - type: latheRecipePack
   id: MedicalDynamicSunrise
@@ -18,15 +19,9 @@
   - BluespaceBeaker
   - SyringeBluespace
   - SyringeCryostasis
-  - LeftArmCyber
-  - RightArmCyber
-  - LeftHandCyber
-  - RightHandCyber
-  - LeftLegCyber
-  - RightLegCyber
-  - LeftFootCyber
-  - RightFootCyber
   - HyposprayMedical
+  - AutoMenderBurn
+  - AutoMenderBrute
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
@@ -40,18 +35,33 @@
 - type: latheRecipePack
   id: MedicalCyberlimbDynamic
   recipes:
+  - LeftArmCyber
+  - RightArmCyber
+  - LeftHandCyber
+  - RightHandCyber
+  - LeftLegCyber
+  - RightLegCyber
+  - LeftFootCyber
+  - RightFootCyber
+  ####
   - LeftArmCyberReaper
   - RightArmCyberReaper
+  #
   - LeftArmCyberMechwright
   - RightArmCyberMechwright
+  #
   - LeftArmCyberBulwark
   - RightArmCyberBulwark
+  #
   - LeftArmCyberGorilla
   - RightArmCyberGorilla
+  #
   - LeftArmCyberMantisBladeMaxGuard
   - RightArmCyberMantisBladeMaxGuard
+  #
   - LeftArmCyberLaserEmitter
   - RightArmCyberLaserEmitter
+  #
   - LeftArmCyberGrenadeThrower
   - RightArmCyberGrenadeThrower
 

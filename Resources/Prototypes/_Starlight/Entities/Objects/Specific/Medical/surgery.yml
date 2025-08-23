@@ -21,6 +21,8 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: scalpel
+  - type: Hemostat # Sunrise-TODO: Сделать улучшенную руку рипера с универсальнымы инструментами
+  - type: Cautery
   - type: SurgeryTool
     speed: 0.2
     startSound:
@@ -82,6 +84,21 @@
     state: bonesetter
   - type: SurgeryTool
     speed: 0.4
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/bone_setter.ogg
+
+- type: entity
+  name: bone-gel setter
+  id: BoneGelSetterCyber
+  parent: BoneSetter
+  description: A surgical tool used for setting bones and has internal bone-gel storage. It also breaks them quite well.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
+    state: bonesetter_bonegel
+  - type: BoneGel
+  - type: SurgeryTool
+    speed: 0.5
     startSound:
       path: /Audio/_Sunrise/Medical/Surgery/bone_setter.ogg
 

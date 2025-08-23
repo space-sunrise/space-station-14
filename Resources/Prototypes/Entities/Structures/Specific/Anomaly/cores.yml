@@ -373,3 +373,29 @@
     energy: 2.0
     color: "#fc0303"
     castShadows: false
+
+# Sunrise-start
+- type: entity
+  name: Anomaly Core spawner
+  id: AnomalyCoreSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Specific/Anomalies/Cores/gravity_core.rsi
+          state: core
+    - type: RandomSpawner
+      prototypes:
+          - AnomalyCorePyroclastic
+          - AnomalyCoreGravity
+          - AnomalyCoreIce
+          - AnomalyCoreFlesh
+          - AnomalyCoreRock
+          - AnomalyCoreLiquid
+          - AnomalyCoreBluespace
+          - AnomalyCoreElectricity
+          - AnomalyCoreFlora
+          - AnomalyCoreShadow
+          - AnomalyCoreTech
+# Sunrise-end

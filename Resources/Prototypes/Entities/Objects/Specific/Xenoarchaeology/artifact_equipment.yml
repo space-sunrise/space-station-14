@@ -131,6 +131,7 @@
     whitelist:
       components:
       - XenoArtifact
+      - AnomalyCore # Sunrise-added
   - type: Item
     sprite: Objects/Storage/artifact_container.rsi
     size: Huge
@@ -198,3 +199,18 @@
     delay: 0.3
   - type: StaticPrice
     price: 250
+
+# Sunrise-start
+- type: entity
+  parent: HandheldArtifactContainer
+  id: HandheldArtifactContainerSyndicate
+  name: syndicate handheld artifact container
+  description: A handheld case used to safely contain and move small artifacts. This one looks suspicious.
+  components:
+  - type: ContainerFill
+    containers:
+      paper_label:
+        - SyndicateBusinessCard
+      storagebase:
+        - AnomalyCoreSpawner
+# Sunrise-end

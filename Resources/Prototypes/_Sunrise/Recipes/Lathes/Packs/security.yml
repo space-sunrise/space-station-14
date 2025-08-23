@@ -26,6 +26,11 @@
     - MagazineBoxRifleSP
     - MagazineBoxRifleHP
     - MagazineBoxRifleFMJ
+    # Rifle Heavy
+    - MagazineBoxHeavyRifleFMJ
+    - MagazineBoxHeavyRifleHP
+    - MagazineBoxHeavyRifleSP
+    - MagazineBoxHeavyRiflePractice
     # Shotgun
     - BoxLethalshot
     - BoxShotgunSlug
@@ -78,6 +83,11 @@
     - MagazineRifleHP
     - MagazineRifleFMJ
     - MagazineRifleEmpty
+    # Rifle Heavy
+    - MagazineRifleHeavyFMJ
+    - MagazineRifleHeavyHP
+    - MagazineRifleHeavySP
+    - MagazineRifleHeavyEmpty
     # Shotgun Magazine
     - MagazineShotgun
     - MagazineShotgunEmpty
@@ -136,6 +146,10 @@
     - MagazineBoxRifleIncendiary
     - MagazineBoxRifleUranium
     - MagazineBoxRifleAP
+  # Heavy Rifle
+    - MagazineBoxHeavyRifleAP
+    - MagazineBoxHeavyRifleIncendiary
+    - MagazineBoxHeavyRifleUranium
   # Shotgun
     - BoxBeanbag
     - BoxShotgunIncendiary
@@ -177,6 +191,10 @@
     - MagazineRifleIncendiary
     - MagazineRifleUranium
     - MagazineRifleAP
+  # Rifle Heavy
+    - MagazineRifleHeavyIncendiary
+    - MagazineRifleHeavyAP
+    - MagazineRifleHeavyUranium
   # Shotgun
     - MagazineShotgunBeanbag
     - MagazineShotgunIncendiary

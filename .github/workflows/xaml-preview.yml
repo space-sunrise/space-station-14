@@ -1,0 +1,112 @@
+name: XAML Preview
+
+on:
+  pull_request_target:
+    paths:
+      - '**.xaml'
+
+jobs:
+  preview:
+    name: Generate XAML Previews
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Get changed files
+        id: files
+        uses: Ana06/get-changed-files@v2.3.0
+        with:
+          format: 'space-delimited'
+          filter: |
+            **.xaml
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow
+
+      - name: Generate XAML previews
+        id: preview
+        run: |
+          # Check if any XAML files were actually changed
+          xaml_files=""
+          for file in ${{ steps.files.outputs.modified }} ${{ steps.files.outputs.added }} ${{ steps.files.outputs.removed }}; do
+            if [[ "$file" == *.xaml ]]; then
+              xaml_files="$xaml_files $file"
+            fi
+          done
+          
+          if [ -z "$xaml_files" ]; then
+            echo "No XAML files changed, skipping preview generation"
+            echo "skip_preview=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "Processing XAML files: $xaml_files"
+          
+          # Create output directory for images
+          mkdir -p xaml-previews
+          
+          # Generate mockup images for existing XAML files
+          for file in ${{ steps.files.outputs.modified }} ${{ steps.files.outputs.added }}; do
+            if [[ "$file" == *.xaml ]] && [[ -f "$file" ]]; then
+              echo "Generating mockup for $file"
+              python3 ./.github/scripts/xaml_mockup_generator.py "$file" "xaml-previews/$(basename "$file" .xaml)_mockup.png" || echo "Failed to generate mockup for $file"
+            fi
+          done
+          
+          # Generate text preview
+          python3 ./.github/scripts/xaml-preview.py \
+            --modified "${{ steps.files.outputs.modified }}" \
+            --added "${{ steps.files.outputs.added }}" \
+            --removed "${{ steps.files.outputs.removed }}" \
+            >> $GITHUB_OUTPUT
+
+      - name: Upload mockup images
+        if: steps.preview.outputs.skip_preview != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: xaml-previews
+          path: xaml-previews/
+          retention-days: 7
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 🎨 XAML Preview Bot
+
+      - name: Create comment if it doesn't exist
+        if: steps.fc.outputs.comment-id == '' && steps.preview.outputs.skip_preview != 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.number }}
+          body: |
+            ${{ steps.preview.outputs.PREVIEW_CONTENT }}
+
+      - name: Update comment if it exists
+        if: steps.fc.outputs.comment-id != '' && steps.preview.outputs.skip_preview != 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ${{ steps.preview.outputs.PREVIEW_CONTENT }}
+
+      - name: Update comment to read that it has been edited
+        if: steps.fc.outputs.comment-id != '' && steps.preview.outputs.skip_preview != 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: append
+          body: |
+            
+            Edit: preview updated after ${{ github.event.pull_request.head.sha }}

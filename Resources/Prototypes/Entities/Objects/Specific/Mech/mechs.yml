@@ -192,6 +192,8 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Prying
+    speedModifier: 6
+    useSound: /Audio/Machines/airlock_creaking.ogg
   - type: StatusIcon
     bounds: "-0.6,-0.6, 0.6, 0.6"
   - type: PointLight
@@ -242,9 +244,9 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 5.5 # sunrise-edit
   - type: Reflect
-    reflectProb: 0.5
+    reflectProb: 0.25
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: Tag
@@ -331,13 +333,13 @@
         Blunt: 20
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 4.3 # sunrise-edit
+    baseSprintSpeed: 4.5 # sunrise-edit
   - type: Damageable
     damageModifierSet: LightArmor
   - type: Reflect
     reflectProb: 0.10
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: Tag
@@ -349,7 +351,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      450: Critical
     showOverlays: false
     allowRevives: true
 
@@ -409,7 +411,7 @@
   - type: Reflect
     reflectProb: 0.15
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: Tag
@@ -421,7 +423,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -466,7 +468,7 @@
     baseState: paddy
     openState: paddy-open
     brokenState: paddy-broken
-    mechToPilotDamageMultiplier: 0.60
+    mechToPilotDamageMultiplier: 0.50
     airtight: true
     #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
@@ -477,7 +479,7 @@
   - type: Reflect
     reflectProb: 0.10
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MeleeThrowOnHit
@@ -493,7 +495,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.4
+    baseSprintSpeed: 4.75
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -565,7 +567,7 @@
   - type: Reflect
     reflectProb: 0.05
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
@@ -646,20 +648,20 @@
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4.2 # sunrise-edit
+    baseSprintSpeed: 4.5 # sunrise-edit
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
     reflectProb: 0.05
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      450: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -720,7 +722,7 @@
   - type: Reflect
     reflectProb: 0.35
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
@@ -793,7 +795,7 @@
   - type: Reflect
     reflectProb: 0.05
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
@@ -873,7 +875,7 @@
   - type: Reflect
     reflectProb: 0.05
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
@@ -948,14 +950,14 @@
   - type: Reflect
     reflectProb: 0.15
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      540: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1022,14 +1024,14 @@
   - type: Reflect
     reflectProb: 0.20
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      750: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1092,7 +1094,7 @@
   - type: Reflect
     reflectProb: 0.5
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
     - Energy
@@ -1165,11 +1167,11 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4.7 # sunrise-edit
+    baseSprintSpeed: 5.2 # sunrise-edit
   - type: Reflect
     reflectProb: 0.15
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: Damageable
@@ -1180,7 +1182,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1265,14 +1267,14 @@
   - type: Reflect
     reflectProb: 0.20
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      800: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1344,7 +1346,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 3.2 # sunrise-edit
+    baseSprintSpeed: 3.7 # sunrise-edit
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -1352,14 +1354,14 @@
   - type: Reflect
     reflectProb: 0.20
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      800: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1434,7 +1436,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4.8 # sunrise-edit
+    baseSprintSpeed: 5.5 # sunrise-edit
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1442,14 +1444,14 @@
   - type: Reflect
     reflectProb: 0.15
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1532,14 +1534,14 @@
   - type: Reflect
     reflectProb: 0.20
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      750: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1617,7 +1619,7 @@
   - type: Reflect
     reflectProb: 0.20
     spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
   - type: Tag
@@ -1629,7 +1631,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      800: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader

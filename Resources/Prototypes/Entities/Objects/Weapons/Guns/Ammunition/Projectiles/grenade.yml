@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
+    state: rubber
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -25,7 +25,7 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
+    state: shard
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -42,7 +42,7 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot-flare
+    state: incendiary
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -63,7 +63,7 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
+    state: bullet
   - type: Projectile
     deleteOnCollide: false
     damage:

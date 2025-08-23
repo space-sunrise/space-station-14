@@ -26,3 +26,5 @@ ent-LMGIncendiaryKit = L6 Saw Incendiary ammo kit
     .desc = { ent-BoxCardboard.desc }
 ent-LMGUraniumKit = L6 Saw Uranium ammo kit
     .desc = { ent-BoxCardboard.desc }
+ent-CaneShotgunBox = darts box
+    .desc = { ent-BoxDarts.desc }
