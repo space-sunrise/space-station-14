@@ -1,4 +1,4 @@
-ent-ClothingUniformTurleneckBlack = чёрная водолазка
+ent-ClothingUniformTurleneckBlack = чёрная полосатая водолазка
     .desc = Практичная и удобная водолазка чёрного цвета.
 ent-ClothingUniformTurleneckBlackWomen = чёрная водолазка с юбкой
     .desc = Практичная и удобная водолазка чёрного цвета.
