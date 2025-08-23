@@ -126,7 +126,7 @@
             Toxin: -0.7
             Brute: -0.7
           types:
-            Mangleness: 0.02
+            Mangleness: 0.04
       - !type:ModifyBleedAmount
         amount: -0.15
       - !type:PopupMessage
