@@ -423,7 +423,7 @@
     Structural: 0.45
   flatReductions:
     Blunt: 10
-    Heat: 10
+    Heat: 9
     Slash: 4
     Piercing: 4
 
