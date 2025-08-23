@@ -71,3 +71,40 @@
   - type: Tag
     tags:
     - CantInteract
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: CodeConsole
+  name: code input console
+  description: A computer used to enter the password.
+  components:
+  - type: AbductorConsole
+  - type: CodeConsole
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.CodeConsoleUIKey.Key
+  - type: UserInterface
+    interfaces:
+     enum.CodeConsoleUIKey.Key:
+        type: CodeConsoleBoundUserInterface
