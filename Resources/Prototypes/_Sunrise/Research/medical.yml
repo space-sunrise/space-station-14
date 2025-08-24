@@ -137,6 +137,22 @@
   recipeUnlocks:
   - ImplantExtractorMachineCircuitboard
 
+- type: technology
+  id: AutoMenders
+  name: research-technology-autoMenders
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: mender
+  discipline: Biochemical
+  tier: 3
+  cost: 7500
+  recipeUnlocks:
+  - AutoMenderBrute
+  - AutoMenderBurn
+  technologyPrerequisites:
+  - MedicalHyposprays
+  radioChannels:
+  - Medical
 
 - type: technology
   id: FunctionalCyberLimbsTech

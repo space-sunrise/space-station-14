@@ -37,6 +37,7 @@
       injector:
         maxVol: 30
   - type: Healing
+    worksOnTheDead: false #Sunrise-Edit
     solutionDrain: true
     reagentsToDrain:
     - ReagentId: Bicaridine
@@ -46,7 +47,9 @@
       - Biological
     damage:
       groups:
-        Brute: -2
+        Brute: -2.5 #Sunrise-Edit
+      types: #Sunrise-Edit
+        Mangleness: 0.05 #Sunrise-Edit
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
@@ -72,6 +75,7 @@
   parent: BaseAutoMender
   components:
   - type: Healing
+    worksOnTheDead: false #Sunrise-Edit
     solutionDrain: true
     reagentsToDrain:
     - ReagentId: Dermaline
@@ -81,10 +85,11 @@
     delay: 0.5
     damage:
       types:
-        Heat: -1.5
-        Cold: -1.5
-        Shock: -1.5
+        Heat: -2 #Sunrise-Edit
+        Cold: -2 #Sunrise-Edit
+        Shock: -2 #Sunrise-Edit
         Caustic: -1
+        Mangleness: 0.1 #Sunrise-Edit
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:

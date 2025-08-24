@@ -70,5 +70,8 @@ public sealed partial class HealingComponent : Component
 
     [DataField]
     public List<ReagentQuantity> ReagentsToDrain = new();
+
+    [DataField]
+    public bool WorksOnTheDead = true;
     // Sunrise-End
 }
