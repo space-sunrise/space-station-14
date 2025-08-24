@@ -1,8 +1,9 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.UserInterface;
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.InnateItem;
@@ -10,17 +11,29 @@ namespace Content.Shared._Sunrise.InnateItem;
 public sealed class InnateItemSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+
+    private static readonly EntProtoId InnateEntityTargetAction = "InnateEntityTargetAction";
+    private static readonly EntProtoId InnateInstantActionAction = "InnateInstantActionAction";
+    private const string InnateItemContainerId = "innate_items";
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<InnateItemComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<InnateItemComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<InnateItemComponent, InnateEntityTargetActionEvent>(WorldTargetActionActivate);
+        SubscribeLocalEvent<InnateItemComponent, InnateEntityTargetActionEvent>(EntityTargetActionActivate);
         SubscribeLocalEvent<InnateItemComponent, InnateInstantActionEvent>(InstantActionActivate);
         SubscribeLocalEvent<InnateItemComponent, ComponentShutdown>(OnShutdown);
+    }
+
+    private void OnInit(EntityUid uid, InnateItemComponent component, ComponentInit args)
+    {
+        var containerManager = EnsureComp<ContainerManagerComponent>(uid);
+        _containerSystem.EnsureContainer<Container>(uid, InnateItemContainerId, containerManager);
     }
 
     private void OnShutdown(EntityUid uid, InnateItemComponent component, ComponentShutdown args)
@@ -29,6 +42,13 @@ public sealed class InnateItemSystem : EntitySystem
         {
             _actionsSystem.RemoveAction(action);
         }
+
+        if (_containerSystem.TryGetContainer(uid, InnateItemContainerId, out var container))
+        {
+            _containerSystem.CleanContainer(container);
+        }
+
+        component.Actions.Clear();
     }
 
     private void OnMapInit(EntityUid uid, InnateItemComponent component, MapInitEvent args)
@@ -38,79 +58,65 @@ public sealed class InnateItemSystem : EntitySystem
 
     private void AddItems(EntityUid uid, InnateItemComponent component)
     {
-        foreach (var itemProto in component.WorldTargetActions)
-        {
-            var item = Spawn(itemProto);
-            var action = CreateWorldTargetAction(item);
-            _actionContainer.AddAction(uid, action);
-            _actionsSystem.AddAction(uid, action, uid);
-            component.Actions.Add(action);
-        }
-
-        foreach (var itemProto in component.InstantActions)
-        {
-            var item = Spawn(itemProto);
-            var action = CreateInstantAction(item);
-            _actionContainer.AddAction(uid, action);
-            _actionsSystem.AddAction(uid, action, uid);
-            component.Actions.Add(action);
-        }
-    }
-
-    private EntityUid CreateWorldTargetAction(EntityUid uid)
-    {
-        if (!TryComp<ActionComponent>(uid, out var action))
-            return EntityUid.Invalid;
-
-        EnsureComp<WorldTargetActionComponent>(uid);
-        EnsureComp<EntityTargetActionComponent>(uid);
-        var targetAction = EnsureComp<TargetActionComponent>(uid);
-        _actionsSystem.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
-        _actionsSystem.SetEvent(uid, new InnateEntityTargetActionEvent(uid));
-        _actionsSystem.SetPriority((uid, action), 0);
-        _actionsSystem.SetItemIconStyle((uid, action), ItemActionIconStyle.NoItem);
-        _actionsSystem.SetCheckCanInteract((uid, action), false);
-        _actionsSystem.SetIgnoreContainer((uid, targetAction), true);
-        if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
-        {
-            activatableUIComponent.RequiresComplex = false;
-            activatableUIComponent.InHandsOnly = false;
-            activatableUIComponent.RequireActiveHand = false;
-            Dirty(uid, activatableUIComponent);
-        }
-        return uid;
-    }
-
-    private EntityUid CreateInstantAction(EntityUid uid)
-    {
-        if (!TryComp<ActionComponent>(uid, out var action))
-            return EntityUid.Invalid;
-
-        EnsureComp<InstantActionComponent>(uid);
-        _actionsSystem.SetEvent(uid, new InnateInstantActionEvent(uid));
-        _actionsSystem.SetPriority((uid, action), 0);
-        _actionsSystem.SetIcon(uid, new SpriteSpecifier.EntityPrototype(MetaData(uid).EntityPrototype!.ID));
-        _actionsSystem.SetCheckCanInteract((uid, action), false);
-        if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
-        {
-            activatableUIComponent.RequiresComplex = false;
-            activatableUIComponent.InHandsOnly = false;
-            activatableUIComponent.RequireActiveHand = false;
-            Dirty(uid, activatableUIComponent);
-        }
-        return uid;
-    }
-
-    private void WorldTargetActionActivate(EntityUid uid, InnateItemComponent component, InnateEntityTargetActionEvent args)
-    {
-        if (args.Entity == null)
+        if (!_containerSystem.TryGetContainer(uid, InnateItemContainerId, out var container))
             return;
 
+        // Обрабатываем worldTargetActions
+        AddActionsFromPrototypes(uid, component, component.EntityTargetActions, container, InnateEntityTargetAction, true);
+
+        // Обрабатываем instantActions
+        AddActionsFromPrototypes(uid, component, component.InstantActions, container, InnateInstantActionAction, false);
+    }
+
+    /// <summary>
+    /// Общий метод для добавления действий из списка прототипов
+    /// </summary>
+    private void AddActionsFromPrototypes(
+        EntityUid uid,
+        InnateItemComponent component,
+        List<EntProtoId?> prototypeIds,
+        BaseContainer container,
+        EntProtoId actionPrototypeId,
+        bool isEntityTarget)
+    {
+        foreach (var itemProto in prototypeIds)
+        {
+            if (itemProto == null) continue;
+
+            var spawnedItem = Spawn(itemProto);
+
+            if (TryComp<ActivatableUIComponent>(spawnedItem, out var activatableUIComponent))
+            {
+                activatableUIComponent.RequiresComplex = false;
+                activatableUIComponent.InHandsOnly = false;
+                activatableUIComponent.RequireActiveHand = false;
+                Dirty(spawnedItem, activatableUIComponent);
+            }
+
+            _containerSystem.Insert(spawnedItem, container);
+
+            var action = Spawn(actionPrototypeId);
+
+            _actionsSystem.SetIcon(action, new SpriteSpecifier.EntityPrototype(MetaData(spawnedItem).EntityPrototype!.ID));
+
+            // Устанавливаем соответствующий тип события в зависимости от типа действия
+            if (isEntityTarget)
+                _actionsSystem.SetEvent(action, new InnateEntityTargetActionEvent(spawnedItem));
+            else
+                _actionsSystem.SetEvent(action, new InnateInstantActionEvent(spawnedItem));
+
+            _actionsSystem.AddAction(uid, action, uid);
+            component.Actions.Add(action);
+        }
+    }
+
+    private void EntityTargetActionActivate(EntityUid uid, InnateItemComponent component, InnateEntityTargetActionEvent args)
+    {
         _interactionSystem.InteractUsing(
             args.Performer,
             args.Item,
-            args.Entity.Value,
             args.Target,
+            Transform(args.Target).Coordinates,
             false,
             false,
             false);
@@ -123,11 +129,11 @@ public sealed class InnateItemSystem : EntitySystem
     }
 }
 
-public sealed partial class InnateEntityTargetActionEvent : WorldTargetActionEvent
+public sealed partial class InnateEntityTargetActionEvent : EntityTargetActionEvent
 {
     public EntityUid Item;
 
-    public InnateEntityTargetActionEvent(EntityUid item)
+    public InnateEntityTargetActionEvent(EntityUid item) : this()
     {
         Item = item;
     }
@@ -137,7 +143,7 @@ public sealed partial class InnateInstantActionEvent : InstantActionEvent
 {
     public EntityUid Item;
 
-    public InnateInstantActionEvent(EntityUid item)
+    public InnateInstantActionEvent(EntityUid item) : this()
     {
         Item = item;
     }

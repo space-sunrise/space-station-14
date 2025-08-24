@@ -20,7 +20,7 @@
     - map: ["computerLayerBody"]
       state: base
     - map: ["computerLayerScreen"]
-      state: screen
+      state: screenstatic
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false
@@ -95,7 +95,7 @@
     - map: ["computerLayerBody"]
       state: base
     - map: ["computerLayerScreen"]
-      state: screen
+      state: screenstatic #screen #Sunrise-TODO: Анимацию в мете прописать
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false

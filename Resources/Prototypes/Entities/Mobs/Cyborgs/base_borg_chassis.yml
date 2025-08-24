@@ -385,7 +385,7 @@
     range: 3
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpoweredInnateItem
+    - HandheldStationMapUnpowered
   - type: BorgCrewManifestViewer
   - type: StationRecordKeyStorage
   # Sunrise-End
