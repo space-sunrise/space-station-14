@@ -12,8 +12,8 @@
   # Sunrise edit end
   - type: CombatMode
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.00
-    baseSprintSpeed : 5.00
+    baseSprintSpeed: 5
+    baseWalkSpeed: 4.5
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -54,7 +54,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      400: Dead # Sunrise-Edit # Пусть стреляют Экспансивками
   - type: MeleeWeapon
     altDisarm: false
     soundHit:
@@ -70,7 +70,7 @@
     requiredLegs: 1 # TODO: More than 1 leg
   - type: Hunger # probably should be prototyped
     thresholds:
-      Overfed: 200
+      Overfed: 250 # Sunrise-Edit
       Okay: 150
       Peckish: 100
       Starving: 50
@@ -111,6 +111,7 @@
   - type: RatKing
     hungerPerArmyUse: 15  # Sunrise-edit
     hungerPerDomainUse: 50  # Sunrise-edit
+    hungerPerGuardUse: 75  # High cost for guards
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
@@ -137,6 +138,7 @@
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5
   - type: VentCrawler
+  - type: NightVision
   # Sunrise-end
 
 - type: entity
@@ -188,6 +190,7 @@
     name: ghost-panel-antagonist-rats-name
     description: ghost-panel-antagonist-rats-description
     priority: 110
+  - type: NightVision
   # Sunrise edit end
   - type: VentCrawler # Sunrise-edit
   - type: CombatMode
@@ -208,7 +211,7 @@
         3.0
   - type: Bloodstream
     bloodReagent: Blood
-    bloodMaxVolume: 75
+    bloodMaxVolume: 60
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -249,8 +252,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Critical  # Sunrise-edit
-      60: Dead  # Sunrise-edit
+      40: Critical  # Sunrise-edit
+      50: Dead  # Sunrise-edit
   - type: Destructible
     thresholds:
     - trigger:
@@ -326,6 +329,182 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+
+# Sunrise-Start
+- type: entity
+  name: rat guard
+  id: MobRatGuard
+  parent: [ SimpleMobBase, MobCombat ]
+  description: A massive, imposing rat that serves as the king's elite guard.
+  categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
+  components:
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-rats-name
+    description: ghost-panel-antagonist-rats-description
+    priority: 110
+  - type: TypingIndicator
+    proto: lizard
+  - type: VentCrawler # Sunrise-edit
+  - type: CombatMode
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.2
+    baseSprintSpeed : 3.8
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: RatServantCompound
+    blackboard:
+      IdleRange: !type:Single
+        4.0
+      FollowCloseRange: !type:Single
+        2.5
+      FollowRange: !type:Single
+        3.5
+  - type: Bloodstream
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 1.5
+    bloodReagent: Blood
+    bloodMaxVolume: 200
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Mobs/Animals/buffrat.rsi
+    # scale: 1.2, 1.2 # Smaller that RatKingBuff
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: regalrat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: eyes
+      shader: unshaded
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80 #Bulky guard
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Critical  # High HP as requested
+      400: Dead  # High HP as requested
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.8
+      250: 0.6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 600
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
+  - type: Stamina
+    critThreshold: 400
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh2.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5 # Additional claw damage
+        Piercing: 5 # Additional claw damage
+        Blunt: 25 # Strong guard attack
+        Structural: 10 # Strong guard attack
+    bluntStaminaDamageFactor: 1.75
+  - type: MeleeThrowOnHit
+    distance: 0.75
+    speed: 8
+  - type: Body
+    prototype: Rat
+    requiredLegs: 1 # TODO: More than 1 leg
+  - type: Hunger # probably should be prototyped
+    thresholds:
+      Overfed: 300
+      Okay: 200
+      Peckish: 150
+      Starving: 100
+      Dead: 0
+    baseDecayRate: 0.025  # Faster hunger decay for guards
+  - type: Thirst
+    thresholds:
+      OverHydrated: 600
+      Okay: 450
+      Thirsty: 300
+      Parched: 150
+      Dead: 0
+    baseDecayRate: 0.15  # Faster thirst decay
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: regalrat
+        BaseUnshaded: eyes
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 3  # More meat from guards
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+    wilhelmProbability: 0.001
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - FootstepSound
+  - type: NoSlip
+  - type: MobPrice
+    price: 1500 # Higher value for guards
+  - type: MobsterAccent
+    isBoss: false
+  - type: Speech
+    speechVerb: SmallMob
+  - type: GuideHelp
+    guides:
+    - MinorAntagonists
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+  - type: RatKingServant  # Make them servants too
+  - type: GhostRole
+    makeSentient: true
+    name: rat-guard-ghost-role-name
+    description: rat-guard-ghost-role-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: NightVision
+  - type: RandomMetadata
+    nameSegments:
+    - NamesRatGuard
+    - NamesRatGuardTitle
+    nameFormat: name-format-regal-rat
+# Sunrise-end
 
 - type: weightedRandomEntity
   id: RatKingLoot
@@ -438,3 +617,19 @@
     event:
       !type:RatKingOrderActionEvent
       type: Loose
+
+# Sunrise-Start
+- type: entity
+  parent: BaseAction
+  id: ActionRatKingRaiseGuard
+  name: Raise Guard
+  description: Spend a large amount of hunger to summon an elite rat guard to serve you.
+  components:
+  - type: Action
+    useDelay: 8
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: ratKingGuard
+  - type: InstantAction
+    event: !type:RatKingRaiseGuardActionEvent
+# Sunrise-End

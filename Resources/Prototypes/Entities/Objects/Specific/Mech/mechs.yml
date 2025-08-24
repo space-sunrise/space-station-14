@@ -127,12 +127,13 @@
     - DoorBumpOpener
     - FootstepSound
   - type: Pullable
-  - type: Clickable
-  - type: WiresPanel
   - type: Physics
-    bodyType: Dynamic
+    bodyType: KinematicController
     angularDamping: 10 # sunrise-edit
     linearDamping: 10 # sunrise-edit
+  - type: GravityAffected
+  - type: Clickable
+  - type: WiresPanel
   - type: Fixtures
     fixtures:
       fix1:

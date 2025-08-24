@@ -21,6 +21,10 @@ log-probe-printout-device = Просканированное устройств�
 log-probe-printout-header = Последние логи:
 log-probe-printout-entry = #{ $number } / { $time } / { $accessor }
 astro-nav-program-name = АстроНав
+
+navigator-program-name = Навигатор
+navigator-cartridge-loading = Загрузка карты...
+
 med-tek-program-name = МедТек
 # Wanted list cartridge
 wanted-list-program-name = Список разыскиваемых

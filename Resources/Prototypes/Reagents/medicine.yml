@@ -244,7 +244,7 @@
             Heat: -1.5
             Shock: -1.5
             Cold: -1.5
-            Mangleness: 0.1 #Sunrise-Edit
+            Mangleness: 0.2 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1052,7 +1052,7 @@
         damage:
           types:
             Caustic: -1.25 # 5 per u
-            Mangleness: 0.05 # Sunrise-Edit
+            Mangleness: 0.25 # Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1110,7 +1110,7 @@
           types:
             Slash: -2 # 8 per u
             Heat: 0.2 # 0.8 per u
-            Mangleness: 0.05 #Sunrise-Edit
+            Mangleness: 0.25 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1136,7 +1136,7 @@
           types:
             Piercing: -2.5 # 10 per u
             Radiation: 0.05 # 0.2 per u, 3 for 15u
-            Mangleness: 0.05 #Sunrise-Edit
+            Mangleness: 0.25 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1161,7 +1161,7 @@
         damage:
           types:
             Blunt: -2.25 # 9 per u
-            Mangleness: 0.05 #Sunrise-Edit
+            Mangleness: 0.25 #Sunrise-Edit
       - !type:SatiateHunger
         factor: -1
       - !type:HealthChange
@@ -1309,7 +1309,7 @@
         damage:
           types:
             Shock: -1.5 # 6 per u
-            Mangleness: 0.07 #Sunrise-Edit
+            Mangleness: 0.25 #Sunrise-Edit
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2

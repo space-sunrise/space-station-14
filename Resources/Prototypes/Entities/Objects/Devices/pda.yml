@@ -83,6 +83,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NavigatorCartridge
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -154,6 +155,7 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
+    - NavigatorCartridge
     - WantedListCartridge
 
 - type: entity
@@ -168,6 +170,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NavigatorCartridge
       - MedTekCartridge
 
 - type: entity
