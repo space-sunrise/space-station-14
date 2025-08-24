@@ -13,7 +13,7 @@ using Robust.Shared.Random;
 using Content.Shared._Sunrise.Biocode;
 using Content.Server.Popups;
 
-namespace Content.Server.SyndicateTeleporter;
+namespace Content.Server.SyndicateTeleporter; // В будущем перенести в Shared пофиксив мисспредикт.
 
 public sealed class SyndicateTeleporterSystem : EntitySystem
 {
