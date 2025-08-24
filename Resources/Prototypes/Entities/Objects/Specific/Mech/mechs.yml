@@ -245,7 +245,7 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 5.5 # sunrise-edit
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1075,7 +1075,7 @@
     openState: phazon-open
     brokenState: phazon-broken
     mechToPilotDamageMultiplier: 0.25
-    maxEquipmentAmount: 6
+    maxEquipmentAmount: 5
     airtight: true
     pilotWhitelist:
       components:
@@ -1089,7 +1089,7 @@
         Structural: 80
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
-    baseSprintSpeed: 5.5 # sunrise-edit
+    baseSprintSpeed: 5 # sunrise-edit
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
