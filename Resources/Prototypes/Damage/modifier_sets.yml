@@ -410,7 +410,7 @@
     Blunt: 5
     Heat: 6
     Slash: 5
-    Piercing: 6
+    Piercing: 3
 
 - type: damageModifierSet
   id: HeavyArmorNT
@@ -425,7 +425,7 @@
     Blunt: 7
     Heat: 8
     Slash: 7
-    Piercing: 8
+    Piercing: 5
 
 - type: damageModifierSet
   id: MediumArmorSyndi #35 35 50 -400 20
@@ -440,7 +440,7 @@
     Blunt: 5
     Heat: 5
     Slash: 5
-    Piercing: 7
+    Piercing: 4
 
 - type: damageModifierSet
   id: HeavyArmorSyndi #45 45 6 -500 25
@@ -455,4 +455,4 @@
     Blunt: 7
     Heat: 7
     Slash: 7
-    Piercing: 9
+    Piercing: 6
