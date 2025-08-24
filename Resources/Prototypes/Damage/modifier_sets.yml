@@ -408,8 +408,8 @@
     Structural: 0.5
   flatReductions:
     Blunt: 5
-    Heat: 5
-    Slash: 2
+    Heat: 6
+    Slash: 5
     Piercing: 6
 
 - type: damageModifierSet
@@ -423,9 +423,9 @@
     Structural: 0.45
   flatReductions:
     Blunt: 7
-    Heat: 7
+    Heat: 8
     Slash: 7
-    Piercing: 7
+    Piercing: 8
 
 - type: damageModifierSet
   id: MediumArmorSyndi #35 35 50 -400 20
@@ -438,9 +438,9 @@
     Structural: 0.5
   flatReductions:
     Blunt: 5
-    Heat: 6
-    Slash: 1
-    Piercing: 6
+    Heat: 5
+    Slash: 5
+    Piercing: 7
 
 - type: damageModifierSet
   id: HeavyArmorSyndi #45 45 6 -500 25
@@ -454,5 +454,5 @@
   flatReductions:
     Blunt: 7
     Heat: 7
-    Slash: 5
+    Slash: 7
     Piercing: 9
