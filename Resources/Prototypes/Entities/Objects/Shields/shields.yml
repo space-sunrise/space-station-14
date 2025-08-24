@@ -59,6 +59,26 @@
                   max: 2
     - type: StaticPrice
       price: 100
+    - type: Repairable #Sunrise-Start
+      doAfterDelay: 3
+      damage:
+        types:
+          Blunt: -25
+          Slash: -25
+          Piercing: -25
+          Heat: -25
+          Caustic: -25
+          Structural: -25
+          Mangleness: 7.5
+    - type: HealthExaminable
+      examinableTypes:
+        - Blunt
+        - Slash
+        - Piercing
+        - Heat
+        - Shock
+      locPrefix: shield #Sunrise-End
+
 
 #Security Shields
 
