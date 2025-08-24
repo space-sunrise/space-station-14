@@ -30,3 +30,5 @@ ent-BaseShellHitscanShotgun = shell (.50)
     .desc = { ent-BaseCartridge.desc }
 ent-ShellShotgunUraniumSlug = shell (.50 uranium slug)
     .desc = { ent-BaseShellHitscanShotgun.desc }
+ent-ShellShotgunBooze = shell (.50 banbag)
+    .desc = { ent-BaseShellHitscanShotgun.desc }

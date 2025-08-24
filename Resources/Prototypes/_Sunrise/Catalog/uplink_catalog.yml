@@ -1528,7 +1528,7 @@
   id: uplinkWeaponMiniEnergyCrossbow
   name: uplink-mini-energy-crossbow-name
   description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbow
+  productEntity: WeaponMiniEnergyCrossbowBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 10
@@ -1685,3 +1685,62 @@
     - ResearchAssistant
     - Scientist
     - ResearchDirector
+
+- type: listing
+  id: UplinkCaneShotgun
+  name: uplink-cane-shotgun-name
+  description: uplink-cane-shotgun-desc
+  icon: { sprite:  Objects/Weapons/Melee/cane.rsi, state: cane}
+  productEntity: CaneShotgunBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
+    - Mime
+    - Bartender
+    - Lawyer
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkGorillaUpgradeKit
+  name: uplink-gorilla-upgrade-kit-name
+  description: uplink-gorilla-upgrade-kit-desc
+  productEntity: GauntletGORILLAUpgradeKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Science
+
+- type: listing
+  id: UplinkAnomalyCoreContainer
+  name: uplink-anomaly-core-name
+  description: uplink-anomaly-core-desc
+  productEntity: HandheldArtifactContainerSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Science

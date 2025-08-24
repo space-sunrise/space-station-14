@@ -388,4 +388,42 @@
     state: "coinshot"
     revealSpent: false
     tip: false
+
+- type: entity
+  id: ShellShotgunBooze
+  name: shell (.50 beanbag)
+  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgun
+    - ShellShotgunLight
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#149A1E"
+      - state: spent
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    proto: PelletShotgunBooze
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: Nocturine
+          Quantity: 15
+        - ReagentId: BacchusBlessing
+          Quantity: 8
+        - ReagentId: THC
+          Quantity: 10
+        - ReagentId: MuteToxin
+          Quantity: 2
+  - type: SolutionTransfer
+    maxTransferAmount: 35
 # Sunrise-end

@@ -55,6 +55,14 @@
     #    volume: -8
     #    maxDistance: 10
     #    variation: 0.05
+  - type: Vocalizer
+    minVocalizeInterval: 1m # Arcades are noisy
+    maxVocalizeInterval: 4m
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: ATMAds
+  - type: SpeakOnUIClosed
+    pack: BlockGameGoodbyes
 
 - type: entity
   id: ATMWallmountBase
@@ -93,11 +101,6 @@
       visible: false
   - type: Computer
     board: FPIATMComputerCircuitboard
-  - type: Vocalizer
-  - type: DatasetVocalizer
-    dataset: ATMAds
-  - type: SpeakOnUIClosed
-    pack: BlockGameGoodbyes
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic

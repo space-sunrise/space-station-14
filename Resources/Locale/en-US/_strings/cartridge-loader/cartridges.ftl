@@ -27,6 +27,9 @@ log-probe-printout-entry = #{$number} / {$time} / {$accessor}
 
 astro-nav-program-name = AstroNav
 
+navigator-program-name = Navigator
+navigator-cartridge-loading = Loading map...
+
 med-tek-program-name = MedTek
 
 # NanoTask cartridge

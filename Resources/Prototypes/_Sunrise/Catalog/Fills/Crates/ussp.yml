@@ -102,7 +102,7 @@
     stateDoorOpen: open
     stateDoorClosed: closed
   - type: EntityStorage
-    isWeldable: true
+  - type: Weldable
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:

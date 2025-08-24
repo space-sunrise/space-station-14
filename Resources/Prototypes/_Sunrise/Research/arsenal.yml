@@ -36,6 +36,8 @@
   - MagazinePistolSubMachineGunAP
   - MagazinePistolSubMachineGunTopMountedAP
   - MagazinePistolHighCapacityAP
+  - MagazineBoxHeavyRifleAP
+  - MagazineRifleHeavyAP
   radioChannels:
   - Security
 

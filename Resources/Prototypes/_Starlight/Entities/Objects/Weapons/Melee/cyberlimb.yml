@@ -126,10 +126,10 @@
     pryPowered: true
     useSound: /Audio/Items/jaws_pry.ogg
 
-#G.O.R.I.L.L.A. cyber arm
+#G.O.R.I.L.L.A. cyber arm #Syndie Upgrade
 - type: entity
-  name: gorrila arm
-  parent: [BaseItem, BaseScienceContraband]
+  name: experimental G.O.R.I.L.L.A. gauntlet
+  parent: [WeaponGauntletGorilla, BaseScienceContraband]
   id: CyberGorillaArm
   description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
   components:
@@ -140,13 +140,14 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: Reflect
-    reflectProb: 0.10
+    reflectProb: 0.25
   - type: UseDelay
-    delay: 1.20
+    delay: 1
   - type: UseDelayOnMeleeHit
   - type: MeleeWeapon
     attackRate: 1
     angle: 0
+    bluntStaminaDamageFactor: 2
     animation: WeaponArcFist
     wideAnimationRotation: -135
     damage:
@@ -155,38 +156,86 @@
         Structural: 25
     soundHit:
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
-  - type: CorePoweredThrower
   - type: MeleeThrowOnHit
     unanchorOnHit: true
     stunTime: 1.5
-  - type: ItemSlots
-    slots:
-      core_slot:
-        name: anomaly-gorilla-core-slot-name
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        whitelist:
-          components:
-          - AnomalyCore
-  - type: ContainerContainer
-    containers:
-      core_slot: !type:ContainerSlot
-  - type: DamageOnAttackedProtection
-    damageProtection:
-      flatReductions:
-        Heat: 100
-        Cold: 100
-        Radiation: 100
-    slots: NONE
-  - type: Item
   - type: Tool
     qualities:
       - Prying
     useSound: /Audio/Items/jaws_pry.ogg
+  - type: ToolTileCompatible
+    delay: 1
   - type: Prying
-    speedModifier: 1.25
+    speedModifier: 4
     pryPowered: true
-    useSound: /Audio/Items/jaws_pry.ogg
+    useSound: /Audio/Machines/airlock_creaking.ogg
+
+# C.H.I.M.P. cyber arm
+- type: entity
+  name: C.H.I.M.P. handcannon
+  parent: [BaseWeaponBatterySmall, BaseScienceContraband]
+  id: CyberPistolCHIMP
+  description: Just because it's a little C.H.I.M.P. doesn't mean it can't punch like an A.P.E.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      visible: false
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    bigTrigger: true
+  - type: ProjectileBatteryAmmoProvider
+    proto: AnomalousParticleDeltaStrong
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: AnomalousParticleSigmaStrong
+      fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+    autoRechargePauseTime: 1
+
+- type: entity #Syndie Upgrade of C.H.I.M.P. cyber arm
+  name: experimental C.H.I.M.P. handcannon
+  parent: [CyberPistolCHIMP, BaseSyndicateContraband]
+  id: CyberPistolCHIMPUpgraded
+  description: This C.H.I.M.P. seems to have a greater punch than usual...
+  components:
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleOmegaStrong
+      fireCost: 100
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: AnomalousParticleSigmaStrong
+      fireCost: 100
 
 # Laser pulser arms
 - type: entity
@@ -275,4 +324,3 @@
           tags:
           - Grenade
           - HandGrenadeAmmo
-          - ArtilleryShell
