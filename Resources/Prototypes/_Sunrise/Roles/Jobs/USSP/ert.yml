@@ -12,6 +12,7 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTLeaderAmber
 
@@ -27,6 +28,7 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTLeaderAmberLock
 
@@ -45,6 +47,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -61,6 +65,7 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: randomHumanoidSettings
   id: ERTLeaderAmberLock
@@ -89,6 +94,7 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderRed
@@ -703,6 +709,7 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderRedVeteran
@@ -817,6 +824,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTChaplainAmber
   components:
     - type: BibleUser
@@ -865,6 +874,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTJanitorAmber
   components:
     - type: GhostRole
@@ -908,6 +919,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTJanitorGamma
   components:
     - type: GhostRole
@@ -951,6 +964,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTEngineerAmber
   components:
     - type: GhostRole
@@ -994,6 +1009,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTEngineerGamma
   components:
     - type: GhostRole
@@ -1037,6 +1054,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTMedicalAmber
   components:
     - type: GhostRole
@@ -1080,6 +1099,8 @@
   - Demon
   - SlimePerson
   - Dwarf
+  - HumanoidXeno
+  - Predator
   parent: ERTMedicalGamma
   components:
     - type: GhostRole

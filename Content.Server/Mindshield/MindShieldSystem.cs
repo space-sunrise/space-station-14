@@ -29,24 +29,21 @@ public sealed class MindShieldSystem : EntitySystem
 
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
-        SubscribeLocalEvent<SubdermalImplantComponent, ImplantEjectEvent>(ImplantCheck);
+        SubscribeLocalEvent<SubdermalImplantComponent, ImplantRemovedEvent>(ImplantCheck);
     }
 
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
-        if (ev.Implanted == null)
-            return;
-
         EnsureComp<MindShieldComponent>(ev.Implanted);
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
     }
 
     // Sunrise-Start
-    public void ImplantCheck(EntityUid uid, SubdermalImplantComponent comp, ref ImplantEjectEvent ev)
+    public void ImplantCheck(EntityUid uid, SubdermalImplantComponent comp, ref ImplantRemovedEvent ev)
     {
-        if (HasComp<MindShieldImplantComponent>(ev.Implant) && ev.Implanted != null)
+        if (HasComp<MindShieldImplantComponent>(ev.Implant))
         {
-            RemCompDeferred<MindShieldComponent>(ev.Implanted.Value);
+            RemCompDeferred<MindShieldComponent>(ev.Implanted);
         }
     }
     // Sunrise-End

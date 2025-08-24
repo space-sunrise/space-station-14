@@ -211,18 +211,3 @@ public readonly record struct ImplantRemovedEvent
         Implanted = implanted;
     }
 }
-
-// Sunrise-Start
-[ByRefEvent]
-public readonly struct ImplantEjectEvent
-{
-    public readonly EntityUid Implant;
-    public readonly EntityUid? Implanted;
-
-    public ImplantEjectEvent(EntityUid implant, EntityUid? implanted)
-    {
-        Implant = implant;
-        Implanted = implanted;
-    }
-}
-// Sunrise-End

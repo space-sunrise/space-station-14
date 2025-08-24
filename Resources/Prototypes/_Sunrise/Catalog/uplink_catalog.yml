@@ -1528,7 +1528,7 @@
   id: uplinkWeaponMiniEnergyCrossbow
   name: uplink-mini-energy-crossbow-name
   description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbow
+  productEntity: WeaponMiniEnergyCrossbowBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 10

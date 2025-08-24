@@ -185,7 +185,7 @@
     voice: HearthstoneLordOfThunder
   - type: InnateItem
     instantActions:
-    - HandHeldMassScannerBorgInnateItem
+    - HandHeldMassScannerBorg
   # Sunrise-End
 
 - type: entity
