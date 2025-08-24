@@ -3,7 +3,7 @@
   id: SyndicateTeleporterBiocode
   suffix: BIOCODE
   components:
-  - type: FactionWeaponBlocker
+  - type: Biocode
     factions:
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
