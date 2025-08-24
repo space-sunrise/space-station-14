@@ -81,7 +81,7 @@ namespace Content.Server._Sunrise.Fugitive
                 if (!TryComp<SubdermalImplantComponent>(implantEnt, out var implantComp))
                     return;
 
-                _subdermalImplant.ForceImplant(fugitive, implantEnt, implantComp);
+                _subdermalImplant.ForceImplant(fugitive, (implantEnt, implantComp));
             }
 
             if (TryComp<ContainerManagerComponent>(fugitive, out var containerManagerComponent))

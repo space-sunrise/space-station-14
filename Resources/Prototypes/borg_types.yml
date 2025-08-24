@@ -85,8 +85,8 @@
     - Mech
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpoweredInnateItem
-    - EngiAlertsMonitorInnateItem
+    - HandheldStationMapUnpowered
+    - EngiAlertsMonitor
   # Sunrise-End
 
   # Visual
@@ -167,7 +167,7 @@
           False: {state: icon}
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpoweredInnateItem
+    - HandheldStationMapUnpowered
   # Sunrise-End
 
   # Visual
@@ -285,10 +285,10 @@
   - type: FabricateCandy
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpoweredInnateItem
-    - HandheldCrewMonitorBorgInnateItem
-    worldTargetActions:
-    - HandheldHealthAnalyzerUnpoweredInnateItem
+    - HandheldStationMapUnpowered
+    - HandheldCrewMonitorBorg
+    entityTargetActions:
+    - HandheldHealthAnalyzerUnpowered
   # Sunrise-End
 
   # Visual

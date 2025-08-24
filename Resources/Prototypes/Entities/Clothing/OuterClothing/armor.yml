@@ -46,8 +46,13 @@
     - CorgiWearable
     - WhitelistChameleon
     - NudeBottom # Sunrise-Add
-  - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+  # Sunrise-start
+  - type: StaminaResistance
+    damageCoefficient: 0.85
+  - type: Construction
+    graph: VestArmorSecurity
+    node: start
+  # Sunrise-end
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -195,7 +200,7 @@
   - type: StaticPrice
     price: 1500
   - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+    damageCoefficient: 0.75 # Sunrise-Add
 
 #Elite web vest
 - type: entity

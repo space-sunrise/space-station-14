@@ -243,8 +243,12 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 40 #Sunrise-Edit
+        maxVol: 60
         canReact: false
+  # Sunrise-Start
+  - type: CryostasisBeaker
+    maxTemperature: 293.15
+  # Sunrise-End
 
 - type: entity
   name: bluespace beaker

@@ -217,3 +217,13 @@
     factions:
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: WeaponMiniEnergyCrossbow
+  id: WeaponMiniEnergyCrossbowBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.

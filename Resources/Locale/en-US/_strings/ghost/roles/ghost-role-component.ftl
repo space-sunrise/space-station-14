@@ -95,6 +95,9 @@ ghost-role-information-rat-king-description = You are the Rat King, your interes
 ghost-role-information-rat-servant-name = Rat Servant
 ghost-role-information-rat-servant-description = You are a Rat Servant. You must follow your king's orders.
 
+rat-guard-ghost-role-name = Rat Guard
+rat-guard-ghost-role-description = You are an elite Rat Guard. Protect your king and follow his orders.
+
 ghost-role-information-salvage-carp-name = Space Carp on Salvage Wreck
 ghost-role-information-salvage-carp-description = Defend the loot inside the salvage wreck!
 

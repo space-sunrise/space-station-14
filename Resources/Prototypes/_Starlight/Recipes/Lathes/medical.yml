@@ -163,7 +163,7 @@
   result: EyeImplantWelding
   categories:
   - Implants
-  completetime: 3
+  completetime: 6
   materials:
     Plastic: 100
     Steel: 100
@@ -175,7 +175,7 @@
   result: EyeImplantMedical
   categories:
   - Implants
-  completetime: 4
+  completetime: 8
   materials:
     Steel: 200
     Plasma: 300
@@ -186,7 +186,7 @@
   result: EyeImplantChemical
   categories:
   - Implants
-  completetime: 3
+  completetime: 8
   materials:
     Steel: 200
     Plasma: 100
@@ -197,7 +197,7 @@
   result: EyeImplantSecurity
   categories:
   - Implants
-  completetime: 4
+  completetime: 8
   materials:
     Steel: 200
     Plasma: 300
@@ -208,7 +208,7 @@
   result: CyberEyeNightVision
   categories:
   - Implants
-  completetime: 5
+  completetime: 15
   materials:
     Plastic: 100
     Steel: 100
@@ -220,13 +220,14 @@
   result: CyberEyeThermal
   categories:
   - Implants
-  completetime: 10
+  completetime: 25
   materials:
     Plastic: 200
     Steel: 100
+    Glass: 100
     Gold: 300
     Plasma: 300
-    Glass: 100
+    Uranium: 300
 
 # Automenders
 
@@ -251,3 +252,11 @@
     Plastic: 200
     Steel: 100
     Silver: 50
+
+- type: latheRecipe
+  id: PatchPack
+  result: PatchPack
+  completetime: 6
+  materials:
+    Steel: 25
+    Cloth: 200
