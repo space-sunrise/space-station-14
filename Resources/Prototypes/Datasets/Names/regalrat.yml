@@ -9,3 +9,17 @@
   values:
     prefix: names-regal-rat-title-dataset-
     count: 17
+
+# Sunrise-Start
+- type: localizedDataset
+  id: NamesRatGuard
+  values:
+    prefix: names-guard-rat-dataset-
+    count: 15
+
+- type: localizedDataset
+  id: NamesRatGuardTitle
+  values:
+    prefix: names-guard-rat-title-dataset-
+    count: 21
+# Sunrise-End
