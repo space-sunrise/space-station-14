@@ -86,7 +86,7 @@
       types:
         Poison: -0.2
         Heat: -0.1 #SUNRISE-EDIT
-        Cold: -0.4
+        Cold: -0.2 #SUNRISE-EDIT
         Blunt: -0.2
         Piercing: -0.1 #SUNRISE-EDIT
         Slash: -0.1 #SUNRISE-EDIT
