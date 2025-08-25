@@ -61,7 +61,7 @@ health-examinable-carbon-Caustic-200 = [color=yellowgreen]Most of { POSS-ADJ($ta
 health-examinable-carbon-Radiation-50 = [color=orange]{ CAPITALIZE(POSS-ADJ($target)) } кожа покрыта большими волдырями.[/color]
 health-examinable-carbon-Radiation-100 = [color=orange]{ CAPITALIZE(POSS-ADJ($target)) } кожа покрыта высыпаниями и отслаивается кусками![/color]
 
-health-examinable-carbon-Mangleness-15 = [color=gray]{ CAPITALIZE(SUBJECT($target)) } выглядит заметно уставшим.[/color]
+health-examinable-carbon-Mangleness-15 = [color=gray]{ CAPITALIZE(SUBJECT($target)) } выглядит устало.[/color]
 health-examinable-carbon-Mangleness-50 = [color=#505050]{ CAPITALIZE(SUBJECT($target)) } с трудом передвигает ноги от истощения![/color]
 health-examinable-carbon-Mangleness-100 = [color=#505050]{ CAPITALIZE(SUBJECT($target)) } похож на иссушенную мумию![/color]
 
