@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 266.0.0
   forkId: sunrise_station
-  forkVersion: c615fae81dcb8a981e222b5b8491966762717ec8
-  time: 08/21/2025 07:09:04
-  entityCount: 43405
+  forkVersion: 7a59e073d55315088dad63590ec15fc5fd51424d
+  time: 08/25/2025 08:06:20
+  entityCount: 43404
 maps:
 - 1
 grids:
@@ -32346,7 +32346,7 @@ entities:
       pos: -58.5,91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -209894.52
+      secondsUntilStateChange: -209994.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32362,7 +32362,7 @@ entities:
       pos: 79.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -133021.88
+      secondsUntilStateChange: -133122.16
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32428,7 +32428,7 @@ entities:
       pos: 52.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -45566.387
+      secondsUntilStateChange: -45666.664
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -33086,7 +33086,7 @@ entities:
       pos: -35.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -435880.47
+      secondsUntilStateChange: -435980.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34337,7 +34337,7 @@ entities:
       pos: -26.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -223507.84
+      secondsUntilStateChange: -223608.12
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -35873,7 +35873,7 @@ entities:
       pos: 81.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -541553.5
+      secondsUntilStateChange: -541653.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -140513,7 +140513,7 @@ entities:
       pos: 39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -435765.66
+      secondsUntilStateChange: -435865.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -146409,7 +146409,7 @@ entities:
       pos: 15.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -255594.94
+      secondsUntilStateChange: -255695.22
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146423,7 +146423,7 @@ entities:
       pos: -16.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -142783.5
+      secondsUntilStateChange: -142883.78
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146624,7 +146624,7 @@ entities:
       pos: -39.5,-73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -563361.5
+      secondsUntilStateChange: -563461.75
       state: Closing
   - uid: 20628
     components:
@@ -207325,6 +207325,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 20.49062,12.247698
       parent: 2
+  - uid: 12848
+    components:
+    - type: Transform
+      pos: -15.578889,9.833659
+      parent: 2
   - uid: 27811
     components:
     - type: Transform
@@ -209668,13 +209673,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagicalLamp
-  entities:
-  - uid: 25305
-    components:
-    - type: Transform
-      pos: -15.624835,9.8574505
-      parent: 2
 - proto: MagicDiceBag
   entities:
   - uid: 29246
@@ -254198,14 +254196,6 @@ entities:
     components:
     - type: Transform
       pos: 23.5,16.5
-      parent: 2
-- proto: Telecrystal
-  entities:
-  - uid: 33800
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -77.49474,-18.494045
       parent: 2
 - proto: Telecrystal10
   entities:
