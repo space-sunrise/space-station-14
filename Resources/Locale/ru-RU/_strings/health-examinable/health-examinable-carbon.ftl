@@ -4,7 +4,7 @@ health-examinable-carbon-Slash-8 = [color=yellow]{ CAPITALIZE(SUBJECT($target)) 
 health-examinable-carbon-Slash-15 = [color=yellow]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько лёгких порезов.[/color]
 health-examinable-carbon-Slash-30 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } серьёзные порезы на теле.[/color]
 health-examinable-carbon-Slash-50 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } глубокие порезы по всему телу![/color]
-health-examinable-carbon-Slash-75 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } имеет глубокие рваные раны, проходящие по всему телу![/color]
+health-examinable-carbon-Slash-75 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } глубокие рваные раны, проходящие по всему телу![/color]
 health-examinable-carbon-Slash-100 = [color=red]{ CAPITALIZE(POSS-ADJ($target)) } тело выглядит окровавленным и изрезаным![/color]
 health-examinable-carbon-Slash-200 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } тело полностью изрезано в клочья![/color]
 
