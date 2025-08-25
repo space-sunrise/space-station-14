@@ -2026,32 +2026,6 @@
 - type: listing
   id: UplinkSunrisePlushieVulpSyndiPresent
   productEntity: PlushieVulpSyndiPresent
-
-- type: listing
-  id: UplinkPlushieAndrewNarvi
-  productEntity: PlushieAndrewNarvi
-  cost:
-    Suntick: 4
-  categories:
-  - SpecialThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: UplinkPlushieTimofeyTatarchuk
-  productEntity: PlushieTimofeyTatarchuk
-  cost:
-    Suntick: 4
-  categories:
-  - SpecialThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: UplinkPlushieSansaMontanelli
-  productEntity: PlushieSansaMontanelli
   cost:
     Suntick: 12
   categories:
