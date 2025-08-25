@@ -107,6 +107,9 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.PlantAnalyzerUiKey.Key:
+        type: PlantAnalyzerBoundUserInterface #Sunrise-Add
+
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -320,6 +323,16 @@
     accentVColor: "#00cc35"
   - type: Icon
     state: pda-hydro
+# Sunrise-Start
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - PlantAnalyzerCartridge
+# Sunrise-End
 
 - type: entity
   parent: BasePDA

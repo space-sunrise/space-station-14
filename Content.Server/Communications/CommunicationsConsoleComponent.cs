@@ -75,7 +75,7 @@ namespace Content.Server.Communications
         /// In practise this removes the "Sent by ScugMcWawa (Slugcat Captain)" at the bottom of the announcement.
         /// </summary>
         [DataField]
-        public bool AnnounceSentBy = true;
+        public bool AnnounceSentBy = false;
 
         // Sunrise-Start
         [DataField("announceVoice", customTypeSerializer:typeof(PrototypeIdSerializer<TTSVoicePrototype>))]

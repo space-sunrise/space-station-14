@@ -1,0 +1,43 @@
+- type: job
+  id: ComMaid
+  name: job-name-commaid
+  description: job-description-commaid
+  playTimeTracker: JobComMaid
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 12000
+  startingGear: ComMaidGear
+  icon: "JobIconComMaid"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  displayWeight: 0
+  weight: 5
+  access:
+  - Command
+  - Service
+  - Janitor
+  - Hydroponics
+  - Kitchen
+  - Bar
+  - Theatre
+  - Maintenance
+
+- type: startingGear
+  id: ComMaidGear
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+    back: ClothingBackpackSatchelLeather
+    id: CommaidPDA
+    ears: ClothingHeadsetCommaid
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconComMaid
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: commaid
+

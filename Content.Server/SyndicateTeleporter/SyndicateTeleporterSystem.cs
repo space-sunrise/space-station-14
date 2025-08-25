@@ -10,8 +10,10 @@ using Content.Shared.Body.Systems;
 using Robust.Shared.Audio.Systems;
 using System.Threading.Tasks;
 using Robust.Shared.Random;
+using Content.Shared._Sunrise.Biocode;
+using Content.Server.Popups;
 
-namespace Content.Server.SyndicateTeleporter;
+namespace Content.Server.SyndicateTeleporter; // В будущем перенести в Shared пофиксив мисспредикт.
 
 public sealed class SyndicateTeleporterSystem : EntitySystem
 {
@@ -22,6 +24,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] protected readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly BiocodeSystem _biocode = default!;
 
     private const string TeleportEffectPrototype = "TeleportEffect";
     public override void Initialize()
@@ -52,7 +56,17 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
     private void OnUse(EntityUid uid, SyndicateTeleporterComponent component, UseInHandEvent args)
     {
-        component.UserComp = args.User;
+        if (args.Handled)
+            return;
+
+        if (TryComp<BiocodeComponent>(uid, out var biocode) &&
+            !_biocode.CanUse(args.User, biocode.Factions))
+        {
+            if (!string.IsNullOrEmpty(biocode.AlertText))
+                _popup.PopupEntity(biocode.AlertText, args.User, args.User);
+            args.Handled = true;
+            return;
+        }
 
         if (!TryComp<LimitedChargesComponent>(uid, out var charges))
             return;
@@ -64,8 +78,10 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             return;
 
         _charges.TryUseCharge((uid, charges));
-
+        component.UserComp = args.User;
         Teleportation(uid, args.User, component);
+
+        _audio.PlayPredicted(component.TeleportSound, uid, args.User);
     }
 
     private void Teleportation(EntityUid uid, EntityUid user, SyndicateTeleporterComponent comp)

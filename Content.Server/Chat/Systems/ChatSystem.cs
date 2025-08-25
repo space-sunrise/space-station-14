@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Content.Server._Sunrise.Chat;
 using Content.Server._Sunrise.Chat.Sanitization;
+using Content.Server._Sunrise.AnnouncementSpeaker;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -66,6 +67,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!;
 
     public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
@@ -350,7 +352,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     #region Announcements
 
     /// <summary>
-    /// Dispatches an announcement to all.
+    /// Dispatches an announcement to all stations through their speaker networks.
     /// </summary>
     /// <param name="message">The contents of the message</param>
     /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
@@ -370,19 +372,25 @@ public sealed partial class ChatSystem : SharedChatSystem
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
-        _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
 
-        // Sunrise-start
-        if (playDefault && announcementSound == null)
+        // Sunrise-start - Only show in chat for players with working speakers nearby
+        var filteredPlayers = GetPlayersWithWorkingSpeakers();
+        if (filteredPlayers.Recipients.Any())
         {
-            announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
+            _chatManager.ChatMessageToManyFiltered(filteredPlayers, ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
         }
+        // Sunrise-end
 
-        if (playTts && announcementSound != null)
+        // Sunrise-start - Use speaker network instead of global broadcast
+        if (playTts && (playDefault || announcementSound != null))
         {
-            //_audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, _audio.ResolveSound(announcementSound), announceVoice);
-            RaiseLocalEvent(announcementEv);
+            if (playDefault && announcementSound == null)
+            {
+                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+            }
+
+            // Send announcement to all stations through their speaker networks
+            _announcementSpeaker.DispatchAnnouncementToAllStations(message, announcementSound, announceVoice);
         }
         // Sunrise-end
 
@@ -413,17 +421,35 @@ public sealed partial class ChatSystem : SharedChatSystem
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
-        _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
-        // Sunrise-start
-        if (playDefault && announcementSound == null)
-            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
-        if (playTts && announcementSound != null)
+        // Sunrise-start - Filter chat recipients by working speakers
+        var filteredChatPlayers = FilterPlayersByWorkingSpeakers(filter);
+        if (filteredChatPlayers.Recipients.Any())
         {
-            //_audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
+            _chatManager.ChatMessageToManyFiltered(filteredChatPlayers, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
         }
-        // Sunrise-edit
+        // Sunrise-end
+
+        // Sunrise-start - For filtered announcements, we may want to try speaker network if source is on a station
+        if (playTts && (playDefault || announcementSound != null))
+        {
+            if (playDefault && announcementSound == null)
+                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+            var resolvedSound = announcementSound != null ? _audio.ResolveSound(announcementSound) : null;
+
+            // If we have a source, try to use the station's speaker network
+            if (source != null)
+            {
+                var station = _stationSystem.GetOwningStation(source.Value);
+                if (station != null)
+                {
+                    _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
+                }
+            }
+        }
+        // Sunrise-end
+
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
 
@@ -462,18 +488,24 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var filter = _stationSystem.GetInStation(stationDataComp);
 
-        _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
-
-        // Sunrise-start
-        if (playDefault && announcementSound == null)
-            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
-
-        if (playTts && announcementSound != null)
+        // Sunrise-start - Filter chat recipients by working speakers
+        var filteredChatPlayers = FilterPlayersByWorkingSpeakers(filter);
+        if (filteredChatPlayers.Recipients.Any())
         {
-            //_audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
+            _chatManager.ChatMessageToManyFiltered(filteredChatPlayers, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
         }
-        // Sunrise-edit
+        // Sunrise-end
+
+        // Sunrise-start - Use speaker network for station announcements
+        if (playTts && (playDefault || announcementSound != null))
+        {
+            if (playDefault && announcementSound == null)
+                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+            // Send announcement to this specific station's speaker network
+            _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
+        }
+        // Sunrise-end
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
     }
@@ -819,6 +851,53 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList(), author: player.UserId);
     }
+    #endregion
+
+    #region Utility
+
+    /// <summary>
+    /// Gets all players who have working announcement speakers nearby.
+    /// Used to filter chat recipients for announcements.
+    /// </summary>
+    private Filter GetPlayersWithWorkingSpeakers()
+    {
+        var filteredPlayers = Filter.Empty();
+
+        foreach (var player in _playerManager.Sessions)
+        {
+            if (player.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+
+            if (_announcementSpeaker.HasWorkingSpeakersNearby(playerEntity))
+            {
+                filteredPlayers = filteredPlayers.AddPlayer(player);
+            }
+        }
+
+        return filteredPlayers;
+    }
+
+    /// <summary>
+    /// Filters an existing filter to only include players with working speakers nearby.
+    /// </summary>
+    private Filter FilterPlayersByWorkingSpeakers(Filter originalFilter)
+    {
+        var filteredPlayers = Filter.Empty();
+
+        foreach (var player in originalFilter.Recipients)
+        {
+            if (player.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+
+            if (_announcementSpeaker.HasWorkingSpeakersNearby(playerEntity))
+            {
+                filteredPlayers = filteredPlayers.AddPlayer(player);
+            }
+        }
+
+        return filteredPlayers;
+    }
+
     #endregion
 
     #region Utility
@@ -1170,19 +1249,6 @@ public enum ChatTransmitRange : byte
 }
 
 // Sunrise-TTS-Start
-public sealed class AnnouncementSpokeEvent(
-    Filter source,
-    string message,
-    ResolvedSoundSpecifier? announcementSound,
-    string? announceVoice)
-    : EntityEventArgs
-{
-    public readonly Filter Source = source;
-    public readonly string Message = message;
-    public readonly string? AnnounceVoice = announceVoice;
-    public readonly ResolvedSoundSpecifier? AnnouncementSound = announcementSound;
-}
-
 public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
 {
     public readonly EntityUid Source = source;
