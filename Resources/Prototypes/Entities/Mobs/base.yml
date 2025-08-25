@@ -159,6 +159,7 @@
     - Caustic
     - Asphyxiation
     - Radiation
+    - Mangleness # Sunrise-Edit
   - type: DamageOnHighSpeedImpact
     damage:
       types:

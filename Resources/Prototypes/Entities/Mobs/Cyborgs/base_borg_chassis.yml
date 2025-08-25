@@ -61,6 +61,7 @@
       - Piercing
       - Heat
       - Shock
+      - Mangleness #Sunrise-Edit
     locPrefix: silicon
   - type: UserInterface
     interfaces:
