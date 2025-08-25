@@ -1,5 +1,4 @@
 using Robust.Shared.Audio;
-
 using Content.Server.Popups;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -61,11 +60,4 @@ public sealed partial class SyndicateTeleporterComponent : Component
     [DataField]
     public bool InWall = false; // it is necessary to determine whether the player is in the wall and whether to start an emergency teleport
     public EntityUid UserComp; // a way to transfer the User id from UseInHand to use it elsewhere
-
-    /// <summary>
-    /// Звук телепортации
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public SoundSpecifier? TeleportSound = new SoundCollectionSpecifier("BrokenDevice");
-
 }

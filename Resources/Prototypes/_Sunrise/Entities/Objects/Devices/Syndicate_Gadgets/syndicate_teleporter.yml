@@ -17,4 +17,4 @@
   - type: AutoRecharge
     rechargeDuration: 30
   - type: StaticPrice
-    price: 3000
+    price: 10000
