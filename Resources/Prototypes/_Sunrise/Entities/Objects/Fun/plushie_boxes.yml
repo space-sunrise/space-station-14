@@ -16,6 +16,8 @@
         orGroup: PlushieKalium
       - id: PlushieKaliumJuggernaut
         orGroup: PlushieKalium
+      - id: PlushieKaliumNukeMed
+        orGroup: PlushieKalium
     sound:
       path: /Audio/Effects/unwrap.ogg
 
