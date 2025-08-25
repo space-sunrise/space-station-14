@@ -1,7 +1,7 @@
 - type: entity
   name: anomaly auto-injector
   parent: [BaseItem, BaseSyndicateContraband]
-  id: AnomalyAutoInjector
+  id: BaseAnomalyAutoInjector
   description: A single-use self-injecting injector that infects a humanoid with a random anomaly within a minute of injection.
   abstract: true
   components:
@@ -26,8 +26,8 @@
         - AnomalyTrapSanta
 
 - type: entity
-  parent: AnomalyAutoInjector
-  id: BaseAnomalyAutoInjector
+  parent: BaseAnomalyAutoInjector
+  id: AnomalyAutoInjector
   description: Injects one of the basic anomalies into the humanoid.
   components:
     - type: AnomalyAutoInjector
@@ -40,7 +40,7 @@
         - AnomalyTrapBluespace
 
 - type: entity
-  parent: AnomalyAutoInjector
+  parent: BaseAnomalyAutoInjector
   id: AnomalyAutoInjectorUplink
   description: Injects a random anomaly from the entire existing spectrum into the humanoid.
   components:
