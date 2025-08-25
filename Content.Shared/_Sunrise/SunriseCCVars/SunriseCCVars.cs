@@ -552,7 +552,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("doc.year_offset", 1000, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
-    /// Пул шаблонов документов, используемых при создании документов на принтере("Sunrise", "Lust")
+    /// Пул шаблонов документов, используемых при создании документов на принтере
     /// </summary>
     public static readonly CVarDef<string> DocumentTemplatePool =
         CVarDef.Create("doc.template_pool", "Sunrise", CVar.SERVER | CVar.ARCHIVE);
