@@ -11,7 +11,7 @@ using Robust.Shared.Audio.Systems;
 using System.Threading.Tasks;
 using Robust.Shared.Random;
 
-namespace Content.Server.SyndicateTeleporter;
+namespace Content.Server._Sunrise.SyndicateTeleporter;
 
 public sealed class SyndicateTeleporterSystem : EntitySystem
 {

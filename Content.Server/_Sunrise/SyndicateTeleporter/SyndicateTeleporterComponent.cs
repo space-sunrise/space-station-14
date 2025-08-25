@@ -14,7 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Numerics;
 
-namespace Content.Server.SyndicateTeleporter;
+namespace Content.Server._Sunrise.SyndicateTeleporter;
 
 [RegisterComponent]
 public sealed partial class SyndicateTeleporterComponent : Component
