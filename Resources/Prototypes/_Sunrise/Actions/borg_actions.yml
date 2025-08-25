@@ -110,3 +110,18 @@
     priority: 11
   - type: InstantAction
     event: !type:CrewManifestOpenActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionChangeBorgVoice
+  name: Change Voice
+  description: Change your TTS voice. Cyborgs can speak with any voice due to their speakers.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: select-type }
+    itemIconStyle: NoItem
+    useDelay: 0.5
+    priority: 10
+  - type: InstantAction
+    event: !type:BorgVoiceChangeActionEvent

@@ -1741,13 +1741,19 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
-            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) };
 
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) };
+            var hairMarking = CreateHairMarkings(
+                Profile.Appearance.HairStyleId,
+                HairStyles.DefaultHairStyle,
+                Profile.Appearance.HairColor,
+                Profile.Appearance.HairMarkingEffect);
+
+            var facialHairMarking = CreateHairMarkings(
+                Profile.Appearance.FacialHairStyleId,
+                HairStyles.DefaultFacialHairStyle,
+                Profile.Appearance.FacialHairColor,
+                Profile.Appearance.FacialHairMarkingEffect);
+
 
             HairStylePicker.UpdateData(
                 hairMarking,
@@ -1757,6 +1763,29 @@ namespace Content.Client.Lobby.UI
                 facialHairMarking,
                 Profile.Species,
                 1);
+        }
+
+        private static List<Marking> CreateHairMarkings(
+            string styleId,
+            string defaultStyleId,
+            Color color,
+            MarkingEffect? effect)
+        {
+            if (styleId == defaultStyleId)
+                return new List<Marking>();
+
+            var effects = effect is { } ext
+                ? new List<MarkingEffect> { ext.Clone() }
+                : null;
+
+            return new List<Marking>()
+            {
+                new(
+                    styleId,
+                    new[] { color },
+                    effects
+                )
+            };
         }
 
         private void UpdateCMarkingsHair()

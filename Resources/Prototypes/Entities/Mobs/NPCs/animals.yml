@@ -1274,8 +1274,6 @@
       0: Alive
       200: Critical
       250: Dead
-  - type: StaminaResistance
-    damageCoefficient: 0.40
   # Sunrise-start
   - type: InteractionPopup
     successChance: 0.2

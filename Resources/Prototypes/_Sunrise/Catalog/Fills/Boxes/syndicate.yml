@@ -17,6 +17,22 @@
     - state: implant
 
 - type: entity
+  name: cardboard box
+  parent: BoxDarts
+  id: CaneShotgunBox
+  description: A cardboard box for storing things.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,2
+  - type: StorageFill
+    contents:
+      - id: CaneShotgun
+      - id: ShellShotgunBooze
+        amount: 4
+
+- type: entity
   parent: [BoxCardboard, BaseSyndicateContraband]
   id: SMGAmmoKit
   name: C20r ammo kit
@@ -288,13 +304,11 @@
   components:
   - type: Storage
     grid:
-    - 0,0,1,3
+    - 0,0,1,1
   - type: StorageFill
     contents:
     - id: RightArmCyberMantisBlade
     - id: LeftArmCyberMantisBlade
-    - id: RightHandCyber
-    - id: LeftHandCyber
   - type: Sprite
     layers:
     - state: box_of_doom_big

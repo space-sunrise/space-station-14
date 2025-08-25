@@ -9,6 +9,7 @@ HeadOfSecurity-loadout = Снаряжение главы сб
 Quartermaster-loadout = Снаряжение квартирмейстра
 ResearchDirector-loadout = Снаряжение научного руководителя
 NanoTrasenRepresentative-loadout = Снаряжение представителя NanoTrasen
+ComMaid-loadout = Снаряжение горничной командования
 # Law
 IAA-loadout = Снаряжение агента внутренних дел
 Lawyer-loadout = Снаряжение юриста

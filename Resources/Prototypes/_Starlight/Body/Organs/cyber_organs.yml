@@ -24,8 +24,8 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_night
   - type: FunctionalOrgan
-    comps: 
-    - type: NightVision
+    comps:
+    - type: ToggleableNightVision
   - type: OrganVisualization
     layer: Eyes
     prototype: CyberEyesNightVision
@@ -40,8 +40,8 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_thermal
   - type: FunctionalOrgan
-    comps: 
-    - type: ThermalVision
+    comps:
+    - type: ToggleableThermalVision
   - type: OrganVisualization
     layer: Eyes
     prototype: CyberEyesThermalVision

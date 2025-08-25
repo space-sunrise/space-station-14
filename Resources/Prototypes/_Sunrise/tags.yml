@@ -74,6 +74,10 @@
 
 - type: Tag
   id: Coin
+
+- type: Tag
+  id: ImprovisedAmmoBox
+
 # Weapons
 - type: Tag
   id: WrappedWeapon
@@ -92,6 +96,12 @@
 
 - type: Tag
   id: UpgradeLecter
+
+- type: Tag
+  id: UpgradeVestSec
+
+- type: Tag
+  id: GorillaUpgradeKit
 
 # Magazines:
 - type: Tag
@@ -416,6 +426,12 @@
 
 - type: Tag
   id: DockMining
+
+- type: Tag
+  id: DockSecurity
+
+- type: Tag
+  id: DockPersonal
 
 - type: Tag
   id: Felinid

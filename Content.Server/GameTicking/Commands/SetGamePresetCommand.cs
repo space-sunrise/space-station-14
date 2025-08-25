@@ -42,7 +42,7 @@ namespace Content.Server.GameTicking.Commands
                 return;
             }
 
-            ticker.SetGamePreset(ticker.Preset, false, rounds);
+            ticker.SetGamePreset(preset, false, rounds);
             shell.WriteLine(Loc.GetString("set-game-preset-preset-set-finite", ("preset", preset.ID), ("rounds", rounds.ToString())));
         }
 

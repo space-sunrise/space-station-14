@@ -129,7 +129,6 @@
     - state: icon-stuh
   - type: ItemBorgModule
     hands:
-    - item: WeaponDisablerBorg
     - item: StunbatonBorg
     - item: FlashBorg
 
@@ -146,7 +145,6 @@
     hands:
     - item: Truncheon
     - item: WeaponLaserBorg
-    - item: WeaponLaserBorg
     - item: HoloprojectorSecurityBorg
 
 - type: entity
@@ -162,7 +160,6 @@
     hands:
     - item: CombatKnife
     - item: WeaponLaserBorg
-    - item: FlashBorg
     - item: HoloprojectorSecurityBorg
 
 - type: entity

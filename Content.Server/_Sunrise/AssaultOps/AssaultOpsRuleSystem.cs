@@ -207,7 +207,7 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
         if (!TryComp<SubdermalImplantComponent>(implant, out var implantComp))
             return false;
 
-        _subdermalImplant.ForceImplant(uid, implant, implantComp);
+        _subdermalImplant.ForceImplant(uid, (implant, implantComp));
         return true;
     }
 

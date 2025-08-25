@@ -46,7 +46,7 @@ uplink-music-boombox-desc = Содержит бумбокс синдиката �
 uplink-syndie-nvd-name = ПНВ Синдиката
 uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
 uplink-syndie-thermal-name = оптический термальный сканер
-uplink-syndie-thermal-desc = Компактный термальный сканер. Оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников НаноТрейзен.
+uplink-syndie-thermal-desc = Компактный термальный сканер. Оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников NanoTrasen.
 uplink-syndie-diagnostic-hud-name = визор МЕХ-пилота синдиката
 uplink-syndie-diagnostic-hud-desc = Профессиональный визор анализирующий в реальном времени состояние МЕХа.
 uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
@@ -96,7 +96,7 @@ uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Отправляет �
 ## Equipment
 
 uplink-hypo-name = Горлекс гипоспрей
-uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
+uplink-hypo-desc = Химический гипоспрей, произведёный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
 uplink-anomaly-auto-injector-name = Автоинъектор аномалии

@@ -80,6 +80,12 @@
     - Dwarf
     - Human
     - Reptilian
+    - Swine # Sunrise-Edit - Fix missing emergency kit for swine mime
+    - Felinid # Sunrise-Edit
+    - Vulpkanin # Sunrise-Edit
+    - Predator # Sunrise-Edit
+    - Tajaran # Sunrise-Edit
+    - Demon # Sunrise-Edit
 
 - type: loadoutEffectGroup
   id: OxygenBreatherMimeMoth

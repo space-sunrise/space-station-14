@@ -102,7 +102,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         if (Effect.Colors.TryGetValue(key, out var defaultColor))
             colorSelector.Color = defaultColor;
 
-        colorSelector.OnColorReleased += _ => OnColorsChanged();
+        colorSelector.OnColorChanged += _ => OnColorsChanged();
 
         _colorSelectors.Add(key, colorSelector);
 
@@ -220,6 +220,8 @@ public sealed class MarkingEffectSelectorSliders : Control
         _selectorsContainer.DisposeAllChildren();
         _slidersContainer.DisposeAllChildren();
         _toggleContainer.DisposeAllChildren();
+
+        Logger.Debug($"{defaultEffect}");
 
         defaultEffect ??= type switch
         {

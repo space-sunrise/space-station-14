@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма СНД/КОМ-ЗУВАЛ[/bold]
+[bold]Форма {corpString}/КОМ-ЗУВАЛ[/bold]
 [head=2]Заявление об увольнении[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

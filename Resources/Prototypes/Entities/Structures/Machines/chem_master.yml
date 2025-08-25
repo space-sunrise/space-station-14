@@ -91,6 +91,7 @@
           tags:
           - Bottle
           - PillCanister
+          - PatchPack # Sunrise-edit
   - type: SolutionContainerManager
     solutions:
       buffer: {}

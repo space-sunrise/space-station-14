@@ -39,6 +39,8 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: StaminaResistance   # Sunrise-Add
+    damageCoefficient: 0.85 # Sunrise-Add
 
 - type: entity
   abstract: true
@@ -173,6 +175,8 @@
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
     - WhitelistChameleonSuit #Sunrise-edit
+  - type: StaminaResistance #Sunrise-added
+    damageCoefficient: 0.8 #Sunrise-added
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
@@ -215,6 +219,8 @@
     tags:
     - FullBodyOuter
     - WhitelistChameleon
+  - type: StaminaResistance
+    damageCoefficient: 0.9
   # Sunrise-End
 
 - type: entity

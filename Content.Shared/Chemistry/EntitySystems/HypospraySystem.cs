@@ -207,7 +207,7 @@ public sealed class HypospraySystem : EntitySystem
             return returnValue;
         // Sunrise-End
 
-        _popup.PopupClient(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", target)), target, user);
+        _popup.PopupClient(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", Identity.Entity(target, EntityManager))), target, user);
 
         if (target != user)
         {
@@ -245,6 +245,10 @@ public sealed class HypospraySystem : EntitySystem
 
         // same LogType as syringes...
         _adminLogger.Add(LogType.ForceFeed, $"{ToPrettyString(user):user} injected {ToPrettyString(target):target} with a solution {SharedSolutionContainerSystem.ToPrettyString(removedSolution):removedSolution} using a {ToPrettyString(uid):using}");
+
+        // Raise after inject event for additional processing (like borg announcements)
+        var afterInjectEvent = new HyposprayAfterInjectEvent(user, uid, target);
+        RaiseLocalEvent(uid, ref afterInjectEvent);
 
         return true;
     }

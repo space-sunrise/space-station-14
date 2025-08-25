@@ -36,6 +36,8 @@
   - MagazinePistolSubMachineGunAP
   - MagazinePistolSubMachineGunTopMountedAP
   - MagazinePistolHighCapacityAP
+  - MagazineBoxHeavyRifleAP
+  - MagazineRifleHeavyAP
   radioChannels:
   - Security
 
@@ -150,6 +152,7 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
+  - VestSecUpgrade
   - ModularReceiverAuto
   - LecterUpgrade
   - DrozdUpgrade

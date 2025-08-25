@@ -149,7 +149,7 @@
   id: Card
   coefficients:
     Slash: 2.0
-    Piercing: 0.1 # Holes easily poked through, but do little to structural integrity 
+    Piercing: 0.1 # Holes easily poked through, but do little to structural integrity
     Heat: 3.0
 
 - type: damageModifierSet
@@ -208,7 +208,7 @@
   id: Moth # Slightly worse at everything but cold
   coefficients:
     Cold: 0.7
-    Heat: 1.3
+    Heat: 1.2
 
 - type: damageModifierSet
   id: Vox
@@ -381,8 +381,8 @@
     Shock: 2
     Heat: 0.8
   flatReductions:
-    Blunt: 3
-    Heat: 2
+    Blunt: 2
+    Heat: 1
 
 - type: damageModifierSet
   id: LightArmor
@@ -396,42 +396,9 @@
   flatReductions:
     Blunt: 5
     Heat: 5
-    Structural: 5
 
 - type: damageModifierSet
   id: MediumArmorNT
-  coefficients:
-    Blunt: 0.6
-    Slash: 0.6
-    Piercing: 0.55
-    Shock: 4
-    Heat: 0.8
-    Structural: 0.5
-  flatReductions:
-    Blunt: 10
-    Heat: 10
-    Slash: 5
-    Piercing: 2
-    Structural: 10
-
-- type: damageModifierSet
-  id: HeavyArmorNT
-  coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.35
-    Shock: 5
-    Heat: 0.75
-    Structural: 0.5
-  flatReductions:
-    Blunt: 15
-    Heat: 15
-    Slash: 7
-    Piercing: 5
-    Structural: 15
-
-- type: damageModifierSet
-  id: MediumArmorSyndi #40 40 50 -180 20
   coefficients:
     Blunt: 0.6
     Slash: 0.6
@@ -440,24 +407,52 @@
     Heat: 0.8
     Structural: 0.5
   flatReductions:
-    Blunt: 8
-    Heat: 8
-    Slash: 4
-    Piercing: 2
-    Structural: 8
+    Blunt: 5
+    Heat: 6
+    Slash: 5
+    Piercing: 3
 
 - type: damageModifierSet
-  id: HeavyArmorSyndi #50 50 60 -280 25
+  id: HeavyArmorNT
   coefficients:
     Blunt: 0.5
     Slash: 0.5
+    Piercing: 0.3
+    Shock: 5
+    Heat: 0.75
+    Structural: 0.45
+  flatReductions:
+    Blunt: 7
+    Heat: 8
+    Slash: 7
+    Piercing: 5
+
+- type: damageModifierSet
+  id: MediumArmorSyndi #35 35 50 -400 20
+  coefficients:
+    Blunt: 0.65
+    Slash: 0.65
+    Piercing: 0.5
+    Shock: 4
+    Heat: 0.8
+    Structural: 0.5
+  flatReductions:
+    Blunt: 5
+    Heat: 5
+    Slash: 5
+    Piercing: 4
+
+- type: damageModifierSet
+  id: HeavyArmorSyndi #45 45 6 -500 25
+  coefficients:
+    Blunt: 0.55
+    Slash: 0.55
     Piercing: 0.4
     Shock: 5
     Heat: 0.75
-    Structural: 0.5
+    Structural: 0.45
   flatReductions:
-    Blunt: 14
-    Heat: 14
+    Blunt: 7
+    Heat: 7
     Slash: 7
-    Piercing: 5
-    Structural: 14
+    Piercing: 6

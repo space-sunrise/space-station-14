@@ -135,7 +135,7 @@ public partial class NavMapControl : MapGridControl
             },
             VerticalExpand = false,
             HorizontalExpand = true,
-            SetWidth = 650f,
+            //SetWidth = 650f, Sunrise-Edit
             Children =
             {
                 new BoxContainer()

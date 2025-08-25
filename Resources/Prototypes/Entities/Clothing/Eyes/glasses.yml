@@ -234,7 +234,7 @@
 
 #Make a scanner category when these actually function and we get the trayson
 - type: entity
-  parent: [ClothingEyesBase, BaseToggleClothing]
+  parent: [ClothingEyesBase, BaseToggleClothing, PowerCellSlotSmallItem] # Sunrise-edit
   id: ClothingEyesGlassesThermal
   name: optical thermal scanner
   description: Thermals in the shape of glasses.
@@ -259,6 +259,20 @@
     parent: true
     components:
     - type: ThermalVision
+  - type: PowerCellDraw
+    drawRate: 3.5
+    useRate: 20
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
   # Sunrise-End
 
 - type: entity
@@ -283,7 +297,6 @@
   parent: [
       ClothingEyesBase,
       BaseMajorContraband,
-      PowerCellSlotSmallItem,
       BaseNightVisionDevice,
     ] # Sunrise-Edit
   id: ClothingEyesVisorNinja
@@ -306,20 +319,9 @@
       path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-  - type: ToggleCellDraw
-  - type: PowerCellDraw
-    drawRate: 3.5
-    useRate: 20
+  - type: NinjaSuitDraw
+    drawRate: 0.5
+  - type: ToggleNinjaSuitDraw
   # Sunrise-End
 
 - type: entity

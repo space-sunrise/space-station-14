@@ -17,6 +17,17 @@
       department: Cargo
       time: 36000 #10 hours of being a space trucker
 
+# sunrise-start
+- type: loadoutEffectGroup
+  id: CheapSunglassesTimer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 108000 #30 hours of bread cooking and Manly Dorf making
+# sunrise-end
+
 # Basic options
 # Glasses
 - type: loadout
@@ -44,6 +55,14 @@
     eyes: ClothingEyesGlassesJensen
 
 # sunrise-start
+- type: loadout
+  id: GlassesCheapSunglasses
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: CheapSunglassesTimer
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+
 - type: loadout
   id: GlassesStuttering
   equipment:

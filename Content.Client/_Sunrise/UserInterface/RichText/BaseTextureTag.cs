@@ -28,7 +28,6 @@ public abstract class BaseTextureTag : IMarkupTagHandler
         SplitRsiPath(path, out var rsiPath, out var state);
         var resourceCache = new SpriteSpecifier.Rsi(new ResPath(rsiPath), state);
 
-        texture.TexturePath = path;
         _spriteSystem ??= _entitySystemManager.GetEntitySystem<SpriteSystem>();
         texture.Texture = _spriteSystem.Frame0(resourceCache);
         texture.TextureScale = new Vector2(scaleValue, scaleValue);

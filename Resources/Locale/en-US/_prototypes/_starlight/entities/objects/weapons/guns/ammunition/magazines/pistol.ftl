@@ -1,5 +1,8 @@
 ent-MagazinePistolSubMachineGunImprovised = Improvised SMG magazine (.35 auto)
     .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGunImprovisedFilled = Improvised SMG magazine (.35 auto)
+    .suffix = Filled
+    .desc = { ent-MagazinePistolSubMachineGunImprovised.desc }
 ent-MagazinePistolSubMachineGunPPSH = PPSH magazine
     .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
 ent-MagazinePistol40Base = Pistol Magazine (.40)
@@ -17,3 +20,6 @@ ent-MagazinePistol40AP = Pistol Magazine (.40 AP)
     .desc = { ent-MagazinePistol40Base.desc }
 ent-MagazinePistolImprovised = Improvised Pistol Magazine (.35)
     .desc = { ent-BaseMagazinePistol.desc }
+ent-MagazinePistolImprovisedFilled = { ent-MagazinePistolImprovised }
+    .suffix = Filled
+    .desc = { ent-MagazinePistolImprovised.desc }

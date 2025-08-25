@@ -30,7 +30,7 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
   - type: UseDelay
     delay: 45
@@ -67,7 +67,7 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -96,7 +96,7 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     filterPoison: true
     doAfterTime: 0.75
     transferAmount: 5
@@ -147,7 +147,7 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 30
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
   - type: StaticPrice
     price: 950

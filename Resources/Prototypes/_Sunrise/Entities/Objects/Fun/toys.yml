@@ -1128,6 +1128,8 @@
     - state: plushie-kalium
     - state: potasium-unshaded
       visible: false
+    - state: potasium-unshaded
+      visible: false
       shader: unshaded
       map: [ "light" ]
   - type: Clothing
@@ -1227,4 +1229,201 @@
   - type: ToggleableVisuals
     spriteLayer: light
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieKaliumJuggernaut
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_juggernaut.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium_jager_unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_juggernaut.rsi
+    equippedPrefix: kalium
+    slots:
+    - NECK
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/Guns/EmptyAlarm/lmg_empty_alarm.ogg
+      params:
+        volume: -4
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-operator
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Tag
+    tags:
+    - PlushieKalium
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: true
+    radius: 1.2
+    energy: 1.5
+    color: "#FFD700"
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_open.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_open.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieKaliumOperative
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_operative.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium_nuclearop_shaded
+      visible: false
+      map: [ "light" ]
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_operative.rsi
+    equippedPrefix: kalium
+    slots:
+    - NECK
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/Guns/Bolt/rifle_bolt_closed.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+      params:
+        volume: -4
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-operator
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Tag
+    tags:
+    - PlushieKalium
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: true
+    radius: 1.2
+    energy: 2
+    color: "#FFD700"
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKaliumNukieCommander
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_nukiecommander.rsi
+    layers:
+    - state: plushie-kalium
+    - state: potasium_nuclearcom_unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_kalium_nukiecommander.rsi
+    equippedPrefix: kalium
+    slots:
+    - NECK
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Machines/energyshield_up.ogg
+    soundDeactivate:
+      path: /Audio/Machines/energyshield_down.ogg
+      params:
+        volume: -2
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Machines/energyshield_ambient.ogg
+      params:
+        volume: -2
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateElite
+    nameFormat: name-format-nukie-commander
+  - type: Item
+    size: Small
+    heldPrefix: kalium
+  - type: Tag
+    tags:
+    - PlushieKalium
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 3
+    color: "#ff0000"
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/sabre_drop.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      collection: VulpkaninBarks
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Machines/beep.ogg
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100

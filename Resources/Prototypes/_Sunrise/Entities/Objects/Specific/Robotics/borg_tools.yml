@@ -52,7 +52,6 @@
   description: This laser for security robot.
   categories: [ HideSpawnMenu ]
   components:
-  #- type: AlterLevelGunBlocker #FIXMEVIGERS
   - type: Item
     size: Large
   - type: Sprite
@@ -67,8 +66,22 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: DisablerBolt
     fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 50
+    - proto: RedLaserBeam
+      fireCost: 100
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
@@ -124,7 +137,7 @@
       - ReagentId: Epinephrine
         Quantity: 0.4
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
     transferAmount: 5 #Sunrise-End
   - type: UseDelay
@@ -186,9 +199,11 @@
       Quantity: 1
     - ReagentId: Dermaline
       Quantity: 1
+    keepSolution: true
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   parent: HypoBorgStandard
@@ -235,9 +250,11 @@
       Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
+    keepSolution: true
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   name: proto-kinetic robot accelerator
@@ -753,7 +770,8 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: the saboteur's communications jammer

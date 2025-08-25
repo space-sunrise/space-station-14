@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма НТ/СУД-ЗКЛ[/bold]
+[bold]Форма {corpString}/СУД-ЗКЛ[/bold]
 [head=2]Заключение суда[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

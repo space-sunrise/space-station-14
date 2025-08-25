@@ -46,7 +46,8 @@ namespace Content.IntegrationTests.Tests.Destructible
                 sTestThresholdListenerSystem.ThresholdsReached.Clear();
 
                 sDamageableSystem = sEntitySystemManager.GetEntitySystem<DamageableSystem>();
-                sConfigManager.SetCVar(SunriseCCVars.DamageVariance, 0f); // Sunrise-Edit
+                sConfigManager.SetCVar(SunriseCCVars.DamageNegativeVariance, 0f); // Sunrise-Edit
+                sConfigManager.SetCVar(SunriseCCVars.DamagePositiveVariance, 0f); // Sunrise-Edit
             });
 
             await server.WaitRunTicks(5);
