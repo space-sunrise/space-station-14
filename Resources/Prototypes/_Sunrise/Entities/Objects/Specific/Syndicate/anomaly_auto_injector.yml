@@ -1,9 +1,9 @@
 - type: entity
-  name: автоинъектор аномалии
-  id: BaseAnomalyAutoInjector
-  abstract: true
+  name: anomaly auto-injector
   parent: [BaseItem, BaseSyndicateContraband]
-  description: "{ uplink-anomaly-auto-injector-desc }"
+  id: AnomalyAutoInjector
+  description: A single-use self-injecting injector that infects a humanoid with a random anomaly within a minute of injection.
+  abstract: true
   components:
     - type: Sprite
       sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
@@ -26,9 +26,9 @@
         - AnomalyTrapSanta
 
 - type: entity
-  id: AnomalyAutoInjector
-  parent: BaseAnomalyAutoInjector
-  description: Вводит в гуманоида одну из базовых аномалий.
+  parent: AnomalyAutoInjector
+  id: BaseAnomalyAutoInjector
+  description: Injects one of the basic anomalies into the humanoid.
   components:
     - type: AnomalyAutoInjector
       anomalyTrapProtos:
@@ -40,9 +40,9 @@
         - AnomalyTrapBluespace
 
 - type: entity
+  parent: AnomalyAutoInjector
   id: AnomalyAutoInjectorUplink
-  parent: BaseAnomalyAutoInjector
-  description: Вводит в гуманоида случайную аномалию из всего спектра существующих.
+  description: Injects a random anomaly from the entire existing spectrum into the humanoid.
   components:
     - type: AnomalyAutoInjector
       anomalyTrapProtos:
