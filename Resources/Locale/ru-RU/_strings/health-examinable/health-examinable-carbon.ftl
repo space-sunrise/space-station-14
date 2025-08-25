@@ -53,7 +53,7 @@ health-examinable-carbon-Cold-200 = [color=lightblue]{ CAPITALIZE(POSS-ADJ($targ
 health-examinable-carbon-Caustic-8 = [color=yellowgreen]{ CAPITALIZE(POSS-ADJ($target)) } кожа выглядит слегка обесцвеченной.[/color]
 health-examinable-carbon-Caustic-15 = [color=yellowgreen]{ CAPITALIZE(POSS-ADJ($target)) } кожа выглядит раздраженной и обесцвеченной.[/color]
 health-examinable-carbon-Caustic-30 = [color=yellowgreen]{ CAPITALIZE(POSS-ADJ($target)) } кожа воспаляена и начинает шелушиться.[/color]
-health-examinable-carbon-Caustic-50 = [color=yellowgreen]{ CAPITALIZE(POSS-ADJ($target)) } кожица обожжена и отслаивается большими кусками.[/color]
+health-examinable-carbon-Caustic-50 = [color=yellowgreen]{ CAPITALIZE(POSS-ADJ($target)) } кожа обожжена и отслаивается большими кусками.[/color]
 health-examinable-carbon-Caustic-75 = [color=yellowgreen]{ CAPITALIZE(POSS-ADJ($target)) } кожа сильно обожжена и стекает с тела![/color]
 health-examinable-carbon-Caustic-100 = [color=yellowgreen]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } сильные химические ожоги по всему телу![/color]
 health-examinable-carbon-Caustic-200 = [color=yellowgreen]Most of { POSS-ADJ($target) } тело полностью расплавилось![/color]
