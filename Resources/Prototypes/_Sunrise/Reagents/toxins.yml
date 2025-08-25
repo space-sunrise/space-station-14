@@ -176,13 +176,12 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:GenericStatusEffect
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: NocturineAbductor
           min: 8
-        key: ForcedSleep
-        component: ForcedSleeping
-        refresh: true
-        type: Add
+        effectProto: StatusEffectForcedSleeping
         time: 120
+        type: Add
+        refresh: true

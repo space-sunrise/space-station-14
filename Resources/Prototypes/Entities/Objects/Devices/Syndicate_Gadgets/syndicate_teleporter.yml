@@ -16,10 +16,5 @@
     maxCharges: 3
   - type: AutoRecharge
     rechargeDuration: 30
-  - type: EmitSoundOnUse
-    sound:
-      collection: BrokenDevice
-      params:
-        variation: 0.125
   - type: StaticPrice
     price: 3000

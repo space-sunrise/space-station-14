@@ -1,0 +1,9 @@
+﻿- type: entity
+  parent: ClothingHandsBase
+  id: BunnyManjets
+  name: manjets
+  suffix: Bunny
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/manjets.rsi
+

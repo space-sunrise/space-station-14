@@ -80,6 +80,7 @@
   - GlassesJamjar
   - GlassesJensen
   - GlassesStuttering
+  - GlassesCheapSunglasses # sunrise
 
 - type: loadoutGroup
   id: GroupTankHarness

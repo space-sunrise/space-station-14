@@ -1,9 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
-using Content.Server.GameTicking.Events;
 using Content.Server.Materials;
-using Content.Server.Station.Systems;
+using Content.Server._Sunrise.Documents;
 using Content.Shared._Sunrise.CopyMachine;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Buckle.Components;
@@ -38,12 +37,11 @@ public sealed class CopyMachineSystem : EntitySystem
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly LabelSystem _labelSystem = default!;
+    [Dependency] private readonly DocumentFormatSystem _docFmt = default!;
 
-    private TimeSpan _roundStartTime;
     private readonly Dictionary<string, string> _docCache = new();
 
     private static readonly Regex DocRegex =
@@ -53,7 +51,6 @@ public sealed class CopyMachineSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
         SubscribeLocalEvent<CopyMachineComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<CopyMachineComponent, CopyMachinePrintMessage>(OnPrintMessage);
         SubscribeLocalEvent<CopyMachineComponent, CopyMachineCopyMessage>(OnCopyMessage);
@@ -66,7 +63,7 @@ public sealed class CopyMachineSystem : EntitySystem
         SubscribeLocalEvent<CopyMachineComponent, UnstrappedEvent>(OnStasisUnstrapped);
         SubscribeLocalEvent<CopyMachineComponent, GotEmaggedEvent>(OnEmagged);
 
-        _configManager.OnValueChanged(SunriseCCVars.CopyMachineTemplatePool, _ =>
+        _configManager.OnValueChanged(SunriseCCVars.DocumentTemplatePool, _ =>
         {
             CacheAllDocuments();
             RebuildAllPrinters();
@@ -75,16 +72,11 @@ public sealed class CopyMachineSystem : EntitySystem
         CacheAllDocuments();
     }
 
-    private void OnRoundStart(RoundStartingEvent ev)
-    {
-        _roundStartTime = _timing.CurTime;
-    }
-
     private void CacheAllDocuments()
     {
         _docCache.Clear();
 
-        var pool = _configManager.GetCVar(SunriseCCVars.CopyMachineTemplatePool);
+        var pool = _configManager.GetCVar(SunriseCCVars.DocumentTemplatePool);
 
         if (!_proto.TryIndex<DocTemplatePoolPrototype>(pool, out var poolProto))
             return;
@@ -119,7 +111,7 @@ public sealed class CopyMachineSystem : EntitySystem
 
         var isEmagged = HasComp<EmaggedComponent>(uid);
 
-        var pool = _configManager.GetCVar(SunriseCCVars.CopyMachineTemplatePool);
+        var pool = _configManager.GetCVar(SunriseCCVars.DocumentTemplatePool);
 
         if (!_proto.TryIndex<DocTemplatePoolPrototype>(pool, out var poolProto))
             return;
@@ -254,22 +246,8 @@ public sealed class CopyMachineSystem : EntitySystem
             !_proto.TryIndex<DocTemplatePrototype>(templateId, out var templateProto))
             return false;
 
-        var offsetHours = _configManager.GetCVar(SunriseCCVars.CopyMachineTimeOffsetHours);
-        var offsetYears = _configManager.GetCVar(SunriseCCVars.CopyMachineYearOffset);
-
-        var date = DateTime.UtcNow
-            .AddHours(offsetHours)
-            .AddYears(offsetYears)
-            .ToString("dd.MM.yyyy");
-
-        var shift = _timing.CurTime - _roundStartTime;
-        var timeString = $"{shift:hh\\:mm} {date}";
-
-        var station = _stationSystem.GetOwningStation(uid);
-        var stationName = station is null ? string.Empty : Name(station.Value);
-
-        content = content.Replace("{timeString}", timeString);
-        content = content.Replace("{stationName}", stationName);
+        // ЕДИНАЯ система форматирования документов
+        content = _docFmt.Format(content, uid);
 
         _paperSystem.SetContent((paper, paperComp), content);
         if (templateProto.Header != null)
