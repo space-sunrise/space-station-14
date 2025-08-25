@@ -3,6 +3,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Popups;
+using Content.Server._Sunrise.Medical;
 
 namespace Content.Server._Sunrise.SolutionRegenerationSwitcherSystem
 {
@@ -10,6 +11,7 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcherSystem
     {
         [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = null!;
         [Dependency] private readonly SharedPopupSystem _popups = null!;
+        [Dependency] private readonly BorgHypospraySystem _borgHypospray = null!;
 
         private ISawmill _sawmill = null!;
 
@@ -75,6 +77,9 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcherSystem
                 Loc.GetString("solution-regeneration-switcher-switched", ("reagent", proto.LocalizedName)),
                 user,
                 user);
+
+            // Reset borg hypospray announcement cooldown when reagent is switched
+            _borgHypospray.ResetAnnouncementCooldown(uid);
         }
     }
 }

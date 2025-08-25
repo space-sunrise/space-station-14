@@ -20,6 +20,10 @@ hypospray-verb-mode-inject-all = Вы больше не можете набир�
 hypospray-verb-mode-inject-mobs-only = Теперь вы можете набирать из контейнеров.
 hypospray-cant-inject = Нельзя сделать инъекцию в { $target }!
 
+## Borg hypospray announcements
+
+borg-hypospray-inject-announcement = Ввожу { $reagent } в { $target }.
+
 ## failure
 
 hypospay-component-failure-hardsuit = Вы не сможете провести иглу через толстое покрытие!

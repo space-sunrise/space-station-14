@@ -83,6 +83,7 @@
       - Piercing
       - Heat
       - Shock
+      - Mangleness
     locPrefix: mech
   - type: Appearance
   - type: ContainerContainer

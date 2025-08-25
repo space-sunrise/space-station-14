@@ -199,9 +199,11 @@
       Quantity: 1
     - ReagentId: Dermaline
       Quantity: 1
+    keepSolution: true
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   parent: HypoBorgStandard
@@ -248,9 +250,11 @@
       Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
+    keepSolution: true
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   name: proto-kinetic robot accelerator
