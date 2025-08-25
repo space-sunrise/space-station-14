@@ -119,6 +119,10 @@
   cost: 5000
   recipeUnlocks:
   - BorgModuleAdvancedChemical
+  - AutoMenderBurn
+  - AutoMenderBrute
+  radioChannels:
+  - Medical
 
 # Tier 3
 - type: technology

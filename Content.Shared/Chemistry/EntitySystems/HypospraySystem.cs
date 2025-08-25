@@ -207,7 +207,7 @@ public sealed class HypospraySystem : EntitySystem
             return returnValue;
         // Sunrise-End
 
-        _popup.PopupClient(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", target)), target, user);
+        _popup.PopupClient(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", Identity.Entity(target, EntityManager))), target, user);
 
         if (target != user)
         {

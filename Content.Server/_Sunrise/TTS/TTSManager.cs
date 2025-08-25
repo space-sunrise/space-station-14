@@ -42,12 +42,16 @@ public sealed class TTSManager
 
     private ISawmill _sawmill = default!;
     private string _apiUrl = string.Empty;
+    private string _radioEffect = string.Empty;
+    private string _announceEffect = string.Empty;
 
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("tts");
         _cfg.OnValueChanged(SunriseCCVars.TTSApiUrl, OnApiUrlChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSApiToken, OnApiTokenChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSRadioEffect, OnRadioEffectChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceEffect, OnAnnounceEffectChanged, true);
     }
 
     private void OnApiUrlChanged(string value)
@@ -58,6 +62,16 @@ public sealed class TTSManager
     private void OnApiTokenChanged(string value)
     {
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
+    }
+
+    private void OnRadioEffectChanged(string value)
+    {
+        _radioEffect = value;
+    }
+
+    private void OnAnnounceEffectChanged(string value)
+    {
+        _announceEffect = value;
     }
 
     public async Task<byte[]?> ConvertTextToSpeech(TTSVoicePrototype voicePrototype, string text, string? effect = null)
@@ -137,16 +151,14 @@ public sealed class TTSManager
     public async Task<byte[]?> ConvertTextToSpeechRadio(TTSVoicePrototype voicePrototype, string text)
     {
         WantedRadioCount.Inc();
-        var soundData = await ConvertTextToSpeech(voicePrototype, text, "radio");
-
+        var soundData = await ConvertTextToSpeech(voicePrototype, text, _radioEffect);
         return soundData;
     }
 
     public async Task<byte[]?> ConvertTextToSpeechAnnounce(TTSVoicePrototype voicePrototype, string text)
     {
         WantedAnnounceCount.Inc();
-        var soundData = await ConvertTextToSpeech(voicePrototype, text, "announce");
-
+        var soundData = await ConvertTextToSpeech(voicePrototype, text, _announceEffect);
         return soundData;
     }
 

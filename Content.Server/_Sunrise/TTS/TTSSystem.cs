@@ -3,8 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
+using Content.Server.Power.Components;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared._Sunrise.AnnouncementSpeaker.Components;
+using Content.Shared._Sunrise.AnnouncementSpeaker.Events;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -58,6 +63,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RadioSpokeEvent>(OnRadioReceiveEvent);
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke);
+        SubscribeLocalEvent<AnnouncementSpeakerComponent, SpeakerPlayAnnouncementEvent>(OnSpeakerPlayAnnouncement);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
         SubscribeNetworkEvent<ClientOptionTTSEvent>(OnClientOptionTTS);
@@ -132,6 +138,12 @@ public sealed partial class TTSSystem : EntitySystem
             return;
         }
 
+        // Play announcement sound first if available (for global announcements)
+        if (args.AnnouncementSound != null)
+        {
+            _audioSystem.PlayGlobal(args.AnnouncementSound, args.Source, true);
+        }
+
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars * 2 ||
             !GetVoicePrototype(args.AnnounceVoice ?? _defaultAnnounceVoice, out var protoVoice))
@@ -139,7 +151,55 @@ public sealed partial class TTSSystem : EntitySystem
 
         var soundData = await GenerateTTS(args.Message, protoVoice, isAnnounce: true);
         soundData ??= [];
-        RaiseNetworkEvent(new AnnounceTtsEvent(soundData, args.AnnouncementSound), args.Source.RemovePlayers(_ignoredRecipients));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, isRadio: false), args.Source.RemovePlayers(_ignoredRecipients));
+    }
+
+    /// <summary>
+    /// Handles TTS generation for speaker-based announcements.
+    /// This is the new system that replaces global broadcast announcements.
+    /// </summary>
+    private void OnSpeakerPlayAnnouncement(EntityUid speakerUid, AnnouncementSpeakerComponent component, ref SpeakerPlayAnnouncementEvent args)
+    {
+        // Check if speaker is enabled
+        if (!component.Enabled)
+            return;
+
+        // Check if speaker has power (if required)
+        if (component.RequiresPower)
+        {
+            if (!TryComp<ApcPowerReceiverComponent>(speakerUid, out var powerReceiver) || !powerReceiver.Powered)
+                return;
+        }
+
+        if (!_isEnabled)
+            return;
+
+        byte[]? soundData = args.GeneratedTts;
+        if (soundData == null || soundData.Length == 0)
+        {
+            return;
+        }
+
+        var speakerPos = Transform(speakerUid).Coordinates;
+        var playersInRange = Filter.Empty();
+
+        var playerQuery = EntityQueryEnumerator<ActorComponent, TransformComponent>();
+        while (playerQuery.MoveNext(out var playerUid, out var actor, out var playerTransform))
+        {
+            if (speakerPos.TryDistance(EntityManager, playerTransform.Coordinates, out var distance) &&
+                distance <= component.Range)
+            {
+                playersInRange = playersInRange.AddPlayer(actor.PlayerSession);
+            }
+        }
+
+        // Send TTS to players in range, excluding those who have disabled TTS
+        var filteredPlayers = playersInRange.RemovePlayers(_ignoredRecipients);
+        if (filteredPlayers.Recipients.Any())
+        {
+            var speakerNetEntity = GetNetEntity(speakerUid);
+            RaiseNetworkEvent(new PlayTTSEvent(soundData, speakerNetEntity, isRadio: false), filteredPlayers);
+        }
     }
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)

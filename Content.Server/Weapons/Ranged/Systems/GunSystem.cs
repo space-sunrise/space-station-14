@@ -52,6 +52,7 @@ using Content.Shared.Pinpointer;
 using Robust.Server.GameObjects;
 using System.Collections.Generic;
 using Content.Server.PowerCell;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo;
 

@@ -29,8 +29,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
     /// </summary>
     private void OnPuddleInteraction(EntityUid uid, PuddleFootprintComponent component, ref EndCollideEvent args)
 {
-    if (!TryComp<AppearanceComponent>(uid, out var appearance)
-        || !TryComp<PuddleComponent>(uid, out var puddle)
+    if (!TryComp<PuddleComponent>(uid, out var puddle)
         || !TryComp<FootprintEmitterComponent>(args.OtherEntity, out var emitter)
         || !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager)
         || !_solutionSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)

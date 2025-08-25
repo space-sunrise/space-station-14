@@ -6,6 +6,10 @@
   abstract: true
   components:
   - type: StationAiWhitelist
+  - type: AnnouncementSpeaker  # Sunrise-Edit: Add announcement speaker capability
+    range: 15
+    enabled: true
+    requiresPower: true
   - type: Electrified
     enabled: false
     usesApcPower: true

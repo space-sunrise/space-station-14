@@ -173,3 +173,24 @@
         sprite: Objects/Devices/gps.rsi
         state: icon
     - type: AstroNavCartridge
+
+- type: entity
+  parent: BaseItem
+  id: NavigatorCartridge
+  name: navigator cartridge
+  description: A program for viewing the station map for navigation purposes.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-nav
+    - type: Icon
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-nav
+    - type: UIFragment
+      ui: !type:NavigatorUi
+    - type: Cartridge
+      programName: navigator-program-name
+      icon:
+        sprite: Structures/Wallmounts/signs.rsi
+        state: space
+    - type: NavigatorCartridge
