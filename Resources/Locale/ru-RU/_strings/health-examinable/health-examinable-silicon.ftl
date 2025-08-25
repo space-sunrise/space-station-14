@@ -6,8 +6,8 @@ health-examinable-silicon-Blunt-100 = [color=crimson]{ CAPITALIZE(POSS-ADJ($targ
 
 health-examinable-silicon-Slash-8 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько царапин.[/color]
 health-examinable-silicon-Slash-30 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } серьёзные царапины![/color]
-health-examinable-silicon-Slash-75 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } покрытие шасси усыпано глубокими цапапинами![/color]
-health-examinable-silicon-Slash-100 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } шасси полностю разодрано![/color]
+health-examinable-silicon-Slash-75 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } покрытие шасси усыпано глубокими царапинами![/color]
+health-examinable-silicon-Slash-100 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } шасси полностью разодрано![/color]
 
 health-examinable-silicon-Piercing-50 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } шасси усеяно глубокими отверстиями![/color]
 
