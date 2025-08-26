@@ -178,5 +178,5 @@ ent-PlushieKaliumOperative = Kalium Fon Dez Operative
     .desc = { ent-BasePlushie.desc }
 ent-PlushieKaliumNukieCommander = Kalium Commander
     .desc = { ent-BasePlushie.desc }
-ent-PlushieKaliumNukieCommandr = Kalium Agent
+ent-PlushieKaliumNukeMed = Kalium Agent
     .desc = { ent-BasePlushie.desc }
