@@ -189,7 +189,7 @@
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltCentComSunrise
   name: CentComm over-ear headset
-  suffix: Без ключа ЦК
+  suffix: No CentComm Key.
   components:
   - type: ContainerFill
     containers:
