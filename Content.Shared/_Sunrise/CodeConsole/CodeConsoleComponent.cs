@@ -10,7 +10,7 @@ public sealed partial class CodeConsoleComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsLocked = true;
 
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public int CodeLength = 6;
 
     [DataField(serverOnly: true)]

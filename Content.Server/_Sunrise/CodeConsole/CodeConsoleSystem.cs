@@ -38,7 +38,12 @@ public sealed class CodeConsoleSystem : EntitySystem
     private void OnMapInit(Entity<CodeConsoleComponent> ent, ref MapInitEvent args)
     {
         if (string.IsNullOrWhiteSpace(ent.Comp.Code))
+        {
+            if (ent.Comp.CodeLength <= 0 || ent.Comp.CodeLength > 16)
+                ent.Comp.CodeLength = 16;
+
             ent.Comp.Code = GetRandomCode(ent.Comp.CodeLength);
+        }
 
         UpdateUserInterface(ent);
     }
@@ -199,6 +204,9 @@ public sealed class CodeConsoleSystem : EntitySystem
 
     private string GetRandomCode(int codeLength)
     {
+        if (codeLength < 0)
+            codeLength = 6;
+
         var symbols = "1234567890".ToCharArray();
         var code = new char[codeLength];
 
