@@ -1,11 +1,6 @@
-using Content.Client.Nuke;
 using Content.Shared._Sunrise.EncodedAirlock;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Nuke;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
-using Robust.Shared.Serialization;
 
 namespace Content.Client._Sunrise.EncodedAirlock
 {
@@ -37,9 +32,14 @@ namespace Content.Client._Sunrise.EncodedAirlock
             {
                 SendMessage(new CodeConsoleKeypadClearMessage());
             };
-            _menu.ArmButton.OnPressed += _ =>
+
+            _menu.ActivateButton.OnPressed += _ =>
             {
-                SendMessage(new NukeArmedMessage());
+                SendMessage(new CodeConsoleActivateButtonMessage());
+            };
+            _menu.LockButton.OnPressed += _ =>
+            {
+                SendMessage(new CodeConsoleLockButtonMessage());
             };
         }
 

@@ -1,4 +1,3 @@
-using Content.Shared.Nuke;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.EncodedAirlock;
@@ -19,6 +18,12 @@ public sealed class CodeConsoleKeypadEnterMessage : BoundUserInterfaceMessage { 
 
 [Serializable, NetSerializable]
 public sealed class CodeConsoleKeypadClearMessage : BoundUserInterfaceMessage { }
+
+[Serializable, NetSerializable]
+public sealed class CodeConsoleActivateButtonMessage : BoundUserInterfaceMessage { }
+
+[Serializable, NetSerializable]
+public sealed class CodeConsoleLockButtonMessage : BoundUserInterfaceMessage { }
 
 [Serializable, NetSerializable]
 public sealed class CodeConsoleUiState : BoundUserInterfaceState

@@ -78,8 +78,15 @@
   name: code input console
   description: A computer used to enter the password.
   components:
-  - type: AbductorConsole
   - type: CodeConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: WirelessNetworkConnection
+    range: 50 # This can be changed if necessary
+  - type: DeviceLinkSource
+    ports:
+      - Pressed
+      - WrongCode
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -103,8 +110,8 @@
           False: { visible: true, shader: shaded }
   - type: ActivatableUI
     singleUser: true
-    key: enum.CodeConsoleUIKey.Key
+    key: enum.CodeConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-     enum.CodeConsoleUIKey.Key:
+     enum.CodeConsoleUiKey.Key:
         type: CodeConsoleBoundUserInterface

@@ -13,18 +13,6 @@ public sealed partial class CodeConsoleComponent : Component
     [DataField, AutoNetworkedField]
     public int CodeLength = 6;
 
-    [DataField, AutoNetworkedField]
-    public string EnteredCode = string.Empty;
-
-    [DataField("keypadPressSound")]
-    public SoundSpecifier KeypadPressSound = new SoundPathSpecifier("/Audio/Machines/Nuke/general_beep.ogg");
-
-    [DataField("accessGrantedSound")]
-    public SoundSpecifier AccessGrantedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/confirm_beep.ogg");
-
-    [DataField("accessDeniedSound")]
-    public SoundSpecifier AccessDeniedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/angry_beep.ogg");
-
     [DataField(serverOnly: true)]
     public string Code
     {
@@ -39,7 +27,28 @@ public sealed partial class CodeConsoleComponent : Component
         }
     }
 
+    [DataField, AutoNetworkedField]
+    public bool IsSealed = false;
+
+    [DataField, AutoNetworkedField]
+    public string ActivatePort = "Pressed";
+
+    [DataField, AutoNetworkedField]
+    public string WrongCodePort = "WrongCode";
+
     private string _code = string.Empty;
+
+    [DataField, AutoNetworkedField]
+    public string EnteredCode = string.Empty;
+
+    [DataField]
+    public SoundSpecifier KeypadPressSound = new SoundPathSpecifier("/Audio/Machines/Nuke/general_beep.ogg");
+
+    [DataField]
+    public SoundSpecifier AccessGrantedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/confirm_beep.ogg");
+
+    [DataField]
+    public SoundSpecifier AccessDeniedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/angry_beep.ogg");
 }
 
 

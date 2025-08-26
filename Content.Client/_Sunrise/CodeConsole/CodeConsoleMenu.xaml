@@ -1,6 +1,6 @@
 <DefaultWindow xmlns="https://spacestation14.io"
             xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-            Title="{Loc 'nuke-user-interface-title'}"
+            Title="{Loc 'code-console-user-interface-title'}"
             MinSize="280 256"
             SetSize="280 256">
     <BoxContainer Orientation="Vertical"
@@ -28,8 +28,12 @@
             <BoxContainer Orientation="Vertical"
                           HorizontalExpand="True"
                           Margin="5 0">
-                <Button Name="ArmButton"
-                        Text="{Loc 'nuke-user-interface-arm-button'}"
+                <Button Name="ActivateButton"
+                        Text="{Loc 'code-console-user-interface-activate-button'}"
+                        Margin="0 0 0 5"
+                        Access="Public"/>
+                <Button Name="LockButton"
+                        Text="{Loc 'code-console-user-interface-lock-button'}"
                         Access="Public"
                         StyleClasses="Caution"/>
             </BoxContainer>
