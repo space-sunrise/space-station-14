@@ -262,23 +262,23 @@ namespace Content.Server.Communications
 
             if (comp.AnnounceSentBy)
                 msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            // Sunrise-start
+            var voice = comp.AnnounceVoice;
+            if (TryComp<TTSComponent>(message.Actor, out var ttsComponent))
+            {
+                voice = ttsComponent.VoicePrototypeId;
+            }
+            // Sunrise-end
 
             if (comp.Global)
             {
-                // Sunrise-start
-                var voice = comp.AnnounceVoice;
-                if (TryComp<TTSComponent>(message.Actor, out var ttsComponent))
-                {
-                    voice = ttsComponent.VoicePrototypeId;
-                }
-                // Sunrise-end
                 _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color, announceVoice: voice); // Sunrise-edit
 
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice);
+            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color, announceVoice: voice);
 
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
 

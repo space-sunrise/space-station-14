@@ -154,6 +154,7 @@
     - id: DrinkInc
     - id: SheetOfficePaper # Sunrise-edit
       amount: 1
+    - id: PlantAnalyzerCartridge # Sunrise-Add
 
 - type: entity
   id: LockerHeadOfPersonnelFilled

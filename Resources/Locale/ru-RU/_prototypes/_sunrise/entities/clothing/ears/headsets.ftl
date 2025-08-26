@@ -20,5 +20,7 @@ ent-ClothingHeadsetAltUSSP = полноразмерная гарнитура к�
     .desc = Модифицированный модульный интерком СССП, надеваемый на голову, и содержащий ключ шифрования. Имеет 5 ячеек для ключей шифрования.
 ent-ClothingHeadsetAltAbductor = наушники похитителей
     .desc = { ent-ClothingHeadsetAlt.desc }
+ent-ClothingHeadsetCommaid = гарнитура горничной командования
+    .desc = { ent-ClothingHeadset.desc }
 ent-ClothingHeadsetAltCentComSunrise = полноразмерная гарнитура Центком
     .desc = { ent-ClothingHeadsetAltCentCom.desc }

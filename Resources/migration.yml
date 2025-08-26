@@ -840,4 +840,6 @@ SpeedLoaderMagnum: SpeedLoaderMagnumSP
 MagazineBoxRifle: MagazineBoxRifleSP
 PrinterDoc: CopyMachineFilled
 PrinterDocFlatpack: CopyMachineFlatpack
+MagazineP90Extended: null
+CrateArmoryWeaponXM1014: null
 # Sunrise-End
