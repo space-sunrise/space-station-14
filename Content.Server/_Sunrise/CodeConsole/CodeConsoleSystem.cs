@@ -141,11 +141,12 @@ public sealed class CodeConsoleSystem : EntitySystem
             }
             else
             {
+                if (ent.Comp.EnteredCode.Length == ent.Comp.CodeLength)
+                    _deviceLink.InvokePort(ent.Owner, ent.Comp.WrongCodePort);
+
                 ent.Comp.EnteredCode = "";
                 _audio.PlayPvs(ent.Comp.AccessDeniedSound, ent.Owner);
             }
-            if (ent.Comp.EnteredCode.Length == ent.Comp.CodeLength)
-                _deviceLink.InvokePort(ent.Owner, ent.Comp.WrongCodePort);
         }
         else
         {

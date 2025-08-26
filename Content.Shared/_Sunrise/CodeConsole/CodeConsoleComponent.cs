@@ -38,7 +38,7 @@ public sealed partial class CodeConsoleComponent : Component
 
     private string _code = string.Empty;
 
-    [DataField, AutoNetworkedField]
+    [DataField(serverOnly: true)]
     public string EnteredCode = string.Empty;
 
     [DataField]
