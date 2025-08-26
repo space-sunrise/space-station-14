@@ -64,6 +64,9 @@ public sealed class CodeConsoleSystem : EntitySystem
 
     private void OnKeypadButtonPressed(Entity<CodeConsoleComponent> ent, ref CodeConsoleKeypadMessage args)
     {
+        if (args.Value < 0 || args.Value > 9)
+            return;
+
         PlayKeypadSound(ent, args.Value);
 
         if (!ent.Comp.IsLocked)
@@ -117,7 +120,7 @@ public sealed class CodeConsoleSystem : EntitySystem
 
         var verb = new AlternativeVerb()
         {
-            Text = Loc.GetString("code-console-verb-seale-name"),
+            Text = Loc.GetString("code-console-verb-seal-name"),
             Message = Loc.GetString("code-console-verb-seal-desc"),
             Icon = new SpriteSpecifier.Texture(
                 new("/Textures/Interface/VerbIcons/lock.svg.192dpi.png")),
@@ -140,9 +143,9 @@ public sealed class CodeConsoleSystem : EntitySystem
             {
                 ent.Comp.EnteredCode = "";
                 _audio.PlayPvs(ent.Comp.AccessDeniedSound, ent.Owner);
-
-                _deviceLink.InvokePort(ent.Owner, ent.Comp.WrongCodePort);
             }
+            if (ent.Comp.EnteredCode.Length == ent.Comp.CodeLength)
+                _deviceLink.InvokePort(ent.Owner, ent.Comp.WrongCodePort);
         }
         else
         {

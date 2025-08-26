@@ -41,6 +41,8 @@ public sealed class CodeConsoleBoundUserInterface : BoundUserInterface
         {
             SendMessage(new CodeConsoleLockButtonMessage());
         };
+
+        _menu.OnClose += Close;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
