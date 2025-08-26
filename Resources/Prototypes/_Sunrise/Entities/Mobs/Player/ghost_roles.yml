@@ -255,12 +255,10 @@
     - BoxErtBaseKit
     - MedkitCombatFilled
     - CrowbarRed
-    - Hemostat
     - SawElectric
     - Drill
-    - Cautery
     - Retractor
-    - Scalpel
+    - ScalpelLaser
     - BoneGel
     - BoneSetterAdvanced
     - ChemistryBottleOmnizine
@@ -292,12 +290,10 @@
     - BoxErtBaseKit
     - MedkitCombatFilled
     - CrowbarRed
-    - HemostatAdvanced
     - SawAdvanced
     - Drill
-    - Cautery
     - RetractorAdvanced
-    - ScalpelAdvanced
+    - ScalpelLaser
     - EmergencyRollerBedSpawnFolded
     - BoneGel
     - BoneSetterAdvanced
@@ -331,7 +327,6 @@
     - BoxErtBaseKit
     - LightReplacer
     - BoxCleanerGrenades
-    - BoxCleanerGrenades
     - CrowbarRed
     - ClothingHandsPowerGlovesUplinkNTERTAmber
 
@@ -358,7 +353,6 @@
     back:
     - BoxErtBaseKit
     - LightReplacer
-    - BoxCleanerGrenades
     - BoxCleanerGrenades
     - CrowbarRed
     - ClothingHandsPowerGlovesUplinkNTERTGamma
