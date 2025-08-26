@@ -1,5 +1,5 @@
 using Content.Server.DeviceLinking.Systems;
-using Content.Shared._Sunrise.EncodedAirlock;
+using Content.Shared._Sunrise.CodeConsole;
 using Content.Shared.Audio;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Interaction;
@@ -9,7 +9,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server._Sunrise.EncodedAirlock;
+namespace Content.Server._Sunrise.CodeConsole;
 
 public sealed class CodeConsoleSystem : EntitySystem
 {

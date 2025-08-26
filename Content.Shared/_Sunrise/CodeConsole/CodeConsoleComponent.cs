@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using System.Linq;
 
-namespace Content.Shared._Sunrise.EncodedAirlock;
+namespace Content.Shared._Sunrise.CodeConsole;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CodeConsoleComponent : Component

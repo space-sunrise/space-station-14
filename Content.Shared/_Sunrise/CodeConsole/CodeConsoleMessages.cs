@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Sunrise.EncodedAirlock;
+namespace Content.Shared._Sunrise.CodeConsole;
 
 [Serializable, NetSerializable]
 public sealed class CodeConsoleKeypadMessage : BoundUserInterfaceMessage
