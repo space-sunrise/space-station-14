@@ -27,6 +27,7 @@ research-technology-excavation = Массовые раскопки
 research-technology-biochemical-stasis = Биохимический стазис
 research-technology-mechanized-treatment = Механизированная подготовка
 research-technology-bluespace-chemistry = Блюспейс-химия
+research-technology-autoMenders = Автомендеры
 research-technology-salvage-weapons = Утилизаторское оружие
 research-technology-special-means = Специальные средства
 research-technology-draconic-munitions = Драконьи боеприпасы

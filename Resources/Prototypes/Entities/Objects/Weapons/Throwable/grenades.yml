@@ -100,6 +100,7 @@
       path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
       params:
         volume: 20
+    positional: true
   - type: DeleteOnTrigger
     keysIn:
     - timer
@@ -281,6 +282,7 @@
           path: /Audio/Effects/Grenades/Supermatter/supermatter_end.ogg
           params:
             volume: 5
+        positional: true
         keysIn:
         - stageTwo
       - type: DeleteOnTrigger
@@ -496,10 +498,13 @@
     duration: 45 # Sunrise-Edit
     spreadAmount: 50
   - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
     sound:
       path: /Audio/_Sunrise/sg_explode.ogg # Sunrise-Edit
       params:
         volume: 15
+    positional: true
   - type: DeleteOnTrigger
     keysIn:
     - timer
@@ -651,6 +656,7 @@
     - timer
     sound:
       path: /Audio/Effects/Emotes/parp1.ogg
+    positional: true
   - type: Appearance
   - type: TimerTrigger
     beepSound:
@@ -675,6 +681,7 @@
     - timer
     sound:
       path: /Audio/Effects/Emotes/parp1.ogg
+    positional: true
   - type: Appearance
   - type: TimerTriggerVisuals
     primingSound:

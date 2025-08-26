@@ -60,9 +60,9 @@
       Structural: 226
   staminaDamage: 35
   armorPenetration: 0.35
-  pierceChance: 0.80
+  pierceChance: 0.95 # Sunrise-TODO: Отдельный патрон Пенетратор как в ЫЫ13
   pierceLevel: Rock
-  ricochetChance: 0.95
+  ricochetChance: 0.6
   steps: 20
   derivation: 0.005
 
@@ -684,7 +684,7 @@
   damage:
     types:
       Piercing: 28
-      Structural: 15
+      Structural: 25
   armorPenetration: 0.40
   staminaDamage: 15
   pierceChance: 0.35
@@ -919,6 +919,48 @@
     types:
       Heat: 50
       Structural: 25
+
+# X-ray laser beam
+- type: hitscan
+  id: XrayLaserBeam
+  damage:
+    types:
+      Heat: 15
+      Radiation: 10
+  pierceChance: 0.99
+  pierceLevel: Rock
+  steps: 20
+  derivation: 0.005
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_xray
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: xray
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_xray
+  reflective: Energy
+
+# X-ray laser beam cartridge # Костыль зато работает
+- type: entity
+  parent: BaseCartridge
+  id: CartridgeXrayBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+  - type: HitScanCartridgeAmmo
+    deleteOnSpawn: true
+    hitscan: XrayLaserBeam
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+###
 
 - type: hitscan
   id: DisablerBoltPractice

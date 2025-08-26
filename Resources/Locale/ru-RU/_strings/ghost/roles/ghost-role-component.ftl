@@ -75,6 +75,9 @@ ghost-role-information-kobold-name = Кобольд
 ghost-role-information-kobold-description = Будьте маленьким гремлином, которым и являетесь, кричите на членов экипажа и просите мяса!
 ghost-role-information-rat-king-name = Крысиный король
 ghost-role-information-rat-king-description = Вы - Крысиный король, вас интересует еда, еда и ещё раз еда. Сотрудничайте со станцией или сражайтесь с ней ради еды. Я уже упоминал, что вас интересует еда?
+
+rat-guard-ghost-role-name = Крысиный гвардеец
+rat-guard-ghost-role-description = Вы элитный крысиный гвардеец. Защищайте своего короля и выполняйте его приказы.
 ghost-role-information-rat-servant-name = Крысиный слуга
 ghost-role-information-rat-servant-description = Вы Крысиный слуга. Выполняйте приказы своего короля.
 ghost-role-information-salvage-carp-name = Космический карп на аварийном обломке

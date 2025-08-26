@@ -1257,3 +1257,44 @@
   name: loadout-group-uniformntr
   loadouts:
   - JumpsuitNTR
+
+# ComMaid Groups
+
+- type: loadoutGroup
+  id: ComMaidHead
+  name: loadout-group-commaid-head
+  loadouts:
+  - ComMaidHurseHat
+  - ComMaidBonnyEars
+  - ComMaidTacticalHeadband
+
+- type: loadoutGroup
+  id: ComMaidJumpsuit
+  name: loadout-group-commaid-jumpsuit
+  loadouts:
+  - ComMaidElegantJumpskirt
+  - ComMaidSunriseJumpskirt
+  - ComMaidBunnyUniform
+  - ComMaidTacticalJumpskirt
+
+- type: loadoutGroup
+  id: ComMaidNeck
+  name: loadout-group-commaid-neck
+  loadouts:
+  - ComMaidBunnyButterfly
+
+- type: loadoutGroup
+  id: ComMaidShoes
+  name: loadout-group-commaid-shoes
+  loadouts:
+  - ComMaidShoes
+  - ComMaidBunnyShoes
+
+- type: loadoutGroup
+  id: ComMaidGloves
+  name: loadout-group-commaid-gloves
+  loadouts:
+  - ComMaidBunnyManjets
+  - ComMaidGlovesWhite
+  - ComMaidGlovesTactical
+
