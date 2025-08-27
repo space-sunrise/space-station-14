@@ -1,19 +1,20 @@
 using Content.Shared.Interaction.Events;
-using Robust.Shared.Map;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
-using System.Numerics;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
-using Robust.Shared.Audio.Systems;
-using System.Threading.Tasks;
-using Robust.Shared.Random;
 using Content.Shared._Sunrise.Biocode;
 using Content.Server.Popups;
+using Robust.Shared.Map;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
+using Robust.Shared.Audio;
+using System.Numerics;
+using System.Threading.Tasks;
 
-namespace Content.Server.SyndicateTeleporter; // В будущем перенести в Shared пофиксив мисспредикт.
+namespace Content.Server._Sunrise.SyndicateTeleporter; // В будущем перенести в Shared пофиксив мисспредикт.
 
 public sealed class SyndicateTeleporterSystem : EntitySystem
 {
@@ -27,7 +28,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly BiocodeSystem _biocode = default!;
 
-    private const string TeleportEffectPrototype = "TeleportEffect";
+    private const string SourceEffectPrototype = "TeleportEffectSource";
+    private const string TargetEffectPrototype = "TeleportEffectTarget";
     public override void Initialize()
     {
         base.Initialize();
@@ -80,8 +82,6 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         _charges.TryUseCharge((uid, charges));
         component.UserComp = args.User;
         Teleportation(uid, args.User, component);
-
-        _audio.PlayPredicted(component.TeleportSound, uid, args.User);
     }
 
     private void Teleportation(EntityUid uid, EntityUid user, SyndicateTeleporterComponent comp)
@@ -93,14 +93,16 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         var offsetValue = transform.LocalRotation.ToWorldVec().Normalized() * multiplaer;
         var coords = transform.Coordinates.Offset(offsetValue); //set coordinates where we move on
 
-        Spawn(TeleportEffectPrototype, Transform(user).Coordinates);
+        // Spawn source effect at original position
+        Spawn(SourceEffectPrototype, Transform(user).Coordinates);
 
         if (transform.MapID != coords.GetMapId(EntityManager))
             return;
 
         _transformSystem.SetCoordinates(user, coords); // teleport
 
-        Spawn(TeleportEffectPrototype, Transform(user).Coordinates);
+        // Spawn target effect at new position
+        Spawn(TargetEffectPrototype, Transform(user).Coordinates);
 
         var tile = _turf.GetTileRef(coords); // get info about place where we just teleported. theare a walls?
         if (tile == null)
@@ -109,9 +111,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (_turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable))
         {
             comp.InWall = true; // if yes then starting the timer countdown in update
-
         }
-
     }
 
     private void SaveTeleport(EntityUid uid, SyndicateTeleporterComponent comp)
@@ -132,7 +132,6 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             if (!TryComp<BodyComponent>(comp.UserComp, out var body))
                 return;
 
-
             EntityUid? tuser = null;
 
             if (saveattempts > 0) // if we have chance to survive then teleport in random side away
@@ -142,7 +141,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
                 coords = transform.Coordinates.Offset(offsetValue);
                 _transformSystem.SetCoordinates(comp.UserComp, coords);
 
-                Spawn(TeleportEffectPrototype, coords);
+                // Spawn target effect at corrected position
+                Spawn(TargetEffectPrototype, coords);
                 _audio.PlayPredicted(comp.AlarmSound, uid, tuser);
 
                 saveattempts--;
