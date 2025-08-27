@@ -21,4 +21,4 @@ health-examinable-shield-Heat-30 = [color=crimson]Shield is melting under extrem
 health-examinable-shield-Heat-50 = [color=crimson]Shield almost burns in your hand![/color]
 
 health-examinable-shield-Mangleness-15 = [color=orange]Shield looks fused.[/color]
-health-examinable-shield-Mangleness-30 = [color=red]Shield looks like scrap metal![/color]
+health-examinable-shield-Mangleness-35 = [color=red]Shield looks like scrap metal![/color]
