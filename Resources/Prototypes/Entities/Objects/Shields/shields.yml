@@ -65,6 +65,7 @@
         - Slash
         - Piercing
         - Heat
+        - Mangleness
       locPrefix: shield #Sunrise-End
 
 #Security Shields
@@ -650,7 +651,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: BaseShield
+  parent: [ BaseShield, RepairableShield ] # Sunrise-Edit
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:
