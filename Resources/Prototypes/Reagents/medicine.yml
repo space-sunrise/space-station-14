@@ -1559,7 +1559,7 @@
   desc: reagent-desc-apoptodon
   physicalDesc: reagent-physical-desc-apoptodon
   flavor: medicine
-  color: "#cc1a79"
+  color: "#00ff00"
   worksOnTheDead: true
   metabolisms:
     Medicine:
@@ -1574,7 +1574,6 @@
             Brute: -12
             Burn: -16
           types:
-            Poison: -4
             Radiation: 1
             Cellular: 1
       - !type:ReduceRotting
@@ -1596,6 +1595,7 @@
   worksOnTheDead: true
   metabolisms:
     Medicine:
+      metabolismRate: 1.0
       effects:
       - !type:HealthChange
         conditions:
@@ -1616,11 +1616,15 @@
   worksOnTheDead: true
   metabolisms:
     Medicine:
+      metabolismRate: 1.0
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 200.0
         damage:
           types:
-            Poison: -4
+            Poison: -6
 
 - type: reagent
   id: Brutedon
@@ -1633,9 +1637,13 @@
   worksOnTheDead: true
   metabolisms:
     Medicine:
+      metabolismRate: 1.0
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 200.0
         damage:
           groups:
-            Brute: -4
+            Brute: -6
 #Sunrise-End
