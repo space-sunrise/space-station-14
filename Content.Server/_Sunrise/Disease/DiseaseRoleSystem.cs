@@ -16,6 +16,9 @@ using Robust.Shared.Log;
 using Robust.Shared.Utility;
 using Content.Shared.Zombies;
 using Content.Shared.Chemistry.Components;
+using Content.Server.Audio;
+using Content.Shared.Store;
+using Robust.Server.Audio;
 
 namespace Content.Server._Sunrise.Disease;
 
@@ -27,6 +30,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
 
     [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
@@ -131,32 +135,18 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                         {
                             // Use a charge
                             _sharedCharges.AddCharges((actionUid, chargesComp), -1);
+
+                            // Play Initial Infected antag audio (only for the disease player)
+                            _audio.PlayEntity("/Audio/Ambience/Antag/zombie_start.ogg", args.Performer, args.Performer);
+
                             OnInfect(args, 1);
                             return;
-                        }
-                        else
-                        {
-                            // No charges left, try to use money
-                            if (TryRemoveMoney(args.Performer, component.InfectCost))
-                            {
-                                OnInfect(args);
-                                return;
-                            }
-                            else
-                            {
-                                // No charges and no money
-                                return;
-                            }
                         }
                     }
                 }
             }
 
-            // Fallback: try to use money if no charges found
-            if (TryRemoveMoney(args.Performer, component.InfectCost))
-            {
-                OnInfect(args);
-            }
+
         }
     }
 
@@ -184,31 +174,28 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         _store.ToggleUi(uid, uid, store);
     }
 
-    private void OnDiseaseInfo(EntityUid uid, DiseaseRoleComponent component, DiseaseInfoEvent args)
+        private void OnDiseaseInfo(EntityUid uid, DiseaseRoleComponent component, DiseaseInfoEvent args)
     {
-        // Create a medical scanner-style formatted display
-        var infoText = "[color=#00ff00][bold]" + Loc.GetString("disease-info-header") + "[/bold][/color]\n\n";
-
-        // Core Statistics Section
-        infoText += "[color=#ffff00][bold]Core Statistics:[/bold][/color]\n";
-        infoText += "├─ " + Loc.GetString("disease-info-base-chance", ("value", (component.BaseInfectChance * 100).ToString("F0"))) + "\n";
-        infoText += "├─ " + Loc.GetString("disease-info-cough-chance", ("value", (component.CoughInfectChance * 100).ToString("F0"))) + "\n";
-        infoText += "├─ " + Loc.GetString("disease-info-lethal", ("value", component.Lethal)) + "\n";
-        infoText += "└─ " + Loc.GetString("disease-info-shield", ("value", component.Shield)) + "\n\n";
-
-        // Infection Statistics Section
-        infoText += "[color=#00ffff][bold]Infection Statistics:[/bold][/color]\n";
-        infoText += "├─ " + Loc.GetString("disease-info-infected-count", ("value", component.Infected.Count)) + "\n";
-        infoText += "└─ " + Loc.GetString("disease-info-total-infected", ("value", component.SickOfAllTime)) + "\n\n";
-
-        // Currency Section
+        // Get disease points from store
+        var diseasePoints = 0;
         if (TryComp<StoreComponent>(uid, out var store))
         {
-            infoText += "[color=#ff00ff][bold]Resources:[/bold][/color]\n";
-            infoText += "└─ " + Loc.GetString("disease-info-disease-points", ("value", store.Balance[component.CurrencyPrototype]));
+            diseasePoints = (int)store.Balance[component.CurrencyPrototype];
         }
 
-        _popup.PopupEntity(infoText, uid, uid, PopupType.Large);
+        // Create disease info data
+        var diseaseInfo = new DiseaseInfoData(
+            component.BaseInfectChance * 100, // Convert to percentage
+            component.CoughInfectChance * 100, // Convert to percentage
+            component.Lethal,
+            component.Shield,
+            component.Infected.Count,
+            component.SickOfAllTime,
+            diseasePoints
+        );
+
+        // Send to client to open UI
+        RaiseNetworkEvent(diseaseInfo, uid);
     }
 
 
@@ -224,7 +211,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
             // Debug logging
             Log.Debug($"InfectCharge purchase completed for store {ToPrettyString(storeOwner)}");
 
-                        if (!EntityManager.TryGetComponent<DiseaseRoleComponent>(storeOwner, out var diseaseComp))
+            if (!EntityManager.TryGetComponent<DiseaseRoleComponent>(storeOwner, out var diseaseComp))
                 return;
 
             // Find the Infect action and check current charges
@@ -251,7 +238,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                         _sharedCharges.AddCharges((actionUid, chargesComp), 1);
                         Log.Debug($"Added 1 charge, new total: {_sharedCharges.GetCurrentCharges((actionUid, chargesComp))}");
 
-                        // Show success message
+                                        // Show success message
                         _popup.PopupEntity(Loc.GetString("disease-infect-charge-purchased"), storeOwner, PopupType.Medium);
                         break;
                     }

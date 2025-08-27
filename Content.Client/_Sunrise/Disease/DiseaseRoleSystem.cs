@@ -1,5 +1,10 @@
 using Content.Shared.Humanoid;
 using Content.Shared._Sunrise.Disease;
+using Content.Client._Sunrise.Disease.UI;
+using Robust.Client.UserInterface;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
+
 namespace Content.Client._Sunrise.Disease;
 
 public sealed class DiseaseRoleSystem : EntitySystem
@@ -8,13 +13,13 @@ public sealed class DiseaseRoleSystem : EntitySystem
     {
         base.Initialize();
         SubscribeNetworkEvent<ClientInfectEvent>(OnInfect);
+        SubscribeNetworkEvent<DiseaseInfoData>(OnDiseaseInfo);
     }
 
 
 
     private void OnInfect(ClientInfectEvent ev)
     {
-
         var target = GetEntity(ev.Infected);
         var performer = GetEntity(ev.Owner);
 
@@ -28,6 +33,12 @@ public sealed class DiseaseRoleSystem : EntitySystem
         {
             comp.Infected.Add(target);
         }
+    }
+
+    private void OnDiseaseInfo(DiseaseInfoData ev)
+    {
+        var window = IoCManager.Resolve<IUserInterfaceManager>().CreateWindow<DiseaseInfoWindow>();
+        window.Populate(ev);
     }
 
 }

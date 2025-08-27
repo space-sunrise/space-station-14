@@ -4,6 +4,7 @@ using Robust.Shared.Serialization;
 using Content.Shared.Inventory;
 using Content.Shared.Store.Components;
 using Content.Shared.Store;
+using Robust.Shared.GameObjects;
 namespace Content.Shared._Sunrise.Disease;
 
 public sealed partial class InfectEvent : EntityTargetActionEvent
@@ -102,6 +103,29 @@ public sealed partial class DiseaseInfoEvent : InstantActionEvent
 
 public sealed partial class DiseaseZombieEvent : InstantActionEvent
 {
+}
+
+[Serializable, NetSerializable]
+public sealed class DiseaseInfoData : EntityEventArgs
+{
+    public float BaseInfectChance;
+    public float CoughInfectChance;
+    public int Lethal;
+    public int Shield;
+    public int InfectedCount;
+    public int TotalInfected;
+    public int DiseasePoints;
+
+    public DiseaseInfoData(float baseInfectChance, float coughInfectChance, int lethal, int shield, int infectedCount, int totalInfected, int diseasePoints)
+    {
+        BaseInfectChance = baseInfectChance;
+        CoughInfectChance = coughInfectChance;
+        Lethal = lethal;
+        Shield = shield;
+        InfectedCount = infectedCount;
+        TotalInfected = totalInfected;
+        DiseasePoints = diseasePoints;
+    }
 }
 
 

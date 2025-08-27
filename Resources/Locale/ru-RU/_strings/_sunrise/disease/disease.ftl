@@ -13,17 +13,22 @@ disease-not-enough-evolution-points = Вам не хватает очков эв
 disease-symptom-headache = Вы чувствуете лёгкую головную боль.
 
 #Sunrise-start
-action-disease-info-name = Информация о болезни
-action-disease-info-description = Просмотр текущей статистики и прогресса болезни.
-
-disease-info-header = Статистика болезни
-disease-info-base-chance = Базовый шанс заражения: { value }%
-disease-info-cough-chance = Шанс заражения при кашле/чихании: { value }%
-disease-info-lethal = Уровень летальности: { value }
-disease-info-shield = Уровень защиты: { value }
-disease-info-infected-count = В настоящее время заражено: { value }
-disease-info-total-infected = Всего заражено (за всё время): { value }
-disease-info-disease-points = Очки болезни: { value }
-
 disease-zombie-success = Успешно преобразовано { count } заражённых в зомби!
+
+action-disease-infect-name = Заразить
+action-disease-infect-description = Попытка заразить цель. Использует заряды или Очки Болезни.
+
+action-disease-shop-name = Мутация
+action-disease-shop-description = Открыть меню мутации.
+
+disease-info-core-stats-header = Основная статистика
+disease-info-base-chance = Базовый шанс заражения:
+disease-info-cough-chance = Шанс заражения при кашле/чихании:
+disease-info-lethal = Уровень летальности:
+disease-info-shield = Уровень защиты:
+disease-info-infection-stats-header = Статистика заражения
+disease-info-infected-count = В настоящее время заражено:
+disease-info-total-infected = Всего заражено (за всё время):
+disease-info-resources-header = Ресурсы
+disease-info-disease-points = Очки болезни:
 #Sunrise-End

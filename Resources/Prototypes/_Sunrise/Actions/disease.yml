@@ -289,8 +289,8 @@
 - type: entity
   parent: BaseAction
   id: ActionDiseaseInfo
-  name: action-disease-info-name
-  description: action-disease-info-description
+  name: Disease Information
+  description: View your current disease statistics and progress.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

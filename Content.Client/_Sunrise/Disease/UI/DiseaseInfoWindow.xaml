@@ -1,0 +1,72 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    MaxHeight="400"
+    MinWidth="350"
+    Title="Disease Information">
+    <ScrollContainer
+        Margin="5 5 5 5"
+        ReturnMeasure="True"
+        VerticalExpand="True">
+        <BoxContainer
+            Name="RootContainer"
+            VerticalExpand="True"
+            Orientation="Vertical">
+            
+
+
+            <!-- Core Statistics Section -->
+            <Label 
+                Name="CoreStatsHeader" 
+                Text="{Loc 'disease-info-core-stats-header'}" 
+                StyleClasses="LabelBold"
+                FontColorOverride="Yellow"
+                Margin="0 5 0 5" />
+            
+            <GridContainer Margin="0 2 0 2" Columns="2">
+                <Label Text="{Loc 'disease-info-base-chance'}" />
+                <Label Name="BaseChanceLabel" />
+                <Label Text="{Loc 'disease-info-cough-chance'}" />
+                <Label Name="CoughChanceLabel" />
+                <Label Text="{Loc 'disease-info-lethal'}" />
+                <Label Name="LethalLabel" />
+                <Label Text="{Loc 'disease-info-shield'}" />
+                <Label Name="ShieldLabel" />
+            </GridContainer>
+
+            <PanelContainer StyleClasses="LowDivider" Margin="0 10 0 10" />
+
+            <!-- Infection Statistics Section -->
+            <Label 
+                Name="InfectionStatsHeader" 
+                Text="{Loc 'disease-info-infection-stats-header'}" 
+                StyleClasses="LabelBold"
+                FontColorOverride="Cyan"
+                Margin="0 5 0 5" />
+            
+            <GridContainer Margin="0 2 0 2" Columns="2">
+                <Label Text="{Loc 'disease-info-infected-count'}" />
+                <Label Name="InfectedCountLabel" />
+                <Label Text="{Loc 'disease-info-total-infected'}" />
+                <Label Name="TotalInfectedLabel" />
+            </GridContainer>
+
+            <PanelContainer StyleClasses="LowDivider" Margin="0 10 0 10" />
+
+            <!-- Resources Section -->
+            <Label 
+                Name="ResourcesHeader" 
+                Text="{Loc 'disease-info-resources-header'}" 
+                StyleClasses="LabelBold"
+                FontColorOverride="Magenta"
+                Margin="0 5 0 5" />
+            
+            <GridContainer Margin="0 2 0 2" Columns="2">
+                <Label Text="{Loc 'disease-info-disease-points'}" />
+                <Label Name="DiseasePointsLabel" />
+            </GridContainer>
+
+        </BoxContainer>
+    </ScrollContainer>
+</controls:FancyWindow>
+

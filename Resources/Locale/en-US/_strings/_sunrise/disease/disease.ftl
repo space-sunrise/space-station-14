@@ -13,17 +13,22 @@ disease-not-enough-evolution-points = Not enough evolution points
 disease-symptom-headache = You feel a slight headache.
 
 #Sunrise-start
-action-disease-info-name = Disease Information
-action-disease-info-description = View your current disease statistics and progress.
-
-disease-info-header = Disease Statistics
-disease-info-base-chance = Base Infection Chance: { value }%
-disease-info-cough-chance = Cough/Sneeze Infection Chance: { value }%
-disease-info-lethal = Lethality Level: { value }
-disease-info-shield = Shield Level: { value }
-disease-info-infected-count = Currently Infected: { value }
-disease-info-total-infected = Total Infected (All Time): { value }
-disease-info-disease-points = Disease Points: { value }
-
 disease-zombie-success = Successfully converted { count } infected to zombies!
+
+action-disease-infect-name = Infect
+action-disease-infect-description = Attempt to infect a target. Uses charges or Disease Points.
+
+action-disease-shop-name = Disease Shop
+action-disease-shop-description = Open the disease mutation menu.
+
+disease-info-core-stats-header = Core Statistics
+disease-info-base-chance = Base Infection Chance:
+disease-info-cough-chance = Cough/Sneeze Chance:
+disease-info-lethal = Lethality Level:
+disease-info-shield = Shield Level:
+disease-info-infection-stats-header = Infection Statistics
+disease-info-infected-count = Currently Infected:
+disease-info-total-infected = Total Infected (All Time):
+disease-info-resources-header = Resources
+disease-info-disease-points = Disease Points:
 #Sunrise-End
