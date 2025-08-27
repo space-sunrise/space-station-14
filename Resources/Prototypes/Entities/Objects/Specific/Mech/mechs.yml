@@ -503,6 +503,14 @@
     enabled: false
   - type: AccessReader
     access: [["Security"]]
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      425: Critical
+    showOverlays: false
+    allowRevives: true
+
 
 - type: entity
   id: MechPaddyBattery
