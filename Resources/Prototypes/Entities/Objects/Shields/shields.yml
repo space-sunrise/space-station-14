@@ -72,7 +72,7 @@
 
 - type: entity
   name: riot shield
-  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -105,7 +105,7 @@
 
 - type: entity
   name: riot strobe shield
-  parent: [ RepairableShield, BaseShield, BaseSecurityContraband, MachineComponentSounds ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseSecurityContraband, MachineComponentSounds, BaseShield ] # Sunrise-Edit
   id: RiotShieldStrobe
   description: A large tower shield with atached Flash. Good for controlling crowds.
   components:
@@ -199,7 +199,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -207,6 +207,7 @@
       state: riot_laser-icon
     - type: Item
       heldPrefix: riot_laser
+      size: Ginormous # Sunrise-Edit Я не ебу почему он стал маленьким
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -225,13 +226,14 @@
 
 - type: entity
   name: ballistic shield
-  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:
     - type: Sprite
       state: riot_bullet-icon
     - type: Item
+      size: Ginormous # Sunrise-Edit Я не ебу почему он стал маленьким
       heldPrefix: riot_bullet
     - type: Blocking
       passiveBlockModifier:
@@ -726,6 +728,8 @@
   description: A shield!
   abstract: true
   components:
+    - type: Item
+      size: Ginormous
     - type: Repairable
       doAfterDelay: 4
       damage:
