@@ -11,10 +11,12 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Morgue.Components;
 using Content.Shared.Pinpointer;
 using Content.Shared.Storage.Components;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -31,6 +33,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, GetVerbsEvent<InteractionVerb>>(AddToggleVerb);
     }
 
     public override void Update(float frameTime)
@@ -158,4 +161,35 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         return false;
     }
+
+    private void AddToggleVerb(EntityUid uid, CrewMonitoringConsoleComponent component, GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        InteractionVerb verb = new();
+        if (component.DoCorpseAlert)
+        {
+            verb.Text = Loc.GetString("item-toggle-deactivate-alert");
+        }
+        else
+        {
+            verb.Text = Loc.GetString("item-toggle-activate-alert");
+        }
+        verb.Act = () => ToggleAlert(component);
+        args.Verbs.Add(verb);
+    }
+
+    public void ToggleAlert(CrewMonitoringConsoleComponent component)
+    {
+        if (component.DoCorpseAlert)
+        {
+            component.DoCorpseAlert = false;
+        }
+        else
+        {
+            component.DoCorpseAlert = true;
+        }
+    }
+
 }
