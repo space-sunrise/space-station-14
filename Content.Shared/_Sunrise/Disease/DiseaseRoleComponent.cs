@@ -28,7 +28,7 @@ public sealed partial class DiseaseRoleComponent : Component
 
 
     [DataField] public float BaseInfectChance = 0.6f;
-    [DataField] public float CoughInfectChance = 1.0f;
+    [DataField] public float CoughInfectChance = 0.2f;
 
     [DataField] public int Lethal = 0;
     [DataField] public int Shield = 1;

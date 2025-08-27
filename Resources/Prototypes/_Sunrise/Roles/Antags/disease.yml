@@ -75,10 +75,7 @@
   - type: DiseaseRole
     actions:
       ActionInfect: 3
-      ActionDiseaseBaseChance: 1
-      ActionDiseaseInfectChance: 1
-      ActionDiseaseShield: 1
-      ActionDiseaseLethal: 1
+      ActionDiseaseInfo: 999
   - type: Muted
 
 - type: sickIcon

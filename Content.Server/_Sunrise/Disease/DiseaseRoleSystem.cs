@@ -4,17 +4,18 @@ using Content.Shared.Actions.Components;
 using Robust.Shared.Random;
 using Content.Shared._Sunrise.Disease;
 using Content.Server.Store.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
-using Content.Server.Store;
-using Content.Shared.Store;
-using Content.Server.Store.Systems;
+using Robust.Shared.Timing;
 using Robust.Shared.Log;
 using Robust.Shared.Utility;
+using Content.Shared.Zombies;
+using Content.Shared.Chemistry.Components;
 
 namespace Content.Server._Sunrise.Disease;
 
@@ -25,6 +26,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
 
     [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
@@ -37,13 +39,15 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseShopActionEvent>(OnShop);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddSymptomEvent>(OnAddSymptom);
         SubscribeLocalEvent<InfectEvent>(OnInfects);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseInfoEvent>(OnDiseaseInfo);
 
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddBaseChanceEvent>(OnBaseChance);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddCoughChanceEvent>(OnCoughChance);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddLethalEvent>(OnLethal);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseZombieEvent>(OnZombie);
 
-        // Subscribe to store purchase events
+                // Subscribe to store purchase events
         SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStorePurchase);
     }
 
@@ -112,12 +116,44 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (TryComp<DiseaseRoleComponent>(args.Performer, out var component))
         {
-            if (component.FreeInfects > 0)
+            // Check if the Infect action has charges
+            if (EntityManager.TryGetComponent<ActionsComponent>(args.Performer, out var actionsComp))
             {
-                component.FreeInfects--;
-                OnInfect(args, 1);
+                foreach (var actionUid in actionsComp.Actions)
+                {
+                    if (HasComp<EntityTargetActionComponent>(actionUid) &&
+                        HasComp<LimitedChargesComponent>(actionUid))
+                    {
+                        var chargesComp = Comp<LimitedChargesComponent>(actionUid);
+                        var currentCharges = _sharedCharges.GetCurrentCharges((actionUid, chargesComp));
+
+                        if (currentCharges > 0)
+                        {
+                            // Use a charge
+                            _sharedCharges.AddCharges((actionUid, chargesComp), -1);
+                            OnInfect(args, 1);
+                            return;
+                        }
+                        else
+                        {
+                            // No charges left, try to use money
+                            if (TryRemoveMoney(args.Performer, component.InfectCost))
+                            {
+                                OnInfect(args);
+                                return;
+                            }
+                            else
+                            {
+                                // No charges and no money
+                                return;
+                            }
+                        }
+                    }
+                }
             }
-            else if (TryRemoveMoney(args.Performer, component.InfectCost))
+
+            // Fallback: try to use money if no charges found
+            if (TryRemoveMoney(args.Performer, component.InfectCost))
             {
                 OnInfect(args);
             }
@@ -127,6 +163,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     private void OnMapInit(EntityUid uid, DiseaseRoleComponent component, MapInitEvent args)
     {
         _actionsSystem.AddAction(uid, DiseaseShopId, uid);
+        // Add starting actions with charges
         foreach (var (id, charges) in component.Actions)
         {
             EntityUid? actionId = null;
@@ -147,6 +184,35 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         _store.ToggleUi(uid, uid, store);
     }
 
+    private void OnDiseaseInfo(EntityUid uid, DiseaseRoleComponent component, DiseaseInfoEvent args)
+    {
+        // Create a medical scanner-style formatted display
+        var infoText = "[color=#00ff00][bold]" + Loc.GetString("disease-info-header") + "[/bold][/color]\n\n";
+
+        // Core Statistics Section
+        infoText += "[color=#ffff00][bold]Core Statistics:[/bold][/color]\n";
+        infoText += "├─ " + Loc.GetString("disease-info-base-chance", ("value", (component.BaseInfectChance * 100).ToString("F0"))) + "\n";
+        infoText += "├─ " + Loc.GetString("disease-info-cough-chance", ("value", (component.CoughInfectChance * 100).ToString("F0"))) + "\n";
+        infoText += "├─ " + Loc.GetString("disease-info-lethal", ("value", component.Lethal)) + "\n";
+        infoText += "└─ " + Loc.GetString("disease-info-shield", ("value", component.Shield)) + "\n\n";
+
+        // Infection Statistics Section
+        infoText += "[color=#00ffff][bold]Infection Statistics:[/bold][/color]\n";
+        infoText += "├─ " + Loc.GetString("disease-info-infected-count", ("value", component.Infected.Count)) + "\n";
+        infoText += "└─ " + Loc.GetString("disease-info-total-infected", ("value", component.SickOfAllTime)) + "\n\n";
+
+        // Currency Section
+        if (TryComp<StoreComponent>(uid, out var store))
+        {
+            infoText += "[color=#ff00ff][bold]Resources:[/bold][/color]\n";
+            infoText += "└─ " + Loc.GetString("disease-info-disease-points", ("value", store.Balance[component.CurrencyPrototype]));
+        }
+
+        _popup.PopupEntity(infoText, uid, uid, PopupType.Large);
+    }
+
+
+
         private void OnStorePurchase(ref StoreBuyFinishedEvent args)
     {
         // Check if this is the InfectCharge purchase
@@ -154,7 +220,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         {
             // The store owner (disease antagonist) is the one who gets the charges
             var storeOwner = args.StoreUid;
-            
+
             // Debug logging
             Log.Debug($"InfectCharge purchase completed for store {ToPrettyString(storeOwner)}");
 
@@ -181,18 +247,10 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
                         Log.Debug($"Current charges: {currentCharges}");
 
-                                                // If already at max charges (3), don't add more but also don't charge points
-                        if (currentCharges >= 3)
-                        {
-                            Log.Debug("Already at max charges, showing max message");
-                            _popup.PopupEntity(Loc.GetString("disease-infect-charge-max"), storeOwner, PopupType.Medium);
-                            return;
-                        }
-                        
-                        // Add 1 charge
+                        // Add 1 charge (no limit)
                         _sharedCharges.AddCharges((actionUid, chargesComp), 1);
                         Log.Debug($"Added 1 charge, new total: {_sharedCharges.GetCurrentCharges((actionUid, chargesComp))}");
-                        
+
                         // Show success message
                         _popup.PopupEntity(Loc.GetString("disease-infect-charge-purchased"), storeOwner, PopupType.Medium);
                         break;
@@ -251,6 +309,29 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         {
             component.Symptoms.Add(args.Symptom, (args.MinLevel, args.MaxLevel));
         }
+        _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
+    }
+
+    private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
+    {
+        var infected = component.Infected.ToArray();
+
+        for (int i = 0; i < infected.Length; i++)
+        {
+            var target = infected[i];
+            if (target.IsValid() && !Deleted(target))
+            {
+                // Remove sick component and add zombie components
+                RemComp<SickComponent>(target);
+                component.Infected.Remove(target);
+
+                // Add zombie components
+                EnsureComp<ZombifyOnDeathComponent>(target);
+                EnsureComp<PendingZombieComponent>(target);
+            }
+        }
+
+        // Remove the zombie action after use
         _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
     }
 

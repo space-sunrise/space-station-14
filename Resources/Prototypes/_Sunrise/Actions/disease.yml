@@ -19,6 +19,8 @@
       - HumanoidAppearance
     canTargetSelf: false
     event: !type:InfectEvent
+  - type: LimitedCharges
+    maxCharges: 3
 
 - type: entity
   parent: BaseAction
@@ -267,5 +269,36 @@
     event: !type:DiseaseAddSymptomEvent
       symptom: "Insult"
       minLevel: 2
+
+#Sunrise-start
+- type: entity
+  parent: BaseAction
+  id: ActionDiseaseZombie
+  name: listing-disease-zombie-name
+  description: listing-disease-zombie-description
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: lethal
+  - type: InstantAction
+    event: !type:DiseaseZombieEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionDiseaseInfo
+  name: action-disease-info-name
+  description: action-disease-info-description
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: info
+  - type: InstantAction
+    event: !type:DiseaseInfoEvent
+#Sunrise-End
 
 

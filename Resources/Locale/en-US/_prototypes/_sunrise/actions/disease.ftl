@@ -11,7 +11,7 @@ ent-ActionDiseaseShield = listing-disease-shield-name
 ent-ActionDiseaseLethal = listing-disease-lethal-name
     .desc = listing-disease-lethal-description
 ent-ActionDiseaseInfectCharge = Infect Charge
-    .desc = Add 1 charge to your Infect ability. Costs 10 Disease Points.
+    .desc = Add 1 charge to your Infect ability.
 ent-ActionDiseaseCough = listing-disease-cough-name
     .desc = listing-disease-cough-description
 ent-ActionDiseaseSneeze = listing-disease-sneeze-name
@@ -32,3 +32,9 @@ ent-ActionDiseaseBlindness = listing-disease-blindness-name
     .desc = listing-disease-blindness-description
 ent-ActionDiseaseInsult = listing-disease-insult-name
     .desc = listing-disease-insult-description
+ent-ActionDiseaseZombie = listing-disease-zombie-name
+    .desc = listing-disease-zombie-description
+ent-ActionDiseaseInfo = action-disease-info-name
+    .desc = action-disease-info-description
+
+

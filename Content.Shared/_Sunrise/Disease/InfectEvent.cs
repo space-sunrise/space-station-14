@@ -96,6 +96,14 @@ public sealed class UpdateInfectionsEvent : EntityEventArgs
     }
 }
 
+public sealed partial class DiseaseInfoEvent : InstantActionEvent
+{
+}
+
+public sealed partial class DiseaseZombieEvent : InstantActionEvent
+{
+}
+
 
 
 
