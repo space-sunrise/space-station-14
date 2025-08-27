@@ -665,6 +665,24 @@
   products:
     Haloperidol: 5
 
+#Sunrise-Start
+- type: reaction
+  id: Apoptodon
+  reactants:
+    Cryoxadone:
+      amount: 1
+    Radium:
+      amount: 1
+    Mannitol:
+      amount: 1
+    Benzene:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    Apoptodon: 4
+
 - type: reaction
   id: H-32
   reactants:
@@ -691,7 +709,6 @@
       amount: 1
   products:
     Antidon: 3
-
 - type: reaction
   id: Brutedon
   reactants:
@@ -706,3 +723,4 @@
       catalyst: true
   products:
     Brutedon: 1
+#Sunrise-End

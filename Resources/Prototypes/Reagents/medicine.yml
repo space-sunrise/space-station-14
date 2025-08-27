@@ -1610,7 +1610,7 @@
   name: reagent-name-antidon
   group: Medicine
   desc: reagent-desc-antidon
-  physicalDesc: reagent-physical-desc-violet
+  physicalDesc: reagent-physical-desc-antidon
   flavor: medicine
   color: "#8A2BE2"
   worksOnTheDead: true
@@ -1627,7 +1627,7 @@
   name: reagent-name-brutedon
   group: Medicine
   desc: reagent-desc-brutedon
-  physicalDesc: reagent-physical-desc-thick
+  physicalDesc: reagent-physical-desc-brutedon
   flavor: medicine
   color: "#FFFF00"
   worksOnTheDead: true
