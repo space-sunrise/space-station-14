@@ -651,7 +651,7 @@
         Piercing: 4
         Slash: 5
         Blunt: 10
-      bluntStaminaDamageFactor: 0.5
+    bluntStaminaDamageFactor: 0.5
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
