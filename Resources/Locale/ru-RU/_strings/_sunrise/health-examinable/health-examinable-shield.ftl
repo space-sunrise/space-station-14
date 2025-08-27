@@ -1,4 +1,4 @@
-health-examinable-shield-none = There is no obvious damage to be seen.
+health-examinable-shield-none = Видимые повреждения щита отсутствуют.
 
 health-examinable-shield-Blunt-8 = [color=orange]Щит имеет небольшие вмятины.[/color]
 health-examinable-shield-Blunt-15 = [color=red]На щите несколько заметных вмятин.[/color]
