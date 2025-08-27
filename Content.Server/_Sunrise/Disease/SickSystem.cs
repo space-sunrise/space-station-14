@@ -246,7 +246,7 @@ public sealed class SickSystem : SharedSickSystem
                             _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
                         }
 
-                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 0.7f))
+                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.0f))
                         {
                             if (_robustRandom.Prob(disease.CoughInfectChance))
                             {
@@ -264,7 +264,7 @@ public sealed class SickSystem : SharedSickSystem
                 {
                     if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
                     {
-                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.2f))
+                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.5f))
                         {
                             if (_robustRandom.Prob(disease.CoughInfectChance))
                             {

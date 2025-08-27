@@ -10,7 +10,11 @@ using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
-using Content.Shared.Store.Events;
+using Content.Server.Store;
+using Content.Shared.Store;
+using Content.Server.Store.Systems;
+using Robust.Shared.Log;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Disease;
 
@@ -40,7 +44,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
 
         // Subscribe to store purchase events
-        SubscribeLocalEvent<StoreComponent, StorePurchasedListingEvent>(OnStorePurchase);
+        SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStorePurchase);
     }
 
     private void OnLethal(EntityUid uid, DiseaseRoleComponent component, DiseaseAddLethalEvent args)
@@ -143,44 +147,61 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         _store.ToggleUi(uid, uid, store);
     }
 
-    private void OnStorePurchase(EntityUid uid, StoreComponent component, StorePurchasedListingEvent args)
+        private void OnStorePurchase(ref StoreBuyFinishedEvent args)
     {
         // Check if this is the InfectCharge purchase
-        if (args.Listing.ID == "InfectCharge")
+        if (args.PurchasedItem.ID == "InfectCharge")
         {
-            // Find the buyer (should be the store owner)
-            var buyer = args.Purchaser;
+            // The store owner (disease antagonist) is the one who gets the charges
+            var storeOwner = args.StoreUid;
+            
+            // Debug logging
+            Log.Debug($"InfectCharge purchase completed for store {ToPrettyString(storeOwner)}");
 
-            if (!EntityManager.TryGetComponent<DiseaseRoleComponent>(buyer, out var diseaseComp))
+                        if (!EntityManager.TryGetComponent<DiseaseRoleComponent>(storeOwner, out var diseaseComp))
                 return;
 
             // Find the Infect action and check current charges
-            if (EntityManager.TryGetComponent<ActionsComponent>(buyer, out var actionsComp))
+            if (EntityManager.TryGetComponent<ActionsComponent>(storeOwner, out var actionsComp))
             {
+                Log.Debug($"Found ActionsComponent with {actionsComp.Actions.Count} actions");
+
                 foreach (var actionUid in actionsComp.Actions)
                 {
+                    Log.Debug($"Checking action {ToPrettyString(actionUid)}");
+
                     // Check if this action is the Infect action by looking for EntityTargetActionComponent
                     if (HasComp<EntityTargetActionComponent>(actionUid) &&
                         HasComp<LimitedChargesComponent>(actionUid))
                     {
+                        Log.Debug($"Found Infect action with charges: {ToPrettyString(actionUid)}");
+
                         var chargesComp = Comp<LimitedChargesComponent>(actionUid);
                         var currentCharges = _sharedCharges.GetCurrentCharges((actionUid, chargesComp));
 
-                        // If already at max charges (3), don't add more but also don't charge points
+                        Log.Debug($"Current charges: {currentCharges}");
+
+                                                // If already at max charges (3), don't add more but also don't charge points
                         if (currentCharges >= 3)
                         {
-                            _popup.PopupEntity(Loc.GetString("disease-infect-charge-max"), buyer, PopupType.Medium);
+                            Log.Debug("Already at max charges, showing max message");
+                            _popup.PopupEntity(Loc.GetString("disease-infect-charge-max"), storeOwner, PopupType.Medium);
                             return;
                         }
-
+                        
                         // Add 1 charge
                         _sharedCharges.AddCharges((actionUid, chargesComp), 1);
-
+                        Log.Debug($"Added 1 charge, new total: {_sharedCharges.GetCurrentCharges((actionUid, chargesComp))}");
+                        
                         // Show success message
-                        _popup.PopupEntity(Loc.GetString("disease-infect-charge-purchased"), buyer, PopupType.Medium);
+                        _popup.PopupEntity(Loc.GetString("disease-infect-charge-purchased"), storeOwner, PopupType.Medium);
                         break;
                     }
                 }
+            }
+            else
+            {
+                Log.Debug("No ActionsComponent found on buyer");
             }
         }
     }
