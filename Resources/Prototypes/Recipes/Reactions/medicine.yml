@@ -676,6 +676,7 @@
       amount: 1
     Plasma:
       amount: 1
+      catalyst: true
   products:
     H-32: 3
 
@@ -691,17 +692,17 @@
   products:
     Antidon: 3
 
-       - type: reaction
-         id: Brutedon
-         reactants:
-           Bicaridine:
-             amount: 1
-           Cryoxadone:
-             amount: 1
-           Epinephrine:
-             amount: 1
-           Plasma:
-             amount: 1
-             catalyst: true
-         products:
-           Brutedon: 1
+- type: reaction
+  id: Brutedon
+  reactants:
+    Bicaridine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Epinephrine:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    Brutedon: 1
