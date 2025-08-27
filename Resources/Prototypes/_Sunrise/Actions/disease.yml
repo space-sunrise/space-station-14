@@ -94,6 +94,8 @@
   - type: InstantAction
     event: !type:DiseaseAddLethalEvent
 
+
+
 #Store
 
 - type: entity

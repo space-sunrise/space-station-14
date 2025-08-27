@@ -67,13 +67,14 @@
     - DiseaseInfectCategory
     - DiseaseSymptomsCategory
     - DiseaseEvolutionCategory
+    - DiseaseInfectionCategory
     currencyWhitelist:
     - DiseasePoints
     balance:
       DiseasePoints: 20
   - type: DiseaseRole
     actions:
-      ActionInfect: -1
+      ActionInfect: 3
       ActionDiseaseBaseChance: -1
       ActionDiseaseInfectChance: -1
       ActionDiseaseShield: -1

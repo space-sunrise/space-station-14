@@ -138,3 +138,13 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: InfectCharge
+  name: listing-disease-infect-charge-name
+  description: listing-disease-infect-charge-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: action }
+  cost:
+    DiseasePoints: 10
+  categories:
+  - DiseaseInfectionCategory

@@ -2,6 +2,8 @@
 using Content.Shared.Actions;
 using Robust.Shared.Serialization;
 using Content.Shared.Inventory;
+using Content.Shared.Store.Components;
+using Content.Shared.Store;
 namespace Content.Shared._Sunrise.Disease;
 
 public sealed partial class InfectEvent : EntityTargetActionEvent
@@ -79,6 +81,10 @@ public sealed partial class DiseaseAddLethalEvent : InstantActionEvent
 public sealed partial class DiseaseAddShieldEvent : InstantActionEvent
 {
 }
+
+
+
+
 
 [Serializable, NetSerializable]
 public sealed class UpdateInfectionsEvent : EntityEventArgs

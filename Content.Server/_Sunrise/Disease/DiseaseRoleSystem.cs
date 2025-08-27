@@ -1,5 +1,6 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Robust.Shared.Random;
 using Content.Shared._Sunrise.Disease;
 using Content.Server.Store.Systems;
@@ -9,6 +10,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
+using Content.Shared.Store.Events;
 
 namespace Content.Server._Sunrise.Disease;
 
@@ -36,13 +38,16 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddCoughChanceEvent>(OnCoughChance);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddLethalEvent>(OnLethal);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
+
+        // Subscribe to store purchase events
+        SubscribeLocalEvent<StoreComponent, StorePurchasedListingEvent>(OnStorePurchase);
     }
 
     private void OnLethal(EntityUid uid, DiseaseRoleComponent component, DiseaseAddLethalEvent args)
     {
         if (!TryRemoveMoney(uid, 15))
         {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, PopupType.Medium);
             return;
         }
         component.Lethal += 1;
@@ -56,7 +61,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 15))
         {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, PopupType.Medium);
             return;
         }
         component.Shield += 1;
@@ -70,7 +75,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 20))
         {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, PopupType.Medium);
             return;
         }
         if (component.BaseInfectChance < 0.9f)
@@ -86,7 +91,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!TryRemoveMoney(uid, 15))
         {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, PopupType.Medium);
             return;
         }
         if (component.CoughInfectChance < 0.85f)
@@ -136,6 +141,48 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         if (!TryComp<StoreComponent>(uid, out var store))
             return;
         _store.ToggleUi(uid, uid, store);
+    }
+
+    private void OnStorePurchase(EntityUid uid, StoreComponent component, StorePurchasedListingEvent args)
+    {
+        // Check if this is the InfectCharge purchase
+        if (args.Listing.ID == "InfectCharge")
+        {
+            // Find the buyer (should be the store owner)
+            var buyer = args.Purchaser;
+
+            if (!EntityManager.TryGetComponent<DiseaseRoleComponent>(buyer, out var diseaseComp))
+                return;
+
+            // Find the Infect action and check current charges
+            if (EntityManager.TryGetComponent<ActionsComponent>(buyer, out var actionsComp))
+            {
+                foreach (var actionUid in actionsComp.Actions)
+                {
+                    // Check if this action is the Infect action by looking for EntityTargetActionComponent
+                    if (HasComp<EntityTargetActionComponent>(actionUid) &&
+                        HasComp<LimitedChargesComponent>(actionUid))
+                    {
+                        var chargesComp = Comp<LimitedChargesComponent>(actionUid);
+                        var currentCharges = _sharedCharges.GetCurrentCharges((actionUid, chargesComp));
+
+                        // If already at max charges (3), don't add more but also don't charge points
+                        if (currentCharges >= 3)
+                        {
+                            _popup.PopupEntity(Loc.GetString("disease-infect-charge-max"), buyer, PopupType.Medium);
+                            return;
+                        }
+
+                        // Add 1 charge
+                        _sharedCharges.AddCharges((actionUid, chargesComp), 1);
+
+                        // Show success message
+                        _popup.PopupEntity(Loc.GetString("disease-infect-charge-purchased"), buyer, PopupType.Medium);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     void AddMoney(EntityUid uid, FixedPoint2 value)
