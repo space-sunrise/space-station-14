@@ -1,5 +1,14 @@
+reagent-name-apoptodon = Apoptodon
+reagent-desc-apoptodon = An advanced radioactive solution for regenerating the body in cold conditions. Offsets rotting, but inflicts radiation and cellular damage. Works on both dead and living.
+
 reagent-name-h-32 = H-32
-reagent-desc-h-32 = An advanced radioactive solution for regenerating the body in cold conditions. Offsets rotting, but inflicts radiation and cellular damage. Works on both dead and living.
+reagent-desc-h-32 = A reagent developed in the field with increased radiation. Works on both dead and living.
+
+reagent-name-antidon = Antidon
+reagent-desc-antidon = A specialized poison treatment reagent that effectively neutralizes toxic damage. Works on both dead and living.
+
+reagent-name-brutedon = Brutedon
+reagent-desc-brutedon = An advanced brute damage treatment that heals all types of physical trauma. Works on both dead and living.
 
 reagent-name-cryptobiolin = cryptobiolin
 reagent-desc-cryptobiolin = Causes confusion and dizziness.

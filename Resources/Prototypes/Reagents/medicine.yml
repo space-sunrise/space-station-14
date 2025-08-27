@@ -1553,11 +1553,11 @@
         amount: -3.0
 #Sunrise-Start
 - type: reagent
-  id: H-32
-  name: reagent-name-h-32
+  id: Apoptodon
+  name: reagent-name-apoptodon
   group: Medicine
-  desc: reagent-desc-h-32
-  physicalDesc: reagent-physical-desc-h-32
+  desc: reagent-desc-apoptodon
+  physicalDesc: reagent-physical-desc-apoptodon
   flavor: medicine
   color: "#cc1a79"
   worksOnTheDead: true
@@ -1584,4 +1584,58 @@
           max: 180.0
         - !type:MobStateCondition
           mobstate: Dead
+
+- type: reagent
+  id: H-32
+  name: reagent-name-h-32
+  group: Medicine
+  desc: reagent-desc-h-32
+  physicalDesc: reagent-physical-desc-h-32
+  flavor: medicine
+  color: "#cc1a79"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        damage:
+          types:
+            Radiation: -4
+
+- type: reagent
+  id: Antidon
+  name: reagent-name-antidon
+  group: Medicine
+  desc: reagent-desc-antidon
+  physicalDesc: reagent-physical-desc-violet
+  flavor: medicine
+  color: "#8A2BE2"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -4
+
+- type: reagent
+  id: Brutedon
+  name: reagent-name-brutedon
+  group: Medicine
+  desc: reagent-desc-brutedon
+  physicalDesc: reagent-physical-desc-thick
+  flavor: medicine
+  color: "#FFFF00"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -4
 #Sunrise-End

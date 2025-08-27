@@ -664,3 +664,44 @@
       amount: 1
   products:
     Haloperidol: 5
+
+- type: reaction
+  id: H-32
+  reactants:
+    Arithrazine:
+      amount: 1
+    Bicaridine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Plasma:
+      amount: 1
+  products:
+    H-32: 3
+
+- type: reaction
+  id: Antidon
+  reactants:
+    Ultravasculine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Epinephrine:
+      amount: 1
+  products:
+    Antidon: 3
+
+       - type: reaction
+         id: Brutedon
+         reactants:
+           Bicaridine:
+             amount: 1
+           Cryoxadone:
+             amount: 1
+           Epinephrine:
+             amount: 1
+           Plasma:
+             amount: 1
+             catalyst: true
+         products:
+           Brutedon: 1
