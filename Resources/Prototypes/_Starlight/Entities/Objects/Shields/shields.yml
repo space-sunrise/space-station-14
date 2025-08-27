@@ -1,6 +1,6 @@
 - type: entity
   name: paladin shield
-  parent: [ BaseItem, BaseMajorContraband ] # Easier to remake it than inheret it, due to wiz keeping all shields in one folder and mine doing the opposite, due to the suitslot sprites.
+  parent: [ BaseShield, BaseMajorContraband, RepairableShield ] # Easier to remake it than inheret it, due to wiz keeping all shields in one folder and mine doing the opposite, due to the suitslot sprites.
   id: PaladinShield
   description: A shield for a true paladin! Good at deflecting hits with swords and absorbing the impact from bats, but not much else.
   components:

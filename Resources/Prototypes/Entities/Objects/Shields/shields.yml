@@ -59,32 +59,19 @@
                   max: 2
     - type: StaticPrice
       price: 100
-    - type: Repairable #Sunrise-Start
-      doAfterDelay: 3
-      damage:
-        types:
-          Blunt: -25
-          Slash: -25
-          Piercing: -25
-          Heat: -25
-          Caustic: -25
-          Structural: -25
-          Mangleness: 7.5
-    - type: HealthExaminable
+    - type: HealthExaminable #Sunrise-Start
       examinableTypes:
         - Blunt
         - Slash
         - Piercing
         - Heat
-        - Shock
       locPrefix: shield #Sunrise-End
-
 
 #Security Shields
 
 - type: entity
   name: riot shield
-  parent: [ BaseShield, BaseSecurityContraband ]
+  parent: [ BaseShield, BaseSecurityContraband, RepairableShield ] # Sunrise-Edit
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -117,7 +104,7 @@
 
 - type: entity
   name: riot strobe shield
-  parent: [ BaseShield, BaseSecurityContraband, MachineComponentSounds ]
+  parent: [ BaseShield, BaseSecurityContraband, MachineComponentSounds, RepairableShield ] # Sunrise-Edit
   id: RiotShieldStrobe
   description: A large tower shield with atached Flash. Good for controlling crowds.
   components:
@@ -211,7 +198,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ BaseShield, BaseSecurityContraband ]
+  parent: [ BaseShield, BaseSecurityContraband, RepairableShield ] # Sunrise-Edit
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -237,7 +224,7 @@
 
 - type: entity
   name: ballistic shield
-  parent: [ BaseShield, BaseSecurityContraband ]
+  parent: [ BaseShield, BaseSecurityContraband, RepairableShield ] # Sunrise-Edit
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:
@@ -366,7 +353,7 @@
 
 - type: entity
   name: makeshift shield
-  parent: BaseShield
+  parent: [ BaseShield, RepairableShield ] # Sunrise-Edit
   id: MakeshiftShield
   description: A rundown looking shield, not good for much.
   components:
@@ -730,3 +717,21 @@
                   max: 2
     - type: StaticPrice
       price: 150
+
+- type: entity # Sunrise-Start
+  name: repairable shield
+  parent: BaseItem
+  id: RepairableShield
+  description: A shield!
+  abstract: true
+  components:
+      - type: Repairable
+        doAfterDelay: 4
+        damage:
+          types:
+            Blunt: -25
+            Slash: -25
+            Piercing: -25
+            Heat: -25
+            Structural: -25
+            Mangleness: 7.5 # Sunrise-End
