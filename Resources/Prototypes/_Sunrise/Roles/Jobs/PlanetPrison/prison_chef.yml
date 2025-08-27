@@ -5,7 +5,7 @@
   playTimeTracker: JobPrisonChef
   requirements:
   - !type:RoleTimeRequirement
-    role: Chef
+    role: JobChef
     time: 7200 #2 hrs
   icon: "JobIconPrisonChef"
   startingGear: PrisonChefGear

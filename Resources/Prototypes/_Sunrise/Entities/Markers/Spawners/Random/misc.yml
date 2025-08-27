@@ -25,9 +25,9 @@
     rareChance: 0.35
 
 - type: entity
-  name: Спавнер скальной шахты
-  id: MineRockWallSpawner
-  description: Спавнит скальную породу и декор.
+  name: Mine Wall Rock Spawner
+  id: MineWallRockSpawner
+  description: Spawns rock wall and decor.
   parent: MarkerBase
   components:
   - type: Sprite
@@ -93,10 +93,10 @@
     rareChance: 0.01
 
 - type: entity
-  name: Спавнер скальной шахты [Рудокраб 15%]
-  description: Спавнит скальную породу, при добыче которой может появиться рандомный Рудокраб.
+  name: Mining Wall Rock Spawner [Ore Crab 15%]
+  description: Spawns rock wall, mining which may spawn a random Ore Crab.
   id: MineWallRockMobCrabSpawner
-  parent: MineRockWallSpawner
+  parent: MineWallRockSpawner
   components:
   - type: Sprite
     layers:
@@ -170,10 +170,10 @@
     rareChance: 0.01
 
 - type: entity
-  name: Спавнер скальной шахты [Карпы 10%]
-  description: Спавнит скальную породу (без плазмы и с камнями), при добыче которой может появиться рандомный Карп.
+  name: Mining Wall Rock Spawner [Carp 10%]
+  description: Spawns rock wall (no plasma, with stones), mining which may spawn a random Carp.
   id: MineWallRockMobCarpSpawner
-  parent: MineRockWallSpawner
+  parent: MineWallRockSpawner
   components:
   - type: Sprite
     layers:
@@ -275,10 +275,10 @@
     currentOre: OreCarpDragon
 
 - type: entity
-  name: Спавнер скальной шахты [Космомобы 10%]
+  name: Mining Wall Rock Spawner [Space Mob 10%]
+  description: Spawns rock wall (no ore, no beams, more crystals and barricades), mining which may spawn a random Space Mob.
   id: MineWallRockMobSpaceSpawner
-  description: Спавнит скальную породу (без руды и балок, больше кристаллов и баррикадов), при добыче которой может появиться рандомный Космический моб.
-  parent: MineRockWallSpawner
+  parent: MineWallRockSpawner
   components:
   - type: Sprite
     layers:
@@ -327,10 +327,10 @@
     rareChance: 0.05
 
 - type: entity
-  name: Спавнер скальной шахты [Астероид-мобы 10%]
-  description: Спавнит скальную породу (+космогриб), при добыче которой может появиться рандомный Астеоридный моб.
+  name: Mining Wall Rock Spawner [Asteroid Mob 10%]
+  description: Spawns rock wall (+spaceshroom), mining which may spawn a random Asteroid Mob.
   id: MineWallRockMobAsteroidSpawner
-  parent: MineRockWallSpawner
+  parent: MineWallRockSpawner
   components:
   - type: Sprite
     layers:
@@ -394,10 +394,10 @@
     rareChance: 0.04
 
 - type: entity
-  name: Спавнер скальной шахты [Ксеноморфы 10%]
-  description: Спавнит скальную породу, при добыче которой может появиться рандомный Ксеноморф.
+  name: Mining Wall Rock Spawner [Xeno 10%]
+  description: Spawns rock wall, mining which may spawn a random Xenomorph.
   id: MineWallRockMobXenoSpawner
-  parent: MineRockWallSpawner
+  parent: MineWallRockSpawner
   components:
   - type: Sprite
     layers:
