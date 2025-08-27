@@ -1,6 +1,6 @@
 health-examinable-shield-none = There is no obvious damage to be seen.
 
-health-examinable-shield-Blunt-8 = [color=orange]Shield have minor dents.[/color]
+health-examinable-shield-Blunt-8 = [color=orange]Shield has minor dents.[/color]
 health-examinable-shield-Blunt-15 = [color=red]Shield has several visible dents.[/color]
 health-examinable-shield-Blunt-30 = [color=crimson]Shield is badly deformed from impacts![/color]
 health-examinable-shield-Blunt-50 = [color=crimson]Shield is nearly shattered![/color]

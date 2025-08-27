@@ -72,7 +72,7 @@
 
 - type: entity
   name: riot shield
-  parent: [ BaseShield, BaseSecurityContraband, RepairableShield ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -105,7 +105,7 @@
 
 - type: entity
   name: riot strobe shield
-  parent: [ BaseShield, BaseSecurityContraband, MachineComponentSounds, RepairableShield ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseShield, BaseSecurityContraband, MachineComponentSounds ] # Sunrise-Edit
   id: RiotShieldStrobe
   description: A large tower shield with atached Flash. Good for controlling crowds.
   components:
@@ -199,7 +199,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ BaseShield, BaseSecurityContraband, RepairableShield ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -225,7 +225,7 @@
 
 - type: entity
   name: ballistic shield
-  parent: [ BaseShield, BaseSecurityContraband, RepairableShield ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:
@@ -651,7 +651,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: [ BaseShield, RepairableShield ] # Sunrise-Edit
+  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:
@@ -726,13 +726,13 @@
   description: A shield!
   abstract: true
   components:
-      - type: Repairable
-        doAfterDelay: 4
-        damage:
-          types:
-            Blunt: -25
-            Slash: -25
-            Piercing: -25
-            Heat: -25
-            Structural: -25
-            Mangleness: 7.5 # Sunrise-End
+    - type: Repairable
+      doAfterDelay: 4
+      damage:
+        types:
+          Blunt: -25
+          Slash: -25
+          Piercing: -25
+          Heat: -25
+          Structural: -25
+          Mangleness: 7.5 # Sunrise-End

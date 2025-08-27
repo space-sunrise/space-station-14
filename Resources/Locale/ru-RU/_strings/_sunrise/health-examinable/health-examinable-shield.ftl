@@ -12,7 +12,7 @@ health-examinable-shield-Slash-50 = [color=crimson]Щит едва держит�
 
 health-examinable-shield-Piercing-8 = [color=orange]Щит имеет маленькие пробоины.[/color]
 health-examinable-shield-Piercing-15 = [color=red]Щит изрешечён дырами.[/color]
-health-examinable-shield-Piercing-30 = [color=crimson]В щите зияют крупные опасные пробои![/color]
+health-examinable-shield-Piercing-30 = [color=crimson]В щите зияют крупные опасные пробоины![/color]
 health-examinable-shield-Piercing-50 = [color=crimson]Щит разорван на части от колющего урона![/color]
 
 health-examinable-shield-Heat-8 = [color=orange]Поверхность щита слегка оплавлена.[/color]

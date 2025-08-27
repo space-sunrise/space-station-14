@@ -1,6 +1,6 @@
 - type: entity
   name: paladin shield
-  parent: [ BaseShield, BaseMajorContraband, RepairableShield ] # Easier to remake it than inheret it, due to wiz keeping all shields in one folder and mine doing the opposite, due to the suitslot sprites.
+  parent: [ RepairableShield, BaseMajorContraband, BaseItem ] # Sunrise-Edit
   id: PaladinShield
   description: A shield for a true paladin! Good at deflecting hits with swords and absorbing the impact from bats, but not much else.
   components:
@@ -67,6 +67,14 @@
                 SheetSteel:
                   min: 5
                   max: 13
+    - type: HealthExaminable #Sunrise-Start
+      examinableTypes:
+        - Blunt
+        - Slash
+        - Piercing
+        - Heat
+        - Mangleness
+      locPrefix: shield #Sunrise-End
 
 - type: entity
   name: paladin greatshield
