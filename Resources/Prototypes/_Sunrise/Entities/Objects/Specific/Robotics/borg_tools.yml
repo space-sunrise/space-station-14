@@ -512,6 +512,12 @@
         - ReagentId: WeldingFuel
           Quantity: 500
         maxVol: 500
+  - type: SolutionRegeneration
+    solution: Welder
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 1.0
 
 - type: entity
   name: cyborg disabler machine gun

@@ -42,6 +42,7 @@
     staticPacks:
     - EmptyXenoborgs
     - XenoborgUpgradeModules
+    - XenoborgSupplies
   - type: MaterialStorage
     whitelist:
       tags:
@@ -49,9 +50,9 @@
       - RawMaterial
       - Ingot
   - type: PointLight
-    color: "#0033ff"
+    color: "#ffffff"
     enabled: true
-    radius: 4
+    radius: 5
     netsync: false
   - type: Anchorable
     flags:

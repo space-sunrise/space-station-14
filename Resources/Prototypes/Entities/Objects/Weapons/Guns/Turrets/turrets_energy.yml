@@ -149,6 +149,7 @@
     exemptAccessLevels:
     - Borg
     - BasicSilicon
+    - XenoborgAccess
   - type: Machine
     board: WeaponEnergyTurretAIMachineCircuitboard
   - type: DeviceNetwork
@@ -167,6 +168,7 @@
     - Security
     - Borg
     - BasicSilicon
+    - XenoborgAccess
   - type: Machine
     board: WeaponEnergyTurretSecurityMachineCircuitboard
   - type: DeviceNetwork
@@ -185,6 +187,7 @@
     - Command
     - Borg
     - BasicSilicon
+    - XenoborgAccess
   - type: Machine
     board: WeaponEnergyTurretSecurityMachineCircuitboard
   - type: DeviceNetwork

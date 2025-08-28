@@ -514,7 +514,7 @@
     - Xenoborg
     - Binary
   - type: Repairable
-    doAfterDelay: 13 # 25% more HP, so 30% more time to heal
+    doAfterDelay: 10 # reduced repair time
   - type: BorgChassis
     maxModules: 0
     hasMindState: robot_e
@@ -522,6 +522,13 @@
     moduleWhitelist:
       tags:
       - XenoborgModuleGeneric
+      - BorgModuleGeneric
+      - BorgModuleEngineering
+      - BorgModuleMedical
+      - BorgModuleScience
+      - BorgModuleSecurity
+      - BorgModuleService
+      - BorgModuleCargo
   - type: TypingIndicator
     proto: xenoborg
   - type: Speech
@@ -583,9 +590,10 @@
     - Robotics
     # TODO: add Xenoborg guide (part 7 spoilers)
   - type: Access
-    enabled: false
+    enabled: true
     tags:
     - Xenoborg
+    - XenoborgAccess
   - type: AccessReader
     access: [["Xenoborg"]]
   - type: ShowJobIcons # not sure if it is needed

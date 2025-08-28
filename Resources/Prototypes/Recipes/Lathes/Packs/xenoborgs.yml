@@ -14,3 +14,15 @@
   - XenoborgModuleHeavyLaserRecipe
   - XenoborgModuleEnergySwordRecipe
   - XenoborgModuleSuperCloakDeviceRecipe
+
+- type: latheRecipePack
+  id: XenoborgSupplies
+  recipes:
+  - PowerCellMicroreactorRecipe
+  - PowerCellSyndicateRecipe
+  - CableStackRecipe
+  - CableMVStackRecipe
+  - CableHVStackRecipe
+  - BorgChargerRecipe
+  - NanopasteRecipe
+  - PersonalAIRecipe

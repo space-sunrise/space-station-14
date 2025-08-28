@@ -65,3 +65,73 @@
   parent: BaseXenoborgModulesRecipe
   id: XenoborgModuleSuperCloakDeviceRecipe
   result: XenoborgModuleSuperCloakDevice
+
+# Supply recipes for Xenoborgs
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: PowerCellMicroreactorRecipe
+  result: PowerCellMicroreactor
+  materials:
+    Steel: 1000
+    Glass: 500
+    Uranium: 100
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: PowerCellSyndicateRecipe
+  result: PowerCellSyndicate
+  materials:
+    Steel: 1500
+    Glass: 1000
+    Gold: 200
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: CableStackRecipe
+  result: CableStack
+  materials:
+    Copper: 500
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: CableMVStackRecipe
+  result: CableMVStack
+  materials:
+    Copper: 1000
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: CableHVStackRecipe
+  result: CableHVStack
+  materials:
+    Copper: 1500
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: BorgChargerRecipe
+  result: BorgCharger
+  materials:
+    Steel: 2000
+    Glass: 1000
+    Gold: 500
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: NanopasteRecipe
+  result: Nanopaste1
+  materials:
+    Steel: 500
+    Glass: 300
+    Plasma: 100
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: PersonalAIRecipe
+  result: PersonalAI
+  materials:
+    Steel: 1000
+    Glass: 500
+    Gold: 200
+    Plasma: 500
