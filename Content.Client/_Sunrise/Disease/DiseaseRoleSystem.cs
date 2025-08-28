@@ -11,10 +11,7 @@ public sealed class DiseaseRoleSystem : EntitySystem
     {
         base.Initialize();
         SubscribeNetworkEvent<ClientInfectEvent>(OnInfect);
-        // Disease Info is now handled by BUI, no need for network event subscription
     }
-
-
 
     private void OnInfect(ClientInfectEvent ev)
     {
@@ -32,7 +29,4 @@ public sealed class DiseaseRoleSystem : EntitySystem
             comp.Infected.Add(target);
         }
     }
-
-    // Disease Info is now handled by BUI, no need for this method
-
 }
