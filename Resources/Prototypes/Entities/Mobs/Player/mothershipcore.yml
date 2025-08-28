@@ -50,9 +50,9 @@
       - RawMaterial
       - Ingot
   - type: PointLight
-    color: "#ffffff"
+    color: "#0033ff"
     enabled: true
-    radius: 5
+    radius: 4
     netsync: false
   - type: Anchorable
     flags:

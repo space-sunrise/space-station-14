@@ -583,7 +583,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: PointLight
-    color: "#0033ff"
+    color: "#ffffff"
+    radius: 2
+    energy: 1.5
   - type: GuideHelp
     guides:
     - Cyborgs

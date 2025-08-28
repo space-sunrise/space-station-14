@@ -21,8 +21,6 @@
   - PowerCellMicroreactorRecipe
   - PowerCellSyndicateRecipe
   - CableStackRecipe
-  - CableMVStackRecipe
-  - CableHVStackRecipe
   - BorgChargerRecipe
   - NanopasteRecipe
   - PersonalAIRecipe
