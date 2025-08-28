@@ -1,7 +1,5 @@
 using Content.Shared.Humanoid;
 using Content.Shared._Sunrise.Disease;
-using Content.Client._Sunrise.Disease.UI;
-using Robust.Client.UserInterface;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -13,7 +11,7 @@ public sealed class DiseaseRoleSystem : EntitySystem
     {
         base.Initialize();
         SubscribeNetworkEvent<ClientInfectEvent>(OnInfect);
-        SubscribeNetworkEvent<DiseaseInfoData>(OnDiseaseInfo);
+        // Disease Info is now handled by BUI, no need for network event subscription
     }
 
 
@@ -35,10 +33,6 @@ public sealed class DiseaseRoleSystem : EntitySystem
         }
     }
 
-    private void OnDiseaseInfo(DiseaseInfoData ev)
-    {
-        var window = IoCManager.Resolve<IUserInterfaceManager>().CreateWindow<DiseaseInfoWindow>();
-        window.Populate(ev);
-    }
+    // Disease Info is now handled by BUI, no need for this method
 
 }

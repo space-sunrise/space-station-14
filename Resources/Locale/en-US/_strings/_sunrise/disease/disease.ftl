@@ -21,14 +21,20 @@ action-disease-infect-description = Attempt to infect a target. Uses charges.
 action-disease-shop-name = Disease Shop
 action-disease-shop-description = Open the disease mutation menu.
 
-disease-info-core-stats-header = Core Statistics
-disease-info-base-chance = Base Infection Chance:
-disease-info-cough-chance = Cough/Sneeze Chance:
-disease-info-lethal = Lethality Level:
-disease-info-shield = Shield Level:
-disease-info-infection-stats-header = Infection Statistics
-disease-info-infected-count = Currently Infected:
-disease-info-total-infected = Total Infected (All Time):
-disease-info-resources-header = Resources
-disease-info-disease-points = Disease Points:
+disease-info-header = DISEASE STATISTICS
+disease-info-core-statistics = Core Statistics
+disease-info-base-chance = Base Infection Chance
+disease-info-cough-sneeze-chance = Cough/Sneeze Chance
+disease-info-lethal = Lethality Level
+disease-info-shield = Shield Level
+disease-info-infection-statistics = Infection Statistics
+disease-info-infected-count = Currently Infected
+disease-info-total-infected = Total Infected (All Time)
+
+disease-infect-charge-purchased = Infect charge purchased successfully!
+disease-infect-charge-max-reached = Already at maximum charges (3)! Purchase refunded.
+
+disease-death-reward = +10 Disease Points from another disease's death!
+
+
 #Sunrise-End

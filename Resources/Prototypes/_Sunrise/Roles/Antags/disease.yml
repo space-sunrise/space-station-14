@@ -71,7 +71,7 @@
     currencyWhitelist:
     - DiseasePoints
     balance:
-      DiseasePoints: 290
+      DiseasePoints: 20
   - type: DiseaseRole
     actions:
       ActionInfect: 3

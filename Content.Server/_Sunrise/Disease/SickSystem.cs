@@ -173,11 +173,11 @@ public sealed class SickSystem : SharedSickSystem
 
     private void UpdateInfection(EntityUid uid, SickComponent component, EntityUid disease, DiseaseRoleComponent diseaseComponent)
     {
-        foreach ((var key, (var min, var max)) in diseaseComponent.Symptoms)
+        foreach ((var key, var symptomData) in diseaseComponent.Symptoms)
         {
             if (!component.Symptoms.Contains(key))
             {
-                if (component.Stady >= min && component.Stady <= max)
+                if (component.Stady >= symptomData.MinLevel && component.Stady <= symptomData.MaxLevel)
                 {
                     component.Symptoms.Add(key);
                     EnsureComp<AutoEmoteComponent>(uid);
@@ -248,11 +248,11 @@ public sealed class SickSystem : SharedSickSystem
 
                         foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.0f))
                         {
-                            if (_robustRandom.Prob(disease.CoughInfectChance))
+                            if (_robustRandom.Prob(disease.CoughSneezeInfectChance))
                             {
                                 if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
-                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughSneezeInfectChance);
                                 }
                             }
                         }
@@ -266,11 +266,11 @@ public sealed class SickSystem : SharedSickSystem
                     {
                         foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.5f))
                         {
-                            if (_robustRandom.Prob(disease.CoughInfectChance))
+                            if (_robustRandom.Prob(disease.CoughSneezeInfectChance))
                             {
                                 if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
-                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughSneezeInfectChance);
                                 }
                             }
                         }
