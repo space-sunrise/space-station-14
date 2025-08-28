@@ -16,7 +16,7 @@ disease-symptom-headache = Вы чувствуете лёгкую головну
 disease-zombie-success = Успешно преобразовано { count } заражённых в зомби!
 
 action-disease-infect-name = Заразить
-action-disease-infect-description = Попытка заразить цель. Использует заряды или Очки Болезни.
+action-disease-infect-description = Попытка заразить цель. Использует заряды.
 
 action-disease-shop-name = Мутация
 action-disease-shop-description = Открыть меню мутации.

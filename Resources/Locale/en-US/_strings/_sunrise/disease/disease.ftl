@@ -16,7 +16,7 @@ disease-symptom-headache = You feel a slight headache.
 disease-zombie-success = Successfully converted { count } infected to zombies!
 
 action-disease-infect-name = Infect
-action-disease-infect-description = Attempt to infect a target. Uses charges or Disease Points.
+action-disease-infect-description = Attempt to infect a target. Uses charges.
 
 action-disease-shop-name = Disease Shop
 action-disease-shop-description = Open the disease mutation menu.

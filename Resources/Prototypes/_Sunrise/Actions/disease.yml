@@ -19,8 +19,6 @@
       - HumanoidAppearance
     canTargetSelf: false
     event: !type:InfectEvent
-  - type: LimitedCharges
-    maxCharges: 3
 
 - type: entity
   parent: BaseAction
@@ -296,7 +294,7 @@
   - type: Action
     icon:
       sprite: _Sunrise/Actions/disease.rsi
-      state: info
+      state: blindness
   - type: InstantAction
     event: !type:DiseaseInfoEvent
 #Sunrise-End
