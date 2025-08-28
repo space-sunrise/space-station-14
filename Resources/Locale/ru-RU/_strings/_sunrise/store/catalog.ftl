@@ -11,4 +11,4 @@ listing-disease-lethal-name = Летальный
 listing-disease-lethal-description = Делает болезнь более смертоносной. Максимум 5 улучшений.
 
 listing-disease-infect-charge-name = Заряд заражения
-listing-disease-infect-charge-description = Купите 1 дополнительный заряд для способности заражения. Заряды также восстанавливаются пассивно со временем.
+listing-disease-infect-charge-description = Купите 1 дополнительный заряд для способности заражения.

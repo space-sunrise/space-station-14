@@ -129,7 +129,7 @@ public sealed class SickSystem : SharedSickSystem
 
                     RaiseNetworkEvent(new ClientInfectEvent(GetNetEntity(uid), GetNetEntity(component.owner)));
                     diseaseComp.SickOfAllTime++;
-                    AddMoney(uid, 5);
+                    AddMoney(component.owner, 5);
 
                     component.Inited = true;
                 }
@@ -153,20 +153,17 @@ public sealed class SickSystem : SharedSickSystem
         }
     }
 
-    void AddMoney(EntityUid uid, FixedPoint2 value)
+    void AddMoney(EntityUid diseaseUid, FixedPoint2 value)
     {
-        if (TryComp<SickComponent>(uid, out var component))
+        if (TryComp<DiseaseRoleComponent>(diseaseUid, out var diseaseComp))
         {
-            if (TryComp<DiseaseRoleComponent>(component.owner, out var diseaseComp))
+            if (TryComp<StoreComponent>(diseaseUid, out var store))
             {
-                if (TryComp<StoreComponent>(component.owner, out var store))
+                bool f = _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
                 {
-                    bool f = _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-                    {
-                        {diseaseComp.CurrencyPrototype, value}
-                    }, component.owner);
-                    _store.UpdateUserInterface(component.owner, component.owner, store);
-                }
+                    {diseaseComp.CurrencyPrototype, value}
+                }, diseaseUid);
+                _store.UpdateUserInterface(diseaseUid, diseaseUid, store);
             }
         }
     }
