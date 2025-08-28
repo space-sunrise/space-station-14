@@ -18,7 +18,7 @@ public partial class SharedInteractionSystem
     {
         SubscribeLocalEvent<BlockMovementComponent, UpdateCanMoveEvent>(OnMoveAttempt);
         SubscribeLocalEvent<BlockMovementComponent, UseAttemptEvent>(CancelEvent);
-        SubscribeLocalEvent<BlockMovementComponent, InteractionAttemptEvent>(CancelInteractEvent);
+        //        SubscribeLocalEvent<BlockMovementComponent, InteractionAttemptEvent>(CancelInteractEvent);
         SubscribeLocalEvent<BlockMovementComponent, DropAttemptEvent>(CancelEvent);
         SubscribeLocalEvent<BlockMovementComponent, PickupAttemptEvent>(CancelEvent);
         SubscribeLocalEvent<BlockMovementComponent, ChangeDirectionAttemptEvent>(CancelEvent);
@@ -26,12 +26,12 @@ public partial class SharedInteractionSystem
         SubscribeLocalEvent<BlockMovementComponent, ComponentStartup>(OnBlockingStartup);
         SubscribeLocalEvent<BlockMovementComponent, ComponentShutdown>(OnBlockingShutdown);
     }
-
-    private void CancelInteractEvent(Entity<BlockMovementComponent> ent, ref InteractionAttemptEvent args)
-    {
-        if (ent.Comp.BlockInteraction)
-            args.Cancelled = true;
-    }
+    // Sunrise-Edit Breaking borg brain inserting
+    //    private void CancelInteractEvent(Entity<BlockMovementComponent> ent, ref InteractionAttemptEvent args)
+    //    {
+    //        if (ent.Comp.BlockInteraction)
+    //            args.Cancelled = true;
+    //    }
 
     private void OnMoveAttempt(EntityUid uid, BlockMovementComponent component, UpdateCanMoveEvent args)
     {
