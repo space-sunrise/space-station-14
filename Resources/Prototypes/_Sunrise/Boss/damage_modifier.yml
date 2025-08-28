@@ -9,3 +9,11 @@
     Shock: 0.2 # 80% resistance
     Bloodloss: 0 # 100% resistance
     Holy: 1
+
+- type: damageModifierSet
+  id: XenoborgHeavy
+  coefficients:
+    Blunt: 0.5 # 50% resistance
+    Slash: 0.5 # 50% resistance
+    Piercing: 0.5 # 50% resistance
+    Heat: 0.75 # 25% resistance

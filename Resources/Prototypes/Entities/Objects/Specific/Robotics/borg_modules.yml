@@ -1560,3 +1560,36 @@
     - item: SuperCloakingDevice
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye2-module }
+
+# Sunrise-Start
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleInventory
+  name: inventory xenoborg module
+  description: A universal storage module with 6 slots for materials, small items, brains, cables, nanopaste, and other xenoborg modules.
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleInventory
+  - type: Sprite
+    layers:
+    - state: xenoborg_generic
+    - state: icon-xenoborg-inventory
+  - type: ItemBorgModule
+    hands: []
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-inventory-module }
+  - type: ContainerContainer
+    containers:
+      xenoborg_inventory: !type:Container
+        whitelist:
+          tags:
+          - RawMaterial
+          - CableCoil
+          - Brain
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+        maxSlots: 6
+        name: xenoborg-inventory-storage
+# Sunrise-End

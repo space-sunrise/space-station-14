@@ -99,6 +99,9 @@
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: XenoborgHeavy
   - type: Destructible
     thresholds:
     - trigger:

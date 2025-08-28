@@ -1552,4 +1552,7 @@
 
 - type: Tag
   id: XenoborgModuleStealth
+
+- type: Tag
+  id: XenoborgModuleInventory
 # ALPHABETICAL

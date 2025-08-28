@@ -38,8 +38,16 @@
   id: XenoborgHeavyRecipe
   result: XenoborgHeavyPrinted
   materials:
-    Steel: 2000
-    Plasteel: 1000
+    Plasteel: 1500
+    Glass: 500
+
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: XenoborgHeavyRecipe2
+  result: XenoborgHeavyPrinted
+  materials:
+    Steel: 6000
+    Glass: 500
 
 - type: latheRecipe
   parent: BaseXenoborgRecipe
@@ -73,6 +81,11 @@
   parent: BaseXenoborgModulesRecipe
   id: XenoborgModuleSuperCloakDeviceRecipe
   result: XenoborgModuleSuperCloakDevice
+
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleInventoryRecipe
+  result: XenoborgModuleInventory
 
 # Supply recipes for Xenoborgs
 - type: latheRecipe
