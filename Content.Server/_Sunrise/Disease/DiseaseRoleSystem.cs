@@ -30,6 +30,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
+    private static readonly string[] _bloodReagents = { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" };
 
     [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
 
@@ -144,7 +145,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                 _sharedCharges.SetCharges((actionId.Value, limitCharges), charges);
             }
         }
-        component.NewBloodReagent = _random.Pick(new List<string>() { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" });
+        component.NewBloodReagent = _random.Pick(_bloodReagents);
         component.Symptoms.Add("Headache", new SymptomData(1, 4));
     }
 
