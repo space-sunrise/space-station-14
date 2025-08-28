@@ -205,7 +205,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                         {
                             // Refund the purchase since they can't use more charges
                             AddMoney(storeOwner, 10);
-                            _popup.PopupEntity(Loc.GetString("disease-infect-charge-max-reached"), storeOwner, PopupType.Medium);
+                            _popup.PopupEntity(Loc.GetString("disease-infect-charge-max-reached", ("maxCharges", 3)), storeOwner, PopupType.Medium);
                         }
                         else
                         {
@@ -272,6 +272,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
     {
         var infected = component.Infected.ToArray();
+        var convertedCount = 0;
 
         for (int i = 0; i < infected.Length; i++)
         {
@@ -285,7 +286,14 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                 // Add zombie components
                 EnsureComp<ZombifyOnDeathComponent>(target);
                 EnsureComp<PendingZombieComponent>(target);
+                convertedCount++;
             }
+        }
+
+        // Show success message with count
+        if (convertedCount > 0)
+        {
+            _popup.PopupEntity(Loc.GetString("disease-zombie-success", ("count", convertedCount)), uid, PopupType.Medium);
         }
 
         // Remove the zombie action after use
@@ -301,7 +309,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
             if (diseaseUid != uid) // Don't reward the dying one
             {
                 AddMoney(diseaseUid, 10);
-                _popup.PopupEntity(Loc.GetString("disease-death-reward"), diseaseUid, PopupType.Medium);
+                _popup.PopupEntity(Loc.GetString("disease-death-reward", ("points", 10)), diseaseUid, PopupType.Medium);
             }
         }
     }

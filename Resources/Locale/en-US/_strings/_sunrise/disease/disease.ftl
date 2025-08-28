@@ -12,7 +12,6 @@ disease-biohazard-announcement-sender = Central Command
 disease-not-enough-evolution-points = Not enough evolution points
 disease-symptom-headache = You feel a slight headache.
 
-#Sunrise-start
 disease-zombie-success = Successfully converted { count } infected to zombies!
 
 action-disease-infect-name = Infect
@@ -32,9 +31,6 @@ disease-info-infected-count = Currently Infected
 disease-info-total-infected = Total Infected (All Time)
 
 disease-infect-charge-purchased = Infect charge purchased successfully!
-disease-infect-charge-max-reached = Already at maximum charges (3)! Purchase refunded.
+disease-infect-charge-max-reached = Already at maximum charges ({ $maxCharges })! Purchase refunded.
 
-disease-death-reward = +10 Disease Points from another disease's death!
-
-
-#Sunrise-End
+disease-death-reward = Received { $points } Disease Points from another disease's death!

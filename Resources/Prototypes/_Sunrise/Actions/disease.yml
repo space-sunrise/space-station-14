@@ -268,7 +268,6 @@
       symptom: "Insult"
       minLevel: 2
 
-#Sunrise-start
 - type: entity
   parent: BaseAction
   id: ActionDiseaseZombie
@@ -280,23 +279,22 @@
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/disease.rsi
-      state: lethal
+      state: zombie
   - type: InstantAction
     event: !type:DiseaseZombieEvent
 
 - type: entity
   parent: BaseAction
   id: ActionDiseaseInfo
-  name: Disease Information
-  description: View your current disease statistics and progress.
+  name: listing-disease-info-name
+  description: listing-disease-info-description
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
     icon:
       sprite: _Sunrise/Actions/disease.rsi
-      state: blindness
+      state: info
   - type: InstantAction
     event: !type:DiseaseInfoEvent
-#Sunrise-End
 
 

@@ -252,7 +252,7 @@ public sealed class SickSystem : SharedSickSystem
                             {
                                 if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
-                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughSneezeInfectChance);
+                                    OnInfected(entity, component.owner, disease.CoughSneezeInfectChance);
                                 }
                             }
                         }
@@ -270,7 +270,7 @@ public sealed class SickSystem : SharedSickSystem
                             {
                                 if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
-                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughSneezeInfectChance);
+                                    OnInfected(entity, component.owner, disease.CoughSneezeInfectChance);
                                 }
                             }
                         }

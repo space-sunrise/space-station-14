@@ -83,7 +83,7 @@
   icon:
     sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
     state: sick
-  priority: 2
+  priority: 1
 
 - type: sickIcon
   id: NormalDiseaseIcon

@@ -1,4 +1,3 @@
-#Sunrise-start
 listing-disease-base-chance-name = Base Chance
 listing-disease-base-chance-description = Increases the base infection chance by 10%. Maximum 5 upgrades.
 
@@ -10,9 +9,6 @@ listing-disease-shield-description = Increases disease resistance. Maximum 6 upg
 
 listing-disease-lethal-name = Lethal
 listing-disease-lethal-description = Makes the disease more deadly. Maximum 5 upgrades.
-#Sunrise-End
 
 listing-disease-infect-charge-name = Infect Charge
 listing-disease-infect-charge-description = Purchase 1 additional charge for your Infect ability. Charges also restore passively over time.
-
-disease-infect-charge-purchased = Successfully purchased 1 Infect charge!

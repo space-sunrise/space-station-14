@@ -21,3 +21,6 @@ listing-disease-blindness-name = Слепота
 listing-disease-blindness-description = Длительная болезнь приводит к отмиранию зрительного нерва, что приводит к практически полной слепоте больного.
 listing-disease-insult-name = Судороги
 listing-disease-insult-description = Длительная болезнь вызывает гиперстимуляцию двигательных нейронов, в результате чего больные могут испытывать перенапряжение мышц, приводящие к судорогам.
+
+listing-disease-info-name = Информация о болезни
+listing-disease-info-description = Просмотр текущей статистики болезни и прогресса.

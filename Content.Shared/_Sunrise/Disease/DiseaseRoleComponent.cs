@@ -44,7 +44,10 @@ public sealed partial class DiseaseRoleComponent : Component
 [Serializable, NetSerializable]
 public struct SymptomData
 {
+    [DataField("minLevel")]
     public int MinLevel;
+    
+    [DataField("maxLevel")]
     public int MaxLevel;
 
     public SymptomData(int minLevel, int maxLevel)

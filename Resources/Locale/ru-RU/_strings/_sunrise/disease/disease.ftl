@@ -12,8 +12,7 @@ disease-biohazard-announcement-sender = Центральное командов�
 disease-not-enough-evolution-points = Вам не хватает очков эволюции
 disease-symptom-headache = Вы чувствуете лёгкую головную боль.
 
-#Sunrise-start
-disease-zombie-success = Успешно преобразовано { count } заражённых в зомби!
+disease-zombie-success = Успешно преобразовано { $count } заражённых в зомби!
 
 action-disease-infect-name = Заразить
 action-disease-infect-description = Попытка заразить цель. Использует заряды.
@@ -32,7 +31,6 @@ disease-info-infected-count = В настоящее время заражено
 disease-info-total-infected = Всего заражено (за всё время)
 
 disease-infect-charge-purchased = Заряд заражения успешно куплен!
-disease-infect-charge-max-reached = Уже максимальное количество зарядов (3)! Покупка возвращена.
+disease-infect-charge-max-reached = Уже максимальное количество зарядов ({ $maxCharges })! Покупка возвращена.
 
-disease-death-reward = +10 Очков болезни от смерти больного!
-#Sunrise-End
+disease-death-reward = Получено { $points } очков болезни от смерти другого больного!
