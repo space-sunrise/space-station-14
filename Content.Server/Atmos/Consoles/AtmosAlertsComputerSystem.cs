@@ -231,7 +231,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     private void Beep(EntityUid ent, AtmosAlertsComputerComponent entConsole, AtmosAlarmType highestAlert)
     {
         if (entConsole.NextBeep >= _gameTiming.CurTime || highestAlert != AtmosAlarmType.Danger ||
-            entConsole.BeepSound == null || !entConsole.DoAtmosAlert) 
+            entConsole.BeepSound == null || !entConsole.DoAtmosAlert) //Sunrise-Edit
             return;
 
         _audio.PlayPvs(entConsole.BeepSound, ent);
