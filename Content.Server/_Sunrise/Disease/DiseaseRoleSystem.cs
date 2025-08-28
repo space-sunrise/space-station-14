@@ -177,11 +177,24 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
 
 
+        private void OnStorePurchase(ref StoreBuyFinishedEvent args)
+    {
+        // Check if this is the InfectCharge purchase
+        if (args.PurchasedItem.ID == "InfectCharge")
+        {
+            // The store owner (disease antagonist) is the one who gets the charges
+            var storeOwner = args.StoreUid;
+
+            if (!EntityManager.TryGetComponent<DiseaseRoleComponent>(storeOwner, out var diseaseComp))
+                return;
+
+            // Find the Infect action and check current charges
+            if (EntityManager.TryGetComponent<ActionsComponent>(storeOwner, out var actionsComp))
+            {
                 foreach (var actionUid in actionsComp.Actions)
                 {
-                    // Check if this action is the Infect action by comparing prototype ID
-                    if (TryComp<MetaDataComponent>(actionUid, out var meta) &&
-                        meta.EntityPrototype?.ID == "ActionInfect" &&
+                    // Check if this action is the Infect action by looking for EntityTargetActionComponent
+                    if (HasComp<EntityTargetActionComponent>(actionUid) &&
                         HasComp<LimitedChargesComponent>(actionUid))
                     {
                         var chargesComp = Comp<LimitedChargesComponent>(actionUid);
@@ -204,6 +217,10 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                         break;
                     }
                 }
+            }
+        }
+    }
+
     void AddMoney(EntityUid uid, FixedPoint2 value)
     {
         if (TryComp<DiseaseRoleComponent>(uid, out var diseaseComp))
