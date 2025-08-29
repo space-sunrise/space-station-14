@@ -1,12 +1,13 @@
+#Sunrise-start
 shop-disease-currency = Очки эволюции
 listing-disease-cough-name = Кашель
 listing-disease-cough-description = Заражённые начинают кашлять.
 listing-disease-sneeze-name = Чих
 listing-disease-sneeze-description = Заражённые начинают чихать.
 listing-disease-vomit-name = Тошнота
-listing-disease-vomit-description = Заражённых начинает тоншить, вызывая рвоту.
+listing-disease-vomit-description = Заражённых начинает тошнить, вызывая рвоту.
 listing-disease-zombie-name = Зомбирование
-listing-disease-zombie-description = 70% текущих заражённых становятся зомби. Они так-же перестают быть заражёнными.
+listing-disease-zombie-description = 70% текущих заражённых становятся зомби. Они также перестают быть заражёнными.
 listing-disease-cry-name = Непроизвольные слёзы
 listing-disease-cry-description = У заражённых активно слезятся глаза, из-за чего кажется, что они плачут.
 listing-disease-base-chance-name = Улучшение заражения. [20 ОЭ]
@@ -22,10 +23,11 @@ listing-disease-narcolepsy-description = У заражённых появляе�
 listing-disease-muted-name = Немота
 listing-disease-muted-description = Мутация вызывает повреждение подъязычного нерва, приводя к параличу мышц языка, из-за чего больные теряют возможность нормально говорить.
 listing-disease-slowness-name = Изнеможение
-listing-disease-slowness-description = Вирус вызывает разрушение мышечных волокон, приводящее к атрофие и сопровождающееся слабостью. Снижает общую мобильность.
+listing-disease-slowness-description = Вирус вызывает разрушение мышечных волокон, приводящее к атрофии и сопровождающееся слабостью. Снижает общую мобильность.
 listing-disease-bleed-name = Кровопотеря
 listing-disease-bleed-description = Вирус вызывает денатурацию гемоглобина крови, из-за чего у всех носителей появляется тяжелая степень анемии.
 listing-disease-blindness-name = Слепота
 listing-disease-blindness-description = Длительная болезнь приводит к отмиранию зрительного нерва, что приводит к практически полной слепоте больного.
 listing-disease-insult-name = Судороги
 listing-disease-insult-description = Длительная болезнь вызывает гиперстимуляцию двигательных нейронов, в результате чего больные могут испытывать перенапряжение мышц, приводящие к судорогам.
+#Sunrise-End

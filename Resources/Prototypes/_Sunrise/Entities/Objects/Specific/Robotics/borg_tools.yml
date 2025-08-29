@@ -517,7 +517,7 @@
     generated:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 1.0
+        Quantity: 0.1
 
 - type: entity
   name: cyborg disabler machine gun
