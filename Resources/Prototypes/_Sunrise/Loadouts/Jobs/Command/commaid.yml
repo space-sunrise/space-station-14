@@ -23,7 +23,7 @@
   id: ComMaidBunnyUniform
   equipment:
     jumpsuit: BunnyUniform
-    
+
 - type: loadout
   id: ComMaidJumpsuitLawyerBlack
   equipment:
