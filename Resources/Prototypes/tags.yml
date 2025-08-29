@@ -142,6 +142,9 @@
   id: BorgModuleSyndicateAssault
 
 - type: Tag
+  id: BorgModule
+
+- type: Tag
   id: Bot
 
 - type: Tag
@@ -1028,6 +1031,9 @@
   id: OreUranium
 
 - type: Tag
+  id: PAI
+
+- type: Tag
   id: Packet
 
 - type: Tag
@@ -1554,5 +1560,15 @@
   id: XenoborgModuleStealth
 
 - type: Tag
+  id: XenoborgModule
+
+- type: Tag
+  id: PositronicBrain
+
+- type: Tag
+  id: MMIFilled
+
+- type: Tag
+  id: MMI
 
 # ALPHABETICAL

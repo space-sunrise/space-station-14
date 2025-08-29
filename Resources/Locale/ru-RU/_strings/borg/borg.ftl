@@ -59,3 +59,8 @@ borg-type-peace-transponder = киборг-миротворец
 borg-type-security-name = Охранник
 borg-type-security-desc = Защищайте экипаж и имущество станции, патрулируя коридоры и реагируя на чрезвычайные ситуации. Оснащён передовыми системами обнаружения угроз и защитным оборудованием.
 borg-type-security-transponder = киборг-охранник
+
+# Xenoborg Basic Module Hand Slots
+borg-slot-material-empty = Материалы
+borg-slot-cable-empty = Кабели
+borg-slot-brain-empty = Мозги

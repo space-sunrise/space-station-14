@@ -34,6 +34,7 @@
   - type: Tag
     tags:
     - BorgModuleGeneric
+    - BorgModule
   - type: GuideHelp
     guides:
     - Cyborgs
@@ -1387,6 +1388,9 @@
     - item: MaterialBag
     - item: PinpointerMothership
     - item: HandheldGPSBasic
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-basic-module }
 
@@ -1408,6 +1412,9 @@
     - item: Wirecutter
     - item: Multitool
     - item: RefuelingWelder
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tool-module }
 
@@ -1425,6 +1432,9 @@
     hands:
     - item: AccessBreaker
     - item: EMAG
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-access-breaker-module }
 
@@ -1441,6 +1451,9 @@
   - type: ItemBorgModule
     hands:
     - item: SelfRechargingFireExtinguisher
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-extinguisher-module }
 
@@ -1457,6 +1470,9 @@
   - type: ItemBorgModule
     hands:
     - item: XenoborgRadioJammer
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-jammer-module }
 
@@ -1473,6 +1489,9 @@
   - type: ItemBorgModule
     hands:
     - item: XenoborgLaserGun
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
@@ -1489,6 +1508,9 @@
   - type: ItemBorgModule
     hands:
     - item: XenoborgHeavyLaserGun
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1509,6 +1531,9 @@
     - item: HandheldStationMapUnpowered
     - item: WeaponGrapplingGun
     - item: JetpackXenoborg
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
@@ -1526,6 +1551,9 @@
     hands:
     - item: KukriKnife
     - item: JetpackXenoborg
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
@@ -1543,6 +1571,9 @@
     hands:
     - item: EnergyDaggerLoudBlue
     - item: JetpackXenoborg
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }
 
@@ -1559,6 +1590,9 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypo
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 
@@ -1575,6 +1609,9 @@
   - type: ItemBorgModule
     hands:
     - item: ChameleonProjector
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
@@ -1591,6 +1628,9 @@
   - type: ItemBorgModule
     hands:
     - item: CloakingDevice
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye-module }
 
@@ -1607,6 +1647,9 @@
   - type: ItemBorgModule
     hands:
     - item: SuperCloakingDevice
+  - type: Tag
+    tags:
+    - XenoborgModule
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye2-module }
 

@@ -5,6 +5,7 @@
   recipes:
   - XenoborgEngiRecipe
   - XenoborgHeavyRecipe
+  - XenoborgHeavyRecipe2
   - XenoborgScoutRecipe
   - XenoborgStealthRecipe
 

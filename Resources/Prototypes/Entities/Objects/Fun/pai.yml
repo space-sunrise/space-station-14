@@ -98,6 +98,10 @@
   - type: TTS
     voice: Portal2FactCore
   - type: InnateItem
+  - type: Tag
+    tags:
+    - PAI
+    - SiliconEmotes
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
@@ -114,9 +118,6 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
-  - type: Tag
-    tags:
-    - SiliconEmotes
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]

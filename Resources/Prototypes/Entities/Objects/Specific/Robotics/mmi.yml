@@ -49,6 +49,9 @@
     guides:
     - Cyborgs
     - Robotics
+  - type: Tag
+    tags:
+    - MMI
   - type: ChangeVoiceInContainer
     whitelist:
       components:
@@ -59,6 +62,9 @@
   id: MMIFilled
   suffix: Filled
   components:
+  - type: Tag
+    tags:
+    - MMIFilled
   - type: ItemSlots
     slots:
       brain_slot:
@@ -116,6 +122,7 @@
     - type: Tag
       tags:
       - CannotSuicide
+      - PositronicBrain
     - type: GenericVisualizer
       visuals:
         enum.ToggleableGhostRoleVisuals.Status:

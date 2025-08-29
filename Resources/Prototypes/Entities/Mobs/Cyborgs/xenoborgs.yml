@@ -221,6 +221,17 @@
         shader: unshaded
         map: ["light"]
         visible: false
+  - type: MobThresholds # fragile due to stealth
+    thresholds:
+      0: Alive
+      75: Critical
+      150: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
   - type: FootstepModifier # it flies instead of walking
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
