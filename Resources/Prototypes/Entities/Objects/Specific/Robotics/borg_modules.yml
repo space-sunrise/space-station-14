@@ -1367,7 +1367,7 @@
   parent: [ BaseXenoborgModuleEngi, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleAccessBreaker
   name: access breaker xenoborg module
-  description: Module with a access breaker.
+  description: Module with an access breaker and EMAG for bypassing security systems.
   components:
   - type: Sprite
     layers:
@@ -1376,6 +1376,7 @@
   - type: ItemBorgModule
     hands:
     - item: AccessBreaker
+    - item: EMAG
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-access-breaker-module }
 
@@ -1573,23 +1574,104 @@
     - XenoborgModuleInventory
   - type: Sprite
     layers:
-    - state: xenoborg_generic
-    - state: icon-xenoborg-inventory
+    - state: engineering
+    - state: icon-construction
   - type: ItemBorgModule
-    hands: []
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-inventory-module }
-  - type: ContainerContainer
-    containers:
-      xenoborg_inventory: !type:Container
+    hands:
+    - hand:
+        emptyRepresentative: SheetSteel
+        emptyLabel: borg-slot-material-empty
         whitelist:
           tags:
-          - RawMaterial
           - CableCoil
+          - RawMaterial
           - Brain
+          - PAI
+          - PowerCell
           - Nanopaste
           - XenoborgModule
           - BorgModule
-        maxSlots: 6
-        name: xenoborg-inventory-storage
-# Sunrise-End
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: CableApcStack
+        emptyLabel: borg-slot-cable-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: MMIFilled
+        emptyLabel: borg-slot-brain-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: Nanopaste
+        emptyLabel: borg-slot-nanopaste-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: XenoborgModuleBasic
+        emptyLabel: borg-slot-module-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: BorgModuleTool
+        emptyLabel: borg-slot-module-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+ # Sunrise-End
