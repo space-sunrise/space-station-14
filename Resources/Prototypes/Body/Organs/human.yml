@@ -53,6 +53,7 @@
   - type: Tag
     tags:
       - Meat
+      - Brain
   - type: SolutionContainerManager
     solutions:
       organ:

@@ -172,6 +172,7 @@
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
   - type: FlashImmunity
+  - type: BorgCuffed
   - type: BorgChassis
     maxModules: 4
     hasMindState: xenoborg_scout_e

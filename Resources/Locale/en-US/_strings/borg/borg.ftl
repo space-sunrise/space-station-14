@@ -72,3 +72,6 @@ borg-type-peace-transponder = peace cyborg
 borg-type-security-name = Security
 borg-type-security-desc = TODO
 borg-type-security-transponder = security cyborg
+
+# Xenoborg Basic Module Storage Slots
+borg-slot-storage-empty = Storage Slot

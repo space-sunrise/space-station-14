@@ -1339,10 +1339,11 @@
     hands:
     - hand:
         emptyRepresentative: SheetSteel
-        emptyLabel: borg-slot-material-empty
+        emptyLabel: borg-slot-storage-empty
         whitelist:
           tags:
           - CableCoil
+          - ConstructionMaterial
           - RawMaterial
           - Brain
           - PAI
@@ -1355,10 +1356,11 @@
           - MMIFilled
     - hand:
         emptyRepresentative: CableApcStack
-        emptyLabel: borg-slot-cable-empty
+        emptyLabel: borg-slot-storage-empty
         whitelist:
           tags:
           - CableCoil
+          - ConstructionMaterial
           - RawMaterial
           - Brain
           - PAI
@@ -1371,10 +1373,11 @@
           - MMIFilled
     - hand:
         emptyRepresentative: MMIFilled
-        emptyLabel: borg-slot-brain-empty
+        emptyLabel: borg-slot-storage-empty
         whitelist:
           tags:
           - CableCoil
+          - ConstructionMaterial
           - RawMaterial
           - Brain
           - PAI

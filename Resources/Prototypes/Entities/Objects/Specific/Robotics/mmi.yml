@@ -52,6 +52,7 @@
   - type: Tag
     tags:
     - MMI
+    - Brain
   - type: ChangeVoiceInContainer
     whitelist:
       components:
@@ -65,6 +66,7 @@
   - type: Tag
     tags:
     - MMIFilled
+    - Brain
   - type: ItemSlots
     slots:
       brain_slot:
@@ -122,6 +124,7 @@
     - type: Tag
       tags:
       - CannotSuicide
+      - Brain
       - PositronicBrain
     - type: GenericVisualizer
       visuals:
