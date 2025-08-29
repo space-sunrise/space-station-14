@@ -22,7 +22,7 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 8
+    maxModules: 7
     hasMindState: xenoborg_engi_e
     noMindState: xenoborg_engi_e_r
     moduleWhitelist:
@@ -43,7 +43,6 @@
       - BorgModuleCable
       - XenoborgModuleAccessBreaker
       - XenoborgModuleFireExtinguisher
-      - XenoborgModuleInventory
   - type: ShowHealthBars
     damageContainers:
     - Inorganic
@@ -78,7 +77,7 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 5
+    maxModules: 4
     hasMindState: xenoborg_heavy_e
     noMindState: xenoborg_heavy_e_r
     moduleWhitelist:
@@ -140,7 +139,6 @@
       - XenoborgModuleTool
       - XenoborgModuleLaser
       - XenoborgModuleJammer
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:
@@ -175,7 +173,7 @@
       collection: FootstepHoverXenoborg
   - type: FlashImmunity
   - type: BorgChassis
-    maxModules: 5
+    maxModules: 4
     hasMindState: xenoborg_scout_e
     noMindState: xenoborg_scout_e_r
     moduleWhitelist:
@@ -194,7 +192,6 @@
       - XenoborgModuleTool
       - XenoborgModuleSword
       - XenoborgModuleSpaceMovement
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:
@@ -228,7 +225,7 @@
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
   - type: BorgChassis
-    maxModules: 6
+    maxModules: 5
     hasMindState: xenoborg_stealth_e
     noMindState: xenoborg_stealth_e_r
     moduleWhitelist:
@@ -249,7 +246,6 @@
       - XenoborgModuleHypo
       - XenoborgModuleChameleonProjector
       - XenoborgModuleCloakDevice
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:
@@ -275,7 +271,6 @@
       - BorgModuleCable
       - XenoborgModuleAccessBreaker
       - XenoborgModuleFireExtinguisher
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:
@@ -296,7 +291,6 @@
       - XenoborgModuleTool
       - XenoborgModuleLaser
       - XenoborgModuleJammer
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:
@@ -317,7 +311,6 @@
       - XenoborgModuleTool
       - XenoborgModuleSword
       - XenoborgModuleSpaceMovement
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:
@@ -339,7 +332,6 @@
       - XenoborgModuleHypo
       - XenoborgModuleChameleonProjector
       - XenoborgModuleCloakDevice
-      - XenoborgModuleInventory
   - type: ItemSlots
     slots:
       cell_slot:

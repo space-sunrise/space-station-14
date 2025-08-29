@@ -1336,6 +1336,54 @@
     - state: icon-xenoborg-basic
   - type: ItemBorgModule
     hands:
+    - hand:
+        emptyRepresentative: SheetSteel
+        emptyLabel: borg-slot-material-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: CableApcStack
+        emptyLabel: borg-slot-cable-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand:
+        emptyRepresentative: MMIFilled
+        emptyLabel: borg-slot-brain-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
     - item: MaterialBag
     - item: PinpointerMothership
     - item: HandheldGPSBasic
@@ -1562,116 +1610,4 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye2-module }
 
-# Sunrise-Start
-- type: entity
-  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
-  id: XenoborgModuleInventory
-  name: inventory xenoborg module
-  description: A universal storage module with 6 slots for materials, small items, brains, cables, nanopaste, and other xenoborg modules.
-  components:
-  - type: Tag
-    tags:
-    - XenoborgModuleInventory
-  - type: Sprite
-    layers:
-    - state: engineering
-    - state: icon-construction
-  - type: ItemBorgModule
-    hands:
-    - hand:
-        emptyRepresentative: SheetSteel
-        emptyLabel: borg-slot-material-empty
-        whitelist:
-          tags:
-          - CableCoil
-          - RawMaterial
-          - Brain
-          - PAI
-          - PowerCell
-          - Nanopaste
-          - XenoborgModule
-          - BorgModule
-          - PositronicBrain
-          - MMI
-          - MMIFilled
-    - hand:
-        emptyRepresentative: CableApcStack
-        emptyLabel: borg-slot-cable-empty
-        whitelist:
-          tags:
-          - CableCoil
-          - RawMaterial
-          - Brain
-          - PAI
-          - PowerCell
-          - Nanopaste
-          - XenoborgModule
-          - BorgModule
-          - PositronicBrain
-          - MMI
-          - MMIFilled
-    - hand:
-        emptyRepresentative: MMIFilled
-        emptyLabel: borg-slot-brain-empty
-        whitelist:
-          tags:
-          - CableCoil
-          - RawMaterial
-          - Brain
-          - PAI
-          - PowerCell
-          - Nanopaste
-          - XenoborgModule
-          - BorgModule
-          - PositronicBrain
-          - MMI
-          - MMIFilled
-    - hand:
-        emptyRepresentative: Nanopaste
-        emptyLabel: borg-slot-nanopaste-empty
-        whitelist:
-          tags:
-          - CableCoil
-          - RawMaterial
-          - Brain
-          - PAI
-          - PowerCell
-          - Nanopaste
-          - XenoborgModule
-          - BorgModule
-          - PositronicBrain
-          - MMI
-          - MMIFilled
-    - hand:
-        emptyRepresentative: XenoborgModuleBasic
-        emptyLabel: borg-slot-module-empty
-        whitelist:
-          tags:
-          - CableCoil
-          - RawMaterial
-          - Brain
-          - PAI
-          - PowerCell
-          - Nanopaste
-          - XenoborgModule
-          - BorgModule
-          - PositronicBrain
-          - MMI
-          - MMIFilled
-    - hand:
-        emptyRepresentative: BorgModuleTool
-        emptyLabel: borg-slot-module-empty
-        whitelist:
-          tags:
-          - CableCoil
-          - RawMaterial
-          - Brain
-          - PAI
-          - PowerCell
-          - Nanopaste
-          - XenoborgModule
-          - BorgModule
-          - PositronicBrain
-          - MMI
-          - MMIFilled
- # Sunrise-End
+

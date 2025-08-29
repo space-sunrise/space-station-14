@@ -82,10 +82,7 @@
   id: XenoborgModuleSuperCloakDeviceRecipe
   result: XenoborgModuleSuperCloakDevice
 
-- type: latheRecipe
-  parent: BaseXenoborgModulesRecipe
-  id: XenoborgModuleInventoryRecipe
-  result: XenoborgModuleInventory
+
 
 # Supply recipes for Xenoborgs
 - type: latheRecipe
