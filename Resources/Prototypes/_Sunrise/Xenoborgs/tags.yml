@@ -1,0 +1,497 @@
+- type: Tag
+  id: NoPaint
+
+- type: Tag
+  id: IgnoreMelee
+
+- type: Tag
+  id: NoInjectable
+
+- type: Tag
+  id: Nanopaste
+
+- type: Tag
+  id: SunriseUplink
+
+- type: Tag
+  id: PlutoniumCore
+
+- type: Tag
+  id: Predator
+
+- type: Tag
+  id: HumanoidXeno
+
+- type: Tag
+  id: DockGamma
+
+- type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleERT
+
+- type: Tag
+  id: SyndieAgentUplink
+
+- type: Tag
+  id: AnomalyCore
+
+- type: Tag
+  id: LoneOpsUplink
+
+- type: Tag
+  id: Flash
+
+- type: Tag
+  id: CreepyLaugh
+
+# Catridges:
+
+- type: Tag
+  id: CartridgeHeavyRifleR
+
+- type: Tag
+  id: FireThrowerBall
+
+- type: Tag
+  id: PowerpackMinigunMG100
+
+- type: Tag
+  id: PowerpackDL6902
+
+- type: Tag
+  id: MiniSyringe
+
+- type: Tag
+  id: HandGrenadeAmmo
+
+- type: Tag
+  id: SpeedLoaderShotgun
+
+- type: Tag
+  id: ShellShotgunEmpty
+
+- type: Tag
+  id: Coin
+
+- type: Tag
+  id: ImprovisedAmmoBox
+
+# Weapons
+- type: Tag
+  id: WrappedWeapon
+
+- type: Tag
+  id: WeaponPistolG22
+
+- type: Tag
+  id: UpgradeFlareGun
+
+- type: Tag
+  id: ModularReceiverAuto
+
+- type: Tag
+  id: UpgradeDrozd
+
+- type: Tag
+  id: UpgradeLecter
+
+- type: Tag
+  id: UpgradeVestSec
+
+- type: Tag
+  id: GorillaUpgradeKit
+
+# Magazines:
+- type: Tag
+  id: MagazineM28
+
+- type: Tag
+  id: MagazineDragunov
+
+- type: Tag
+  id: MagazineBR64
+
+- type: Tag
+  id: MagazineBauer127
+
+- type: Tag
+  id: MagazineAK
+
+- type: Tag
+  id: MagazineAR18
+
+- type: Tag
+  id: MagazineP90
+
+- type: Tag
+  id: MagazineMP38
+
+- type: Tag
+  id: MagazineMP7
+
+- type: Tag
+  id: MagazineMP5
+
+- type: Tag
+  id: MagazineScorpion
+
+- type: Tag
+  id: MagazineNewVector
+
+- type: Tag
+  id: MagazineRPD
+
+- type: Tag
+  id: MagazineMachineGunMG42
+
+- type: Tag
+  id: MagazineLightMachineGunMG60
+
+- type: Tag
+  id: MagazineMachineGunHeavyRifle # .308 calibler
+
+- type: Tag
+  id: MagazineVP70
+
+- type: Tag
+  id: MagazineDeagle
+
+- type: Tag
+  id: MagazineGlock22
+
+- type: Tag
+  id: MagazineHIBrowning
+
+- type: Tag
+  id: MagazineACP14
+
+- type: Tag
+  id: FuelTankFlamethrower
+
+- type: Tag
+  id: NoSpinOnThrow
+
+- type: Tag
+  id: MagazineSTG44
+
+- type: Tag
+  id: MagazineV31
+
+- type: Tag
+  id: PowerpackFlame
+
+- type: Tag
+  id: MagazinePPSH41
+
+- type: Tag
+  id: MagazineDl6902
+
+- type: Tag
+  id: BluespaceBox
+
+- type: Tag
+  id: SyndicateRapier
+
+# Material bag:
+
+- type: Tag
+  id: Tile
+
+- type: Tag
+  id: MicroManipulatorStockPart
+
+- type: Tag
+  id: PartRodMetal
+
+- type: Tag
+  id: Board
+
+# Mechs
+
+- type: Tag
+  id: Ripley
+
+- type: Tag
+  id: Clarke
+
+- type: Tag
+  id: Gygax
+
+- type: Tag
+  id: Mauler
+
+- type: Tag
+  id: Durand
+
+- type: Tag
+  id: Phazon
+
+- type: Tag
+  id: ClarkeCentralControlModule
+
+- type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
+  id: ClarkeHead
+
+- type: Tag
+  id: ClarkeLArm
+
+- type: Tag
+  id: ClarkeRArm
+
+- type: Tag
+  id: ClarkeTreads
+
+- type: Tag
+  id: DurandArmor
+
+- type: Tag
+  id: DurandCentralControlModule
+
+- type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
+  id: DurandTargetingControlModule
+
+- type: Tag
+  id: DurandHead
+
+- type: Tag
+  id: DurandLArm
+
+- type: Tag
+  id: DurandLLeg
+
+- type: Tag
+  id: DurandRArm
+
+- type: Tag
+  id: DurandRLeg
+
+- type: Tag
+  id: EnergySword
+
+- type: Tag
+  id: GygaxArmor
+
+- type: Tag
+  id: GygaxCentralControlModule
+
+- type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
+  id: GygaxTargetingControlModule
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRArm
+
+- type: Tag
+  id: GygaxRLeg
+
+- type: Tag
+  id: PhazonArmor
+
+- type: Tag
+  id: PhazonCentralControlModule
+
+- type: Tag
+  id: PhazonPeripheralsControlModule
+
+- type: Tag
+  id: PhazonTargetingControlModule
+
+- type: Tag
+  id: PhazonHead
+
+- type: Tag
+  id: PhazonLArm
+
+- type: Tag
+  id: PhazonLLeg
+
+- type: Tag
+  id: PhazonRArm
+
+- type: Tag
+  id: PhazonRLeg
+
+- type: Tag
+  id: Laser
+
+- type: Tag
+  id: MechAirTank
+
+- type: Tag
+  id: MechThruster
+
+- type: Tag
+  id: MechPhasicScanningModule
+
+- type: Tag
+  id: RipleyMKIIUpgradeKit
+
+- type: Tag
+  id: IndustrialMech
+
+- type: Tag
+  id: CombatMech
+# TODO: Make medical mech
+
+- type: Tag
+  id: SpecialMech
+
+- type: Tag
+  id: SolarAssemblyFlatpack
+
+- type: Tag
+  id: ArtilleryShell
+
+- type: Tag
+  id: PokerCardClassic
+
+- type: Tag
+  id: PokerCard
+
+- type: Tag
+  id: ToySword
+
+- type: Tag
+  id: FugitiveUplink
+
+- type: Tag
+  id: Vest
+
+- type: Tag
+  id: FullBodyOuter
+
+- type: Tag
+  id: Directional
+
+- type: Tag
+  id: Geranium
+
+- type: Tag
+  id: WhitelistChameleonSuit
+
+- type: Tag
+  id: Sunflower
+
+- type: Tag
+  id: CarpRiftHealTarget
+
+- type: Tag
+  id: SheetOfficePaper
+
+- type: Tag
+  id: SheetPaper
+
+- type: Tag
+  id: PowerCellHigh
+
+- type: Tag
+  id: RiotShield
+
+- type: Tag
+  id: RiotShieldStrobe
+
+- type: Tag
+  id: DockCentComm
+
+- type: Tag
+  id: Abductor
+
+- type: Tag
+  id: AbductorScientist
+
+- type: Tag
+  id: ShowWires
+
+- type: Tag
+  id: CantInteract
+
+- type: Tag
+  id: DockMining
+
+- type: Tag
+  id: DockSecurity
+
+- type: Tag
+  id: DockPersonal
+
+- type: Tag
+  id: Felinid
+
+- type: Tag
+  id: Resomi
+
+### INTERACTION TAGS ###
+# Как одежда закрывает/не закрывает ту или иную область тела
+
+- type: Tag
+  id: CommandSuit
+
+# face
+# Лицо закрыто
+- type: Tag
+  id: FaceCovered
+
+# head
+# Голова полностью закрыта (например шлемом скафандра, капюшоном)
+- type: Tag
+  id: FullCovered
+
+# jumpsuit
+# Открыто снизу (например юбки)
+- type: Tag
+  id: NudeBottom
+
+# jumpsuit
+# Всё открыто (например фартук)
+- type: Tag
+  id: NudeFull
+
+# jumpsuit
+# Открыто сверху (например боксёрские шорты)
+- type: Tag
+  id: NudeTop
+
+# neck
+# Открыта шея (например бейджики, пины)
+- type: Tag
+  id: OpenNeck
+
+# gloves
+# Гладкие перчатки (например медицинские)
+- type: Tag
+  id: SmoothGloves
+
+# head
+# Закрыто только сверху (шлюяпы, кепки)
+- type: Tag
+  id: TopCovered
+
+### INTERACTION TAGS ###
+# Fun
+- type: Tag
+  id: PlushieKalium
+
+- type: Tag
+  id: SnapPop
+
+- type: Tag
+  id: Table

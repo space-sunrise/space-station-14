@@ -1,0 +1,19 @@
+﻿- type: damageModifierSet
+  id: HellSpawnBoss
+  coefficients:
+    Blunt: 0.6 # 40% resistance
+    Slash: 0.9 # 10% resistance
+    Piercing: 0.3 # 70% resistance
+    Heat: 0.0 # 100% resistance
+    Radiation: 0.0 # 100% resistance
+    Shock: 0.2 # 80% resistance
+    Bloodloss: 0 # 100% resistance
+    Holy: 1
+
+- type: damageModifierSet
+  id: XenoborgHeavy
+  coefficients:
+    Blunt: 0.5 # 50% resistance
+    Slash: 0.5 # 50% resistance
+    Piercing: 0.5 # 50% resistance
+    Heat: 0.8 # 20% resistance
