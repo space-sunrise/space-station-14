@@ -470,6 +470,7 @@
   groups:
   - ComMaidHead
   - ComMaidJumpsuit
+  - ComMaidBackpack
   - ComMaidNeck
   - ComMaidShoes
   - ComMaidGloves
