@@ -638,6 +638,9 @@
       startingCharge: 1500
     - type: PowerCellDraw
       useRate: 2.5
+    - type: ClothingSpeedModifier
+      sprintModifier: 1
+    - type: HeldSpeedModifier
     # Sunrise-End
 
 - type: entity
