@@ -74,7 +74,10 @@
         - Piercing
         - Heat
         - Mangleness
-      locPrefix: shield #Sunrise-End
+      locPrefix: shield
+    - type: ClothingSpeedModifier
+      sprintModifier: 0.95
+    - type: HeldSpeedModifier #Sunrise-End
 
 - type: entity
   name: paladin greatshield
