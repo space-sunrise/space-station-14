@@ -964,7 +964,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_rd_research
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: ListScienceDepartmentDuty
@@ -973,7 +973,7 @@
   component: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_rd_research
+    state: nanotrasen_form_header_rnd
 
 - type: docTemplate
   id: OrderSupplyResourcesEquipment
@@ -982,7 +982,7 @@
   component: Supply
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_qm_supply
+    state: nanotrasen_form_header_sup
 
 - type: docTemplate
   id: PermissionExpeditionSend
@@ -991,7 +991,7 @@
   component: Supply
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_qm_supply
+    state: nanotrasen_form_header_sup
 
 - type: docTemplate
   id: PermissionToExtendMarriage
@@ -1000,7 +1000,7 @@
   component: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_service
+    state: nanotrasen_form_header_serv
 
 - type: docTemplate
   id: KitchenMenu
@@ -1009,7 +1009,7 @@
   component: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_service
+    state: nanotrasen_form_header_serv
 
 - type: docTemplate
   id: BarMenu
@@ -1018,7 +1018,7 @@
   component: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
-    state: nanotrasen_form_header_service
+    state: nanotrasen_form_header_serv
 
 - type: docTemplate
   id: RequestPrisonerTransport
