@@ -198,6 +198,15 @@ ghost-role-information-derelict-mining-cyborg-name = Брошенный шахт
 ghost-role-information-derelict-mining-cyborg-description = Вы - шахтерский киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
 ghost-role-information-derelict-syndicate-assault-cyborg-name = Брошенный штурмовой киборг Синдиката
 ghost-role-information-derelict-syndicate-assault-cyborg-description = Вы - ранняя модель штурмового киборга Синдиката, которая заблудилась в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-syndicate-reaper-cyborg-name = Брошенный киборг-жнец Синдиката
+ghost-role-information-derelict-syndicate-reaper-cyborg-description = Вы - брошенный киборг-жнец Синдиката, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-syndicate-saboteur-cyborg-name = Брошенный саботажный киборг Синдиката
+ghost-role-information-derelict-syndicate-saboteur-cyborg-description = Вы - брошенный саботажный киборг Синдиката, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-syndicate-medical-cyborg-name = Брошенный медицинский киборг Синдиката
+ghost-role-information-derelict-syndicate-medical-cyborg-description = Вы - брошенный медицинский киборг Синдиката, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
 ghost-role-information-syndicate-cyborg-saboteur-name = Киборг-диверсант Синдиката
 ghost-role-information-syndicate-cyborg-description = Синдикату нужны подкрепления. Вы, холодная металическая машина для убийств, поможете им.
 ghost-role-information-security-name = Охрана
