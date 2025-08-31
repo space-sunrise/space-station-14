@@ -13,8 +13,7 @@
                     <BoxContainer Orientation="Vertical" VerticalAlignment="Stretch">
                         <TextureButton Name="HeaderImage" HorizontalAlignment="Center" VerticalAlignment="Top" MouseFilter="Ignore"/>
                         <!-- Sunrise-start -->
-                        <TextureRect Name="ImageContent" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                                     HorizontalExpand="True" VerticalExpand="True" Stretch="KeepAspectCentered" MouseFilter="Ignore"/>
+                        <TextureRect Name="ImageContent" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="KeepAspectCentered" Visible="False"/>
                         <!-- Sunrise-end -->
                         <Control Name="TextAlignmentPadding" VerticalAlignment="Top"/>
                         <RichTextLabel Name="BlankPaperIndicator" StyleClasses="LabelSecondaryColor" VerticalAlignment="Top" HorizontalAlignment="Center"/>

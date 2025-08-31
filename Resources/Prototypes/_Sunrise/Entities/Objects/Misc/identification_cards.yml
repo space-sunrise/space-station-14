@@ -397,3 +397,16 @@
       interfaces:
         enum.AgentIDCardUiKey.Key:
           type: AgentIDCardBoundUserInterface
+
+- type: entity
+  parent: IDCardStandard
+  id: CommaidIDCard
+  name: Commaid ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idcommaid
+  - type: PresetIdCard
+    job: ComMaid

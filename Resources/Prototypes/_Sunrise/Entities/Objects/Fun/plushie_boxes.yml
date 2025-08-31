@@ -1,0 +1,194 @@
+- type: entity
+  parent: MysteryLighterBox
+  id: PlushieVulpSyndiPresent
+  name: mystery sindy plushie box
+  description: A box containing a mystery plushie.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/advanced_toys/plushie_sindy_box.rsi
+    state: fig_box
+  - type: SpawnItemsOnUse
+    items:
+      - id: MysteryFigureBoxTrash
+      - id: PlushieKaliumNukieCommander
+        orGroup: PlushieKalium
+      - id: PlushieKaliumOperative
+        orGroup: PlushieKalium
+      - id: PlushieKaliumJuggernaut
+        orGroup: PlushieKalium
+      - id: PlushieKaliumNukeMed
+        orGroup: PlushieKalium
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: PresentRandom
+  id: PlushiePresent
+  name: mystery plushie box
+  description: A box containing a mystery plushie.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/figurines.rsi
+    scale: 1.2, 1.2
+    layers:
+      - state: fig_box
+  - type: SpawnItemsOnUse
+    items:
+      - id: PlushieUunaKatsuhiro
+        orGroup: Plushie
+      - id: PlushieOne
+        orGroup: Plushie
+      - id: PlushieTwo
+        orGroup: Plushie
+      - id: PlushieThree
+        orGroup: Plushie
+      - id: PlushieFour
+        orGroup: Plushie
+      - id: PlushieFive
+        orGroup: Plushie
+      - id: PlushieSix
+        orGroup: Plushie
+      - id: PlushieSeven
+        orGroup: Plushie
+      - id: PlushieEight
+        orGroup: Plushie
+      - id: PlushieNine
+        orGroup: Plushie
+      - id: PlushieTen
+        orGroup: Plushie
+      - id: PlushieEleven
+        orGroup: Plushie
+      - id: PlushieTwelve
+        orGroup: Plushie
+      - id: PlushieThirteen
+        orGroup: Plushie
+      - id: PlushieFourteen
+        orGroup: Plushie
+      - id: PlushieFifteen
+        orGroup: Plushie
+      - id: PlushieSixteen
+        orGroup: Plushie
+      - id: PlushieSeventeen
+        orGroup: Plushie
+      - id: PlushieEighteen
+        orGroup: Plushie
+      - id: PlushieNineteen
+        orGroup: Plushie
+      - id: PlushieTwenty
+        orGroup: Plushie
+      - id: PlushieTwentyOne
+        orGroup: Plushie
+      - id: PlushieTwentyTwo
+        orGroup: Plushie
+      - id: PlushieTwentyThree
+        orGroup: Plushie
+      - id: PlushieTwentyFour
+        orGroup: Plushie
+      - id: PlushieTwentyFive
+        orGroup: Plushie
+      - id: PlushieTwentySix
+        orGroup: Plushie
+      - id: PlushieTwentySeven
+        orGroup: Plushie
+      - id: PlushieTwentyEight
+        orGroup: Plushie
+      - id: PlushieTwentyNine
+        orGroup: Plushie
+      - id: PlushieThirty
+        orGroup: Plushie
+      - id: PlushieThirtyOne
+        orGroup: Plushie
+      - id: PlushieThirtyTwo
+        orGroup: Plushie
+      - id: PlushieThirtyThree
+        orGroup: Plushie
+      - id: PlushieThirtyFour
+        orGroup: Plushie
+      - id: PlushieThirtyFive
+        orGroup: Plushie
+      - id: PlushieThirtySixBig
+        orGroup: Plushie
+      - id: PlushieThirtySeven
+        orGroup: Plushie
+      - id: PlushieThirtyEight
+        orGroup: Plushie
+      - id: PlushieMiraKovalskaya
+        orGroup: Plushie
+      - id: PlushieMechanixFaurHorseman
+        orGroup: Plushie
+      - id: PlushieMihailOsipov
+        orGroup: Plushie
+      - id: PlushieMadokaMori
+        orGroup: Plushie
+      - id: PlushieMolnia
+        orGroup: Plushie
+      - id: PlushieExperiencedSalvageSpecialist
+        orGroup: Plushie
+      - id: PlushieAlisaKrokozyabka
+        orGroup: Plushie
+      - id: PlushieJamalDotsenko
+        orGroup: Plushie
+      - id: PlushieRichardDetective
+        orGroup: Plushie
+      - id: PlushieCaptainTartarus
+        orGroup: Plushie
+      - id: PlushieCaptainEmily
+        orGroup: Plushie
+      - id: PlushieCrusader
+        orGroup: Plushie
+      - id: PlushieGenok
+        orGroup: Plushie
+      - id: PlushieMegane
+        orGroup: Plushie
+      - id: PlushieFrizko
+        orGroup: Plushie
+      - id: PlushieMiron
+        orGroup: Plushie
+      - id: PlushieBublegum
+        orGroup: Plushie
+      - id: PlushieCikuus
+        orGroup: Plushie
+      - id: PlushieSuvagesi
+        orGroup: Plushie
+      - id: PlushiePrototupus
+        orGroup: Plushie
+      - id: PlushieSmile
+        orGroup: Plushie
+      - id: PlushieCFB
+        orGroup: Plushie
+      - id: PlushieSebastian
+        orGroup: Plushie
+      - id: PlushieNara
+        orGroup: Plushie
+      - id: PlushiePeacemaker
+        orGroup: Plushie
+      - id: PlushieEblan
+        orGroup: Plushie
+      - id: PlushieKlim
+        orGroup: Plushie
+      - id: PlushieMelania
+        orGroup: Plushie
+      - id: PlushieOkobius
+        orGroup: Plushie
+      - id: PlushieVyacheslav
+        orGroup: Plushie
+      - id: PlushieLu
+        orGroup: Plushie
+      - id: PlushieAgata
+        orGroup: Plushie
+      - id: PlushieMilosTanka
+        orGroup: Plushie
+      - id: PlushieAlice
+        orGroup: Plushie
+      - id: PlushieKaioshi
+        orGroup: Plushie
+      - id: PlushieRaisya
+        orGroup: Plushie
+      - id: PlushieAndrewNarvi
+        orGroup: Plushie
+      - id: PlushieTimofeyTatarchuk
+        orGroup: Plushie
+      - id: PlushieSansaMontanelli
+        orGroup: Plushie
+      - id: PlushieKalium
+        orGroup: Plushie

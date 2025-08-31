@@ -168,3 +168,35 @@
     sprite: _Sunrise/Abductor/Clothing/Ears/Headsets/abductor.rsi
   - type: Clothing
     sprite: _Sunrise/Abductor/Clothing/Ears/Headsets/abductor.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetCommaid
+  name: command maid headset
+  description: A headset for command maid.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/commaid_headset.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/commaid_headset.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltCentComSunrise
+  name: CentComm over-ear headset
+  suffix: No CentComm Key.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+

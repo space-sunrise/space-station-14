@@ -1551,3 +1551,37 @@
       - !type:AdjustReagent
         reagent: MindbreakerToxin
         amount: -3.0
+#Sunrise-Start
+- type: reagent
+  id: H-32
+  name: reagent-name-h-32
+  group: Medicine
+  desc: reagent-desc-h-32
+  physicalDesc: reagent-physical-desc-h-32
+  flavor: medicine
+  color: "#cc1a79"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 180.0
+        damage:
+          groups:
+            Brute: -12
+            Burn: -16
+          types:
+            Poison: -4
+            Radiation: 1
+            Cellular: 1
+      - !type:ReduceRotting
+        seconds: 1
+        conditions:
+        - !type:Temperature
+          max: 180.0
+        - !type:MobStateCondition
+          mobstate: Dead
+#Sunrise-End

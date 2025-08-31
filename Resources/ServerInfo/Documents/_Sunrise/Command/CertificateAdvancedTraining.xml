@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма NT/КОМ-КВАЛ[/bold]
+[bold]Форма {corpString}/КОМ-КВАЛ[/bold]
 [head=3]Свидетельство о повышении квалификации[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

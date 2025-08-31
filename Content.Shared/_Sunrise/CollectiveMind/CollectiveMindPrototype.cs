@@ -17,6 +17,12 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     [DataField("color")]
     public Color Color { get; private set; } = Color.Lime;
 
+    [DataField("voiceId")]
+    public string? VoiceId { get; private set; } = null;
+
+    [DataField("showAuthor")]
+    public bool ShowAuthor { get; private set; } = false;
+
     [IdDataField, ViewVariables]
     public string ID { get; } = default!;
 }
