@@ -336,6 +336,8 @@
     name: ghost-role-information-derelict-syndicate-reaper-cyborg-name
     description: ghost-role-information-derelict-syndicate-reaper-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
 
@@ -348,6 +350,8 @@
     name: ghost-role-information-derelict-syndicate-saboteur-cyborg-name
     description: ghost-role-information-derelict-syndicate-saboteur-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
 
@@ -360,6 +364,8 @@
     name: ghost-role-information-derelict-syndicate-medical-cyborg-name
     description: ghost-role-information-derelict-syndicate-medical-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
 #Sunrise-end
