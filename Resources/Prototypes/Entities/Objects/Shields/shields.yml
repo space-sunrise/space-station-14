@@ -361,7 +361,6 @@
   name: makeshift shield
   parent: [ BaseShield, RepairableShield ] # Sunrise-Edit
   id: MakeshiftShield
-  parent: BaseShield
   description: A rundown looking shield, not good for much.
   components:
   - type: Sprite
