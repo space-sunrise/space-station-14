@@ -363,7 +363,7 @@
         3.5
   - type: Bloodstream
     bleedReductionAmount: 1
-    bloodRefreshAmount: 1.5
+    bloodRefreshAmount: 2.5
     bloodReagent: Blood
     bloodMaxVolume: 200
   - type: Reactive
@@ -399,11 +399,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical  # High HP as requested
-      325: Dead  # High HP as requested
+      300: Critical
+      325: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.8
+      175: 0.95
+      200: 0.9
+      225: 0.8
       250: 0.6
   - type: Destructible
     thresholds:
@@ -427,8 +429,8 @@
     attackRate: 1.5
     damage:
       types:
-        Slash: 3 # Additional claw damage
-        Piercing: 2 # Additional claw damage
+        Slash: 2 # Additional claw damage
+        Piercing: 1 # Additional claw damage
         Blunt: 15 # Strong guard attack
         Structural: 10 # Strong guard attack
     bluntStaminaDamageFactor: 1.75
@@ -450,7 +452,7 @@
       Peckish: 150
       Starving: 100
       Dead: 0
-    baseDecayRate: 0.025  # Faster hunger decay for guards
+    baseDecayRate: 0.01
   - type: Thirst
     thresholds:
       OverHydrated: 600
@@ -528,7 +530,7 @@
   description: Spend some hunger to summon an allied rat to help defend you.
   components:
   - type: Action
-    useDelay: 3 # Sunrose-Edit
+    useDelay: 3 # Sunrise-Edit
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: ratKingArmy
