@@ -47,8 +47,27 @@
 - type: entity
   parent: [ Lockbox, BaseMedicalContraband ]
   id: BaseImplantCase
+  abstract: true
   name: implant case
   description: A small ID locked case safety containing a cyber implant.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    layers:
+    - state: internals
+    - state: implant
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: Item
+    size: Normal
+  - type: AccessReader
+    access: [ [ "Armory" ],[ "Medical" ],[ "Research" ] ] # ГСБ/Вард, РНД и Мед Отдел
+
+- type: entity
+  parent: [ BaseImplantCase, BaseMedicalContraband ]
+  id: SecurityImplantCase
+  abstract: true
   components:
   - type: Sprite
     sprite: Objects/Storage/boxes.rsi
@@ -61,11 +80,13 @@
   - type: Item
     size: Normal
   - type: AccessReader
-    access: [ [ "Armory" ],[ "Medical" ],[ "ResearchDirector" ] ] # ГСБ/Вард РД и Мед Отдел
+    access: [ [ "Armory" ],[ "ChiefMedicalOfficer" ],[ "ResearchDirector" ] ] # ГСБ/Вард РД и СМО
 
+# Civil Eye
 - type: entity
   parent: BaseImplantCase
   id: ImplantCaseNightVision
+  description: "A small ID locked case. The label reads: Night Vision CyberEye."
   components:
   - type: StorageFill
     contents:
@@ -74,7 +95,129 @@
 - type: entity
   parent: BaseImplantCase
   id: ImplantCaseThermal
+  description: "A small ID locked case. The label reads: Thermal CyberEye."
   components:
   - type: StorageFill
     contents:
     - id: CyberEyeThermal
+
+# Civil Hud
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseImplantChemical
+  description: "A small ID locked case. The label reads: Chemical HUD Eye Implant."
+  components:
+  - type: StorageFill
+    contents:
+    - id: EyeImplantChemical
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseImplantWelding
+  description: "A small ID locked case. The label reads: Welding HUD Eye Implant."
+  components:
+  - type: StorageFill
+    contents:
+    - id: EyeImplantWelding
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseImplantMedical
+  description: "A small ID locked case. The label reads: Medical HUD Eye Implant."
+  components:
+  - type: StorageFill
+    contents:
+    - id: EyeImplantMedical
+
+# Civil Arms
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseGorillaR
+  description: "A small ID locked case. The label reads: Right Gorilla CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: RightArmCyberGorilla
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseGorillaL
+  description: "A small ID locked case. The label reads: Left Gorilla CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberGorilla
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseMechwright
+  description: "A small ID locked case. The label reads: Mechwright CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberMechwright
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseReaper
+  description: "A small ID locked case. The label reads: Reaper CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberReaper
+
+# Security Hud
+- type: entity
+  parent: SecurityImplantCase
+  id: ImplantCaseImplantSecurity
+  description: "A secure ID locked case. The label reads: Security HUD Eye Implant."
+  components:
+  - type: StorageFill
+    contents:
+    - id: EyeImplantSecurity
+
+# Security Arms
+- type: entity
+  parent: SecurityImplantCase
+  id: ImplantCaseBonesaw
+  description: "A secure ID locked case. The label reads: Bonesaw CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberBonesaw
+
+- type: entity
+  parent: SecurityImplantCase
+  id: ImplantCaseLaserEmitter
+  description: "A secure ID locked case. The label reads: Laser Emitter CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberLaserEmitter
+
+- type: entity
+  parent: SecurityImplantCase
+  id: ImplantCaseBulwark
+  description: "A secure ID locked case. The label reads: Bulwark CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberBulwark
+
+- type: entity
+  parent: SecurityImplantCase
+  id: ImplantCaseGrenadeThrower
+  description: "A secure ID locked case. The label reads: Grenade Thrower CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberGrenadeThrower
+
+- type: entity
+  parent: SecurityImplantCase
+  id: ImplantCaseMantisBladeMaxGuard
+  description: "A secure ID locked case. The label reads: Mantis Blade MaxGuard CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberMantisBladeMaxGuard
