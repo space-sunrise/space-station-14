@@ -3,6 +3,7 @@ research-technology-basic-surgery = Базовая хирургия
 research-technology-basic-cyberlimbs = Базовые кибер-конечности
 research-technology-implant-extractor = Извлечение имплантов
 research-technology-advanced-surgery = Продвинутая хирургия
+research-technology-hanheld-crew-monitor = Портативный мониторинг
 research-technology-mechanized-medical-treatment = Механизированное лечение
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ

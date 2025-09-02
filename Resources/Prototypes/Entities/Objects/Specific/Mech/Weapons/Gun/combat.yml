@@ -367,9 +367,12 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletWeakRocket
-    fireCost: 125
+    fireCost: 100
   - type: Appearance
   - type: AmmoCounter
+  - type: Battery
+    maxCharge: 900
+    startingCharge: 900
 
 - type: entity
   id: WeaponMechCombatMissileRack6
