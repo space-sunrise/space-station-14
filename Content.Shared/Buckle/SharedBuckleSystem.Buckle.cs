@@ -218,6 +218,9 @@ public abstract partial class SharedBuckleSystem
         if (TryComp(buckle.Comp.BuckledTo, out StrapComponent? old))
         {
             old.BuckledEntities.Remove(buckle);
+            // Sunrise-Start: Clean up CurrentOffsets when removing buckled entity
+            old.CurrentOffsets.Remove(buckle.Owner);
+            // Sunrise-End
             Dirty(buckle.Comp.BuckledTo.Value, old);
         }
 

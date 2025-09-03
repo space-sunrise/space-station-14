@@ -39,8 +39,8 @@
   - type: BorgCuffed
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitorUnpoweredInnateItem
-    - HandheldStationMapUnpoweredInnateItem
+    - PortableSurveillanceCameraMonitorUnpowered
+    - HandheldStationMapUnpowered
   - type: Access
     tags:
     - EmergencyShuttleRepealAll
@@ -192,11 +192,11 @@
     voice: Sentrybot
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitorUnpoweredInnateItem
-    - HandheldCriminalRecordsMonitorUnpoweredInnateItem
-    - HandheldStationMapUnpoweredInnateItem
-    worldTargetActions:
-    - ForensicScannerInnateItem
+    - PortableSurveillanceCameraMonitorUnpowered
+    - HandheldCriminalRecordsMonitorUnpowered
+    - HandheldStationMapUnpowered
+    entityTargetActions:
+    - ForensicScanner
   - type: ShowCriminalRecordIcons
   - type: ShowMindShieldIcons
   - type: BorgCuffed

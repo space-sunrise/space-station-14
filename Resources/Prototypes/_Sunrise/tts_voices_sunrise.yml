@@ -723,3 +723,17 @@
   sex: Male
   speaker: crysis2_blackops_04
   provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AIUsafrician01v2
+  name: tts-voice-name-crysis2-ai-usafrician-01-v2
+  sex: Male
+  speaker: crysis2_ai_usafrician_01_v2
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLAkshan
+  name: tts-voice-name-lol-akshan
+  sex: Male
+  speaker: lol_akshan
+  provider: sunrise

@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseAction
+  id: InnateEntityTargetAction
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: TargetAction
+    range: 3
+    ignoreContainer: true
+  - type: EntityTargetAction
+    event: !type:InnateEntityTargetActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: InnateInstantActionAction
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:InnateInstantActionEvent

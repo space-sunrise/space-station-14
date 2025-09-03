@@ -134,6 +134,8 @@
     leech:
       groups:
         Brute: -6
+      types:
+        Bloodloss: -4
   - type: Gun
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 1
@@ -240,6 +242,8 @@
     leech:
       groups:
         Brute: -21
+      types:
+        Bloodloss: -4
   - type: Tag
     tags:
       - Pickaxe

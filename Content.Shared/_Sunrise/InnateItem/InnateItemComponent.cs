@@ -11,7 +11,7 @@ public sealed partial class InnateItemComponent : Component
     public List<EntProtoId?> InstantActions = new();
 
     [DataField, AutoNetworkedField]
-    public List<EntProtoId?> WorldTargetActions = new();
+    public List<EntProtoId?> EntityTargetActions = new();
 
     [DataField, AutoNetworkedField]
     public List<EntityUid> Actions = new();

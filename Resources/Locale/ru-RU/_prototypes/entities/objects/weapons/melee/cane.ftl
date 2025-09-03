@@ -8,3 +8,7 @@ ent-CaneSheath = { ent-Cane }
 ent-CaneSheathFilled = { ent-CaneSheath }
     .suffix = Полный
     .desc = { ent-CaneSheath.desc }
+ent-CaneShotgun = { ent-Cane }
+    .suffix = Дробовик
+    .desc = { ent-Cane.desc }
+

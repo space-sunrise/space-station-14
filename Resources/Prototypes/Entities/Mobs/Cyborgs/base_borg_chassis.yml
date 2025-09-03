@@ -61,6 +61,7 @@
       - Piercing
       - Heat
       - Shock
+      - Mangleness #Sunrise-Edit
     locPrefix: silicon
   - type: UserInterface
     interfaces:
@@ -74,12 +75,15 @@
       # Only used for NT borgs that can switch type, defined here to avoid copy-pasting the rest of this component.
       enum.BorgSwitchableTypeUiKey.SelectBorgType:
         type: BorgSelectTypeUserInterface
+      enum.BorgVoiceUiKey.Key:
+        type: BorgVoiceBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
   - type: ActionGrant
     actions:
     - ActionViewLaws
+    - ActionChangeBorgVoice
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
@@ -117,6 +121,7 @@
     allowSelfRepair: false
   # Sunrise-End
   - type: BorgChassis
+  - type: BorgVoice # Sunrise-TTS: Allow cyborgs to change their voice
   - type: LockingWhitelist
     blacklist:
       components:
@@ -385,7 +390,7 @@
     range: 3
   - type: InnateItem
     instantActions:
-    - HandheldStationMapUnpoweredInnateItem
+    - HandheldStationMapUnpowered
   - type: BorgCrewManifestViewer
   - type: StationRecordKeyStorage
   # Sunrise-End
@@ -413,6 +418,7 @@
     - Syndicate
   - type: ActiveRadio
     channels:
+    - Binary
     - Syndicate
   - type: ShowSyndicateIcons
   - type: MovementAlwaysTouching
@@ -454,6 +460,19 @@
     - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
   - type: AccessReader
     access: [["Command"], ["Research"]]
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons
+
+- type: entity
+  id: BaseBorgChassisSyndicateDerelict #For assault borg and maybe others in time
+  parent: BaseBorgChassisSyndicate
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: SyndicateStatic #Non-subverted version so they can still be changed
   - type: StartIonStormed
     ionStormAmount: 3
   - type: IonStormTarget

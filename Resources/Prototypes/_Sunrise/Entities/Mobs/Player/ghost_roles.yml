@@ -12,7 +12,7 @@
     neck: SecurityWhistle
     outerClothing: ClothingOuterArmorAmberCom
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
     pocket1: SpeedLoaderMagnumSP
     pocket2: SpeedLoaderMagnumSP
@@ -40,7 +40,7 @@
     neck: ClothingNeckCloakWhite
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
     pocket1: SpeedLoaderMagnumSP
     pocket2: SpeedLoaderMagnumSP
@@ -68,7 +68,7 @@
     neck: ClothingNeckMantleERTLeader
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineMagnum
     pocket2: DoorRemoteOmni
@@ -95,7 +95,7 @@
     neck: HandheldCamera
     outerClothing: ClothingOuterArmorAmberSec
     id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
     pocket1: MagazinePistolSubMachineGunSP
     pocket2: MagazinePistolSubMachineGunSP
@@ -122,7 +122,7 @@
     neck: HandheldCamera
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilledERT
     pocket1: SpeedLoaderMagnumSP
     pocket2: SpeedLoaderMagnumSP
@@ -151,7 +151,7 @@
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterArmorAmberChap
     id: ERTChaplainPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilledERT
     pocket1: LanternFlash
     pocket2: DrinkWaterBottleFull
@@ -179,7 +179,7 @@
     neck: HandheldCamera
     outerClothing: ClothingOuterArmorAmberEng
     id: ERTEngineerPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltChiefEngineerFilled
     pocket1: CableMVStack
     pocket2: CableHVStack
@@ -211,7 +211,7 @@
     neck: HandheldCamera
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltChiefEngineerFilled
     pocket1: CableMVStack
     pocket2: CableHVStack
@@ -244,7 +244,7 @@
     eyes: ClothingEyesHudMedical
     outerClothing: ClothingOuterArmorAmberMed
     id: ERTMedicPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltMedicalFilled
     pocket1: MedipenCombatInjector
   inhand:
@@ -255,12 +255,10 @@
     - BoxErtBaseKit
     - MedkitCombatFilled
     - CrowbarRed
-    - Hemostat
     - SawElectric
     - Drill
-    - Cautery
     - Retractor
-    - Scalpel
+    - ScalpelLaser
     - BoneGel
     - BoneSetterAdvanced
     - ChemistryBottleOmnizine
@@ -280,7 +278,7 @@
     eyes: ClothingEyesNVDMedSec
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltMedicalFilled
     pocket1: MedipenCombatInjector
     pocket2: Hypospray
@@ -292,12 +290,10 @@
     - BoxErtBaseKit
     - MedkitCombatFilled
     - CrowbarRed
-    - HemostatAdvanced
     - SawAdvanced
     - Drill
-    - Cautery
     - RetractorAdvanced
-    - ScalpelAdvanced
+    - ScalpelLaser
     - EmergencyRollerBedSpawnFolded
     - BoneGel
     - BoneSetterAdvanced
@@ -319,7 +315,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorAmberJan
     id: ERTJanitorPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltJanitorFilled
     pocket1: Holoprojector
     pocket2: HoloprojectorField
@@ -330,7 +326,6 @@
     back:
     - BoxErtBaseKit
     - LightReplacer
-    - BoxCleanerGrenades
     - BoxCleanerGrenades
     - CrowbarRed
     - ClothingHandsPowerGlovesUplinkNTERTAmber
@@ -347,7 +342,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltJanitorFilled
     pocket1: Holoprojector
     pocket2: HoloprojectorField
@@ -358,7 +353,6 @@
     back:
     - BoxErtBaseKit
     - LightReplacer
-    - BoxCleanerGrenades
     - BoxCleanerGrenades
     - CrowbarRed
     - ClothingHandsPowerGlovesUplinkNTERTGamma

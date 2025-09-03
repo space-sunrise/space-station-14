@@ -69,8 +69,16 @@
     steps: 4
     zeroVisible: true
   - type: Lock
+    mindShieldLock: true
   - type: AccessReader
     access: [["Security"]]
+  - type: Item
+    storedOffset: 1,-5
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 15
+    autoRechargePause: true
+    autoRechargePauseTime: 10
   - type: HitscanBatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
@@ -124,7 +132,7 @@
   - type: AccessReader
     access: [["BlueShield"]]
   - type: Item
-    size: Small
+    size: Normal
     shape:
     - 0, 0, 1, 1
   - type: MagazineVisuals
@@ -148,17 +156,43 @@
       fireCost: 750
       magState: destroy
       visualState: destroy-unshaded
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - gamma
+    - proto: EmpPulse
+      fireCost: 600
+      magState: ion
+      visualState: ion-unshaded
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
+        - yellow
+        - red
+        - gamma
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 10
+    autoRechargePause: true
+    autoRechargePauseTime: 15
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - Sidearm
+  - type: StaticPrice
+    price: 750
+  - type: StealTarget
+    stealGroup: WeaponEnergyGunMultiphase
 
 - type: entity
   parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
   id: WeaponIonRifle
   name: ion rifle
+  suffix: Ion Centcomm
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_rifle.rsi
@@ -178,7 +212,7 @@
     fireRate: 0.6
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargeRate: 40 #25sec+60Sec Pause
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: HitscanBatteryAmmoProvider
@@ -194,7 +228,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 8
-    pvsIncrease: 0.3
+    pvsIncrease: 0.5
 
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]

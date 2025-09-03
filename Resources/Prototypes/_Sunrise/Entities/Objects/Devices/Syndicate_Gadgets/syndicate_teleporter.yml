@@ -1,0 +1,20 @@
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SyndicateTeleporter
+  name: syndicate teleporter
+  description: Personal syndicate teleporter
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/syndicate_teleporter.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Devices/syndicate_teleporter.rsi
+  - type: SyndicateTeleporter
+  - type: UseDelay
+    delay: 0.5
+  - type: LimitedCharges
+    maxCharges: 3
+  - type: AutoRecharge
+    rechargeDuration: 30
+  - type: StaticPrice
+    price: 10000

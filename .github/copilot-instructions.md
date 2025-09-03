@@ -14,7 +14,7 @@ Always reference these instructions first and fallback to search or bash command
 - **CRITICAL**: Some components require Microsoft.DotNet.RemoteExecutor package that may fail due to network issues with Azure DevOps feeds. This is NORMAL and documented.
 - Build individual core projects (RECOMMENDED approach):
   - `dotnet restore Content.Shared/Content.Shared.csproj` -- takes 2 seconds
-  - `dotnet restore Content.Server/Content.Server.csproj` -- takes 2 seconds  
+  - `dotnet restore Content.Server/Content.Server.csproj` -- takes 2 seconds
   - `dotnet restore Content.Client/Content.Client.csproj` -- takes 2 seconds
   - `dotnet build Content.Shared/Content.Shared.csproj --configuration DebugOpt --no-restore` -- takes 60-90 seconds. NEVER CANCEL. Set timeout to 120+ seconds.
   - `dotnet build Content.Server/Content.Server.csproj --configuration DebugOpt --no-restore` -- takes 30-45 seconds. NEVER CANCEL. Set timeout to 90+ seconds.
@@ -48,7 +48,7 @@ Always reference these instructions first and fallback to search or bash command
 - **WORKAROUND**: Build individual core projects instead of full solution
 - **IMPACT**: Some tools (YAMLLinter, full test suite) may not work, but core game components work fine
 
-### Build Configuration Issues  
+### Build Configuration Issues
 - **Use DebugOpt configuration** for most development work
 - **Use Tools configuration** for running development tools
 - **Never use default Debug** configuration as it may have performance issues
@@ -62,7 +62,7 @@ Always reference these instructions first and fallback to search or bash command
 - **Content.Tests**: Unit tests for shared components
 - **Content.IntegrationTests**: Integration tests (may fail due to dependency issues)
 
-### Additional Components  
+### Additional Components
 - **Content.Tools**: Development and content creation tools
 - **Content.YAMLLinter**: YAML validation tool (may fail due to dependency issues)
 - **RobustToolbox**: Game engine (git submodule)
@@ -95,8 +95,9 @@ Always reference these instructions first and fallback to search or bash command
 ### Changelog Documentation in Pull Requests
 - **REQUIRED**: Include changelog entries in PR descriptions for player-visible changes
 - **FORMAT**: Use the following template in PR descriptions:
+- **AUTHOR**: Set author Copilot AI
 ```
-:cl: YourUsername
+:cl: Author
 - add: Добавлено веселье.
 - remove: Удалено веселье.
 - tweak: Изменено веселье.
@@ -104,7 +105,7 @@ Always reference these instructions first and fallback to search or bash command
 ```
 - **CHANGE TYPES**:
   - `add`: New features, content, or functionality
-  - `remove`: Removed features, content, or functionality  
+  - `remove`: Removed features, content, or functionality
   - `tweak`: Modified existing features or balance changes
   - `fix`: Bug fixes or corrections
 - **AUTOMATION**: Changelog entries are automatically processed and added to game changelogs after PR merge
@@ -124,7 +125,7 @@ git submodule update --init --recursive
 
 # Build core (run after changes)
 dotnet build Content.Shared/Content.Shared.csproj --configuration DebugOpt --no-restore
-dotnet build Content.Server/Content.Server.csproj --configuration DebugOpt --no-restore  
+dotnet build Content.Server/Content.Server.csproj --configuration DebugOpt --no-restore
 dotnet build Content.Client/Content.Client.csproj --configuration DebugOpt --no-restore
 
 # Run (for testing)
@@ -138,7 +139,7 @@ timeout 30s dotnet run --project Content.Server --configuration DebugOpt --no-bu
 ### Build Timing Expectations
 - **NEVER CANCEL** builds - they can take 30-90 seconds per component
 - Content.Shared: 60-90 seconds (largest component)
-- Content.Server: 30-45 seconds  
+- Content.Server: 30-45 seconds
 - Content.Client: 30-45 seconds
 - Set timeouts to 120+ seconds for builds to avoid premature cancellation
 - **Total build time**: 2-4 minutes for all core components

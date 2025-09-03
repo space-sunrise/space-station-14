@@ -80,6 +80,7 @@
   - GlassesJamjar
   - GlassesJensen
   - GlassesStuttering
+  - GlassesCheapSunglasses # sunrise
 
 - type: loadoutGroup
   id: GroupTankHarness
@@ -1198,6 +1199,7 @@
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
   loadouts:
+  - ArmorVestSec
   - ArmorVest
   - ArmorVestSlim
   - SecurityOfficerWintercoat
@@ -1442,8 +1444,8 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
 # Sunrise-end
   - NitrileGloves
 

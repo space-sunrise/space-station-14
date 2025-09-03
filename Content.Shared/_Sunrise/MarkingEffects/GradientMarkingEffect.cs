@@ -77,6 +77,12 @@ public sealed partial class GradientMarkingEffect : MarkingEffect
             }
         }
 
+        // Ensure both base and gradient colors are present for compatibility
+        if (!colors.ContainsKey("base"))
+            colors["base"] = Color.White;
+        if (!colors.ContainsKey("gradient"))
+            colors["gradient"] = colors["base"]; // Use base color as fallback
+
         return new GradientMarkingEffect(colors, offset, size, rotation, speed, pixelated, mirrored);
     }
     #endregion
@@ -86,7 +92,8 @@ public sealed partial class GradientMarkingEffect : MarkingEffect
     {
         Colors = new Dictionary<string, Color>()
         {
-            { "base", Color.White }
+            { "base", Color.White },
+            { "gradient", Color.White }
         };
     }
 
@@ -94,7 +101,8 @@ public sealed partial class GradientMarkingEffect : MarkingEffect
     {
         Colors = new Dictionary<string, Color>
         {
-            {"base", color }
+            {"base", color },
+            {"gradient", color }
         };
     }
 
