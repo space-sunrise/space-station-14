@@ -1,12 +1,11 @@
 - type: latheRecipePack
   id: MedicalStaticSunrise
   recipes:
-  - HandheldCrewMonitor
-  - ClothingHandsGlovesNitrileBlack
-  - ClothingHandsGlovesNitrileGreen
-  - ClothingHandsGlovesNitrileOrange
-  - ClothingHandsGlovesNitrileRed
-  - ClothingHandsGlovesNitrileBlue
+  # - ClothingHandsGlovesNitrileBlack # Sunrise-TODO: Не добавлять, пока не сделаете им уникальные для каждой волокна, ибо на момент комита тут все "нитриловые"
+  # - ClothingHandsGlovesNitrileGreen
+  # - ClothingHandsGlovesNitrileOrange
+  # - ClothingHandsGlovesNitrileRed
+  # - ClothingHandsGlovesNitrileBlue
   - ClothingEyesGlassesChemical
   - WhiteCane
   - PatchPack
@@ -22,6 +21,7 @@
   - HyposprayMedical
   - AutoMenderBurn
   - AutoMenderBrute
+  - HandheldCrewMonitor
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
@@ -36,45 +36,35 @@
   id: MedicalCyberlimbDynamic
   recipes:
   - LeftArmCyber
-  - RightArmCyber
   - LeftHandCyber
-  - RightHandCyber
   - LeftLegCyber
-  - RightLegCyber
   - LeftFootCyber
-  - RightFootCyber
   ####
-  - LeftArmCyberReaper
-  - RightArmCyberReaper
+  - ImplantCaseReaper
   #
-  - LeftArmCyberMechwright
-  - RightArmCyberMechwright
+  - ImplantCaseMechwright
   #
-  - LeftArmCyberBulwark
-  - RightArmCyberBulwark
+  - ImplantCaseBulwark
   #
-  - LeftArmCyberGorilla
-  - RightArmCyberGorilla
+  - ImplantCaseGorillaR
+  - ImplantCaseGorillaL
   #
-  - LeftArmCyberMantisBladeMaxGuard
-  - RightArmCyberMantisBladeMaxGuard
+  - ImplantCaseMantisBladeMaxGuard
   #
-  - LeftArmCyberLaserEmitter
-  - RightArmCyberLaserEmitter
+  - ImplantCaseLaserEmitter
   #
-  - LeftArmCyberGrenadeThrower
-  - RightArmCyberGrenadeThrower
+  - ImplantCaseGrenadeThrower
 
 - type: latheRecipePack
   id: MedicalCyberOrgansDynamic
   recipes:
-  - CyberEyeNightVision
-  - CyberEyeThermal
+  - ImplantCaseNightVision
+  - ImplantCaseThermal
 
 - type: latheRecipePack
   id: MedicalImplantDynamic
   recipes:
-  - EyeImplantWelding
-  - EyeImplantMedical
-  - EyeImplantSecurity
-  - EyeImplantChemical
+  - ImplantCaseImplantWelding
+  - ImplantCaseImplantMedical
+  - ImplantCaseImplantChemical
+  - ImplantCaseImplantSecurity

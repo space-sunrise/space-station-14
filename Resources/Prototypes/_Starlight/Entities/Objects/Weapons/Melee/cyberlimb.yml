@@ -29,8 +29,8 @@
        variation: 0.125
     activatedDamage:
       types:
-        Slash: 4
-        Heat: 4
+        Slash: 3
+        Heat: 3
         Structural: 10
   - type: MeleeWeapon
     angle: 0
