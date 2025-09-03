@@ -34,3 +34,6 @@ disease-infect-charge-purchased = Infect charge purchased successfully!
 disease-infect-charge-max-reached = Already at maximum charges ({ $maxCharges })! Purchase refunded.
 
 disease-death-reward = Received { $points } Disease Points from another disease's death!
+
+disease-upgrade-purchased = Upgrade purchased successfully!
+disease-upgrade-max-reached = Maximum upgrade level reached!

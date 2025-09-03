@@ -169,7 +169,7 @@
   name: listing-disease-base-chance-name
   description: listing-disease-base-chance-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: baseChance }
-  productAction: ActionDiseaseBaseChance
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 20
   categories:
@@ -183,7 +183,7 @@
   name: listing-disease-infect-chance-name
   description: listing-disease-infect-chance-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: coughChance }
-  productAction: ActionDiseaseInfectChance
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 15
   categories:
@@ -197,7 +197,7 @@
   name: listing-disease-shield-name
   description: listing-disease-shield-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: shield }
-  productAction: ActionDiseaseShield
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 15
   categories:
@@ -211,7 +211,7 @@
   name: listing-disease-lethal-name
   description: listing-disease-lethal-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
-  productAction: ActionDiseaseLethal
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 15
   categories:

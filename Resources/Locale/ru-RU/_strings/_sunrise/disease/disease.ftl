@@ -34,3 +34,6 @@ disease-infect-charge-purchased = Заряд заражения успешно �
 disease-infect-charge-max-reached = Уже максимальное количество зарядов ({ $maxCharges })! Покупка возвращена.
 
 disease-death-reward = Получено { $points } очков болезни от смерти другого больного!
+
+disease-upgrade-purchased = Улучшение успешно куплено!
+disease-upgrade-max-reached = Достигнут максимальный уровень улучшения!
