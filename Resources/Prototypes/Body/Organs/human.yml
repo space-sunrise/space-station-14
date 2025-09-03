@@ -53,7 +53,7 @@
   - type: Tag
     tags:
       - Meat
-      - Brain
+      - Brain #Sunrise-Edit
   - type: SolutionContainerManager
     solutions:
       organ:

@@ -54,7 +54,7 @@
   - type: Tag
     tags:
     - CannotSuicide
-    - Brain
+    - Brain #Sunrise-Edit
   - type: GenericVisualizer
     visuals:
       enum.ToggleableGhostRoleVisuals.Status:
@@ -121,7 +121,7 @@
   - type: Tag
     tags:
     - CannotSuicide
-    - Brain
+    - Brain #Sunrise-Edit
   - type: GenericVisualizer
     visuals:
       enum.ToggleableGhostRoleVisuals.Status:

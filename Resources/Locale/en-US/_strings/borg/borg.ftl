@@ -73,5 +73,5 @@ borg-type-security-name = Security
 borg-type-security-desc = TODO
 borg-type-security-transponder = security cyborg
 
-# Xenoborg Basic Module Storage Slots
+# Xenoborg Basic Module Storage Slots #Sunrise-Edit
 borg-slot-storage-empty = Storage Slot

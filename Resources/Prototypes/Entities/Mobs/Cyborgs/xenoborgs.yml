@@ -99,11 +99,11 @@
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
-  - type: Damageable
+  - type: Damageable #Sunrise-Edit
     damageContainer: Silicon
     damageModifierSet: XenoborgHeavy
   - type: TTS
-    voice: Crysis2AICostume
+    voice: Crysis2AICostume #Sunrise-Edit
   - type: Destructible
     thresholds:
     - trigger:
@@ -172,7 +172,7 @@
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
   - type: FlashImmunity
-  - type: BorgCuffed
+  - type: BorgCuffed #Sunrise-Edit
   - type: BorgChassis
     maxModules: 4
     hasMindState: xenoborg_scout_e

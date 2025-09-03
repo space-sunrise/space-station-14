@@ -97,11 +97,11 @@
     range: 1
   - type: TTS
     voice: Portal2FactCore
-  - type: InnateItem
   - type: Tag
     tags:
-    - PAI
+    - PAI #Sunrise-Edit
     - SiliconEmotes
+  - type: InnateItem #Sunrise-Edit
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered

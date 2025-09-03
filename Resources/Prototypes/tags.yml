@@ -142,7 +142,7 @@
   id: BorgModuleSyndicateAssault
 
 - type: Tag
-  id: BorgModule
+  id: BorgModule #Sunrise-Edit
 
 - type: Tag
   id: Bot
@@ -166,7 +166,7 @@
   id: BoxHug
 
 - type: Tag
-  id: Brain
+  id: Brain #Sunrise-Edit
 
 - type: Tag
   id: BrassInstrument
@@ -1031,7 +1031,7 @@
   id: OreUranium
 
 - type: Tag
-  id: PAI
+  id: PAI #Sunrise-Edit
 
 - type: Tag
   id: Packet
@@ -1560,15 +1560,15 @@
   id: XenoborgModuleStealth
 
 - type: Tag
-  id: XenoborgModule
+  id: XenoborgModule #Sunrise-Edit
 
 - type: Tag
-  id: PositronicBrain
+  id: PositronicBrain #Sunrise-Edit
 
 - type: Tag
-  id: MMIFilled
+  id: MMIFilled #Sunrise-Edit
 
 - type: Tag
-  id: MMI
+  id: MMI #Sunrise-Edit
 
 # ALPHABETICAL

@@ -51,8 +51,8 @@
     - Robotics
   - type: Tag
     tags:
-    - MMI
-    - Brain
+    - MMI #Sunrise-Edit
+    - Brain #Sunrise-Edit
   - type: ChangeVoiceInContainer
     whitelist:
       components:
@@ -65,8 +65,8 @@
   components:
   - type: Tag
     tags:
-    - MMIFilled
-    - Brain
+    - MMIFilled #Sunrise-Edit
+    - Brain #Sunrise-Edit
   - type: ItemSlots
     slots:
       brain_slot:
@@ -124,8 +124,8 @@
     - type: Tag
       tags:
       - CannotSuicide
-      - Brain
-      - PositronicBrain
+      - Brain #Sunrise-Edit
+      - PositronicBrain #Sunrise-Edit
     - type: GenericVisualizer
       visuals:
         enum.ToggleableGhostRoleVisuals.Status:

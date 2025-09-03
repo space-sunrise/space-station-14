@@ -34,7 +34,7 @@
   - type: Tag
     tags:
     - BorgModuleGeneric
-    - BorgModule
+    - BorgModule #Sunrise-Edit
   - type: GuideHelp
     guides:
     - Cyborgs
@@ -283,7 +283,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleGeneric
+    - XenoborgModule #Sunrise-EditGeneric
   - type: Item
     inhandVisuals:
       left:
@@ -310,7 +310,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleEngi
+    - XenoborgModule #Sunrise-EditEngi
   - type: Item
     inhandVisuals:
       left:
@@ -337,7 +337,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleHeavy
+    - XenoborgModule #Sunrise-EditHeavy
   - type: Item
     inhandVisuals:
       left:
@@ -364,7 +364,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleScout
+    - XenoborgModule #Sunrise-EditScout
   - type: Item
     inhandVisuals:
       left:
@@ -391,7 +391,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleStealth
+    - XenoborgModule #Sunrise-EditStealth
   - type: Item
     inhandVisuals:
       left:
@@ -1337,7 +1337,7 @@
     - state: icon-xenoborg-basic
   - type: ItemBorgModule
     hands:
-    - hand:
+    - hand: #Sunrise-Edit
         emptyRepresentative: SheetSteel
         emptyLabel: borg-slot-storage-empty
         whitelist:
@@ -1354,7 +1354,7 @@
           - PositronicBrain
           - MMI
           - MMIFilled
-    - hand:
+    - hand: #Sunrise-Edit
         emptyRepresentative: CableApcStack
         emptyLabel: borg-slot-storage-empty
         whitelist:
@@ -1371,7 +1371,7 @@
           - PositronicBrain
           - MMI
           - MMIFilled
-    - hand:
+    - hand: #Sunrise-Edit
         emptyRepresentative: MMIFilled
         emptyLabel: borg-slot-storage-empty
         whitelist:
@@ -1393,7 +1393,7 @@
     - item: HandheldGPSBasic
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-basic-module }
 
@@ -1414,10 +1414,10 @@
     - item: Screwdriver
     - item: Wirecutter
     - item: Multitool
-    - item: Welder
+    - item: Welder #Sunrise-Edit
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tool-module }
 
@@ -1434,10 +1434,10 @@
   - type: ItemBorgModule
     hands:
     - item: AccessBreaker
-    - item: EMAG
+    - item: Emag #Sunrise-Edit
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-access-breaker-module }
 
@@ -1456,7 +1456,7 @@
     - item: SelfRechargingFireExtinguisher
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-extinguisher-module }
 
@@ -1475,7 +1475,7 @@
     - item: XenoborgRadioJammer
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-jammer-module }
 
@@ -1494,7 +1494,7 @@
     - item: XenoborgLaserGun
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
@@ -1513,7 +1513,7 @@
     - item: XenoborgHeavyLaserGun
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1536,7 +1536,7 @@
     - item: JetpackXenoborg
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
@@ -1556,7 +1556,7 @@
     - item: JetpackXenoborg
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
@@ -1576,7 +1576,7 @@
     - item: JetpackXenoborg
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }
 
@@ -1595,7 +1595,7 @@
     - item: NocturineHypo
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 
@@ -1614,7 +1614,7 @@
     - item: ChameleonProjector
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
@@ -1633,7 +1633,7 @@
     - item: CloakingDevice
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye-module }
 
@@ -1652,7 +1652,7 @@
     - item: SuperCloakingDevice
   - type: Tag
     tags:
-    - XenoborgModule
+    - XenoborgModule #Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye2-module }
 

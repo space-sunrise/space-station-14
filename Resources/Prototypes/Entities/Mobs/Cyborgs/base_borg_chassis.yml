@@ -272,7 +272,7 @@
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   # Sunrise-start
   - type: TTS
-    voice: Glados
+    voice: Glados #Sunrise-Edit
   - type: Climbing
   - type: BorgMagboots
     walkModifier: 0.8

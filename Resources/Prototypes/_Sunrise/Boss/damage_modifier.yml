@@ -11,7 +11,7 @@
     Holy: 1
 
 - type: damageModifierSet
-  id: XenoborgHeavy
+  id: XenoborgHeavy #Sunrise-Edit
   coefficients:
     Blunt: 0.5 # 50% resistance
     Slash: 0.5 # 50% resistance
