@@ -274,6 +274,32 @@
     preloadedGrid: Spacebus
 
 # Sunrise-Start
+# Геймрулы что могут быть заспавнены только админом
+
+- type: entity
+  id: ERTShuttleAmberSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Small-Amber.yml"
+
+- type: entity
+  id: ERTShuttleRedMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Medium-Red.yml"
+
 - type: entity
   id: ERTShuttleGammaMedium
   parent: BaseUnknownShuttleRule
@@ -281,8 +307,20 @@
   - type: StationEvent
     startAnnouncement: null
     startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-    duration: -0 # Если изменить будет двоиться
+    duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
     gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ert_medium_gamma.yml"
+
+- type: entity
+  id: ERTShuttleCBURNSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_outbreak5.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_outbreak5.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/CBURN/ERT-Small-CBURN.yml"
 # Sunrise-End

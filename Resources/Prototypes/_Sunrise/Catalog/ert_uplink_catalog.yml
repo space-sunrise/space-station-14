@@ -353,6 +353,43 @@
   productEntity: BoxMagazinePistolSubMachineGunTopMounted
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_wt550 }
   cost:
+    Crystallite: 5
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+# .40/.45 ACP #Коробки#
+- type: listing
+  id: ERTUplinkBox40FMJ
+  productEntity: MagazineBoxPistol40FMJ
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_40_fmj }
+  cost:
+    Crystallite: 2
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
+  id: ERTUplinkBox40SP
+  productEntity: MagazineBoxPistol40SP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_40_sp }
+  cost:
+    Crystallite: 2
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
+  id: ERTUplinkBox40HP
+  productEntity: MagazineBoxPistol40HP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_40 }
+  cost:
     Crystallite: 2
   categories:
   - NTAmmo
@@ -413,7 +450,7 @@
   productEntity: MagazineMagnum
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_magnum }
   cost:
-    Crystallite: 2
+    Crystallite: 3
   categories:
     - NTAmmo
   conditions:
@@ -461,7 +498,7 @@
   productEntity: BoxMagazineShotgun
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot }
   cost:
-    Crystallite: 5
+    Crystallite: 6
   categories:
   - NTAmmo
   conditions:
@@ -473,7 +510,7 @@
   productEntity: BoxMagazineShotgunSlug
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_slug }
   cost:
-    Crystallite: 6
+    Crystallite: 7
   categories:
   - NTAmmo
   conditions:
@@ -485,19 +522,7 @@
   productEntity: BoxMagazineShotgunBeanbag
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot }
   cost:
-    Crystallite: 2
-  categories:
-  - NTAmmo
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 8
-
-- type: listing
-  id: ERTUplinkMagazineBR64
-  productEntity: MagazineBR64
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_br64 }
-  cost:
-    Crystallite: 6
+    Crystallite: 3
   categories:
   - NTAmmo
   conditions:

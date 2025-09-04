@@ -215,14 +215,14 @@
   materials:
     Steel: 250
 
-- type: latheRecipe
-  id: MagazineVP70
-  result: MagazineVP70
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
+# - type: latheRecipe
+#   id: MagazineVP70
+#   result: MagazineVP70
+#   categories:
+#   - Ammo
+#   completetime: 5
+#   materials:
+#     Steel: 250
 
 - type: latheRecipe
   id: MagazineHIBrowning
