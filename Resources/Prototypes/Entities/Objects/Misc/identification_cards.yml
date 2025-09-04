@@ -705,7 +705,7 @@
   - type: AgentIDCard
 
 - type: entity
-  parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
+  parent: SyndiOperativeIDCard
   id: SyndiCorpsmanIDCard
   name: syndicate corpsman ID card
   components:
@@ -715,7 +715,7 @@
     - state: syndi_corpsman
 
 - type: entity
-  parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
+  parent: SyndiOperativeIDCard
   id: SyndiCommanderIDCard
   name: syndicate commander ID card
   components:
