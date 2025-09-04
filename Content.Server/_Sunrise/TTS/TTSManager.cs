@@ -9,6 +9,8 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
 using Prometheus;
 using Robust.Shared.Configuration;
+using Robust.Shared.Log;
+using Robust.Shared.IoC;
 
 namespace Content.Server._Sunrise.TTS;
 

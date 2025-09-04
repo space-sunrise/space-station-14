@@ -75,13 +75,15 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: ClarkeChassis
-    requiredParts:
-      ClarkeHead: false
-      ClarkeLArm: false
-      ClarkeRArm: false
-      ClarkeTreads: false
+  - type: PartAssembly
+    parts:
+      clarke:
+        - ClarkeHead
+        - ClarkeLArm
+        - ClarkeRArm
+        - ClarkeTreads
+    currentAssembly: clarke
+    containerId: mech-assembly-container
   - type: Sprite
     state: clarke_harness+o
     noRot: true
@@ -207,14 +209,16 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: DurandChassis
-    requiredParts:
-      DurandHead: false
-      DurandLArm: false
-      DurandRArm: false
-      DurandLLeg: false
-      DurandRLeg: false
+  - type: PartAssembly
+    parts:
+      durand:
+        - DurandHead
+        - DurandLArm
+        - DurandRArm
+        - DurandLLeg
+        - DurandRLeg
+    currentAssembly: durand
+    containerId: mech-assembly-container
   - type: Sprite
     state: durand_harness+o
     noRot: true
@@ -352,14 +356,16 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: GygaxChassis
-    requiredParts:
-      GygaxHead: false
-      GygaxLArm: false
-      GygaxRArm: false
-      GygaxLLeg: false
-      GygaxRLeg: false
+  - type: PartAssembly
+    parts:
+      gygax:
+        - GygaxHead
+        - GygaxLArm
+        - GygaxRArm
+        - GygaxLLeg
+        - GygaxRLeg
+    currentAssembly: gygax
+    containerId: mech-assembly-container
   - type: Sprite
     state: gygax_harness+o
     noRot: true
@@ -493,13 +499,15 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: RipleyChassis
-    requiredParts:
-      RipleyLArm: false
-      RipleyRArm: false
-      RipleyLLeg: false
-      RipleyRLeg: false
+  - type: PartAssembly
+    parts:
+      ripley:
+        - RipleyLArm
+        - RipleyRArm
+        - RipleyLLeg
+        - RipleyRLeg
+    currentAssembly: ripley
+    containerId: mech-assembly-container
   - type: Sprite
     state: ripley_harness+o
     noRot: true
@@ -617,14 +625,16 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: RipleyMKIIChassis
-    requiredParts:
-      RipleyMKIIUpgradeKit: false
-      RipleyLArm: false
-      RipleyRArm: false
-      RipleyLLeg: false
-      RipleyRLeg: false
+  - type: PartAssembly
+    parts:
+      ripleymkii:
+        - RipleyMKIIUpgradeKit
+        - RipleyLArm
+        - RipleyRArm
+        - RipleyLLeg
+        - RipleyRLeg
+    currentAssembly: ripleymkii
+    containerId: mech-assembly-container
   - type: Sprite
     state: ripleymkii_harness+o
     noRot: true
@@ -698,13 +708,15 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: HonkerChassis
-    requiredParts:
-      HonkerLArm: false
-      HonkerRArm: false
-      HonkerLLeg: false
-      HonkerRLeg: false
+  - type: PartAssembly
+    parts:
+      honker:
+        - HonkerLArm
+        - HonkerRArm
+        - HonkerLLeg
+        - HonkerRLeg
+    currentAssembly: honker
+    containerId: mech-assembly-container
   - type: Sprite
     state: honker_harness+o
     noRot: true
@@ -826,13 +838,15 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: HamtrChassis
-    requiredParts:
-      HamtrLArm: false
-      HamtrRArm: false
-      HamtrLLeg: false
-      HamtrRLeg: false
+  - type: PartAssembly
+    parts:
+      hamtr:
+        - HamtrLArm
+        - HamtrRArm
+        - HamtrLLeg
+        - HamtrRLeg
+    currentAssembly: hamtr
+    containerId: mech-assembly-container
   - type: Sprite
     state: hamtr_harness+o
     noRot: true
@@ -950,11 +964,13 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: VimChassis
-    requiredParts:
-      HelmetEVA: false
-      BorgLeg: false
+  - type: PartAssembly
+    parts:
+      vim:
+        - HelmetEVA
+        - BorgLeg
+    currentAssembly: vim
+    containerId: mech-assembly-container
   - type: Sprite
     state: harness
     noRot: true
@@ -1033,14 +1049,16 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: PhazonChassis
-    requiredParts:
-      PhazonHead: false
-      PhazonLArm: false
-      PhazonRArm: false
-      PhazonLLeg: false
-      PhazonRLeg: false
+  - type: PartAssembly
+    parts:
+      phazon:
+        - PhazonHead
+        - PhazonLArm
+        - PhazonRArm
+        - PhazonLLeg
+        - PhazonRLeg
+    currentAssembly: phazon
+    containerId: mech-assembly-container
   - type: Sprite
     state: phazon_harness+o
     noRot: true
