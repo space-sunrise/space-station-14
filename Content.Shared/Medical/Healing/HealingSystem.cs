@@ -284,7 +284,7 @@ public sealed class HealingSystem : EntitySystem
         var output = healing.Comp.Delay;
         if (!TryComp<MobThresholdsComponent>(healing, out var mobThreshold) ||
             !TryComp<DamageableComponent>(healing, out var damageable))
-            return output;
+            return output.Seconds;
         if (!_mobThresholdSystem.TryGetThresholdForState(healing, MobState.Critical, out var amount, mobThreshold))
             return 1;
 

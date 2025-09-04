@@ -63,7 +63,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, MechToggleLightsEvent>(OnToggleLightsEvent);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
+        //SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<MechComponent, EntityStorageIntoContainerAttemptEvent>(OnEntityStorageDump);
         SubscribeLocalEvent<MechComponent, MobStateChangedEvent>(OnMobState);
         SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
