@@ -6,8 +6,11 @@
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 3
+    PatchBurnSmall: 8 # Sunrise-Edit
+    PatchBruteSmall: 8 # Sunrise-Edit
   contrabandInventory:
     PowerCellSmall: 2
     AntiPoisonMedipen: 1 # Sunrise Edit
+    PatchViagra: 2 # Sunrise Edit
   emaggedInventory:
     StimpackMini: 1 # Sunrise Edit

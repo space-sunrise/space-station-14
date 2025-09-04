@@ -900,8 +900,8 @@
 
 #Cybernetics
 - type: latheRecipe
-  id: LeftArmCyberMantisBladeMaxGuard
-  result: LeftArmCyberMantisBladeMaxGuard
+  id: ImplantCaseMantisBladeMaxGuard
+  result: ImplantCaseMantisBladeMaxGuard
   categories:
   - Cyberlimbs
   completetime: 10
@@ -912,22 +912,10 @@
     Glass: 100
     Plasma: 100
 
-- type: latheRecipe
-  id: RightArmCyberMantisBladeMaxGuard
-  result: RightArmCyberMantisBladeMaxGuard
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
 #
 - type: latheRecipe
-  id: LeftArmCyberGrenadeThrower
-  result: LeftArmCyberGrenadeThrower
+  id: ImplantCaseGrenadeThrower
+  result: ImplantCaseGrenadeThrower
   categories:
   - Cyberlimbs
   completetime: 10
@@ -937,21 +925,10 @@
     Gold: 100
     Glass: 100
 
-- type: latheRecipe
-  id: RightArmCyberGrenadeThrower
-  result: RightArmCyberGrenadeThrower
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 550
-    Steel: 650
-    Gold: 100
-    Glass: 100
 #
 - type: latheRecipe
-  id: LeftArmCyberLaserEmitter
-  result: LeftArmCyberLaserEmitter
+  id: ImplantCaseLaserEmitter
+  result: ImplantCaseLaserEmitter
   categories:
   - Cyberlimbs
   completetime: 10
@@ -962,9 +939,10 @@
     Glass: 100
     Plasma: 100
 
+#
 - type: latheRecipe
-  id: RightArmCyberLaserEmitter
-  result: RightArmCyberLaserEmitter
+  id: ImplantCaseBulwark
+  result: ImplantCaseBulwark
   categories:
   - Cyberlimbs
   completetime: 10
@@ -976,21 +954,8 @@
     Plasma: 100
 #
 - type: latheRecipe
-  id: LeftArmCyberBulwark
-  result: LeftArmCyberBulwark
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
-
-- type: latheRecipe
-  id: RightArmCyberBulwark
-  result: RightArmCyberBulwark
+  id: ImplantCaseBonesaw
+  result: ImplantCaseBonesaw
   categories:
   - Cyberlimbs
   completetime: 10

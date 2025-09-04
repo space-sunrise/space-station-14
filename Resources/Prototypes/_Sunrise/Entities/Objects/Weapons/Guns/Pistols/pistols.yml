@@ -332,10 +332,10 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
-    minAngle: 4
-    maxAngle: 16
-    angleIncrease: 6
-    angleDecay: 7
+    minAngle: 3.5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 10
     fireRate: 5
     availableModes:
     - SemiAuto

@@ -29,13 +29,9 @@
   cost: 4000
   recipeUnlocks:
     - LeftArmCyber
-    - RightArmCyber
     - LeftHandCyber
-    - RightHandCyber
     - LeftLegCyber
-    - RightLegCyber
     - LeftFootCyber
-    - RightFootCyber
 
 # Tier 2
 - type: technology
@@ -70,6 +66,20 @@
     - SurgeryTech
 
 - type: technology
+  id: HandheldCrewMonitorTech
+  name: research-technology-hanheld-crew-monitor
+  icon:
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
+  discipline: Biochemical
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+    - HandheldCrewMonitor
+  technologyPrerequisites:
+    - SurgeryTech
+
+- type: technology
   id: CyberImplantsTech
   name: research-technology-basic-eye-implants
   icon:
@@ -79,10 +89,10 @@
   tier: 2
   cost: 10000
   recipeUnlocks:
-    - EyeImplantWelding
-    - EyeImplantMedical
-    - EyeImplantChemical
-    - EyeImplantSecurity
+    - ImplantCaseImplantWelding
+    - ImplantCaseImplantMedical
+    - ImplantCaseImplantChemical
+    - ImplantCaseImplantSecurity
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:
@@ -164,12 +174,8 @@
   tier: 3
   cost: 9220
   recipeUnlocks:
-    - LeftArmCyberReaper
-    - RightArmCyberReaper
-    - LeftArmCyberMechwright
-    - RightArmCyberMechwright
-    - LeftArmCyberBulwark
-    - RightArmCyberBulwark
+    - ImplantCaseReaper
+    - ImplantCaseMechwright
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:
@@ -186,8 +192,8 @@
   tier: 3
   cost: 3500
   recipeUnlocks:
-    - LeftArmCyberGorilla
-    - RightArmCyberGorilla
+    - ImplantCaseGorillaL
+    - ImplantCaseGorillaR
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - AnomalyCoreHarnessing
@@ -204,10 +210,11 @@
     state: cybermantisbladesec
   discipline: Biochemical
   tier: 3
-  cost: 4000
+  cost: 8000
   recipeUnlocks:
-    - LeftArmCyberMantisBladeMaxGuard
-    - RightArmCyberMantisBladeMaxGuard
+    - ImplantCaseMantisBladeMaxGuard
+    - ImplantCaseBulwark
+    - ImplantCaseBonesaw
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - CombatEquipment
@@ -223,12 +230,10 @@
     state: laser_cyborg
   discipline: Biochemical
   tier: 3
-  cost: 4500
+  cost: 7500
   recipeUnlocks:
-    - LeftArmCyberLaserEmitter
-    - RightArmCyberLaserEmitter
-    - LeftArmCyberGrenadeThrower
-    - RightArmCyberGrenadeThrower
+    - ImplantCaseLaserEmitter
+    - ImplantCaseGrenadeThrower
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - WeaponizedLaserManipulation
@@ -246,7 +251,7 @@
   tier: 3
   cost: 7500
   recipeUnlocks:
-    - CyberEyeNightVision
+    - ImplantCaseNightVision
   technologyPrerequisites:
     - CyberImplantsTech
   radioChannels:
@@ -263,7 +268,7 @@
   tier: 3
   cost: 8500
   recipeUnlocks:
-    - CyberEyeThermal
+    - ImplantCaseThermal
   technologyPrerequisites:
     - CyberEyeNightVision
   radioChannels:
