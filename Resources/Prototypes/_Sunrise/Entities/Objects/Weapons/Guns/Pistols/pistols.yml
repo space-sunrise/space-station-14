@@ -61,6 +61,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
   - type: Gun
+    fireRate: 4.25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -72,18 +73,17 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineVP70
+        startingItem: MagazinePistol40FMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazinePistol
+          - MagazinePistolDP
           - MagazineVP70
-          - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolFMJ
+        startingItem: CartridgePistol40FMJ # .45 ACP
         priority: 1
         whitelist:
           tags:
@@ -265,11 +265,11 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
   - type: Gun
-    minAngle: 4.35
-    maxAngle: 18
-    angleIncrease: 5
-    angleDecay: 9
-    fireRate: 2.25
+    minAngle: 3.75
+    maxAngle: 16
+    angleIncrease: 2.75
+    angleDecay: 15
+    fireRate: 4.25
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -287,15 +287,15 @@
         priority: 2
         whitelist:
           tags:
-          - MagazineMagnum
           - MagazineACP14
+          - MagazinePistolDP
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumSP
+        startingItem: CartridgePistol40SP
         priority: 1
         whitelist:
           tags:
-          - CartridgeMagnum
+          - CartridgePistolDP
   - type: MagazineVisuals
     magState: mag
     steps: 1
