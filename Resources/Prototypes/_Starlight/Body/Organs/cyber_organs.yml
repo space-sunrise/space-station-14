@@ -13,6 +13,8 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
+  - type: Item
+    size: Normal
 
 - type: entity
   id: CyberEyeNightVision
