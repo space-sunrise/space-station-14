@@ -66,3 +66,9 @@ AntagInitialInfected = Initial Infected
 JobNinja = Space Ninja
 AntagDragon = Space Dragon
 AntagSubvertedSilicon = Subverted Silicon
+
+roles-antag-mothership-core-name = Xenoborg Core
+roles-antag-mothership-core-objective = Use your xenoborgs to create even more xenoborgs.
+
+roles-antag-xenoborg-name = Xenoborg
+roles-antag-xenoborg-objective = Help the mothership create more xenoborgs.

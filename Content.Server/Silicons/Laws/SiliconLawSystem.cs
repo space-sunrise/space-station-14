@@ -5,6 +5,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Station.Systems;
+using Content.Server.Xenoborgs;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Emag.Systems;
@@ -15,6 +16,7 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Xenoborgs.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -37,6 +39,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     // Sunrise-Start
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     // Sunrise-End
+    [Dependency] private readonly XenoborgSystem _xenoborgs = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -83,6 +86,18 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
     private void OnLawProviderMindAdded(Entity<SiliconLawProviderComponent> ent, ref MindAddedMessage args)
     {
+        if (TryComp<XenoborgComponent>(ent, out var xenoborgComp))
+        {
+            _xenoborgs.EnsureXenoborgRole(args.Mind, ent, xenoborgComp);
+            return;
+        }
+
+        if (TryComp<MothershipCoreComponent>(ent, out var mothershipComp))
+        {
+            _xenoborgs.EnsureXenoborgCoreRole(args.Mind, ent, mothershipComp);
+            return;
+        }
+
         if (!ent.Comp.Subverted)
             return;
         EnsureSubvertedSiliconRole(args.Mind);
@@ -90,6 +105,18 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
     private void OnLawProviderMindRemoved(Entity<SiliconLawProviderComponent> ent, ref MindRemovedMessage args)
     {
+        if (TryComp<XenoborgComponent>(ent, out _))
+        {
+            _xenoborgs.RemoveXenoborgRole(args.Mind);
+            return;
+        }
+
+        if (TryComp<MothershipCoreComponent>(ent, out _))
+        {
+            _xenoborgs.RemoveXenoborgCoreRole(args.Mind);
+            return;
+        }
+
         if (!ent.Comp.Subverted)
             return;
         RemoveSubvertedSiliconRole(args.Mind);

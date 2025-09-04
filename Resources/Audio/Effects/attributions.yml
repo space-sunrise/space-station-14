@@ -256,3 +256,8 @@
   copyright: '"taken from zvukipro.com'
   license: "CC-BY-NC-3.0"
   source: https://zvukipro.com/predmet/158-zvuk-elektrichestva.html
+
+- files: [card_drag.ogg]
+  copyright: 'created by Tao7891; perryprog (GitHub) downmixed to mono'
+  license: CC0-1.0
+  source: https://github.com/space-wizards/space-station-14/pull/37363

@@ -1,8 +1,3 @@
-using Content.Server._Sunrise.Contributors;
-using Content.Server._Sunrise.IoC;
-using Content.Server._Sunrise.PlayerCache;
-using Content.Server._Sunrise.ServersHub;
-using Content.Server._Sunrise.TTS;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -69,7 +64,6 @@ namespace Content.Server.IoC
             IoCManager.Register<IBugReportManager, BugReportManager>();
             IoCManager.Register<PlayTimeTrackingManager>();
             IoCManager.Register<UserDbDataManager>();
-            IoCManager.Register<TTSManager>(); // Sunrise-TTS
             IoCManager.Register<ServerInfoManager>();
             IoCManager.Register<PoissonDiskSampler>();
             IoCManager.Register<DiscordWebhook>();
@@ -85,6 +79,7 @@ namespace Content.Server.IoC
             IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MultiServerKickManager>();
             IoCManager.Register<CVarControlManager>();
+
             IoCManager.Register<DiscordLink>();
             IoCManager.Register<DiscordChatLink>();
             IoCManager.Register<GithubApiManager>();

@@ -11,12 +11,7 @@
   - Revolutionary
   - AllHostile
   - Wizard
-  # Sunrise Edit
-  - Thief
-  - Vampire
-  - FleshHuman
-  - Flesh
-  - BloodCult
+  - Xenoborg
 
 - type: npcFaction
   id: NanoTrasen
