@@ -46,3 +46,7 @@ AntagInitialInfected = Нулевой заражённый
 JobNinja = Космический ниндзя
 AntagDragon = Космический дракон
 AntagSubvertedSilicon = Враждебный силикон
+
+#Sunrise-Edit
+roles-antag-mothership-core-name = Ядро ксеноборгов
+roles-antag-mothership-core-objective = Используйте своих ксеноборгов для создания еще большего количества ксеноборгов.

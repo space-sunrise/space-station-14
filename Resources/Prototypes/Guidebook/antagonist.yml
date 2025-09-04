@@ -58,4 +58,4 @@
 - type: guideEntry
   id: Xenoborgs
   name: guide-entry-xenoborgs
-  text: "/ServerInfo/Guidebook/Antagonist/Xenoborgs.xml"
+  text: "/ServerInfo/Guidebook/Antagonist/_Sunrise/Xenoborgs_ru.xml" #Sunrise-Edit

@@ -1344,25 +1344,57 @@
   - type: ItemBorgModule
     hands:
     - item: DoorRemoteXenoborg
-    - hand:
-        emptyRepresentative: MMIFilled
-        emptyLabel: borg-slot-brains-empty
-        whitelist:
-          components:
-          - Brain
-          - BorgBrain
-    - hand:
-        emptyRepresentative: XenoborgModuleBasic
-        emptyLabel: borg-slot-modules-empty
-        whitelist:
-          components:
-          - BorgModule
-    - hand:
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
-        emptyLabel: borg-slot-construction-empty
+    - hand: #Sunrise-Edit
+        emptyRepresentative: SheetSteel
+        emptyLabel: borg-slot-storage-empty
         whitelist:
           tags:
+          - CableCoil
           - ConstructionMaterial
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand: #Sunrise-Edit
+        emptyRepresentative: CableApcStack
+        emptyLabel: borg-slot-storage-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - ConstructionMaterial
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
+    - hand: #Sunrise-Edit
+        emptyRepresentative: MMIFilled
+        emptyLabel: borg-slot-storage-empty
+        whitelist:
+          tags:
+          - CableCoil
+          - ConstructionMaterial
+          - RawMaterial
+          - Brain
+          - PAI
+          - PowerCell
+          - Nanopaste
+          - XenoborgModule
+          - BorgModule
+          - PositronicBrain
+          - MMI
+          - MMIFilled
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-module-module }
 
