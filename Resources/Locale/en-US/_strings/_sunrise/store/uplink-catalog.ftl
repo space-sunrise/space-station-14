@@ -49,12 +49,8 @@ uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
 uplink-clothing-backpack-syndie-siar52-desc = Включает в себя пулемёт SIAR-52 и два магазина патрон.
 uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
-uplink-deagle-name = Пистолет «Desert Eagle»
+uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
-uplink-gloves-knuckleduster-name = Синдикатовский кастет
-uplink-gloves-knuckleduster-desc = Пара пластитановых кастетов, которые позволяют наносить удары достаточно сильно, чтобы разбить челюсть капитана вдребезги.
-uplink-estoc-bundle-name = Эсток Марксманская винтовка
-uplink-estoc-bundle-desc = Специальная стрелковая винтовка, оснащенная оптическим прицелом средней дальности для боя на дальних дистанциях. В комплекте с двумя магазинами для винтовки(5,56)
 
 ## Cyborgs
 
