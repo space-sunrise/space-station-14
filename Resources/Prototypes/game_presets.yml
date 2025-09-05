@@ -272,7 +272,6 @@
   rules:
   - Xenoborgs
   - DummyNonAntagChance
-  - SubGamemodesRuleNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -288,7 +287,6 @@
   rules:
   - Xenoborgs
   - DummyNonAntagChance
-  - SubGamemodesRuleNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
