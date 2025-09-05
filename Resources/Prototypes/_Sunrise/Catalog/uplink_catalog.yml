@@ -22,7 +22,7 @@
   discountDownTo:
     Telecrystal: 8
   cost:
-    Telecrystal: 14
+    Telecrystal: 10
   categories:
   - UplinkWearables
   conditions:
@@ -58,7 +58,7 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkWearables
   conditions:
@@ -76,9 +76,9 @@
   productEntity: ClothingEyesGlassesThermalSec
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 6
   cost:
-    Telecrystal: 12
+    Telecrystal: 8
   categories:
   - UplinkWearables
   conditions:
@@ -107,6 +107,55 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+
+- type: listing
+  id: UplinkgClothingThievingGloves
+  name: uplink-clothing-thieving-gloves-name
+  description: uplink-clothing-thieving-gloves-desc
+  productEntity: ThievingGloves
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkClothingHandsChameleonThief
+  name: uplink-clothing-chameleon-thieving-gloves-name
+  description: uplink-clothing-chameleon-thieving-gloves-desc
+  productEntity: ClothingHandsChameleonThief
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkOuterHardsuitChameleon
+  name: uplink-clothing-outer-hardsuit-chameleon-name
+  description: uplink-clothing-hardsuit-chameleon-desc
+  productEntity: ClothingOuterHardsuitChameleon
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkMiscSyndiePowercage
+  name: uplink-objects-power-syndie-powercell-name
+  description: uplink-objects-power-syndie-powercell-desc
+  productEntity: PowerCellSyndicate
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkWearables
 
 # Ammunition
 - type: listing
@@ -295,6 +344,44 @@
     Telecrystal: 1
   cost:
     Telecrystal: 3
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+# For the mosin
+- type: listing
+  id: UplinkSpeedLoaderHRFMJ
+  name: uplink-mosin-speedloader-name
+  description: uplink-mosin-speedloader-desc
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi, state: icon }
+  productEntity: SpeedLoaderHeavyRifleRFMJ
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
+
+- type: listing
+  id: UplinkAmmoBundleSuper
+  name: uplink-ammo-bundlenew-name
+  description: uplink-ammo-bundlenew-desc
+  productEntity: ClothingBackpackDuffelSyndicateSuperAmmoFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 18
+  cost:
+    Telecrystal: 30
   categories:
   - UplinkAmmo
   conditions:
@@ -643,9 +730,8 @@
       components:
       - SurplusBundle
 
-# # Wearables
 - type: listing
-  id: UplinkHardsuitInfiltration
+  id: UplinkHardsuitInfiltrationNukie
   name: uplink-hardsuit-infiltration-name
   description: uplink-hardsuit-infiltration-desc
   icon: { sprite: /Textures/_Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
@@ -654,12 +740,34 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 11
+    Telecrystal: 10
   categories:
   - UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkHardsuitInfiltration
+  name: uplink-hardsuit-infiltration-name
+  description: uplink-hardsuit-infiltration-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkWearables
+  restockTime: 1800
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
@@ -1305,7 +1413,7 @@
   discountDownTo:
     Telecrystal: 8
   cost:
-    Telecrystal: 12
+    Telecrystal: 10
   categories:
   - UplinkWearables
   conditions:
@@ -1526,9 +1634,9 @@
   productEntity: WeaponMiniEnergyCrossbowBiocode
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 8
   cost:
-    Telecrystal: 12
+    Telecrystal: 10
   categories:
   - UplinkWeaponry
   conditions:
@@ -1569,9 +1677,9 @@
   productEntity: WeaponPistolDeagle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 7
   categories:
   - UplinkWeaponry
 
@@ -1589,6 +1697,26 @@
 #   - UplinkWeaponry
 
 - type: listing
+  id: UplinkGrenadeLauncherM79
+  name: uplink-grenade-launcher-m79-name
+  description: uplink-grenade-launcher-m79-desc
+  icon: { sprite: /Textures/_RMC14/Objects/Weapons/Guns/Launchers/m79/big.rsi, state: base }
+  productEntity: WeaponLauncherM79Biocode
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2 # Good morning Vietnam!
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
   id: UplinkGrenadeLauncherGL70
   name: uplink-grenade-launcher-gl70-name
   description: uplink-grenade-launcher-gl70-desc
@@ -1596,9 +1724,9 @@
   productEntity: WeaponGrenadeLauncherGL70Biocode
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 30
+    Telecrystal: 18
   cost:
-    Telecrystal: 40
+    Telecrystal: 25
   categories:
   - UplinkWeaponry
   conditions:
@@ -1621,9 +1749,9 @@
     }
   productEntity: CyberEyeNightVisionBox
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkCybernetics
 
@@ -1640,7 +1768,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 7
   categories:
   - UplinkCybernetics
 
@@ -1656,30 +1784,30 @@
   productEntity: MantisBladeArmsKit #ClothingBackpackDufelSyndicateFilledMantisBladeArms #Скучно и не практично в сумке ради 4 слота
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 12
+    Telecrystal: 8
   cost:
-    Telecrystal: 15
+    Telecrystal: 10
   categories:
   - UplinkCybernetics
 
-- type: listing
-  id: UplinkMagillitisSerumImplant
-  name: uplink-magillitis-serum-implanter-name
-  description: uplink-magillitis-serum-implanter-desc
-  icon: { sprite: _Starlight/Actions/implants.rsi, state: gorilla_rampage }
-  productEntity: MagillitisSerumImplanter
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 6
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - ResearchAssistant
-    - Scientist
-    - ResearchDirector
+# - type: listing
+#   id: UplinkMagillitisSerumImplant
+#   name: uplink-magillitis-serum-implanter-name
+#   description: uplink-magillitis-serum-implanter-desc
+#   icon: { sprite: _Starlight/Actions/implants.rsi, state: gorilla_rampage }
+#   productEntity: MagillitisSerumImplanter # Sunrise-TODO: FIX this Shit!
+#   discountDownTo:
+#     Telecrystal: 4
+#   cost:
+#     Telecrystal: 6
+#   categories:
+#   - UplinkJob
+#   conditions:
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - ResearchAssistant
+#     - Scientist
+#     - ResearchDirector
 
 - type: listing
   id: UplinkCaneShotgun

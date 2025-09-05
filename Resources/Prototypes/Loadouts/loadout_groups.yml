@@ -1143,6 +1143,7 @@
   loadouts:
   - WardenHead
   - WardenBeret
+  - ClothingHeadHatCapWardenAlt # Sunrise-Edit
 
 - type: loadoutGroup
   id: WardenJumpsuit
@@ -1157,6 +1158,7 @@
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
+  - ClothingOuterCoatWardenAlt # Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityHead
