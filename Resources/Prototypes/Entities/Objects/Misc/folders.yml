@@ -372,3 +372,88 @@
     stealGroup: BoxFolderQmClipboard
   - type: AccessReader #Sunrise-edit
     access: [["CargoPurchaseAccess"]] #Sunrise-edit
+
+# Empty folder variants
+- type: entity
+  parent: BoxFolderBase
+  id: BoxFolderBaseEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderRed
+  id: BoxFolderRedEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderBlue
+  id: BoxFolderBlueEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderYellow
+  id: BoxFolderYellowEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderGrey
+  id: BoxFolderGreyEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderBlack
+  id: BoxFolderBlackEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderGreen
+  id: BoxFolderGreenEmpty
+  suffix: Empty
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  parent: BoxFolderClipboard
+  id: BoxFolderClipboardThreePapers
+  suffix: Three Papers
+  components:
+  - type: StorageFill
+    contents:
+    - id: Paper
+      amount: 3
+
+- type: entity
+  parent: BoxFolderCentComClipboard
+  id: BoxFolderCentComClipboardThreePapers
+  suffix: Three Papers
+  components:
+  - type: StorageFill
+    contents:
+    - id: Paper
+      amount: 3
+
+- type: entity
+  parent: BoxFolderClipboard
+  id: BoxFolderPlasticClipboardEmpty
+  suffix: Plastic Empty
+  components:
+  - type: StorageFill
+    contents: []

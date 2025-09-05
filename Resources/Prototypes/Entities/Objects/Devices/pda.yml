@@ -1176,6 +1176,7 @@
        !type:String
        pda-syndi-operative
   - type: Icon
+    sprite: Objects/Devices/pda.rsi
     state: pda-syndi-operative
 
 - type: entity
@@ -1192,6 +1193,7 @@
        !type:String
        pda-syndi-corpsman
   - type: Icon
+    sprite: Objects/Devices/pda.rsi
     state: pda-syndi-corpsman
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -1214,6 +1216,7 @@
        !type:String
        pda-syndi-commander
   - type: Icon
+    sprite: Objects/Devices/pda.rsi
     state: pda-syndi-commander
 
 - type: entity
@@ -1581,8 +1584,6 @@
        pda-syndi-agent
   - type: PdaBorderColor
     borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-agent
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
