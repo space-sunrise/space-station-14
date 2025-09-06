@@ -665,6 +665,9 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
+    filterReagentGroups: # Sunrise-Edit
+     - Toxins
+     - Narcotics
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice # A new shitcurity meta
