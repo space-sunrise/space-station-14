@@ -1,8 +1,8 @@
 using Content.Shared.Alert;
-using Content.Shared.Audio;
+using Content.Shared.Audio;//Sunrise-Edit
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
-using Robust.Shared.Audio;
+using Robust.Shared.Audio;//Sunrise-Edit
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -48,9 +48,10 @@ public sealed partial class MobThresholdsComponent : Component
     /// </summary>
     [DataField("allowRevives")]
     public bool AllowRevives;
-
+    //Sunrise-Start
     [DataField]
     public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/Medical/scanner_use.ogg", AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(10f));
+    //Sunrise-End
 }
 
 [Serializable, NetSerializable]

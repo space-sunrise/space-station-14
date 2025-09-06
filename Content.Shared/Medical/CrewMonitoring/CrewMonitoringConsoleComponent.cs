@@ -1,14 +1,14 @@
-using Content.Shared.Audio;
+using Content.Shared.Audio;//Sunrise-Edit
 using Content.Shared.Medical.SuitSensor;
-using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Medical.CrewMonitoring;//Sunrise-Edit
 using Robust.Shared.Audio;
+using Content.Shared._Sunrise.Medical;//Sunrise-Edit
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Content.Shared._Sunrise.Medical;
 
 namespace Content.Server.Medical.CrewMonitoring;
 
 [RegisterComponent]
-[Access(typeof(SharedCrewMonitoringConsoleSystem))]
+[Access(typeof(SharedCrewMonitoringConsoleSystem))]//Sunrise-Edit
 public sealed partial class CrewMonitoringConsoleComponent : Component
 {
     /// <summary>

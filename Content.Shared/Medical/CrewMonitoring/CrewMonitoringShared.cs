@@ -8,7 +8,7 @@ public enum CrewMonitoringUIKey
 {
     Key
 }
-
+//Sunrise-Start
 [Serializable, NetSerializable]
 public enum CrewMonitoringMode : byte
 {
@@ -32,7 +32,7 @@ public enum CrewMonitoringMode : byte
     /// </summary>
     Both = 3
 }
-
+//Sunrise-End
 [Serializable, NetSerializable]
 public sealed class CrewMonitoringState : BoundUserInterfaceState
 {
