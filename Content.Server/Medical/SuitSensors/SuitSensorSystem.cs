@@ -41,7 +41,7 @@ public sealed class SuitSensorSystem : SharedSuitSensorSystem
             if (!CheckSensorAssignedStation((uid, sensor)))
                 continue;
 
-            sensor.NextUpdate += sensor.UpdateRate;
+            //sensor.NextUpdate += sensor.UpdateRate; //Sunrise-Edit
 
             // get sensor status
             var status = GetSensorState((uid, sensor));
@@ -56,6 +56,8 @@ public sealed class SuitSensorSystem : SharedSuitSensorSystem
 
                 sensor.ConnectedServer = address;
             }
+
+            sensor.NextUpdate += sensor.UpdateRate; //Sunrise-Edit
 
             // Send it to the connected server
             var payload = SuitSensorToPacket(status);

@@ -3,14 +3,27 @@ using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Events;
+using Content.Shared.Medical.SuitSensor;
+using Content.Shared.Medical.SuitSensors;
 using Robust.Shared.GameStates;
+using Robust.Shared.Timing; //Sunrise-Edit
+using Robust.Shared.Audio; //Sunrise-Edit
+using Robust.Shared.Audio.Systems; //Sunrise-Edit
+using Robust.Shared.Containers;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Server.Medical.CrewMonitoring;
 
 namespace Content.Shared.Mobs.Systems;
 
 public sealed class MobThresholdSystem : EntitySystem
 {
+    [Dependency] private readonly IEntityManager _entManager = default!; //Sunrise-Edit
+    [Dependency] private readonly IGameTiming _timing = default!; //Sunrise-Edit
+    [Dependency] private readonly EntityLookupSystem _lookup = default!; //Sunrise-Edit
+    [Dependency] private readonly SharedAudioSystem _audio = default!; //Sunrise-Edit
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
 
@@ -472,6 +485,99 @@ public sealed class MobThresholdSystem : EntitySystem
     private void OnThresholdsMobState(Entity<MobThresholdsComponent> ent, ref MobStateChangedEvent args)
     {
         UpdateAllEffects((ent, ent, null, null), args.NewMobState);
+
+
+        if (args.NewMobState > args.OldMobState && args.OldMobState != 0)
+            TrySendAlarmSignal(ent, args.NewMobState);
+    }
+
+    private void TrySendAlarmSignal(EntityUid ent, MobState mobState)
+    {
+        if (!_entManager.TryGetComponent<ContainerManagerComponent>(ent, out var inv))
+                return;
+        
+        
+        foreach (var (slot, container) in inv.Containers)
+        {
+
+            if (slot == "jumpsuit")
+                {
+                    if (container.ContainedEntities.Count == 0)
+                        continue;  
+
+                    var suit = container.ContainedEntities[0];
+                    
+                    if (!CanSendAlarmMessage(suit,mobState))
+                        continue;
+                    
+                    SendAlarmMessage(ent);
+                    return;
+                }
+            if (slot == "implant")
+                {
+                    if (container.ContainedEntities.Count == 0)
+                        continue;  
+                    
+                    var implants = container.ContainedEntities;
+
+                    foreach (var implant in implants)
+                    {
+                        if (!CanSendAlarmMessage(implant,mobState))
+                        continue;
+
+                        SendAlarmMessage(ent);
+                        return;
+                    }
+                }
+            
+        }
+
+    }
+
+    private bool CanSendAlarmMessage(EntityUid ent, MobState mobState)
+    {
+        if (!_entManager.TryGetComponent<SuitSensorComponent>(ent, out var sensor))
+            return false;
+
+        if (sensor.ConnectedServer == null)
+            return false;
+
+        if (sensor.NextUpdate < _timing.CurTime - TimeSpan.FromSeconds(4))
+            return false;
+
+        if (sensor.Mode == SuitSensorMode.SensorOff)
+            return false;
+                        
+        if (sensor.Mode == SuitSensorMode.SensorBinary   && mobState == MobState.Critical)
+            return false;
+        
+        return true;
+    }
+
+    private void SendAlarmMessage(EntityUid ent)
+    {
+        if (!_entManager.TryGetComponent<TransformComponent>(ent, out var transform))
+                return;
+
+        if (!_entManager.TryGetComponent<MobThresholdsComponent>(ent, out var mt))
+                return;
+            
+        if (transform.GridUid == null)
+            return;
+        var entities = new HashSet<Entity<CrewMonitoringConsoleComponent>>();
+        _lookup.GetGridEntities(transform.GridUid.Value, entities);
+        foreach (var entityUid in entities)
+        {
+
+            if (!_entManager.TryGetComponent<CrewMonitoringConsoleComponent>(entityUid, out var inter))
+                continue;
+            
+            if (inter.Mode == CrewMonitoringMode.ToggleOff || inter.Mode == CrewMonitoringMode.AnyoneDead)
+                continue;
+            
+            _audio.PlayPvs(mt.AlertSound, entityUid);
+
+        }
     }
 
     #endregion

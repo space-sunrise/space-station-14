@@ -1,11 +1,14 @@
+using Content.Shared.Audio;
 using Content.Shared.Medical.SuitSensor;
+using Content.Shared.Medical.CrewMonitoring;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared._Sunrise.Medical;
 
 namespace Content.Server.Medical.CrewMonitoring;
 
 [RegisterComponent]
-[Access(typeof(CrewMonitoringConsoleSystem))]
+[Access(typeof(SharedCrewMonitoringConsoleSystem))]
 public sealed partial class CrewMonitoringConsoleComponent : Component
 {
     /// <summary>
@@ -22,8 +25,8 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     /// <summary>
     ///     Whether the console should beep when corpses with sensors are detected outside morgues.
     /// </summary>
-    [DataField("doCorpseAlert"), ViewVariables(VVAccess.ReadWrite)]
-    public bool DoCorpseAlert = true;
+    [DataField("CrewMonitoringMode"), ViewVariables(VVAccess.ReadWrite)]
+    public CrewMonitoringMode Mode = CrewMonitoringMode.ToggleOff;
 
     /// <summary>
     ///     Next time to check for corpses and potentially play alert sound.
@@ -41,5 +44,5 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     ///     Sound to play when corpses with sensors are detected outside morgues.
     /// </summary>
     [DataField("corpseAlertSound")]
-    public SoundSpecifier CorpseAlertSound = new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg");
+    public SoundSpecifier CorpseAlertSound = new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg", AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-3f));
 }
