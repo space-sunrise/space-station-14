@@ -1,3 +1,3 @@
-ent-EnergySwordDoubleBiocode = { ent-EnergySwordDouble }
+ent-EnergySwordDoubleSunrise = { ent-EnergySwordDouble }
     .suffix = SUNRISE
     .desc = { ent-EnergySwordDouble.desc }
