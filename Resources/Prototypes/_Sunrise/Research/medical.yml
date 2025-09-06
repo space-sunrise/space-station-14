@@ -154,9 +154,10 @@
   - Engineering
   - Service
 
-# - type: technology
+# - type: technology #research-technology-atmos-cyberlimbs = Атмосианские киберконечности
 #   id: AtmosCyberLimbsTech
 #   name: research-technology-atmos-cyberlimbs
+
 #   icon:
 #     sprite: _Starlight/Interface/Actions/actions_cyber.rsi
 #     state: cyber-hand-left
@@ -191,7 +192,7 @@
   - Service
 
 # Tier 3
-# - type: technology
+# - type: technology  #research-technology-hack-cyberlimbs = ERR*?*%!
 #   id: HackCyberLimbsTech
 #   name: research-technology-hack-cyberlimbs
 #   icon:
