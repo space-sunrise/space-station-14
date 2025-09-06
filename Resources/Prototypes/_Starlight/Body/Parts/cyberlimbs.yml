@@ -769,11 +769,11 @@
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - WeaponGauntletGorilla
+        - CyberGorillaArm
         - CyberPistolCHIMP
     - type: WithAttachedBodyParts
       parts:
-        left hand: LeftHandCyber
+        left hand: LeftHandCyberFolder
     - type: Construction
       graph: UpgradeCyberArmGorilla
       node: base_left
@@ -798,11 +798,11 @@
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - WeaponGauntletGorilla
+        - CyberGorillaArm
         - CyberPistolCHIMP
     - type: WithAttachedBodyParts
       parts:
-        right hand: RightHandCyber
+        right hand: LeftHandCyberFolder
     - type: Construction
       graph: UpgradeCyberArmGorilla
       node: base_right
@@ -819,7 +819,7 @@
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - CyberGorillaArm
+        - CyberGorillaArmUpgraded
         - CyberPistolCHIMPUpgraded
     - type: Construction
       graph: UpgradeCyberArmGorilla
@@ -835,7 +835,7 @@
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - CyberGorillaArm
+        - CyberGorillaArmUpgraded
         - CyberPistolCHIMPUpgraded
     - type: Construction
       graph: UpgradeCyberArmGorilla
