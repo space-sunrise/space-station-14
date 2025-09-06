@@ -887,7 +887,6 @@
   id: UplinkHypo
   name: uplink-hypo-name
   description: uplink-hypo-desc
-  icon: { sprite: /Textures/Objects/Specific/Medical/syndihypo.rsi, state: hypo }
   productEntity: SyndiHypo
   discountCategory: rareDiscounts
   discountDownTo:
@@ -897,10 +896,8 @@
   categories:
   - UplinkChemicals
   conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - AssaultOpsUplink
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: UplinkSyndicateRapier
