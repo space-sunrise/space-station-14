@@ -225,7 +225,7 @@
       pen:
         maxVol: 15
         reagents:
-        - ReagentId: Carbon
+        - ReagentId: Charcoal
           Quantity: 15
   - type: Hypospray
     solutionName: pen

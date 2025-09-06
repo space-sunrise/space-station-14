@@ -857,7 +857,7 @@
   productEntity: CoalAutoInjector
   icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: coalpen }
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkChemicals
   conditions:
