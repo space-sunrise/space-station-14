@@ -37,8 +37,6 @@ public sealed class HypospraySystem : EntitySystem
     // Sunrise-Start
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-
-    private const string MedicineReagentGroup = "Medicine";
     // Sunrise-End
 
     public override void Initialize()
@@ -61,7 +59,7 @@ public sealed class HypospraySystem : EntitySystem
         args.Handled = TryDoInject(entity, args.Args.Target.Value, args.Args.User);
     }
 
-    private bool HasInvalidReagents(Solution solution, string group, IPrototypeManager prototypeManager)
+    private bool HasInvalidReagents(Solution solution, HashSet<string> allowedGroups, IPrototypeManager prototypeManager)
     {
         foreach (var (reagent, _) in solution.Contents)
         {
@@ -71,10 +69,8 @@ public sealed class HypospraySystem : EntitySystem
                 continue;
             }
 
-            if (reagentProto.Group != group)
-            {
+            if (!allowedGroups.Contains(reagentProto.Group))
                 return true;
-            }
         }
 
         return false;
@@ -274,9 +270,9 @@ public sealed class HypospraySystem : EntitySystem
         }
 
         // Sunrise-Start
-        if (entity.Comp.FilterPoison)
+        if (entity.Comp.FilterReagentGroups.Count > 0)
         {
-            var hasInvalidReagents = HasInvalidReagents(targetSolution.Comp.Solution, MedicineReagentGroup, _prototypeManager);
+            var hasInvalidReagents = HasInvalidReagents(targetSolution.Comp.Solution, entity.Comp.FilterReagentGroups, _prototypeManager);
             if (hasInvalidReagents)
             {
                 _popup.PopupEntity(Loc.GetString("hypospray-invalid-reagents-message",
