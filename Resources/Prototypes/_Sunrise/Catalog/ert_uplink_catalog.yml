@@ -855,6 +855,7 @@
   - !type:ListingLimitedStockCondition
     stock: 3
 
+
 # Дополнительное:
 
 - type: listing

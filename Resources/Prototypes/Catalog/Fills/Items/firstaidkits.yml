@@ -47,7 +47,7 @@
       - id: SyringeEthylredoxrazine
       - id: AntiPoisonMedipen
       - id: PillCanisterDylovene
-      - id: PillCanisterCharcoal
+      - id: CoalAutoInjector
 
 - type: entity
   id: MedkitOxygenFilled
@@ -120,4 +120,14 @@
     contents:
       - id: StimpackMiniNT
         amount: 6
+
+- type: entity
+  id: CoalpenKitFilled
+  suffix: CoalpenKit, Filled
+  parent: Medkit
+  components:
+  - type: StorageFill
+    contents:
+      - id: CoalAutoInjector
+        amount: 8
 #Sunrse-end
