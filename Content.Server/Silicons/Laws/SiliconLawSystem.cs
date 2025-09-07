@@ -178,7 +178,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
         // Sunrise-Start
         // In the emag handler, mark emagged borgs so they will be skipped when applying the Epsilon lawset
-        EnsureComp<_Sunrise.Silicons.Laws.Components.BlockLawChangeComponent>(uid);
+        EnsureComp<BlockLawChangeComponent>(uid);
         // Sunrise-End
     }
 
