@@ -29,13 +29,11 @@ public sealed class AlertLevelSystem : EntitySystem
     // Sunrise-Start
     private const string EpsilonAlertLevel = "epsilon";
     private const string EpsilonBorgLawChanges = "EpsilonDeathSquadLawset";
-    private ISawmill _sawmill = default!;
     // Sunrise-End
 
     public override void Initialize()
     {
         base.Initialize();
-        _sawmill = Logger.GetSawmill("alert-level");
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
     }
@@ -57,7 +55,6 @@ public sealed class AlertLevelSystem : EntitySystem
             alert.CurrentDelay -= time;
         }
     }
-
     private void OnStationInitialize(StationInitializedEvent args)
     {
         if (!TryComp<AlertLevelComponent>(args.Station, out var alertLevelComponent))
@@ -129,7 +126,6 @@ public sealed class AlertLevelSystem : EntitySystem
         }
         return station.Comp.AlertLevels.DefaultLevel;
     }
-
     /// <summary>
     /// Set the alert level based on the station's entity ID.
     /// </summary>
@@ -202,7 +198,6 @@ public sealed class AlertLevelSystem : EntitySystem
         // Handle Epsilon alert level
         if (level == EpsilonAlertLevel)
         {
-            _sawmill.Info($"Epsilon alert level triggered on station {station}, adding Death Squad Lawset event");
             var eventEnt = _gameTicker.AddGameRule(EpsilonBorgLawChanges);
             // Use the system to set the station
             var epsilonRule = EntityManager.System<EpsilonDeathSquadLawsetRule>();
@@ -210,17 +205,15 @@ public sealed class AlertLevelSystem : EntitySystem
             _gameTicker.StartGameRule(eventEnt);
         }
         // Sunrise-End
+        // Sunrise edit - добавил прежний уровень для системы автодоступов
         // Raise event with previous level for auto access system
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level, previousLevel));
     }
 }
-
 public sealed class AlertLevelDelayFinishedEvent : EntityEventArgs
 {}
-
 public sealed class AlertLevelPrototypeReloadedEvent : EntityEventArgs
 {}
-
 // Sunrise-Start
 public sealed class AlertLevelChangedEvent : EntityEventArgs
 {
