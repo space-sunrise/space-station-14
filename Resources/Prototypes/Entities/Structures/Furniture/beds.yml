@@ -22,7 +22,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.05"
-        density: 190
+        density: 1900 #SUNRISE-EDIT
         mask:
         - TableMask
   - type: Sprite

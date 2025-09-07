@@ -310,6 +310,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (args.DamageDelta != null && component.PilotSlot.ContainedEntity != null && args.DamageIncreased)
         {
             var damageToPlayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
+            damageToPlayer.DamageDict.Remove("Mangleness");//Sunrise-Edit
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damageToPlayer);
         }
     }
