@@ -69,6 +69,7 @@
     anchored: true
     noRot: true
   - type: Anchorable
+    delay: 5 #SUNRISE-EDIT
   - type: Pullable
   - type: CanSleepOnBuckle # Sunrise-Edit
 
