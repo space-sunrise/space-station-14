@@ -3,6 +3,7 @@
 # Sunrise edit start
 - type: entity
   id: BaseClothingBeltSounds
+  abstract: true
   components:
   - type: EmitSoundOnPickup
     sound:

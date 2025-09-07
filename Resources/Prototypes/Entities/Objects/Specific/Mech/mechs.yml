@@ -207,6 +207,7 @@
   - type: DamageOverlay # Sunrise-Edit
   - type: ExplosionResistance # Sunrise-Edit
     damageCoefficient: 0.8 # Sunrise-Edit
+  - type: ProtectedFromStepTriggers # Sunrise-added
 
 # Ripley MK-I
 - type: entity

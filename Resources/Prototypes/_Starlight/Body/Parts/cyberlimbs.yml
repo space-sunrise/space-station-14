@@ -26,6 +26,9 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyber
+      node: start
 
 - type: entity
   id: RightArmCyber
@@ -43,6 +46,9 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyber
+      node: start
 
 - type: entity
   id: LeftHandCyber
@@ -57,6 +63,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hand"
+    - type: Construction
+      graph: ImplantSwitchHandCyber
+      node: start
 
 - type: entity
   id: RightHandCyber
@@ -71,6 +80,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hand"
+    - type: Construction
+      graph: ImplantSwitchHandCyber
+      node: start
 
 - type: entity
   id: LeftLegCyber
@@ -91,6 +103,9 @@
     - type: WithAttachedBodyParts
       parts:
         left foot: LeftFootCyber
+    - type: Construction
+      graph: ImplantSwitchLegCyber
+      node: start
 
 - type: entity
   id: RightLegCyber
@@ -111,6 +126,9 @@
     - type: WithAttachedBodyParts
       parts:
         right foot: RightFootCyber
+    - type: Construction
+      graph: ImplantSwitchLegCyber
+      node: start
 
 - type: entity
   id: LeftFootCyber
@@ -125,6 +143,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_foot"
+    - type: Construction
+      graph: ImplantSwitchFootCyber
+      node: start
 
 - type: entity
   id: RightFootCyber
@@ -139,6 +160,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_foot"
+    - type: Construction
+      graph: ImplantSwitchFootCyber
+      node: start
 
 #reaper
 - type: entity
@@ -171,6 +195,9 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberReaper
+      node: start
 
 - type: entity
   id: RightArmCyberReaper
@@ -202,6 +229,10 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberReaper
+      node: start
+
 
 #Mechwright
 - type: entity
@@ -232,6 +263,9 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberMechwright
+      node: start
 
 - type: entity
   id: RightArmCyberMechwright
@@ -261,6 +295,10 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberMechwright
+      node: start
+
 #Bulwark
 - type: entity
   id: LeftArmCyberBulwark
@@ -283,10 +321,12 @@
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       items:
         - EnergyShieldCyber
-        - CyberEnergyChainsword
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberBulwark
+      node: start
 
 - type: entity
   id: RightArmCyberBulwark
@@ -309,10 +349,69 @@
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       items:
         - EnergyShieldCyber
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberBulwark
+      node: start
+
+#Bonesaw
+- type: entity
+  id: LeftArmCyberBonesaw
+  name: "left Bonesaw arm"
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmBonesaw
+    - type: BaseLayerIdToggled
+      layer: CyberLArmBonesawToggled
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      items:
+        - CyberEnergyChainsword
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberBulwark
+      node: start
+
+- type: entity
+  id: RightArmCyberBonesaw
+  name: "right Bonesaw arm"
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmBonesaw
+    - type: BaseLayerIdToggled
+      layer: CyberRArmBonesawToggled
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_arm"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      items:
         - CyberEnergyChainsword
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberBulwark
+      node: start
 
 #Mantis Blade
 - type: entity
@@ -390,6 +489,9 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchMantisMaxGuard
+      node: start
 
 - type: entity
   id: RightArmCyberMantisBladeMaxGuard
@@ -415,6 +517,9 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchMantisMaxGuard
+      node: start
 
 #Gorilla Arms
 - type: entity
@@ -528,6 +633,9 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberLaserEmitter
+      node: start
 
 - type: entity
   id: RightArmCyberLaserEmitter
@@ -553,6 +661,9 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberLaserEmitter
+      node: start
 
 #Grenade Thrower Arms
 - type: entity
@@ -579,6 +690,9 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberGrenadeThrower
+      node: start
 
 - type: entity
   id: RightArmCyberGrenadeThrower
@@ -604,3 +718,6 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberGrenadeThrower
+      node: start

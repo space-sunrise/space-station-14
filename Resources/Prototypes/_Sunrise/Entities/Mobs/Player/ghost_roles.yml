@@ -97,18 +97,42 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazinePistolSubMachineGunSP
-    pocket2: MagazinePistolSubMachineGunSP
+    pocket1: SecurityWhistle
+    pocket2: ClothingHandsPowerGlovesUplinkNTERTAmber
   inhand:
-  - WeaponSubMachineGunSkorpion
+  - WeaponDominator
   storage:
     back:
     - BoxErtBaseKit
     - BoxZiptie
     - CrowbarRed
     - MedkitCombatFilled
-    - MagazinePistolSubMachineGun
-    - ClothingHandsPowerGlovesUplinkNTERTAmber
+
+- type: startingGear
+  id: ERTSecurityGearRed
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurity
+    shoes: ClothingShoesBootsMagCombat
+    head: ClothingHeadHatBeretSecurity
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesSecurity
+    neck: HandheldCamera
+    outerClothing: ClothingOuterHardsuitERTSecurity
+    id: ERTSecurityPDA
+    ears: ClothingHeadsetAltCentComSunrise
+    belt: ClothingBeltSecurityWebbingFilled
+    pocket1: PouchAmmoFilledPistol40
+    pocket2: ClothingHandsPowerGlovesUplinkNTERTRed
+  inhand:
+  - WeaponPistolVP78
+  storage:
+    back:
+    - BoxErtBaseKit
+    - BoxZiptie
+    - CrowbarRed
+    - MedkitCombatFilled
+    - SmokeGrenade
 
 - type: startingGear
   id: ERTSecurityGearGamma
@@ -123,7 +147,7 @@
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentComSunrise
-    belt: ClothingBeltSecurityFilledERT
+    belt: ClothingBeltSecurityWebbingFilled
     pocket1: SpeedLoaderMagnumSP
     pocket2: SpeedLoaderMagnumSP
   inhand:

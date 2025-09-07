@@ -172,6 +172,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,2
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi
   - type: GunRequiresWield

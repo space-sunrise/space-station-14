@@ -134,7 +134,7 @@
     - id: Welder
     - id: Multitool
     - id: ClothingHandsGlovesCombat
-    - id: ClothingEyesGlassesWelding #Sunrise-edit: rebalance toolbox
+    - id: ClothingMaskGasSyndicate
   - type: StaticPrice
     price: 1000
 
