@@ -50,6 +50,7 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
+    blockInteraction: false
   - type: BadFood
   - type: Tag
     tags:

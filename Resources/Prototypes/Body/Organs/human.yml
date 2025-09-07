@@ -49,6 +49,7 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
+    blockInteraction: false
   - type: BadFood
   - type: Tag
     tags:
@@ -74,7 +75,7 @@
   - type: Item
     size: Small
     heldPrefix: brain
-  
+
 - type: entity
   id: OrganHumanEyes
   parent: [BaseHumanOrgan, BaseOrganEyes]

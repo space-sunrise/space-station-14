@@ -29,6 +29,7 @@
     stopSearchVerbPopup: boris-stopped-searching
     job: Borg
   - type: BlockMovement
+    blockInteraction: false
   - type: Examiner
   - type: BorgBrain
   - type: IntrinsicRadioReceiver
