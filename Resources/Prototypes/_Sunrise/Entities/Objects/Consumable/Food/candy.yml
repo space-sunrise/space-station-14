@@ -34,13 +34,13 @@
       food:
         maxVol: 30
         reagents:
-        - ReagentId: Sugar
+        - ReagentId: Tricordrazine
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 9
         - ReagentId: Saline
           Quantity: 3
-        - ReagentId: HemostaticPowder 
+        - ReagentId: HemostaticPowder
           Quantity: 3
         - ReagentId: Omnizine
           Quantity: 9
