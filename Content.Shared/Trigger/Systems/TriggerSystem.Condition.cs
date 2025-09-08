@@ -1,5 +1,10 @@
-﻿using Content.Shared.Trigger.Components.Conditions;
+﻿using Content.Shared.Projectiles;
+using Content.Shared.Random.Helpers;
+using Content.Shared.Trigger.Components;
+using Content.Shared.Trigger.Components.Conditions;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Events;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Trigger.Systems;
 
@@ -13,7 +18,18 @@ public sealed partial class TriggerSystem
 
         SubscribeLocalEvent<ToggleTriggerConditionComponent, AttemptTriggerEvent>(OnToggleTriggerAttempt);
         SubscribeLocalEvent<ToggleTriggerConditionComponent, GetVerbsEvent<AlternativeVerb>>(OnToggleGetAltVerbs);
+
+        SubscribeLocalEvent<RandomChanceTriggerConditionComponent, AttemptTriggerEvent>(OnRandomChanceTriggerAttempt);
+        SubscribeLocalEvent<StartTimerOnShootComponent, ProjectileShotEvent>(StartTimerOnShoot); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void StartTimerOnShoot(EntityUid uid, StartTimerOnShootComponent component, ProjectileShotEvent args)
+    {
+        if (TryComp<ProjectileComponent>(uid, out var projectile))
+            ActivateTimerTrigger(uid, projectile.Shooter);
+    }
+    // Sunrise-End
 
     private void OnWhitelistTriggerAttempt(Entity<WhitelistTriggerConditionComponent> ent, ref AttemptTriggerEvent args)
     {
@@ -53,5 +69,24 @@ public sealed partial class TriggerSystem
         _popup.PopupPredicted(Loc.GetString(msg), ent.Owner, user);
         ent.Comp.Enabled = !ent.Comp.Enabled;
         Dirty(ent);
+    }
+
+    private void OnRandomChanceTriggerAttempt(Entity<RandomChanceTriggerConditionComponent> ent,
+        ref AttemptTriggerEvent args)
+    {
+        if (args.Key == null || ent.Comp.Keys.Contains(args.Key))
+        {
+            // TODO: Replace with RandomPredicted once the engine PR is merged
+            var hash = new List<int>
+            {
+                (int)_timing.CurTick.Value,
+                GetNetEntity(ent).Id,
+                args.User == null ? 0 : GetNetEntity(args.User.Value).Id,
+            };
+            var seed = SharedRandomExtensions.HashCodeCombine(hash);
+            var rand = new System.Random(seed);
+
+            args.Cancelled |= !rand.Prob(ent.Comp.SuccessChance); // When not successful, Cancelled = true
+        }
     }
 }

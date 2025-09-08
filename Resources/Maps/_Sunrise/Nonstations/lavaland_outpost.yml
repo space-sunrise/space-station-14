@@ -10982,8 +10982,6 @@ entities:
     - type: Transform
       pos: -36.5,-14.5
       parent: 1
-    - type: Advertise
-      enabled: False
 - proto: VendingMachineMedical
   entities:
   - uid: 1438
@@ -10991,8 +10989,6 @@ entities:
     - type: Transform
       pos: -35.5,-5.5
       parent: 1
-    - type: Advertise
-      enabled: False
 - proto: VendingMachineSalvage
   entities:
   - uid: 1525

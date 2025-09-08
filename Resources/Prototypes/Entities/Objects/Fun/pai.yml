@@ -102,7 +102,7 @@
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
-    worldTargetActions:
+    entityTargetActions:
     - HandheldHealthAnalyzerUnpowered
   - type: BorgBrain
   # Sunrise-End
@@ -160,7 +160,7 @@
   - type: StationAiVision
     enabled: false
   - type: InnateItem
-    worldTargetActions:
+    entityTargetActions:
     - AccessBreaker
     - HandheldHealthAnalyzerUnpowered
   - type: Biocode

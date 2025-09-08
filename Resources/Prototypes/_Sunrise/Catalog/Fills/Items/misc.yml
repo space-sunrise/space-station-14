@@ -16,6 +16,11 @@
   - type: StorageFill
     contents:
     - id: MedkitCombatFilled
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: Stunbaton
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
 
 - type: entity
   id: ClothingShoesBootsBlueShieldFilled

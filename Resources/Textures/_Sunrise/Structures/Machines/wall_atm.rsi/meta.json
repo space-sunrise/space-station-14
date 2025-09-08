@@ -1,11 +1,11 @@
 {
     "version": 1,
     "size": {
-        "x": 48,
-        "y": 48
+        "x": 32,
+        "y": 32
     },
     "license": "CLA",
-    "copyright": "Sprited by discord: land1001 48 48",
+    "copyright": "Sprited by discord: land1001",
     "states": [
         {
             "name": "base",

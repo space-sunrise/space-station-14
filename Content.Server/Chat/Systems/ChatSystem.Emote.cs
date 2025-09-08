@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using Content.Server.Popups;
+using Content.Shared._Sunrise.Animations;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Emoting;
@@ -13,8 +14,6 @@ namespace Content.Server.Chat.Systems;
 // emotes using emote prototype
 public partial class ChatSystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-
     private FrozenDictionary<string, EmotePrototype> _wordEmoteDict = FrozenDictionary<string, EmotePrototype>.Empty;
 
     protected override void OnPrototypeReload(PrototypesReloadedEventArgs obj)
@@ -98,16 +97,6 @@ public partial class ChatSystem
 
         var didEmote = TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
 
-        // Sunrise-Start
-        if (emote.Animation)
-        {
-            var ev = new AnimationEmoteAttemptEvent(source, emote);
-            RaiseLocalEvent(source, ev, true);
-            if (ev.Cancelled)
-                return;
-        }
-        // Sunrise-End
-
         // check if proto has valid message for chat
         if (didEmote && emote.ChatMessages.Count != 0)
         {
@@ -115,6 +104,14 @@ public partial class ChatSystem
             var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
             SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
         }
+
+        // Sunrise-Start
+        if (didEmote && emote.PopupMessages.Count != 0)
+        {
+            var action = Loc.GetString(_random.Pick(emote.PopupMessages), ("entity", source));
+            _popupSystem.PopupEntity(action, source);
+        }
+        // Sunrise-End
 
         return didEmote;
     }

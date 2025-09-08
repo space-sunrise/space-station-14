@@ -59,6 +59,7 @@
   - type: BodyPart
     partType: Leg
   - type: MovementBodyPart
+    maxDensity: 300
 
 - type: entity
   id: FeetAnimal

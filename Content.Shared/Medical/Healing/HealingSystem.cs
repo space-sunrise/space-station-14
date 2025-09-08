@@ -2,12 +2,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using System.Linq;
-using Content.Server.Administration.Logs;
-using Content.Server.Body.Components;
-using Content.Server.Body.Systems;
-using Content.Server.Medical.Components;
-using Content.Server.Popups;
-using Content.Server.Stack;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -37,6 +31,7 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedStackSystem _stacks = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;//Sunrise-Edit
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
@@ -158,7 +153,7 @@ public sealed class HealingSystem : EntitySystem
         var healingDict = healing.Comp.Damage.DamageDict;
         foreach (var type in healingDict)
         {
-            if (damageableDict.TryGetValue(type.Key, out var damageValue) && damageValue.Value > 0 && type.Key != "Mangleness") //Sunrise-edit: fix server crashes
+            if (damageableDict.TryGetValue(type.Key, out var damageValue) && damageValue.Value > 0 && (type.Key != "Mangleness" || type.Value < 0)) //Sunrise-edit: fix server crashes
             {
                 return true;
             }
@@ -220,15 +215,23 @@ public sealed class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
+        //Sunrise-Start
+        if (TryComp<MobStateComponent>(target.Owner, out var state))
+        {
+            if (!healing.Comp.WorksOnTheDead && _mobStateSystem.IsDead(target.Owner, state))
+                return false;
+        }
+        //Sunrise-End
+
         // Starlight start
-        if (component.SolutionDrain && TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager))
+        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
         {
             Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(uid, "injector", ref solutionEntity, out var solution))
+            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
             {
-                if (!solution.Contents.Any(sol => component.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", uid)), uid, user);
+                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);
                     return false;
                 }
             }
@@ -254,7 +257,7 @@ public sealed class HealingSystem : EntitySystem
 
         var delay = isNotSelf
             ? healing.Comp.Delay
-            : healing.Comp.Delay * GetScaledHealingPenalty(healing);
+            : healing.Comp.Delay * GetScaledHealingPenaltyFixed(healing, user); //Sunrise-Edit
 
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: healing)
@@ -290,4 +293,20 @@ public sealed class HealingSystem : EntitySystem
         var modifier = percentDamage * (healing.Comp.SelfHealPenaltyMultiplier - 1) + 1;
         return Math.Max(modifier, 1);
     }
+
+    //Sunrise-Start
+    public float GetScaledHealingPenaltyFixed(Entity<HealingComponent> healing, EntityUid user) //Sunrise-Edit
+    {
+        if (!TryComp<MobThresholdsComponent>(user, out var mobThreshold) ||
+            !TryComp<DamageableComponent>(user, out var damageable))
+            return 1;
+        if (!_mobThresholdSystem.TryGetThresholdForState(user, MobState.Critical, out var amount, mobThreshold))
+            return 1;
+
+        var percentDamage = (float)(damageable.TotalDamage / amount);
+        //basically make it scale from 1 to the multiplier.
+        var modifier = percentDamage * (healing.Comp.SelfHealPenaltyMultiplier - 1) + 1;
+        return Math.Max(modifier, 1.5f);
+    }
+    //Sunrise-End
 }

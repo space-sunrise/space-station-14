@@ -273,9 +273,10 @@ public sealed partial class MechSystem : SharedMechSystem
                 return;
             }
 
-        if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
-            foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
-                _hands.DoDrop(args.Args.User, hand, true, handsComponent);
+        foreach (var hand in _hands.EnumerateHands(args.Args.User))
+        {
+            _hands.DoDrop(args.Args.User, hand);
+        }
 
         _factionSystem.Up(args.Args.User, uid);
         TryInsert(uid, args.Args.User, component);

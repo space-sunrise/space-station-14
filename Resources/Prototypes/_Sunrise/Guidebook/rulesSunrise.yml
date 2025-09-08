@@ -181,42 +181,42 @@
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER4.xml"
 
 - type: guideEntry
-  id: PER3.1
+  id: PER3_1
   name: guide-entry-sr-rule-excep-3-1
   ruleEntry: true
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.1.xml"
 
 - type: guideEntry
-  id: PER3.2
+  id: PER3_2
   name: guide-entry-sr-rule-excep-3-2
   ruleEntry: true
   priority: 6
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.2.xml"
 
 - type: guideEntry
-  id: PER3.3
+  id: PER3_3
   name: guide-entry-sr-rule-excep-3-3
   ruleEntry: true
   priority: 6
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.3.xml"
 
 - type: guideEntry
-  id: PER3.4
+  id: PER3_4
   name: guide-entry-sr-rule-excep-3-4
   ruleEntry: true
   priority: 6
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.4.xml"
 
 - type: guideEntry
-  id: PER3.6
+  id: PER3_6
   name: guide-entry-sr-rule-excep-3-6
   ruleEntry: true
   priority: 7
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.6.xml"
 
 - type: guideEntry
-  id: PER3.7
+  id: PER3_7
   name: guide-entry-sr-rule-excep-3-7
   ruleEntry: true
   priority: 7

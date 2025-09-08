@@ -33,17 +33,6 @@
 
 - type: entity
   parent: BaseMindRoleAntag
-  id: MindRoleChangeling
-  name: Changeling Role
-  components:
-  - type: MindRole
-    antagPrototype: Changeling
-    exclusiveAntag: true
-    roleType: SoloAntagonist
-  - type: ChangelingRole
-
-- type: entity
-  parent: BaseMindRoleAntag
   id: MindRoleVampire
   name: Vampire Role
   components:
@@ -62,3 +51,13 @@
     exclusiveAntag: true
     antagPrototype: LoneAbductorAntag
   - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: AbductorVictimRole
+  name: Abductor Victim
+  components:
+  - type: MindRole
+    antagPrototype: AbductorVictim
+    roleType: SoloAntagonist
+  - type: AbductorVictimRole

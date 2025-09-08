@@ -106,11 +106,6 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         {
             _uri.OpenUri(_cfg.GetCVar(SunriseCCVars.InfoLinksDonate));
         };
-
-        _escapeWindow.ForumButton.OnPressed += _ =>
-        {
-            _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksForum));
-        };
         // Sunrise-end
 
         _escapeWindow.WikiButton.OnPressed += _ =>

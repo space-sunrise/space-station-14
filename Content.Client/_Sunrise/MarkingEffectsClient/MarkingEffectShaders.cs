@@ -8,9 +8,9 @@ namespace Content.Client._Sunrise.MarkingEffectsClient;
 public static class MarkingEffectShaders
 {
 
-    public static Robust.Shared.Maths.Vector3 ColorToVec(Color col)
+    public static Vector3 ColorToVec(Color col)
     {
-        return new Robust.Shared.Maths.Vector3(col.R, col.G, col.B);
+        return new Vector3(col.R, col.G, col.B);
     }
 
     public static void ApplyShaderParams(this ShaderInstance instance, MarkingEffect color, Vector2 texScale)
@@ -23,8 +23,12 @@ public static class MarkingEffectShaders
                 if (color is not GradientMarkingEffect gradient)
                     return;
 
-                instance.SetParameter("color1", ColorToVec(gradient.Colors["base"]));
-                instance.SetParameter("color2", ColorToVec(gradient.Colors["gradient"]));
+                // Safely get colors with fallback for old imported characters
+                var baseColor = gradient.Colors.TryGetValue("base", out var bColor) ? bColor : Color.White;
+                var gradientColor = gradient.Colors.TryGetValue("gradient", out var gColor) ? gColor : baseColor;
+
+                instance.SetParameter("color1", ColorToVec(baseColor));
+                instance.SetParameter("color2", ColorToVec(gradientColor));
                 instance.SetParameter("texScale", texScale);
                 instance.SetParameter("offset", gradient.Offset);
                 instance.SetParameter("size", gradient.Size);
@@ -35,8 +39,13 @@ public static class MarkingEffectShaders
             case MarkingEffectType.RoughGradient:
                 if (color is not RoughGradientMarkingEffect roughGradient)
                     return;
-                instance.SetParameter("color1", ColorToVec(roughGradient.Colors["base"]));
-                instance.SetParameter("color2", ColorToVec(roughGradient.Colors["gradient"]));
+                
+                // Safely get colors with fallback for old imported characters
+                var baseColor2 = roughGradient.Colors.TryGetValue("base", out var bColor2) ? bColor2 : Color.White;
+                var gradientColor2 = roughGradient.Colors.TryGetValue("gradient", out var gColor2) ? gColor2 : baseColor2;
+
+                instance.SetParameter("color1", ColorToVec(baseColor2));
+                instance.SetParameter("color2", ColorToVec(gradientColor2));
                 instance.SetParameter("horizontal", roughGradient.Horizontal);
                 break;
         }

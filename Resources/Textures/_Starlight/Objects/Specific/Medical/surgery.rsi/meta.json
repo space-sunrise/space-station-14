@@ -1,7 +1,7 @@
 {
 	"version": 1,
 	"license": "CC-BY-SA-3.0",
-    "copyright": "source: https://github.com/tgstation/tgstation/blob/HEAD/icons/mob/silicon/robot_items.dmi, modified by darkrell",
+    "copyright": "source: https://github.com/tgstation/tgstation/blob/HEAD/icons/mob/silicon/robot_items.dmi, modified by darkrell bonesetter_bonegel by KaiserMaus",
 	"size": {
 		"x": 32,
 		"y": 32
@@ -27,6 +27,9 @@
 		},
 		{
 			"name": "saw"
+		},
+		{
+			"name": "bonesetter_bonegel"
 		}
     ]
 }

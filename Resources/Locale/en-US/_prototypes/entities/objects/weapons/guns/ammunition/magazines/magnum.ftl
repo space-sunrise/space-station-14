@@ -1,7 +1,5 @@
 ent-BaseMagazineMagnum = pistol magazine (.45 magnum)
     .desc = { ent-BaseMagazinePistol.desc }
-ent-BaseMagazineMagnumSubMachineGun = SMG magazine (.45 magnum)
-    .desc = { ent-BaseItem.desc }
 ent-MagazineMagnumEmpty = pistol magazine (.45 magnum any)
     .desc = 7-round single stack pistol magazine.
     .suffix = empty
@@ -15,6 +13,8 @@ ent-MagazineMagnumUranium = pistol magazine (.45 magnum uranium)
     .desc = 7-round single stack pistol magazine. Intended to hold exotic uranium-core ammunition.
 ent-MagazineMagnumAP = pistol magazine (.45 magnum armor-piercing)
     .desc = 7-round single stack pistol magazine. Intended to hold rare armor-piercing ammunition.
+ent-BaseMagazineMagnumSubMachineGun = SMG magazine (.45 magnum)
+    .desc = { ent-BaseItem.desc }
 ent-MagazineMagnumSubMachineGunEmpty = SMG magazine (.45 magnum any)
     .suffix = empty
     .desc = { ent-BaseMagazineMagnumSubMachineGun.desc }

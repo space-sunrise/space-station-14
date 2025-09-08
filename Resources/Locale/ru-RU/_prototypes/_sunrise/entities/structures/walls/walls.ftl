@@ -1,6 +1,6 @@
-ent-WallAbductorDiagonal = shuttle wall
-    .desc = Keeps the air in and the greytide out.
-    .suffix = Diagonal
-ent-WallAbductor = shuttle wall
-    .suffix = Reinforced, Exterior
+ent-WallAbductorDiagonal = стена шаттла абдукторов
+    .desc = { ent-BaseWall.desc }
+    .suffix = диагональная
+ent-WallAbductor = стена шаттла абдукторов
+    .suffix = Укрепленная, Внешняя
     .desc = { ent-BaseWall.desc }

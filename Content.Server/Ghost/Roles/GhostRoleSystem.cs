@@ -139,8 +139,8 @@ public sealed class GhostRoleSystem : EntitySystem
             return;
         // Sunrise-End
 
-        if (session.AttachedEntity is not { Valid: true } attached ||
-            !HasComp<GhostComponent>(attached))
+        if ((session.AttachedEntity is not { Valid: true } attached ||
+             !EntityManager.HasComponent<GhostComponent>(attached)) && status != PlayerGameStatus.NotReadyToPlay) // Sunrise-Edit
             return;
 
         if (_openUis.ContainsKey(session))
@@ -565,9 +565,6 @@ public sealed class GhostRoleSystem : EntitySystem
         _mindSystem.TransferTo(newMind, mob);
 
         _roleSystem.MindAddRoles(newMind.Owner, role.MindRoles, newMind.Comp);
-
-        if (_roleSystem.MindHasRole<GhostRoleMarkerRoleComponent>(newMind!, out var markerRole))
-            markerRole.Value.Comp2.Name = role.RoleName;
     }
 
     /// <summary>

@@ -22,7 +22,6 @@ namespace Content.Shared.Chemistry.EntitySystems;
 /// </summary>
 public abstract class SharedVaccinatorSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -123,7 +122,7 @@ public abstract class SharedVaccinatorSystem : EntitySystem
                 comp.MixingSoundEntity = _audio.PlayPvs(comp.MixingSound, entity, comp.MixingSound?.Params.WithLoop(true));
         }
         catch { }
-        comp.MixTimeEnd = _timing.CurTime + comp.MixDuration;
+        comp.MixTimeEnd = _gameTiming.CurTime + comp.MixDuration;
         _appearance.SetData(entity, SolutionContainerMixerVisuals.Mixing, true);
         Dirty(uid, comp);
     }
@@ -179,7 +178,7 @@ public abstract class SharedVaccinatorSystem : EntitySystem
             if (!comp.Mixing)
                 continue;
 
-            if (_timing.CurTime < comp.MixTimeEnd)
+            if (_gameTiming.CurTime < comp.MixTimeEnd)
                 continue;
 
             FinishMix((uid, comp));

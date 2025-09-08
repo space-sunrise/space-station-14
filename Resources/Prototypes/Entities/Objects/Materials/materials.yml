@@ -160,6 +160,7 @@
       - ClothMade
       - Gauze
       - RawMaterial
+      - ConstructionMaterial
   - type: Construction
     graph: WebObjects # not sure if I should either keep this here or just make another prototype. Will keep it here just in case.
     node: cloth
@@ -236,6 +237,7 @@
     tags:
       - ClothMade
       - RawMaterial
+      - ConstructionMaterial
   - type: Item
     heldPrefix: durathread
 
@@ -296,6 +298,7 @@
     tags:
     - Wooden
     - RawMaterial
+    - ConstructionMaterial
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager

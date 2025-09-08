@@ -30,6 +30,7 @@ construction-graph-tag-medical-hud = medical hud
 # security
 construction-graph-tag-sun-glasses = sun glasses
 construction-graph-tag-security-helmet = security helmet
+construction-graph-tag-empty-shotgun-shell = empty shotgun shell
 
 # materials
 construction-graph-tag-manipulator = modular machine part
@@ -149,3 +150,5 @@ construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
 
 # clothing
 construction-graph-tag-backpack = backpack
+
+construction-graph-tag-paper = paper

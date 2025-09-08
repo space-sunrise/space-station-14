@@ -10,7 +10,7 @@ namespace Content.Client.Overlays;
 public sealed class ShowCriminalRecordIconsSystem : EquipmentHudSystem<ShowCriminalRecordIconsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -24,7 +24,7 @@ public sealed class ShowCriminalRecordIconsSystem : EquipmentHudSystem<ShowCrimi
         if (!IsActive)
             return;
 
-        if (!_standing.IsStanding(uid))
+        if (_standing.IsDown(uid)) // Sunrise-standing
             return;
 
         if (_prototype.TryIndex(component.StatusIcon, out var iconPrototype))

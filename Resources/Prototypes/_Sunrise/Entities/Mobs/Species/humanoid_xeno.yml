@@ -6,7 +6,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: Respirator
     damage:
       types:

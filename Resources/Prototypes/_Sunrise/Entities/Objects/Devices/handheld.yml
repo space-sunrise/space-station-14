@@ -500,3 +500,55 @@
   id: EngiAlertsMonitorUnpowered
   parent: BaseEngiAlertsMonitor
   suffix: Handheld, Unpowered
+
+- type: entity
+  parent: BaseItem
+  id: MasterHandheldCamera
+  name: master body Camera
+  description: Camera
+  components:
+  - type: StationAiVision
+    range: 2
+  - type: Item
+    sprite: _Sunrise/Objects/Devices/master_handheld_camera.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Sunrise/Objects/Devices/master_handheld_camera.rsi
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  - type: Eye
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraSetupUiKey.Camera:
+        type: SurveillanceCameraSetupBoundUi
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraHandheld
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCamera
+    networkSet: true
+    setupAvailableNetworks:
+      - SurveillanceCameraHandheld
+      - SurveillanceCamera
+  - type: SpamEmitSound
+    minInterval: 90
+    maxInterval: 300
+    sound:
+      path: /Audio/Machines/timer.ogg
+      params:
+        volume: -8
+        maxDistance: 10
+        variation: 0.05
+  - type: RadioMicrophone
+    broadcastChannel: Security
+    listenRange: 1
+  - type: RadioSpeaker
+    channels:
+    - Security
+  - type: UseDelay
+    delay: 2
+  - type: EmitSoundOnUse
+    sound:
+      collection: BaseWhistle

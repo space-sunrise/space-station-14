@@ -1,5 +1,3 @@
-ent-BaseWeaponSMGSunrise = пистолет-пулемёт
-    .desc = Компактный и мощный.
 ent-WeaponSubMachineGunP90 = P-90
     .desc = P-90 - это SMG стандартного выпуска EarthGov. Он известен своими компактными размерами и простотой использования в полевых условиях. Использует патрон калибра .35 авто.
 ent-WeaponSubMachineGunMP38 = MP-38

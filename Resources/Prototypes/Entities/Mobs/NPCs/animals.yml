@@ -1274,8 +1274,6 @@
       0: Alive
       200: Critical
       250: Dead
-  - type: StaminaResistance
-    damageCoefficient: 0.40
   # Sunrise-start
   - type: InteractionPopup
     successChance: 0.2
@@ -1506,10 +1504,12 @@
       methods: [ Touch ]
       effects:
       - !type:WashCreamPieReaction
+  - type: Crawler
   # Sunrise-start
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
   # Sunrise-end
+
 
 
 - type: entity
@@ -2448,6 +2448,7 @@
   - type: FactionException
   # Sunrise-End
 
+# TODO: Make grenade penguin voice activated like the rest of the stealth items.
 - type: entity
   name: grenade penguin
   parent: [ MobPenguin, MobCombat, BaseSyndicateContraband ]

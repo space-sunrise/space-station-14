@@ -17,7 +17,7 @@ ui-vote-map-tie = Ничья при голосовании за карту! Вы
 ui-vote-map-win = Голосование за игровую карту закончено!
 ui-vote-map-notlobby = Голосование о выборе карты действует только в предраундовом лобби!
 ui-vote-map-notlobby-time = Голосование о выборе карты действует только в предраундовом лобби, когда осталось { $time }!
-ui-vote-gamemode-auto-set = Доступен только один режим: { preset }. Голосование пропущено.
+ui-vote-gamemode-auto-set = Доступен только один режим: { $preset }. Голосование пропущено.
 # Votekick votes
 ui-vote-votekick-unknown-initiator = Игрок
 ui-vote-votekick-unknown-target = Неизвестный игрок

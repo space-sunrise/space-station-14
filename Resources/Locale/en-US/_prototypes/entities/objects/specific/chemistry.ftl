@@ -1,7 +1,5 @@
 ent-BaseBeaker = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-BorgBeaker = integrated beaker
-    .desc = An internal compartment installed into a cyborg. Rated for 50 units of any liquid.
 ent-BaseBeakerMetallic = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-Beaker = beaker
@@ -35,3 +33,5 @@ ent-Pill = pill
     .desc = It's not a suppository.
 ent-PillCanister = pill canister
     .desc = Holds up to 10 pills.
+ent-BorgBeaker = integrated beaker
+    .desc = An internal compartment installed into a cyborg. Rated for 50 units of any liquid.

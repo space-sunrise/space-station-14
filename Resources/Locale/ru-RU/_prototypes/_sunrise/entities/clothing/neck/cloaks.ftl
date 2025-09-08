@@ -1,7 +1,7 @@
 ent-ClothingNeckCloakCentcomBlack = плащ офицера специальных операций
-    .desc = Вышитый золотом логотип компании Nanotrasen говорит сам за себя.
+    .desc = Вышитый золотом логотип компании NanoTrasen говорит сам за себя.
 ent-ClothingNeckCloakCentcomAdmiral = плащ адмирала
-    .desc = Яркий зелёный плащ с золотым шитьём, который носят адмиралы флота Nanotrasen.
+    .desc = Яркий зелёный плащ с золотым шитьём, который носят адмиралы флота NanoTrasen.
 ent-ClothingNeckCloakHOSCloak = плащ главы службы безопасности
     .desc = Чёрно-красный плащ ГСБ, символизирует безопасность и жестокость.
 ent-ClothingNeckCloakResearchDirector = плащ светила науки

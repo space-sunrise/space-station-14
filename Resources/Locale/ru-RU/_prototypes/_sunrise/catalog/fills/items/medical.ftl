@@ -1,3 +1,3 @@
-ent-MedkitUniversalFilled = universal medkit
-    .desc = Contains all types of medicine that you need.
-    .suffix = Filled
+ent-MedkitUniversalFilled = универсальный медкит
+    .desc = Содержит все виды медикаментов, которые могут вам потребоваться.
+    .suffix = Наполненный

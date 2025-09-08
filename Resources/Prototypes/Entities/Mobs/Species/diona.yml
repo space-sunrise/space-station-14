@@ -5,7 +5,6 @@
   id: BaseMobDiona
   abstract: true
   components:
-  - type: Absorbable
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger
@@ -32,6 +31,10 @@
     damage:
       groups:
         Brute: -0.5
+      #Sunrise-Start
+      types: 
+        Mangleness: -0.02
+      #Sunrise-End
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

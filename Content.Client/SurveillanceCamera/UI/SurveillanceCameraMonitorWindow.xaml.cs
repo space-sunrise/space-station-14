@@ -21,9 +21,9 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
 {
     private static readonly ProtoId<ShaderPrototype> CameraStaticShader = "CameraStatic";
 
-    private readonly IPrototypeManager _prototypeManager; // Sunrise-edit
-    private readonly IEntityManager _entManager; // Sunrise-edit
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!; // Sunrise-edit
 
     public event Action<string, string>? CameraSelected;
     public event Action? CameraRefresh;
@@ -43,11 +43,9 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
     public SurveillanceCameraMonitorWindow()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
 
         // Sunrise-start
-        _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-        var resourceCache = IoCManager.Resolve<IResourceCache>();
-        _entManager = IoCManager.Resolve<IEntityManager>();
         var spriteSystem = _entManager.System<SpriteSystem>();
         // Sunrise-end
 
@@ -70,7 +68,6 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
 
         // Sunrise-start
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
-        _entManager = IoCManager.Resolve<IEntityManager>();
         // Sunrise-end
     }
 

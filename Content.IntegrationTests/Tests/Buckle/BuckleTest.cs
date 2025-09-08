@@ -35,6 +35,7 @@ namespace Content.IntegrationTests.Tests.Buckle
     prototype: Human
   - type: StandingState
   - type: Appearance
+  - type: DoAfter
 
 - type: entity
   name: {StrapDummyId}
@@ -60,7 +61,7 @@ namespace Content.IntegrationTests.Tests.Buckle
             var entityManager = server.ResolveDependency<IEntityManager>();
             var actionBlocker = entityManager.System<ActionBlockerSystem>();
             var buckleSystem = entityManager.System<SharedBuckleSystem>();
-            var standingState = entityManager.System<SharedStandingStateSystem>();
+            var standingState = entityManager.System<StandingStateSystem>();
             var xformSystem = entityManager.System<SharedTransformSystem>();
 
             EntityUid human = default;

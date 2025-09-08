@@ -8,6 +8,7 @@ namespace Content.Server._Sunrise.ReplacementVocal;
 public sealed class ReplacementVocalSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<ReplacementVocalComponent, ComponentInit>(OnComponentInit);
@@ -31,7 +32,10 @@ public sealed class ReplacementVocalSystem : EntitySystem
 
         LoadEmotes(uid, vocalComponent);
 
-        foreach (var emote in vocalComponent.EmoteSounds!.Sounds.Keys)
+        if (!_proto.TryIndex(vocalComponent.EmoteSounds, out var soundIndex))
+            return;
+
+        foreach (var emote in soundIndex.Sounds.Keys)
         {
             if (speechComponent.AllowedEmotes.Contains(emote))
                 continue;
@@ -66,7 +70,15 @@ public sealed class ReplacementVocalSystem : EntitySystem
     {
         var sex = CompOrNull<HumanoidAppearanceComponent>(uid)?.Sex ?? Sex.Unsexed;
 
-        if (vocalComponent.Sounds?.TryGetValue(sex, out var protoId) == true)
-            _proto.TryIndex(protoId, out vocalComponent.EmoteSounds);
+        if (vocalComponent.Sounds == null)
+            return;
+
+        if (!vocalComponent.Sounds.TryGetValue(sex, out var protoId))
+            return;
+
+        if (!_proto.HasIndex(protoId))
+            return;
+
+        vocalComponent.EmoteSounds = protoId;
     }
 }

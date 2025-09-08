@@ -21,7 +21,7 @@ public abstract class SharedFlipSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;

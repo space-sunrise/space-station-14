@@ -43,7 +43,6 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
-    <!-- not needed because of new emote ui system
     <ui:MenuButton
         Name="EmotesButton"
         Access="Internal"
@@ -54,7 +53,6 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
-    -->
     <ui:MenuButton
         Name="CraftingButton"
         Access="Internal"
@@ -95,6 +93,15 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
+    <ui:MenuButton
+        Name="ReportBugButton"
+        Access="Internal"
+        Icon="{xe:Tex '/Textures/Interface/bug.svg.192dpi.png'}"
+        ToolTip="{Loc 'game-hud-open-bug-report-window-button-tooltip'}"
+        MinSize="42 64"
+        HorizontalExpand="True"
+        AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+    />
     <ui:MenuButton
         Name="AHelpButton"
         Access="Internal"

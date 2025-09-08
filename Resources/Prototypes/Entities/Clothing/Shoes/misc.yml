@@ -133,8 +133,9 @@
   - type: ToggleClothing
     action: ActionToggleSpeedBoots
   - type: ClothingSpeedModifier
-    walkModifier: 1.25
-    sprintModifier: 1.25
+    walkModifier: 1.1 # Sunrise-Edit
+    sprintModifier: 1.1 # Sunrise-Edit
+    standing: true
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -145,7 +146,7 @@
   - type: StaticPrice
     price: 500
   - type: PowerCellDraw
-    drawRate: 40
+    drawRate: 80 # Sunrise-Edit
   - type: ToggleCellDraw
   - type: ItemSlots
     slots:
@@ -184,7 +185,7 @@
     price: 75
   - type: Tag
     tags: [ ]
-   
+
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesBootsJump
@@ -202,7 +203,7 @@
     jumpSound: /Audio/Effects/stealthoff.ogg
   - type: ActionGrant
     actions:
-    - ActionGravityJump 
+    - ActionGravityJump
   - type: ItemActionGrant
     actions:
     - ActionGravityJump

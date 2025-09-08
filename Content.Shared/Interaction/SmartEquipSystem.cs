@@ -206,45 +206,10 @@ public sealed class SmartEquipSystem : EntitySystem
 
             _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
             return;
-        // Sunrise-start
-        } else if (TryComp<StorageComponent>(slotItem, out var storage)) // case 2 (storage item):
-        {
-            switch (handItem)
-            {
-                case null when storage.Container.ContainedEntities.Count == 0:
-                    _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                    return;
-                case null:
-                    var removing = storage.Container.ContainedEntities[^1];
-                    _container.RemoveEntity(slotItem, removing);
-                    _hands.TryPickup(uid, removing, handsComp: hands);
-                    return;
-            }
+        }
 
-            if (!_storage.CanInsert(slotItem, handItem.Value, out var reason))
-            {
-                if (reason != null)
-                    _popup.PopupClient(Loc.GetString(reason), uid, uid);
-
-                return;
-        // Sunrise-end
-            }
-
-        // Sunrise-edit start
-            _hands.TryDrop(uid, hands.ActiveHand, handsComp: hands);
-            _storage.Insert(slotItem, handItem.Value, out var stacked, out _);
-
-            // if the hand item stacked with the things in inventory, but there's no more space left for the rest
-            // of the stack, place the stack back in hand rather than dropping it on the floor
-            if (stacked != null && !_storage.CanInsert(slotItem, handItem.Value, out _))
-            {
-                if (TryComp<StackComponent>(handItem.Value, out var handStack) && handStack.Count > 0)
-                    _hands.TryPickup(uid, handItem.Value, handsComp: hands);
-            }
-
-            return;
-        } else if (handItem != null) // case 4 (just an item):
-        // Sunrise-edit-end
+        // case 4 (just an item):
+        if (handItem != null)
             return;
 
         if (!_inventory.CanUnequip(uid, equipmentSlot, out var inventoryReason))

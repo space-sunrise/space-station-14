@@ -42,11 +42,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
+        Blunt: 0.5
+        Slash: 0.5
         Piercing: 0.6
-        Heat: 0.65
-        Caustic: 0.75
+        Heat: 0.5
+        Caustic: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Item
@@ -61,7 +61,7 @@
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterArmorSWAT
   name: SWAT armor
-  description: NT's unsuccessful attempt to create universal and inexpensive protection. It provides excellent protection against many types of damage, but it also slows down extremely much.
+  description: NT's unsuccessful attempt to create universal and expensive protection. It provides excellent protection against many types of damage, but it also slows down extremely much.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
@@ -76,7 +76,7 @@
       coefficients:
         Blunt: 0.55
         Slash: 0.55
-        Piercing: 0.50
+        Piercing: 0.3
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
@@ -89,8 +89,8 @@
     heatingCoefficient: 0.5
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
@@ -169,8 +169,6 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -228,8 +226,6 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -287,8 +283,6 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -346,8 +340,6 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -405,8 +397,6 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -464,8 +454,6 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600

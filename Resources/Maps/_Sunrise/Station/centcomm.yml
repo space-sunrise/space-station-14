@@ -11826,7 +11826,7 @@ entities:
         258:
         - - Pressed
           - Toggle
-- proto: LockerBlueShieldEnsign
+- proto: LockerBlueShieldOfficerFilled
   entities:
   - uid: 1539
     components:

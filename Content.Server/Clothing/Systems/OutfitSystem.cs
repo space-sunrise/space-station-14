@@ -10,6 +10,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -22,6 +23,13 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly HandsSystem _handSystem = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+    }
 
     public bool SetOutfit(EntityUid target, string gear, Action<EntityUid, EntityUid>? onEquipped = null)
     {
@@ -97,7 +105,17 @@ public sealed class OutfitSystem : EntitySystem
             {
                 // If they don't have a loadout for the role, make a default one
                 roleLoadout = new RoleLoadout(jobProtoId);
-                roleLoadout.SetDefault(profile, session, _prototypeManager);
+                // Sunrise-Start
+                string [] sponsorsPrototypes = [];
+                if (_sponsorsManager != null && session != null)
+                {
+                    if (_sponsorsManager.TryGetPrototypes(session.UserId, out var prototypes))
+                    {
+                        sponsorsPrototypes = prototypes.ToArray();
+                    }
+                }
+                // Sunrise-End
+                roleLoadout.SetDefault(profile, session, _prototypeManager, sponsorsPrototypes);
             }
 
             // Equip the target with the job loadout

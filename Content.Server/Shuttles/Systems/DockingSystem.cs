@@ -292,8 +292,19 @@ namespace Content.Server.Shuttles.Systems
                 // Pre-existing joint so use that.
                 if (dockA.Comp.DockJointId != null)
                 {
-                    DebugTools.Assert(dockB.Comp.DockJointId == dockA.Comp.DockJointId);
-                    joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, dockA.Comp.DockJointId);
+                    // Sunrise-Start
+                    if (dockB.Comp.DockJointId != dockA.Comp.DockJointId)
+                    {
+                        Log.Error($"DockJointId mismatch: {dockAUid}({dockA.Comp.DockJointId}) <-> {dockBUid}({dockB.Comp.DockJointId}), recreating joint.");
+                        dockA.Comp.DockJointId = null;
+                        dockB.Comp.DockJointId = null;
+                        joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, DockingJoint + dockAUid);
+                    }
+                    else
+                    {
+                        joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, dockA.Comp.DockJointId);
+                    }
+                    // Sunrise-End
                 }
                 else
                 {

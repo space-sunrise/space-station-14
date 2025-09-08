@@ -7,7 +7,6 @@
   components:
   - type: Interactions
   - type: MultiHandedItem
-  - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
@@ -507,7 +506,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Felinid
   - type: Carriable
 
 - type: entity

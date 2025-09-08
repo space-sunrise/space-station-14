@@ -122,6 +122,11 @@
     outerClothing: ClothingOuterArmorBasic
 
 - type: loadout
+  id: ArmorVestSec
+  equipment:
+    outerClothing: ClothingOuterVestArmorSec # Sunrise-Edit
+
+- type: loadout
   id: ArmorVestSlim
   equipment:
     outerClothing: ClothingOuterArmorBasicSlim

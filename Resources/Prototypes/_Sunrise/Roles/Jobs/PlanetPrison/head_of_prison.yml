@@ -36,3 +36,9 @@
     belt: ClothingBeltPrisonGuardianFilled
     pocket1: WeaponPistolDeagle
     pocket2: MagazineDeagle
+
+- type: chameleonOutfit
+  id: HeadOfPrisonChameleonOutfit
+  job: HeadOfPrison
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSGrey

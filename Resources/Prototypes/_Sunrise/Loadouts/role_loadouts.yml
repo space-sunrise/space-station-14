@@ -464,3 +464,18 @@
   id: JobSecurityBorg
   nameDataset: NamesBorg
   canCustomizeName: true
+
+- type: roleLoadout
+  id: JobComMaid
+  groups:
+  - ComMaidHead
+  - ComMaidJumpsuit
+  - ComMaidNeck
+  - ComMaidShoes
+  - ComMaidGloves
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks

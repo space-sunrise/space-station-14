@@ -8,6 +8,7 @@ using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.StationGoal
 {
@@ -72,6 +73,8 @@ namespace Content.Server._Sunrise.StationGoal
 
             var wasSent = false;
 
+            var ntHeader = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/CopyMachine/paper_headers.rsi"), "nanotrasen_form_header_centcom");
+
             var printout = new FaxPrintout(
                 Loc.GetString(goal.Text, ("station", MetaData(ent.Value).EntityName)),
                 Loc.GetString("station-goal-fax-paper-name"),
@@ -81,7 +84,8 @@ namespace Content.Server._Sunrise.StationGoal
                 new List<StampDisplayInfo>
                 {
                     new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.Green },
-                });
+                },
+                imageContent: ntHeader);
 
             var faxQuery = EntityQueryEnumerator<FaxMachineComponent>();
             while (faxQuery.MoveNext(out var faxId, out var fax))
@@ -119,6 +123,8 @@ namespace Content.Server._Sunrise.StationGoal
                 return printed;
 
             _paperSystem.SetContent((printed, paper), printout.Content);
+            if (printout.ImageContent != null)
+                _paperSystem.SetImageContent((printed, paper), printout.ImageContent, printout.ImageScale);
 
             if (printout.StampState == null)
                 return printed;

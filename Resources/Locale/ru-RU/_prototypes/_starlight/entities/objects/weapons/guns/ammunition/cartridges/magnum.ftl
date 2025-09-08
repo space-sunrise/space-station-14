@@ -1,2 +1,2 @@
-ent-CartridgeMagnumImprovised = improvised cartridge (.45 magnum)
-    .desc = A handmade revolver bullet, stuffed to the brim with phosphorus for extra 'oomph'. Still not as good as a normal magnum bullet.
+ent-CartridgeMagnumImprovised = самодельный патрон (.45 магнум)
+    .desc = Самодельный револьверный патрон, набитый до краев фосфором для большей "мощи". Все еще не так хорош, как обычный патрон магнума.

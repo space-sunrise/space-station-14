@@ -1,2 +1,2 @@
-ent-CartridgeLightRifleImprovised = improvised cartridge (.30 rifle)
-    .desc = A handmade rifle bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective.
+ent-CartridgeLightRifleImprovised = самодельный винтовочный патрон (.30)
+  .desc = Самодельная винтовочная пуля, использующая фосфор в качестве метательного заряда вместо пороха, что делает её гораздо менее эффективной.

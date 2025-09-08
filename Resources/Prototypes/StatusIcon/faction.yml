@@ -45,19 +45,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: HeadRevolutionary
-    
-- type: factionIcon
-  id: HivemindFaction
-  isShaded: true
-  priority: 11
-  showTo:
-    components:
-      - ShowAntagIcons
-      - Hivemind
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: Changeling
-    
+
 - type: factionIcon
   id: VampireFaction
   isShaded: true

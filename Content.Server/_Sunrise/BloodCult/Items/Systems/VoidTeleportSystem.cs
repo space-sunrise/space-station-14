@@ -81,7 +81,7 @@ public sealed class VoidTeleportSystem : EntitySystem
             var newOffset = offset + direction * random;
             coords = transform.Coordinates.Offset(newOffset).SnapToGrid(EntityManager);
 
-            var tile = coords.GetTileRef();
+            var tile = _turf.GetTileRef(coords);
 
             if (tile == null)
                 continue;

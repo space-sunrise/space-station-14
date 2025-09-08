@@ -2,7 +2,7 @@
   id: BaseCartridgeLightRifleSP
   name: cartridge (.30 rifle SP)
   parent: [ BaseCartridge, BaseSecurityContraband ]
-  abstract: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:

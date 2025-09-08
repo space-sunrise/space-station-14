@@ -200,19 +200,6 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(paradox);
 
         // Sunrise-Start
-        Verb ling = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-changeling"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Changeling/changeling_abilities.rsi"), "transform"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, DefaultChangelingRule);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-changeling"),
-        };
-        args.Verbs.Add(ling);
 
         Verb vampire = new()
         {

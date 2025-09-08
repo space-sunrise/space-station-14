@@ -56,6 +56,11 @@ public sealed partial class AbsorbentComponent : Component
     /// </summary>
     [DataField]
     public bool UseAbsorberSolution = true;
+
+    // Sunrise-Start
+    [DataField]
+    public float FootprintEnlargement = 1f;
+    // Sunrise-End
 }
 
 // Sunrise-Start

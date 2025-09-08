@@ -23,6 +23,7 @@
   - ClothingEyesGlassesMeson
   - ClothingHandsGlovesColorYellow
   - JawsOfLife
+  - ClothingEyesGlassesThermal # Sunrise-Edit
   - FreedomImplant # Sunrise-Edit
   - RemoteSignaller
   - Multitool
@@ -75,7 +76,6 @@
   - ChemistryBottleNocturine
   - HypopenBox
   - NitrousOxideTankFilled
-  - ScramImplanter # Sunrise-Edit
 
 - type: thiefBackpackSet
   id: CommunicatorSet
@@ -99,10 +99,10 @@
     sprite: Objects/Tools/fulton.rsi
     state: extraction_pack
   content:
-  - ScramImplanter # Sunrise-Edit
   - InvisibleCrate
   - FultonBeacon
   - Fulton
   - SmokeGrenade
   - SmokeGrenade
   - SmokeGrenade
+  - SyndicateTeleporterBiocode

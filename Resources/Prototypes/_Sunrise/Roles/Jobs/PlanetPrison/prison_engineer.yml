@@ -30,3 +30,7 @@
   storage:
     back:
     - Flash
+
+- type: chameleonOutfit
+  id: PrisonEngineerChameleonOutfit
+  job: PrisonEngineer

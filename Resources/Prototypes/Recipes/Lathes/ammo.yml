@@ -37,7 +37,7 @@
   id: MagazineRifleSP
   result: MagazineRifleSP
   materials:
-    Steel: 455
+    Steel: 425
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -51,7 +51,7 @@
   id: MagazineRifleFMJ
   result: MagazineRifleFMJ
   materials:
-    Steel: 555
+    Steel: 525
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -67,8 +67,8 @@
   id: MagazineRifleAP
   result: MagazineRifleAP
   materials:
-    Steel: 475
-    Uranium: 475
+    Steel: 500
+    Uranium: 300
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -159,21 +159,21 @@
   id: MagazineLightRifleSP
   result: MagazineLightRifleSP
   materials:
-    Steel: 565
+    Steel: 550
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineLightRifleHP
   result: MagazineLightRifleHP
   materials:
-    Steel: 565
+    Steel: 550
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineLightRifleFMJ
   result: MagazineLightRifleFMJ
   materials:
-    Steel: 565
+    Steel: 650
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -189,8 +189,8 @@
   id: MagazineLightRifleAP
   result: MagazineLightRifleAP
   materials:
-    Steel: 525
-    Uranium: 525
+    Steel: 550
+    Uranium: 350
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

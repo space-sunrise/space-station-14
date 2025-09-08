@@ -1367,10 +1367,8 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        //Sunrise start
         private void UpdateSizeText()
         {
-
             if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
             {
                 return;
@@ -1379,10 +1377,28 @@ namespace Content.Client.Lobby.UI
             var heightRaw = HeightSlider.Value;
             var weightRaw = WidthSlider.Value;
 
-            var height = speciesPrototype.StandardSize * heightRaw + 13; // 13 тут просто как заглушка, чтобы рост получатся 200 метра максимум
+            var height = ConvertSliderToHeight(
+                sliderValue: heightRaw,
+                minSlider: speciesPrototype.MinHeight,
+                maxSlider: speciesPrototype.MaxHeight,
+                minHeightCm: speciesPrototype.MinHeightCm,
+                maxHeightCm: speciesPrototype.MaxHeightCm
+            );
+
             var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
             HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
             WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
+        }
+
+        private float ConvertSliderToHeight(float sliderValue, float minSlider, float maxSlider, float minHeightCm, float maxHeightCm)
+        {
+            var denom = maxSlider - minSlider;
+            if (MathF.Abs(denom) < 0.0001f)
+                return minHeightCm;
+
+            var normalized = (sliderValue - minSlider) / denom;
+            normalized = MathF.Min(1f, MathF.Max(0f, normalized));
+            return minHeightCm + normalized * (maxHeightCm - minHeightCm);
         }
 
         private void SetWidth(float newWidth)
@@ -1725,13 +1741,19 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
-            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) };
 
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) };
+            var hairMarking = CreateHairMarkings(
+                Profile.Appearance.HairStyleId,
+                HairStyles.DefaultHairStyle,
+                Profile.Appearance.HairColor,
+                Profile.Appearance.HairMarkingEffect);
+
+            var facialHairMarking = CreateHairMarkings(
+                Profile.Appearance.FacialHairStyleId,
+                HairStyles.DefaultFacialHairStyle,
+                Profile.Appearance.FacialHairColor,
+                Profile.Appearance.FacialHairMarkingEffect);
+
 
             HairStylePicker.UpdateData(
                 hairMarking,
@@ -1741,6 +1763,29 @@ namespace Content.Client.Lobby.UI
                 facialHairMarking,
                 Profile.Species,
                 1);
+        }
+
+        private static List<Marking> CreateHairMarkings(
+            string styleId,
+            string defaultStyleId,
+            Color color,
+            MarkingEffect? effect)
+        {
+            if (styleId == defaultStyleId)
+                return new List<Marking>();
+
+            var effects = effect is { } ext
+                ? new List<MarkingEffect> { ext.Clone() }
+                : null;
+
+            return new List<Marking>()
+            {
+                new(
+                    styleId,
+                    new[] { color },
+                    effects
+                )
+            };
         }
 
         private void UpdateCMarkingsHair()

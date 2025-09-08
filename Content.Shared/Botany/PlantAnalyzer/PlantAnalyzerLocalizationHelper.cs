@@ -37,7 +37,7 @@ public sealed class PlantAnalyzerLocalizationHelper
         return ContentLocalizationManager.FormatList(locStrings);
     }
 
-    public static (string Singular, string Plural) ProduceToLocalizedStrings(List<string> ids, IPrototypeManager protMan)
+    public static (string Singular, string Plural) ProduceToLocalizedStrings(List<EntProtoId> ids, IPrototypeManager protMan)
     {
         if (ids.Count == 0)
             return ("", "");
@@ -46,7 +46,7 @@ public sealed class PlantAnalyzerLocalizationHelper
         List<string> pluralStrings = [];
         foreach (var id in ids)
         {
-            var singular = protMan.TryIndex<EntityPrototype>(id, out var prototype) ? prototype.Name : id;
+            var singular = protMan.TryIndex(id, out var prototype) ? prototype.Name : id.Id;
             var plural = Loc.GetString("plant-analyzer-produce-plural", ("thing", singular));
 
             singularStrings.Add(singular);

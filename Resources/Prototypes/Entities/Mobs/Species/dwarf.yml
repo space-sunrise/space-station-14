@@ -8,7 +8,6 @@
   # SUNRISE EDIT
   - type: Interactions
   # SUNRISE EDIT
-  - type: Absorbable
   - type: Hunger
   - type: Thirst
     baseDecayRate: 0.2
@@ -445,8 +444,8 @@
   id: MobDwarfDummy
   categories: [ HideSpawnMenu ]
   components:
-  - type: ScaleVisuals
-    scale: 1, 0.8
+  #- type: ScaleVisuals
+  #  scale: 1, 0.8 // Sunrise-edit
   - type: Inventory
     ### Female
     ## BASE

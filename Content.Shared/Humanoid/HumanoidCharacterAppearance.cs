@@ -251,7 +251,13 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 break;
         }
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new ());
+        //Sunrise start
+        var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
+        var newWidth = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
+        var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
+        //Sunrise end
+
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), MarkingEffectType.Color, null, MarkingEffectType.Color, null, newWidth, newHeight);
 
         float RandomizeColor(float channel)
         {
@@ -344,12 +350,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 facialHairExtendedColor.Colors[key] = ClampColor(value);
         }
         // sunrise gradient end
-
-        //Sunrise start
-        var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
-        var newWidth = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
-        var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
-        //Sunrise end
 
         return new HumanoidCharacterAppearance(
             hairStyleId,

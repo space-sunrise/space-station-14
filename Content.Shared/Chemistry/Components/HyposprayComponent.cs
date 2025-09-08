@@ -3,6 +3,7 @@ using Content.Shared.DoAfter; // Sunrise-Edit
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.Components;
 
@@ -52,7 +53,7 @@ public sealed partial class HyposprayComponent : Component
     /// </summary>
     [DataField]
     public bool InjectOnly = false;
-    
+
     // Sunrise-Start
 
     /// <summary>

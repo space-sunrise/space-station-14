@@ -26,18 +26,18 @@
   description: This implant plays a sad tune when the user dies.
   #categories: [ HideSpawnMenu ] Sunrsie-Edit
   components:
-    - type: SubdermalImplant
-      whitelist:
-        components:
-        - MobState # admeme implanting a chair with trombone implant needs to give the chair mobstate so it can die first
-    - type: TriggerOnMobstateChange
-      mobState:
-      - Dead
-    - type: EmitSoundOnTrigger
-      sound:
-        collection: SadTrombone
-        params:
-          variation: 0.125
+  - type: SubdermalImplant
+    whitelist:
+      components:
+      - MobState # admeme implanting a chair with trombone implant needs to give the chair mobstate so it can die first
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SadTrombone
+      params:
+        variation: 0.125
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -46,19 +46,19 @@
   description: This implant emits light from the user's skin on activation.
   #categories: [ HideSpawnMenu ]  Sunrsie-Edit
   components:
-    - type: SubdermalImplant
-      implantAction: ActionToggleLight
-    - type: PointLight
-      enabled: false
-      radius: 2.5
-      softness: 5
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-    - type: Tag
-      tags:
-        - SubdermalImplant
-        - Flashlight
-    - type: UnpoweredFlashlight
+  - type: SubdermalImplant
+    implantAction: ActionToggleLight
+  - type: PointLight
+    enabled: false
+    radius: 2.5
+    softness: 5
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - Flashlight
+  - type: UnpoweredFlashlight
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -130,23 +130,6 @@
 #    tags:
 #    - NTUplink
 #    - SubdermalImplant
-
-- type: entity
-  parent: BaseSubdermalImplant
-  id: TrackingImplantErt
-  name: tracking ERT implant
-  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Centcom radio channel.
-  #categories: [ HideSpawnMenu ]  Sunrsie-Edit
-  components:
-    - type: SubdermalImplant
-      whitelist:
-        components:
-        - MobState # admeme implanting a chair with tracking implant needs to give the chair mobstate so it can die first
-    - type: TriggerOnMobstateChange
-      mobState:
-      - Critical
-    - type: Rattle
-      radioChannel: "CentCom"
 #Sunrise-end
 
 #Traitor implants
@@ -158,6 +141,7 @@
   description: This implant grants hidden storage within a person's body using bluespace technology.
   #categories: [ HideSpawnMenu ]  Sunrsie-Edit
   components:
+    - type: StorageImplant
     - type: SubdermalImplant
       implantAction: ActionOpenStorageImplant
       whitelist:
@@ -250,24 +234,6 @@
     energyConsumption: 50000
     disableDuration: 10
 
-#Sunrise-start #PR Wiz #31782
-- type: entity
-  parent: BaseSubdermalImplant
-  id: SmokeScreenImplant
-  name: smoke screen implant
-  description: This implant creates a cloud of smoke when activated.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SubdermalImplant
-    implantAction: ActionActivateSmokeGrenadeImplant
-  - type: TriggerImplantAction
-  - type: SmokeOnTrigger
-    duration: 20
-    spreadAmount: 30
-  - type: SoundOnTrigger
-    sound: /Audio/Items/smoke_grenade_smoke.ogg
-#Sunrise-end
-
 - type: entity
   parent: BaseSubdermalImplant
   id: ScramImplant
@@ -357,6 +323,10 @@
   components:
     - type: SubdermalImplant
       #permanent: true Sunrsie-Edit
+    - type: ReplacementImplant
+      whitelist:
+        tags:
+        - MicroBomb # replace microbomb implant with macrobomb
     - type: TriggerOnMobstateChange #activates the timer
       mobState:
       - Dead
@@ -383,8 +353,8 @@
       canCreateVacuum: true
     - type: Tag
       tags:
-        - SubdermalImplant
-        - MacroBomb
+      - SubdermalImplant
+      - MacroBomb
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -437,9 +407,11 @@
   description: This implant allows the implanter to produce a fake signal that NT security huds use to identify individuals implanted with a mindshield.
   categories: [ HideSpawnMenu ]
   components:
-      - type: SubdermalImplant
-        implantAction: FakeMindShieldToggleAction
-      - type: FakeMindShieldImplant
+  - type: SubdermalImplant
+    implantAction: FakeMindShieldToggleAction
+    implantComponents:
+    - type: FakeMindShield # TODO: put the component on the implant and use implant relay events for the status icon
+  - type: FakeMindShieldImplant
 
 # Sec and Command implants
 
@@ -477,7 +449,7 @@
   description: This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
-  - type: Rattle
+  - type: RattleOnTrigger
     radioChannel: BlueShield
 
 - type: entity

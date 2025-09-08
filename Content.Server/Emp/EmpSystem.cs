@@ -119,13 +119,6 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         args.Cancelled = true;
     }
-
-    // Sunrise-Start
-    private void OnEmpAttempt(EntityUid uid, EmpImmuneComponent comp, EmpAttemptEvent args)
-    {
-        args.Cancel();
-    }
-    // Sunrise-Edit
 }
 
 /// <summary>

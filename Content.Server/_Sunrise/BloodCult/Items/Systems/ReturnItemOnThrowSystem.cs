@@ -33,7 +33,7 @@ public sealed class ReturnItemOnThrowSystem : EntitySystem
         {
             if (!isCultist)
             {
-                _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(component.StunTime), true);
+                _stun.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.StunTime));
             }
         }
 

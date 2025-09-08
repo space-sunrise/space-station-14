@@ -57,7 +57,7 @@ ent-RandomHumanoidSpawnerCluwne = Клувень
     .desc = { "" }
 # Veteran ERT Spawners
 ent-RandomHumanoidSpawnerERTLeaderVeteran = ОБР лидер
-    .suffix = Роль ОБР, Амбер, Ветеран
+    .suffix = Роль ОБР, Базовый, Ветеран
     .desc = { ent-RandomHumanoidSpawnerERTLeader.desc }
 ent-RandomHumanoidSpawnerERTChaplainVeteran = ОБР священник
     .suffix = Роль ОБР, Базовый, Ветеран

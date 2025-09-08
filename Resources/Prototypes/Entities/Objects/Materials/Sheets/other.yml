@@ -12,6 +12,7 @@
   - type: Tag
     tags:
     - Sheet
+    - ConstructionMaterial
     - NoPaint  # Sunrise-edit
   - type: Damageable
     damageContainer: Inorganic
@@ -116,6 +117,7 @@
   - type: Tag
     tags:
     - Sheet
+    - ConstructionMaterial
     - NoPaint  # Sunrise-edit
 
 - type: entity
@@ -140,16 +142,6 @@
     count: 1
 
 - type: entity
-  parent: SheetPlasma
-  id: SheetPlasmaLingering0
-  name: plasma
-  suffix: 0, Lingering
-  components:
-  - type: Stack
-    lingering: true
-    count: 0
-
-- type: entity
   parent: [PlasticSounds, SheetOtherBase] # Sunrise edit
   id: SheetPlastic
   name: plastic
@@ -159,6 +151,7 @@
     tags:
     - Plastic
     - Sheet
+    - ConstructionMaterial
     - NoPaint  # Sunrise-edit
   - type: Material
   - type: PhysicalComposition

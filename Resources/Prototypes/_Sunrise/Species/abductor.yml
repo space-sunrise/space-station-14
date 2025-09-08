@@ -11,6 +11,7 @@
   defaultSkinTone: "#BFC2C7"
   defaultHeight: 1.05
   defaultWidth: 1.05
+  stationRecordsHidden: true
 
 - type: bodyType
   id: MobAbductorSprites

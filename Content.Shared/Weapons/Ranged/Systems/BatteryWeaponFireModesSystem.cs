@@ -84,19 +84,6 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             var fireMode = component.FireModes[i];
             var index = i;
 
-            if (fireMode.Conditions != null)
-            {
-                var conditionArgs = new FireModeConditionConditionArgs(args.User, args.Target, fireMode, EntityManager);
-                var conditionsMet = fireMode.Conditions.All(condition => condition.Condition(conditionArgs));
-
-                if (!conditionsMet)
-                {
-                    if (component.CurrentFireMode == index)
-                        SetFireMode(uid, component, 0, args.User);
-                    continue;
-                }
-            }
-
             if (ammoProvider is ProjectileBatteryAmmoProviderComponent projectileAmmo)
             {
                 var entProto = _prototypeManager.Index<EntityPrototype>(fireMode.Prototype);
@@ -142,12 +129,12 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
     private void OnUseInHandEvent(EntityUid uid, BatteryWeaponFireModesComponent component, UseInHandEvent args)
     {
-		//starlight
-        if(args.Handled)
+        //starlight
+        if (args.Handled)
             return;
 
         args.Handled = true;
-		//starlight end
+        //starlight end
         TryCycleFireMode(uid, component, args.User);
     }
 
@@ -179,6 +166,20 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         component.CurrentFireMode = index;
         Dirty(uid, component);
 
+        if (fireMode.Conditions != null && user != null)
+        {
+            var conditionArgs = new FireModeConditionConditionArgs(user.Value, uid, fireMode, EntityManager);
+            var conditionsMet = fireMode.Conditions.All(condition => condition.Condition(conditionArgs));
+
+            if (!conditionsMet)
+            {
+                if (TryComp<ActorComponent>(user, out var actor))
+                    _popupSystem.PopupEntity(Loc.GetString("gun-alert-level-condition"),
+                uid, actor.PlayerSession);
+                return;
+            }
+        }
+
         if (TryGetAmmoProvider(uid, out var ammoProvider) && ammoProvider != null)
         {
             if (ammoProvider is ProjectileBatteryAmmoProviderComponent projectileAmmo)
@@ -195,8 +196,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
                 projectileAmmo.Capacity = (int)Math.Round(projectileAmmo.Capacity / fireCostDiff);
                 Dirty(uid, projectileAmmo);
 
-                if (user != null && TryComp<ActorComponent>(user, out var actor))
-                    _popupSystem.PopupEntity(Loc.GetString("gun-set-fire-mode", ("mode", prototype.Name)), uid, actor.PlayerSession);
+                _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode", ("mode", prototype.Name)), uid, user);
             }
             else if (ammoProvider is HitscanBatteryAmmoProviderComponent hitscanAmmo)
             {
@@ -212,8 +212,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
                 hitscanAmmo.Capacity = (int)Math.Round(hitscanAmmo.Capacity / fireCostDiff);
                 Dirty(uid, hitscanAmmo);
 
-                if (user != null && TryComp<ActorComponent>(user, out var actor))
-                    _popupSystem.PopupEntity(Loc.GetString("gun-set-fire-mode", ("mode", hitscan.Name)), uid, actor.PlayerSession);
+                _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode", ("mode", hitscan.Name)), uid, user);
             }
 
             var updateClientAmmoEvent = new UpdateClientAmmoEvent();
@@ -281,19 +280,6 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             return;
 
         var index = (component.CurrentFireMode + 1) % component.FireModes.Count;
-
-        var fireMode = component.FireModes[index];
-
-        if (fireMode.Conditions != null)
-        {
-            var conditionArgs = new FireModeConditionConditionArgs(user, uid, fireMode, EntityManager);
-            var conditionsMet = fireMode.Conditions.All(condition => condition.Condition(conditionArgs));
-
-            if (!conditionsMet)
-            {
-                return;
-            }
-        }
 
         SetFireMode(uid, component, index, user);
     }
