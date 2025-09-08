@@ -199,6 +199,7 @@
       Quantity: 1
     - ReagentId: Dermaline
       Quantity: 1
+    KeepSolution: false
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
@@ -223,6 +224,8 @@
         Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
+    - ReagentId: Tricordrazine
+      Quantity: 2
     - ReagentId: Bruizine
       Quantity: 1
     - ReagentId: Puncturase
@@ -249,6 +252,9 @@
       Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
+    - ReagentId: Phalanximine
+      Quantity: 0.5   
+    KeepSolution: false
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
