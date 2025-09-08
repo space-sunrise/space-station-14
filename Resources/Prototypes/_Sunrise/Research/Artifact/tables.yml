@@ -37,7 +37,7 @@
       # стреляет молниями в ближайших энтити некоторое время
     - id: SunriseEffectTeslaDischarge
       weight: 1
-      # спавнит злых двойников
+      # спавнит Парадокс клонов
     - id: SunriseEffectSpawnEvilTwin
       weight: 0.6
       # телепортирует того, кто активировал артефакт
