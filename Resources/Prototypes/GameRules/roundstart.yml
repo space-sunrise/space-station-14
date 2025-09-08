@@ -349,15 +349,6 @@
 - type: entity
   abstract: true
   parent: BaseGameRule
-  id: BaseDeathSquad
-  components:
-  - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Shuttles/DSO/Other/death_squad_shuttle.yml
-  - type: RuleGrids
-
-- type: entity
-  abstract: true
-  parent: BaseGameRule
   id: BaseWizardRule
   components:
   - type: AntagObjectives
