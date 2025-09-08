@@ -93,7 +93,7 @@
   - type: DoAfter
   - type: MechVulnerableToEMP # Sunrise-edit
   - type: Repairable
-    doAfterDelay: 3
+    doAfterDelay: 1
     damage:
       types:
         Blunt: -15
@@ -101,7 +101,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 7.5 # Sunrise-Edit
+        Mangleness: 5 # Sunrise-Edit
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -140,7 +140,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.45
-        density: 1000
+        density: 10000 # sunrise-edit
         mask:
         - MobMask
         layer:
@@ -1576,6 +1576,6 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechCombatMissileRack6
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatMG
       - WeaponMechCombatShotgun
+      - WeaponMechCombatMissileRack6
