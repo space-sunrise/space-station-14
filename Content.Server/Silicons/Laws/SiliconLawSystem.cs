@@ -1,8 +1,8 @@
 using System.Linq;
+using Content.Server._Sunrise.Silicons.Laws.Components;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
