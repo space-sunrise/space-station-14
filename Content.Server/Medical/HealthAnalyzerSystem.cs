@@ -14,6 +14,8 @@ using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.Medical;
@@ -62,6 +64,20 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
+        // Collect hunger and thirst data
+        float hungerLevel = -1;
+        float thirstLevel = -1;
+
+        if (TryComp<HungerComponent>(target, out var hunger))
+        {
+            hungerLevel = hunger.LastAuthoritativeHungerValue;
+        }
+
+        if (TryComp<ThirstComponent>(target, out var thirst))
+        {
+            thirstLevel = thirst.CurrentThirst;
+        }
+
         // Sunrise edit start - новый триггер
         RaiseLocalEvent(target, new EntityAnalyzedEvent ());
         // Sunrise edit end
@@ -72,7 +88,9 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable
+            unrevivable,
+            hungerLevel,
+            thirstLevel
         ));
     }
 
