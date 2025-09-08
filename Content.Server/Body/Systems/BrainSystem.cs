@@ -8,7 +8,6 @@ using Content.Shared.Pointing;
 
 namespace Content.Server.Body.Systems;
 
-[Access(typeof(SharedMindSystem))]
 public sealed class BrainSystem : EntitySystem
 {
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
@@ -32,8 +31,8 @@ public sealed class BrainSystem : EntitySystem
         var oldMindContainer = EnsureComp<MindContainerComponent>(oldEntity);
         
         // Enable mind examination for brains
-        newMindContainer.ShowExamineInfo = true;
-        oldMindContainer.ShowExamineInfo = true;
+        _mindSystem.SetExamineInfo(newEntity, true);
+        _mindSystem.SetExamineInfo(oldEntity, true);
 
         var ghostOnMove = EnsureComp<GhostOnMoveComponent>(newEntity);
         ghostOnMove.MustBeDead = HasComp<MobStateComponent>(newEntity); // Don't ghost living players out of their bodies.
@@ -48,7 +47,8 @@ public sealed class BrainSystem : EntitySystem
     {
         // Ensure brain has mind container with examination enabled
         var mindContainer = EnsureComp<MindContainerComponent>(ent);
-        mindContainer.ShowExamineInfo = true;
+        // Use the mind system to set the examine info
+        _mindSystem.SetExamineInfo(ent, true);
     }
 
     private void OnPointAttempt(Entity<BrainComponent> ent, ref PointAttemptEvent args)
