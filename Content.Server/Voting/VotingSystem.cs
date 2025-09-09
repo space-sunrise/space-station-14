@@ -5,6 +5,7 @@ using Content.Server.Ghost;
 using Content.Server.Roles.Jobs;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
+using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Voting;
 using Robust.Server.Player;
@@ -14,6 +15,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Threading.Tasks;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Voting;
 
@@ -28,6 +32,8 @@ public sealed class VotingSystem : EntitySystem
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ISharedPlaytimeManager _playtimeManager = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     public override void Initialize()
     {
@@ -75,11 +81,45 @@ public sealed class VotingSystem : EntitySystem
     public string GetPlayerVoteListName(EntityUid attached)
     {
         TryComp<MindContainerComponent>(attached, out var mind);
-
-        var jobName = _jobs.MindTryGetJobName(mind?.Mind);
+        
+        var jobName = GetNonAntagJobName(mind?.Mind);
         var playerInfo = $"{Comp<MetaDataComponent>(attached).EntityName} ({jobName})";
 
         return playerInfo;
+    }
+
+    /// <summary>
+    /// Gets the job name for a mind, excluding antagonist roles to prevent revealing game mode information in voting.
+    /// Returns the first non-antagonist job role found, or "Unknown" if none exists.
+    /// </summary>
+    private string GetNonAntagJobName(EntityUid? mindId)
+    {
+        if (mindId == null)
+            return Loc.GetString("generic-unknown-title");
+
+        if (!TryComp<MindComponent>(mindId.Value, out var mindComponent))
+            return Loc.GetString("generic-unknown-title");
+
+        // Look for a job role that is NOT an antagonist
+        foreach (var roleEnt in mindComponent.MindRoleContainer.ContainedEntities)
+        {
+            if (!TryComp<MindRoleComponent>(roleEnt, out var roleComponent))
+                continue;
+
+            // Skip antagonist roles to prevent revealing game mode
+            if (roleComponent.Antag || roleComponent.ExclusiveAntag)
+                continue;
+
+            // We found a non-antagonist role with a job
+            if (roleComponent.JobPrototype != null && 
+                _prototypes.TryIndex(roleComponent.JobPrototype.Value, out var jobPrototype))
+            {
+                return jobPrototype.LocalizedName;
+            }
+        }
+
+        // Fallback: no non-antagonist job found
+        return Loc.GetString("generic-unknown-title");
     }
 
     /// <summary>

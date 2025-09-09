@@ -13,7 +13,7 @@
         Blunt: -0.1
         Piercing: -0.05 #SUNRISE-EDIT
         Slash: -0.05 #SUNRISE-EDIT
-        Mangleness: -0.02 #SUNRISE-EDIT
+        Mangleness: -0.05 #SUNRISE-EDIT
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -86,11 +86,11 @@
       types:
         Poison: -0.2
         Heat: -0.1 #SUNRISE-EDIT
-        Cold: -0.4
+        Cold: -0.2 #SUNRISE-EDIT
         Blunt: -0.2
         Piercing: -0.1 #SUNRISE-EDIT
         Slash: -0.1 #SUNRISE-EDIT
-        Mangleness: -0.1 #SUNRISE-EDIT
+        Mangleness: -0.15 #SUNRISE-EDIT
   - type: Construction
     graph: bed
     node: medicalbed

@@ -1,14 +1,14 @@
 - type: latheRecipePack
   id: MedicalStaticSunrise
   recipes:
-  - HandheldCrewMonitor
-  - ClothingHandsGlovesNitrileBlack
-  - ClothingHandsGlovesNitrileGreen
-  - ClothingHandsGlovesNitrileOrange
-  - ClothingHandsGlovesNitrileRed
-  - ClothingHandsGlovesNitrileBlue
+  # - ClothingHandsGlovesNitrileBlack # Sunrise-TODO: Не добавлять, пока не сделаете им уникальные для каждой волокна, ибо на момент комита тут все "нитриловые"
+  # - ClothingHandsGlovesNitrileGreen
+  # - ClothingHandsGlovesNitrileOrange
+  # - ClothingHandsGlovesNitrileRed
+  # - ClothingHandsGlovesNitrileBlue
   - ClothingEyesGlassesChemical
   - WhiteCane
+  - PatchPack
 
 - type: latheRecipePack
   id: MedicalDynamicSunrise
@@ -18,15 +18,10 @@
   - BluespaceBeaker
   - SyringeBluespace
   - SyringeCryostasis
-  - LeftArmCyber
-  - RightArmCyber
-  - LeftHandCyber
-  - RightHandCyber
-  - LeftLegCyber
-  - RightLegCyber
-  - LeftFootCyber
-  - RightFootCyber
   - HyposprayMedical
+  - AutoMenderBurn
+  - AutoMenderBrute
+  - HandheldCrewMonitor
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
@@ -40,31 +35,36 @@
 - type: latheRecipePack
   id: MedicalCyberlimbDynamic
   recipes:
-  - LeftArmCyberReaper
-  - RightArmCyberReaper
-  - LeftArmCyberMechwright
-  - RightArmCyberMechwright
-  - LeftArmCyberBulwark
-  - RightArmCyberBulwark
-  - LeftArmCyberGorilla
-  - RightArmCyberGorilla
-  - LeftArmCyberMantisBladeMaxGuard
-  - RightArmCyberMantisBladeMaxGuard
-  - LeftArmCyberLaserEmitter
-  - RightArmCyberLaserEmitter
-  - LeftArmCyberGrenadeThrower
-  - RightArmCyberGrenadeThrower
+  - LeftArmCyber
+  - LeftHandCyber
+  - LeftLegCyber
+  - LeftFootCyber
+  ####
+  - ImplantCaseReaper
+  #
+  - ImplantCaseMechwright
+  #
+  - ImplantCaseBulwark
+  #
+  - ImplantCaseGorillaR
+  - ImplantCaseGorillaL
+  #
+  - ImplantCaseMantisBladeMaxGuard
+  #
+  - ImplantCaseLaserEmitter
+  #
+  - ImplantCaseGrenadeThrower
 
 - type: latheRecipePack
   id: MedicalCyberOrgansDynamic
   recipes:
-  - CyberEyeNightVision
-  - CyberEyeThermal
+  - ImplantCaseNightVision
+  - ImplantCaseThermal
 
 - type: latheRecipePack
   id: MedicalImplantDynamic
   recipes:
-  - EyeImplantWelding
-  - EyeImplantMedical
-  - EyeImplantSecurity
-  - EyeImplantChemical
+  - ImplantCaseImplantWelding
+  - ImplantCaseImplantMedical
+  - ImplantCaseImplantChemical
+  - ImplantCaseImplantSecurity

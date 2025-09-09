@@ -185,11 +185,10 @@
 
 - type: wireLayout
   id: ComputerAi
-  dummyWires: 7
+  dummyWires: 2
   wires:
   - !type:PowerWireAction
   - !type:AiInteractWireAction
-  -  !type:AccessWireAction
 
 - type: wireLayout
   id: Holopad

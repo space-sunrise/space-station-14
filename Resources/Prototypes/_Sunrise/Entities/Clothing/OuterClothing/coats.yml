@@ -531,3 +531,27 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/bez_bab.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/bez_bab.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatJilldress
+  name: Jill dress
+  description: this is the Snow Maiden dress.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/jill_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/jill_dress.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatMansport
+  name: Sports sweatshirt
+  description: Hoodies or sweatshirts? I choose T-shirts.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/sportsmans.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/sportsmans.rsi
+
+

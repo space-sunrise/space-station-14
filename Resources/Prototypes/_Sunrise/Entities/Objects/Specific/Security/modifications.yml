@@ -63,3 +63,17 @@
     tags:
     - UpgradeVestSec
 
+- type: entity
+  name: G.O.R.I.L.L.A. gauntlet upgrade chip
+  parent: [BaseItem, BaseSyndicateContraband]
+  id:  GauntletGORILLAUpgradeKit
+  description: An experimental upgrade kit for the G.O.R.I.L.L.A.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: abductor_mod
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - GorillaUpgradeKit

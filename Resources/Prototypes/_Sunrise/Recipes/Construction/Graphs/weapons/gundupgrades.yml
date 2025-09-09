@@ -54,3 +54,49 @@
               impact: High
     - node: upgraded
       entity: ClothingOuterVestWebSec
+
+- type: constructionGraph
+  id: UpgradeCyberGorilla
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: upgraded
+      entity: CyberGorillaArm
+
+- type: constructionGraph
+  id: UpgradeCyberArmGorillaL
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: WeaponPistolCHIMPUpgradeKit
+              name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: upgraded
+      entity: LeftArmCyberGorillaUpgraded
+
+- type: constructionGraph
+  id: UpgradeCyberArmGorillaR
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: WeaponPistolCHIMPUpgradeKit
+              name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: upgraded
+      entity: RightArmCyberGorillaUpgraded

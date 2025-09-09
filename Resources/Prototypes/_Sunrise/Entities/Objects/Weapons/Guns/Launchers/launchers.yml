@@ -45,7 +45,7 @@
     pvsIncrease: 0.4
 
 - type: entity
-  name: GL-79
+  name: GL-70
   parent: BaseWeaponLauncher
   id: WeaponGrenadeLauncherGL70
   components:
@@ -101,7 +101,7 @@
     pvsIncrease: 0.4
 
 - type: entity
-  name: GL-79
+  name: GL-70
   parent: WeaponGrenadeLauncherGL70
   id: WeaponGrenadeLauncherGL70Flash
   suffix: GrenadeFlash

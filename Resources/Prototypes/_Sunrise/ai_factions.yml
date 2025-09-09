@@ -48,3 +48,21 @@
   - Flesh
   - FleshHuman
   - BloodCult
+
+- type: npcFaction
+  id: SpiderClan
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Zombie
+  - Xeno
+  - PetsNT
+  - Revolutionary
+  - AllHostile
+  - Thief
+  - Carps
+  - Vampire
+  - Flesh
+  - FleshHuman
+  - BloodCult

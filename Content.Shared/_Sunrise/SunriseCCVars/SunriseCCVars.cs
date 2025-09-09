@@ -57,8 +57,11 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<float> TTSRadioVolume =
         CVarDef.Create("tts.radio_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<float> TTSAnnounceVolume =
-        CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<string> TTSRadioEffect =
+        CVarDef.Create("tts.radio_effect", "radio", CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> TTSAnnounceEffect =
+        CVarDef.Create("tts.announce_effect", "tiny_room", CVar.SERVERONLY | CVar.ARCHIVE);
 
     /**
      * Ban Webhook
@@ -187,6 +190,12 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Link to replays to show in menus.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksReplays =
+        CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
 
     /**
      * Lobby
@@ -530,24 +539,45 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> TracesEnabled =
         CVarDef.Create("opt.traces_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Определяет, какие шаблоны будут доступны. (например, "sunrise" или "lust")
-    /// </summary>
-    public static readonly CVarDef<string> CopyMachineTemplatePool =
-        CVarDef.Create("copy_machine.template_pool", "Sunrise", CVar.SERVERONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Смещение автозаполнения времени (в часах)
-    /// </summary>
-    public static readonly CVarDef<int> CopyMachineTimeOffsetHours =
-        CVarDef.Create("copy_machine.time_offset_hours", 3, CVar.SERVERONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Смещение автозаполнения времени (в годах)
-    /// </summary>
-    public static readonly CVarDef<int> CopyMachineYearOffset =
-        CVarDef.Create("copy_machine.year_offset", 1000, CVar.SERVERONLY | CVar.ARCHIVE);
-
     public static readonly CVarDef<bool> HoldLookUp =
         CVarDef.Create("scope.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Название корпорации для подстановки в документы
+    /// </summary>
+    public static readonly CVarDef<string> DocumentCorporationName =
+        CVarDef.Create("doc.corp_name", "Nanotrasen", CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смешение автозаполнения времени в часах
+    /// </summary>
+    public static readonly CVarDef<int> DocumentTimeOffsetHours =
+        CVarDef.Create("doc.time_offset_hours", 3, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смешение автозаполнения времени в годах
+    /// </summary>
+    public static readonly CVarDef<int> DocumentYearOffset =
+        CVarDef.Create("doc.year_offset", 1000, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Пул шаблонов документов, используемых при создании документов на принтере
+    /// </summary>
+    public static readonly CVarDef<string> DocumentTemplatePool =
+        CVarDef.Create("doc.template_pool", "Sunrise", CVar.SERVER | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> MentorHelpAdminPrefix =
+        CVarDef.Create("mentor_help.admin_prefix", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> MentorHelpRateLimitPeriod =
+        CVarDef.Create("mentor_help.rate_limit_period", 2f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> MentorHelpRateLimitCount =
+        CVarDef.Create("mentor_help.rate_limit_count", 10, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> MentorHelpSound =
+        CVarDef.Create("mentor_help.mentor_help_sound", "/Audio/_Sunrise/Effects/adminticketopen.ogg", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    public static readonly CVarDef<bool> MentorHelpSoundEnabled =
+        CVarDef.Create("mentor_help.mentor_help_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

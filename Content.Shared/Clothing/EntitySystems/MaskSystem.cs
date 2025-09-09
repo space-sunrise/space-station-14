@@ -65,7 +65,7 @@ public sealed class MaskSystem : EntitySystem
         if (!mask.IsToggled || !mask.IsToggleable)
             return;
 
-        mask.IsToggled = false;
+        SetToggled((uid, mask), false, force: true); // Sunrise-Edit
         ToggleMaskComponents(uid, mask, args.Equipee, mask.EquippedPrefix, true);
     }
 

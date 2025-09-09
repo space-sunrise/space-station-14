@@ -61,3 +61,5 @@ ent-AbductorIDCard = abductor ID card
     .desc = { ent-IDCardStandard.desc }
 ent-BlueShieldIDCard = ID карта офицера «Синий щит»
     .desc = { ent-IDCardStandard.desc }
+ent-CommaidIDCard = ID карта горничной командования
+    .desc = { ent-IDCardStandard.desc }

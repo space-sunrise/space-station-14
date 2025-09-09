@@ -259,28 +259,6 @@
   #Sunrise-end
 
 - type: listing
-  id: UplinkGrenadeLauncherM79
-  name: uplink-grenade-launcher-m79-name
-  description: uplink-grenade-launcher-m79-desc
-  icon: { sprite: /Textures/_RMC14/Objects/Weapons/Guns/Launchers/m79/big.rsi, state: base }
-  productEntity: WeaponLauncherM79Biocode
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 8
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWeaponry
-#Sunrise-start
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-#Sunrise-end
-
-- type: listing
   id: UplinkGrenadeLauncherChinaLake
   name: uplink-grenade-launcher-china-lake-name
   description: uplink-grenade-launcher-china-lake-desc
@@ -288,9 +266,9 @@
   productEntity: WeaponLauncherChinaLakeBiocode
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 14
+    Telecrystal: 10 # Sunrise-Edit
   cost:
-    Telecrystal: 20
+    Telecrystal: 12 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -511,6 +489,8 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkSyndicateBombNukie
@@ -740,19 +720,20 @@
   name: uplink-ammo-bundle-name
   description: uplink-ammo-bundle-desc
   productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 15
   cost:
-    Telecrystal: 24 # Sunrise-Edit
+    Telecrystal: 15
   categories:
   - UplinkAmmo
   conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+          - LoneOpsUplink # Sunrise-Edit
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
 
 #Chemicals
 
@@ -1944,6 +1925,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut
@@ -1976,6 +1958,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkClothingConductingGloves
@@ -1996,31 +1979,6 @@
     Telecrystal: 2
   categories:
     - UplinkWearables
-
-- type: listing
-  id: UplinkOuterHardsuitChameleon
-  name: uplink-clothing-outer-hardsuit-chameleon-name
-  description: uplink-clothing-hardsuit-chameleon-desc
-  productEntity: ClothingOuterHardsuitChameleon
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 4 # Sunrise-Edit
-  cost:
-    Telecrystal: 6 # Sunrise-Edit
-  categories:
-  - UplinkWearables
-
-#Sunrise-Start
-- type: listing
-  id: UplinkMiscSyndiePowercage
-  name: uplink-objects-power-syndie-powercell-name
-  description: uplink-objects-power-syndie-powercell-desc
-  productEntity: PowerCellSyndicate
-  cost:
-    Telecrystal: 6
-  categories:
-  - UplinkWearables
-#Sunrise-End
 
  # Pointless
 
@@ -2443,7 +2401,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
   categories:
   - UplinkJob
   conditions:

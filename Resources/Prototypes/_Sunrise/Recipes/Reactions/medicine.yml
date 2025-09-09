@@ -15,11 +15,13 @@
 - type: reaction
   id: H-32
   reactants:
-    Arithrazine:
-      amount: 1
-    Bicaridine:
-      amount: 1
     Cryoxadone:
+      amount: 1
+    Radium:
+      amount: 1
+    Mannitol:
+      amount: 1
+    Benzene:
       amount: 1
     Plasma:
       amount: 1

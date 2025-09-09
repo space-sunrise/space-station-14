@@ -17,40 +17,94 @@
     - state: implant
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
-  id: SMGAmmoKit
-  name: C20r ammo kit
+  name: cardboard box
+  parent: BoxDarts
+  id: CaneShotgunBox
+  description: A cardboard box for storing things.
   components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,2
+  - type: StorageFill
+    contents:
+      - id: CaneShotgun
+      - id: ShellShotgunBooze
+        amount: 4
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BaseSyndicateAmmoKit
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxes_sunrise.rsi
+    layers:
+    - state: box_of_doom_big
+    - state: smg_base
+  - type: Item
+    sprite: _Sunrise/Objects/Storage/boxes_sunrise.rsi
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: Storage
     grid:
     - 0,0,3,3
+
+- type: entity
+  parent: BaseSyndicateAmmoKit
+  id: BaseSyndicateAmmoKitSmall
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,2,3
+
+- type: entity
+  parent: BaseSyndicateAmmoKitSmall
+  id: SMGAmmoKit
+  name: C20r ammo kit
+  components:
   - type: StorageFill
     contents:
     - id: MagazinePistolSubMachineGunSP
     - id: MagazinePistolSubMachineGunSP
     - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
+    - id: MagazinePistolSubMachineGunFMJ
+    - id: MagazinePistolSubMachineGunFMJ
+    - id: MagazinePistolSubMachineGunHP
   - type: Sprite
     layers:
     - state: box_of_doom_big
     - state: smg_base
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: BaseSyndicateAmmoKitSmall
+  id: RifleAmmoKit
+  name: Estoc ammo kit
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineRifleSP
+    - id: MagazineRifleSP
+    - id: MagazineRifleSP
+    - id: MagazineRifleFMJ
+    - id: MagazineRifleFMJ
+    - id: MagazineRifleAP
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: magazine
+
+- type: entity
+  parent: BaseSyndicateAmmoKitSmall
   id: CaselessAmmoKit
   name: Siar52 ammo kit
   components:
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,2,1
-  - type: Storage
-    grid:
-    - 0,0,2,3
   - type: StorageFill
     contents:
     - id: MagazinePistolSubMachineGunSIAR52
@@ -62,16 +116,49 @@
   - type: Sprite
     layers:
     - state: box_of_doom
+    - state: smg_red
+
+- type: entity
+  parent: BaseSyndicateAmmoKitSmall
+  id: DragunovAmmoKit
+  name: Dragunov ammo kit
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineDragunov
+    - id: MagazineDragunov
+    - id: MagazineDragunov
+    - id: MagazineDragunovExtended
+    - id: MagazineDragunovExtended
+    - id: MagazineBoxRifleMachineFMJ
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: dragunov
+
+- type: entity
+  parent: BaseSyndicateAmmoKitSmall
+  id: AntimaterialAmmoKit
+  name: Antimaterial ammo kit
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBauer127
+    - id: MagazineBauer127
+    - id: MagazineBauer127
+    - id: MagazineBoxAntiMateriel
+    - id: MagazineBoxAntiMateriel
+    - id: MagazineBoxAntiMateriel
+  - type: Sprite
+    layers:
+    - state: box_of_doom
     - state: smg_base
 
 # - type: entity
-#   parent: [BoxCardboard, BaseSyndicateContraband]
+#   parent: BaseSyndicateAmmoKit
 #   id: SMGIncendiaryAmmoKit
 #   name: C20r Incendiary ammo kit
 #   components:
-#   - type: Storage
-#     grid:
-#     - 0,0,3,3
 #   - type: StorageFill
 #     contents:
 #     - id: MagazinePistolSubMachineGunIncendiary
@@ -88,13 +175,10 @@
 #     - state: smg_red
 
 # - type: entity
-#   parent: [BoxCardboard, BaseSyndicateContraband]
+#   parent: BaseSyndicateAmmoKit
 #   id: SMGUraniumAmmoKit
 #   name: C20r Uranium ammo kit
 #   components:
-#   - type: Storage
-#     grid:
-#     - 0,0,3,3
 #   - type: StorageFill
 #     contents:
 #     - id: MagazinePistolSubMachineGunUranium
@@ -111,13 +195,10 @@
 #     - state: smg_uranium
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: BaseSyndicateAmmoKit
   id: ShotGunKit
   name: Bulldog ammo kit
   components:
-  - type: Storage
-    grid:
-    - 0,0,3,3
   - type: StorageFill
     contents:
     - id: MagazineShotgun
@@ -134,13 +215,10 @@
     - state: shotgun_base
 
 # - type: entity
-#   parent: [BoxCardboard, BaseSyndicateContraband]
+#   parent: BaseSyndicateAmmoKit
 #   id: ShotGunIncendiaryKit
 #   name: Bulldog Incendiary ammo kit
 #   components:
-#   - type: Storage
-#     grid:
-#     - 0,0,3,3
 #   - type: StorageFill
 #     contents:
 #     - id: MagazineShotgunIncendiary
@@ -157,13 +235,10 @@
 #     - state: shotgun_red
 
 # - type: entity
-#   parent: [BoxCardboard, BaseSyndicateContraband]
+#   parent: BaseSyndicateAmmoKit
 #   id: ShotGunUraniumKit
 #   name: Bulldog Uranium ammo kit
 #   components:
-#   - type: Storage
-#     grid:
-#     - 0,0,3,3
 #   - type: StorageFill
 #     contents:
 #     - id: MagazineShotgunUranium
@@ -176,36 +251,54 @@
 #     - state: shotgun_uranium
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: BaseSyndicateAmmoKit
   id: LMGKit
   name: L6 Saw ammo kit
   components:
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,2,1
   - type: Storage
     grid:
-    - 0,0,3,2
+    - 0,0,2,3
   - type: StorageFill
     contents:
     - id: MagazineLightRifleBoxSP
     - id: MagazineLightRifleBoxSP
     - id: MagazineLightRifleBoxSP
-    - id: MagazineLightRifleBoxSP
+    - id: MagazineBoxRifleBig
+    - id: MagazineBoxRifleBig
+    - id: MagazineBoxRifleBig
   - type: Sprite
     layers:
     - state: box_of_doom_big
     - state: l6_base
+
+- type: entity
+  parent: BaseSyndicateAmmoKit
+  id: MMGKit
+  name: DL6902 ammo kit
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,1,3
+  - type: StorageFill
+    contents:
+    - id: MagazineDl6902
+    - id: MagazineDl6902
+    - id: MagazineBoxLightRifleBig
+    - id: MagazineBoxLightRifleBig
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: dl6902
 
 # - type: entity
 #   parent: LMGKit
 #   id: LMGIncendiaryKit
 #   name: L6 Saw Incendiary ammo kit
 #   components:
-#   - type: Storage
-#     grid:
-#     - 0,0,3,2
 #   - type: StorageFill
 #     contents:
 #     - id: MagazineLightRifleBoxIncendiary
@@ -222,9 +315,6 @@
 #   id: LMGUraniumKit
 #   name: L6 Saw Uranium ammo kit
 #   components:
-#   - type: Storage
-#     grid:
-#     - 0,0,3,2
 #   - type: StorageFill
 #     contents:
 #     - id: MagazineLightRifleBoxUranium
