@@ -3,9 +3,15 @@
   save: false
   abstract: true
   components:
+  - type: NoSlip
+  - type: CanMoveInAir
+  - type: Reactive
+  - type: Perishable
   - type: MobMover
   - type: Mech
   - type: MechAir
+  - type: GravityAffected
+    weightless: true
   - type: AirFilter
     # everything except oxygen and nitrogen
     gases:
@@ -35,7 +41,7 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    doAfterDelay: 3
+    doAfterDelay: 1
     damage:
       types:
         Blunt: -15
@@ -53,9 +59,8 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.7
-    baseSprintSpeed: 1.7
-    baseFriction: 15
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
     baseWeightlessModifier: 10
   - type: MovementAlwaysTouching
   - type: Pullable
@@ -63,8 +68,6 @@
   - type: WiresPanel
   - type: Physics
     bodyType: Dynamic
-    angularDamping: 2
-    linearDamping: 2
   - type: MobState
     allowedStates:
     - Alive
@@ -138,9 +141,9 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.9
-        density: 1000
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.1,1.1,1"
+        density: 100
         mask:
           - FlyingMobMask
         layer:
@@ -160,9 +163,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
     equipmentWhitelist:
       tags:
       - CombatMech
@@ -208,7 +208,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.80
-        density: 1000
+        density: 100
         mask:
           - FlyingMobMask
         layer:
