@@ -622,8 +622,8 @@
     - type: EnergyShield
     - type: ExaminableBattery
     - type: Battery
-      maxCharge: 1500
-      startingCharge: 1500
+      maxCharge: 2500
+      startingCharge: 2500
     - type: PowerCellDraw
       useRate: 2.5
     # Sunrise-End
