@@ -612,36 +612,36 @@
 # .308 Heavy Rifle Magazines
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
-  id: LightRifleHeavyMagazineEmpty
-  result: LightRifleHeavyMagazineEmpty
+  id: LightRifleMagazineEmpty
+  result: LightRifleMagazineEmpty
   materials:
     Steel: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineSP
-  result: LightRifleHeavyMagazineSP
+  id: LightRifleMagazineSP
+  result: LightRifleMagazineSP
   materials:
     Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineHP
-  result: LightRifleHeavyMagazineHP
+  id: LightRifleMagazineHP
+  result: LightRifleMagazineHP
   materials:
     Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineFMJ
-  result: LightRifleHeavyMagazineFMJ
+  id: LightRifleMagazineFMJ
+  result: LightRifleMagazineFMJ
   materials:
     Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineUranium
-  result: LightRifleHeavyMagazineUranium
+  id: LightRifleMagazineUranium
+  result: LightRifleMagazineUranium
   materials:
     Steel: 100
     Plastic: 1080
@@ -649,16 +649,16 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineIncendiary
-  result: LightRifleHeavyMagazineIncendiary
+  id: LightRifleMagazineIncendiary
+  result: LightRifleMagazineIncendiary
   materials:
     Steel: 100
     Plastic: 1350
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineAP
-  result: LightRifleHeavyMagazineAP
+  id: LightRifleMagazineAP
+  result: LightRifleMagazineAP
   materials:
     Steel: 1312
     Uranium: 1312

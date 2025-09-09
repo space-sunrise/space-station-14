@@ -37,10 +37,10 @@
     - BoxShellTranquilizer
     #####################MAGAZINE#######################
     # LMG
-    - LightRifleHeavyMagazineSP
-    - LightRifleHeavyMagazineHP
-    - LightRifleHeavyMagazineFMJ
-    - LightRifleHeavyMagazineEmpty
+    - LightRifleMagazineSP
+    - LightRifleMagazineHP
+    - LightRifleMagazineFMJ
+    - LightRifleMagazineEmpty
     # Light Rifle
     - MagazineLightRifleSP
     - MagazineLightRifleHP
@@ -157,9 +157,9 @@
     - BoxShellTranquilizer
   #####################MAGAZINE#######################
   # LMG
-    - LightRifleHeavyMagazineIncendiary
-    - LightRifleHeavyMagazineUranium
-    - LightRifleHeavyMagazineAP
+    - LightRifleMagazineIncendiary
+    - LightRifleMagazineUranium
+    - LightRifleMagazineAP
   # Light Rifle
     - MagazineLightRifleIncendiary
     - MagazineLightRifleUranium
