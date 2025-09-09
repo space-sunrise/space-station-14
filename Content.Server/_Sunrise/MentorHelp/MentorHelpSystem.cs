@@ -408,7 +408,7 @@ namespace Content.Server._Sunrise.MentorHelp
         private bool HasMentorPermissions(ICommonSession session)
         {
             var adminData = _adminManager.GetAdminData(session);
-            return adminData?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            return adminData?.HasFlag(AdminFlags.Mentor) ?? false;
         }
 
         private async Task<int?> GetServerIdAsync()
