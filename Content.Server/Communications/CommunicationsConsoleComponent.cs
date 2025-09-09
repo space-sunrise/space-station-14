@@ -82,26 +82,20 @@ namespace Content.Server.Communications
         public string AnnounceVoice = "Hanson";
 
         [ViewVariables]
-        [DataField]
-        public bool IsRelaying = false;
+        public bool IsRelaying;
 
         [ViewVariables]
-        [DataField]
-        public float RelayTimeRemaining = 0f;
+        public float RelayTimeRemaining;
 
         [ViewVariables]
-        [DataField]
-        public float RelayCooldownRemaining = 0f;
+        public float RelayCooldownRemaining;
 
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
-        public float RelayDuration = 30f;
+        public float RelayDuration = 60f;
 
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
         public float RelayCooldown = 300f;
 
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
         public float RelayRange = 7f;
         // Sunrise-End

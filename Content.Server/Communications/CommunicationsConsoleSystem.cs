@@ -79,23 +79,17 @@ namespace Content.Server.Communications
 
                 // Sunrise-Start
                 if (comp.RelayCooldownRemaining > 0f)
-                {
                     comp.RelayCooldownRemaining -= frameTime;
-                }
 
                 if (comp.IsRelaying)
                 {
                     if (!this.IsPowered(uid, EntityManager))
-                    {
                         StopRelay(uid, comp, announce: true);
-                    }
                     else
                     {
                         comp.RelayTimeRemaining -= frameTime;
                         if (comp.RelayTimeRemaining <= 0f)
-                        {
                             StopRelay(uid, comp, announce: true);
-                        }
                     }
                 }
                 // Sunrise-End
