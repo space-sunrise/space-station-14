@@ -25,6 +25,9 @@
       components:
       - type: DisarmMalus
         malus: 0.6
+    - type: HeldSpeedModifier
+      walkModifier: 1
+      sprintModifier: 0.9
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
       layers:

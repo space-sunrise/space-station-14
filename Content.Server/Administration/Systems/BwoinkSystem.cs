@@ -408,7 +408,7 @@ namespace Content.Server.Administration.Systems
 
             if (senderAdmin is not null &&
                 senderAdmin.Value.dat.Flags ==
-                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+                AdminFlags.Mentor) // Mentor. Not full admin. That's why it's colored differently.
             {
                 bwoinkText = $"[color=purple]{adminPrefix}{username}[/color]";
             }

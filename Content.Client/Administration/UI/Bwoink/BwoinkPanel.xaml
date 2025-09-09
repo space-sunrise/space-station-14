@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Orientation="Vertical"
     HorizontalExpand="True">
+    <RichTextLabel Name="AHelpDescLabel" Text="{Loc 'help-choice-ahelp-desc-label'}" Visible="False" Access="Public"/> <!-- Sunrise-Edit -->
     <OutputPanel Name="TextOutput" VerticalExpand="true" Access="Public" /> <!-- Sunrise-Edit -->
     <RichTextLabel Name="TypingIndicator" Access="Public" />
     <HistoryLineEdit Name="SenderLineEdit" />

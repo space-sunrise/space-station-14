@@ -573,3 +573,11 @@
       delta: AllAccess
     # Sunrise-end
 
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsXenoborg
+  suffix: Xenoborg, Locked
+  components:
+  - type: AccessReader
+    access: [["Xenoborg"]]
