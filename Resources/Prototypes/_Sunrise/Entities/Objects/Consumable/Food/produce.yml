@@ -283,14 +283,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 17
         reagents:
         - ReagentId: PulverizedLantern
           Quantity: 5
         - ReagentId: Sulfur
           Quantity: 10
         - ReagentId: Licoxide
-          Quantity: 5
+          Quantity: 2
   - type: Tag
     tags:
     - Fruit
