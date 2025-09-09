@@ -2,7 +2,7 @@ using Content.Client.Administration.Systems;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controllers;
 
-namespace Content.Client.UserInterface.Systems.MentorHelp
+namespace Content.Client._Sunrise.MentorHelp
 {
     [UsedImplicitly]
     public sealed class MentorHelpStatisticsUIController : UIController, IOnSystemChanged<MentorHelpSystem>

@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
+using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
@@ -26,14 +27,6 @@ using MSLogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Content.Server.Database
 {
-    // Структура для статистики по менторам
-    public struct MentorHelpStatistics
-    {
-        public Guid MentorUserId { get; set; }
-        public int TicketsClaimed { get; set; }
-        public int MessagesCount { get; set; }
-    }
-
     public interface IServerDbManager
     {
         void Init();

@@ -1,8 +1,8 @@
+using Content.Shared.Database;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
-using Content.Shared.Database;
 
-namespace Content.Shared.Administration
+namespace Content.Shared._Sunrise.MentorHelp
 {
     /// <summary>
     /// Shared base class for mentor help system
@@ -32,6 +32,13 @@ namespace Content.Shared.Administration
         protected virtual void OnUnassignTicketMessage(MentorHelpUnassignTicketMessage message, EntitySessionEventArgs eventArgs) { }
         protected virtual void OnRequestStatisticsMessage(MentorHelpRequestStatisticsMessage message, EntitySessionEventArgs eventArgs) { }
         protected virtual void OnRequestTicketMessagesMessage(MentorHelpRequestTicketMessagesMessage message, EntitySessionEventArgs eventArgs) { }
+    }
+
+    public struct MentorHelpStatistics
+    {
+        public Guid MentorUserId { get; set; }
+        public int TicketsClaimed { get; set; }
+        public int MessagesCount { get; set; }
     }
 
     /// <summary>

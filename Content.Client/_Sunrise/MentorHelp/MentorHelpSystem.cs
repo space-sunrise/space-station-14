@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using Content.Shared.Administration;
+using Content.Shared._Sunrise.MentorHelp;
 using JetBrains.Annotations;
-using Robust.Shared.Network;
 
-namespace Content.Client.Administration.Systems
+namespace Content.Client._Sunrise.MentorHelp
 {
     /// <summary>
     /// Client-side mentor help system
@@ -85,7 +82,6 @@ namespace Content.Client.Administration.Systems
             OnStatisticsReceived?.Invoke(this, message);
         }
 
-        /// </summary>
         public void CreateTicket(string subject, string message)
         {
             RaiseNetworkEvent(new MentorHelpCreateTicketMessage(subject, message));

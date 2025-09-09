@@ -4,6 +4,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
+using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration;
 using Content.Shared.Database;
@@ -16,7 +17,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Administration.Systems
+namespace Content.Server._Sunrise.MentorHelp
 {
     /// <summary>
     /// Server-side mentor help system for managing tickets

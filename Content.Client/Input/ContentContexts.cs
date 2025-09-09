@@ -26,9 +26,8 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.CycleChatChannelBackward);
             common.AddFunction(ContentKeyFunctions.EscapeContext);
             common.AddFunction(ContentKeyFunctions.ExamineEntity);
+            // Sunrise-Edit
             //common.AddFunction(ContentKeyFunctions.OpenAHelp);
-            common.AddFunction(ContentKeyFunctions.OpenMentorHelp);
-            common.AddFunction(ContentKeyFunctions.OpenHelpChoice);
             common.AddFunction(ContentKeyFunctions.TakeScreenshot);
             common.AddFunction(ContentKeyFunctions.TakeScreenshotNoUI);
             common.AddFunction(ContentKeyFunctions.ToggleFullscreen);
@@ -50,6 +49,11 @@ namespace Content.Client.Input
 
             // Not in engine so that the RCD can rotate objects
             common.AddFunction(EngineKeyFunctions.EditorRotateObject);
+
+            // Sunrise-Start
+            common.AddFunction(ContentKeyFunctions.OpenMentorHelp);
+            common.AddFunction(ContentKeyFunctions.OpenHelpChoice);
+            // Sunrise-End
 
             var human = contexts.GetContext("human");
             human.AddFunction(EngineKeyFunctions.MoveUp);

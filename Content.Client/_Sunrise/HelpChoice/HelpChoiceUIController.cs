@@ -1,6 +1,6 @@
+using Content.Client._Sunrise.MentorHelp;
 using Content.Client.Administration.Systems;
 using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Client.UserInterface.Systems.MentorHelp;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Input;
@@ -8,7 +8,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Input.Binding;
 
-namespace Content.Client.UserInterface.Systems.HelpChoice;
+namespace Content.Client._Sunrise.HelpChoice;
 
 [UsedImplicitly]
 public sealed class HelpChoiceUIController: UIController, IOnSystemChanged<MentorHelpSystem>

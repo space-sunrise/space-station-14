@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Content.Client.Administration.Managers;
-using Content.Client.Administration.Systems;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.Lobby.UI;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
+using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -25,7 +20,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
-namespace Content.Client.UserInterface.Systems.MentorHelp;
+namespace Content.Client._Sunrise.MentorHelp;
 
 /// <summary>
 /// UI controller for mentor help system
@@ -283,9 +278,6 @@ public interface IMentorHelpUIHandler : IDisposable
     void TicketMessagesReceived(int ticketId, List<MentorHelpMessageData> messages);
 }
 
-/// <summary>
-/// UI handler for players (can only see their own tickets)
-/// </summary>
 public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
 {
     public bool IsOpen { get; private set; }

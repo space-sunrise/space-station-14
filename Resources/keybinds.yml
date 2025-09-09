@@ -241,15 +241,10 @@ binds:
 - function: OpenGuidebook
   type: State
   key: NumpadNum0
+# Sunrise-Edit
 #- function: OpenAHelp
 #  type: State
 #  key: F1
-#- function: OpenMentorHelp
-#  type: State
-#  key: F1
-- function: OpenHelpChoice
-  type: State
-  key: F1
 - function: OpenInventoryMenu
   type: State
   key: I
@@ -653,4 +648,10 @@ binds:
 - function: MeleeGunAttack
   type: State
   key: MouseMiddle
+- function: OpenMentorHelp
+  type: State
+  key: O
+- function: OpenHelpChoice
+  type: State
+  key: F1
 # Sunrise-End

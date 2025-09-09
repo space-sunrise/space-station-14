@@ -3,7 +3,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 
-namespace Content.Client.UserInterface.Systems.MentorHelp
+namespace Content.Client._Sunrise.MentorHelp
 {
     /// <summary>
     /// Dialog for creating a new mentor help ticket
