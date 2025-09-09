@@ -637,7 +637,10 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         if (_window is { Disposed: false })
             return;
         _chatPanel = new BwoinkPanel(text => SendMessageAction?.Invoke(_ownerId, text, true, false));
-        _chatPanel.AHelpDescLabel.Visible = true; // Sunrise-Edit
+        // Sunrise-Start
+        _chatPanel.AHelpDescLabel.Visible = true;
+        _chatPanel.AdminWhoButton.Visible = true;
+        // Sunrise-End
         _chatPanel.InputTextChanged += text => InputTextChanged?.Invoke(_ownerId, text);
         _chatPanel.RelayedToDiscordLabel.Visible = relayActive;
         _window = new DefaultWindow()

@@ -5,13 +5,13 @@
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer Orientation="Horizontal" SetHeight="40" HorizontalExpand="True" Margin="5">
                 <Button Name="NewTicketButton" Access="Public" Text="{Loc 'mentor-help-new-ticket'}"
-                        StyleClasses="ButtonBig" />
-                <Control SetWidth="10" />
+                        StyleClasses="ButtonBig" Margin="0 0 10 0"/>
+                <Button Name="AdminWhoButton" Access="Public" Text="{Loc 'admin-who-button'}" Margin="0 0 10 0" />
                 <Button Name="StatisticsButton" Access="Public" Text="{Loc 'mentor-help-statistics'}"
-                        StyleClasses="ButtonBig" Visible="False" />
+                        StyleClasses="ButtonBig" Visible="False" Margin="0 0 10 0" />
                 <Control HorizontalExpand="True" />
                 <Button Name="BackToListButton" Access="Public" Text="{Loc 'mentor-help-back-to-list'}"
-                        StyleClasses="ButtonBig" Visible="False" />
+                        StyleClasses="ButtonBig" HorizontalAlignment="Right" Visible="False" />
             </BoxContainer>
 
             <Control Name="DefaultState" VerticalExpand="True" HorizontalExpand="True">
