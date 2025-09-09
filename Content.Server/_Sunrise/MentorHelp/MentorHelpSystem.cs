@@ -122,6 +122,8 @@ namespace Content.Server._Sunrise.MentorHelp
                 // Notify player
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 RaiseNetworkEvent(new MentorHelpTicketUpdateMessage(ticketData), session.Channel);
+                // Instruct the player's client to open the newly created ticket
+                RaiseNetworkEvent(new MentorHelpOpenTicketMessage(ticket.Id), session.Channel);
 
                 // Notify mentors/admins
                 await NotifyMentorsOfNewTicket(ticketData);

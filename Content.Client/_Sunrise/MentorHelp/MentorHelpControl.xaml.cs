@@ -38,6 +38,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         private MentorHelpNewTicketDialog? _newTicketDialog;
+        private int? _pendingOpenTicketId;
 
         public MentorHelpControl()
         {
@@ -66,6 +67,25 @@ namespace Content.Client._Sunrise.MentorHelp
 
             // Set initial state
             SwitchState(ViewState.TicketsList);
+        }
+
+        /// <summary>
+        /// Попытаться открыть тикет с указанным id. Если тикет ещё не загружен, запросит список тикетов
+        /// и откроет тикет когда список придёт.
+        /// </summary>
+        public void TryOpenTicket(int ticketId)
+        {
+            // If we already have the ticket loaded, select it immediately
+            var ticket = _tickets.FirstOrDefault(t => t.Id == ticketId);
+            if (ticket != null)
+            {
+                OnTicketSelected(ticket);
+                return;
+            }
+
+            // Otherwise, remember to open when the list arrives and request tickets from server
+            _pendingOpenTicketId = ticketId;
+            _mentorHelpSystem?.RequestTickets(onlyMine: !_hasMentorPermissions);
         }
 
         public void Initialize(MentorHelpSystem? mentorHelpSystem, NetUserId ownerUserId, bool hasMentorPermissions)
@@ -118,6 +138,18 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             _tickets = tickets;
             RefreshTicketsList();
+
+            // If we were asked to open a specific ticket once the list arrives, do it now
+            if (_pendingOpenTicketId.HasValue)
+            {
+                var id = _pendingOpenTicketId.Value;
+                _pendingOpenTicketId = null;
+                var ticket = _tickets.FirstOrDefault(t => t.Id == id);
+                if (ticket != null)
+                {
+                    OnTicketSelected(ticket);
+                }
+            }
         }
 
         // Refresh tickets like in ContributorsTop

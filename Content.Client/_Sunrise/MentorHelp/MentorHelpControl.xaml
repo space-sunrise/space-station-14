@@ -64,11 +64,11 @@
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
                     <PanelContainer StyleClasses="PanelColorMedium" HorizontalExpand="True" Margin="5">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
-                            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Center">
+                            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
                                 <Label Text="{Loc 'mentor-help-label-id'}" Margin="0 0 5 0" />
-                                <Label Name="TicketIdLabel" Access="Public" StyleClasses="LabelHeading" HorizontalExpand="True" Margin="6 0 20 0" />
+                                <Label Name="TicketIdLabel" Access="Public" StyleClasses="LabelHeading" Margin="6 0 20 0" />
                                 <Label Text="{Loc 'mentor-help-label-subject'}" Margin="0 0 5 0" />
-                                <Label Name="TicketSubjectLabel" Access="Public" StyleClasses="LabelHeading" HorizontalExpand="True" Margin="8 0 0 0" />
+                                <Label Name="TicketSubjectLabel" Access="Public" StyleClasses="LabelHeading" Margin="8 0 0 0" />
                             </BoxContainer>
 
                             <BoxContainer Orientation="Horizontal" SeparationOverride="3" HorizontalAlignment="Stretch" HorizontalExpand="True" Margin="0 6 0 0">

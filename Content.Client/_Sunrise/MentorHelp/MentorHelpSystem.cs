@@ -13,6 +13,7 @@ namespace Content.Client._Sunrise.MentorHelp
         public event EventHandler<MentorHelpTicketsListMessage>? OnTicketsListReceived;
         public event EventHandler<MentorHelpTicketMessagesMessage>? OnTicketMessagesReceived;
         public event EventHandler<MentorHelpStatisticsMessage>? OnStatisticsReceived;
+        public event EventHandler<MentorHelpOpenTicketMessage>? OnOpenTicketReceived;
 
         protected override void OnCreateTicketMessage(MentorHelpCreateTicketMessage message, EntitySessionEventArgs eventArgs)
         {
@@ -57,6 +58,12 @@ namespace Content.Client._Sunrise.MentorHelp
             SubscribeNetworkEvent<MentorHelpTicketsListMessage>(OnTicketsList);
             SubscribeNetworkEvent<MentorHelpTicketMessagesMessage>(OnTicketMessages);
             SubscribeNetworkEvent<MentorHelpStatisticsMessage>(OnStatistics);
+            SubscribeNetworkEvent<MentorHelpOpenTicketMessage>(OnOpenTicket);
+        }
+
+        private void OnOpenTicket(MentorHelpOpenTicketMessage message, EntitySessionEventArgs eventArgs)
+        {
+            OnOpenTicketReceived?.Invoke(this, message);
         }
 
         private void OnTicketUpdate(MentorHelpTicketUpdateMessage message, EntitySessionEventArgs eventArgs)

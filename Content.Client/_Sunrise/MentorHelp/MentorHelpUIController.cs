@@ -62,11 +62,21 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         _mentorHelpSystem.OnTicketUpdated += OnTicketUpdated;
         _mentorHelpSystem.OnTicketsListReceived += OnTicketsListReceived;
         _mentorHelpSystem.OnTicketMessagesReceived += OnTicketMessagesReceived;
+        _mentorHelpSystem.OnOpenTicketReceived += OnOpenTicketReceived;
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenMentorHelp,
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .Register<MentorHelpUIController>();
+    }
+
+    private void OnOpenTicketReceived(object? sender, MentorHelpOpenTicketMessage message)
+    {
+        EnsureUIHelper();
+
+        // Open the window and instruct UI to open the specific ticket
+        Open();
+        UIHelper?.OpenTicket(message.TicketId);
     }
 
     public void OnSystemUnloaded(MentorHelpSystem system)
@@ -273,6 +283,7 @@ public interface IMentorHelpUIHandler : IDisposable
 
     void OpenWindow();
     void CloseWindow();
+    void OpenTicket(int ticketId);
     void TicketUpdated(MentorHelpTicketData ticket);
     void TicketsListReceived(List<MentorHelpTicketData> tickets);
     void TicketMessagesReceived(int ticketId, List<MentorHelpMessageData> messages);
@@ -316,6 +327,16 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
         IsOpen = true;
 
         _mentorHelpSystem?.RequestTickets(onlyMine: true);
+    }
+
+    public void OpenTicket(int ticketId)
+    {
+        // Ensure window is open
+        OpenWindow();
+        // Ask control to focus the ticket if possible
+        _window?.MentorHelp.TryOpenTicket(ticketId);
+        // Also request messages from server in case they're not loaded yet
+        _mentorHelpSystem?.RequestTicketMessages(ticketId);
     }
 
     public void CloseWindow()
@@ -387,6 +408,13 @@ public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
         IsOpen = true;
 
         _mentorHelpSystem?.RequestTickets(onlyMine: false);
+    }
+
+    public void OpenTicket(int ticketId)
+    {
+        OpenWindow();
+        _window?.MentorHelp.TryOpenTicket(ticketId);
+        _mentorHelpSystem?.RequestTicketMessages(ticketId);
     }
 
     public void CloseWindow()

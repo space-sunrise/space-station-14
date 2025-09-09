@@ -21,7 +21,6 @@ namespace Content.Shared._Sunrise.MentorHelp
             SubscribeNetworkEvent<MentorHelpUnassignTicketMessage>(OnUnassignTicketMessage);
             SubscribeNetworkEvent<MentorHelpRequestStatisticsMessage>(OnRequestStatisticsMessage);
             SubscribeNetworkEvent<MentorHelpRequestTicketMessagesMessage>(OnRequestTicketMessagesMessage);
-
         }
 
         protected virtual void OnCreateTicketMessage(MentorHelpCreateTicketMessage message, EntitySessionEventArgs eventArgs) { }
@@ -255,6 +254,21 @@ namespace Content.Shared._Sunrise.MentorHelp
         public int TicketId { get; }
 
         public MentorHelpRequestTicketMessagesMessage(int ticketId)
+        {
+            TicketId = ticketId;
+        }
+    }
+
+    /// <summary>
+    /// Message sent from server to client instructing it to open (focus) a specific ticket in the UI.
+    /// This is used immediately after creating a ticket so the creating player sees their new ticket.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class MentorHelpOpenTicketMessage : EntityEventArgs
+    {
+        public int TicketId { get; }
+
+        public MentorHelpOpenTicketMessage(int ticketId)
         {
             TicketId = ticketId;
         }
