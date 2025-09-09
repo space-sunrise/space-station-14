@@ -521,7 +521,7 @@
         damage:
           types:
             Cold: -4
-            Mangleness: 0.4 #Sunrise-Edit
+            Mangleness: 0.2 #Sunrise-Edit
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
