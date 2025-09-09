@@ -105,6 +105,9 @@
 
 # Magazines:
 - type: Tag
+  id: MagazinePistolDPSubMachineGun
+
+- type: Tag
   id: MagazineM28
 
 - type: Tag

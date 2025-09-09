@@ -59,6 +59,8 @@
       - id: WeaponSubMachineGunC20rBiocode # Sunrise-edit
       - id: MagazinePistolSubMachineGun
         amount: 2
+      - id: MagazinePistolSubMachineGunFMJ  # Sunrise-edit
+        amount: 2
 #     - id: SMGSuppressor
 
 - type: entity
@@ -72,6 +74,9 @@
     - id: WeaponRifleEstocBiocode # Sunrise-edit
     - id: MagazineRifle
       amount: 2
+    - id: MagazineRifleFMJ  # Sunrise-edit
+      amount: 2
+    - id: MagazineRifleAP # Sunrise-edit
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
