@@ -119,9 +119,12 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 30
-    energy: 3
+    radius: 35
+    energy: 4
     netsync: false
+  - type: Tag
+    tags:
+    - DoorBumpOpener
 
 - type: entity
   id: MechSecPod
@@ -202,6 +205,10 @@
     layers:
     - state: mining_pod
       map: ["enum.MechVisualLayers.Base"]
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 3.75
+    baseWeightlessModifier: 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -228,9 +235,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    # pilotBlacklist:
-    #   species:
-    #   - Felinid
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -247,7 +251,7 @@
     currentThresholdState: Alive
     thresholds:
       0: Alive
-      320: Critical
+      220: Critical
     showOverlays: false
     allowRevives: true
   - type: ContainerFill
@@ -256,4 +260,24 @@
       - PowerCageMedium
   - type: AccessReader
     access: [["Mining"]]
-
+  - type: Storage
+    grid:
+    - 0,0,11,7
+    maxItemSize: Normal
+    storageOpenSound: /Audio/Effects/closetopen.ogg
+    storageCloseSound: /Audio/Effects/closetclose.ogg
+    whitelist:
+      tags:
+      - Ore
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: [ ]
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Glados
