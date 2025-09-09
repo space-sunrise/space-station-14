@@ -620,10 +620,11 @@
       autoRechargePause: true
       autoRechargePauseTime: 5
     - type: EnergyShield
+      energyCostPerDamage: 15
     - type: ExaminableBattery
     - type: Battery
-      maxCharge: 2500
-      startingCharge: 2500
+      maxCharge: 1500
+      startingCharge: 1500
     - type: PowerCellDraw
       useRate: 2.5
     # Sunrise-End
