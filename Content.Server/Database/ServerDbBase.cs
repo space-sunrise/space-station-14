@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -284,12 +283,6 @@ namespace Content.Server.Database
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
                     markings,
-                    //sunrise gradient start
-                    (MarkingEffectType)profile.HairColorType,
-                    MarkingEffect.Parse(profile.HairExtendedColor),
-                    (MarkingEffectType)profile.FacialHairColorType,
-                    MarkingEffect.Parse(profile.FacialHairExtendedColor),
-                    //sunrise gradient end
                     profile.Width,
                     profile.Height
                 ),
@@ -327,12 +320,6 @@ namespace Content.Server.Database
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
-            // sunrise gradient start
-            profile.HairColorType = (int)appearance.HairMarkingEffectType;
-            profile.HairExtendedColor = appearance.HairMarkingEffect?.ToString() ?? "";
-            profile.FacialHairColorType = (int)appearance.FacialHairMarkingEffectType;
-            profile.FacialHairExtendedColor = appearance.FacialHairMarkingEffect?.ToString() ?? "";
-            // sunrise gradient end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
             profile.SpawnPriority = (int) humanoid.SpawnPriority;

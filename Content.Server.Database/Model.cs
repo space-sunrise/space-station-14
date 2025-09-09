@@ -420,12 +420,6 @@ namespace Content.Server.Database
         public string HairColor { get; set; } = null!;
         public string FacialHairName { get; set; } = null!;
         public string FacialHairColor { get; set; } = null!;
-        // sunrise gradient start
-        public int HairColorType { get; set; } = 0;
-        public string HairExtendedColor { get; set; } = null!;
-        public int FacialHairColorType { get; set; } = 0;
-        public string FacialHairExtendedColor { get; set; } = null!;
-        // sunrise gradient end
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
         public int SpawnPriority { get; set; } = 0;

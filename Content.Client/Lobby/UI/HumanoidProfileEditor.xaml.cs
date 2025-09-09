@@ -10,7 +10,6 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -329,30 +328,6 @@ namespace Content.Client.Lobby.UI
 
             #region Hair
 
-            // sunrise gradient edit start
-
-            HairStylePicker.OnExtendedColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairExtendedColor(newColor.marking.MarkingEffects[0]));
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnExtendedColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.MarkingEffects[0]));
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            // sunrise gradient edit end
-
             HairStylePicker.OnMarkingSelect += newStyle =>
             {
                 if (Profile is null)
@@ -366,9 +341,8 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
-                var newExtended = newColor.marking.MarkingEffects[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
+                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0]));
                 UpdateCMarkingsHair();
                 ReloadPreview();
             };
@@ -386,9 +360,8 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
-                var newExtended = newColor.marking.MarkingEffects[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
+                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0]));
                 UpdateCMarkingsFacialHair();
                 ReloadPreview();
             };
@@ -1741,6 +1714,7 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
+<<<<<<< HEAD
 
             var hairMarking = CreateHairMarkings(
                 Profile.Appearance.HairStyleId,
@@ -1754,6 +1728,19 @@ namespace Content.Client.Lobby.UI
                 Profile.Appearance.FacialHairColor,
                 Profile.Appearance.FacialHairMarkingEffect);
 
+=======
+            var hairMarking = Profile.Appearance.HairStyleId switch
+            {
+                HairStyles.DefaultHairStyle => new List<Marking>(),
+                _ => new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) },
+            };
+
+            var facialHairMarking = Profile.Appearance.FacialHairStyleId switch
+            {
+                HairStyles.DefaultFacialHairStyle => new List<Marking>(),
+                _ => new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) },
+            };
+>>>>>>> parent of d1ed5109e2 (градиенты волос (#2652))
 
             HairStylePicker.UpdateData(
                 hairMarking,
@@ -1815,12 +1802,7 @@ namespace Content.Client.Lobby.UI
             }
             if (hairColor != null)
             {
-                Markings.HairMarking = new (
-                    Profile.Appearance.HairStyleId,
-                    new List<Color>() { hairColor.Value },
-                    Profile.Appearance.HairMarkingEffect is { } hairExt
-                        ? new List<MarkingEffect> { hairExt.Clone() }
-                        : null);
+                Markings.HairMarking = new (Profile.Appearance.HairStyleId, new List<Color>() { hairColor.Value });
             }
             else
             {
@@ -1854,12 +1836,7 @@ namespace Content.Client.Lobby.UI
             }
             if (facialHairColor != null)
             {
-                Markings.FacialHairMarking = new(
-                    Profile.Appearance.FacialHairStyleId,
-                    new List<Color>() { facialHairColor.Value },
-                    Profile.Appearance.FacialHairMarkingEffect is { } facialExt
-                        ? new List<MarkingEffect> { facialExt.Clone() }
-                        : null);
+                Markings.FacialHairMarking = new (Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
             }
             else
             {
@@ -2034,6 +2011,7 @@ namespace Content.Client.Lobby.UI
             }
 
             CBodyTypesButton.Select(_bodyTypes.FindIndex(x => x.ID == Profile.BodyType));
+            IsDirty = true;
         }
     }
 }

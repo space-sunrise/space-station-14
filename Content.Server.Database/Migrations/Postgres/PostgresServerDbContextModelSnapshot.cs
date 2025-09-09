@@ -899,15 +899,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("facial_hair_color");
 
-                    b.Property<int>("FacialHairColorType")
-                        .HasColumnType("integer")
-                        .HasColumnName("facial_hair_color_type");
-
-                    b.Property<string>("FacialHairExtendedColor")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("facial_hair_extended_color");
-
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -927,15 +918,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
-
-                    b.Property<int>("HairColorType")
-                        .HasColumnType("integer")
-                        .HasColumnName("hair_color_type");
-
-                    b.Property<string>("HairExtendedColor")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("hair_extended_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()
