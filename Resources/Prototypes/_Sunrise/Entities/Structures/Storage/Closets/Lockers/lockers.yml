@@ -122,9 +122,9 @@
       amount: 2
 
 - type: entity
-  id: LockerMiningSpecialistFilled
+  id: LockerMiningSpecialist
   parent: LockerBase
-  suffix: Filled, Hardsuit
+  suffix: Empty
   name: mining specialist's equipment
   description: Nevermind the pickaxe.
   components:
@@ -141,6 +141,14 @@
       red: RedAlertAccesses
       blue: BlueAlertAccessesHOS
       gamma: GammaAlertAccesses
+
+- type: entity
+  id: LockerMiningSpecialistFilled
+  parent: LockerMiningSpecialist
+  suffix: Filled, Hardsuit
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
   - type: StorageFill
     contents:
     - id: ClothingOuterHardsuitSalvage
