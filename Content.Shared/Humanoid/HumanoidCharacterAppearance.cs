@@ -64,10 +64,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color skinColor,
         List<Marking> markings,
         //sunrise gradient start
-        MarkingEffectType hairMarkingEffectType,
-        MarkingEffect? hairMarkingEffect,
-        MarkingEffectType facialHairMarkingEffectType,
-        MarkingEffect? facialHairMarkingEffect,
+        MarkingEffectType hairMarkingEffectType = MarkingEffectType.Color,
+        MarkingEffect? hairMarkingEffect = null,
+        MarkingEffectType facialHairMarkingEffectType = MarkingEffectType.Color,
+        MarkingEffect? facialHairMarkingEffect = null,
         //sunrise gradient end
         float width, //Sunrise
         float height) //Sunrise
@@ -90,19 +90,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId,
-            other.HairColor,
-            other.FacialHairStyleId,
-            other.FacialHairColor,
-            other.EyeColor,
-            other.SkinColor,
-            new(other.Markings),
-            other.HairMarkingEffectType,
-            other.HairMarkingEffect,
-            other.FacialHairMarkingEffectType,
-            other.FacialHairMarkingEffect,
-            other.Width,
-            other.Height) // sunrise gradient edit
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairMarkingEffectType, other.HairMarkingEffect, other.FacialHairMarkingEffectType, other.FacialHairMarkingEffect, other.Width, other.Height); // sunrise gradient edit
+
+    public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.Width, other.Height)
     {
 
     }
@@ -152,16 +143,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, newFacialExtendedColor?.Type ?? MarkingEffectType.Color, newFacialExtendedColor, Width, Height); // sunrise gradient edit
     }
     // sunrise gradient edit end
-
-    public HumanoidCharacterAppearance WithWidth(float newWidth)
-    {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, newWidth, Height);
-    }
-
-    public HumanoidCharacterAppearance WithHeight(float newHeight)
-    {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, FacialHairMarkingEffectType, FacialHairMarkingEffect, Width, newHeight);
-    }
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
