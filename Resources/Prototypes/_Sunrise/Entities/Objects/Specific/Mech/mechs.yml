@@ -49,7 +49,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 7.5
+        Mangleness: 5
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -60,7 +60,7 @@
   - type: InteractionOutline
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1
+    baseSprintSpeed: 2
     baseWeightlessModifier: 10
   - type: MovementAlwaysTouching
   - type: Pullable
@@ -76,7 +76,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      300: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
   - type: HealthExaminable
@@ -96,7 +96,7 @@
       mech-battery-slot: !type:ContainerSlot
   - type: Damageable
     damageContainer: Mech
-    damageModifierSet: MediumArmorNT
+    damageModifierSet: LightArmor
   - type: GuideHelp
     guides:
     - Robotics
