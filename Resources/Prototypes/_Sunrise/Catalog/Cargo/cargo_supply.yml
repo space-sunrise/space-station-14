@@ -4,6 +4,6 @@
     sprite: Objects/Tools/fulton.rsi
     state: extraction_pack
   product: CrateFulton
-  cost: 6500
+  cost: 12000
   category: cargoproduct-category-name-cargo
   group: market
