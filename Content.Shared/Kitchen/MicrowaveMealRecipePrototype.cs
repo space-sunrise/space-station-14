@@ -73,7 +73,8 @@ namespace Content.Shared.Kitchen
     public enum MicrowaveRecipeType : int
     {
         Microwave = 1,
-        MedicalAssembler = 2,
+        ElectricRangeKey = 2,
+        MedicalAssembler = 4,
     }
 
     public sealed class MicrowaveRecipeTypeFlags { }
