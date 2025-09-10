@@ -246,7 +246,7 @@
       PotencyDivisor: 10
     Licoxide:
       Min: 1
-      Max: 2
+      Max: 5
       PotencyDivisor: 5
 
 - type: seed

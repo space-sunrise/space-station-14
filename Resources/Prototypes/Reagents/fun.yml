@@ -164,7 +164,7 @@
     Poison:
       effects:
       - !type:Electrocute
-        probability: 0.15 # Sunrise-Edit # Иногда вместо пакса, в копье вливается ликоксид, а учитывая старый шанс в 35 процентов, он прокал каждый 3 удар
+        probability: 0.35
         conditions: # Sunrise-Edit
         - !type:ReagentThreshold
           min: 1
