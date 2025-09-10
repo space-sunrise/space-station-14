@@ -197,7 +197,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (args.SenderSession.AttachedEntity is not {} user)
             return;
 
-        if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
+        if (!TryGetWeaponByHand(user, msg.HandLocation, out var weaponUid, out var weapon) ||
             weaponUid != GetEntity(msg.Weapon))
         {
             return;
@@ -210,7 +210,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         if (args.SenderSession.AttachedEntity == null
             || HasComp<MechPilotComponent>(args.SenderSession.AttachedEntity)
-            || !TryGetWeapon(args.SenderSession.AttachedEntity.Value, out var weaponUid, out var weapon)
+            || !TryGetWeaponByHand(args.SenderSession.AttachedEntity.Value, msg.HandLocation, out var weaponUid, out var weapon)
             || weaponUid != GetEntity(msg.Weapon))
             return;
 
@@ -326,6 +326,81 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Gets a weapon from a specific hand location. If handLocation is null, uses the active hand (legacy behavior).
+    /// </summary>
+    public bool TryGetWeaponByHand(EntityUid entity, HandLocation? handLocation, out EntityUid weaponUid, [NotNullWhen(true)] out MeleeWeaponComponent? melee)
+    {
+        weaponUid = default;
+        melee = null;
+
+        // If no specific hand location is requested, fall back to existing behavior
+        if (handLocation == null)
+            return TryGetWeapon(entity, out weaponUid, out melee);
+
+        // Check for weapon event override first
+        var ev = new GetMeleeWeaponEvent();
+        RaiseLocalEvent(entity, ev);
+        if (ev.Handled)
+        {
+            if (TryComp(ev.Weapon, out melee))
+            {
+                weaponUid = ev.Weapon.Value;
+                return true;
+            }
+            return false;
+        }
+
+        // Try to get item from specific hand location
+        if (!TryComp<HandsComponent>(entity, out var hands))
+            return false;
+
+        // Find hand with matching location
+        EntityUid? heldItem = null;
+        foreach (var (handId, hand) in hands.Hands)
+        {
+            if (hand.Location == handLocation.Value)
+            {
+                if (_hands.TryGetHeldItem((entity, hands), handId, out var item))
+                {
+                    heldItem = item;
+                    break;
+                }
+            }
+        }
+
+        // Check if held item is a weapon
+        if (heldItem != null)
+        {
+            if (TryComp(heldItem, out melee) && !melee.MustBeEquippedToUse)
+            {
+                weaponUid = heldItem.Value;
+                return true;
+            }
+
+            if (!HasComp<VirtualItemComponent>(heldItem))
+                return false;
+        }
+
+        // Fall back to gloves or intrinsic weapon
+        if (_inventory.TryGetSlotEntity(entity, "gloves", out var gloves) &&
+            TryComp<MeleeWeaponComponent>(gloves, out var glovesMelee))
+        {
+            weaponUid = gloves.Value;
+            melee = glovesMelee;
+            return true;
+        }
+
+        // Use entity's own melee component
+        if (TryComp(entity, out melee))
+        {
+            weaponUid = entity;
+            return true;
+        }
+
+        return false;
+    }
+
     public void AttemptLightAttackMiss(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, EntityCoordinates coordinates)
     {
         AttemptAttack(user, weaponUid, weapon, new LightAttackEvent(null, GetNetEntity(weaponUid), GetNetCoordinates(coordinates)), null);
@@ -355,8 +430,44 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         var curTime = Timing.CurTime;
 
-        if (weapon.NextAttack > curTime)
-            return false;
+        // Check hand-specific cooldown if hand location is specified
+        HandLocation? handLocation = null;
+        switch (attack)
+        {
+            case LightAttackEvent light:
+                handLocation = light.HandLocation;
+                break;
+            case HeavyAttackEvent heavy:
+                handLocation = heavy.HandLocation;
+                break;
+        }
+
+        // Check appropriate cooldown based on hand location
+        if (handLocation.HasValue)
+        {
+            switch (handLocation.Value)
+            {
+                case HandLocation.Left:
+                    if (weapon.NextLeftHandAttack > curTime)
+                        return false;
+                    break;
+                case HandLocation.Right:
+                    if (weapon.NextRightHandAttack > curTime)
+                        return false;
+                    break;
+                default:
+                    // For non-left/right hands, use the general cooldown
+                    if (weapon.NextAttack > curTime)
+                        return false;
+                    break;
+            }
+        }
+        else
+        {
+            // Legacy behavior - use general cooldown
+            if (weapon.NextAttack > curTime)
+                return false;
+        }
 
         if (!CombatMode.IsInCombatMode(user))
             return false;
@@ -399,17 +510,60 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var fireRate = TimeSpan.FromSeconds(1f / GetAttackRate(weaponUid, user, weapon));
         var swings = 0;
 
-        // TODO: If we get autoattacks then probably need a shotcounter like guns so we can do timing properly.
-        if (weapon.NextAttack < curTime)
-            weapon.NextAttack = curTime;
-
-        while (weapon.NextAttack <= curTime)
+        // Set appropriate cooldown based on hand location
+        if (handLocation.HasValue)
         {
-            weapon.NextAttack += fireRate;
-            swings++;
-        }
+            switch (handLocation.Value)
+            {
+                case HandLocation.Left:
+                    if (weapon.NextLeftHandAttack < curTime)
+                        weapon.NextLeftHandAttack = curTime;
+                    
+                    while (weapon.NextLeftHandAttack <= curTime)
+                    {
+                        weapon.NextLeftHandAttack += fireRate;
+                        swings++;
+                    }
+                    DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextLeftHandAttack));
+                    break;
+                case HandLocation.Right:
+                    if (weapon.NextRightHandAttack < curTime)
+                        weapon.NextRightHandAttack = curTime;
+                    
+                    while (weapon.NextRightHandAttack <= curTime)
+                    {
+                        weapon.NextRightHandAttack += fireRate;
+                        swings++;
+                    }
+                    DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextRightHandAttack));
+                    break;
+                default:
+                    // For non-left/right hands, use the general cooldown
+                    if (weapon.NextAttack < curTime)
+                        weapon.NextAttack = curTime;
 
-        DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
+                    while (weapon.NextAttack <= curTime)
+                    {
+                        weapon.NextAttack += fireRate;
+                        swings++;
+                    }
+                    DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
+                    break;
+            }
+        }
+        else
+        {
+            // Legacy behavior - use general cooldown
+            if (weapon.NextAttack < curTime)
+                weapon.NextAttack = curTime;
+
+            while (weapon.NextAttack <= curTime)
+            {
+                weapon.NextAttack += fireRate;
+                swings++;
+            }
+            DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
+        }
 
         // Do this AFTER attack so it doesn't spam every tick
         var ev = new AttemptMeleeEvent(user); // Sunrise-edit

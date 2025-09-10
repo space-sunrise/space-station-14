@@ -35,6 +35,20 @@ public sealed partial class MeleeWeaponComponent : Component
     public TimeSpan NextAttack;
 
     /// <summary>
+    /// Next time the left hand is allowed to attack with this weapon.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
+    [AutoPausedField]
+    public TimeSpan NextLeftHandAttack;
+
+    /// <summary>
+    /// Next time the right hand is allowed to attack with this weapon.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
+    [AutoPausedField]
+    public TimeSpan NextRightHandAttack;
+
+    /// <summary>
     /// Starts attack cooldown when equipped if true.
     /// </summary>
     [DataField, AutoNetworkedField]
