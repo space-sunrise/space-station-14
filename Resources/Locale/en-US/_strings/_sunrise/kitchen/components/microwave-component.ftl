@@ -7,3 +7,6 @@ assembler-bound-user-interface-cook-time-label = TIME LEFT: {$time}
 
 assembler-menu-medical-title = Medical Assembler
 assembler-menu-start-button = Assemble
+
+assembler-menu-medical-footer-flavor-left = Certified 99.99% nano-sterile.
+assembler-menu-footer-flavor-right = v0.2.1
