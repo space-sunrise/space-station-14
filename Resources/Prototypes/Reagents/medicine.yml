@@ -1135,7 +1135,7 @@
         damage:
           types:
             Piercing: -2.5 # 10 per u
-            Radiation: 0.05 # 0.2 per u, 3 for 15u
+            Radiation: 0 # Sunrise-Edit
             Mangleness: 0.25 #Sunrise-Edit
       - !type:HealthChange
         conditions:
