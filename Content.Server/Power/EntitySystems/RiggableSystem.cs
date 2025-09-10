@@ -31,6 +31,9 @@ public sealed class RiggableSystem : EntitySystem
 
     private void OnMicrowaved(Entity<RiggableComponent> entity, ref BeingMicrowavedEvent args)
     {
+        if (!args.BeingHeated && !args.BeingIrradiated)
+            return;
+            
         if (TryComp<BatteryComponent>(entity, out var batteryComponent))
         {
             if (batteryComponent.CurrentCharge == 0)

@@ -5,6 +5,10 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Kitchen; // Frontier
+using Robust.Shared.Serialization; // Frontier
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.Kitchen.Components; // Frontier
 
 namespace Content.Server.Kitchen.Components
 {
@@ -110,17 +114,42 @@ namespace Content.Server.Kitchen.Components
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanMicrowaveIdsSafely = true;
+
+        [DataField(customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>)), ViewVariables(VVAccess.ReadWrite)]
+        public int ValidRecipeTypes = (int)MicrowaveRecipeType.Microwave;
+
+        /// <summary>
+        /// If true, events sent off by the microwave will state that the object is being heated.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public bool CanHeat = true;
+
+        /// <summary>
+        /// If true, events sent off by the microwave will state that the object is being irradiated.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public bool CanIrradiate = true;
+
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public SoundSpecifier NoRecipeSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        public MicrowaveUiKey Key = MicrowaveUiKey.Key;
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs
     {
         public EntityUid Microwave;
         public EntityUid? User;
+        public bool BeingHeated;
+        public bool BeingIrradiated;
 
-        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user)
+        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user, bool heating, bool irradiating) // Frontier: added heating, irradiating
         {
             Microwave = microwave;
             User = user;
+            BeingHeated = heating;
+            BeingIrradiated = irradiating;
         }
     }
 }

@@ -20,6 +20,33 @@
       "name": "microstimpen_empty"
     },
     {
+      "name": "bruizpen"
+    },
+    {
+      "name": "bruizpen_empty"
+    },
+    {
+      "name": "lacerpen"
+    },
+    {
+      "name": "lacerpen_empty"
+    },
+    {
+      "name": "medipen"
+    },
+    {
+      "name": "polypen"
+    },
+    {
+      "name": "polypen_empty"
+    },
+    {
+      "name": "stellipen"
+    },
+    {
+      "name": "stellipen_empty"
+    },
+    {
       "name": "base-needle-inhand-left",
         "directions": 4
     },

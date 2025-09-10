@@ -42,10 +42,11 @@ using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Kitchen.Components; // Frontier
 
 namespace Content.Server.Kitchen.EntitySystems
 {
-    public sealed class MicrowaveSystem : EntitySystem
+    public sealed partial class MicrowaveSystem : EntitySystem
     {
         [Dependency] private readonly BodySystem _bodySystem = default!;
         [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
@@ -97,6 +98,8 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<MicrowaveComponent, MicrowaveEjectMessage>(OnEjectMessage);
             SubscribeLocalEvent<MicrowaveComponent, MicrowaveEjectSolidIndexedMessage>(OnEjectIndex);
             SubscribeLocalEvent<MicrowaveComponent, MicrowaveSelectCookTimeMessage>(OnSelectTime);
+
+            SubscribeLocalEvent<MicrowaveComponent, AssemblerStartCookMessage>(TryStartAssembly); // Frontier
 
             SubscribeLocalEvent<ActiveMicrowaveComponent, ComponentStartup>(OnCookStart);
             SubscribeLocalEvent<ActiveMicrowaveComponent, ComponentShutdown>(OnCookStop);
@@ -176,6 +179,10 @@ namespace Content.Server.Kitchen.EntitySystems
         /// <param name="time">The time on the microwave, in seconds.</param>
         private void AddTemperature(MicrowaveComponent component, float time)
         {
+
+            if (!component.CanHeat && !component.CanIrradiate)
+                return;
+
             var heatToAdd = time * component.BaseHeatMultiplier;
             foreach (var entity in component.Storage.ContainedEntities)
             {
@@ -300,6 +307,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
             // The act of getting your head microwaved doesn't actually kill you
             if (!TryComp<DamageableComponent>(args.Victim, out var damageableComponent))
+                return;
+
+            if (!ent.Comp.CanHeat && !ent.Comp.CanIrradiate)
                 return;
 
             // The application of lethal damage is what kills you...
@@ -460,7 +470,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public void UpdateUserInterfaceState(EntityUid uid, MicrowaveComponent component)
         {
-            _userInterface.SetUiState(uid, MicrowaveUiKey.Key, new MicrowaveUpdateUserInterfaceState(
+             _userInterface.SetUiState(uid, component.Key, new MicrowaveUpdateUserInterfaceState(
                 GetNetEntityArray(component.Storage.ContainedEntities.ToArray()),
                 HasComp<ActiveMicrowaveComponent>(uid),
                 component.CurrentCookTimeButtonIndex,
@@ -543,7 +553,7 @@ namespace Content.Server.Kitchen.EntitySystems
             foreach (var item in component.Storage.ContainedEntities.ToArray())
             {
                 // special behavior when being microwaved ;)
-                var ev = new BeingMicrowavedEvent(uid, user);
+                var ev = new BeingMicrowavedEvent(uid, user, component.CanHeat, component.CanIrradiate);
                 RaiseLocalEvent(item, ev);
 
                 // TODO MICROWAVE SPARKS & EFFECTS
@@ -556,12 +566,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     return;
                 }
 
-                if (_tag.HasTag(item, MetalTag))
+                if (_tag.HasTag(item, MetalTag) && component.CanIrradiate)
                 {
                     malfunctioning = true;
                 }
 
-                if (_tag.HasTag(item, PlasticTag))
+                if (_tag.HasTag(item, PlasticTag) && (component.CanHeat || component.CanIrradiate))
                 {
                     var junk = Spawn(component.BadRecipeEntityId, Transform(uid).Coordinates);
                     _container.Insert(junk, component.Storage);
@@ -645,6 +655,13 @@ namespace Content.Server.Kitchen.EntitySystems
                 //can't be a multiple of this recipe
                 return (recipe, 0);
             }
+
+            // Frontier: microwave recipe machine types
+            if ((recipe.RecipeType & component.ValidRecipeTypes) == 0)
+            {
+                return (recipe, 0);
+            }
+            // End Frontier
 
             foreach (var solid in recipe.IngredientsSolids)
             {

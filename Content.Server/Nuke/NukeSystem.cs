@@ -134,6 +134,9 @@ public sealed class NukeSystem : EntitySystem
     /// </summary>
     private void OnMicrowaved(Entity<NukeDiskComponent> ent, ref BeingMicrowavedEvent args)
     {
+        if (!args.BeingHeated && !args.BeingIrradiated)
+            return;
+            
         if (ent.Comp.TimeModifier != null)
             return;
 

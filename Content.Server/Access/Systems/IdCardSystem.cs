@@ -32,6 +32,9 @@ public sealed class IdCardSystem : SharedIdCardSystem
 
     private void OnMicrowaved(EntityUid uid, IdCardComponent component, BeingMicrowavedEvent args)
     {
+        if (!args.BeingIrradiated)
+            return;
+
         if (!component.CanMicrowave || !TryComp<MicrowaveComponent>(args.Microwave, out var micro) || micro.Broken)
             return;
 
