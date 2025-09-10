@@ -63,9 +63,8 @@
       state: medical
     - type: MachineBoard
       prototype: MedicalAssembler
-      requirements:
-        Capacitor: 3
       stackRequirements:
+        Capacitor: 3
         Steel: 5
         Glass: 2
         Cable: 4

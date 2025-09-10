@@ -1,7 +1,9 @@
 - type: latheRecipe
   id: MedicalAssemblerMachineCircuitboard
   result: MedicalAssemblerMachineCircuitboard
-  category: Circuitry
+  categories:
+  - Machines
+  - Medical
   completetime: 4
   materials:
     Steel: 800
