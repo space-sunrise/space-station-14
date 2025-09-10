@@ -187,7 +187,7 @@
         left hand: LeftHandCyber
     - type: Construction
       graph: ImplantSwitchArmCyberAtmos
-      node: base_left
+      node: start
 
 - type: entity
   id: RightArmCyberAtmos
@@ -220,7 +220,7 @@
         right hand: RightHandCyber
     - type: Construction
       graph: ImplantSwitchArmCyberAtmos
-      node: base_right
+      node: start
 
 # Janitorial Arm
 - type: entity
