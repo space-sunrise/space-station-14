@@ -64,7 +64,7 @@
     - type: MachineBoard
       prototype: MedicalAssembler
       stackRequirements:
-        Capacitor: 3
+        Manipulator: 3
         Steel: 5
         Glass: 2
         Cable: 4
