@@ -46,3 +46,13 @@ ent-LeftArmCyberGrenadeThrower = левая кибер рука-гранатом
     .desc = { ent-PartCyber.desc }
 ent-RightArmCyberGrenadeThrower = правая кибер рука-гранатомет Гефест
     .desc = { ent-PartCyber.desc }
+
+ent-LeftArmCyberHack = левая рука «НетРаннера»
+    .desc = { ent-PartCyber.desc }
+ent-LeftArmCyberHack = правая рука «НетРаннера»
+    .desc = { ent-PartCyber.desc }
+
+ent-LeftArmCyberAtmos = левая рука «Атмосианина»
+    .desc = { ent-PartCyber.desc }
+ent-LeftArmCyberAtmos = правая рука «Атмосианина»
+    .desc = { ent-PartCyber.desc }

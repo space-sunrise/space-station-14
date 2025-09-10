@@ -87,7 +87,31 @@
     Steel: 1100
     Silver: 800
     Glass: 450
-
+#
+- type: latheRecipe
+  id: ImplantCaseAtmos
+  result: ImplantCaseAtmos
+  categories:
+  - Cyberlimbs
+  completetime: 25
+  materials:
+    Plastic: 450
+    Steel: 1100
+    Silver: 800
+    Glass: 450
+#
+- type: latheRecipe
+  id: ImplantCaseHack
+  result: ImplantCaseHack
+  categories:
+  - Cyberlimbs
+  completetime: 25
+  materials:
+    Steel: 1100
+    Plastic: 500
+    Glass: 250
+    Plasma: 800
+    Silver: 800
 #
 - type: latheRecipe
   id: ImplantCaseGorilla

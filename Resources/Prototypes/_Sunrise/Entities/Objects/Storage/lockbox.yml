@@ -168,6 +168,24 @@
 
 - type: entity
   parent: BaseImplantCase
+  id: ImplantCaseHack
+  description: "A small ID locked case. The label reads: Hack CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberHack
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseAtmos
+  description: "A small ID locked case. The label reads: Atmosian CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberHack
+
+- type: entity
+  parent: BaseImplantCase
   id: ImplantCaseJani
   description: "A small ID locked case. The label reads: Jani CyberArm."
   components:

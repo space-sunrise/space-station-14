@@ -391,6 +391,26 @@
       - NukeOpsUplink
       - LoneOpsUplink
 
+- type: listing
+  id: UplinkGrenadeExShrapnel
+  name: uplink-shrapnel-exgrenade-name
+  description: uplink-shrapnel-exgrenade-desc
+  productEntity: ExShrapnelGrenade
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
+
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFragTimer

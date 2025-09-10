@@ -94,8 +94,133 @@
       node: upgraded_right
 
 # Hack Arm #ERR*?*%!
+- type: entity
+  id: LeftArmCyberHack
+  name: "left Netrunner arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmZenghu
+    - type: BaseLayerIdToggled
+      layer: CyberLArmZenghuHack
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_zenghu"
+    - type: Icon
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_zenghu"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      items:
+        - ScrewdriverCyber
+        - WirecutterCyber
+        - MultitoolAbductor
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberFolder
+    - type: Construction
+      graph: ImplantSwitchArmCyberHack
+      node: start
+
+- type: entity
+  id: RightArmCyberHack
+  name: "right Netrunner arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmZenghu
+    - type: BaseLayerIdToggled
+      layer: CyberRArmZenghuHack
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_zenghu"
+    - type: Icon
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_zenghu"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      items:
+        - ScrewdriverCyber
+        - WirecutterCyber
+        - MultitoolAbductor
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberFolder
+    - type: Construction
+      graph: ImplantSwitchArmCyberHack
+      node: start
 
 # Atmos Arm
+- type: entity
+  id: LeftArmCyberAtmos
+  name: "left Atmos arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmSteel
+    - type: BaseLayerIdToggled
+      layer: CyberLArmSteelMechwright
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_steel_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_steel_arm"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      items:
+        - PowerDrillCyber
+        - GasAnalyzer
+        - HolofanProjectorBorg
+        - BorgFireExtinguisher
+        - GeigerCounter
+        - CyberGrenadeThrowerAtmos
+        - AtmosAlertsMonitorUnpowered
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberAtmos
+      node: base_left
+
+- type: entity
+  id: RightArmCyberAtmos
+  name: "right Atmos arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmSteel
+    - type: BaseLayerIdToggled
+      layer: CyberRArmSteelMechwright
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_steel_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_steel_arm"
+    - type: LimbWithItems
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      items:
+        - BorgFireExtinguisher
+        - GasAnalyzer
+        - HolofanProjectorBorg
+        - GeigerCounter
+        - CyberGrenadeThrowerAtmos
+        - AtmosAlertsMonitorUnpowered
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyber
+    - type: Construction
+      graph: ImplantSwitchArmCyberAtmos
+      node: base_right
 
 # Janitorial Arm
 - type: entity

@@ -154,24 +154,23 @@
   - Engineering
   - Service
 
-# - type: technology #research-technology-atmos-cyberlimbs = Атмосианские киберконечности
-#   id: AtmosCyberLimbsTech
-#   name: research-technology-atmos-cyberlimbs
-
-#   icon:
-#     sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-#     state: cyber-hand-left
-#   discipline: Biochemical
-#   tier: 2
-#   cost: 6500
-#   recipeUnlocks:
-#     # - ImplantCaseMechwright # Атмос рука
-#   technologyPrerequisites:
-#     - FunctionalCyberLimbsTech
-#     - AtmosphericTech
-#   radioChannels:
-#   - Medical
-#   - Engineering
+- type: technology
+  id: AtmosCyberLimbsTech
+  name: research-technology-atmos-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 2
+  cost: 6500
+  recipeUnlocks:
+    - ImplantCaseAtmos
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AtmosphericTech
+  radioChannels:
+  - Medical
+  - Engineering
 
 - type: technology
   id: JanitorialCyberLimbsTech
@@ -192,24 +191,25 @@
   - Service
 
 # Tier 3
-# - type: technology  #research-technology-hack-cyberlimbs = ERR*?*%!
-#   id: HackCyberLimbsTech
-#   name: research-technology-hack-cyberlimbs
-#   icon:
-#     sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-#     state: cyber-hand-left
-#   discipline: Biochemical
-#   tier: 3
-#   cost: 404 # ERROR #ERR*?*%!
-#   recipeUnlocks:
-#     # - ImplantCaseMechwright # Хак рука
-#   technologyPrerequisites:
-#     - FunctionalCyberLimbsTech
-#     - AdvancedToolsTechnology
-#     - BasicXenoArcheology
-#   radioChannels:
-#   - Medical
-#   - Engineering
+- type: technology
+  id: HackCyberLimbsTech
+  name: research-technology-hack-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 3
+  cost: 404 # ERROR #ERR*?*%!
+  recipeUnlocks:
+    - ImplantCaseHack
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AdvancedToolsTechnology
+    - BasicXenoArcheology
+  radioChannels:
+  - Medical
+  - Engineering
+  - Service
 
 - type: technology
   id: ImplantExtractor

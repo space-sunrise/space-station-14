@@ -151,6 +151,44 @@
               doAfter: 1
 
 - type: constructionGraph
+  id: ImplantSwitchArmCyberHack
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberHack
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberHack
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
+  id: ImplantSwitchArmCyberAtmos
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberAtmos
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberAtmos
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
   id: ImplantSwitchArmCyberMechwright
   start: start
   graph:

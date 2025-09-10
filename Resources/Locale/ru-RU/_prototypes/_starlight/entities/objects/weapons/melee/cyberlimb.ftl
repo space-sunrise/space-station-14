@@ -16,3 +16,5 @@ ent-CyberPistolCHIMP = { ent-WeaponPistolCHIMP }
     .desc = { ent-WeaponPistolCHIMP.desc }
 ent-CyberPistolCHIMPUpgraded = { ent-WeaponPistolCHIMPUpgraded }
     .desc = { ent-WeaponPistolCHIMPUpgraded.desc }
+ent-CyberGrenadeThrowerAtmos = Гранатомет "Атмосианина"
+    .desc = Уникальный прототип аварийного ремонтного модуля, встроенного в руку, использующего различные конфигурации инженерных гранат.
