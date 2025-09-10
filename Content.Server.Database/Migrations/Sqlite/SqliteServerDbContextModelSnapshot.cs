@@ -789,7 +789,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasMaxLength(512)
+                        .HasMaxLength(256)
                         .HasColumnType("TEXT")
                         .HasColumnName("subject");
 
