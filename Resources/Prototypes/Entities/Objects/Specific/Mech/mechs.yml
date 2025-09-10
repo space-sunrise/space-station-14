@@ -194,7 +194,6 @@
         acts: ["Destruction"]
   - type: Prying
     speedModifier: 6
-    useSound: /Audio/Machines/airlock_creaking.ogg
   - type: StatusIcon
     bounds: "-0.6,-0.6, 0.6, 0.6"
   - type: PointLight
@@ -202,12 +201,13 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     energy: 3 # Sunrise-edit
-    radius: 15 # Sunrise-edit
+    radius: 18 # Sunrise-edit
     netsync: false
   - type: AccessReader
   - type: DamageOverlay # Sunrise-Edit
   - type: ExplosionResistance # Sunrise-Edit
     damageCoefficient: 0.8 # Sunrise-Edit
+  - type: ProtectedFromStepTriggers # Sunrise-added
 
 # Ripley MK-I
 - type: entity
@@ -243,7 +243,7 @@
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 5.5 # sunrise-edit
+    baseSprintSpeed: 4.65 # sunrise-edit
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -292,8 +292,6 @@
     startingEquipment:
       - MechEquipmentGrabberSmall
       - MechEquipmentGrabberSmall
-  - type: MovementSpeedModifier
-    baseSprintSpeed: 5.75 # sunrise-edit
   - type: ContainerFill
     containers:
       mech-battery-slot:
@@ -332,11 +330,12 @@
     damage:
       types:
         Blunt: 20
+    bluntStaminaDamageFactor: 1
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 4.5 # sunrise-edit
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
   - type: Damageable
-    damageModifierSet: LightArmor
+    damageModifierSet: MediumArmorNT
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -352,7 +351,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
 
@@ -388,7 +387,7 @@
     baseState: death
     openState: death-open
     brokenState: death-broken
-    mechToPilotDamageMultiplier: 0.30
+    mechToPilotDamageMultiplier: 0.25
     airtight: true
     pilotWhitelist:
       components:
@@ -405,8 +404,8 @@
         Structural: 20
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 4.5
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.25
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: Reflect
@@ -424,7 +423,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -469,7 +468,7 @@
     baseState: paddy
     openState: paddy-open
     brokenState: paddy-broken
-    mechToPilotDamageMultiplier: 0.50
+    mechToPilotDamageMultiplier: 0.60
     airtight: true
     #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
@@ -493,10 +492,10 @@
       types:
         Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
         Structural: 10
-    bluntStaminaDamageFactor: 1.5
+    bluntStaminaDamageFactor: 1.25
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.75
+    baseSprintSpeed: 4
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -505,6 +504,14 @@
     enabled: false
   - type: AccessReader
     access: [["Security"]]
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      425: Critical
+    showOverlays: false
+    allowRevives: true
+
 
 - type: entity
   id: MechPaddyBattery
@@ -549,7 +556,7 @@
     baseState: clarke
     openState: clarke-open
     brokenState: clarke-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.5
     airtight: true
     pilotWhitelist:
       components:
@@ -562,7 +569,7 @@
         Blunt: 26
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 5.7 # sunrise-edit
+    baseSprintSpeed: 4.75
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -575,7 +582,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      425: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -624,7 +631,7 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.20
+    mechToPilotDamageMultiplier: 0.25
     airtight: true
     pilotWhitelist:
       components:
@@ -645,11 +652,12 @@
         Piercing: 4
         Slash: 5
         Blunt: 10
+    bluntStaminaDamageFactor: 0.5
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4.5 # sunrise-edit
+    baseSprintSpeed: 4
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -929,7 +937,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.3
     airtight: true
     pilotWhitelist:
       components:
@@ -942,12 +950,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 30
-        Structural: 190
+        Blunt: 25
+        Structural: 180
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 5.2
+    baseSprintSpeed: 4.75
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -958,7 +966,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      475: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -999,7 +1007,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.20
+    mechToPilotDamageMultiplier: 0.25
     airtight: true
     pilotWhitelist:
       components:
@@ -1012,12 +1020,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 50
-        Structural: 250
+        Blunt: 45
+        Structural: 225
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.7 # sunrise-edit
-    baseSprintSpeed: 3.7 # sunrise-edit
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -1032,7 +1040,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1103,7 +1111,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      450: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1164,11 +1172,11 @@
     damage:
       types:
         Blunt: 35
-        Structural: 250
+        Structural: 220
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 5.2 # sunrise-edit
+    baseSprintSpeed: 4.75
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -1255,8 +1263,8 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 55
-        Structural: 370
+        Blunt: 50
+        Structural: 350
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
@@ -1362,7 +1370,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      650: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1433,11 +1441,11 @@
     damage:
       types:
         Blunt: 35
-        Structural: 280
+        Structural: 250
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 5.5 # sunrise-edit
+    baseSprintSpeed: 4.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1523,7 +1531,7 @@
     damage:
       types:
         Blunt: 50
-        Structural: 360
+        Structural: 350
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
@@ -1607,12 +1615,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 60
-        Structural: 390
+        Blunt: 50
+        Structural: 400
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 2.7 # sunrise-edit
+    baseSprintSpeed: 2.75 # sunrise-edit
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
@@ -1632,7 +1640,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      645: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader

@@ -5,6 +5,7 @@ using Content.Server._Sunrise.AnnouncementSpeaker;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Components;
@@ -65,6 +66,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RadioSpokeEvent>(OnRadioReceiveEvent);
+        SubscribeLocalEvent<CollectiveMindSpokeEvent>(OnCollectiveMindSpokeEvent);
         SubscribeLocalEvent<AnnouncementSpeakerEvent>(OnAnnouncementSpeaker);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
@@ -126,11 +128,41 @@ public sealed partial class TTSSystem : EntitySystem
         HandleRadio(args.Receivers, message, protoVoice, voiceEv.Effect);
     }
 
+    private async void OnCollectiveMindSpokeEvent(CollectiveMindSpokeEvent args)
+    {
+        if (!_isEnabled || args.Message.Length > MaxMessageChars)
+            return;
+
+        // Get the collective mind prototype to use its voice
+        if (!_prototypeManager.TryIndex<CollectiveMindPrototype>(args.CollectiveMindId, out var collectiveMindProto))
+            return;
+
+        var voiceId = collectiveMindProto.VoiceId;
+        if (voiceId == null)
+            return;
+
+        if (!GetVoicePrototype(voiceId, out var protoVoice))
+        {
+            return;
+        }
+
+        var accentEvent = new TTSSanitizeEvent(args.Message);
+        RaiseLocalEvent(args.Source, accentEvent);
+        var message = accentEvent.Text;
+
+        var soundData = await GenerateTTS(message, protoVoice);
+        if (soundData is null)
+            return;
+
+        var recipients = Filter.Entities(args.Receivers.ToArray()).RemovePlayers(_ignoredRecipients);
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, false), recipients);
+    }
+
     private bool GetVoicePrototype(string voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
     {
         if (!_prototypeManager.TryIndex(voiceId, out voicePrototype))
         {
-            return _prototypeManager.TryIndex("father_grigori", out voicePrototype);
+            return _prototypeManager.TryIndex(_defaultAnnounceVoice, out voicePrototype);
         }
 
         return true;

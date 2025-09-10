@@ -200,32 +200,32 @@
   equipment:
     mask: ClothingMaskSterileRed
 
-#Gloves
+# #Gloves
 
-- type: loadout
-  id: Sunrise-GlovesNitrileBlack
-  equipment:
-    gloves: ClothingHandsGlovesNitrileBlack
+# - type: loadout
+#   id: Sunrise-GlovesNitrileBlack # Sunrise-TODO: Не добавлять, пока не сделаете им уникальные для каждой волокна, ибо на момент комита тут все "нитриловые"
+#   equipment:
+#     gloves: ClothingHandsGlovesNitrileBlack
 
-- type: loadout
-  id: Sunrise-GlovesNitrileGreen
-  equipment:
-    gloves: ClothingHandsGlovesNitrileGreen
+# - type: loadout
+#   id: Sunrise-GlovesNitrileGreen
+#   equipment:
+#     gloves: ClothingHandsGlovesNitrileGreen
 
-- type: loadout
-  id: Sunrise-GlovesNitrileOrange
-  equipment:
-    gloves: ClothingHandsGlovesNitrileOrange
+# - type: loadout
+#   id: Sunrise-GlovesNitrileOrange
+#   equipment:
+#     gloves: ClothingHandsGlovesNitrileOrange
 
-- type: loadout
-  id: Sunrise-GlovesNitrileRed
-  equipment:
-    gloves: ClothingHandsGlovesNitrileRed
+# - type: loadout
+#   id: Sunrise-GlovesNitrileRed
+#   equipment:
+#     gloves: ClothingHandsGlovesNitrileRed
 
-- type: loadout
-  id: Sunrise-GlovesNitrileBlue
-  equipment:
-    gloves: ClothingHandsGlovesNitrileBlue
+# - type: loadout
+#   id: Sunrise-GlovesNitrileBlue
+#   equipment:
+#     gloves: ClothingHandsGlovesNitrileBlue
 
 # Когда появятся вирусолог и генетик, перенести к ним (если появятся конечно)
 

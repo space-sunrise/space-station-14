@@ -22,3 +22,5 @@ ent-ClothingHeadsetAltAbductor = наушники похитителей
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetCommaid = гарнитура горничной командования
     .desc = { ent-ClothingHeadset.desc }
+ent-ClothingHeadsetAltCentComSunrise = полноразмерная гарнитура Центком
+    .desc = { ent-ClothingHeadsetAltCentCom.desc }

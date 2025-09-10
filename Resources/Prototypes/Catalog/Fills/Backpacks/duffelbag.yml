@@ -140,15 +140,15 @@
   components:
   - type: StorageFill
     contents:
-      - id: SMGAmmoKit # Sunrise-edit
+      - id: MagazinePistolSubMachineGunSP # Sunrise-Edit
+        amount: 4
+      - id: MagazineShotgun
+        amount: 4
+      - id: MagazineRifleFMJ # Sunrise-Edit
+        amount: 3
+      - id: MagazineShotgunSlug
         amount: 1
-      - id: ShotGunKit # Sunrise-edit
-        amount: 1
-      - id: LMGKit # Sunrise-edit
-        amount: 1
-      - id: MagazineRifleSP  # Sunrise-edit
-        amount: 2
-      - id: MagazineDragunov  # Sunrise-edit
+      - id: MagazineLightRifleBoxSP
         amount: 2
 
 - type: entity

@@ -22,6 +22,29 @@
       - id: MagazineDragunov
       - id: MagazineDragunov
 
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateSuperAmmoFilled
+  name: ammo bundle
+  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW."
+  components:
+  - type: StorageFill
+    contents:
+      - id: SMGAmmoKit # Sunrise-edit
+        amount: 1
+      - id: ShotGunKit # Sunrise-edit
+        amount: 1
+      - id: LMGKit # Sunrise-edit
+        amount: 1
+      - id: MMGKit  # Sunrise-edit
+        amount: 1
+      - id: CaselessAmmoKit  # Sunrise-edit
+        amount: 1
+      - id: RifleAmmoKit  # Sunrise-edit
+        amount: 1
+      - id: DragunovAmmoKit  # Sunrise-edit
+        amount: 1
+
 #ERT_Uplink
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled

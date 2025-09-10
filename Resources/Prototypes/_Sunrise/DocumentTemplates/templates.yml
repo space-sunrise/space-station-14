@@ -244,8 +244,8 @@
 - type: docTemplate
   id: OrderMedicalIntervention
   name: doc-template-order-medical-intervention-name
-  content: /ServerInfo/Documents/_Sunrise/General/OrderMedicalIntervention.xml
-  component: General
+  content: /ServerInfo/Documents/_Sunrise/Medical/OrderMedicalIntervention.xml
+  component: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_med

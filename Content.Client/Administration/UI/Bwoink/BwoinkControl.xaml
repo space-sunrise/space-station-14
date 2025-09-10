@@ -16,6 +16,8 @@
                 <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'admin-bwoink-play-sound'}" Pressed="True" />
                 <Control HorizontalExpand="True" MinWidth="5" />
                 <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
+                <Control HorizontalExpand="True" MinWidth="5" />
+                <Button Visible="True" Name="AdminWho" Access="Public" Text="{Loc 'admin-who-button'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
                 <Control HorizontalExpand="True" />
                 <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenRight" />
                 <Button Visible="False" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" />
