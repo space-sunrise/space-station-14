@@ -1,0 +1,137 @@
+# Auto-injectors with trigger conditions for use in combat hardsuits
+
+- type: entity
+  name: combat stim auto-injector
+  parent: ChemicalMedipen
+  id: AutoInjectorCombatStim
+  description: An auto-injector containing combat stimulants. Automatically injects when total damage exceeds 30 points.
+  components:
+  - type: AutoInjectorTrigger
+    totalDamageThreshold: 30.0
+    priority: 1
+    triggerMessage: auto-injector-emergency-injection
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 10
+        - ReagentId: Bicaridine
+          Quantity: 5
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#ff4444"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#ff4444"
+      - state: base-colorB-inhand-right
+
+- type: entity
+  name: emergency trauma auto-injector
+  parent: ChemicalMedipen
+  id: AutoInjectorEmergencyTrauma
+  description: An auto-injector for severe trauma. Triggers when brute damage exceeds 25 points or total damage exceeds 50 points.
+  components:
+  - type: AutoInjectorTrigger
+    totalDamageThreshold: 50.0
+    damageTypeThresholds:
+      Blunt: 25.0
+      Slash: 25.0
+      Piercing: 25.0
+    priority: 2
+    triggerMessage: auto-injector-emergency-injection
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#44ff44"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#44ff44"
+      - state: base-colorB-inhand-right
+
+- type: entity
+  name: burn treatment auto-injector
+  parent: ChemicalMedipen
+  id: AutoInjectorBurnTreatment
+  description: An auto-injector for severe burns. Triggers when heat damage exceeds 20 points.
+  components:
+  - type: AutoInjectorTrigger
+    damageTypeThresholds:
+      Heat: 20.0
+      Caustic: 15.0
+    priority: 1
+    triggerMessage: auto-injector-emergency-injection
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 10
+        - ReagentId: Leporazine
+          Quantity: 5
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#ffaa44"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#ffaa44"
+      - state: base-colorB-inhand-right
+
+- type: entity
+  name: critical condition auto-injector
+  parent: ChemicalMedipen
+  id: AutoInjectorCritical
+  description: A high-priority auto-injector for critical conditions. Triggers when total damage exceeds 80 points.
+  components:
+  - type: AutoInjectorTrigger
+    totalDamageThreshold: 80.0
+    priority: 5
+    triggerMessage: auto-injector-emergency-injection
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 8
+        - ReagentId: Bicaridine
+          Quantity: 4
+        - ReagentId: Dermaline
+          Quantity: 3
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#ff0000"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#ff0000"
+      - state: base-colorB-inhand-right

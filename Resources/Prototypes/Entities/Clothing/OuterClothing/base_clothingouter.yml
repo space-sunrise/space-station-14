@@ -188,6 +188,21 @@
 
 - type: entity
   abstract: true
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterCombatHardsuitBase
+  name: base combat hardsuit
+  components:
+  - type: AutoInjectorSlot
+    maxSlots: 2
+    injectionCooldown: 5.0
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      autoinjector_slots: !type:Container
+        ents: []
+
+- type: entity
+  abstract: true
   parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ClothingOuterEVASuitBase
   name: base EVA Suit
