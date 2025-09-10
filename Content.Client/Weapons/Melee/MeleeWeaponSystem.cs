@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Client.Hands.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
@@ -32,6 +33,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -120,11 +122,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             switch(altFireComponent.AttackType)
             {
                 case AltFireAttackType.Light:
-                    ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+                    ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon, null);
                     break;
 
                 case AltFireAttackType.Heavy:
-                    ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
+                    ClientHeavyAttack(entity, coordinates, weaponUid, weapon, null);
                     break;
 
                 case AltFireAttackType.Disarm:
@@ -145,13 +147,19 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
                 return;
             }
 
-            ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
+            // Determine hand for heavy attack (RMB = right hand)
+            var heavyHand = GetHandLocationForAttack(entity, false); // false = right mouse
+            ClientHeavyAttack(entity, coordinates, weaponUid, weapon, heavyHand);
             return;
         }
 
         // Light attack
         if (useDown == BoundKeyState.Down)
-            ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+        {
+            // Determine hand for light attack (LMB = left hand)  
+            var lightHand = GetHandLocationForAttack(entity, true); // true = left mouse
+            ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon, lightHand);
+        }
     }
 
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)
@@ -173,7 +181,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     /// Raises a heavy attack event with the relevant attacked entities.
     /// This is to avoid lag effecting the client's perspective too much.
     /// </summary>
-    private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
+    private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component, HandLocation? handLocation)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
         if (!_xformQuery.TryGetComponent(user, out var userXform) ||
@@ -194,7 +202,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
         var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user).ToList());
-        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
+        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates), handLocation));
     }
 
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)
@@ -207,7 +215,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         RaisePredictiveEvent(new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
     }
 
-    private void ClientLightAttack(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent)
+    private void ClientLightAttack(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent, HandLocation? handLocation)
     {
         var attackerPos = TransformSystem.GetMapCoordinates(attacker);
 
@@ -223,7 +231,32 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (Interaction.CombatModeCanHandInteract(attacker, target))
             return;
 
-        RaisePredictiveEvent(new LightAttackEvent(GetNetEntity(target), GetNetEntity(weaponUid), GetNetCoordinates(coordinates)));
+        RaisePredictiveEvent(new LightAttackEvent(GetNetEntity(target), GetNetEntity(weaponUid), GetNetCoordinates(coordinates), handLocation));
+    }
+
+    /// <summary>
+    /// Determines which hand to use for an attack based on mouse button.
+    /// For dual-hand combat: LMB = left hand, RMB = right hand.
+    /// Falls back to null for legacy behavior if no appropriate hand is found.
+    /// </summary>
+    private HandLocation? GetHandLocationForAttack(EntityUid entity, bool isLeftMouse)
+    {
+        if (!TryComp<HandsComponent>(entity, out var hands))
+            return null;
+
+        var targetLocation = isLeftMouse ? HandLocation.Left : HandLocation.Right;
+        
+        // Check if we have a hand with the target location that has something in it
+        foreach (var (handId, hand) in hands.Hands)
+        {
+            if (hand.Location == targetLocation && _handsSystem.TryGetHeldItem((entity, hands), handId, out _))
+            {
+                return targetLocation;
+            }
+        }
+
+        // If no weapon in target hand, fall back to legacy behavior (use active hand)
+        return null;
     }
 
     private void OnMeleeLunge(MeleeLungeEvent ev)
