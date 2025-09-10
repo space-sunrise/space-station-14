@@ -127,7 +127,7 @@ namespace Content.Client.Administration.UI.Bwoink
                     return;
 
                 PeopleTyping.Add(name);
-                Timer.Spawn(TimeSpan.FromSeconds(10), () =>
+                Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(10), () =>
                 {
                     if (Disposed)
                         return;
@@ -148,22 +148,22 @@ namespace Content.Client.Administration.UI.Bwoink
         {
             // Set cooldown end time
             _cooldownEnd = DateTime.Now.Add(message.RemainingCooldown);
-            
+
             // Disable input field and show feedback
             SenderLineEdit.Editable = false;
-            SenderLineEdit.PlaceHolder = Loc.GetString("bwoink-cooldown-message", 
+            SenderLineEdit.PlaceHolder = Loc.GetString("bwoink-cooldown-message",
                 ("seconds", $"{message.RemainingCooldown.TotalSeconds:F1}"));
-            
+
             // Clean up existing timer
             _cooldownCancellationTokenSource?.Cancel();
             _cooldownCancellationTokenSource = new CancellationTokenSource();
-            
+
             // Set timer to re-enable input
-            Timer.Spawn(message.RemainingCooldown, () =>
+            Robust.Shared.Timing.Timer.Spawn(message.RemainingCooldown, () =>
             {
                 if (Disposed)
                     return;
-                    
+
                 SenderLineEdit.Editable = true;
                 SenderLineEdit.PlaceHolder = Loc.GetString("bwoink-input-placeholder");
             }, _cooldownCancellationTokenSource.Token);
