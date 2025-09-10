@@ -56,3 +56,8 @@ ent-LeftArmCyberAtmos = левая рука «Атмосианина»
     .desc = { ent-PartCyber.desc }
 ent-RightArmCyberAtmos = правая рука «Атмосианина»
     .desc = { ent-PartCyber.desc }
+
+ent-LeftArmCyberRipper = левая рука «Риппера»
+    .desc = { ent-PartCyber.desc }
+ent-RightArmCyberRipper = правая рука «Риппера»
+    .desc = { ent-PartCyber.desc }
