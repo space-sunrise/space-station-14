@@ -1394,8 +1394,8 @@
               Brute: -4
               Burn: -5
             types:
-              Poison: -2
-              Mangleness: -0.5 #Sunrise-Edit
+              Poison: -4 # Sunrise-Edit
+              Mangleness: -5 #Sunrise-Edit
 
 - type: reagent
   id : Aloxadone
