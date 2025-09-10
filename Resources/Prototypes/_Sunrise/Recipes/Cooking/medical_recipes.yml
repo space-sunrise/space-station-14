@@ -281,7 +281,7 @@
   id: RecipePenLacerAutoInjector
   name: lacerinol auto-injector
   result: LacerAutoInjector
-  time: 5
+  time: 10
   solids:
     BlankMediPen: 1
   reagents:

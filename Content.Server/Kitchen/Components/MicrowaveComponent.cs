@@ -5,10 +5,10 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.Kitchen; // Frontier
-using Robust.Shared.Serialization; // Frontier
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Content.Shared.Kitchen.Components; // Frontier
+using Content.Shared.Kitchen; //Sunrise-Edit
+using Robust.Shared.Serialization; //Sunrise-Edit
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; //Sunrise-Edit
+using Content.Shared.Kitchen.Components; //Sunrise-Edit
 
 namespace Content.Server.Kitchen.Components
 {
@@ -114,7 +114,7 @@ namespace Content.Server.Kitchen.Components
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanMicrowaveIdsSafely = true;
-
+        //Sunrise-Start
         [DataField(customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>)), ViewVariables(VVAccess.ReadWrite)]
         public int ValidRecipeTypes = (int)MicrowaveRecipeType.Microwave;
 
@@ -135,21 +135,22 @@ namespace Content.Server.Kitchen.Components
 
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public MicrowaveUiKey Key = MicrowaveUiKey.Key;
+        //Sunrise-End
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs
     {
         public EntityUid Microwave;
         public EntityUid? User;
-        public bool BeingHeated;
-        public bool BeingIrradiated;
+        public bool BeingHeated; //Sunrise-Edit
+        public bool BeingIrradiated; //Sunrise-Edit
 
-        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user, bool heating, bool irradiating) // Frontier: added heating, irradiating
+        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user, bool heating, bool irradiating) //Sunrise-Edit
         {
             Microwave = microwave;
             User = user;
-            BeingHeated = heating;
-            BeingIrradiated = irradiating;
+            BeingHeated = heating; //Sunrise-Edit
+            BeingIrradiated = irradiating; //Sunrise-Edit
         }
     }
 }

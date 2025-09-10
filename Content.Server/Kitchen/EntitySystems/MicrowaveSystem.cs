@@ -42,11 +42,11 @@ using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
-using Content.Shared._Sunrise.Kitchen.Components; // Frontier
+using Content.Shared._Sunrise.Kitchen.Components; //Sunrise-Edit
 
 namespace Content.Server.Kitchen.EntitySystems
 {
-    public sealed partial class MicrowaveSystem : EntitySystem
+    public sealed partial class MicrowaveSystem : EntitySystem //Sunrise-Edit
     {
         [Dependency] private readonly BodySystem _bodySystem = default!;
         [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
@@ -179,10 +179,10 @@ namespace Content.Server.Kitchen.EntitySystems
         /// <param name="time">The time on the microwave, in seconds.</param>
         private void AddTemperature(MicrowaveComponent component, float time)
         {
-
+            //Sunrise-Start
             if (!component.CanHeat && !component.CanIrradiate)
                 return;
-
+            //Sunrise-End
             var heatToAdd = time * component.BaseHeatMultiplier;
             foreach (var entity in component.Storage.ContainedEntities)
             {
@@ -308,10 +308,10 @@ namespace Content.Server.Kitchen.EntitySystems
             // The act of getting your head microwaved doesn't actually kill you
             if (!TryComp<DamageableComponent>(args.Victim, out var damageableComponent))
                 return;
-
+            //Sunrise-Start
             if (!ent.Comp.CanHeat && !ent.Comp.CanIrradiate)
                 return;
-
+            //Sunrise-End
             // The application of lethal damage is what kills you...
             _suicide.ApplyLethalDamage((args.Victim, damageableComponent), "Heat");
 
@@ -470,7 +470,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public void UpdateUserInterfaceState(EntityUid uid, MicrowaveComponent component)
         {
-             _userInterface.SetUiState(uid, component.Key, new MicrowaveUpdateUserInterfaceState(
+             _userInterface.SetUiState(uid, component.Key, new MicrowaveUpdateUserInterfaceState( //Sunrise-Edit
                 GetNetEntityArray(component.Storage.ContainedEntities.ToArray()),
                 HasComp<ActiveMicrowaveComponent>(uid),
                 component.CurrentCookTimeButtonIndex,
@@ -553,7 +553,7 @@ namespace Content.Server.Kitchen.EntitySystems
             foreach (var item in component.Storage.ContainedEntities.ToArray())
             {
                 // special behavior when being microwaved ;)
-                var ev = new BeingMicrowavedEvent(uid, user, component.CanHeat, component.CanIrradiate);
+                var ev = new BeingMicrowavedEvent(uid, user, component.CanHeat, component.CanIrradiate); //Sunrise-Edit
                 RaiseLocalEvent(item, ev);
 
                 // TODO MICROWAVE SPARKS & EFFECTS
@@ -566,12 +566,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     return;
                 }
 
-                if (_tag.HasTag(item, MetalTag) && component.CanIrradiate)
+                if (_tag.HasTag(item, MetalTag) && component.CanIrradiate) //Sunrise-Edit
                 {
                     malfunctioning = true;
                 }
 
-                if (_tag.HasTag(item, PlasticTag) && (component.CanHeat || component.CanIrradiate))
+                if (_tag.HasTag(item, PlasticTag) && (component.CanHeat || component.CanIrradiate)) //Sunrise-Edit
                 {
                     var junk = Spawn(component.BadRecipeEntityId, Transform(uid).Coordinates);
                     _container.Insert(junk, component.Storage);
@@ -656,12 +656,12 @@ namespace Content.Server.Kitchen.EntitySystems
                 return (recipe, 0);
             }
 
-            // Frontier: microwave recipe machine types
+            //Sunrise-Start
             if ((recipe.RecipeType & component.ValidRecipeTypes) == 0)
             {
                 return (recipe, 0);
             }
-            // End Frontier
+            //Sunrise-End
 
             foreach (var solid in recipe.IngredientsSolids)
             {
