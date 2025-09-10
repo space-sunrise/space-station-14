@@ -1,10 +1,10 @@
 # Auto-injectors with trigger conditions for use in combat hardsuits
 
 - type: entity
-  name: combat stim auto-injector
+  name: auto-injector-combat-stim-name
   parent: ChemicalMedipen
   id: AutoInjectorCombatStim
-  description: An auto-injector containing combat stimulants. Automatically injects when total damage exceeds 30 points.
+  description: auto-injector-combat-stim-desc
   components:
   - type: AutoInjectorTrigger
     totalDamageThreshold: 30.0
@@ -33,10 +33,10 @@
       - state: base-colorB-inhand-right
 
 - type: entity
-  name: emergency trauma auto-injector
+  name: auto-injector-emergency-trauma-name
   parent: ChemicalMedipen
   id: AutoInjectorEmergencyTrauma
-  description: An auto-injector for severe trauma. Triggers when brute damage exceeds 25 points or total damage exceeds 50 points.
+  description: auto-injector-emergency-trauma-desc
   components:
   - type: AutoInjectorTrigger
     totalDamageThreshold: 50.0
@@ -69,10 +69,10 @@
       - state: base-colorB-inhand-right
 
 - type: entity
-  name: burn treatment auto-injector
+  name: auto-injector-burn-treatment-name
   parent: ChemicalMedipen
   id: AutoInjectorBurnTreatment
-  description: An auto-injector for severe burns. Triggers when heat damage exceeds 20 points.
+  description: auto-injector-burn-treatment-desc
   components:
   - type: AutoInjectorTrigger
     damageTypeThresholds:
@@ -103,10 +103,10 @@
       - state: base-colorB-inhand-right
 
 - type: entity
-  name: critical condition auto-injector
+  name: auto-injector-critical-condition-name
   parent: ChemicalMedipen
   id: AutoInjectorCritical
-  description: A high-priority auto-injector for critical conditions. Triggers when total damage exceeds 80 points.
+  description: auto-injector-critical-condition-desc
   components:
   - type: AutoInjectorTrigger
     totalDamageThreshold: 80.0
