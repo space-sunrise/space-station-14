@@ -113,6 +113,25 @@
               doAfter: 1
 
 - type: constructionGraph
+  id: ImplantSwitchArmCyberRipper
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberRipper
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberRipper
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
   id: ImplantSwitchArmCyberJanitorial
   start: start
   graph:

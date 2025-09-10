@@ -26,24 +26,9 @@ ent-LeftArmCyberReaper = левая кибер рука Рипера
 ent-RightArmCyberReaper = правая кибер рука Рипера
     .desc = { ent-PartCyber.desc }
 
-ent-RightArmCyberRobust = правая кибер рука «Робаст»
-    .desc = { ent-PartCyber.desc }
-ent-LeftArmCyberRobust = левая кибер рука «Робаст»
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberJanitorial = левая кибер убор-рука
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberJanitorial = правая кибер убор-рука
-    .desc = { ent-PartCyber.desc }
-
 ent-LeftArmCyberMechwright = левая кибер рука Механика
     .desc = { ent-PartCyber.desc }
 ent-RightArmCyberMechwright = правая кибер рука Механика
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberUpgradedMechwright = левая кибер рука Фиксика
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberUpgradedMechwright = правая кибер рука Фиксика
     .desc = { ent-PartCyber.desc }
 
 ent-LeftArmCyberBulwark = левая кибер рука Крепость
@@ -51,43 +36,9 @@ ent-LeftArmCyberBulwark = левая кибер рука Крепость
 ent-RightArmCyberBulwark = правая кибер рука Крепость
     .desc = { ent-PartCyber.desc }
 
-ent-LeftArmCyberBonesaw = левая кибер рука Косторез
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberBonesaw = правая кибер рука Косторез
-    .desc = { ent-PartCyber.desc }
-
 ent-LeftArmCyberMantisBlade = левая кибер рука-клинок богомола
     .suffix = Синдикат
     .desc = { ent-PartCyber.desc }
 ent-RightArmCyberMantisBlade = правая кибер рука-клинок богомола
     .suffix = Синдикат
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberMantisBladeMaxGuard = левая кибер рука-клинок богомола
-    .suffix = СБ
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberMantisBladeMaxGuard = правая кибер рука-клинок богомола
-    .suffix = СБ
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberGorilla = левая кибер рука Г.О.Р.И.Л.Л.А.
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberGorilla = правая кибер рука Г.О.Р.И.Л.Л.А.
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberGorillaUpgraded = { ent-LeftArmCyberGorilla }
-    .suffix = Улучшено
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberGorillaUpgraded = { ent-RightArmCyberGorilla }
-    .suffix = Улучшено
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberLaserEmitter = левая кибер рука-излучатель Крепость
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberLaserEmitter = правая кибер рука-излучатель Крепость
-    .desc = { ent-PartCyber.desc }
-
-ent-LeftArmCyberGrenadeThrower = левая кибер рука-гранатомет Гефест
-    .desc = { ent-PartCyber.desc }
-ent-RightArmCyberGrenadeThrower = правая кибер рука-гранатомет Гефест
     .desc = { ent-PartCyber.desc }
