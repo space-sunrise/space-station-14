@@ -35,7 +35,7 @@ namespace Content.Client._Sunrise.Kitchen.UI
             if (CurrentCooktimeEnd > _timing.CurTime)
             {
                 CookTimeInfoLabel.Text = Loc.GetString("assembler-bound-user-interface-cook-time-label",
-                ("time", CurrentCooktimeEnd.Subtract(_timing.CurTime).Seconds));
+                ("time", (int)CurrentCooktimeEnd.Subtract(_timing.CurTime).TotalSeconds));
             }
         }
     }
