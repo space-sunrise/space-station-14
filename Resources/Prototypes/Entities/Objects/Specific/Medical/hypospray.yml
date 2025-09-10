@@ -299,18 +299,18 @@
     emptySpriteName: dermpen_empty
   - type: Hypospray
     solutionName: pen
-    transferAmount: 20
+    transferAmount: 15 #Sunrise-Edit
     onlyAffectsMobs: false
     injectOnly: true
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 20
+        maxVol: 15 #Sunrise-Edit
         reagents:
         - ReagentId: Dermaline
           Quantity: 10
         - ReagentId: Leporazine
-          Quantity: 10
+          Quantity: 5 #Sunrise-Edit
 
 - type: entity
   name: rad auto-injector
@@ -425,16 +425,16 @@
     emptySpriteName: pyrapen_empty
   - type: Hypospray
     solutionName: pen
-    transferAmount: 20
+    transferAmount: 15 #Sunrise-Edit
     onlyAffectsMobs: false
     injectOnly: true
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 20
+        maxVol: 15 #Sunrise-Edit
         reagents:
         - ReagentId: Pyrazine
-          Quantity: 10
+          Quantity: 5 #Sunrise-Edit
         - ReagentId: Dermaline
           Quantity: 10
 
@@ -467,18 +467,18 @@
     emptySpriteName: dexpen_empty
   - type: Hypospray
     solutionName: pen
-    transferAmount: 40
+    transferAmount: 30 #Sunrise-Edit
     onlyAffectsMobs: false
     injectOnly: true
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 40
+        maxVol: 30 #Sunrise-Edit
         reagents:
         - ReagentId: Saline
-          Quantity: 20
+          Quantity: 15 #Sunrise-Edit
         - ReagentId: DexalinPlus
-          Quantity: 20
+          Quantity: 15 #Sunrise-Edit
 
 - type: entity
   name: space medipen

@@ -888,7 +888,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: -0.2
+            Mangleness: -0.3
       #Sunrise-End
       - !type:EvenHealthChange
         damage:
