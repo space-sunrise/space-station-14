@@ -27,6 +27,7 @@ namespace Content.Client.Communications.UI
             _menu.OnBroadcast += BroadcastButtonPressed;
             _menu.OnAlertLevel += AlertLevelSelected;
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
+            _menu.OnToggleRelay += ToggleRelayPressed; // Sunrise-Edit
         }
 
         public void AlertLevelSelected(string level)
@@ -57,6 +58,13 @@ namespace Content.Client.Communications.UI
         {
             SendMessage(new CommunicationsConsoleBroadcastMessage(message));
         }
+
+        // Sunrise-Start
+        private void ToggleRelayPressed()
+        {
+            SendMessage(new CommunicationsConsoleToggleRelayMessage());
+        }
+        // Sunrise-End
 
         public void CallShuttle()
         {
@@ -91,6 +99,14 @@ namespace Content.Client.Communications.UI
                 _menu.EmergencyShuttleButton.Disabled = !_menu.CanCall;
                 _menu.AnnounceButton.Disabled = !_menu.CanAnnounce;
                 _menu.BroadcastButton.Disabled = !_menu.CanBroadcast;
+
+                // Sunrise-Start
+                _menu.CanRelay = commsState.CanRelay;
+                _menu.IsRelaying = commsState.IsRelaying;
+                _menu.RelayCooldownRemaining = commsState.RelayCooldownRemaining;
+                _menu.RelayTimeRemaining = commsState.RelayTimeRemaining;
+                _menu.UpdateRelayUi();
+                // Sunrise-End
             }
         }
     }
