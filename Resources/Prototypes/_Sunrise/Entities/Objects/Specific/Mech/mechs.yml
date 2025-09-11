@@ -6,7 +6,6 @@
   - type: NoSlip
   - type: CanMoveInAir
   - type: Reactive
-  - type: Perishable
   - type: MobMover
   - type: Mech
     entryDelay: 1
