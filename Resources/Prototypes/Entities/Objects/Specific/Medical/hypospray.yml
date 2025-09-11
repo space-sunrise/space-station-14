@@ -153,7 +153,7 @@
     onlyAffectsMobs: false
     injectOnly: true
     doAfterTime: 1 #Sunrise-Edit
-    PreventFromOverdoze: true #Sunrise-Edit
+    preventOverdoze: true #Sunrise-Edit
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
