@@ -7,7 +7,6 @@
   id: ActionBlinkImp
   name: Teleport
   description: Teleport by pointing to locations.
-  noSpawn: true
   components:
   - type: Action
     useDelay: 2
