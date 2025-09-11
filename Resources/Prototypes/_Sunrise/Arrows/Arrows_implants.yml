@@ -29,7 +29,6 @@
   id: BlinkImplant
   name: Jump Implant
   description: Allows the user to instantly teleport to a targeted location up to three times before depleting.
-  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionBlinkImp
@@ -83,7 +82,6 @@
   id: ActionForceWallArrows
   name: Force barrier
   description: Creates a temporary barrier that restricts the enemy's movement.
-  noSpawn: true
   components:
   - type: Action
     useDelay: 40
@@ -101,7 +99,6 @@
   id: WallImplant
   name: Force barrier Implant
   description: Creates a barrier that is intangible to the owner but tangible to everyone else, useful for restricting passage.
-  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionForceWallArrows
@@ -122,7 +119,6 @@
   id: ActionSmiteImp
   name: Overload
   description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target.
-  noSpawn: true
   components:
   - type: Action
     useDelay: 90
@@ -140,8 +136,7 @@
   parent: BaseSubdermalImplant
   id: SmiteImplant
   name: Overload Implant
-  description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target.
-  noSpawn: true
+  description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target
   components:
     - type: SubdermalImplant
       implantAction: ActionSmiteImp
@@ -161,7 +156,6 @@
   id: DeathRattleImplantMT
   name: Death rattle implant
   description: This implant will notify the Arrows radio channel if the user is in critical condition or dies.
-  noSpawn: true
   components:
   - type: RattleOnTrigger
     radioChannel: MT

@@ -429,7 +429,6 @@
         whitelist:
           tags:
             - PowerCell
-            - PowerCellArrows
   - type: EnergyDomeGenerator
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallGreen
@@ -1241,9 +1240,7 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak1.ogg
-        destroySound:
-          path: /Audio/Effects/metalbreak1.ogg
+          path: /Audio/Effects/metal_break1.ogg
 
 #ШЛЮЗ
 - type: entity

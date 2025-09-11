@@ -144,3 +144,9 @@
 
 - type: playTimeTracker
   id: JobComMaid
+
+- type: playTimeTracker
+  id: MTL
+
+- type: playTimeTracker
+  id: MTS
