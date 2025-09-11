@@ -1,0 +1,8 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:mentorHelp="clr-namespace:Content.Client._Sunrise.MentorHelp"
+            SetSize="900 700"
+            HeaderClass="windowHeaderHelp"
+            TitleClass="windowTitleHelp"
+            Title="{Loc 'mentor-help-window-title'}" >
+    <mentorHelp:MentorHelpControl Name="MentorHelp" Access="Public"/>
+</DefaultWindow>
