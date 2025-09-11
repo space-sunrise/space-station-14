@@ -379,7 +379,7 @@ public sealed class HypospraySystem : EntitySystem
             return false;
         }
 
-        if (entity.Comp.PreventOverdoze)
+        if (entity.Comp.PreventOverdose)
         {
             foreach (var (idHypoSoln, _) in hypoSpraySoln.Value.Comp.Solution.Contents)
             {
