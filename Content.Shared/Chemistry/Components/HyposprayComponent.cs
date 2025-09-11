@@ -72,7 +72,7 @@ public sealed partial class HyposprayComponent : Component
     /// if true, object will not injected if has metabolized reagent same with contained in the hypo.
     /// </summary>
     [DataField]
-    public bool PreventOverdoze;
+    public bool PreventOverdose;
 }
 
 [Serializable, NetSerializable]
