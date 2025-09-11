@@ -598,7 +598,7 @@
 
 - type: latheRecipe
   id: MagazineLightRifleBox
-  result: MagazineLightRifleBoxSP
+  result: MagazineRifleBoxSP
   categories:
   - Ammo
   completetime: 5

@@ -260,12 +260,12 @@
     - 0,0,2,3
   - type: StorageFill
     contents:
-    - id: MagazineLightRifleBoxSP
-    - id: MagazineLightRifleBoxSP
-    - id: MagazineLightRifleBoxSP
-    - id: MagazineBoxRifleBig
-    - id: MagazineBoxRifleBig
-    - id: MagazineBoxRifleBig
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxFMJ
+    - id: MagazineRifleBoxFMJ
   - type: Sprite
     layers:
     - state: box_of_doom_big

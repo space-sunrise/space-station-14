@@ -231,7 +231,7 @@
   id: UplinkMagazineLightRifleBox
   description: uplink-magazine-lmg-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
-  productEntity: MagazineLightRifleBoxSP
+  productEntity: MagazineRifleBoxSP
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
