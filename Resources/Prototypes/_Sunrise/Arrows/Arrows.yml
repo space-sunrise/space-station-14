@@ -1,0 +1,1691 @@
+#
+- type: randomHumanoidSettings
+  id: ArrowsLeaderRandom
+  speciesBlacklist:
+    - Diona
+    - Vox
+    - Felinid
+    - Moth
+    - Arachnid
+    - Reptilian
+    - Vulpkanin
+    - Swine
+    - Tajaran
+    - Demon
+    - SlimePerson
+    - Dwarf
+    - HumanoidXeno
+    - Predator
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      requirements:
+        - !type:DepartmentTimeRequirement
+          department: Security
+          time: 72000
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 36000
+      name: ghost-role-information-arrow-leader-name
+      description: ghost-role-information-arrow-leader-description
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: ZombieImmune
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: Critical
+        200: Dead
+    - type: Stamina
+      critThreshold: 400
+      decay: 6
+      cooldown: 1
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        70: 0.9
+        120: 0.7
+        140: 0.5
+    - type: Loadout
+      prototypes: [ MTLeader ]
+      roleLoadout:
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - DeathAcidifierImplant
+      - BlinkImplant
+      - MindShieldImplant
+      - DeathRattleImplantMT
+    - type: NpcFactionMember
+      factions:
+      - Arrows
+    - type: StatusEffects
+      allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - SlurredSpeech
+      - RatvarianLanguage
+      - PressureImmunity
+      - StaminaModifier
+    - type: SolutionRegeneration
+      solution: chemicals
+      generated:
+        reagents:
+        - ReagentId: ReagentArrows
+          Quantity: 0.25
+    - type: Thirst
+      startingThirst: 2500  # spawn with Okay thirst state
+      thresholds:
+        OverHydrated: 3500
+        Okay: 2500
+        Thirsty: 1500
+        Parched: 1000
+        Dead: 0
+      baseDecayRate: 0.0001
+    - type: Hunger
+      currentHunger: 2500   # spawn with Okay hunger state
+      thresholds:
+        Overfed: 3500
+        Okay: 2500
+        Peckish: 1500
+        Starving: 1000
+        Dead: 0
+      baseDecayRate: 0.0001
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 150
+      damage:
+        groups:
+          Brute: -0.2
+          Burn: -0.2
+          Toxin: -0.5
+
+#Аналог
+- type: randomHumanoidSettings
+  id: ArrowsSoldRandom
+  speciesBlacklist:
+    - Diona
+    - Vox
+    - Felinid
+    - Moth
+    - Arachnid
+    - Reptilian
+    - Vulpkanin
+    - Swine
+    - Tajaran
+    - Demon
+    - SlimePerson
+    - Dwarf
+    - HumanoidXeno
+    - Predator
+  parent: ERTSecurity
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      requirements:
+        - !type:DepartmentTimeRequirement
+          department: Security
+          time: 54000
+      name: ghost-role-information-arrow-soldier-name
+      description: ghost-role-information-arrow-soldier-description
+    - type: GhostTakeoverAvailable
+    - type: ZombieImmune
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: Critical
+        200: Dead
+    - type: Stamina
+      critThreshold: 400
+      decay: 6
+      cooldown: 1
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        70: 0.9
+        120: 0.7
+        140: 0.5
+    - type: Loadout
+      prototypes: [ MTSold ]
+      roleLoadout:
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - DeathAcidifierImplant
+      - BlinkImplant
+      - MindShieldImplant
+      - DeathRattleImplantMT
+    - type: NpcFactionMember
+      factions:
+      - Arrows
+    - type: StatusEffects
+      allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - SlurredSpeech
+      - RatvarianLanguage
+      - PressureImmunity
+      - StaminaModifier
+    - type: SolutionRegeneration
+      solution: chemicals
+      generated:
+        reagents:
+        - ReagentId: ReagentArrows
+          Quantity: 0.25
+    - type: Thirst
+      startingThirst: 2500  # spawn with Okay thirst state
+      thresholds:
+        OverHydrated: 3500
+        Okay: 2500
+        Thirsty: 1500
+        Parched: 1000
+        Dead: 0
+      baseDecayRate: 0.0001
+    - type: Hunger
+      currentHunger: 2500   # spawn with Okay hunger state
+      thresholds:
+        Overfed: 3500
+        Okay: 2500
+        Peckish: 1500
+        Starving: 1000
+        Dead: 0
+      baseDecayRate: 0.0001
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 150
+      damage:
+        groups:
+          Brute: -0.2
+          Burn: -0.2
+          Toxin: -0.2
+
+#НЕТРАННЕР
+- type: entity
+  name: Commander "PMC Arrows"
+  parent: RandomHumanoidSpawnerERTLeader
+  id: MobHumanArrowsLeader
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: brigmedic
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+  - type: RandomHumanoidSpawner
+    settings: ArrowsLeaderRandom
+
+#СОЛДАТ
+- type: entity
+  name: Soldier "PMC Arrows"
+  parent: RandomHumanoidSpawnerERTLeader
+  id: MobHumanArrowsOfficer
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: brigmedic
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+  - type: RandomHumanoidSpawner
+    settings: ArrowsSoldRandom
+
+#ПРЕСЕТ ЭКИПИРОВКИ КОМАНДИРА
+- type: startingGear
+  id: MTLeader
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    back: ClothingBackpackArrowsFilled
+    mask: ClothingMaskGaiter
+    eyes: ClothingEyesGlassesMT
+    ears: ClothingHeadsetMT
+    gloves: ClothingHandsPowerGlovesUplinkNTERTGammaLeader
+    outerClothing: ClothingOuterHardsuitArrowsNetrunnerBiocode
+    shoes: ClothingShoesBootsMagArrows
+    id: MTLeaderPDA
+    suitstorage: WeaponPulseRifleBiocode
+    pocket2: DoubleEmergencyOxygenTankFilled
+    belt: ClothingBeltAssaultMT
+
+#ПРЕСЕТ ЭКИПИРОВКИ БОЙЦА
+- type: startingGear
+  id: MTSold
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    back: ClothingBackpackArrowsSoldFilled
+    mask: ClothingMaskGaiter
+    eyes: ClothingEyesGlassesMT
+    ears: ClothingHeadsetMT
+    gloves: ClothingHandsPowerGlovesUplinkNTERTGammaLeader
+    outerClothing: ClothingOuterHardsuitArrowsHeavyBiocode
+    shoes: ClothingShoesBootsMagArrows
+    id: MTSoldPDA
+    suitstorage: WeaponPulseRifleBiocode
+    pocket2: DoubleEmergencyOxygenTankFilled
+    belt: ClothingBeltAssaultMT
+
+#БАТАРЕЙКА И ЩИТЫ
+
+- type: entity
+  name: Arrows power cell
+  description: A rechargeable military-grade power cell. It has built-in EMP protection.
+  id: PowerCellArrows
+  parent: BasePowerCell
+  suffix: Arrows
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: syndicate
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: EmpImmune
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+
+- type: entity
+  id: EnergyDomeSmallGreen
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    sprite: Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#006400"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#006400"
+
+#СКАФАНДРЫ
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitArrowsNetrunner
+  name: Netrunner's Hardsuit "PMC Arrows"
+  description: Squad Commander's Hardsuit.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/arrowsnetrunner.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/arrowsnetrunner.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+        Radiation: 0
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitArrows
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellArrows
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellArrows
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 2
+    domePrototype: EnergyDomeSmallGreen
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitArrowsHeavy
+  name: Heavy armored Hardsuit "PMC Arrows"
+  description: The heavy version of the "PMC Arrows" armored suit provides excellent protection for its wearer.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/arrowsgear.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/arrowsgear.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+        Radiation: 0
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitArrows
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellArrows
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellArrows
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 6
+    domePrototype: EnergyDomeSmallGreen
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitArrows
+  name: Hardsuit armored helmet "PMC Arrows"
+  description: Special Forces Helmet "PMC Arrows"
+  suffix: Arrows
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/arrowshelmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/arrowshelmet.rsi
+  - type: PointLight
+    color: darkgreen
+    radius: 8
+    energy: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+
+#РЕАГЕНТ СТИМПАК
+- type: reagent
+  id: StimulantsArrows
+  name: reagent-name-militarystimulant
+  group: Narcotics
+  desc: reagent-desc-militaryStimulant
+  physicalDesc: reagent-physical-desc-thick
+  flavor: bitter
+  color: "#CD5C5C"
+  boilingPoint: 255.0
+  meltingPoint: 36.0
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+      - !type:SatiateHunger
+        factor: 2
+      - !type:SatiateThirst
+        factor: 2
+
+#РЕАГЕНТ В КРОВИ
+- type: reagent
+  id: ReagentArrows
+  name: reagent-name-arrow
+  group: Medicine
+  desc: reagent-desc-addictive
+  physicalDesc: reagent-physical-desc-addictive
+  flavor: medicine
+  color: "#32127a"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:AdjustReagent
+        reagent: Pax
+        amount: -3.0
+      - !type:AdjustReagent
+        reagent: Haloperidol
+        amount: -3.0
+      - !type:AdjustReagent
+        reagent: Nocturine
+        amount: -3.0
+      - !type:AdjustReagent
+        reagent: ChloralHydrate
+        amount: -3.0
+      - !type:GenericStatusEffect
+        key: Jitter
+        time: 3.0
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        component: Drowsiness
+        time: 1.5
+        type: Remove
+
+#СТИМПАК
+- type: entity
+  name: military stimulant
+  parent: SpaceMedipen
+  id: CombatMedipenArrows
+  description: A powerful military stimulant that turns you into a rocket.
+  suffix: Arrows
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: StimulantsArrows
+          Quantity: 20
+
+#МАГНИТКИ
+- type: entity
+  parent: [ClothingShoesBootsMagBase, BaseJetpack, BaseSyndicateContraband]
+  id: ClothingShoesBootsMagArrows
+  name: Military magnetic-shock boots
+  description: The miracle of reverse engineering.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/arrowsmagboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/arrowsmagboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+        - 1.025689525 # oxygen
+        - 1.025689525 # nitrogen
+  - type: Item
+    sprite: null
+    size: Normal
+
+#КАНАЛ СВЯЗИ
+- type: radioChannel
+  id: MT
+  name: chat-radio-PMC
+  keycode: 'ь'
+  frequency: 2218
+  color: "DarkGreen"
+  longRange: true
+
+#КЛЮЧ ШИФРОВАНИЯ
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyMT
+  name: Encryption key "PMC Arrows"
+  description: You'd better not hear what they're saying on this frequency...
+  suffix: Arrows
+  components:
+  - type: EncryptionKey
+    channels:
+    - MT
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    defaultChannel: MT
+  - type: Sprite
+    layers:
+    - state: crypt_red
+    - state: cap_label
+
+#ГАРНИТУРА
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMT
+  name: PMC Arrows headset
+  description: The Mercenaries' special headset.
+  suffix: Arrows
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyMT
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+
+#ПОРТАТИВНАЯ КОНСОЛЬ СВЯЗИ
+- type: entity
+  id: CommunicationsConsolePortativeMT
+  parent: BaseItem
+  name: portable communication console "PMC Arrows"
+  description: Portable console used to broadcast announcements to the entire station, change the alert level, call an evacuation shuttle, and monitor the crew. It has direct communication with the dispatcher.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    scale: 0.65, 0.65
+    color: "DarkGreen"
+    layers:
+      - state: tablet
+      - state: generic
+        shader: unshaded
+  - type: CommunicationsConsole
+    title: PMC Arrows
+    global: true
+    color: "DarkGreen"
+    sound:
+      path: /Audio/Announcements/bloblarm.ogg
+      params:
+        volume: -4
+  - type: ActivatableUI
+    inHandsOnly: true
+    singleUser: true
+    key: enum.CommunicationsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+  - type: Prayable
+    sentMessage: prayer-chat-announcement-title-arrows
+    notifiactionPrefix: prayer-chat-announcement-notification-prefix-arrows
+    verb: prayer-verbs-arrows
+    verbImage: null
+  - type: CrewMonitoringServer
+  - type: SingletonDeviceNetServer
+    ServerType: CrewMonitoringServer
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    transmitFrequencyId: CrewMonitor
+    receiveFrequencyId: SuitSensor
+    autoConnect: true
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+
+#ЭНЕРГЕТИЧЕСКИЙ МЕЧ-БЕНЗОПИЛА
+
+- type: entity
+  name: The Chainsaw Energy Sword
+  suffix: Arrows
+  parent: BaseItem
+  id: ChainswordArrows
+  description: Technology and ultra-violence in one bottle!
+  components:
+  - type: EnergySword
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/_Sunrise/Weapons/start.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Weapons/start.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/_Sunrise/Weapons/idle.ogg
+  - type: ItemToggleSize
+    activatedSize: Huge
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/_Sunrise/Weapons/hit.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/_Sunrise/Weapons/hit.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/_Sunrise/Weapons/miss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+        types:
+            Slash: 30
+            Blunt: 20
+            Structural: 50
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/chainsword.rsi
+    layers:
+      - state: chainsword
+      - state: chainsword_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+        Slash: 5
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Objects/Weapons/Melee/chainsword.rsi
+  - type: UseDelay
+    delay: 1.0
+  - type: Reflect
+    enabled: false
+  - type: ToggleableLightVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+
+#ОЧКИ
+
+- type: entity
+  name: PMC Arrows visor
+  id: ClothingEyesGlassesMT
+  parent: [BaseItem, PowerCellSlotSmallItem]
+  description: A visor with specialized eyepieces that allow you to collect more information about the staff of various corporations.
+  suffix: Arrows
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    quickEquip: true
+    clothingVisuals:
+      eyes:
+      - state: off-equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
+    slots: [ Eyes ]
+  - type: Appearance
+  - type: NightVision
+    effect: EffectNightVisionGreen
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 20
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+
+#ПОЯС
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltAssaultMT
+  name: combat belt
+  description: A belt filled with useful items for combat.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/assault.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,1
+  - type: StorageFill
+    contents:
+    - id: SyndicateJawsOfLife
+    - id: PowerDrill
+    - id: C4
+      amount: 2
+    - id: ChainswordArrowsBiocode
+    - id: CombatMedipenArrows
+      amount: 2
+    - id: CombatMedipen
+      amount: 3
+    - id: AntiPoisonMedipen
+    - id: BruteAutoInjector
+    - id: BurnAutoInjector
+  - type: Appearance
+
+#АВАРИЙНЫЙ НАБОР ОБЩИЙ
+
+- type: entity
+  name: Box survival "PMC Arrows"
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxArrowsKit
+  description: Base Leader Kit created for centcomm squad members.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: id
+  - type: Storage
+    grid:
+    - 0,0,4,3
+  - type: StorageFill
+    contents:
+    - id: PortableSurveillanceCameraMonitorUnpowered
+    - id: HandheldCriminalRecordsMonitorUnpowered
+    - id: PinpointerUniversal
+    - id: PinpointerNuclear
+    - id: MedipenCombatInjector
+      amount: 2
+    - id: HandheldCrewMonitor
+    - id: PowerCellMicroreactor
+    - id: FoodSnackMaysonEnergy
+    - id: FoodTinMRE
+    - id: DrinkMREFlask
+
+#
+#SETS
+#
+
+- type: entity
+  noSpawn: false
+  parent: ClothingBackpackERTClown
+  id: ClothingBackpackArrowsFilled
+  name: Netrunner's backpack
+  description: Holds the kit of CentComm's most feared agents.
+  suffix: Arrows
+  components:
+    - type: Storage
+      grid:
+      - 0,0,8,5
+    - type: StorageFill
+      contents:
+        - id: BoxArrowsKit
+        #- id: SmiteImplanter
+        - id: WallImplanter
+        - id: DoorRemoteAllMTl
+        - id: CommunicationsConsolePortativeMT
+        - id: MedkitCombatFilled
+        - id: WeaponRevolverMatebaAPBiocode
+        - id: SpeedLoaderMagnumAP
+          amount: 2
+        - id: EnergyShieldArrowsBiocode
+        #- id: BaseUplinkNTERT200BC
+        - id: WeaponShotgunCarnageBiocode
+        - id: BoxCarnage
+          amount: 2
+        - id: MagazineShotgunCarnage
+          amount: 2
+
+- type: entity
+  noSpawn: false
+  parent: ClothingBackpackERTClown
+  id: ClothingBackpackArrowsSoldFilled
+  name: PMC "Arrows" soldier's backpack
+  description: Holds the kit of CentComm's most feared agents.
+  suffix: Arrows
+  components:
+    - type: Storage
+      grid:
+      - 0,0,7,5
+    - type: StorageFill
+      contents:
+        - id: BoxArrowsKit
+        - id: MedkitCombatFilled
+        - id: WeaponRevolverMatebaAPBiocode
+        - id: SpeedLoaderMagnumAP
+          amount: 2
+        - id: EnergyShieldArrowsBiocode
+        #- id: BaseUplinkNTERT200BC
+
+#КАРТА КОМАНДИРА
+- type: entity
+  parent: IDCardStandard
+  id: MTIDCard
+  name: ID card commander
+  description: netrunner's ID card with full access.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: idcaptain
+  - type: PresetIdCard
+    job: MTL
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+#КПК КОМАНДИРА
+- type: entity
+  parent: ERTLeaderPDA
+  id: MTLeaderPDA
+  name: PDA netrunner "PMC Arrows"
+  description: You can see dried blood droplets on it... It has a built-in health analyzer.
+  suffix: Arrows
+  components:
+  - type: Pda
+    id: MTIDCard
+    state: pda-roboticist
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#800000"
+    accentHColor: "#00CED1"
+  - type: Icon
+    state: pda-roboticist
+  - type: HealthAnalyzer
+    scanDelay: 0.5
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+
+#КАРТА СОЛДАТА
+- type: entity
+  parent: MTIDCard
+  id: MTIDCardSold
+  name: ID card PMC soldier
+  description: A soldier's card with full access.
+  suffix: Arrows
+  components:
+  - type: PresetIdCard
+    job: MTS
+
+#КПК СОЛДАТА
+- type: entity
+  parent: MTLeaderPDA
+  id: MTSoldPDA
+  name: Soldier PDA
+  suffix: Arrows
+  components:
+  - type: Pda
+    id: MTIDCardSold
+
+#ПУЛЬТ КОМАНДИРА
+- type: entity
+  parent: DoorRemoteOmni
+  id: DoorRemoteAllMTl
+  name: commander's remoute
+  description: commander's remoute with full access. Has "PMC Arrows" shuttle access
+  suffix: Arrows
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#800000"
+    - state: door_remotescreencolour
+      color: "#9400D3"
+  - type: Access
+    tags:
+    - MTO
+    - MTOL
+    - CentralCommand
+    groups:
+    - AllAccess
+
+#ИКОНКА
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconArrows
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: Arrows
+  jobName: job-name-MTO
+
+#РАБОТА КОМАНДИР
+- type: job
+  id: MTL
+  name: job-name-MTOL
+  playTimeTracker: MTL
+  icon: "JobIconArrows"
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  - MTO
+  - MTOL
+
+#РАБОТА СОЛДАТ
+- type: job
+  id: MTS
+  name: job-name-MTO
+  playTimeTracker: MTS
+  icon: "JobIconArrows"
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  - MTO
+
+#ФРАКЦИЯ
+- type: npcFaction
+  id: Arrows
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleNeutral
+  - SimpleHostile
+  - Passive
+  - Zombie
+  - Xeno
+  - Dragon
+  - Mouse
+
+#ДОСТУП
+- type: accessLevel
+  id: MTO
+  name: id-card-access-level-MTO
+
+#ДОСТУП КОМАНДИР
+- type: accessLevel
+  id: MTOL
+  name: id-card-access-level-MTOL
+
+###СТРУКТУРЫ
+#БРОНИРОВАННЯ ДВЕРЬ КОМАНДИР
+- type: entity
+  parent: HighSecDoor
+  name: high security door
+  description: Keeps the bad guys out and the good guys in. Only the commander can open it.
+  id: HighSecMTOLLocked
+  suffix: Arrows, MTOL
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTOL ]
+#БРОНИРОВАННЯ ДВЕРЬ
+- type: entity
+  parent: HighSecDoor
+  name: high security door
+  description: Keeps the bad out and keeps the good in.
+  id: HighSecMTOLocked
+  suffix: Arrows
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTO ]
+
+#СТЕНА
+- type: entity
+  parent: BaseWall
+  id: WallShuttleArm
+  name: reinforced shuttle wall
+  description: Keeps the bad out and keeps the good in.
+  suffix: Arrows
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: Structures/Walls/shuttle.rsi
+    color: "#505050"
+  - type: Icon
+    sprite: Structures/Walls/shuttle.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Reflect
+    reflectProb: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: IconSmooth
+    key: walls
+    base: state
+
+#СТЕНА УГОЛ
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallShuttleDiagonalArm
+  name: reinforced shuttle wall
+  description: Keeps the bad out and keeps the good in.
+  suffix: Arrows, Diagonal
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    color: "#505050"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Reflect
+    reflectProb: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+
+#СТЕКЛО
+- type: entity
+  id: ShuttleWindowArm
+  name: reinforced shuttle window
+  parent: ShuttleWindow
+  description: Keeps the bad out and keeps the good in.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    color: "#505050"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+
+#СТАВНИ
+- type: entity
+  id: ShuttersArmOpen
+  parent: ShuttersNormalOpen
+  name: reinforced shutter
+  description: Keeps the bad out and keeps the good in.
+  suffix: Arrows
+  components:
+  - type: Sprite
+    color: "#505050"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+
+#ПЛАТЫ ШЛЮЗОВ
+- type: entity
+  parent: DoorElectronics
+  categories: [ HideSpawnMenu ]
+  id: DoorElectronicsMTO
+  suffix: MTO, Locked
+  components:
+  - type: AccessReader
+    access: [["MTO"]]
+
+- type: entity
+  parent: DoorElectronics
+  categories: [ HideSpawnMenu ]
+  id: DoorElectronicsMTOL
+  suffix: MTO, Locked
+  components:
+  - type: AccessReader
+    access: [["MTOL"]]
+
+#СТЫКОВОЧНЫЙ ШЛЮЗ
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttleArm
+  suffix: Arrows
+  name: reinforced airlock shuttle
+  #description: Удерживает плохих снаружи, а хороших внутри.
+  components:
+  - type: Sprite
+    color: "#505050"
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTO ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Reflect
+    reflectProb: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+    destroySound:
+      path: /Audio/Effects/metalbreak.ogg
+
+#ШЛЮЗ
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockMTOLocked
+  suffix: Arrows
+  #name: glass airlock
+  #description: Он открывается, он закрывается, и он может вас раздавить.
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTO ]
+
+#РАЗДВИЖНОЕ ОКНО
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorMTOLocked
+  suffix: Arrows
+  #name: армированное раздвижное окно
+  #description: Это и прочное окно, и раздвижная дверь. Вот это да!
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTO ]
+
+#ДВИГАТЕЛЬ
+- type: entity
+  id: ThrusterM
+  name: military-grade engine
+  description: A powerful engine used on combat shuttles.
+  suffix: Arrows
+  parent: Thruster
+  components:
+  - type: Sprite
+    color: "#808080"
+  - type: Thruster
+    baseThrust: 350
+    thrust: 350
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+
+#ТУРЕЛЬ
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretArrows
+  name: ballistic turret
+  description: A ballistic machine gun auto-turret.
+  suffix: Arrows
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Arrows
+  - type: Gun
+    fireRate: 12
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/minigun.ogg
+
+#СОБЫТИЯ
+
+- type: entity
+  id: NetrunnerCheck
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 8
+    startAnnouncement:  station-event-netrunner-start-announcement
+    endAnnouncement: station-event-netrunner-end-announcement
+    startAudio:
+      path: /Audio/Effects/PowerSink/electric.ogg
+    duration: 300
+    maxDuration: 360
+  - type: SolarFlareRule
+    onlyJamHeadsets: true
+    affectedChannels:
+    - Common
+    extraChannels:
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    extraCount: 8
+    lightBreakChancePerSecond: 0.0003
+    doorToggleChancePerSecond: 0.001
+
+#Патроны (60. карнаж)
+
+- type: Tag
+  id: ShellShotgunCarnage
+
+- type: Tag
+  id: MagazineShotgunCarnage
+
+- type: hitscan
+  id: PelletShotgunCarnage
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 18
+      Heat: 3
+      Structural: 14
+  pierceChance: 0.69
+  ricochetChance: 0.80
+  pierceLevel: HardenedMetal
+  count: 6
+  spread: 15
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: uranium
+
+#Раздатчик ружейных патронов (.60 карнаж)
+
+- type: entity
+  parent: BaseAmmoProvider
+  id: AmmoProviderShotgunShellCarnage
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
+    - type: BallisticAmmoProvider
+      mayTransfer: true
+      whitelist:
+        tags:
+        - ShellShotgunCarnage
+      capacity: 16
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: false
+    - type: Appearance
+
+- type: entity
+  parent: AmmoProviderShotgunShellCarnage
+  id: BoxCarnage
+  name: ammunition box (.60 AP)
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunCarnage
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: beanbag
+
+#БИОКОД НА ШМОТКИ ОТРЯДА
+
+- type: entity
+  parent: ClothingOuterHardsuitArrowsNetrunner
+  id: ClothingOuterHardsuitArrowsNetrunnerBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Arrows
+  - type: FactionClothingBlocker
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  parent: ClothingOuterHardsuitArrowsHeavy
+  id: ClothingOuterHardsuitArrowsHeavyBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Arrows
+  - type: FactionClothingBlocker
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  parent: ChainswordArrows
+  id: ChainswordArrowsBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Arrows
+  - type: Biocode
+    factions:
+    - Arrows
+
+
+- type: entity
+  parent: WeaponPulseRifle
+  id: WeaponPulseRifleBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Arrows
+    alertText: alertText-biocode-message
+  - type: Biocode
+    factions:
+    - Arrows
+
+- type: entity
+  parent: WeaponRevolverMatebaAP
+  id: WeaponRevolverMatebaAPBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Arrows
+    alertText: alertText-biocode-message
+  - type: Biocode
+    factions:
+    - Arrows
+
+- type: entity
+  parent: EnergyShield
+  id: EnergyShieldArrowsBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Arrows
+    alertText: alertText-biocode-message
+  - type: Biocode
+    factions:
+    - Arrows
+
+- type: entity
+  parent: WeaponShotgunCarnage
+  id: WeaponShotgunCarnageBiocode
+  suffix: Arrows, BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Arrows
+    alertText: alertText-biocode-message
+  - type: Biocode
+    factions:
+    - Arrows
+
+#.60 AP
+
+- type: entity
+  id: BaseShellShotgunCarnage
+  name: shell (.60 AP)
+  parent: [ BaseCartridge, BaseRestrictedContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgunCarnage
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/carnage_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: BaseShellHitscanShotgunCarnage
+  name: shell (.60 AP)
+  parent: [ BaseCartridge, BaseRestrictedContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgunCarnage
+  - type: HitScanCartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/carnage_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: ShellShotgunCarnage
+  name: shell (.60 AP)
+  parent: BaseShellHitscanShotgunCarnage
+  suffix: Arrows
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: HitScanCartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    hitscan: PelletShotgunCarnage
+
+- type: entity
+  id: BaseMagazineShotgunCarnage
+  name: shell (.60 AP)
+  parent: [ BaseItem, BaseRestrictedContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MagazineShotgunCarnage
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ShellShotgunCarnage
+    capacity: 8
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Cock/shotgun_cock.ogg
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineShotgunCarnage
+  name: drum magazine (.60 AP)
+  parent: BaseMagazineShotgunCarnage
+  suffix: Arrows
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunCarnage
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#Карнаж
+
+- type: entity
+  name: Carnage
+  parent: [BaseItem, BaseSyndicateContraband]
+  suffix: Arrows
+  id: WeaponShotgunCarnage
+  description: The specialized "Carnage" shotgun uses .60 caliber shotgun shells.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/carnage.rsi
+    layers:
+      - state: icon
+        map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  #- type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: xm1014 # Sunrise-Edit
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: MagazineShotgunCarnage
+        startingItem: MagazineShotgunCarnage
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgunCarnage
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 4500
+
+# Консоль управления турелями
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretMTControlPanel
+  suffix: Arrows
+  components:
+  - type: AccessReader
+    access: [["StationAi"], ["MTO"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - MTO
+    - BasicSilicon
+    - Borg
+
+#Консоль управления шаттлом
+- type: entity
+  parent: ComputerShuttle
+  id: MTComputerShuttle
+  name: shuttle console
+  description: Used to pilot a shuttle.
+  suffix: Arrows
+  components:
+  - type: StationAiWhitelist
+  - type: Wires
+    boardName: wires-board-name-computer
+    layoutId: ComputerAi
+
+# Корабельные орудия ДАСТЕРКА НА ДОРАБОТКЕ
+
+
+- type: entity
+  id: PowerCageArrowShuttle
+  parent: PowerCageERT
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30

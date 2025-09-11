@@ -1,0 +1,5 @@
+- type: preloadedGrid
+  id: MTShuttle
+  path: /Maps/_Sunrise/Shuttles/arrows_shuttle.yml
+  copies: 1
+

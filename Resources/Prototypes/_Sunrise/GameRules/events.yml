@@ -164,3 +164,15 @@
         sound: /Audio/_Sunrise/Abductor/abductor.ogg
       mindRoles:
       - AbductorVictimRole
+
+- type: entity
+  parent: BaseGameRule
+  id: EpsiloneMTSpawn
+  components:
+  - type: LoadMapRule
+    startAnnouncement: null
+    startAudio: /Audio/Announcements/bloblarm.ogg
+    duration: -0
+    endAudio: /Audio/Announcements/bloblarm.ogg
+    preloadedGrid: MTShuttle
+  - type: RuleGrids

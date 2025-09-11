@@ -1,0 +1,201 @@
+###ИМПЛАНТЫ
+
+#ИМПЛАНТ ТЕЛЕПОРТА
+
+- type: entity
+  parent: BaseAction
+  id: ActionBlinkImp
+  name: Teleport
+  description: Teleport by pointing to locations.
+  noSpawn: true
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/blink.ogg
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+  - type: TargetAction
+    range: 16 # default examine-range.
+    # ^ should probably add better validation that the clicked location is on the users screen somewhere,
+    repeat: false
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:TeleportSpellEvent
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BlinkImplant
+  name: Jump Implant
+  description: Allows the user to instantly teleport to a targeted location up to three times before depleting.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionBlinkImp
+
+- type: entity
+  id: TeleportImplanter
+  name: Teleport Implant
+  suffix: Arrows
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: BlinkImplant
+
+#ИМПЛАНТ "СИЛОВОЙ БАРЬЕР"
+
+- type: entity
+  id: WallForceArrows
+  name: Force barrier
+  components:
+    - type: TimedDespawn
+      lifetime: 20
+    - type: Tag
+      tags:
+        - Wall
+    - type: PointLight
+      enabled: true
+      radius: 3
+      color: red
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+            - FullTileMask
+          layer:
+            - WallLayer
+    - type: Airtight
+    - type: Sprite
+      sprite: Structures/Holo/security.rsi
+      state: icon
+    - type: Icon
+      sprite: Structures/Holo/security.rsi
+      state: icon
+
+- type: entity
+  parent: BaseAction
+  id: ActionForceWallArrows
+  name: Force barrier
+  description: Creates a temporary barrier that restricts the enemy's movement.
+  noSpawn: true
+  components:
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    icon:
+      sprite: Structures/Holo/security.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: WallForceArrows
+      posData: !type:TargetInFront
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: WallImplant
+  name: Force barrier Implant
+  description: Creates a barrier that is intangible to the owner but tangible to everyone else, useful for restricting passage.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionForceWallArrows
+
+- type: entity
+  id: WallImplanter
+  name: The Limbic System "Force Barrier Implant"
+  suffix: Arrows
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: WallImplant
+
+#ИМПЛАНТ ПЕРЕГРУЗКИ
+
+- type: entity
+  parent: BaseSmiteAction
+  id: ActionSmiteImp
+  name: Overload
+  description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target.
+  noSpawn: true
+  components:
+  - type: Action
+    useDelay: 90
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Machines/Nuke/nuke_alarm.ogg
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: gib
+  - type: EntityTargetAction
+    event: !type:SmiteSpellEvent
+  - type: Magic
+    requiresClothes: false
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SmiteImplant
+  name: Overload Implant
+  description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSmiteImp
+
+- type: entity
+  id: SmiteImplanter
+  name: Overload Implant
+  suffix: Arrows
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: SmiteImplant
+
+#ИМПЛАНТ ХРИП
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantMT
+  name: Death rattle implant
+  description: This implant will notify the Arrows radio channel if the user is in critical condition or dies.
+  noSpawn: true
+  components:
+  - type: RattleOnTrigger
+    radioChannel: MT
+
+#БЕСКОНЕЧНЫЙ СИЛОВОЙ БАРЬЕР
+- type: entity
+  id: WallForceArrowsUn
+  name: power barrier
+  suffix: infinite
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: PointLight
+      enabled: true
+      radius: 3
+      color: red
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+            - FullTileMask
+          layer:
+            - WallLayer
+    - type: Airtight
+    - type: Sprite
+      sprite: Structures/Holo/security.rsi
+      state: icon
+    - type: Icon
+      sprite: Structures/Holo/security.rsi
+      state: icon

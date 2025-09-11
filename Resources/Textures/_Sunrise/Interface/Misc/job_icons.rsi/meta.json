@@ -7,6 +7,9 @@
         "y": 8
     },
     "states": [
+	{
+            "name": "Arrows"
+        },
         {
             "name": "EngineerBorg"
         },
