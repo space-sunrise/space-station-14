@@ -833,8 +833,8 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
                         .HasColumnName("subject");
 
                     b.Property<DateTimeOffset>("UpdatedAt")

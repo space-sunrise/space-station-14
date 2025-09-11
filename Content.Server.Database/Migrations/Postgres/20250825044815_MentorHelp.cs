@@ -20,7 +20,7 @@ namespace Content.Server.Database.Migrations.Postgres
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     player_id = table.Column<Guid>(type: "uuid", nullable: false),
                     assigned_to_user_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    subject = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
+                    subject = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     status = table.Column<int>(type: "integer", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),

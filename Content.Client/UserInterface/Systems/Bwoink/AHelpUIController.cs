@@ -101,6 +101,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     {
         _bwoinkSystem = system;
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
+        _bwoinkSystem.OnBwoinkCooldownReceived += ReceivedCooldown;
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenAHelp,
@@ -114,6 +115,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
+        _bwoinkSystem!.OnBwoinkCooldownReceived -= ReceivedCooldown;
         _bwoinkSystem = null;
     }
 
@@ -156,6 +158,12 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         }
 
         UIHelper!.Receive(message);
+    }
+
+    private void ReceivedCooldown(object? sender, BwoinkCooldownMessage message)
+    {
+        EnsureUIHelper();
+        UIHelper?.OnCooldownReceived(message);
     }
 
     private void DiscordRelayUpdated(BwoinkDiscordRelayUpdated args, EntitySessionEventArgs session)
@@ -342,6 +350,7 @@ public interface IAHelpUIHandler : IDisposable
     public void ToggleWindow();
     public void DiscordRelayChanged(bool active);
     public void PeopleTypingUpdated(BwoinkPlayerTypingUpdated args);
+    public void OnCooldownReceived(BwoinkCooldownMessage message);
     public event Action OnClose;
     public event Action OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
@@ -430,6 +439,16 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     {
         if (_activePanelMap.TryGetValue(args.Channel, out var panel))
             panel.UpdatePlayerTyping(args.PlayerName, args.Typing);
+    }
+
+    public void OnCooldownReceived(BwoinkCooldownMessage message)
+    {
+        // For admins, we might want to show a message in the currently active panel
+        // For now, we'll pass it to all panels to handle
+        foreach (var (_, panel) in _activePanelMap)
+        {
+            panel.OnCooldownReceived(message);
+        }
     }
 
     // Sunrise-Start
@@ -619,6 +638,11 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
 
     public void PeopleTypingUpdated(BwoinkPlayerTypingUpdated args)
     {
+    }
+
+    public void OnCooldownReceived(BwoinkCooldownMessage message)
+    {
+        _chatPanel?.OnCooldownReceived(message);
     }
 
     public event Action? OnClose;
