@@ -379,19 +379,21 @@ public sealed class HypospraySystem : EntitySystem
             return false;
         }
 
-        if (entity.Comp.PreventOverdose)
+        if (entity.Comp.PreventOverdoze)
         {
-            foreach (var (idHypoSoln, _) in hypoSpraySoln.Value.Comp.Solution.Contents)
-            {
-                foreach (var (idTargetSoln, _) in targetSoln.Value.Comp.Solution.Contents)
-                if (idHypoSoln == idTargetSoln)
-                {
-                    _popup.PopupClient(Loc.GetString("hypospray-cancel-inject"), target, user);
-                    returnValue = false;
-                    return false;
-                }
-
-            }
+            var targetSet = new HashSet<ProtoId<ReagentPrototype>>();
++            foreach (var (targetId, _) in targetSoln.Value.Comp.Solution.Contents)
++                targetSet.Add(targetId);
++
++            foreach (var (hypoId, _) in hypoSpraySoln.Value.Comp.Solution.Contents)
++            {
++                if (targetSet.Contains(hypoId))
++                {
++                    _popup.PopupClient(Loc.GetString("hypospray-cancel-inject"), target, user);
++                    returnValue = false;
++                    return false;
++                }
++            }
         }
 
         return true;
