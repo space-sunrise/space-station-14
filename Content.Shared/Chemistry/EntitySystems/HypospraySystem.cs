@@ -374,26 +374,25 @@ public sealed class HypospraySystem : EntitySystem
 
         if (!_solutionContainers.TryGetInjectableSolution(target, out targetSoln, out targetSolution))
         {
-            _popup.PopupClient(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+            _popup.PopupClient(Loc.GetString("hypospray-component-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
             returnValue = false;
             return false;
         }
 
-        if (entity.Comp.PreventOverdoze)
+        if (entity.Comp.PreventOverdose)
         {
-            var targetSet = new HashSet<ProtoId<ReagentPrototype>>();
-+            foreach (var (targetId, _) in targetSoln.Value.Comp.Solution.Contents)
-+                targetSet.Add(targetId);
-+
-+            foreach (var (hypoId, _) in hypoSpraySoln.Value.Comp.Solution.Contents)
-+            {
-+                if (targetSet.Contains(hypoId))
-+                {
-+                    _popup.PopupClient(Loc.GetString("hypospray-cancel-inject"), target, user);
-+                    returnValue = false;
-+                    return false;
-+                }
-+            }
+            var targetSet = new HashSet<ReagentId>();
+            foreach (var (idHypoSoln, _) in hypoSpraySoln.Value.Comp.Solution.Contents)
+                targetSet.Add(idHypoSoln);
+
+            foreach (var (idTargetSoln, _) in targetSoln.Value.Comp.Solution.Contents)
+                if (targetSet.Contains(idTargetSoln))
+                {
+                    _popup.PopupClient(Loc.GetString("hypospray-cancel-inject"), target, user);
+                    returnValue = false;
+                    return false;
+                }
+
         }
 
         return true;
