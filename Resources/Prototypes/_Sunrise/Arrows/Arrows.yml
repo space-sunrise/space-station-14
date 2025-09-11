@@ -89,7 +89,6 @@
         Dead: 0
       baseDecayRate: 0.0001
     - type: Hunger
-      currentHunger: 2500   # spawn with Okay hunger state
       thresholds:
         Overfed: 3500
         Okay: 2500
@@ -370,7 +369,6 @@
         whitelist:
           tags:
             - PowerCell
-            - PowerCellArrows
   - type: EnergyDomeGenerator
     damageEnergyDraw: 2
     domePrototype: EnergyDomeSmallGreen
@@ -657,12 +655,12 @@
         type: CommunicationsConsoleBoundUserInterface
   - type: Prayable
     sentMessage: prayer-chat-announcement-title-arrows
-    notifiactionPrefix: prayer-chat-announcement-notification-prefix-arrows
+    notificationPrefix: prayer-chat-announcement-notification-prefix-arrows
     verb: prayer-verbs-arrows
     verbImage: null
   - type: CrewMonitoringServer
   - type: SingletonDeviceNetServer
-    ServerType: CrewMonitoringServer
+    serverType: CrewMonitoringServer
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: CrewMonitor
@@ -939,7 +937,11 @@
   components:
   - type: Pda
     id: MTIDCard
-    state: pda-roboticist
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-roboticist
   - type: PdaBorderColor
     borderColor: "#333333"
     accentVColor: "#800000"
@@ -1239,9 +1241,9 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
-    destroySound:
-      path: /Audio/Effects/metalbreak.ogg
+          path: /Audio/Effects/metalbreak1.ogg
+        destroySound:
+          path: /Audio/Effects/metalbreak1.ogg
 
 #ШЛЮЗ
 - type: entity
