@@ -69,7 +69,7 @@ public sealed partial class HyposprayComponent : Component
     public float DoAfterTime = 0.25f;
 
     /// <summary>
-    /// if true, object will not injected of he has metabolized reagent same with contained in the hypo.
+    /// if true, object will not injected if has metabolized reagent same with contained in the hypo.
     /// </summary>
     [DataField]
     public bool PreventOverdoze;

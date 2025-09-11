@@ -211,7 +211,7 @@ public sealed class HypospraySystem : EntitySystem
 
         if (target != user)
         {
-            _popup.PopupClient(Loc.GetString("hypospray-component-feel-prick-message"), target, target);
+            _popup.PopupClient(Loc.GetString("hypospray-component-feel-prick-message"), target, target); //Sunrise-Edit
             // TODO: This should just be using melee attacks...
             // meleeSys.SendLunge(angle, user);
         }
@@ -279,7 +279,7 @@ public sealed class HypospraySystem : EntitySystem
             var hasInvalidReagents = HasInvalidReagents(targetSolution.Comp.Solution, MedicineReagentGroup, _prototypeManager);
             if (hasInvalidReagents)
             {
-                _popup.PopupClient(Loc.GetString("hypospray-invalid-reagents-message",
+                _popup.PopupClient(Loc.GetString("hypospray-invalid-reagents-message", //Sunrise-Edit
                         ("target", Identity.Entity(target, EntityManager))),
                     entity.Owner,
                     user);
@@ -375,7 +375,6 @@ public sealed class HypospraySystem : EntitySystem
         if (!_solutionContainers.TryGetInjectableSolution(target, out targetSoln, out targetSolution))
         {
             _popup.PopupClient(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
-            returnValue = false;
             return false;
         }
 
