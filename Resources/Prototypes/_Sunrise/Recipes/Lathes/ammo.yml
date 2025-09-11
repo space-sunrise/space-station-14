@@ -324,7 +324,7 @@
   id: MagazinePistolSubMachineGunTopMountedIncendiary
   result: MagazinePistolSubMachineGunTopMountedIncendiary
   materials:
-    Steel: 25
+    Steel: 50
     Plastic: 135
     Plasma: 140
 
@@ -333,7 +333,7 @@
   id: MagazinePistolSubMachineGunTopMountedUranium
   result: MagazinePistolSubMachineGunTopMountedUranium
   materials:
-    Steel: 25
+    Steel: 50
     Plastic: 250
     Uranium: 250
 
@@ -343,14 +343,14 @@
   id: MagazineRifleHeavyEmpty
   result: MagazineRifleHeavyEmpty
   materials:
-    Steel: 50
+    Steel: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineRifleHeavyUranium
   result: MagazineRifleHeavyUranium
   materials:
-    Steel: 50
+    Steel: 100
     Plastic: 350
     Uranium: 350
 
@@ -359,7 +359,7 @@
   id: MagazineRifleHeavyIncendiary
   result: MagazineRifleHeavyIncendiary
   materials:
-    Steel: 50
+    Steel: 100
     Plastic: 350
     Plasma: 300
 
@@ -368,29 +368,30 @@
   id: MagazineRifleHeavySP
   result: MagazineRifleHeavySP
   materials:
-    Steel: 650
+    Steel: 750
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineRifleHeavyHP
   result: MagazineRifleHeavyHP
   materials:
-    Steel: 650
+    Steel: 750
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineRifleHeavyFMJ
   result: MagazineRifleHeavyFMJ
   materials:
-    Steel: 800
+    Steel: 900
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineRifleHeavyAP
   result: MagazineRifleHeavyAP
   materials:
-    Steel: 650
-    Uranium: 350
+    Steel: 750
+    Uranium: 300
+    Plastic: 300
 
 ## Heavy rifle Box
 - type: latheRecipe
@@ -398,7 +399,6 @@
   id: MagazineBoxHeavyRifleUranium
   result: MagazineBoxHeavyRifleUranium
   materials:
-    Steel: 25
     Plastic: 200
     Uranium: 200
 
@@ -406,8 +406,6 @@
   parent: BaseAmmoRecipe
   id: MagazineBoxHeavyRifleIncendiary
   result: MagazineBoxHeavyRifleIncendiary
-  materials:
-    Steel: 25
     Plastic: 200
     Plasma: 200
 
@@ -774,23 +772,23 @@
   id: SpeedLoaderShellShotgun
   result: SpeedLoaderShellShotgun
   materials:
-    Steel: 140
+    Steel: 150
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: SpeedLoaderShotgunBeanbag
   result: SpeedLoaderShotgunBeanbag
   materials:
-    Steel: 95
-    Plastic: 80
+    Steel: 70
+    Plastic: 70
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: SpeedLoaderShotgunSlug
   result: SpeedLoaderShotgunSlug
   materials:
-    Steel: 110
-    Plastic: 60
+    Steel: 230
+    Plastic: 70
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -805,5 +803,6 @@
   id: SpeedLoaderShotgunUranium
   result: SpeedLoaderShotgunUranium
   materials:
+    Steel: 30
     Plastic: 140
     Uranium: 100
