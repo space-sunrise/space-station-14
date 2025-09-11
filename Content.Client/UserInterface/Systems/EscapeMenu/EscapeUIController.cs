@@ -106,6 +106,11 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         {
             _uri.OpenUri(_cfg.GetCVar(SunriseCCVars.InfoLinksDonate));
         };
+
+        _escapeWindow.ReplaysButton.OnPressed += _ =>
+        {
+            _uri.OpenUri(_cfg.GetCVar(SunriseCCVars.InfoLinksReplays));
+        };
         // Sunrise-end
 
         _escapeWindow.WikiButton.OnPressed += _ =>
@@ -122,6 +127,8 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         _escapeWindow.WikiButton.Visible = _cfg.GetCVar(CCVars.InfoLinksWiki) != "";
 
         _escapeWindow.DonateButton.Visible = _cfg.GetCVar(SunriseCCVars.InfoLinksDonate) != ""; // Sunrise-Sponsors
+
+        _escapeWindow.ReplaysButton.Visible = _cfg.GetCVar(SunriseCCVars.InfoLinksReplays) != ""; // Sunrise-Replays
 
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.EscapeMenu,

@@ -15,6 +15,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby.UI
 {
@@ -27,6 +28,7 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        [Dependency] private readonly IUriOpener _uriOpener = default!;
 
         public string LobbyParallax = "FastSpace"; // Sunrise-edit
         public bool ShowParallax; // Sunrise-edit
@@ -53,6 +55,7 @@ namespace Content.Client.Lobby.UI
 
             LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
+            ReplaysButton.OnPressed += _ => _uriOpener.OpenUri(_configurationManager.GetCVar(SunriseCCVars.InfoLinksReplays));
 
             //CollapseButton.OnPressed += _ => TogglePanel(false);
             //ExpandButton.OnPressed += _ => TogglePanel(true);
@@ -146,6 +149,7 @@ namespace Content.Client.Lobby.UI
             _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged, true);
             _configurationManager.OnValueChanged(SunriseCCVars.ServiceAuthEnabled, OnServiceAuthEnableChanged, true);
             _configurationManager.OnValueChanged(SunriseCCVars.ServerName, OnServerNameChanged, true);
+            _configurationManager.OnValueChanged(SunriseCCVars.InfoLinksReplays, OnReplaysLinkChanged, true);
 
             Chat.SetChatOpacity();
 
@@ -215,6 +219,11 @@ namespace Content.Client.Lobby.UI
         private void SetUserProfileEnable(bool enable)
         {
             UserProfileBox.Visible = enable;
+        }
+
+        private void OnReplaysLinkChanged(string replaysUrl)
+        {
+            ReplaysButton.Visible = !string.IsNullOrEmpty(replaysUrl);
         }
         // Sunrise-End
 

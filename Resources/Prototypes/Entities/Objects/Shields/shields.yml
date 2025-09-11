@@ -59,12 +59,23 @@
                   max: 2
     - type: StaticPrice
       price: 100
+    - type: HealthExaminable #Sunrise-Start
+      examinableTypes:
+        - Blunt
+        - Slash
+        - Piercing
+        - Heat
+        - Mangleness
+      locPrefix: shield
+    - type: ClothingSpeedModifier
+      sprintModifier: 0.95
+    - type: HeldSpeedModifier #Sunrise-End
 
 #Security Shields
 
 - type: entity
   name: riot shield
-  parent: [ BaseShield, BaseSecurityContraband ]
+  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -97,7 +108,7 @@
 
 - type: entity
   name: riot strobe shield
-  parent: [ BaseShield, BaseSecurityContraband, MachineComponentSounds ]
+  parent: [ RepairableShield, BaseSecurityContraband, MachineComponentSounds, BaseShield ] # Sunrise-Edit
   id: RiotShieldStrobe
   description: A large tower shield with atached Flash. Good for controlling crowds.
   components:
@@ -191,7 +202,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ BaseShield, BaseSecurityContraband ]
+  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -199,6 +210,7 @@
       state: riot_laser-icon
     - type: Item
       heldPrefix: riot_laser
+      size: Ginormous # Sunrise-Edit Я не ебу почему он стал маленьким
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -217,13 +229,14 @@
 
 - type: entity
   name: ballistic shield
-  parent: [ BaseShield, BaseSecurityContraband ]
+  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:
     - type: Sprite
       state: riot_bullet-icon
     - type: Item
+      size: Ginormous # Sunrise-Edit Я не ебу почему он стал маленьким
       heldPrefix: riot_bullet
     - type: Blocking
       passiveBlockModifier:
@@ -346,8 +359,8 @@
 
 - type: entity
   name: makeshift shield
+  parent: [ BaseShield, RepairableShield ] # Sunrise-Edit
   id: MakeshiftShield
-  parent: BaseShield
   description: A rundown looking shield, not good for much.
   components:
   - type: Sprite
@@ -626,6 +639,9 @@
       startingCharge: 1500
     - type: PowerCellDraw
       useRate: 2.5
+    - type: ClothingSpeedModifier
+      sprintModifier: 1
+    - type: HeldSpeedModifier
     # Sunrise-End
 
 - type: entity
@@ -644,7 +660,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: BaseShield
+  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:
@@ -711,3 +727,23 @@
                   max: 2
     - type: StaticPrice
       price: 150
+
+- type: entity # Sunrise-Start
+  name: repairable shield
+  parent: BaseItem
+  id: RepairableShield
+  description: A shield!
+  abstract: true
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Repairable
+      doAfterDelay: 4
+      damage:
+        types:
+          Blunt: -25
+          Slash: -25
+          Piercing: -25
+          Heat: -25
+          Structural: -25
+          Mangleness: 7.5 # Sunrise-End
