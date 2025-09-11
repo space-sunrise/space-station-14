@@ -375,6 +375,7 @@ public sealed class HypospraySystem : EntitySystem
         if (!_solutionContainers.TryGetInjectableSolution(target, out targetSoln, out targetSolution))
         {
             _popup.PopupClient(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+            returnValue = false;
             return false;
         }
 
