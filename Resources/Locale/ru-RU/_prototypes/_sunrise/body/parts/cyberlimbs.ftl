@@ -49,7 +49,7 @@ ent-RightArmCyberGrenadeThrower = правая кибер рука-гранат�
 
 ent-LeftArmCyberHack = левая рука «НетРаннера»
     .desc = { ent-PartCyber.desc }
-ent-LeftArmCyberHack = правая рука «НетРаннера»
+ent-RightArmCyberHack = правая рука «НетРаннера»
     .desc = { ent-PartCyber.desc }
 
 ent-LeftArmCyberAtmos = левая рука «Атмосианина»
