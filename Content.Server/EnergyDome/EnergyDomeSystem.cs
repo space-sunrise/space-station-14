@@ -59,10 +59,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, ComponentRemove>(OnComponentRemove);
 
-        //Dome events
         SubscribeLocalEvent<EnergyDomeComponent, DamageChangedEvent>(OnDomeDamaged);
+        SubscribeLocalEvent<EnergyDomeProtectedUserComponent, EntParentChangedMessage>(OnProtectedEntityParentChanged);
     }
-
 
     private void OnInit(Entity<EnergyDomeGeneratorComponent> generator, ref MapInitEvent args)
     {
@@ -159,7 +158,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Sunrise-Start
         if (!_containerSystem.ContainsEntity(args.Performer, generator.Owner))
             return;
 
@@ -168,7 +166,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             if (!_biocodeSystem.CanUse(args.Performer, biocodedComponent.Factions))
                 return;
         }
-        // Sunrise-End
 
         AttemptToggle(generator, !generator.Comp.Enabled);
 
@@ -251,6 +248,12 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     public bool AttemptToggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
+        var parent = Transform(generator.Owner).ParentUid;
+        if (HasComp<ContainerManagerComponent>(Transform(parent).ParentUid))
+        {
+            return false;
+        }
+
         if (TryComp<UseDelayComponent>(generator, out var useDelay) && _useDelay.IsDelayed(new (generator, useDelay)))
         {
             _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
@@ -321,6 +324,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             domeComp.Generator = generator;
         }
 
+        var protectedComp = EnsureComp<EnergyDomeProtectedUserComponent>(protectedEntity);
+        protectedComp.DomeEntity = newDome;
+
         if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
         {
             _powerCell.SetDrawEnabled(generator.Owner, true);
@@ -335,6 +341,23 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         generator.Comp.Enabled = true;
     }
 
+    // Sunrise: обработчик смены парента защищаемой сущности
+    private void OnProtectedEntityParentChanged(Entity<EnergyDomeProtectedUserComponent> ent, ref EntParentChangedMessage args)
+    {
+        if (ent.Comp.DomeEntity == null)
+            return;
+        if (HasComp<ContainerManagerComponent>(Transform(ent).ParentUid))
+        {
+            if (TryComp<EnergyDomeComponent>(ent.Comp.DomeEntity.Value, out var domeComp) && domeComp.Generator != null)
+            {
+                if (TryComp<EnergyDomeGeneratorComponent>(domeComp.Generator.Value, out var genComp))
+                {
+                    TurnOff((domeComp.Generator.Value, genComp), false);
+                }
+            }
+        }
+    }
+
     private void TurnOff(Entity<EnergyDomeGeneratorComponent> generator, bool startReloading)
     {
         if (!generator.Comp.Enabled)
@@ -342,6 +365,11 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         generator.Comp.Enabled = false;
         QueueDel(generator.Comp.SpawnedDome);
+
+        if (generator.Comp.DomeParentEntity != null && HasComp<EnergyDomeProtectedUserComponent>(generator.Comp.DomeParentEntity.Value))
+        {
+            RemCompDeferred<EnergyDomeProtectedUserComponent>(generator.Comp.DomeParentEntity.Value);
+        }
 
         if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
         {
@@ -372,3 +400,4 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             : entity;
     }
 }
+

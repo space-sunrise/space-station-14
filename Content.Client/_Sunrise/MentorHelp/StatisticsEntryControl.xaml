@@ -1,0 +1,35 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                Name="BackgroundColorPanel"
+                MouseFilter="Stop">
+    <BoxContainer Orientation="Vertical">
+        <customControls:HSeparator/>
+        <BoxContainer Orientation="Horizontal"
+                     HorizontalExpand="True"
+                     Margin="5 2">
+            <customControls:VSeparator/>
+            <Label Name="MentorNameLabel" Access="Public"
+                   SizeFlagsStretchRatio="3"
+                   HorizontalExpand="True"
+                   StyleClasses="LabelSubText"
+                   ClipText="True" />
+            <customControls:VSeparator/>
+            <Label Name="TicketsClaimedLabel" Access="Public"
+                   SizeFlagsStretchRatio="2"
+                   HorizontalExpand="True"
+                   StyleClasses="LabelSubText"
+                   Align="Center"
+                   ClipText="True" />
+            <customControls:VSeparator/>
+            <Label Name="MessagesCountLabel" Access="Public"
+                   SizeFlagsStretchRatio="2"
+                   HorizontalExpand="True"
+                   StyleClasses="LabelSubText"
+                   Align="Center"
+                   ClipText="True" />
+            <customControls:VSeparator/>
+        </BoxContainer>
+        <customControls:HSeparator/>
+    </BoxContainer>
+</PanelContainer>
+
