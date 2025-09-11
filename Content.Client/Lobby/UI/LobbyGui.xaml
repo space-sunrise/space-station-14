@@ -180,8 +180,6 @@
                             <Button Name="MHelpButton" Access="Public" Text="{Loc 'ui-lobby-mhelp-button'}"
                                     StyleClasses="ButtonBig"/>
                             <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
-                            <Button Name="ReplaysButton" Access="Public" Text="{Loc 'ui-lobby-replays-button'}"
-                                    StyleClasses="ButtonBig"/>
                             <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}"
                                     StyleClasses="ButtonBig"/>
                             <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}"

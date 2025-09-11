@@ -233,7 +233,6 @@
       graph: ImplantSwitchArmCyberReaper
       node: start
 
-
 #Mechwright
 - type: entity
   id: LeftArmCyberMechwright
@@ -265,7 +264,7 @@
         left hand: LeftHandCyber
     - type: Construction
       graph: ImplantSwitchArmCyberMechwright
-      node: start
+      node: base_left
 
 - type: entity
   id: RightArmCyberMechwright
@@ -297,7 +296,7 @@
         right hand: RightHandCyber
     - type: Construction
       graph: ImplantSwitchArmCyberMechwright
-      node: start
+      node: base_right
 
 #Bulwark
 - type: entity
@@ -356,63 +355,6 @@
       graph: ImplantSwitchArmCyberBulwark
       node: start
 
-#Bonesaw
-- type: entity
-  id: LeftArmCyberBonesaw
-  name: "left Bonesaw arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberLArmBonesaw
-    - type: BaseLayerIdToggled
-      layer: CyberLArmBonesawToggled
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_bulwark_arm"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_bulwark_arm"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandLeft
-      sound:
-        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
-      items:
-        - CyberEnergyChainsword
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
-    - type: Construction
-      graph: ImplantSwitchArmCyberBulwark
-      node: start
-
-- type: entity
-  id: RightArmCyberBonesaw
-  name: "right Bonesaw arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberRArmBonesaw
-    - type: BaseLayerIdToggled
-      layer: CyberRArmBonesawToggled
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_bulwark_arm"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_bulwark_arm"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandRight
-      sound:
-        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
-      items:
-        - CyberEnergyChainsword
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
-    - type: Construction
-      graph: ImplantSwitchArmCyberBulwark
-      node: start
-
 #Mantis Blade
 - type: entity
   id: LeftArmCyberMantisBlade
@@ -464,260 +406,77 @@
       parts:
         right hand: RightHandCyber
 
-#Max-Guard Mantis Blade
+#ripperdoc
 - type: entity
-  id: LeftArmCyberMantisBladeMaxGuard
-  name: "left Max-Guard blade arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  id: LeftArmCyberRipper
+  name: "left ripperdoc arm"
+  parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layer: CyberLArmMantisBladeSec
+      layer: CyberLArmRipper
     - type: BaseLayerIdToggled
-      layer: CyberLArmMantisBladeToggledSec
+      layer: CyberLArmRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_mantissec_blade_arm"
+      state: "l_ripper_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_mantissec_blade_arm"
+      state: "l_ripper_arm"
     - type: LimbWithItems
       action: ActionToggleCyberHandLeft
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - CyberMantisBladeMaxGuard
+        - ScalpelRipper
+        - RetractorRipper
+        - CauteryRipper
+        - DrillRipper
+        - SawRipper
+        - HemostatRipper
+        - BoneSetterRipper
+        - BoneGelRipper
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    # - type: RoundstartImplantable
+    #   cost: 2
     - type: Construction
-      graph: ImplantSwitchMantisMaxGuard
+      graph: ImplantSwitchArmCyberRipper
       node: start
 
 - type: entity
-  id: RightArmCyberMantisBladeMaxGuard
-  name: "right Max-Guard blade arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  id: RightArmCyberRipper
+  name: "right ripperdoc arm"
+  parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layer: CyberRArmMantisBladeSec
+      layer: CyberRArmRipper
     - type: BaseLayerIdToggled
-      layer: CyberRArmMantisBladeToggledSec
+      layer: CyberRArmRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_mantissec_blade_arm"
+      state: "r_ripper_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_mantissec_blade_arm"
+      state: "r_ripper_arm"
     - type: LimbWithItems
       action: ActionToggleCyberHandRight
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
       items:
-        - CyberMantisBladeMaxGuard
+        - ScalpelRipper
+        - RetractorRipper
+        - CauteryRipper
+        - DrillRipper
+        - SawRipper
+        - HemostatRipper
+        - BoneSetterRipper
+        - BoneGelRipper
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    # - type: RoundstartImplantable
+    #   cost: 2
     - type: Construction
-      graph: ImplantSwitchMantisMaxGuard
-      node: start
-
-#Gorilla Arms
-- type: entity
-  id: LeftArmCyberGorilla
-  name: "left G.O.R.I.L.L.A. arm"
-  parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberLArmGorilla
-    - type: BaseLayerIdToggled
-      layer: CyberLArmGorillaToggled
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_sci_arm"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_sci_arm"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandLeft
-      sound:
-        path: /Audio/Effects/metal_scrape1.ogg
-      items:
-        - WeaponGauntletGorilla
-        - CyberPistolCHIMP
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
-    - type: Construction
-      graph: UpgradeCyberArmGorillaL
-      node: start
-
-- type: entity
-  id: RightArmCyberGorilla
-  name: "right G.O.R.I.L.L.A. arm"
-  parent: [PartCyber, BaseRightArm, BaseScienceContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberRArmGorilla
-    - type: BaseLayerIdToggled
-      layer: CyberRArmGorillaToggled
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_sci_arm"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_sci_arm"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandRight
-      sound:
-        path: /Audio/Effects/metal_scrape1.ogg
-      items:
-        - WeaponGauntletGorilla
-        - CyberPistolCHIMP
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
-    - type: Construction
-      graph: UpgradeCyberArmGorillaR
-      node: start
-
-# Upgraded G.O.R.I.L.L.A. Arm
-#Gorilla Arms
-- type: entity
-  id: LeftArmCyberGorillaUpgraded
-  name: "left G.O.R.I.L.L.A. arm"
-  parent: LeftArmCyberGorilla
-  components:
-    - type: LimbWithItems
-      action: ActionToggleCyberHandLeft
-      sound:
-        path: /Audio/Effects/metal_scrape1.ogg
-      items:
-        - CyberGorillaArm
-        - CyberPistolCHIMPUpgraded
-
-- type: entity
-  id: RightArmCyberGorillaUpgraded
-  name: "right G.O.R.I.L.L.A. arm"
-  parent: RightArmCyberGorilla
-  components:
-    - type: LimbWithItems
-      action: ActionToggleCyberHandRight
-      sound:
-        path: /Audio/Effects/metal_scrape1.ogg
-      items:
-        - CyberGorillaArm
-        - CyberPistolCHIMPUpgraded
-
-#Laser pulser Arms
-- type: entity
-  id: LeftArmCyberLaserEmitter
-  name: "left bulwark emitter arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberLArmBulwark
-    - type: BaseLayerIdToggled
-      layer: CyberLArmBulwarkToggledEmitter
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_bulwark_arm"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_bulwark_arm"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandLeft
-      sound:
-        collection: LasersPickUp
-      items:
-        - CyberLaserEmitter
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
-    - type: Construction
-      graph: ImplantSwitchArmCyberLaserEmitter
-      node: start
-
-- type: entity
-  id: RightArmCyberLaserEmitter
-  name: "right bulwark emitter arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberRArmBulwark
-    - type: BaseLayerIdToggled
-      layer: CyberRArmBulwarkToggledEmitter
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_bulwark_arm"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_bulwark_arm"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandRight
-      sound:
-        collection: LasersPickUp
-      items:
-        - CyberLaserEmitter
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
-    - type: Construction
-      graph: ImplantSwitchArmCyberLaserEmitter
-      node: start
-
-#Grenade Thrower Arms
-- type: entity
-  id: LeftArmCyberGrenadeThrower
-  name: "left hephaestus thrower arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberLArmHephaestus
-    - type: BaseLayerIdToggled
-      layer: CyberLArmHephaestusThrowerToggled
-    - type: Sprite
-      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_hephaestus_titan"
-    - type: Icon
-      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_hephaestus_titan"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandLeft
-      sound:
-        collection: LasersPickUp
-      items:
-        - CyberGrenadeThrower
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
-    - type: Construction
-      graph: ImplantSwitchArmCyberGrenadeThrower
-      node: start
-
-- type: entity
-  id: RightArmCyberGrenadeThrower
-  name: "right hephaestus thrower arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
-  components:
-    - type: BaseLayerId
-      layer: CyberRArmHephaestus
-    - type: BaseLayerIdToggled
-      layer: CyberRArmHephaestusThrowerToggled
-    - type: Sprite
-      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_hephaestus_titan"
-    - type: Icon
-      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_hephaestus_titan"
-    - type: LimbWithItems
-      action: ActionToggleCyberHandRight
-      sound:
-        collection: LasersPickUp
-      items:
-        - CyberGrenadeThrower
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
-    - type: Construction
-      graph: ImplantSwitchArmCyberGrenadeThrower
+      graph: ImplantSwitchArmCyberRipper
       node: start

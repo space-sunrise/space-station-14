@@ -414,7 +414,7 @@
   - type: FireProtection
     reduction: 0.8
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.4 # Sunrise-edit
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -424,7 +424,7 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.4
-        Radiation: 0.0
+        Radiation: 0.1 # Sunrise-edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -495,10 +495,10 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.3
-        Radiation: 0.1
+        Radiation: 0.2 # Sunrise-edit
         Caustic: 0.2
   - type: ExplosionResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.3 # Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -790,7 +790,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
-    damageCoefficient: 0.1 #Sunrise-edit
+    damageCoefficient: 0.4 #Sunrise-edit
   - type: Pierceable
     level: Rock
   - type: Armor

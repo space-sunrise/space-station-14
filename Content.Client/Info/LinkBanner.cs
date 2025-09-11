@@ -59,6 +59,7 @@ namespace Content.Client.Info
             };
             roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);
+            AddInfoButton("ui-lobby-replays-button", SunriseCCVars.InfoLinksReplays);
             // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)

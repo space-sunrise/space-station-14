@@ -336,7 +336,7 @@
     children:
     # Common Group
     - !type:GroupSelector
-      weight: 95
+      weight: 85  # Sunrise-edit
       children:
       - id: Machete
       - id: BaseBallBat
@@ -345,9 +345,15 @@
       - id: RifleStock
       - id: ModularReceiver
       - id: HydroponicsToolScythe
+      # Sunrise-start
+      - id: WeaponSubMachineGunMakeshift
+      - id: WeaponPistolMakeshiftCrafted
+      - id: WeaponRevolverMakeshift
+      - id: WeaponSniperMakeshift
+      # Sunrise-end
     # Rare Group
     - !type:GroupSelector
-      weight: 5
+      weight: 15 # Sunrise-edit
       children:
       - id: Lighter
       - id: Matchbox
@@ -358,6 +364,12 @@
         weight: 2
       - id: Syringe
       - id: Mousetrap
+      # Sunrise-start
+      - id: WeaponSubMachineGunImprovised
+      - id: WeaponPistolImprovised
+      - id: WeaponRevolverImprovised
+      - id: WeaponSniperImprovised
+      # Sunrise-end
       - !type:GroupSelector
         weight: 2
         children:

@@ -120,3 +120,49 @@
     - id: RubberStampPath
     - id: ClothingOuterHospitalGown
       amount: 2
+
+- type: entity
+  id: LockerMiningSpecialist
+  parent: LockerBaseSecure
+  suffix: Empty
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: mining
+    stateDoorOpen: mining_open
+    stateDoorClosed: mining_door
+  - type: AccessReader
+    access: [["Mining"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+
+- type: entity
+  id: LockerMiningSpecialistFilled
+  parent: LockerMiningSpecialist
+  suffix: Filled, Hardsuit
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterHardsuitSalvage
+    - id: ToolboxMechanicalFilledAllTools
+    - id: ClothingMaskGasExplorer
+    - id: AirTankFilled
+    - id: RadioHandheld
+    - id: OreBag
+    - id: Nanopaste
+    - id: WeaponProtoKineticAccelerator
+    - id: HandHeldMassScanner
+    - id: PKAUpgradeRange
+      prob: 0.1
+    - id: PKAUpgradeFireRate
+      prob: 0.1
+    - id: PKAUpgradeDamage
+      prob: 0.1
