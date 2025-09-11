@@ -192,7 +192,7 @@
         Dead: 0
       baseDecayRate: 0.0001
     - type: Hunger
-      currentHunger: 2500   # spawn with Okay hunger state
+      startingThirst: 2500   # spawn with Okay hunger state
       thresholds:
         Overfed: 3500
         Okay: 2500
@@ -333,7 +333,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
@@ -659,7 +660,6 @@
     verbImage: null
   - type: CrewMonitoringServer
   - type: SingletonDeviceNetServer
-    serverType: CrewMonitoringServer
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: CrewMonitor
@@ -729,8 +729,6 @@
     sprite: _Sunrise/Objects/Weapons/Melee/chainsword.rsi
   - type: UseDelay
     delay: 1.0
-  - type: Reflect
-    enabled: false
   - type: ToggleableLightVisuals
     spriteLayer: blade
     inhandVisuals:
@@ -858,7 +856,6 @@
 #
 
 - type: entity
-  noSpawn: false
   parent: ClothingBackpackERTClown
   id: ClothingBackpackArrowsFilled
   name: Netrunner's backpack
