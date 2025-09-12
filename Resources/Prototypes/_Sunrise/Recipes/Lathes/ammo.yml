@@ -1,13 +1,4 @@
-
-- type: latheRecipe
-  id: MagazineBatteryLr30
-  parent: BaseAmmoRecipe
-  result: MagazineBatteryLr30
-  materials:
-    Steel: 250
-    Glass: 50
-    Plasma: 25
-
+## Recipes
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineMagnumEmpty
@@ -21,6 +12,137 @@
   result: MagazineMagnum
   materials:
     Steel: 145
+
+- type: latheRecipe
+  id: MagazineBatteryLr30
+  parent: BaseAmmoRecipe
+  result: MagazineBatteryLr30
+  materials:
+    Steel: 250
+    Glass: 50
+    Plasma: 25
+
+# .20 Rifle
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleSP
+  result: MagazineRifleSP
+  materials:
+    Steel: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleHP
+  result: MagazineRifleHP
+  materials:
+    Steel: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleFMJ
+  result: MagazineRifleFMJ
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleAP
+  result: MagazineRifleAP
+  materials:
+    Steel: 475
+    Uranium: 150
+
+# .20 Rifle Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifleSP
+  result: MagazineBoxRifleSP
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifleHP
+  result: MagazineBoxRifleHP
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifleFMJ
+  result: MagazineBoxRifleFMJ
+  materials:
+    Steel: 900
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifleAP
+  result: MagazineBoxRifleAP
+  materials:
+    Steel: 750
+    Uranium: 250
+
+# .30 Rifle
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleSP
+  result: MagazineLightRifleSP
+  materials:
+    Steel: 565
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleHP
+  result: MagazineLightRifleHP
+  materials:
+    Steel: 565
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleFMJ
+  result: MagazineLightRifleFMJ
+  materials:
+    Steel: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAP
+  result: MagazineLightRifleAP
+  materials:
+    Steel: 565
+    Uranium: 180
+
+# .30 Rifle Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxLightRifleSP
+  result: MagazineBoxLightRifleSP
+  materials:
+    Steel: 900
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxLightRifleHP
+  result: MagazineBoxLightRifleHP
+  materials:
+    Steel: 900
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxLightRifleFMJ
+  result: MagazineBoxLightRifleFMJ
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxLightRifleAP
+  result: MagazineBoxLightRifleAP
+  materials:
+    Steel: 900
+    Uranium: 300
+
 
 - type: latheRecipe
   id: MagazineNewVector

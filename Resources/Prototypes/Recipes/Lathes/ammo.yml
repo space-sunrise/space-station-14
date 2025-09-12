@@ -32,26 +32,12 @@
   materials:
     Steel: 25
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleSP
-  result: MagazineRifleSP
-  materials:
-    Steel: 425
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHP
-  result: MagazineRifleHP
-  materials:
-    Steel: 425
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleFMJ
-  result: MagazineRifleFMJ
-  materials:
-    Steel: 525
+# - type: latheRecipe
+#   parent: BaseAmmoRecipe
+#   id: MagazineRifle
+#   result: MagazineRifle
+#   materials:
+#     Steel: 475
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -61,14 +47,6 @@
     Steel: 25
     Plastic: 225 #Sunrise-edit
     Plasma: 225 #Sunrise-add
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleAP
-  result: MagazineRifleAP
-  materials:
-    Steel: 500
-    Uranium: 300
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -102,36 +80,6 @@
     Plasma: 375 #Sunrise-add
 
 - type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifleSP
-  result: MagazineBoxRifleSP
-  materials:
-    Steel: 750
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifleHP
-  result: MagazineBoxRifleHP
-  materials:
-    Steel: 750
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifleFMJ
-  result: MagazineBoxRifleFMJ
-  materials:
-    Steel: 750
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifleAP
-  result: MagazineBoxRifleAP
-  materials:
-    Plastic: 500
-    Steel: 500
-    Uranium: 500
-
-- type: latheRecipe
   parent: BaseAmmoBoxRecipe
   id: MagazineBoxRiflePractice
   result: MagazineBoxRiflePractice
@@ -154,26 +102,12 @@
   materials:
     Steel: 25
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleSP
-  result: MagazineLightRifleSP
-  materials:
-    Steel: 550
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleHP
-  result: MagazineLightRifleHP
-  materials:
-    Steel: 550
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleFMJ
-  result: MagazineLightRifleFMJ
-  materials:
-    Steel: 650
+# - type: latheRecipe
+#   parent: BaseAmmoRecipe
+#   id: MagazineLightRifle
+#   result: MagazineLightRifle
+#   materials:
+#     Steel: 565
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -183,14 +117,6 @@
     Steel: 25
     Plastic: 270 #Sunrise-edit
     Plasma: 270 #Sunrise-add
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleAP
-  result: MagazineLightRifleAP
-  materials:
-    Steel: 550
-    Uranium: 350
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -208,26 +134,12 @@
     Plastic: 360
     Uranium: 360
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleSP
-  result: MagazineBoxLightRifleSP
-  materials:
-    Steel: 900
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleHP
-  result: MagazineBoxLightRifleHP
-  materials:
-    Steel: 900
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleFMJ
-  result: MagazineBoxLightRifleFMJ
-  materials:
-    Steel: 900
+# - type: latheRecipe
+#   parent: BaseAmmoBoxRecipe
+#   id: MagazineBoxLightRifle
+#   result: MagazineBoxLightRifle
+#   materials:
+#     Steel: 900
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
@@ -250,15 +162,6 @@
   result: MagazineBoxLightRifleUranium
   materials:
     Plastic: 600
-    Uranium: 600
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleAP
-  result: MagazineBoxLightRifleAP
-  materials:
-    Plastic: 600
-    Steel: 600
     Uranium: 600
 
 # .35 Auto
