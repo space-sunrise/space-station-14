@@ -164,7 +164,7 @@ ignore_list:
   - <username>
   - <index>
   - 'MHelp'
-  - 'ERR*?*!'
+  - 'Net-ERR*?*%'
 
 ignore_files:
   - 'italian.ftl'
