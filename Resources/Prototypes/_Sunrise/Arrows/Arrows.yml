@@ -192,7 +192,7 @@
         Dead: 0
       baseDecayRate: 0.0001
     - type: Hunger
-      startingThirst: 2500   # spawn with Okay hunger state
+      startingHunger: 2500   # spawn with Okay hunger state
       thresholds:
         Overfed: 3500
         Okay: 2500
@@ -394,7 +394,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
@@ -857,6 +858,7 @@
 
 - type: entity
   parent: ClothingBackpackERTClown
+  categories: [ HideSpawnMenu ]
   id: ClothingBackpackArrowsFilled
   name: Netrunner's backpack
   description: Holds the kit of CentComm's most feared agents.
@@ -885,8 +887,8 @@
           amount: 2
 
 - type: entity
-  noSpawn: false
   parent: ClothingBackpackERTClown
+  categories: [ HideSpawnMenu ]
   id: ClothingBackpackArrowsSoldFilled
   name: PMC "Arrows" soldier's backpack
   description: Holds the kit of CentComm's most feared agents.
@@ -1300,7 +1302,7 @@
 - type: entity
   id: NetrunnerCheck
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 8
