@@ -128,7 +128,7 @@
       Blunt: 35
       Piercing: 10 # +30%
   staminaDamage: 10
-  armorPenetration: -0.75
+  armorPenetration: -0.7
   pierceChance: 0.03
   derivation: 0.05
   ricochetChance: 0.15
@@ -253,7 +253,7 @@
     types:
       Blunt: 16
       Piercing: 5 # +30%
-  armorPenetration: -0.75
+  armorPenetration: -0.7
   staminaDamage: 5
   pierceChance: 0.03
   derivation: 0.2
@@ -365,7 +365,7 @@
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: bullet
-  armorPenetration: -0.75
+  armorPenetration: -0.7
   pierceChance: 0.02
   derivation: 0.15
   ricochetChance: 0.10
@@ -482,7 +482,7 @@
       Blunt: 19
       Piercing: 6 # +30%
   pierceLevel: Wood
-  armorPenetration: -0.75
+  armorPenetration: -0.7
   staminaDamage: 6
   pierceChance: 0.03
   derivation: 0.05
@@ -591,7 +591,7 @@
     types:
       Blunt: 17
       Piercing: 6 # +30%
-  armorPenetration: -0.75
+  armorPenetration: -0.7
   staminaDamage: 5
   pierceChance: 0.03
   ricochetChance: 0.15
