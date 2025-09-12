@@ -920,8 +920,8 @@
     Steel: 250
 
 # - type: latheRecipe
-#   id: MagazineVP70
-#   result: MagazineVP70
+#   id: MagazineVP78
+#   result: MagazineVP78
 #   categories:
 #   - Ammo
 #   completetime: 5

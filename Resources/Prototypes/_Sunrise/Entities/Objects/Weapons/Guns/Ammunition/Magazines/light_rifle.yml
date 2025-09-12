@@ -218,13 +218,13 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineVP70
+  id: MagazineVP78
   name: VP70 magazine
   parent: BaseItem
   components:
     - type: Tag
       tags:
-        - MagazineVP70
+        - MagazineVP78
     - type: BallisticAmmoProvider
       proto: CartridgePistol40SP  # 45 ACP
       mayTransfer: true
