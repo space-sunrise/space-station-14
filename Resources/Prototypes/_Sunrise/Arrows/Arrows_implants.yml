@@ -7,6 +7,7 @@
   id: ActionBlinkImp
   name: Teleport
   description: Teleport by pointing to locations.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Action
     useDelay: 2
@@ -29,6 +30,7 @@
   id: BlinkImplant
   name: Jump Implant
   description: Allows the user to instantly teleport to a targeted location up to three times before depleting.
+  categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
       implantAction: ActionBlinkImp
@@ -82,6 +84,7 @@
   id: ActionForceWallArrows
   name: Force barrier
   description: Creates a temporary barrier that restricts the enemy's movement.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Action
     useDelay: 40
@@ -99,6 +102,7 @@
   id: WallImplant
   name: Force barrier Implant
   description: Creates a barrier that is intangible to the owner but tangible to everyone else, useful for restricting passage.
+  categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
       implantAction: ActionForceWallArrows
@@ -119,6 +123,7 @@
   id: ActionSmiteImp
   name: Overload
   description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Action
     useDelay: 90
@@ -136,7 +141,8 @@
   parent: BaseSubdermalImplant
   id: SmiteImplant
   name: Overload Implant
-  description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target
+  description: Point your cursor at a person and activate the overload, and any electrical devices will destroy the target.
+  categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
       implantAction: ActionSmiteImp
@@ -156,6 +162,7 @@
   id: DeathRattleImplantMT
   name: Death rattle implant
   description: This implant will notify the Arrows radio channel if the user is in critical condition or dies.
+  categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
     radioChannel: MT
