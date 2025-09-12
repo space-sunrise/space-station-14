@@ -14,6 +14,7 @@
     - MagazineMagnumRubber
     - MagazineMagnum
     - MagazineMagnumEmpty
+    - MagazineMagnumPractice
     # Pistol
     - MagazineBoxPistolSP
     - MagazineBoxPistolHP
@@ -141,7 +142,7 @@
     - MagazineBoxPistolIncendiary
     - MagazineBoxPistolUranium
     - MagazineBoxPistolAP
-    #- MagazineBoxPistol40AP
+    - MagazineBoxPistol40AP
   # Rifle
     - MagazineBoxRifleIncendiary
     - MagazineBoxRifleUranium
@@ -167,12 +168,14 @@
   # Magnum
     - SpeedLoaderMagnumIncendiary
     - SpeedLoaderMagnumUranium
+    - MagazineMagnumUranium
     - SpeedLoaderMagnumAP
+    - MagazineMagnumAP
   # Pistol
     - MagazinePistolIncendiary
     - MagazinePistolUranium
     - MagazinePistolAP
-    #- MagazinePistol40AP
+    - MagazinePistol40AP
   # Pistol High Capacity
     - MagazinePistolHighCapacityIncendiary
     - MagazinePistolHighCapacityUranium
