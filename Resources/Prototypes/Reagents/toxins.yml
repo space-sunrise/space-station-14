@@ -563,6 +563,7 @@
   color: "#AAAAAA"
   metabolisms:
     Poison:
+      metabolismRate: 1
       effects:
       - !type:GenericStatusEffect
         key: Pacified
