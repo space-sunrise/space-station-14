@@ -46,6 +46,9 @@
 - type: Tag
   id: CreepyLaugh
 
+- type: Tag
+  id: TrayScanner
+
 # Catridges:
 
 - type: Tag
