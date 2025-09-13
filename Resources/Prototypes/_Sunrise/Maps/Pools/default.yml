@@ -4,7 +4,7 @@
   id: SunriseMapPool
   maps:
   - SunriseDelta
-  #- SunriseBox
+  - SunriseBox
 #  - SunrisePlasma # НЕ ГОТОВО ПРИБЫТИЕ/ОТБЫТИЕ ДЛЯ БОЛЬШОГО ШАТТЛА
   #- SunriseBarratry
   #- SunriseFland
