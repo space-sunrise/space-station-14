@@ -67,6 +67,12 @@ public sealed partial class HyposprayComponent : Component
     /// </summary>
     [DataField]
     public float DoAfterTime = 0f;
+
+    /// <summary>
+    /// Frontier: if true, object will not injected of he has metabolized reagent same with contained in the hypo.
+    /// </summary>
+    [DataField]
+    public bool PreventOverdoze;
 }
 
 [Serializable, NetSerializable]

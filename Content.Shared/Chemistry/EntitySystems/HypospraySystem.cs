@@ -367,16 +367,31 @@ public sealed class HypospraySystem : EntitySystem
 
         if (!_solutionContainers.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
         {
-            _popup.PopupEntity(Loc.GetString("hypospray-component-empty-message"), target, user);
-            returnValue = true;
+            //_popup.PopupEntity(Loc.GetString("hypospray-component-empty-message"), target, user);
+            returnValue = false;
             return false;
         }
 
         if (!_solutionContainers.TryGetInjectableSolution(target, out targetSoln, out targetSolution))
         {
-            _popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+            //_popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
             returnValue = false;
             return false;
+        }
+
+        if (entity.Comp.PreventFromOverdoze)
+        {
+            foreach (var (idHypoSoln, quantity1) in hypoSpraySoln.Value.Comp.Solution.Contents)
+            {
+                foreach (var (idTargetSoln, quantity2) in targetSoln.Value.Comp.Solution.Contents)
+                if (idHypoSoln == idTargetSoln)
+                {
+                    _popup.PopupEntity(Loc.GetString("hypospray-cancel-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+                    returnValue = false;
+                    return false;
+                }
+
+            }
         }
 
         return true;
