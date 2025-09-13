@@ -1,26 +1,18 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledBauer
-  name: Bauer-127 bundle
-  description: "The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set."
+  name: Sniper bundle
+  description: "Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles."
   components:
   - type: StorageFill
     contents:
       - id: WeaponRifleBauer127Biocode
       - id: MagazineBauer127
-      - id: MagazineBauer127
-
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledDragunov
-  name: Dragunov bundle
-  description: "The iconic Dragunov magazine rifle with 2 raspy magazines in the set."
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSniperDragunovBiocode
-      - id: MagazineDragunov
-      - id: MagazineDragunov
+        amount: 3
+      - id: MagazineBoxAntiMateriel
+        amount: 2
+      - id: ClothingEyesGlassesThermalSyndie
+      - id: PowerCellSyndicate
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo

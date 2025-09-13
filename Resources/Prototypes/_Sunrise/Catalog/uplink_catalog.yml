@@ -607,7 +607,7 @@
 #       - AssaultOpsUplink
 
 - type: listing
-  id: UplinkC20RBundle
+  id: UplinkC40RBundle
   name: uplink-c40r-bundle-name
   description: uplink-c40r-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/SMGs/c40r.rsi, state: icon }
@@ -701,15 +701,14 @@
 
 - type: listing
   id: UplinkWeaponDragunov
-  name: uplink-weapon-dragunov-name
-  productEntity: ClothingBackpackDuffelSyndicateFilledDragunov
-  description: uplink-weapon-dragunov-desc
+  name: uplink-weapon-ussp-dmr-name
+  productEntity: CrateAmmunitionSmallDragunov
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/big.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 13
   cost:
-    Telecrystal: 17
+    Telecrystal: 16
   categories:
   - UplinkWeaponry
   conditions:
@@ -720,15 +719,13 @@
 
 - type: listing
   id: UplinkWeaponBauer127
-  name: uplink-weapon-bauer-127-name
   productEntity: ClothingBackpackDuffelSyndicateFilledBauer
-  description: uplink-weapon-bauer-127-name
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 14
-  cost:
     Telecrystal: 18
+  cost:
+    Telecrystal: 22
   categories:
   - UplinkWeaponry
   conditions:
