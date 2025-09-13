@@ -263,12 +263,12 @@
   name: uplink-grenade-launcher-china-lake-name
   description: uplink-grenade-launcher-china-lake-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
-  productEntity: WeaponLauncherChinaLakeBiocode
+  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 10 # Sunrise-Edit
+    Telecrystal: 14
   cost:
-    Telecrystal: 12 # Sunrise-Edit
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
 #Sunrise-start

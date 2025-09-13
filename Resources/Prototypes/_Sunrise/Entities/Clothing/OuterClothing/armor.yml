@@ -67,27 +67,36 @@
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
+    equipSound: /Audio/Items/belt_equip.ogg
+    unequipSound: /Audio/Items/belt_equip.ogg
+    equipDelay: 2
+    unequipDelay: 3
+    stripDelay: 8
+  - type: Item
+    size: Ginormous
   - type: StaminaResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.7
   - type: Pierceable
     level: Rock
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.3
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.45
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.6
   - type: PressureProtection
     highPressureMultiplier: 0.5
-    lowPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
   - type: TemperatureProtection
     heatingCoefficient: 0.5
     coolingCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -132,9 +141,11 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.02
     coolingCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.95
+    sprintModifier: 0.85
   #Shoulder mounted flashlight
   - type: ToggleableLightVisuals
     spriteLayer: light

@@ -109,6 +109,16 @@
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
   parent: WeaponRifleM90GrenadeLauncher
   id: WeaponRifleM90GrenadeLauncherBiocode
   suffix: BIOCODE

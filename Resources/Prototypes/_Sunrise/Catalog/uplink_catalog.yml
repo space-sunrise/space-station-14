@@ -158,17 +158,27 @@
   - UplinkWearables
 
 # Ammunition
+
+# For the Deagle
 - type: listing
   id: UplinkPistolMagnumMagazine
   name: uplink-pistol-magnum-magazine-name
   description: uplink-pistol-magnum-magazine-desc
-  icon:
-    { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/deagle.rsi, state: base, }
-  productEntity: MagazineDeagle
+  productEntity: MagazineMagnum
   cost:
     Telecrystal: 1
   categories:
     - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineMagnumAP
+  name: uplink-pistol-magnum-magazine-ap-name
+  description: uplink-pistol-magnum-magazine-ap-desc
+  productEntity: MagazineMagnumAP
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
 
 - type: listing
   id: UplinkPistol9mmMagazineFMJ
@@ -462,7 +472,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkAmmo
   conditions:
@@ -482,7 +492,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkAmmo
   conditions:
@@ -502,7 +512,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkAmmo
   conditions:
@@ -595,6 +605,27 @@
 #     blacklist:
 #       tags:
 #       - AssaultOpsUplink
+
+- type: listing
+  id: UplinkC20RBundle
+  name: uplink-c40r-bundle-name
+  description: uplink-c40r-bundle-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/SMGs/c40r.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSMG40
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkWeaponry
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
@@ -1674,12 +1705,12 @@
   id: uplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagle
+  productEntity: WeaponPistolDeagleBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 7
+    Telecrystal: 5
   categories:
   - UplinkWeaponry
 
@@ -1701,12 +1732,12 @@
   name: uplink-grenade-launcher-m79-name
   description: uplink-grenade-launcher-m79-desc
   icon: { sprite: /Textures/_RMC14/Objects/Weapons/Guns/Launchers/m79/big.rsi, state: base }
-  productEntity: WeaponLauncherM79Biocode
+  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 2 # Good morning Vietnam!
+    Telecrystal: 10 # Good morning Vietnam!
   cost:
-    Telecrystal: 6
+    Telecrystal: 14
   categories:
   - UplinkWeaponry
   conditions:
@@ -1721,12 +1752,12 @@
   name: uplink-grenade-launcher-gl70-name
   description: uplink-grenade-launcher-gl70-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/HMGs/gl-64/big.rsi, state: icon }
-  productEntity: WeaponGrenadeLauncherGL70Biocode
+  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 18
+    Telecrystal: 20
   cost:
-    Telecrystal: 25
+    Telecrystal: 35
   categories:
   - UplinkWeaponry
   conditions:
