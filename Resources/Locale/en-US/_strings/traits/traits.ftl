@@ -63,6 +63,11 @@ trait-french-desc = Your accent seems to have a certain «je ne sais quoi».
 trait-spanish-name = Spanish accent
 trait-spanish-desc = Hola señor, donde esta la biblioteca.
 
+# Fish-edit-start
+trait-formal-name = Formal accent
+trait-formal-desc = You speak in a very formal manner, expanding abbreviations into their full meanings.
+# Fish-edit-end
+
 trait-painnumbness-name = Numb
 trait-painnumbness-desc = You lack any sense of feeling pain, being unaware of how hurt you may be.
 

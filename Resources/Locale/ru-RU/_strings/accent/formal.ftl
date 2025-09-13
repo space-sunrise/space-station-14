@@ -1,7 +1,12 @@
+# Fish-edit-start
 # Formal accent - expands abbreviations to full meanings
 # This accent makes speech more formal by expanding common abbreviations
 
 # Russian abbreviations moved from chatsanitize
+accent-formal-words-97 = рнд
+accent-formal-words-replace-97 = Научный отдел
+accent-formal-words-98 = сб
+accent-formal-words-replace-98 = служба безопасности
 accent-formal-words-99 = кеп
 accent-formal-words-replace-99 = капитан
 accent-formal-words-100 = кэп
@@ -83,7 +88,7 @@ accent-formal-words-replace-137 = представитель NanoTrasen
 accent-formal-words-138 = пункт
 accent-formal-words-replace-138 = пунктураз
 accent-formal-words-139 = нио
-accent-formal-words-replace-139 = рнд
+accent-formal-words-replace-139 = научный отдел
 accent-formal-words-140 = варденом
 accent-formal-words-replace-140 = смотрителем
 accent-formal-words-141 = вард
@@ -102,4 +107,5 @@ accent-formal-words-147 = нра
 accent-formal-words-replace-147 = научного руководителя
 accent-formal-words-148 = нру
 accent-formal-words-replace-148 = научному руководителю
+# Fish-edit-end
 

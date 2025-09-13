@@ -855,7 +855,8 @@
     accent-moldovan-words-32: accent-moldovan-words-replace-32
     accent-moldovan-words-33: accent-moldovan-words-replace-33
 
-- type: accent # Fish-edit
+# Fish-edit-start
+- type: accent
   id: formal
   wordReplacements:
     accent-formal-words-101: accent-formal-words-replace-101 # авд -> агент внутренних дел
@@ -906,3 +907,4 @@
     accent-formal-words-146: accent-formal-words-replace-146 # пцк -> представитель центрального командования
     accent-formal-words-147: accent-formal-words-replace-147 # нра -> научного руководителя
     accent-formal-words-148: accent-formal-words-replace-148 # нру -> научному руководителю
+# Fish-edit-end
