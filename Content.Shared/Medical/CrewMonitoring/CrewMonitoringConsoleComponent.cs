@@ -45,4 +45,10 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     /// </summary>
     [DataField("corpseAlertSound")]
     public SoundSpecifier CorpseAlertSound = new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg", AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-3f));
+
+    /// <summary>
+    ///     Sound to play when mob state changed.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier StateChangeAlertSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/Medical/scanner_use.ogg", AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(10f));
 }

@@ -48,10 +48,7 @@ public sealed partial class MobThresholdsComponent : Component
     /// </summary>
     [DataField("allowRevives")]
     public bool AllowRevives;
-    //Sunrise-Start
-    [DataField]
-    public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/Medical/scanner_use.ogg", AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(10f));
-    //Sunrise-End
+
 }
 
 [Serializable, NetSerializable]

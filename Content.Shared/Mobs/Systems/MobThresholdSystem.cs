@@ -558,9 +558,6 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!_entManager.TryGetComponent<TransformComponent>(ent, out var transform))
                 return;
 
-        if (!_entManager.TryGetComponent<MobThresholdsComponent>(ent, out var mt))
-                return;
-            
         if (transform.GridUid == null)
             return;
         var entities = new HashSet<Entity<CrewMonitoringConsoleComponent>>();
@@ -574,7 +571,7 @@ public sealed class MobThresholdSystem : EntitySystem
             if (inter.Mode == CrewMonitoringMode.ToggleOff || inter.Mode == CrewMonitoringMode.AnyoneDead)
                 continue;
             
-            _audio.PlayPvs(mt.AlertSound, entityUid);
+            _audio.PlayPvs(inter.StateChangeAlertSound, entityUid);
 
         }
         //Sunrise-End
