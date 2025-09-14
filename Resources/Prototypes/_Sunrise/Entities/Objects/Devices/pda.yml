@@ -95,24 +95,24 @@
 
 - type: entity
   parent: BaseMedicalPDA
-  id: PathologistPDA
-  name: Pathologist PDA
+  id: SurgeonPDA
+  name: Surgeon PDA
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
-    id: PathologistIDCard
+    id: SurgeonIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-patologoanatom
+        pda-surgeon
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#447987"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
-    state: pda-patologoanatom
+    state: pda-surgeon
 
 - type: entity
   parent: BasePDA

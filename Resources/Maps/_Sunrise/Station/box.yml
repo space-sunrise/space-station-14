@@ -85799,7 +85799,7 @@ entities:
     - type: Transform
       pos: -38.5,-71.5
       parent: 2
-- proto: ClosetPatologoanatomFilled
+- proto: ClosetSurgeonFilled
   entities:
   - uid: 10995
     components:
@@ -178370,7 +178370,7 @@ entities:
     - type: Transform
       pos: 30.5,-27.5
       parent: 2
-- proto: SpawnPointMedicalPathologist
+- proto: SpawnPointMedicalSurgeon
   entities:
   - uid: 24126
     components:

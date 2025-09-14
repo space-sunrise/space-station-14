@@ -154,16 +154,16 @@
   - Socks
 
 - type: roleLoadout
-  id: JobMedicalPathologist
+  id: JobMedicalSurgeon
   groups:
-  - PathologistHead
-  - PathologistMask
+  - SurgeonHead
+  - SurgeonMask
   - MedicalDoctorJumpsuit
-  - PathologistGloves
+  - SurgeonGloves
   - MedicalBackpack
-  - PathologistOuterClothing
-  - PathologistNeck
-  - PathologistShoes
+  - SurgeonOuterClothing
+  - SurgeonNeck
+  - SurgeonShoes
   - GroupTankHarness
   - Glasses
   - SurvivalMedical

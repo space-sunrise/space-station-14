@@ -40313,7 +40313,7 @@ entities:
     - type: Transform
       pos: 67.5,31.5
       parent: 2
-- proto: ClosetPatologoanatomFilled
+- proto: ClosetSurgeonFilled
   entities:
   - uid: 6228
     components:
@@ -84209,7 +84209,7 @@ entities:
     - type: Transform
       pos: 73.5,6.5
       parent: 2
-- proto: SpawnPointMedicalPathologist
+- proto: SpawnPointMedicalSurgeon
   entities:
   - uid: 12999
     components:

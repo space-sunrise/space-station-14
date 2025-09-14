@@ -93322,7 +93322,7 @@ entities:
         - 0
         - 0
         - 0
-- proto: ClosetPatologoanatomFilled
+- proto: ClosetSurgeonFilled
   entities:
   - uid: 14507
     components:
@@ -189657,7 +189657,7 @@ entities:
     - type: Transform
       pos: 7.5,65.5
       parent: 2
-- proto: SpawnPointMedicalPathologist
+- proto: SpawnPointMedicalSurgeon
   entities:
   - uid: 28817
     components:
