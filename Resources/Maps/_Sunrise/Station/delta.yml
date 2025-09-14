@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: sunrise_station
   forkVersion: 7d81ad1544399f6cbaf94dcbf55699c4cc425729
-  time: 09/13/2025 21:49:11
-  entityCount: 43218
+  time: 09/14/2025 02:28:17
+  entityCount: 43228
 maps:
 - 1
 grids:
@@ -3410,6 +3410,7 @@ entities:
             40950: 39,-15
             41111: -17,50
             41113: -20,50
+            41280: 36,50
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -4943,6 +4944,7 @@ entities:
             40951: 41,-15
             41110: -21,50
             41112: -18,50
+            41281: 36,50
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -16403,6 +16405,12 @@ entities:
           decals:
             40012: 72.023895,29.027317
         - node:
+            angle: -1.5707963267948966 rad
+            color: '#FFFFFFFF'
+            id: Caution
+          decals:
+            41285: 37,48
+        - node:
             color: '#FFFFFFFF'
             id: Caution
           decals:
@@ -16429,7 +16437,6 @@ entities:
             34243: 31,52
             39254: 25,80
             39255: 25,79
-            41223: 37,48
         - node:
             color: '#FFFFFFFF'
             id: CautionGreyscale
@@ -21092,6 +21099,11 @@ entities:
             32825: -19,-59
             38061: -46,2
         - node:
+            color: '#1861D5FF'
+            id: WarnCornerGreyscaleNW
+          decals:
+            41273: 35,49
+        - node:
             color: '#52B4E9FF'
             id: WarnCornerGreyscaleNW
           decals:
@@ -21116,7 +21128,6 @@ entities:
             31225: 26,-66
             31448: 38,-70
             35208: -47,2
-            41216: 35,49
         - node:
             color: '#52B4E9FF'
             id: WarnCornerGreyscaleSE
@@ -21145,6 +21156,11 @@ entities:
             33493: 25,40
             38062: -46,-1
         - node:
+            color: '#1861D5FF'
+            id: WarnCornerGreyscaleSW
+          decals:
+            41274: 35,47
+        - node:
             color: '#52B4E9FF'
             id: WarnCornerGreyscaleSW
           decals:
@@ -21169,7 +21185,6 @@ entities:
             31219: 26,-70
             31295: 38,-71
             35210: -47,-1
-            41214: 35,47
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerNE
@@ -21232,6 +21247,11 @@ entities:
             38382: 5,-17
             38597: -71,56
         - node:
+            color: '#1861D5FF'
+            id: WarnCornerSmallGreyscaleNE
+          decals:
+            41279: 36,49
+        - node:
             color: '#EFB341FF'
             id: WarnCornerSmallGreyscaleNE
           decals:
@@ -21253,7 +21273,11 @@ entities:
             38713: -65,51
             40109: 75,20
             40110: 75,24
-            41218: 36,49
+        - node:
+            color: '#1861D5FF'
+            id: WarnCornerSmallGreyscaleNW
+          decals:
+            41278: 36,49
         - node:
             color: '#FED83DFF'
             id: WarnCornerSmallGreyscaleNW
@@ -21272,7 +21296,6 @@ entities:
             38712: -62,51
             40111: 77,20
             40112: 77,24
-            41217: 36,49
         - node:
             color: '#52B4E9FF'
             id: WarnCornerSmallGreyscaleSE
@@ -21424,6 +21447,11 @@ entities:
             37548: -51,21
             37549: -49,22
             37550: -47,16
+        - node:
+            color: '#1861D5FF'
+            id: WarnFullGreyscale
+          decals:
+            41271: 36,50
         - node:
             color: '#334E6DFF'
             id: WarnFullGreyscale
@@ -22109,9 +22137,9 @@ entities:
             39262: 36,79
             39264: 36,75
             39265: 36,80
-            41220: 37,49
-            41221: 37,48
-            41222: 37,47
+            41282: 37,47
+            41283: 37,48
+            41284: 37,49
         - node:
             color: '#334E6DC8'
             id: WarnLineGreyscaleE
@@ -22326,6 +22354,11 @@ entities:
           decals:
             35974: -47,15
         - node:
+            color: '#1861D5FF'
+            id: WarnLineGreyscaleN
+          decals:
+            41277: 37,49
+        - node:
             color: '#334E6DFF'
             id: WarnLineGreyscaleN
           decals:
@@ -22491,7 +22524,6 @@ entities:
             38721: -6,-51
             40103: 76,20
             40104: 76,24
-            41219: 37,49
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -22508,6 +22540,12 @@ entities:
             36772: -5,-80
             36773: 0,-80
             36774: 1,-80
+        - node:
+            color: '#1861D5FF'
+            id: WarnLineGreyscaleS
+          decals:
+            41275: 36,47
+            41276: 37,47
         - node:
             color: '#334E6DFF'
             id: WarnLineGreyscaleS
@@ -22695,8 +22733,6 @@ entities:
             38719: -6,-49
             40101: 76,22
             40102: 76,26
-            41212: 37,47
-            41213: 36,47
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -22736,6 +22772,11 @@ entities:
             36768: 1,-78
             36769: -5,-78
             36770: -6,-78
+        - node:
+            color: '#1861D5FF'
+            id: WarnLineGreyscaleW
+          decals:
+            41272: 35,48
         - node:
             color: '#334E6DC8'
             id: WarnLineGreyscaleW
@@ -22913,7 +22954,6 @@ entities:
             35231: 14,50
             37387: -50,41
             38491: -17,-51
-            41215: 35,48
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -32410,7 +32450,7 @@ entities:
       pos: -58.5,91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -233275.23
+      secondsUntilStateChange: -233618.69
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32426,7 +32466,7 @@ entities:
       pos: 79.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -156402.6
+      secondsUntilStateChange: -156746.05
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32487,7 +32527,7 @@ entities:
       pos: 52.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -68947.12
+      secondsUntilStateChange: -69290.57
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -33145,7 +33185,7 @@ entities:
       pos: -35.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -459261.2
+      secondsUntilStateChange: -459604.62
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34512,7 +34552,7 @@ entities:
       pos: -26.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -246888.56
+      secondsUntilStateChange: -247232.02
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -36065,7 +36105,7 @@ entities:
       pos: 81.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -564934.25
+      secondsUntilStateChange: -565277.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -77745,6 +77785,12 @@ entities:
     - type: Transform
       pos: 27.251167,84.60756
       parent: 2
+  - uid: 34854
+    components:
+    - type: Transform
+      parent: 34575
+    - type: Physics
+      canCollide: False
 - proto: CableApcStack10
   entities:
   - uid: 36183
@@ -78886,35 +78932,10 @@ entities:
     - type: Transform
       pos: -48.5,6.5
       parent: 2
-  - uid: 9138
-    components:
-    - type: Transform
-      pos: -44.5,2.5
-      parent: 2
-  - uid: 9139
-    components:
-    - type: Transform
-      pos: -44.5,1.5
-      parent: 2
-  - uid: 9140
-    components:
-    - type: Transform
-      pos: -44.5,0.5
-      parent: 2
-  - uid: 9141
-    components:
-    - type: Transform
-      pos: -44.5,-0.5
-      parent: 2
-  - uid: 9142
-    components:
-    - type: Transform
-      pos: -44.5,-1.5
-      parent: 2
   - uid: 9143
     components:
     - type: Transform
-      pos: -44.5,-2.5
+      pos: -45.5,-1.5
       parent: 2
   - uid: 9144
     components:
@@ -139705,7 +139726,7 @@ entities:
       pos: 39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -459146.38
+      secondsUntilStateChange: -459489.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -145555,7 +145576,7 @@ entities:
       pos: 15.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -278975.7
+      secondsUntilStateChange: -279319.12
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -145569,7 +145590,7 @@ entities:
       pos: -16.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -166164.22
+      secondsUntilStateChange: -166507.67
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -145770,7 +145791,7 @@ entities:
       pos: -39.5,-73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -586742.25
+      secondsUntilStateChange: -587085.7
       state: Closing
   - uid: 20628
     components:
@@ -217008,6 +217029,36 @@ entities:
       rot: 3.141592653589793 rad
       pos: 71.5,22.5
       parent: 2
+  - uid: 9138
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 12.5,-88.5
+      parent: 2
+  - uid: 9139
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 10.5,-88.5
+      parent: 2
+  - uid: 9140
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-88.5
+      parent: 2
+  - uid: 9141
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -9.5,-88.5
+      parent: 2
+  - uid: 9142
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-88.5
+      parent: 2
   - uid: 12847
     components:
     - type: Transform
@@ -221367,6 +221418,48 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-48.5
+      parent: 2
+  - uid: 33456
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.5,-88.5
+      parent: 2
+  - uid: 33800
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -11.5,-88.5
+      parent: 2
+  - uid: 34089
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -19.5,-88.5
+      parent: 2
+  - uid: 34381
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -41.5,-88.5
+      parent: 2
+  - uid: 34412
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -33.5,-88.5
+      parent: 2
+  - uid: 34573
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -31.5,-88.5
+      parent: 2
+  - uid: 34574
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -39.5,-88.5
       parent: 2
   - uid: 35085
     components:
@@ -235732,6 +235825,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.5,-53.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 34575
+    components:
+    - type: Transform
+      pos: 35.5,50.5
+      parent: 2
+    - type: Storage
+      storedItems:
+        34815:
+          position: 0,0
+          _rotation: South
+        34854:
+          position: 2,3
+          _rotation: South
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 34815
+          - 34854
     - type: Fixtures
       fixtures: {}
 - proto: ShelfStoreKitchen
@@ -287617,6 +287733,12 @@ entities:
       parent: 2
 - proto: WelderIndustrial
   entities:
+  - uid: 34815
+    components:
+    - type: Transform
+      parent: 34575
+    - type: Physics
+      canCollide: False
   - uid: 42293
     components:
     - type: Transform
