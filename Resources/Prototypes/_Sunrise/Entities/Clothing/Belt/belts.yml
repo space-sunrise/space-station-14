@@ -110,7 +110,7 @@
   - type: Item
     size: Normal
     shape:
-    - 0,0,0,6 
+    - 0,0,0,6
   - type: ItemSlots
     slots:
       item:
@@ -129,9 +129,6 @@
           tags:
           - SyndicateRapier
   - type: Appearance
-  - type: Storage # Sunrise
-    storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
-    storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing
