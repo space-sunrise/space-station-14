@@ -642,6 +642,9 @@
     - type: ClothingSpeedModifier
       sprintModifier: 1
     - type: HeldSpeedModifier
+    - type: EmpImmune
+    - type: StaticPrice
+      price: 7000
     # Sunrise-End
 
 - type: entity
