@@ -39,15 +39,6 @@
     Blunt: 5
 
 - type: damageModifierSet
-  id: Dragon
-  coefficients:
-    Blunt: 0.7
-    Slash: 0.7
-    Piercing: 0.7
-    Heat: 0.6
-    Shock: 0.5
-
-- type: damageModifierSet
   id: Rift
   coefficients:
     Blunt: 0.6
