@@ -127,6 +127,7 @@
       types:
         Piercing: 15
         Slash: 15
+        Structural: 40
   - type: Devourer
     foodPreferenceWhitelist:
       components:
