@@ -88,7 +88,7 @@
     speedModifierThresholds:
       400: 0.7 # Sunrise-Edit
       550: 0.5 # Sunrise-Edit
-   disable taking damage from fire, since its a fire breathing dragon
+   #disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
       types: {}
@@ -168,6 +168,9 @@
   - type: CollectiveMind
     minds:
     - Carp
+  - type: Damageable 
+     damageContainer: Biological 
+     damageModifierSet: Dragon
   - type: ToggleableNightVision
   - type: Reflect
     reflectProb: 0.25
