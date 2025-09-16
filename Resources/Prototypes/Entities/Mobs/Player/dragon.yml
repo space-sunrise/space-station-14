@@ -84,11 +84,11 @@
       0: Alive
       650: Critical # Sunrise-Edit
       700: Dead #Sunrise-Edit
-  #- type: SlowOnDamage Sunrise Edit
-  #  speedModifierThresholds:
-  #    250: 0.7
-  #    400: 0.5
-  # disable taking damage from fire, since its a fire breathing dragon
+  - type: SlowOnDamage Sunrise Edit
+    speedModifierThresholds:
+      400: 0.7 # Sunrise-Edit
+      550: 0.5 # Sunrise-Edit
+   disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
       types: {}
