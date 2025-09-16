@@ -1,0 +1,27 @@
+- type: alert
+  id: TrackerAlert
+  icons:
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackoff
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-center
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-south
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-southeast
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-east
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-northeast
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-north
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-northwest
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-west
+  - sprite: /Textures/_Sunrise/Interface/Alerts/tracker.rsi
+    state: trackon-southwest
+  name: tracker
+  description: Tracks.
+  minSeverity: 0
+  maxSeverity: 10
