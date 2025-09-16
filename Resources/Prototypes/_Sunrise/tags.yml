@@ -104,6 +104,30 @@
   id: UpgradeVestSec
 
 - type: Tag
+  id: UpgradeKitPlate
+
+- type: Tag
+  id: UpgradeKitBullet
+
+- type: Tag
+  id: UpgradeKitBulletHeavy
+
+- type: Tag
+  id: UpgradeKitStab
+
+- type: Tag
+  id: UpgradeKitRiot
+
+- type: Tag
+  id: UpgradeKitHeat
+
+- type: Tag
+  id: UpgradeKitReflective
+
+- type: Tag
+  id: ArmorBasic
+
+- type: Tag
   id: GorillaUpgradeKit
 
 # Magazines:

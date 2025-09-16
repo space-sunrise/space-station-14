@@ -33,7 +33,7 @@
     - WhitelistChameleon
   - type: ArmorSparkEffect #starlight
   - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+    damageCoefficient: 0.9 # Sunrise-Add
   # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders
@@ -45,12 +45,13 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
-    - NudeBottom # Sunrise-Add
-  # Sunrise-start
+    # Sunrise-start
+    - NudeBottom
+    - ArmorBasic
   - type: StaminaResistance
-    damageCoefficient: 0.85
+    damageCoefficient: 0.9
   - type: Construction
-    graph: VestArmorSecurity
+    graph: UpgradeArmorVest
     node: start
   # Sunrise-end
 

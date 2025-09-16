@@ -275,8 +275,8 @@
     Silver: 200
 
 - type: latheRecipe
-  id: VestSecUpgrade
-  result: VestSecUpgrade
+  id: VestSecUpgradeWeb
+  result: VestSecUpgradeWeb
   categories:
   - Weapons
   completetime: 60

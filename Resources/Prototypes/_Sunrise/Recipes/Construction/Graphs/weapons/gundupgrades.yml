@@ -55,6 +55,76 @@
     - node: upgraded
       entity: ClothingOuterVestWebSec
 
+- type: constructionGraph
+  id: UpgradeArmorVest
+  start: start
+  graph:
+    # стартовый узел — проверка наличия базового бронежилета
+    - node: start
+      edges:
+        # Ветка "против пуль"
+        - to: plate
+          steps:
+
+            - tag: UpgradeKitPlate
+              doAfter: 6
+        # Ветка "против ударов"
+        - to: stab
+          steps:
+
+            - tag: UpgradeKitStab
+              doAfter: 6
+        # Ветка "против лазеров"
+        - to: heat
+          steps:
+
+            - tag: UpgradeKitHeat
+              doAfter: 6
+
+    # Ветка "против пуль"
+    - node: plate
+      entity: ClothingOuterArmorPlate
+      edges:
+        - to: bullet
+          steps:
+            - tag: UpgradeKitBullet
+              doAfter: 10
+
+    - node: bullet
+      entity: ClothingOuterArmorBulletproof
+      edges:
+        - to: bullet_heavy
+          steps:
+            - tag: UpgradeKitBulletHeavy
+              doAfter: 12
+
+    - node: bullet_heavy
+      entity: ClothingOuterArmorBulletproofHeavy
+
+    # Ветка "против ударов"
+    - node: stab
+      entity: ClothingOuterArmorStab
+      edges:
+        - to: riot
+          steps:
+            - tag: UpgradeKitRiot
+              doAfter: 12
+
+    - node: riot
+      entity: ClothingOuterArmorRiot
+
+    # Ветка "против лазеров"
+    - node: heat
+      entity: ClothingOuterArmorHeatAbsorb
+      edges:
+        - to: reflective
+          steps:
+            - tag: UpgradeKitReflective
+              doAfter: 12
+
+    - node: reflective
+      entity: ClothingOuterArmorReflective
+
 # Gorilla Gauntlet
 - type: constructionGraph
   id: UpgradeCyberGorilla
