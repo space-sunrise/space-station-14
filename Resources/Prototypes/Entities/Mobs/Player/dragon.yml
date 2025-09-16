@@ -168,9 +168,9 @@
   - type: CollectiveMind
     minds:
     - Carp
-  - type: Damageable 
-     damageContainer: Biological 
-     damageModifierSet: Dragon
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Dragon
   - type: ToggleableNightVision
   - type: TTS
     voice: HearthstoneLordOfThunder
