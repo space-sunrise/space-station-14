@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
