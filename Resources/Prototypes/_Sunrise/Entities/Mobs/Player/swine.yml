@@ -21,6 +21,3 @@
   - type: CameraRecoil
   - type: Examiner
   - type: CanHostGuardian
-  - type: Tracker
-    trackedComponents:
-    - NukeDisk
