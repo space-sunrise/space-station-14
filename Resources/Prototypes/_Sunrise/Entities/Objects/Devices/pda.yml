@@ -500,6 +500,12 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: CommaidIDCard
+    penSlot:
+      startingItem: CommaidPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
