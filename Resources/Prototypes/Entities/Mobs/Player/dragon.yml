@@ -172,9 +172,6 @@
      damageContainer: Biological 
      damageModifierSet: Dragon
   - type: ToggleableNightVision
-  - type: Reflect
-    reflectProb: 0.25
-    spread: 45
   - type: TTS
     voice: HearthstoneLordOfThunder
   - type: InnateItem
