@@ -38,6 +38,12 @@
   flatReductions:
     Blunt: 5
 
+- type: damageModifierSet 
+   id: Dragon 
+   coefficients: 
+     Blunt: 1.3
+     Slash: 1.3
+
 - type: damageModifierSet
   id: Rift
   coefficients:
