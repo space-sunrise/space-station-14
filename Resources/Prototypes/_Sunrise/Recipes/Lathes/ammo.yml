@@ -183,7 +183,7 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineMagnum
+  id: MagazineMagnumHP
   result: MagazineMagnumHP
   materials:
     Steel: 240
