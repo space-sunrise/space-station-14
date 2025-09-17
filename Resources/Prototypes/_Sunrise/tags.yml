@@ -101,7 +101,7 @@
   id: UpgradeLecter
 
 - type: Tag
-  id: UpgradeVestSec
+  id: UpgradeWebVest
 
 - type: Tag
   id: UpgradeKitPlate

@@ -37,25 +37,6 @@
       entity: WeaponSubMachineGunDrozdMk2Empty
 
 - type: constructionGraph
-  id: VestArmorSecurity
-  start: start
-  graph:
-    - node: start
-      entity: ClothingOuterVestArmorSec
-      edges:
-        - to: upgraded
-          steps:
-            - tag: UpgradeVestSec
-              name: construction-graph-tag-upgradevestsec
-              doAfter: 8
-          completed:
-            - !type:AdminLog
-              message: "Converted Vest Sec to WebVest Sec"
-              impact: High
-    - node: upgraded
-      entity: ClothingOuterVestWebSec
-
-- type: constructionGraph
   id: UpgradeArmorVest
   start: start
   graph:
@@ -65,21 +46,32 @@
         - to: plate
           steps:
             - tag: UpgradeKitPlate
+              name: construction-graph-tag-pltvest
               doAfter: 5
         - to: stab
           steps:
             - tag: UpgradeKitStab
+              name: construction-graph-tag-stbvest
               doAfter: 5
         - to: heat
           steps:
             - tag: UpgradeKitHeat
+              name: construction-graph-tag-absrbvest
               doAfter: 5
+        - to: webvest
+          steps:
+            - tag: UpgradeWebVest
+              name: construction-graph-tag-webvest
+              doAfter: 15
+    - node: webvest
+      entity: ClothingOuterVestWebSec
     - node: plate
       entity: ClothingOuterArmorPlate
       edges:
         - to: bullet
           steps:
             - tag: UpgradeKitBullet
+              name: construction-graph-tag-blltvest
               doAfter: 8
     - node: bullet
       entity: ClothingOuterArmorBulletproof
@@ -87,7 +79,8 @@
         - to: bullet_heavy
           steps:
             - tag: UpgradeKitBulletHeavy
-              doAfter: 8
+              name: construction-graph-tag-hblltvest
+              doAfter: 12
     - node: bullet_heavy
       entity: ClothingOuterArmorBulletproofHeavy
     - node: stab
@@ -96,6 +89,7 @@
         - to: riot
           steps:
             - tag: UpgradeKitRiot
+              name: construction-graph-tag-riotvest
               doAfter: 8
     - node: riot
       entity: ClothingOuterArmorRiot
@@ -105,6 +99,7 @@
         - to: reflective
           steps:
             - tag: UpgradeKitReflective
+              name: construction-graph-tag-rflctvest
               doAfter: 8
     - node: reflective
       entity: ClothingOuterArmorReflective
