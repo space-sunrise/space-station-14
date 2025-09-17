@@ -253,40 +253,6 @@
     Steel: 250
 
 - type: latheRecipe
-  id: ClothingHeadHelmetPubg
-  result: ClothingHeadHelmetPubg
-  categories:
-  - Weapons
-  completetime: 18
-  materials:
-    Steel: 2000
-    Glass: 800
-    Plastic: 300
-
-- type: latheRecipe
-  id: ClothingShoesBootsMagCombat
-  result: ClothingShoesBootsMagCombat
-  categories:
-  - Weapons
-  completetime: 25
-  materials:
-    Steel: 1200
-    Plastic: 500
-    Silver: 200
-
-- type: latheRecipe
-  id: VestSecUpgradeWeb
-  result: VestSecUpgradeWeb
-  categories:
-  - Weapons
-  completetime: 60
-  materials:
-    Plastic: 1000
-    Steel: 500
-    Glass: 500
-    Plasma: 25
-
-- type: latheRecipe
   id: ModularReceiverAuto
   result: ModularReceiverAuto
   categories:
@@ -977,3 +943,117 @@
     Diamond: 300
     Uranium: 250
     Plasma: 250
+
+# Clothing
+- type: latheRecipe
+  id: ClothingHeadHelmetPubg
+  result: ClothingHeadHelmetPubg
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Steel: 1500
+    Glass: 300
+    Plastic: 300
+    Cloth: 200
+    Durathread: 100
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagCombat
+  result: ClothingShoesBootsMagCombat
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Steel: 1200
+    Plastic: 300
+    Durathread: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeWeb
+  result: VestSecUpgradeWeb
+  categories:
+  - Clothing
+  completetime: 35
+  materials:
+    Durathread: 2000
+    Plastic: 500
+    Steel: 200
+    Plasma: 100
+
+- type: latheRecipe
+  id: VestSecUpgradePlate
+  result: VestSecUpgradePlate
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 400
+    Steel: 600
+
+- type: latheRecipe
+  id: VestSecUpgradeBullet
+  result: VestSecUpgradeBullet
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 400
+    Plastic: 300
+    Glass: 300
+
+- type: latheRecipe
+  id: VestSecUpgradeBulletHeavy
+  result: VestSecUpgradeBulletHeavy
+  categories:
+  - Clothing
+  completetime: 20
+  materials:
+    Durathread: 400
+    Plastic: 400
+
+- type: latheRecipe
+  id: VestSecUpgradeStab
+  result: VestSecUpgradeStab
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 600
+    Durathread: 200
+    Plastic: 100
+
+- type: latheRecipe
+  id: VestSecUpgradeRiot
+  result: VestSecUpgradeRiot
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 400
+    Durathread: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeHeat
+  result: VestSecUpgradeHeat
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 200
+    Durathread: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeReflective
+  result: VestSecUpgradeReflective
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Durathread: 400
+    Plastic: 250
+    Glass: 250

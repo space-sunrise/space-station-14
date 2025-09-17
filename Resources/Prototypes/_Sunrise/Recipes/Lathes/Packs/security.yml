@@ -210,7 +210,14 @@
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat
+    - VestSecUpgradePlate
+    - VestSecUpgradeStab
+    - VestSecUpgradeHeat
+    - VestSecUpgradeBullet
+    - VestSecUpgradeRiot
+    - VestSecUpgradeReflective
     - VestSecUpgradeWeb
+    - VestSecUpgradeBulletHeavy
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech
