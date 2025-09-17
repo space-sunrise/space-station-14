@@ -86,9 +86,6 @@
   - type: Tag
     tags:
     - UpgradeKitPlate
-  - type: Construction
-    graph: UpgradeArmorVestPlate
-    node: start
 
 - type: entity
   id: VestSecUpgradeBullet
@@ -116,9 +113,6 @@
   - type: Tag
     tags:
     - UpgradeKitStab
-  - type: Construction
-    graph: UpgradeArmorVestStab
-    node: start
 
 - type: entity
   id: VestSecUpgradeRiot
@@ -137,9 +131,6 @@
   - type: Tag
     tags:
     - UpgradeKitHeat
-  - type: Construction
-    graph: UpgradeArmorVestHeat
-    node: start
 
 - type: entity
   id: VestSecUpgradeReflective
