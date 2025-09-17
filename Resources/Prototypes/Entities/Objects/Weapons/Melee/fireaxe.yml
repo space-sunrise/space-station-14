@@ -60,7 +60,7 @@
   - type: MeleeWeapon
     wideAnimationRotation: 90
   - type: IgniteOnMeleeHit
-    fireStacks: 1
+    fireStacks: 2
   - type: Sprite
     sprite: Objects/Weapons/Melee/fireaxeflaming.rsi
     state: icon
@@ -70,3 +70,10 @@
     slots:
     - back
     - suitStorage  # Sunrise-Fireaxe
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+    - Energy
