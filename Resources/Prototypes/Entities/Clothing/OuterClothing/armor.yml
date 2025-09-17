@@ -38,7 +38,7 @@
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
-  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  parent: ClothingOuterArmorBase #[ BaseSecurityBartenderContraband, ClothingOuterArmorBase] # Sunrise-Edit
   id: ClothingOuterArmorBasic
   components:
   - type: Tag
