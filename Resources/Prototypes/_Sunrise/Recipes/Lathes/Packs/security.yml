@@ -13,6 +13,8 @@
     - MagazineBoxMagnumRubber
     - MagazineMagnumRubber
     - MagazineMagnum
+    - MagazineMagnumFMJ
+    - MagazineMagnumHP
     - MagazineMagnumEmpty
     - MagazineMagnumPractice
     # Pistol
@@ -168,8 +170,8 @@
   # Magnum
     - SpeedLoaderMagnumIncendiary
     - SpeedLoaderMagnumUranium
-    - MagazineMagnumUranium
     - SpeedLoaderMagnumAP
+    - MagazineMagnumUranium
     - MagazineMagnumAP
   # Pistol
     - MagazinePistolIncendiary

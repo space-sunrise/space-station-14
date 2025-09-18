@@ -203,6 +203,15 @@
     Steel: 190
     Uranium: 110
 
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineMagnumUranium
+  result: MagazineMagnumUranium
+  materials:
+    Steel: 50
+    Plastic: 150
+    Uranium: 110
+
 # .20 Rifle
 - type: latheRecipe
   parent: BaseAmmoRecipe
