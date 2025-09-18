@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Alert;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -21,12 +22,82 @@ public sealed class TrackerSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<TrackerComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<TrackerComponent, TrackerClickedAlertEvent>(OnClickedAlert);
+        SubscribeLocalEvent<TrackerComponent, TrackerAltClickedAlertEvent>(OnAltClickedAlert);
         base.Initialize();
     }
 
     private void OnRemove(Entity<TrackerComponent> ent, ref ComponentRemove args)
     {
         _alerts.ClearAlert(ent, ent.Comp.Alert);
+    }
+
+    private void OnClickedAlert(Entity<TrackerComponent> ent, ref TrackerClickedAlertEvent args)
+    {
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        var trackedComponents = GetCurrentTrackedComponents(ent.Comp);
+
+        var targets = FindAllTrackedEntities(trackedComponents, ent.Owner);
+        if (targets.Count == 0)
+        {
+            ent.Comp.Target = null;
+            UpdateDirection(ent);
+            Dirty(ent);
+            return;
+        }
+
+        var currentIndex = ent.Comp.Target != null ? targets.IndexOf(ent.Comp.Target.Value) : -1;
+        var nextIndex = (currentIndex + 1) % targets.Count;
+        ent.Comp.Target = targets[nextIndex];
+
+        UpdateDirection(ent, _transform.GetMapCoordinates(ent.Comp.Target.Value));
+        Dirty(ent);
+    }
+
+    private void OnAltClickedAlert(Entity<TrackerComponent> ent, ref TrackerAltClickedAlertEvent args)
+    {
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        if (ent.Comp.TrackingModes.Count == 0)
+            return;
+
+        var modes = ent.Comp.TrackingModes.Keys.ToList();
+        var currentIndex = modes.IndexOf(ent.Comp.CurrentMode);
+        var nextIndex = (currentIndex + 1) % modes.Count;
+
+        ent.Comp.CurrentMode = modes[nextIndex];
+        ent.Comp.Target = null;
+
+        UpdateDirection(ent);
+        Dirty(ent);
+    }
+
+    private HashSet<string> GetCurrentTrackedComponents(TrackerComponent component)
+    {
+        return component.TrackingModes.TryGetValue(component.CurrentMode, out var trackedComponents)
+            ? trackedComponents
+            : component.TrackedComponents;
+    }
+
+    private List<EntityUid> FindAllTrackedEntities(HashSet<string> trackedComponents, EntityUid exclude)
+    {
+        var targets = new List<EntityUid>();
+        var allEntities = EntityQuery<MetaDataComponent>().Select(e => e.Owner).ToList();
+
+        foreach (var entity in allEntities)
+        {
+            if (entity == exclude)
+                continue;
+
+            if (HasAnyTrackedComponent(entity, trackedComponents) && !targets.Contains(entity))
+            {
+                targets.Add(entity);
+            }
+        }
+        return targets;
     }
 
     private void UpdateDirection(Entity<TrackerComponent> ent, MapCoordinates? coordinates = null)
@@ -54,10 +125,11 @@ public sealed class TrackerSystem : EntitySystem
                 continue;
 
             tracker.UpdateAt = time + tracker.UpdateEvery;
+            var trackedComponents = GetCurrentTrackedComponents(tracker);
 
             if (tracker.Target != null)
             {
-                if (!HasAnyTrackedComponent(tracker.Target.Value, tracker.TrackedComponents))
+                if (!HasAnyTrackedComponent(tracker.Target.Value, trackedComponents))
                 {
                     tracker.Target = null;
                     continue;
@@ -67,7 +139,7 @@ public sealed class TrackerSystem : EntitySystem
                 continue;
             }
 
-            FindNewTarget((uid, tracker));
+            FindNewTarget((uid, tracker), trackedComponents);
             UpdateDirection((uid, tracker));
         }
     }
@@ -83,7 +155,7 @@ public sealed class TrackerSystem : EntitySystem
         return false;
     }
 
-    private void FindNewTarget(Entity<TrackerComponent> ent)
+    private void FindNewTarget(Entity<TrackerComponent> ent, HashSet<string> trackedComponents)
     {
         var trackableQuery = EntityQueryEnumerator<MetaDataComponent>();
         var shortestDistance = float.MaxValue;
@@ -91,7 +163,7 @@ public sealed class TrackerSystem : EntitySystem
 
         while (trackableQuery.MoveNext(out var trackableUid, out _))
         {
-            if (trackableUid == ent.Owner || !HasAnyTrackedComponent(trackableUid, ent.Comp.TrackedComponents))
+            if (trackableUid == ent.Owner || !HasAnyTrackedComponent(trackableUid, trackedComponents))
                 continue;
 
             var distance = (_transform.GetWorldPosition(ent.Owner) -

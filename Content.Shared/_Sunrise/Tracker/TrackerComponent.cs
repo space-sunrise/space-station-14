@@ -42,4 +42,11 @@ public sealed partial class TrackerComponent : Component
     // - Использует ProtoId для типобезопасной работы с прототипами
     [DataField, AutoNetworkedField]
     public ProtoId<AlertPrototype> Alert = "TrackerAlert";
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<string, HashSet<string>> TrackingModes = new();
+
+    [DataField, AutoNetworkedField]
+    public string CurrentMode = "Default";
+
 }

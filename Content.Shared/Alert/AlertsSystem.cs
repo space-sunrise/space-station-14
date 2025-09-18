@@ -196,9 +196,24 @@ public abstract class AlertsSystem : EntitySystem
         SubscribeLocalEvent<AlertAutoRemoveComponent, EntityUnpausedEvent>(OnAutoRemoveUnPaused);
 
         SubscribeAllEvent<ClickAlertEvent>(HandleClickAlert);
+        SubscribeAllEvent<ClickAlertAltEvent>(HandleClickAlertAlt); // Sunrise-Edit
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(HandlePrototypesReloaded);
         LoadPrototypes();
     }
+
+    // Sunrise-Start
+    private void HandleClickAlert(ClickAlertEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession.AttachedEntity;
+        if (!TryGetAlert(msg.Type, player, out var alert) || alert == null || player == null)
+            return;
+
+        if (ActivateAlert(player.Value, alert) && _timing.IsFirstTimePredicted)
+        {
+            HandledAlert();
+        }
+    }
+    // Sunrise-End
 
     private void OnAutoRemoveUnPaused(EntityUid uid, AlertAutoRemoveComponent comp, EntityUnpausedEvent args)
     {
@@ -308,36 +323,44 @@ public abstract class AlertsSystem : EntitySystem
         return _typeToAlert.TryGetValue(alertType, out alert);
     }
 
-    private void HandleClickAlert(ClickAlertEvent msg, EntitySessionEventArgs args)
+    private bool TryGetAlert(ProtoId<AlertPrototype> alertType, EntityUid? player, out AlertPrototype? alert) // Sunrise-Edit
     {
-        var player = args.SenderSession.AttachedEntity;
+        alert = null; // Sunrise-Edit
+
         if (player is null || !HasComp<AlertsComponent>(player))
-            return;
+            return false; // Sunrise-Edit
 
-        if (!IsShowingAlert(player.Value, msg.Type))
+        if (!IsShowingAlert(player.Value, alertType)) // Sunrise-Edit
         {
-            Log.Debug("User {0} attempted to" +
-                                   " click alert {1} which is not currently showing for them",
-                Comp<MetaDataComponent>(player.Value).EntityName, msg.Type);
-            return;
+            Log.Debug("User {0} attempted to click alert {1} which is not currently showing for them",
+                Comp<MetaDataComponent>(player.Value).EntityName, alertType);
+            return false; // Sunrise-Edit
         }
 
-        if (!TryGet(msg.Type, out var alert))
+        if (!TryGet(alertType, out alert)) // Sunrise-Edit
         {
-            Log.Warning("Unrecognized encoded alert {0}", msg.Type);
-            return;
+            Log.Warning("Unrecognized encoded alert {0}", alertType);
+            return false; // Sunrise-Edit
         }
 
-        if (ActivateAlert(player.Value, alert) && _timing.IsFirstTimePredicted)
-        {
-            HandledAlert();
-        }
+        return true; // Sunrise-Edit
     }
 
     protected virtual void HandledAlert()
     {
 
     }
+
+    // Sunrise-Start
+    private void HandleClickAlertAlt(ClickAlertAltEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession.AttachedEntity;
+        if (!TryGetAlert(msg.Type, player, out var alert) || alert == null || player == null)
+            return;
+
+        ActivateAlertAlt(player.Value, alert);
+    }
+    // Sunrise-End
 
     public bool ActivateAlert(EntityUid user, AlertPrototype alert)
     {
@@ -348,9 +371,24 @@ public abstract class AlertsSystem : EntitySystem
         clickEvent.User = user;
         clickEvent.AlertId = alert.ID;
 
-        RaiseLocalEvent(user, (object) clickEvent, true);
+        RaiseLocalEvent(user, (object)clickEvent, true);
         return clickEvent.Handled;
     }
+
+    // Sunrise-Start
+    public bool ActivateAlertAlt(EntityUid user, AlertPrototype alert)
+    {
+        if (alert.AltClickEvent is not { } altClickEvent)
+            return false;
+
+        altClickEvent.Handled = false;
+        altClickEvent.User = user;
+        altClickEvent.AlertId = alert.ID;
+
+        RaiseLocalEvent(user, (object)altClickEvent, true);
+        return altClickEvent.Handled;
+    }
+    // Sunrise-End
 
     private void OnPlayerAttached(EntityUid uid, AlertsComponent component, PlayerAttachedEvent args)
     {

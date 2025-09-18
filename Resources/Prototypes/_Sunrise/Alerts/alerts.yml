@@ -23,5 +23,7 @@
     state: trackon-southwest
   name: tracker
   description: Tracks.
+  clickEvent: !type:TrackerClickedAlertEvent
+  altClickEvent: !type:TrackerAltClickedAlertEvent
   minSeverity: 0
   maxSeverity: 10

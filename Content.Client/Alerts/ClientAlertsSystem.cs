@@ -124,4 +124,11 @@ public sealed class ClientAlertsSystem : AlertsSystem
     {
         RaisePredictiveEvent(new ClickAlertEvent(alertType));
     }
+
+    // Sunrise-Start
+    public void AlertClickedAlt(ProtoId<AlertPrototype> alertType)
+    {
+        RaisePredictiveEvent(new ClickAlertAltEvent(alertType));
+    }
+    // Sunrise-End
 }
