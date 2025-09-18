@@ -48,9 +48,9 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatBeretPatologoanatom
+  id: ClothingHeadHatBeretSurgeon
   name: surgeon's beret
-  description: A beret, for patologoanatom.
+  description: A beret, for Surgeon.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/beret_surgeon.rsi
