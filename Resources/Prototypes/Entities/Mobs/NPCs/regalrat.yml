@@ -488,8 +488,8 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: RatKing
-    hungerPerArmyUse: 20
-    hungerPerDomainUse: 40
+    hungerPerArmyUse: 25
+    hungerPerDomainUse: 50
     hungerPerGuardUse: 1000 # Sunrise-TODO: Скрыть акшен ему
   - type: GhostRole
     makeSentient: true
