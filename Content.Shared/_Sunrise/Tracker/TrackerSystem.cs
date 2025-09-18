@@ -37,9 +37,16 @@ public sealed class TrackerSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        var trackedComponents = GetCurrentTrackedComponents(ent.Comp);
+        var currentComponent = GetCurrentComponent(ent.Comp);
+        if (string.IsNullOrEmpty(currentComponent))
+        {
+            ent.Comp.Target = null;
+            UpdateDirection(ent);
+            Dirty(ent);
+            return;
+        }
 
-        var targets = FindAllTrackedEntities(trackedComponents, ent.Owner);
+        var targets = FindEntitiesWithComponent(currentComponent, ent.Owner);
         if (targets.Count == 0)
         {
             ent.Comp.Target = null;
@@ -61,30 +68,29 @@ public sealed class TrackerSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (ent.Comp.TrackingModes.Count == 0)
+        if (ent.Comp.TrackedComponents.Count <= 1)
             return;
 
-        var modes = ent.Comp.TrackingModes.Keys.ToList();
-        var currentIndex = modes.IndexOf(ent.Comp.CurrentMode);
-        var nextIndex = (currentIndex + 1) % modes.Count;
-
-        ent.Comp.CurrentMode = modes[nextIndex];
+        ent.Comp.CurrentComponentIndex = (ent.Comp.CurrentComponentIndex + 1) % ent.Comp.TrackedComponents.Count;
         ent.Comp.Target = null;
 
         UpdateDirection(ent);
         Dirty(ent);
     }
 
-    private HashSet<string> GetCurrentTrackedComponents(TrackerComponent component)
+    private string GetCurrentComponent(TrackerComponent component)
     {
-        return component.TrackingModes.TryGetValue(component.CurrentMode, out var trackedComponents)
-            ? trackedComponents
-            : component.TrackedComponents;
+        if (component.TrackedComponents.Count == 0)
+            return string.Empty;
+
+        return component.TrackedComponents.ElementAt(component.CurrentComponentIndex);
     }
 
-    private List<EntityUid> FindAllTrackedEntities(HashSet<string> trackedComponents, EntityUid exclude)
+    private List<EntityUid> FindEntitiesWithComponent(string componentName, EntityUid exclude)
     {
         var targets = new List<EntityUid>();
+        var componentType = _componentFactory.GetRegistration(componentName).Type;
+
         var allEntities = EntityQuery<MetaDataComponent>().Select(e => e.Owner).ToList();
 
         foreach (var entity in allEntities)
@@ -92,11 +98,12 @@ public sealed class TrackerSystem : EntitySystem
             if (entity == exclude)
                 continue;
 
-            if (HasAnyTrackedComponent(entity, trackedComponents) && !targets.Contains(entity))
+            if (EntityManager.HasComponent(entity, componentType) && !targets.Contains(entity))
             {
                 targets.Add(entity);
             }
         }
+
         return targets;
     }
 
@@ -125,11 +132,12 @@ public sealed class TrackerSystem : EntitySystem
                 continue;
 
             tracker.UpdateAt = time + tracker.UpdateEvery;
-            var trackedComponents = GetCurrentTrackedComponents(tracker);
+            var currentComponent = GetCurrentComponent(tracker);
 
             if (tracker.Target != null)
             {
-                if (!HasAnyTrackedComponent(tracker.Target.Value, trackedComponents))
+                var componentType = _componentFactory.GetRegistration(currentComponent).Type;
+                if (!EntityManager.HasComponent(tracker.Target.Value, componentType))
                 {
                     tracker.Target = null;
                     continue;
@@ -139,40 +147,37 @@ public sealed class TrackerSystem : EntitySystem
                 continue;
             }
 
-            FindNewTarget((uid, tracker), trackedComponents);
+            FindNewTarget((uid, tracker), currentComponent);
             UpdateDirection((uid, tracker));
         }
     }
 
-    private bool HasAnyTrackedComponent(EntityUid entity, HashSet<string> trackedComponents)
+    private void FindNewTarget(Entity<TrackerComponent> ent, string componentName)
     {
-        foreach (var componentName in trackedComponents)
+        if (string.IsNullOrEmpty(componentName))
         {
-            var componentType = _componentFactory.GetRegistration(componentName).Type;
-            if (EntityManager.HasComponent(entity, componentType))
-                return true;
+            ent.Comp.Target = null;
+            return;
         }
-        return false;
-    }
 
-    private void FindNewTarget(Entity<TrackerComponent> ent, HashSet<string> trackedComponents)
-    {
-        var trackableQuery = EntityQueryEnumerator<MetaDataComponent>();
+        var componentType = _componentFactory.GetRegistration(componentName).Type;
         var shortestDistance = float.MaxValue;
         EntityUid? closestTarget = null;
 
-        while (trackableQuery.MoveNext(out var trackableUid, out _))
+        var allEntities = EntityQuery<MetaDataComponent>().Select(e => e.Owner).ToList();
+
+        foreach (var entity in allEntities)
         {
-            if (trackableUid == ent.Owner || !HasAnyTrackedComponent(trackableUid, trackedComponents))
+            if (entity == ent.Owner || !EntityManager.HasComponent(entity, componentType))
                 continue;
 
             var distance = (_transform.GetWorldPosition(ent.Owner) -
-                           _transform.GetWorldPosition(trackableUid)).LengthSquared();
+                           _transform.GetWorldPosition(entity)).LengthSquared();
 
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
-                closestTarget = trackableUid;
+                closestTarget = entity;
             }
         }
 

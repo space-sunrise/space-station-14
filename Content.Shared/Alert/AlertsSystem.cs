@@ -201,20 +201,6 @@ public abstract class AlertsSystem : EntitySystem
         LoadPrototypes();
     }
 
-    // Sunrise-Start
-    private void HandleClickAlert(ClickAlertEvent msg, EntitySessionEventArgs args)
-    {
-        var player = args.SenderSession.AttachedEntity;
-        if (!TryGetAlert(msg.Type, player, out var alert) || alert == null || player == null)
-            return;
-
-        if (ActivateAlert(player.Value, alert) && _timing.IsFirstTimePredicted)
-        {
-            HandledAlert();
-        }
-    }
-    // Sunrise-End
-
     private void OnAutoRemoveUnPaused(EntityUid uid, AlertAutoRemoveComponent comp, EntityUnpausedEvent args)
     {
         if (!TryComp<AlertsComponent>(uid, out var alertComp))
@@ -323,24 +309,32 @@ public abstract class AlertsSystem : EntitySystem
         return _typeToAlert.TryGetValue(alertType, out alert);
     }
 
-    private bool TryGetAlert(ProtoId<AlertPrototype> alertType, EntityUid? player, out AlertPrototype? alert) // Sunrise-Edit
+    private bool TryGetAlert(ProtoId<AlertPrototype> alertType, EntityUid? player, out AlertPrototype? alert, bool activate = true) // Sunrise-Edit
     {
         alert = null; // Sunrise-Edit
-
         if (player is null || !HasComp<AlertsComponent>(player))
             return false; // Sunrise-Edit
 
         if (!IsShowingAlert(player.Value, alertType)) // Sunrise-Edit
         {
-            Log.Debug("User {0} attempted to click alert {1} which is not currently showing for them",
+            Log.Debug("User {0} attempted to" +
+                                   " click alert {1} which is not currently showing for them", // Sunrise-Edit
                 Comp<MetaDataComponent>(player.Value).EntityName, alertType);
             return false; // Sunrise-Edit
         }
 
-        if (!TryGet(alertType, out alert)) // Sunrise-Edit
+        if (!TryGet(alertType, out alert))
         {
-            Log.Warning("Unrecognized encoded alert {0}", alertType);
+            Log.Warning("Unrecognized encoded alert {0}", alert);
             return false; // Sunrise-Edit
+        }
+
+        if (!activate)
+            return true; // Sunrise-Edit
+
+        if (ActivateAlert(player.Value, alert) && _timing.IsFirstTimePredicted)
+        {
+            HandledAlert(); // Sunrise-Edit
         }
 
         return true; // Sunrise-Edit
@@ -352,10 +346,15 @@ public abstract class AlertsSystem : EntitySystem
     }
 
     // Sunrise-Start
+    private void HandleClickAlert(ClickAlertEvent ev, EntitySessionEventArgs args)
+    {
+        TryGetAlert(ev.Type, args.SenderSession?.AttachedEntity, out _);
+    }
+
     private void HandleClickAlertAlt(ClickAlertAltEvent msg, EntitySessionEventArgs args)
     {
         var player = args.SenderSession.AttachedEntity;
-        if (!TryGetAlert(msg.Type, player, out var alert) || alert == null || player == null)
+        if (!TryGetAlert(msg.Type, player, out var alert, false) || alert == null || player == null)
             return;
 
         ActivateAlertAlt(player.Value, alert);
@@ -371,7 +370,7 @@ public abstract class AlertsSystem : EntitySystem
         clickEvent.User = user;
         clickEvent.AlertId = alert.ID;
 
-        RaiseLocalEvent(user, (object)clickEvent, true);
+        RaiseLocalEvent(user, (object)clickEvent, true); // Sunrise-Edit
         return clickEvent.Handled;
     }
 

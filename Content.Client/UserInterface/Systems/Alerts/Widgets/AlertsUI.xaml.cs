@@ -146,7 +146,8 @@ public sealed partial class AlertsUI : UIWidget
 
         var alertControl = new AlertControl(alert, alertState.Severity)
         {
-            Cooldown = cooldown
+            Cooldown = cooldown,
+            EnableAllKeybinds = true, // Sunrise-Edit
         };
         alertControl.OnPressed += AlertControlPressed;
         return alertControl;
