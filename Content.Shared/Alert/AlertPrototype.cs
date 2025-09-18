@@ -88,6 +88,15 @@ public sealed partial class AlertPrototype : IPrototype
     [DataField]
     public BaseAlertEvent? ClickEvent;
 
+    // Sunrise-Start
+    /// <summary>
+    /// Event raised on the user when they hold alt and click on this alert.
+    /// Can be null.
+    /// </summary>
+    [DataField]
+    public BaseAlertEvent? AltClickEvent;
+    // Sunrise-End
+
     /// <param name="severity">severity level, if supported by this alert</param>
     /// <returns>the icon path to the texture for the provided severity level</returns>
     public SpriteSpecifier GetIcon(short? severity = null)
