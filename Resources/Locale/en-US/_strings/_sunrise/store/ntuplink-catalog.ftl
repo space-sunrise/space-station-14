@@ -18,6 +18,7 @@ ntuplink-equip-telescopicshield-name = telescopic shield
 ntuplink-engineering-powercellnt-name = PowerCell NanoTrasen
 ntuplink-gun-bundlemp5-name = Bundle Mp5
 ntuplink-gun-bundlemp7-name = Bundle Mp7
+ntuplink-gun-bundlewt550-name = Bundle WT550
 ntuplink-gun-bundlelecter-name = Bundle Lecter
 ntuplink-gun-bundlep90-name = Bundle P-90
 ntuplink-gun-bundleams42-name = Bundle AMS-42

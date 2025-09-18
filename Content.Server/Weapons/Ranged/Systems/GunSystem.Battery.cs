@@ -81,42 +81,14 @@ public sealed partial class GunSystem
         if (damageSpec == null)
             return;
 
-        string damageType;
-        var shotCount = 1;
-        var shootModifier = ShootModifier.None;
-
-        switch (entity.Comp)
+        var damageType = entity.Comp switch
         {
-            case HitscanBatteryAmmoProviderComponent hitscan:
-                var hitScanPrototype = _proto.Index<HitscanPrototype>(hitscan.Prototype);
-                if (hitScanPrototype.ShootModifier == ShootModifier.Split)
-                {
-                    shotCount = hitScanPrototype.SplitCount;
-                    shootModifier = ShootModifier.Split;
-                }
-                else if (hitScanPrototype.ShootModifier == ShootModifier.Spread)
-                {
-                    shotCount = hitScanPrototype.SpreadCount;
-                    shootModifier = ShootModifier.Spread;
-                }
+            HitscanBatteryAmmoProviderComponent => Loc.GetString("damage-hitscan"),
+            ProjectileBatteryAmmoProviderComponent => Loc.GetString("damage-projectile"),
+            _ => throw new ArgumentOutOfRangeException(),
+        };
 
-                damageType = Loc.GetString("damage-hitscan");
-                break;
-            case ProjectileBatteryAmmoProviderComponent projectile:
-                var prototype = _proto.Index<EntityPrototype>(projectile.Prototype);
-                if (prototype.TryGetComponent<ProjectileSpreadComponent>(out var ammoSpreadComp, _componentFactory))
-                {
-                    shotCount = ammoSpreadComp.Count;
-                    shootModifier = ShootModifier.Spread;
-                }
-
-                damageType = Loc.GetString("damage-projectile");
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        _damageExamine.AddDamageExamineWithModifier(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, damageType);
+        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), damageType);
     }
 
     private DamageSpecifier? GetDamage(BatteryAmmoProviderComponent component)

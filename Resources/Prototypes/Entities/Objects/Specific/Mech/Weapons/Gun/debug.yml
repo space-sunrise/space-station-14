@@ -26,7 +26,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: AmmoCounter
   - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeLightRifle
+    proto: CartridgeLightRifleSP
     fireCost: 9
   - type: MagazineVisuals
     magState: mag
@@ -50,7 +50,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedMediumLaser # Sunrise-Edit
+    proto: RedMediumLaser
     fireCost: 19
   - type: MagazineVisuals
     magState: mag
@@ -88,7 +88,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletDisabler
+    proto: DisablerBolt
     fireCost: 19
   - type: MagazineVisuals
     magState: mag

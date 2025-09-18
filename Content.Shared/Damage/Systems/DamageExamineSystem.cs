@@ -4,7 +4,6 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -42,26 +41,6 @@ public sealed class DamageExamineSystem : EntitySystem
     public void AddDamageExamine(FormattedMessage message, DamageSpecifier damageSpecifier, string? type = null)
     {
         var markup = GetDamageExamine(damageSpecifier, type);
-        if (!message.IsEmpty)
-        {
-            message.PushNewline();
-        }
-        message.AddMessage(markup);
-    }
-
-    public void AddDamageExamineWithModifier(FormattedMessage message, DamageSpecifier damageSpecifier, int shotsCount, ShootModifier shootModifier, string? type = null)
-    {
-        var markup = GetDamageExamine(damageSpecifier, type);
-        if ((shootModifier & ShootModifier.Spread) != 0)
-        {
-            markup.PushNewline();
-            markup.AddMarkupOrThrow(Loc.GetString("damage-shot-spread", ("count", shotsCount)));
-        }
-        if ((shootModifier & ShootModifier.Split) != 0)
-        {
-            markup.PushNewline();
-            markup.AddMarkupOrThrow(Loc.GetString("damage-shot-split", ("count", shotsCount)));
-        }
         if (!message.IsEmpty)
         {
             message.PushNewline();

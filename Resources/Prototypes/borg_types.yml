@@ -18,6 +18,7 @@
 
   defaultModules:
   - BorgModuleTool
+  - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
 
@@ -135,7 +136,7 @@
     collection: FootstepCyborgSpider
     params:
       volume: -15
-      
+
   addComponents:
   - type: BorgJetpack
     acceleration: 1
@@ -287,7 +288,7 @@
     instantActions:
     - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
-    worldTargetActions:
+    entityTargetActions:
     - HandheldHealthAnalyzerUnpowered
   # Sunrise-End
 

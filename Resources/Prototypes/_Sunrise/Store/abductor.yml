@@ -17,10 +17,16 @@
   productEntity: AbductorGizmo
 
 - type: abductorListing
-  id: MedkitCombat
-  name: abductors-ui-shop-MedkitCombat
+  id: MedkitUniversal
+  name: abductors-ui-shop-MedkitUniversal
+  cost: 2
+  productEntity: MedkitUniversalFilled
+
+- type: abductorListing
+  id: AbductorTeleport
+  name: abductors-ui-shop-Teleporter
   cost: 1
-  productEntity: MedkitCombatFilled
+  productEntity: AbductorTeleport
 
 - type: abductorListing
   id: WeaponAlien

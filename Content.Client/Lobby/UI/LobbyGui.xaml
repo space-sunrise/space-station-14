@@ -61,6 +61,7 @@
                                                   MinWidth="200" />
                             </BoxContainer>
                         </controls:StripeBack>
+                        <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
                     </BoxContainer>
                 </PanelContainer>
                 <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
@@ -175,6 +176,8 @@
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="3 3 3 3"
                                       HorizontalAlignment="Right" SizeFlagsStretchRatio="1">
                             <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}"
+                                    StyleClasses="ButtonBig"/>
+                            <Button Name="MHelpButton" Access="Public" Text="{Loc 'ui-lobby-mhelp-button'}"
                                     StyleClasses="ButtonBig"/>
                             <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
                             <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}"

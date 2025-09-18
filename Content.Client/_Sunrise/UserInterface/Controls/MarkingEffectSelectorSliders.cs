@@ -47,6 +47,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         defaultEffect ??= ColorMarkingEffect.White;
 
         _typeSelector = new OptionButton();
+        _typeSelector.HorizontalExpand = true;
         foreach (var type in Enum.GetValues<MarkingEffectType>())
         {
             _typeSelector.AddItem(Loc.GetString($"marking-effect-type-{type.ToString().ToLower()}"));
@@ -101,7 +102,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         if (Effect.Colors.TryGetValue(key, out var defaultColor))
             colorSelector.Color = defaultColor;
 
-        colorSelector.OnColorReleased += _ => OnColorsChanged();
+        colorSelector.OnColorChanged += _ => OnColorsChanged();
 
         _colorSelectors.Add(key, colorSelector);
 
@@ -179,6 +180,7 @@ public sealed class MarkingEffectSelectorSliders : Control
             Text = label,
             ToggleMode = true,
             Pressed = defaultValue,
+            HorizontalExpand = true,
         };
 
         button.OnToggled += _ => OnColorsChanged();
@@ -218,6 +220,8 @@ public sealed class MarkingEffectSelectorSliders : Control
         _selectorsContainer.DisposeAllChildren();
         _slidersContainer.DisposeAllChildren();
         _toggleContainer.DisposeAllChildren();
+
+        Logger.Debug($"{defaultEffect}");
 
         defaultEffect ??= type switch
         {

@@ -13,3 +13,24 @@
         - state: green_bit
           shader: unshaded
         - state: refill_medical
+
+- type: entity
+  id: AbductorTeleport
+  name: teleport device
+  parent: [ BaseItem, BaseMagicalContraband ]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.TeleportLocationUiKey.Key:
+        type: TeleportLocationsBoundUserInterface
+  - type: ActivatableUI
+    key: enum.TeleportLocationUiKey.Key
+  - type: Sprite
+    sprite: Objects/Devices/hand_teleporter.rsi
+    state: icon
+  - type: TeleportLocations
+    name: teleportation-device-window-title
+    teleportEffect: RadiationPulse
+    closeAfterTeleport: true
+    deleteAfterUse: true
+

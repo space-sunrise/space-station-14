@@ -35,3 +35,5 @@ ent-ClothingOuterHardsuitPirateCapSun = pirate captain's hardsuit
     .suffix = Pirate, Sunrise
 ent-ClothingOuterHardsuitChameleon = syndicate chameleon
     .desc = Looking at his material, Sci-fi images inadvertently pop up in your head.
+ent-ClothingOuterHardsuitInfiltration = syndicate infiltration hardsuit
+    .desc = The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.

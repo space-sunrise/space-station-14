@@ -9,9 +9,10 @@
       - Cartridge
       - CartridgeRifle
   - type: HitScanCartridgeAmmo
-    proto: BulletRifle
+    hitscan: BulletRifleTrace
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/5.56x45.rsi # Sunrise-Edit
+    scale: 0.60, 0.60 # Sunrise-Added
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
@@ -19,12 +20,64 @@
   - type: SpentAmmoVisuals
 
 - type: entity
-  id: CartridgeRifle
-  name: cartridge (.20 rifle)
+  id: CartridgeRifleSP
+  name: cartridge (.20 rifle SP)
   parent: BaseCartridgeRifle
   components:
   - type: HitScanCartridgeAmmo
-    proto: BulletRifle
+    hitscan: BulletRifleTraceSP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#3F47DB"
+
+- type: entity
+  id: CartridgeRifleHP
+  name: cartridge (.20 rifle HP)
+  parent: BaseCartridgeRifle
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgeRifleFMJ
+  name: cartridge (.20 rifle FMJ)
+  parent: BaseCartridgeRifle
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceFMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgeRifleAP
+  name: cartridge (.20 rifle AP)
+  parent: BaseCartridgeRifle
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#540000"
 
 - type: entity
   id: CartridgeRiflePractice
@@ -32,7 +85,7 @@
   parent: BaseCartridgeRifle
   components:
   - type: HitScanCartridgeAmmo
-    proto: BulletRiflePractice
+    hitscan: BulletRifleTracePractice
   - type: Sprite
     layers:
       - state: base
@@ -47,9 +100,7 @@
   parent: BaseCartridgeRifle
   components:
   - type: HitScanCartridgeAmmo
-    proto: BulletRifleIncendiary
-  - type: IgniteOnAmmoHit
-    fireStacks: 0.8 # Sunrise-Edit
+    hitscan: BulletRifleTraceIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -64,7 +115,7 @@
   parent: BaseCartridgeRifle
   components:
   - type: HitScanCartridgeAmmo
-    proto: BulletRifleUranium
+    hitscan: BulletRifleTraceUranium
   - type: Sprite
     layers:
       - state: base

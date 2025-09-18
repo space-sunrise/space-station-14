@@ -121,7 +121,7 @@ public sealed class CultBloodSpearSystem : EntitySystem
         {
             if (HasComp<MobStateComponent>(args.Target))
             {
-                _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(component.StuhTime), true);
+                _stunSystem.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.StuhTime));
                 _damageableSystem.TryChangeDamage(args.Target, component.Damage, origin: uid);
                 _audio.PlayPvs(component.BreakSound, uid);
                 QueueDel(uid);

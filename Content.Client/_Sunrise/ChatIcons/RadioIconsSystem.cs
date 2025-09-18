@@ -14,6 +14,7 @@ public sealed class ChatIconsSystem : EntitySystem
     {
         base.Initialize();
 
+        _cfg.SetCVar("chat_icon.enable", true, true); // Sunrise TEMP ADD
         _cfg.OnValueChanged(SunriseCCVars.ChatIconsEnable, OnRadioIconsChanged, true);
     }
 

@@ -34,6 +34,7 @@
   - Zookeeper
   - ServiceWorker
   - Barber # Sunrise-Roles
+  - ComMaid  # Sunrise-Lust edit
 
 # Вынесено в _Sunrise
 #- type: department
@@ -77,6 +78,7 @@
   - CentCommOfficial
   - NanoTrasenRepresentative  #Sunrise-Edit
   - Adjutant  #Sunrise-edit
+  - ComMaid  # Sunrise-Lust edit
   primary: false
   weight: 100
 

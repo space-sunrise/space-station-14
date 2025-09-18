@@ -1,6 +1,6 @@
 - type: latheRecipe
-  id: PrinterDocMachineCircuitboard
-  result: PrinterDocMachineCircuitboard
+  id: CopyMachineMachineCircuitboard
+  result: CopyMachineMachineCircuitboard
   completetime: 4
   materials:
      Steel: 100

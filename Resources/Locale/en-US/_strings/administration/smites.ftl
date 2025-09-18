@@ -13,7 +13,6 @@ admin-smite-stomach-removal-self = Your stomach feels hollow...
 admin-smite-run-walk-swap-prompt = You have to press shift to run!
 admin-smite-super-speed-prompt = You move at mach 0.8!
 admin-smite-lung-removal-self = You can't breathe!
-admin-smite-terminate-prompt = I'll be back
 
 ## Smite names
 
@@ -58,7 +57,7 @@ admin-smite-ghostkick-name = Ghost Kick
 admin-smite-nyanify-name = Cat Ears
 admin-smite-kill-sign-name = Kill Sign
 admin-smite-omni-accent-name = Omni-Accent
-admin-smite-random-death-name = Random Death
+admin-smite-crawler-name = Crawler
 
 ## Smite descriptions
 
@@ -103,7 +102,7 @@ admin-smite-super-bonk-lite-description= Slams them on every single table on the
 admin-smite-terminate-description = Creates a Terminator ghost role with the sole objective of killing them.
 admin-smite-super-slip-description = Slips them really, really hard.
 admin-smite-omni-accent-description = Makes the target speak with almost every accent available.
-admin-smite-random-death-description = Randomly picks a extremely hard to recover death.
+admin-smite-crawler-description = Makes the target fall down and be unable to stand up. Remove their hands too for added effect!
 
 ## Tricks descriptions
 

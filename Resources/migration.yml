@@ -34,37 +34,37 @@ lanternextrabright: LanternFlash
 
 # 2023-08-04
 BoxMagazineLightRifleHighVelocity: BoxMagazineLightRifle
-BoxMagazineMagnumSubMachineGunHighVelocity: BoxMagazineMagnumSubMachineGun
+BoxMagazineMagnumSubMachineGunHighVelocity: null
 BoxMagazinePistolCaselessRifleHighVelocity: BoxMagazinePistolCaselessRifle
 BoxMagazinePistolHighCapacityHighVelocity: BoxMagazinePistolHighCapacity
 BoxMagazinePistolHighVelocity: BoxMagazinePistol
 BoxMagazinePistolSubMachineGunHighVelocity: BoxMagazinePistolSubMachineGun
-BoxMagazineRifleHighVelocity: BoxMagazineRifle
+BoxMagazineRifleHighVelocity: BoxMagazineRifleSP
 BulletCaselessRifleHighVelocity: BulletCaselessRifle
 BulletLightRifleHighVelocity: BulletLightRifle
 BulletMagnumHighVelocity: BulletMagnum
 BulletPistolHighVelocity: BulletPistol
 BulletRifleHighVelocity: BulletRifle
 CartridgeCaselessRifleHighVelocity: CartridgeCaselessRifle
-CartridgeLightRifleHighVelocity: CartridgeLightRifle
-CartridgeMagnumHighVelocity: CartridgeMagnum
-CartridgePistolHighVelocity: CartridgePistol
-CartridgeRifleHighVelocity: CartridgeRifle
+CartridgeLightRifleHighVelocity: CartridgeLightRifleFMJ
+CartridgeMagnumHighVelocity: CartridgeMagnumFMJ
+CartridgePistolHighVelocity: CartridgePistolFMJ
+CartridgeRifleHighVelocity: CartridgeRifleFMJ
 MagazineBoxCaselessRifleHighVelocity: MagazineBoxCaselessRifle
-MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifle
-MagazineBoxMagnumHighVelocity: MagazineBoxMagnum
-MagazineBoxPistolHighVelocity: MagazineBoxPistol
-MagazineBoxRifleHighVelocity: MagazineBoxRifle
+MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifleFMJ
+MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP
+MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ
+MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ
 MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
-MagazineCaselessRifleShortHighVelocity: MagazineCaselessRifleShort
-MagazineLightRifleHighVelocity: MagazineLightRifle
-MagazineMagnumSubMachineGunHighVelocity: MagazineMagnumSubMachineGun
+MagazineCaselessRifleShortHighVelocity: null
+MagazineLightRifleHighVelocity: MagazineLightRifleFMJ
+MagazineMagnumSubMachineGunHighVelocity: null
 MagazinePistolCaselessRifleHighVelocity: MagazinePistolCaselessRifle
-MagazinePistolHighCapacityHighVelocity: MagazinePistolHighCapacity
-MagazinePistolHighVelocity: MagazinePistol
-MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGun
-MagazineRifleHighVelocity: MagazineRifle
-SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnum
+MagazinePistolHighCapacityHighVelocity: MagazinePistolHighCapacityFMJ
+MagazinePistolHighVelocity: MagazinePistolFMJ
+MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGunSP
+MagazineRifleHighVelocity: MagazineRifleFMJ
+SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnumFMJ
 SpeedLoaderPistolHighVelocity: SpeedLoaderPistol
 
 # 2023-08-07
@@ -286,7 +286,6 @@ BriefcaseSyndieBase: null
 BodyBag_Container: BodyBag
 BodyBag_Folded: BodyBagFolded
 
-# Sunrise-Edit: Возвращены резиновые боеприпасы.
 # 2024-04-26
 BaseBulletRubber: null
 BulletPistolRubber: BulletPistol
@@ -294,37 +293,36 @@ BulletMagnumRubber: BulletMagnum
 BulletLightRifleRubber: BulletLightRifle
 BulletRifleRubber: BulletRifle
 BulletCaselessRifleRubber: BulletCaselessRifle
-CartridgePistolRubber: CartridgePistol
-CartridgeMagnumRubber: CartridgeMagnum
-CartridgeLightRifleRubber: CartridgeLightRifle
-CartridgeRifleRubber: CartridgeRifle
+CartridgePistolRubber: CartridgePistolFMJ
+CartridgeLightRifleRubber: CartridgeLightRifleSP
+CartridgeRifleRubber: CartridgeRifleSP
 CartridgeCaselessRifleRubber: CartridgeCaselessRifle
-MagazinePistolRubber: MagazinePistol
-MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGun
+# MagazinePistolRubber: MagazinePistol # Its me! Rubber!
+MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
-MagazineMagnumRubber: MagazineMagnum
-MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
-MagazineLightRifleRubber: MagazineLightRifle
-MagazineRifleRubber: MagazineRifle
+# MagazineMagnumRubber: MagazineMagnum # Its me! Rubber!
+MagazineMagnumSubMachineGunRubber: null
+MagazineLightRifleRubber: MagazineLightRifleSP
+MagazineRifleRubber: MagazineRifleSP
 MagazineCaselessRifleRubber: MagazineCaselessRifle
-MagazineCaselessRifleShortRubber: MagazineCaselessRifleShort
+MagazineCaselessRifleShortRubber: null
 SpeedLoaderPistolRubber: SpeedLoaderPistol
-SpeedLoaderMagnumRubber: SpeedLoaderMagnum
-MagazineBoxPistolRubber: MagazineBoxPistol
+# SpeedLoaderMagnumRubber: SpeedLoaderMagnumSP # Its me! Rubber!
+MagazineBoxPistolRubber: MagazineBoxPistolSP
 # RIP box of magnum rubbers 202X to 2024
-MagazineBoxMagnumRubber: MagazineBoxMagnum
-MagazineBoxLightRifleRubber: MagazineBoxLightRifle
-MagazineBoxRifleRubber: MagazineBoxRifle
+# MagazineBoxMagnumRubber: MagazineBoxMagnumSP
+MagazineBoxLightRifleRubber: MagazineBoxLightRifleSP
+MagazineBoxRifleRubber: MagazineBoxRifleSP
 MagazineBoxRifleBigRubber: MagazineBoxRifleBig
 MagazineBoxCaselessRifleRubber: MagazineBoxCaselessRifle
 #MagazineBoxCaselessRifleBigRubber: MagazineBoxCaselessRifle10x24
-BoxMagazinePistolRubber: BoxMagazinePistol
+# BoxMagazinePistolRubber: BoxMagazinePistol
 BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
 BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
 BoxMagazineLightRifleRubber: BoxMagazineLightRifle
 BoxMagazineRifleRubber: BoxMagazineRifle
 BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
-BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
+BoxMagazineMagnumSubMachineGunRubber: null
 WeaponPistolMk58Nonlethal: WeaponPistolMk58
 WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
@@ -656,6 +654,22 @@ SpawnHonkBot: SpawnMobHonkBot
 CrateFoodPizzaLarge: CrateFoodPizza
 CrateFoodSoftdrinksLarge: CrateFoodSoftdrinks
 
+# 2025-06-06
+MagazineLightRifleMaxim: null
+MagazineLightRiflePkBox: null
+MagazineCaselessRifle10x24: null
+BaseMagazineCaselessRifleShort: null
+MagazineCaselessRifleShort: null
+MagazineCaselessRifleShortPractice: null
+BaseMagazineMagnumSubMachineGun: null
+MagazineMagnumSubMachineGunEmpty: null
+MagazineMagnumSubMachineGun: null
+MagazineMagnumSubMachineGunPractice: null
+MagazineMagnumSubMachineGunUranium: null
+MagazineMagnumSubMachineGunPiercing: null
+BoxMagazineMagnumSubMachineGun: null
+BoxMagazineMagnumSubMachineGunPractice: null
+
 # 2025-06-09
 BarSignAlignTile: BarSign
 BarSignComboCafeAlignTile: BarSignComboCafe
@@ -684,32 +698,21 @@ BarSignSpacebucksAlignTile: BarSignSpacebucks
 BarSignMaltroachAlignTile: BarSignMaltroach
 BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
 
-# Sunrise migrations
+# 2025-06-21
+ClothingNeckHeadphones: ClothingMultipleHeadphones
+
+# 2025-08-01
+FoodDonutJellySlugcat: FoodDonutJellyScurret
+
+# 2025-08-11
+ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
+ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
+
+# Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
 SurveillanceCameraWirelessRouterBase: SurveillanceCameraWirelessRouterConstructed
 CryogenicSleepUnitSpawner: CryogenicSleepUnitSpawnerLateJoin
-WeaponLaserCannon: WeaponEarthGovLaserSniper
-WeaponRifleLecter: WeaponRifleM16A4
-WeaponDisabler: WeaponEnergyGunMini
-MagazinePistolSubMachineGunTopMounted: MagazinePistolSubMachineGun
-WeaponSubMachineGunWt550: WeaponSubMachineGunSkorpion
-WeaponRevolverMateba: WeaponRevolverMatebaNew
-WeaponSniperHristov: WeaponIONRifle
-WeaponLaserCarbine: WeaponEnergyGun
-WeaponPistolMk58: WeaponPistolG22
-WeaponRifleAk: WeaponRifleAKM
-WeaponRifleM90GrenadeLauncher: WeaponRifleM28
-WeaponShotgunEnforcer: WeaponShotgunSPAS12
-WeaponShotgunKammerer: WeaponShotgunTrenchgun4034
-WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
-GunSafeDisabler: GunSafeCombineSmallArms
-GunSafeSubMachineGunDrozd: GunSafeSubMachineGunMP7
-GunSafeSubMachineGunWt550: GunSafeSubMachineGunSkorpion
-GunSafeShotgunKammerer: GunSafeShotgunTrenchgun4034
-GunSafeRifleLecter: GunSafeRifleM16A4
-CrateArmorySMG: CrateArmoryMP7
-CrateArmoryShotgun: CrateArmoryWeaponXM1014
 ComputerCargoShuttle: null
 ComputerShuttleCargo: null
 ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise
@@ -723,6 +726,18 @@ PoweredLightPostSmallRed: PoweredlightRed
 PoweredSmallLightMaintenanceRed: PoweredDimSmallLight
 FoodCondimentBottleSmallVinegar: FoodCondimentBottleVinegar
 PoweredLightColoredRed: PoweredlightRed
+PoweredLightColoredBlack: PoweredlightBlack
+PoweredLightColoredFrostyBlue: PoweredlightBlue
+RandomBook: null
+SpawnPointShipwreckHecate: null
+SpawnPointShipwreckTraveller: null
+SpawnMobGolemCult: null
+SpawnMobRobotMedical: null
+WindoorCommandLocked: null
+WindoorSecurityLocked: null
+SpawnMobRobotStandard: null
+OilJar`Ghee: null
+Painting`MothBigCatch: null
 AtmTerminal: ATM
 Shinai: ToySword
 PosterLegitSMMeth: RandomPosterLegit
@@ -763,15 +778,10 @@ ScienceTechFab: null
 ReverseEngineeringMachine: null
 ScienceTechFabCircuitboard: null
 EngineeringTechFabCircuitboard: null
-WeaponPistolDeagle: null #Пока не обновят кабинеты ГСБ на картах.
 MagazineDeagle: null
 MagazineMagnum: null
-LockerBlueShieldFilledUplink: LockerBlueShieldEnsignFilled
-LockerBlueShieldFilledUplinkMultiphase: LockerBlueShieldEnsignFilled
-GunSafeBlueShield: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
 SuitStorageBlueShield: null
-LockerBlueShieldEnsignFilled: null
 LockerBlueShieldOfficerFilled: null
 PoweredLightBlueInterior: null
 RandomItem: null
@@ -779,10 +789,8 @@ TableWoodReinforced: null
 BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
-AbductorDispencer: VendingMachineAbductorDispenser # Abductor shit.
-SpawnMechRipley: SpawnMechHauler # Карго Вариант Рипли, с установленными модулями переноски
-
-# Кто удалил и не добавил в миграции
+AbductorDispencer: VendingMachineAbductorDispenser
+SpawnMechRipley: SpawnMechHauler
 PrintedDocumentClosingIndictment: null
 PrintedDocumentPermissionDisposeBody: null
 PrintedDocumentDeathCertificate: null
@@ -795,4 +803,44 @@ MagazineFamas: null
 BaseUplinkNTERT75BC: null
 BaseUplinkNTERT100BC: null
 BaseUplinkNTERT200BC: null
-# Sunrise migrations end
+SupermatterSliver: null
+CartridgePistol: null
+AtmosDeviceFanTiny: AtmosDeviceFanTinyDev
+AtmosDeviceFanDirectional: AtmosDeviceFanDirectionalDev
+MagazineBR64Extended: null
+MagazineBR64: null
+MagazineAR18Extended: null
+MagazineAR18: null
+ClothingOuterHardsuitPilot: null
+CrateArmoryMagazineBoxLightRifleBig: null
+CrateArmoryMagazineBoxRifleBig: null
+CrateArmoryM16A4: null
+CrateArmoryMP7: null
+WeaponShotgunPaladin12: null
+GunSafeShotgunPaladin: null
+WeaponXM1014: null
+WeaponShotgunZauer: null
+HandheldCamera: null # Не надо маппить, оно есть в автоматах
+GrenadeBlast: GrenadeBlastTimer
+GrenadeEMP: GrenadeEMPTimer
+GrenadeFlash: GrenadeFlashTimer
+GrenadeFrag: GrenadeFragTimer
+WeaponEnergyGunMini: WeaponMiniEnergyGun
+GunSafeCombineSmallArms: SpawnerSafeSmallArms
+# SL HITSCAN START
+BoxMagazineRifle: BoxMagazineRifleSP
+MagazineBoxLightRifle: MagazineBoxLightRifleSP
+MagazineBoxPistol: MagazineBoxPistolSP
+MagazineLightRifleBox: MagazineLightRifleBoxSP
+MagazineLightRifle: MagazineLightRifleSP
+MagazinePistolSubMachineGun: MagazinePistolSubMachineGunSP
+MagazineRifle: MagazineRifleSP
+MagazineBoxMagnum: MagazineBoxMagnumSP
+SpeedLoaderMagnum: SpeedLoaderMagnumSP
+MagazineBoxRifle: MagazineBoxRifleSP
+PrinterDoc: CopyMachineFilled
+PrinterDocFlatpack: CopyMachineFlatpack
+MagazineP90Extended: null
+CrateArmoryWeaponXM1014: null
+WeaponEnergyGunMultiphase: WeaponMultiphaseGun
+# Sunrise-End

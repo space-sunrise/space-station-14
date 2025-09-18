@@ -1,0 +1,10 @@
+ent-PaladinShield = paladin shield
+    .desc = A shield for a true paladin! Good at deflecting hits with swords and absorbing the impact from bats, but not much else.
+ent-PaladinShieldGreat = paladin greatshield
+    .desc = You're up against the wall and I! AM! THE! FUCKING! WALL!
+ent-ForgedShieldBuckler = forged buckler shield
+    .desc = Made from the best plasteel the tidersmiths could offer. Decent all-arounder, however being made out of solid metal makes it get hot real fast.
+ent-ForgedShieldTower = forged tower shield
+    .desc = Tall and menacing. A bit on the heavy side, however.
+ent-ImprovisedShield = improvised shield
+    .desc = Steel welded together in a interlocking pattern to hold up better to various kinds of blows. Don't expect it to do well in a gunfight, however.

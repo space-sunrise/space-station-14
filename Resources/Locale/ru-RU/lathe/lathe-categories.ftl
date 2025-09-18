@@ -6,12 +6,10 @@ lathe-category-parts = Детали
 lathe-category-tiles = Плитка
 lathe-category-tools = Инструменты
 lathe-category-weapons = Оружие
-
 # Biogen
 lathe-category-food = Еда
 lathe-category-chemicals = Химикаты
 lathe-category-materials = Материалы
-
 # Circuit imprinter
 lathe-category-computers = Компьютеры
 lathe-category-engineering = Инженерия
@@ -21,7 +19,6 @@ lathe-category-research = Исследования
 lathe-category-security = Безопасность
 lathe-category-service = Сервис
 lathe-category-supply = Снабжение
-
 # Cutter
 lathe-category-concrete = Бетон
 lathe-category-dark = Темный
@@ -29,17 +26,14 @@ lathe-category-maints = Обслуживание
 lathe-category-steel = Сталь
 lathe-category-white = Белый
 lathe-category-wood = Дерево
-
 # Science
 lathe-category-mechs = Мехи
 lathe-category-modules = Модули
 lathe-category-robotics = Робототехника
-
 # Security TechFab
 lathe-category-ammo = Боеприпасы
 lathe-category-boxes = Ящики
 lathe-category-magazines = Магазины
-
 # Uniform
 lathe-category-bedsheets = Простыни
 lathe-category-carpets = Ковры

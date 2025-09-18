@@ -11,6 +11,7 @@
       organs:
         brain: OrganPredatorBrain
         eyes: OrganPredatorEyes
+        eye_implant: null
     torso:
       part: TorsoPredator
       organs:

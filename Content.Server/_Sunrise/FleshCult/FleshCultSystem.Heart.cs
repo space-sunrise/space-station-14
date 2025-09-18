@@ -279,7 +279,7 @@ public sealed partial class FleshCultSystem
         if (TryComp<HumanoidAppearanceComponent>(args.Args.Target.Value, out var HuAppComponent))
         {
             if (TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstreamComponent))
-                _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -300, bloodstreamComponent);
+                _bloodstreamSystem.TryModifyBloodLevel((args.Args.Target.Value, bloodstreamComponent), -300);
 
             if (TryComp<BodyComponent>(args.Args.Target.Value, out var bodyComponent))
             {

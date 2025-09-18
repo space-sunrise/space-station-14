@@ -13,7 +13,7 @@
     capacity: 20
     fillPrototype: SyndyFlashGrenade
     distance: 4
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     initialBeepDelay: 0
     beepInterval: 0.5
     delay: 3.5
@@ -49,7 +49,7 @@
     fillPrototype: SyndieMiniBomb
     distance: 4
     capacity: 3
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     beepSound:
       path: "/Audio/Effects/minibombcountdown.ogg"
       params:

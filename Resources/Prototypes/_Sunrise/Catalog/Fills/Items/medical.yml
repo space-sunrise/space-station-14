@@ -1,0 +1,26 @@
+- type: entity
+  id: MedkitUniversalFilled
+  name: universal medkit
+  description: Contains all types of medicine that you need.
+  suffix: Filled
+  parent: MedkitCombat
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedicatedSuture
+        amount: 2
+      - id: RegenerativeMesh
+        amount: 2
+      - id: PillCanisterHyronalin
+      - id: BurnAutoInjector
+        amount: 2
+      - id: BruteAutoInjector
+        amount: 2
+      - id: SyringeSaline
+        amount: 2
+      - id: PillCanisterDylovene
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: Item
+    size: Huge

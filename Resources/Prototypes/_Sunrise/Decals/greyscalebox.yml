@@ -1,0 +1,27 @@
+- type: decal
+  id: BoxGsNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/greyscalebox.rsi
+    state: box_gs_nw
+
+- type: decal
+  id: BoxGsNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/greyscalebox.rsi
+    state: box_gs_ne
+
+- type: decal
+  id: BoxGsSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/greyscalebox.rsi
+    state: box_gs_sw
+
+- type: decal
+  id: BoxGsSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/greyscalebox.rsi
+    state: box_gs_se

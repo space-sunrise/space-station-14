@@ -42,7 +42,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleBox
+        startingItem: MagazineLightRifleBoxSP
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -51,7 +51,7 @@
             - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeRifle #Sunrise-Edit
+        startingItem: CartridgeRifleSP #Sunrise-Edit
         priority: 1
         whitelist:
           tags:
@@ -74,6 +74,18 @@
   - type: EmitSoundOnLand
     sound:
       collection: RiflesDrop
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 0.02
+        staminaMultiplier: 100
+      Felinid:
+        knockback: 0.02
+        staminaMultiplier: 100
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.5
   # Sunrise end
 
 - type: entity
@@ -99,8 +111,8 @@
   # Sunrise start
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 4
+    pvsIncrease: 0.4
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -142,12 +154,12 @@
       containers:
         ballistic-ammo: !type:Container
     - type: HitscanBatteryAmmoProvider
-      proto: BulletLightRifle
+      proto: BulletRifleTraceSP
       fireCost: 100
     - type: Battery
       maxCharge: 10000
       startingCharge: 10000
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 75 # Sunrise-Edit
+      autoRechargeRate: 100 # Sunrise-Edit
     - type: AmmoCounter

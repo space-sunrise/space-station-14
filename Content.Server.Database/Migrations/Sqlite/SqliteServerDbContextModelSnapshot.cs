@@ -133,6 +133,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("admin_log_id");
 
+                    b.Property<long>("CurTime")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("cur_time");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT")
                         .HasColumnName("date");
@@ -701,6 +705,111 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasFilter("priority = 3");
 
                     b.ToTable("job", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.MentorHelpMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("mentor_help_messages_id");
+
+                    b.Property<bool>("IsStaffOnly")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_staff_only");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("message");
+
+                    b.Property<Guid>("SenderUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("sender_user_id");
+
+                    b.Property<DateTimeOffset>("SentAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("sent_at");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ticket_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_mentor_help_messages");
+
+                    b.HasIndex("SentAt")
+                        .HasDatabaseName("IX_mentor_help_messages_sent_at");
+
+                    b.HasIndex("TicketId")
+                        .HasDatabaseName("IX_mentor_help_messages_ticket_id");
+
+                    b.ToTable("mentor_help_messages", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.MentorHelpTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("mentor_help_tickets_id");
+
+                    b.Property<Guid?>("AssignedToUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("assigned_to_user_id");
+
+                    b.Property<DateTimeOffset?>("ClosedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("closed_at");
+
+                    b.Property<Guid?>("ClosedByUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("closed_by_user_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_at");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_id");
+
+                    b.Property<int?>("RoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("round_id");
+
+                    b.Property<int?>("ServerId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("server_id");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("status");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("subject");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("PK_mentor_help_tickets");
+
+                    b.HasIndex("AssignedToUserId")
+                        .HasDatabaseName("IX_mentor_help_tickets_assigned_to_user_id");
+
+                    b.HasIndex("PlayerId")
+                        .HasDatabaseName("IX_mentor_help_tickets_player_id");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("IX_mentor_help_tickets_status");
+
+                    b.ToTable("mentor_help_tickets", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
@@ -1711,6 +1820,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasConstraintName("FK_job_profile_profile_id");
 
                     b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.MentorHelpMessage", b =>
+                {
+                    b.HasOne("Content.Server.Database.MentorHelpTicket", "Ticket")
+                        .WithMany()
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_mentor_help_messages_mentor_help_tickets_ticket_id");
+
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>

@@ -1,0 +1,16 @@
+ent-BasePatch = patch
+    .desc = On-touch administration of chemicals.
+ent-Patch = { ent-BasePatch }
+    .desc = { ent-BasePatch.desc }
+ent-PatchBrute = brute patch
+    .desc = { ent-BasePatch.desc }
+ent-PatchBurnSmall = burn patch small
+    .desc = { ent-BasePatch.desc }
+ent-PatchBurn = burn patch
+    .desc = { ent-BasePatch.desc }
+ent-PatchMedical = medical patch
+    .desc = { ent-BasePatch.desc }
+ent-PatchClown = clown patch
+    .desc = { ent-BasePatch.desc }
+ent-PatchPack = patch pack
+    .desc = Storage of multiple patches efficiently.

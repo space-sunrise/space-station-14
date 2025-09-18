@@ -1,0 +1,132 @@
+- type: constructionGraph
+  id: LecterSecurity
+  start: start
+  graph:
+    - node: start
+      entity: WeaponRifleLecter
+      edges:
+        - to: upgradelecter
+          steps:
+            - tag: UpgradeLecter
+              name: construction-graph-tag-upgradelecter
+              doAfter: 10
+          completed:
+            - !type:AdminLog
+              message: "Converted Lecter to Lecter Mk2"
+              impact: High
+    - node: upgradelecter
+      entity: WeaponRifleLecterMk2Empty
+
+- type: constructionGraph
+  id: DrozdSecurity
+  start: start
+  graph:
+    - node: start
+      entity: WeaponSubMachineGunDrozd
+      edges:
+        - to: upgradedrozd
+          steps:
+            - tag: UpgradeDrozd
+              name: construction-graph-tag-upgradedrozd
+              doAfter: 10
+          completed:
+            - !type:AdminLog
+              message: "Converted Drozd to Drozd Mk2"
+              impact: High
+    - node: upgradedrozd
+      entity: WeaponSubMachineGunDrozdMk2Empty
+
+- type: constructionGraph
+  id: VestArmorSecurity
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterVestArmorSec
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeVestSec
+              name: construction-graph-tag-upgradevestsec
+              doAfter: 8
+          completed:
+            - !type:AdminLog
+              message: "Converted Vest Sec to WebVest Sec"
+              impact: High
+    - node: upgraded
+      entity: ClothingOuterVestWebSec
+
+# Gorilla Gauntlet
+- type: constructionGraph
+  id: UpgradeCyberGorilla
+  start: start
+  graph:
+    - node: start
+      entity: WeaponGauntletGorilla
+      edges:
+        - to: upgraded
+          steps:
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: upgraded
+      entity: CyberGorillaArm
+
+# Gorilla
+- type: constructionGraph
+  id: UpgradeCyberArmGorilla
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: base_left
+          steps: []
+    - node: base_left
+      entity: LeftArmCyberGorilla
+      edges:
+        - to: base_right
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: upgraded_left
+          steps:
+            - tag: WeaponPistolCHIMPUpgradeKit
+              name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: base_right
+      entity: RightArmCyberGorilla
+      edges:
+        - to: base_left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: upgraded_right
+          steps:
+            - tag: WeaponPistolCHIMPUpgradeKit
+              name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: upgraded_left
+      entity: LeftArmCyberGorillaUpgraded
+      edges:
+        - to: upgraded_right
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: base_left
+          steps:
+            - tool: Prying
+              doAfter: 2
+    - node: upgraded_right
+      entity: RightArmCyberGorillaUpgraded
+      edges:
+        - to: upgraded_left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: base_right
+          steps:
+            - tool: Prying
+              doAfter: 2

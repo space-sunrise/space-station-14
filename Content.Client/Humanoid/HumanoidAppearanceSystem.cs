@@ -42,14 +42,14 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         UpdateSprite((uid, component, Comp<SpriteComponent>(uid)));
     }
 
-    //private void OnCvarChanged(bool value)
-    //{
-    //    var humanoidQuery = EntityManager.AllEntityQueryEnumerator<HumanoidAppearanceComponent, SpriteComponent>();
-    //    while (humanoidQuery.MoveNext(out var uid, out var humanoidComp, out var spriteComp))
-    //    {
-    //        UpdateSprite((uid, humanoidComp, spriteComp));
-    //    }
-    //}
+    private void OnCvarChanged(bool value)
+    {
+        var humanoidQuery = AllEntityQuery<HumanoidAppearanceComponent, SpriteComponent>();
+        while (humanoidQuery.MoveNext(out var uid, out var humanoidComp, out var spriteComp))
+        {
+            UpdateSprite((uid, humanoidComp, spriteComp));
+        }
+    }
 
     private void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
@@ -58,11 +58,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
-
+        // Sunrise-start
         var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 
         _sprite.SetScale(entity.Owner, scale);
-
+        // Sunrise-end
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
 

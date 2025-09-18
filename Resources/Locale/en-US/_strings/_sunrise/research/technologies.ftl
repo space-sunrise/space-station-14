@@ -6,6 +6,13 @@ research-technology-bluespace-ammo = Bluespace Syringegun Ammo
 research-technology-implant-extractor = Implant extractor
 research-technology-advanced-surgery = Advanced surgery
 research-technology-mechanized-medical-treatment = Mechanized Medical Treatment
+research-technology-basic-eye-implants = Basic Eye Implants
+research-technology-functional-cyberlimbs = Functional Cyberlimbs
+research-technology-science-cyberlimbs = Science Cyberlimbs
+research-technology-secmelee-cyberlimbs = Security melee Cyberlimbs
+research-technology-secrange-cyberlimbs = Security range Cyberlimbs
+research-technology-nightvision-eyes = Nightvision Eye Implants
+research-technology-thermalvision-eyes = Thermalvision Eye Implants
 
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ

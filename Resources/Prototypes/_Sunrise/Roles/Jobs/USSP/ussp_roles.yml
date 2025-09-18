@@ -13,6 +13,10 @@
   access:
   - Maintenance
 
+- type: chameleonOutfit
+  id: USSPCrewChameleonOutfit
+  job: USSPCrew
+
 - type: startingGear
   id: USSPJobAltA
   equipment:
@@ -105,6 +109,10 @@
     - DrinkFlaskOld
     - ClothingPantsManCommie
 
+- type: chameleonOutfit
+  id: USSPOfficerChameleonOutfit
+  job: USSPOfficer
+
 #USSP Officer Soldier
 - type: job
   id: USSPOfficerAlt
@@ -146,6 +154,10 @@
     - Crowbar
     - ClothingPantsManCommie
 
+- type: chameleonOutfit
+  id: USSPOfficerAltChameleonOutfit
+  job: USSPOfficerAlt
+
 #USSP Soldier
 - type: job
   id: USSPSoldier
@@ -186,6 +198,10 @@
     - Crowbar
     - ClothingPantsManCommie
 
+- type: chameleonOutfit
+  id: USSPSoldierChameleonOutfit
+  job: USSPSoldier
+
 #USSP Captain
 - type: job
   id: USSPCaptain
@@ -222,9 +238,13 @@
   storage:
     back:
     - DrinkVodkaBottleFull
-    - SpeedLoaderMagnum
-    - SpeedLoaderMagnum
+    - SpeedLoaderMagnumSP
+    - SpeedLoaderMagnumSP
     - DrinkFlask
     - CigPackSyndicate
     - FlippoLighterSunriseContractor
     - ClothingPantsManCommie
+
+- type: chameleonOutfit
+  id: USSPCaptainChameleonOutfit
+  job: USSPCaptain

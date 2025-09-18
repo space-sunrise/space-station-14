@@ -19,6 +19,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Jittering;
+using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Roles;
 using Content.Shared.Speech.EntitySystems;
@@ -76,6 +77,7 @@ public sealed partial class FleshCultSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     private readonly List<string> _speciesWhitelist =
     [

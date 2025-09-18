@@ -1,0 +1,10 @@
+ent-EffectNightVision = ночное зрение
+    .desc = { "" }
+ent-EffectNightVisionGreen = ночное зрение
+    .desc = { "" }
+ent-EffectNightVisioSpecies = ночное зрение
+    .desc = { "" }
+ent-EffectNightVisionHandcraft = ночное зрение
+    .desc = { "" }
+ent-EffectNightVisionSyndie = ночное зрение
+    .desc = { "" }

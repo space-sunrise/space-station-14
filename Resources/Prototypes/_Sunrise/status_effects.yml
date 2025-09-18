@@ -7,5 +7,9 @@
 - type: statusEffect
   id: Flip
 
-- type: statusEffect
-  id: Fall
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectFall
+  name: fall
+  components:
+  - type: Fall

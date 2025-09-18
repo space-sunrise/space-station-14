@@ -155,10 +155,13 @@
   components:
   - type: XenoArtifactNode
     maxDurability: 1
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 0
     triggerDecreasesDurability: true
   - type: ArtifactStartGameRule
     rules:
-      EvilTwinSpawn: 2
+      ParadoxCloneSpawn: 2
 
 - type: entity
   id: SunriseArtifactTeleport
@@ -270,7 +273,6 @@
     prototypeBlacklist:
     - BaseBloodCultGod
     - BaseCentcommContraband
-    - BaseClone
     - BaseGameRule
     - BaseGrandTheftContraband
     - BaseMagicalContraband

@@ -26,7 +26,6 @@
     PlutoniumCoreStealObjective: 0.5
     #MultiphaseEnergygunStealObjective: 1 # Sunrise-Edit: ОСЩ больше не появляется на станции
     CMOAdvancedDefibrillatorStealObjective: 1
-    StealSupermatterSliverObjective: 1
     HandheldFaxStealObjective: 1
     # Sunrise-End
 
@@ -90,7 +89,6 @@
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup
     CargoShuttleCircuitboardStealObjective: 1
-    SalvageShuttleCircuitboardStealObjective: 1
     ClothingEyesHudBeerStealObjective: 1                #srv
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other

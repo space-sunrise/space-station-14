@@ -45,6 +45,11 @@ public sealed partial class TeleportLocationsComponent : Component
     /// </summary>
     [DataField]
     public LocId? Speech;
+
+    // Sunrise-start
+    [DataField]
+    public bool DeleteAfterUse;
+    // Sunrise-end
 }
 
 /// <summary>

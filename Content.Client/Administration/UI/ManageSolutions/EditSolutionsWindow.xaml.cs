@@ -1,3 +1,4 @@
+using Content.Client.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
@@ -21,6 +22,7 @@ namespace Content.Client.Administration.UI.ManageSolutions
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IClientGameTiming _timing = default!;
+        [Dependency] private readonly IClientAdminManager _admin = default!;
 
         private NetEntity _target = NetEntity.Invalid;
         private string? _selectedSolution;
@@ -35,6 +37,11 @@ namespace Content.Client.Administration.UI.ManageSolutions
 
             SolutionOption.OnItemSelected += SolutionSelected;
             AddButton.OnPressed += OpenAddReagentWindow;
+            VVButton.OnPressed += OpenVVWindow;
+            SolutionButton.OnPressed += OpenSolutionWindow;
+
+            VVButton.Disabled = !_admin.CanViewVar();
+            SolutionButton.Disabled = !_admin.CanViewVar();
         }
 
         public override void Close()
@@ -273,6 +280,32 @@ namespace Content.Client.Administration.UI.ManageSolutions
 
             _addReagentWindow = new AddReagentWindow(_target, _selectedSolution);
             _addReagentWindow.OpenCentered();
+        }
+
+        /// <summary>
+        ///     Open the corresponding solution entity in a ViewVariables window.
+        /// </summary>
+        private void OpenVVWindow(BaseButton.ButtonEventArgs obj)
+        {
+            if (_solutions == null
+                || _selectedSolution == null
+                || !_solutions.TryGetValue(_selectedSolution, out var uid)
+                || !_entityManager.TryGetNetEntity(uid, out var netEntity))
+                return;
+            _consoleHost.ExecuteCommand($"vv {netEntity}");
+        }
+
+        /// <summary>
+        ///     Open the corresponding Solution instance in a ViewVariables window.
+        /// </summary>
+        private void OpenSolutionWindow(BaseButton.ButtonEventArgs obj)
+        {
+            if (_solutions == null
+                || _selectedSolution == null
+                || !_solutions.TryGetValue(_selectedSolution, out var uid)
+                || !_entityManager.TryGetNetEntity(uid, out var netEntity))
+                return;
+            _consoleHost.ExecuteCommand($"vv /entity/{netEntity}/Solution/Solution");
         }
 
         /// <summary>

@@ -59,7 +59,6 @@ public sealed partial class PlayerTab : Control
         _config.OnValueChanged(CCVars.AdminPlayerTabColorSetting, ColorSettingChanged, true);
         _config.OnValueChanged(CCVars.AdminPlayerTabSymbolSetting, SymbolSettingChanged, true);
 
-
         OverlayButton.OnPressed += OverlayButtonPressed;
         ShowDisconnectedButton.OnPressed += ShowDisconnectedPressed;
 
@@ -210,6 +209,7 @@ public sealed partial class PlayerTab : Control
         entry.OnObjectives += GetObjectives; // Sunrise-Edit
         button.AddChild(entry);
         button.ToolTip = $"{player.Username}, {player.CharacterName}, {player.IdentityName}, {player.StartingJob}";
+        button.StyleClasses.Clear();
     }
 
     // Sunrise-Start

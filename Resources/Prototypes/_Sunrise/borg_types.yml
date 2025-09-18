@@ -39,7 +39,7 @@
   - type: BorgCuffed
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitor
+    - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
   - type: Access
     tags:
@@ -159,7 +159,7 @@
     - BorgModuleGeneric
     - BorgModuleSecurity
     - BorgModuleSyndicate
-    - BorgModuleSyndicateAssault  
+    - BorgModuleSyndicateAssault
 
   defaultModules:
   - BorgModuleStandart
@@ -195,7 +195,7 @@
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldCriminalRecordsMonitorUnpowered
     - HandheldStationMapUnpowered
-    worldTargetActions:
+    entityTargetActions:
     - ForensicScanner
   - type: ShowCriminalRecordIcons
   - type: ShowMindShieldIcons

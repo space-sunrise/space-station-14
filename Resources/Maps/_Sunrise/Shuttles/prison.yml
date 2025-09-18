@@ -3026,17 +3026,6 @@ entities:
     - type: Transform
       pos: 3.4760056,-5.437881
       parent: 1
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
-        projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
 ...

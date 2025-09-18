@@ -3,6 +3,7 @@ using Content.Client.Gameplay;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
+using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
@@ -75,6 +76,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         var useDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.Use);
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
+        var meleeGunAttack = _inputSystem.CmdStates.GetState(ContentKeyFunctions.MeleeGunAttack); // Sunrise-Edit
 
         if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
         {
@@ -112,7 +114,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // If the gun has AltFireComponent, it can be used to attack.
         if (TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey)
         {
-            if (!TryComp<AltFireMeleeComponent>(weaponUid, out var altFireComponent) || altDown != BoundKeyState.Down)
+            if (!TryComp<AltFireMeleeComponent>(weaponUid, out var altFireComponent) || meleeGunAttack != BoundKeyState.Down) // Sunrise-Edit
                 return;
 
             switch(altFireComponent.AttackType)

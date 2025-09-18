@@ -125,3 +125,44 @@
   - type: Construction
     graph: Sofas
     node: corpsofaCorner
+
+- type: entity
+  name: red sofa
+  id: RedSofaMiddle
+  parent: SofaBaseMiddle
+  components:
+  - type: Sprite
+    state: red_sofamiddle
+  - type: Construction
+    graph: Sofas
+    node: redsofaMiddle
+
+- type: entity
+  id: RedSofaLeft
+  parent: RedSofaMiddle
+  components:
+  - type: Sprite
+    state: red_sofaend_left
+  - type: Construction
+    graph: Sofas
+    node: redsofaLeft
+
+- type: entity
+  id: RedSofaRight
+  parent: RedSofaMiddle
+  components:
+  - type: Sprite
+    state: red_sofaend_right
+  - type: Construction
+    graph: Sofas
+    node: redsofaRight
+
+- type: entity
+  id: RedSofaCorner
+  parent: SofaCorner
+  components:
+  - type: Sprite
+    state: red_sofacorner
+  - type: Construction
+    graph: Sofas
+    node: redsofaCorner

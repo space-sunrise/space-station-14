@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
-using Content.Server.Flash.Components;
 using Content.Server.Forensics;
 using Content.Server.Temperature.Components;
 using Content.Shared._Sunrise.NightVision.Components;
@@ -9,11 +8,13 @@ using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
+using Content.Shared.Flash.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
@@ -90,11 +91,12 @@ public sealed partial class FleshCultSystem
     private void HandleCriticalState(EntityUid uid, FleshCultistComponent component)
     {
         EnsureComp<CuffableComponent>(uid);
-        foreach (var hand in _handsSystem.EnumerateHands(uid).Where(hand => hand.Container != null))
+        foreach (var hand in _handsSystem.EnumerateHands(uid))
         {
-            foreach (var entity in hand.Container!.ContainedEntities.Where(entity => !HasComp<FleshHandModComponent>(entity)))
+            var item = _handsSystem.GetHeldItem((uid, null), hand);
+            if (HasComp<FleshHandModComponent>(item))
             {
-                QueueDel(entity);
+                QueueDel(item);
                 _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
             }
         }
@@ -214,7 +216,6 @@ public sealed partial class FleshCultSystem
         RemCompDeferred<FlashImmunityComponent>(uid);
         RemCompDeferred<RespiratorImmunityComponent>(uid);
         RemCompDeferred<PressureImmunityComponent>(uid);
-        RemCompDeferred<FlashImmunityComponent>(uid);
     }
 
     private void RemoveCollectiveMind(EntityUid uid)

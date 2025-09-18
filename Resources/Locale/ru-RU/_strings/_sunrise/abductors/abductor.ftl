@@ -20,3 +20,5 @@ gizmo-is-successfully-filled = Гизмо успешно заполнен
 gizmo-is-not-in-pockets = В карманах нету гизмо!
 owo-organ-transformation = ВЫ КОШКОФИЦИРОВАЛИСЬ!!
 need-stop-carry = Нельзя переместиться пока кто-то на руках!
+console-occupied = Консоль уже занята кем-то!
+teleportation-device-window-title = Устройство телепортации

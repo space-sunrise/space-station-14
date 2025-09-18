@@ -48,6 +48,12 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
+  - OffsetCane
+  - OffsetCaneWood
+  - OffsetCaneClown
+  - OffsetCaneMime
+  - OffsetCaneNT
+  - Cane
   - TowelColorBlack
   - TowelColorDarkBlue
   - TowelColorDarkGreen
@@ -74,6 +80,7 @@
   - GlassesJamjar
   - GlassesJensen
   - GlassesStuttering
+  - GlassesCheapSunglasses # sunrise
 
 - type: loadoutGroup
   id: GroupTankHarness
@@ -389,6 +396,17 @@
   minLimit: 0
   loadouts:
   - ChaplainNeck
+
+- type: loadoutGroup
+  id: ChaplainBible
+  name: loadout-group-chaplain-bible
+  minLimit: 1
+  loadouts:
+  - Bible
+  - BibleDruid
+  - BibleNanoTrasen
+  - BibleSatanic
+  - BibleTanakh
 
 - type: loadoutGroup
   id: JanitorHead
@@ -1125,6 +1143,7 @@
   loadouts:
   - WardenHead
   - WardenBeret
+  - ClothingHeadHatCapWardenAlt # Sunrise-Edit
 
 - type: loadoutGroup
   id: WardenJumpsuit
@@ -1139,6 +1158,7 @@
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
+  - ClothingOuterCoatWardenAlt # Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityHead
@@ -1181,6 +1201,7 @@
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
   loadouts:
+  - ArmorVestSec
   - ArmorVest
   - ArmorVestSlim
   - SecurityOfficerWintercoat
@@ -1425,8 +1446,8 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
 # Sunrise-end
   - NitrileGloves
 

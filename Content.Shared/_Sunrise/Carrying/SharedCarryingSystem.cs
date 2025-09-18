@@ -26,7 +26,7 @@ using Content.Shared.Climbing.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Coordinates;
-using Content.Shared._Sunrise.Felinid;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared._Sunrise.Carrying;
 
@@ -51,9 +51,11 @@ public sealed class SharedCarryingSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingState = default!;
+    [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -85,7 +87,7 @@ public sealed class SharedCarryingSystem : EntitySystem
             if (!TryComp(uid, out StandingStateComponent? standing))
                 continue;
 
-            if (standing.CurrentState == StandingState.Laying)
+            if (!standing.Standing)
             {
                 _popupSystem.PopupClient(Loc.GetString("carry-lying-cancel"), carrier.Carried, uid, PopupType.MediumCaution);
                 DropCarried(uid, carrier.Carried);
@@ -152,7 +154,7 @@ public sealed class SharedCarryingSystem : EntitySystem
         if (TryComp<MobStateComponent>(carried, out var mobState) && mobState.CurrentState != MobState.Alive)
             length /= 2f;
 
-        if (length >= TimeSpan.FromSeconds(MaxCarryTime) || HasComp<FelinidComponent>(carrier))
+        if (length >= TimeSpan.FromSeconds(MaxCarryTime))
         {
             _popupSystem.PopupPredicted(Loc.GetString("carry-too-heavy"), carried, carrier, PopupType.SmallCaution);
             return;
@@ -338,10 +340,7 @@ public sealed class SharedCarryingSystem : EntitySystem
         if (HasComp<BeingCarriedComponent>(carrier) || HasComp<BeingCarriedComponent>(carried))
             return false;
 
-        if (!TryComp<HandsComponent>(carrier, out var hands))
-            return false;
-
-        if (hands.CountFreeHands() < carriedComp.FreeHandsRequired)
+        if (_handsSystem.CountFreeHands(carrier) < carriedComp.FreeHandsRequired)
             return false;
 
         return true;

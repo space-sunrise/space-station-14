@@ -57,3 +57,13 @@
     factions:
     - Syndicate
   - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingOuterHardsuitInfiltration
+  id: ClothingOuterHardsuitInfiltrationBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker

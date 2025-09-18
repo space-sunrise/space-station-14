@@ -34,6 +34,7 @@ namespace Content.Server.RatKing
             base.Initialize();
 
             SubscribeLocalEvent<RatKingComponent, RatKingRaiseArmyActionEvent>(OnRaiseArmy);
+            SubscribeLocalEvent<RatKingComponent, RatKingRaiseGuardActionEvent>(OnRaiseGuard); // Sunrise-Edit
             SubscribeLocalEvent<RatKingComponent, RatKingDomainActionEvent>(OnDomain);
             SubscribeLocalEvent<RatKingComponent, AfterPointedAtEvent>(OnPointedAt);
         }
@@ -82,6 +83,51 @@ namespace Content.Server.RatKing
             UpdateServantNpc(servant, component.CurrentOrder);
         }
 
+        // Sunrise-Start
+        /// <summary>
+        /// Summons an allied rat guard at the King, costing a large amount of hunger
+        /// </summary>
+        private void OnRaiseGuard(EntityUid uid, RatKingComponent component, RatKingRaiseGuardActionEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            if (!TryComp<HungerComponent>(uid, out var hunger))
+                return;
+
+            // Check living guards count
+            var livingGuards = 0;
+            foreach (var guardId in component.Guards)
+            {
+                if (TryComp<MobStateComponent>(guardId, out var mobState) && mobState.CurrentState != MobState.Dead)
+                    livingGuards++;
+            }
+
+            if (livingGuards >= component.MaxGuardCount)
+            {
+                _popup.PopupEntity(Loc.GetString("rat-king-max-guards", ("amount", component.MaxGuardCount)), uid, uid);
+                return;
+            }
+
+            //make sure the hunger doesn't go into the negatives
+            if (_hunger.GetHunger(hunger) < component.HungerPerGuardUse)
+            {
+                _popup.PopupEntity(Loc.GetString("rat-king-too-hungry"), uid, uid);
+                return;
+            }
+            args.Handled = true;
+            _hunger.ModifyHunger(uid, -component.HungerPerGuardUse, hunger);
+            var guard = Spawn(component.GuardMobSpawnId, Transform(uid).Coordinates);
+            var comp = EnsureComp<RatKingServantComponent>(guard);
+            comp.King = uid;
+            Dirty(guard, comp);
+
+            component.Guards.Add(guard);
+            _npc.SetBlackboard(guard, NPCBlackboard.FollowTarget, new EntityCoordinates(uid, Vector2.Zero));
+            UpdateServantNpc(guard, component.CurrentOrder);
+        }
+        // Sunrise-End
+
         /// <summary>
         /// uses hunger to release a specific amount of ammonia into the air. This heals the rat king
         /// and his servants through a specific metabolism.
@@ -117,6 +163,13 @@ namespace Content.Server.RatKing
             {
                 _npc.SetBlackboard(servant, NPCBlackboard.CurrentOrderedTarget, args.Pointed);
             }
+
+            // Sunrise-Start
+            foreach (var guard in component.Guards)
+            {
+                _npc.SetBlackboard(guard, NPCBlackboard.CurrentOrderedTarget, args.Pointed);
+            }
+            // Sunrise-End
         }
 
         public override void UpdateServantNpc(EntityUid uid, RatKingOrderType orderType)

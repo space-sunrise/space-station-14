@@ -168,7 +168,7 @@
         </BoxContainer>
         <!-- Right side -->
         <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Center">
-            <SpriteView Name="SpriteView" Scale="8 8" Margin="4" SizeFlagsStretchRatio="1" />
+            <SpriteView Name="SpriteView" Scale="8 8" Margin="4" SizeFlagsStretchRatio="1" SetSize="256 384"/> <!-- Sunrise-edit -->
             <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
                 <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" />
                 <cc:VSeparator Margin="2 0 3 0" />

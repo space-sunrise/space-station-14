@@ -1,10 +1,12 @@
-- type: entity
+﻿- type: entity
   id: BaseMaterialDoor
   parent: BaseStructure
   name: door
   abstract: true
   description: A door, where will it lead?
   components:
+  - type: Pierceable
+    level: Metal
   - type: InteractionOutline
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/metal_door.rsi
@@ -55,9 +57,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    mode: NoSprite
   - type: Occluder
   - type: BlockWeather
 
@@ -81,20 +80,12 @@
   id: WoodDoor
   name: wooden door
   parent: BaseMaterialDoorNavMap
-  description: A door, where will it lead?
   components:
+  - type: Pierceable
+    level: Wood
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/wood_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Door
-    bumpOpen: false
-    clickOpen: true
-    closeTimeOne: 0.2
-    closeTimeTwo: 0.6
-    openTimeOne: 0.6
-    openTimeTwo: 0.2
     openSound:
       path: /Audio/Effects/door_open.ogg
     closeSound:
@@ -118,13 +109,11 @@
   id: PaperDoor
   name: paper door
   parent: BaseMaterialDoorNavMap
-  description: A door, where will it lead?
   components:
+  - type: Pierceable
+    level: Wood
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/paper_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Destructible
     thresholds:
     - trigger:
@@ -146,13 +135,9 @@
   id: PlasmaDoor
   name: plasma door
   parent: BaseMaterialDoorNavMap
-  description: A door, where will it lead?
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/plasma_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -172,13 +157,9 @@
   id: GoldDoor
   name: gold door
   parent: BaseMaterialDoorNavMap
-  description: A door, where will it lead?
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/gold_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Construction
     graph: DoorGraph
     node: goldDoor
@@ -187,13 +168,9 @@
   id: SilverDoor
   name: silver door
   parent: BaseMaterialDoorNavMap
-  description: A door, where will it lead?
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/silver_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Construction
     graph: DoorGraph
     node: silverDoor
@@ -202,13 +179,9 @@
   id: BananiumDoor
   name: bananium door
   parent: BaseMaterialDoorNavMap
-  description: A door, where will it lead?
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/bananium_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Construction
     graph: DoorGraph
     node: bananiumDoor
@@ -224,11 +197,10 @@
   parent: BaseMaterialDoorNavMap
   description: A door, leading to the lands of the spiders... or a spaced room.
   components:
+  - type: Pierceable
+    level: Wood
   - type: Sprite
     sprite: Structures/Doors/web_door.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
   - type: Construction
     graph: WebStructures
     node: door
@@ -264,3 +236,46 @@
       path: /Audio/Effects/rustle1.ogg
     openSound:
       path: /Audio/Effects/rustle2.ogg
+
+- type: entity
+  id: CardDoor
+  parent: BaseMaterialDoorNavMap
+  name: cardboard door
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/MineralDoors/card_door.rsi
+  - type: Door
+    openSound:
+      path: /Audio/Effects/card_drag.ogg 
+    closeSound:
+      path: /Audio/Effects/card_drag.ogg
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/pierce.ogg"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Card
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCardboard:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: DoorGraph
+    node: cardDoor

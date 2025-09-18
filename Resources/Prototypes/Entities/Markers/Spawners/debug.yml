@@ -13,3 +13,101 @@
   - type: ConditionalSpawner
     prototypes:
     - MobHuman
+
+# Sunrise-Start
+- type: entity
+  name: Urist Spawner
+  id: SpawnMobHumanBasicArmor
+  parent: MarkerBase
+  suffix: DEBUG, BasicArmor
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanBasicArmor
+
+- type: entity
+  name: Urist Spawner
+  id: SpawnMobHumanBulletproof
+  parent: MarkerBase
+  suffix: DEBUG, Bulletproof
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanBulletproof
+
+- type: entity
+  name: Urist Spawner
+  id: SpawnMobHumanSWAT
+  parent: MarkerBase
+  suffix: DEBUG, SWAT
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanSWAT
+
+- type: entity
+  name: Urist Spawner
+  id: SpawnMobHumanAgentGear
+  parent: MarkerBase
+  suffix: DEBUG, Webvest
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanAgentGear
+
+- type: entity
+  name: Urist Spawner
+  id: SpawnMobHumanNukieGear
+  parent: MarkerBase
+  suffix: DEBUG, Nukie
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanNukieGear
+
+- type: entity
+  name: Urist Spawner
+  id: SpawnMobHumanJuggernaut
+  parent: MarkerBase
+  suffix: DEBUG, Juggernaut
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanjuggGear
+# Sunrise-end

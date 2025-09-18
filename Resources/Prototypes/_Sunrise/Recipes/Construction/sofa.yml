@@ -61,7 +61,7 @@
   startNode: start
   targetNode: corpsofaMiddle
   category: construction-category-furniture
-  description: construction-graph-tag-sofa-desc
+  description: construction-graph-tag-black-sofa-desc
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -75,7 +75,7 @@
   startNode: start
   targetNode: corpsofaLeft
   category: construction-category-furniture
-  description: construction-graph-tag-sofa-desc
+  description: construction-graph-tag-black-sofa-desc
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -89,7 +89,7 @@
   startNode: start
   targetNode: corpsofaRight
   category: construction-category-furniture
-  description: construction-graph-tag-sofa-desc
+  description: construction-graph-tag-black-sofa-desc
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -103,7 +103,63 @@
   startNode: start
   targetNode: corpsofaCorner
   category: construction-category-furniture
-  description: construction-graph-tag-sofa-desc
+  description: construction-graph-tag-black-sofa-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: construction-graph-tag-red-sofa
+  id: RedSofaMiddle
+  graph: Sofas
+  startNode: start
+  targetNode: redsofaMiddle
+  category: construction-category-furniture
+  description: construction-graph-tag-red-sofa-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: construction-graph-tag-red-sofa-left
+  id: RedSofaLeft
+  graph: Sofas
+  startNode: start
+  targetNode: redsofaLeft
+  category: construction-category-furniture
+  description: construction-graph-tag-red-sofa-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: construction-graph-tag-red-sofa-right
+  id: RedSofaRight
+  graph: Sofas
+  startNode: start
+  targetNode: redsofaRight
+  category: construction-category-furniture
+  description: construction-graph-tag-red-sofa-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: construction-graph-tag-red-sofa-corner
+  id: RedSofaCorner
+  graph: Sofas
+  startNode: start
+  targetNode: redsofaCorner
+  category: construction-category-furniture
+  description: construction-graph-tag-red-sofa-desc
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

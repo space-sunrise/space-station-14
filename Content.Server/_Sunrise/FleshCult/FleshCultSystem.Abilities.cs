@@ -222,7 +222,7 @@ public sealed partial class FleshCultSystem
 
         if (bloodstream.BloodSolution != null)
         {
-            _bloodstreamSystem.SpillAllSolutions(args.Args.Target.Value, bloodstream);
+            _bloodstreamSystem.SpillAllSolutions((args.Args.Target.Value, bloodstream));
         }
 
         if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var HuAppComponent))
@@ -421,44 +421,38 @@ public sealed partial class FleshCultSystem
             _cuffable.Uncuff(uid, uid, cuffableComponent.LastAddedCuffs);
         }
 
-        var hands = _handsSystem.EnumerateHands(uid);
-        var enumerateHands = hands as Hand[] ?? Enumerable.ToArray(hands);
-        foreach (var hand in enumerateHands)
+        foreach (var hand in _handsSystem.EnumerateHands(uid))
         {
-            if (hand.Container == null)
+            var containedEntity = _handsSystem.GetHeldItem(uid, hand);
+
+            if (!TryComp(containedEntity, out MetaDataComponent? metaData) || metaData.EntityPrototype == null)
                 continue;
 
-            foreach (var containedEntity in hand.Container.ContainedEntities)
+            if (!HasComp<FleshHandModComponent>(containedEntity))
             {
-                if (!TryComp(containedEntity, out MetaDataComponent? metaData) || metaData.EntityPrototype == null)
+                if (hand != _handsSystem.GetActiveHand(uid))
                     continue;
 
-                if (!HasComp<FleshHandModComponent>(containedEntity))
-                {
-                    if (hand != enumerateHands.First())
-                        continue;
-
-                    var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
-                    if (metaData.EntityPrototype.ID == args.Prototype)
-                        continue;
-
-                    if (isDrop)
-                        continue;
-
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"), uid, uid, PopupType.Large);
-                    return;
-                }
-
+                var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
                 if (metaData.EntityPrototype.ID == args.Prototype)
-                {
-                    _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-mod-to-hand",
-                        ("User", uid), ("Mod", containedEntity)), uid, PopupType.LargeCaution);
-                    QueueDel(containedEntity);
-                    EnsureComp<CuffableComponent>(uid);
-                    args.Handled = true;
-                    return;
-                }
+                    continue;
+
+                if (isDrop)
+                    continue;
+
+                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"), uid, uid, PopupType.Large);
+                return;
+            }
+
+            if (metaData.EntityPrototype.ID == args.Prototype)
+            {
+                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-mod-to-hand",
+                    ("User", uid), ("Mod", containedEntity)), uid, PopupType.LargeCaution);
+                QueueDel(containedEntity);
+                EnsureComp<CuffableComponent>(uid);
+                args.Handled = true;
+                return;
             }
         }
 
@@ -569,11 +563,12 @@ public sealed partial class FleshCultSystem
 
         var offsetValue = Vector2Helpers.Normalized(xform.LocalRotation.ToWorldVec());
         var targetCord = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager);
-        var tilerefs = Enumerable.ToArray<TileRef>(grid.GetLocalTilesIntersecting(
+        var tilerefs = Enumerable.ToArray(grid.GetLocalTilesIntersecting(
             new Box2(targetCord.Position + new Vector2(-radius, -radius), targetCord.Position + new Vector2(radius, radius))));
         foreach (var tileref in tilerefs)
         {
-            foreach (var entity in tileref.GetEntitiesInTile())
+            var tileCoordinates = grid.GridTileToLocal(tileref.GridIndices);
+            foreach (var entity in _turf.GetEntitiesInTile(tileCoordinates))
             {
                 PhysicsComponent? physics = null; // We use this to check if it's impassable
                 if (HasComp<MobStateComponent>(entity) && entity != uid || // Is it a mob?

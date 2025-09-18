@@ -52,8 +52,15 @@
     proto: MasterCadet10h
 
 - type: loadout
-  id: CadetWeaponEnergyGunPistolSecurity
-  startingGear: WeaponEnergyGunPistolSecurity
+  id: CadetWeaponMiniEnergyGun
+  startingGear: WeaponMiniEnergyGun
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCadet5h
+
+- type: loadout
+  id: CadetWeaponMK58Box
+  startingGear: MK58Box
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterCadet5h

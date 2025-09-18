@@ -6,3 +6,6 @@ ent-HandHeldMassScannerEmpty = { ent-HandHeldMassScanner }
 ent-HandHeldMassScannerBorg = { ent-HandHeldMassScanner }
     .suffix = Borg
     .desc = { ent-HandHeldMassScanner.desc }
+ent-HandHeldMassScannerUnpowered = handheld mass scanner
+    .desc = A hand-held mass scanner that doesn't require power.
+    .suffix = Handheld, Always Powered

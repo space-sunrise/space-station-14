@@ -1,0 +1,309 @@
+# .308 NT
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxHeavyRifle
+  name: ammunition box (.308)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeHeavyRifle
+    proto: CartridgeRifleHeavySP
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+# Boxes
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRifleBig
+  name: ammunition box (.308 SP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 160
+    proto: CartridgeRifleHeavySP
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRifleSP
+  name: ammunition box (.308 SP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavySP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRifleHP
+  name: ammunition box (.308 HP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRifleFMJ
+  name: ammunition box (.308 FMJ)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyFMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRifleAP
+  name: ammunition box (.308 AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRiflePractice
+  name: ammunition box (.308 practice)
+  description: A cardboard box of .308 rounds. Intended to hold non-harmful chalk ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  id: MagazineBoxHeavyRifleIncendiary
+  parent: BaseMagazineBoxHeavyRifle
+  name: ammunition box (.308 incendiary)
+  description: A cardboard box of .308 rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: BaseMagazineBoxHeavyRifle
+  id: MagazineBoxHeavyRifleUranium
+  name: ammunition box (.308 uranium)
+  description: A cardboard box of .308 rounds. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+# 7.62mmR RifleMachine
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxRifleMachine
+  name: ammunition box (7.62mmR)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeHeavyRifleR
+    proto: CartridgeHeavyRifleRSP
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+# Boxes
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachineBig
+  name: ammunition box (7.62mmR SP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 160
+    proto: CartridgeHeavyRifleRSP
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachineSP
+  name: ammunition box (7.62mmR SP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRSP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachineHP
+  name: ammunition box (7.62mmR HP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachineFMJ
+  name: ammunition box (7.62mmR FMJ)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachineAP
+  name: ammunition box (7.62mmR AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachinePractice
+  name: ammunition box (7.62mmR practice)
+  description: A cardboard box of 7.62mmR rounds. Intended to hold non-harmful chalk ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  id: MagazineBoxRifleMachineIncendiary
+  parent: BaseMagazineBoxRifleMachine
+  name: ammunition box (7.62mmR incendiary)
+  description: A cardboard box of 7.62mmR rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: BaseMagazineBoxRifleMachine
+  id: MagazineBoxRifleMachineUranium
+  name: ammunition box (7.62mmR uranium)
+  description: A cardboard box of 7.62mmR rounds. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium

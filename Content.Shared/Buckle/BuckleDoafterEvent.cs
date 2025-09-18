@@ -9,3 +9,11 @@ public sealed partial class BuckleDoAfterEvent : SimpleDoAfterEvent
 {
 
 }
+
+// Sunrise-Start
+[Serializable, NetSerializable]
+public sealed partial class UnbuckleDoAfterEvent : SimpleDoAfterEvent
+{
+
+}
+// Sunrise-End

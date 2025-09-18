@@ -9,7 +9,7 @@
       - Cartridge
       - CartridgeHeavyRifle
   - type: HitScanCartridgeAmmo
-    proto: BulletHeavyRifle
+    hitscan: BulletHeavyRifleTrace
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -26,5 +26,5 @@
   parent: BaseCartridgeHeavyRifle
   components:
   - type: HitScanCartridgeAmmo
-    proto: BulletMinigun
+    hitscan: BulletMinigunTrace
     deleteOnSpawn: true

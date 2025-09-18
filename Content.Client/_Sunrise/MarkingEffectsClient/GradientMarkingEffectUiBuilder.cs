@@ -11,7 +11,7 @@ public sealed class GradientMarkingEffectUiBuilder : IMarkingEffectUiBuilder
     private const int OffsetMax = 100;
 
     private const int SizeMin = 30;
-    private const int SizeMax = 500;
+    private const int SizeMax = 100;
 
     private const int RotationMin = 0;
     private const int RotationMax = 360;

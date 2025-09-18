@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Made by DeasTrouGht",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "dark_box_s"
+        },
+        {
+            "name": "dark_box_w"
+        },
+        {
+            "name": "dark_box_n"
+        },
+        {
+            "name": "dark_box_e"
+        },
+        {
+            "name": "dark_box_se"
+        },
+        {
+            "name": "dark_box_sw"
+        },
+        {
+            "name": "dark_box_ne"
+        },
+        {
+            "name": "dark_box_nw"
+        },
+        {
+            "name": "dark_cr_nw"
+        },
+        {
+            "name": "dark_cr_ne"
+        },
+        {
+            "name": "dark_cr_sw"
+        },
+        {
+            "name": "dark_cr_se"
+        }       
+]
+}

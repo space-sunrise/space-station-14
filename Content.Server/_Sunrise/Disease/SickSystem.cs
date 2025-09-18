@@ -24,6 +24,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Server.Medical;
 using Content.Server.Traits.Assorted;
+using Content.Shared.Body.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Item;
@@ -100,7 +101,7 @@ public sealed class SickSystem : SharedSickSystem
             }
         }
 
-        if (!string.IsNullOrEmpty(component.BeforeInfectedBloodReagent) && 
+        if (!string.IsNullOrEmpty(component.BeforeInfectedBloodReagent) &&
             TryComp<BloodstreamComponent>(uid, out var bloodstream))
         {
             _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
@@ -285,7 +286,7 @@ public sealed class SickSystem : SharedSickSystem
             case "Insult":
                 if (TryComp<DiseaseRoleComponent>(component.owner, out var dis))
                 {
-                    _stun.TryParalyze(uid, TimeSpan.FromSeconds(5), false);
+                    _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5));
                     if (_prototypeManager.TryIndex<DamageTypePrototype>("Shock", out var damagePrototype))
                     {
                         _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.35f * dis.Lethal), true, origin: uid);

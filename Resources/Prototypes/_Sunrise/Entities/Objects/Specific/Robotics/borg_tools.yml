@@ -52,7 +52,6 @@
   description: This laser for security robot.
   categories: [ HideSpawnMenu ]
   components:
-  #- type: AlterLevelGunBlocker #FIXMEVIGERS
   - type: Item
     size: Large
   - type: Sprite
@@ -67,8 +66,22 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: DisablerBolt
     fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 50
+    - proto: RedLaserBeam
+      fireCost: 100
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
@@ -89,9 +102,9 @@
     sprite: Objects/Weapons/Melee/flash.rsi
     layers:
     - state: burnt
-      map: [ "enum.FlashVisuals.BaseLayer" ]
+      map: [ "enum.FlashVisualLayers.BaseLayer" ]
     - state: flashing
-      map: [ "enum.FlashVisuals.LightLayer" ]
+      map: [ "enum.FlashVisualLayers.LightLayer" ]
       visible: false
       shader: unshaded
   - type: LimitedCharges
@@ -124,7 +137,7 @@
       - ReagentId: Epinephrine
         Quantity: 0.4
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
     transferAmount: 5 #Sunrise-End
   - type: UseDelay
@@ -189,6 +202,7 @@
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   parent: HypoBorgStandard
@@ -238,6 +252,7 @@
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   name: proto-kinetic robot accelerator
@@ -345,7 +360,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: Appearance
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFrag
+    proto: GrenadeFragTimer
     fireCost: 1000
   - type: Battery
     maxCharge: 10000
@@ -530,8 +545,8 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletPulse
+  - type: HitscanBatteryAmmoProvider #ProjectileBatteryAmmoProvider
+    proto: Pulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000
@@ -569,7 +584,7 @@
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
+    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -609,7 +624,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletLightRifle
+    proto: BulletRifleTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -677,7 +692,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFragLight
+    proto: GrenadeFragTimer
     fireCost: 250
   - type: Battery
     maxCharge: 1500
@@ -719,7 +734,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletPistol
+    proto: BulletPistolTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 5000
@@ -753,7 +768,8 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: the saboteur's communications jammer

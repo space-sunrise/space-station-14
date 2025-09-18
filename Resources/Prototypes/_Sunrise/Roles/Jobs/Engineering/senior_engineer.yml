@@ -34,3 +34,14 @@
   storage:
     back:
     - ClothingOuterHardsuitEngineeringCompact
+
+- type: chameleonOutfit
+  id: SeniorEngineerChameleonOutfit
+  job: SeniorEngineer
+  equipment:
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatYellow
+    outerClothing: ClothingOuterVestHazard
+    shoes: ClothingShoesBootsMag
+    neck: ClothingNeckScarfStripedOrange

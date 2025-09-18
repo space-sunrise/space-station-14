@@ -8,7 +8,7 @@
         - MagazineDeagle
     - type: BallisticAmmoProvider
       mayTransfer: true
-      proto: CartridgeMagnum  # 050
+      proto: CartridgeMagnumSP  # 050
       whitelist:
         tags:
           - CartridgeMagnum  # 050

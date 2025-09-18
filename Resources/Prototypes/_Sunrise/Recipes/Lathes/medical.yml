@@ -5,8 +5,10 @@
   - Tools
   completetime: 4
   materials:
-    Glass: 500
-    Steel: 500
+    Glass: 250
+    Steel: 250
+    Plastic: 400
+    Gold: 100
 
 - type: latheRecipe
   id: ScalpelAdvanced
@@ -88,85 +90,3 @@
     Steel: 300
     Plasma: 100
     Glass: 100
-
-#cyberlimbs
-
-- type: latheRecipe
-  id: LeftArmCyber
-  result: LeftArmCyber
-  categories:
-  - Cyberlimbs
-  completetime: 3
-  materials:
-    Plastic: 200
-    Steel: 200
-
-- type: latheRecipe
-  id: RightArmCyber
-  result: RightArmCyber
-  categories:
-  - Cyberlimbs
-  completetime: 3
-  materials:
-    Plastic: 200
-    Steel: 200
-
-- type: latheRecipe
-  id: LeftHandCyber
-  result: LeftHandCyber
-  categories:
-  - Cyberlimbs
-  completetime: 2
-  materials:
-    Plastic: 100
-    Steel: 100
-
-- type: latheRecipe
-  id: RightHandCyber
-  result: RightHandCyber
-  categories:
-  - Cyberlimbs
-  completetime: 2
-  materials:
-    Plastic: 100
-    Steel: 100
-
-- type: latheRecipe
-  id: LeftLegCyber
-  result: LeftLegCyber
-  categories:
-  - Cyberlimbs
-  completetime: 3
-  materials:
-    Plastic: 200
-    Steel: 200
-
-- type: latheRecipe
-  id: RightLegCyber
-  result: RightLegCyber
-  categories:
-  - Cyberlimbs
-  completetime: 3
-  materials:
-    Plastic: 200
-    Steel: 200
-
-- type: latheRecipe
-  id: LeftFootCyber
-  result: LeftFootCyber
-  categories:
-  - Cyberlimbs
-  completetime: 2
-  materials:
-    Plastic: 100
-    Steel: 100
-
-- type: latheRecipe
-  id: RightFootCyber
-  result: RightFootCyber
-  categories:
-  - Cyberlimbs
-  completetime: 2
-  materials:
-    Plastic: 100
-    Steel: 100

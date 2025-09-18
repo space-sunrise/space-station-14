@@ -1,0 +1,17 @@
+ent-LightRifleHeavyBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-LightRifleHeavyMagazineEmpty = Коробка магазина (7.62 любой)
+    .suffix = Пустой
+    .desc = { ent-LightRifleHeavyBase.desc }
+ent-LightRifleHeavyMagazineSP = Коробка магазина (7.62 SP)
+    .desc = { ent-LightRifleHeavyBase.desc }
+ent-LightRifleHeavyMagazineHP = Коробка магазина (7.62 HP)
+    .desc = { ent-LightRifleHeavyBase.desc }
+ent-LightRifleHeavyMagazineFMJ = Коробка магазина (7.62 FMJ)
+    .desc = { ent-LightRifleHeavyBase.desc }
+ent-LightRifleHeavyMagazineIncendiary = Коробка магазина (7.62 зажигательный)
+    .desc = { ent-LightRifleHeavyBase.desc }
+ent-LightRifleHeavyMagazineUranium = Коробка магазина (7.62 урановый)
+    .desc = { ent-LightRifleHeavyBase.desc }
+ent-LightRifleHeavyMagazineAP = Коробка магазина (7.62 AP)
+    .desc = { ent-LightRifleHeavyBase.desc }

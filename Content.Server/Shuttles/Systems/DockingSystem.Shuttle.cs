@@ -160,7 +160,7 @@ public sealed partial class DockingSystem
     /// <summary>
     /// Gets all docking configs between the 2 grids.
     /// </summary>
-    private List<DockingConfig> GetDockingConfigs(
+    public List<DockingConfig> GetDockingConfigs( // Sunrise-Edit
         EntityUid shuttleUid,
         EntityUid targetGrid,
         List<Entity<DockingComponent>> shuttleDocks,
@@ -342,6 +342,7 @@ public sealed partial class DockingSystem
                         Coordinates = gridPosition,
                         Area = cacheDockedAABB,
                         Angle = cacheTargetAngle,
+                        TargetGrid = targetGrid,
                     });
                 }
             });

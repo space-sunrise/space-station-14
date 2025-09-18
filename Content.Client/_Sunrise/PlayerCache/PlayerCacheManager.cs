@@ -1,6 +1,9 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+
+using Content.Shared._Sunrise.InteractionsPanel.Data.UI;
 using Content.Shared._Sunrise.PlayerCache;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 
 namespace Content.Client._Sunrise.PlayerCache;
@@ -8,6 +11,7 @@ namespace Content.Client._Sunrise.PlayerCache;
 public sealed class PlayerCacheManager
 {
     [Dependency] private readonly IClientNetManager _netManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private PlayerCacheData _cache = new();
 
@@ -17,15 +21,37 @@ public sealed class PlayerCacheManager
     {
         _netManager.RegisterNetMessage<MsgPlayerCacheSync>();
         _netManager.RegisterNetMessage<MsgPlayerCacheRequest>(OnCacheRequest);
+
+        _cfg.OnValueChanged(SunriseCCVars.SponsorGhostTheme,
+            s =>
+            {
+                var cache = GetCache();
+                cache.GhostTheme = s;
+                SetCache(cache);
+            });
+        _cfg.OnValueChanged(SunriseCCVars.SponsorPet,
+            s =>
+            {
+                var cache = GetCache();
+                cache.Pet = s;
+                SetCache(cache);
+            });
+        _cfg.OnValueChanged(InteractionsCVars.EmoteVisibility,
+            b =>
+            {
+                var cache = GetCache();
+                cache.EmoteVisibility = b;
+                SetCache(cache);
+            });
     }
 
     private void OnCacheRequest(MsgPlayerCacheRequest msg)
     {
-        var cfg = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>();
         var data = new PlayerCacheData
         {
-            GhostTheme = cfg.GetCVar(SunriseCCVars.SponsorGhostTheme),
-            Pet = cfg.GetCVar(SunriseCCVars.SponsorPet)
+            GhostTheme = _cfg.GetCVar(SunriseCCVars.SponsorGhostTheme),
+            Pet = _cfg.GetCVar(SunriseCCVars.SponsorPet),
+            EmoteVisibility = _cfg.GetCVar(InteractionsCVars.EmoteVisibility),
         };
         var sync = new MsgPlayerCacheSync { Cache = data };
         _netManager.ClientSendMessage(sync);

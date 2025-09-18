@@ -9,7 +9,7 @@
 
 - type: loadout
   id: NekoWhiteWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -18,7 +18,7 @@
 
 - type: loadout
   id: NekoBlackWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -27,7 +27,7 @@
 
 - type: loadout
   id: AssblastusaWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -36,7 +36,7 @@
 
 - type: loadout
   id: BikiniWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -45,7 +45,7 @@
 
 - type: loadout
   id: BraletteWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -54,7 +54,7 @@
 
 - type: loadout
   id: CommieWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -63,7 +63,7 @@
 
 - type: loadout
   id: KinkyWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -72,7 +72,7 @@
 
 - type: loadout
   id: LaceWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -81,7 +81,7 @@
 
 - type: loadout
   id: SportWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -90,7 +90,7 @@
 
 - type: loadout
   id: ThongWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -99,7 +99,7 @@
 
 - type: loadout
   id: UkWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -108,7 +108,7 @@
 
 - type: loadout
   id: ChristmasWomanPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
@@ -126,7 +126,7 @@
 
 - type: loadout
   id: AssblastusaManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -135,7 +135,7 @@
 
 - type: loadout
   id: BriefsManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -144,7 +144,7 @@
 
 - type: loadout
   id: CommieManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -153,7 +153,7 @@
 
 - type: loadout
   id: HeartsManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -162,7 +162,7 @@
 
 - type: loadout
   id: KinkyManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -171,7 +171,7 @@
 
 - type: loadout
   id: LongjohnsManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -180,7 +180,7 @@
 
 - type: loadout
   id: MankiniManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -189,7 +189,7 @@
 
 - type: loadout
   id: StripeManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
@@ -198,7 +198,7 @@
 
 - type: loadout
   id: UkManPants
-  sponsorOnly: true
+  sponsorOnly: false
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment

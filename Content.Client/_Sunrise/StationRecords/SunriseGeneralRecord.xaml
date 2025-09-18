@@ -1,0 +1,69 @@
+<BoxContainer xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+         Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"
+         MinSize="500 600">
+    <!-- Заголовок с именем, работой и отделом-->
+    <controls:StripeBack VerticalAlignment="Top" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" VerticalAlignment="Top">
+            <Label Name="NameHeading" Access="Public" StyleClasses="LabelHeading" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <BoxContainer Orientation="Horizontal" Align="Center">
+                <Label Name="SubText" VerticalAlignment="Center" HorizontalAlignment="Center" StyleClasses="LabelSubText" Access="Public"/>
+            </BoxContainer>
+        </BoxContainer>
+    </controls:StripeBack>
+    <!-- Спрайт персонажа посередине окна-->
+    <SpriteView OverrideDirection="South" Scale="8 8" Name="SpriteView" Access="Public" MinSize="256 256" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 25 5 25"/>
+    <controls:StripeBack VerticalAlignment="Bottom" HorizontalExpand="True" VerticalExpand="True">
+        <!-- Нижняя часть-->
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center" Margin="5 5 5 5">
+            <!-- Белая полоска слева -->
+            <PanelContainer
+                VerticalExpand="True"
+                MinWidth="2"
+                MaxWidth="2"
+                Margin="9 5 9 0">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="#CFCFCF"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+            <!-- Поля для изменения данных -->
+            <GridContainer Name="ControlGrid" Columns="2" HorizontalAlignment="Stretch" HorizontalExpand="True">
+                <Label Name="NameLabel" Text="{Loc 'station-records-ui-name'}"/>               <LineEdit Name="Name" HorizontalExpand="True"/>
+                <Label Name="AgeLabel" Text="{Loc 'station-records-ui-age'}"/>                 <LineEdit Name="Age"/>
+                <Label Name="GenderLabel" Text="{Loc 'station-records-ui-gender'}"/>           <OptionButton Name="Gender"/>
+                <Label Name="SpeciesLabel" Text="{Loc 'station-records-ui-species'}"/>         <OptionButton Name="Species"/>
+                <Label Name="JobLabel" Text="{Loc 'station-records-ui-job'}"/>                 <OptionButton Name="Job"/>
+                <Label Name="FingerprintLabel" Text="{Loc 'station-records-ui-fingerprint'}"/> <LineEdit Name="Fingerprint" Editable="False"/>
+                <Label Name="DnaLabel" Text="{Loc 'station-records-ui-dna'}"/>                 <LineEdit Name="Dna" Editable="False"/>
+            </GridContainer>
+        </BoxContainer>
+    </controls:StripeBack>
+
+    <!-- Кнопки сохранить, распечатать и удалить(не видна без емага) -->
+    <GridContainer Columns="3" HorizontalAlignment="Stretch" HorizontalExpand="True">
+        <Button Visible="False" Name="SaveButton" Text="{Loc 'station-records-ui-save'}" Disabled="True" StyleClasses="ButtonColorGreen"/>
+        <Button Visible="False" Name="PrintButton" Text="{Loc 'station-records-ui-print'}"/>
+        <Button Visible="False" Name="DeleteButton" Text="{Loc 'general-station-record-console-delete'}" StyleClasses="ButtonColorRed"/>
+    </GridContainer>
+
+    <!-- Характеристика -->
+    <controls:StripeBack VerticalAlignment="Bottom" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center" Margin="5 5 5 5">
+            <!-- Опять белая полоска слева -->
+            <PanelContainer
+                VerticalExpand="True"
+                MinWidth="2"
+                MaxWidth="2"
+                Margin="9 5 9 0">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="#CFCFCF"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+            <GridContainer Columns="1" HorizontalAlignment="Stretch" HorizontalExpand="True">
+                <Label Name="PersonalityLabel" Text="{Loc 'station-records-ui-personality'}"/>
+                <TextEdit Name="Personality" HorizontalExpand="True" VerticalExpand="True" MinSize="300 100"/>
+            </GridContainer>
+        </BoxContainer>
+    </controls:StripeBack>
+</BoxContainer>

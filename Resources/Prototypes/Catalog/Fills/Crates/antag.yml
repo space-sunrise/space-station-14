@@ -39,6 +39,7 @@
   - type: StorageFill
     contents:
       - id: WeaponLauncherPirateCannon
+        amount: 2
       - id: Cutlass
       - id: CannonBall
         amount: 2
@@ -52,6 +53,9 @@
         amount: 4
       - id: WeaponPistolFlintlock
         amount: 2
+      - id: MagazineBoxMagnumAP
+        amount: 2
+      - id: Musket
       - id: MagazineBoxAntiMateriel
         amount: 2
       - id: WeaponGrapplingGun
@@ -61,13 +65,19 @@
         prob: 0.9
       - id: EnergyCutlass
         prob: 0.9
+        amount: 3
       - id: ToolboxElectricalTurret
         prob: 0.75
+        amount: 3
       - id: WeaponLaserGun
+        prob: 0.40
+      - id: EnergyDomeGeneratorPersonalSyndieBiocode
+        prob: 0.40
+      - id: EnergyShieldBiocode
         prob: 0.40
       - id: WeaponSniperRepeater
         prob: 0.40
-      - id: WeaponShotgunSawnEmpty
+      - id: WeaponRevolverSnubRevolver
         prob: 0.30
       - id: WeaponShotgunTrenchgun4034Sawn
         prob: 0.30

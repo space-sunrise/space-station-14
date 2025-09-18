@@ -41,11 +41,11 @@
           - MagazineLightMachineGunMG60
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeHeavyLightRifle  # 762x54
+        startingItem: CartridgeRifleHeavySP
         priority: 1
         whitelist:
           tags:
-          - CartridgeHeavyRifle  # 762x54
+          - CartridgeHeavyRifleR
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -67,8 +67,8 @@
     sprintModifier: 0.6
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3.75
-    pvsIncrease: 0.45
+    maxOffset: 6
+    pvsIncrease: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -117,11 +117,11 @@
           - MagazineRPD
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeLightRifle  # 762x39
+        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 762x39
+          - CartridgeLightRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -142,15 +142,15 @@
     sprintModifier: 0.85
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 4
+    pvsIncrease: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
 
 - type: entity
-  name: MG-42
+  name: MG-342
   parent: BaseWeaponLightMachineGun
   id: WeaponMachineGunMG42
   components:
@@ -170,10 +170,10 @@
     minAngle: 0
     maxAngle: 0
   - type: Gun
-    minAngle: 6
+    minAngle: 5
     maxAngle: 140
-    angleIncrease: 5
-    angleDecay: 55
+    angleIncrease: 4.5
+    angleDecay: 70
     fireRate: 12
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
@@ -190,13 +190,14 @@
         whitelist:
           tags:
           - MagazineMachineGunMG42
+          - MagazineMachineGunHeavyRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeHeavyRifleNT  # 7.62х51 NT
+        startingItem: CartridgeRifleHeavySP
         priority: 1
         whitelist:
           tags:
-          - CartridgeHeavyRifleNT  # 7.62х51 NT
+          - CartridgeHeavyRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -218,8 +219,8 @@
     sprintModifier: 0.6
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3.25
-    pvsIncrease: 0.35
+    maxOffset: 6
+    pvsIncrease: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -279,7 +280,7 @@
             - MagazineRPD
       gun_chamber:
         name: Chamber
-        startingItem: SunriseCartridgeLightRifle
+        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -291,5 +292,6 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: GunRequiresWield
   - type: StaticPrice
     price: 10000

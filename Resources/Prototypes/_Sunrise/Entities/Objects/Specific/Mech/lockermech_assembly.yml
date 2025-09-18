@@ -51,7 +51,7 @@
       - tag: Toolbox
         name: step-lockermech-toolbox2
         icon:
-          sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+          sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
           state: icon
         doAfter: 3
 
@@ -72,21 +72,25 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 2
+
       - tool: Screwing
         doAfter: 7
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 3
+
       - tool: Welding
         doAfter: 10
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 4
+
       - material: Steel
         amount: 5
         doAfter: 3
+
       - material: Glass
         amount: 2
         doAfter: 3
@@ -94,6 +98,7 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 5
+
       - tag: GasTank
         name: step-lockermech-oxygentank
         icon:
@@ -104,6 +109,7 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 6
+
       - material: Steel
         amount: 5
         doAfter: 7
@@ -111,6 +117,7 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 7
+
       - material: Cable
         amount: 10
         doAfter: 10
@@ -118,6 +125,7 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 8
+
       - tag: DoorElectronics
         name: step-lockermech-door-electronics
         icon:
@@ -128,44 +136,10 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 9
-      - tag: MicroManipulatorStockPart
-        name: step-lockermech-manipulators
-        icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: micro_mani
-        doAfter: 1
-
-      - tag: MicroManipulatorStockPart
-        name: step-lockermech-manipulators
-        icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: micro_mani
-        doAfter: 1
-
-      - tag: MicroManipulatorStockPart
-        name: step-lockermech-manipulators
-        icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: micro_mani
-        doAfter: 1
-
-      - tag: MicroManipulatorStockPart
-        name: step-lockermech-manipulators
-        icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: micro_mani
-        doAfter: 1
-        completed:
-        - !type:VisualizerDataInt
-          key: "enum.MechAssemblyVisuals.State"
-          data: 10
-
-      - tag: MicroManipulatorStockPart
-        name: step-lockermech-manipulators
-        icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: micro_mani
-        doAfter: 1
+          
+      - material: Manipulator
+        amount: 10
+        doAfter: 5
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"

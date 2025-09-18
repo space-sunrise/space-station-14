@@ -2,7 +2,7 @@
   parent: BaseStorageItem
   id: GlockBox
   name: glock box
-  description: It contains a Glock22 and a magazine for it. Did you want something else?
+  description: It contains a Glock22 and a rubber magazine for it. Did you want something else?
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Storage/glockbox.rsi
@@ -19,21 +19,52 @@
     - 0,0,2,1
   - type: StorageFill
     contents:
-      - id: MagazineGlock22
+      - id: MagazinePistolHighCapacityRubber
         amount: 1
       - id: WeaponPistolG22
         amount: 1
+  - type: Tag
+    tags:
+    - Trash
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
 
 - type: entity
   parent: GlockBox
   id: ACP14Box
   name: ACP14 box
-  description: It contains a ACP14 and a magazine for it. Did you want something else?
+  description: It contains a ACP14 and a rubber magazine for it. Did you want something else?
   components:
   - type: StorageFill
     contents:
-      - id: MagazineACP14
+      - id: MagazineMagnumRubber
         amount: 1
       - id: WeaponPistolACP14
         amount: 1
 
+- type: entity
+  parent: GlockBox
+  id: MK58Box
+  name: MK58 box
+  description: It contains a MK58 and a rubber magazine for it. Did you want something else?
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolMk58
+        amount: 1
+      - id: MagazinePistolRubber
+        amount: 1
+
+- type: entity
+  parent: GlockBox
+  id: MK58GoldBox
+  name: Gold MK58 box
+  description: It contains a Gold MK58 and a rubber magazine for it. Ave Security!
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolGoldenMk58
+        amount: 1
+      - id: MagazinePistolRubber
+        amount: 1

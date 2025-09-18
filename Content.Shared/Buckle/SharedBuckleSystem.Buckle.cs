@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Alert;
-using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Database;
@@ -13,14 +12,12 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Popups;
 using Content.Shared.Pulling.Events;
-using Content.Shared.Rotation;
 using Content.Shared.Standing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -60,6 +57,14 @@ public abstract partial class SharedBuckleSystem
         {
             BuckleDoafterEarly((uid, comp), ev.Event, ev);
         });
+
+        // Sunrise-Start
+        SubscribeLocalEvent<BuckleComponent, UnbuckleDoAfterEvent>(OnUnbuckleDoafter);
+        SubscribeLocalEvent<BuckleComponent, DoAfterAttemptEvent<UnbuckleDoAfterEvent>>((uid, comp, ev) =>
+        {
+            UnbuckleDoafterEarly((uid, comp), ev.Event, ev);
+        });
+        // Sunrise-End
     }
 
     private void OnBuckleComponentShutdown(Entity<BuckleComponent> ent, ref ComponentShutdown args)
@@ -74,6 +79,11 @@ public abstract partial class SharedBuckleSystem
         // Prevent people pulling the chair they're on, etc.
         if (ent.Comp.BuckledTo == args.Pulled && !ent.Comp.PullStrap)
             args.Cancel();
+
+        // Sunrise-Start
+        if (ent.Comp.Buckled)
+            args.Cancel();
+        // Sunrise-End
     }
 
     private void OnBeingPulledAttempt(Entity<BuckleComponent> ent, ref BeingPulledAttemptEvent args)
@@ -208,6 +218,9 @@ public abstract partial class SharedBuckleSystem
         if (TryComp(buckle.Comp.BuckledTo, out StrapComponent? old))
         {
             old.BuckledEntities.Remove(buckle);
+            // Sunrise-Start: Clean up CurrentOffsets when removing buckled entity
+            old.CurrentOffsets.Remove(buckle.Owner);
+            // Sunrise-End
             Dirty(buckle.Comp.BuckledTo.Value, old);
         }
 
@@ -282,7 +295,7 @@ public abstract partial class SharedBuckleSystem
             return false;
         }
 
-        if (buckleComp.Buckled && !TryUnbuckle(buckleUid, user, buckleComp))
+        if (buckleComp.Buckled) // && !TryUnbuckle(buckleUid, user, buckleComp) Sunrise-Edit
         {
             if (popup)
             {
@@ -479,9 +492,9 @@ public abstract partial class SharedBuckleSystem
     private void Unbuckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
         if (user == buckle.Owner)
-            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{user} unbuckled themselves from {strap}");
+            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} unbuckled themselves from {ToPrettyString(strap):strap}");
         else if (user != null)
-            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{user} unbuckled {buckle} from {strap}");
+            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} unbuckled {ToPrettyString(buckle):target} from {ToPrettyString(strap):strap}");
 
         _audio.PlayPredicted(strap.Comp.UnbuckleSound, strap, user);
 
@@ -492,20 +505,23 @@ public abstract partial class SharedBuckleSystem
 
         if (buckleXform.ParentUid == strap.Owner && !Terminating(oldBuckledXform.ParentUid))
         {
-            _transform.PlaceNextTo((buckle, buckleXform), (strap.Owner, oldBuckledXform));
-            buckleXform.ActivelyLerping = false;
+            // Sunrise-start
+            // Combine position + rotation in a single transform update.
+            var targetWorldPos = _transform.GetWorldPosition(strap);
+            var targetWorldRot = _transform.GetWorldRotation(strap);
 
-            var oldBuckledToWorldRot = _transform.GetWorldRotation(strap);
-            _transform.SetWorldRotationNoLerp((buckle, buckleXform), oldBuckledToWorldRot);
+            // Apply strap offset if any
+            if (strap.Comp.CurrentOffsets.TryGetValue(buckle.Owner, out var offset) && offset != Vector2.Zero)
+                targetWorldPos += offset;
 
-            // Sunrise-Start
-            // TODO: This is doing 4 moveevents this is why I left the warning in, if you're going to remove it make it only do 1 moveevent.
-            if (strap.Comp.CurrentOffsets[buckle.Owner] != Vector2.Zero)
-            {
-                buckleXform.Coordinates = oldBuckledXform.Coordinates.Offset(strap.Comp.CurrentOffsets[buckle.Owner]);
-            }
+            // Remove offset now that we're done
             strap.Comp.CurrentOffsets.Remove(buckle.Owner);
-            // Sunrise-End
+
+            // Set both position & rotation at once (one move event)
+            _transform.SetWorldPositionRotation(buckle, targetWorldPos, targetWorldRot);
+
+            buckleXform.ActivelyLerping = false;
+            // Sunrise-end
         }
 
         _rotationVisuals.ResetHorizontalAngle(buckle.Owner);
@@ -604,4 +620,27 @@ public abstract partial class SharedBuckleSystem
             TryBuckle(args.Target.Value, args.User, args.Used.Value, popup: false);
         }
     }
+
+    // Sunrise-Start
+    private void OnUnbuckleDoafter(Entity<BuckleComponent> entity, ref UnbuckleDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Target == null)
+            return;
+
+        args.Handled = TryUnbuckle(args.Target.Value, args.User, popup: false);
+    }
+
+    private void UnbuckleDoafterEarly(Entity<BuckleComponent> entity, UnbuckleDoAfterEvent args, CancellableEntityEventArgs ev)
+    {
+        if (args.Target == null)
+            return;
+
+        if (TryComp<CuffableComponent>(args.Target, out var targetCuffableComp) && targetCuffableComp.CuffedHandCount > 0
+            || _mobState.IsIncapacitated(args.Target.Value))
+        {
+            ev.Cancel();
+            TryUnbuckle(args.Target.Value, args.User, popup: false);
+        }
+    }
+    // Sunrise-End
 }

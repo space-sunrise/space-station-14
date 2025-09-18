@@ -2362,7 +2362,7 @@ entities:
       pos: -3.9028208,-4.015589
       parent: 1
     - type: NetworkConfigurator
-- proto: Nanopaste10
+- proto: Nanopaste
   entities:
   - uid: 10
     components:

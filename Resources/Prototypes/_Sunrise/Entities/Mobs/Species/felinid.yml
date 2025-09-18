@@ -7,7 +7,6 @@
   components:
   - type: Interactions
   - type: MultiHandedItem
-  - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
@@ -402,6 +401,13 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Distrofik/displacement.rsi
             state: back
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Felinid
   - type: Fixtures
     fixtures:
       fix1:
@@ -500,8 +506,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Felinid
-    damageSound: /Audio/Effects/hit_kick.ogg
   - type: Carriable
 
 - type: entity

@@ -15,6 +15,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
+using Content.Shared.Light.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
@@ -121,7 +122,7 @@ public sealed class VigersRaySystem : EntitySystem
             var statusEffectQuery = EntityQueryEnumerator<StatusEffectsComponent>();
             while (statusEffectQuery.MoveNext(out var ent, out var comp))
             {
-                _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(5), true);
+                _stunSystem.TryAddParalyzeDuration(ent, TimeSpan.FromSeconds(5));
                 _jittering.DoJitter(ent, TimeSpan.FromSeconds(15), true);
                 _stuttering.DoStutter(ent, TimeSpan.FromSeconds(30), true);
             }

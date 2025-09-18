@@ -116,6 +116,10 @@
   canWithdraw: false
 
 #uplink categoires
+- type: storeCategory
+  id: UplinkCybernetics
+  name: store-category-cybernetics #Cybernetics
+  priority: 7
 
 - type: storeCategory
   id: UplinkMechs

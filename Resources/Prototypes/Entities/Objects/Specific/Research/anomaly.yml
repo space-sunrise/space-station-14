@@ -161,3 +161,8 @@
         Cold: 100
         Radiation: 100
     slots: NONE
+  # Sunrise-start
+  - type: Construction
+    graph: UpgradeCyberGorilla
+    node: start
+  #Sunrise-end

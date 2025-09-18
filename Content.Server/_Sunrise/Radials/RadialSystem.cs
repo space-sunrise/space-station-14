@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
+using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
@@ -16,6 +17,7 @@ public sealed class RadialSystem : SharedRadialSystem
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly IAdminManager _adminMgr = default!;
+        [Dependency] private readonly HandsSystem _handsSystem = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -94,10 +96,10 @@ public sealed class RadialSystem : SharedRadialSystem
         {
             // first get the held item. again.
             EntityUid? holding = null;
-            if (TryComp(user, out HandsComponent? hands) &&
-                hands.ActiveHandEntity is EntityUid heldEntity)
+
+            if (TryComp(user, out HandsComponent? hands))
             {
-                holding = heldEntity;
+                holding = _handsSystem.GetActiveItem((user, hands));
             }
 
             // if this is a virtual pull, get the held entity

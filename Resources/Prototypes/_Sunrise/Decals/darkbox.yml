@@ -1,0 +1,83 @@
+- type: decal
+  id: DarkBoxN
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_n
+
+- type: decal
+  id: DarkBoxS
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_s
+
+- type: decal
+  id: DarkBoxW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_w
+
+- type: decal
+  id: DarkBoxE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_e
+
+- type: decal
+  id: DarkBoxNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_nw
+
+- type: decal
+  id: DarkBoxNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_ne
+
+- type: decal
+  id: DarkBoxSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_sw
+
+- type: decal
+  id: DarkBoxSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_box_se
+
+- type: decal
+  id: DarkCrNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_cr_nw
+
+- type: decal
+  id: DarkCrNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_cr_ne
+
+- type: decal
+  id: DarkCrSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_cr_sw
+
+- type: decal
+  id: DarkCrSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/darkbox.rsi
+    state: dark_cr_se

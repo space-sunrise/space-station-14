@@ -76,8 +76,42 @@ public sealed partial class NinjaSuitComponent : Component
     /// </summary>
     [DataField]
     public float EmpDuration = 60f;
+
+    /// <summary>
+    /// The action id for creating a smoke grenade
+    /// </summary>
+    [DataField]
+    public EntProtoId SmokeGrenadeAction = "ActionCreateSmokeGrenade";
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? SmokeGrenadeActionEntity;
+
+    /// <summary>
+    /// Battery charge used to create a smoke grenade.
+    /// </summary>
+    [DataField]
+    public float SmokeGrenadeCharge = 120f;
+
+    /// <summary>
+    /// The action id for creating a flashbang grenade
+    /// </summary>
+    [DataField]
+    public EntProtoId FlashbangGrenadeAction = "ActionCreateFlashbangGrenade";
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? FlashbangGrenadeActionEntity;
+
+    /// <summary>
+    /// Battery charge used to create a flashbang grenade.
+    /// </summary>
+    [DataField]
+    public float FlashbangGrenadeCharge = 120f;
 }
 
 public sealed partial class RecallKatanaEvent : InstantActionEvent;
 
 public sealed partial class NinjaEmpEvent : InstantActionEvent;
+
+public sealed partial class CreateSmokeGrenadeEvent : InstantActionEvent;
+
+public sealed partial class CreateFlashbangGrenadeEvent : InstantActionEvent;

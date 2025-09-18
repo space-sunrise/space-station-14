@@ -25,3 +25,11 @@
   storage:
     back:
     - WeaponPistolCHIMP
+
+- type: chameleonOutfit
+  id: SeniorResearcherChameleonOutfit
+  job: SeniorResearcher
+  equipment:
+    gloves: ClothingHandsGlovesLatex
+    neck: ClothingNeckTieSci
+    eyes: ClothingEyesGlasses

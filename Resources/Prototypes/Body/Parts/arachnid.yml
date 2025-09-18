@@ -90,7 +90,11 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "l_leg"
+  # Sunrise-start
   - type: MovementBodyPart
+    maxDensity: 155
+  # Sunrise-end
+
 
 - type: entity
   id: RightLegArachnid
@@ -100,7 +104,11 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: "r_leg"
+  # Sunrise-start
   - type: MovementBodyPart
+    maxDensity: 155
+  # Sunrise-end
+
 
 - type: entity
   id: LeftFootArachnid

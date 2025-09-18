@@ -5,13 +5,14 @@
   - type: Tag
     tags:
     - MagazineV31
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    capacity: 40
-    proto: CartridgeRail
-    whitelist:
-      tags:
-      - CartridgeRail
+# Увы
+#  - type: BallisticAmmoProvider
+#    mayTransfer: true
+#    capacity: 40
+#    proto: CartridgeRail
+#    whitelist:
+#      tags:
+#      - CartridgeRail
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -32,91 +33,9 @@
     zeroVisible: false
   - type: Appearance
 
-# - type: entity
-#   id: MagazineM28
-#   name: M28 magazine
-#   parent: BaseItem
-#   components:
-#   - type: Tag
-#     tags:
-#     - MagazineM28
-#   - type: Item
-#     size: Small
-#   - type: BallisticAmmoProvider
-#     mayTransfer: true
-#     proto: CartridgeHeavyRifleNT  # 762
-#     whitelist:
-#       tags:
-#       - CartridgeHeavyRifleNT  # 762
-#     capacity: 20
-#   - type: ContainerContainer
-#     containers:
-#       ballistic-ammo: !type:Container
-#   - type: Sprite
-#     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/m28.rsi
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-1
-#       map: ["enum.GunVisualLayers.Mag"]
-#   - type: MagazineVisuals
-#     magState: mag
-#     steps: 2
-#     zeroVisible: false
-#   - type: Appearance
-
-- type: entity
-  id: MagazineAR18
-  name: AR18 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineAR18
-  - type: Item
-    size: Small
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeHeavyRifleNT  # 762
-    whitelist:
-      tags:
-      - CartridgeHeavyRifleNT  # 762
-    capacity: 20
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ar18.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
 - type: entity
   parent: MagazineV31
   id: MagazineV31Extended
   components:
-  - type: BallisticAmmoProvider
-    capacity: 50
-
-# - type: entity
-#   parent: MagazineM28
-#   id: MagazineM28Extended
-#   components:
-#   - type: BallisticAmmoProvider
-#     capacity: 30
-
-- type: entity
-  parent: MagazineAR18
-  id: MagazineAR18Extended
-  components:
-  - type: Item
-    size: Normal
   - type: BallisticAmmoProvider
     capacity: 50

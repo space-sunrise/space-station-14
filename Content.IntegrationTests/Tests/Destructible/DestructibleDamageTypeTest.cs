@@ -41,7 +41,8 @@ namespace Content.IntegrationTests.Tests.Destructible
                 sTestThresholdListenerSystem = sEntitySystemManager.GetEntitySystem<TestDestructibleListenerSystem>();
                 sTestThresholdListenerSystem.ThresholdsReached.Clear();
                 sDamageableSystem = sEntitySystemManager.GetEntitySystem<DamageableSystem>();
-                sConfigManager.SetCVar(SunriseCCVars.DamageVariance, 0f); // Sunrise-Edit
+                sConfigManager.SetCVar(SunriseCCVars.DamageNegativeVariance, 0f); // Sunrise-Edit
+                sConfigManager.SetCVar(SunriseCCVars.DamagePositiveVariance, 0f); // Sunrise-Edit
             });
 
             await server.WaitRunTicks(5);
@@ -53,8 +54,8 @@ namespace Content.IntegrationTests.Tests.Destructible
 
             await server.WaitAssertion(() =>
             {
-                var bluntDamageType = protoManager.Index<DamageTypePrototype>("TestBlunt");
-                var slashDamageType = protoManager.Index<DamageTypePrototype>("TestSlash");
+                var bluntDamageType = protoManager.Index<DamageTypePrototype>(TestBluntDamageTypeId);
+                var slashDamageType = protoManager.Index<DamageTypePrototype>(TestSlashDamageTypeId);
 
                 var bluntDamage = new DamageSpecifier(bluntDamageType, 5);
                 var slashDamage = new DamageSpecifier(slashDamageType, 5);

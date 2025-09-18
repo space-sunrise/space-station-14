@@ -86,7 +86,7 @@
         - type: InjectOnHit
           limit: 20
           reagents:
-          - ReagentId: Nocturine
+          - ReagentId: NocturineAbductor
             Quantity: 2.5
 
       damage: !type:ItemSwitchState

@@ -26,4 +26,3 @@ ent-RubberStampSpecOps = печать спецопераций
 stamp-component-stamped-name-ntrep = Представитель NT
 stamp-component-stamped-name-path = Патологоанатом
 stamp-component-stamped-name-adj = Адъютант
-
