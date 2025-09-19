@@ -97,7 +97,7 @@
 
 - type: entity
   id: DefibrillatorSyndicate
-  parent: [ DefibrillatorCompact, BaseSyndicateContraband ]
+  parent: [ BaseDefibrillator, BaseSyndicateContraband ]
   name: interdyne defibrillator
   description: Doubles as a self-defense weapon against war-crime inclined tiders.
   components:
@@ -112,21 +112,18 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 8
-  - type: ItemToggleMeleeWeapon
-    activatedSoundOnHit:
-      path: /Audio/Items/Defib/defib_zap.ogg
-      params:
-        variation: 0.250
-    activatedSoundOnHitNoDamage:
-      path: /Audio/Items/Defib/defib_zap.ogg
-      params:
-        variation: 0.250
-        volume: -10
-    activatedDamage:
-      types:
-        Blunt: 8
-        Shock: 16
+        #Sunrise-Start
+      - type: BatterySelfRecharger
+        autoRechargeRate: 10
+        autoRecharge: true
+        autoRechargePause: true
+        autoRechargePauseTime: 10
+      - type: ExaminableBattery
+      - type: Battery
+        maxCharge: 250
+        startingCharge: 250
+      - type: PowerCellDraw
+        useRate: 100
+      - type: EmpImmune
+        #Sunrise-End
+

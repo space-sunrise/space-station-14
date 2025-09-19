@@ -1928,3 +1928,23 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Science
+
+    - type: listing
+      id: DefibrillatorSyndicate
+      name: interdyne defibrillator
+      description: Doubles as a self-defense weapon against war-crime inclined tiders.
+      productEntity: DefibrillatorSyndicateUplink
+      discountCategory: rareDiscounts
+      discountDownTo:
+       Telecrystal: 4
+      cost:
+        Telecrystal: 8
+      categories:
+      - UplinkChemicals
+      conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
