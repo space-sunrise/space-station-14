@@ -67,3 +67,23 @@
     factions:
     - Syndicate
   - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingShoesChameleonNoSlips
+  id: ClothingShoesChameleonNoSlipsBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingEyesGlassesThermalSyndie
+  id: ClothingEyesGlassesThermalSyndieBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker

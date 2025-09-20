@@ -73,7 +73,7 @@
   name: uplink-syndie-thermal-name
   description: uplink-syndie-thermal-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
-  productEntity: ClothingEyesGlassesThermalSec
+  productEntity: ClothingShoesChameleonNoSlipsBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 6
@@ -1735,7 +1735,7 @@
   id: uplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagle
+  productEntity: WeaponPistolDeagleBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4

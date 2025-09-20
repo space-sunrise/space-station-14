@@ -71,3 +71,16 @@
   - type: Biocode
     factions:
     - Syndicate
+
+- type: entity
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+  - type: Biocode
+    factions:
+    - Syndicate
