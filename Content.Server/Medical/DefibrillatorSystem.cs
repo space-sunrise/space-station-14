@@ -27,6 +27,7 @@ using Robust.Shared.Player;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
+using Content.Shared._Sunrise.Biocode;
 // Sunrise-End
 
 namespace Content.Server.Medical;
@@ -52,6 +53,7 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!; // Sunrise-Edit
+    [Dependency] private readonly BiocodeSystem _biocode = default!; // Sunrise-Edit
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -64,6 +66,17 @@ public sealed class DefibrillatorSystem : EntitySystem
     {
         if (args.Handled || args.Target is not { } target)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocode) &&
+            !_biocode.CanUse(args.User, biocode.Factions))
+        {
+            if (!string.IsNullOrEmpty(biocode.AlertText))
+                _popup.PopupEntity(biocode.AlertText, args.User, args.User);
+            args.Handled = true;
+            return;
+        }
+        // Sunrise-End
 
         args.Handled = TryStartZap(uid, target, args.User, component);
     }
