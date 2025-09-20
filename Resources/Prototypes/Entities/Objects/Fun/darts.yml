@@ -34,7 +34,7 @@
       types:
         Piercing: 2
     angle: 0
-    animation: WeaponArcThrust
+    wideAnimation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/pierce.ogg
   - type: DamageOtherOnHit

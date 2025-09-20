@@ -68,7 +68,8 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
 
         _animations.Play(new Entity<AnimationPlayerComponent>(animatableClone, animations), new Animation
         {
-            Length = TimeSpan.FromMilliseconds(125),
+            // ES START
+            Length = TimeSpan.FromMilliseconds(175),
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty
@@ -79,10 +80,33 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
                     KeyFrames =
                     {
                         new KeyFrame(initial.Position, 0),
-                        new KeyFrame(final, 0.125f)
+                        new KeyFrame(final, 0.175f, Easings.OutQuad)
+                    }
+                },
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Scale),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new KeyFrame(sprite.Scale, 0),
+                        new KeyFrame(new Vector2(0.5f, 0.5f), 0.175f, Easings.OutQuad)
+                    }
+                },
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Color),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new KeyFrame(sprite.Color, 0),
+                        new KeyFrame(sprite.Color.WithAlpha(0f), 0.175f, Easings.OutQuad)
                     }
                 },
             }
+            // ES END
         }, "fancy_pickup_anim");
     }
 }

@@ -89,8 +89,12 @@ public sealed class ColorFlashEffectSystem : SharedColorFlashEffectSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(color, 0f),
-                        new AnimationTrackProperty.KeyFrame(sprite.Color, AnimationLength)
+                        // ES START
+                        // todo mirror this still looks like ass
+                        new AnimationTrackProperty.KeyFrame(sprite.Color, 0f),
+                        new AnimationTrackProperty.KeyFrame(color, AnimationLength * 0.3f, Easings.InSine),
+                        new AnimationTrackProperty.KeyFrame(sprite.Color, AnimationLength * 0.7f, Easings.OutSine)
+                        // ES END
                     }
                 }
             }

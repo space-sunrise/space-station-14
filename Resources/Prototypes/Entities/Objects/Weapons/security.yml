@@ -50,7 +50,7 @@
         Blunt: 7
     bluntStaminaDamageFactor: 2.0
     angle: 60
-    animation: WeaponArcThrust
+    wideAnimation: WeaponArcThrust
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg

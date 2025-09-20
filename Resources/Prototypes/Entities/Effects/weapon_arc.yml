@@ -9,7 +9,10 @@
       sprite: Effects/arcs.rsi
       state: spear
       drawdepth: Effects
-    - type: EffectVisuals
+    # ES START
+    # this existing literally always broke timeddespawn...
+    # - type: EffectVisuals
+    # ES END
     - type: WeaponArcVisuals
     - type: Tag
       tags:

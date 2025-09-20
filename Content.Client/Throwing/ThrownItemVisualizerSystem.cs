@@ -63,7 +63,6 @@ public sealed class ThrownItemVisualizerSystem : EntitySystem
         var scale = ent.Comp2.Scale;
         var lenFloat = (float)length.TotalSeconds;
 
-        // TODO use like actual easings here
         return new Animation
         {
             Length = length,
@@ -75,9 +74,11 @@ public sealed class ThrownItemVisualizerSystem : EntitySystem
                     Property = nameof(SpriteComponent.Scale),
                     KeyFrames =
                     {
+                        // ES START
                         new AnimationTrackProperty.KeyFrame(scale, 0.0f),
-                        new AnimationTrackProperty.KeyFrame(scale * 1.4f, lenFloat * 0.25f),
-                        new AnimationTrackProperty.KeyFrame(scale, lenFloat * 0.75f)
+                        new AnimationTrackProperty.KeyFrame(scale * 1.4f, lenFloat * 0.5f, Easings.OutQuad),
+                        new AnimationTrackProperty.KeyFrame(scale, lenFloat * 0.5f, Easings.InQuad)
+                        // ES END
                     },
                     InterpolationMode = AnimationInterpolationMode.Linear
                 }
