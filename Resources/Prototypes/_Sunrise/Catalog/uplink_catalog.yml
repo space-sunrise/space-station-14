@@ -17,7 +17,7 @@
   name: uplink-syndie-thermal-name
   description: uplink-syndie-thermal-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
-  productEntity: ClothingEyesGlassesThermalSyndie
+  productEntity: ClothingEyesGlassesThermalSyndieBiocode
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 8
