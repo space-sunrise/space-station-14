@@ -24,13 +24,9 @@ using Content.Shared.Toggleable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 // Sunrise-Start
-using Content.Shared.FixedPoint;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Movement.Components;
-using Robust.Shared.Timing;
 // Sunrise-End
 
 namespace Content.Server.Medical;
@@ -55,51 +51,14 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
-
-    // Sunrise-Start
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-
-    private readonly Dictionary<EntityUid, (TimeSpan EndTime, float Multiplier)> _slowedEntities = new();
-
-    // Sunrise-End
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!; // Sunrise-Edit
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<DefibrillatorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<DefibrillatorComponent, DefibrillatorZapDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<MovementSpeedModifierComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed); // Sunrise-Edit
     }
-
-    // Sunrise-Start
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var currentTime = _gameTiming.CurTime;
-        var toRemove = new List<EntityUid>();
-
-        foreach (var (entity, (endTime, _)) in _slowedEntities)
-        {
-            if (currentTime > endTime)
-                toRemove.Add(entity);
-        }
-
-        foreach (var entity in toRemove)
-        {
-            if (_slowedEntities.Remove(entity))
-                _movementSpeed.RefreshMovementSpeedModifiers(entity);
-        }
-    }
-
-    private void OnRefreshMovementSpeed(EntityUid uid, MovementSpeedModifierComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        if (_slowedEntities.TryGetValue(uid, out var data) && _gameTiming.CurTime <= data.EndTime)
-            args.ModifySpeed(data.Multiplier, data.Multiplier);
-    }
-    // Sunrise-End
 
     private void OnAfterInteract(EntityUid uid, DefibrillatorComponent component, AfterInteractEvent args)
     {
@@ -275,26 +234,6 @@ public sealed class DefibrillatorSystem : EntitySystem
                     InGameICChatType.Speak, true);
             }
         }
-
-        // Sunrise-Start
-        // Inject reagents if any are specified
-        if (component.Reagents.Count > 0 && TryComp<BloodstreamComponent>(target, out var bloodstream))
-        {
-            if (_solutionContainer.TryGetSolution(target, bloodstream.ChemicalSolutionName, out var solution))
-            {
-                foreach (var (reagent, amount) in component.Reagents)
-                    _solutionContainer.TryAddReagent(solution.Value, reagent, FixedPoint2.New(amount), out _);
-            }
-        }
-
-        // Apply slowness if used on alive target and allowed
-        if (component.AllowUseOnAlive && _mobState.IsAlive(target, mob))
-        {
-            var endTime = _gameTiming.CurTime + component.SlownessDuration;
-            _slowedEntities[target] = (endTime, component.SlownessMultiplier);
-            _movementSpeed.RefreshMovementSpeedModifiers(target);
-        }
-        // Sunrise-End
 
         var sound = dead || session == null
             ? component.FailureSound
