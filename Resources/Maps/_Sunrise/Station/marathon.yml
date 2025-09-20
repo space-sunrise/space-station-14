@@ -51089,7 +51089,7 @@ entities:
         - 0
         - 0
         - 0
-- proto: ClosetPatologoanatomFilled
+- proto: ClosetSurgeonFilled
   entities:
   - uid: 7999
     components:

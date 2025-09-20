@@ -41,7 +41,7 @@
     state: stamp-ntrep
 
 - type: entity
-  name: Pathologist rubber stamp
+  name: Surgeon rubber stamp
   parent: RubberStampBase
   id: RubberStampPath
   suffix: DO NOT MAP

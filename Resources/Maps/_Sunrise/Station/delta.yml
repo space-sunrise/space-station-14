@@ -121537,7 +121537,7 @@ entities:
     - type: Transform
       pos: 30.5,13.5
       parent: 2
-- proto: ClosetPatologoanatomFilled
+- proto: ClosetSurgeonFilled
   entities:
   - uid: 17200
     components:

@@ -110,7 +110,7 @@
   id: JobBarber
 
 - type: playTimeTracker
-  id: JobMedicalPathologist
+  id: JobMedicalSurgeon
 
 - type: playTimeTracker
   id: JobAdjutant

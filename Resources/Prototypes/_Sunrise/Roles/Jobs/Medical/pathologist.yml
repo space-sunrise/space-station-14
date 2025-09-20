@@ -1,39 +1,39 @@
 ﻿- type: job
-  id: MedicalPathologist
-  name: job-name-pathologist
-  description: job-description-pathologist
-  playTimeTracker: JobMedicalPathologist
+  id: MedicalSurgeon
+  name: job-name-Surgeon
+  description: job-description-Surgeon
+  playTimeTracker: JobMedicalSurgeon
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 36000 #10 hrs # Corvax-RoleTime
-  startingGear: PathologistGear
-  icon: "JobIconPathologist"
+  startingGear: SurgeonGear
+  icon: "JobIconSurgeon"
   supervisors: job-supervisors-cmo
   access:
   - Medical
   - Maintenance
 
 - type: startingGear
-  id: PathologistGear
+  id: SurgeonGear
   equipment:
-    id: PathologistPDA
+    id: SurgeonPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     
 - type: jobIcon
   parent: JobIcon
-  id: JobIconPathologist
+  id: JobIconSurgeon
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: Pathologist
+    state: Surgeon
 
 - type: chameleonOutfit
-  id: MedicalPathologistChameleonOutfit
-  job: MedicalPathologist
+  id: MedicalSurgeonChameleonOutfit
+  job: MedicalSurgeon
   equipment:
     gloves: ClothingHandsGlovesLatex
-    head: ClothingHeadHatBeretPatologoanatom
+    head: ClothingHeadHatBeretSurgeon
     mask: ClothingMaskBreath
     neck: ClothingNeckStethoscope
-    outerClothing: ClothingOuterCoatPatologoanatom
+    outerClothing: ClothingOuterCoatSurgeon

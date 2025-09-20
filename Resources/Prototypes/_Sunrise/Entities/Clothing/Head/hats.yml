@@ -379,13 +379,13 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatPatologonatHat
-  name: patologoanatom's hat
+  id: ClothingHeadHatSurgeonHat
+  name: surgeon's hat
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hats/pathologist_helmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/surgeon_helmet.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hats/pathologist_helmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/surgeon_helmet.rsi
   # SUNRISE EDIT
   - type: Tag
     tags:

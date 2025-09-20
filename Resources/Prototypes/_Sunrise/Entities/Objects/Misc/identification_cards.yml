@@ -210,16 +210,16 @@
 
 - type: entity
   parent: IDCardStandard
-  id: PathologistIDCard
-  name: Pathologist ID card
+  id: SurgeonIDCard
+  name: Surgeon ID card
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: idpatologoanatom
+    - state: idsurgeon
   - type: PresetIdCard
-    job: MedicalPathologist
+    job: MedicalSurgeon
 
 - type: entity
   parent: IDCardStandard

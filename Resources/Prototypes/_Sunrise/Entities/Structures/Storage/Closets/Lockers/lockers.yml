@@ -70,8 +70,8 @@
     - id: WeaponIONRifle
 
 - type: entity
-  id: ClosetPatologoanatom
-  name: patologoanatom's locker
+  id: ClosetSurgeon
+  name: surgeon's locker
   parent: LockerBaseSecure
   suffix: Empty
   components:
@@ -102,8 +102,8 @@
       gamma: GammaAlertAccesses
 
 - type: entity
-  id: ClosetPatologoanatomFilled
-  parent: ClosetPatologoanatom
+  id: ClosetSurgeonFilled
+  parent: ClosetSurgeon
   suffix: Filled
   components:
   - type: StorageFill

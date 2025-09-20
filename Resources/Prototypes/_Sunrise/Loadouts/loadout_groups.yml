@@ -341,12 +341,12 @@
   - MedicalBeret
   - ParamedicBeret
   - ChemistBeret
-  - PatologonatBeret
+  - SurgeonBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
   - PurpleSurgeryCap
-  - HatPatologonatHat
+  - HatSurgeonHat
   - ParamedicHead
   - Sunrise-HatBlacksoft
   - Sunrise-HatRedsoft
@@ -366,7 +366,7 @@
   - ChemistLabCoat
   - Sunrise-CoatLabGene
   - CoatLabSeniorPhysician
-  - CoatPatologoanatom
+  - CoatSurgeon
   - Sunrise-WinterViro
   - ChemistWintercoat
   - Sunrise-WinterGen
@@ -641,31 +641,31 @@
   # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
-  id: PathologistHead
-  name: loadout-group-pathologist-head
+  id: SurgeonHead
+  name: loadout-group-surgeon-head
   minLimit: 0
   maxLimit: 1
   loadouts:
   - MedicalBeret
-  - PatologonatBeret
+  - SurgeonBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
   - PurpleSurgeryCap
-  - HatPatologonatHat
+  - HatSurgeonHat
   - Sunrise-HatBlacksoft
   - Sunrise-HatRedsoft
   - Sunrise-HatCyansoft
   - MedicalHeadMirror
 
 - type: loadoutGroup
-  id: PathologistOuterClothing
-  name: loadout-group-pathologist-outerclothing
+  id: SurgeonOuterClothing
+  name: loadout-group-surgeon-outerclothing
   minLimit: 0
   maxLimit: 1
   loadouts:
   - RegularLabCoat
-  - CoatPatologoanatom
+  - CoatSurgeon
   - MedicalDoctorWintercoat
   - Sunrise-WinterColorrColorWhite
   - Sunrise-WinterColorBlack
@@ -675,8 +675,8 @@
 
 
 - type: loadoutGroup
-  id: PathologistNeck
-  name: loadout-group-pathologist-neck
+  id: SurgeonNeck
+  name: loadout-group-Surgeon-neck
   minLimit: 0
   maxLimit: 1
   loadouts:
@@ -686,8 +686,8 @@
   - Sunrise-Stethoscope
 
 - type: loadoutGroup
-  id: PathologistMask
-  name: loadout-group-pathologist-mask
+  id: SurgeonMask
+  name: loadout-group-surgeon-mask
   minLimit: 0
   maxLimit: 1
   loadouts:
@@ -701,8 +701,8 @@
   - Sunrise-MedicalMask
 
 - type: loadoutGroup
-  id: PathologistShoes
-  name: loadout-group-pathologist-shoes
+  id: SurgeonShoes
+  name: loadout-group-surgeon-shoes
   minLimit: 1
   maxLimit: 1
   loadouts:
@@ -714,8 +714,8 @@
   - MedicalWinterBoots
 
 - type: loadoutGroup
-  id: PathologistGloves
-  name: loadout-group-pathologist-gloves
+  id: SurgeonGloves
+  name: loadout-group-surgeon-gloves
   minLimit: 0
   maxLimit: 1
   loadouts:

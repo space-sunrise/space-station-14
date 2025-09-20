@@ -249,12 +249,12 @@
     - state: barber
 
 - type: entity
-  id: SpawnPointMedicalPathologist
+  id: SpawnPointMedicalSurgeon
   parent: SpawnPointJobBase
-  name: pathologist
+  name: surgeon
   components:
   - type: SpawnPoint
-    job_id: MedicalPathologist
+    job_id: MedicalSurgeon
   - type: Sprite
     layers:
       - state: green
