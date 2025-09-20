@@ -66,10 +66,10 @@
   parent: PowerCellSyndicate
   components:
   - type: Battery
-    maxCharge: 250
-    startingCharge: 250
+    maxCharge: 300
+    startingCharge: 300
   - type: BatterySelfRecharger
-    autoRechargeRate: 10
+    autoRechargeRate: 7.5
     autoRecharge: true
     autoRechargePause: true
-    autoRechargePauseTime: 10
+    autoRechargePauseTime: 15
