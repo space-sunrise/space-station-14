@@ -97,7 +97,7 @@
 
 - type: entity
   id: DefibrillatorSyndicate
-  parent: [ BaseDefibrillator, BaseSyndicateContraband ]
+  parent: [ DefibrillatorCompact, BaseSyndicateContraband ]
   name: interdyne defibrillator
   description: Doubles as a self-defense weapon against war-crime inclined tiders.
   components:
@@ -112,18 +112,15 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
-        #Sunrise-Start
-      - type: BatterySelfRecharger
-        autoRechargeRate: 10
-        autoRecharge: true
-        autoRechargePause: true
-        autoRechargePauseTime: 10
-      - type: ExaminableBattery
-      - type: Battery
-        maxCharge: 250
-        startingCharge: 250
-      - type: PowerCellDraw
-        useRate: 100
-      - type: EmpImmune
-        #Sunrise-End
+    #Sunrise-Start
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellDefibrillatorSyndicate
+        disableEject: true
+        locked: true
+  - type: PowerCellDraw
+    useRate: 100
+    #Sunrise-End
 

@@ -59,3 +59,17 @@
     graph: MakeshiftPowerCage
     node: makeshiftcage
 
+- type: entity
+  name: powercell defibrillator syndicate
+  id: PowerCellDefibrillatorSyndicate
+  suffix: Full
+  parent: PowerCellSyndicate
+  components:
+  - type: Battery
+    maxCharge: 250
+    startingCharge: 250
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10
+    autoRecharge: true
+    autoRechargePause: true
+    autoRechargePauseTime: 10
