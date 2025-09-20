@@ -362,4 +362,4 @@ uplink-fake-mindshield-desc = Переключаемый имплант, вос�
 uplink-handcuffs-name = Наручники
 uplink-handcuffs-desc = Используется для удержания жертв.
 uplink-interdyne-defibrillator-name = Дефибриллятор Interdyne
-ulpink-defibrillator-syndicate-desc = Превосходный дефибриллятор, не предназначеный для боёв. Для настоящих медиков Синдиката.
+ulpink-interdyne-defibrillator-desc = Превосходный дефибриллятор, не предназначеный для боёв. Для настоящих медиков Синдиката.
