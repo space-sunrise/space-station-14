@@ -77,6 +77,32 @@ public sealed partial class DefibrillatorComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("readySound")]
     public SoundSpecifier? ReadySound = new SoundPathSpecifier("/Audio/Items/Defib/defib_ready.ogg");
+
+    // Sunrise-Start
+    /// <summary>
+    /// Whether the defibrillator can be used on alive targets
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool AllowUseOnAlive = false;
+
+    /// <summary>
+    /// The reagents to inject when defibrillation is completed
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public Dictionary<string, float> Reagents = new();
+
+    /// <summary>
+    /// The movement speed modifier to apply when used on alive targets
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float SlownessMultiplier = 0.5f;
+
+    /// <summary>
+    /// The duration of the movement speed modifier when used on alive targets
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan SlownessDuration = TimeSpan.FromSeconds(5);
+    // Sunrise-End
 }
 
 [Serializable, NetSerializable]
