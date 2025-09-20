@@ -238,7 +238,7 @@
         Blunt: 2
         Slash: 3
   - type: Carriable
-  - type: ToggleableNightVision
+  - type: NightVision
     effect: EffectNightVisioSpecies
 
 

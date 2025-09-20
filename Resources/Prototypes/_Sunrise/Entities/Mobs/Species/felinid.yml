@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McFelinid
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: MobFelinidBase
   abstract: true
   components:
@@ -451,8 +451,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      200: Dead
+      80: Critical
+      180: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -468,7 +468,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 100
+    critThreshold: 90
   - type: FootprintEmitter
   - type: Vocal
     sounds:
@@ -507,6 +507,10 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
   - type: Carriable
+  - type: NightVision
+    effect: EffectNightVisioSpecies
+  - type: FlashModifier
+    modifier: 2
 
 - type: entity
   save: false

@@ -64,7 +64,7 @@
     speciesId: human
   - type: FootprintEmitter
   - type: Carriable
-  - type: ToggleableNightVision
+  - type: NightVision
     effect: EffectNightVisioSpecies
 
 - type: entity
