@@ -1932,7 +1932,7 @@
 - type: listing
   id: UplinkDefibrillatorSyndicate
   name: uplink-interdyne-defibrillator-name
-  description: ulpink-defibrillator-syndicate-desc
+  description: ulpink-interdyne-defibrillator-desc
   productEntity: DefibrillatorSyndicate
   discountCategory: rareDiscounts
   discountDownTo:
