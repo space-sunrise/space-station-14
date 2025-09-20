@@ -189,6 +189,8 @@
     unequipDelay: 3 #starlight
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.5
   - type: Armor
     modifiers:
       coefficients:

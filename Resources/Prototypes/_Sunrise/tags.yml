@@ -49,6 +49,24 @@
 - type: Tag
   id: TrayScanner
 
+# Uplinks
+- type: Tag
+  id: NTUplink
+
+- type: Tag
+  id: ERTRed
+
+- type: Tag
+  id: ERTGamma
+
+- type: Tag
+  id: ERTEpsilon
+
+- type: Tag
+  id: CBURN
+
+- type: Tag
+  id: BlueShield
 # Catridges:
 
 - type: Tag
