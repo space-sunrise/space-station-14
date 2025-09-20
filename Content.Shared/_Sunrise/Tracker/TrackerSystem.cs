@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Alert;
+using Content.Shared.Popups;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -16,6 +17,7 @@ public sealed class TrackerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly DirectionTrackerSystem _directionTracker = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private const string TrackerCategory = "Tracker";
 
@@ -52,6 +54,8 @@ public sealed class TrackerSystem : EntitySystem
             ent.Comp.Target = null;
             UpdateDirection(ent);
             Dirty(ent);
+
+            _popup.PopupPredictedCursor(Loc.GetString("tracker-no-targets"), ent.Owner, PopupType.Small);
             return;
         }
 
@@ -59,8 +63,12 @@ public sealed class TrackerSystem : EntitySystem
         var nextIndex = (currentIndex + 1) % targets.Count;
         ent.Comp.Target = targets[nextIndex];
 
+        var targetName = MetaData(ent.Comp.Target.Value).EntityName;
+
         UpdateDirection(ent, _transform.GetMapCoordinates(ent.Comp.Target.Value));
         Dirty(ent);
+
+        _popup.PopupPredictedCursor(Loc.GetString("tracker-target-changed", ("target", targetName)), ent.Owner, PopupType.Small);
     }
 
     private void OnAltClickedAlert(Entity<TrackerComponent> ent, ref TrackerAltClickedAlertEvent args)
@@ -69,10 +77,22 @@ public sealed class TrackerSystem : EntitySystem
             return;
 
         if (ent.Comp.TrackedComponents.Count <= 1)
+        {
+            _popup.PopupPredictedCursor(Loc.GetString("tracker-only-one-component"), ent.Owner, PopupType.Small);
             return;
+        }
+
+        var oldComponent = GetCurrentComponent(ent.Comp);
 
         ent.Comp.CurrentComponentIndex = (ent.Comp.CurrentComponentIndex + 1) % ent.Comp.TrackedComponents.Count;
         ent.Comp.Target = null;
+
+        var newComponent = GetCurrentComponent(ent.Comp);
+
+        if (oldComponent != newComponent)
+        {
+            _popup.PopupPredictedCursor(Loc.GetString("tracker-component-changed", ("component", newComponent)), ent.Owner, PopupType.Small);
+        }
 
         UpdateDirection(ent);
         Dirty(ent);
