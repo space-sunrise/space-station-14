@@ -977,7 +977,7 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:StoreWhitelistCondition
-    wjitelist:
+    whitelist:
       tags:
       - CBURN
       - ERTGamma

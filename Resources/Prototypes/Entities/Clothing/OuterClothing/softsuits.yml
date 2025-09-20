@@ -202,7 +202,6 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
-    staminaModifier: 0.2
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.1
   - type: ClothingSpeedModifier
