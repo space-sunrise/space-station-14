@@ -113,6 +113,11 @@
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
     #Sunrise-Start
+  - type: Defibrillator
+    allowUseOnAlive: true
+    reagents:
+      Omnizine: 10
+      Epinephrine: 5
   - type: ItemSlots
     slots:
       cell_slot:
