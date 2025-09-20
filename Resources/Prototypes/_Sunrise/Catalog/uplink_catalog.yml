@@ -1932,8 +1932,8 @@
 - type: listing
   id: UplinkDefibrillatorSyndicate
   name: uplink-interdyne-defibrillator-name
-  description: ulpink-interdyne-defibrillator-desc
-  productEntity: DefibrillatorSyndicate
+  description: uplink-interdyne-defibrillator-desc
+  productEntity: DefibrillatorSyndicateBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
