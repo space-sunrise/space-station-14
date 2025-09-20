@@ -24,6 +24,7 @@ using Content.Shared.Toggleable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 // Sunrise-Start
+using Content.Shared.FixedPoint;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
@@ -66,17 +67,6 @@ public sealed class DefibrillatorSystem : EntitySystem
     {
         if (args.Handled || args.Target is not { } target)
             return;
-
-        // Sunrise-Start
-        if (TryComp<BiocodeComponent>(uid, out var biocode) &&
-            !_biocode.CanUse(args.User, biocode.Factions))
-        {
-            if (!string.IsNullOrEmpty(biocode.AlertText))
-                _popup.PopupEntity(biocode.AlertText, args.User, args.User);
-            args.Handled = true;
-            return;
-        }
-        // Sunrise-End
 
         args.Handled = TryStartZap(uid, target, args.User, component);
     }
@@ -129,6 +119,16 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         if (!_powerCell.HasActivatableCharge(uid, user: user))
             return false;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocode) && user != null &&
+           !_biocode.CanUse(user.Value, biocode.Factions))
+        {
+            if (!string.IsNullOrEmpty(biocode.AlertText))
+                _popup.PopupEntity(biocode.AlertText, uid, user.Value);
+            return false;
+        }
+        // Sunrise-End
 
         if (!targetCanBeAlive && _mobState.IsAlive(target, mobState))
             return false;
@@ -247,6 +247,18 @@ public sealed class DefibrillatorSystem : EntitySystem
                     InGameICChatType.Speak, true);
             }
         }
+
+        // Sunrise-Start
+        // Inject reagents if any are specified
+        if (component.Reagents.Count > 0 && TryComp<BloodstreamComponent>(target, out var bloodstream))
+        {
+            if (_solutionContainer.TryGetSolution(target, bloodstream.ChemicalSolutionName, out var solution))
+            {
+                foreach (var (reagent, amount) in component.Reagents)
+                    _solutionContainer.TryAddReagent(solution.Value, reagent, FixedPoint2.New(amount), out _);
+            }
+        }
+        // Sunrise-End
 
         var sound = dead || session == null
             ? component.FailureSound

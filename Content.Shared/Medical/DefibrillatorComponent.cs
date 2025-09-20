@@ -90,6 +90,18 @@ public sealed partial class DefibrillatorComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<string, float> Reagents = new();
+
+    /// <summary>
+    /// The movement speed modifier to apply when used on alive targets
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float SlownessMultiplier = 0.30f;
+
+    /// <summary>
+    /// The duration of the movement speed modifier when used on alive targets
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan SlownessDuration = TimeSpan.FromSeconds(6);
     // Sunrise-End
 }
 

@@ -15,6 +15,6 @@
   suffix: BIOCODE
   components:
   - type: Biocode
-  factions:
-  - Syndicate
-  alertText: Данный предмет биокодирован. Вы не можете его использовать.
+    factions:
+    - Syndicate
+    alertText: Данный предмет биокодирован. Вы не можете его использовать.
