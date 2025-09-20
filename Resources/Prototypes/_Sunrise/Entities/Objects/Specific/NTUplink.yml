@@ -356,8 +356,8 @@
     fireStacks: .15
   - type: Store
     balance:
-      Bluecrystal: 150
-      Crystallite: 150
+      Bluecrystal: 75
+      Crystallite: 75
   - type: Tag
     tags:
     - NTUplink
