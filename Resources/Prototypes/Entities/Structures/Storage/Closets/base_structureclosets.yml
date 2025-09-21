@@ -114,6 +114,9 @@
     price: 75
   - type: Pierceable # Sunrise-edit - прострел ящиков
     level: Wood
+  # Starlight-start: Blinding from containers
+  - type: ChildBlockVision
+  # Starlight-end
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity

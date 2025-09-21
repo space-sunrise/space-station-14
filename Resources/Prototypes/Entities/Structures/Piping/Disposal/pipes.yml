@@ -73,6 +73,7 @@
   categories: [ HideSpawnMenu ]
   name: disposal holder
   components:
+  - type: ChildBlockVision # Starlight-edit
   - type: DisposalHolder
   - type: ContainerContainer
     containers:

@@ -4,6 +4,9 @@
   save: false
   id: BaseControllable
   components:
+  # Starlight-start
+  - type: ParentCanBlockVision
+  # Starlight-end
   - type: Sprite
     noRot: true
     drawdepth: Mobs
