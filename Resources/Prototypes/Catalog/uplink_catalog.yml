@@ -117,7 +117,7 @@
   id: UplinkGlovesNorthStar
   name: uplink-gloves-north-star-name
   description: uplink-gloves-north-star-desc
-  productEntity: ClothingHandsGlovesNorthStar
+  productEntity: ClothingHandsGlovesNorthStarBiocode
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 4
@@ -1808,7 +1808,7 @@
   id: UplinkClothingOuterVestWeb
   name: uplink-clothing-outer-vest-web-name
   description: uplink-clothing-outer-vest-web-desc
-  productEntity: ClothingOuterVestWeb
+  productEntity: ClothingOuterVestWebBiocode
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1821,7 +1821,7 @@
   id: UplinkClothingOuterVestWebElite
   name: uplink-clothing-outer-vest-web-elite-name
   description: uplink-clothing-outer-vest-web-elite-desc
-  productEntity: ClothingOuterVestWebElite
+  productEntity: ClothingOuterVestWebEliteBiocode
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -1834,7 +1834,7 @@
   id: UplinkClothingShoesBootsMagSyndie
   name: uplink-clothing-shoes-boots-mag-syndie-name
   description: uplink-clothing-shoes-boots-mag-syndie-desc
-  productEntity: ClothingShoesBootsMagSyndie
+  productEntity: ClothingShoesBootsMagSyndieBiocode
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
