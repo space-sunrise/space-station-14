@@ -63,13 +63,31 @@
   name: powercell defibrillator syndicate
   id: PowerCellDefibrillatorSyndicate
   suffix: Full
-  parent: PowerCellSyndicate
+  parent: SyndicateDefibrillatorPowercell
   components:
   - type: Battery
     maxCharge: 300
     startingCharge: 300
   - type: BatterySelfRecharger
-    autoRechargeRate: 7.5
+    autoRechargeRate: 4.5
     autoRecharge: true
     autoRechargePause: true
-    autoRechargePauseTime: 15
+    autoRechargePauseTime: 25
+
+- type: entity
+  name: syndicate defibrillator power cell
+  description: A rechargeable standardized power cell. This one looks like a rare and powerful Syndicate combat variant.
+  id: SyndicateDefibrillatorPowercell
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: syndicate
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800

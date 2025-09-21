@@ -126,6 +126,6 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
-    useRate: 100
+    useRate: 85
     #Sunrise-End
 

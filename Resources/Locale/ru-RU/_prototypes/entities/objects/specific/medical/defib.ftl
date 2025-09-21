@@ -11,4 +11,4 @@ ent-DefibrillatorOneHandedUnpowered = { ent-BaseDefibrillator }
 ent-DefibrillatorCompact = компактный дефибриллятор
     .desc = Теперь в забавном размере!
 ent-DefibrillatorSyndicate = дефибриллятор Interdyne
-    .desc = Особый дефибриллятор фирмы Interdyne! На нём написано - "Больше не оружие ближнего боя". Что бы это могло значить?
+    .desc = Особый дефибриллятор фирмы Interdyne. Для настоящих медиков Синдиката!
