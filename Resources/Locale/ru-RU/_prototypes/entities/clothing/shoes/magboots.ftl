@@ -13,5 +13,5 @@ ent-ClothingShoesBootsMagSyndie = кроваво-красные магнитны
 ent-ActionToggleMagboots = Переключить магнитные ботинки
     .desc = Включает или выключает магнитные ботинки.
 ent-ClothingShoesBootsMagSyndieBiocode = { ent-ClothingShoesBootsMagSyndie }
-    .suffix = BIOCODE
+    .suffix = БИОКОД
     .desc = { ent-ClothingShoesBootsMagSyndie.desc }
