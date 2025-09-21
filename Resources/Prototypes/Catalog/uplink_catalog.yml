@@ -1795,7 +1795,7 @@
   id: UplinkClothingNoSlipsShoes
   name: uplink-clothing-no-slips-shoes-name
   description: uplink-clothing-no-slips-shoes-desc
-  productEntity: ClothingShoesChameleonNoSlipsBiocode
+  productEntity: ClothingShoesChameleonNoSlipsBiocode # Sunrise-edit
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 1
