@@ -128,4 +128,21 @@
   - type: PowerCellDraw
     useRate: 85
     #Sunrise-End
-
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedDamage:
+      types:
+        Blunt: 8
+        Shock: 16
