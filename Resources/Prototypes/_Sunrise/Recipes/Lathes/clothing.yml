@@ -206,11 +206,6 @@
 
 - type: latheRecipe
   parent: BaseHatRecipe
-  id: ClothingHeadHatBizarreSoft
-  result: ClothingHeadHatBizarreSoft
-
-- type: latheRecipe
-  parent: BaseHatRecipe
   id: ClothingHeadHatBrownsoft
   result: ClothingHeadHatBrownsoft
 
