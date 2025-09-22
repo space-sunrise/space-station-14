@@ -511,6 +511,25 @@
     effect: EffectNightVisioSpecies
   - type: FlashModifier
     modifier: 2
+  - type: FelinidLicking
+    damage:
+      types:
+        Blunt: -2
+        Slash: -3
+        Piercing: -2
+    stopBleeding: true
+    bloodlossModifier: -1.0
+    delay: 5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
 
 - type: entity
   save: false
