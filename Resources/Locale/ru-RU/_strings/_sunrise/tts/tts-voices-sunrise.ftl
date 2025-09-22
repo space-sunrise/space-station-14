@@ -100,3 +100,5 @@ tts-voice-name-dictor-vsevolod-kuznetsov = (NEW) [Диктор] Всеволод
 tts-voice-name-duke-nukem-forever = (NEW) Дюк Нюкем/Шрек
 tts-voice-name-crysis2-ai-uscaucasian-01 = (NEW) [Crysis 2] Оперативник 4
 tts-voice-name-crysis2-ai-blackops-04 = (NEW) [Crysis 2] Оперативник Blackops 04
+tts-voice-name-lol-akshan = (NEW) [LOL] Акшан
+tts-voice-name-crysis2-ai-usafrician-01-v2 = (NEW) [Crysis 2] Оперативник 1 2.0

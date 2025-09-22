@@ -129,9 +129,9 @@
   damagePerIntensity:
     types:
 #Sunrise-start
-      Heat: 20
- #     Blunt: 2
- #     Piercing: 3
+      Heat: 15
+      Blunt: 2
+      Piercing: 3
 #Sunrise-end
   lightColor: Orange
   texturePath: /Textures/Effects/fire.rsi

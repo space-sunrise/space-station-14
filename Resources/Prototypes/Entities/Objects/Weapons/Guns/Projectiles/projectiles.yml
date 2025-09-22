@@ -819,7 +819,7 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: frag
+      - state: smallfrag
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -827,6 +827,7 @@
     intensitySlope: 1
     totalIntensity: 4 # 60 total damage to distribute over tiles
     maxTileBreak: 1
+    canCreateVacuum: False
   - type: PointLight
     radius: 3.5
     color: orange

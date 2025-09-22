@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CrateFulton
+  icon:
+    sprite: Objects/Tools/fulton.rsi
+    state: extraction_pack
+  product: CrateFulton
+  cost: 12000
+  category: cargoproduct-category-name-cargo
+  group: market

@@ -34,8 +34,8 @@
 
 - type: entity
   parent: Bluecrystal
-  id: Bluecrystal25
-  suffix: 25 BC
+  id: Bluecrystal10
+  suffix: 10 BC
   name: Bluespace crystal
   description: It seems to shimmer with a attractive energy.
   components:
@@ -44,8 +44,8 @@
 
 - type: entity
   parent: Bluecrystal
-  id: Bluecrystal50
-  suffix: 50 BC
+  id: Bluecrystal25
+  suffix: 25 BC
   name: Bluespace crystal
   description: It seems to shimmer with a attractive energy.
   components:

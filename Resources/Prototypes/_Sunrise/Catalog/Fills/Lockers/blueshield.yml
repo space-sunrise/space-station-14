@@ -36,8 +36,8 @@
     access: [["BlueShield"]]
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGunMultiphase
-    - id: WeaponRifleM16A4
-    - id: MagazineRifleSP
+    - id: WeaponMultiphaseGun
+    - id: WeaponSubMachineGunWt550
+    - id: MagazinePistolSubMachineGunTopMountedSP
       amount: 2
-    - id: MagazineRifleFMJ
+    - id: MagazinePistolSubMachineGunTopMountedHP
