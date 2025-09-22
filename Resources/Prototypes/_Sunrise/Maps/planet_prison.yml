@@ -10,13 +10,14 @@
       stationProto: NanotrasenPrison
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Планетарная тюрьма {1}'
+          mapNameTemplate: '{0} Планетарная тюрьма Metus {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
         - type: StationJobs
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
+            PrisonInspector: [ 1, 1 ]
             PrisonDoctor: [ 1, 1 ]
             PrisonChef: [ 1, 1 ]
             PrisonWorker: [ 4, 4 ]
@@ -27,7 +28,8 @@
           jobs:
           - targetJob: PlanetPrisoner
             dependency:
-              HeadOfPrison: 2
+              HeadOfPrison: 1
+              PrisonInspector: 1
               PrisonDoctor: 1
               PrisonChef: 1
               PrisonEngineer: 1
