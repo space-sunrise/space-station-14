@@ -311,6 +311,17 @@
   - Socks
 
 - type: roleLoadout
+  id: JobPrisonInspector
+  groups:
+  - LawyerNeck
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
   id: JobNanoTrasenRepresentative
   groups:
   - NanoTrasenRepresentativeJumpsuit

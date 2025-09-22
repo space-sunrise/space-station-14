@@ -12,6 +12,7 @@ job-description-roboticist = Занимайтесь созданием кибо�
 job-description-mail-carrier = Доставьте письмо адресату...любой ценой!
 job-description-head-of-prison = Управляйте лучшим местом на планете.
 job-description-planet-prisoner = Ну типа вы зек.
+job-description-prison-inspector = Фиксируйте нарушения и поддерживайте порядок в тюрьме.
 job-description-prison-chef = Готовьте еду для заключённых и персонала тюрьмы.
 job-description-prison-doctor = Лечите побитых заключённых.
 job-description-prison-engineer = Обеспечивайте функционирование тюрьмы.

@@ -134,6 +134,19 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PrisonInspectorIDCard
+  name: prison inspector ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: idinspector-space-prison
+  - type: PresetIdCard
+    job: PrisonInspector
+
+- type: entity
+  parent: IDCardStandard
   id: IAAIDCard
   name: internal affairs agent ID card
   components:

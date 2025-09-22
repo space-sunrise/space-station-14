@@ -17,6 +17,7 @@ job-name-prison-pilot = тюремный пилот
 job-name-prison-worker = тюремный разнорабочий
 job-name-prison-guard = тюремный охранник
 job-name-planet-prisoner = заключенный ПТ
+job-name-prison-inspector = ревизор внутреннего порядка
 job-name-security-pilot = пилот СБ
 job-name-ntrep = представитель NT
 job-name-medical-borg = медицинский киборг

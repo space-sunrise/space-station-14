@@ -93,6 +93,34 @@
     - state: centcom
 
 - type: entity
+  id: SpawnPointPrisonInspector
+  parent: SpawnPointJobBase
+  name: prison inspector
+  components:
+  - type: SpawnPoint
+    job_id: PrisonInspector
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - state: lawyer
+
+- type: entity
+  id: SpawnPointPrisonInspectorLateJoin
+  parent: SpawnPointJobBase
+  name: prison inspector [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonInspector
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: lawyer
+
+- type: entity
   id: SpawnPointHeadOfPrison
   parent: SpawnPointJobBase
   name: head of prison

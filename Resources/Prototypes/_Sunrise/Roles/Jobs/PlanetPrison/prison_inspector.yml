@@ -1,0 +1,64 @@
+- type: job
+  id: PrisonInspector
+  name: job-name-prison-inspector
+  description: job-description-prison-inspector
+  playTimeTracker: JobPrisonInspector
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Law
+      time: 10800 # 3 hrs
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: PrisonInspectorGear
+  icon: "JobIconPrisonInspector"
+  overrideConsoleVisibility: false
+  supervisors: job-supervisors-head-of-prison
+  displayWeight: 95
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Service
+  - Chemistry
+  - Medical
+  - Engineering
+  - Atmospherics
+  - Janitor
+  - Bar
+  - Hydroponics
+  - Kitchen
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonInspectorGear
+  equipment:
+    id: PrisonInspectorPDA
+    head: ClothingHeadHatDetGadget
+    jumpsuit: ClothingUniformJumpsuitArmouredBlack
+    eyes: ClothingEyesGlassesNoir
+    ears: ClothingHeadsetCommand
+    gloves: ClothingHandsGlovesForensic
+    outerClothing: ClothingOuterArmorBasic
+    belt: WeaponDisabler
+    back: ClothingBackpackSatchelSecurity
+    shoes: ClothingShoesBootsJack
+    pocket1: Flash
+    pocket2: WeaponRevolverInspector
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Handcuffs
+      - GrenadeFlashBang
+      - FlashlightSeclite
+      - RubberStampPrisonInspector
+      - PenCentcom
+      - HyperLinkBookCorporateLaw
+      - BoxFolderClipboard
+      - DrinkDetFlask
+      - ForensicScanner
+      - BoxForensicPad
+      - BoxEvidenceMarkers

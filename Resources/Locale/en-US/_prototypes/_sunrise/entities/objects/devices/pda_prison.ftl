@@ -1,4 +1,5 @@
 ent-HeadOfPrisonPDA-desc = Has the look of a prestigious instrument of power, but a little scratched from constant emergency calls.
+ent-PrisonInspectorPDA-desc = Scarred with small dents and scratches, yet still retaining an official appearance.
 ent-GuardPDA-desc = Bent and scuffed, but every scratch is evidence of a continuous struggle for safety.
 ent-PrisonPilotPDA-desc = Shiny and technologically advanced, as if it had just been pulled out of the cockpit.
 ent-PrisonEngineerPDA-desc = Heavy and scorched at the edges, it has absorbed the heat of short circuits and welding seams of the prison block.
