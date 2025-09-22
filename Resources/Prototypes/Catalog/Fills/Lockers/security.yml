@@ -108,7 +108,7 @@
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
-    - id: ClothingOuterHardsuitBrigmedic
+    - id: ClothingOuterHardsuitBrigmedicSunrise # Sunrise-edit
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
     - id: ClothingOuterCoatAMG
