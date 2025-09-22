@@ -82,6 +82,9 @@
         },
         {
             "name": "pda-space-prison-worker"
+        },
+        {
+            "name": "pda-space-prison-inspector"
         }
     ]
 }

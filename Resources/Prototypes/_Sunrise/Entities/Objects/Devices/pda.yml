@@ -297,11 +297,33 @@
         !type:String
         pda-space-prison-pilot
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#802d29"
     accentVColor: "#DFDFDF"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-pilot
+
+- type: entity
+  parent: BasePDA
+  id: PrisonInspectorPDA
+  name: prison inspector's PDA
+  description: Scarred with small dents and scratches, yet still retaining an official appearance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonInspectorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-inspector
+  - type: PdaBorderColor
+    borderColor: "#802d29"
+    accentHColor: "#6f6192"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-inspector
 
 - type: entity
   parent: BasePDA
@@ -319,7 +341,7 @@
         !type:String
         pda-space-prison-boss
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#802d29"
     accentHColor: "#111111"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -363,7 +385,7 @@
         !type:String
         pda-seniorofficer
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#802d29"
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorofficer
