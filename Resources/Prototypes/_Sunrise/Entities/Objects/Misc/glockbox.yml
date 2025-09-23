@@ -68,3 +68,16 @@
         amount: 1
       - id: MagazinePistolRubber
         amount: 1
+
+- type: entity
+  parent: GlockBox
+  id: SnubRevolverBox
+  name: Snub Revolver box
+  description: Inside rests a snub-nosed revolver with a rubber speedloader. Old-school firepower, ready at hand.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRevolverSnubRevolver
+        amount: 1
+      - id: SpeedLoaderMagnumRubber
+        amount: 1

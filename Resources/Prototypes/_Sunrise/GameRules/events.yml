@@ -29,20 +29,6 @@
 
 - type: entity
   parent: BaseGameRule
-  id: EvilTwinSpawn
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    minimumPlayers: 2
-    weight: 15
-    earliestStart: 10
-    reoccurrenceDelay: 20
-    duration: null
-  - type: LateJoinSpawnRule
-    prototype: SpawnPointEvilTwin
-
-- type: entity
-  parent: BaseGameRule
   id: TerminatorSpawn
   categories: [ HideSpawnMenu ]
   components:
