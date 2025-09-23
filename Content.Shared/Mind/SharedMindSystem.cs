@@ -163,6 +163,7 @@ public abstract partial class SharedMindSystem : EntitySystem
         if (TryComp<MindContainerComponent>(uid, out var mindContainer))
         {
             mindContainer.ShowExamineInfo = showInfo;
+            Dirty(uid, mindContainer);
         }
     }
 
