@@ -215,14 +215,14 @@
   materials:
     Steel: 250
 
-- type: latheRecipe
-  id: MagazineVP70
-  result: MagazineVP70
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
+# - type: latheRecipe
+#   id: MagazineVP70
+#   result: MagazineVP70
+#   categories:
+#   - Ammo
+#   completetime: 5
+#   materials:
+#     Steel: 250
 
 - type: latheRecipe
   id: MagazineHIBrowning
@@ -900,103 +900,80 @@
 
 #Cybernetics
 - type: latheRecipe
-  id: LeftArmCyberMantisBladeMaxGuard
-  result: LeftArmCyberMantisBladeMaxGuard
+  id: ImplantCaseMantisBladeMaxGuard
+  result: ImplantCaseMantisBladeMaxGuard
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 50
   materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
+    Steel: 1750
+    Plastic: 550
+    Silver: 250
+    Gold: 250
+    Glass: 300
+    Plasma: 200
+    Diamond: 200
+    Uranium: 50
 
-- type: latheRecipe
-  id: RightArmCyberMantisBladeMaxGuard
-  result: RightArmCyberMantisBladeMaxGuard
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
 #
 - type: latheRecipe
-  id: LeftArmCyberGrenadeThrower
-  result: LeftArmCyberGrenadeThrower
+  id: ImplantCaseGrenadeThrower
+  result: ImplantCaseGrenadeThrower
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 50
   materials:
     Plastic: 550
-    Steel: 650
-    Gold: 100
+    Steel: 2050
+    Silver: 250
+    Gold: 250
     Glass: 100
 
+#
 - type: latheRecipe
-  id: RightArmCyberGrenadeThrower
-  result: RightArmCyberGrenadeThrower
+  id: ImplantCaseLaserEmitter
+  result: ImplantCaseLaserEmitter
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 50
   materials:
     Plastic: 550
-    Steel: 650
-    Gold: 100
-    Glass: 100
+    Steel: 1850
+    Silver: 250
+    Gold: 250
+    Glass: 400
+    Diamond: 100
+    Uranium: 250
+    Plasma: 250
 #
 - type: latheRecipe
-  id: LeftArmCyberLaserEmitter
-  result: LeftArmCyberLaserEmitter
+  id: ImplantCaseBulwark
+  result: ImplantCaseBulwark
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 50
   materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
-
-- type: latheRecipe
-  id: RightArmCyberLaserEmitter
-  result: RightArmCyberLaserEmitter
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
+    Plastic: 550
+    Steel: 1650
+    Silver: 250
+    Gold: 250
+    Glass: 250
+    Diamond: 300
+    Uranium: 250
+    Plasma: 250
 #
 - type: latheRecipe
-  id: LeftArmCyberBulwark
-  result: LeftArmCyberBulwark
+  id: ImplantCaseBonesaw
+  result: ImplantCaseBonesaw
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 50
   materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
-
-- type: latheRecipe
-  id: RightArmCyberBulwark
-  result: RightArmCyberBulwark
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 450
-    Steel: 450
-    Silver: 100
-    Glass: 100
-    Plasma: 100
+    Plastic: 550
+    Steel: 1850
+    Silver: 250
+    Gold: 250
+    Glass: 200
+    Diamond: 300
+    Uranium: 250
+    Plasma: 250

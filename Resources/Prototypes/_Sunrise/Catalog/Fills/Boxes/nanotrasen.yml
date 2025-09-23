@@ -143,6 +143,7 @@
   description: Base Leader Kit created for centcomm squad members.
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxes_sunrise.rsi
     layers:
     - state: boxwidetoy
     - state: wide_ert
@@ -170,6 +171,7 @@
   description: Base Security Kit created for centcomm squad members.
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxes_sunrise.rsi
     layers:
     - state: boxwidetoy
     - state: wide_ert

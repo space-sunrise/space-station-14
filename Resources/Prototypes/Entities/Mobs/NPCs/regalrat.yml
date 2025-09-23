@@ -54,7 +54,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      400: Dead # Sunrise-Edit # Пусть стреляют Экспансивками
+      350: Dead # Sunrise-Edit # Пусть стреляют Экспансивками
   - type: MeleeWeapon
     altDisarm: false
     soundHit:
@@ -70,8 +70,8 @@
     requiredLegs: 1 # TODO: More than 1 leg
   - type: Hunger # probably should be prototyped
     thresholds:
-      Overfed: 250 # Sunrise-Edit
-      Okay: 150
+      Overfed: 300 # Sunrise-Edit
+      Okay: 250 # Sunrise-Edit
       Peckish: 100
       Starving: 50
       Dead: 0
@@ -109,7 +109,7 @@
       - FootstepSound
   - type: NoSlip
   - type: RatKing
-    hungerPerArmyUse: 15  # Sunrise-edit
+    hungerPerArmyUse: 10  # Sunrise-edit
     hungerPerDomainUse: 50  # Sunrise-edit
     hungerPerGuardUse: 75  # High cost for guards
   - type: MobsterAccent
@@ -252,8 +252,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      40: Critical  # Sunrise-edit
-      50: Dead  # Sunrise-edit
+      35: Critical  # Sunrise-edit
+      40: Dead  # Sunrise-edit
   - type: Destructible
     thresholds:
     - trigger:
@@ -363,7 +363,7 @@
         3.5
   - type: Bloodstream
     bleedReductionAmount: 1
-    bloodRefreshAmount: 1.5
+    bloodRefreshAmount: 2.5
     bloodReagent: Blood
     bloodMaxVolume: 200
   - type: Reactive
@@ -376,7 +376,6 @@
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/buffrat.rsi
-    # scale: 1.2, 1.2 # Smaller that RatKingBuff
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: regalrat
@@ -400,38 +399,49 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Critical  # High HP as requested
-      400: Dead  # High HP as requested
+      300: Critical
+      325: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.8
+      175: 0.95
+      200: 0.9
+      225: 0.8
       250: 0.6
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 600
+        damage: 500
       behaviors:
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 400
+    critThreshold: 300
+  - type: MeleeSpeech
+  - type: UserInterface
+    interfaces:
+      enum.MeleeSpeechUiKey.Key:
+        type: MeleeSpeechBoundUserInterface
   - type: MeleeWeapon
-    soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh2.ogg
-    angle: 0
-    animation: WeaponArcClaw
+    altDisarm: false
+    autoAttack: true
+    attackRate: 1.5
     damage:
       types:
-        Slash: 5 # Additional claw damage
-        Piercing: 5 # Additional claw damage
-        Blunt: 25 # Strong guard attack
+        Slash: 2 # Additional claw damage
+        Piercing: 1 # Additional claw damage
+        Blunt: 15 # Strong guard attack
         Structural: 10 # Strong guard attack
     bluntStaminaDamageFactor: 1.75
+    soundHit:
+      collection: PunchHard
+    animation: WeaponArcFist
+  - type: StaminaDamageOnHit
+    damage: 5
   - type: MeleeThrowOnHit
-    distance: 0.75
-    speed: 8
+    distance: 0.5
+    speed: 5
   - type: Body
     prototype: Rat
     requiredLegs: 1 # TODO: More than 1 leg
@@ -442,7 +452,7 @@
       Peckish: 150
       Starving: 100
       Dead: 0
-    baseDecayRate: 0.025  # Faster hunger decay for guards
+    baseDecayRate: 0.01
   - type: Thirst
     thresholds:
       OverHydrated: 600
@@ -450,7 +460,7 @@
       Thirsty: 300
       Parched: 150
       Dead: 0
-    baseDecayRate: 0.15  # Faster thirst decay
+    baseDecayRate: 0.01
   - type: DamageStateVisuals
     states:
       Alive:
@@ -520,7 +530,7 @@
   description: Spend some hunger to summon an allied rat to help defend you.
   components:
   - type: Action
-    useDelay: 4
+    useDelay: 3 # Sunrise-Edit
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: ratKingArmy
@@ -626,7 +636,7 @@
   description: Spend a large amount of hunger to summon an elite rat guard to serve you.
   components:
   - type: Action
-    useDelay: 8
+    useDelay: 60
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: ratKingGuard

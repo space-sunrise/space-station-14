@@ -94,45 +94,45 @@
   id: ClothingNeckScarfHos
   result: ClothingNeckScarfHos
 
-- type: latheRecipe
-  id: ClothingHandsGlovesNitrileBlack
-  result: ClothingHandsGlovesNitrileBlack
-  completetime: 2
-  materials:
-    Plastic: 100
-    Durathread: 200
+# - type: latheRecipe
+#   id: ClothingHandsGlovesNitrileBlack
+#   result: ClothingHandsGlovesNitrileBlack
+#   completetime: 2
+#   materials:
+#     Plastic: 100
+#     Durathread: 200
 
-- type: latheRecipe
-  id: ClothingHandsGlovesNitrileOrange
-  result: ClothingHandsGlovesNitrileOrange
-  completetime: 2
-  materials:
-    Plastic: 100
-    Durathread: 200
+# - type: latheRecipe
+#   id: ClothingHandsGlovesNitrileOrange
+#   result: ClothingHandsGlovesNitrileOrange
+#   completetime: 2
+#   materials:
+#     Plastic: 100
+#     Durathread: 200
 
-- type: latheRecipe
-  id: ClothingHandsGlovesNitrileRed
-  result: ClothingHandsGlovesNitrileRed
-  completetime: 2
-  materials:
-    Plastic: 100
-    Durathread: 200
+# - type: latheRecipe
+#   id: ClothingHandsGlovesNitrileRed
+#   result: ClothingHandsGlovesNitrileRed
+#   completetime: 2
+#   materials:
+#     Plastic: 100
+#     Durathread: 200
 
-- type: latheRecipe
-  id: ClothingHandsGlovesNitrileGreen
-  result: ClothingHandsGlovesNitrileGreen
-  completetime: 2
-  materials:
-    Plastic: 100
-    Durathread: 200
+# - type: latheRecipe
+#   id: ClothingHandsGlovesNitrileGreen
+#   result: ClothingHandsGlovesNitrileGreen
+#   completetime: 2
+#   materials:
+#     Plastic: 100
+#     Durathread: 200
 
-- type: latheRecipe
-  id: ClothingHandsGlovesNitrileBlue
-  result: ClothingHandsGlovesNitrileBlue
-  completetime: 2
-  materials:
-    Plastic: 100
-    Durathread: 200
+# - type: latheRecipe
+#   id: ClothingHandsGlovesNitrileBlue
+#   result: ClothingHandsGlovesNitrileBlue
+#   completetime: 2
+#   materials:
+#     Plastic: 100
+#     Durathread: 200
 
 - type: latheRecipe
   id: ClothingMaskSterileBlue

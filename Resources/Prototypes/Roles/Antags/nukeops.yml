@@ -70,7 +70,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitSyndieBiocode # Sunrise-Edit
     shoes: ClothingShoesBootsCombatFilled
-    id: SyndiPDA
+    id: SyndiOperativePDA
     pocket2: PlushieCarp
     belt: ClothingBeltMilitaryWebbing
   storage:
@@ -106,6 +106,7 @@
   id: SyndicateCommanderGearFull
   parent: SyndicateOperativeGearFull
   equipment:
+    id: SyndiCommanderPDA
     neck: SyndicateWhistle
     #outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
     pocket1: BaseUplinkRadio0TC
@@ -130,7 +131,7 @@
     eyes: ClothingEyesHudSyndicateMedic # Sunrise-Edit
     #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
     #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
-    id: SyndiAgentPDA
+    id: SyndiCorpsmanPDA
     belt: ClothingBeltMilitaryWebbingMedSunriseFilled # Sunrise-Edit
   storage:
     back:

@@ -183,17 +183,17 @@
         - ReagentId: Copper
           Quantity: 2
   - type: Healing
-    delay: 1
+    delay: 0.6  #Sunrise-edit
     damageContainers:
     - Synth #Sunrise-edit
     - Silicon
     - Mech #Sunrise-edit
     damage:
       types:
-        Heat: -5
-        Shock: -5
-        Caustic: -5
-        Mangleness: 1.5 #Sunrise-edit
+        Heat: -6
+        Shock: -6
+        Caustic: -6
+        Mangleness: 1 #Sunrise-edit
 
 - type: entity
   parent: CableApcStack

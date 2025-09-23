@@ -244,6 +244,8 @@
     - id: ClothingEyesUniversalMedicalHud
     - id: AdvancedDefibrillator
     - id: VariantCubeBoxSunrise
+    - id: LeftArmCyberRipper
+      prob: 0.35
     #Sunrise-end
     - id: MedicalTechFabCircuitboard
     - id: CargoRequestMedicalComputerCircuitboard

@@ -9,7 +9,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
   - type: AutoRecharge
-    rechargeDuration: 30
+    rechargeDuration: 15
 
 - type: entity
   name: abductor's wirecutter

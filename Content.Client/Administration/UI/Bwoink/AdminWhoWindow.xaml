@@ -1,0 +1,23 @@
+<ui:FancyWindow xmlns="https://spacestation14.io"
+                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                VerticalExpand="True" HorizontalExpand="True"
+                Title="{Loc admin-who-title}"
+                SetSize="400 300"
+                Resizable="False">
+    <PanelContainer StyleClasses="BackgroundDark">
+        <BoxContainer Orientation="Vertical" Margin="8">
+            <Label Name="LoadingLabel" Access="Public" Text="{Loc admin-who-loading}" StyleClasses="LabelText"
+                   HorizontalAlignment="Center" Visible="False" />
+            <Label Name="NoAdminsLabel" Access="Public" Text="{Loc admin-who-no-admins}" StyleClasses="LabelText"
+                   HorizontalAlignment="Center" Visible="False" />
+            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Name="AdminsContainer" Access="Public" VerticalExpand="True" />
+                </BoxContainer>
+             </ScrollContainer>
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 8 0 0">
+                <Button Name="RefreshButton" Access="Public" Text="{Loc admin-who-refresh}" />
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</ui:FancyWindow>
