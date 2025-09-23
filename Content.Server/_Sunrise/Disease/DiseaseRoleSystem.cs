@@ -61,8 +61,8 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (TryComp<DiseaseRoleComponent>(args.Performer, out var component))
         {
-            if (TryRemoveMoney(args.Performer, component.InfectCost))         
-                OnInfect(args, 1.0f);     
+            if (TryRemoveMoney(args.Performer, component.InfectCost))
+                OnInfect(args, 1.0f);
             else
             {
                 _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), args.Performer, PopupType.Medium);
@@ -300,23 +300,19 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
     private void OnInfectedDeath(MobStateChangedEvent args)
     {
-        Logger.Info($"EVENT CALLED");
         // Only trigger when the entity actually dies (not when they're revived)
         if (args.NewMobState != MobState.Dead || args.OldMobState == MobState.Dead)
             return;
 
         // Safety check - ensure the entity is still valid
-        if (Deleted(args.Uid))
+        if (Deleted(args.Target))
             return;
-
-        // Debug logging
-        Logger.Info($"Disease death event triggered for entity {args.Uid}");
 
         // Reward all other disease antagonists when any infected dies
         var diseaseQuery = EntityQueryEnumerator<DiseaseRoleComponent>();
         while (diseaseQuery.MoveNext(out var diseaseUid, out var diseaseComp))
         {
-            if (diseaseUid == args.Uid) // Don't reward the dying one
+            if (diseaseUid == args.Target) // Don't reward the dying one
                 continue;
 
             // Safety check - ensure the target entity is still valid
@@ -326,7 +322,6 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
             // Award reward
             AddMoney(diseaseUid, 10);
             _popup.PopupEntity(Loc.GetString("disease-death-reward", ("points", 10)), diseaseUid, PopupType.Medium);
-            Logger.Info($"Awarded 10 points to disease antagonist {diseaseUid}");
         }
     }
 }
