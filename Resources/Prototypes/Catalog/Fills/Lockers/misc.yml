@@ -161,12 +161,18 @@
     - id: ToolboxSyndicateFilled
     - id: BalloonSyn
     - id: WeaponSniperMosin
+      #Sunrise-start
+    - id: LeftArmCyberMechwright
+    - id: RightArmCyberRobust
+    - id: LeftArmCyberRipper
+    - id: LeftArmCyberGorilla
     - id: MechPaintRipleyReaper
     - id: MechPaintDurandUnathi
     - id: MechPaintDurandDollhouse
     - id: MechPaintGygaxMolot
     - id: MechPaintGygaxPirate
     - id: MechPaintGygaxBlack
+      #Sunrise-end
       weight: 2
     - id: ClothingHandsKnuckleDustersSyndicate
 
@@ -179,9 +185,9 @@
     # Sunrise-start
     # Spray paints
     - id: DeathPaint
-      prob: 0.05
+      prob: 0.025
     - id: DeathPaintTwo
-      prob: 0.05
+      prob: 0.025
     # Sunrise-end
     # Tools
     - !type:NestedSelector
@@ -197,17 +203,17 @@
     # Plushies
     - !type:NestedSelector
       tableId: AllPlushiesTable
-      prob: 0.10
+      prob: 0.05 # Sunrise-edit
       rolls: !type:RangeNumberSelector
         range: 1, 2
     # Weapons
     - !type:NestedSelector
       tableId: MaintWeaponTable
-      prob: 0.075
+      prob: 0.125 # Sunrise-edit
     # Syndie Loot
     - !type:NestedSelector
       tableId: SyndieMaintLoot
-      prob: 0.05
+      prob: 0.10 # Sunrise-edit
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.01
