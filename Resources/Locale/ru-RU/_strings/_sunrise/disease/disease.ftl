@@ -20,7 +20,7 @@ action-disease-infect-description = Попытка заразить цель. И
 action-disease-shop-name = Мутация
 action-disease-shop-description = Открыть меню мутации.
 
-disease-info-header = БОЛЕЗНЬ СТАТИСТИКА
+disease-info-header = СТАТИСТИКА БОЛЕЗНЕЙ
 disease-info-core-statistics = Основная статистика
 disease-info-base-chance = Базовый шанс заражения
 disease-info-cough-sneeze-chance = Шанс заражения при кашле/чихании
