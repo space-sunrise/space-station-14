@@ -1,6 +1,6 @@
-# SunriseStation - This file is licensed
-# Copyright (c) 2025 SunriseStation Contributors
-
+# © SUNRISE, Contributor: UnilTan
+# Licensed under SUNRISE CLA
+# Full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 # Hair/fur linear gradient used in customization
 - type: shader
   id: HairGradient
