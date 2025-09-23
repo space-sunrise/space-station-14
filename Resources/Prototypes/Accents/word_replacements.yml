@@ -861,9 +861,6 @@
   wordReplacements:
     accent-formal-words-101: accent-formal-words-replace-101 # авд -> агент внутренних дел
     accent-formal-words-102: accent-formal-words-replace-102 # адик -> адъютант
-    accent-formal-words-103: accent-formal-words-replace-103 # вв -> ведущий врач
-    accent-formal-words-104: accent-formal-words-replace-104 # ви -> ведущий инженер
-    accent-formal-words-105: accent-formal-words-replace-105 # ву -> ведущий учёный
     accent-formal-words-106: accent-formal-words-replace-106 # гп -> глава персонала
     accent-formal-words-107: accent-formal-words-replace-107 # хоп -> глава персонала
     accent-formal-words-108: accent-formal-words-replace-108 # гсб -> глава службы безопасности
