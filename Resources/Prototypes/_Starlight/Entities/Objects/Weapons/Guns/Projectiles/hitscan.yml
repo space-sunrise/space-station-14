@@ -1042,7 +1042,7 @@
     disableDuration: 10
   damage:
     types:
-      Shock: 20
+      Shock: 10
 
 - type: hitscan
   id: DecloneBolt

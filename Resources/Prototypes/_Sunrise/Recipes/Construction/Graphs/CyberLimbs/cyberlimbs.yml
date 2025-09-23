@@ -8,12 +8,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyber
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchLegCyber
@@ -25,12 +27,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftLegCyber
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchHandCyber
@@ -42,12 +46,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftHandCyber
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchFootCyber
@@ -59,12 +65,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftFootCyber
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchArmCyberReaper
@@ -76,29 +84,164 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyberReaper
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
+  id: ImplantSwitchArmCyberRobust
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberRobust
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberRobust
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
+  id: ImplantSwitchArmCyberRipper
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberRipper
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberRipper
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
+  id: ImplantSwitchArmCyberJanitorial
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberJanitorial
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberJanitorial
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
+  id: ImplantSwitchArmCyberHack
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberHack
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberHack
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+- type: constructionGraph
+  id: ImplantSwitchArmCyberAtmos
+  start: start
+  graph:
+    - node: start
+      entity: RightArmCyberAtmos
+      edges:
+        - to: left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: left
+      entity: LeftArmCyberAtmos
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchArmCyberMechwright
   start: start
   graph:
     - node: start
-      entity: RightArmCyberMechwright
       edges:
-        - to: left
-          steps:
-            - tool: Screwing
-    - node: left
+        - to: base_left
+          steps: []
+    - node: base_left
       entity: LeftArmCyberMechwright
       edges:
-        - to: start
+        - to: base_right
           steps:
             - tool: Screwing
+              doAfter: 1
+        - to: upgraded_left
+          steps:
+            - tag: JawsOfLife
+              name: construction-graph-tag-jawsoflife
+            - tag: Powerdrill
+              name: construction-graph-tag-powerdrill
+            - tag: TrayScanner
+              name: construction-graph-tag-trayscanner
+              doAfter: 5
+    - node: base_right
+      entity: RightArmCyberMechwright
+      edges:
+        - to: base_left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: upgraded_right
+          steps:
+            - tag: JawsOfLife
+              name: construction-graph-tag-jawsoflife
+            - tag: Powerdrill
+              name: construction-graph-tag-powerdrill
+            - tag: TrayScanner
+              name: construction-graph-tag-trayscanner
+              doAfter: 5
+    - node: upgraded_left
+      entity: LeftArmCyberUpgradedMechwright
+      edges:
+        - to: upgraded_right
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: upgraded_right
+      entity: RightArmCyberUpgradedMechwright
+      edges:
+        - to: upgraded_left
+          steps:
+            - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchArmCyberBulwark
@@ -110,12 +253,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyberBulwark
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchArmCyberBonesaw
@@ -127,12 +272,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyberBonesaw
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchMantisMaxGuard
@@ -144,12 +291,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyberMantisBladeMaxGuard
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchArmCyberLaserEmitter
@@ -161,12 +310,14 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyberLaserEmitter
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1
 
 - type: constructionGraph
   id: ImplantSwitchArmCyberGrenadeThrower
@@ -178,9 +329,11 @@
         - to: left
           steps:
             - tool: Screwing
+              doAfter: 1
     - node: left
       entity: LeftArmCyberGrenadeThrower
       edges:
         - to: start
           steps:
             - tool: Screwing
+              doAfter: 1

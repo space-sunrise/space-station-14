@@ -497,7 +497,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Sunrise-end
 
         // Sunrise-start - Use speaker network for station announcements
-        if (playTts && (playDefault || announcementSound != null))
+        if (playTts)
         {
             if (playDefault && announcementSound == null)
                 announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
