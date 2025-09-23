@@ -14,6 +14,7 @@
   - type: Item
     heldPrefix: nanopaste
   - type: Healing
+    delay: 2
     damageContainers:
     - Mech
     - Synth
@@ -44,12 +45,3 @@
   - type: Stack
     stackType: Nanopaste
     count: 1
-
-- type: entity
-  id: Nanopaste10
-  parent: Nanopaste
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: Nanopaste
-    count: 10

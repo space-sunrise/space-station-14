@@ -80,6 +80,24 @@ namespace Content.Server.Communications
         // Sunrise-Start
         [DataField("announceVoice", customTypeSerializer:typeof(PrototypeIdSerializer<TTSVoicePrototype>))]
         public string AnnounceVoice = "Hanson";
-        // Sunrise-Start
+
+        [ViewVariables]
+        public bool IsRelaying;
+
+        [ViewVariables]
+        public float RelayTimeRemaining;
+
+        [ViewVariables]
+        public float RelayCooldownRemaining;
+
+        [DataField]
+        public float RelayDuration = 60f;
+
+        [DataField]
+        public float RelayCooldown = 300f;
+
+        [DataField]
+        public float RelayRange = 7f;
+        // Sunrise-End
     }
 }

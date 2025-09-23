@@ -63,6 +63,15 @@
         },
         {
             "name": "pilot_open"
+        },
+        {
+            "name": "mining_open"
+        },
+        {
+            "name": "mining"
+        },
+        {
+            "name": "mining_door"
         }
     ]
 }

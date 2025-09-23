@@ -163,6 +163,8 @@ ignore_list:
   - '{$linked ->'
   - <username>
   - <index>
+  - 'MHelp'
+  - 'Net-ERR*?*%'
 
 ignore_files:
   - 'italian.ftl'
