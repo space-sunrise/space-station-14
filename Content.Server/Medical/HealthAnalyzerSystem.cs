@@ -64,18 +64,20 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
-        // Collect hunger and thirst data
+        // Collect hunger and thirst data as percentages
         float hungerLevel = -1;
         float thirstLevel = -1;
 
         if (TryComp<HungerComponent>(target, out var hunger))
         {
-            hungerLevel = hunger.LastAuthoritativeHungerValue;
+            // Calculate hunger as percentage (max hunger is 200.0f from Overfed threshold)
+            hungerLevel = (hunger.LastAuthoritativeHungerValue / 200.0f) * 100.0f;
         }
 
         if (TryComp<ThirstComponent>(target, out var thirst))
         {
-            thirstLevel = thirst.CurrentThirst;
+            // Calculate thirst as percentage (max thirst is 600.0f from OverHydrated threshold)
+            thirstLevel = (thirst.CurrentThirst / 600.0f) * 100.0f;
         }
 
         // Sunrise edit start - новый триггер
