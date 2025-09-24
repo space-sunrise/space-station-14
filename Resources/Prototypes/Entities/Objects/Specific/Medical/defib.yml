@@ -126,7 +126,24 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
-    useRate: 100
+    useRate: 85
   - type: PowerDrainOnMeleeHit
-  # Sunrise-End
-
+  # Sunrise-Edit
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedDamage:
+      types:
+        Blunt: 8
+        Shock: 16
