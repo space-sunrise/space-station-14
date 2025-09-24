@@ -339,7 +339,8 @@ namespace Content.Server.GameTicking
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefault: false);
+                        playDefault: false,
+                        playTts: false);
                 }
             }
 

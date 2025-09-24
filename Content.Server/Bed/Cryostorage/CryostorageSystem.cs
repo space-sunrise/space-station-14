@@ -244,7 +244,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
                 ("entity", ent.Owner), // gender things for supporting downstreams with other languages
                 ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
             ), Loc.GetString("earlyleave-cryo-sender"),
-            playDefault: false
+            playDefault: false,
+            playTts: false
         );
     }
 
