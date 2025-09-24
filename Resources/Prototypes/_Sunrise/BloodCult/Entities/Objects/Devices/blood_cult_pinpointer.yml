@@ -28,9 +28,18 @@
         color: "#8b0000"
       - state: inhand-right-top
   - type: Icon
+    sprite: _Sunrise/BloodCult/pinpointer.rsi
     state: pinpointer_bloodcult
   - type: Pinpointer
     component: BloodCultTarget
     targetName: cult target
     updateTargetName: true
     canRetarget: false
+  - type: Biocode
+    factions:
+    - BloodCult
+    alertText: bloodcult-biocode-alert
+  - type: BiocodeDeactivation
+    deactivateOnRemoval: true
+    deactivateOnUnauthorized: true
+    alertText: bloodcult-biocode-alert
