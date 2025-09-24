@@ -510,7 +510,7 @@
   - type: NightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier
-    modifier: 1.4
+    modifier: 2
   - type: FelinidLicking
     damage:
       types:
