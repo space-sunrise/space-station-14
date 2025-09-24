@@ -2,7 +2,6 @@ using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
-using Robust.Shared.Localization;
 
 namespace Content.Server._Sunrise.BloodCult.Commands;
 
@@ -33,7 +32,9 @@ public sealed class ListCultTargetsCommand : IConsoleCommand
         shell.WriteLine(Loc.GetString("bloodcult-listtargets-header", ("count", rule.CultTargets.Count)));
         foreach (var (target, isSacrificed) in rule.CultTargets)
         {
-            var targetName = _entManager.GetComponent<MetaDataComponent>(target).EntityName;
+            var targetName = _entManager.TryGetComponent<MetaDataComponent>(target, out var meta)
+                ? meta.EntityName
+                : Loc.GetString("bloodcult-unknown-entity");
             var status = isSacrificed ? Loc.GetString("bloodcult-listtargets-sacrificed") : Loc.GetString("bloodcult-listtargets-alive");
             shell.WriteLine(Loc.GetString("bloodcult-listtargets-target", ("name", targetName), ("uid", target), ("status", status)));
         }

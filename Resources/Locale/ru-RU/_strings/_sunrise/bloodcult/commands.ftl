@@ -29,3 +29,4 @@ bloodcult-listtargets-header = Текущие цели культа ({ $count })
 bloodcult-listtargets-sacrificed = Принесен в жертву
 bloodcult-listtargets-alive = Жив
 bloodcult-listtargets-target = { $name } ({ $uid }) - { $status }
+bloodcult-unknown-entity = Неизвестная сущность

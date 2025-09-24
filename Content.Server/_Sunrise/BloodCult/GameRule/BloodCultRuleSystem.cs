@@ -147,7 +147,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     /// </summary>
     public bool AddSpecificCultTarget(EntityUid target, BloodCultRuleComponent rule)
     {
-        if (rule.CultTargets.ContainsKey(target))
+        if (!Exists(target) || rule.CultTargets.ContainsKey(target))
             return false;
 
         rule.CultTargets.Add(target, false);
@@ -170,7 +170,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             return false;
 
         rule.CultTargets.Remove(target);
-        RemComp<BloodCultTargetComponent>(target);
+        if (Exists(target))
+            RemComp<BloodCultTargetComponent>(target);
 
         var query = EntityQueryEnumerator<KillCultistTargetsConditionComponent>();
         while (query.MoveNext(out var uid, out var killCultistTargetsComponent))

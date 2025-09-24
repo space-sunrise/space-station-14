@@ -29,3 +29,4 @@ bloodcult-listtargets-header = Current cult targets ({ $count }):
 bloodcult-listtargets-sacrificed = Sacrificed
 bloodcult-listtargets-alive = Alive
 bloodcult-listtargets-target = { $name } ({ $uid }) - { $status }
+bloodcult-unknown-entity = Unknown Entity

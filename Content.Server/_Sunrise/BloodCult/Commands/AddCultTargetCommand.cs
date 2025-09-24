@@ -2,7 +2,7 @@ using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
-using Robust.Shared.Localization;
+using Robust.Server.Player;
 
 namespace Content.Server._Sunrise.BloodCult.Commands;
 
@@ -10,6 +10,7 @@ namespace Content.Server._Sunrise.BloodCult.Commands;
 public sealed class AddCultTargetCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     public string Command => "bloodcult_addtarget";
     public string Description => Loc.GetString("bloodcult-addtarget-description");
@@ -24,9 +25,7 @@ public sealed class AddCultTargetCommand : IConsoleCommand
         }
 
         var ckey = args[0];
-        var playerManager = IoCManager.Resolve<Robust.Server.Player.IPlayerManager>();
-
-        if (!playerManager.TryGetSessionByUsername(ckey, out var session) || session.AttachedEntity == null)
+        if (!_playerManager.TryGetSessionByUsername(ckey, out var session) || session.AttachedEntity == null)
         {
             shell.WriteError(Loc.GetString("bloodcult-addtarget-player-not-found", ("ckey", ckey)));
             return;
@@ -54,6 +53,9 @@ public sealed class AddCultTargetCommand : IConsoleCommand
             return;
         }
 
-        shell.WriteLine(Loc.GetString("bloodcult-addtarget-success", ("name", _entManager.GetComponent<MetaDataComponent>(entityUid).EntityName)));
+        var targetName = _entManager.TryGetComponent<MetaDataComponent>(entityUid, out var meta)
+            ? meta.EntityName
+            : Loc.GetString("bloodcult-unknown-entity");
+        shell.WriteLine(Loc.GetString("bloodcult-addtarget-success", ("name", targetName)));
     }
 }
