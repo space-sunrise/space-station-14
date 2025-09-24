@@ -6,6 +6,8 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Storage;
+using Content.Shared.Hands;
+using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
 
 namespace Content.Shared._Sunrise.Biocode.Systems;
@@ -20,35 +22,13 @@ public abstract class BiocodeDeactivationSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BiocodeDeactivationComponent, EntInsertedIntoContainerMessage>(OnItemInserted);
-        SubscribeLocalEvent<BiocodeDeactivationComponent, EntRemovedFromContainerMessage>(OnItemRemoved);
         SubscribeLocalEvent<BiocodeDeactivationComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<BiocodeDeactivationComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<BiocodeDeactivationComponent, DroppedEvent>(OnItemDropped);
+        SubscribeLocalEvent<BiocodeDeactivationComponent, GotEquippedEvent>(OnItemPickedUp);
     }
 
-    private void OnItemInserted(EntityUid uid, BiocodeDeactivationComponent component, EntInsertedIntoContainerMessage args)
-    {
-        if (!component.DeactivateOnUnauthorized)
-            return;
-
-        // Check if this item has biocode
-        if (!TryComp<BiocodeComponent>(uid, out var biocodeComponent))
-            return;
-
-        // Find the owner of the container
-        var containerOwner = GetContainerOwner(args.Container.Owner);
-        if (containerOwner == null)
-            return;
-
-        // Check if the owner is authorized to use this item
-        if (_biocodeSystem.CanUse(containerOwner.Value, biocodeComponent.Factions))
-            return;
-
-        // Owner is not authorized, deactivate the item
-        DeactivateItem(uid);
-    }
-
-    private void OnItemRemoved(EntityUid uid, BiocodeDeactivationComponent component, EntRemovedFromContainerMessage args)
+    private void OnItemDropped(EntityUid uid, BiocodeDeactivationComponent component, DroppedEvent args)
     {
         if (!component.DeactivateOnRemoval)
             return;
@@ -57,7 +37,24 @@ public abstract class BiocodeDeactivationSystem : EntitySystem
         if (!TryComp<BiocodeComponent>(uid, out var biocodeComponent))
             return;
 
-        // When removed from any container, deactivate the item
+        // Item was dropped, deactivate it
+        DeactivateItem(uid);
+    }
+
+    private void OnItemPickedUp(EntityUid uid, BiocodeDeactivationComponent component, GotEquippedEvent args)
+    {
+        if (!component.DeactivateOnUnauthorized)
+            return;
+
+        // Check if this item has biocode
+        if (!TryComp<BiocodeComponent>(uid, out var biocodeComponent))
+            return;
+
+        // Check if the picker is authorized
+        if (_biocodeSystem.CanUse(args.Equipee, biocodeComponent.Factions))
+            return;
+
+        // Picker is not authorized, deactivate the item
         DeactivateItem(uid);
     }
 

@@ -30,3 +30,6 @@ bloodcult-listtargets-sacrificed = Принесен в жертву
 bloodcult-listtargets-alive = Жив
 bloodcult-listtargets-target = { $name } ({ $uid }) - { $status }
 bloodcult-unknown-entity = Неизвестная сущность
+
+# Cult Device Alert
+bloodcult-biocode-alert = Устройство пульсирует тёмной энергией, отвергая ваше прикосновение. Только те, кто связан кровью, могут владеть его силой.

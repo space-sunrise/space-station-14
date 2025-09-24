@@ -30,3 +30,6 @@ bloodcult-listtargets-sacrificed = Sacrificed
 bloodcult-listtargets-alive = Alive
 bloodcult-listtargets-target = { $name } ({ $uid }) - { $status }
 bloodcult-unknown-entity = Unknown Entity
+
+# Cult Device Alert
+bloodcult-biocode-alert = The device pulses with dark energy, rejecting your touch. Only those bound by blood may wield its power.
