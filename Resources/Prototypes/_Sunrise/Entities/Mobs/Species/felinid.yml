@@ -510,7 +510,7 @@
   - type: NightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier
-    modifier: 2
+    modifier: 1.4
   - type: FelinidLicking
     damage:
       types:
@@ -521,12 +521,12 @@
     bloodlossModifier: -1.0
     delay: 5
     healingBeginSound:
-      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
       params:
         volume: 1.0
         variation: 0.125
     healingEndSound:
-      path: "/Audio/Items/Medical/ointment_end.ogg"
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
       params:
         volume: 1.0
         variation: 0.125

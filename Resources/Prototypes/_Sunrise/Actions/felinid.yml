@@ -7,8 +7,8 @@
       temporary: true
       useDelay: 6
       icon:
-        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
-        state: teleport
+        sprite: /Textures/_Sunrise/Actions/felionoid.rsi
+        state: licking
       itemIconStyle: NoItem
     - type: TargetAction
       repeat: false

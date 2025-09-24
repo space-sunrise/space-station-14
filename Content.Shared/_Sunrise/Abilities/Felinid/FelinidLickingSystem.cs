@@ -8,7 +8,8 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Standing;
+using Content.Shared.Inventory;
+using Content.Shared.Nutrition.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
 
@@ -24,6 +25,7 @@ public sealed class FelinidLickingSystem : EntitySystem
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
     public override void Initialize()
     {
@@ -50,6 +52,20 @@ public sealed class FelinidLickingSystem : EntitySystem
         var target = args.Target;
         if (target == null)
             return;
+
+        if (HasIngestionBlocker(uid))
+        {
+            _popup.PopupClient(Loc.GetString("felinid-licking-blocked-by-blocker"), uid, uid);
+            args.Handled = true;
+            return;
+        }
+
+        if (HasInnerOrOuterClothing(target))
+        {
+            _popup.PopupClient(Loc.GetString("felinid-licking-blocked-by-clothing"), uid, uid);
+            args.Handled = true;
+            return;
+        }
 
         if (!TryComp<DamageableComponent>(target, out var damageable))
             return;
@@ -127,6 +143,29 @@ public sealed class FelinidLickingSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private bool HasIngestionBlocker(EntityUid uid)
+    {
+        if (!TryComp<InventoryComponent>(uid, out var inventory))
+            return false;
+
+        var enumerator = _inventorySystem.GetSlotEnumerator((uid, inventory), SlotFlags.MASK | SlotFlags.HEAD);
+        while (enumerator.NextItem(out var item))
+        {
+            if (TryComp<IngestionBlockerComponent>(item, out var blocker) && blocker.Enabled)
+                return true;
+        }
+        return false;
+    }
+
+    private bool HasInnerOrOuterClothing(EntityUid uid)
+    {
+        if (!TryComp<InventoryComponent>(uid, out var inventory))
+            return false;
+
+        var enumerator = _inventorySystem.GetSlotEnumerator((uid, inventory), SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING);
+        return enumerator.NextItem(out _);
     }
 }
 
