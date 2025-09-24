@@ -451,12 +451,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      180: Dead
+      75: Critical
+      170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      70: 0.5
+      55: 0.7
+      65: 0.5
   - type: MeleeWeapon
     hidden: true
     soundHit:
