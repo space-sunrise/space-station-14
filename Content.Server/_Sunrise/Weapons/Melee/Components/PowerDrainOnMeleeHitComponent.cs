@@ -1,25 +1,23 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Server.Weapons.Melee.Components;
+namespace Content.Server._Sunrise.Weapons.Melee.Components;
 
 /// <summary>
 /// When attached to a melee weapon, drains power on successful melee hit.
 /// Drains from a slotted power cell if present, otherwise from a direct BatteryComponent.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class PowerDrainOnMeleeHitComponent : Component
 {
     /// <summary>
     /// Amount of charge to drain per successful hit (in joules).
     /// </summary>
-    [DataField]
-    public float ChargePerHit = 30f;
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public float ChargePerHit = 0f;
 
     /// <summary>
     /// If true, only drain when there is at least one entity hit.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public bool RequireActualHit = true;
 }
-
-

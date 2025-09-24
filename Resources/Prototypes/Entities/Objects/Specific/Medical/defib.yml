@@ -128,7 +128,8 @@
   - type: PowerCellDraw
     useRate: 85
   - type: PowerDrainOnMeleeHit
-  # Sunrise-Edit
+    chargePerHit: 30
+  # Sunrise-End
   - type: MeleeWeapon
     damage:
       types:
