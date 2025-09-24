@@ -112,7 +112,7 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
-    #Sunrise-Start
+  # Sunrise-Start
   - type: Defibrillator
     allowUseOnAlive: true
     reagents:
@@ -127,5 +127,6 @@
         locked: true
   - type: PowerCellDraw
     useRate: 100
-    #Sunrise-End
+  - type: PowerDrainOnMeleeHit
+  # Sunrise-End
 
