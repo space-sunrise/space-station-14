@@ -4,6 +4,14 @@
   weights:
     Dragon: 1
     Revenant: 1
+    # Sunrise-start
+    Pirate: 1
+    PirateSmall: 0.25
+    LoneOperative: 1
+    Instigator: 0.7
+    Infiltrator: 0.25
+    Nukeops: 0.05
+    # Sunrise-end
 
 - type: ninjaHackingThreat
   id: Dragon
@@ -14,3 +22,35 @@
   id: Revenant
   announcement: terror-revenant
   rule: RevenantSpawn
+
+# Sunrise-start
+- type: ninjaHackingThreat
+  id: LoneOperative
+  announcement: terror-lone-operative
+  rule: LoneOpsSpawn
+
+- type: ninjaHackingThreat
+  id: Instigator
+  announcement: terror-lone-operative
+  rule: NukeopsInstigator
+
+- type: ninjaHackingThreat
+  id: Infiltrator
+  announcement: terror-nukeops-infiltrator
+  rule: NukeopsInfiltrator
+
+- type: ninjaHackingThreat
+  id: Nukeops
+  announcement: terror-nukeops-operative
+  rule: Nukeops
+
+- type: ninjaHackingThreat
+  id: Pirate
+  announcement: terror-pirate
+  rule: PirateMedium
+
+- type: ninjaHackingThreat
+  id: PirateSmall
+  announcement: terror-pirate-small
+  rule: PirateSmall
+# Sunrise-end
