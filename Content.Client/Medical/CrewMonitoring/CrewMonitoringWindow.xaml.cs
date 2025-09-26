@@ -45,6 +45,10 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
         CorpseAlertToggle.OnPressed += OnCorpseAlertTogglePressed;
+        
+        // Initialize corpse alert toggle to "off" state
+        UpdateCorpseAlertToggle(false);
+        CorpseAlertToggle.Disabled = false;
     }
 
     public void Set(string stationName, EntityUid? mapUid)
@@ -470,12 +474,27 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             CorpseAlertToggle.Text = Loc.GetString("crew-monitoring-corpse-alert-off");
             CorpseAlertToggle.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
         }
+        
+        // Re-enable the button when server state is received
+        CorpseAlertToggle.Disabled = false;
     }
 
     private void OnCorpseAlertTogglePressed(BaseButton.ButtonEventArgs args)
     {
-        // This will be set by the BoundUserInterface
+        // Disable button to prevent spam clicks
+        CorpseAlertToggle.Disabled = true;
+        
+        // Send message to server
         _boundUserInterface?.SendMessage(new CrewMonitoringToggleCorpseAlertMessage());
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (disposing)
+        {
+            _boundUserInterface = null;
+        }
     }
 }
 
