@@ -29,13 +29,20 @@
 - type: startingGear
   id: HeadOfPrisonGear
   equipment:
-    eyes: ClothingEyesGlassesSecurity
     id: HeadOfPrisonPDA
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+    head: ClothingHeadHatBeretHoS
     gloves: ClothingHandsGlovesCombat
-    ears: ClothingHeadsetAltSecurity
+    ears: ClothingHeadsetAltCommand
     belt: ClothingBeltPrisonGuardianFilled
+    neck: ClothingNeckCloakHOSCloak
     pocket1: WeaponPistolDeagle
     pocket2: MagazineDeagle
+    outerClothing: ClothingOuterArmorRiot
+  storage:
+    belt:
+      - RadioHandheldSecurity
+      - Flash
 
 - type: chameleonOutfit
   id: HeadOfPrisonChameleonOutfit

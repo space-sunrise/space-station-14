@@ -32,7 +32,7 @@
   - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
+    implants: [ TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -53,7 +53,7 @@
 - type: chameleonOutfit
   id: QuartermasterChameleonOutfit
   job: Quartermaster
-  hasMindShield: true
+  hasMindShield: false #Sunrise-Edit
   equipment:
     head: ClothingHeadHatQMsoft
     eyes: ClothingEyesGlassesSunglasses

@@ -1,0 +1,8 @@
+- type: stationAiCustomization
+  id: StationAiHologramGirl
+  name: station-ai-hologram-girl
+  previewKey: Hologram
+  layerData:
+    Hologram:
+      sprite: _Sunrise/Mobs/Ghosts/holo_girl.rsi
+      state: holo_icon

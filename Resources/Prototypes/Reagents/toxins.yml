@@ -563,12 +563,17 @@
   color: "#AAAAAA"
   metabolisms:
     Poison:
+      metabolismRate: 1
       effects:
       - !type:GenericStatusEffect
         key: Pacified
         component: Pacified
         type: Add
-        time: 4
+        time: 2
+        conditions:
+          - !type:ReagentThreshold
+            reagent: Pax
+            min: 1
 
 - type: reagent
   id: Honk

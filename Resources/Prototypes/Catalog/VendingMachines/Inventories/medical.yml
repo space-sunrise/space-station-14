@@ -11,6 +11,8 @@
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
     HyposprayMedical: 2 # Sunrise-Edit
+    Dropper: 2 # Sunrise-Edit
+    BaseChemistryEmptyVial: 2 # Sunrise-Edit
     PatchPack: 4 # Sunrise-Edit
     PatchMedical: 5 # Sunrise-Edit
     PatchBrute: 5 # Sunrise-Edit

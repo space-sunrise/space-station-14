@@ -30,6 +30,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
+        Shock: 0.6 #Sunrise-edit 
         Heat: 0.8
         Radiation: 0.5
   - type: ClothingSpeedModifier
@@ -423,6 +424,7 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+        Shock: 0.2 #Sunrise-edit
         Heat: 0.4
         Radiation: 0.1 # Sunrise-edit
         Caustic: 0.7

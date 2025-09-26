@@ -56,6 +56,12 @@
   id: JobSecurityPilot
 
 - type: playTimeTracker
+  id: JobHeadOfPrison
+
+- type: playTimeTracker
+  id: JobPrisonInspector
+
+- type: playTimeTracker
   id: JobPrisonChef
 
 - type: playTimeTracker
@@ -71,13 +77,13 @@
   id: JobPrisonDoctor
 
 - type: playTimeTracker
-  id: JobHeadOfPrison
-
-- type: playTimeTracker
   id: JobPrisoner
 
 - type: playTimeTracker
   id: JobPrisonEngineer
+
+- type: playTimeTracker
+  id: JobPrisonScientist
 
 - type: playTimeTracker
   id: JobEngineerBorg

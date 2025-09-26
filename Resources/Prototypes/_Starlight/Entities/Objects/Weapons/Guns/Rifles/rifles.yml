@@ -72,6 +72,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Huge
+    shape:
+    - 0,0,4,2
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:

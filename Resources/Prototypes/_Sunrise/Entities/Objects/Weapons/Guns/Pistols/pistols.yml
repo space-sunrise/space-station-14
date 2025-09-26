@@ -80,7 +80,7 @@
         whitelist:
           tags:
           - MagazinePistolDP
-          - MagazineVP70
+          - MagazineVP78
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol40FMJ # .45 ACP

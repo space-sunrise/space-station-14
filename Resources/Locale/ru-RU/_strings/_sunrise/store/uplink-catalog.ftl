@@ -33,8 +33,10 @@ uplink-magazine-dragunov-desc = Магазин для Драгунова. Сод
 uplink-magazine-dragunov-extended-desc = Магазин для Драгунова. Содержит 20 патронов калибра 7,62х54R.
 uplink-magazine-bulldog-uraniumslug-desc = Барабанный магазин на 8 урановых пулевых патронов. Совместим с "Бульдогом".
 uplink-magazine-bulldog-uranium-desc = Барабанный магазин на 8 патронов урановой дроби. Совместим с "Бульдогом".
-uplink-pistol-magnum-magazine-name = Магазин для Deagle
+uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
+uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
+uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
 
 ## Misc
 
@@ -79,9 +81,7 @@ uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
 uplink-clothing-backpack-syndie-siar52-desc = Включает в себя SIAR-52 что оборудован интегрированым глушителем. и два магазина безгильзовых патрон.
 uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
-uplink-weapon-bauer-127-name = винтовка Bauer SR-127
-uplink-weapon-dragunov-name = Набор Драгунов
-uplink-weapon-dragunov-desc = Культовая снайперская винтовка и два магазина на 10 патронов, известная своей меткостью и стрельбой на дальние дистанции. Использует винтовочные патроны калибра 7.62x54R.
+uplink-weapon-ussp-dmr-name = Набор Драгунов
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
 uplink-mini-energy-crossbow-name = Мини энерго-арбалет
@@ -106,6 +106,14 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произведёный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-anomaly-auto-injector-name = Автоинъектор аномалии
+uplink-anomaly-auto-injector-desc = Одноразовый самовпрыскивающий инъектор, заражающий гуманоида случайной аномалией в течение минуты после введения.
+uplink-anomaly-auto-injector-popup-nothing-to-inject = Нечего вводить!
+uplink-anomaly-auto-injector-popup-not-applicable = Неприменимо!
+uplink-anomaly-auto-injector-popup-pending = Кожа не поддаётся инъекции!
+uplink-anomaly-auto-injector-popup-infected = Кожа не поддаётся инъекции!
+uplink-xeno-artifact-throwing-auto-injector-name = Метательный автоинъектор артефакта
+uplink-xeno-artifact-throwing-auto-injector-desc = Метательно-складное устройство одноразового применения. При попадании в живое существо вонзается и вживляет частицы артефакта. Не действует на синтетиков.
 
 ## Mechs equipment
 

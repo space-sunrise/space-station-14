@@ -27,3 +27,6 @@ borg-hypospray-inject-announcement = Ввожу { $reagent } в { $target }.
 ## failure
 
 hypospay-component-failure-hardsuit = Вы не сможете провести иглу через толстое покрытие!
+
+## Medipen injection failure
+hypospray-cancel-inject = Медипен отказывается сделать инъекцию уже имеющихся в крови реагентов. 

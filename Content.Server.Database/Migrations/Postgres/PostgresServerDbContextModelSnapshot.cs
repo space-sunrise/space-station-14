@@ -1008,15 +1008,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("facial_hair_color");
 
-                    b.Property<int>("FacialHairColorType")
-                        .HasColumnType("integer")
-                        .HasColumnName("facial_hair_color_type");
-
-                    b.Property<string>("FacialHairExtendedColor")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("facial_hair_extended_color");
-
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -1036,15 +1027,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
-
-                    b.Property<int>("HairColorType")
-                        .HasColumnType("integer")
-                        .HasColumnName("hair_color_type");
-
-                    b.Property<string>("HairExtendedColor")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("hair_extended_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()
@@ -1098,6 +1080,45 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Property<float>("Width")
                         .HasColumnType("real")
                         .HasColumnName("width");
+
+                    b.Property<bool>("AllMarkingsGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("all_markings_gradient_enabled");
+
+                    b.Property<string>("AllMarkingsGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("all_markings_gradient_secondary_color");
+
+                    b.Property<int>("AllMarkingsGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("all_markings_gradient_direction");
+
+                    b.Property<bool>("FacialHairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("facial_hair_gradient_enabled");
+
+                    b.Property<string>("FacialHairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("facial_hair_gradient_secondary_color");
+
+                    b.Property<int>("FacialHairGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("facial_hair_gradient_direction");
+
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("hair_gradient_secondary_color");
+
+                    b.Property<int>("HairGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("hair_gradient_direction");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");

@@ -10,9 +10,13 @@
       tags:
         - CartridgeAntiMateriel
     proto: CartridgeAntiMateriel
-    capacity: 10
+    # Sunrise-start
+    capacity: 14
   - type: Item
-    size: Small
+    size: Normal
+    shape:
+    - 0,0,1,1
+    # Sunrise-end
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

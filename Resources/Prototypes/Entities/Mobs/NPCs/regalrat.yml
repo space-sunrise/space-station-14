@@ -109,9 +109,9 @@
       - FootstepSound
   - type: NoSlip
   - type: RatKing
-    hungerPerArmyUse: 10  # Sunrise-edit
-    hungerPerDomainUse: 50  # Sunrise-edit
-    hungerPerGuardUse: 75  # High cost for guards
+    hungerPerArmyUse: 7  # Sunrise-edit
+    hungerPerDomainUse: 25  # Sunrise-edit
+    hungerPerGuardUse: 100  # High cost for guards
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
@@ -134,6 +134,7 @@
       gender: male
   - type: Sharp
   # Sunrise-start
+  - type: FlashImmunity
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5
@@ -252,8 +253,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      35: Critical  # Sunrise-edit
-      40: Dead  # Sunrise-edit
+      15: Critical
+      30: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -272,8 +273,8 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 7 # Sunrise-Edit
-        Piercing: 3 # Sunrise-Edit
+        Slash: 5
+        Piercing: 3
   - type: Body
     prototype: Rat
     requiredLegs: 1 # TODO: More than 1 leg
@@ -334,9 +335,9 @@
 - type: entity
   name: rat guard
   id: MobRatGuard
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: MobRatKing
   description: A massive, imposing rat that serves as the king's elite guard.
-  categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
+  # categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-rats-name
@@ -344,23 +345,12 @@
     priority: 110
   - type: TypingIndicator
     proto: lizard
-  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.2
     baseSprintSpeed : 3.8
   - type: InputMover
   - type: MobMover
-  - type: HTN
-    rootTask:
-      task: RatServantCompound
-    blackboard:
-      IdleRange: !type:Single
-        4.0
-      FollowCloseRange: !type:Single
-        2.5
-      FollowRange: !type:Single
-        3.5
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 2.5
@@ -399,25 +389,26 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
-      325: Dead
+      290: Critical
+      300: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      175: 0.95
-      200: 0.9
-      225: 0.8
-      250: 0.6
+      100: 0.95
+      125: 0.9
+      150: 0.8
+      200: 0.75
+      275: 0.6
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 500
+        damage: 400
       behaviors:
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 300
+    critThreshold: 250
   - type: MeleeSpeech
   - type: UserInterface
     interfaces:
@@ -433,7 +424,7 @@
         Piercing: 1 # Additional claw damage
         Blunt: 15 # Strong guard attack
         Structural: 10 # Strong guard attack
-    bluntStaminaDamageFactor: 1.75
+    bluntStaminaDamageFactor: 1.5
     soundHit:
       collection: PunchHard
     animation: WeaponArcFist
@@ -497,7 +488,10 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
-  - type: RatKingServant  # Make them servants too
+  - type: RatKing
+    hungerPerArmyUse: 25
+    hungerPerDomainUse: 50
+    hungerPerGuardUse: 1000 # Sunrise-TODO: Скрыть акшен ему
   - type: GhostRole
     makeSentient: true
     name: rat-guard-ghost-role-name
@@ -636,7 +630,7 @@
   description: Spend a large amount of hunger to summon an elite rat guard to serve you.
   components:
   - type: Action
-    useDelay: 60
+    useDelay: 180
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: ratKingGuard
