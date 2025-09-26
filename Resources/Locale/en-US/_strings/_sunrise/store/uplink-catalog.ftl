@@ -73,6 +73,14 @@ uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кисл
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
 uplink-clothing-glasses-nvg-name = NVG Sun Glasses
 uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorlax Security. Uses modular parts to improve visibility in low light conditions. Warning: The glasses will not protect your eyes from direct flashes.
+uplink-anomaly-auto-injector-name = Anomaly Auto-Injector
+uplink-anomaly-auto-injector-desc = A single-use self-injecting injector that infects a humanoid with a random anomaly within a minute of injection.
+uplink-anomaly-auto-injector-popup-nothing-to-inject = Nothing to inject!
+uplink-anomaly-auto-injector-popup-not-applicable = Not applicable!
+uplink-anomaly-auto-injector-popup-pending = Skin resists injection!
+uplink-anomaly-auto-injector-popup-infected = Skin resists injection!
+uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Injector
+uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
 
 ## Implats
 uplink-smoke-screen-implanter-name = Smoke Screen Implanter

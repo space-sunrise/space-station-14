@@ -3,23 +3,53 @@
   name: job-name-prison-chef
   description: job-description-prison-chef
   playTimeTracker: JobPrisonChef
-  startingGear: ChefGear
   requirements:
   - !type:RoleTimeRequirement
     role: JobChef
     time: 7200 #2 hrs
   icon: "JobIconPrisonChef"
+  startingGear: PrisonChefGear
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 50
   access:
-  - Service
+  - Security
+  - Brig
   - Maintenance
+  - Service
   - Kitchen
   - Hydroponics
   - Bar
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonChefGear
+  equipment:
+    id: PrisonChefPDA
+    jumpsuit: ClothingUniformJumpsuitChef
+    head: ClothingHeadHatBeretFrench
+    ears: ClothingHeadsetService
+    eyes: ClothingEyesGlassesSunglasses
+    mask: ClothingMaskItalianMoustache
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorRiot
+    belt: ClothingBeltChefFilled
+    back: ClothingBackpackBlack
+    shoes: ClothingShoesBootsJack
+    pocket1: SecurityWhistle
+    pocket2: WeaponDisabler
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Flash
+      - GrenadeFlashBang
+      - Handcuffs
+      - FlashlightSeclite
 
 - type: chameleonOutfit
   id: PrisonChefChameleonOutfit

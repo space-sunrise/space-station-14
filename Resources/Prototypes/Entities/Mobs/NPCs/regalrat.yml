@@ -134,6 +134,7 @@
       gender: male
   - type: Sharp
   # Sunrise-start
+  - type: FlashImmunity
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5

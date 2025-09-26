@@ -1,0 +1,15 @@
+- type: entity
+  id: MobSharkGhost
+  parent: MobShark
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-reason-shark-name
+      description: ghost-role-information-reason-shark-description
+      rules: ghost-role-information-freeagent-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
