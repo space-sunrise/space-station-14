@@ -45,10 +45,17 @@
   #
   - ImplantCaseMechwright
   #
+  - ImplantCaseRobust
+  #
+  - ImplantCaseJani
+  #
+  - ImplantCaseAtmos
+  #
+  - ImplantCaseHack
+  #
   - ImplantCaseBulwark
   #
-  - ImplantCaseGorillaR
-  - ImplantCaseGorillaL
+  - ImplantCaseGorilla
   #
   - ImplantCaseMantisBladeMaxGuard
   #

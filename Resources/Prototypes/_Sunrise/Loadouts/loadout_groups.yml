@@ -224,6 +224,7 @@
   loadouts:
   - GlockBox
   - ACP14Box
+  - SnubRevolverBox 
   - MK58Box
   - MK58GoldBox
   - WeaponDominator
@@ -239,6 +240,7 @@
   loadouts:
   - CadetWeaponGlockBox
   - CadetWeaponACP14Box
+  - SnubRevolverBox 
   - CadetWeaponMK58Box
   - MK58GoldBox
   - CadetWeaponMiniEnergyGun
@@ -252,6 +254,7 @@
   maxLimit: 1
   loadouts:
   - DetectiveWeapon
+  - WeaponRevolverSnubRevolver
   - DetectiveWeapon20h
   - DetectiveWeapon50h
   - DetectiveWeapon50h2
@@ -1263,6 +1266,7 @@
 - type: loadoutGroup
   id: ComMaidHead
   name: loadout-group-commaid-head
+  minLimit: 0
   loadouts:
   - ComMaidHurseHat
   - ComMaidBonnyEars
@@ -1275,11 +1279,19 @@
   - ComMaidElegantJumpskirt
   - ComMaidSunriseJumpskirt
   - ComMaidBunnyUniform
+  - ComMaidJumpsuitLawyerBlack
   - ComMaidTacticalJumpskirt
+
+- type: loadoutGroup
+  id: ComMaidBackpack
+  name: loadout-group-commaid-backpack
+  loadouts:
+  - ComMaidBackpackSatchelLeather
 
 - type: loadoutGroup
   id: ComMaidNeck
   name: loadout-group-commaid-neck
+  minLimit: 0
   loadouts:
   - ComMaidBunnyButterfly
 
@@ -1289,10 +1301,12 @@
   loadouts:
   - ComMaidShoes
   - ComMaidBunnyShoes
+  - ComMaidShoesBootsLaceup
 
 - type: loadoutGroup
   id: ComMaidGloves
   name: loadout-group-commaid-gloves
+  minLimit: 0
   loadouts:
   - ComMaidBunnyManjets
   - ComMaidGlovesWhite

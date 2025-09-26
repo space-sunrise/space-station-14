@@ -4,6 +4,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Shared._Sunrise.Misc; // Sunrise-Edit
 
 namespace Content.Server.Spawners.EntitySystems;
 
@@ -30,6 +31,21 @@ public sealed class SpawnPointSystem : EntitySystem
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
+            // Sunrise-Start
+            var hasRoundStart = EntityManager.HasComponent<RoundStartSpawnPointComponent>(uid);
+            var hasLateJoin = EntityManager.HasComponent<LateJoinSpawnPointComponent>(uid);
+            if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+            {
+                if (hasLateJoin)
+                    continue;
+            }
+            else if (_gameTicker.RunLevel == GameRunLevel.InRound)
+            {
+                if (hasRoundStart)
+                    continue;
+            }
+            // Sunrise-End
+
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 

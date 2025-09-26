@@ -132,16 +132,7 @@
 # Civil Arms
 - type: entity
   parent: BaseImplantCase
-  id: ImplantCaseGorillaR
-  description: "A small ID locked case. The label reads: Right Gorilla CyberArm."
-  components:
-  - type: StorageFill
-    contents:
-    - id: RightArmCyberGorilla
-
-- type: entity
-  parent: BaseImplantCase
-  id: ImplantCaseGorillaL
+  id: ImplantCaseGorilla
   description: "A small ID locked case. The label reads: Left Gorilla CyberArm."
   components:
   - type: StorageFill
@@ -165,6 +156,42 @@
   - type: StorageFill
     contents:
     - id: LeftArmCyberReaper
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseRobust
+  description: "A small ID locked case. The label reads: Robust CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberRobust
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseHack
+  description: "A small ID locked case. The label reads: Hack CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberHack
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseAtmos
+  description: "A small ID locked case. The label reads: Atmosian CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberHack
+
+- type: entity
+  parent: BaseImplantCase
+  id: ImplantCaseJani
+  description: "A small ID locked case. The label reads: Jani CyberArm."
+  components:
+  - type: StorageFill
+    contents:
+    - id: LeftArmCyberJanitorial
 
 # Security Hud
 - type: entity

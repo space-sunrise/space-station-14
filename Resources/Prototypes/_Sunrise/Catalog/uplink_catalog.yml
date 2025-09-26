@@ -391,6 +391,26 @@
       - NukeOpsUplink
       - LoneOpsUplink
 
+- type: listing
+  id: UplinkGrenadeExShrapnel
+  name: uplink-shrapnel-exgrenade-name
+  description: uplink-shrapnel-exgrenade-desc
+  productEntity: ExShrapnelGrenade
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
+
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFragTimer
@@ -963,7 +983,7 @@
   name: uplink-syndicate-teleporter-name
   description: uplink-syndicate-teleporter-desc
   icon: { sprite: Objects/Devices/syndicate_teleporter.rsi, state: icon}
-  productEntity: SyndicateTeleporterBiocode
+  productEntity: SyndicateTeleporter
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 6
@@ -1023,6 +1043,11 @@
     Telecrystal: 10
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkFireAxeFlaming
@@ -1355,7 +1380,7 @@
   discountDownTo:
     Telecrystal: 15
   cost:
-    Telecrystal: 35
+    Telecrystal: 30
   categories:
   - UplinkMechs
   conditions:
@@ -1367,6 +1392,47 @@
     blacklist:
       components:
       - SurplusBundle
+
+- type: listing
+  id: UplinkMechMaxim
+  productEntity: WeaponMechCombatMaxim
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 14
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkMechHeavyRifle
+  productEntity: WeaponMechCombatHeavyRifle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 22
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
 
 - type: listing
   id: UplinkMechUVM31
@@ -1631,7 +1697,7 @@
   id: uplinkWeaponMiniEnergyCrossbow
   name: uplink-mini-energy-crossbow-name
   description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbowBiocode
+  productEntity: WeaponMiniEnergyCrossbow
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -1866,4 +1932,66 @@
   conditions:
     - !type:BuyerDepartmentCondition
       whitelist:
+      - Science
+
+- type: listing
+  id: UplinkDeathAcidifierImplanterAgent
+  name: uplink-death-acidifier-implant-name
+  description: uplink-death-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: DeathAcidifierImplanter
+  categories:
+    - UplinkImplants
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkXenoArtifactThrowingAutoInjector
+  name: uplink-xeno-artifact-throwing-auto-injector-name
+  description: uplink-xeno-artifact-throwing-auto-injector-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Syndicate/xeno_artifact_throwing_auto_injector.rsi, state: open }
+  productEntity: XenoArtifactThrowingAutoInjector
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+  - !type:BuyerDepartmentCondition
+    whitelist:
+      - Science
+
+- type: listing
+  id: UplinkAnomalyAutoInjector
+  name: uplink-anomaly-auto-injector-name
+  description: uplink-anomaly-auto-injector-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi, state: anomagen }
+  productEntity: AnomalyAutoInjectorUplink
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - LoneOpsUplink
+      - NukeOpsUplink
+  - !type:BuyerDepartmentCondition
+    whitelist:
       - Science
