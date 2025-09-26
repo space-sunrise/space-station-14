@@ -811,7 +811,6 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered #Sunrise-edit keep it here until action is fixed
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
