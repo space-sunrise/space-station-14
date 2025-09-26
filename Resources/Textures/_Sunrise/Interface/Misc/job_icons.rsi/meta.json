@@ -62,6 +62,12 @@
             "name": "PrisonEngineer"
         },
         {
+            "name": "PrisonScientist"
+        },
+        {
+            "name": "PrisonInspector"
+        },
+        {
             "name": "Barber"
         },
         {

@@ -211,7 +211,7 @@ public sealed class HypospraySystem : EntitySystem
 
         if (target != user)
         {
-            _popup.PopupEntity(Loc.GetString("hypospray-component-feel-prick-message"), target, target);
+            _popup.PopupClient(Loc.GetString("hypospray-component-feel-prick-message"), target, target); //Sunrise-Edit
             // TODO: This should just be using melee attacks...
             // meleeSys.SendLunge(angle, user);
         }
@@ -279,7 +279,7 @@ public sealed class HypospraySystem : EntitySystem
             var hasInvalidReagents = HasInvalidReagents(targetSolution.Comp.Solution, MedicineReagentGroup, _prototypeManager);
             if (hasInvalidReagents)
             {
-                _popup.PopupEntity(Loc.GetString("hypospray-invalid-reagents-message",
+                _popup.PopupClient(Loc.GetString("hypospray-invalid-reagents-message", //Sunrise-Edit
                         ("target", Identity.Entity(target, EntityManager))),
                     entity.Owner,
                     user);
@@ -367,16 +367,32 @@ public sealed class HypospraySystem : EntitySystem
 
         if (!_solutionContainers.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
         {
-            _popup.PopupEntity(Loc.GetString("hypospray-component-empty-message"), target, user);
+            _popup.PopupClient(Loc.GetString("hypospray-component-empty-message"), target, user);
             returnValue = true;
             return false;
         }
 
         if (!_solutionContainers.TryGetInjectableSolution(target, out targetSoln, out targetSolution))
         {
-            _popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+            _popup.PopupClient(Loc.GetString("hypospray-component-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
             returnValue = false;
             return false;
+        }
+
+        if (entity.Comp.PreventOverdose)
+        {
+            var targetSet = new HashSet<ReagentId>();
+            foreach (var (idHypoSoln, _) in hypoSpraySoln.Value.Comp.Solution.Contents)
+                targetSet.Add(idHypoSoln);
+
+            foreach (var (idTargetSoln, _) in targetSoln.Value.Comp.Solution.Contents)
+                if (targetSet.Contains(idTargetSoln))
+                {
+                    _popup.PopupClient(Loc.GetString("hypospray-cancel-inject"), target, user);
+                    returnValue = false;
+                    return false;
+                }
+
         }
 
         return true;

@@ -152,6 +152,8 @@
     transferAmount: 15
     onlyAffectsMobs: false
     injectOnly: true
+    doAfterTime: 1 #Sunrise-Edit
+    preventOverdose: true #Sunrise-Edit
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1

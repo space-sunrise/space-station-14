@@ -1,0 +1,56 @@
+#для Пленетарной Тюрьмы
+- type: entity
+  id: WallRockUraniumCrab
+  parent: WallRockUranium
+  suffix: Uranium Crab
+  components:
+  - type: OreVein
+    currentOre: OreUraniumCrab
+
+- type: entity
+  id: WallRockCoalCrab
+  parent: WallRockCoal
+  suffix: Coal Crab
+  components:
+  - type: OreVein
+    currentOre: OreCoalCrab
+
+- type: entity
+  id: WallRockSilverCrab
+  parent: WallRockSilver
+  suffix: Silver Crab
+  components:
+  - type: OreVein
+    currentOre: OreSilverCrab
+
+- type: entity
+  id: WallRockQuartzCrab
+  parent: WallRockQuartz
+  suffix: Quartz Crab
+  components:
+  - type: OreVein
+    currentOre: OreQuartzCrab
+
+- type: entity
+  id: WallRockGoldCrab
+  parent: WallRockGold
+  suffix: Gold Crab
+  components:
+  - type: OreVein
+    currentOre: OreGoldCrab
+
+- type: entity
+  id: WallRockTinCrab
+  parent: WallRockTin
+  suffix: Iron Crab
+  components:
+  - type: OreVein
+    currentOre: OreIronCrab
+
+- type: entity
+  id: WallRockBananiumCrab
+  parent: WallRockBananium
+  suffix: Bananium Crab
+  components:
+  - type: OreVein
+    currentOre: OreBananiumCrab

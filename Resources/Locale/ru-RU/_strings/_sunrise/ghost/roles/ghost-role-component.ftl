@@ -37,3 +37,5 @@ ghost-role-information-ussp-waralt-description = "Вы — Офицер вели
 ghost-role-information-ussp-war-name = Солдат СССП
 ghost-role-information-ussp-war-description = "Вы — Солдат великой армии СССП! Выполняйте любые приказы своего Командира без вопросов! ВО СЛАВУ РОДИНЫ!"
 ghost-role-information-ussp-war-rules = Вы [color=red][bold]Командный Антагонист[/bold][/color]. Вы должны [bold]кооперироваться и работать сообща[/bold] со своими Товарищами! Выслушайте брифинг от своего Капитана и действуйте строго по его указаниям.
+ghost-role-information-reason-shark-name = Разумная космическая акула
+ghost-role-information-reason-shark-description = Вы - космическая акула, обладающая разумом! Оставайтесь в сознании, дабы удерживать в себе хищную натуру.

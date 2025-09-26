@@ -25,6 +25,11 @@
     jumpsuit: BunnyUniform
 
 - type: loadout
+  id: ComMaidJumpsuitLawyerBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+
+- type: loadout
   id: ComMaidTacticalJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtTacticalMaid
@@ -51,8 +56,13 @@
   - !type:GroupLoadoutEffect
     proto: MasterMaid
 
-# Neck
+# Backpack
+- type: loadout
+  id: ComMaidBackpackSatchelLeather
+  equipment:
+    back: ClothingBackpackSatchelLeather
 
+# Neck
 - type: loadout
   id: ComMaidBunnyButterfly
   equipment:
@@ -69,8 +79,12 @@
   equipment:
     shoes: BunnyShoes
 
-# Gloves
+- type: loadout
+  id: ComMaidShoesBootsLaceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup
 
+# Gloves
 - type: loadout
   id: ComMaidBunnyManjets
   equipment:
