@@ -3,11 +3,12 @@ using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
+using Content.Server.Power.EntitySystems;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared._Sunrise.TTS; // Sunrise-edit
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -18,6 +19,9 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -55,6 +59,11 @@ namespace Content.Server.Communications
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+
+            // Sunrise-Start
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleToggleRelayMessage>(OnToggleRelayMessage);
+            SubscribeLocalEvent<CommunicationsConsoleComponent, ListenEvent>(OnEntitySpokeNearbyRelay);
+            // Sunrise-End
         }
 
         public override void Update(float frameTime)
@@ -67,6 +76,23 @@ namespace Content.Server.Communications
                 {
                     comp.AnnouncementCooldownRemaining -= frameTime;
                 }
+
+                // Sunrise-Start
+                if (comp.RelayCooldownRemaining > 0f)
+                    comp.RelayCooldownRemaining -= frameTime;
+
+                if (comp.IsRelaying)
+                {
+                    if (!this.IsPowered(uid, EntityManager))
+                        StopRelay(uid, comp, announce: true);
+                    else
+                    {
+                        comp.RelayTimeRemaining -= frameTime;
+                        if (comp.RelayTimeRemaining <= 0f)
+                            StopRelay(uid, comp, announce: true);
+                    }
+                }
+                // Sunrise-End
 
                 comp.UIUpdateAccumulator += frameTime;
 
@@ -159,13 +185,20 @@ namespace Content.Server.Communications
                 }
             }
 
+            var canRelay = comp.RelayCooldownRemaining <= 0f && !comp.IsRelaying && this.IsPowered(uid, EntityManager); // Sunrise-Edit
             _uiSystem.SetUiState(uid, CommunicationsConsoleUiKey.Key, new CommunicationsConsoleInterfaceState(
                 CanAnnounce(comp),
                 CanCallOrRecall(comp),
                 levels,
                 currentLevel,
                 currentDelay,
-                _roundEndSystem.ExpectedCountdownEnd
+                _roundEndSystem.ExpectedCountdownEnd,
+                // Sunrise-Start
+                canRelay,
+                comp.IsRelaying,
+                MathF.Max(0f, comp.RelayCooldownRemaining),
+                MathF.Max(0f, comp.RelayTimeRemaining)
+                // Sunrise-End
             ));
         }
 
@@ -338,6 +371,67 @@ namespace Content.Server.Communications
             _roundEndSystem.CancelRoundEndCountdown(uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
+
+        // Sunrise-Start
+        private void OnToggleRelayMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleToggleRelayMessage message)
+        {
+            if (comp.IsRelaying)
+            {
+                StopRelay(uid, comp, announce: true);
+                return;
+            }
+
+            if (comp.RelayCooldownRemaining > 0f)
+                return;
+
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            comp.IsRelaying = true;
+            comp.RelayTimeRemaining = comp.RelayDuration;
+            UpdateCommsConsoleInterface(uid, comp);
+            EnsureComp<ActiveListenerComponent>(uid).Range = comp.RelayRange;
+
+            var startText = Loc.GetString("comms-console-relay-started");
+            var title = Loc.GetString(comp.Title);
+            _chatSystem.DispatchStationAnnouncement(uid, startText, sender: title, playDefault: true, playTts: true, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice, announcementSound: comp.Sound);
+        }
+
+        private void OnEntitySpokeNearbyRelay(EntityUid uid, CommunicationsConsoleComponent comp, ListenEvent ev)
+        {
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            var voice = comp.AnnounceVoice;
+            if (TryComp<TTSComponent>(ev.Source, out var ttsComponent))
+            {
+                voice = ttsComponent.VoicePrototypeId;
+            }
+            _chatSystem.DispatchStationAnnouncement(uid, ev.Message, sender: Loc.GetString(comp.Title), playDefault: false, playTts: true, colorOverride: comp.Color, announceVoice: voice);
+        }
+
+        private void StopRelay(EntityUid uid, CommunicationsConsoleComponent comp, bool announce)
+        {
+            if (!comp.IsRelaying && comp.RelayCooldownRemaining > 0f)
+            {
+                UpdateCommsConsoleInterface(uid, comp);
+                return;
+            }
+
+            comp.IsRelaying = false;
+            comp.RelayTimeRemaining = 0f;
+            comp.RelayCooldownRemaining = comp.RelayCooldown;
+            UpdateCommsConsoleInterface(uid, comp);
+            RemCompDeferred<ActiveListenerComponent>(uid);
+
+            if (announce)
+            {
+                var stopText = Loc.GetString("comms-console-relay-stopped");
+                var title = Loc.GetString(comp.Title);
+                _chatSystem.DispatchStationAnnouncement(uid, stopText, sender: title, playDefault: true, playTts: true, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice, announcementSound: comp.Sound);
+            }
+        }
+        // Sunrise-End
     }
 
     /// <summary>

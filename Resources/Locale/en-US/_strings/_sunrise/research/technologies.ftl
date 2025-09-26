@@ -1,5 +1,5 @@
 research-discipline-biochemical = Biochemical
-
+research-technology-medical-assembler = Medical Assembling
 research-technology-basic-surgery = Basic surgery
 research-technology-basic-cyberlimbs = Basic cyberlimbs
 research-technology-bluespace-ammo = Bluespace Syringegun Ammo

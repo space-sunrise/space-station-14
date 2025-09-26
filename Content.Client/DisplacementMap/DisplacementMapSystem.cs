@@ -23,29 +23,15 @@ public sealed class DisplacementMapSystem : EntitySystem
         Entity<SpriteComponent> sprite,
         int index,
         object key,
-        out string displacementKey,
-        ShaderInstance? shaderOverride = null) // Sunrise-Edit
+        out string displacementKey)
     {
         displacementKey = $"{key}-displacement";
 
         if (key.ToString() is null)
             return false;
 
-        // Sunrise-Start
-        // sprite.Comp.LayerSetShader(index, data.ShaderOverride);
-        // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню
         if (data.ShaderOverride != null)
-        {
-            if (shaderOverride != null)
-            {
-                shaderOverride.SetParameter("useDisplacement", true);
-                shaderOverride.SetParameter("displacementSize", 127);
-                sprite.Comp.LayerSetShader(index, shaderOverride);
-            }
-            else
-                sprite.Comp.LayerSetShader(index, data.ShaderOverride);
-        }
-        // Sunrise-End
+            sprite.Comp.LayerSetShader(index, data.ShaderOverride);
 
         _sprite.RemoveLayer(sprite.AsNullable(), displacementKey, false);
 

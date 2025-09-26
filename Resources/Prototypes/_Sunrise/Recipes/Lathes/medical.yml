@@ -90,3 +90,11 @@
     Steel: 300
     Plasma: 100
     Glass: 100
+
+- type: latheRecipe
+  id: BlankMediPen
+  result: BlankMediPen
+  completetime: 2
+  materials:    
+    Plastic: 50
+    Steel: 25

@@ -8,8 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -23,6 +23,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+
 
 namespace Content.Server.Database
 {
@@ -206,6 +207,9 @@ namespace Content.Server.Database
 
         private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
+            // Debug logging for gradient load
+            Console.WriteLine($"Sunrise: Loading gradient settings from DB - Hair: {profile.HairGradientEnabled}, FacialHair: {profile.FacialHairGradientEnabled}, AllMarkings: {profile.AllMarkingsGradientEnabled}");
+
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
@@ -284,15 +288,21 @@ namespace Content.Server.Database
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
                     markings,
-                    //sunrise gradient start
-                    (MarkingEffectType)profile.HairColorType,
-                    MarkingEffect.Parse(profile.HairExtendedColor),
-                    (MarkingEffectType)profile.FacialHairColorType,
-                    MarkingEffect.Parse(profile.FacialHairExtendedColor),
-                    //sunrise gradient end
                     profile.Width,
                     profile.Height
-                ),
+                )
+                {
+                    // Sunrise: Load gradient settings from database
+                    HairGradientEnabled = profile.HairGradientEnabled,
+                    HairGradientSecondaryColor = Color.FromHex(profile.HairGradientSecondaryColor ?? "#FFFFFF"),
+                    HairGradientDirection = profile.HairGradientDirection,
+                    FacialHairGradientEnabled = profile.FacialHairGradientEnabled,
+                    FacialHairGradientSecondaryColor = Color.FromHex(profile.FacialHairGradientSecondaryColor ?? "#FFFFFF"),
+                    FacialHairGradientDirection = profile.FacialHairGradientDirection,
+                    AllMarkingsGradientEnabled = profile.AllMarkingsGradientEnabled,
+                    AllMarkingsGradientSecondaryColor = Color.FromHex(profile.AllMarkingsGradientSecondaryColor ?? "#FFFFFF"),
+                    AllMarkingsGradientDirection = profile.AllMarkingsGradientDirection
+                },
                 spawnPriority,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
@@ -327,14 +337,22 @@ namespace Content.Server.Database
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
-            // sunrise gradient start
-            profile.HairColorType = (int)appearance.HairMarkingEffectType;
-            profile.HairExtendedColor = appearance.HairMarkingEffect?.ToString() ?? "";
-            profile.FacialHairColorType = (int)appearance.FacialHairMarkingEffectType;
-            profile.FacialHairExtendedColor = appearance.FacialHairMarkingEffect?.ToString() ?? "";
-            // sunrise gradient end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
+
+            // Sunrise: Save gradient settings to database
+            profile.HairGradientEnabled = appearance.HairGradientEnabled;
+            profile.HairGradientSecondaryColor = appearance.HairGradientSecondaryColor.ToHex();
+            profile.HairGradientDirection = appearance.HairGradientDirection;
+            profile.FacialHairGradientEnabled = appearance.FacialHairGradientEnabled;
+            profile.FacialHairGradientSecondaryColor = appearance.FacialHairGradientSecondaryColor.ToHex();
+            profile.FacialHairGradientDirection = appearance.FacialHairGradientDirection;
+            profile.AllMarkingsGradientEnabled = appearance.AllMarkingsGradientEnabled;
+            profile.AllMarkingsGradientSecondaryColor = appearance.AllMarkingsGradientSecondaryColor.ToHex();
+            profile.AllMarkingsGradientDirection = appearance.AllMarkingsGradientDirection;
+
+            // Debug logging for gradient save
+            Console.WriteLine($"Sunrise: Saving gradient settings - Hair: {appearance.HairGradientEnabled}, FacialHair: {appearance.FacialHairGradientEnabled}, AllMarkings: {appearance.AllMarkingsGradientEnabled}");
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
             profile.Slot = slot;
@@ -1373,8 +1391,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 MakePlayerRecord(ban.CreatedBy),
                 ban.BanTime,
                 MakePlayerRecord(ban.LastEditedBy),
-                ban.LastEditedAt,
-                ban.ExpirationTime,
+                NormalizeDatabaseTime(ban.LastEditedAt),
+                NormalizeDatabaseTime(ban.ExpirationTime),
                 ban.Hidden,
                 MakePlayerRecord(ban.Unban?.UnbanningAdmin == null
                     ? null
@@ -1415,8 +1433,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 MakePlayerRecord(ban.CreatedBy),
                 ban.BanTime,
                 MakePlayerRecord(ban.LastEditedBy),
-                ban.LastEditedAt,
-                ban.ExpirationTime,
+                NormalizeDatabaseTime(ban.LastEditedAt),
+                NormalizeDatabaseTime(ban.ExpirationTime),
                 ban.Hidden,
                 new [] { ban.RoleId.Replace(BanManager.JobPrefix, null) },
                 MakePlayerRecord(unbanningAdmin),
@@ -1815,6 +1833,137 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .ToListAsync();
 
             return messages;
+        }
+
+        # endregion
+
+        # region MentorHelp
+
+        public async Task AddMentorHelpTicketAsync(MentorHelpTicket ticket)
+        {
+            await using var db = await GetDb();
+            db.DbContext.MentorHelpTickets.Add(ticket);
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<MentorHelpTicket?> GetMentorHelpTicketAsync(int ticketId)
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.MentorHelpTickets
+                .FirstOrDefaultAsync(t => t.Id == ticketId);
+        }
+
+        public async Task<List<MentorHelpStatistics>> GetMentorHelpStatisticsAsync()
+        {
+            await using var db = await GetDb();
+
+            // Получаем количество тикетов, взятых каждым ментором
+            var tickets = await db.DbContext.MentorHelpTickets
+                .Where(t => t.AssignedToUserId != null)
+                .GroupBy(t => t.AssignedToUserId!.Value)
+                .Select(g => new { MentorUserId = g.Key, TicketsClaimed = g.Count() })
+                .ToListAsync();
+
+            // Получаем количество сообщений, отправленных каждым ментором
+            var messages = await db.DbContext.MentorHelpMessages
+                .GroupBy(m => m.SenderUserId)
+                .Select(g => new { MentorUserId = g.Key, MessagesCount = g.Count() })
+                .ToListAsync();
+
+            // Объединяем статистику по MentorUserId
+            var stats = new Dictionary<Guid, MentorHelpStatistics>();
+
+            foreach (var t in tickets)
+            {
+                stats[t.MentorUserId] = new MentorHelpStatistics
+                {
+                    MentorUserId = t.MentorUserId,
+                    TicketsClaimed = t.TicketsClaimed,
+                    MessagesCount = 0
+                };
+            }
+
+            foreach (var m in messages)
+            {
+                if (stats.TryGetValue(m.MentorUserId, out var stat))
+                {
+                    stat.MessagesCount = m.MessagesCount;
+                    stats[m.MentorUserId] = stat;
+                }
+                else
+                {
+                    stats[m.MentorUserId] = new MentorHelpStatistics
+                    {
+                        MentorUserId = m.MentorUserId,
+                        TicketsClaimed = 0,
+                        MessagesCount = m.MessagesCount
+                    };
+                }
+            }
+
+            return stats.Values.ToList();
+        }
+
+        public async Task UpdateMentorHelpTicketAsync(MentorHelpTicket ticket)
+        {
+            await using var db = await GetDb();
+            db.DbContext.MentorHelpTickets.Update(ticket);
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<MentorHelpTicket>> GetMentorHelpTicketsByPlayerAsync(Guid playerId)
+        {
+            await using var db = await GetDb();
+            return (await db.DbContext.MentorHelpTickets
+                .Where(t => t.PlayerId == playerId)
+                .ToListAsync())
+                .OrderByDescending(t => t.CreatedAt)
+                .ToList();
+        }
+
+        public async Task<List<MentorHelpTicket>> GetOpenMentorHelpTicketsAsync()
+        {
+            await using var db = await GetDb();
+            return (await db.DbContext.MentorHelpTickets
+                .Where(t => t.Status != MentorHelpTicketStatus.Closed)
+                .ToListAsync())
+                .OrderByDescending(t => t.UpdatedAt)
+                .ToList();
+        }
+
+        public async Task<List<MentorHelpTicket>> GetAssignedMentorHelpTicketsAsync(Guid mentorId)
+        {
+            await using var db = await GetDb();
+            return (await db.DbContext.MentorHelpTickets
+                .Where(t => t.AssignedToUserId == mentorId && t.Status != MentorHelpTicketStatus.Closed)
+                .ToListAsync())
+                .OrderByDescending(t => t.UpdatedAt)
+                .ToList();
+        }
+
+        public async Task<List<MentorHelpTicket>> GetClosedMentorHelpTicketsAsync()
+        {
+            await using var db = await GetDb();
+            return (await db.DbContext.MentorHelpTickets
+                .Where(t => t.Status == MentorHelpTicketStatus.Closed)
+                .ToListAsync())
+                .OrderByDescending(t => t.UpdatedAt)
+                .ToList();
+        }
+
+        public async Task AddMentorHelpMessageAsync(MentorHelpMessage message)
+        {
+            await using var db = await GetDb();
+            db.DbContext.MentorHelpMessages.Add(message);
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<MentorHelpMessage>> GetMentorHelpMessagesByTicketAsync(int ticketId)
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.MentorHelpMessages
+                .Where(m => m.TicketId == ticketId)
+                .ToListAsync();
         }
 
         # endregion

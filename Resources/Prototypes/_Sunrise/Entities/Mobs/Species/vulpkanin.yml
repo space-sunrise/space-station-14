@@ -220,6 +220,10 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
+  - type: FlashModifier
+    modifier: 1.4
   - type: VulpaAccent
   - type: Paws
     emotesTakeDamage:
@@ -240,7 +244,6 @@
   - type: Carriable
   - type: NightVision
     effect: EffectNightVisioSpecies
-
 
 - type: entity
   save: false

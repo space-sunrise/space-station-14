@@ -30,7 +30,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: -1
+            Poison: -1.5 # Sunrise-Edit # Бафф диловена из-за того что яды порой очень тяжело лечатся
             Mangleness: 0.1 #Sunrise-Edit
       - !type:HealthChange
         conditions:
@@ -351,8 +351,8 @@
             Asphyxiation: -3
             Poison: -0.5
           groups:
-            Brute: -0.5
-            Burn: -0.5
+            Brute: -0.7 # Sunrise-Edit # Бафф эпинефрина, ибо он лечил крайне мало
+            Burn: -0.7 # Sunrise-Edit
       #Sunrise-Start
       - !type:HealthChange
         conditions:
@@ -521,7 +521,7 @@
         damage:
           types:
             Cold: -4
-            Mangleness: 0.4 #Sunrise-Edit
+            Mangleness: 0.2 #Sunrise-Edit
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
@@ -888,7 +888,16 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: -0.2
+            Mangleness: -0.3
+      - !type:AdjustReagent # Против всяких крестьян с копьями
+        reagent: Licoxide
+        amount: -1
+      - !type:AdjustReagent
+        reagent: Pax
+        amount: -1
+      - !type:AdjustReagent
+        reagent: Amatoxin
+        amount: -1.5
       #Sunrise-End
       - !type:EvenHealthChange
         damage:
@@ -1051,7 +1060,7 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: -1.25 # 5 per u
+            Caustic: -2 # Sunrise-Edit # 5 per u # Бафф сигината ибо он слабовато лечил, а требовал работы ботаников, которые иногда забивали хрен
             Mangleness: 0.25 # Sunrise-Edit
       - !type:HealthChange
         conditions:
@@ -1135,7 +1144,7 @@
         damage:
           types:
             Piercing: -2.5 # 10 per u
-            Radiation: 0.05 # 0.2 per u, 3 for 15u
+            Radiation: 0 # Sunrise-Edit
             Mangleness: 0.25 #Sunrise-Edit
       - !type:HealthChange
         conditions:
@@ -1183,13 +1192,13 @@
   color: "#91C3F7"
   metabolisms:
     Drink:
-      metabolismRate: 0.01 # Sunrise-Edit
+      metabolismRate: 0.2 # Sunrise-Edit Для нормального деконверта
       effects:
       # Sunrise-Start
       - !type:DeconvertCultist
         conditions:
         - !type:ReagentThreshold
-          min: 30
+          min: 10 # Пусть культистов крови не будут выбивать сразу из раунда, а попробуют перевести в нормальных людей
       # Sunrise-End
     Medicine:
       effects:
@@ -1385,8 +1394,8 @@
               Brute: -4
               Burn: -5
             types:
-              Poison: -2
-              Mangleness: -0.5 #Sunrise-Edit
+              Poison: -4 # Sunrise-Edit
+              Mangleness: -5 #Sunrise-Edit
 
 - type: reagent
   id : Aloxadone
@@ -1553,6 +1562,38 @@
         amount: -3.0
 #Sunrise-Start
 - type: reagent
+  id: Apoptodon
+  name: reagent-name-apoptodon
+  group: Medicine
+  desc: reagent-desc-apoptodon
+  physicalDesc: reagent-physical-desc-apoptodon
+  flavor: medicine
+  color: "#00ff00"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 180.0
+        damage:
+          groups:
+            Brute: -12
+            Burn: -16
+          types:
+            Radiation: 1
+            Cellular: 1
+      - !type:ReduceRotting
+        seconds: 1
+        conditions:
+        - !type:Temperature
+          max: 180.0
+        - !type:MobStateCondition
+          mobstate: Dead
+
+- type: reagent
   id: H-32
   name: reagent-name-h-32
   group: Medicine
@@ -1568,20 +1609,50 @@
       - !type:HealthChange
         conditions:
         - !type:Temperature
-          max: 180.0
+          max: 213.0
         damage:
-          groups:
-            Brute: -12
-            Burn: -16
           types:
-            Poison: -4
-            Radiation: 1
-            Cellular: 1
-      - !type:ReduceRotting
-        seconds: 1
+            Radiation: -4
+
+- type: reagent
+  id: Antidon
+  name: reagent-name-antidon
+  group: Medicine
+  desc: reagent-desc-antidon
+  physicalDesc: reagent-physical-desc-antidon
+  flavor: medicine
+  color: "#8A2BE2"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
         conditions:
         - !type:Temperature
-          max: 180.0
-        - !type:MobStateCondition
-          mobstate: Dead
+          max: 200.0
+        damage:
+          types:
+            Poison: -6
+
+- type: reagent
+  id: Brutedon
+  name: reagent-name-brutedon
+  group: Medicine
+  desc: reagent-desc-brutedon
+  physicalDesc: reagent-physical-desc-brutedon
+  flavor: medicine
+  color: "#FFFF00"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 200.0
+        damage:
+          groups:
+            Brute: -6
 #Sunrise-End

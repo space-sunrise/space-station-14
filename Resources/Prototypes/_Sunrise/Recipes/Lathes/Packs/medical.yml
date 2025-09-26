@@ -22,6 +22,7 @@
   - AutoMenderBurn
   - AutoMenderBrute
   - HandheldCrewMonitor
+  - BlankMediPen
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
@@ -44,10 +45,17 @@
   #
   - ImplantCaseMechwright
   #
+  - ImplantCaseRobust
+  #
+  - ImplantCaseJani
+  #
+  - ImplantCaseAtmos
+  #
+  - ImplantCaseHack
+  #
   - ImplantCaseBulwark
   #
-  - ImplantCaseGorillaR
-  - ImplantCaseGorillaL
+  - ImplantCaseGorilla
   #
   - ImplantCaseMantisBladeMaxGuard
   #

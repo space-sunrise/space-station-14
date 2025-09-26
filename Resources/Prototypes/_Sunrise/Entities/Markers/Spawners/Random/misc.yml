@@ -23,3 +23,473 @@
     - WallRockTin
     - WallRockUranium
     rareChance: 0.35
+
+- type: entity
+  name: Mine Wall Rock Spawner
+  id: MineWallRockSpawner
+  description: Spawns rock wall and decor.
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/rock.rsi
+      state: rock
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы без рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      # Декор
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  name: Mining Wall Rock Spawner [Ore Crab 15%]
+  description: Spawns rock wall, mining which may spawn a random Ore Crab.
+  id: MineWallRockMobCrabSpawner
+  parent: MineWallRockSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
+      state: rock_spawner_crab
+  - type: RandomSpawner
+    prototypes:
+      # Скалы с рудами, но после разрушения спавнят крабов
+      - WallRockUraniumCrab
+      - WallRockCoalCrab
+      - WallRockSilverCrab
+      - WallRockQuartzCrab
+      - WallRockGoldCrab
+      - WallRockTinCrab
+      - WallRockBananiumCrab
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы с рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      # Декор
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  name: Mining Wall Rock Spawner [Carp 10%]
+  description: Spawns rock wall (no plasma, with stones), mining which may spawn a random Carp.
+  id: MineWallRockMobCarpSpawner
+  parent: MineWallRockSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
+      state: rock_spawner_carp
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят карпов
+      - WallRockMobCarpDungeon
+      - WallRockMobCarpMagic
+      - WallRockMobCarpHolo
+      - WallRockMobCarpRainbow
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы с рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      # Декор
+      - FloraRockSolid
+      - FloraRockSolid
+      - FloraRockSolid
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - CrystalSpawner
+      # Редкие
+    rarePrototypes:
+      - WallRockArtifactFragment
+    rareChance: 0.01
+
+- type: entity
+  id: WallRockMobCarpDungeon
+  parent: WallRock
+  suffix: Carp Dungeon
+  components:
+  - type: OreVein
+    currentOre: OreCarpDungeon
+
+- type: entity
+  id: WallRockMobCarpMagic
+  parent: WallRock
+  suffix: Carp Magic
+  components:
+  - type: OreVein
+    currentOre: OreCarpMagic
+
+- type: entity
+  id: WallRockMobCarpHolo
+  parent: WallRock
+  suffix: Carp Holo
+  components:
+  - type: OreVein
+    currentOre: OreCarpHolo
+
+- type: entity
+  id: WallRockMobCarpRainbow
+  parent: WallRock
+  suffix: Carp Rainbow
+  components:
+  - type: OreVein
+    currentOre: OreCarpRainbow
+
+- type: entity
+  id: WallRockMobCarpDragon
+  parent: WallRock
+  suffix: Carp Dragon
+  components:
+  - type: OreVein
+    currentOre: OreCarpDragon
+
+- type: entity
+  name: Mining Wall Rock Spawner [Space Mob 10%]
+  description: Spawns rock wall (no ore, no beams, more crystals and barricades), mining which may spawn a random Space Mob.
+  id: MineWallRockMobSpaceSpawner
+  parent: MineWallRockSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
+      state: rock_spawner_space
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят космических существ
+      - WallRockMobSpaceBear
+      - WallRockMobSpaceKangaroo
+      - WallRockMobSpaceCobra
+      - WallRockMobSpaceSpider
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Декор
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - CrystalSpawner
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Barricade
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.05
+
+- type: entity
+  name: Mining Wall Rock Spawner [Asteroid Mob 10%]
+  description: Spawns rock wall (+spaceshroom), mining which may spawn a random Asteroid Mob.
+  id: MineWallRockMobAsteroidSpawner
+  parent: MineWallRockSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
+      state: rock_spawner_asteroid
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят астероидных существ
+      - WallRockMobMiningAsteroid
+      - WallRockMobMiningAsteroid
+      - WallRockMobMiningAsteroid
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Скалы с рудой
+      - WallRockUranium
+      - WallRockCoal
+      - WallRockSilver
+      - WallRockQuartz
+      - WallRockGold
+      - WallRockTin
+      - WallRockBananium
+      # Декор
+      - RandomWoodenSupport
+      - RandomWoodenWall
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Spaceshroom
+      - Spaceshroom
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+      - WallRockArtifactFragment
+    rareChance: 0.04
+
+- type: entity
+  name: Mining Wall Rock Spawner [Xeno 10%]
+  description: Spawns rock wall, mining which may spawn a random Xenomorph.
+  id: MineWallRockMobXenoSpawner
+  parent: MineWallRockSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite:  _Sunrise/Structures/Walls/rock_mob_spawner.rsi
+      state: rock_spawner_xeno
+  - type: RandomSpawner
+    prototypes:
+      # Скалы без руды, но после разрушения спавнят ксеноморфов
+      - WallRockMobXeno
+      - WallRockMobXeno
+      # Скалы без руды
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      - WallRock
+      # Декор
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - RandomStalagmiteOrCrystal
+      - Barricade
+      - Barricade
+      - Barricade
+      # Редкие
+    rarePrototypes:
+      - WallRockPlasma
+      - WallRockArtifactFragment
+    rareChance: 0.07
+
+# Xeno
+- type: entity
+  id: WallRockMobXeno
+  parent: WallRock
+  suffix: Xeno
+  components:
+  - type: OreVein
+    currentOre: OreMobXeno
+
+# Asteroid mob
+- type: entity
+  id: WallRockMobMiningAsteroid
+  parent: WallRock
+  suffix: Mining Asteroid
+  components:
+  - type: OreVein
+    currentOre: OreMobMiningAsteroid
+
+# Space mob
+- type: entity
+  id: WallRockMobSpaceSpider
+  parent: WallRock
+  suffix: Space Spider
+  components:
+  - type: OreVein
+    currentOre: OreMobSpaceSpider
+
+- type: entity
+  id: WallRockMobSpaceBear
+  parent: WallRock
+  suffix: Space Bear
+  components:
+  - type: OreVein
+    currentOre: OreMobSpaceBear
+
+- type: entity
+  id: WallRockMobSpaceKangaroo
+  parent: WallRock
+  suffix: Space Kangaroo
+  components:
+  - type: OreVein
+    currentOre: OreMobSpaceKangaroo
+
+- type: entity
+  id: WallRockMobSpaceCobra
+  parent: WallRock
+  suffix: Space Cobra
+  components:
+  - type: OreVein
+    currentOre: OreMobSpaceCobra

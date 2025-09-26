@@ -186,13 +186,6 @@
         volume: 12
   - type: StaticPrice
     price: 2000
-  - type: CartridgeAmmo #Sunrise-Start
-    proto: BulletSyndieMiniBomb
-    deleteOnSpawn: true
-  - type: SpentAmmoVisuals
-  - type: Tag
-    tags:
-    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   name: self destruct
@@ -632,6 +625,13 @@
         enabled:
           True: { state: active }
           False: { state: spent }
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletAirGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 # Non-explosive "dummy" grenades to use as a distraction.
 

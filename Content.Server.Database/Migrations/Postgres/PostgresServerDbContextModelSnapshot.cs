@@ -747,6 +747,115 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("job", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.MentorHelpMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("mentor_help_messages_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsStaffOnly")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_staff_only");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("character varying(4096)")
+                        .HasColumnName("message");
+
+                    b.Property<Guid>("SenderUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("sender_user_id");
+
+                    b.Property<DateTimeOffset>("SentAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("sent_at");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("integer")
+                        .HasColumnName("ticket_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_mentor_help_messages");
+
+                    b.HasIndex("SentAt")
+                        .HasDatabaseName("IX_mentor_help_messages_sent_at");
+
+                    b.HasIndex("TicketId")
+                        .HasDatabaseName("IX_mentor_help_messages_ticket_id");
+
+                    b.ToTable("mentor_help_messages", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.MentorHelpTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("mentor_help_tickets_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid?>("AssignedToUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("assigned_to_user_id");
+
+                    b.Property<DateTimeOffset?>("ClosedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("closed_at");
+
+                    b.Property<Guid?>("ClosedByUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("closed_by_user_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_id");
+
+                    b.Property<int?>("RoundId")
+                        .HasColumnType("integer")
+                        .HasColumnName("round_id");
+
+                    b.Property<int?>("ServerId")
+                        .HasColumnType("integer")
+                        .HasColumnName("server_id");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("subject");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("PK_mentor_help_tickets");
+
+                    b.HasIndex("AssignedToUserId")
+                        .HasDatabaseName("IX_mentor_help_tickets_assigned_to_user_id");
+
+                    b.HasIndex("PlayerId")
+                        .HasDatabaseName("IX_mentor_help_tickets_player_id");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("IX_mentor_help_tickets_status");
+
+                    b.ToTable("mentor_help_tickets", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
                     b.Property<int>("Id")
@@ -899,15 +1008,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("facial_hair_color");
 
-                    b.Property<int>("FacialHairColorType")
-                        .HasColumnType("integer")
-                        .HasColumnName("facial_hair_color_type");
-
-                    b.Property<string>("FacialHairExtendedColor")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("facial_hair_extended_color");
-
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -927,15 +1027,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
-
-                    b.Property<int>("HairColorType")
-                        .HasColumnType("integer")
-                        .HasColumnName("hair_color_type");
-
-                    b.Property<string>("HairExtendedColor")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("hair_extended_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()
@@ -989,6 +1080,45 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Property<float>("Width")
                         .HasColumnType("real")
                         .HasColumnName("width");
+
+                    b.Property<bool>("AllMarkingsGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("all_markings_gradient_enabled");
+
+                    b.Property<string>("AllMarkingsGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("all_markings_gradient_secondary_color");
+
+                    b.Property<int>("AllMarkingsGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("all_markings_gradient_direction");
+
+                    b.Property<bool>("FacialHairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("facial_hair_gradient_enabled");
+
+                    b.Property<string>("FacialHairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("facial_hair_gradient_secondary_color");
+
+                    b.Property<int>("FacialHairGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("facial_hair_gradient_direction");
+
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("hair_gradient_secondary_color");
+
+                    b.Property<int>("HairGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("hair_gradient_direction");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");
@@ -1794,6 +1924,18 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasConstraintName("FK_job_profile_profile_id");
 
                     b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.MentorHelpMessage", b =>
+                {
+                    b.HasOne("Content.Server.Database.MentorHelpTicket", "Ticket")
+                        .WithMany()
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_mentor_help_messages_mentor_help_tickets_ticket_id");
+
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>

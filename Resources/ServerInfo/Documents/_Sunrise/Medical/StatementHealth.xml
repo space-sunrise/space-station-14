@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/МЕД-ЗСЗ[/bold]
+[bold]Форма {corpString}/МЕД[/bold]
 [head=2]Заключение о состоянии здоровья[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

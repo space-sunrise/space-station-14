@@ -275,6 +275,22 @@
     {
       "name": "r_bulwark_arm_SHIELD",
       "directions": 4
+    },
+    {
+      "name": "l_ripper_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_ripper_arm_SURG",
+      "directions": 4
+    },
+    {
+      "name": "r_ripper_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_ripper_arm_SURG",
+      "directions": 4
     }
   ]
 }

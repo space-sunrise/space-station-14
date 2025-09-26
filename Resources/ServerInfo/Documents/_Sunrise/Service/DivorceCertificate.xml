@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/СРВ-CРБ[/bold]
+[bold]Форма {corpString}/СРВ[/bold]
 [head=3]Свидетельство о расторжении брака[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

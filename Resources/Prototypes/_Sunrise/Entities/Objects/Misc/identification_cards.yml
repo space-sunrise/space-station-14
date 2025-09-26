@@ -69,15 +69,81 @@
 
 - type: entity
   parent: IDCardStandard
-  id: PrisonEngineeringIDCard
+  id: PrisonEngineerIDCard
   name: prison engineer ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: default
-    - state: idstationengineer
+    - state: orange-space-prison
+    - state: idengineer-space-prison
   - type: PresetIdCard
     job: PrisonEngineer
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonScientistIDCard
+  name: prison scientist ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: idscientist-space-prison
+  - type: PresetIdCard
+    job: PrisonScientist
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonDoctorIDCard
+  name: prison doctor ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: iddoctor-space-prison
+  - type: PresetIdCard
+    job: PrisonDoctor
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonChefIDCard
+  name: prison chef ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: idchef-space-prison
+  - type: PresetIdCard
+    job: PrisonChef
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonWorkerIDCard
+  name: prison worker ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: idworker-space-prison
+  - type: PresetIdCard
+    job: PrisonWorker
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonInspectorIDCard
+  name: prison inspector ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: idinspector-space-prison
+  - type: PresetIdCard
+    job: PrisonInspector
 
 - type: entity
   parent: IDCardStandard

@@ -93,7 +93,7 @@
   - type: DoAfter
   - type: MechVulnerableToEMP # Sunrise-edit
   - type: Repairable
-    doAfterDelay: 3
+    doAfterDelay: 1
     damage:
       types:
         Blunt: -15
@@ -101,7 +101,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 7.5 # Sunrise-Edit
+        Mangleness: 5 # Sunrise-Edit
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -140,7 +140,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.45
-        density: 1000
+        density: 10000 # sunrise-edit
         mask:
         - MobMask
         layer:
@@ -242,8 +242,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.65 # sunrise-edit
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 3.75
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -255,13 +255,6 @@
     - DoorBumpOpener
     - FootstepSound
     - Ripley
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      400: Critical
-    showOverlays: false
-    allowRevives: true
 
 - type: entity
   id: MechRipleyBattery
@@ -332,8 +325,8 @@
         Blunt: 20
     bluntStaminaDamageFactor: 1
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 4
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2.25
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -347,13 +340,6 @@
     - DoorBumpOpener
     - FootstepSound
     - Ripley
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      400: Critical
-    showOverlays: false
-    allowRevives: true
 
 - type: entity
   id: MechRipley2Battery
@@ -474,8 +460,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-  - type: Damageable
-    damageModifierSet: MediumArmorNT
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -492,7 +476,7 @@
       types:
         Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
         Structural: 10
-    bluntStaminaDamageFactor: 1.25
+    bluntStaminaDamageFactor: 1
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
@@ -504,14 +488,6 @@
     enabled: false
   - type: AccessReader
     access: [["Security"]]
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      425: Critical
-    showOverlays: false
-    allowRevives: true
-
 
 - type: entity
   id: MechPaddyBattery
@@ -569,7 +545,7 @@
         Blunt: 26
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.75
+    baseSprintSpeed: 4.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -578,13 +554,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      425: Critical
-    showOverlays: false
-    allowRevives: true
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
@@ -657,7 +626,7 @@
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4
+    baseSprintSpeed: 3
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -666,13 +635,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      450: Critical
-    showOverlays: false
-    allowRevives: true
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/soft_cone.png
@@ -734,13 +696,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      450: Critical
-    showOverlays: false
-    allowRevives: true
 
 - type: entity
   parent: MechHonker
@@ -800,20 +755,13 @@
         Structural: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
-    baseSprintSpeed: 5.2 # sunrise-edit
+    baseSprintSpeed: 3.7
   - type: Reflect
     reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      200: Critical
-    showOverlays: false
-    allowRevives: true
 
 - type: entity
   parent: MechHamtr
@@ -877,7 +825,7 @@
         Structural: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
-    baseSprintSpeed: 5.2 # sunrise-edit
+    baseSprintSpeed: 3.6
   - type: Access
     tags:
     - Maintenance
@@ -891,7 +839,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      200: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
   # Sunrise-Start
@@ -955,20 +903,13 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4.75
+    baseSprintSpeed: 3.5
   - type: Reflect
     reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      475: Critical
-    showOverlays: false
-    allowRevives: true
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -1020,12 +961,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 45
-        Structural: 225
+        Blunt: 40
+        Structural: 220
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -1036,13 +977,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      550: Critical
-    showOverlays: false
-    allowRevives: true
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -1097,7 +1031,7 @@
         Structural: 80
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
-    baseSprintSpeed: 5 # sunrise-edit
+    baseSprintSpeed: 4
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -1154,7 +1088,7 @@
     baseState: ntgygax
     openState: ntgygax-open
     brokenState: ntgygax-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.3
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
@@ -1172,11 +1106,11 @@
     damage:
       types:
         Blunt: 35
-        Structural: 220
+        Structural: 180
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4.75
+    baseSprintSpeed: 3
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -1187,13 +1121,6 @@
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      500: Critical
-    showOverlays: false
-    allowRevives: true
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -1268,7 +1195,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 2.7 # sunrise-edit
+    baseSprintSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -1283,7 +1210,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1355,13 +1282,13 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 3.7 # sunrise-edit
+    baseSprintSpeed: 3.7
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1370,7 +1297,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1423,7 +1350,7 @@
     baseState: darkgygax
     openState: darkgygax-open
     brokenState: darkgygax-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.15
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
@@ -1441,11 +1368,11 @@
     damage:
       types:
         Blunt: 35
-        Structural: 250
+        Structural: 200
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 4.8
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.7
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1456,13 +1383,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      500: Critical
-    showOverlays: false
-    allowRevives: true
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -1513,7 +1433,7 @@
     baseState: darkdurand
     openState: darkdurand-open
     brokenState: darkdurand-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.1
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
@@ -1535,7 +1455,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 3.8 # sunrise-edit
+    baseSprintSpeed: 2.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1546,13 +1466,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MobThresholds
-    currentThresholdState : Alive
-    thresholds:
-      0: Alive
-      600: Critical
-    showOverlays: false
-    allowRevives: true
   - type: AccessReader
     access: [["NuclearOperative"]]
 
@@ -1620,7 +1533,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 2.75 # sunrise-edit
+    baseSprintSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
@@ -1640,7 +1553,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      645: Critical
+      650: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1663,6 +1576,6 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechCombatMissileRack6
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatMG
       - WeaponMechCombatShotgun
+      - WeaponMechCombatMissileRack6

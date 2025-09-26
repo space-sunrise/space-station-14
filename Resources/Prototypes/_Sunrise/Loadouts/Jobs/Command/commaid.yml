@@ -1,0 +1,105 @@
+# Effect groups
+- type: loadoutEffectGroup
+  id: MasterMaid
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobComMaid
+      time: 36000 # 10 hrs
+
+# Jumpsuit
+- type: loadout
+  id: ComMaidElegantJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+
+- type: loadout
+  id: ComMaidSunriseJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformSkirtSunriseMaid
+
+- type: loadout
+  id: ComMaidBunnyUniform
+  equipment:
+    jumpsuit: BunnyUniform
+
+- type: loadout
+  id: ComMaidJumpsuitLawyerBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+
+- type: loadout
+  id: ComMaidTacticalJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtTacticalMaid
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterMaid
+
+# Head
+- type: loadout
+  id: ComMaidHurseHat
+  equipment:
+    head: ClothingHeadNurseHat
+
+- type: loadout
+  id: ComMaidBonnyEars
+  equipment:
+    head: BunnyEars
+
+- type: loadout
+  id: ComMaidTacticalHeadband
+  equipment:
+    head: ClothingHeadHatTacticalMaidHeadband
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterMaid
+
+# Backpack
+- type: loadout
+  id: ComMaidBackpackSatchelLeather
+  equipment:
+    back: ClothingBackpackSatchelLeather
+
+# Neck
+- type: loadout
+  id: ComMaidBunnyButterfly
+  equipment:
+    neck: BunnyButterfly
+
+# Shoes
+- type: loadout
+  id: ComMaidShoes
+  equipment:
+    shoes: ClothingShoesColorWhite
+
+- type: loadout
+  id: ComMaidBunnyShoes
+  equipment:
+    shoes: BunnyShoes
+
+- type: loadout
+  id: ComMaidShoesBootsLaceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+# Gloves
+- type: loadout
+  id: ComMaidBunnyManjets
+  equipment:
+    gloves: BunnyManjets
+
+- type: loadout
+  id: ComMaidGlovesWhite
+  equipment:
+    gloves: ClothingHandsGlovesColorWhite
+
+- type: loadout
+  id: ComMaidGlovesTactical
+  equipment:
+    gloves: ClothingHandsTacticalMaidGloves
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterMaid
+

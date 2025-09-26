@@ -854,3 +854,54 @@
     accent-moldovan-words-31: accent-moldovan-words-replace-31
     accent-moldovan-words-32: accent-moldovan-words-replace-32
     accent-moldovan-words-33: accent-moldovan-words-replace-33
+
+# Sunrise-start
+- type: accent
+  id: formal
+  wordReplacements:
+    accent-formal-words-101: accent-formal-words-replace-101 # авд -> агент внутренних дел
+    accent-formal-words-102: accent-formal-words-replace-102 # адик -> адъютант
+    accent-formal-words-106: accent-formal-words-replace-106 # гп -> глава персонала
+    accent-formal-words-107: accent-formal-words-replace-107 # хоп -> глава персонала
+    accent-formal-words-108: accent-formal-words-replace-108 # гсб -> глава службы безопасности
+    accent-formal-words-109: accent-formal-words-replace-109 # хос -> глава службы безопасности
+    accent-formal-words-110: accent-formal-words-replace-110 # гв -> главный врач
+    accent-formal-words-111: accent-formal-words-replace-111 # смо -> главный врач
+    accent-formal-words-112: accent-formal-words-replace-112 # хопа -> главы персонала
+    accent-formal-words-113: accent-formal-words-replace-113 # хоса -> главы службы безопасности
+    accent-formal-words-114: accent-formal-words-replace-114 # дек -> детектив
+    accent-formal-words-115: accent-formal-words-replace-115 # дет -> детектив
+    accent-formal-words-116: accent-formal-words-replace-116 # дэк -> детектив
+    accent-formal-words-117: accent-formal-words-replace-117 # дека -> детектива
+    accent-formal-words-118: accent-formal-words-replace-118 # дэка -> детектива
+    accent-formal-words-119: accent-formal-words-replace-119 # деку -> детективу
+    accent-formal-words-120: accent-formal-words-replace-120 # дэку -> детективу
+    accent-formal-words-121: accent-formal-words-replace-121 # км -> квартирмейстер
+    accent-formal-words-122: accent-formal-words-replace-122 # кма -> квартирмейстера
+    accent-formal-words-123: accent-formal-words-replace-123 # ксщ -> командир синего щита
+    accent-formal-words-124: accent-formal-words-replace-124 # лобр -> лидер отряда быстрого реагирования
+    accent-formal-words-125: accent-formal-words-replace-125 # нр -> научный руководитель
+    accent-formal-words-126: accent-formal-words-replace-126 # рд -> научный руководитель
+    accent-formal-words-127: accent-formal-words-replace-127 # ншцк -> начальник штаба центрального командования
+    accent-formal-words-128: accent-formal-words-replace-128 # карго -> отдел снабжения
+    accent-formal-words-129: accent-formal-words-replace-129 # обр -> отряд быстрого реагирования
+    accent-formal-words-130: accent-formal-words-replace-130 # рхбзз -> отряд радиационной химической биологической и зомби защиты
+    accent-formal-words-131: accent-formal-words-replace-131 # овн -> офицер внутреннего надзора
+    accent-formal-words-132: accent-formal-words-replace-132 # исн -> офицер исполнительной судебно-надзорной службы
+    accent-formal-words-133: accent-formal-words-replace-133 # осщ -> офицер синего щита
+    accent-formal-words-134: accent-formal-words-replace-134 # осо -> офицер спецопераций
+    accent-formal-words-135: accent-formal-words-replace-135 # оцк -> офицер центрального командования
+    accent-formal-words-136: accent-formal-words-replace-136 # исны -> офицеры исполнительной судебно-надзорной службы
+    accent-formal-words-137: accent-formal-words-replace-137 # пнт -> представитель NanoTrasen
+    accent-formal-words-138: accent-formal-words-replace-138 # пункт -> пунктураз
+    accent-formal-words-139: accent-formal-words-replace-139 # нио -> рнд
+    accent-formal-words-140: accent-formal-words-replace-140 # варденом -> смотрителем
+    accent-formal-words-141: accent-formal-words-replace-141 # вард -> смотритель
+    accent-formal-words-142: accent-formal-words-replace-142 # варден -> смотритель
+    accent-formal-words-143: accent-formal-words-replace-143 # вардену -> смотрителю
+    accent-formal-words-144: accent-formal-words-replace-144 # вардена -> смотрителя
+    accent-formal-words-145: accent-formal-words-replace-145 # сии -> станционный ИИ
+    accent-formal-words-146: accent-formal-words-replace-146 # пцк -> представитель центрального командования
+    accent-formal-words-147: accent-formal-words-replace-147 # нра -> научного руководителя
+    accent-formal-words-148: accent-formal-words-replace-148 # нру -> научному руководителю
+# Sunrise-end

@@ -5,4 +5,5 @@ species-name-tajaran = Таяран
 species-name-predator = Яутжа
 species-name-xeno = Ксеноморф
 species-name-demon = Аркана
+species-name-resomi = Резоми
 species-name-abductor = Абдуктор

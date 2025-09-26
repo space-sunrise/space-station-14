@@ -10,3 +10,6 @@ ent-PouchAmmo = подсумок для магазинов
 ent-PouchAmmoFilledSMG = подсумок для магазинов
     .suffix = Заполненный ПП
     .desc = { ent-PouchAmmo.desc }
+ent-PouchAmmoFilledPistol40 = подсумок для магазинов
+    .suffix = Заполненный пистолет .40
+    .desc = { ent-PouchAmmo.desc }
