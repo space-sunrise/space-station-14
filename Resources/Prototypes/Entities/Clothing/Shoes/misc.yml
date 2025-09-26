@@ -198,6 +198,8 @@
     - state: icon
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jumpboots.rsi
+    equipDelay: 0.75 #  Sunrise-Add
+    unequipDelay: 0.75  #  Sunrise-Add
   - type: JumpAbility
     jumpDistance: 4
     jumpSound: /Audio/Effects/stealthoff.ogg

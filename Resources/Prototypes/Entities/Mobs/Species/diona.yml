@@ -33,7 +33,7 @@
         Brute: -0.5
       #Sunrise-Start
       types: 
-        Mangleness: -0.02
+        Mangleness: -0.03
       #Sunrise-End
   - type: DamageVisuals
     damageOverlayGroups:

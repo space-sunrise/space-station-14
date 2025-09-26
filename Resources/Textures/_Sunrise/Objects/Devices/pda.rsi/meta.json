@@ -67,6 +67,24 @@
         },
         {
             "name": "pda-ussp"
+        },
+        {
+            "name": "pda-space-prison-engineer"
+        },
+        {
+            "name": "pda-space-prison-scientist"
+        },
+        {
+            "name": "pda-space-prison-doctor"
+        },
+        {
+            "name": "pda-space-prison-chef"
+        },
+        {
+            "name": "pda-space-prison-worker"
+        },
+        {
+            "name": "pda-space-prison-inspector"
         }
     ]
 }

@@ -158,6 +158,8 @@
         amount: 2
       - id: EmpGrenade
         amount: 2
+  - type: ExplosionResistance # Sunrise-add
+    damageCoefficient: 0.01
 
 - type: entity
   id: ClothingBeltMilitaryWebbingMedFilled

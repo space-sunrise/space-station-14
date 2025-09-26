@@ -1,5 +1,5 @@
 - type: entity
-  parent: EnergySwordDouble
+  parent: EnergySwordDoubleSunrise
   id: EnergySwordDoubleBiocode
   suffix: BIOCODE
   components:

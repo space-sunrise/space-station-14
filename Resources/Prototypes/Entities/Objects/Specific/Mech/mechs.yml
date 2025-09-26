@@ -476,7 +476,7 @@
       types:
         Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
         Structural: 10
-    bluntStaminaDamageFactor: 1.25
+    bluntStaminaDamageFactor: 1
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4

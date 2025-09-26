@@ -8,9 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Shared._Sunrise.MarkingEffects;
-using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -24,6 +23,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+
 
 namespace Content.Server.Database
 {
@@ -207,6 +207,9 @@ namespace Content.Server.Database
 
         private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
+            // Debug logging for gradient load
+            Console.WriteLine($"Sunrise: Loading gradient settings from DB - Hair: {profile.HairGradientEnabled}, FacialHair: {profile.FacialHairGradientEnabled}, AllMarkings: {profile.AllMarkingsGradientEnabled}");
+
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
@@ -285,15 +288,21 @@ namespace Content.Server.Database
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
                     markings,
-                    //sunrise gradient start
-                    (MarkingEffectType)profile.HairColorType,
-                    MarkingEffect.Parse(profile.HairExtendedColor),
-                    (MarkingEffectType)profile.FacialHairColorType,
-                    MarkingEffect.Parse(profile.FacialHairExtendedColor),
-                    //sunrise gradient end
                     profile.Width,
                     profile.Height
-                ),
+                )
+                {
+                    // Sunrise: Load gradient settings from database
+                    HairGradientEnabled = profile.HairGradientEnabled,
+                    HairGradientSecondaryColor = Color.FromHex(profile.HairGradientSecondaryColor ?? "#FFFFFF"),
+                    HairGradientDirection = profile.HairGradientDirection,
+                    FacialHairGradientEnabled = profile.FacialHairGradientEnabled,
+                    FacialHairGradientSecondaryColor = Color.FromHex(profile.FacialHairGradientSecondaryColor ?? "#FFFFFF"),
+                    FacialHairGradientDirection = profile.FacialHairGradientDirection,
+                    AllMarkingsGradientEnabled = profile.AllMarkingsGradientEnabled,
+                    AllMarkingsGradientSecondaryColor = Color.FromHex(profile.AllMarkingsGradientSecondaryColor ?? "#FFFFFF"),
+                    AllMarkingsGradientDirection = profile.AllMarkingsGradientDirection
+                },
                 spawnPriority,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
@@ -328,14 +337,22 @@ namespace Content.Server.Database
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
-            // sunrise gradient start
-            profile.HairColorType = (int)appearance.HairMarkingEffectType;
-            profile.HairExtendedColor = appearance.HairMarkingEffect?.ToString() ?? "";
-            profile.FacialHairColorType = (int)appearance.FacialHairMarkingEffectType;
-            profile.FacialHairExtendedColor = appearance.FacialHairMarkingEffect?.ToString() ?? "";
-            // sunrise gradient end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
+
+            // Sunrise: Save gradient settings to database
+            profile.HairGradientEnabled = appearance.HairGradientEnabled;
+            profile.HairGradientSecondaryColor = appearance.HairGradientSecondaryColor.ToHex();
+            profile.HairGradientDirection = appearance.HairGradientDirection;
+            profile.FacialHairGradientEnabled = appearance.FacialHairGradientEnabled;
+            profile.FacialHairGradientSecondaryColor = appearance.FacialHairGradientSecondaryColor.ToHex();
+            profile.FacialHairGradientDirection = appearance.FacialHairGradientDirection;
+            profile.AllMarkingsGradientEnabled = appearance.AllMarkingsGradientEnabled;
+            profile.AllMarkingsGradientSecondaryColor = appearance.AllMarkingsGradientSecondaryColor.ToHex();
+            profile.AllMarkingsGradientDirection = appearance.AllMarkingsGradientDirection;
+
+            // Debug logging for gradient save
+            Console.WriteLine($"Sunrise: Saving gradient settings - Hair: {appearance.HairGradientEnabled}, FacialHair: {appearance.FacialHairGradientEnabled}, AllMarkings: {appearance.AllMarkingsGradientEnabled}");
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
             profile.Slot = slot;

@@ -1227,6 +1227,54 @@
       - NamesMilitaryLast
       nameFormat: name-format-ert
 
+## CBURN EVA VARIANT
+
+- type: entity
+  id: RandomHumanoidSpawnerCBURNUnitEVA
+  name: CBURN Agent
+  suffix: ERTRole, EVA
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: cburn
+    - type: RandomHumanoidSpawner
+      settings: CBURNAgentEVA
+
+- type: randomHumanoidSettings
+  id: CBURNAgentEVA
+  parent: EventHumanoidCentcomm
+  speciesBlacklist:
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  - HumanoidXeno
+  - Predator
+  components:
+    - type: Loadout
+      prototypes: [CBURNGearEVA]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: GhostRole
+      name: ghost-role-information-cburn-agent-name
+      description: ghost-role-information-cburn-agent-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+
 ## VETERAN ERT EVA VARIANTS
 
 - type: entity
