@@ -1,0 +1,47 @@
+- type: job
+  id: PrisonScientist
+  name: job-name-prison-scientist
+  description: job-description-prison-scientist
+  playTimeTracker: JobPrisonScientist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 7200 # 2 hrs
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: PrisonScientistGear
+  icon: "JobIconPrisonScientist"
+  overrideConsoleVisibility: false
+  supervisors: job-supervisors-head-of-prison
+  displayWeight: 70
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Research
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonScientistGear
+  equipment:
+    id: PrisonScientistPDA
+    jumpsuit: ClothingUniformJumpsuitScientist
+    head: ClothingHeadHatBeretRND
+    ears: ClothingHeadsetScience
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: WeaponDisabler
+    back: ClothingBackpackScience
+    shoes: ClothingShoesBootsJack
+    pocket1: Flash
+    pocket2: SecurityWhistle
+  storage:
+    back:
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Handcuffs
+      - GrenadeFlashBang
+      - FlashlightSeclite

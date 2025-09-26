@@ -52,3 +52,19 @@
       Igniter:
         amount: 1
         defaultPrototype: Igniter
+
+- type: entity
+  id: MedicalAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medical assembler machine board
+  description: A machine printed circuit board for a medical assembler.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: MedicalAssembler
+      stackRequirements:
+        Manipulator: 3
+        Steel: 5
+        Glass: 2
+        Cable: 4

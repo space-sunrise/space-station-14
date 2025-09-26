@@ -21,7 +21,7 @@
         Piercing: 0.9
         Heat: 0.75
   - type: ExplosionResistance
-    damageCoefficient: 0.15
+    damageCoefficient: 0.3 # Sunrise-edit
   - type: GroupExamine
   - type: Tag
     tags:

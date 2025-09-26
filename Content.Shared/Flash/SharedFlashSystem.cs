@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Flash.Components; // Sunrise-Edit
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
@@ -61,6 +62,7 @@ public abstract class SharedFlashSystem : EntitySystem
         SubscribeLocalEvent<TemporaryBlindnessComponent, FlashAttemptEvent>(OnTemporaryBlindnessFlashAttempt);
         Subs.SubscribeWithRelay<FlashImmunityComponent, FlashAttemptEvent>(OnFlashImmunityFlashAttempt, held: false);
         SubscribeLocalEvent<FlashImmunityComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<FlashModifierComponent, FlashAttemptEvent>(OnModifierFlashAttempt); // Sunrise-Edit
 
         _statusEffectsQuery = GetEntityQuery<StatusEffectsComponent>();
         _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
@@ -160,6 +162,8 @@ public abstract class SharedFlashSystem : EntitySystem
 
         if (attempt.Cancelled)
             return;
+
+        flashDuration *= attempt.Multiplier; // Sunrise-Edit
 
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
         if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
@@ -265,5 +269,9 @@ public abstract class SharedFlashSystem : EntitySystem
     private void OnExamine(Entity<FlashImmunityComponent> ent, ref ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("flash-protection"));
+    }
+    private void OnModifierFlashAttempt(Entity<FlashModifierComponent> ent, ref FlashAttemptEvent args) // Sunrise-Edit
+    {
+        args.Multiplier *= ent.Comp.Modifier;
     }
 }

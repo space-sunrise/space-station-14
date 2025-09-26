@@ -1,6 +1,6 @@
 - type: entity
   id: EnergyPickaxe
-  parent: EnergySword # Has a reflect chance
+  parent: [ BaseCargoContraband, EnergySword] # Has a reflect chance
   name: holopickaxe
   description: A holographic mining tool with blades comprised of hard light. Doesn't pack the same punch as an energy weapon, but more compact than most mining tools when turned off.
   components:
@@ -9,6 +9,8 @@
     activatedShape:
     - 0,0,2,0
     - 1,1,1,2
+  - type: MeleeWeapon
+    attackRate: 1.5
   - type: ItemToggleMeleeWeapon
     activatedDamage:
         types:
@@ -45,7 +47,7 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.1
   - type: Tag
     tags:
     - Pickaxe

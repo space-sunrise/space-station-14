@@ -15,21 +15,39 @@
   supervisors: job-supervisors-head-of-prison
   displayWeight: 70
   access:
+  - Security
+  - Brig
   - Maintenance
   - Engineering
   - External
   - Atmospherics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: PrisonEngineerGear
   equipment:
-    eyes: ClothingEyesGlassesMeson
-    belt: ClothingBeltUtilityEngineering
-    ears: ClothingHeadsetJEngineering
     id: PrisonEngineerPDA
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    head: ClothingHeadHatBeretEngineering
+    ears: ClothingHeadsetJEngineering
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltUtilityEngineering
+    back: ClothingBackpackEngineering
+    shoes: ClothingShoesBootsJack
+    pocket1: SecurityWhistle
+    pocket2: WeaponDisabler
   storage:
     back:
-    - Flash
+      - Stunbaton
+      - RadioHandheldSecurity
+      - Flash
+      - GrenadeFlashBang
+      - Handcuffs
+      - FlashlightSeclite
 
 - type: chameleonOutfit
   id: PrisonEngineerChameleonOutfit

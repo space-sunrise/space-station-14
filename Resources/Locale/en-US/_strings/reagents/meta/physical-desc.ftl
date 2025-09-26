@@ -97,3 +97,7 @@ reagent-physical-desc-slimy = slimy
 reagent-physical-desc-neural = neural
 reagent-physical-desc-unidentifiable = unidentifiable
 reagent-physical-desc-non-newtonian = non-newtonian
+reagent-physical-desc-apoptodon = strongly smelling of radioactive burns
+reagent-physical-desc-h-32 = strongly smelling of radioactive burns
+reagent-physical-desc-antidon = pure
+reagent-physical-desc-brutedon = healing

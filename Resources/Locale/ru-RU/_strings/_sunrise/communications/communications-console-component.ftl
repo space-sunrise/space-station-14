@@ -1,1 +1,12 @@
 comms-console-announcement-title-prison = Космическая тюрьма
+comms-console-menu-relay-button = Включить
+comms-console-menu-relay-button-tooltip = Включить или выключить вещание голоса на динамики.
+comms-console-menu-relay-stop = Выключить
+comms-console-menu-relay-cooldown = Перезарядка: { $time }.
+comms-console-menu-announcement-header = Оповещения
+comms-console-menu-relay-header = Вещание
+comms-console-menu-relay-time-left = Осталось: { $time }
+comms-console-menu-emergency-header = Эвакуация
+comms-console-menu-alert-level-header = Код угрозы
+comms-console-relay-started = Начато вещание через консоль связи.
+comms-console-relay-stopped = Вещание через консоль связи остановлено.

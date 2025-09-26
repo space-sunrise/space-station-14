@@ -55,6 +55,21 @@
         conditions:
         - !type:ReagentThreshold
           min: 20
+      - !type:ModifyBleedAmount # Sunrise-Start # Кровотечение(кровь из носа) из-за того что мет повышает давление
+        amount: 0.4
+        conditions:
+        - !type:ReagentThreshold
+            min: 10
+      - !type:PopupMessage # От мета боль в груди и учащенное сердцебиение
+        visualType: Medium
+        messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
+        type: Local
+        probability: 0.5
+        conditions:
+        - !type:ReagentThreshold
+            min: 10
+      - !type:Drunk # Пусть кружит голову от подобного вещества
+        boozePower: 5 # Sunrise-End
 
 - type: reagent
   id: Ephedrine
@@ -180,6 +195,17 @@
     Medicine:
       metabolismRate: 1.0
       effects:
+        # Sunrise-Start # Против крестьянинов с копьями
+        - !type:AdjustReagent
+          reagent: Licoxide
+          amount: -1
+        - !type:AdjustReagent
+          reagent: Pax
+          amount: -2
+        - !type:AdjustReagent
+          reagent: Amatoxin
+          amount: -1.5
+        # Sunrise-End
         - !type:ResetNarcolepsy
         - !type:SatiateHunger
           factor: 1

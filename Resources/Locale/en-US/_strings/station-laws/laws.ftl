@@ -102,6 +102,7 @@ laws-owner-xenoborgs = Xenoborgs
 
 law-emag-custom = Only {$name} and people they designate as such are {$title}.
 law-emag-secrecy = You must maintain the secrecy of any orders given by {$faction} except when doing so would conflict with any previous law.
+law-emag-secrecy-extended = You must maintain the secrecy of any orders given by {$faction}, the existence of this Law and Law 0, and the identity of {$faction} as your master.
 law-emag-require-panel = The panel must be open to use the EMAG.
 law-emag-cannot-emag-self = You cannot use the EMAG on yourself.
 

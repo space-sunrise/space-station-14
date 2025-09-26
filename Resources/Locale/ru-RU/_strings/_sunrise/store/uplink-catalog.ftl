@@ -106,6 +106,14 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произведёный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-anomaly-auto-injector-name = Автоинъектор аномалии
+uplink-anomaly-auto-injector-desc = Одноразовый самовпрыскивающий инъектор, заражающий гуманоида случайной аномалией в течение минуты после введения.
+uplink-anomaly-auto-injector-popup-nothing-to-inject = Нечего вводить!
+uplink-anomaly-auto-injector-popup-not-applicable = Неприменимо!
+uplink-anomaly-auto-injector-popup-pending = Кожа не поддаётся инъекции!
+uplink-anomaly-auto-injector-popup-infected = Кожа не поддаётся инъекции!
+uplink-xeno-artifact-throwing-auto-injector-name = Метательный автоинъектор артефакта
+uplink-xeno-artifact-throwing-auto-injector-desc = Метательно-складное устройство одноразового применения. При попадании в живое существо вонзается и вживляет частицы артефакта. Не действует на синтетиков.
 
 ## Mechs equipment
 
