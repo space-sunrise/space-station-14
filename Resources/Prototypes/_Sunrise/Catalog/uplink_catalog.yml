@@ -1765,7 +1765,7 @@
   id: uplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagle
+  productEntity: WeaponPistolDeagleBiocode
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
