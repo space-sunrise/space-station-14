@@ -422,14 +422,23 @@ namespace Content.Server.Database
         public string HairColor { get; set; } = null!;
         public string FacialHairName { get; set; } = null!;
         public string FacialHairColor { get; set; } = null!;
-        // sunrise gradient start
-        public int HairColorType { get; set; } = 0;
-        public string HairExtendedColor { get; set; } = null!;
-        public int FacialHairColorType { get; set; } = 0;
-        public string FacialHairExtendedColor { get; set; } = null!;
-        // sunrise gradient end
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+
+        // Sunrise: Hair gradient fields
+        public bool HairGradientEnabled { get; set; } = false;
+        public string HairGradientSecondaryColor { get; set; } = "#FFFFFF";
+        public int HairGradientDirection { get; set; } = 0;
+
+        // Sunrise: Facial hair gradient fields
+        public bool FacialHairGradientEnabled { get; set; } = false;
+        public string FacialHairGradientSecondaryColor { get; set; } = "#FFFFFF";
+        public int FacialHairGradientDirection { get; set; } = 0;
+
+        // Sunrise: All markings gradient fields
+        public bool AllMarkingsGradientEnabled { get; set; } = false;
+        public string AllMarkingsGradientSecondaryColor { get; set; } = "#FFFFFF";
+        public int AllMarkingsGradientDirection { get; set; } = 0;
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();

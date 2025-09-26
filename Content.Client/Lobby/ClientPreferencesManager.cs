@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Robust.Client;
 using Robust.Client.Player;
@@ -67,6 +68,15 @@ namespace Content.Client.Lobby
             var collection = IoCManager.Instance!;
             // Sunrise-Sponsors-Start
             var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
+            // Log initial profile state
+            var initialAppearance = (HumanoidCharacterAppearance) profile.CharacterAppearance;
+            Logger.Debug("Initial profile state:");
+            Logger.Debug($"Profile type: {profile.GetType().Name}");
+            Logger.Debug($"Initial Hair gradient: enabled={initialAppearance.HairGradientEnabled}, color={initialAppearance.HairGradientSecondaryColor}, dir={initialAppearance.HairGradientDirection}");
+            Logger.Debug($"Initial FacialHair gradient: enabled={initialAppearance.FacialHairGradientEnabled}, color={initialAppearance.FacialHairGradientSecondaryColor}, dir={initialAppearance.FacialHairGradientDirection}");
+            Logger.Debug($"Initial AllMarkings gradient: enabled={initialAppearance.AllMarkingsGradientEnabled}, color={initialAppearance.AllMarkingsGradientSecondaryColor}, dir={initialAppearance.AllMarkingsGradientDirection}");
+
             profile.EnsureValid(_playerManager.LocalSession!, collection, sponsorPrototypes);
             // Sunrise-Sponsors-End
             var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) {[slot] = profile};

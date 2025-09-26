@@ -55,15 +55,6 @@
     - UpgradeLecter
 
 - type: entity
-  id: VestSecUpgrade
-  name: upgrade kit (Vest Sec)
-  parent: BaseSecurityUpgrade
-  components:
-  - type: Tag
-    tags:
-    - UpgradeVestSec
-
-- type: entity
   name: G.O.R.I.L.L.A. gauntlet upgrade chip
   parent: [BaseItem, BaseSyndicateContraband]
   id:  GauntletGORILLAUpgradeKit
@@ -77,3 +68,75 @@
   - type: Tag
     tags:
     - GorillaUpgradeKit
+
+- type: entity
+  id: VestSecUpgradeWeb
+  name: upgrade kit (Web Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeWebVest
+
+- type: entity
+  id: VestSecUpgradePlate
+  name: upgrade kit (Plate Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitPlate
+
+- type: entity
+  id: VestSecUpgradeBullet
+  name: upgrade kit (Bulletproof  Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitBullet
+
+- type: entity
+  id: VestSecUpgradeBulletHeavy
+  name: upgrade kit (Bulletproof heavy Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitBulletHeavy
+
+- type: entity
+  id: VestSecUpgradeStab
+  name: upgrade kit (Stab Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitStab
+
+- type: entity
+  id: VestSecUpgradeRiot
+  name: upgrade kit (Riot Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitRiot
+
+- type: entity
+  id: VestSecUpgradeHeat
+  name: upgrade kit (Heat-Absorb Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitHeat
+
+- type: entity
+  id: VestSecUpgradeReflective
+  name: upgrade kit (Reflective Vest)
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeKitReflective

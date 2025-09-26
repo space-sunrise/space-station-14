@@ -127,9 +127,43 @@
                                 <BoxContainer Name="RgbSkinColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True"></BoxContainer>
                             </BoxContainer>
                             <!-- Hair -->
-                            <BoxContainer Margin="10" Orientation="Horizontal">
-                                <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
-                                <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+                            <BoxContainer Margin="10" Orientation="Vertical"> <!-- Sunrise Horizontal<Vertical -->
+                                <BoxContainer Orientation="Horizontal">
+                                    <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
+                                    <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+                                </BoxContainer> <!-- Sunrise start -->
+                                <!-- Hair gradient controls -->
+                                <BoxContainer Margin="10 5 0 0" Orientation="Vertical">
+                                    <Label Text="{Loc 'humanoid-profile-editor-hair-gradient-label'}" />
+                                    <BoxContainer Orientation="Horizontal" SeparationOverride="5" HorizontalExpand="True">
+                                        <CheckBox Name="HairGradientToggle" Text="{Loc 'humanoid-profile-editor-hair-gradient-enable'}" VerticalAlignment="Center" />
+                                        <ColorSelectorSliders Name="HairGradientSecondColorSelector" MinSize="280 0" HorizontalExpand="True" />
+                                        <Label Text="{Loc 'humanoid-profile-editor-hair-gradient-direction'}" VerticalAlignment="Center" />
+                                        <OptionButton Name="HairGradientDirectionSelector" MinSize="160 24" VerticalAlignment="Center" />
+                                    </BoxContainer>
+                                </BoxContainer>
+
+                                <!-- Facial hair gradient controls -->
+                                <BoxContainer Margin="10 5 0 0" Orientation="Vertical">
+                                    <Label Text="{Loc 'humanoid-profile-editor-facialhair-gradient-label'}" />
+                                    <BoxContainer Orientation="Horizontal" SeparationOverride="5" HorizontalExpand="True">
+                                        <CheckBox Name="FacialHairGradientToggle" Text="{Loc 'humanoid-profile-editor-hair-gradient-enable'}" VerticalAlignment="Center" />
+                                        <ColorSelectorSliders Name="FacialHairGradientSecondColorSelector" MinSize="280 0" HorizontalExpand="True" />
+                                        <Label Text="{Loc 'humanoid-profile-editor-hair-gradient-direction'}" VerticalAlignment="Center" />
+                                        <OptionButton Name="FacialHairGradientDirectionSelector" MinSize="160 24" VerticalAlignment="Center" />
+                                    </BoxContainer>
+                                </BoxContainer>
+
+                                <!-- Global markings gradient controls (except skin) -->
+                                <BoxContainer Margin="10 5 0 0" Orientation="Vertical">
+                                    <Label Text="{Loc 'humanoid-profile-editor-allmarkings-gradient-label'}" />
+                                    <BoxContainer Orientation="Horizontal" SeparationOverride="5" HorizontalExpand="True">
+                                        <CheckBox Name="AllMarkingsGradientToggle" Text="{Loc 'humanoid-profile-editor-hair-gradient-enable'}" VerticalAlignment="Center" />
+                                        <ColorSelectorSliders Name="AllMarkingsGradientSecondColorSelector" MinSize="280 0" HorizontalExpand="True" />
+                                        <Label Text="{Loc 'humanoid-profile-editor-hair-gradient-direction'}" VerticalAlignment="Center" />
+                                        <OptionButton Name="AllMarkingsGradientDirectionSelector" MinSize="160 24" VerticalAlignment="Center" />
+                                    </BoxContainer>
+                                </BoxContainer> <!-- Sunrise end -->
                             </BoxContainer>
                             <!-- Eyes -->
                             <BoxContainer Margin="10" Orientation="Vertical">

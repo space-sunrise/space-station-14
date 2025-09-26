@@ -129,27 +129,44 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
     }
 
-    private void OnMeleeSelected(EntityUid uid, MeleeWeaponComponent component, HandSelectedEvent args)
+    private void OnMeleeSelected(Entity<MeleeWeaponComponent> ent, ref HandSelectedEvent args)
     {
-        var attackRate = GetAttackRate(uid, args.User, component);
-        if (attackRate.Equals(0f))
-            return;
+        var uid = ent.Owner;
 
-        if (!component.ResetOnHandSelected)
+        var attackRate = GetAttackRate(uid, args.User, ent);
+        if (attackRate == 0f)
             return;
 
         if (Paused(uid))
             return;
 
-        // If someone swaps to this weapon then reset its cd.
-        var curTime = Timing.CurTime;
-        var minimum = curTime + TimeSpan.FromSeconds(1 / attackRate);
+        if (TryComp<EquipDelayComponent>(uid, out var delayComp))
+        {
+            var delay = delayComp.EquipDelayTime;
+            var curTime = Timing.CurTime;
 
-        if (minimum < component.NextAttack)
-            return;
+            var minimum = curTime + TimeSpan.FromSeconds(delay);
 
-        component.NextAttack = minimum;
-        DirtyField(uid, component, nameof(MeleeWeaponComponent.NextAttack));
+            if (minimum < ent.Comp.NextAttack)
+                return;
+
+            ent.Comp.NextAttack = minimum;
+
+            DirtyField(uid, ent.Comp, nameof(MeleeWeaponComponent.NextAttack));
+        }
+        else
+        {
+            var curTime = Timing.CurTime;
+
+            var minimum = curTime + TimeSpan.FromSeconds(0.3);
+
+            if (minimum < ent.Comp.NextAttack)
+                return;
+
+            ent.Comp.NextAttack = minimum;
+
+            DirtyField(uid, ent.Comp, nameof(MeleeWeaponComponent.NextAttack));
+        }
     }
 
     private void OnGetBonusMeleeDamage(EntityUid uid, BonusMeleeDamageComponent component, ref GetMeleeDamageEvent args)

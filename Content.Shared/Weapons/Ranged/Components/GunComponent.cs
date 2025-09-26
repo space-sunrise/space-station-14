@@ -210,12 +210,6 @@ public sealed partial class GunComponent : Component
     public float FireRateModified;
 
     /// <summary>
-    /// Starts fire cooldown when equipped if true.
-    /// </summary>
-    [DataField]
-    public bool ResetOnHandSelected = true;
-
-    /// <summary>
     /// The base value for how fast the projectile moves.
     /// </summary>
     [DataField]
@@ -232,7 +226,7 @@ public sealed partial class GunComponent : Component
     /// When the gun is next available to be shot.
     /// Can be set multiple times in a single tick due to guns firing faster than a single tick time.
     /// </summary>
-    [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan NextFire = TimeSpan.Zero;

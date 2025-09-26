@@ -326,6 +326,50 @@
     raffle:
       settings: default
 
+#Sunrise-start
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostDerelictSyndicateReaperCyborg
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-reaper-cyborg-name
+    description: ghost-role-information-derelict-syndicate-reaper-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostDerelictSyndicateSaboteurCyborg
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-saboteur-cyborg-name
+    description: ghost-role-information-derelict-syndicate-saboteur-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostDerelictSyndicateMedicalCyborg
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-medical-cyborg-name
+    description: ghost-role-information-derelict-syndicate-medical-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+#Sunrise-end
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner

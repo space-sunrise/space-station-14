@@ -1,0 +1,11 @@
+- type: latheRecipe
+  id: MedicalAssemblerMachineCircuitboard
+  result: MedicalAssemblerMachineCircuitboard
+  categories:
+  - Machines
+  - Medical
+  completetime: 4
+  materials:
+    Steel: 800
+    Glass: 900
+    Gold: 200

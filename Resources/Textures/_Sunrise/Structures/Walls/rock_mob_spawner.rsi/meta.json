@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": [
+        "rock_spawner_xeno -> Resources/Textures/Aliens/Xenos/*.rsi (drone,runner,praetorian,ravager,spitter)",
+        "rock_spawner_crab -> Resources/Textures/Elemental/orecrab.rsi",
+        "rock_spawner_carp -> Resources/Textures/Aliens/Carps/*.rsi (space,magic,holo)",
+        "rock_spawner_space -> Resources/Textures/Animals/*.rsi (spacespider,kangaroo,bear,spacecobra)",
+        "rock_spawner_asteroid -> Resources/Textures/Asteroid/*.rsi (hivelord,basilisk,goliath)"
+    ],
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "rock_spawner_xeno",
+            "delays": [
+                [1, 1, 1, 1, 1]
+            ]
+        },
+        {
+            "name": "rock_spawner_crab",
+            "delays": [
+                [1, 1, 1, 1, 1, 1, 1]
+            ]
+        },
+        {
+            "name": "rock_spawner_carp",
+            "delays": [
+                [1, 1, 1]
+            ]
+        },
+        {
+            "name": "rock_spawner_space",
+            "delays": [
+                [1, 1, 1, 1]
+            ]
+        },
+        {
+            "name": "rock_spawner_asteroid",
+            "delays": [
+                [1, 1, 1]
+            ]
+        }
+    ]
+}

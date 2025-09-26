@@ -118,7 +118,7 @@
   parent: BasePDA
   id: PlanetPrisonerPDA
   name: prisoner's PDA
-  description: In the colour of the robe for a complete set.
+  description: Minimal functions. Maximum oversight.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -129,15 +129,23 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-space-prison-prisoner
+  - type: PdaBorderColor
+    borderColor: "#3b3b3b"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NewsReaderCartridge
+      - NavigatorCartridge
 
 - type: entity
   parent: BasePDA
   id: FugitivePrisonerPDA
   name: prisoner's PDA
-  description: In the colour of the robe for a complete set.
+  description: A dim screen and a stuck button, the appearance reveals a past that left its mark.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -170,19 +178,160 @@
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-guardian
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
 
 - type: entity
   parent: BasePDA
   id: PrisonEngineerPDA
   name: prison engineer's PDA
+  description: Heavy and scorched at the edges, it has absorbed the heat of short circuits and welding seams of the prison block.
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
-    id: PrisonEngineeringIDCard
+    id: PrisonEngineerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-engineer
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
+    borderColor: "#6b3000"
+    accentVColor: "#615f00"
   - type: Icon
-    state: pda-engineer
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-engineer
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PrisonScientistPDA
+  name: prison scientist's PDA
+  description: Faded with time, marked by traces of chemicals and burnt corners born from hurried work behind locked doors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonScientistIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-scientist
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#390f4e"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-scientist
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PrisonDoctorPDA
+  name: prison doctor's PDA
+  description: Sterile in appearance but worn at the edges, it has held more than one story of pain and salvation.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonDoctorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-doctor
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#26465a"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-doctor
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PrisonChefPDA
+  name: prison chef's PDA
+  description: Worn and stained with spots of spices, it reflects the harsh daily grind of the prison kitchen.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonChefIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-chef
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#423842"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-chef
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PrisonWorkerPDA
+  name: prison worker's PDA
+  description: Worn and scratched, it bears the marks of hard and monotonous labor.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonWorkerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-worker
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#4b0100"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-worker
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -200,11 +349,48 @@
         !type:String
         pda-space-prison-pilot
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#c05905"
     accentVColor: "#DFDFDF"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-pilot
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PrisonInspectorPDA
+  name: prison inspector's PDA
+  description: Scarred with small dents and scratches, yet still retaining an official appearance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonInspectorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-inspector
+  - type: PdaBorderColor
+    borderColor: "#753500"
+    accentHColor: "#584f70"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-inspector
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - LogProbeCartridge
 
 - type: entity
   parent: BasePDA
@@ -222,11 +408,18 @@
         !type:String
         pda-space-prison-boss
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
+    borderColor: "#802d29"
+    accentHColor: "#111111"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-boss
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
 
 - type: entity
   parent: BasePDA
@@ -266,7 +459,7 @@
         !type:String
         pda-seniorofficer
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#802d29"
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorofficer
@@ -500,6 +693,12 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: CommaidIDCard
+    penSlot:
+      startingItem: CommaidPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:

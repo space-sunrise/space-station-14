@@ -42,11 +42,12 @@
     # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
     allowedStates:
     - Alive
-    damageCap: 20
+    damageCap: 30 #Sunrise-Edit
     damage:
       types:
         Heat: -0.07
         Poison: -0.2 # needs to be less than the PendingZombieComponent does or they never become zombies by the disease.
+        Mangleness: -0.02 #Sunrise-Edit
       groups:
         Brute: -0.07
   - type: DamageVisuals
@@ -81,9 +82,6 @@
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     # Sunrise-start
-    - map: ["bra"]
-    - map: ["pants"]
-    - map: ["socks"]
     - map: ["jumpsuit"]
     # Sunrise-end
     - map: [ "gloves" ]
@@ -123,6 +121,7 @@
             sprite: Mobs/Species/Vox/displacement.rsi
             state: hair
   - type: Inventory
+    templateId: nonUnderwear # Sunrise-Edit
     speciesId: vox
     displacements:
       jumpsuit:
@@ -201,6 +200,7 @@
   - type: Body
     prototype: Vox
   - type: Inventory
+    templateId: nonUnderwear # Sunrise-Edit
     speciesId: vox
     displacements:
       jumpsuit:

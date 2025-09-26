@@ -1,8 +1,8 @@
 using System.Linq;
+using Content.Server._Sunrise.Silicons.Laws.Components;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -171,12 +171,15 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         //Add the secrecy law after the others
         component.Lawset?.Laws.Add(new SiliconLaw
         {
-            LawString = Loc.GetString("law-emag-secrecy", ("faction", Loc.GetString(component.Lawset.ObeysTo))),
+            LawString = Loc.GetString("law-emag-secrecy-extended", 
+                ("faction", Loc.GetString(component.Lawset.ObeysTo))),
             Order = component.Lawset.Laws.Max(law => law.Order) + 1
         });
 
-        // Sunrise-Start
         _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+        // Sunrise-Start
+        // In the emag handler, mark emagged borgs so they will be skipped when applying the Epsilon lawset
+        EnsureComp<BlockLawChangeComponent>(uid);
         // Sunrise-End
     }
 

@@ -52,6 +52,7 @@
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
+#Sunrise-start
 - type: entityTable
   id: DerelictBorgEventTable #For Derelict Borg spawns
   table: !type:GroupSelector
@@ -68,6 +69,10 @@
       weight: 15
       children:
         - id: DerelictSyndicateAssaultCyborgSpawn
+        - id: DerelictSyndicateReaperCyborgSpawn
+        - id: DerelictSyndicateSaboteurCyborgSpawn
+        - id: DerelictSyndicateMedicalCyborgSpawn
+#Sunrise-End
 
 - type: entity
   id: BaseStationEvent
@@ -820,6 +825,7 @@
       max: 1
       pickPlayer: false
 
+#Sunrise-start
 - type: entity
   parent: BaseGameRule
   id: DerelictSyndicateAssaultCyborgSpawn
@@ -840,3 +846,67 @@
       min: 1
       max: 1
       pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictSyndicateReaperCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 25
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgSyndicateReaperDerelictGhostRoleSunrise
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictSyndicateReaperCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictSyndicateSaboteurCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 25
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgSyndicateSaboteurDerelictGhostRoleSunrise
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictSyndicateSaboteurCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictSyndicateMedicalCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 25
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgSyndicateMedicalDerelictGhostRoleSunrise
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictSyndicateMedicalCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+#Sunrise-End

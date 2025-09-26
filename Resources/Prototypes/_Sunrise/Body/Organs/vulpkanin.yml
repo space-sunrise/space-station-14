@@ -8,3 +8,16 @@
     solutions:
       stomach:
         maxVol: 50.0
+
+- type: entity
+  id: OrganVulpkaninEyes
+  parent: OrganHumanEyes
+  name: eye
+  description: "I see you!"
+  components:
+  - type: FunctionalOrgan
+    comps:
+    - type: ToggleableNightVision
+      effect: EffectNightVisioSpecies
+    - type: FlashModifier
+      modifier: 2

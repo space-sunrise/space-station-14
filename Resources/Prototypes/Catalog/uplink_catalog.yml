@@ -117,7 +117,7 @@
   id: UplinkGlovesNorthStar
   name: uplink-gloves-north-star-name
   description: uplink-gloves-north-star-desc
-  productEntity: ClothingHandsGlovesNorthStar
+  productEntity: ClothingHandsGlovesNorthStarBiocode
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 4
@@ -263,12 +263,12 @@
   name: uplink-grenade-launcher-china-lake-name
   description: uplink-grenade-launcher-china-lake-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
-  productEntity: WeaponLauncherChinaLakeBiocode
+  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 10 # Sunrise-Edit
+    Telecrystal: 14
   cost:
-    Telecrystal: 12 # Sunrise-Edit
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -750,14 +750,6 @@
     Telecrystal: 6
   categories:
   - UplinkChemicals
-  # Sunrise-Start
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - SubdermalImplant
-      - NukeOpsUplink
-  # Sunrise-End
 
 - type: listing
   id: UplinkHypoDart
@@ -1795,7 +1787,7 @@
   id: UplinkClothingNoSlipsShoes
   name: uplink-clothing-no-slips-shoes-name
   description: uplink-clothing-no-slips-shoes-desc
-  productEntity: ClothingShoesChameleonNoSlips
+  productEntity: ClothingShoesChameleonNoSlipsBiocode # Sunrise-edit
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1808,7 +1800,7 @@
   id: UplinkClothingOuterVestWeb
   name: uplink-clothing-outer-vest-web-name
   description: uplink-clothing-outer-vest-web-desc
-  productEntity: ClothingOuterVestWeb
+  productEntity: ClothingOuterVestWebBiocode
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1821,7 +1813,7 @@
   id: UplinkClothingOuterVestWebElite
   name: uplink-clothing-outer-vest-web-elite-name
   description: uplink-clothing-outer-vest-web-elite-desc
-  productEntity: ClothingOuterVestWebElite
+  productEntity: ClothingOuterVestWebEliteBiocode
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -1834,7 +1826,7 @@
   id: UplinkClothingShoesBootsMagSyndie
   name: uplink-clothing-shoes-boots-mag-syndie-name
   description: uplink-clothing-shoes-boots-mag-syndie-desc
-  productEntity: ClothingShoesBootsMagSyndie
+  productEntity: ClothingShoesBootsMagSyndieBiocode
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
