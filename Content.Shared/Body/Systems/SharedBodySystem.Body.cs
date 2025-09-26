@@ -251,25 +251,32 @@ public partial class SharedBodySystem
         BodyComponent? body = null,
         BodyPartComponent? rootPart = null)
     {
-        if (id is null
-            || !Resolve(id.Value, ref body, logMissing: false)
-            || body.RootContainer.ContainedEntity is null
-            || !Resolve(body.RootContainer.ContainedEntity.Value, ref rootPart))
-        {
+        // Sunrise edit start - тут было NRE, чатгпт тут красиво распределил код и добавил проверки
+        // Надеюсь больше не будет
+        if (!id.HasValue)
             yield break;
-        }
 
-        foreach (var child in GetBodyPartChildren(body.RootContainer.ContainedEntity.Value, rootPart))
-        {
+        if (!Resolve(id.Value, ref body, logMissing: false))
+            yield break;
+
+        var contained = body.RootContainer?.ContainedEntity;
+        if (!contained.HasValue)
+            yield break;
+
+        if (!Resolve(contained.Value, ref rootPart))
+            yield break;
+
+        foreach (var child in GetBodyPartChildren(contained.Value, rootPart))
             yield return child;
-        }
+        // Sunrise edit end
     }
+
 
     public IEnumerable<(EntityUid Id, OrganComponent Component)> GetBodyOrgans(
         EntityUid? bodyId,
         BodyComponent? body = null)
     {
-        if (bodyId is null || !Resolve(bodyId.Value, ref body, logMissing: false))
+        if (!bodyId.HasValue || !Resolve(bodyId.Value, ref body, logMissing: false)) // Sunrise edit - фикс Null Reference Exception
             yield break;
 
         foreach (var part in GetBodyChildren(bodyId, body))

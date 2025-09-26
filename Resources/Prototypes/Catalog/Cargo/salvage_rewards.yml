@@ -48,7 +48,7 @@
   product: CrateFulton
   cost: 3000
   category: cargoproduct-category-name-cargo
-  group: SalvageJobReward3
+  group: SalvageJobReward2 #Sunrise-edit 
 
 - type: cargoProduct
   id: CargoVoidJetpack

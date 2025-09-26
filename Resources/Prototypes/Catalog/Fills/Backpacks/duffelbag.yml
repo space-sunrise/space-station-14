@@ -59,6 +59,9 @@
       - id: WeaponSubMachineGunC20rBiocode # Sunrise-edit
       - id: MagazinePistolSubMachineGun
         amount: 2
+      - id: MagazinePistolSubMachineGunFMJ  # Sunrise-edit
+        amount: 2
+      - id: MagazinePistol40SubMachineGunHP # Sunrise-add
 #     - id: SMGSuppressor
 
 - type: entity
@@ -72,6 +75,9 @@
     - id: WeaponRifleEstocBiocode # Sunrise-edit
     - id: MagazineRifle
       amount: 2
+    - id: MagazineRifleFMJ  # Sunrise-edit
+      amount: 2
+    - id: MagazineRifleAP # Sunrise-edit
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -94,25 +100,92 @@
   - type: StorageFill
     contents:
       - id: WeaponLightMachineGunL6Biocode # Sunrise-edit
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineRifleBoxSP
         amount: 2 #Sunrise-add
-      - id: MagazineBoxRifleSP #Sunrise-add
+      - id: MagazineRifleBoxFMJ #Sunrise-add
 
-#- type: entity
-#  parent: ClothingBackpackDuffelSyndicateBundle
-#  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
-#  name: China-Lake bundle
-#  description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
-#  components:
-#  - type: StorageFill
-#    contents:
-#      - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
-#      - id: GrenadeBlast
-#        amount: 4
-#      - id: GrenadeFrag
-#        amount: 4
-#      - id: GrenadeEMP
-#        amount: 4
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
+  name: China-Lake bundle
+  description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
+      - id: GrenadeBlastContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeFragContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeEMPContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeBlastTimer
+        amount: 2
+      - id: GrenadeFragTimer
+        amount: 2
+      - id: GrenadeEMPTimer
+        amount: 2
+
+# Sunrise-start
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
+  name: China-Lake bundle
+  description: "An old m79 grenade launcher bundled with 11 rounds of various destruction capability."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherM79Biocode # Sunrise-edit
+      - id: GrenadeBlastContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeFragContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeEMPContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeBlastTimer
+        amount: 2
+      - id: GrenadeFragTimer
+        amount: 2
+      - id: GrenadeEMPTimer
+        amount: 2
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70
+  name: China-Lake bundle
+  description: "GL70 grenade launcher bundled with 11 rounds of various destruction capability."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
+      - id: GrenadeBlastContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeFragContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeEMPContact # Sunrise-edit
+        amount: 1
+      - id: GrenadeBlastTimer
+        amount: 2
+      - id: GrenadeFragTimer
+        amount: 2
+      - id: GrenadeEMPTimer
+        amount: 2
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledSMG40
+  name: C-40r bundle
+  description: "Old faithful: The classic C-40r Submachine Gun, bundled with three magazines."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunC40rBiocode
+      - id: MagazinePistol40SubMachineGunSP
+        amount: 2
+      - id: MagazinePistol40SubMachineGunFMJ
+        amount: 2
+      - id: MagazinePistol40SubMachineGunHP
+# Sunrise-end
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -148,7 +221,7 @@
         amount: 3
       - id: MagazineShotgunSlug
         amount: 1
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineRifleBoxSP
         amount: 2
 
 - type: entity

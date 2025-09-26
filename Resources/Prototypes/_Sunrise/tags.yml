@@ -108,6 +108,9 @@
 
 # Magazines:
 - type: Tag
+  id: MagazinePistolDPSubMachineGun
+
+- type: Tag
   id: MagazineM28
 
 - type: Tag
@@ -156,7 +159,7 @@
   id: MagazineMachineGunHeavyRifle # .308 calibler
 
 - type: Tag
-  id: MagazineVP70
+  id: MagazineVP78
 
 - type: Tag
   id: MagazineDeagle

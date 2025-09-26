@@ -30,9 +30,12 @@ public abstract class BaseQueryUpdateXATSystem<T> : BaseXATSystem<T> where T : C
         {
             if (node.Attached == null)
                 continue;
-
-            var artifact = _xenoArtifactQuery.Get(GetEntity(node.Attached.Value));
-
+            // Sunrise-Start
+            var attachedEntity = GetEntity(node.Attached.Value);
+            if (!TryComp<XenoArtifactComponent>(attachedEntity, out var artifactComp))
+                continue;
+            var artifact = new Entity<XenoArtifactComponent>(attachedEntity, artifactComp);
+            // Sunrise-End
             if (!CanTrigger(artifact, (uid, node)))
                 continue;
 

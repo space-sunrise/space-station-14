@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/НИО-ЗМОДЕР[/bold]
+[bold]Форма {corpString}/НИО[/bold]
 [head=3]Запрос на установление уровня угрозы[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

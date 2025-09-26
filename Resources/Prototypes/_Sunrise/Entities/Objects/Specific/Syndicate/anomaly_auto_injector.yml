@@ -1,0 +1,63 @@
+- type: entity
+  name: anomaly auto-injector
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: BaseAnomalyAutoInjector
+  description: A single-use self-injecting injector that infects a humanoid with a random anomaly within a minute of injection.
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi
+      layers:
+        - state: anomagen
+          map: ["enum.AnomalyAutoInjectorVisualLayers.Base"]
+    - type: AnomalyAutoInjector
+      anomalyTrapProtos:
+        # все существующие аномалии на данный момент
+        - AnomalyTrapFlora
+        - AnomalyTrapFlesh
+        - AnomalyTrapTech
+        - AnomalyTrapRock
+        - AnomalyTrapBluespace
+        - AnomalyTrapPyroclastic
+        - AnomalyTrapElectricity
+        - AnomalyTrapIce
+        - AnomalyTrapShadow
+        - AnomalyTrapGravity
+        - AnomalyTrapSanta
+
+- type: entity
+  parent: BaseAnomalyAutoInjector
+  id: AnomalyAutoInjector
+  description: Injects one of the basic anomalies into the humanoid.
+  components:
+    - type: AnomalyAutoInjector
+      anomalyTrapProtos:
+      # без имбовых (Pyroclastic,Electricity,Ice,Shadow,Santa) + (Gravity) - грузит сервак и бесполезен для зека
+        - AnomalyTrapFlora
+        - AnomalyTrapFlesh
+        - AnomalyTrapTech
+        - AnomalyTrapRock
+        - AnomalyTrapBluespace
+
+- type: entity
+  parent: BaseAnomalyAutoInjector
+  id: AnomalyAutoInjectorUplink
+  description: Injects a random anomaly from the entire existing spectrum into the humanoid.
+  components:
+    - type: AnomalyAutoInjector
+      anomalyTrapProtos:
+      # все аномалии (кроме Santa)
+        - AnomalyTrapFlora
+        - AnomalyTrapFlesh
+        - AnomalyTrapTech
+        - AnomalyTrapRock
+        - AnomalyTrapBluespace
+        - AnomalyTrapPyroclastic
+        - AnomalyTrapElectricity
+        - AnomalyTrapIce
+        - AnomalyTrapShadow
+        - AnomalyTrapGravity
+
+
+
+

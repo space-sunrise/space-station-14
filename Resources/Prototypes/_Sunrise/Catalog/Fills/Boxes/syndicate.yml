@@ -105,10 +105,11 @@
   id: CaselessAmmoKit
   name: Siar52 ammo kit
   components:
+  - type: Storage
+    grid:
+    - 0,0,1,3
   - type: StorageFill
     contents:
-    - id: MagazinePistolSubMachineGunSIAR52
-    - id: MagazinePistolSubMachineGunSIAR52
     - id: MagazinePistolSubMachineGunSIAR52
     - id: MagazinePistolSubMachineGunSIAR52
     - id: MagazinePistolSubMachineGunSIAR52
@@ -123,14 +124,15 @@
   id: DragunovAmmoKit
   name: Dragunov ammo kit
   components:
+  - type: Storage
+    grid:
+    - 0,0,1,3
   - type: StorageFill
     contents:
     - id: MagazineDragunov
     - id: MagazineDragunov
-    - id: MagazineDragunov
     - id: MagazineDragunovExtended
     - id: MagazineDragunovExtended
-    - id: MagazineBoxRifleMachineFMJ
   - type: Sprite
     layers:
     - state: box_of_doom
@@ -260,12 +262,12 @@
     - 0,0,2,3
   - type: StorageFill
     contents:
-    - id: MagazineLightRifleBoxSP
-    - id: MagazineLightRifleBoxSP
-    - id: MagazineLightRifleBoxSP
-    - id: MagazineBoxRifleBig
-    - id: MagazineBoxRifleBig
-    - id: MagazineBoxRifleBig
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxSP
+    - id: MagazineRifleBoxFMJ
+    - id: MagazineRifleBoxFMJ
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -282,13 +284,12 @@
     - 0,0,1,1
   - type: Storage
     grid:
-    - 0,0,1,3
+    - 0,0,2,1
   - type: StorageFill
     contents:
     - id: MagazineDl6902
     - id: MagazineDl6902
-    - id: MagazineBoxLightRifleBig
-    - id: MagazineBoxLightRifleBig
+    - id: MagazineDl6902
   - type: Sprite
     layers:
     - state: box_of_doom_big

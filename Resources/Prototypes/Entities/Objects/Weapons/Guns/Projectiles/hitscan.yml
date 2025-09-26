@@ -111,6 +111,7 @@
 
 - type: hitscan
   id: RedHeavyLaser
+  igniteOnCollision: true # Sunrise-Edit
   damage:
     types:
       Heat: 28

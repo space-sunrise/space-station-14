@@ -1,7 +1,5 @@
-ent-ClothingBackpackDuffelSyndicateFilledBauer = Набор Bauer-127
-    .desc = Легендарная винтовка Bauer-127 с двумя магазинами в комплекте.
-ent-ClothingBackpackDuffelSyndicateFilledDragunov = комплект Драгунова
-    .desc = Культовая винтовка Драгунова с двумя полными магазинами в комплекте.
+ent-ClothingBackpackDuffelSyndicateFilledBauer = Набор "Снайпер"
+    .desc = Знаковая тяжёлая антиматериальная снайперская винтовка вместе с тремя запасными магазинами, ящиком крупнокалиберных патронов и тепловизионными очками.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Набор MP5
     .desc = Mp5 c 2мя магазинами.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP7Filled = Набор MP7

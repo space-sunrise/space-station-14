@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/e1d495c3faf4642b6ec1c4be8acc7cd5bc51d785/icons/obj/ammo.dmi,  fuzeball, empshot Made by KaiserMaus",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/e1d495c3faf4642b6ec1c4be8acc7cd5bc51d785/icons/obj/ammo.dmi,  all state resprited by KaiserMaus",
     "states": [
         {
             "name": "fuzeball"
@@ -23,6 +23,18 @@
                   0.1
                 ]
               ]
-            }
+        },
+        {
+            "name": "blast"
+        },
+        {
+            "name": "emp"
+        },
+        {
+            "name": "frag"
+        },
+        {
+            "name": "spent"
+        }
     ]
 }

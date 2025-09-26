@@ -37,7 +37,6 @@
   job: MedicalDoctor
   equipment:
     head: ClothingHeadNurseHat
-    eyes: ClothingEyesHudMedical
     mask: ClothingMaskSterile
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLab

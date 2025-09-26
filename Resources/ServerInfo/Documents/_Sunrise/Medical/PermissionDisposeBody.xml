@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/МЕД-РУТ[/bold]
+[bold]Форма {corpString}/МЕД[/bold]
 [head=2]Разрешение на утилизацию тела[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]
