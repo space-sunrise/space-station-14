@@ -11,6 +11,7 @@
     Instigator: 0.7
     Infiltrator: 0.25
     Nukeops: 0.05
+    Abductors: 0.5
     # Sunrise-end
 
 - type: ninjaHackingThreat
@@ -53,4 +54,9 @@
   id: PirateSmall
   announcement: terror-pirate-small
   rule: PirateSmall
+
+- type: ninjaHackingThreat
+  id: Abductors
+  announcement: terror-abductor
+  rule: AbductorsSpawn
 # Sunrise-end
