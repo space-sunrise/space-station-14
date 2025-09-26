@@ -10,15 +10,10 @@
   - type: Item
     sprite: Objects/Devices/syndicate_teleporter.rsi
   - type: SyndicateTeleporter
-    randomDistanceValue: 4
-    teleportationValue: 4
-    damageOnBlocked:
-      types:
-        Cellular: 25
   - type: UseDelay
     delay: 0.5
   - type: LimitedCharges
-    maxCharges: 4
+    maxCharges: 3
   - type: AutoRecharge
     rechargeDuration: 30
   - type: StaticPrice

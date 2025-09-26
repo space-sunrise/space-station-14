@@ -93,7 +93,6 @@
   - MagazinePistolSubMachineGunUranium
   - MagazineLightRifleUranium
   - SpeedLoaderMagnumUranium
-  - MagazineMagnumUranium
   - MagazineBoxPistolUranium
   - MagazineBoxMagnumUranium
   - MagazineBoxLightRifleUranium
@@ -118,10 +117,8 @@
   - TelescopicShield
   - HoloprojectorSecurity
   - WeaponDisablerSMG
+  - ClothingHeadHelmetPubg  # Sunrise-Add
   - FlareGunSecurityUpgrade # Sunrise-Add
-  - VestSecUpgradePlate # Sunrise-Add
-  - VestSecUpgradeStab # Sunrise-Add
-  - VestSecUpgradeHeat # Sunrise-Add
 
 - type: technology
   id: ExplosiveTechnology

@@ -22,7 +22,6 @@
   - AutoMenderBurn
   - AutoMenderBrute
   - HandheldCrewMonitor
-  - BlankMediPen
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise

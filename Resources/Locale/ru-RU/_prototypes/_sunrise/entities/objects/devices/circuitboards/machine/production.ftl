@@ -6,5 +6,3 @@ ent-ReflectorMachineCircuitboard = плата отражателя
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-ExosuitFabricatorHyperConvectionMachineCircuitboard = гиперконвекционный фабрикатор экзокостюмов (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
-ent-MedicalAssemblerMachineCircuitboard = Мед-О-Мат (машинная плата)
-    .desc = { ent-BaseMachineCircuitboard.desc }

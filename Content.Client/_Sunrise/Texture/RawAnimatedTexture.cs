@@ -6,7 +6,7 @@ using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Sunrise.RawTexture;
+namespace Content.Client._Sunrise.Texture;
 
 public sealed class RawAnimatedTexture : Control
 {

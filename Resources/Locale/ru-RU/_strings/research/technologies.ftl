@@ -47,7 +47,6 @@ research-technology-kinetic-modifications = Протокинетические �
 research-technology-advance-laser = Военное энергетическое вооружение
 research-technology-energy_barriers = Энергетические барьеры
 research-technology-combat-equipment = Боевое снаряжение
-research-technology-advanced-combat-equipment = Продвинутое боевое снаряжение
 research-technology-combat-powercells = Боевые Супербатареи
 research-technology-thermal-weaponry = Тепловое оружие
 research-technology-basic-shuttle-armament = Базовое корабельное вооружение

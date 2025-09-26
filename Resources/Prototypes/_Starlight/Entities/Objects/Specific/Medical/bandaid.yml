@@ -96,9 +96,7 @@
         maxVol: 20
         reagents:
         - ReagentId: Omnizine
-          Quantity: 12 #Sunrise-Edit
-        - ReagentId: TranexamicAcid #Sunrise-Edit
-          Quantity: 3 #Sunrise-Edit
+          Quantity: 20
 
 - type: entity
   id: PatchViagra

@@ -1,4 +1,3 @@
-using Content.Shared._Sunrise.Abilities.Resomi;
 using Content.Shared._Sunrise.Jump;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
@@ -81,11 +80,6 @@ public sealed class SunriseStandingStateSystem : EntitySystem
     public void Fall(EntityUid uid)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
-            return;
-
-        var ev = new FallAttemptEvent();
-        RaiseLocalEvent(uid, ref ev);
-        if (ev.Cancelled)
             return;
 
         if (!TryComp<KnockedDownComponent>(uid, out var knockedDown))

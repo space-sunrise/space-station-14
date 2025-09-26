@@ -180,7 +180,3 @@ ent-PlushieKaliumNukieCommander = Kalium Commander
     .desc = { ent-BasePlushie.desc }
 ent-PlushieKaliumNukeMed = Kalium Agent
     .desc = { ent-BasePlushie.desc }
-PlushieVelma = Eustachius Gorky
-    .desc = { ent-BasePlushie.desc }
-PlushieSeyaa = Seya-Tanaka
-    .desc = { ent-BasePlushie.desc }

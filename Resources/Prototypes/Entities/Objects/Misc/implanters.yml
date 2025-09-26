@@ -290,7 +290,6 @@
   components:
   - type: Implanter
     implant: DeathAcidifierImplant
-    onlySelfImplant: true # Sunrise-Edit
 
 - type: entity
   id: FakeMindShieldImplanter

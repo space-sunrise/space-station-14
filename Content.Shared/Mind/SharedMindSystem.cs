@@ -155,18 +155,6 @@ public abstract partial class SharedMindSystem : EntitySystem
         return mind.Value;
     }
 
-    /// <summary>
-    /// Sets whether mind examination info should be shown for an entity.
-    /// </summary>
-    public void SetExamineInfo(EntityUid uid, bool showInfo)
-    {
-        if (TryComp<MindContainerComponent>(uid, out var mindContainer))
-        {
-            mindContainer.ShowExamineInfo = showInfo;
-            Dirty(uid, mindContainer);
-        }
-    }
-
     private void OnVisitingTerminating(EntityUid uid, VisitingMindComponent component, ref EntityTerminatingEvent args)
     {
         if (component.MindId != null)

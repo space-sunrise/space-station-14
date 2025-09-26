@@ -152,8 +152,6 @@
     transferAmount: 15
     onlyAffectsMobs: false
     injectOnly: true
-    doAfterTime: 1 #Sunrise-Edit
-    preventOverdose: true #Sunrise-Edit
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
@@ -301,18 +299,18 @@
     emptySpriteName: dermpen_empty
   - type: Hypospray
     solutionName: pen
-    transferAmount: 15 #Sunrise-Edit
+    transferAmount: 20
     onlyAffectsMobs: false
     injectOnly: true
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 15 #Sunrise-Edit
+        maxVol: 20
         reagents:
         - ReagentId: Dermaline
           Quantity: 10
         - ReagentId: Leporazine
-          Quantity: 5 #Sunrise-Edit
+          Quantity: 10
 
 - type: entity
   name: rad auto-injector
@@ -427,16 +425,16 @@
     emptySpriteName: pyrapen_empty
   - type: Hypospray
     solutionName: pen
-    transferAmount: 15 #Sunrise-Edit
+    transferAmount: 20
     onlyAffectsMobs: false
     injectOnly: true
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 15 #Sunrise-Edit
+        maxVol: 20
         reagents:
         - ReagentId: Pyrazine
-          Quantity: 5 #Sunrise-Edit
+          Quantity: 10
         - ReagentId: Dermaline
           Quantity: 10
 
@@ -469,18 +467,18 @@
     emptySpriteName: dexpen_empty
   - type: Hypospray
     solutionName: pen
-    transferAmount: 30 #Sunrise-Edit
+    transferAmount: 40
     onlyAffectsMobs: false
     injectOnly: true
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 30 #Sunrise-Edit
+        maxVol: 40
         reagents:
         - ReagentId: Saline
-          Quantity: 15 #Sunrise-Edit
+          Quantity: 20
         - ReagentId: DexalinPlus
-          Quantity: 15 #Sunrise-Edit
+          Quantity: 20
 
 - type: entity
   name: space medipen
@@ -663,11 +661,10 @@
     solutions:
       hypospray:
         maxVol: 10
+  - type: RefillableSolution
+    solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
-    filterReagentGroups: # Sunrise-Edit
-     - Toxins
-     - Narcotics
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice # A new shitcurity meta
@@ -716,6 +713,6 @@
           Quantity: 60
   - type: Hypospray
     solutionName: pen
-    transferAmount: 60 #Sunrise-Edit
+    transferAmount: 1
     onlyAffectsMobs: false
     injectOnly: true

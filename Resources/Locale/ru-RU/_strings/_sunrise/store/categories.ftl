@@ -22,7 +22,6 @@ store-category-security = Служба Безопасности
 shop-disease-category-infect = Передача
 shop-disease-category-symptoms = Симптомы
 shop-disease-category-evolution = Улучшение
-shop-disease-category-infection = Заражение
 # Uplink
 store-category-objectives = Цели
 store-category-mechs = Мехи

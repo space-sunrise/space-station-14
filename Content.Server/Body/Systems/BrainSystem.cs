@@ -16,7 +16,6 @@ public sealed class BrainSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BrainComponent, ComponentInit>(OnBrainInit);
         SubscribeLocalEvent<BrainComponent, OrganAddedToBodyEvent>((uid, _, args) => HandleMind(args.Body, uid));
         SubscribeLocalEvent<BrainComponent, OrganRemovedFromBodyEvent>((uid, _, args) => HandleMind(uid, args.OldBody));
         SubscribeLocalEvent<BrainComponent, PointAttemptEvent>(OnPointAttempt);
@@ -27,12 +26,8 @@ public sealed class BrainSystem : EntitySystem
         if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
             return;
 
-        var newMindContainer = EnsureComp<MindContainerComponent>(newEntity);
-        var oldMindContainer = EnsureComp<MindContainerComponent>(oldEntity);
-        
-        // Enable mind examination for brains
-        _mindSystem.SetExamineInfo(newEntity, true);
-        _mindSystem.SetExamineInfo(oldEntity, true);
+        EnsureComp<MindContainerComponent>(newEntity);
+        EnsureComp<MindContainerComponent>(oldEntity);
 
         var ghostOnMove = EnsureComp<GhostOnMoveComponent>(newEntity);
         ghostOnMove.MustBeDead = HasComp<MobStateComponent>(newEntity); // Don't ghost living players out of their bodies.
@@ -41,14 +36,6 @@ public sealed class BrainSystem : EntitySystem
             return;
 
         _mindSystem.TransferTo(mindId, newEntity, mind: mind);
-    }
-
-    private void OnBrainInit(Entity<BrainComponent> ent, ref ComponentInit args)
-    {
-        // Ensure brain has mind container with examination enabled
-        var mindContainer = EnsureComp<MindContainerComponent>(ent);
-        // Use the mind system to set the examine info
-        _mindSystem.SetExamineInfo(ent, true);
     }
 
     private void OnPointAttempt(Entity<BrainComponent> ent, ref PointAttemptEvent args)

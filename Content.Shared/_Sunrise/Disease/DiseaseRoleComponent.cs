@@ -4,8 +4,6 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Store;
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Serialization;
-using System;
 namespace Content.Shared._Sunrise.Disease;
 
 [RegisterComponent]
@@ -20,7 +18,7 @@ public sealed partial class DiseaseRoleComponent : Component
 
     [DataField] public EntityUid? Action;
 
-    [DataField] public Dictionary<string, SymptomData> Symptoms = new();
+    [DataField] public Dictionary<string, (int, int)> Symptoms = new();
 
     [DataField] public int FreeInfects = 3;
     [DataField] public int InfectCost = 10;
@@ -30,7 +28,7 @@ public sealed partial class DiseaseRoleComponent : Component
 
 
     [DataField] public float BaseInfectChance = 0.6f;
-    [DataField] public float CoughSneezeInfectChance = 0.2f; // Combined cough/sneeze chance
+    [DataField] public float CoughInfectChance = 0.2f;
 
     [DataField] public int Lethal = 0;
     [DataField] public int Shield = 1;
@@ -39,20 +37,4 @@ public sealed partial class DiseaseRoleComponent : Component
 
     [DataField("newBloodReagent", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
     public string NewBloodReagent = "ZombieBlood";
-}
-
-[Serializable, NetSerializable]
-public struct SymptomData
-{
-    [DataField("minLevel")]
-    public int MinLevel;
-    
-    [DataField("maxLevel")]
-    public int MaxLevel;
-
-    public SymptomData(int minLevel, int maxLevel)
-    {
-        MinLevel = minLevel;
-        MaxLevel = maxLevel;
-    }
 }

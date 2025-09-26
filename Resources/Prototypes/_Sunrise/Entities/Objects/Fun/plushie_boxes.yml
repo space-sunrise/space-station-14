@@ -192,7 +192,3 @@
         orGroup: Plushie
       - id: PlushieKalium
         orGroup: Plushie
-      - id: PlushieVelma
-        orGroup: Plushie
-      - id: PlushieSeyaa
-        orGroup: Plushie

@@ -9,7 +9,6 @@ using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Pinpointer;
-using Content.Shared.Verbs; //Sunrise-Edit
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using System.Diagnostics.CodeAnalysis;
@@ -22,7 +21,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility; //Sunrise-Edit
 
 namespace Content.Server.Atmos.Monitor.Systems;
 
@@ -53,7 +51,6 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         SubscribeLocalEvent<AtmosAlertsComputerComponent, ComponentInit>(OnConsoleInit);
         SubscribeLocalEvent<AtmosAlertsComputerComponent, EntParentChangedMessage>(OnConsoleParentChanged);
         SubscribeLocalEvent<AtmosAlertsComputerComponent, AtmosAlertsComputerFocusChangeMessage>(OnFocusChangedMessage);
-        SubscribeLocalEvent<AtmosAlertsComputerComponent, GetVerbsEvent<InteractionVerb>>(AddToggleVerb); //Sunrise-Edit
 
         // Grid events
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
@@ -61,7 +58,6 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         // Alarm events
         SubscribeLocalEvent<AtmosAlertsDeviceComponent, EntityTerminatingEvent>(OnDeviceTerminatingEvent);
         SubscribeLocalEvent<AtmosAlertsDeviceComponent, AnchorStateChangedEvent>(OnDeviceAnchorChanged);
-
     }
 
     #region Event handling
@@ -231,7 +227,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     private void Beep(EntityUid ent, AtmosAlertsComputerComponent entConsole, AtmosAlarmType highestAlert)
     {
         if (entConsole.NextBeep >= _gameTiming.CurTime || highestAlert != AtmosAlarmType.Danger ||
-            entConsole.BeepSound == null || !entConsole.DoAtmosAlert) //Sunrise-Edit
+            entConsole.BeepSound == null)
             return;
 
         _audio.PlayPvs(entConsole.BeepSound, ent);
@@ -452,36 +448,4 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
 
         Dirty(uid, component);
     }
-    //Sunrise-Start
-    private void AddToggleVerb(EntityUid uid, AtmosAlertsComputerComponent component, GetVerbsEvent<InteractionVerb> args)
-    {
-        if (!args.CanInteract || !args.CanAccess)
-            return;
-
-        InteractionVerb verb = new();
-        if (component.DoAtmosAlert)
-        {
-            verb.Text = Loc.GetString("item-toggle-deactivate-alert");
-        }
-        else
-        {
-            verb.Text = Loc.GetString("item-toggle-activate-alert");
-        }
-        verb.Act = () => ToggleAlert(uid, component);
-        args.Verbs.Add(verb);
-    }
-
-    public void ToggleAlert(EntityUid uid, AtmosAlertsComputerComponent component)
-    {
-        if (component.DoAtmosAlert)
-        {
-            component.DoAtmosAlert = false;
-        }
-        else
-        {
-            component.DoAtmosAlert = true;
-        }
-        Dirty(uid, component);
-    }
-    //Sunrise-End
 }

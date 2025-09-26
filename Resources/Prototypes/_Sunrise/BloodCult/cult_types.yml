@@ -8,7 +8,6 @@
   startingItems:
   - NarsieRitualDagger
   - CultRunicMetal10
-  - BloodCultPinpointer
 
 - type: bloodCult
   id: NarbeeCult
@@ -20,7 +19,6 @@
   startingItems:
   - NarbeeRitualDagger
   - CultRunicMetal10
-  - BloodCultPinpointer
 
 - type: bloodCult
   id: ReaperCult
@@ -32,4 +30,3 @@
   startingItems:
   - ReaperRitualDagger
   - CultRunicMetal10
-  - BloodCultPinpointer

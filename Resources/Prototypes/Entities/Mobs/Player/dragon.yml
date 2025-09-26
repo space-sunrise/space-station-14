@@ -55,6 +55,10 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: alive-unshaded
       shader: unshaded
+  # Sunrise-Start
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  # Sunrise-End
   - type: Appearance
   - type: DamageStateVisuals
     states:
@@ -79,15 +83,21 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
+  - type: MobState
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
   - type: MobThresholds
     thresholds:
       0: Alive
-      650: Critical # Sunrise-Edit
-      700: Dead #Sunrise-Edit
+      450: Critical
+      500: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      400: 0.7 # Sunrise-Edit
-      550: 0.5 # Sunrise-Edit
+      250: 0.7
+      400: 0.5
   # disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
@@ -127,7 +137,6 @@
       types:
         Piercing: 15
         Slash: 15
-        Structural: 40
   - type: Devourer
     foodPreferenceWhitelist:
       components:
@@ -162,17 +171,16 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
   # Sunrise-Start
-  - type: ExplosionResistance
-    damageCoefficient: 0.3
-  - type: StaminaResistance
-    damageCoefficient: 0.3
   - type: CollectiveMind
     minds:
     - Carp
+  - type: ToggleableNightVision
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 45
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Dragon
-  - type: ToggleableNightVision
   - type: TTS
     voice: HearthstoneLordOfThunder
   - type: InnateItem

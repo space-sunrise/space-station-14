@@ -253,7 +253,7 @@
     - SheetGlass
     - SheetSteel
     - PowerCellHigh
-    - ClothingHandsPowerGlovesUplinkNTERTRed
+    - ClothingHandsPowerGlovesUplinkNTERTGamma
 
 # Medical
 
@@ -324,7 +324,7 @@
     - ChemistryBottleOmnizine
     - ChemistryBottleEpinephrine
     - ChemistryBottleEphedrine
-    - ClothingHandsPowerGlovesUplinkNTERTRed
+    - ClothingHandsPowerGlovesUplinkNTERTGamma
 
 # Janitor
 
@@ -379,4 +379,4 @@
     - LightReplacer
     - BoxCleanerGrenades
     - CrowbarRed
-    - ClothingHandsPowerGlovesUplinkNTERTRed
+    - ClothingHandsPowerGlovesUplinkNTERTGamma

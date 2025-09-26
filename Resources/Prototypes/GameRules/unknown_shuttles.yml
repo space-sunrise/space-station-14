@@ -275,8 +275,9 @@
 
 # Sunrise-Start
 # Геймрулы что могут быть заспавнены только админом
+
 - type: entity
-  id: ERTShuttleSmallAmber
+  id: ERTShuttleAmberSmall
   parent: BaseUnknownShuttleRule
   components:
   - type: StationEvent
@@ -288,7 +289,7 @@
     gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Small-Amber.yml"
 
 - type: entity
-  id: ERTShuttleMediumRed
+  id: ERTShuttleRedMedium
   parent: BaseUnknownShuttleRule
   components:
   - type: StationEvent
@@ -298,6 +299,18 @@
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
     gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Medium-Red.yml"
+
+- type: entity
+  id: ERTShuttleGammaMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ert_medium_gamma.yml"
 
 - type: entity
   id: ERTShuttleCBURNSmall
@@ -310,43 +323,6 @@
     endAudio: /Audio/_Sunrise/Announcements/sunrise_outbreak5.ogg
   - type: LoadMapRule
     gridPath: "/Maps/_Sunrise/Shuttles/DSO/CBURN/ERT-Small-CBURN.yml"
-
-- type: entity
-  id: ERTShuttleAssaultAmber
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: null
-    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-    duration: -0
-    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-  - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Amber.yml"
-
-- type: entity
-  id: ERTShuttleAssaultRed
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: null
-    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-    duration: -0
-    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-  - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Red.yml"
-
-- type: entity
-  id: ERTShuttleAssaultGamma
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: null
-    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-    duration: -0
-    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
-  - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Gamma.yml"
-
 
 - type: entity
   id: PirateMedium

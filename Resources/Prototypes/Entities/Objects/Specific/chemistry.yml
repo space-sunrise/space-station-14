@@ -391,7 +391,6 @@
   - type: Injector
     transferAmount: 15
     toggleState: Draw
-    minTransferAmount: 1
   - type: Tag
     tags:
     - Syringe

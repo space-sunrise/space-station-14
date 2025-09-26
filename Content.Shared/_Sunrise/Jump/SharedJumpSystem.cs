@@ -11,7 +11,6 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
-using Content.Shared.Throwing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
@@ -100,9 +99,6 @@ public abstract partial class SharedJumpSystem : EntitySystem
             return false;
 
         if (!_mobState.IsAlive(uid))
-            return false;
-
-        if (HasComp<ThrownItemComponent>(uid))
             return false;
 
         if (_climb.IsClimbing(uid))

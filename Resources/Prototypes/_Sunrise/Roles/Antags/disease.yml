@@ -67,15 +67,17 @@
     - DiseaseInfectCategory
     - DiseaseSymptomsCategory
     - DiseaseEvolutionCategory
-    - DiseaseInfectionCategory
     currencyWhitelist:
     - DiseasePoints
     balance:
       DiseasePoints: 20
   - type: DiseaseRole
     actions:
-      ActionInfect: 3
-      ActionDiseaseInfo: 999
+      ActionInfect: -1
+      ActionDiseaseBaseChance: -1
+      ActionDiseaseInfectChance: -1
+      ActionDiseaseShield: -1
+      ActionDiseaseLethal: -1
   - type: Muted
 
 - type: sickIcon
@@ -83,7 +85,7 @@
   icon:
     sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
     state: sick
-  priority: 1
+  priority: 2
 
 - type: sickIcon
   id: NormalDiseaseIcon

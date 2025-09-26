@@ -108,14 +108,6 @@ public sealed partial class ImplanterComponent : Component
     public EntProtoId? DeimplantChosen = null;
 
     public bool UiUpdateNeeded;
-
-    // Sunrise-Start
-    /// <summary>
-    /// Ограничение на внедрение: если true — имplanter можно использовать только на себе (внедрение в других запрещено).
-    /// </summary>
-    [DataField]
-    public bool OnlySelfImplant = false;
-    // Sunrise-End
 }
 
 [Serializable, NetSerializable]

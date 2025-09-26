@@ -30,12 +30,10 @@
   color: "#9f4000"
   roles:
   - HeadOfPrison
-  - PrisonInspector
   - PrisonWorker
   - PrisonChef
   - PrisonDoctor
   - PrisonEngineer
-  - PrisonScientist
   - PrisonGuard
   - PlanetPrisoner
 

@@ -1,7 +1,6 @@
 // The code responsible for DoAfter was taken from the rejected Wizden PR 30704. And the code for toxin filtration is from 29879.
 using Content.Shared.DoAfter; // Sunrise-Edit
 using Content.Shared.FixedPoint;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set; // Sunrise-Edit
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
@@ -58,22 +57,16 @@ public sealed partial class HyposprayComponent : Component
     // Sunrise-Start
 
     /// <summary>
-    /// Reagents that cannot be injected into the hypospray. Specified in yaml.
+    /// Whether or not this hypospray will destroy poisons when drawing from a container.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
-    public HashSet<string> FilterReagentGroups = new();
+    [DataField]
+    public bool FilterPoison = false;
 
     /// <summary>
     ///  If set over 0, enables a doafter for the hypospray which must be completed for injection.
     /// </summary>
     [DataField]
-    public float DoAfterTime = 0.25f;
-
-    /// <summary>
-    /// if true, object will not injected if has metabolized reagent same with contained in the hypo.
-    /// </summary>
-    [DataField]
-    public bool PreventOverdose;
+    public float DoAfterTime = 0f;
 }
 
 [Serializable, NetSerializable]

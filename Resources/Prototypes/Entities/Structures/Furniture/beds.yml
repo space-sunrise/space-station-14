@@ -22,7 +22,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.05"
-        density: 1900 #SUNRISE-EDIT
+        density: 190
         mask:
         - TableMask
   - type: Sprite
@@ -69,7 +69,6 @@
     anchored: true
     noRot: true
   - type: Anchorable
-    delay: 5 #SUNRISE-EDIT
   - type: Pullable
   - type: CanSleepOnBuckle # Sunrise-Edit
 

@@ -33,9 +33,12 @@
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
-      - !type:ModifyStatusEffect
-        conditions:
-        effectProto: StatusEffectStunned
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
         time: 3
         type: Remove
       - !type:ModifyStatusEffect
@@ -52,21 +55,6 @@
         conditions:
         - !type:ReagentThreshold
           min: 20
-      - !type:ModifyBleedAmount # Sunrise-Start # Кровотечение(кровь из носа) из-за того что мет повышает давление
-        amount: 0.4
-        conditions:
-        - !type:ReagentThreshold
-            min: 10
-      - !type:PopupMessage # От мета боль в груди и учащенное сердцебиение
-        visualType: Medium
-        messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
-        type: Local
-        probability: 0.5
-        conditions:
-        - !type:ReagentThreshold
-            min: 10
-      - !type:Drunk # Пусть кружит голову от подобного вещества
-        boozePower: 5 # Sunrise-End
 
 - type: reagent
   id: Ephedrine
@@ -93,15 +81,18 @@
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
-          min: 20.5
+          min: 20
         damage:
           types:
             Poison: 2 # this is added to the base damage of the meth.
             Asphyxiation: 2
       - !type:Jitter
-      - !type:ModifyStatusEffect
-        conditions:
-        effectProto: StatusEffectStunned
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 1
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
         time: 1
         type: Remove
       - !type:ModifyStatusEffect
@@ -161,9 +152,12 @@
           min: 1
         reagent: ChloralHydrate
         amount: -10
-      - !type:ModifyStatusEffect
-        conditions:
-        effectProto: StatusEffectStunned
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
         time: 3
         type: Remove
       - !type:GenericStatusEffect
@@ -186,17 +180,6 @@
     Medicine:
       metabolismRate: 1.0
       effects:
-        # Sunrise-Start # Против крестьянинов с копьями
-        - !type:AdjustReagent
-          reagent: Licoxide
-          amount: -1
-        - !type:AdjustReagent
-          reagent: Pax
-          amount: -2
-        - !type:AdjustReagent
-          reagent: Amatoxin
-          amount: -1.5
-        # Sunrise-End
         - !type:ResetNarcolepsy
         - !type:SatiateHunger
           factor: 1
