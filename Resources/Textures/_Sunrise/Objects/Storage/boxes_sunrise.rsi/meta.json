@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/ca674eff9d23e04357b7609ef7e07eadfc1a993f and modified by Flareguy (github), weapons magazune states created by KaiserMaus (github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "internals"
+        },
+        {
+            "name": "box"
+        },
+        {
+            "name": "boxwide"
+        },
+        {
+            "name": "boxwidetoy"
+        },
+        {
+            "name": "box_hug"
+        },
+        {
+            "name": "box_of_doom"
+        },
+        {
+            "name": "box_of_doom_big"
+        },
+        {
+            "name": "box_security"
+        },
+        {
+            "name": "box_science"
+        },
+        {
+            "name": "magazine"
+        },
+        {
+            "name": "writing"
+        },
+        {
+            "name": "writing_of_doom"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "hug-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "hug-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "shotgun_red"
+        },
+        {
+            "name": "smg_uranium"
+        },
+        {
+            "name": "shotgun_uranium"
+        },
+        {
+            "name": "smg_red"
+        },
+        {
+            "name": "smg_base"
+        },
+        {
+            "name": "l6_base"
+        },
+        {
+            "name": "shrapnel"
+        },
+        {
+            "name": "l6_uranium"
+        },
+        {
+            "name": "l6_red"
+        },
+        {
+            "name": "stinger"
+        },
+        {
+            "name": "incendiary"
+        },
+        {
+            "name": "shotgun_base"
+        },
+        {
+            "name": "dragunov"
+        },
+        {
+            "name": "dl6902"
+        },
+        {
+            "name": "wide_ert"
+        }
+    ]
+}

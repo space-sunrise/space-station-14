@@ -10,17 +10,17 @@ uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для �
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
 uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
 uplink-grenade-frag-timer-name = безконтактная Осколочная граната
-uplink-grenade-frag-timer-desc = Осколочная граната. Совместима с "China-Lake" и "GL-79". Взрывается через 2 секунды после выстрела.
+uplink-grenade-frag-timer-desc = Осколочная граната. Совместима с "China-Lake" и "GL-70". Взрывается через 2 секунды после выстрела.
 uplink-grenade-blast-timer-name = безконтактная Фугасная граната
-uplink-grenade-blast-timer-desc = Фугасная граната. Совместима с "China-Lake" и "GL-79". Взрывается через 2 секунды после выстрела.
+uplink-grenade-blast-timer-desc = Фугасная граната. Совместима с "China-Lake" и "GL-70". Взрывается через 2 секунды после выстрела.
 uplink-grenade-emp-timer-name = безконтактная ЭМИ граната
-uplink-grenade-emp-timer-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-79". Взрывается через 2 секунды после выстрела.
+uplink-grenade-emp-timer-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-70". Взрывается через 2 секунды после выстрела.
 uplink-grenade-frag-contact-name = контактная Осколочная граната
-uplink-grenade-frag-contact-desc = Осколочная граната. Совместима с "China-Lake" и "GL-79". Взрывается при контакте с целью.
+uplink-grenade-frag-contact-desc = Осколочная граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
 uplink-grenade-blast-contact-name = контактная Фугасная граната
-uplink-grenade-blast-contact-desc = Фугасная граната. Совместима с "China-Lake" и "GL-79". Взрывается при контакте с целью.
+uplink-grenade-blast-contact-desc = Фугасная граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
 uplink-grenade-emp-contact-name = контактная ЭМИ граната
-uplink-grenade-emp-contact-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-79". Взрывается при контакте с целью.
+uplink-grenade-emp-contact-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 антиматериальные)
@@ -54,13 +54,18 @@ uplink-hardsuit-syndie-commander-name = скафандр Командира Си
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
 uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
+uplink-hardsuit-infiltration-name = скафандр Инфильтратора Синдиката
+uplink-hardsuit-infiltration-desc = Набор с новейшими технологиями Синдиката! Стандартный кроваво-красный скафандр со встроенными новейшими разработками по активной маскировки!
 uplink-energy-dome-personal-name = Поясной Энергетический барьер
 uplink-energy-dome-personal-desc = Генератор малого щита, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.
 uplink-energy-dome-backpack-name = Наспинный Энергетический барьер
 uplink-energy-dome-backpack-desc = Генератор большого барьера, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.
 uplink-armoured-jumpsuit-name = бронированный черный адвокатский костюм
 uplink-armoured-jumpsuit-desc = Казалось бы, простой деловой костюм... пока не отлетела пуля...
-
+uplink-clothing-thieving-gloves-name = Воровские перчатки
+uplink-clothing-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые выглядят как обычные!
+uplink-clothing-chameleon-thieving-gloves-name = Воровские перчатки "Хамелеон"
+uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
 ## Weapon
 
 uplink-syndicate-rapier-name = Рапира Синдиката
@@ -79,6 +84,8 @@ uplink-weapon-dragunov-name = Набор Драгунов
 uplink-weapon-dragunov-desc = Культовая снайперская винтовка и два магазина на 10 патронов, известная своей меткостью и стрельбой на дальние дистанции. Использует винтовочные патроны калибра 7.62x54R.
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-mini-energy-crossbow-name = Мини энерго-арбалет
+uplink-mini-energy-crossbow-desc =  Компактное оружие скрытного действия. Выпускает маломощные кинетические болты, вызывающие паралич и малое отравление. Эффективен на близком расстоянии.
 
 ## Cyborgs
 
@@ -99,6 +106,14 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произведёный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-anomaly-auto-injector-name = Автоинъектор аномалии
+uplink-anomaly-auto-injector-desc = Одноразовый самовпрыскивающий инъектор, заражающий гуманоида случайной аномалией в течение минуты после введения.
+uplink-anomaly-auto-injector-popup-nothing-to-inject = Нечего вводить!
+uplink-anomaly-auto-injector-popup-not-applicable = Неприменимо!
+uplink-anomaly-auto-injector-popup-pending = Кожа не поддаётся инъекции!
+uplink-anomaly-auto-injector-popup-infected = Кожа не поддаётся инъекции!
+uplink-xeno-artifact-throwing-auto-injector-name = Метательный автоинъектор артефакта
+uplink-xeno-artifact-throwing-auto-injector-desc = Метательно-складное устройство одноразового применения. При попадании в живое существо вонзается и вживляет частицы артефакта. Не действует на синтетиков.
 
 ## Mechs equipment
 

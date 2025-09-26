@@ -1,0 +1,41 @@
+- type: latheRecipePack
+  id: ToolsStaticPrison
+  recipes:
+  - Wirecutter
+  - Screwdriver
+  - Welder
+  - Wrench
+  - CrowbarGreen
+  - Multitool
+  - NetworkConfigurator
+  - Signaller
+  - SprayPainter
+  - SprayPainterAmmo
+  - FlashlightLantern
+  - HandheldGPSBasic
+  - TRayScanner
+  - UtilityBelt
+  - ClothingOuterVestTank
+  # - HandheldStationMap
+  - ClothingHeadHatWelding
+  - ClothingHeadHatCone
+  - Binoculars
+
+- type: latheRecipePack
+  id: ElectronicsStaticPrison
+  recipes:
+  - IntercomElectronics
+  - FirelockElectronics
+  - DoorElectronics
+  - AirAlarmElectronics
+  # - StationMapElectronics
+  - FireAlarmElectronics
+  - MailingUnitElectronics
+  - SignalTimerElectronics
+  - APCElectronics
+  - SMESMachineCircuitboard
+  - SubstationMachineCircuitboard
+  - WallmountSubstationElectronics
+  - CellRechargerCircuitboard
+  - WeaponCapacitorRechargerCircuitboard
+  - FreezerElectronics

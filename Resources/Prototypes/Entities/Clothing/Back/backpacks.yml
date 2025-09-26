@@ -4,7 +4,7 @@
   name: backpack
   description: You wear this on your back and put items into it.
   components:
-  - type: ContainerInteractionAnimation # Sunrise added
+  - type: ContainerInteractionAnimation # Sunrise-Edit
   - type: Sprite
     sprite: Clothing/Back/Backpacks/backpack.rsi
     state: icon
@@ -31,6 +31,7 @@
     delay: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: NestingContainer # Sunrise-Edit
   - type: Tag
     tags:
     - WhitelistChameleon

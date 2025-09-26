@@ -12,3 +12,6 @@ chat-speech-verb-name-vulpkanin = "рычание"
 chat-speech-verb-name-swine = "хрюканье"
 chat-speech-verb-swine-1 = "визжит"
 chat-speech-verb-swine-2 = "хрюкает"
+chat-speech-verb-name-resomi = Резоми
+chat-speech-verb-resomi-1 = скрипит
+chat-speech-verb-resomi-2 = чирикает

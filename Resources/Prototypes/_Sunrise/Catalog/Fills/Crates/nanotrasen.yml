@@ -9,7 +9,7 @@
     contents:
       - id: MechNTGygaxFilled
       - id: HandheldMechAnalyzer
-      - id: Nanopaste10
+      - id: Nanopaste
       - id: CableApcStack
       - id: ToolboxMechanicalFilled
       - id: TowelColorNT
@@ -26,7 +26,7 @@
     contents:
       - id: MechMarauderFilled
       - id: HandheldMechAnalyzer
-      - id: Nanopaste10
+      - id: Nanopaste
       - id: CableApcStack
       - id: ToolboxMechanicalFilled
       - id: TowelColorNT
@@ -43,7 +43,7 @@
     contents:
       - id: MechSeraphFilled
       - id: HandheldMechAnalyzer
-      - id: Nanopaste10
+      - id: Nanopaste
       - id: CableApcStack
       - id: ToolboxMechanicalFilled
       - id: TowelColorNT

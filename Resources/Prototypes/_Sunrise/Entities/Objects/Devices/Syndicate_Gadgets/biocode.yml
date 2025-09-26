@@ -6,4 +6,5 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Thief
     alertText: Данный предмет биокодирован. Вы не можете его использовать.

@@ -95,8 +95,12 @@
     contents:
     - id: WeaponPistolVP78
       amount: 4
-    - id: MagazineVP70
-      amount: 8
+    - id: MagazinePistol40Base
+      amount: 4
+    - id: MagazinePistol40HP
+      amount: 2
+    - id: MagazinePistol40FMJ
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure

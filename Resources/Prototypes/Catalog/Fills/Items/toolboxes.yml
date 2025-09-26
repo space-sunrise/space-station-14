@@ -134,7 +134,7 @@
     - id: Welder
     - id: Multitool
     - id: ClothingHandsGlovesCombat
-    - id: ClothingEyesGlassesWelding #Sunrise-edit: rebalance toolbox
+    - id: ClothingMaskGasSyndicate
   - type: StaticPrice
     price: 1000
 
@@ -149,3 +149,30 @@
       - id: IngotGold
       - id: DrinkGoldenCup
         prob: 0.05
+
+# Sunrise-Start
+- type: entity
+  parent: ToolboxSyndicate
+  id: ToolboxSyndicateMechRepair
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Crowbar
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: WelderIndustrial
+    - id: Multitool
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingMaskGasSyndicate
+    - id: HandheldMechAnalyzer
+    - id: CableApcStack
+      amount: 3
+    - id: PowerCellSyndicate
+    - id: Nanopaste
+      amount: 2
+    - id: DoubleEmergencyOxygenTankFilled
+    - id: DoubleEmergencyNitrogenTankFilled
+  - type: StaticPrice
+    price: 1500
+# Sunrise-End

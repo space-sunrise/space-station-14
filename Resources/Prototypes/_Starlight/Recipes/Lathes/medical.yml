@@ -5,229 +5,210 @@
   result: LeftArmCyber
   categories:
   - Cyberlimbs
-  completetime: 3
+  completetime: 6
   materials:
     Plastic: 200
-    Steel: 200
-
-- type: latheRecipe
-  id: RightArmCyber
-  result: RightArmCyber
-  categories:
-  - Cyberlimbs
-  completetime: 3
-  materials:
-    Plastic: 200
-    Steel: 200
+    Steel: 600
 
 - type: latheRecipe
   id: LeftHandCyber
   result: LeftHandCyber
   categories:
   - Cyberlimbs
-  completetime: 2
+  completetime: 3
   materials:
     Plastic: 100
-    Steel: 100
-
-- type: latheRecipe
-  id: RightHandCyber
-  result: RightHandCyber
-  categories:
-  - Cyberlimbs
-  completetime: 2
-  materials:
-    Plastic: 100
-    Steel: 100
+    Steel: 200
 
 - type: latheRecipe
   id: LeftLegCyber
   result: LeftLegCyber
   categories:
   - Cyberlimbs
-  completetime: 3
+  completetime: 6
   materials:
     Plastic: 200
-    Steel: 200
-
-- type: latheRecipe
-  id: RightLegCyber
-  result: RightLegCyber
-  categories:
-  - Cyberlimbs
-  completetime: 3
-  materials:
-    Plastic: 200
-    Steel: 200
+    Steel: 600
 
 - type: latheRecipe
   id: LeftFootCyber
   result: LeftFootCyber
   categories:
   - Cyberlimbs
-  completetime: 2
+  completetime: 3
   materials:
     Plastic: 100
-    Steel: 100
-
-- type: latheRecipe
-  id: RightFootCyber
-  result: RightFootCyber
-  categories:
-  - Cyberlimbs
-  completetime: 2
-  materials:
-    Plastic: 100
-    Steel: 100
+    Steel: 200
 #
 - type: latheRecipe
-  id: LeftArmCyberReaper
-  result: LeftArmCyberReaper
+  id: ImplantCaseReaper
+  result: ImplantCaseReaper
   categories:
   - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 550
-    Steel: 100
-    Silver: 450
-    Glass: 100
-
-- type: latheRecipe
-  id: RightArmCyberReaper
-  result: RightArmCyberReaper
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 550
-    Steel: 100
-    Silver: 450
-    Glass: 100
-#
-- type: latheRecipe
-  id: LeftArmCyberMechwright
-  result: LeftArmCyberMechwright
-  categories:
-  - Cyberlimbs
-  completetime: 10
+  completetime: 25
   materials:
     Plastic: 450
-    Steel: 550
-    Silver: 100
-    Glass: 100
-
-- type: latheRecipe
-  id: RightArmCyberMechwright
-  result: RightArmCyberMechwright
-  categories:
-  - Cyberlimbs
-  completetime: 10
-  materials:
-    Plastic: 450
-    Steel: 550
-    Silver: 100
-    Glass: 100
+    Steel: 1100
+    Silver: 800
+    Glass: 450
 #
 - type: latheRecipe
-  id: LeftArmCyberGorilla
-  result: LeftArmCyberGorilla
+  id: ImplantCaseRobust
+  result: ImplantCaseRobust
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 20
   materials:
-    Plastic: 125
-    Steel: 550
-    Silver: 250
-    Glass: 100
-    Plasma: 200
-
+    Plastic: 500
+    Steel: 1100
+    Silver: 800
+    Glass: 150
+#
 - type: latheRecipe
-  id: RightArmCyberGorilla
-  result: RightArmCyberGorilla
+  id: ImplantCaseJani
+  result: ImplantCaseJani
   categories:
   - Cyberlimbs
-  completetime: 10
+  completetime: 20
   materials:
-    Plastic: 125
-    Steel: 550
-    Silver: 250
-    Glass: 100
-    Plasma: 200
+    Plastic: 500
+    Steel: 1100
+    Silver: 800
+    Glass: 150
+#
+- type: latheRecipe
+  id: ImplantCaseMechwright
+  result: ImplantCaseMechwright
+  categories:
+  - Cyberlimbs
+  completetime: 25
+  materials:
+    Plastic: 450
+    Steel: 1100
+    Silver: 800
+    Glass: 450
+#
+- type: latheRecipe
+  id: ImplantCaseAtmos
+  result: ImplantCaseAtmos
+  categories:
+  - Cyberlimbs
+  completetime: 25
+  materials:
+    Plastic: 450
+    Steel: 1100
+    Silver: 800
+    Glass: 450
+#
+- type: latheRecipe
+  id: ImplantCaseHack
+  result: ImplantCaseHack
+  categories:
+  - Cyberlimbs
+  completetime: 25
+  materials:
+    Steel: 1100
+    Plastic: 500
+    Glass: 250
+    Plasma: 800
+    Silver: 800
+#
+- type: latheRecipe
+  id: ImplantCaseGorilla
+  result: ImplantCaseGorilla
+  categories:
+  - Cyberlimbs
+  completetime: 25
+  materials:
+    Steel: 1500
+    Plastic: 450
+    Glass: 450
+    Plasma: 500
+    Silver: 800
 #
 # IMPLANTS
 
 # Eye
 
 - type: latheRecipe
-  id: EyeImplantWelding
-  result: EyeImplantWelding
+  id: ImplantCaseImplantWelding
+  result: ImplantCaseImplantWelding
   categories:
   - Implants
   completetime: 6
   materials:
-    Plastic: 100
-    Steel: 100
-    Plasma: 250
-    Glass: 100
+    Steel: 330
+    Glass: 120
+    Plastic: 25
+    Plasma: 25
 
 - type: latheRecipe
-  id: EyeImplantMedical
-  result: EyeImplantMedical
+  id: ImplantCaseImplantMedical
+  result: ImplantCaseImplantMedical
   categories:
   - Implants
   completetime: 8
   materials:
-    Steel: 200
-    Plasma: 300
-    Glass: 100
+    Steel: 330
+    Glass: 320
+    Gold: 200
+    Silver: 200
+    Plasma: 50
 
 - type: latheRecipe
-  id: EyeImplantChemical
-  result: EyeImplantChemical
+  id: ImplantCaseImplantChemical
+  result: ImplantCaseImplantChemical
   categories:
   - Implants
   completetime: 8
   materials:
-    Steel: 200
+    Steel: 330
+    Glass: 320
     Plasma: 100
-    Glass: 100
+    Gold: 25
+    Silver: 25
 
 - type: latheRecipe
-  id: EyeImplantSecurity
-  result: EyeImplantSecurity
+  id: ImplantCaseImplantSecurity
+  result: ImplantCaseImplantSecurity
   categories:
   - Implants
   completetime: 8
   materials:
-    Steel: 200
-    Plasma: 300
-    Glass: 150
+    Steel: 330
+    Glass: 320
+    Plasma: 50
+    Gold: 325
+    Silver: 325
 
 - type: latheRecipe
-  id: CyberEyeNightVision
-  result: CyberEyeNightVision
+  id: ImplantCaseNightVision
+  result: ImplantCaseNightVision
   categories:
   - Implants
   completetime: 15
   materials:
-    Plastic: 100
-    Steel: 100
-    Gold: 100
-    Glass: 100
+    Steel: 330
+    Glass: 320
+    Plasma: 300
+    Gold: 150
+    Silver: 150
 
 - type: latheRecipe
-  id: CyberEyeThermal
-  result: CyberEyeThermal
+  id: ImplantCaseThermal
+  result: ImplantCaseThermal
   categories:
   - Implants
-  completetime: 25
+  completetime: 60
   materials:
-    Plastic: 200
-    Steel: 100
-    Glass: 100
+    Steel: 330
+    Glass: 320
+    Plastic: 300
     Gold: 300
-    Plasma: 300
-    Uranium: 300
+    Silver: 300
+    Plasma: 400
+    Uranium: 400
+    Diamond: 400
 
 # Automenders
 

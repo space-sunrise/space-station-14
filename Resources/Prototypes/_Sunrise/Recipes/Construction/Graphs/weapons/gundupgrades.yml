@@ -55,11 +55,13 @@
     - node: upgraded
       entity: ClothingOuterVestWebSec
 
+# Gorilla Gauntlet
 - type: constructionGraph
   id: UpgradeCyberGorilla
   start: start
   graph:
     - node: start
+      entity: WeaponGauntletGorilla
       edges:
         - to: upgraded
           steps:
@@ -69,34 +71,62 @@
     - node: upgraded
       entity: CyberGorillaArm
 
+# Gorilla
 - type: constructionGraph
-  id: UpgradeCyberArmGorillaL
+  id: UpgradeCyberArmGorilla
   start: start
   graph:
     - node: start
       edges:
-        - to: upgraded
+        - to: base_left
+          steps: []
+    - node: base_left
+      entity: LeftArmCyberGorilla
+      edges:
+        - to: base_right
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: upgraded_left
           steps:
             - tag: WeaponPistolCHIMPUpgradeKit
               name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
             - tag: GorillaUpgradeKit
               name: construction-graph-tag-gorilla-upgrade-kit
               doAfter: 2
-    - node: upgraded
+    - node: base_right
+      entity: RightArmCyberGorilla
+      edges:
+        - to: base_left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: upgraded_right
+          steps:
+            - tag: WeaponPistolCHIMPUpgradeKit
+              name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
+            - tag: GorillaUpgradeKit
+              name: construction-graph-tag-gorilla-upgrade-kit
+              doAfter: 2
+    - node: upgraded_left
       entity: LeftArmCyberGorillaUpgraded
-
-- type: constructionGraph
-  id: UpgradeCyberArmGorillaR
-  start: start
-  graph:
-    - node: start
       edges:
-        - to: upgraded
+        - to: upgraded_right
           steps:
-            - tag: WeaponPistolCHIMPUpgradeKit
-              name: construction-graph-tag-weapon-pistol-chimp-upgrade-kit
-            - tag: GorillaUpgradeKit
-              name: construction-graph-tag-gorilla-upgrade-kit
+            - tool: Screwing
+              doAfter: 1
+        - to: base_left
+          steps:
+            - tool: Prying
               doAfter: 2
-    - node: upgraded
+    - node: upgraded_right
       entity: RightArmCyberGorillaUpgraded
+      edges:
+        - to: upgraded_left
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: base_right
+          steps:
+            - tool: Prying
+              doAfter: 2

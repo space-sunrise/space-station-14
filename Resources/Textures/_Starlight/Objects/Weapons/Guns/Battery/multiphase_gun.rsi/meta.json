@@ -116,6 +116,30 @@
         },
         {
             "name": "destroy-unshaded-4"
+        },
+        {
+            "name": "ion-unshaded"
+        },
+        {
+            "name": "ion-unshaded-0",
+            "delays": [
+                [
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "ion-unshaded-1"
+        },
+        {
+            "name": "ion-unshaded-2"
+        },
+        {
+            "name": "ion-unshaded-3"
+        },
+        {
+            "name": "ion-unshaded-4"
         }
     ]
 }

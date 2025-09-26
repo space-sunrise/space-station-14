@@ -83,3 +83,16 @@
   - type: Item
     sprite: _Sunrise/Objects/Misc/pens.rsi
     heldPrefix: pen_ueg
+
+- type: entity
+  parent: CEPen
+  id: CommaidPen
+  name: pink maid's pen
+  description: A kawaii pink pen is no less than a kawaii station worker.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/pens.rsi
+    state: pen-maid
+  - type: Item
+    sprite: _Sunrise/Objects/Misc/pens.rsi
+    heldPrefix: pen-maid

@@ -226,11 +226,11 @@
       tags:
         - MagazineVP70
     - type: BallisticAmmoProvider
-      proto: CartridgePistolFMJ  # 57x28
+      proto: CartridgePistol40SP  # 45 ACP
       mayTransfer: true
       whitelist:
         tags:
-          - CartridgePistol  # 57x28
+          - CartridgePistolDP # 45 ACP
       capacity: 16
     - type: Item
       size: Small
@@ -293,11 +293,11 @@
     - MagazineACP14
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeMagnumSP  # 57x28
+    proto: CartridgePistol40SP  # 45 ACP
     whitelist:
       tags:
-      - CartridgeMagnum  # 57x28
-    capacity: 7
+      - CartridgePistolDP # 45 ACP
+    capacity: 10
   - type: Item
     size: Small
   - type: ContainerContainer
