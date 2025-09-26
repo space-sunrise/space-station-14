@@ -30,6 +30,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
+        Shock: 0.6 #Sunrise-edit 
         Heat: 0.8
         Radiation: 0.5
   - type: ClothingSpeedModifier
@@ -414,7 +415,7 @@
   - type: FireProtection
     reduction: 0.8
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.4 # Sunrise-edit
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -423,8 +424,9 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+        Shock: 0.2 #Sunrise-edit
         Heat: 0.4
-        Radiation: 0.0
+        Radiation: 0.1 # Sunrise-edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -495,10 +497,10 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.3
-        Radiation: 0.1
+        Radiation: 0.2 # Sunrise-edit
         Caustic: 0.2
   - type: ExplosionResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.3 # Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -790,7 +792,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
-    damageCoefficient: 0.1 #Sunrise-edit
+    damageCoefficient: 0.4 #Sunrise-edit
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -991,7 +993,7 @@
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
   description: A protective hardsuit worn by the engineers of an emergency response team.
@@ -1002,8 +1004,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
-  - type: FireProtection
-    reduction: 0.8
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1040,7 +1040,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTJanitor
   name: ERT janitor's hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.
@@ -1111,14 +1111,18 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.7
+    # Sunrise-Start
   - type: Pierceable
     level: Metal
+  - type: FireProtection
+    reduction: 0.5
+    # Sunrise-end
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
+        Blunt: 0.7
+        Slash: 0.7
         Piercing: 0.6
         Heat: 0.1
         Cold: 0.1

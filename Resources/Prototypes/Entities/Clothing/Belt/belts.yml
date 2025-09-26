@@ -627,9 +627,6 @@
           tags:
           - CaptainSabre
   - type: Appearance
-  - type: Storage # Sunrise
-    storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
-    storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg
 
 # Belts without visualizers
 

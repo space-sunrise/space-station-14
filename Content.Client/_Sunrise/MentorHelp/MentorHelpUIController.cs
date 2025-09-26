@@ -66,7 +66,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenMentorHelp,
-                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
+                InputCmdHandler.FromDelegate(_ => Open()))
             .Register<MentorHelpUIController>();
     }
 
@@ -131,7 +131,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     private void MHelpButtonPressed(BaseButton.ButtonEventArgs obj)
     {
-        ToggleWindow();
+        Open();
     }
 
     private void OnAdminStatusUpdated()
@@ -199,25 +199,6 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         EnsureUIHelper();
         UIHelper!.OpenWindow();
         SetMentorHelpPressed(true);
-    }
-
-    /// <summary>
-    /// Toggle the mentor help window
-    /// </summary>
-    public void ToggleWindow()
-    {
-        EnsureUIHelper();
-
-        if (UIHelper!.IsOpen)
-        {
-            UIHelper.CloseWindow();
-            SetMentorHelpPressed(false);
-        }
-        else
-        {
-            UIHelper.OpenWindow();
-            SetMentorHelpPressed(true);
-        }
     }
 
     /// <summary>

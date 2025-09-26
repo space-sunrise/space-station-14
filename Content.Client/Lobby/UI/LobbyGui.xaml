@@ -12,7 +12,7 @@
     xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
     xmlns:changelog="clr-namespace:Content.Client.Changelog"
     xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile"
-    xmlns:texture="clr-namespace:Content.Client._Sunrise.Texture"
+    xmlns:texture="clr-namespace:Content.Client._Sunrise.RawTexture"
     xmlns:contributors="clr-namespace:Content.Client._Sunrise.Contributors"
     xmlns:pets="clr-namespace:Content.Client._Sunrise.Pets">
     <!-- Background -->
@@ -180,8 +180,6 @@
                             <Button Name="MHelpButton" Access="Public" Text="{Loc 'ui-lobby-mhelp-button'}"
                                     StyleClasses="ButtonBig"/>
                             <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
-                            <Button Name="ReplaysButton" Access="Public" Text="{Loc 'ui-lobby-replays-button'}"
-                                    StyleClasses="ButtonBig"/>
                             <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}"
                                     StyleClasses="ButtonBig"/>
                             <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}"

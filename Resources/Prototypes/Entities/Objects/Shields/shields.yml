@@ -633,6 +633,7 @@
       autoRechargePause: true
       autoRechargePauseTime: 5
     - type: EnergyShield
+      energyCostPerDamage: 15
     - type: ExaminableBattery
     - type: Battery
       maxCharge: 1500
@@ -642,6 +643,9 @@
     - type: ClothingSpeedModifier
       sprintModifier: 1
     - type: HeldSpeedModifier
+    - type: EmpImmune
+    - type: StaticPrice
+      price: 7000
     # Sunrise-End
 
 - type: entity

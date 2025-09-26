@@ -11,17 +11,6 @@
 
 - type: entity
   parent: BaseMindRoleAntag
-  id: MindRoleEvilTwin
-  name: Evil Twin Role
-  components:
-  - type: MindRole
-    antagPrototype: EvilTwin
-    exclusiveAntag: true
-    roleType: SoloAntagonist
-  - type: EvilTwinRole
-
-- type: entity
-  parent: BaseMindRoleAntag
   id: MindRoleFugitive
   name: Fugitive Role
   components:

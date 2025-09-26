@@ -55,7 +55,6 @@ namespace Content.Client.Lobby.UI
 
             LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
-            ReplaysButton.OnPressed += _ => _uriOpener.OpenUri(_configurationManager.GetCVar(SunriseCCVars.InfoLinksReplays));
 
             //CollapseButton.OnPressed += _ => TogglePanel(false);
             //ExpandButton.OnPressed += _ => TogglePanel(true);
@@ -149,7 +148,6 @@ namespace Content.Client.Lobby.UI
             _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged, true);
             _configurationManager.OnValueChanged(SunriseCCVars.ServiceAuthEnabled, OnServiceAuthEnableChanged, true);
             _configurationManager.OnValueChanged(SunriseCCVars.ServerName, OnServerNameChanged, true);
-            _configurationManager.OnValueChanged(SunriseCCVars.InfoLinksReplays, OnReplaysLinkChanged, true);
 
             Chat.SetChatOpacity();
 
@@ -219,11 +217,6 @@ namespace Content.Client.Lobby.UI
         private void SetUserProfileEnable(bool enable)
         {
             UserProfileBox.Visible = enable;
-        }
-
-        private void OnReplaysLinkChanged(string replaysUrl)
-        {
-            ReplaysButton.Visible = !string.IsNullOrEmpty(replaysUrl);
         }
         // Sunrise-End
 

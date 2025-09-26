@@ -413,6 +413,20 @@
   - type: AutoRecharge
     rechargeDuration: 10
 
+# Sunrise-start
+- type: entity
+  id: RCDRechargingMini
+  parent: RCD
+  name: experimental Mini-RCD
+  description: Cyberarm-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
+  suffix: AutoRecharge, Mini
+  components:
+  - type: LimitedCharges
+    maxCharges: 12
+  - type: AutoRecharge
+    rechargeDuration: 30
+# Sunrise-end
+
 - type: entity
   id: RCDExperimental
   parent: RCD

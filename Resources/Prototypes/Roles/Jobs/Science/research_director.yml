@@ -39,7 +39,7 @@
   equipment:
     id: RnDPDA
     pocket1: HandheldRoboAnalyzer # Sunrise-Edit
-    pocket2: Nanopaste10 # Sunrise-Edit
+    pocket2: Nanopaste # Sunrise-Edit
     ears: ClothingHeadsetRD
   storage:
     back:

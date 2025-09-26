@@ -750,14 +750,6 @@
     Telecrystal: 6
   categories:
   - UplinkChemicals
-  # Sunrise-Start
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - SubdermalImplant
-      - NukeOpsUplink
-  # Sunrise-End
 
 - type: listing
   id: UplinkHypoDart

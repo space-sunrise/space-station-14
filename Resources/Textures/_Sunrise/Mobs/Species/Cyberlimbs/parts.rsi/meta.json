@@ -175,6 +175,50 @@
     {
       "name": "r_hephaestus_titan_thrower",
       "directions": 4
+    },
+    {
+      "name": "l_hephaestus",
+      "directions": 4
+    },
+    {
+      "name": "r_hephaestus",
+      "directions": 4
+    },
+    {
+      "name": "l_hephaestus_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_hephaestus_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "hand_folder",
+      "directions": 4
+    },
+    {
+      "name": "l_zenghu",
+      "directions": 4
+    },
+    {
+      "name": "r_zenghu",
+      "directions": 4
+    },
+    {
+      "name": "l_zenghu_Jani",
+      "directions": 4
+    },
+    {
+      "name": "r_zenghu_Jani",
+      "directions": 4
+    },
+    {
+      "name": "l_zenghu_arm_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_zenghu_arm_TOOLS",
+      "directions": 4
     }
   ]
 }

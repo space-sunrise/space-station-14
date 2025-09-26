@@ -30,7 +30,6 @@
   id: ComMaidGear
   equipment:
     eyes: ClothingEyesGlassesSunglasses
-    back: ClothingBackpackSatchelLeather
     id: CommaidPDA
     ears: ClothingHeadsetCommaid
 
