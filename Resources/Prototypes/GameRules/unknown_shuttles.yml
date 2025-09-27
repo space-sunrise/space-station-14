@@ -379,7 +379,7 @@
   - type: StationEvent
     startAnnouncement: null
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/infiltrator_raid.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/infiltrator_raid.yml"
 
 - type: entity
   id: NukeopsInstigator
