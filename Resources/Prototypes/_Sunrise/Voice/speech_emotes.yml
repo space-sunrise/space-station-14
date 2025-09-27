@@ -293,6 +293,7 @@
   - зовёт
   - зовёт.
   - зовёт!
+  - зовёт?
 
 - type: emote
   id: Squawk
@@ -320,6 +321,42 @@
   - squawks.
   - squawks!
   - squawks?
-  - скрипит
-  - скрипит.
-  - скрипит!
+  - сквуэк
+  - сквуэк.
+  - сквуэк!
+  - сквуэк?
+  - сквуэкает
+  - сквуэкает.
+  - сквуэкает!
+  - сквуэкает?
+
+- type: emote
+  id: Trill
+  name: chat-emote-name-trill
+  category: Vocal
+  available: false
+  icon: /Textures/_Sunrise/Actions/resomi.rsi/bird_call.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-trill"]
+  chatTriggers:
+  - trill
+  - trill.
+  - trill!
+  - trill?
+  - trills
+  - trills.
+  - trills!
+  - trills?
+  - trilling
+  - trilling.
+  - trilling!
+  - trilling?
+  - трищит!
+  - трищит.
+  - трищит
+  - трищит?
