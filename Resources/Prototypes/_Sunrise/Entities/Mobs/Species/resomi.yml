@@ -239,7 +239,7 @@
   - type: Speech
     speechVerb: Resomi
     speechSounds: UnisexResomi
-    allowedEmotes: ['Chirp', 'Hisses', 'Growl', 'Scree', 'Call', 'Squawk']
+    allowedEmotes: ['Chirp', 'Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'ResomiChirp']
   - type: Tag
     tags:
     - CanPilot
