@@ -285,3 +285,38 @@
   - трищит.
   - трищит
   - трищит?
+
+- type: emote
+  id: ResomiChirp
+  name: chat-emote-name-chirp
+  category: Vocal
+  available: false
+  icon: /Textures/_Sunrise/Actions/resomi.rsi/bird_call.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-chirp"]
+  chatTriggers:
+    - chirp
+    - chirp.
+    - chirp!
+    - chirp?
+    - chirps
+    - chirps.
+    - chirps!
+    - chirps?
+    - chirped
+    - chirped.
+    - chirped!
+    - chirped?
+    - chirping
+    - chirping.
+    - chirping!
+    - chirping?
+    - чирикает
+    - чирикает.
+    - чирикает!
+    - чирикает?

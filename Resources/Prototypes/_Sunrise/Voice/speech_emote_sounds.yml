@@ -135,7 +135,7 @@
       collection: BikeHorn
     Whistle:
       path: /Audio/_Sunrise/Voice/Resomi/resomi_whistle.ogg
-    Chirp:
+    ResomiChirp:
       collection: ResomiChirp
     Weh:
       collection: Weh

@@ -17,9 +17,9 @@
 - type: soundCollection
   id: ResomiTrills
   files:
-  - /Audio/_Starlight/Voice/Resomi/resomi_trill_1.ogg
-  - /Audio/_Starlight/Voice/Resomi/resomi_trill_2.ogg
-  - /Audio/_Starlight/Voice/Resomi/resomi_trill_2.ogg
+  - /Audio/_Sunrise/Voice/Resomi/resomi_trill_1.ogg
+  - /Audio/_Sunrise/Voice/Resomi/resomi_trill_2.ogg
+  - /Audio/_Sunrise/Voice/Resomi/resomi_trill_3.ogg
 
 - type: soundCollection
   id: ResomiScrees
