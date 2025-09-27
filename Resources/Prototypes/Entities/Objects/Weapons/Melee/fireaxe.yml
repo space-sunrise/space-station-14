@@ -57,8 +57,7 @@
   parent: [BaseSyndicateContraband, FireAxe]
   description: Why fight fire with an axe when you can fight with fire and axe? Now featuring rugged rubberized handle!
   components:
-  - type: MeleeWeapon
-    wideAnimationRotation: 90
+  #Sunrise-start
   - type: IgniteOnMeleeHit
     fireStacks: 1
   - type: Sprite

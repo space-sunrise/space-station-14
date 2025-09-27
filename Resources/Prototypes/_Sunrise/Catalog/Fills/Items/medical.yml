@@ -24,3 +24,15 @@
     - 0,0,3,3
   - type: Item
     size: Huge
+
+#Sunrise-start
+- type: entity
+  id: CoalpenKitFilled
+  suffix: CoalpenKit, Filled
+  parent: Medkit
+  components:
+  - type: StorageFill
+    contents:
+      - id: CoalAutoInjector
+        amount: 8
+#Sunrise-end

@@ -86,7 +86,45 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         FacialHairMarkingEffect = facialHairMarkingEffect;
         Width = width; //Sunrise
         Height = height; //Sunrise
-        //sunrise gradient end
+    }
+
+    public HumanoidCharacterAppearance(string hairStyleId,
+        Color hairColor,
+        string facialHairStyleId,
+        Color facialHairColor,
+        Color eyeColor,
+        Color skinColor,
+        List<Marking> markings,
+        float width,
+        float height,
+        bool hairGradientEnabled = false,
+        Color hairGradientSecondaryColor = default,
+        int hairGradientDirection = 0,
+        bool facialHairGradientEnabled = false,
+        Color facialHairGradientSecondaryColor = default,
+        int facialHairGradientDirection = 0,
+        bool allMarkingsGradientEnabled = false,
+        Color allMarkingsGradientSecondaryColor = default,
+        int allMarkingsGradientDirection = 0)
+    {
+        HairStyleId = hairStyleId;
+        HairColor = ClampColor(hairColor);
+        FacialHairStyleId = facialHairStyleId;
+        FacialHairColor = ClampColor(facialHairColor);
+        EyeColor = ClampColor(eyeColor);
+        SkinColor = ClampColor(skinColor);
+        Markings = markings;
+        Width = width;
+        Height = height;
+        HairGradientEnabled = hairGradientEnabled;
+        HairGradientSecondaryColor = hairGradientSecondaryColor == default ? Color.White : ClampColor(hairGradientSecondaryColor);
+        HairGradientDirection = hairGradientDirection;
+        FacialHairGradientEnabled = facialHairGradientEnabled;
+        FacialHairGradientSecondaryColor = facialHairGradientSecondaryColor == default ? Color.White : ClampColor(facialHairGradientSecondaryColor);
+        FacialHairGradientDirection = facialHairGradientDirection;
+        AllMarkingsGradientEnabled = allMarkingsGradientEnabled;
+        AllMarkingsGradientSecondaryColor = allMarkingsGradientSecondaryColor == default ? Color.White : ClampColor(allMarkingsGradientSecondaryColor);
+        AllMarkingsGradientDirection = allMarkingsGradientDirection;
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
@@ -97,14 +135,18 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             other.EyeColor,
             other.SkinColor,
             new(other.Markings),
-            other.HairMarkingEffectType,
-            other.HairMarkingEffect,
-            other.FacialHairMarkingEffectType,
-            other.FacialHairMarkingEffect,
             other.Width,
-            other.Height) // sunrise gradient edit
+            other.Height,
+            other.HairGradientEnabled,
+            other.HairGradientSecondaryColor,
+            other.HairGradientDirection,
+            other.FacialHairGradientEnabled,
+            other.FacialHairGradientSecondaryColor,
+            other.FacialHairGradientDirection,
+            other.AllMarkingsGradientEnabled,
+            other.AllMarkingsGradientSecondaryColor,
+            other.AllMarkingsGradientDirection)
     {
-
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
@@ -149,9 +191,51 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     }
     public HumanoidCharacterAppearance WithFacialHairExtendedColor(MarkingEffect? newFacialExtendedColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairMarkingEffectType, HairMarkingEffect, newFacialExtendedColor?.Type ?? MarkingEffectType.Color, newFacialExtendedColor, Width, Height); // sunrise gradient edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height)
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = enabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        };
     }
-    // sunrise gradient edit end
+
+    public HumanoidCharacterAppearance WithAllMarkingsGradientSecondaryColor(Color color)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height)
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = ClampColor(color),
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        };
+    }
+
+    public HumanoidCharacterAppearance WithAllMarkingsGradientDirection(int direction)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, Width, Height)
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = direction,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = direction
+        };
+    }
 
     public HumanoidCharacterAppearance WithWidth(float newWidth)
     {
@@ -279,8 +363,20 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
 
-        var width = appearance.Width; //Sunrise
-        var height = appearance.Height; //Sunrise
+        var hairGradientEnabled = appearance.HairGradientEnabled;
+        var hairGradientSecondaryColor = ClampColor(appearance.HairGradientSecondaryColor);
+        var hairGradientDirection = appearance.HairGradientDirection;
+
+        var facialHairGradientEnabled = appearance.FacialHairGradientEnabled;
+        var facialHairGradientSecondaryColor = ClampColor(appearance.FacialHairGradientSecondaryColor);
+        var facialHairGradientDirection = appearance.FacialHairGradientDirection;
+
+        var allMarkingsGradientEnabled = appearance.AllMarkingsGradientEnabled;
+        var allMarkingsGradientSecondaryColor = ClampColor(appearance.AllMarkingsGradientSecondaryColor);
+        var allMarkingsGradientDirection = appearance.AllMarkingsGradientDirection;
+
+        var width = appearance.Width;
+        var height = appearance.Height;
 
         var proto = IoCManager.Resolve<IPrototypeManager>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
@@ -364,7 +460,16 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             appearance.FacialHairMarkingEffectType,
             facialHairExtendedColor,
             width,
-            height);
+            height,
+            hairGradientEnabled,
+            hairGradientSecondaryColor,
+            hairGradientDirection,
+            facialHairGradientEnabled,
+            facialHairGradientSecondaryColor,
+            facialHairGradientDirection,
+            allMarkingsGradientEnabled,
+            allMarkingsGradientSecondaryColor,
+            allMarkingsGradientDirection);
     }
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
     {
