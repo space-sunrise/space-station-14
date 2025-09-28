@@ -1,0 +1,76 @@
+- type: entity
+  name: shower
+  id: ShowerEmpty
+  suffix: Empty
+  description: A device for washing. Pours water from above and creates steam.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Structures/Furniture/shower.rsi
+    layers:
+      - state: shower
+        map: [ "shower_base" ]
+      - state: showerwater
+        map: [ "water_animation" ]
+        visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ShowerVisuals.IsOn:
+        water_animation:
+          Off: { visible: false }
+          On: { visible: true }
+  - type: Shower
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        hard: false  # Allow entities to pass through
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetSteel1:
+                min: 2
+                max: 3
+              SheetPlastic1:
+                min: 1
+                max: 2
+  - type: Construction
+    graph: Shower
+    node: shower
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  name: shower
+  id: Shower
+  parent: ShowerEmpty
+  suffix: Working
+  components: []

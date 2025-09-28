@@ -1,0 +1,35 @@
+- type: constructionGraph
+  id: Shower
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: shower
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 2
+            - material: Plastic
+              amount: 2
+              doAfter: 1.5
+    - node: shower
+      entity: ShowerEmpty
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 3

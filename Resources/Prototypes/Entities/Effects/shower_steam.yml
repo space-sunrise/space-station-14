@@ -1,0 +1,19 @@
+- type: entity
+  name: steam
+  id: ShowerSteam
+  description: Steam from hot water.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: TimedDespawn
+      lifetime: 3.0 # Steam lasts for 3 seconds (same as spawn interval)
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: Effects/atmospherics.rsi
+          state: water_vapor
+      drawdepth: Effects
+      color: "#FFFFFF60" # Semi-transparent white
+    - type: IgnoresFingerprints

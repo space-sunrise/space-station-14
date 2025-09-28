@@ -1,3 +1,16 @@
+#shower
+- type: construction
+  id: Shower
+  graph: Shower
+  startNode: start
+  targetNode: shower
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 #chairs
 - type: construction
   id: Chair
