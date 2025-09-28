@@ -1,0 +1,14 @@
+# Research RIG Suit Recipe
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitResearchRig
+  result: ClothingOuterHardsuitResearchRig
+  categories:
+  - Mech
+  completetime: 15
+  materials:
+    Steel: 30
+    Glass: 15
+    Plastic: 30
+    Gold: 10
+    Silver: 5

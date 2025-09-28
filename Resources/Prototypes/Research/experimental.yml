@@ -163,3 +163,17 @@
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
+
+- type: technology
+  id: ResearchRigSuit
+  name: research-technology-research-rig
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/rd.rsi
+    state: icon
+  discipline: Experimental
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitResearchRig
+  technologyPrerequisites:
+  - AdvancedAnomalyResearch
