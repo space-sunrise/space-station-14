@@ -35,6 +35,7 @@
     - type: Construction
       graph: AirlockGlassCult
       node: airlock
+    - type: EmpImmune
     - type: Destructible
       thresholds:
       - trigger:

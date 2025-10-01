@@ -587,9 +587,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             }
         }
 
-        var bans = new MsgRoleBans();
-
-        foreach (var ban in roleBans)
+        var bans = new MsgRoleBans
         {
             JobBans = jobBansList,
             AntagBans = antagBansList,

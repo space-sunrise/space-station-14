@@ -42,7 +42,9 @@ public static class JobRequirements
         [NotNullWhen(false)] out FormattedMessage? reason,
         IEntityManager entManager,
         IPrototypeManager protoManager,
-        HumanoidCharacterProfile? profile)
+        HumanoidCharacterProfile? profile,
+        JobPrototype? job = null,
+        string[]? sponsorPrototypes = null) // Sunrise-Sponsors
     {
         reason = null;
         if (requirements == null)
@@ -50,7 +52,7 @@ public static class JobRequirements
 
         foreach (var requirement in requirements)
         {
-            if (!requirement.Check(entManager, protoManager, profile, playTimes, job.ID, sponsorPrototypes, out reason)) // Sunrise-Sponsors
+            if (!requirement.Check(entManager, protoManager, profile, playTimes, job?.ID ?? string.Empty, sponsorPrototypes ?? [], out reason)) // Sunrise-Sponsors
                 return false;
         }
 

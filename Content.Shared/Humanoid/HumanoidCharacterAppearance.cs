@@ -512,41 +512,22 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 break;
         }
 
-        // grab the species skin coloration type.
-        var skinType = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species).SkinColoration;
+        // grab the species skin coloration type and strategy.
+        var protoMan = IoCManager.Resolve<IPrototypeManager>();
+        var skinType = protoMan.Index<SpeciesPrototype>(species).SkinColoration;
+        var strategy = protoMan.Index(skinType).Strategy;
 
         // declare some defaults. ensures that the hair and eyes on hues-colored species don't match the skin or one another.
         var newSkinColor = colorPalette[0];
         var newHairColor = colorPalette[1];
         var newEyeColor = colorPalette[2];
 
-        // now we do some color logic.
-        switch (skinType)
-        {
-            // if the species is HumanToned:
-            case HumanoidSkinColor.HumanToned:
-                // quantize the randomized skin color to the nearest acceptable HumanToned color.
-                var tone = Math.Round(Humanoid.SkinColor.HumanSkinToneFromColor(newSkinColor));
-                newSkinColor = Humanoid.SkinColor.HumanSkinTone((int)tone);
-
-                // pick a random realistic hair color from the list and randomize it juuuuust a little bit.
-                newHairColor = random.Pick(HairStyles.RealisticHairColors);
-                newHairColor = newHairColor
-                    .WithRed(RandomizeColor(newHairColor.R))
-                    .WithGreen(RandomizeColor(newHairColor.G))
-                    .WithBlue(RandomizeColor(newHairColor.B));
-
-                // and pick a random realistic eye color from the list.
-                newEyeColor = random.Pick(RealisticEyeColors);
-
-        var protoMan = IoCManager.Resolve<IPrototypeManager>();
-        var skinType = protoMan.Index<SpeciesPrototype>(species).SkinColoration;
-        var strategy = protoMan.Index(skinType).Strategy;
-
-        var newSkinColor = strategy.InputType switch
+        // Calculate skin color based on strategy
+        newSkinColor = strategy.InputType switch
         {
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
             SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
+            _ => newSkinColor
         };
 
         //Sunrise start

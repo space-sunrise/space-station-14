@@ -339,12 +339,12 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             }
 
             _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
-                uid,
+                args.Performer,
                 1f,
                 new ShadowShacklesDoAfterEvent(),
-                uid,
+                args.Performer,
                 target: args.Target,
-                used: uid)
+                used: args.Performer)
             {
                 BreakOnMove = true,
                 BreakOnDamage = true

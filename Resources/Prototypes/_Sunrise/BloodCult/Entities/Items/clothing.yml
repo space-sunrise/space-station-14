@@ -29,6 +29,7 @@
     domePrototype: EnergyDomeCult
   - type: UseDelay
     delay: 10.0
+  - type: EmpImmune
   # Нихуя технологии у культистов да?
   - type: Biocode
     factions:
