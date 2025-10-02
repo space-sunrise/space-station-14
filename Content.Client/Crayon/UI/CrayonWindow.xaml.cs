@@ -53,7 +53,7 @@ namespace Content.Client.Crayon.UI
         private void RefreshList()
         {
             // Clear
-            Grids.RemoveAllChildren();
+            Grids.DisposeAllChildren();
 
             if (_decals == null || _allDecals == null)
                 return;

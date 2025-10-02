@@ -95,7 +95,7 @@
     pocket1: MagazineRifleSP
     pocket2: MagazineRifleIncendiary
   inhand:
-  - WeaponRifleLecterXL8
+  - WeaponRifleLecter
   storage:
     back:
     - WeaponDisabler

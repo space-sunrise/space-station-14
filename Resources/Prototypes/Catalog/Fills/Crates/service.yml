@@ -144,17 +144,15 @@
   - type: StorageFill
     contents:
     - id: Paper
-      amount: 12
-    - id: PaperOffice
-      amount: 6
+      amount: 15
     - id: Pen
       amount: 2
-    - id: BoxFolderClipboardEmpty
+    - id: BoxFolderClipboard
       amount: 2
     - id: HandLabeler
-    - id: BoxFolderBlueEmpty
-    - id: BoxFolderRedEmpty
-    - id: BoxFolderYellowEmpty
+    - id: BoxFolderBlue
+    - id: BoxFolderRed
+    - id: BoxFolderYellow
     - id: NewtonCradle
     - id: BoxEnvelope
     - id: BrbSign

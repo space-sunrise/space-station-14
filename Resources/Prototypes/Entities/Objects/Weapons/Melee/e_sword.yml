@@ -184,7 +184,7 @@
 
 - type: entity
   name: pen
-  parent: [BaseMeleeWeaponEnergy, SelectableLock]
+  parent: [BaseMeleeWeaponEnergy, VoiceLock]
   id: EnergyDagger
   suffix: E-Dagger
   description: 'A dark ink pen.'

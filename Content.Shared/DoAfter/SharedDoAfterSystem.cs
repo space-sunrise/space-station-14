@@ -29,7 +29,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<DoAfterComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<DoAfterComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
@@ -317,16 +316,16 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     /// <summary>
     ///     Cancels an active DoAfter.
     /// </summary>
-    public void Cancel(DoAfterId? id, DoAfterComponent? comp = null, bool force = false)
+    public void Cancel(DoAfterId? id, DoAfterComponent? comp = null)
     {
         if (id != null)
-            Cancel(id.Value.Uid, id.Value.Index, comp, force);
+            Cancel(id.Value.Uid, id.Value.Index, comp);
     }
 
     /// <summary>
     ///     Cancels an active DoAfter.
     /// </summary>
-    public void Cancel(EntityUid entity, ushort id, DoAfterComponent? comp = null, bool force = false)
+    public void Cancel(EntityUid entity, ushort id, DoAfterComponent? comp = null)
     {
         if (!Resolve(entity, ref comp, false))
             return;
@@ -337,13 +336,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return;
         }
 
-        InternalCancel(doAfter, comp, force: force);
+        InternalCancel(doAfter, comp);
         Dirty(entity, comp);
     }
 
-    private void InternalCancel(DoAfter doAfter, DoAfterComponent component, bool force = false)
+    private void InternalCancel(DoAfter doAfter, DoAfterComponent component)
     {
-        if (doAfter.Cancelled || (doAfter.Completed && !force))
+        if (doAfter.Cancelled || doAfter.Completed)
             return;
 
         // Caller is responsible for dirtying the component.

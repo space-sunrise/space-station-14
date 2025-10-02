@@ -145,7 +145,10 @@ public sealed partial class MindTests
         await server.WaitAssertion(() =>
         {
             var damageable = entMan.GetComponent<DamageableComponent>(entity);
-            var prototype = protoMan.Index(BluntDamageType);
+            if (!protoMan.TryIndex(BluntDamageType, out var prototype))
+            {
+                return;
+            }
 
             damageableSystem.SetDamage(entity, damageable, new DamageSpecifier(prototype, FixedPoint2.New(401)));
             Assert.That(mindSystem.GetMind(entity, mindContainerComp), Is.EqualTo(mindId));

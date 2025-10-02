@@ -25,6 +25,7 @@ namespace Content.Server.Administration.Logs;
 public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogManager
 {
     [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -71,6 +72,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     // CVars
     private bool _metricsEnabled;
+    private bool _enabled;
     private TimeSpan _queueSendDelay;
     private int _queueMax;
     private int _preRoundQueueMax;
@@ -85,6 +87,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
     // Per round
     private int _currentRoundId;
     private int _currentLogId;
+    private TimeSpan _currentRoundStartTime;
     private int NextLogId => Interlocked.Increment(ref _currentLogId);
     private GameRunLevel _runLevel = GameRunLevel.PreRoundLobby;
 
@@ -101,7 +104,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         _configuration.OnValueChanged(CVars.MetricsEnabled,
             value => _metricsEnabled = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsEnabled,
-            value => Enabled = value, true);
+            value => _enabled = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsQueueSendDelay,
             value => _queueSendDelay = TimeSpan.FromSeconds(value), true);
         _configuration.OnValueChanged(CCVars.AdminLogsQueueMax,
@@ -119,12 +122,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             QueueCapReached.Set(0);
             LogsSent.Set(0);
         }
-    }
-
-    public override string ConvertName(string name)
-    {
-        // JsonNamingPolicy is not whitelisted by the sandbox.
-        return NamingPolicy.ConvertName(name);
     }
 
     public async Task Shutdown()
@@ -264,6 +261,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     public void RoundStarting(int id)
     {
+        _currentRoundStartTime = _timing.CurTime;
         _currentRoundId = id;
         CacheNewRound();
     }
@@ -296,17 +294,8 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         }
     }
 
-    public override void Add(LogType type, [System.Runtime.CompilerServices.InterpolatedStringHandlerArgument("")] ref LogStringHandler handler)
+    private void Add(LogType type, LogImpact impact, string message, JsonDocument json, HashSet<Guid> players)
     {
-        Add(type, LogImpact.Medium, ref handler);
-    }
-
-    public override void Add(LogType type, LogImpact impact, [System.Runtime.CompilerServices.InterpolatedStringHandlerArgument("")] ref LogStringHandler handler)
-    {
-        var message = handler.ToStringAndClear();
-        if (!Enabled)
-            return;
-
         var preRound = _runLevel == GameRunLevel.PreRoundLobby;
         var count = preRound ? _preRoundLogQueue.Count : _logQueue.Count;
         if (count >= _dropThreshold)
@@ -314,10 +303,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             Interlocked.Increment(ref _logsDropped);
             return;
         }
-
-        var json = JsonSerializer.SerializeToDocument(handler.Values, _jsonOptions);
-        var id = NextLogId;
-        var players = GetPlayers(handler.Values, id);
 
         // PostgreSQL does not support storing null chars in text values.
         if (message.Contains('\0'))
@@ -328,85 +313,32 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
         var log = new AdminLog
         {
-            Id = id,
+            Id = NextLogId,
             RoundId = _currentRoundId,
             Type = type,
             Impact = impact,
             Date = DateTime.UtcNow,
+            CurTime = (_timing.CurTime - _currentRoundStartTime).Ticks,
             Message = message,
             Json = json,
-            Players = players,
+            Players = new List<AdminLogPlayer>(players.Count)
         };
 
-        DoAdminAlerts(players, message, impact);
-
-        if (preRound)
-        {
-            _preRoundLogQueue.Enqueue(log);
-        }
-        else
-        {
-            _logQueue.Enqueue(log);
-            CacheLog(log);
-        }
-    }
-
-    private List<AdminLogPlayer> GetPlayers(Dictionary<string, object?> values, int logId)
-    {
-        List<AdminLogPlayer> players = new();
-        foreach (var value in values.Values)
-        {
-            switch (value)
-            {
-                case SerializablePlayer player:
-                    AddPlayer(players, player.UserId, logId);
-                    continue;
-
-                case EntityStringRepresentation rep:
-                    if (rep.Session is {} session)
-                        AddPlayer(players, session.UserId.UserId, logId);
-                    continue;
-
-                case IAdminLogsPlayerValue playerValue:
-                    foreach (var player in playerValue.Players)
-                    {
-                        AddPlayer(players, player, logId);
-                    }
-
-                    break;
-            }
-        }
-
-        return players;
-    }
-
-    private void AddPlayer(List<AdminLogPlayer> players, Guid user, int logId)
-    {
-        // The majority of logs have a single player, or maybe two. Instead of allocating a List<AdminLogPlayer> and
-        // HashSet<Guid>, we just iterate over the list to check for duplicates.
-        foreach (var player in players)
-        {
-            if (player.PlayerUserId == user)
-                return;
-        }
-
-        players.Add(new AdminLogPlayer
-        {
-            LogId = logId,
-            PlayerUserId = user
-        });
-    }
-
-    private void DoAdminAlerts(List<AdminLogPlayer> players, string message, LogImpact impact)
-    {
         var adminLog = false;
+        var adminSys = _entityManager.SystemOrNull<AdminSystem>();
         var logMessage = message;
 
-        foreach (var player in players)
+        foreach (var id in players)
         {
-            var id = player.PlayerUserId;
+            var player = new AdminLogPlayer
+            {
+                LogId = log.Id,
+                PlayerUserId = id
+            };
 
-            if (EntityManager.TrySystem(out AdminSystem? adminSys))
+            log.Players.Add(player);
+
+            if (adminSys != null)
             {
                 var cachedInfo = adminSys.GetCachedPlayerInfo(new NetUserId(id));
                 if (cachedInfo != null && cachedInfo.Antag)
@@ -443,6 +375,35 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
         if (adminLog)
             _chat.SendAdminAlert(logMessage);
+
+        if (preRound)
+        {
+            _preRoundLogQueue.Enqueue(log);
+        }
+        else
+        {
+            _logQueue.Enqueue(log);
+            CacheLog(log);
+        }
+    }
+
+    public override void Add(LogType type, LogImpact impact, ref LogStringHandler handler)
+    {
+        if (!_enabled)
+        {
+            handler.ToStringAndClear();
+            return;
+        }
+
+        var (json, players) = ToJson(handler.Values);
+        var message = handler.ToStringAndClear();
+
+        Add(type, impact, message, json, players);
+    }
+
+    public override void Add(LogType type, ref LogStringHandler handler)
+    {
+        Add(type, LogImpact.Medium, ref handler);
     }
 
     public async Task<List<SharedAdminLog>> All(LogFilter? filter = null, Func<List<SharedAdminLog>>? listProvider = null)

@@ -12,7 +12,6 @@ namespace Content.Shared.Humanoid.Markings
         HeadTop,
         HeadSide,
         Snout,
-        SnoutCover,
         Chest,
         Arms,
         Legs,

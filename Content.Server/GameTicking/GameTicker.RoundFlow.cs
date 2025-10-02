@@ -766,6 +766,8 @@ namespace Content.Server.GameTicking
 
             _banManager.Restart();
 
+            _bugManager.Restart();
+
             _gameMapManager.ClearSelectedMap();
 
             // Clear up any game rules.

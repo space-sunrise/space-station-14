@@ -124,7 +124,7 @@ namespace Content.Client.HealthAnalyzer.UI
             AlertsContainer.Visible = showAlerts;
 
             if (showAlerts)
-                AlertsContainer.RemoveAllChildren();
+                AlertsContainer.DisposeAllChildren();
 
             if (msg.Unrevivable == true)
                 AlertsContainer.AddChild(new RichTextLabel

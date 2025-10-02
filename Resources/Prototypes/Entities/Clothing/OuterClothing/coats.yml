@@ -165,7 +165,7 @@
     modifiers:
       coefficients:
         Slash: 0.95
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:

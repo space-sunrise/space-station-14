@@ -81,11 +81,8 @@
   - type: ReactiveContainer
     solution: bucket
     container: item_slot
-  - type: Edible
-    edible: Drink
+  - type: Drink
     solution: bucket
-    destroyOnEmpty: false
-    utensil: Spoon
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3
@@ -361,11 +358,8 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
-    - type: Edible
-      edible: Drink
+    - type: Drink
       solution: bucket
-      destroyOnEmpty: false
-      utensil: Spoon
     - type: ContainerContainer
       containers:
         storagebase: !type:Container

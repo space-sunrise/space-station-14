@@ -138,6 +138,16 @@
     - type: GasCanister
       gasMixture:
         volume: 1500
+        moles: # List of gasses for easy reference
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -178,8 +188,8 @@
     gasMixture:
       volume: 1500
       moles:
-        Oxygen: 581.56 # oxygen 21%
-        Nitrogen: 2187.79 # nitrogen 79%
+      - 581.56 # oxygen 21%
+      - 2187.79 # nitrogen 79%
       temperature: 293.15
   - type: Destructible
     thresholds:
@@ -218,7 +228,7 @@
     gasMixture:
       volume: 1500
       moles:
-        Oxygen: 2769.36 # oxygen
+      - 2769.36 # oxygen
       temperature: 293.15
   - type: Destructible
     thresholds:
@@ -254,7 +264,7 @@
     gasMixture:
       volume: 1500
       moles:
-        Oxygen: 18710.71051 # oxygen
+        - 18710.71051 # oxygen
       temperature: 72
   - type: AccessReader
     access: [["Atmospherics"]]
@@ -272,7 +282,8 @@
       gasMixture:
         volume: 1500
         moles:
-          Nitrogen: 2769.36 # nitrogen
+          - 0 # oxygen
+          - 2769.36 # nitrogen
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -308,7 +319,8 @@
     gasMixture:
       volume: 1500
       moles:
-        Nitrogen: 18710.71051 # nitrogen
+        - 0 # oxygen
+        - 18710.71051 # nitrogen
       temperature: 72
   - type: AccessReader
     access: [["Atmospherics"]]
@@ -326,7 +338,9 @@
       gasMixture:
         volume: 1500
         moles:
-          CarbonDioxide: 2769.36 # CO2
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 2769.36 # CO2
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -364,7 +378,9 @@
     gasMixture:
       volume: 1500
       moles:
-        CarbonDioxide: 18710.71051 # CO2
+        - 0 # oxygen
+        - 0 # nitrogen
+        - 18710.71051 # CO2
       temperature: 72
   - type: AccessReader
     access: [["Atmospherics"]]
@@ -382,7 +398,10 @@
       gasMixture:
         volume: 1500
         moles:
-          Plasma: 2769.36 # plasma
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # carbon dioxide
+          - 2769.36 # plasma
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -423,7 +442,11 @@
       gasMixture:
         volume: 1500
         moles:
-          Tritium: 2769.36 # Tritium
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 2769.36 # Tritium
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -464,7 +487,12 @@
       gasMixture:
         volume: 1500
         moles:
-          WaterVapor: 2769.36 # Water vapor
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 2769.36 # Water vapor
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -503,7 +531,13 @@
       gasMixture:
         volume: 1500
         moles:
-          Ammonia: 2769.36 # Ammonia
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 #  Water vapor
+          - 2769.36 # Ammonia
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -544,7 +578,14 @@
       gasMixture:
         volume: 1500
         moles:
-          NitrousOxide: 2769.36 # N2O
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 0 # Plasma
+          - 0 # Tritium
+          - 0 #  Water vapor
+          - 0 # Ammonia
+          - 2769.36 # N2O
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -585,7 +626,15 @@
     gasMixture:
       volume: 1500
       moles:
-        Frezon: 2769.36 # Frezon
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Ammonia
+      - 0 # N2O
+      - 2769.36 # Frezon
       temperature: 293.15
   - type: Destructible
     thresholds:

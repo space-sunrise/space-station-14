@@ -30,9 +30,6 @@
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  - type: HideLayerClothing
-    slots:
-      - Tail
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -78,9 +75,6 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  - type: HideLayerClothing
-    slots:
-    - Tail
   # Sunrise-Start
   - type: Tag
     tags:
@@ -126,9 +120,6 @@
     - CorgiWearable
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
-  - type: HideLayerClothing
-    slots:
-    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -156,9 +147,6 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  - type: HideLayerClothing
-    slots:
-    - Tail
   # Sunrise-Start
   - type: Tag
     tags:
@@ -167,7 +155,7 @@
   # Sunrise-End
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseHighlyIllegalContraband]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -231,9 +219,6 @@
         whitelist:
           tags:
             - PowerCell
-  - type: HideLayerClothing
-    slots:
-    - Tail
   # Sunrise-Start
   - type: Tag
     tags:
@@ -350,9 +335,6 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-  - type: HideLayerClothing
-    slots:
-    - Tail
   # Sunrise-Start
   - type: Tag
     tags:

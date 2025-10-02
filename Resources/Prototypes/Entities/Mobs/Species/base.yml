@@ -40,7 +40,6 @@
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.Back" ] # SUNRISE
     - map: [ "neck" ]
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -376,7 +375,6 @@
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.Back" ] # SUNRISE
     - map: [ "neck" ]
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

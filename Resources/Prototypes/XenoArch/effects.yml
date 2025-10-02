@@ -273,11 +273,8 @@
       solution: beaker
     - type: SolutionTransfer
       canChangeTransferAmount: true
-    - type: Edible
-      edible: Drink
+    - type: Drink
       solution: beaker
-      destroyOnEmpty: false
-      utensil: None
 
 - type: entity
   id: XenoArtifactSpeedUp

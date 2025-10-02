@@ -243,8 +243,20 @@ public sealed class DownedEvent : EntityEventArgs, IInventoryRelayEvent
 }
 
 /// <summary>
-/// Raised on an inhand entity being held by an entity who is dropping items as part of an attempted state change to down.
-/// If cancelled the inhand entity will not be dropped.
+/// Raised after an entity falls down.
+/// </summary>
+public sealed class FellDownEvent : EntityEventArgs
+{
+    public EntityUid Uid { get; }
+
+    public FellDownEvent(EntityUid uid)
+    {
+        Uid = uid;
+    }
+}
+
+/// <summary>
+/// Raised on the entity being thrown due to the holder falling down.
 /// </summary>
 [ByRefEvent]
 public record struct FellDownThrowAttemptEvent(EntityUid Thrower, bool Cancelled = false);

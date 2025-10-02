@@ -82,7 +82,7 @@
         prob: 0.25
       - id: OxygenTankFilled
         prob: 0.05
-
+        
 - type: entity
   id: CratePermaEscapeGun
   parent: CrateGenericSteel
@@ -124,37 +124,40 @@
     contents:
       - id: RubberStampApproved
       - id: RubberStampDenied
-      - id: Paper
-        amount: 5
       - id: Pen
-        amount: 3
-      - id: BoxFolderBaseEmpty
+      - id: Pen
+      - id: Pen
+      - id: BoxFolderBase
         orGroup: folderA
-      - id: BoxFolderBlackEmpty
+      - id: BoxFolderBlack
         orGroup: folderA
-      - id: BoxFolderBlueEmpty
+      - id: BoxFolderBlue
         orGroup: folderA
-      - id: BoxFolderGreenEmpty
+      - id: BoxFolderGreen
         orGroup: folderA
-      - id: BoxFolderGreyEmpty
+      - id: BoxFolderGrey
         orGroup: folderA
-      - id: BoxFolderRedEmpty
+      - id: BoxFolderRed
         orGroup: folderA
-      - id: BoxFolderYellowEmpty
+      - id: BoxFolderWhite
         orGroup: folderA
-      - id: BoxFolderBaseEmpty
+      - id: BoxFolderYellow
+        orGroup: folderA
+      - id: BoxFolderBase
         orGroup: folderB
-      - id: BoxFolderBlackEmpty
+      - id: BoxFolderBlack
         orGroup: folderB
-      - id: BoxFolderBlueEmpty
+      - id: BoxFolderBlue
         orGroup: folderB
-      - id: BoxFolderGreenEmpty
+      - id: BoxFolderGreen
         orGroup: folderB
-      - id: BoxFolderGreyEmpty
+      - id: BoxFolderGrey
         orGroup: folderB
-      - id: BoxFolderRedEmpty
+      - id: BoxFolderRed
         orGroup: folderB
-      - id: BoxFolderYellowEmpty
+      - id: BoxFolderWhite
+        orGroup: folderB
+      - id: BoxFolderYellow
         orGroup: folderB
       - id: CrayonBox
         prob: 0.50

@@ -291,10 +291,14 @@
     - type: Tag
       tags:
       - PetWearable
-      - WhitelistChameleo
+      - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesBase, BaseHighlyIllegalContraband,BaseNightVisionDevice]
+  parent: [
+      ClothingEyesBase,
+      BaseMajorContraband,
+      BaseNightVisionDevice,
+    ] # Sunrise-Edit
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -321,7 +325,7 @@
   # Sunrise-End
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  parent: ClothingEyesBase
   id: ClothingEyesGlassesNoir
   name: noir-tech glasses
   description: A pair of glasses that simulate what the world looked like before the invention of color.

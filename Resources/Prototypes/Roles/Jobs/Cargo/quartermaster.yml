@@ -44,7 +44,7 @@
   equipment:
     id: QuartermasterPDA
     ears: ClothingHeadsetQM
-    belt: BoxFolderClipboardThreePapers
+#    belt: BoxFolderClipboard # Sunrise-Edit
     pocket1: AppraisalTool
   storage:
     back:

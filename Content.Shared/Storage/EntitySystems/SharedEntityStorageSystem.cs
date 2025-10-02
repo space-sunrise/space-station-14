@@ -305,13 +305,10 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
         _container.Remove(toRemove, component.Contents);
 
-        if (_container.IsEntityInContainer(container)
-            && _container.TryGetOuterContainer(container, Transform(container), out var outerContainer))
+        if (_container.IsEntityInContainer(container))
         {
-
-            var attemptEvent = new EntityStorageIntoContainerAttemptEvent(outerContainer);
-            RaiseLocalEvent(outerContainer.Owner, ref attemptEvent);
-            if (!attemptEvent.Cancelled)
+            if (_container.TryGetOuterContainer(container, Transform(container), out var outerContainer) &&
+                !HasComp<HandsComponent>(outerContainer.Owner))
             {
                 _container.Insert(toRemove, outerContainer);
                 return true;

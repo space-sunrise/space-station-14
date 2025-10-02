@@ -971,11 +971,8 @@
     - Honk
     - Carpetium
     - JuiceThatMakesYouWeh
-  - type: Edible
-    edible: Drink
+  - type: Drink
     solution: anomaly
-    destroyOnEmpty: false
-    utensil: Spoon
   - type: DrainableSolution
     solution: anomaly
   - type: DrawableSolution

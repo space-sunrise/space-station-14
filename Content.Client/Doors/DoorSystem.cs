@@ -31,7 +31,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.OpeningAnimation = new Animation
         {
-            Length = comp.OpeningAnimationTime,
+            Length = TimeSpan.FromSeconds(comp.OpeningAnimationTime),
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -47,7 +47,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.ClosingAnimation = new Animation
         {
-            Length = comp.ClosingAnimationTime,
+            Length = TimeSpan.FromSeconds(comp.ClosingAnimationTime),
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -63,7 +63,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.EmaggingAnimation = new Animation
         {
-            Length = comp.EmaggingAnimationTime,
+            Length = TimeSpan.FromSeconds(comp.EmaggingAnimationTime),
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -116,14 +116,14 @@ public sealed class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Opening:
-                if (entity.Comp.OpeningAnimationTime == TimeSpan.Zero)
+                if (entity.Comp.OpeningAnimationTime == 0.0)
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.AnimationKey);
 
                 return;
             case DoorState.Closing:
-                if (entity.Comp.ClosingAnimationTime == TimeSpan.Zero || entity.Comp.CurrentlyCrushing.Count != 0)
+                if (entity.Comp.ClosingAnimationTime == 0.0 || entity.Comp.CurrentlyCrushing.Count != 0)
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.ClosingAnimation, DoorComponent.AnimationKey);
@@ -142,7 +142,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
     private void UpdateSpriteLayers(Entity<SpriteComponent> sprite, string targetProto)
     {
-        if (!_prototypeManager.Resolve(targetProto, out var target))
+        if (!_prototypeManager.TryIndex(targetProto, out var target))
             return;
 
         if (!target.TryGetComponent(out SpriteComponent? targetSprite, _componentFactory))

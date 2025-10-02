@@ -153,13 +153,12 @@ namespace Content.Server.GameTicking
             var character = GetPlayerProfile(player);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId))
                 return;
 
             if (jobId != null)
             {
-                var jobs = new List<ProtoId<JobPrototype>> {jobId};
-                var ev = new IsRoleAllowedEvent(player, jobs, null);
+                var ev = new IsJobAllowedEvent(player, new ProtoId<JobPrototype>(jobId));
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;

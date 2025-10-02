@@ -87,7 +87,6 @@
         settings: short
       mindRoles:
       - MindRoleGhostRoleFamiliar
-      job: DeathSquad
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -793,7 +792,6 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
-      job: CBURN
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -831,7 +829,6 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: default
-      job: CentralCommandOfficial
     - type: Loadout
       prototypes: [ CentCommOfficialGear ] # Sunrise-Edit
       roleLoadout: [ RoleSurvivalStandard ]

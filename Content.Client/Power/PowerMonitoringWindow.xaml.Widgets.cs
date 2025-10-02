@@ -53,8 +53,8 @@ public sealed partial class PowerMonitoringWindow
             // Selection action
             windowEntry.Button.OnButtonUp += args =>
             {
-                windowEntry.SourcesContainer.RemoveAllChildren();
-                windowEntry.LoadsContainer.RemoveAllChildren();
+                windowEntry.SourcesContainer.DisposeAllChildren();
+                windowEntry.LoadsContainer.DisposeAllChildren();
                 ButtonAction(windowEntry, masterContainer);
             };
         }

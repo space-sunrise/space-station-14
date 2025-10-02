@@ -620,14 +620,15 @@ public abstract partial class SharedMindSystem : EntitySystem
     }
 
     /// <summary>
-    /// A string to represent the mind for logging.
+    ///     A string to represent the mind for logging
     /// </summary>
-    public MindStringRepresentation MindOwnerLoggingString(MindComponent mind)
+    public string MindOwnerLoggingString(MindComponent mind)
     {
-        return new MindStringRepresentation(
-            ToPrettyString(mind.OwnedEntity),
-            mind.UserId != null,
-            mind.UserId ?? mind.OriginalOwnerUserId);
+        if (mind.OwnedEntity != null)
+            return ToPrettyString(mind.OwnedEntity.Value);
+        if (mind.UserId != null)
+            return mind.UserId.Value.ToString();
+        return "(originally " + mind.OriginalOwnerUserId + ")";
     }
 
     public string? GetCharacterName(NetUserId userId)
@@ -744,16 +745,3 @@ public record struct GetCharactedDeadIcEvent(bool? Dead);
 /// <param name="Unrevivable"></param>
 [ByRefEvent]
 public record struct GetCharacterUnrevivableIcEvent(bool? Unrevivable);
-
-public sealed record MindStringRepresentation(EntityStringRepresentation? OwnedEntity, bool PlayerPresent, NetUserId? Player) : IAdminLogsPlayerValue
-{
-    public override string ToString()
-    {
-        var str = OwnedEntity?.ToString() ?? "mind without entity";
-        if (Player != null)
-            str += $" ({(PlayerPresent ? "" : "originally ")} {Player})";
-        return str;
-    }
-
-    IEnumerable<NetUserId> IAdminLogsPlayerValue.Players => Player == null ? [] : [Player.Value];
-}

@@ -5,10 +5,6 @@
   abstract: true
   description: A door, where will it lead?
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
   - type: Pierceable
     level: Metal
   - type: InteractionOutline

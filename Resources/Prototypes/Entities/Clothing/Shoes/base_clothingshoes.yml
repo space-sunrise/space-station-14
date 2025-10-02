@@ -27,7 +27,7 @@
     state: icon
   - type: Item
     size: Normal
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -72,7 +72,6 @@
           tags:
           - Knife
           - Sidearm
-        priority: 4
 
 - type: entity
   abstract: true

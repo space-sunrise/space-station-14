@@ -31,7 +31,7 @@
       # 31 minutes
       volume: 5
       moles:
-        Oxygen: 2.051379050 # oxygen
+        - 2.051379050 # oxygen
       temperature: 293.15
 
 - type: entity
@@ -45,7 +45,7 @@
       # 8 minutes
       volume: 1.32 #Sunrise=Edit
       moles:
-        Oxygen: 0.54156407 # oxygen #Sunrise=Edit
+        - 0.54156407 # oxygen #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -59,7 +59,8 @@
       # 8 minutes
       volume: 1.32 #Sunrise=Edit
       moles:
-        Nitrogen: 0.54156407 # nitrogen #Sunrise=Edit
+        - 0 # oxygen
+        - 0.54156407 # nitrogen #Sunrise=Edit
       temperature: 293.15
 
 
@@ -74,7 +75,7 @@
       # 18 minutes
       volume: 3 #Sunrise=Edit
       moles:
-        Oxygen: 0.615413715 # oxygen
+        - 1.23082743 # oxygen #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -88,7 +89,8 @@
       # 18 minutes
       volume: 3 #Sunrise=Edit
       moles:
-        Nitrogen: 0.615413715 # nitrogen
+        - 0 # oxygen
+        - 1.23082743 # nitrogen  #Sunrise=Edit
       temperature: 293.15
 
 
@@ -103,7 +105,7 @@
       # 30 minutes
       volume: 5 #Sunrise=Edit
       moles:
-        Oxygen: 1.025689525 # oxygen
+        - 2.051379050 # oxygen  #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -117,7 +119,8 @@
       # 30 minutes
       volume: 5 #Sunrise=Edit
       moles:
-        Nitrogen: 1.025689525 # nitrogen
+        - 0 # oxygen
+        - 2.051379050 # nitrogen  #Sunrise=Edit
       temperature: 293.15
 
 - type: entity
@@ -131,9 +134,15 @@
       # 4 minutes
       volume: 1.32 #sunrise-edit
       moles:
-        Oxygen: 0.270782035 # 95% oxygen
-        NitrousOxide: 0.014251686 # 5% N2O
-        # 0.285033721       total
+        - 0.270782035 # 95% oxygen
+        - 0 # nitrogen
+        - 0 # CO2
+        - 0 # plasma
+        - 0 # tritium
+        - 0 # water vapor
+        - 0 # ammonia
+        - 0.014251686 # 5% N2O
+        # 0.285033721       total 
       temperature: 293.15
 
 - type: entity
@@ -147,8 +156,8 @@
       # 6 minutes due to output pressure
       volume: 5
       moles:
-        Oxygen: 0.451303391 # 22% oxygen
-        Nitrogen: 1.600075659 # 78% nitrogen
+        - 0.451303391 # 22% oxygen
+        - 1.600075659 # 78% nitrogen
         # 2.051379050       total
       temperature: 293.15
 
@@ -163,7 +172,8 @@
       # 31 minutes
       volume: 5
       moles:
-        Nitrogen: 2.051379050 # nitrogen
+        - 0           # oxygen not included
+        - 2.051379050 # nitrogen
       temperature: 293.15
 
 - type: entity
@@ -183,8 +193,14 @@
       # only 22 minutes due to pressure
       volume: 5
       moles:
-        Oxygen: 1.435965335 # 70% oxygen
-        NitrousOxide: 0.615413715 # 30% N2O
+        - 1.435965335 # 70% oxygen
+        - 0 # nitrogen
+        - 0 # CO2
+        - 0 # plasma
+        - 0 # tritium
+        - 0 # water vapor
+        - 0 # ammonia
+        - 0.615413715 # 30% N2O
         # 2.051379050       total
       temperature: 293.15
 
@@ -200,5 +216,8 @@
       # 6 minutes of agony
       volume: 5
       moles:
-        Plasma: 2.051379050
+        - 0           # oxygen
+        - 0           # nitrogen
+        - 0           # CO2
+        - 2.051379050 # plasma
       temperature: 293.15

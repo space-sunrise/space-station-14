@@ -55,7 +55,7 @@ namespace Content.Client.Changelog
             // Changelog is not kept in memory so load it again.
             var changelogs = await _changelog.LoadChangelog();
 
-            Tabs.RemoveAllChildren();
+            Tabs.DisposeAllChildren();
 
             var i = 0;
             foreach (var changelog in changelogs)

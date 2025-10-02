@@ -184,9 +184,6 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: HideLayerClothing
-    slots:
-    - Tail
   - type: ArmorSparkEffect #starlight
 
 - type: entity
@@ -217,9 +214,6 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: HideLayerClothing
-    slots:
-    - Tail
   # Sunrise-Start
   - type: Tag
     tags:
