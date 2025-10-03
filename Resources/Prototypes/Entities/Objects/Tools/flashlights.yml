@@ -84,6 +84,7 @@
   - type: Tag
     tags:
       - SecBeltEquip
+      - FlashlightSeclite #Sunrise
   - type: ItemSlots
     slots:
       cell_slot:

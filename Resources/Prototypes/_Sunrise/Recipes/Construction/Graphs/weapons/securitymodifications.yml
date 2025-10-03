@@ -14,5 +14,40 @@
             - !type:AdminLog
               message: "Converted Glock22 to Auto Glock"
               impact: High
+        - to: flashlight
+          steps:
+            - tag: FlashlightSeclite
+              name: construction-graph-tag-seclite
+              doAfter: 8
+          completed:
+            - !type:AdminLog
+              message: "Mounted security flashlight to Glock-22"
+              impact: Low
     - node: auto
       entity: WeaponPistolG22Auto
+      edges:
+        - to: auto_flashlight
+          steps:
+            - tag: FlashlightSeclite
+              name: construction-graph-tag-seclite
+              doAfter: 8
+          completed:
+            - !type:AdminLog
+              message: "Mounted security flashlight to Auto Glock-22"
+              impact: Low
+
+    - node: flashlight
+      entity: WeaponPistolG22Flashlight
+      edges:
+        - to: auto_flashlight
+          steps:
+            - tag: ModularReceiverAuto
+              name: construction-graph-tag-ModularReceiverAuto
+              doAfter: 8
+          completed:
+            - !type:AdminLog
+              message: "Converted Glock22 Flashlight to Auto Glock Flashlight"
+              impact: High
+    - node: auto_flashlight
+      entity: WeaponPistolG22AutoFlashlight
+

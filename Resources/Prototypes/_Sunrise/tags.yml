@@ -148,6 +148,9 @@
 - type: Tag
   id: GorillaUpgradeKit
 
+- type: Tag
+  id: FlashlightSeclite
+
 # Magazines:
 - type: Tag
   id: MagazinePistolDPSubMachineGun

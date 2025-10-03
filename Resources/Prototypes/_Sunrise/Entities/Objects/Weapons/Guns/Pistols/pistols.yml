@@ -473,3 +473,111 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  parent: WeaponPistolG22
+  id: WeaponPistolG22Flashlight
+  name: Glock-22
+  suffix: Flashlight
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_flashlight/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_flashlight/tiny.rsi
+  - type: Tag
+    tags:
+    - Flashlight
+  - type: ItemTogglePointLight
+  - type: HandheldLight
+    needsCharge: false
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazinePistolHighCapacity
+          - MagazineGlock22
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: null
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot {}
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+  - type: Appearance
+
+- type: entity
+  name: Glock-22 Auto
+  parent: WeaponPistolG22Auto
+  id: WeaponPistolG22AutoFlashlight
+  suffix: Auto, Flashlight
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_flashlight/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_flashlight/tiny.rsi
+  - type: Tag
+    tags:
+    - Flashlight
+    - WeaponPistolG22
+    - Sidearm
+  - type: ItemTogglePointLight
+  - type: HandheldLight
+    needsCharge: false
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazinePistolHighCapacity
+          - MagazineGlock22
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: null
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot {}
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+  - type: Appearance
