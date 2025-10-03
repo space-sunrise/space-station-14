@@ -321,7 +321,7 @@ public sealed partial class SponsorTierEntry : Control
 
             var species = markingProto.SpeciesRestrictions is { Count: > 0 }
                 ? markingProto.SpeciesRestrictions[0]
-                : SharedHumanoidAppearanceSystem.DefaultSpecies;
+                : (string)SharedHumanoidAppearanceSystem.DefaultSpecies;
 
             if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesProto))
                 continue;

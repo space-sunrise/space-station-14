@@ -15,7 +15,9 @@
   description: Unwrap.
   components:
   - type: Item
-    size: Ginormous
+    size: Normal
+    shape:
+    - 0,0,0,6
   - type: Sprite
     sprite: _Sunrise/Objects/Storage/sheath-rapier-gift.rsi
     state: sheath-rapier-gift
@@ -35,13 +37,29 @@
       - id: ChemistryBottleEpinephrine
         amount: 2
       - id: ChemistryBottleOmnizine
-      - id: SyringeStimulants
-        amount: 1
+      - id: Stimpack
       - id: RadAutoInjector
       - id: AntiPoisonMedipen
-      - id: MedipenCombatInjector
+      - id: PunctAutoInjector
+      - id: PyraAutoInjector
       - id: Bloodpack
       - id: MedkitCombatFilled
+
+- type: entity
+  id: ClothingBeltMilitaryWebbingMedRaidFilled
+  parent: ClothingBeltMilitaryWebbingMedSunrise
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stimpack
+      - id: RadAutoInjector
+      - id: AntiPoisonMedipen
+      - id: CombatMedipen
+      - id: Bloodpack
+      - id: MedkitCombatFilled
+      - id: Tourniquet
+        amount: 2
 
 - type: entity
   id: ClothingAbductorBeltFilled

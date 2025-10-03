@@ -4,9 +4,12 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Pierceable
+    level: Metal
   - type: Transform
     anchored: true
   - type: Clickable
+  - type: GravityAffected
   - type: Physics
     bodyType: Static
   - type: Fixtures

@@ -17,7 +17,7 @@ namespace Content.Shared._Sunrise.Interrogator;
 public abstract partial class SharedInterrogatorSystem: EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;

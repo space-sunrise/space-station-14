@@ -7,6 +7,6 @@
   - type: ItemToggle
     onUse: false # above component does the toggling
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 2 #Sunrise-Edit
     useRate: 20
   - type: ToggleCellDraw

@@ -22,7 +22,6 @@
 - type: startingGear
   id: RoboticistGear
   equipment:
-    outerClothing: ClothingOuterCoatRobo
     id: RoboticistPDA
     gloves: ClothingHandsGlovesRobohands
     head: ClothingHeadHatWelding
@@ -31,3 +30,10 @@
     ears: ClothingHeadsetRobotics
     pocket1: Nanopaste
     pocket2: Nanopaste
+
+- type: chameleonOutfit
+  id: RoboticistChameleonOutfit
+  job: Roboticist
+  equipment:
+    mask: ClothingMaskGas
+    shoes: ClothingShoesColorBlack

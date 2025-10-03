@@ -1,5 +1,3 @@
-ent-BaseWeaponSMGSunrise = BaseWeaponSMGSunrise
-    .desc = A rooty tooty point and shooty.
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunMP38 = MP-38
@@ -20,5 +18,7 @@ ent-WeaponAJ100 = AJ-100
     .desc = High-speed SMG, equipped with a universal connector for other types of pistol magazines.
 ent-WeaponSIAR52 = SIAR-52 SMG
     .desc = A high rate of fire weapon, equipped with integrated silencer.
-ent-UplinkSubMachineGunUzi = Uzi
-    .desc = A compact and reliable submachine gun.
+ent-WeaponSubMachineGunDrozdMk2 = Drozd Mk2
+    .desc = An improved variant of the Drozd submachine gun developed by NanoTrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, making it effective for holding defensive positions or engaging targets at medium to long ranges. Equipped with an automatic magazine release for faster reloads. Uses .35 SMG magazines.
+ent-WeaponSubMachineGunDrozdMk2Empty = Drozd Mk2
+    .desc = { ent-WeaponSubMachineGunDrozdMk2.desc }

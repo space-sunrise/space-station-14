@@ -12,6 +12,7 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -53,6 +54,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
     [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
     [Dependency] protected readonly DamageableSystem Damageable = default!;
+    [Dependency] private   readonly SharedHandsSystem _hands = default!;
     [Dependency] private   readonly InventorySystem _inventory = default!;
     [Dependency] private   readonly MeleeSoundSystem _meleeSound = default!;
     [Dependency] protected readonly MobStateSystem MobState = default!;
@@ -127,27 +129,44 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
     }
 
-    private void OnMeleeSelected(EntityUid uid, MeleeWeaponComponent component, HandSelectedEvent args)
+    private void OnMeleeSelected(Entity<MeleeWeaponComponent> ent, ref HandSelectedEvent args)
     {
-        var attackRate = GetAttackRate(uid, args.User, component);
-        if (attackRate.Equals(0f))
-            return;
+        var uid = ent.Owner;
 
-        if (!component.ResetOnHandSelected)
+        var attackRate = GetAttackRate(uid, args.User, ent);
+        if (attackRate == 0f)
             return;
 
         if (Paused(uid))
             return;
 
-        // If someone swaps to this weapon then reset its cd.
-        var curTime = Timing.CurTime;
-        var minimum = curTime + TimeSpan.FromSeconds(1 / attackRate);
+        if (TryComp<EquipDelayComponent>(uid, out var delayComp))
+        {
+            var delay = delayComp.EquipDelayTime;
+            var curTime = Timing.CurTime;
 
-        if (minimum < component.NextAttack)
-            return;
+            var minimum = curTime + TimeSpan.FromSeconds(delay);
 
-        component.NextAttack = minimum;
-        DirtyField(uid, component, nameof(MeleeWeaponComponent.NextAttack));
+            if (minimum < ent.Comp.NextAttack)
+                return;
+
+            ent.Comp.NextAttack = minimum;
+
+            DirtyField(uid, ent.Comp, nameof(MeleeWeaponComponent.NextAttack));
+        }
+        else
+        {
+            var curTime = Timing.CurTime;
+
+            var minimum = curTime + TimeSpan.FromSeconds(0.3);
+
+            if (minimum < ent.Comp.NextAttack)
+                return;
+
+            ent.Comp.NextAttack = minimum;
+
+            DirtyField(uid, ent.Comp, nameof(MeleeWeaponComponent.NextAttack));
+        }
     }
 
     private void OnGetBonusMeleeDamage(EntityUid uid, BonusMeleeDamageComponent component, ref GetMeleeDamageEvent args)
@@ -290,15 +309,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
 
         // Use inhands entity if we got one.
-        if (EntityManager.TryGetComponent(entity, out HandsComponent? hands) &&
-            hands.ActiveHandEntity is { } held)
+        if (_hands.TryGetActiveItem(entity, out var held))
         {
             // Make sure the entity is a weapon AND it doesn't need
             // to be equipped to be used (E.g boxing gloves).
-            if (EntityManager.TryGetComponent(held, out melee) &&
+            if (TryComp(held, out melee) &&
                 !melee.MustBeEquippedToUse)
             {
-                weaponUid = held;
+                weaponUid = held.Value;
                 return true;
             }
 
@@ -469,7 +487,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // If I do not come back later to fix Light Attacks being Heavy Attacks you can throw me in the spider pit -Errant
         var damage = GetDamage(meleeUid, user, component) * GetHeavyDamageModifier(meleeUid, user, component);
         var target = GetEntity(ev.Target);
-        var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
 
         // For consistency with wide attacks stuff needs damageable.
         if (Deleted(target) ||
@@ -528,6 +545,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         RaiseLocalEvent(target.Value, attackedEvent);
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+var resistanceBypass = GetResistanceBypass(meleeUid, user, component); // Sunrise-edit ЛКМ пробивает броню
         var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
 
         if (damageResult is {Empty: false})
@@ -579,6 +597,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var distance = Math.Min(component.Range, direction.Length());
 
         var damage = GetDamage(meleeUid, user, component);
+        var resistanceBypass = false; // Sunrise-edit ПКМ не пробивает броню
         var entities = GetEntityList(ev.Entities);
 
         entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); //Sunrise-edit
@@ -690,10 +709,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(entity, attackedEvent);
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
 
-            // Sunrise start
-            var resistanceBypass = component.ResistanceBypassOnWide;
             var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
-            // Sunrise End
 
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {
@@ -869,9 +885,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         EntityUid? inTargetHand = null;
 
-        if (targetHandsComponent?.ActiveHand is { IsEmpty: false })
+        if (_hands.TryGetActiveItem(target.Value, out var activeHeldEntity))
         {
-            inTargetHand = targetHandsComponent.ActiveHand.HeldEntity!.Value;
+            inTargetHand = activeHeldEntity.Value;
         }
 
         var attemptEvent = new DisarmAttemptEvent(target.Value, user, inTargetHand);

@@ -10,20 +10,6 @@
     size: Normal
   - type: Sprite
     sprite: Objects/Storage/boxes.rsi
-  # Sunrise edit start
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Sunrise/Items/Handling/cardboardbox_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
-  - type: EmitSoundOnCollide
-    sound:
-      path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
-  # Sunrise edit end
 
 - type: entity
   parent: BaseAmmoProvider
@@ -135,27 +121,6 @@
       - state: mag-incend-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: incendiary
-
-#Sunrise-start
-- type: entity
-  name: ammunition box (.50 uranium slug)
-  parent: AmmoProviderShotgunShell
-  id: BoxShotgunUraniumSlug
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunUraniumSlug
-    - type: MagazineVisuals
-      magState: mag-uranium
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-uranium-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: uranium
-#Sunrise-start
 
 - type: entity
   name: ammunition box (.50 uranium)

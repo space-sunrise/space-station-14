@@ -64,6 +64,8 @@
   components:
     - type: Sprite
       state: "l_leg"
+    - type: MovementBodyPart
+      maxDensity: 155
 
 - type: entity
   id: RightLegSwine
@@ -72,6 +74,8 @@
   components:
     - type: Sprite
       state: "r_leg"
+    - type: MovementBodyPart
+      maxDensity: 155
 
 - type: entity
   id: LeftFootSwine

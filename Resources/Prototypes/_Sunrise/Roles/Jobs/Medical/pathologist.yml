@@ -27,3 +27,13 @@
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: Pathologist
+
+- type: chameleonOutfit
+  id: MedicalPathologistChameleonOutfit
+  job: MedicalPathologist
+  equipment:
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatBeretPatologoanatom
+    mask: ClothingMaskBreath
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatPatologoanatom

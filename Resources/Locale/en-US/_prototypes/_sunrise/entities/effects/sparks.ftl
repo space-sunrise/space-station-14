@@ -1,0 +1,2 @@
+ent-EffectMechSparks = { "" }
+    .desc = { "" }

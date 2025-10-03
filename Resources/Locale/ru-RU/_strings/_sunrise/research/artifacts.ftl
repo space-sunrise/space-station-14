@@ -1,6 +1,5 @@
 artifact-trigger-hint-health-analyzer = Сканирование
 artifact-effect-hint-data-deleted = Активируйте узел, чтобы получить информацию
-
 # Artifact Effect Descriptions
 artifact-effect-description-wandering = Заставляет артефакт случайно перемещаться по области
 artifact-effect-description-heal = Лечит ближайших живых существ
@@ -27,7 +26,6 @@ artifact-effect-description-swap = Меняет местами ближайши�
 artifact-effect-description-random-transformation = Случайно трансформирует ближайшие объекты
 artifact-effect-description-magnet-ultra = Создает мощные магнитные поля
 artifact-effect-description-shifted-ascii = Делает речь полностью бессвязной и непонятной
-
 # Additional Vanilla Effect Descriptions
 artifact-effect-description-solution-storage = Создает внутреннее хранилище для химикатов
 artifact-effect-description-speed-up = Увеличивает скорость передвижения при ношении

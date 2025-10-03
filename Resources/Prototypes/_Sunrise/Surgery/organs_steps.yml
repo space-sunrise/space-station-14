@@ -298,6 +298,36 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
 
+# eye implants
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLocateImplant
+  name: Locate Eye Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eye_implant_welding
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveEyeImplant
+  name: Remove Eye Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: EyeImplant
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
 # tongue
 - type: entity
   parent: SurgeryStepBase
@@ -792,6 +822,24 @@
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
 
+# eye implants
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertEyeImplant
+  name: Insert Eye Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: EyeImplant
+  - type: SurgeryStepOrganInsert
+    slot: eye_implant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eye_implant_welding
+
 # tongue
 
 - type: entity
@@ -983,6 +1031,23 @@
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
   - type: SurgeryClearProgress
+
+# - type: entity
+#   parent: SurgeryStepBase
+#   id: SurgeryStepRemoveEgg
+#   name: Remove Egg
+#   components:
+#   - type: SurgeryStep
+#     duration: 5
+#     tools:
+#     - type: Scalpel
+#     bodyRemove:
+#     - type: HasEggHolder
+#     - type: EggHolder
+#   - type: Sprite
+#     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+#     state: scalpel
+#   - type: SurgeryStepEmoteEffect
 
 # Cavity
 

@@ -1,6 +1,6 @@
 ent-NotekeeperCartridge = картридж Заметки
     .desc = Программа для хранения заметок
-ent-NanoTaskCartridge = картридж НаноЗадачи
+ent-NanoTaskCartridge = картридж NanoTask
     .desc = Программа, позволяющая вести список задач.
 ent-NewsReaderCartridge = картридж Новости
     .desc = Программа для чтения новостей
@@ -16,3 +16,5 @@ ent-MedTekCartridge = картридж МедТек
     .desc = Программа, предоставляющая инструменты для медицинской диагностики.
 ent-AstroNavCartridge = Картридж АстроНав
     .desc = Программа для навигации, предоставляющая GPS-координаты.
+ent-NavigatorCartridge = картридж навигатора
+    .desc = Программа для просмотра карты станции в целях навигации.

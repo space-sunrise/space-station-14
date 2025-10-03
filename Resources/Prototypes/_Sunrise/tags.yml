@@ -46,10 +46,31 @@
 - type: Tag
   id: CreepyLaugh
 
+- type: Tag
+  id: TrayScanner
+
+# Uplinks
+- type: Tag
+  id: NTUplink
+
+- type: Tag
+  id: ERTRed
+
+- type: Tag
+  id: ERTGamma
+
+- type: Tag
+  id: ERTEpsilon
+
+- type: Tag
+  id: CBURN
+
+- type: Tag
+  id: BlueShield
 # Catridges:
 
 - type: Tag
-  id: CartridgeRifleMachine
+  id: CartridgeHeavyRifleR
 
 - type: Tag
   id: FireThrowerBall
@@ -61,16 +82,22 @@
   id: PowerpackDL6902
 
 - type: Tag
-  id: CartridgeRail
-
-- type: Tag
-  id: CartridgeHeavyRifleNT
-
-- type: Tag
   id: MiniSyringe
 
 - type: Tag
   id: HandGrenadeAmmo
+
+- type: Tag
+  id: SpeedLoaderShotgun
+
+- type: Tag
+  id: ShellShotgunEmpty
+
+- type: Tag
+  id: Coin
+
+- type: Tag
+  id: ImprovisedAmmoBox
 
 # Weapons
 - type: Tag
@@ -85,7 +112,46 @@
 - type: Tag
   id: ModularReceiverAuto
 
+- type: Tag
+  id: UpgradeDrozd
+
+- type: Tag
+  id: UpgradeLecter
+
+- type: Tag
+  id: UpgradeWebVest
+
+- type: Tag
+  id: UpgradeKitPlate
+
+- type: Tag
+  id: UpgradeKitBullet
+
+- type: Tag
+  id: UpgradeKitBulletHeavy
+
+- type: Tag
+  id: UpgradeKitStab
+
+- type: Tag
+  id: UpgradeKitRiot
+
+- type: Tag
+  id: UpgradeKitHeat
+
+- type: Tag
+  id: UpgradeKitReflective
+
+- type: Tag
+  id: ArmorBasic
+
+- type: Tag
+  id: GorillaUpgradeKit
+
 # Magazines:
+- type: Tag
+  id: MagazinePistolDPSubMachineGun
+
 - type: Tag
   id: MagazineM28
 
@@ -132,7 +198,10 @@
   id: MagazineLightMachineGunMG60
 
 - type: Tag
-  id: MagazineVP70
+  id: MagazineMachineGunHeavyRifle # .308 calibler
+
+- type: Tag
+  id: MagazineVP78
 
 - type: Tag
   id: MagazineDeagle
@@ -406,6 +475,18 @@
 - type: Tag
   id: DockMining
 
+- type: Tag
+  id: DockSecurity
+
+- type: Tag
+  id: DockPersonal
+
+- type: Tag
+  id: Felinid
+
+- type: Tag
+  id: Resomi
+
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
 
@@ -453,9 +534,15 @@
   id: TopCovered
 
 ### INTERACTION TAGS ###
+# Fun
+- type: Tag
+  id: PlushieKalium
 
 - type: Tag
   id: SnapPop
+
+- type: Tag
+  id: Table
 
 - type: Tag
   id: Lily

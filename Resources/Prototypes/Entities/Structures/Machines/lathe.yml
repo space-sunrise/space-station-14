@@ -129,6 +129,8 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -140,7 +142,8 @@
     - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+    #- SecurityAmmoStatic
+    - SecurityStaticSunrise
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -218,7 +221,6 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
     # Sunrise-Start
     - PowerCages
     - CargoSuit
@@ -234,6 +236,9 @@
     - SecurityDynamicSunrise # Sunrise-Add
     - SecurityDynamicSunriseClothing # Sunrise-Add
     - SecurityDynamicSunriseMech # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -275,7 +280,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     - CircuitStaticSunrise # Sunrise-Add
     dynamicPacks:
     - EngineeringBoards
@@ -341,6 +345,9 @@
     - MechParts
     - MechEquipment
     - RoboticsDynamicSunrise # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
   - type: MaterialStorage
     whitelist:
       tags:
@@ -418,7 +425,7 @@
     staticPacks:
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    #- SecurityAmmoStatic
     - SecurityWeaponsStatic
     - SecurityStaticSunrise # Sunrise-Add
     dynamicPacks:
@@ -442,52 +449,6 @@
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
-
-  # Sunrise-Start
-- type: entity
-  id: CentcomTechFab
-  parent: BaseLatheLube
-  name: centcom techfab
-  suffix: ERT
-  description: Prints equipment for CentCom rapid response squads. "Cost-optimized model" has reduced fabrication speed and limited selection.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Machines/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: centcom
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: AmmoTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    materialUseMultiplier: 1
-    timeMultiplier: 1.75
-    staticPacks:
-    - SecurityAmmoStatic
-    - SecurityStaticSunrise
-    dynamicPacks:
-    - SecurityEquipment
-    - SecurityExplosives
-    - SecurityAmmo
-    - SecurityWeapons
-    - SecurityDynamicSunrise
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: OreSiloClient
-  # Sunrise-End
 
 - type: entity
   id: AmmoTechFab
@@ -514,7 +475,8 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+      #- SecurityAmmoStatic
+      - SecurityStaticSunrise # Sunrise-Add
     - type: MaterialStorage
       whitelist:
         tags:
@@ -558,6 +520,9 @@
     - Chemistry
     - SurgeryDynamicSunrise # Sunrise-Add
     - MedicalDynamicSunrise # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -587,6 +552,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - TowelsStatic
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
@@ -765,7 +731,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:

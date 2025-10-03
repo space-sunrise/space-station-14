@@ -12,7 +12,7 @@
     whitelist:
       tags:
         - ShellShotgun
-    capacity: 8
+    capacity: 12 # Sunrise-Edit
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
@@ -155,20 +155,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazineShotgunUraniumSlug
-  name: ammo drum (.50 Uranium)
-  parent: BaseMagazineShotgun
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgunUraniumSlug
   - type: Sprite
     layers:
     - state: uranium

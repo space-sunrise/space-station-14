@@ -151,8 +151,8 @@
       Welder:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 250
-        maxVol: 250
+          Quantity: 500 # Sunrise-Edit
+        maxVol: 500 # Sunrise-Edit
   - type: Tool
     speedModifier: 1.3
 
@@ -171,8 +171,8 @@
       Welder:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 1000
-        maxVol: 1000
+          Quantity: 500 # Sunrise-Edit
+        maxVol: 500 # Sunrise-Edit
   - type: PointLight
     enabled: false
     radius: 1.5
@@ -182,7 +182,7 @@
     generated:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 1
+        Quantity: 0.5 # Sunrise-Edit
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
 
@@ -216,8 +216,8 @@
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]
   id: RefuelingWelder
-  name: refuling welding tool
-  description: "An slow welder that can refuel itself over time."
+  name: refueling welding tool
+  description: "A slow welder that can refuel itself over time."
   components:
   - type: Tool
     speedModifier: 0.5

@@ -1,8 +1,17 @@
 - type: entity
   parent: BaseFlatpack
-  id: PrinterDocFlatpack
+  id: CopyMachineFlatpack
   name: document printer flatpack
   description: A flatpack used for constructing a document printer.
   components:
   - type: Flatpack
-    entity: PrinterDoc
+    entity: CopyMachineFilled
+
+- type: entity
+  parent: BaseFlatpack
+  id: ShuttleSecurityFlatpack
+  name: security shuttle computer flatpack
+  description: A flatpack used for constructing a document printer.
+  components:
+  - type: Flatpack
+    entity: ComputerShuttleSecurity

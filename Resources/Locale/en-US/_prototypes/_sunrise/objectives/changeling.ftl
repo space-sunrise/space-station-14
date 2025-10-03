@@ -1,7 +1,3 @@
-ent-BaseChangelingObjective = { ent-BaseObjective }
-    .desc = { ent-BaseObjective.desc }
-ent-ChangelingSurviveObjective = Survive
-    .desc = I must survive no matter what.
 ent-ChangelingKillRandomPersonObjective = { ent-BaseChangelingObjective }
     .desc = Do it however you like, just make sure they don't make it to centcomm.
 ent-ChangelingKillRandomAntagObjective = { ent-BaseChangelingObjective }

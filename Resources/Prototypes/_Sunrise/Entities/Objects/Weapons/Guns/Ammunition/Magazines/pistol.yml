@@ -8,11 +8,11 @@
     - MagazineP90
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol
+    proto: CartridgePistolSP
     whitelist:
       tags:
       - CartridgePistol
-    capacity: 30
+    capacity: 50
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -41,11 +41,11 @@
     - MagazineMP7
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol
+    proto: CartridgePistolFMJ
     whitelist:
       tags:
       - CartridgePistol
-    capacity: 32
+    capacity: 35
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -74,11 +74,11 @@
     - MagazineMP5
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol
+    proto: CartridgePistolSP
     whitelist:
       tags:
       - CartridgePistol
-    capacity: 32
+    capacity: 30
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -107,7 +107,7 @@
     - MagazinePPSH41
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol  # 57x28
+    proto: CartridgePistolSP  # 57x28
     whitelist:
       tags:
       - CartridgePistol  # 57x28
@@ -152,13 +152,6 @@
     capacity: 42
 
 - type: entity
-  parent: MagazineP90
-  id: MagazineP90Extended
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 50
-
-- type: entity
   id: MagazineGlock22
   name: Glock22 magazine
   parent: BaseItem
@@ -168,7 +161,7 @@
     - MagazineGlock22
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol  # 57x28
+    proto: CartridgePistolSP  # 57x28
     whitelist:
       tags:
       - CartridgePistol  # 57x28

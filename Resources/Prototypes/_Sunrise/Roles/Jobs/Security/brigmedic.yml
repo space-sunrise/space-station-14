@@ -35,8 +35,13 @@
     eyes: ClothingEyesHudMedSec
     head: ClothingHeadHatBeretSecurityMedic
     id: BrigmedicPDA
+    pocket1: HandheldBrigmedicCrewMonitor
     ears: ClothingHeadsetBrigmedic
     belt: ClothingBeltMedicalFilled
   storage:
     back:
     - Flash
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic

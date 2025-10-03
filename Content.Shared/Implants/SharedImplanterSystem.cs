@@ -57,7 +57,7 @@ public abstract class SharedImplanterSystem : EntitySystem
 
     private void OnEntInserted(EntityUid uid, ImplanterComponent component, EntInsertedIntoContainerMessage args)
     {
-        var implantData = EntityManager.GetComponent<MetaDataComponent>(args.Entity);
+        var implantData = Comp<MetaDataComponent>(args.Entity);
         component.ImplantData = (implantData.EntityName, implantData.EntityDescription);
         ChangeOnImplantVisualizer(uid, component); // Sunrise-Edit
         Dirty(uid, component); // Sunrise-Edit
@@ -69,6 +69,18 @@ public abstract class SharedImplanterSystem : EntitySystem
         component.ImplantData = ("", "");
         ChangeOnImplantVisualizer(uid, component);
         Dirty(uid, component);
+    }
+
+    private bool CanImplantOther(EntityUid user, EntityUid target, EntityUid implanter, ImplanterComponent component)
+    {
+        if (component.OnlySelfImplant && target != user)
+        {
+            var selfMessage = Loc.GetString("implanter-only-self-implant");
+            _popup.PopupEntity(selfMessage, implanter, user);
+            return false;
+        }
+
+        return true;
     }
     // Sunrise-End
 
@@ -130,7 +142,10 @@ public abstract class SharedImplanterSystem : EntitySystem
     //Set to draw mode if not implant only
     public void Implant(EntityUid user, EntityUid target, EntityUid implanter, ImplanterComponent component)
     {
-        if (!CanImplant(user, target, implanter, component, out var implant, out var implantComp))
+        if (!CanImplantOther(user, target, implanter, component)) // Sunrise-Edit
+            return;
+
+        if (!CanImplant(user, target, implanter, component, out var implant, out _))
             return;
 
         // Check if we are trying to implant a implant which is already implanted
@@ -149,7 +164,6 @@ public abstract class SharedImplanterSystem : EntitySystem
 
         if (component.ImplanterSlot.ContainerSlot != null)
             _container.Remove(implant.Value, component.ImplanterSlot.ContainerSlot);
-        implantComp.ImplantedEntity = target;
         implantContainer.OccludesLight = false;
         _container.Insert(implant.Value, implantContainer);
 
@@ -292,7 +306,6 @@ public abstract class SharedImplanterSystem : EntitySystem
     private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer, SubdermalImplantComponent implantComp)
     {
         _container.Remove(implant, implantContainer);
-        implantComp.ImplantedEntity = null;
         _container.Insert(implant, implanterContainer);
 
         var ev = new TransferDnaEvent { Donor = target, Recipient = implanter };

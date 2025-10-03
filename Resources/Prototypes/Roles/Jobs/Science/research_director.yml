@@ -27,7 +27,7 @@
   - ResearchConsoleAccess # Sunrise-Edit
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
+    implants: [ TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -39,7 +39,7 @@
   equipment:
     id: RnDPDA
     pocket1: HandheldRoboAnalyzer # Sunrise-Edit
-    pocket2: Nanopaste10 # Sunrise-Edit
+    pocket2: Nanopaste # Sunrise-Edit
     ears: ClothingHeadsetRD
   storage:
     back:
@@ -49,7 +49,7 @@
 - type: chameleonOutfit
   id: ResearchDirectorChameleonOutfit
   job: ResearchDirector
-  hasMindShield: true
+  hasMindShield: false #Sunrise-Edit
   equipment:
     head: ClothingHeadHatBeretRND
     eyes: ClothingEyesGlasses

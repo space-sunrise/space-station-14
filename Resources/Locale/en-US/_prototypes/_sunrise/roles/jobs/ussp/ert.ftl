@@ -61,7 +61,6 @@ ent-RandomHumanoidSpawnerERTMedicalGamma = ERT medic
 ent-RandomHumanoidSpawnerERTMedicalGammaLock = { ent-RandomHumanoidSpawnerERTMedicalGamma }
     .suffix = ERTRole, Gamma, Lock
     .desc = { ent-RandomHumanoidSpawnerERTLeaderRed.desc }
-
 # Veteran USSP ERT Spawners
 ent-RandomHumanoidSpawnerERTLeaderAmberVeteran = ERT leader
     .suffix = ERTRole, Amber, Uplink, Veteran

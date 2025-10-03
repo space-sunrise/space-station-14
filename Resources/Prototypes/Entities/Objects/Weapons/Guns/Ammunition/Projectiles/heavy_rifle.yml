@@ -1,6 +1,6 @@
 - type: entity
   id: BulletHeavyRifle
-  name: bullet (.20 rifle)
+  name: bullet (.10 rifle)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
@@ -18,4 +18,4 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12 #Sunrise-Edit
+        Piercing: 5

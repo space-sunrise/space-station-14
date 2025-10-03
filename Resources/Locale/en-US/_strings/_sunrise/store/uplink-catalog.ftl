@@ -17,6 +17,8 @@ uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled with uranium slugs. Compatible with the Bulldog.
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
+uplink-pistol-magnum-magazine-name = Магазин для Deagle
+uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -29,7 +31,7 @@ uplink-mechpaint-mauler-desc = Содержит краску для Маулер
 uplink-syndie-nvd-name = ПНВ Синдиката
 uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
 uplink-syndie-thermal-name = оптический термальный Визор
-uplink-syndie-thermal-desc = Компактный термальный сканер. Его визор оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников НаноТрейзен.
+uplink-syndie-thermal-desc = Компактный термальный сканер. Его визор оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников NanoTrasen.
 uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
 uplink-hardsuit-syndie-commander-name = скафандр Командира Синдиката
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
@@ -47,6 +49,8 @@ uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
 uplink-clothing-backpack-syndie-siar52-desc = Включает в себя пулемёт SIAR-52 и два магазина патрон.
 uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
+uplink-deagle-name = пистолет «Desert Eagle»
+uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
 
 ## Cyborgs
 
@@ -69,6 +73,14 @@ uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кисл
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
 uplink-clothing-glasses-nvg-name = NVG Sun Glasses
 uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorlax Security. Uses modular parts to improve visibility in low light conditions. Warning: The glasses will not protect your eyes from direct flashes.
+uplink-anomaly-auto-injector-name = Anomaly Auto-Injector
+uplink-anomaly-auto-injector-desc = A single-use self-injecting injector that infects a humanoid with a random anomaly within a minute of injection.
+uplink-anomaly-auto-injector-popup-nothing-to-inject = Nothing to inject!
+uplink-anomaly-auto-injector-popup-not-applicable = Not applicable!
+uplink-anomaly-auto-injector-popup-pending = Skin resists injection!
+uplink-anomaly-auto-injector-popup-infected = Skin resists injection!
+uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Injector
+uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
 
 ## Implats
 uplink-smoke-screen-implanter-name = Smoke Screen Implanter

@@ -43,8 +43,3 @@
 - type: currency
   id: DebugDollar
   displayName: store-currency-display-debugdollar
-
-- type: currency
-  id: EvolutionPoint
-  displayName: store-currency-display-evolutionpoints
-  canWithdraw: false

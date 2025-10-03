@@ -273,8 +273,11 @@
       solution: beaker
     - type: SolutionTransfer
       canChangeTransferAmount: true
-    - type: Drink
+    - type: Edible
+      edible: Drink
       solution: beaker
+      destroyOnEmpty: false
+      utensil: None
 
 - type: entity
   id: XenoArtifactSpeedUp
@@ -337,7 +340,7 @@
         tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum
-      proto: CartridgeMagnum
+      proto: CartridgeMagnumSP
       capacity: 7
       chambers: [ True, True, True, True, True, True, True ]
       ammoSlots: [ null, null, null, null, null, null, null ]

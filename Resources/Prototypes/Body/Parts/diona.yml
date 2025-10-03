@@ -62,6 +62,10 @@
   components:
   - type: Sprite
     state: "l_leg"
+  # Sunrise-start
+  - type: MovementBodyPart
+    maxDensity: 155
+  # Sunrise-end
 
 - type: entity
   id: RightLegDiona
@@ -73,6 +77,10 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
+  # Sunrise-start
+  - type: MovementBodyPart
+    maxDensity: 155
+  # Sunrise-end
 
 - type: entity
   id: LeftFootDiona

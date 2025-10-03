@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Economy;
+using System.Linq;
 using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
@@ -6,6 +7,7 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Materials;
+using Content.Shared.Tag;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
@@ -31,6 +33,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -80,10 +83,12 @@ public abstract class SharedFlatpackSystem : EntitySystem
         var buildPos = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
         var coords = _map.ToCenterCoordinates(grid, buildPos);
 
-        // TODO FLATPAK
-        // Make this logic smarter. This should eventually allow for shit like building microwaves on tables and such.
-        // Also: make it ignore ghosts
-        if (_entityLookup.AnyEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static))
+        // TODO FLATPACK
+        // make it ignore ghosts
+        // Starlight-start
+        if (_entityLookup.GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
+            .Any(entity => entity != uid && (!_tag.HasTag(entity, "Table") || !ent.Comp.AllowUnpackOnTables)))
+        // Starlight-end
         {
             // this popup is on the server because the predicts on the intersection is crazy
             if (_net.IsServer)
