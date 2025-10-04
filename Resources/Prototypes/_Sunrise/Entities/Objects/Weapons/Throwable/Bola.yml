@@ -1,5 +1,5 @@
 - type: entity
-  name: bola-security
+  name: bolasec
   parent: [BaseItem, BaseSecurityContraband]
   id: BolaSecurity
   description: Linked together with some spare cuffs and metal.
