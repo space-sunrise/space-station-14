@@ -1,0 +1,40 @@
+- type: entity
+  name: adv hydroponics tray
+  parent: hydroponicsTray
+  id: indhydroponicsTray
+  description: An interstellar-grade space farmplot allowing for rapid growth and selective breeding of crops. Just... keep in mind the space weeds.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      soil:
+        maxVol: 500
+  - type: SolutionRegeneration
+    solution: soil
+    generated:
+      reagents:
+      - ReagentId: EarthBlessing
+        Quantity: 0.1
+  - type: Sprite
+    layers:
+      - sprite: _Sunrise/Entities/Structures/Hydroponics/containers.rsi
+        state: hydrotray3
+      - sprite: Structures/Hydroponics/overlays.rsi
+        state: lowhealth3
+        map: [ "health_alert" ]
+        visible: false
+      - sprite: Structures/Hydroponics/overlays.rsi
+        state: lowwater3
+        map: [ "water_alert" ]
+        visible: false
+      - sprite: Structures/Hydroponics/overlays.rsi
+        state: lownutri3
+        map: [ "nutri_alert" ]
+        visible: false
+      - sprite: Structures/Hydroponics/overlays.rsi
+        state: alert3
+        map: [ "undefined_alert" ]
+        visible: false
+      - sprite: Structures/Hydroponics/overlays.rsi
+        state: harvest3
+        map: [ "harvest_alert" ]
+        visible: false

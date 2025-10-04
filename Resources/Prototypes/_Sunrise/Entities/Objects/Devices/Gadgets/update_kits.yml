@@ -1,0 +1,14 @@
+- type: entity
+  name: живая земля
+  parent: BaseItem
+  id: HydroponicsTrayGayaUpgrade
+  description: Экспериментальный набор для улучшения гидропонного лотка.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/livearth.rsi
+    state: livearth
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - HydroponicsTrayGayaUpgrade

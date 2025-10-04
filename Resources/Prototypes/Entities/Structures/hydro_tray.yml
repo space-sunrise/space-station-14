@@ -103,6 +103,9 @@
     - NoPaint
   - type: TTS
     voice: Portal2FactCore # Sunrise-TTS
+  - type: Construction
+    graph: UpgradeHydroponicsTray
+    node: start
   # Sunrise-end
 
 - type: entity

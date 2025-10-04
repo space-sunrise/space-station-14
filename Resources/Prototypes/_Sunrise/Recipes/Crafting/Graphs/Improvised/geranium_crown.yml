@@ -9,17 +9,17 @@
       - tag: Geranium
         name: construction-graph-tag-geranium
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
       - tag: Geranium
         name: construction-graph-tag-geranium
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
       - tag: Geranium
         name: construction-graph-tag-geranium
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
         doAfter: 6
   - node: GeraniumCrown
@@ -63,17 +63,17 @@
       - tag: Sunflower
         name: construction-graph-tag-sunflower
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/sunflower.rsi
           state: produce
       - tag: Sunflower
         name: construction-graph-tag-sunflower
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/sunflower.rsi
           state: produce
       - tag: Sunflower
         name: construction-graph-tag-sunflower
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/sunflower.rsi
           state: produce
         doAfter: 6
   - node: SunflowerCrown
@@ -90,17 +90,17 @@
       - tag: Lily
         name: construction-graph-tag-lily
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/lily.rsi
           state: produce
       - tag: Lily
         name: construction-graph-tag-lily
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/lily.rsi
           state: produce
       - tag: Lily
         name: construction-graph-tag-lily
         icon:
-          sprite: _Sunrise/Objects/Specific/Hydroponics/lily.rsi
+          sprite: _BotanySupermancy/Objects/Specific/Hydroponics/lily.rsi
           state: produce
         doAfter: 5
   - node: lilywreath

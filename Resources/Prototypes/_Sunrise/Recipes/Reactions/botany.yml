@@ -1,0 +1,12 @@
+- type: reaction
+  id: CreateLivearth
+  impact: Low
+  quantized: true
+  reactants:
+    Water:
+      amount: 10
+    EarthBlood:
+      amount: 10
+  effects:
+  - !type:CreateEntityReactionEffect
+    entity: HydroponicsTrayGayaUpgrade
