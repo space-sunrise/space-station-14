@@ -20,7 +20,7 @@ namespace Content.Client.Dice.UI
             if (int.TryParse(AmountStartLineEdit.Text, out var startAmount) &&
                 int.TryParse(AmountEndLineEdit.Text, out var endAmount))
             {
-                if (startAmount < 0 || endAmount > 1000000 || endAmount < startAmount)
+                if (startAmount < 1 || endAmount > 1000000 || endAmount < startAmount)
                 {
                     ApplyButton.Disabled = true;
                 }

@@ -1,10 +1,8 @@
 using Content.Shared.Interaction;
 using Robust.Shared.Random;
 using Content.Shared._Sunrise.Fun;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Hands;
-using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Interactions;
 using Content.Shared.Verbs;
 using Content.Shared.Ghost;
 
@@ -14,8 +12,6 @@ namespace Content.Server._Sunrise.Fun
     {
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedTransformSystem _xform = default!;
-        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
         public override void Initialize()

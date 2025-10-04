@@ -139,7 +139,7 @@
   parent: BaseDice
   id: hyperDice
   name: Hyper Dice
-  description: A die with twelve sides. There's an air of neglect about it.
+  description: A customizable multidimensional singular hypercube for numerical generation. The latest technology in board games. One cube to rule them all.
   components:
   - type: Dice
     IsNotStandardDice: true

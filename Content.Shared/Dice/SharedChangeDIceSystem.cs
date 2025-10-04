@@ -22,7 +22,7 @@ public sealed class ChangeDiceVerbSystem : EntitySystem
     {
         var (uid, comp) = ent;
 
-        if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+        if (!args.CanAccess || !args.CanInteract || args.Hands == null || !ent.Comp.IsNotStandardDice)
             return;
 
         var @event = args;
