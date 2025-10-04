@@ -16,3 +16,5 @@ health-examinable-silicon-Heat-50 = [color=orange]{ CAPITALIZE(POSS-ADJ($target)
 health-examinable-silicon-Heat-75 = [color=orange]{ CAPITALIZE(POSS-ADJ($target)) } chassis is partially melted![/color]
 
 health-examinable-silicon-Shock-50 = [color=lightgoldenrodyellow]{ CAPITALIZE(POSS-ADJ($target)) } circuits seem partially fried![/color]
+
+health-examinable-silicon-Mangleness-15 = [color=gray]{ CAPITALIZE(POSS-ADJ($target)) } chassis is covered with traces of field repairs.[/color]

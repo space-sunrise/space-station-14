@@ -1,0 +1,27 @@
+- type: entity
+  parent: BaseAction
+  id: PsychologistAlcoholBlock
+  name: Alcohol coding
+  description: "Encode a person by convincing them of the evils of alcohol. Cooldown: 60 Seconds"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    priority: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: bolt_door
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 60
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+    event: !type:AlcoholBlockEvent

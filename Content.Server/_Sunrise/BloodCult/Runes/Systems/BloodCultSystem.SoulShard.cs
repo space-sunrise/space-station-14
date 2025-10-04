@@ -7,6 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Roles.Components;
 
 namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {

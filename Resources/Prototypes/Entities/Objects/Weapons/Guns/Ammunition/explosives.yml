@@ -73,12 +73,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeBlast
-  name: blast grenade
+  id: GrenadeBlastContact # Sunrise-edit
+  name: contact blast grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlast
+    proto: BulletGrenadeBlastContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -90,12 +90,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeFlash
-  name: flash grenade
+  id: GrenadeFlashContact # Sunrise-edit
+  name: contact flash grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFlash
+    proto: BulletGrenadeFlashContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -107,12 +107,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeFrag
-  name: frag grenade
+  id: GrenadeFragContact # Sunrise-edit
+  name: contact frag grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFrag
+    proto: BulletGrenadeFragContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -124,7 +124,7 @@
     suffix: false
 
 - type: entity
-  parent: BaseGrenade
+  parent: BaseBulletTrigger
   id: GrenadeCleanade
   name: cleanade grenade round
   components:
@@ -141,12 +141,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeEMP
-  name: EMP rocket
+  id: GrenadeEMPContact # Sunrise-edit
+  name: contact EMP grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeEMP
+    proto: BulletGrenadeEMPContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:

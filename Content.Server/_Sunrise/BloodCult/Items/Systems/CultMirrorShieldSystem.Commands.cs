@@ -59,9 +59,10 @@ public sealed partial class CultMirrorShieldSystem
 
         foreach (var hand in _hands.EnumerateHands(entity))
         {
-            if (hand.HeldEntity is null)
+            var heldEntity = _hands.GetHeldItem(entity, hand);
+            if (heldEntity is null)
                 continue;
-            BreakShield(hand.HeldEntity.Value);
+            BreakShield(heldEntity.Value);
         }
     }
 }

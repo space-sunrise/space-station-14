@@ -56,6 +56,8 @@ public abstract class SharedNinjaSuitSystem : EntitySystem
         var (uid, comp) = ent;
         _actionContainer.EnsureAction(uid, ref comp.RecallKatanaActionEntity, comp.RecallKatanaAction);
         _actionContainer.EnsureAction(uid, ref comp.EmpActionEntity, comp.EmpAction);
+        _actionContainer.EnsureAction(uid, ref comp.SmokeGrenadeActionEntity, comp.SmokeGrenadeAction);
+        _actionContainer.EnsureAction(uid, ref comp.FlashbangGrenadeActionEntity, comp.FlashbangGrenadeAction);
         Dirty(uid, comp);
     }
 
@@ -70,6 +72,8 @@ public abstract class SharedNinjaSuitSystem : EntitySystem
         var comp = ent.Comp;
         args.AddAction(ref comp.RecallKatanaActionEntity, comp.RecallKatanaAction);
         args.AddAction(ref comp.EmpActionEntity, comp.EmpAction);
+        args.AddAction(ref comp.SmokeGrenadeActionEntity, comp.SmokeGrenadeAction);
+        args.AddAction(ref comp.FlashbangGrenadeActionEntity, comp.FlashbangGrenadeAction);
     }
 
     /// <summary>

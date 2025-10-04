@@ -7566,38 +7566,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.42709637,13.539894
       parent: 1
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
-        projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
   - uid: 1248
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.42709637,13.539894
       parent: 1
-    - type: EnergyGunFireModes
-      currentFireMode:
-        state: disabler
-        name: energy-gun-disable
-        shotType: Hitscan
-        fireCost: 50
-        hitscanProto: BulletDisabler
-        projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
-      fireCost: 50
-      proto: BulletDisabler
 - proto: WeaponShotgunTrenchgun4034
   entities:
   - uid: 1249

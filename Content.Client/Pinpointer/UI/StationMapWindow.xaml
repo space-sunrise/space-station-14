@@ -13,8 +13,8 @@
             </PanelContainer>
         </controls:StripeBack>
 
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Top">
-            <ui:NavMapControl Name="NavMapScreen"/>
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Stretch">
+            <ui:NavMapControl Name="NavMapScreen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalExpand="True" VerticalExpand="True"/>
 
             <BoxContainer Orientation="Vertical" SetWidth="200">
                 <!-- Search bar -->

@@ -1,4 +1,4 @@
-﻿interaction-icon-name-face-cheeks-pull-icon = Потискать за щёчки
+interaction-icon-name-face-cheeks-pull-icon = Потискать за щёчки
 interaction-icon-name-face-pats-icon = Погладить по лицу
 interaction-icon-name-face-lick-doggy-style-icon = Облизать лицо по-собачьи
 interaction-icon-name-friendly-pat-shoulder-icon = Похлопать по плечу

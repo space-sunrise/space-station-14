@@ -10,6 +10,7 @@ ignore_list:
   - 'X'
   - 'Y'
   - 'EI NATH'
+  - 'CBURN'
   - '>MFW'
   - 'Hello world!'
   - 'green'
@@ -89,7 +90,7 @@ ignore_list:
   - 'STG 44'
   - 'ACP-14'
   - 'Glock-22'
-  - 'GL-79'
+  - 'GL-70'
   - 'M-41'
   - 'DEAD-BEEF'
   - 'UwU'
@@ -101,6 +102,7 @@ ignore_list:
   - 'Sun-kist'
   - 'Robust Softdrinks'
   - 'C-20r'
+  - 'C-40r'
   - 'Donut Corp.'
   - 'LV426'
   - 'Kept ya waiting, huh?'
@@ -163,6 +165,8 @@ ignore_list:
   - '{$linked ->'
   - <username>
   - <index>
+  - 'MHelp'
+  - 'Net-ERR*?*%'
 
 ignore_files:
   - 'italian.ftl'

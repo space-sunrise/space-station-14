@@ -20,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using System.Text;
+using Content.Shared.Roles.Components;
 
 namespace Content.Server.GameTicking.Rules;
 

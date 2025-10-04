@@ -1,0 +1,17 @@
+ent-RifleHeavyBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-RifleHeavyMagazineEmpty = Коробка с магазином (.308 любой)
+    .suffix = пустой
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineSP = Коробка с магазином (.308 SP)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineHP = Коробка с магазином (.308 HP)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineFMJ = Коробка с магазином (.308 FMJ)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineIncendiary = Коробка с магазином (.308 зажигательный)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineUranium = Коробка с магазином (.308 урановый)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineAP = Коробка с магазином (.308 AP)
+    .desc = { ent-RifleHeavyBase.desc }

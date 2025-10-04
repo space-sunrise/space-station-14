@@ -83,15 +83,6 @@
     count: 10
 
 - type: entity
-  parent: CableHVStack10
-  id: CableHVStackLingering10
-  suffix: Lingering, 10
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
-
-- type: entity
   parent: CableHVStack
   id: CableHVStack1
   suffix: 1
@@ -148,15 +139,6 @@
     count: 10
 
 - type: entity
-  parent: CableMVStack10
-  id: CableMVStackLingering10
-  suffix: Lingering, 10
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
-
-- type: entity
   parent: CableMVStack
   id: CableMVStack1
   suffix: 1
@@ -201,17 +183,17 @@
         - ReagentId: Copper
           Quantity: 2
   - type: Healing
-    delay: 1
+    delay: 0.6  #Sunrise-edit
     damageContainers:
     - Synth #Sunrise-edit
     - Silicon
     - Mech #Sunrise-edit
     damage:
       types:
-        Heat: -5
-        Shock: -5
-        Caustic: -5
-        Mangleness: 1.5 #Sunrise-edit
+        Heat: -6
+        Shock: -6
+        Caustic: -6
+        Mangleness: 1 #Sunrise-edit
 
 - type: entity
   parent: CableApcStack
@@ -222,15 +204,6 @@
       state: coillv-10
     - type: Stack
       count: 10
-
-- type: entity
-  parent: CableApcStack10
-  id: CableApcStackLingering10
-  suffix: Lingering, 10
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
 
 - type: entity
   parent: CableApcStack

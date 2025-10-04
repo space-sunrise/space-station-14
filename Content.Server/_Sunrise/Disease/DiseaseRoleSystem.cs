@@ -1,5 +1,6 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Robust.Shared.Random;
 using Content.Shared._Sunrise.Disease;
 using Content.Server.Store.Systems;
@@ -9,6 +10,12 @@ using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
+using Robust.Shared.Timing;
+using Content.Shared.Zombies;
+using Robust.Server.Audio;
+using Robust.Server.Player;
+using System.Text;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Sunrise.Disease;
 
@@ -19,7 +26,11 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
+    private static readonly string[] _bloodReagents = { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" };
 
     [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
 
@@ -31,93 +42,42 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseShopActionEvent>(OnShop);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddSymptomEvent>(OnAddSymptom);
         SubscribeLocalEvent<InfectEvent>(OnInfects);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseInfoEvent>(OnDiseaseInfo);
 
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddBaseChanceEvent>(OnBaseChance);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddCoughChanceEvent>(OnCoughChance);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddLethalEvent>(OnLethal);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
+
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseZombieEvent>(OnZombie);
+
+        // Subscribe to store purchase events
+        SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStorePurchase);
+
+        // Subscribe to death events to reward disease points
+        SubscribeLocalEvent<MobStateChangedEvent>(OnInfectedDeath);
     }
 
-    private void OnLethal(EntityUid uid, DiseaseRoleComponent component, DiseaseAddLethalEvent args)
-    {
-        if (!TryRemoveMoney(uid, 15))
-        {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
-            return;
-        }
-        component.Lethal += 1;
-        if (component.Lethal >= 5)
-        {
-            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
-        }
-    }
 
-    private void OnShield(EntityUid uid, DiseaseRoleComponent component, DiseaseAddShieldEvent args)
-    {
-        if (!TryRemoveMoney(uid, 15))
-        {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
-            return;
-        }
-        component.Shield += 1;
-        if (component.Shield >= 6)
-        {
-            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
-        }
-    }
-
-    private void OnBaseChance(EntityUid uid, DiseaseRoleComponent component, DiseaseAddBaseChanceEvent args)
-    {
-        if (!TryRemoveMoney(uid, 20))
-        {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
-            return;
-        }
-        if (component.BaseInfectChance < 0.9f)
-            component.BaseInfectChance += 0.1f;
-        else
-        {
-            component.BaseInfectChance = 1;
-            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
-        }
-    }
-
-    private void OnCoughChance(EntityUid uid, DiseaseRoleComponent component, DiseaseAddCoughChanceEvent args)
-    {
-        if (!TryRemoveMoney(uid, 15))
-        {
-            _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), uid, uid);
-            return;
-        }
-        if (component.CoughInfectChance < 0.85f)
-            component.CoughInfectChance += 0.05f;
-        else
-        {
-            component.CoughInfectChance = 1;
-            _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
-        }
-    }
 
 
     private void OnInfects(InfectEvent args)
     {
         if (TryComp<DiseaseRoleComponent>(args.Performer, out var component))
         {
-            if (component.FreeInfects > 0)
+            if (TryRemoveMoney(args.Performer, component.InfectCost))
+                OnInfect(args, 1.0f);
+            else
             {
-                component.FreeInfects--;
-                OnInfect(args, 1);
+                _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), args.Performer, PopupType.Medium);
+                return;
             }
-            else if (TryRemoveMoney(args.Performer, component.InfectCost))
-            {
-                OnInfect(args);
-            }
+
+            // Play Initial Infected antag audio (only for the disease player)
+            _audio.PlayGlobal("/Audio/Ambience/Antag/zombie_start.ogg", args.Performer);
         }
     }
 
     private void OnMapInit(EntityUid uid, DiseaseRoleComponent component, MapInitEvent args)
     {
         _actionsSystem.AddAction(uid, DiseaseShopId, uid);
+        // Add starting actions with charges
         foreach (var (id, charges) in component.Actions)
         {
             EntityUid? actionId = null;
@@ -127,8 +87,8 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                 _sharedCharges.SetCharges((actionId.Value, limitCharges), charges);
             }
         }
-        component.NewBloodReagent = _random.Pick(new List<string>() { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" });
-        component.Symptoms.Add("Headache", (1, 4));
+        component.NewBloodReagent = _random.Pick(_bloodReagents);
+        component.Symptoms.Add("Headache", new SymptomData(1, 4));
     }
 
     private void OnShop(EntityUid uid, DiseaseRoleComponent component, DiseaseShopActionEvent args)
@@ -136,6 +96,127 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         if (!TryComp<StoreComponent>(uid, out var store))
             return;
         _store.ToggleUi(uid, uid, store);
+    }
+
+    private void OnDiseaseInfo(EntityUid uid, DiseaseRoleComponent component, DiseaseInfoEvent args)
+    {
+        // Create a simple formatted display using StringBuilder for better performance
+        var infoText = new StringBuilder();
+        infoText.AppendLine(Loc.GetString("disease-info-header"));
+        infoText.AppendLine();
+
+        // Core Statistics Section
+        infoText.AppendLine(Loc.GetString("disease-info-core-statistics") + ":");
+        infoText.AppendLine("├─ " + Loc.GetString("disease-info-base-chance") + ": " + (component.BaseInfectChance * 100).ToString("F0") + "%");
+        infoText.AppendLine("├─ " + Loc.GetString("disease-info-cough-sneeze-chance") + ": " + (component.CoughSneezeInfectChance * 100).ToString("F0") + "%");
+        infoText.AppendLine("├─ " + Loc.GetString("disease-info-lethal") + ": " + component.Lethal);
+        infoText.AppendLine("└─ " + Loc.GetString("disease-info-shield") + ": " + component.Shield);
+        infoText.AppendLine();
+
+        // Infection Statistics Section
+        infoText.AppendLine(Loc.GetString("disease-info-infection-statistics") + ":");
+        infoText.AppendLine("├─ " + Loc.GetString("disease-info-infected-count") + ": " + component.Infected.Count);
+        infoText.Append("└─ " + Loc.GetString("disease-info-total-infected") + ": " + component.SickOfAllTime);
+
+        _popup.PopupEntity(infoText.ToString(), uid, PopupType.Large);
+    }
+
+
+
+    private void OnStorePurchase(ref StoreBuyFinishedEvent args)
+    {
+        // The store owner (disease antagonist) is the one who gets the upgrades
+        var storeOwner = args.StoreUid;
+
+        if (!TryComp<DiseaseRoleComponent>(storeOwner, out var diseaseComp))
+            return;
+
+        // Handle different purchase types
+        switch (args.PurchasedItem.ID)
+        {
+            case "InfectCharge":
+                // Find the Infect action and check current charges
+                if (TryComp<ActionsComponent>(storeOwner, out var actionsComp))
+                {
+                    foreach (var actionUid in actionsComp.Actions)
+                    {
+                        // Check if this action is the Infect action by looking for EntityTargetActionComponent
+                        if (HasComp<EntityTargetActionComponent>(actionUid) &&
+                            HasComp<LimitedChargesComponent>(actionUid))
+                        {
+                            var chargesComp = Comp<LimitedChargesComponent>(actionUid);
+                            var currentCharges = _sharedCharges.GetCurrentCharges((actionUid, chargesComp));
+
+                            // Check if already at max charges (3)
+                            if (currentCharges >= 3)
+                            {
+                                // Refund the purchase since they can't use more charges
+                                AddMoney(storeOwner, 10);
+                                _popup.PopupEntity(Loc.GetString("disease-infect-charge-max-reached", ("maxCharges", 3)), storeOwner, PopupType.Medium);
+                            }
+                            else
+                            {
+                                // Add 1 charge
+                                _sharedCharges.AddCharges((actionUid, chargesComp), 1);
+                                // Show success message
+                                _popup.PopupEntity(Loc.GetString("disease-infect-charge-purchased"), storeOwner, PopupType.Medium);
+                            }
+                            break;
+                        }
+                    }
+                }
+                break;
+
+            case "BaseChance":
+                if (diseaseComp.BaseInfectChance < 0.9f)
+                {
+                    diseaseComp.BaseInfectChance += 0.1f;
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-purchased"), storeOwner, PopupType.Medium);
+                }
+                else
+                {
+                    diseaseComp.BaseInfectChance = 1;
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-max-reached"), storeOwner, PopupType.Medium);
+                }
+                break;
+
+            case "InfectChance":
+                if (diseaseComp.CoughSneezeInfectChance < 0.85f)
+                {
+                    diseaseComp.CoughSneezeInfectChance += 0.05f;
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-purchased"), storeOwner, PopupType.Medium);
+                }
+                else
+                {
+                    diseaseComp.CoughSneezeInfectChance = 1;
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-max-reached"), storeOwner, PopupType.Medium);
+                }
+                break;
+
+            case "Shield":
+                if (diseaseComp.Shield < 6)
+                {
+                    diseaseComp.Shield += 1;
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-purchased"), storeOwner, PopupType.Medium);
+                }
+                else
+                {
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-max-reached"), storeOwner, PopupType.Medium);
+                }
+                break;
+
+            case "Lethal":
+                if (diseaseComp.Lethal < 5)
+                {
+                    diseaseComp.Lethal += 1;
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-purchased"), storeOwner, PopupType.Medium);
+                }
+                else
+                {
+                    _popup.PopupEntity(Loc.GetString("disease-upgrade-max-reached"), storeOwner, PopupType.Medium);
+                }
+                break;
+        }
     }
 
     void AddMoney(EntityUid uid, FixedPoint2 value)
@@ -181,23 +262,66 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (!component.Symptoms.ContainsKey(args.Symptom))
         {
-            component.Symptoms.Add(args.Symptom, (args.MinLevel, args.MaxLevel));
+            component.Symptoms.Add(args.Symptom, new SymptomData(args.MinLevel, args.MaxLevel));
         }
         _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
     }
 
-    //private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
-    //{
-    //    var inf = component.Infected.ToArray();
-    //    foreach(EntityUid infected in inf)
-    //    {
-    //        if (_random.Prob(0.8f)) {
-    //            RemComp<SickComponent>(infected);
-    //            component.Infected.Remove(infected);
-    //            EnsureComp<ZombifyOnDeathComponent>(infected);
-    //            EnsureComp<PendingZombieComponent>(infected);
-    //        }
-    //    }
-    //}
+    private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
+    {
+        var infected = component.Infected.ToArray();
+        var convertedCount = 0;
 
+        for (int i = 0; i < infected.Length; i++)
+        {
+            var target = infected[i];
+            if (target.IsValid() && !Deleted(target))
+            {
+                // Remove sick component and add zombie components
+                RemComp<SickComponent>(target);
+                component.Infected.Remove(target);
+
+                // Add zombie components
+                EnsureComp<ZombifyOnDeathComponent>(target);
+                EnsureComp<PendingZombieComponent>(target);
+                convertedCount++;
+            }
+        }
+
+        // Show success message with count
+        if (convertedCount > 0)
+        {
+            _popup.PopupEntity(Loc.GetString("disease-zombie-success", ("count", convertedCount)), uid, PopupType.Medium);
+        }
+
+        // Remove the zombie action after use
+        _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
+    }
+
+    private void OnInfectedDeath(MobStateChangedEvent args)
+    {
+        // Only trigger when the entity actually dies (not when they're revived)
+        if (args.NewMobState != MobState.Dead || args.OldMobState == MobState.Dead)
+            return;
+
+        // Safety check - ensure the entity is still valid
+        if (Deleted(args.Target))
+            return;
+
+        // Reward all other disease antagonists when any infected dies
+        var diseaseQuery = EntityQueryEnumerator<DiseaseRoleComponent>();
+        while (diseaseQuery.MoveNext(out var diseaseUid, out var diseaseComp))
+        {
+            if (diseaseUid == args.Target) // Don't reward the dying one
+                continue;
+
+            // Safety check - ensure the target entity is still valid
+            if (Deleted(diseaseUid))
+                continue;
+
+            // Award reward
+            AddMoney(diseaseUid, 10);
+            _popup.PopupEntity(Loc.GetString("disease-death-reward", ("points", 10)), diseaseUid, PopupType.Medium);
+        }
+    }
 }

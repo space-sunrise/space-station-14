@@ -14,12 +14,10 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Parallax;
 using Content.Server.Pinpointer;
-using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
-using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.AlwaysPoweredMap;
@@ -31,6 +29,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.GameTicking;
@@ -41,6 +40,7 @@ using Content.Shared.Parallax;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
+using Content.Shared.Shuttles.Systems;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -61,7 +61,7 @@ using Content.Shared.Parallax.Biomes;
 
 namespace Content.Server.Shuttles.Systems;
 
-public sealed partial class EmergencyShuttleSystem : EntitySystem
+public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSystem
 {
     /*
      * Handles the escape shuttle + CentCom.
@@ -70,7 +70,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _logger = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
@@ -79,11 +78,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly CommunicationsConsoleSystem _commsConsole = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly DockingSystem _dock = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
@@ -104,14 +103,15 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
     private bool _emergencyShuttleEnabled;
 
-    [ValidatePrototypeId<TagPrototype>]
-    private const string DockTag = "DockEmergency";
+    private static readonly ProtoId<TagPrototype> DockTag = "DockEmergency";
 
     public override void Initialize()
     {
-        _emergencyShuttleEnabled = _configManager.GetCVar(CCVars.EmergencyShuttleEnabled);
+        base.Initialize();
+
+        _emergencyShuttleEnabled = ConfigManager.GetCVar(CCVars.EmergencyShuttleEnabled);
         // Don't immediately invoke as roundstart will just handle it.
-        Subs.CVar(_configManager, CCVars.EmergencyShuttleEnabled, SetEmergencyShuttleEnabled);
+        Subs.CVar(ConfigManager, CCVars.EmergencyShuttleEnabled, SetEmergencyShuttleEnabled);
 
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
@@ -197,7 +197,9 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        UpdateEmergencyConsole(frameTime);
+        // Don't handle any of this logic if in lobby
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby)
+            UpdateEmergencyConsole(frameTime);
     }
 
     /// <summary>
@@ -220,7 +222,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
-        var targetGrid = _station.GetLargestGrid(Comp<StationDataComponent>(station.Value));
+        var targetGrid = _station.GetLargestGrid(station.Value);
         if (targetGrid == null)
             return;
 
@@ -270,7 +272,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     /// </summary>
     private void OnEmergencyFTLComplete(EntityUid uid, EmergencyShuttleComponent component, ref FTLCompletedEvent args)
     {
-        var countdownTime = TimeSpan.FromSeconds(_configManager.GetCVar(CCVars.RoundRestartTime));
+        var countdownTime = TimeSpan.FromSeconds(ConfigManager.GetCVar(CCVars.RoundRestartTime));
         var shuttle = args.Entity;
         if (TryComp<DeviceNetworkComponent>(shuttle, out var net))
         {
@@ -314,8 +316,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return null;
         }
 
-        var targetGrid = _station.GetLargestGrid(Comp<StationDataComponent>(stationUid));
-        var announcementSound = new SoundPathSpecifier("/Audio/Misc/notice1.ogg");
+        var targetGrid = _station.GetLargestGrid(stationUid);
 
         // Sunrise-start
         DockTime = _timing.CurTime;
@@ -488,7 +489,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
-        _consoleAccumulator = _configManager.GetCVar(CCVars.EmergencyShuttleDockTime);
+        _consoleAccumulator = ConfigManager.GetCVar(CCVars.EmergencyShuttleDockTime);
         EmergencyShuttleArrived = true;
 
         var query = AllEntityQuery<StationEmergencyShuttleComponent>();
@@ -507,9 +508,9 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         var worstResult = dockResults.Max(x => x.ResultType);
         var multiplier = worstResult switch
         {
-            ShuttleDockResultType.OtherDock => _configManager.GetCVar(
+            ShuttleDockResultType.OtherDock => ConfigManager.GetCVar(
                 CCVars.EmergencyShuttleDockTimeMultiplierOtherDock),
-            ShuttleDockResultType.NoDock => _configManager.GetCVar(
+            ShuttleDockResultType.NoDock => ConfigManager.GetCVar(
                 CCVars.EmergencyShuttleDockTimeMultiplierNoDock),
             // GoodLuck doesn't get a multiplier.
             // Quite frankly at that point the round is probably so fucked that you'd rather it be over ASAP.

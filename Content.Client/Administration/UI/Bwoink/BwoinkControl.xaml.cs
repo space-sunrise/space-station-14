@@ -203,6 +203,14 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 uiController.PopOut();
             };
+
+            // Sunrise-Start
+            AdminWho.OnPressed += _ =>
+            {
+                var ctrl = _ui.GetUIController<AdminWhoUIController>();
+                ctrl.Toggle();
+            };
+            // Sunrise-End
         }
 
         public void OnBwoink(NetUserId channel)

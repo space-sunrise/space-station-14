@@ -498,3 +498,49 @@
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
   # SUNRISE EDIT
+
+#чёрная свадебная фата SUNRISE
+- type: entity
+  parent: [ClothingHeadBase, BaseFoldable]
+  id: ClothingHeadBlackVeil
+  name: Black veil
+  description: Elegant veil.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/blackveil.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/blackveil.rsi
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up
+
+#белая свадебная фата SUNRISE
+- type: entity
+  parent: [ClothingHeadBase, BaseFoldable]
+  id: ClothingHeadWhiteVeil
+  name: White veil
+  description: Elegant veil.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/whiteveil.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/whiteveil.rsi
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up

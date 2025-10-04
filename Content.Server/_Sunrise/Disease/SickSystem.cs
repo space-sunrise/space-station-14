@@ -24,6 +24,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Server.Medical;
 using Content.Server.Traits.Assorted;
+using Content.Shared.Body.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Item;
@@ -100,7 +101,7 @@ public sealed class SickSystem : SharedSickSystem
             }
         }
 
-        if (!string.IsNullOrEmpty(component.BeforeInfectedBloodReagent) && 
+        if (!string.IsNullOrEmpty(component.BeforeInfectedBloodReagent) &&
             TryComp<BloodstreamComponent>(uid, out var bloodstream))
         {
             _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
@@ -128,7 +129,7 @@ public sealed class SickSystem : SharedSickSystem
 
                     RaiseNetworkEvent(new ClientInfectEvent(GetNetEntity(uid), GetNetEntity(component.owner)));
                     diseaseComp.SickOfAllTime++;
-                    AddMoney(uid, 5);
+                    AddMoney(component.owner, 5);
 
                     component.Inited = true;
                 }
@@ -152,31 +153,28 @@ public sealed class SickSystem : SharedSickSystem
         }
     }
 
-    void AddMoney(EntityUid uid, FixedPoint2 value)
+    void AddMoney(EntityUid diseaseUid, FixedPoint2 value)
     {
-        if (TryComp<SickComponent>(uid, out var component))
+        if (TryComp<DiseaseRoleComponent>(diseaseUid, out var diseaseComp))
         {
-            if (TryComp<DiseaseRoleComponent>(component.owner, out var diseaseComp))
+            if (TryComp<StoreComponent>(diseaseUid, out var store))
             {
-                if (TryComp<StoreComponent>(component.owner, out var store))
+                bool f = _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
                 {
-                    bool f = _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-                    {
-                        {diseaseComp.CurrencyPrototype, value}
-                    }, component.owner);
-                    _store.UpdateUserInterface(component.owner, component.owner, store);
-                }
+                    {diseaseComp.CurrencyPrototype, value}
+                }, diseaseUid);
+                _store.UpdateUserInterface(diseaseUid, diseaseUid, store);
             }
         }
     }
 
     private void UpdateInfection(EntityUid uid, SickComponent component, EntityUid disease, DiseaseRoleComponent diseaseComponent)
     {
-        foreach ((var key, (var min, var max)) in diseaseComponent.Symptoms)
+        foreach ((var key, var symptomData) in diseaseComponent.Symptoms)
         {
             if (!component.Symptoms.Contains(key))
             {
-                if (component.Stady >= min && component.Stady <= max)
+                if (component.Stady >= symptomData.MinLevel && component.Stady <= symptomData.MaxLevel)
                 {
                     component.Symptoms.Add(key);
                     EnsureComp<AutoEmoteComponent>(uid);
@@ -245,13 +243,13 @@ public sealed class SickSystem : SharedSickSystem
                             _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
                         }
 
-                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 0.7f))
+                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.0f))
                         {
-                            if (_robustRandom.Prob(disease.CoughInfectChance))
+                            if (_robustRandom.Prob(disease.CoughSneezeInfectChance))
                             {
                                 if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
-                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                                    OnInfected(entity, component.owner, disease.CoughSneezeInfectChance);
                                 }
                             }
                         }
@@ -263,13 +261,13 @@ public sealed class SickSystem : SharedSickSystem
                 {
                     if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
                     {
-                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.2f))
+                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.5f))
                         {
-                            if (_robustRandom.Prob(disease.CoughInfectChance))
+                            if (_robustRandom.Prob(disease.CoughSneezeInfectChance))
                             {
                                 if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
-                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                                    OnInfected(entity, component.owner, disease.CoughSneezeInfectChance);
                                 }
                             }
                         }
@@ -285,7 +283,7 @@ public sealed class SickSystem : SharedSickSystem
             case "Insult":
                 if (TryComp<DiseaseRoleComponent>(component.owner, out var dis))
                 {
-                    _stun.TryParalyze(uid, TimeSpan.FromSeconds(5), false);
+                    _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5));
                     if (_prototypeManager.TryIndex<DamageTypePrototype>("Shock", out var damagePrototype))
                     {
                         _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.35f * dis.Lethal), true, origin: uid);

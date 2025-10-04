@@ -865,3 +865,11 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
     state: hair_baird-and-bangs
+
+- type: marking
+  id: Hairmalet-alternative
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+    state: maletalternative

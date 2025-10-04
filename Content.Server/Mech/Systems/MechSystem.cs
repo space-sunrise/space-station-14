@@ -273,9 +273,10 @@ public sealed partial class MechSystem : SharedMechSystem
                 return;
             }
 
-        if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
-            foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
-                _hands.DoDrop(args.Args.User, hand, true, handsComponent);
+        foreach (var hand in _hands.EnumerateHands(args.Args.User))
+        {
+            _hands.DoDrop(args.Args.User, hand);
+        }
 
         _factionSystem.Up(args.Args.User, uid);
         TryInsert(uid, args.Args.User, component);
@@ -309,6 +310,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (args.DamageDelta != null && component.PilotSlot.ContainedEntity != null && args.DamageIncreased)
         {
             var damageToPlayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
+            damageToPlayer.DamageDict.Remove("Mangleness");//Sunrise-Edit
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damageToPlayer);
         }
     }

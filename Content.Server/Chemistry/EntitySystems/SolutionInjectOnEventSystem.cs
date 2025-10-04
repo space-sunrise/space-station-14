@@ -1,8 +1,8 @@
-using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Server.Weapons.Ranged.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
@@ -36,15 +36,9 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         SubscribeLocalEvent<SolutionInjectOnEmbedComponent, EmbedEvent>(HandleEmbed);
         SubscribeLocalEvent<MeleeChemicalInjectorComponent, MeleeHitEvent>(HandleMeleeHit);
         SubscribeLocalEvent<SolutionInjectWhileEmbeddedComponent, InjectOverTimeEvent>(OnInjectOverTime);
-        SubscribeLocalEvent<SolutionInjectOnProjectileHitComponent, HitscanAmmoShotEvent>(HandleHitscanHit);
     }
 
     private void HandleProjectileHit(Entity<SolutionInjectOnProjectileHitComponent> entity, ref ProjectileHitEvent args)
-    {
-        DoInjection((entity.Owner, entity.Comp), args.Target, args.Shooter);
-    }
-
-    private void HandleHitscanHit(Entity<SolutionInjectOnProjectileHitComponent> entity, ref HitscanAmmoShotEvent args)
     {
         DoInjection((entity.Owner, entity.Comp), args.Target, args.Shooter);
     }
@@ -156,7 +150,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // Take our portion of the adjusted solution for this target
             var individualInjection = solutionToInject.SplitSolution(volumePerBloodstream);
             // Inject our portion into the target's bloodstream
-            if (_bloodstream.TryAddToChemicals(targetBloodstream.Owner, individualInjection, targetBloodstream.Comp))
+            if (_bloodstream.TryAddToChemicals(targetBloodstream.AsNullable(), individualInjection))
                 anySuccess = true;
         }
 

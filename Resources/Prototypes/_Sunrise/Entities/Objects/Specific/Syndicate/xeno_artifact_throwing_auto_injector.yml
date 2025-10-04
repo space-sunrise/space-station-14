@@ -1,0 +1,19 @@
+- type: entity
+  id: XenoArtifactThrowingAutoInjector
+  parent: [BaseItem, BaseSyndicateContraband]
+  name: artifact throwing auto-injector
+  description: A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Specific/Syndicate/xeno_artifact_throwing_auto_injector.rsi
+      layers:
+        - state: closed
+          map: ["enum.XenoArtifactThrowingAutoInjectorVisualLayers.Base"]
+    - type: XenoArtifactThrowingAutoInjector
+    - type: EmbeddableProjectile
+      embedOnThrow: true
+      minimumSpeed: 2
+      removalTime: 1
+      deleteOnRemove: false
+    - type: Item
+      size: Tiny

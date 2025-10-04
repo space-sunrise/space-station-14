@@ -1,54 +1,47 @@
 - type: entity
-  id: CrateArmoryM16A4
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: M16A4 crate
-  description: Contains three M16A4 assault rifle. Requires Armory access to open.
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponRifleM16A4
-        amount: 3
-
-- type: entity
   id: CrateArmoryShotgunTrenchgun4034Sawn
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: Trenchgun4034 crate
-  description: Contains three Trenchgun4034 with three Bandolier. Requires Armory access to open.
+  description: Contains two Trenchgun4034 with two Bandolier and four buckshot box. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
     - id: WeaponShotgunTrenchgun4034
-      amount: 3
+      amount: 2
     - id: ClothingBeltBandolier
-      amount: 3
+      amount: 2
+    - id: BoxLethalshot
+      amount: 4
 
 - type: entity
-  id: CrateArmoryWeaponXM1014
+  id: CrateArmoryCombatShotgun
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: Combat Shotgun crate
-  description: Contains three XM1014 with three Bandolier. Requires Armory access to open.
+  description: Contains two Combat Shotgun with two Bandolier and four buckshot box. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
-    - id: WeaponXM1014
-      amount: 3
+    - id: WeaponShotgunCombat
+      amount: 2
     - id: ClothingBeltBandolier
-      amount: 3
+      amount: 2
+    - id: BoxLethalshot
+      amount: 4
 
 - type: entity
   id: CrateArmoryShotgunAmmo
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: Shotgun Ammo crate
-  description: Contains four Box Shotgun ammo. Requires Armory access to open.
+  description: Contains varios Box Shotgun ammo. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
     - id: BoxLethalshot
-      amount: 1
+      amount: 4
     - id: BoxBeanbag
       amount: 2
     - id: BoxShotgunSlug
-      amount: 1
+      amount: 2
 
 - type: entity
   id: CrateArmoryAKMS
@@ -60,8 +53,14 @@
     contents:
       - id: WeaponRifleAKM
         amount: 2
-      - id: MagazineLightRifle
-        amount: 4
+      - id: MagazineLightRifleSP
+        amount: 1
+      - id: MagazineLightRifleHP
+        amount: 1
+      - id: MagazineLightRifleFMJ
+        amount: 1
+      - id: MagazineLightRifleAP
+        amount: 1
 
 - type: entity
   id: CrateArmoryMP5
@@ -77,47 +76,25 @@
         amount: 2
 
 - type: entity
-  id: CrateArmoryMP7
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: MP7 crate
-  description: Contains two MP7 submachine gun with two mags. Requires Armory access to open.
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunMP7
-        amount: 2
-      - id: MagazinePistolSubMachineGun
-        amount: 2
-
-- type: entity
   id: CrateArmoryIK30
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: IK-30 crate
-  description: Contains three IK-30 semi laser battery gun. Requires Armory access to open.
+  description: Contains three IK-30 laser carbine with additional ammunition. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
       - id: WeaponGunLaserCarbineSemi
         amount: 3
-
-- type: entity
-  id: CrateArmoryMagazineBoxLightRifleBig
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: MagazineBoxLightRifleBig crate
-  description: Contains two MagazineBoxLightRifleBig. Requires Armory access to open.
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxLightRifleBig
+      - id: MagazineBatteryLr30
         amount: 3
 
 - type: entity
-  id: CrateArmoryMagazineBoxRifleBig
+  id: CrateArmoryIK30Magazines
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: MagazineBoxRifleBig crate
-  description: Contains Box Rifle ammo. Requires Armory access to open.
+  name: IK-30 magazine's crate
+  description: Contains six magazines for "IK-30". Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
-      - id: MagazineBoxRifle
-        amount: 4
+      - id: MagazineBatteryLr30
+        amount: 6

@@ -117,7 +117,6 @@
         types:
           Piercing: 19
       resistanceBypass: true
-      resistanceBypassOnWide: true
       soundHit:
           path: /Audio/Weapons/bladeslice.ogg
     - type: Item

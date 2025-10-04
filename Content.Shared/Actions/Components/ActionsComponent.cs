@@ -1,4 +1,4 @@
-using Content.Shared._Sunrise.StarlightAction;
+using Content.Shared._Starlight.Action;
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;

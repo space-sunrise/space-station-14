@@ -63,3 +63,36 @@
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
+
+- type: reagent
+  id: Butterbeer
+  name: reagent-name-butterbeer
+  parent: BaseAlcohol
+  desc: reagent-desc-butterbeer
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: butterscotch
+  color: "#FFF8DC"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/beerglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: true
+  fizziness: 0.3
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.03
+      - !type:PopupMessage
+        type: Local
+        messages: [ "butterbeer-effect-taste" ]
+        probability: 1.0

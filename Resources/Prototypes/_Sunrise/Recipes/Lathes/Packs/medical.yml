@@ -1,14 +1,14 @@
 - type: latheRecipePack
   id: MedicalStaticSunrise
   recipes:
-  - HandheldCrewMonitor
-  - ClothingHandsGlovesNitrileBlack
-  - ClothingHandsGlovesNitrileGreen
-  - ClothingHandsGlovesNitrileOrange
-  - ClothingHandsGlovesNitrileRed
-  - ClothingHandsGlovesNitrileBlue
+  # - ClothingHandsGlovesNitrileBlack # Sunrise-TODO: Не добавлять, пока не сделаете им уникальные для каждой волокна, ибо на момент комита тут все "нитриловые"
+  # - ClothingHandsGlovesNitrileGreen
+  # - ClothingHandsGlovesNitrileOrange
+  # - ClothingHandsGlovesNitrileRed
+  # - ClothingHandsGlovesNitrileBlue
   - ClothingEyesGlassesChemical
   - WhiteCane
+  - PatchPack
 
 - type: latheRecipePack
   id: MedicalDynamicSunrise
@@ -18,15 +18,11 @@
   - BluespaceBeaker
   - SyringeBluespace
   - SyringeCryostasis
-  - LeftArmCyber
-  - RightArmCyber
-  - LeftHandCyber
-  - RightHandCyber
-  - LeftLegCyber
-  - RightLegCyber
-  - LeftFootCyber
-  - RightFootCyber
   - HyposprayMedical
+  - AutoMenderBurn
+  - AutoMenderBrute
+  - HandheldCrewMonitor
+  - BlankMediPen
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
@@ -36,3 +32,47 @@
   - BoneSetterAdvanced
   - SawAdvanced
   - HemostatAdvanced
+
+- type: latheRecipePack
+  id: MedicalCyberlimbDynamic
+  recipes:
+  - LeftArmCyber
+  - LeftHandCyber
+  - LeftLegCyber
+  - LeftFootCyber
+  ####
+  - ImplantCaseReaper
+  #
+  - ImplantCaseMechwright
+  #
+  - ImplantCaseRobust
+  #
+  - ImplantCaseJani
+  #
+  - ImplantCaseAtmos
+  #
+  - ImplantCaseHack
+  #
+  - ImplantCaseBulwark
+  #
+  - ImplantCaseGorilla
+  #
+  - ImplantCaseMantisBladeMaxGuard
+  #
+  - ImplantCaseLaserEmitter
+  #
+  - ImplantCaseGrenadeThrower
+
+- type: latheRecipePack
+  id: MedicalCyberOrgansDynamic
+  recipes:
+  - ImplantCaseNightVision
+  - ImplantCaseThermal
+
+- type: latheRecipePack
+  id: MedicalImplantDynamic
+  recipes:
+  - ImplantCaseImplantWelding
+  - ImplantCaseImplantMedical
+  - ImplantCaseImplantChemical
+  - ImplantCaseImplantSecurity

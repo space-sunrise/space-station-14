@@ -159,6 +159,7 @@
   - type: Tag
     tags:
     - PowerCellHigh
+    - PowerCell
   # Sunrise added end
 
 - type: entity

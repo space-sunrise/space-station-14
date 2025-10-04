@@ -93,16 +93,60 @@
     - state: centcom
 
 - type: entity
+  id: SpawnPointPrisonInspector
+  parent: SpawnPointJobBase
+  name: prison inspector
+  components:
+  - type: SpawnPoint
+    job_id: PrisonInspector
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - state: lawyer
+
+- type: entity
+  id: SpawnPointPrisonInspectorLateJoin
+  parent: SpawnPointJobBase
+  name: prison inspector [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonInspector
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: lawyer
+
+- type: entity
   id: SpawnPointHeadOfPrison
   parent: SpawnPointJobBase
   name: head of prison
   components:
   - type: SpawnPoint
     job_id: HeadOfPrison
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
-    - state: green
-    - state: hos
+      - state: green
+      - state: hos
+
+- type: entity
+  id: SpawnPointHeadOfPrisonLateJoin
+  parent: SpawnPointJobBase
+  name: head of prison [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: HeadOfPrison
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: hos
 
 - type: entity
   id: SpawnPointPrisonChef
@@ -111,10 +155,26 @@
   components:
   - type: SpawnPoint
     job_id: PrisonChef
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
     - state: green
     - state: chef
+
+- type: entity
+  id: SpawnPointPrisonChefLateJoin
+  parent: SpawnPointJobBase
+  name: prison's chef [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonChef
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: chef
 
 - type: entity
   id: SpawnPointPrisonDoctor
@@ -123,10 +183,26 @@
   components:
   - type: SpawnPoint
     job_id: PrisonDoctor
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
     - state: green
     - state: doctor
+
+- type: entity
+  id: SpawnPointPrisonDoctorLateJoin
+  parent: SpawnPointJobBase
+  name: prison's doctor [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonDoctor
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: doctor
 
 - type: entity
   id: SpawnPointPrisonEngineer
@@ -135,10 +211,54 @@
   components:
   - type: SpawnPoint
     job_id: PrisonEngineer
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
     - state: green
     - state: engineer
+
+- type: entity
+  id: SpawnPointPrisonEngineerLateJoin
+  parent: SpawnPointJobBase
+  name: prison's engineer [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonEngineer
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: engineer
+
+- type: entity
+  id: SpawnPointPrisonScientist
+  parent: SpawnPointJobBase
+  name: prison's scientist
+  components:
+  - type: SpawnPoint
+    job_id: PrisonScientist
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - state: scientist
+
+- type: entity
+  id: SpawnPointPrisonScientistLateJoin
+  parent: SpawnPointJobBase
+  name: prison's scientist [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonScientist
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: scientist
 
 - type: entity
   id: SpawnPointPrisonGuard
@@ -147,9 +267,26 @@
   components:
   - type: SpawnPoint
     job_id: PrisonGuard
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
     - state: green
+    - state: security_officer
+
+- type: entity
+  id: SpawnPointPrisonGuardLateJoin
+  parent: SpawnPointJobBase
+  name: prison's guard [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonGuard
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: security_officer
 
 - type: entity
   id: SpawnPointPrisonPilot
@@ -158,10 +295,26 @@
   components:
   - type: SpawnPoint
     job_id: PrisonPilot
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
     - state: green
     - state: seniorofficer
+
+- type: entity
+  id: SpawnPointPrisonPilotLateJoin
+  parent: SpawnPointJobBase
+  name: prison's pilot [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonPilot
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: seniorofficer
 
 - type: entity
   id: SpawnPointPlanetPrisoner
@@ -176,16 +329,47 @@
     - state: prisoner
 
 - type: entity
+  id: SpawnPointPlanetPrisonerLateJoin
+  parent: SpawnPointJobBase
+  name: prisoner [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PlanetPrisoner
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: prisoner
+
+- type: entity
   id: SpawnPointPrisonWorker
   parent: SpawnPointJobBase
   name: prison's worker
   components:
   - type: SpawnPoint
     job_id: PrisonWorker
+  - type: RoundStartSpawnPoint
   - type: Sprite
     layers:
     - state: green
     - state: serviceworker
+
+- type: entity
+  id: SpawnPointPrisonWorkerLateJoin
+  parent: SpawnPointJobBase
+  name: prison's worker [Late Join]
+  components:
+  - type: SpawnPoint
+    job_id: PrisonWorker
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: serviceworker
 
 - type: entity
   id: SpawnPointSeniorEngineer

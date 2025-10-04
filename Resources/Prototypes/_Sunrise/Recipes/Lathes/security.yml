@@ -10,8 +10,8 @@
     Plastic: 500
 
 - type: latheRecipe
-  id: WeaponEnergyGunMini
-  result: WeaponEnergyGunMini
+  id: WeaponMiniEnergyGun
+  result: WeaponMiniEnergyGun
   categories:
   - Weapons
   completetime: 4
@@ -47,228 +47,6 @@
     Plasma: 500
 
 - type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleBoxIncendiary
-  result: MagazineLightRifleBoxIncendiary
-  materials:
-    Steel: 150
-    Plastic: 475
-    Plasma: 475
-
-- type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
-  id: MagazineMagnumEmpty
-  result: MagazineMagnumEmpty
-  materials:
-    Steel: 25
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineMagnum
-  result: MagazineMagnum
-  materials:
-    Steel: 145
-
-- type: latheRecipe
-  id: SunriseMagazineRifle
-  result: SunriseMagazineRifle
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 325
-
-- type: latheRecipe
-  id: MagazineLightMachineGunMG60
-  result: MagazineLightMachineGunMG60
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 3700
-
-- type: latheRecipe
-  id: MagazinePPSH41
-  result: MagazinePPSH41
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 1200
-
-- type: latheRecipe
-  id: MagazineRPD
-  result: MagazineRPD
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 1465
-
-- type: latheRecipe
-  id: MagazineLightRifleBox
-  result: MagazineLightRifleBox
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 1100
-
-- type: latheRecipe
-  id: MagazineNewVector
-  result: MagazineNewVector
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
-  id: MagazineMP38
-  result: MagazineMP38
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
-  id: MagazineMP5
-  result: MagazineMP5
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
-  id: MagazineMP7
-  result: MagazineMP7
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
-  id: MagazineP90
-  result: MagazineP90
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 700
-
-- type: latheRecipe
-  id: MagazineScorpion
-  result: MagazineScorpion
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
-  id: MagazineAK
-  result: MagazineAK
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 565
-
-- type: latheRecipe
-  id: MagazineAR18
-  result: MagazineAR18
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 500
-
-# - type: latheRecipe
-#   id: MagazineM28 #Есть MagazineAR18
-#   result: MagazineM28
-#   categories:
-#   - Ammo
-#   completetime: 5
-#   materials:
-#     Steel: 325
-
-- type: latheRecipe
-  id: MagazineBR64
-  result: MagazineBR64
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 850
-
-- type: latheRecipe
-  id: MagazineDragunov
-  result: MagazineDragunov
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 800
-
-- type: latheRecipe
-  id: MagazineV31
-  result: MagazineV31
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 985
-    Plastic: 600
-
-- type: latheRecipe
-  id: MagazineACP14
-  result: MagazineACP14
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
-  id: MagazineGlock22
-  result: MagazineGlock22
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
-  id: MagazineVP70
-  result: MagazineVP70
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
-  id: MagazineHIBrowning
-  result: MagazineHIBrowning
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
-  id: MagazineDeagle
-  result: MagazineDeagle
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 193
-
-- type: latheRecipe
   parent: BaseWeaponRecipeSidearm
   id: FlareGunSecurityUpgrade
   result: FlareGunSecurityUpgrade
@@ -279,168 +57,36 @@
     Steel: 250
 
 - type: latheRecipe
-  id: ClothingHeadHelmetPubg
-  result: ClothingHeadHelmetPubg
-  categories:
-  - Weapons
-  completetime: 18
-  materials:
-    Steel: 2000
-    Glass: 800
-    Plastic: 300
-
-- type: latheRecipe
-  id: ClothingShoesBootsMagCombat
-  result: ClothingShoesBootsMagCombat
-  categories:
-  - Weapons
-  completetime: 25
-  materials:
-    Steel: 1200
-    Plastic: 500
-    Silver: 200
-
-- type: latheRecipe
   id: ModularReceiverAuto
   result: ModularReceiverAuto
   categories:
   - Weapons
-  completetime: 12
+  completetime: 10
   materials:
-    Steel: 800
-    Plastic: 100
-
-- type: latheRecipe
-  id: MagazinePistolHighCapacity
-  result: MagazinePistolHighCapacity
-  categories:
-  - Weapons
-  completetime: 5
-  materials:
-    Steel: 170
-
-- type: latheRecipe
-  id: MagazinePistolHighCapacityEmpty
-  result: MagazinePistolHighCapacityEmpty
-  categories:
-  - Weapons
-  completetime: 5
-  materials:
-    Steel: 30
-
-- type: latheRecipe
-  id: BaseMagazinePistolCaselessRifleExtended
-  result: BaseMagazinePistolCaselessRifleExtended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 350
-    Plastic: 200
-
-- type: latheRecipe
-  id: MagazinePPSH41Extended
-  result: MagazinePPSH41Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 1200
-
-- type: latheRecipe
-  id: MagazineMP5Extended
-  result: MagazineMP5Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 600
-
-- type: latheRecipe
-  id: MagazineMP7Extended
-  result: MagazineMP7Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 600
-
-- type: latheRecipe
-  id: MagazineP90Extended
-  result: MagazineP90Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 1400
+    Steel: 500
     Plastic: 50
 
 - type: latheRecipe
-  id: SunriseMagazineRifleExtended
-  result: SunriseMagazineRifleExtended
+  id: DrozdUpgrade
+  result: DrozdUpgrade
   categories:
   - Weapons
-  completetime: 12
+  completetime: 16
   materials:
-    Steel: 450
+    Steel: 150
+    Plastic: 300
+    Gold: 50
 
 - type: latheRecipe
-  id: MagazineAR18Extended
-  result: MagazineAR18Extended
+  id: LecterUpgrade
+  result: LecterUpgrade
   categories:
   - Weapons
-  completetime: 12
+  completetime: 16
   materials:
-    Steel: 650
-
-#- type: latheRecipe
-#  id: MagazineM28Extended
-#  result: MagazineM28Extended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 650
-
-- type: latheRecipe
-  id: MagazineV31Extended
-  result: MagazineV31Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 1300
-    Plastic: 100
-
-#- type: latheRecipe
-#  id: MagazineBauer127Extended
-#  result: MagazineBauer127Extended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 1200
-#    Plastic: 50
-
-- type: latheRecipe
-  id: MagazineBR64Extended
-  result: MagazineBR64Extended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 1000
-    Plastic: 50
-
-- type: latheRecipe
-  id: MagazineDragunovExtended
-  result: MagazineDragunovExtended
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 1200
-
+    Steel: 150
+    Plastic: 300
+    Gold: 50
 
 - type: latheRecipe
   id: EnergyDomeDirectionalTurtle
@@ -451,33 +97,6 @@
     Plastic: 500
     Gold: 250
     Uranium: 50
-
-- type: latheRecipe
-  id: ShellEMPArtillery
-  result: ShellEMPArtillery
-  completetime: 3
-  materials:
-    Steel: 150
-    Plastic: 100
-    Glass: 20
-
-- type: latheRecipe
-  id: ShellBlastArtillery
-  result: ShellBlastArtillery
-  completetime: 3
-  materials:
-    Steel: 450
-    Plastic: 300
-    Gold: 150
-
-- type: latheRecipe
-  id: ShellFlashArtillery
-  result: ShellFlashArtillery
-  completetime: 3
-  materials:
-    Steel: 150
-    Plastic: 100
-    Glass: 20
 
 # Mech Weapons
 - type: latheRecipe
@@ -640,11 +259,196 @@
     Glass: 300
     Plastic: 50
 
+#Cybernetics
 - type: latheRecipe
-  parent: BaseWeaponRecipeLong
-  id: WeaponGunLaserCarbineSemi
-  result: WeaponGunLaserCarbineSemi
+  id: ImplantCaseMantisBladeMaxGuard
+  result: ImplantCaseMantisBladeMaxGuard
+  categories:
+  - Cyberlimbs
+  completetime: 50
   materials:
-    Steel: 2000
+    Steel: 1750
+    Plastic: 550
+    Silver: 250
+    Gold: 250
+    Glass: 300
+    Plasma: 200
+    Diamond: 200
+    Uranium: 50
+
+#
+- type: latheRecipe
+  id: ImplantCaseGrenadeThrower
+  result: ImplantCaseGrenadeThrower
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 2050
+    Silver: 250
+    Gold: 250
+    Glass: 100
+
+#
+- type: latheRecipe
+  id: ImplantCaseLaserEmitter
+  result: ImplantCaseLaserEmitter
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 1850
+    Silver: 250
+    Gold: 250
+    Glass: 400
+    Diamond: 100
+    Uranium: 250
+    Plasma: 250
+#
+- type: latheRecipe
+  id: ImplantCaseBulwark
+  result: ImplantCaseBulwark
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 1650
+    Silver: 250
+    Gold: 250
+    Glass: 250
+    Diamond: 300
+    Uranium: 250
+    Plasma: 250
+#
+- type: latheRecipe
+  id: ImplantCaseBonesaw
+  result: ImplantCaseBonesaw
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 1850
+    Silver: 250
+    Gold: 250
+    Glass: 200
+    Diamond: 300
+    Uranium: 250
+    Plasma: 250
+
+# Clothing
+- type: latheRecipe
+  id: ClothingHeadHelmetPubg
+  result: ClothingHeadHelmetPubg
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Steel: 1500
+    Glass: 300
+    Plastic: 300
+    Cloth: 200
+    Durathread: 100
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagCombat
+  result: ClothingShoesBootsMagCombat
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Steel: 1200
+    Plastic: 300
+    Durathread: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeWeb
+  result: VestSecUpgradeWeb
+  categories:
+  - Clothing
+  completetime: 35
+  materials:
+    Durathread: 2000
     Plastic: 500
-    Gold: 500
+    Steel: 200
+    Plasma: 100
+
+- type: latheRecipe
+  id: VestSecUpgradePlate
+  result: VestSecUpgradePlate
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 400
+    Steel: 600
+
+- type: latheRecipe
+  id: VestSecUpgradeBullet
+  result: VestSecUpgradeBullet
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 400
+    Plastic: 300
+    Glass: 300
+
+- type: latheRecipe
+  id: VestSecUpgradeBulletHeavy
+  result: VestSecUpgradeBulletHeavy
+  categories:
+  - Clothing
+  completetime: 20
+  materials:
+    Durathread: 400
+    Plastic: 400
+
+- type: latheRecipe
+  id: VestSecUpgradeStab
+  result: VestSecUpgradeStab
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 600
+    Durathread: 200
+    Plastic: 100
+
+- type: latheRecipe
+  id: VestSecUpgradeRiot
+  result: VestSecUpgradeRiot
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 400
+    Durathread: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeHeat
+  result: VestSecUpgradeHeat
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 200
+    Durathread: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeReflective
+  result: VestSecUpgradeReflective
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Durathread: 400
+    Plastic: 250
+    Glass: 250

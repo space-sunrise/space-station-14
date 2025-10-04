@@ -1,0 +1,138 @@
+
+
+# A basic inheritable template for weapons that can be used for custom slowdown and weapon weight effects.
+- type: entity
+  id: GunLight
+  abstract: true
+  components:
+  - type: SpeedModifiedOnWield
+    walkModifier: 1
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.95
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Item
+    size: Small
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  id: GunMedium
+  abstract: true
+  components:
+  - type: SpeedModifiedOnWield
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.98
+    sprintModifier: 0.98
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 0.75
+
+- type: entity
+  id: GunHeavy
+  abstract: true
+  components:
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.95
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Item
+    size: Large
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  id: GunVeryHeavy
+  abstract: true
+  components:
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Item
+    size: Ginormous
+  - type: UseDelay
+    delay: 1.5
+
+# A basic inheritable template for a weapon to give it melee capabilities.
+- type: entity
+  id: GunMeleeLight
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 2
+    useKey: true
+    selectedMode: SemiAuto
+  - type: MeleeWeapon
+    angle: 60
+    range: 1.5
+    damage:
+      types:
+        Blunt: 8
+        Structural: 2
+    bluntStaminaDamageFactor: 2.0
+    attackRate: 1.25
+    autoAttack: false
+  - type: AltFireMelee
+    attackType: Heavy
+
+- type: entity
+  id: GunMeleeMedium
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 2
+    useKey: true
+    selectedMode: SemiAuto
+  - type: MeleeWeapon
+    angle: 60
+    range: 1.5
+    damage:
+      types:
+        Blunt: 12
+        Structural: 8
+    bluntStaminaDamageFactor: 2.0
+    attackRate: 1
+    autoAttack: false
+  - type: AltFireMelee
+    attackType: Heavy
+
+- type: entity
+  id: GunMeleeHeavy
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 2
+    useKey: true
+    selectedMode: SemiAuto
+  - type: MeleeWeapon
+    angle: 60
+    range: 1.5
+    damage:
+      types:
+        Blunt: 20
+        Structural: 10
+    bluntStaminaDamageFactor: 2.0
+    attackRate: 0.75
+    autoAttack: false
+  - type: AltFireMelee
+    attackType: Heavy

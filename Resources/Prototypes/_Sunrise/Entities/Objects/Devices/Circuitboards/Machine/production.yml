@@ -1,11 +1,11 @@
 ﻿- type: entity
-  id: PrinterDocMachineCircuitboard
+  id: CopyMachineMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: document printer machine board
   description: A machine printed circuit board for an document printer
   components:
     - type: MachineBoard
-      prototype: PrinterDoc
+      prototype: CopyMachine
       stackRequirements:
         Manipulator: 4
         Glass: 1
@@ -52,3 +52,19 @@
       Igniter:
         amount: 1
         defaultPrototype: Igniter
+
+- type: entity
+  id: MedicalAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medical assembler machine board
+  description: A machine printed circuit board for a medical assembler.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: MedicalAssembler
+      stackRequirements:
+        Manipulator: 3
+        Steel: 5
+        Glass: 2
+        Cable: 4

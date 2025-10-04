@@ -34,7 +34,7 @@ public abstract partial class SharedBodySystem : EntitySystem
     [Dependency] protected readonly MovementSpeedModifierSystem Movement = default!;
     [Dependency] protected readonly SharedContainerSystem Containers = default!;
     [Dependency] protected readonly SharedTransformSystem SharedTransform = default!;
-    [Dependency] protected readonly SharedStandingStateSystem Standing = default!;
+    [Dependency] protected readonly StandingStateSystem Standing = default!;
 
     public override void Initialize()
     {

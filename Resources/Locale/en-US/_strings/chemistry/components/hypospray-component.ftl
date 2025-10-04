@@ -8,9 +8,8 @@ hypospray-volume-label = Volume: [color=white]{$currentVolume}/{$totalVolume}u[/
 
 ## Entity
 
-hypospray-component-inject-other-message = You inject {$other}.
+hypospray-component-inject-other-message = You inject {THE($other)}.
 hypospray-component-inject-self-message = You inject yourself.
-hypospray-component-inject-self-clumsy-message = Oops! You injected yourself.
 hypospray-component-empty-message = Nothing to inject.
 hypospray-component-feel-prick-message = You feel a tiny prick!
 hypospray-component-transfer-already-full-message = {$owner} is already full!
@@ -22,3 +21,6 @@ hypospray-verb-mode-inject-mobs-only = You can now draw from containers.
 
 ## failure
 hypospay-component-failure-hardsuit = You cant get the needle to go through the thick plating!
+
+## Medipen injection failure
+hypospray-cancel-inject = Medipen refuses to inject the reagents already present in the blood.

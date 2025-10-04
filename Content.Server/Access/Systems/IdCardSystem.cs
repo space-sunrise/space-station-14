@@ -31,7 +31,11 @@ public sealed class IdCardSystem : SharedIdCardSystem
     }
 
     private void OnMicrowaved(EntityUid uid, IdCardComponent component, BeingMicrowavedEvent args)
-    {
+    {   
+        //Sunrise-Start
+        if (!args.BeingIrradiated)
+            return;
+        //Sunrise-End
         if (!component.CanMicrowave || !TryComp<MicrowaveComponent>(args.Microwave, out var micro) || micro.Broken)
             return;
 
@@ -47,12 +51,12 @@ public sealed class IdCardSystem : SharedIdCardSystem
                 {
                     _popupSystem.PopupCoordinates(Loc.GetString("id-card-component-microwave-burnt", ("id", uid)),
                      transformComponent.Coordinates, PopupType.Medium);
-                    EntityManager.SpawnEntity("FoodBadRecipe",
+                    Spawn("FoodBadRecipe",
                         transformComponent.Coordinates);
                 }
                 _adminLogger.Add(LogType.Action, LogImpact.Medium,
                     $"{ToPrettyString(args.Microwave)} burnt {ToPrettyString(uid):entity}");
-                EntityManager.QueueDeleteEntity(uid);
+                QueueDel(uid);
                 return;
             }
 

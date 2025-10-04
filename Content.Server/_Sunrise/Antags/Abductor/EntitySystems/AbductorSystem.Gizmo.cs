@@ -1,5 +1,4 @@
 ﻿using Content.Shared._Sunrise.Antags.Abductor;
-using Content.Shared._Sunrise.Medical.Surgery;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
@@ -14,6 +13,7 @@ using Content.Shared.Tag;
 using Content.Shared.Popups;
 using System;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Starlight.Medical.Surgery;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 

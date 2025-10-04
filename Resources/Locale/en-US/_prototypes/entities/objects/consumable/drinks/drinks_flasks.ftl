@@ -1,5 +1,7 @@
 ent-FlaskBase = { ent-DrinkBase }
     .desc = { ent-DrinkBase.desc }
+ent-DrinkFlaskVisualsOpenable = { "" }
+    .desc = { "" }
 ent-DrinkShinyFlask = shiny flask
     .desc = A shiny metal flask. It appears to have a Greek symbol inscribed on it.
 ent-DrinkMREFlask = MRE flask
@@ -18,5 +20,3 @@ ent-DrinkLithiumFlask = lithium flask
     .desc = A flask with a Lithium Atom symbol on it.
 ent-DrinkVacuumFlask = vacuum flask
     .desc = Keeping your drinks at the perfect temperature since 1892.
-ent-Pitcher = metal pitcher
-    .desc = A stainless steel insulated pitcher. Everyone's best friend in the morning.

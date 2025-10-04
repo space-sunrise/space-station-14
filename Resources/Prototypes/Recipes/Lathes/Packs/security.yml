@@ -30,32 +30,30 @@
   - WeaponFlareGunSecurity
 
 # Shared between secfab and emagged autolathe
-- type: latheRecipePack
-  id: SecurityAmmoStatic
-  recipes:
-  - BoxLethalshot
-  - BoxShotgunSlug
-  - MagazineBoxLightRifle
-  - MagazineBoxMagnum
-  - MagazineBoxPistol
-  - MagazineBoxRifle
-  - MagazineLightRifle
-  - MagazineLightRifleEmpty
-  # Sunrise-Remove
+#- type: latheRecipePack
+#  id: SecurityAmmoStatic
+#  recipes:
+  #- BoxLethalshot
+  #- BoxShotgunSlug
+  #- MagazineBoxLightRifle
+  #- MagazineBoxMagnum
+  #- MagazineBoxPistol
+  #- MagazineBoxRifle
+  #- MagazineLightRifle
+  #- MagazineLightRifleEmpty
   #- MagazinePistol
   #- MagazinePistolEmpty
-  - MagazinePistolSubMachineGun
-  - MagazinePistolSubMachineGunEmpty
-  - MagazinePistolSubMachineGunTopMounted
-  - MagazinePistolSubMachineGunTopMountedEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazineShotgun
-  - MagazineShotgunEmpty
-  - MagazineShotgunSlug
-  - SpeedLoaderMagnum
-  - SpeedLoaderMagnumEmpty
-  - MagazineP90 # Sunrise-P90
+  #- MagazinePistolSubMachineGun
+  #- MagazinePistolSubMachineGunEmpty
+  #- MagazinePistolSubMachineGunTopMounted
+  #- MagazinePistolSubMachineGunTopMountedEmpty
+  #- MagazineRifle
+  #- MagazineRifleEmpty
+  #- MagazineShotgun
+  #- MagazineShotgunEmpty
+  #- MagazineShotgunSlug
+  #- SpeedLoaderMagnum
+  #- SpeedLoaderMagnumEmpty
 
 - type: latheRecipePack
   id: SecurityWeaponsStatic
@@ -77,6 +75,7 @@
   - PowerCageMedium
   - PowerCageSmall
   - TelescopicShield
+  - ClothingBackpackHarmpack
 
 - type: latheRecipePack
   id: SecurityBoards
@@ -91,6 +90,8 @@
   - ScienceExplosives # sec gets everything for modular grenade making that sci does
   id: SecurityExplosives
   recipes:
+  - CableDetStack1
+  - EmptyDetonator
   - ExplosivePayload
   - ShellBlastArtillery # Sunrise-Edit
   - ShellEMPArtillery # Sunrise-Edit
@@ -104,7 +105,6 @@
   - BoxBeanbag
   - BoxShotgunIncendiary
   - BoxShotgunUranium
-  - BoxShotgunUraniumSlug
   - BoxShellTranquilizer
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxLightRifleUranium

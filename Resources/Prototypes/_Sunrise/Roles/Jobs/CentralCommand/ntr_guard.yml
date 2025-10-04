@@ -71,6 +71,10 @@
     - CrowbarRed
     - MedkitCombatFilled
 
+- type: chameleonOutfit
+  id: NtrLeaderChameleonOutfit
+  job: NtrLeader
+
 # Security
 - type: job
   id: NtrGuard
@@ -141,3 +145,7 @@
     - CrowbarRed
     - MagazineMagnum
     - MedkitCombatFilled
+
+- type: chameleonOutfit
+  id: NtrGuardChameleonOutfit
+  job: NtrGuard

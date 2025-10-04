@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
 using Content.Shared.UserInterface;
@@ -5,6 +6,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Radio;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 
@@ -44,8 +46,8 @@ public sealed partial class ResearchSystem
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
-        //sunrise-edit-start
-        /*if (!_emag.CheckFlag(uid, EmagType.Interaction))
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
         {
             var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
             RaiseLocalEvent(getIdentityEvent);
@@ -57,8 +59,17 @@ public sealed partial class ResearchSystem
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
-        }*/
-        //sunrise-edit-end
+
+            if (technologyPrototype.RadioChannels.Any())
+                foreach (var radioChannelId in technologyPrototype.RadioChannels)
+                {
+                    if (PrototypeManager.TryIndex(radioChannelId, out var radioChannel))
+                    {
+                        _radio.SendRadioMessage(uid, message, radioChannel, uid, escapeMarkup: false);
+                    }
+                }
+        }
+
 
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);

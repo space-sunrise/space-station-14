@@ -8,7 +8,7 @@
         - to: auto
           steps:
             - tag: UpgradeFlareGun
-              name: construction-graph-tag-UpgradeFlareGun
+              name: construction-graph-tag-upgradeflaregun
               doAfter: 8
           completed:
             - !type:AdminLog

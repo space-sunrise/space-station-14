@@ -15,8 +15,8 @@ permanent-blindness-trait-examined = [color=lightblue]{CAPITALIZE(POSS-ADJ($targ
 trait-lightweight-name = Lightweight drunk
 trait-lightweight-desc = Alcohol has a stronger effect on you.
 
-trait-monochromancy-name = Monochromancy
-trait-monochromancy-desc = You are fully colorblind, everything you perceive ranges from blacks to whites.
+trait-monochromacy-name = Monochromacy
+trait-monochromacy-desc = You are fully colorblind, everything you perceive ranges from blacks to whites.
 
 trait-muted-name = Muted
 trait-muted-desc = You can't speak.
@@ -63,8 +63,16 @@ trait-french-desc = Your accent seems to have a certain «je ne sais quoi».
 trait-spanish-name = Spanish accent
 trait-spanish-desc = Hola señor, donde esta la biblioteca.
 
+# Fish-edit-start
+trait-formal-name = Formal accent
+trait-formal-desc = You speak in a very formal manner, expanding abbreviations into their full meanings.
+# Fish-edit-end
+
 trait-painnumbness-name = Numb
 trait-painnumbness-desc = You lack any sense of feeling pain, being unaware of how hurt you may be.
 
-trait-moldovan-name = Moldovan dialect
-trait-moldovan-desc = Tigania dam in spatiu cosmic.
+trait-hemophilia-name = Hemophilia
+trait-hemophilia-desc = Your body fails to make blood clots.
+
+trait-impaired-mobility-name = Impaired Mobility
+trait-impaired-mobility-desc = You have difficulty moving without a mobility aid.

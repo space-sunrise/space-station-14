@@ -52,7 +52,6 @@
   description: This laser for security robot.
   categories: [ HideSpawnMenu ]
   components:
-  #- type: AlterLevelGunBlocker #FIXMEVIGERS
   - type: Item
     size: Large
   - type: Sprite
@@ -67,8 +66,22 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletRedLaser
+    proto: DisablerBolt
     fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 50
+    - proto: RedLaserBeam
+      fireCost: 100
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
@@ -89,9 +102,9 @@
     sprite: Objects/Weapons/Melee/flash.rsi
     layers:
     - state: burnt
-      map: [ "enum.FlashVisuals.BaseLayer" ]
+      map: [ "enum.FlashVisualLayers.BaseLayer" ]
     - state: flashing
-      map: [ "enum.FlashVisuals.LightLayer" ]
+      map: [ "enum.FlashVisualLayers.LightLayer" ]
       visible: false
       shader: unshaded
   - type: LimitedCharges
@@ -124,7 +137,7 @@
       - ReagentId: Epinephrine
         Quantity: 0.4
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
     transferAmount: 5 #Sunrise-End
   - type: UseDelay
@@ -186,9 +199,11 @@
       Quantity: 1
     - ReagentId: Dermaline
       Quantity: 1
+    keepSolution: false
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   parent: HypoBorgStandard
@@ -209,6 +224,8 @@
         Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
+    - ReagentId: Tricordrazine
+      Quantity: 2
     - ReagentId: Bruizine
       Quantity: 1
     - ReagentId: Puncturase
@@ -235,9 +252,13 @@
       Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
+    - ReagentId: Phalanximine
+      Quantity: 0.5   
+    keepSolution: false
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   name: proto-kinetic robot accelerator
@@ -345,7 +366,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: Appearance
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFrag
+    proto: GrenadeFragTimer
     fireCost: 1000
   - type: Battery
     maxCharge: 10000
@@ -530,8 +551,8 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletPulse
+  - type: HitscanBatteryAmmoProvider #ProjectileBatteryAmmoProvider
+    proto: Pulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000
@@ -569,7 +590,7 @@
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
+    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -609,7 +630,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletLightRifle
+    proto: BulletRifleTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -677,7 +698,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFragLight
+    proto: GrenadeFragTimer
     fireCost: 250
   - type: Battery
     maxCharge: 1500
@@ -719,7 +740,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletPistol
+    proto: BulletPistolTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 5000
@@ -753,7 +774,8 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
+    injectOnly: true
 
 - type: entity
   name: the saboteur's communications jammer
@@ -877,3 +899,144 @@
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+
+- type: entity
+  name: service cyborg dispenser (soda)
+  parent: BaseBorgShaker
+  id: BorgShakerSoda
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Water
+      Quantity: 1
+    - ReagentId: Ice
+      Quantity: 1
+    - ReagentId: Coffee
+      Quantity: 1
+    - ReagentId: Cream
+      Quantity: 1
+    - ReagentId: Tea
+      Quantity: 1
+    - ReagentId: GreenTea
+      Quantity: 1
+    - ReagentId: IcedTea
+      Quantity: 1
+    - ReagentId: IcedGreenTea
+      Quantity: 1
+    - ReagentId: Cola
+      Quantity: 1
+    - ReagentId: SpaceMountainWind
+      Quantity: 1
+    - ReagentId: DrGibb
+      Quantity: 1
+    - ReagentId: SpaceUp
+      Quantity: 1
+    - ReagentId: TonicWater
+      Quantity: 1
+    - ReagentId: SodaWater
+      Quantity: 1
+    - ReagentId: LemonLime
+      Quantity: 1
+    - ReagentId: Sugar
+      Quantity: 1
+    - ReagentId: JuiceOrange
+      Quantity: 1
+    - ReagentId: JuiceLime
+      Quantity: 1
+    - ReagentId: JuiceWatermelon
+      Quantity: 1
+
+- type: entity
+  name: service cyborg dispenser (booze)
+  parent: BaseBorgShaker
+  id: BorgShakerBooze
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Beer
+        Quantity: 1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Beer
+      Quantity: 1
+    - ReagentId: CoffeeLiqueur
+      Quantity: 1
+    - ReagentId: Whiskey
+      Quantity: 1
+    - ReagentId: Wine
+      Quantity: 1
+    - ReagentId: Vodka
+      Quantity: 1
+    - ReagentId: Gin
+      Quantity: 1
+    - ReagentId: Rum
+      Quantity: 1
+    - ReagentId: Tequila
+      Quantity: 1
+    - ReagentId: Vermouth
+      Quantity: 1
+    - ReagentId: Cognac
+      Quantity: 1
+    - ReagentId: Ale
+      Quantity: 1
+    - ReagentId: Mead
+      Quantity: 1
+
+- type: entity
+  parent: BaseItem
+  id: BaseBorgShaker
+  name: service cyborg dispenser
+  description: A dispenser that can switch between several reagents.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+  - type: MixableSolution
+    solution: drink
+  - type: Shakeable
+  - type: FitsInDispenser
+    solution: drink
+  - type: DrawableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: Spillable
+    solution: drink
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+  - type: ReactionMixer
+    mixOnInteract: false
+    reactionTypes:
+    - Shake
+  - type: ExaminableSolution
+    solution: drink
+    heldOnly: true
+    examinableWhileClosed: true
+  - type: SolutionItemStatus
+    solution: drink
