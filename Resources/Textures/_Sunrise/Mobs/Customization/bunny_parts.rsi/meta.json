@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY",
+  "copyright": "by ghostea404 (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ears_bunny",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunny_bow",
+      "directions": 4
+    }
+    ]
+}
+
