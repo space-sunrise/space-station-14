@@ -34,7 +34,7 @@
       fallbackTypes:
         - !type:SkinColoring
     layers:
-      ears_bunny:
+      ears_bunny_bow:
         type:
           !type:SimpleColoring
           color: "#FFFFFF"
