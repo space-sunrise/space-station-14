@@ -12,6 +12,10 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+// Sunrise-Start
+using Content.Shared._Sunrise.Biocode;
+using Content.Server.Popups;
+// Sunrise-End
 
 namespace Content.Shared.Throwing;
 
@@ -35,6 +39,10 @@ public sealed class ThrowingSystem : EntitySystem
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
+    // Sunrise-Start
+    [Dependency] private readonly BiocodeSystem _biocode = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    // Sunrise-End
 
     public override void Initialize()
     {
@@ -136,6 +144,15 @@ public sealed class ThrowingSystem : EntitySystem
         bool doSpin = true,
         bool unanchor = false)
     {
+        // Sunrise-Start
+        if (user != null && TryComp<BiocodeComponent>(uid, out var biocode) && !_biocode.CanUse(user.Value, biocode.Factions))
+        {
+            if (!string.IsNullOrEmpty(biocode.AlertText))
+                _popup.PopupEntity(biocode.AlertText, user.Value, user.Value);
+            return;
+        }
+        // Sunrise-End
+
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
             return;
 
