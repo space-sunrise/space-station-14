@@ -14,7 +14,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 // Sunrise-Start
 using Content.Shared._Sunrise.Biocode;
-using Content.Server.Popups;
+using Content.Shared.Popups;
 // Sunrise-End
 
 namespace Content.Shared.Throwing;
@@ -41,7 +41,7 @@ public sealed class ThrowingSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     // Sunrise-Start
     [Dependency] private readonly BiocodeSystem _biocode = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     // Sunrise-End
 
     public override void Initialize()
