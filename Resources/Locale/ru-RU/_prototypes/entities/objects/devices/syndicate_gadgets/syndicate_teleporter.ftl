@@ -3,6 +3,3 @@ ent-SyndicateTeleporter = телепортер синдиката
 
 ent-SyndicateTeleporterBiocode = { ent-SyndicateTeleporter }
     .desc = { ent-SyndicateTeleporter.desc }
-
-ent-DefibrillatorSyndicateBiocode = { ent-DefibrillatorSyndicate }
-    .desc = { ent-DefibrillatorSyndicate.desc }

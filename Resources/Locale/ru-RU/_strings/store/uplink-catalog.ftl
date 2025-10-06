@@ -365,8 +365,12 @@ uplink-handcuffs-name = Наручники
 uplink-handcuffs-desc = Используется для удержания жертв.
 <<<<<<< HEAD
 uplink-interdyne-defibrillator-name = Дефибриллятор Interdyne
+<<<<<<< HEAD
 uplink-interdyne-defibrillator-desc = Превосходный дефибриллятор, предназначенный для помощи и самообороны. Для настоящих медиков Синдиката.
 uplink-bola-syn-name = Бола Синдиката
 uplink-bola-syn-desc = Идеальная версия болы для Синдиката.
 =======
 >>>>>>> parent of 1f9536e28a (UplinkSyndiDefib)
+=======
+ulpink-interdyne-defibrillator-desc = Превосходный дефибриллятор, не предназначеный для боёв. Для настоящих медиков Синдиката.
+>>>>>>> parent of 154cfd6643 (fix2+biocode)

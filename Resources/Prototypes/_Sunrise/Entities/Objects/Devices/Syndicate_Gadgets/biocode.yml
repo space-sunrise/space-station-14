@@ -8,6 +8,7 @@
     - Syndicate
     - Thief
     alertText: Данный предмет биокодирован. Вы не можете его использовать.
+<<<<<<< HEAD
 
 - type: entity
   parent: DefibrillatorSyndicate
@@ -18,3 +19,5 @@
     factions:
     - Syndicate
     alertText: Данный предмет биокодирован. Вы не можете его использовать.
+=======
+>>>>>>> parent of 154cfd6643 (fix2+biocode)
