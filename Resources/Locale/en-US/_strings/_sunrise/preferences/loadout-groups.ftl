@@ -98,3 +98,4 @@ loadout-group-station-engineer-gloves = Инженер, перчатки
 loadout-group-station-engineer-mask = Инженер, маска
 loadout-group-station-engineer-neck = Инженер, шея
 loadout-group-uniformntr = Униформа ИСН
+loadout-group-planet-prison-trinkets = Безделушки ПТ

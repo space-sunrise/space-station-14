@@ -211,6 +211,7 @@
 - type: roleLoadout
   id: JobPrisonScientist
   groups:
+  - TrinketsPlanetPrison
   - Trinkets
   - Bra
   - Pants
@@ -219,6 +220,7 @@
 - type: roleLoadout
   id: JobPrisonEngineer
   groups:
+  - TrinketsPlanetPrison
   - TrinketsEngineering
   - Trinkets
   - Bra
@@ -243,6 +245,7 @@
 - type: roleLoadout
   id: JobPrisonWorker
   groups:
+  - TrinketsPlanetPrison
   - Trinkets
   - Bra
   - Pants
@@ -282,6 +285,7 @@
 - type: roleLoadout
   id: JobPrisonChef
   groups:
+  - TrinketsPlanetPrison
   - Trinkets
   - Bra
   - Pants
@@ -290,6 +294,7 @@
 - type: roleLoadout
   id: JobPrisonDoctor
   groups:
+  - TrinketsPlanetPrison
   - Trinkets
   - Bra
   - Pants
@@ -298,6 +303,7 @@
 - type: roleLoadout
   id: JobHeadOfPrison
   groups:
+  - TrinketsPlanetPrison
   - PrisonGuardHead
   # - PrisonGuardJumpsuit комбенизон должен отличаться от охраны
   - PrisonGuardBackpack
@@ -313,6 +319,7 @@
 - type: roleLoadout
   id: JobPrisonInspector
   groups:
+  - TrinketsPlanetPrison
   - LawyerNeck
   - Trinkets
   - Survival
@@ -349,6 +356,7 @@
 - type: roleLoadout
   id: JobPlanetPrisoner
   groups:
+  - TrinketsPlanetPrison
   - PrisonerJumpsuit
   - GroupSpeciesBreathTool
   - Bra

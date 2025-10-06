@@ -224,7 +224,7 @@
   loadouts:
   - GlockBox
   - ACP14Box
-  - SnubRevolverBox 
+  - SnubRevolverBox
   - MK58Box
   - MK58GoldBox
   - WeaponDominator
@@ -240,7 +240,7 @@
   loadouts:
   - CadetWeaponGlockBox
   - CadetWeaponACP14Box
-  - SnubRevolverBox 
+  - SnubRevolverBox
   - CadetWeaponMK58Box
   - MK58GoldBox
   - CadetWeaponMiniEnergyGun
@@ -1246,6 +1246,17 @@
   - TrinketsCargoQueen
   - TrinketsCargoQ
   - TrinketsCargoLGW
+
+# Planet Prison - General
+
+- type: loadoutGroup
+  id: TrinketsPlanetPrison
+  name: loadout-group-planet-prison-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ClothingNeckPlanetPrisonLockdownPin
+  - ClothingNeckPlanetPrisonCellblockPin
 
 #Law
 
