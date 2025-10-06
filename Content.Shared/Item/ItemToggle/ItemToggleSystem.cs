@@ -95,8 +95,13 @@ public sealed class ItemToggleSystem : EntitySystem
         if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+            {
+                // Показываем попап, если есть текст для оповещения
+                if (!string.IsNullOrEmpty(biocodedComponent.AlertText))
+                    _popup.PopupEntity(biocodedComponent.AlertText, ent.Owner, args.User);
                 return;
-        }
+            }
+        };
         // Sunrise-End
 
         args.Handled = true;
