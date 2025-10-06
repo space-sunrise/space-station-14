@@ -3,30 +3,46 @@
   name: job-name-prison-worker
   description: job-description-prison-worker
   playTimeTracker: JobPrisonWorker
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 7200 # 2 hrs
+    - !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 7200 # 2 hrs
+    - !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 18000 # 5 hrs
+    - !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 18000 # 5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2 hrs
   startingGear: PrisonWorkerGear
   icon: "JobIconPrisonWorker"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   alwaysUseSpawner: true
   canBeAntag: false
-  displayWeight: 40
+  displayWeight: 80
   access:
-  - Security
-  - Brig
-  - Maintenance
-  - External
-  - Service
-  - Chemistry
-  - Medical
-  - Engineering
-  - Atmospherics
-  - Janitor
-  - Bar
-  - Hydroponics
-  - Kitchen
+   - Security
+   - Brig
+   - Maintenance
+   - External
+   - Service
+   - Chemistry
+   - Medical
+   - Engineering
+   - Atmospherics
+   - Janitor
+   - Bar
+   - Hydroponics
+   - Kitchen
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+   - !type:AddImplantSpecial
+     implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: PrisonWorkerGear

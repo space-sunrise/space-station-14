@@ -7,6 +7,9 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 7200 # 2 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonEngineerGear

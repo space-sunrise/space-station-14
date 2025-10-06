@@ -7,13 +7,16 @@
     - !type:DepartmentTimeRequirement
       department: Law
       time: 10800 # 3 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonInspectorGear
   icon: "JobIconPrisonInspector"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
-  displayWeight: 95
+  displayWeight: 90
   access:
   - Security
   - Brig
@@ -36,9 +39,7 @@
   id: PrisonInspectorGear
   equipment:
     id: PrisonInspectorPDA
-    head: ClothingHeadHatDetGadget
     jumpsuit: ClothingUniformJumpsuitArmouredBlack
-    eyes: ClothingEyesGlassesNoir
     ears: ClothingHeadsetCommand
     gloves: ClothingHandsGlovesForensic
     outerClothing: ClothingOuterArmorBasic

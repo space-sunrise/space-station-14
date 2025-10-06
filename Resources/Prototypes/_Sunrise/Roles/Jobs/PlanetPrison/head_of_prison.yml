@@ -4,12 +4,12 @@
   description: job-description-head-of-prison
   playTimeTracker: JobHeadOfPrison
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobHeadOfSecurity
-    time: 36000 #10 hrs # Sunrise-RoleTime
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 108000 #30 hrs # Sunrise-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: PlanetPrison
+      time: 108000 # 30 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hrs
   weight: 10
   startingGear: HeadOfPrisonGear
   icon: "JobIconHeadOfPrison"
@@ -21,10 +21,10 @@
   radioBold: true
   displayWeight: 100
   accessGroups:
-  - AllAccess
+    - AllAccess
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: HeadOfPrisonGear
