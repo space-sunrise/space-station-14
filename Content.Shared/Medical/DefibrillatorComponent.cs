@@ -92,20 +92,31 @@ public sealed partial class DefibrillatorComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<string, float> Reagents = new();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
 
     /// <summary>
     /// The movement speed modifier to apply when used on alive targets
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
+<<<<<<< HEAD
     public float SlownessMultiplier = 0.5f;
+=======
+    public float SlownessMultiplier = 0.30f;
+>>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
 
     /// <summary>
     /// The duration of the movement speed modifier when used on alive targets
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
+<<<<<<< HEAD
     public TimeSpan SlownessDuration = TimeSpan.FromSeconds(5);
 >>>>>>> parent of 56d7f5176d (Прототип)
+=======
+    public TimeSpan SlownessDuration = TimeSpan.FromSeconds(6);
+>>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
     // Sunrise-End
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
