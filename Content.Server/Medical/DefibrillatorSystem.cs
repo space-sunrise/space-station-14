@@ -26,7 +26,6 @@ using Robust.Shared.Player;
 <<<<<<< HEAD
 <<<<<<< HEAD
 // Sunrise-Start
-using Content.Shared.FixedPoint;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
@@ -104,6 +103,17 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (args.Handled || args.Target is not { } target)
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocode) &&
+            !_biocode.CanUse(args.User, biocode.Factions))
+        {
+            if (!string.IsNullOrEmpty(biocode.AlertText))
+                _popup.PopupEntity(biocode.AlertText, args.User, args.User);
+            args.Handled = true;
+            return;
+        }
+        // Sunrise-End
+
         args.Handled = TryStartZap(uid, target, args.User, component);
     }
 
@@ -155,16 +165,6 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         if (!_powerCell.HasActivatableCharge(uid, user: user))
             return false;
-
-        // Sunrise-Start
-        if (TryComp<BiocodeComponent>(uid, out var biocode) && user != null &&
-           !_biocode.CanUse(user.Value, biocode.Factions))
-        {
-            if (!string.IsNullOrEmpty(biocode.AlertText))
-                _popup.PopupEntity(biocode.AlertText, uid, user.Value);
-            return false;
-        }
-        // Sunrise-End
 
         if (!targetCanBeAlive && _mobState.IsAlive(target, mobState))
             return false;
@@ -287,6 +287,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
         // Sunrise-Start
@@ -318,6 +319,8 @@ public sealed class DefibrillatorSystem : EntitySystem
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
+=======
+>>>>>>> parent of c0c42df0e1 (Биокод, убрал недо изменение скорости.)
         var sound = dead || session == null
             ? component.FailureSound
             : component.SuccessSound;

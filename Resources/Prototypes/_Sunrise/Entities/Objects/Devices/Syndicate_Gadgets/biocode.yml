@@ -17,6 +17,7 @@
   suffix: BIOCODE
   components:
   - type: Biocode
+<<<<<<< HEAD
     factions:
     - Syndicate
     alertText: Данный предмет биокодирован. Вы не можете его использовать.
@@ -24,3 +25,8 @@
 >>>>>>> parent of 154cfd6643 (fix2+biocode)
 =======
 >>>>>>> parent of 154cfd6643 (fix2+biocode)
+=======
+  factions:
+  - Syndicate
+  alertText: Данный предмет биокодирован. Вы не можете его использовать.
+>>>>>>> parent of c0c42df0e1 (Биокод, убрал недо изменение скорости.)

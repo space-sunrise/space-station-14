@@ -95,6 +95,7 @@ public sealed partial class DefibrillatorComponent : Component
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
@@ -129,6 +130,8 @@ public sealed partial class DefibrillatorComponent : Component
 =======
     public TimeSpan SlownessDuration = TimeSpan.FromSeconds(6);
 >>>>>>> parent of a8b203330a (даун быля)
+=======
+>>>>>>> parent of c0c42df0e1 (Биокод, убрал недо изменение скорости.)
     // Sunrise-End
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
