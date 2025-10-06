@@ -1958,6 +1958,7 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Science
+<<<<<<< HEAD
 
 - type: listing
   id: UplinkDeathAcidifierImplanterAgent
@@ -2052,3 +2053,5 @@
     Telecrystal: 1
   categories:
   - UplinkDisruption
+=======
+>>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
