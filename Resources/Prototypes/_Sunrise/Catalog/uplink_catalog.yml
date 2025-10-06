@@ -1960,6 +1960,7 @@
       - Science
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 - type: listing
   id: UplinkDeathAcidifierImplanterAgent
   name: uplink-death-acidifier-implant-name
@@ -2039,6 +2040,23 @@
     stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
+=======
+    - type: listing
+      id: DefibrillatorSyndicate
+      name: interdyne defibrillator
+      description: Doubles as a self-defense weapon against war-crime inclined tiders.
+      productEntity: DefibrillatorSyndicateUplink
+      discountCategory: rareDiscounts
+      discountDownTo:
+       Telecrystal: 4
+      cost:
+        Telecrystal: 8
+      categories:
+      - UplinkChemicals
+      conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+>>>>>>> parent of 1f9536e28a (UplinkSyndiDefib)
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
