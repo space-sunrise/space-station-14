@@ -368,6 +368,7 @@ uplink-interdyne-defibrillator-name = Дефибриллятор Interdyne
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 uplink-interdyne-defibrillator-desc = Превосходный дефибриллятор, предназначенный для помощи и самообороны. Для настоящих медиков Синдиката.
 uplink-bola-syn-name = Бола Синдиката
 uplink-bola-syn-desc = Идеальная версия болы для Синдиката.
@@ -382,3 +383,6 @@ ulpink-interdyne-defibrillator-desc = Превосходный дефибрил�
 =======
 uplink-interdyne-defibrillator-desc = Превосходный дефибриллятор, не предназначеный для боёв. Для настоящих медиков Синдиката.
 >>>>>>> parent of c26a83ac16 (-emp fix locale)
+=======
+ulpink-defibrillator-syndicate-desc = Превосходный дефибриллятор, не предназначеный для боёв. Для настоящих медиков Синдиката.
+>>>>>>> parent of 4469e409d8 (fix)

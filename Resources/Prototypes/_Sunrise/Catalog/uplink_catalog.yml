@@ -2008,7 +2008,7 @@
 >>>>>>> parent of 93570c256d (Update uplink catalog with new items and adjustments)
   id: UplinkDefibrillatorSyndicate
   name: uplink-interdyne-defibrillator-name
-  description: ulpink-interdyne-defibrillator-desc
+  description: ulpink-defibrillator-syndicate-desc
   productEntity: DefibrillatorSyndicate
   discountCategory: rareDiscounts
   discountDownTo:
