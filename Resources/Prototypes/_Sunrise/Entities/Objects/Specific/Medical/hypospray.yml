@@ -96,6 +96,8 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
+    filterReagentGroups:
+     - Medicine
     onlyAffectsMobs: true
     filterPoison: true
     doAfterTime: 0.75
@@ -190,5 +192,213 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: microstimpen_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15 #Sunrise-Edit
+    onlyAffectsMobs: false
+    injectOnly: true
   - type: StaticPrice
     price: 250
+
+- type: entity
+  name: lacerinol auto-injector
+  parent: ChemicalMedipen
+  id: LacerAutoInjector
+  description: A rapid dose of lacerinol and tranexamic acid, intended for combat applications.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#558255"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#558255"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: lacerpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: lacerpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+
+- type: entity
+  name: bruizine auto-injector
+  parent: ChemicalMedipen
+  id: BruizAutoInjector
+  description: A rapid dose of bruizine and tranexamic acid, intended for combat applications.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#c60032"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#c60032"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: bruizpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: bruizpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Bruizine
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+
+- type: entity
+  name: polypyrylium oligomers auto-injector
+  parent: ChemicalMedipen
+  id: PolyAutoInjector
+  description: A rapid dose of polyp... polypyryl... polypyryliu.... It contains extract of spaceman's trumpet. Intended to address brute damage and asphyxiation.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9423ff"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9423ff"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: polypen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: polypen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: PolypyryliumOligomers
+          Quantity: 20
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+    onlyAffectsMobs: false
+    injectOnly: true
+
+- type: entity
+  name: stellibinin auto-injector
+  parent: ChemicalMedipen
+  id: StellibininAutoInjector
+  description: A rapid dose of Stellibinin. Intended to address toxins.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9423ff"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9423ff"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: stellipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: stellipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: Stellibinin
+          Quantity: 10
+
+- type: entity
+  name: empty medipen
+  parent: BaseItem
+  description: A empty medipen with endless potential. Does not allow for deviation from Nanotrasen recipes.
+  id: BlankMediPen
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    state: medipen
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#808080"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#808080"
+      - state: base-colorB-inhand-right
+
+- type: entity
+  name: coal auto-injector
+  parent: ChemicalMedipen
+  id: CoalAutoInjector
+  description: Clears your blood and treats poison damage over 30 seconds.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#404040"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#404040"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: coalpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: coalpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Charcoal
+          Quantity: 15
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: false
+    injectOnly: true

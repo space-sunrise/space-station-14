@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: BaseBorgModule
   parent: BaseItem
   name: borg module
@@ -660,6 +660,9 @@
         whitelist:
           components:
           - Circuitboard
+        blacklist:
+          components:
+          - SiliconLawProvider
     - hand:
         emptyRepresentative: MicroManipulatorStockPart
         emptyLabel: borg-slot-construction-empty
@@ -811,7 +814,6 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    #- item: HandheldHealthAnalyzerUnpowered
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -876,7 +878,7 @@
     - item: HypoBorgMedical # Sunrise-Edit
     - item: HyposprayMedical # Sunrise-Edit
     - item: Syringe
-    - item: BorgDropper
+    # - item: BorgDropper # Sunrise-Edit
     - item: BaseChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
@@ -914,9 +916,9 @@
   - type: ItemBorgModule
     hands:
     - item: HypoBorgMedicalAdvanced # Sunrise-Edit
-    - item: BorgHypo
-    - item: Syringe
-    - item: BorgDropper
+    - item: Hypospray # Sunrise-Edit
+    - item: SyringeBluespace # Sunrise-Edit
+   # - item: BorgDropper # Sunrise-Edit
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
@@ -1017,6 +1019,8 @@
     - state: icon-pen
   - type: ItemBorgModule
     hands:
+    - item: BorgShakerSoda
+    - item: BorgShakerBooze
     - item: Pen
     - item: BooksBag
     - hand:
@@ -1085,6 +1089,13 @@
       hand:
         emptyLabel: borg-slot-instruments-empty
         emptyRepresentative: SaxophoneInstrument
+        whitelist:
+          components:
+          - Instrument
+    - item: SuperSynthesizerInstrument
+      hand:
+        emptyLabel: borg-slot-instruments-empty
+        emptyRepresentative: SuperSynthesizerInstrument
         whitelist:
           components:
           - Instrument
@@ -1273,7 +1284,7 @@
 - type: entity
   parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleC20r
-  name: C20-r ROW cyborg module
+  name: C-20r ROW cyborg module
   description: A weapons module that comes with a burst-fire C-20r.
   components:
   - type: Sprite

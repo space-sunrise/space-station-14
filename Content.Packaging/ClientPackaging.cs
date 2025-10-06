@@ -82,7 +82,11 @@ public static class ClientPackaging
             assemblies, // Sunrise-Sponsors
             cancel: cancel);
 
-        await RobustClientPackaging.WriteClientResources(contentDir, inputPass, cancel);
+        await RobustClientPackaging.WriteClientResources(
+            contentDir,
+            inputPass,
+            SharedPackaging.AdditionalIgnoredResources,
+            cancel);
 
         inputPass.InjectFinished();
     }

@@ -5,6 +5,10 @@
   abstract: true
   description: A door, where will it lead?
   components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
   - type: Pierceable
     level: Metal
   - type: InteractionOutline
@@ -84,7 +88,7 @@
   - type: Pierceable
     level: Wood
   - type: Sprite
-    sprite: Structures/Doors/MineralDoors/wood_door.rsi
+    sprite: _Sunrise/Structures/Doors/MineralDoors/wood_door.rsi # Sunrise-Edit
   - type: Door
     openSound:
       path: /Audio/Effects/door_open.ogg
@@ -246,7 +250,7 @@
     sprite: Structures/Doors/MineralDoors/card_door.rsi
   - type: Door
     openSound:
-      path: /Audio/Effects/card_drag.ogg 
+      path: /Audio/Effects/card_drag.ogg
     closeSound:
       path: /Audio/Effects/card_drag.ogg
   - type: MeleeSound

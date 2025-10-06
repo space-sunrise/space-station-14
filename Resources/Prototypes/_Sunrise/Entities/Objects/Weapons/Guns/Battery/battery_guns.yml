@@ -862,7 +862,7 @@
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
+    proto: RedHeavyLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 40
   - type: Wieldable
   - type: GunWieldBonus

@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McFelinid
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: MobFelinidBase
   abstract: true
   components:
@@ -451,12 +451,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      200: Dead
+      75: Critical
+      170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      70: 0.5
+      55: 0.7
+      65: 0.5
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -468,7 +468,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 100
+    critThreshold: 90
   - type: FootprintEmitter
   - type: Vocal
     sounds:
@@ -507,6 +507,29 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
   - type: Carriable
+  - type: NightVision
+    effect: EffectNightVisioSpecies
+  - type: FlashModifier
+    modifier: 2
+  - type: FelinidLicking
+    damage:
+      types:
+        Blunt: -2
+        Slash: -3
+        Piercing: -2
+    stopBleeding: true
+    bloodlossModifier: -1.0
+    delay: 5
+    healingBeginSound:
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
 
 - type: entity
   save: false

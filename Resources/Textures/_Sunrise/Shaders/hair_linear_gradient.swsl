@@ -1,0 +1,43 @@
+// Linear gradient tint shader for sprite layers (hair/fur).
+// Blends between two colors along a chosen axis and multiplies original texture RGB (no grayscale), preserving alpha.
+//
+// direction:
+// 0 = bottom -> top (vertical)
+// 1 = top -> bottom (vertical)
+// 2 = left -> right (horizontal)
+// 3 = right -> left (horizontal)
+
+
+uniform highp vec3 color1;
+uniform highp vec3 color2;
+uniform highp float direction;
+
+void fragment()
+{
+    // Sample the sprite normally (texture atlas UV)
+    highp vec4 base = zTexture(UV);
+
+    // Compute gradient coordinate t in [0,1] using quad-local UV (UV2),
+    // so it spans exactly across the drawn sprite region, not the whole atlas.
+    highp float t = 0.0;
+    if (direction < 0.5)      // bottom -> top
+        t = UV2.y;
+    else if (direction < 1.5) // top -> bottom
+        t = 1.0 - UV2.y;
+    else if (direction < 2.5) // left -> right
+        t = UV2.x;
+    else                      // right -> left
+        t = 1.0 - UV2.x;
+
+    highp float tt = clamp(t, 0.0, 1.0);
+
+    // Создаем градиентный цвет: переходим от color1 к color2
+    highp vec3 gradColor = mix(color1, color2, tt);
+
+    // Применяем градиентный цвет к оригинальной текстуре
+    // Текстура волос умножается на градиентный цвет напрямую
+    highp vec3 finalRgb = base.rgb * gradColor;
+    COLOR = vec4(finalRgb, base.a);
+}
+
+

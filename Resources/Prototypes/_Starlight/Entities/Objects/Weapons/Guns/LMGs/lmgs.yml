@@ -37,7 +37,7 @@
 #     slots:
 #       gun_magazine:
 #         name: Magazine
-#         startingItem: LightRifleHeavyMagazineSP
+#         startingItem: LightRifleMagazineSP
 #         whitelist:
 #           tags:
 #             - LightRifleHeavy

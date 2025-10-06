@@ -23,16 +23,17 @@
   cost: 11500
   recipeUnlocks:
   - SpeedLoaderMagnumAP
+  - MagazineMagnumAP
   - MagazinePistolAP
-  #- MagazinePistol40AP
+  - MagazinePistol40AP
   - MagazineRifleAP
   - MagazineLightRifleAP
   - MagazineBoxMagnumAP
   - MagazineBoxPistolAP
-  #- MagazineBoxPistol40AP
+  - MagazineBoxPistol40AP
   - MagazineBoxRifleAP
   - MagazineBoxLightRifleAP
-  - LightRifleHeavyMagazineAP
+  - LightRifleMagazineAP
   - MagazinePistolSubMachineGunAP
   - MagazinePistolSubMachineGunTopMountedAP
   - MagazinePistolHighCapacityAP
@@ -140,10 +141,9 @@
 #  radioChannels:
 #  - Security
 
-
 - type: technology
   id: CombatEquipment
-  name: research-technology-combat-equipment #
+  name: research-technology-combat-equipment
   icon:
     sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
     state: icon
@@ -152,12 +152,32 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
-  - VestSecUpgrade
   - ModularReceiverAuto
   - LecterUpgrade
   - DrozdUpgrade
+  - ClothingHeadHelmetPubg
+  - VestSecUpgradeBullet
+  - VestSecUpgradeRiot
+  - VestSecUpgradeReflective
   technologyPrerequisites:
   - AdvancedRiotControl
+  radioChannels:
+  - Security
+
+- type: technology
+  id: AdvancedCombatEquipment
+  name: research-technology-advanced-combat-equipment
+  icon:
+    sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_sec.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - VestSecUpgradeBulletHeavy
+  - VestSecUpgradeWeb
+  technologyPrerequisites:
+  - CombatEquipment
   radioChannels:
   - Security
 

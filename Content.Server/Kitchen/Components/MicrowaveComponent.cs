@@ -5,6 +5,10 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Kitchen; //Sunrise-Edit
+using Robust.Shared.Serialization; //Sunrise-Edit
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; //Sunrise-Edit
+using Content.Shared.Kitchen.Components; //Sunrise-Edit
 
 namespace Content.Server.Kitchen.Components
 {
@@ -110,17 +114,43 @@ namespace Content.Server.Kitchen.Components
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanMicrowaveIdsSafely = true;
+        //Sunrise-Start
+        [DataField(customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>)), ViewVariables(VVAccess.ReadWrite)]
+        public int ValidRecipeTypes = (int)MicrowaveRecipeType.Microwave;
+
+        /// <summary>
+        /// If true, events sent off by the microwave will state that the object is being heated.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public bool CanHeat = true;
+
+        /// <summary>
+        /// If true, events sent off by the microwave will state that the object is being irradiated.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public bool CanIrradiate = true;
+
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public SoundSpecifier NoRecipeSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        public MicrowaveUiKey Key = MicrowaveUiKey.Key;
+        //Sunrise-End
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs
     {
         public EntityUid Microwave;
         public EntityUid? User;
+        public bool BeingHeated; //Sunrise-Edit
+        public bool BeingIrradiated; //Sunrise-Edit
 
-        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user)
+        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user, bool heating, bool irradiating) //Sunrise-Edit
         {
             Microwave = microwave;
             User = user;
+            BeingHeated = heating; //Sunrise-Edit
+            BeingIrradiated = irradiating; //Sunrise-Edit
         }
     }
 }

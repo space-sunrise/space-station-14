@@ -34,12 +34,6 @@ public sealed partial class MeleeWeaponComponent : Component
     [AutoPausedField]
     public TimeSpan NextAttack;
 
-    /// <summary>
-    /// Starts attack cooldown when equipped if true.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ResetOnHandSelected = true;
-
     /*
      * Melee combat works based around 2 types of attacks:
      * 1. Click attacks with left-click. This attacks whatever is under your mnouse

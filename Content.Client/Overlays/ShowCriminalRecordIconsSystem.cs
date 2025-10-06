@@ -27,7 +27,7 @@ public sealed class ShowCriminalRecordIconsSystem : EquipmentHudSystem<ShowCrimi
         if (_standing.IsDown(uid)) // Sunrise-standing
             return;
 
-        if (_prototype.TryIndex(component.StatusIcon, out var iconPrototype))
+        if (_prototype.Resolve(component.StatusIcon, out var iconPrototype))
             ev.StatusIcons.Add(iconPrototype);
     }
 }

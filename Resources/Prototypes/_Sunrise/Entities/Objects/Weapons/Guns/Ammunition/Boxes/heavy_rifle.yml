@@ -11,7 +11,7 @@
       tags:
         - CartridgeHeavyRifle
     proto: CartridgeRifleHeavySP
-    capacity: 20
+    capacity: 40
   - type: Item
     size: Small
   - type: ContainerContainer

@@ -181,7 +181,7 @@ uplink-radio-jammer-name = Radio Jammer
 uplink-radio-jammer-desc = This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated.
 
 uplink-syndicate-weapon-module-name = Weapon Cyborg Module
-uplink-syndicate-weapon-module-desc = Upgrades a cyborg with both a machete and an advanced laser.
+uplink-syndicate-weapon-module-desc = Upgrades a cyborg with both an energy dagger and an echis pistol.
 
 uplink-syndicate-martyr-module-name = Martyr Cyborg Module
 uplink-syndicate-martyr-module-desc = Turn your emagged borg friend into a walking bomb with just this module. Make sure they're loyal to your cause, results may vary.
@@ -496,6 +496,12 @@ uplink-contraband-lighter-desc = A mystery box guaranteed to contain a syndicate
 
 uplink-smuggler-satchel-name = Smuggler's Satchel
 uplink-smuggler-satchel-desc = A handy, suspicious looking satchel. Just flat enough to fit underneath floor tiles.
+
+uplink-coal-auto-injector-name = Coal Auto-Injector
+uplink-coal-auto-injector-desc = A specialized auto-injector containing coal-based chemicals that clear your blood and treat poison damage over 30 seconds.
+
+uplink-coalpen-kit-name = Coalpen Kit
+uplink-coalpen-kit-desc = A medical kit containing 6 coal auto-injectors for treating poison damage and clearing blood toxins.
 
 uplink-acolyte-armor-name = Acolyte Armor
 uplink-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.

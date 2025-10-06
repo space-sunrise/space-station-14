@@ -19,3 +19,6 @@ crew-monitoring-user-interface-no-department = Unknown
 
 crew-monitoring-user-interface-flavor-left = In case of an emergency, contact station medical staff immediately
 crew-monitoring-user-interface-flavor-right = v1.7
+
+crew-monitoring-corpse-alert-on = Corpse Alert: ON
+crew-monitoring-corpse-alert-off = Corpse Alert: OFF
