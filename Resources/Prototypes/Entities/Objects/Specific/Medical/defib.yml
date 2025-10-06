@@ -97,7 +97,7 @@
 
 - type: entity
   id: DefibrillatorSyndicate
-  parent: [ DefibrillatorCompact, BaseSyndicateContraband ]
+  parent: [ BaseDefibrillator, BaseSyndicateContraband ]
   name: interdyne defibrillator
   description: Doubles as a self-defense weapon against war-crime inclined tiders.
   components:
@@ -112,6 +112,7 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
+<<<<<<< HEAD
 <<<<<<< HEAD
   # Sunrise-Start
   - type: Defibrillator
@@ -151,3 +152,20 @@
       types:
         Blunt: 8
         Shock: 16
+=======
+        #Sunrise-Start
+      - type: BatterySelfRecharger
+        autoRechargeRate: 10
+        autoRecharge: true
+        autoRechargePause: true
+        autoRechargePauseTime: 10
+      - type: ExaminableBattery
+      - type: Battery
+        maxCharge: 250
+        startingCharge: 250
+      - type: PowerCellDraw
+        useRate: 100
+      - type: EmpImmune
+        #Sunrise-End
+
+>>>>>>> parent of dd901ad53e (лан сам ща)
