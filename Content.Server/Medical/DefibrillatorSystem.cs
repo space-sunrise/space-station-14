@@ -30,12 +30,15 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Content.Shared._Sunrise.Biocode;
 =======
 using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Timing;
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
+=======
+>>>>>>> parent of f503a40913 (Биокод)
 // Sunrise-End
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
@@ -65,6 +68,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 <<<<<<< HEAD
 <<<<<<< HEAD
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!; // Sunrise-Edit
+<<<<<<< HEAD
     [Dependency] private readonly BiocodeSystem _biocode = default!; // Sunrise-Edit
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
@@ -79,6 +83,8 @@ public sealed class DefibrillatorSystem : EntitySystem
 
     // Sunrise-End
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
+=======
+>>>>>>> parent of f503a40913 (Биокод)
 
     /// <inheritdoc/>
     public override void Initialize()
