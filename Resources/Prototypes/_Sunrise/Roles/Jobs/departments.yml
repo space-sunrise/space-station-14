@@ -24,7 +24,6 @@
 
 - type: department
   id: PlanetPrison
-  sort: 0
   name: department-PlanetPrison
   description: department-PlanetPrison-description
   color: "#9f4000"
@@ -32,12 +31,14 @@
   - HeadOfPrison
   - PrisonInspector
   - PrisonWorker
-  - PrisonChef
-  - PrisonDoctor
   - PrisonEngineer
   - PrisonScientist
-  - PrisonGuard
+  - PrisonDoctor
+  - PrisonChef
+  # - PrisonGuard
+  # - PrisonPilot
   - PlanetPrisoner
+  weight: 150
 
 - type: department
   id: CentralCommand

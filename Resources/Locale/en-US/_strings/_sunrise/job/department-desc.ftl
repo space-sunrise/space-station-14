@@ -1,3 +1,3 @@
 department-Law-description = Защищяйте, судите или накажите преступников.
-department-PlanetPrison-description = Не дайте нарушителям закона сбежать.
+department-PlanetPrison-description = В этом месте границы между контролем и свободой размыты, а выживание зависит от способности сохранять равновесие.
 department-Blueshield-description = Ваша задача дефать самоубийц на главах. Довольно бесполезно...
