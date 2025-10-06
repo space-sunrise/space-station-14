@@ -77,6 +77,7 @@ public sealed partial class DefibrillatorComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("readySound")]
     public SoundSpecifier? ReadySound = new SoundPathSpecifier("/Audio/Items/Defib/defib_ready.ogg");
+<<<<<<< HEAD
 
     // Sunrise-Start
     /// <summary>
@@ -91,6 +92,8 @@ public sealed partial class DefibrillatorComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<string, float> Reagents = new();
     // Sunrise-End
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 }
 
 [Serializable, NetSerializable]

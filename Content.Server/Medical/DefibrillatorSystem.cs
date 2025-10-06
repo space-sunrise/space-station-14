@@ -23,6 +23,7 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+<<<<<<< HEAD
 // Sunrise-Start
 using Content.Shared.FixedPoint;
 using Content.Shared.Body.Components;
@@ -30,6 +31,8 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared._Sunrise.Biocode;
 // Sunrise-End
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 
 namespace Content.Server.Medical;
 
@@ -53,8 +56,11 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+<<<<<<< HEAD
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!; // Sunrise-Edit
     [Dependency] private readonly BiocodeSystem _biocode = default!; // Sunrise-Edit
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -79,7 +85,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (args.Target is not { } target)
             return;
 
-        if (!CanZap(uid, target, args.User, component, component.AllowUseOnAlive)) // Sunrise-Edit
+        if (!CanZap(uid, target, args.User, component))
             return;
 
         args.Handled = true;
@@ -154,7 +160,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (!CanZap(uid, target, user, component, component.AllowUseOnAlive)) // Sunrise-Edit
+        if (!CanZap(uid, target, user, component))
             return false;
 
         _audio.PlayPvs(component.ChargeSound, uid);
@@ -183,7 +189,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         target = selfEvent.DefibTarget;
 
         // Ensure thet new target is still valid.
-        if (selfEvent.Cancelled || !CanZap(uid, target, user, component, component.AllowUseOnAlive)) // Sunrise-Edit
+        if (selfEvent.Cancelled || !CanZap(uid, target, user, component, true))
             return;
 
         var targetEvent = new TargetBeforeDefibrillatorZapsEvent(user, uid, target);
@@ -191,7 +197,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         target = targetEvent.DefibTarget;
 
-        if (targetEvent.Cancelled || !CanZap(uid, target, user, component, component.AllowUseOnAlive)) // Sunrise-Edit
+        if (targetEvent.Cancelled || !CanZap(uid, target, user, component, true))
             return;
 
         if (!TryComp<MobStateComponent>(target, out var mob) ||
@@ -248,6 +254,7 @@ public sealed class DefibrillatorSystem : EntitySystem
             }
         }
 
+<<<<<<< HEAD
         // Sunrise-Start
         // Inject reagents if any are specified
         if (component.Reagents.Count > 0 && TryComp<BloodstreamComponent>(target, out var bloodstream))
@@ -260,6 +267,8 @@ public sealed class DefibrillatorSystem : EntitySystem
         }
         // Sunrise-End
 
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
         var sound = dead || session == null
             ? component.FailureSound
             : component.SuccessSound;
