@@ -7,7 +7,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: /_Sunrise/Objects/Weapons/Throwable/bola/bolasecurity.rsi
+    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasecurity.rsi
     state: icon
   - type: EmitSoundOnThrow
     sound: /Audio/Weapons/bolathrow.ogg
@@ -69,7 +69,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: /_Sunrise/Objects/Weapons/Throwable/bola/bolasyndicate.rsi
+    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasyndicate.rsi
     state: icon
   - type: EmitSoundOnThrow
     sound: /Audio/Weapons/bolathrow.ogg
