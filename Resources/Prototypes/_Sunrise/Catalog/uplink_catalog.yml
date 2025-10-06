@@ -1979,6 +1979,7 @@
     stock: 1
 
 - type: listing
+<<<<<<< HEAD
   id: UplinkXenoArtifactThrowingAutoInjector
   name: uplink-xeno-artifact-throwing-auto-injector-name
   description: uplink-xeno-artifact-throwing-auto-injector-desc
@@ -2008,6 +2009,13 @@
   icon: { sprite: _Sunrise/Objects/Specific/Syndicate/anomaly_auto_injector.rsi, state: anomagen }
   productEntity: AnomalyAutoInjectorUplink
   discountCategory: usualDiscounts
+=======
+  id: UplinkDefibrillatorSyndicate
+  name: uplink-interdyne-defibrillator-name
+  description: ulpink-interdyne-defibrillator-desc
+  productEntity: DefibrillatorSyndicate
+  discountCategory: rareDiscounts
+>>>>>>> parent of 154cfd6643 (fix2+biocode)
   discountDownTo:
     Telecrystal: 4
   cost:
