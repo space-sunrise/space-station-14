@@ -2060,3 +2060,13 @@
   - !type:BuyerDepartmentCondition
     whitelist:
       - Science
+
+- type: listing
+  id: UplinkBolaSyndicate
+  name: uplink-bola-syn-name
+  description: uplink-bola-syn-desc
+  productEntity: BolaSyndicateBiocode
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDisruption
