@@ -4,7 +4,7 @@ using Content.Server.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Weapons.Melee.Events;
 
-namespace Content.Server._Sunrise.Weapons.Melee.Systems;
+namespace Content.Server.Weapons.Melee.Systems;
 
 public sealed class PowerDrainOnMeleeHitSystem : EntitySystem
 {
@@ -13,6 +13,7 @@ public sealed class PowerDrainOnMeleeHitSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<Components.PowerDrainOnMeleeHitComponent, MeleeHitEvent>(OnMeleeHit);
     }
 
@@ -38,3 +39,5 @@ public sealed class PowerDrainOnMeleeHitSystem : EntitySystem
         }
     }
 }
+
+

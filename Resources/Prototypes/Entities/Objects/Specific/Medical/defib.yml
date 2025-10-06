@@ -142,12 +142,16 @@
     useRate: 85
 <<<<<<< HEAD
   - type: PowerDrainOnMeleeHit
+<<<<<<< HEAD
     chargePerHit: 30
   # Sunrise-End
 =======
 >>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
 =======
 >>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
+=======
+  # Sunrise-Edit
+>>>>>>> parent of ca8a3f32dd (Пиздец я тип просто ахуеть.)
   - type: MeleeWeapon
     damage:
       types:
