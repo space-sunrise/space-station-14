@@ -18,18 +18,22 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
-  - ClothingWraps # Sunrise
-  - ClothingWrapsHigh # Sunrise
-  - ClothingNeckNanoTrasenPin  # Sunrise
-  - ClothingNeckNakamuraPin  # Sunrise
-  - ClothingNeckLogistikaPin  # Sunrise
-  - ClothingNeckDeForestPin  # Sunrise
-  - ClothingNeckDonkPin  # Sunrise
-  - ClothingNeckVitezstviPin  # Sunrise
-  - ClothingNeckEarthPin  # Sunrise
-  - ClothingNeckUSSPPin  # Sunrise
-  - ClothingNeckReedIndustriesPin  # Sunrise
-  - CorporateLaw # Sunrise-edit
+  # Sunrise-Start
+  - ClothingWraps
+  - ClothingWrapsHigh
+  - ClothingNeckNanoTrasenPin
+  - ClothingNeckNakamuraPin
+  - ClothingNeckLogistikaPin
+  - ClothingNeckDeForestPin
+  - ClothingNeckDonkPin
+  - ClothingNeckVitezstviPin
+  - ClothingNeckEarthPin
+  - ClothingNeckUSSPPin
+  - ClothingNeckReedIndustriesPin
+  - CorporateLaw
+  - ClothingNeckPlanetPrisonLockdownPin
+  - ClothingNeckPlanetPrisonCellblockPin
+  # Sunrise-End
   - ClothingNeckLGBTPin
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
