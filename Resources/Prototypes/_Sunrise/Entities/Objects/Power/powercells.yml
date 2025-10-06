@@ -64,12 +64,13 @@
   name: powercell defibrillator syndicate
   id: PowerCellDefibrillatorSyndicate
   suffix: Full
-  parent: SyndicateDefibrillatorPowercell
+  parent: PowerCellSyndicate
   components:
   - type: Battery
     maxCharge: 250
     startingCharge: 250
   - type: BatterySelfRecharger
+<<<<<<< HEAD
 <<<<<<< HEAD
     autoRechargeRate: 4.5
     autoRecharge: true
@@ -101,3 +102,9 @@
     autoRechargePause: true
     autoRechargePauseTime: 10
 >>>>>>> parent of 85054eb548 (cellnaxu)
+=======
+    autoRechargeRate: 7.5
+    autoRecharge: true
+    autoRechargePause: true
+    autoRechargePauseTime: 15
+>>>>>>> parent of c26a83ac16 (-emp fix locale)

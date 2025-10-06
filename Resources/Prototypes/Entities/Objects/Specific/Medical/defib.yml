@@ -133,6 +133,7 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
+<<<<<<< HEAD
     useRate: 85
   - type: PowerDrainOnMeleeHit
     chargePerHit: 30
@@ -175,6 +176,10 @@
         useRate: 100
       - type: EmpImmune
         #Sunrise-End
+=======
+    useRate: 100
+    #Sunrise-End
+>>>>>>> parent of c26a83ac16 (-emp fix locale)
 
 >>>>>>> parent of dd901ad53e (лан сам ща)
 =======
