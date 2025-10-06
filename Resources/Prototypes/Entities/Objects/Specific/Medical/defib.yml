@@ -114,12 +114,16 @@
         shader: unshaded
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   # Sunrise-Start
   - type: Defibrillator
     allowUseOnAlive: true
     reagents:
       Omnizine: 10
       Epinephrine: 5
+=======
+    #Sunrise-Start
+>>>>>>> parent of 56d7f5176d (Прототип)
   - type: ItemSlots
     slots:
       cell_slot:
