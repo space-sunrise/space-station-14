@@ -2045,8 +2045,6 @@
   categories:
   - UplinkChemicals
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
 =======
