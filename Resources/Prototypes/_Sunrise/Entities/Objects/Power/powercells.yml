@@ -67,9 +67,10 @@
   parent: SyndicateDefibrillatorPowercell
   components:
   - type: Battery
-    maxCharge: 300
-    startingCharge: 300
+    maxCharge: 250
+    startingCharge: 250
   - type: BatterySelfRecharger
+<<<<<<< HEAD
     autoRechargeRate: 4.5
     autoRecharge: true
     autoRechargePause: true
@@ -94,3 +95,9 @@
     startingCharge: 1800
 =======
 >>>>>>> parent of dd901ad53e (лан сам ща)
+=======
+    autoRechargeRate: 10
+    autoRecharge: true
+    autoRechargePause: true
+    autoRechargePauseTime: 10
+>>>>>>> parent of 85054eb548 (cellnaxu)
