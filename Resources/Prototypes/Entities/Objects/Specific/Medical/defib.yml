@@ -97,7 +97,7 @@
 
 - type: entity
   id: DefibrillatorSyndicate
-  parent: [ BaseDefibrillator, BaseSyndicateContraband ]
+  parent: [ DefibrillatorCompact, BaseSyndicateContraband ]
   name: interdyne defibrillator
   description: Doubles as a self-defense weapon against war-crime inclined tiders.
   components:
@@ -112,6 +112,7 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -138,6 +139,8 @@
   # Sunrise-End
 =======
 >>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
+=======
+>>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
   - type: MeleeWeapon
     damage:
       types:
@@ -156,6 +159,7 @@
       types:
         Blunt: 8
         Shock: 16
+<<<<<<< HEAD
 =======
         #Sunrise-Start
       - type: BatterySelfRecharger
@@ -173,3 +177,5 @@
         #Sunrise-End
 
 >>>>>>> parent of dd901ad53e (лан сам ща)
+=======
+>>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)

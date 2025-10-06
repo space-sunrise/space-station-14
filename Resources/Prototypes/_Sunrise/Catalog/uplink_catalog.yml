@@ -1959,6 +1959,7 @@
       whitelist:
       - Science
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 - type: listing
@@ -2071,5 +2072,7 @@
     Telecrystal: 1
   categories:
   - UplinkDisruption
+=======
+>>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
 =======
 >>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)

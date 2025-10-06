@@ -12,7 +12,11 @@ ent-DefibrillatorCompact = компактный дефибриллятор
     .desc = Теперь в забавном размере!
 ent-DefibrillatorSyndicate = дефибриллятор Interdyne
 <<<<<<< HEAD
+<<<<<<< HEAD
     .desc = Особый дефибриллятор фирмы Interdyne. Для настоящих медиков Синдиката!
+=======
+    .desc = Двойное оружие самообороны против склонных к военным преступлениям тайдеров.
+>>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
 =======
     .desc = Двойное оружие самообороны против склонных к военным преступлениям тайдеров.
 >>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
