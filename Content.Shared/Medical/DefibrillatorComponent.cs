@@ -78,6 +78,7 @@ public sealed partial class DefibrillatorComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("readySound")]
     public SoundSpecifier? ReadySound = new SoundPathSpecifier("/Audio/Items/Defib/defib_ready.ogg");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     // Sunrise-Start
     /// <summary>
@@ -129,6 +130,8 @@ public sealed partial class DefibrillatorComponent : Component
     public TimeSpan SlownessDuration = TimeSpan.FromSeconds(6);
 >>>>>>> parent of a8b203330a (даун быля)
     // Sunrise-End
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 }

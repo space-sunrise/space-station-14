@@ -24,6 +24,7 @@ using Content.Shared.Toggleable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Sunrise-Start
 using Content.Shared.FixedPoint;
 using Content.Shared.Body.Components;
@@ -40,6 +41,8 @@ using Robust.Shared.Timing;
 =======
 >>>>>>> parent of f503a40913 (Биокод)
 // Sunrise-End
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 =======
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 
@@ -74,6 +77,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 >>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
 =======
 
+<<<<<<< HEAD
     // Sunrise-Start
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
@@ -86,41 +90,14 @@ public sealed class DefibrillatorSystem : EntitySystem
 =======
 >>>>>>> parent of f503a40913 (Биокод)
 
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<DefibrillatorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<DefibrillatorComponent, DefibrillatorZapDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<MovementSpeedModifierComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed); // Sunrise-Edit
     }
-
-    // Sunrise-Start
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var currentTime = _gameTiming.CurTime;
-        var toRemove = new List<EntityUid>();
-
-        foreach (var (entity, (endTime, _)) in _slowedEntities)
-        {
-            if (currentTime > endTime)
-                toRemove.Add(entity);
-        }
-
-        foreach (var entity in toRemove)
-        {
-            if (_slowedEntities.Remove(entity))
-                _movementSpeed.RefreshMovementSpeedModifiers(entity);
-        }
-    }
-
-    private void OnRefreshMovementSpeed(EntityUid uid, MovementSpeedModifierComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        if (_slowedEntities.TryGetValue(uid, out var data) && _gameTiming.CurTime <= data.EndTime)
-            args.ModifySpeed(data.Multiplier, data.Multiplier);
-    }
-    // Sunrise-End
 
     private void OnAfterInteract(EntityUid uid, DefibrillatorComponent component, AfterInteractEvent args)
     {
@@ -309,6 +286,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
         // Sunrise-Start
@@ -338,6 +316,8 @@ public sealed class DefibrillatorSystem : EntitySystem
         // Sunrise-End
 
 >>>>>>> parent of 87afe4d9c1 (Ладно похуй вырезаю эту хуету)
+=======
+>>>>>>> parent of b3a7238afa (Возможность использовать на живых, замедление на живых и вводимые реагенты при дефибриляции.)
         var sound = dead || session == null
             ? component.FailureSound
             : component.SuccessSound;
