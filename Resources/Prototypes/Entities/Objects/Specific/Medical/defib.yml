@@ -116,7 +116,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   # Sunrise-Start
+=======
+    #Sunrise-Start
+>>>>>>> parent of 5e13ed9358 (Трата энергии за удары.)
   - type: Defibrillator
     allowUseOnAlive: true
     reagents:
@@ -133,6 +137,7 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
+<<<<<<< HEAD
 <<<<<<< HEAD
     useRate: 85
 <<<<<<< HEAD
@@ -181,6 +186,10 @@
     useRate: 100
     #Sunrise-End
 >>>>>>> parent of c26a83ac16 (-emp fix locale)
+=======
+    useRate: 100
+    #Sunrise-End
+>>>>>>> parent of 5e13ed9358 (Трата энергии за удары.)
 
 >>>>>>> parent of dd901ad53e (лан сам ща)
 =======
