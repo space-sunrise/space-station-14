@@ -135,6 +135,7 @@
   - type: PowerCellDraw
 <<<<<<< HEAD
     useRate: 85
+<<<<<<< HEAD
   - type: PowerDrainOnMeleeHit
     chargePerHit: 30
   # Sunrise-End
@@ -184,3 +185,7 @@
 >>>>>>> parent of dd901ad53e (лан сам ща)
 =======
 >>>>>>> parent of 5a77e3f463 (DEFIBRILLATOR-COOL-NAH)
+=======
+    #Sunrise-End
+
+>>>>>>> parent of c5458998ca (vernul)
