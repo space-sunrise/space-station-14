@@ -365,3 +365,5 @@ uplink-handcuffs-name = Наручники
 uplink-handcuffs-desc = Используется для удержания жертв.
 uplink-interdyne-defibrillator-name = Дефибриллятор Interdyne
 uplink-interdyne-defibrillator-desc = Превосходный дефибриллятор, предназначенный для помощи и самообороны. Для настоящих медиков Синдиката.
+uplink-bola-syn-name = Бола Синдиката
+uplink-bola-syn-desc = Идеальная версия болы для Синдиката.
