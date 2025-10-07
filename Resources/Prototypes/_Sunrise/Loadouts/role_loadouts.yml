@@ -357,6 +357,7 @@
   id: JobPlanetPrisoner
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonerLoot
   - PrisonerJumpsuit
   - GroupSpeciesBreathTool
   - Bra

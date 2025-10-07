@@ -1,0 +1,12 @@
+# Loot
+
+- type: loadout
+  id: PresentRandomPrisoner
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 198000 # 55 hrs
+  inhand:
+  - PresentRandomPrisoner

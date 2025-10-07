@@ -61,6 +61,7 @@ JobPrisonEngineer = тюремный инженер
 JobPrisonGuard = тюремный охранник
 JobPrisonPilot = тюремный пилот
 JobPrisonWorker = тюремный разнорабочий
+JobPlanetPrisoner = заключённый ПТ
 JobPrisoner = заключённый
 JobSecurityPilot = пилот СБ
 JobNanoTrasenRepresentative = представитель NT

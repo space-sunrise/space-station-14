@@ -1258,6 +1258,16 @@
   - ClothingNeckPlanetPrisonLockdownPin
   - ClothingNeckPlanetPrisonCellblockPin
 
+# Planet Prison - Planet Prisoner
+
+- type: loadoutGroup
+  id: PlanetPrisonerLoot
+  name: loadout-group-planet-prisoner-loot
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PresentRandomPrisoner
+
 #Law
 
 - type: loadoutGroup
