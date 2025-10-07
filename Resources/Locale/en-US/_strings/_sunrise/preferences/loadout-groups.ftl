@@ -100,3 +100,4 @@ loadout-group-station-engineer-neck = Инженер, шея
 loadout-group-uniformntr = Униформа ИСН
 loadout-group-planet-prison-trinkets = Безделушки ПТ
 loadout-group-planet-prisoner-loot = Тайник Зека
+loadout-group-planet-prison-security-loot = Привилегии Охраны

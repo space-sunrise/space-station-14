@@ -41,6 +41,23 @@
   weight: 150
 
 - type: department
+  id: PlanetPrisonSecurity
+  name: department-PlanetPrisonSecurity
+  description: department-PlanetPrisonSecurity-description
+  color: "#691900"
+  roles:
+  - HeadOfPrison
+  - PrisonInspector
+  - PrisonWorker
+  - PrisonEngineer
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  # - PrisonGuard
+  # - PrisonPilot
+  editorHidden: true
+
+- type: department
   id: CentralCommand
   name: department-CentralCommand
   description: department-CentralCommand-description

@@ -105,3 +105,4 @@ loadout-group-commaid-shoes = Горничная командования, об�
 loadout-group-commaid-gloves = Горничная командования, перчатки
 loadout-group-planet-prison-trinkets = Безделушки ПТ
 loadout-group-planet-prisoner-loot = Тайник Зека
+loadout-group-planet-prison-security-loot = Привилегии Охраны

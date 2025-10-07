@@ -212,6 +212,7 @@
   id: JobPrisonScientist
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - Trinkets
   - Bra
   - Pants
@@ -221,6 +222,7 @@
   id: JobPrisonEngineer
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - TrinketsEngineering
   - Trinkets
   - Bra
@@ -246,6 +248,7 @@
   id: JobPrisonWorker
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - Trinkets
   - Bra
   - Pants
@@ -286,6 +289,7 @@
   id: JobPrisonChef
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - Trinkets
   - Bra
   - Pants
@@ -295,6 +299,7 @@
   id: JobPrisonDoctor
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - Trinkets
   - Bra
   - Pants
@@ -304,6 +309,7 @@
   id: JobHeadOfPrison
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - PrisonGuardHead
   # - PrisonGuardJumpsuit комбенизон должен отличаться от охраны
   - PrisonGuardBackpack
@@ -320,6 +326,7 @@
   id: JobPrisonInspector
   groups:
   - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
   - LawyerNeck
   - Trinkets
   - Survival

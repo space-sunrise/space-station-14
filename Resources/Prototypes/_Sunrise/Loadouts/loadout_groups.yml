@@ -1268,6 +1268,16 @@
   loadouts:
   - PresentRandomPrisoner
 
+# Planet Prison - General Security
+
+- type: loadoutGroup
+  id: PlanetPrisonSecurityLoot
+  name: loadout-group-planet-prison-security-loot
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PlanetPrisonSecurity-MasterHandheldCamera
+
 #Law
 
 - type: loadoutGroup
