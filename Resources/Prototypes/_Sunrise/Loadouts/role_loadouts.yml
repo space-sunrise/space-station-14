@@ -327,6 +327,8 @@
   groups:
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
+  - PrisonInspectorHats
+  - PrisonInspectorGlasses
   - LawyerNeck
   - Trinkets
   - Survival

@@ -1278,6 +1278,28 @@
   loadouts:
   - PlanetPrisonSecurity-MasterHandheldCamera
 
+# Planet Prison - Inspector
+
+- type: loadoutGroup
+  id: PrisonInspectorHats
+  name: loadout-group-prison-inspector-hats
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PrisonInspector-ClothingHeadHatBowlerHat
+  - PrisonInspector-ClothingHeadHatIAA
+  - PrisonInspector-ClothingHeadHatDetGadget
+
+
+- type: loadoutGroup
+  id: PrisonInspectorGlasses
+  name: loadout-group-prison-inspector-glasses
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonInspector-ClothingEyesGlassesSunglasses
+  - PrisonInspector-ClothingEyesGlassesNoir
+
 #Law
 
 - type: loadoutGroup

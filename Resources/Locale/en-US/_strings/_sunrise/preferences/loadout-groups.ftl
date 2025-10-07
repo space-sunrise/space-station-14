@@ -101,3 +101,5 @@ loadout-group-uniformntr = Униформа ИСН
 loadout-group-planet-prison-trinkets = Безделушки ПТ
 loadout-group-planet-prisoner-loot = Тайник Зека
 loadout-group-planet-prison-security-loot = Привилегии Охраны
+loadout-group-prison-inspector-hats = Шляпа
+loadout-group-prison-inspector-glasses = Очки

@@ -215,6 +215,12 @@
     - WhitelistChameleon
   # SUNRISE EDIT
 
+# SUNRISE EDIT
+- type: entity
+  parent: ClothingHeadHatDetGadget
+  id: Sunrise-ClothingHeadHatDetGadget
+# SUNRISE EDIT
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapUSSPBlack
