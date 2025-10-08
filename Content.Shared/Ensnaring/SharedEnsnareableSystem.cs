@@ -33,6 +33,7 @@ public abstract class SharedEnsnareableSystem : EntitySystem
     [Dependency] private   readonly SharedHandsSystem _hands = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
