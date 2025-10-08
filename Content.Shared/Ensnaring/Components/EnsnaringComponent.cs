@@ -64,6 +64,12 @@ public sealed partial class EnsnaringComponent : Component
 
     [DataField]
     public SoundSpecifier? EnsnareSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
+
+    /// <summary>
+    /// Should the ensaring entity be deleted upon removal?
+    /// </summary>
+    [DataField]
+    public bool DestroyOnRemove = false; // Sunrise-Edit
 }
 
 /// <summary>
