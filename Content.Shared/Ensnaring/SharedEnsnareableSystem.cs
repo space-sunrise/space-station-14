@@ -86,7 +86,12 @@ public abstract class SharedEnsnareableSystem : EntitySystem
         Dirty(uid, component);
         ensnaring.Ensnared = null;
 
-        _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
+        // Sunrise-Start
+        if (ensnaring.DestroyOnRemove)
+            _entityManager.QueueDeleteEntity(args.Args.Used);
+        else
+            _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
+        // Sunrise-End
 
         if (args.User == args.Target)
             Popup.PopupPredicted(Loc.GetString("ensnare-component-try-free-complete", ("ensnare", args.Args.Used)), uid, args.User, PopupType.Medium);

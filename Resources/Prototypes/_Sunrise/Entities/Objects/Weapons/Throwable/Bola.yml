@@ -40,14 +40,15 @@
       types:
         Blunt: 5
   - type: Ensnaring
-    freeTime: 2.5
-    breakoutTime: 5
+    freeTime: 2.0
+    breakoutTime: 3.5
     walkSpeed: 0.6
     sprintSpeed: 0.6
-    staminaDamage: 0
+    staminaDamage: 10
     canThrowTrigger: true
     canMoveBreakout: true
     maxEnsnares: 1
+    destroyOnRemove: true
   - type: LandAtCursor
   - type: Fixtures
     fixtures:
@@ -59,6 +60,9 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: Tag
+    tags:
+    - BolaSecurity
 
 - type: entity
   name: bolasyn
@@ -67,7 +71,7 @@
   description: Linked together with some spare cuffs and metal.
   components:
   - type: Item
-    size: Normal
+    size: Small
   - type: Sprite
     sprite: /_Sunrise/Objects/Weapons/Throwable/bola/bolasyndicate.rsi
     state: icon

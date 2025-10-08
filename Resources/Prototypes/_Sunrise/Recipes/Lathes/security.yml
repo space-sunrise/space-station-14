@@ -977,3 +977,11 @@
     Diamond: 300
     Uranium: 250
     Plasma: 250
+
+- type: latheRecipe
+  id: BolaSecurity
+  result: BolaSecurity
+  completetime: 2
+  materials:
+    Plastic: 300
+    Steel: 300
