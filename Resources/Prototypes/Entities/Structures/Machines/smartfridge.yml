@@ -117,6 +117,7 @@
       collection: MetalThud
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: Airtight # Sunrise-Add
 
 - type: entity
   parent: SmartFridge
