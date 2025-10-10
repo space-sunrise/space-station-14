@@ -48,3 +48,16 @@
   - type: Construction
     graph: SunflowerCrown
     node: SunflowerCrown
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingHeadRabbitHat
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/rabbithat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/rabbithat.rsi
+    quickEquip: true
+    slots:
+    - head
