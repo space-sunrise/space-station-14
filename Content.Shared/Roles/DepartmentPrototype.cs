@@ -49,6 +49,14 @@ public sealed partial class DepartmentPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool EditorHidden;
+
+    // Sunrise-Start
+    /// <summary>
+    /// Если true, скрывает департамент только из "Манифеста экипажа" (PDA CrewManifest App).
+    /// </summary>
+    [DataField]
+    public bool ManifestHidden = false;
+    // Sunrise-End
 }
 
 /// <summary>
