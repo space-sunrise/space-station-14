@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # region unary
 - type: entity
   parent: [GasPipeLayerAlt1, GasVentPump]
@@ -222,16 +223,24 @@
     node: dualportventpumpAlt2
 
 # region trinary
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
 - type: entity
   parent: [GasPipeLayerAlt1, GasFilter]
   id: GasFilterAlt1
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+<<<<<<< HEAD
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
       - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+=======
+    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+>>>>>>> 6a431e0725 (moving crap to SL)
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilter
@@ -239,7 +248,10 @@
   - type: Flippable
     mirrorEntity: GasFilterFlippedAlt1
   - type: Construction
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
     node: filterAlt1
 
 - type: entity
@@ -248,10 +260,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+<<<<<<< HEAD
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
       - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+=======
+    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+>>>>>>> 6a431e0725 (moving crap to SL)
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilter
@@ -259,7 +277,10 @@
   - type: Flippable
     mirrorEntity: GasFilterFlippedAlt2
   - type: Construction
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
     node: filterAlt2
 
 - type: entity
@@ -268,10 +289,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+<<<<<<< HEAD
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
       - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+=======
+    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+>>>>>>> 6a431e0725 (moving crap to SL)
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilterF
@@ -279,7 +306,10 @@
   - type: Flippable
     mirrorEntity: GasFilterAlt1
   - type: Construction
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
     node: filterflippedAlt1
 
 - type: entity
@@ -288,10 +318,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+<<<<<<< HEAD
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
       - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+=======
+    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+>>>>>>> 6a431e0725 (moving crap to SL)
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilterF
@@ -299,6 +335,7 @@
   - type: Flippable
     mirrorEntity: GasFilterAlt2
   - type: Construction
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
     node: filterflippedAlt2
 
@@ -449,3 +486,6 @@
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
     node: inline_filterAlt2
+=======
+    node: filterflippedAlt2
+>>>>>>> 6a431e0725 (moving crap to SL)

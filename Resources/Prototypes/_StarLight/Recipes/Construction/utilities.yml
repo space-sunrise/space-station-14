@@ -233,6 +233,7 @@
   conditions:
     - !type:NoUnstackableInTile
 <<<<<<< HEAD
+<<<<<<< HEAD
   alternativePrototypes:
   - GasFilterInline
   - GasFilterInlineAlt1
@@ -273,11 +274,17 @@
   - GasFilterInline
   - GasFilterInlineAlt1
   - GasFilterInlineAlt2
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
 
 - type: construction
   id: GasFilterAlt1
   hide: true
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
+=======
+  graph: GasTrinary
+>>>>>>> 6a431e0725 (moving crap to SL)
   startNode: start
   targetNode: filterAlt1
   category: construction-category-utilities
@@ -290,13 +297,20 @@
   - GasFilter
   - GasFilterAlt1
   - GasFilterAlt2
+<<<<<<< HEAD
   - GasFilterAlt3
   - GasFilterAlt4
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
 
 - type: construction
   id: GasFilterAlt2
   hide: true
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
+=======
+  graph: GasTrinary
+>>>>>>> 6a431e0725 (moving crap to SL)
   startNode: start
   targetNode: filterAlt2
   category: construction-category-utilities
@@ -309,13 +323,20 @@
   - GasFilter
   - GasFilterAlt1
   - GasFilterAlt2
+<<<<<<< HEAD
   - GasFilterAlt3
   - GasFilterAlt4
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
 
 - type: construction
   id: GasFilterFlippedAlt1
   hide: true
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
+=======
+  graph: GasTrinary
+>>>>>>> 6a431e0725 (moving crap to SL)
   startNode: start
   targetNode: filterflippedAlt1
   category: construction-category-utilities
@@ -328,13 +349,20 @@
   - GasFilterFlipped
   - GasFilterFlippedAlt1
   - GasFilterFlippedAlt2
+<<<<<<< HEAD
   - GasFilterFlippedAlt3
   - GasFilterFlippedAlt4
+=======
+>>>>>>> 6a431e0725 (moving crap to SL)
 
 - type: construction
   id: GasFilterFlippedAlt2
   hide: true
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
+=======
+  graph: GasTrinary
+>>>>>>> 6a431e0725 (moving crap to SL)
   startNode: start
   targetNode: filterflippedAlt2
   category: construction-category-utilities
@@ -346,6 +374,7 @@
   alternativePrototypes:
   - GasFilterFlipped
   - GasFilterFlippedAlt1
+<<<<<<< HEAD
   - GasFilterFlippedAlt2
   - GasFilterFlippedAlt3
   - GasFilterFlippedAlt4
@@ -463,3 +492,6 @@
   - PressureControlledValveAlt4
 =======
 >>>>>>> 84a8ca2616 (whitespace convention and device construction time)
+=======
+  - GasFilterFlippedAlt2
+>>>>>>> 6a431e0725 (moving crap to SL)
