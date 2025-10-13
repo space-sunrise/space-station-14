@@ -1121,22 +1121,30 @@
   startNode: start
   targetNode: mixer
   category: construction-category-utilities
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers # starlight
   canBuildInImpassable: false
   mirror: GasMixerFlipped
   conditions:
     - !type:NoUnstackableInTile
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  # region starlight
+>>>>>>> bdfe0d6f84 (all the trinary done.)
   alternativePrototypes:
   - GasMixer
   - GasMixerAlt1
   - GasMixerAlt2
+<<<<<<< HEAD
   - GasMixerAlt3
   - GasMixerAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end starlight
+>>>>>>> bdfe0d6f84 (all the trinary done.)
 
 - type: construction
   id: GasMixerFlipped
@@ -1145,22 +1153,30 @@
   startNode: start
   targetNode: mixerflipped
   category: construction-category-utilities
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers # starlight
   canBuildInImpassable: false
   mirror: GasMixer
   conditions:
     - !type:NoUnstackableInTile
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  # region starlight
+>>>>>>> bdfe0d6f84 (all the trinary done.)
   alternativePrototypes:
   - GasMixerFlipped
   - GasMixerFlippedAlt1
   - GasMixerFlippedAlt2
+<<<<<<< HEAD
   - GasMixerFlippedAlt3
   - GasMixerFlippedAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end starlight
+>>>>>>> bdfe0d6f84 (all the trinary done.)
 
 - type: construction
   id: PressureControlledValve
@@ -1168,6 +1184,7 @@
   startNode: start
   targetNode: pneumaticvalve
   category: construction-category-utilities
+<<<<<<< HEAD
 <<<<<<< HEAD
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1179,14 +1196,25 @@
   conditions:
     - !type:NoUnstackableInTile
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  # region starlight
+>>>>>>> bdfe0d6f84 (all the trinary done.)
   alternativePrototypes:
   - PressureControlledValve
   - PressureControlledValveAlt1
   - PressureControlledValveAlt2
+<<<<<<< HEAD
   - PressureControlledValveAlt3
   - PressureControlledValveAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end starlight
+>>>>>>> bdfe0d6f84 (all the trinary done.)
 
 # INTERCOM
 - type: construction
