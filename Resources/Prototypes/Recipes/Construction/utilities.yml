@@ -1148,7 +1148,7 @@
 
 - type: construction
   id: GasMixerFlipped
-  hide: true
+#  hide: true starlight let me build the flipped version
   graph: GasTrinary
   startNode: start
   targetNode: mixerflipped

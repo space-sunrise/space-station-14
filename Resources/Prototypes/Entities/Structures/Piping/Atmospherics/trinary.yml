@@ -121,7 +121,7 @@
   name: gas filter
   suffix: Flipped
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
   - type: SubFloorHide
     visibleLayers:
