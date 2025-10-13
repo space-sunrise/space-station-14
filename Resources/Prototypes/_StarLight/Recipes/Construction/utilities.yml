@@ -245,9 +245,13 @@
 - type: construction
   id: GasFilterInlineAlt1
 <<<<<<< HEAD
+<<<<<<< HEAD
   hide: true
 =======
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+  hide: true
+>>>>>>> a2dc7d8499 (Trinary DONE)
   name: inline-gas-filter
   description: inline-gas-filter-desc
   graph: GasTrinaryStarlight
@@ -266,9 +270,13 @@
 - type: construction
   id: GasFilterInlineAlt2
 <<<<<<< HEAD
+<<<<<<< HEAD
   hide: true
 =======
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+  hide: true
+>>>>>>> a2dc7d8499 (Trinary DONE)
   name: inline-gas-filter
   description: inline-gas-filter-desc
   graph: GasTrinaryStarlight
@@ -500,11 +508,14 @@
 - type: construction
   id: PressureControlledValveAlt1
   hide: true
+<<<<<<< HEAD
 =======
 
 - type: construction
   id: PressureControlledValveAlt1
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+>>>>>>> a2dc7d8499 (Trinary DONE)
   graph: GasTrinaryStarlight
   startNode: start
   targetNode: pneumaticvalveAlt1
@@ -524,11 +535,14 @@
 - type: construction
   id: PressureControlledValveAlt2
   hide: true
+<<<<<<< HEAD
 =======
 
 - type: construction
   id: PressureControlledValveAlt2
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+>>>>>>> a2dc7d8499 (Trinary DONE)
   graph: GasTrinaryStarlight
   startNode: start
   targetNode: pneumaticvalveAlt2

@@ -6,6 +6,12 @@
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeTrinaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: gasFilter
+          map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
     - type: GasFilter
       inlet: pipe
       outlet: pipe

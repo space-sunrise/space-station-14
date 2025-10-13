@@ -520,10 +520,14 @@
   components:
   - type: Sprite
 <<<<<<< HEAD
+<<<<<<< HEAD
     sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
 =======
     sprite: Structures/Piping/Atmospherics/inlinegasfilter.rsi
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+    sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+>>>>>>> a2dc7d8499 (Trinary DONE)
     layers:
       - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
@@ -540,10 +544,14 @@
   components:
   - type: Sprite
 <<<<<<< HEAD
+<<<<<<< HEAD
     sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
 =======
     sprite: Structures/Piping/Atmospherics/inlinegasfilter.rsi
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+    sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+>>>>>>> a2dc7d8499 (Trinary DONE)
     layers:
       - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
