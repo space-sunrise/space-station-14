@@ -234,6 +234,9 @@
     - !type:NoUnstackableInTile
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   alternativePrototypes:
   - GasFilterInline
   - GasFilterInlineAlt1
@@ -241,7 +244,10 @@
 
 - type: construction
   id: GasFilterInlineAlt1
+<<<<<<< HEAD
   hide: true
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   name: inline-gas-filter
   description: inline-gas-filter-desc
   graph: GasTrinaryStarlight
@@ -259,7 +265,10 @@
 
 - type: construction
   id: GasFilterInlineAlt2
+<<<<<<< HEAD
   hide: true
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   name: inline-gas-filter
   description: inline-gas-filter-desc
   graph: GasTrinaryStarlight
@@ -274,17 +283,24 @@
   - GasFilterInline
   - GasFilterInlineAlt1
   - GasFilterInlineAlt2
+<<<<<<< HEAD
 =======
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
 
 - type: construction
   id: GasFilterAlt1
   hide: true
 <<<<<<< HEAD
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
 =======
   graph: GasTrinary
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+  graph: GasTrinaryStarlight
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   startNode: start
   targetNode: filterAlt1
   category: construction-category-utilities
@@ -307,10 +323,14 @@
   id: GasFilterAlt2
   hide: true
 <<<<<<< HEAD
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
 =======
   graph: GasTrinary
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+  graph: GasTrinaryStarlight
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   startNode: start
   targetNode: filterAlt2
   category: construction-category-utilities
@@ -333,10 +353,14 @@
   id: GasFilterFlippedAlt1
   hide: true
 <<<<<<< HEAD
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
 =======
   graph: GasTrinary
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+  graph: GasTrinaryStarlight
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   startNode: start
   targetNode: filterflippedAlt1
   category: construction-category-utilities
@@ -359,10 +383,14 @@
   id: GasFilterFlippedAlt2
   hide: true
 <<<<<<< HEAD
+<<<<<<< HEAD
   graph: GasTrinaryStarlight
 =======
   graph: GasTrinary
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+  graph: GasTrinaryStarlight
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   startNode: start
   targetNode: filterflippedAlt2
   category: construction-category-utilities
@@ -375,9 +403,13 @@
   - GasFilterFlipped
   - GasFilterFlippedAlt1
 <<<<<<< HEAD
+<<<<<<< HEAD
   - GasFilterFlippedAlt2
   - GasFilterFlippedAlt3
   - GasFilterFlippedAlt4
+=======
+  - GasFilterFlippedAlt2
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
 
 - type: construction
   id: GasMixerAlt1
@@ -395,8 +427,11 @@
   - GasMixer
   - GasMixerAlt1
   - GasMixerAlt2
+<<<<<<< HEAD
   - GasMixerAlt3
   - GasMixerAlt4
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
 
 - type: construction
   id: GasMixerAlt2
@@ -414,8 +449,11 @@
   - GasMixer
   - GasMixerAlt1
   - GasMixerAlt2
+<<<<<<< HEAD
   - GasMixerAlt3
   - GasMixerAlt4
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
 
 - type: construction
   id: GasMixerFlippedAlt1
@@ -433,8 +471,11 @@
   - GasMixerFlipped
   - GasMixerFlippedAlt1
   - GasMixerFlippedAlt2
+<<<<<<< HEAD
   - GasMixerFlippedAlt3
   - GasMixerFlippedAlt4
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
 
 - type: construction
   id: GasMixerFlippedAlt2
@@ -452,12 +493,18 @@
   - GasMixerFlipped
   - GasMixerFlippedAlt1
   - GasMixerFlippedAlt2
+<<<<<<< HEAD
   - GasMixerFlippedAlt3
   - GasMixerFlippedAlt4
 
 - type: construction
   id: PressureControlledValveAlt1
   hide: true
+=======
+
+- type: construction
+  id: PressureControlledValveAlt1
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   graph: GasTrinaryStarlight
   startNode: start
   targetNode: pneumaticvalveAlt1
@@ -470,12 +517,18 @@
   - PressureControlledValve
   - PressureControlledValveAlt1
   - PressureControlledValveAlt2
+<<<<<<< HEAD
   - PressureControlledValveAlt3
   - PressureControlledValveAlt4
 
 - type: construction
   id: PressureControlledValveAlt2
   hide: true
+=======
+
+- type: construction
+  id: PressureControlledValveAlt2
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
   graph: GasTrinaryStarlight
   startNode: start
   targetNode: pneumaticvalveAlt2
@@ -487,6 +540,7 @@
   alternativePrototypes:
   - PressureControlledValve
   - PressureControlledValveAlt1
+<<<<<<< HEAD
   - PressureControlledValveAlt2
   - PressureControlledValveAlt3
   - PressureControlledValveAlt4
@@ -495,3 +549,6 @@
 =======
   - GasFilterFlippedAlt2
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+  - PressureControlledValveAlt2
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)

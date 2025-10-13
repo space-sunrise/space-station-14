@@ -19,7 +19,5 @@
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: West
-    - type: Flippable
-      mirrorEntity: GasFilterInline
     - type: Construction
       node: inline_filter

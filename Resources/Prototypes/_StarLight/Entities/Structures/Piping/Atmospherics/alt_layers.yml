@@ -507,7 +507,10 @@
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
+=======
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
     node: pneumaticvalveAlt2
 
 - type: entity
@@ -516,7 +519,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+=======
+    sprite: Structures/Piping/Atmospherics/inlinegasfilter.rsi
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
     layers:
       - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
@@ -532,7 +539,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+=======
+    sprite: Structures/Piping/Atmospherics/inlinegasfilter.rsi
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
     layers:
       - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
@@ -540,6 +551,7 @@
       - state: gasFilter
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
+<<<<<<< HEAD
     node: inline_filterAlt2
 =======
     node: filterflippedAlt2
@@ -547,3 +559,6 @@
 =======
     node: pneumaticvalveAlt2
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    node: inline_filterAlt2
+>>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)

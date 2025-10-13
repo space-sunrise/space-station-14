@@ -73,6 +73,18 @@
             amount: 2
             doAfter: 1
 
+      - to: inline_filterAlt1
+        steps:
+          - material: Steel
+            amount: 2
+            doAfter: 1
+
+      - to: inline_filterAlt2
+        steps:
+          - material: Steel
+            amount: 2
+            doAfter: 1
+
       # filter
       - node: filterAlt1
         entity: GasFilterAlt1
@@ -238,6 +250,38 @@
       # Inline Filter
       - node: inline_filter
         entity: GasFilterInline
+        edges:
+          - to: start
+            conditions:
+              - !type:EntityAnchored
+                anchored: false
+            completed:
+              - !type:SpawnPrototype
+                prototype: SheetSteel1
+                amount: 2
+              - !type:DeleteEntity
+            steps:
+              - tool: Welding
+                doAfter: 1
+
+      - node: inline_filterAlt1
+        entity: GasFilterInlineAlt1
+        edges:
+          - to: start
+            conditions:
+              - !type:EntityAnchored
+                anchored: false
+            completed:
+              - !type:SpawnPrototype
+                prototype: SheetSteel1
+                amount: 2
+              - !type:DeleteEntity
+            steps:
+              - tool: Welding
+                doAfter: 1
+
+      - node: inline_filterAlt2
+        entity: GasFilterInlineAlt2
         edges:
           - to: start
             conditions:
