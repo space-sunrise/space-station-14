@@ -886,6 +886,7 @@
 
 - type: construction
   id: SignalControlledValveAlt1
+  hide: true # starlight
   graph: GasBinary
   startNode: start
   targetNode: signalvalveAlt1
@@ -901,6 +902,7 @@
 
 - type: construction
   id: SignalControlledValveAlt2
+  hide: true # starlight
   graph: GasBinary
   startNode: start
   targetNode: signalvalveAlt2
@@ -1014,6 +1016,7 @@
 
 - type: construction
   id: GasFilterAlt1
+  hide: true
   graph: GasTrinary
   startNode: start
   targetNode: filterAlt1
@@ -1030,6 +1033,7 @@
 
 - type: construction
   id: GasFilterAlt2
+  hide: true
   graph: GasTrinary
   startNode: start
   targetNode: filterAlt2
@@ -1047,7 +1051,7 @@
   
 - type: construction
   id: GasFilterFlipped
-  hide: true
+#  hide: true starlight let me build the flipped version
   graph: GasTrinary
   startNode: start
   targetNode: filterflipped
