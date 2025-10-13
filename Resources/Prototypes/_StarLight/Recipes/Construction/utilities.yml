@@ -1,5 +1,6 @@
 # region unary
 
+<<<<<<< HEAD
 - type: construction
   id: GasVentPumpAlt1
   hide: true
@@ -219,6 +220,10 @@
   - GasDualPortVentPumpAlt3
   - GasDualPortVentPumpAlt4
 
+=======
+# region binary
+
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
 # region trinary
 - type: construction
   id: GasFilterInline

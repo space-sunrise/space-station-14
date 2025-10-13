@@ -449,7 +449,7 @@
   name: connector port
   description: For connecting portable devices related to atmospherics control.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     # Carpmosia-start - Atmos stacking
     - type: Tag
@@ -468,6 +468,7 @@
         - state: gasCanisterPort
           map: [ "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # Starlight Start
 >>>>>>> d9ca0dff02 (Fixes)
@@ -475,10 +476,15 @@
       spriteRsiPaths: {}
     # Starlight End
     # Carpmosia-start - Atmos Alt Prototypes
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
       alternativePrototypes:
         Primary: GasPort
         Secondary: GasPortAlt1
         Tertiary: GasPortAlt2
+<<<<<<< HEAD
         Quaternary: GasPortAlt3
         Quinary: GasPortAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -486,6 +492,9 @@
       spriteRsiPaths: {}
 =======
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # end region
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPort
@@ -520,7 +529,7 @@
   name: dual-port air vent
   description: Has a valve and a pump attached to it. There are two ports, one is an input for releasing air, the other is an output when siphoning.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -535,6 +544,7 @@
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # Starlight Start
 >>>>>>> d9ca0dff02 (Fixes)
@@ -542,10 +552,15 @@
       spriteRsiPaths: {}
     # Starlight End
     # Carpmosia-start - Atmos Alt Prototypes
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
       alternativePrototypes:
         Primary: GasDualPortVentPump
         Secondary: GasDualPortVentPumpAlt1
         Tertiary: GasDualPortVentPumpAlt2
+<<<<<<< HEAD
         Quaternary: GasDualPortVentPumpAlt3
         Quinary: GasDualPortVentPumpAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -553,6 +568,9 @@
       spriteRsiPaths: {}
 =======
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # end region
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
     - type: GenericVisualizer
       visuals:
         enum.VentPumpVisuals.State:
@@ -683,7 +701,7 @@
   name: radiator
   description: Transfers heat between the pipe and its surroundings.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
   # Carpmosia-start - Atmos stacking
   - type: Tag
@@ -701,8 +719,13 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: heStraight
       map: [ "enum.SubfloorLayers.FirstLayer" ]
-  - type: AtmosPipeLayers
-    spriteRsiPaths: {}
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: HeatExchanger
+        Secondary: HeatExchangerAlt1
+        Tertiary: HeatExchangerAlt2
+    # end region
     numberOfPipeLayers: 1
   - type: SubFloorHide
     visibleLayers:
@@ -734,6 +757,8 @@
   parent: HeatExchanger
   id: HeatExchangerBend
   suffix: Bend
+  placement:
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -745,6 +770,13 @@
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: heBend
         map: [ "enum.SubfloorLayers.FirstLayer" ]
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: HeatExchangerBend
+        Secondary: HeatExchangerBendAlt1
+        Tertiary: HeatExchangerBendAlt2
+    # end region
     - type: NodeContainer
       nodes:
         inlet:

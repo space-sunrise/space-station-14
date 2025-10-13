@@ -923,6 +923,7 @@
   targetNode: port
   category: construction-category-utilities
 <<<<<<< HEAD
+<<<<<<< HEAD
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
@@ -933,14 +934,25 @@
   conditions:
     - !type:NoUnstackableInTile
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  # region starlight
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
   alternativePrototypes:
   - GasPort
   - GasPortAlt1
   - GasPortAlt2
+<<<<<<< HEAD
   - GasPortAlt3
   - GasPortAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end starlight
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
 
 - type: construction
   id: GasDualPortVentPump
@@ -949,20 +961,30 @@
   targetNode: dualportventpump
   category: construction-category-utilities
 <<<<<<< HEAD
+<<<<<<< HEAD
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 =======
   placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  # region starlight
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
   alternativePrototypes:
   - GasDualPortVentPump
   - GasDualPortVentPumpAlt1
   - GasDualPortVentPumpAlt2
+<<<<<<< HEAD
   - GasDualPortVentPumpAlt3
   - GasDualPortVentPumpAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end starlight
+>>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
 
 - type: construction
   id: HeatExchanger
@@ -970,8 +992,14 @@
   startNode: start
   targetNode: radiator
   category: construction-category-utilities
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers # starlight
   canBuildInImpassable: false
+  # region starlight
+  alternativePrototypes:
+  - HeatExchanger
+  - HeatExchangerAlt1
+  - HeatExchangerAlt2
+  # end starlight
 
 - type: construction
   id: HeatExchangerBend
@@ -980,8 +1008,14 @@
   startNode: start
   targetNode: bendradiator
   category: construction-category-utilities
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers # starlight
   canBuildInImpassable: false
+  # region starlight
+  alternativePrototypes:
+  - HeatExchangerBend
+  - HeatExchangerBendAlt1
+  - HeatExchangerBendAlt2
+  # end starlight
 
 # ATMOS TRINARY
 - type: construction

@@ -1,0 +1,6 @@
+- type: constructionGraph
+  id: GasUnaryStarlight
+  start: start
+  graph:
+    - node: start
+      edges:
