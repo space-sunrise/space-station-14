@@ -3,7 +3,7 @@
   abstract: true
   id: GasBinaryBase
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
   - type: AtmosDevice
   # Carpmosia-start - Atmos stacking

@@ -3,7 +3,7 @@
   abstract: true
   id: GasTrinaryBase
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: AtmosDevice
     - type: Tag
@@ -33,7 +33,7 @@
   name: gas filter
   description: Very useful for filtering gases.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -48,20 +48,28 @@
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
 =======
     # Carpmosia-start - Atmos Alt Prototypes
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # region starlight
+>>>>>>> ba1b09b8fc (test attempt with the filter)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasFilter
         Secondary: GasFilterAlt1
         Tertiary: GasFilterAlt2
+<<<<<<< HEAD
         Quaternary: GasFilterAlt3
         Quinary: GasFilterAlt4
     # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+    # end region
+>>>>>>> ba1b09b8fc (test attempt with the filter)
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -130,9 +138,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> e9439bd201 (Unfix)
+=======
+>>>>>>> ba1b09b8fc (test attempt with the filter)
     # region starlight
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -140,6 +151,7 @@
         Secondary: GasFilterFlippedAlt1
         Tertiary: GasFilterFlippedAlt2
     # end region
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> e9439bd201 (Unfix)
 =======
@@ -162,6 +174,8 @@
       Quinary: GasFilterFlippedAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+>>>>>>> ba1b09b8fc (test attempt with the filter)
   - type: Flippable
     mirrorEntity: GasFilter
   - type: Appearance

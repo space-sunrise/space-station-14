@@ -988,23 +988,63 @@
   startNode: start
   targetNode: filter
   category: construction-category-utilities
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers # starlight
   canBuildInImpassable: false
   mirror: GasFilterFlipped
   conditions:
     - !type:NoUnstackableInTile
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  # region starlight
+>>>>>>> ba1b09b8fc (test attempt with the filter)
   alternativePrototypes:
   - GasFilter
   - GasFilterAlt1
   - GasFilterAlt2
+<<<<<<< HEAD
   - GasFilterAlt3
   - GasFilterAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+>>>>>>> ba1b09b8fc (test attempt with the filter)
 
+- type: construction
+  id: GasFilterAlt1
+  graph: GasTrinary
+  startNode: start
+  targetNode: filterAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  mirror: GasFilterFlippedAlt1
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilter
+  - GasFilterAlt1
+  - GasFilterAlt2
+
+- type: construction
+  id: GasFilterAlt2
+  graph: GasTrinary
+  startNode: start
+  targetNode: filterAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  mirror: GasFilterFlippedAlt2
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilter
+  - GasFilterAlt1
+  - GasFilterAlt2
+  # end starlight
+  
 - type: construction
   id: GasFilterFlipped
   hide: true
@@ -1012,22 +1052,64 @@
   startNode: start
   targetNode: filterflipped
   category: construction-category-utilities
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers # starlight
   canBuildInImpassable: false
   mirror: GasFilter
   conditions:
     - !type:NoUnstackableInTile
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  # region starlight
+>>>>>>> ba1b09b8fc (test attempt with the filter)
   alternativePrototypes:
   - GasFilterFlipped
   - GasFilterFlippedAlt1
   - GasFilterFlippedAlt2
+<<<<<<< HEAD
   - GasFilterFlippedAlt3
   - GasFilterFlippedAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  
+- type: construction
+  id: GasFilterFlippedAlt1
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: filterflippedAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  mirror: GasFilterAlt1
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterFlipped
+  - GasFilterFlippedAlt1
+  - GasFilterFlippedAlt2
+  
+- type: construction
+  id: GasFilterFlippedAlt2
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: filterflippedAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  mirror: GasFilterAlt2
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterFlipped
+  - GasFilterFlippedAlt1
+  - GasFilterFlippedAlt2
+  # end region
+>>>>>>> ba1b09b8fc (test attempt with the filter)
 
 - type: construction
   id: GasMixer
