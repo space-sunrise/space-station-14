@@ -230,6 +230,69 @@
 # region unary
 
 # region binary
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPort]
+  id: GasPortAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+        state: pipeUnaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: gasCanisterPort
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Construction
+    node: portAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPort]
+  id: GasPortAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+        state: pipeUnaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: gasCanisterPort
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Construction
+    node: portAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasDualPortVentPump]
+  id: GasDualPortVentPumpAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+        state: pipeBinaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: vent_off
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Construction
+    node: dualportventpumpAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasDualPortVentPump]
+  id: GasDualPortVentPumpAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
+    layers:
+      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+        state: pipeBinaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: vent_off
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Construction
+    node: dualportventpumpAlt2
 
 # region trinary
 >>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)

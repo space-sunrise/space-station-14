@@ -150,7 +150,10 @@
 
 - type: construction
   id: GasPortAlt1
+<<<<<<< HEAD
   hide: true
+=======
+>>>>>>> f86547aeb3 (Binary complete?)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: portAlt1
@@ -163,12 +166,18 @@
   - GasPort
   - GasPortAlt1
   - GasPortAlt2
+<<<<<<< HEAD
   - GasPortAlt3
   - GasPortAlt4
 
 - type: construction
   id: GasPortAlt2
   hide: true
+=======
+
+- type: construction
+  id: GasPortAlt2
+>>>>>>> f86547aeb3 (Binary complete?)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: portAlt2
@@ -181,42 +190,61 @@
   - GasPort
   - GasPortAlt1
   - GasPortAlt2
+<<<<<<< HEAD
   - GasPortAlt3
   - GasPortAlt4
 
 - type: construction
   id: GasDualPortVentPumpAlt1
   hide: true
+=======
+
+- type: construction
+  id: GasDualPortVentPumpAlt1
+>>>>>>> f86547aeb3 (Binary complete?)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: dualportventpumpAlt1
   category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
+<<<<<<< HEAD
   conditions:
     - !type:NoUnstackableInTile
+=======
+>>>>>>> f86547aeb3 (Binary complete?)
   alternativePrototypes:
   - GasDualPortVentPump
   - GasDualPortVentPumpAlt1
   - GasDualPortVentPumpAlt2
+<<<<<<< HEAD
   - GasDualPortVentPumpAlt3
   - GasDualPortVentPumpAlt4
 
 - type: construction
   id: GasDualPortVentPumpAlt2
   hide: true
+=======
+
+- type: construction
+  id: GasDualPortVentPumpAlt2
+>>>>>>> f86547aeb3 (Binary complete?)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: dualportventpumpAlt2
   category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
+<<<<<<< HEAD
   conditions:
     - !type:NoUnstackableInTile
+=======
+>>>>>>> f86547aeb3 (Binary complete?)
   alternativePrototypes:
   - GasDualPortVentPump
   - GasDualPortVentPumpAlt1
   - GasDualPortVentPumpAlt2
+<<<<<<< HEAD
   - GasDualPortVentPumpAlt3
   - GasDualPortVentPumpAlt4
 
@@ -224,6 +252,9 @@
 # region binary
 
 >>>>>>> db75685f88 (mostly did binary but fucked up somewhere, they no work.)
+=======
+
+>>>>>>> f86547aeb3 (Binary complete?)
 # region trinary
 - type: construction
   id: GasFilterInline

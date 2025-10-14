@@ -760,8 +760,6 @@
   parent: HeatExchanger
   id: HeatExchangerBend
   suffix: Bend
-  placement:
-    mode: SnapgridCenter
   components:
     - type: SubFloorHide
       visibleLayers:
