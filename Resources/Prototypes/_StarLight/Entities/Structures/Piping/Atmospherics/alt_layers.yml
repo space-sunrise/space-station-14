@@ -243,6 +243,7 @@
       - state: vent_off
         map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
+    graph: GasUnaryStarlight
     node: ventpumpAlt1
 
 - type: entity
@@ -259,6 +260,7 @@
       - state: vent_off
         map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
+    graph: GasUnaryStarlight
     node: ventpumpAlt2
 
 - type: entity
@@ -276,6 +278,7 @@
       - state: vent_passive
         map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
+    graph: GasUnaryStarlight
     node: passiveventAlt1
 
 - type: entity
@@ -292,6 +295,7 @@
       - state: vent_passive
         map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
+    graph: GasUnaryStarlight
     node: passiveventAlt2
 
 - type: entity
@@ -309,6 +313,7 @@
       - state: scrub_off
         map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
+    graph: GasUnaryStarlight
     node: ventscrubberAlt1
 
 - type: entity
@@ -325,6 +330,7 @@
       - state: scrub_off
         map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
+    graph: GasUnaryStarlight
     node: ventscrubberAlt2
 
 - type: entity
@@ -346,6 +352,7 @@
         map: [ "enum.LightLayers.Unshaded" ]
         color: "#990000"
   - type: Construction
+    graph: GasUnaryStarlight
     node: outletinjectorAlt1
 
 - type: entity
@@ -366,6 +373,7 @@
         map: [ "enum.LightLayers.Unshaded" ]
         color: "#990000"
   - type: Construction
+    graph: GasUnaryStarlight
     node: outletinjectorAlt2
 
 
@@ -384,6 +392,7 @@
       - state: gasCanisterPort
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
+    graph: GasBinaryStarlight
     node: portAlt1
 
 - type: entity
@@ -400,6 +409,7 @@
       - state: gasCanisterPort
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
+    graph: GasBinaryStarlight
     node: portAlt2
 
 - type: entity
@@ -416,6 +426,7 @@
       - state: vent_off
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
+    graph: GasBinaryStarlight
     node: dualportventpumpAlt1
 
 - type: entity
@@ -432,6 +443,7 @@
       - state: vent_off
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
+    graph: GasBinaryStarlight
     node: dualportventpumpAlt2
 
 # region trinary
@@ -460,9 +472,13 @@
     mirrorEntity: GasFilterFlippedAlt1
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: filterAlt1
 
 - type: entity
@@ -489,9 +505,13 @@
     mirrorEntity: GasFilterFlippedAlt2
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: filterAlt2
 
 - type: entity
@@ -518,9 +538,13 @@
     mirrorEntity: GasFilterAlt1
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> 6a431e0725 (moving crap to SL)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: filterflippedAlt1
 
 - type: entity
@@ -548,9 +572,13 @@
   - type: Construction
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: filterflippedAlt2
 
 - type: entity
@@ -577,9 +605,13 @@
     mirrorEntity: GasMixerFlippedAlt1
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: mixerAlt1
 
 - type: entity
@@ -606,9 +638,13 @@
     mirrorEntity: GasMixerFlippedAlt2
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: mixerAlt2
 
 - type: entity
@@ -635,9 +671,13 @@
     mirrorEntity: GasMixerAlt1
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: mixerflippedAlt1
 
 - type: entity
@@ -664,9 +704,13 @@
     mirrorEntity: GasMixerAlt2
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: mixerflippedAlt2
 
 - type: entity
@@ -691,9 +735,13 @@
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> bdfe0d6f84 (all the trinary done.)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: pneumaticvalveAlt1
 
 - type: entity
@@ -719,9 +767,13 @@
   - type: Construction
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     graph: GasTrinaryStarlight
 =======
 >>>>>>> b93c005473 (fixing shit and adding the inline gas filter... oops)
+=======
+    graph: GasTrinaryStarlight
+>>>>>>> 9e4768749a (hopefully fix build fails?)
     node: pneumaticvalveAlt2
 
 - type: entity
