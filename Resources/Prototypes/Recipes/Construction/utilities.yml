@@ -536,6 +536,7 @@
   targetNode: ventpump
   category: construction-category-utilities
 <<<<<<< HEAD
+<<<<<<< HEAD
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
@@ -546,14 +547,25 @@
   conditions:
   - !type:NoUnstackableInTile
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  # region starlight
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
   alternativePrototypes:
   - GasVentPump
   - GasVentPumpAlt1
   - GasVentPumpAlt2
+<<<<<<< HEAD
   - GasVentPumpAlt3
   - GasVentPumpAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end region
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
 
 - type: construction
   id: GasPassiveVent
@@ -562,6 +574,7 @@
   targetNode: passivevent
   category: construction-category-utilities
 <<<<<<< HEAD
+<<<<<<< HEAD
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
@@ -572,14 +585,25 @@
   conditions:
   - !type:NoUnstackableInTile
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  # region starlight
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
   alternativePrototypes:
   - GasPassiveVent
   - GasPassiveVentAlt1
   - GasPassiveVentAlt2
+<<<<<<< HEAD
   - GasPassiveVentAlt3
   - GasPassiveVentAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end region
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
 
 - type: construction
   id: GasVentScrubber
@@ -588,31 +612,6 @@
   targetNode: ventscrubber
   category: construction-category-utilities
 <<<<<<< HEAD
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:NoUnstackableInTile
-=======
-  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
-  canBuildInImpassable: false
-  conditions:
-  - !type:NoUnstackableInTile
-  # Carpmosia-start - Atmos Alt Prototypes
-  alternativePrototypes:
-  - GasVentScrubber
-  - GasVentScrubberAlt1
-  - GasVentScrubberAlt2
-  - GasVentScrubberAlt3
-  - GasVentScrubberAlt4
-  # Carpmosia-end - Atmos Alt Prototypes
->>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
-
-- type: construction
-  id: GasOutletInjector
-  graph: GasUnary
-  startNode: start
-  targetNode: outletinjector
-  category: construction-category-utilities
 <<<<<<< HEAD
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -624,14 +623,63 @@
   conditions:
   - !type:NoUnstackableInTile
   # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  # region starlight
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
+  alternativePrototypes:
+  - GasVentScrubber
+  - GasVentScrubberAlt1
+  - GasVentScrubberAlt2
+<<<<<<< HEAD
+  - GasVentScrubberAlt3
+  - GasVentScrubberAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end region
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
+
+- type: construction
+  id: GasOutletInjector
+  graph: GasUnary
+  startNode: start
+  targetNode: outletinjector
+  category: construction-category-utilities
+<<<<<<< HEAD
+<<<<<<< HEAD
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+=======
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  # Carpmosia-start - Atmos Alt Prototypes
+=======
+  placementMode: AlignAtmosPipeLayers # starlight
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  # region starlight
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
   alternativePrototypes:
   - GasOutletInjector
   - GasOutletInjectorAlt1
   - GasOutletInjectorAlt2
+<<<<<<< HEAD
   - GasOutletInjectorAlt3
   - GasOutletInjectorAlt4
   # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+  # end region
+>>>>>>> 8de271113e (Unary - add alternates to utilities)
 
 # ATMOS BINARY
 - type: construction
