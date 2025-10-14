@@ -719,14 +719,14 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: heStraight
       map: [ "enum.SubfloorLayers.FirstLayer" ]
-    # region starlight
-    - type: AtmosPipeLayers
-      alternativePrototypes:
-        Primary: HeatExchanger
-        Secondary: HeatExchangerAlt1
-        Tertiary: HeatExchangerAlt2
-    # end region
-    numberOfPipeLayers: 1
+  # region starlight
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: HeatExchanger
+      Secondary: HeatExchangerAlt1
+      Tertiary: HeatExchangerAlt2
+    # numberOfPipeLayers: 1
+  # end region
   - type: SubFloorHide
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
