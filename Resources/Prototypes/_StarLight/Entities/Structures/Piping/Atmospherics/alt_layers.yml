@@ -256,8 +256,8 @@
       - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_passive
-        map: [ "enum.SubfloorLayers.FirstLayer" ]
+      - state: vent_off
+        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
   - type: Construction
     node: ventpumpAlt2
 
