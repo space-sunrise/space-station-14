@@ -1040,14 +1040,8 @@
   startNode: start
   targetNode: radiator
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: SnapgridCenter
   canBuildInImpassable: false
-  # region starlight
-  alternativePrototypes:
-  - HeatExchanger
-  - HeatExchangerAlt1
-  - HeatExchangerAlt2
-  # end starlight
 
 - type: construction
   id: HeatExchangerBend
@@ -1056,14 +1050,8 @@
   startNode: start
   targetNode: bendradiator
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: SnapgridCenter
   canBuildInImpassable: false
-  # region starlight
-  alternativePrototypes:
-  - HeatExchangerBend
-  - HeatExchangerBendAlt1
-  - HeatExchangerBendAlt2
-  # end starlight
 
 # ATMOS TRINARY
 - type: construction
