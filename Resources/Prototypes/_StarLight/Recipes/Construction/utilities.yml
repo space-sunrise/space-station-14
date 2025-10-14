@@ -151,9 +151,13 @@
 - type: construction
   id: GasPortAlt1
 <<<<<<< HEAD
+<<<<<<< HEAD
   hide: true
 =======
 >>>>>>> f86547aeb3 (Binary complete?)
+=======
+  hide: true
+>>>>>>> fb4e689d6d (Binary done)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: portAlt1
@@ -173,11 +177,14 @@
 - type: construction
   id: GasPortAlt2
   hide: true
+<<<<<<< HEAD
 =======
 
 - type: construction
   id: GasPortAlt2
 >>>>>>> f86547aeb3 (Binary complete?)
+=======
+>>>>>>> fb4e689d6d (Binary done)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: portAlt2
@@ -197,11 +204,14 @@
 - type: construction
   id: GasDualPortVentPumpAlt1
   hide: true
+<<<<<<< HEAD
 =======
 
 - type: construction
   id: GasDualPortVentPumpAlt1
 >>>>>>> f86547aeb3 (Binary complete?)
+=======
+>>>>>>> fb4e689d6d (Binary done)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: dualportventpumpAlt1
@@ -224,11 +234,14 @@
 - type: construction
   id: GasDualPortVentPumpAlt2
   hide: true
+<<<<<<< HEAD
 =======
 
 - type: construction
   id: GasDualPortVentPumpAlt2
 >>>>>>> f86547aeb3 (Binary complete?)
+=======
+>>>>>>> fb4e689d6d (Binary done)
   graph: GasBinaryStarlight
   startNode: start
   targetNode: dualportventpumpAlt2
