@@ -3,7 +3,7 @@
   abstract: true
   id: GasUnaryBase
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: AtmosDevice
     - type: Tag
@@ -26,7 +26,7 @@
   name: air vent
   description: Has a valve and a pump attached to it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -50,20 +50,28 @@
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
 =======
     # Carpmosia-start - Atmos Alt Prototypes
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # region starlight
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasVentPump
         Secondary: GasVentPumpAlt1
         Tertiary: GasVentPumpAlt2
+<<<<<<< HEAD
         Quaternary: GasVentPumpAlt3
         Quinary: GasVentPumpAlt4
     # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+    # end region
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: Appearance
     - type: PipeColorVisuals
     - type: GenericVisualizer
@@ -110,7 +118,7 @@
   name: passive vent
   description: It's an open vent.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -126,20 +134,28 @@
           map: [ "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
 =======
     # Carpmosia-start - Atmos Alt Prototypes
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # region starlight
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasPassiveVent
         Secondary: GasPassiveVentAlt1
         Tertiary: GasPassiveVentAlt2
+<<<<<<< HEAD
         Quaternary: GasPassiveVentAlt3
         Quinary: GasPassiveVentAlt4
     # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+    # end region
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPassiveVent
@@ -166,7 +182,7 @@
   name: air scrubber
   description: Has a valve and pump attached to it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -190,20 +206,28 @@
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
 =======
     # Carpmosia-start - Atmos Alt Prototypes
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # region starlight
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasVentScrubber
         Secondary: GasVentScrubberAlt1
         Tertiary: GasVentScrubberAlt2
+<<<<<<< HEAD
         Quaternary: GasVentScrubberAlt3
         Quinary: GasVentScrubberAlt4
     # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+    # end region
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: Appearance
     - type: PipeColorVisuals
     - type: GenericVisualizer
@@ -249,7 +273,7 @@
   name: air injector
   description: Has a valve and pump attached to it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: Sprite
       drawdepth: FloorObjects
@@ -266,20 +290,28 @@
           color: "#990000"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
 =======
     # Carpmosia-start - Atmos Alt Prototypes
 >>>>>>> d9ca0dff02 (Fixes)
+=======
+    # region starlight
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasOutletInjector
         Secondary: GasOutletInjectorAlt1
         Tertiary: GasOutletInjectorAlt2
+<<<<<<< HEAD
         Quaternary: GasOutletInjectorAlt3
         Quinary: GasOutletInjectorAlt4
     # Carpmosia-end - Atmos Alt Prototypes
 >>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
+=======
+    # end region
+>>>>>>> a7c269eb06 (Unary - atmos pipe layers in upstream)
     - type: Appearance
     - type: GenericVisualizer
       visuals:
