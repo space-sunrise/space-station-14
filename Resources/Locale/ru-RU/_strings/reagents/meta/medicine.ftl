@@ -114,3 +114,5 @@ reagent-name-puncturase-tranexamic = пунктураз и транексамо�
 reagent-name-dexalin-plus-saline = дексалин плюс и физраствор
 reagent-name-hemostatic-powder = кровоостанавливающая пудра
 reagent-desc-hemostatic-powder = Кровоостанавливающий порошок, основанный на смеси транексамовой кислоты и силицида железа. При передозировке сильно отравляет организм токсинами.
+reagent-name-retroindralyne = ретроиндралин
+reagent-desc-retroindralyne = очень старое противорадиационное средство доведённое учёными современности до ума, имеет побочные эффекты.
