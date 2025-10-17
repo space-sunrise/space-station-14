@@ -727,7 +727,7 @@
         - !type:HealthChange
           damage:
             types:
-              Mangleness: 0.2
+              Mangleness: -0.25
         #Sunrise-End
         - !type:SatiateThirst
           factor: 6

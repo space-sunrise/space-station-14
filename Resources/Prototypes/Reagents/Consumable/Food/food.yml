@@ -17,7 +17,15 @@
   - !type:PlantAdjustHealth
     amount: 0.75
   pricePerUnit: 2
-
+  #Sunrise-Start
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Mangleness: -0.25
+  #Sunrise-End
 - type: reagent
   id: Vitamin #Anything "healthy"
   name: reagent-name-vitamin
@@ -46,6 +54,15 @@
   - !type:PlantAdjustHealth
     amount: 1.5
   pricePerUnit: 2.5
+    #Sunrise-Start
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Mangleness: -0.5
+  #Sunrise-End
 
 - type: reagent
   id: Protein #Meat and beans
