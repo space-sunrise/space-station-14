@@ -169,3 +169,6 @@ reagent-desc-hemostatic-powder = Hemostatic powder based on a mixture of tranexa
 
 reagent-name-retroindralyne = retroindralyne
 reagent-desc-retroindralyne = A very old anti-radiation drug, improved by modern scientists, has side effects.
+
+reagent-name-barozine-plus = Barozine Plus
+reagent-desc-barozine-plus = An advanced form of Barozine only found in Space Medipens. Heals less, but an overdose is less painful.
