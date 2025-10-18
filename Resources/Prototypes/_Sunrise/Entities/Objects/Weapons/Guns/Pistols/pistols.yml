@@ -165,6 +165,14 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus/big.rsi
   - type: Gun
     fireRate: 3.4
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazinePistolHighCapacityRubber
 
 - type: entity
   name: Glock-22 Auto
