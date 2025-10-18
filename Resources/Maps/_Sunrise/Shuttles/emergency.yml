@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
+  category: Grid
   engineVersion: 266.0.0
   forkId: sunrise_station
   forkVersion: 734debb2b6cce78404f9d407ab42ccc4211d4ac2
-  time: 10/18/2025 14:42:44
-  entityCount: 2415
-maps:
-- 567
+  time: 10/18/2025 14:48:56
+  entityCount: 2414
+maps: []
 grids:
 - 1
-orphans: []
+orphans:
+- 1
 nullspace: []
 tilemap:
   0: Space
@@ -37,7 +37,7 @@ entities:
       name: NT Evac Centipede
     - type: Transform
       pos: 0.39469033,0.22088978
-      parent: 567
+      parent: invalid
     - type: MapGrid
       chunks:
         -1,-1:
@@ -976,16 +976,6 @@ entities:
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
     - type: PreventPilot
-  - uid: 567
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirAlarm
   entities:
   - uid: 2347
@@ -4110,7 +4100,7 @@ entities:
     - type: Transform
       pos: -4.5,-41.5
       parent: 1
-  - uid: 568
+  - uid: 567
     components:
     - type: Transform
       pos: -6.5,-1.5
@@ -5755,14 +5745,14 @@ entities:
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 569
+  - uid: 568
     components:
     - type: Transform
       pos: -11.5,-1.5
       parent: 1
     - type: Fixtures
       fixtures: {}
-  - uid: 570
+  - uid: 569
     components:
     - type: Transform
       pos: -9.5,-1.5
@@ -7209,7 +7199,7 @@ entities:
       pos: -12.5,-25.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2221.5613
+      secondsUntilStateChange: -2592.8647
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7687,21 +7677,21 @@ entities:
       color: '#FF1212FF'
 - proto: GasPipeStraight
   entities:
-  - uid: 571
+  - uid: 570
     components:
     - type: Transform
       pos: -9.5,-19.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 572
+  - uid: 571
     components:
     - type: Transform
       pos: -11.5,-19.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 573
+  - uid: 572
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -7709,13 +7699,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#FF0000FF'
-  - uid: 574
+  - uid: 573
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,-31.5
       parent: 1
-  - uid: 575
+  - uid: 574
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -7723,7 +7713,7 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 576
+  - uid: 575
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -7731,13 +7721,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 577
+  - uid: 576
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -16.5,14.5
       parent: 1
-  - uid: 578
+  - uid: 577
     components:
     - type: Transform
       rot: 3.141592653589793 rad
