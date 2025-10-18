@@ -387,3 +387,126 @@
     - NudeTop # INTERACTIONS
     - WhitelistChameleon
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformPrisonGuardMetus
+  name: prison guard uniform
+  description: The fabric is partly faded and darkened, with stains from medical fluids on the sleeves, as if the material absorbed heavy operations.
+  suffix: Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisonguard_metus.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisonguard_metus.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+
+- type: entity
+  parent: UniformPrisonGuardMetus
+  id: UniformPrisonDoctorMetus
+  name: prison doctor uniform
+  description: The fabric is soaked with grease and soot, with stains from constant contact with stoves and pots, slightly worn where the habit of order is stronger than fatigue.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: UniformPrisonGuardMetus
+  id: UniformPrisonChefMetus
+  name: prison chef uniform
+  description: The material is dense and slightly worn on the elbows and knees, with dark stains of unknown origin, as if it absorbed the scents of abandoned prison places.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: UniformPrisonGuardMetus
+  id: UniformPrisonEngineerMetus
+  name: prison engineer uniform
+  description: Dark streaks from reagents on the shoulders and chest, small spots of chemical mixes, the fabric seems to preserve the memory of experiments best left unsaid.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: UniformPrisonGuardMetus
+  id: UniformPrisonScientistMetus
+  name: prison scientist uniform
+  description: The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: UniformPrisonGuardMetus
+  id: UniformPrisonWorkerMetus
+  name: prison worker uniform
+  description: The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#df0400"

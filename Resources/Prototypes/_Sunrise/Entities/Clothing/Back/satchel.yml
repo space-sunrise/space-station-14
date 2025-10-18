@@ -39,6 +39,151 @@
       sprite: _Sunrise/Clothing/Back/Satchels/guard.rsi
 
 - type: entity
+  parent: ClothingBackpackSatchelPrisonGuard
+  id: ClothingBackpackSatchelPrisonDoctorMetus
+  name: prison doctor satchel
+  description: Clean but weary, fasteners tremble like hands after night autopsies.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingBackpackSatchelPrisonGuard
+  id: ClothingBackpackSatchelPrisonChefMetus
+  name: prison chef satchel
+  description: Old fabric, eternal smell of smoked fat, as if it has served forever.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingBackpackSatchelPrisonGuard
+  id: ClothingBackpackSatchelPrisonEngineerMetus
+  name: prison engineer satchel
+  description: Compact and strict, smells of resin and a subtle trace of ore dust inside, as if the satchel has seen what goes on beyond safe corridors.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffd900"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingBackpackSatchelPrisonGuard
+  id: ClothingBackpackSatchelPrisonScientistMetus
+  name: prison scientist satchel
+  description: A hard satchel with polished stripes, as if its owner is afraid to lose a single record.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#9d1edd"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingBackpackSatchelPrisonGuard
+  id: ClothingBackpackSatchelPrisonWorkerMetus
+  name: prison worker satchel
+  description: Baggy and heavy, half worn out from constant tool changes.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#df0400"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#df0400"
+
+- type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelHoS
   name: head of security's satchel

@@ -28,3 +28,14 @@ ent-ClothingBackpackSatchelWhite = white satchel
     .desc = You look very stylish with this satchel.
 ent-ClothingBackpackSatchelYellow = yellow satchel
     .desc = You look very stylish with this satchel.
+# Metus satchels
+ent-ClothingBackpackSatchelPrisonDoctorMetus = prison doctor satchel
+    .desc = Clean but weary, fasteners tremble like hands after night autopsies.
+ent-ClothingBackpackSatchelPrisonChefMetus = prison chef satchel
+    .desc = Old fabric, eternal smell of smoked fat, as if it has served forever.
+ent-ClothingBackpackSatchelPrisonEngineerMetus = prison engineer satchel
+    .desc = Compact and strict, smells of resin and a subtle trace of ore dust inside, as if the satchel has seen what goes on beyond safe corridors.
+ent-ClothingBackpackSatchelPrisonScientistMetus = prison scientist satchel
+    .desc = A hard satchel with polished stripes, as if its owner is afraid to lose a single record.
+ent-ClothingBackpackSatchelPrisonWorkerMetus = prison worker satchel
+    .desc = Baggy and heavy, half worn out from constant tool changes.

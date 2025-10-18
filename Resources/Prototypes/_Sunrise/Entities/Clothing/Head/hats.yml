@@ -169,6 +169,101 @@
   # SUNRISE EDIT
 
 - type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonDoctorMetus
+  name: prison doctor hat
+  suffix: Metus
+  description: Stylish blue prison doctor hat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonChefMetus
+  name: prison chef hat
+  suffix: Metus
+  description: Stylish white prison chef hat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonEngineerMetus
+  name: prison engineer hat
+  suffix: Metus
+  description: Stylish yellow prison engineer hat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonScientistMetus
+  name: prison scientist hat
+  suffix: Metus
+  description: Stylish purple prison scientist hat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonWorkerMetus
+  name: prison worker hat
+  suffix: Metus
+  description: Stylish red prison worker hat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#df0400"
+
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretPrisonGuard
   name: prison guard's beret
@@ -178,6 +273,146 @@
     sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonDoctorMetus
+  name: prison doctor beret
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonChefMetus
+  name: prison chef beret
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonEngineerMetus
+  name: prison engineer beret
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffd900"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonScientistMetus
+  name: prison scientist beret
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#9d1edd"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonWorkerMetus
+  name: prison worker beret
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#df0400"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#df0400"
 
 - type: entity
   parent: ClothingHeadBase
@@ -196,6 +431,151 @@
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonDoctorMetus
+  name: prison doctor cap
+  description: Heavy, clean, its wearer is used to deciding who lives and who dies.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonChefMetus
+  name: prison chef cap
+  description: Old but well-kept, belongs to those who survived feeding monsters and commanding even over pots.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonEngineerMetus
+  name: prison engineer cap
+  description: Tough and precise, fits those who, for the 220th time, keep the power system running while others go insane.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffd900"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonScientistMetus
+  name: prison scientist cap
+  description: Covered in reagent stains and a strange smell, on the faded stripe where an access mark once was, there are now only traces of those who crossed the boundaries of science.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#9d1edd"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonWorkerMetus
+  name: prison worker cap
+  description: Fabric darkened by ore dust, burn marks along the edge, as if worn by those who stood closest to what should not breathe.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#df0400"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#df0400"
 
 - type: entity
   parent: ClothingHeadBase

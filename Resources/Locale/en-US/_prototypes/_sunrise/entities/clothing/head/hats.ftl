@@ -64,3 +64,36 @@ ent-ClothingHeadBlackVeil = dark elegant veil
     .desc = A delicate and flowing bridal veil, symbolizing purity and romance.
 ent-ClothingHeadWhiteVeil = white elegant veil
     .desc = A delicate and flowing bridal veil, symbolizing purity and romance.
+# Metus caps
+ent-ClothingHeadHatCapPrisonDoctorMetus = prison doctor cap
+    .desc = Heavy, clean, its wearer is used to deciding who lives and who dies.
+ent-ClothingHeadHatCapPrisonChefMetus = prison chef cap
+    .desc = Old but well-kept, belongs to those who survived feeding monsters and commanding even over pots.
+ent-ClothingHeadHatCapPrisonEngineerMetus = prison engineer cap
+    .desc = Tough and precise, fits those who, for the 220th time, keep the power system running while others go insane.
+ent-ClothingHeadHatCapPrisonScientistMetus = prison scientist cap
+    .desc = Covered in reagent stains and a strange smell, on the faded stripe where an access mark once was, there are now only traces of those who crossed the boundaries of science.
+ent-ClothingHeadHatCapPrisonWorkerMetus = prison worker cap
+    .desc = Fabric darkened by ore dust, burn marks along the edge, as if worn by those who stood closest to what should not breathe.
+# Metus berets
+ent-ClothingHeadHatBeretPrisonDoctorMetus = prison doctor beret
+    .desc = Soft, reserved like its owner, used to cold bodies and warm indifference.
+ent-ClothingHeadHatBeretPrisonChefMetus = prison chef beret
+    .desc = Fits tightly, reveals one who learned to keep order even among cons and knives.
+ent-ClothingHeadHatBeretPrisonEngineerMetus = prison engineer beret
+    .desc = Sits straight, practical, points to one who knows the prison layout by heart.
+ent-ClothingHeadHatBeretPrisonScientistMetus = prison scientist beret
+    .desc = Neat but dull, belongs to those who have understood too much and now just pretend to work.
+ent-ClothingHeadHatBeretPrisonWorkerMetus = prison worker beret
+    .desc = Crooked, but worn with pride, for its wearer has worked for many more than once.
+# Metus caps
+ent-ClothingHeadCapPrisonDoctorMetus = prison doctor cap
+    .desc = Simple and clean, but cracked from washing, a symbol for those who heal the broken by the system.
+ent-ClothingHeadCapPrisonChefMetus = prison chef cap
+    .desc = Cheap fabric, soaked with smoke and sweat, belongs to those who feed the prison and barely survive on its scents.
+ent-ClothingHeadCapPrisonEngineerMetus = prison engineer cap
+    .desc = Greasy and burnt, points to those who try to fix the prison while others decide who to blame.
+ent-ClothingHeadCapPrisonScientistMetus = prison scientist cap
+    .desc = Worn low, a sign of one who carries samples but doesn't make discoveries.
+ent-ClothingHeadCapPrisonWorkerMetus = prison worker cap
+    .desc = Rough and worn, always dirty, worn by those who are first in line for orders and last at the exit.

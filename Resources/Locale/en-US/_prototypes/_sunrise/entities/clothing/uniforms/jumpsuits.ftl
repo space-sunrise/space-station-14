@@ -68,3 +68,17 @@ ent-ClothingUniformJumpsuitAbductor = abductor uniform
     .desc = { ent-UnsensoredClothingUniformBase.desc }
 ent-UniformSecurityShortsRed = security shorts
     .desc = These are shorts, not boxers.
+# Metus jumpsuits
+ent-UniformPrisonGuardMetus = prison guard uniform
+    .desc = { ent-ClothingUniformJumpsuitHoSOld.desc }
+ent-UniformPrisonDoctorMetus = prison doctor uniform
+    .desc = The fabric is partly faded and darkened, with stains from medical fluids on the sleeves, as if the material absorbed heavy operations.
+ent-UniformPrisonChefMetus = prison chef uniform
+    .desc = The fabric is soaked with grease and soot, with stains from constant contact with stoves and pots, slightly worn where the habit of order is stronger than fatigue.
+ent-UniformPrisonEngineerMetus = prison engineer uniform
+    .desc = The material is dense and slightly worn on the elbows and knees, with dark stains of unknown origin, as if it absorbed the scents of abandoned prison places.
+ent-UniformPrisonScientistMetus = prison scientist uniform
+    .desc = Dark streaks from reagents on the shoulders and chest, small spots of chemical mixes, the fabric seems to preserve the memory of experiments best left unsaid.
+ent-UniformPrisonWorkerMetus = prison worker uniform
+    .desc = The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
+

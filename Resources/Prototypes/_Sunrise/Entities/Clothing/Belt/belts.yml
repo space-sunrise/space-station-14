@@ -38,6 +38,115 @@
     sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
 
 - type: entity
+  id: ClothingBeltPrisonGuardianMetus
+  parent: ClothingBeltSecurity
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+
+- type: entity
+  id: ClothingBeltPrisonGuardianFilledMetus
+  parent: ClothingBeltPrisonGuardianMetus
+  suffix: Metus
+  components:
+  - type: StorageFill
+    contents:
+    - id: Stunbaton
+    - id: FlashlightSeclite
+    - id: RadioHandheldSecurity
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: GrenadeFlashBang
+    - id: Flash
+
+- type: entity
+  id: ClothingBeltPrisonDoctorMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison doctor belt
+  suffix: Metus
+  description: Stylish blue prison doctor belt.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+
+- type: entity
+  id: ClothingBeltPrisonChefMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison chef belt
+  suffix: Metus
+  description: Stylish white prison chef belt.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+
+- type: entity
+  id: ClothingBeltPrisonEngineerMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison engineer belt
+  suffix: Metus
+  description: Stylish yellow prison engineer belt.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+
+- type: entity
+  id: ClothingBeltPrisonScientistMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison scientist belt
+  suffix: Metus
+  description: Stylish purple prison scientist belt.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+
+- type: entity
+  id: ClothingBeltPrisonWorkerMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison worker belt
+  suffix: Metus
+  description: Stylish red prison worker belt.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoS
   name: head of security's belt
@@ -110,7 +219,7 @@
   - type: Item
     size: Normal
     shape:
-    - 0,0,0,6 
+    - 0,0,0,6
   - type: ItemSlots
     slots:
       item:

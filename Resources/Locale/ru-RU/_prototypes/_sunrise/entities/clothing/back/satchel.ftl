@@ -28,3 +28,14 @@ ent-ClothingBackpackSatchelWhite = белая сумка
     .desc = С этой сумкой вы выглядите очень стильно.
 ent-ClothingBackpackSatchelYellow = жёлтая сумка
     .desc = С этой сумкой вы выглядите очень стильно.
+# сумки Метус
+ent-ClothingBackpackSatchelPrisonDoctorMetus = сумка тюремного врача
+    .desc = Чистая, но уставшая, застёжки дрожат, как руки после ночных вскрытий.
+ent-ClothingBackpackSatchelPrisonChefMetus = сумка тюремного повара
+    .desc = Старая ткань, вечный запах копчёного жира, будто служит уже вечность.
+ent-ClothingBackpackSatchelPrisonEngineerMetus = сумка тюремного инженера
+    .desc = Компактная и строгая, внутри запах смолы и тонкий след рудной пыли, как будто сумка видела, что творится за стенами безопасных коридоров.
+ent-ClothingBackpackSatchelPrisonScientistMetus = сумка тюремного учёного
+    .desc = Жёсткая сумка с отполированными полосками, словно её владелец боится потерять хоть одну запись.
+ent-ClothingBackpackSatchelPrisonWorkerMetus = сумка тюремного рабочего
+    .desc = Мешковатая и тяжёлая, наполовину изношенная от постоянной смены инструментов.

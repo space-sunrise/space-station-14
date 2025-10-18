@@ -1,32 +1,32 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "SUNRISE",
+  "copyright": "by KAVALDi",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+        "name": "icon"
     },
     {
-      "name": "equipped-HELMET",
-      "directions": 4
+        "name": "overlay-icon"
     },
     {
-      "name": "inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "inhand-right",
-      "directions": 4
-    },
-	{
-      "name": "overlay-icon"
+        "name": "equipped-INNERCLOTHING",
+        "directions": 4
     },
     {
         "name": "overlay-equipped",
+        "directions": 4
+    },
+    {
+        "name": "inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "inhand-right",
         "directions": 4
     },
     {
