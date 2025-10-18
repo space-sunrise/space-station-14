@@ -385,6 +385,24 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
+- type: entity
+  name: Desert Eagle Metus
+  description: Scuffs from old hands mark the handle, heavy and steady, like a verdict passed more than once without trial.
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleMetus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
 # Sidearm for detectives.
 - type: entity
   parent: BaseWeaponRevolver
