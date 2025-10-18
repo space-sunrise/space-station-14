@@ -276,6 +276,7 @@
   groups:
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
+  - PrisonWorkerHead
   #- Trinkets
   - Bra
   - Pants
@@ -286,6 +287,7 @@
   groups:
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
+  - PrisonEngineerHead
   #- TrinketsEngineering
   #- Trinkets
   - Bra
@@ -298,6 +300,7 @@
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
+  - PrisonScientistHead
   - Bra
   - Pants
   - Socks
@@ -308,6 +311,7 @@
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
+  - PrisonDoctorHead
   - Bra
   - Pants
   - Socks
@@ -318,6 +322,7 @@
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
+  - PrisonChefHead
   - Bra
   - Pants
   - Socks
