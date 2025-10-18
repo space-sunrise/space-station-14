@@ -870,6 +870,8 @@ PrinterDoc: CopyMachineFilled
 PrinterDocFlatpack: CopyMachineFlatpack
 MagazineP90Extended: null
 CrateArmoryWeaponXM1014: null
+WeaponRifleV31: null
+MagazineV31: null
 WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
 # Sunrise-End

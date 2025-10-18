@@ -225,9 +225,6 @@
   id: MagazineSTG44
 
 - type: Tag
-  id: MagazineV31
-
-- type: Tag
   id: PowerpackFlame
 
 - type: Tag

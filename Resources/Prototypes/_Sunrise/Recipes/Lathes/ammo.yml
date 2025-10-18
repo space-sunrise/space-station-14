@@ -901,16 +901,6 @@
     Steel: 800
 
 - type: latheRecipe
-  id: MagazineV31
-  result: MagazineV31
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 985
-    Plastic: 600
-
-- type: latheRecipe
   id: MagazineACP14
   result: MagazineACP14
   categories:
@@ -1020,15 +1010,6 @@
 #  materials:
 #    Steel: 650
 #
-#- type: latheRecipe
-#  id: MagazineV31Extended
-#  result: MagazineV31Extended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 1300
-#    Plastic: 100
 #
 #- type: latheRecipe
 #  id: MagazineBauer127Extended

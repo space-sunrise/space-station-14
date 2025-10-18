@@ -652,8 +652,8 @@
       walkModifier: 0.99
       sprintModifier: 0.99
     - type: EyeCursorOffset
-      maxOffset: 3.5
-      pvsIncrease: 0.45
+      maxOffset: 2
+      pvsIncrease: 0.2
     - type: Contraband
       allowedDepartments: [ CentralCommand, Security ]
 

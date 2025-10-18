@@ -177,10 +177,9 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkWeaponShotgunZauer
-  name: ntuplink-gun-bundlezauer-name
+  id: ERTUplinkWeaponShotgunCycler
   productEntity: ClothingBackpackDuffelWeaponShotgunCycler
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: zauer }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cycler }
   cost:
     Bluecrystal: 20
   categories:
@@ -901,9 +900,25 @@
 - type: listing
   id: ERTUplinkStimkitFilledNT
   productEntity: StimkitFilledNT
+  name: uplink-stimkit-nt-name
+  description: uplink-stimkit-nt-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: stimkit }
   cost:
     Crystallite: 12
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: ERTUplinkCoalpenKit
+  name: uplink-coalpen-kit-name
+  description: uplink-coalpen-kit-desc
+  productEntity: CoalpenKitFilled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: stimkit }
+  cost:
+    Crystallite: 10
   categories:
   - NTMedicine
   conditions:
@@ -945,21 +960,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
-
-- type: listing
-  id: ERTUplinkCoalpenKit
-  name: uplink-coalpen-kit-name
-  description: uplink-coalpen-kit-desc
-  productEntity: CoalpenKitFilled
-  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: coalpen }
-  cost:
-    Crystallite: 12
-  categories:
-  - NTMedicine
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
 
 # Дополнительное:
 

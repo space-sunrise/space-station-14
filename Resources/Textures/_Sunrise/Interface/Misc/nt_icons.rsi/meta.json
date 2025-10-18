@@ -137,6 +137,9 @@
       "name": "flash"
     },
     {
+      "name": "cycler"
+    },
+    {
       "name": "flare_box"
     },
     {
@@ -396,12 +399,6 @@
     },
     {
       "name": "wt550"
-    },
-    {
-      "name": "xm1014"
-    },
-    {
-      "name": "zauer"
     },
     {
       "name": "box_40"
