@@ -64,6 +64,8 @@ ent-ClothingHeadBlackVeil = dark elegant veil
     .desc = A delicate and flowing bridal veil, symbolizing purity and romance.
 ent-ClothingHeadWhiteVeil = white elegant veil
     .desc = A delicate and flowing bridal veil, symbolizing purity and romance.
+ent-ClothingHeadHatChefBlackToque = chef's black toque
+    .desc = Worn at the edges but proudly holds its shape, a symbol of skill and many hours spent in the kitchen.
 # Metus caps
 ent-ClothingHeadHatCapPrisonDoctorMetus = prison doctor cap
     .desc = Heavy, clean, its wearer is used to deciding who lives and who dies.

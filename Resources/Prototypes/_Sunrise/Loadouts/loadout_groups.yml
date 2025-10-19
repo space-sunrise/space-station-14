@@ -1371,9 +1371,11 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - PrisonChef-ClothingHeadHatChef
   - PrisonChef-ClothingHeadCapPrisonChefMetus
   - PrisonChef-ClothingHeadHatBeretPrisonChefMetus
   - PrisonChef-ClothingHeadHatCapPrisonChefMetus
+  - PrisonChef-ClothingHeadHatChefBlackToque
 
 - type: loadoutGroup
   id: PrisonEngineerHead

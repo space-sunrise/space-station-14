@@ -579,6 +579,17 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatChefBlackToque
+  name: chef's black toque
+  description: Worn at the edges but proudly holds its shape, a symbol of skill and many hours spent in the kitchen.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/chefhat_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/chefhat_black.rsi
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadHatIAA
   name: mystery hat
   description: Black and white style hat. Reminiscent of secret agents from movies and TV shows.
