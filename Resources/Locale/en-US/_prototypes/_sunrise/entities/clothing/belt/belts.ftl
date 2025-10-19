@@ -25,6 +25,10 @@ ent-ClothingAbductorBelt = abductor belt
 # пояса Метус
 ent-ClothingBeltPrisonGuardianMetus = { ent-ClothingBeltSecurity }
     .desc = { ent-ClothingBeltSecurity.desc }
+ent-ClothingBeltHeadOfPrisonMetus = head of prison belt
+    .desc = On the inner side, traces of wear, a sign of long service within walls where nothing is forgotten.
+ent-ClothingBeltPrisonInspectorMetus = prison inspector belt
+    .desc = Tight and well-kept, as if out of habit to hold onto order in a place where it no longer exists.
 ent-ClothingBeltPrisonDoctorMetus = prison doctor belt
     .desc = Clean yet aged, the clasp holds by conscience and habit, much like its owner.
 ent-ClothingBeltPrisonChefMetus = prison chef belt

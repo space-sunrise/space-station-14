@@ -29,6 +29,10 @@ ent-ClothingBackpackSatchelWhite = white satchel
 ent-ClothingBackpackSatchelYellow = yellow satchel
     .desc = You look very stylish with this satchel.
 # Metus satchels
+ent-ClothingBackpackSatchelHeadOfPrisonMetus = head of prison satchel
+    .desc = Old leather with cracks, the strap pulled too tight, the smell of dust and metal mixed within it like a memory of years spent behind closed doors.
+ent-ClothingBackpackSatchelPrisonInspectorMetus = prison inspector satchel
+    .desc = Worn, once strict and tidy, now it holds folders, the scent of coffee, and the dust of old cases.
 ent-ClothingBackpackSatchelPrisonDoctorMetus = prison doctor satchel
     .desc = Clean but weary, fasteners tremble like hands after night autopsies.
 ent-ClothingBackpackSatchelPrisonChefMetus = prison chef satchel

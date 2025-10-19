@@ -62,6 +62,30 @@
     - id: Flash
 
 - type: entity
+  id: ClothingBeltHeadOfPrisonMetus
+  parent: ClothingBeltPrisonGuardianMetus
+  name: head of prison belt
+  description: On the inner side, traces of wear, a sign of long service within walls where nothing is forgotten.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#000000"
+
+- type: entity
+  id: ClothingBeltPrisonInspectorMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison inspector belt
+  description: Tight and well-kept, as if out of habit to hold onto order in a place where it no longer exists.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#7471dd"
+
+- type: entity
   id: ClothingBeltPrisonDoctorMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison doctor belt

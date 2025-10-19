@@ -39,6 +39,62 @@
       sprite: _Sunrise/Clothing/Back/Satchels/guard.rsi
 
 - type: entity
+  id: ClothingBackpackSatchelHeadOfPrisonMetus
+  parent: ClothingBackpackSatchelPrisonGuard
+  name: head of prison satchel
+  description: Old leather with cracks, the strap pulled too tight, the smell of dust and metal mixed within it like a memory of years spent behind closed doors.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#000000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#000000"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#000000"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#000000"
+
+- type: entity
+  id: ClothingBackpackSatchelPrisonInspectorMetus
+  parent: ClothingBackpackSatchelPrisonGuard
+  name: prison inspector satchel
+  description: Worn, once strict and tidy, now it holds folders, the scent of coffee, and the dust of old cases.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#494793"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#494793"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#494793"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#494793"
+
+- type: entity
   parent: ClothingBackpackSatchelPrisonGuard
   id: ClothingBackpackSatchelPrisonDoctorMetus
   name: prison doctor satchel

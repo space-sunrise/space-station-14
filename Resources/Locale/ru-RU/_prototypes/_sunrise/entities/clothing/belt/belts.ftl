@@ -25,6 +25,10 @@ ent-ClothingAbductorBelt = пояс абдукторов
 # пояса Метус
 ent-ClothingBeltPrisonGuardianMetus = { ent-ClothingBeltSecurity }
     .desc = { ent-ClothingBeltSecurity.desc }
+ent-ClothingBeltHeadOfPrisonMetus = пояс начальника тюрьмы
+    .desc = На внутренней стороне следы потертостей, знак долгой службы в стенах где ничто не забывается.
+ent-ClothingBeltPrisonInspectorMetus = пояс инспектора тюрьмы
+    .desc = Тугой и ухоженный, будто от привычки держаться за порядок в месте, где его уже нет.
 ent-ClothingBeltPrisonDoctorMetus = пояс тюремного врача
     .desc = Чистый, но застарелый, застёжка держится на совести и привычке, как и его владелец.
 ent-ClothingBeltPrisonChefMetus = пояс тюремного повара
