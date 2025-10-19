@@ -34,18 +34,31 @@
     head: ClothingHeadHatBeretHoS
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
-    belt: ClothingBeltPrisonGuardianFilled
+    belt: ClothingBeltHeadOfPrisonMetus
+    back: ClothingBackpackSatchelHeadOfPrisonMetus
     neck: ClothingNeckCloakHOSCloak
-    pocket1: WeaponPistolDeagle
+    pocket1: WeaponPistolDeagleMetus
     pocket2: MagazineDeagle
     outerClothing: ClothingOuterArmorRiot
   storage:
     belt:
+      - Stunbaton
       - RadioHandheldSecurity
+      - FlashlightSeclite
+      - Handcuffs
+      - Handcuffs
+      - TearGasGrenade
       - Flash
 
 - type: chameleonOutfit
   id: HeadOfPrisonChameleonOutfit
   job: HeadOfPrison
   equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSGrey
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+    head: ClothingHeadHatBeretHoS
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltCommand
+    belt: ClothingBeltPrisonGuardianMetus
+    back: ClothingBackpackSatchelPrisonGuard
+    neck: ClothingNeckCloakHOSCloak
+    outerClothing: ClothingOuterArmorRiot

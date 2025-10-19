@@ -25,6 +25,7 @@
   - Kitchen
   - Hydroponics
   - Bar
+  - Medical
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -33,35 +34,29 @@
   id: PrisonChefGear
   equipment:
     id: PrisonChefPDA
-    jumpsuit: ClothingUniformJumpsuitChef
-    head: ClothingHeadHatBeretFrench
+    jumpsuit: UniformPrisonChefMetus
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorRiot
-    belt: ClothingBeltChefFilled
-    back: ClothingBackpackBlack
+    belt: ClothingBeltPrisonChefMetus
+    back: ClothingBackpackSatchelPrisonChefMetus
     shoes: ClothingShoesBootsJack
-    pocket1: SecurityWhistle
-    pocket2: WeaponDisabler
-  storage:
-    back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Flash
-      - GrenadeFlashBang
-      - Handcuffs
-      - FlashlightSeclite
+    pocket1: WeaponPistolG22Metus
+    pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonChefChameleonOutfit
   job: PrisonChef
   equipment:
-    head: ClothingHeadHatChef
-    eyes: ClothingEyesGlassesCheapSunglasses
+    jumpsuit: UniformPrisonChefMetus
+    head: ClothingHeadHatChefBlackToque
+    ears: ClothingHeadsetService
+    eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
-    neck: ClothingNeckScarfStripedBrown
-    outerClothing: ClothingOuterJacketChef
-    gloves: ClothingHandsGlovesColorWhite
-    shoes: ClothingShoesChef
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorRiot
+    belt: ClothingBeltPrisonChefMetus
+    back: ClothingBackpackSatchelPrisonChefMetus
+    shoes: ClothingShoesBootsJack

@@ -43,23 +43,30 @@
     ears: ClothingHeadsetCommand
     gloves: ClothingHandsGlovesForensic
     outerClothing: ClothingOuterArmorBasic
-    belt: WeaponDisabler
-    back: ClothingBackpackSatchelSecurity
+    belt: ClothingBeltPrisonInspectorMetus
+    back: ClothingBackpackSatchelPrisonInspectorMetus
     shoes: ClothingShoesBootsJack
-    pocket1: Flash
-    pocket2: WeaponRevolverInspector
+    pocket1: WeaponRevolverInspector
+    pocket2: Flash
   storage:
     back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Handcuffs
-      - GrenadeFlashBang
-      - FlashlightSeclite
-      - RubberStampPrisonInspector
-      - PenCentcom
       - HyperLinkBookCorporateLaw
       - BoxFolderClipboard
-      - DrinkDetFlask
       - ForensicScanner
-      - BoxForensicPad
       - BoxEvidenceMarkers
+      - DrinkDetFlask
+      - RubberStampPrisonInspector
+      - PenCentcom
+
+- type: chameleonOutfit
+  id: PrisonInspectorChameleonOutfit
+  job: PrisonInspector
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitArmouredBlack
+    head: Sunrise-ClothingHeadHatDetGadget
+    ears: ClothingHeadsetCommand
+    gloves: ClothingHandsGlovesForensic
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonGuardianFilledMetus
+    back: ClothingBackpackSatchelPrisonGuard
+    shoes: ClothingShoesBootsJack

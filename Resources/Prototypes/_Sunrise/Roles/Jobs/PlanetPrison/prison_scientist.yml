@@ -22,6 +22,7 @@
     - Brig
     - Maintenance
     - Research
+    - Medical
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
@@ -30,21 +31,27 @@
   id: PrisonScientistGear
   equipment:
     id: PrisonScientistPDA
-    jumpsuit: ClothingUniformJumpsuitScientist
-    head: ClothingHeadHatBeretRND
+    jumpsuit: UniformPrisonScientistMetus
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
-    belt: WeaponDisabler
-    back: ClothingBackpackScience
+    belt: ClothingBeltPrisonScientistMetus
+    back: ClothingBackpackSatchelPrisonScientistMetus
     shoes: ClothingShoesBootsJack
-    pocket1: Flash
+    pocket1: WeaponPistolG22Metus
     pocket2: SecurityWhistle
-  storage:
-    back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Handcuffs
-      - GrenadeFlashBang
-      - FlashlightSeclite
+
+- type: chameleonOutfit
+  id: PrisonScientistChameleonOutfit
+  job: PrisonScientist
+  equipment:
+    jumpsuit: UniformPrisonScientistMetus
+    head: ClothingHeadHatCapPrisonScientistMetus
+    ears: ClothingHeadsetScience
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonScientistMetus
+    back: ClothingBackpackSatchelPrisonScientistMetus
+    shoes: ClothingShoesBootsJack

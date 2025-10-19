@@ -24,6 +24,7 @@
   - Engineering
   - External
   - Atmospherics
+  - Medical
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -32,26 +33,27 @@
   id: PrisonEngineerGear
   equipment:
     id: PrisonEngineerPDA
-    jumpsuit: ClothingUniformJumpsuitEngineering
-    head: ClothingHeadHatBeretEngineering
+    jumpsuit: UniformPrisonEngineerMetus
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
-    belt: ClothingBeltUtilityEngineering
-    back: ClothingBackpackEngineering
+    belt: ClothingBeltPrisonEngineerMetus
+    back: ClothingBackpackSatchelPrisonEngineerMetus
     shoes: ClothingShoesBootsJack
-    pocket1: SecurityWhistle
-    pocket2: WeaponDisabler
-  storage:
-    back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Flash
-      - GrenadeFlashBang
-      - Handcuffs
-      - FlashlightSeclite
+    pocket1: WeaponPistolG22Metus
+    pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonEngineerChameleonOutfit
   job: PrisonEngineer
+  equipment:
+    jumpsuit: UniformPrisonEngineerMetus
+    head: ClothingHeadHatCapPrisonWorkerMetus
+    ears: ClothingHeadsetJEngineering
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonEngineerMetus
+    back: ClothingBackpackSatchelPrisonEngineerMetus
+    shoes: ClothingShoesBootsJack

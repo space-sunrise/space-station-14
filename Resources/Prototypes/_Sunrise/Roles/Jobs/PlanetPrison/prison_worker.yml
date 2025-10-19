@@ -48,27 +48,27 @@
   id: PrisonWorkerGear
   equipment:
     id: PrisonWorkerPDA
-    jumpsuit: ClothingUniformJumpsuitSecSummer
-    head: ClothingHeadHatBeretSecurity
+    jumpsuit: UniformPrisonWorkerMetus
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
-    belt: WeaponDisabler
-    back: ClothingBackpackSatchelSecurity
+    belt: ClothingBeltPrisonWorkerMetus
+    back: ClothingBackpackSatchelPrisonWorkerMetus
     shoes: ClothingShoesBootsJack
-    pocket1: Flash
+    pocket1: WeaponPistolG22Metus
     pocket2: SecurityWhistle
-  storage:
-    back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Handcuffs
-      - GrenadeFlashBang
-      - FlashlightSeclite
 
 - type: chameleonOutfit
   id: PrisonWorkerChameleonOutfit
   job: PrisonWorker
   equipment:
-    mask: ClothingMaskBreath
+    jumpsuit: UniformPrisonWorkerMetus
+    head: ClothingHeadCapPrisonWorkerMetus
+    ears: ClothingHeadsetService
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonWorkerMetus
+    back: ClothingBackpackSatchelPrisonWorkerMetus
+    shoes: ClothingShoesBootsJack
