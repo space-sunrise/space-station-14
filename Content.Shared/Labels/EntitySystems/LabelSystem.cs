@@ -54,7 +54,7 @@ public sealed partial class LabelSystem : EntitySystem
     {
         label ??= EnsureComp<LabelComponent>(uid);
 
-        label.CurrentLabel = text == null ? null : FormattedMessage.EscapeText(text);
+        label.CurrentLabel = text;
         _nameModifier.RefreshNameModifiers(uid);
 
         Dirty(uid, label);

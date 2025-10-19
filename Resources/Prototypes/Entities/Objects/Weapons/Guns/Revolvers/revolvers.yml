@@ -167,7 +167,7 @@
   suffix: armor-piercing
   components:
   - type: RevolverAmmoProvider
-    whitelist: # Redundant
+    whitelist:
       tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum

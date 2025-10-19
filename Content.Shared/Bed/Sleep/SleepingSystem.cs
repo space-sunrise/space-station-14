@@ -62,8 +62,6 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<SleepingComponent, EntityZombifiedEvent>(OnZombified);
         SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<SleepingComponent, ComponentInit>(OnCompInit);
-        SubscribeLocalEvent<SleepingComponent, ComponentRemove>(OnComponentRemoved);
-        SubscribeLocalEvent<SleepingComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<SleepingComponent, SpeakAttemptEvent>(OnSpeakAttempt);
         SubscribeLocalEvent<SleepingComponent, CanSeeAttemptEvent>(OnSeeAttempt);
         SubscribeLocalEvent<SleepingComponent, PointAttemptEvent>(OnPointAttempt);
@@ -74,6 +72,7 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<SleepingComponent, StunEndAttemptEvent>(OnStunEndAttempt);
         SubscribeLocalEvent<SleepingComponent, StandUpAttemptEvent>(OnStandUpAttempt);
+        SubscribeLocalEvent<SleepingComponent, RejuvenateEvent>(OnRejuvenate);
 
         SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
@@ -104,12 +103,6 @@ public sealed partial class SleepingSystem : EntitySystem
     private void OnSleepAction(Entity<MobStateComponent> ent, ref SleepActionEvent args)
     {
         TrySleeping((ent, ent.Comp));
-    }
-
-    private void OnRejuvenate(Entity<SleepingComponent> ent, ref RejuvenateEvent args)
-    {
-        // WAKE UP!!!
-        RemComp<SleepingComponent>(ent);
     }
 
     /// <summary>
@@ -151,16 +144,6 @@ public sealed partial class SleepingSystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
         _blindableSystem.UpdateIsBlind(ent.Owner);
         _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
-    }
-
-    private void OnComponentRemoved(Entity<SleepingComponent> ent, ref ComponentRemove args)
-    {
-        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.WakeAction);
-
-        var ev = new SleepStateChangedEvent(false);
-        RaiseLocalEvent(ent, ref ev);
-
-        _blindableSystem.UpdateIsBlind(ent.Owner);
     }
 
     private void OnSpeakAttempt(Entity<SleepingComponent> ent, ref SpeakAttemptEvent args)
@@ -205,6 +188,11 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         // Shh the Urist McHands is sleeping...
         args.Cancelled = true;
+    }
+
+    private void OnRejuvenate(Entity<SleepingComponent> ent, ref RejuvenateEvent args)
+    {
+        TryWaking((ent.Owner, ent.Comp), true);
     }
 
     private void OnExamined(Entity<SleepingComponent> ent, ref ExaminedEvent args)
@@ -290,6 +278,19 @@ public sealed partial class SleepingSystem : EntitySystem
             TrySleeping(args.Target);
     }
 
+    private void Wake(Entity<SleepingComponent> ent)
+    {
+        RemComp<SleepingComponent>(ent);
+        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.WakeAction);
+        if (ent.Comp.WakeAction != null)
+            _actionContainer.RemoveAction(ent.Comp.WakeAction.Value);
+
+        var ev = new SleepStateChangedEvent(false);
+        RaiseLocalEvent(ent, ref ev);
+
+        _blindableSystem.UpdateIsBlind(ent.Owner);
+    }
+
     /// <summary>
     /// Try sleeping. Only mobs can sleep.
     /// </summary>
@@ -349,7 +350,8 @@ public sealed partial class SleepingSystem : EntitySystem
             _popupSystem.PopupClient(Loc.GetString("wake-other-success", ("target", Identity.Entity(ent, EntityManager))), ent, user);
         }
 
-        return RemComp<SleepingComponent>(ent);
+        Wake((ent, ent.Comp));
+        return true;
     }
 
     /// <summary>

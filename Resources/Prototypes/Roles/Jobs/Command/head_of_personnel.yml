@@ -6,19 +6,19 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 2.5h
+      time: 9000 # 2.5 hours
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 2.5h
+      time: 9000 # 2.5 hours
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 2.5h
+      time: 9000 # 2.5 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 2.5h
+      time: 9000 # 2.5 hrs
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 2.5h
+      time: 9000 # 2.5 hours
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"

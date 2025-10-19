@@ -258,7 +258,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         helper.ClydeWindow = _clyde.CreateWindow(new WindowCreateParameters
         {
             Maximized = false,
-            Title = Loc.GetString("bwoink-admin-title"),
+            Title = "Admin Help",
             Monitor = monitor,
             Width = 900,
             Height = 500

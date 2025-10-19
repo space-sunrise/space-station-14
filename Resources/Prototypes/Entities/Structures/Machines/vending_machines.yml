@@ -1239,9 +1239,8 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSovietSoda
-  name: ВОДА
+  name: BODA
   description: An old vending machine containing sweet water.
-  suffix: VODA
   components:
   - type: VendingMachine
     pack: BodaInventory

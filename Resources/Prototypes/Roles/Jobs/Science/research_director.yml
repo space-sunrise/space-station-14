@@ -6,10 +6,10 @@
   requirements:
   - !type:RoleTimeRequirement
     role: JobScientist
-    time: 5h
+    time: 18000 #5 hrs
   - !type:DepartmentTimeRequirement
     department: Science
-    time: 10h
+    time: 36000 #10 hrs
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"

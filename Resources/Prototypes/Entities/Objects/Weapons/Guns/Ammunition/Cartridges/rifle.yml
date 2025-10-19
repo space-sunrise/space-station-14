@@ -6,6 +6,7 @@
   components:
   - type: Tag
     tags:
+      - Cartridge
       - CartridgeRifle
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTrace

@@ -1,5 +1,5 @@
-﻿using Content.Shared.Chat;
-using Content.Server.Chat.Systems;
+﻿using Content.Server.Chat.Systems;
+using Content.Shared.Chat;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech;

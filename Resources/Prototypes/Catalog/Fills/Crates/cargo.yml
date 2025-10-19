@@ -313,9 +313,6 @@
     - id: PlushieMoth
       prob: 0.01
       orGroup: Plushies
-    - id: PlushieVulp
-      prob: 0.01
-      orGroup: Plushies
     - id: PlushieArachind
       prob: 0.01
       orGroup: Plushies

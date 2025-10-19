@@ -6,6 +6,7 @@ namespace Content.Shared.Trigger.Systems;
 public sealed class EmpOnTriggerSystem : EntitySystem
 {
     [Dependency] private readonly SharedEmpSystem _emp = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -24,7 +25,7 @@ public sealed class EmpOnTriggerSystem : EntitySystem
         if (target == null)
             return;
 
-        _emp.EmpPulse(Transform(target.Value).Coordinates, ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, args.User);
+        _emp.EmpPulse(_transform.GetMapCoordinates(target.Value), ent.Comp.Range, ent.Comp.EnergyConsumption, (float)ent.Comp.DisableDuration.TotalSeconds);
         args.Handled = true;
     }
 }

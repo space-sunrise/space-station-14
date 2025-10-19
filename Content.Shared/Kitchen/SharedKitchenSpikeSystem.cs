@@ -7,7 +7,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
-using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -239,11 +238,8 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
                 args.Target.Value,
                 ent);
 
-            // normally medium severity, but for humanoids high severity, so new players get relay'd to admin alerts.
-            var logSeverity = HasComp<HumanoidAppearanceComponent>(args.Target) ? LogImpact.High : LogImpact.Medium;
-
             _logger.Add(LogType.Action,
-                logSeverity,
+                LogImpact.High,
                 $"{ToPrettyString(args.User):user} put {ToPrettyString(args.Target):target} on the {ToPrettyString(ent):spike}");
 
             _audioSystem.PlayPredicted(ent.Comp.SpikeSound, ent, args.User);
@@ -320,10 +316,8 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
         {
             _bodySystem.GibBody(args.Target.Value, true);
 
-            var logSeverity = HasComp<HumanoidAppearanceComponent>(args.Target) ? LogImpact.Extreme : LogImpact.High;
-
             _logger.Add(LogType.Gib,
-                logSeverity,
+                LogImpact.Extreme,
                 $"{ToPrettyString(args.User):user} finished butchering {ToPrettyString(args.Target):target} on the {ToPrettyString(ent):spike}");
         }
         else
@@ -331,10 +325,8 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
             EnsureComp<KitchenSpikeVictimComponent>(args.Target.Value);
 
             _damageableSystem.TryChangeDamage(args.Target, ent.Comp.ButcherDamage, true);
-
-            // Log severity for damaging other entities is normally medium.
             _logger.Add(LogType.Action,
-                LogImpact.Medium,
+                LogImpact.Extreme,
                 $"{ToPrettyString(args.User):user} butchered {ToPrettyString(args.Target):target} on the {ToPrettyString(ent):spike}");
         }
 

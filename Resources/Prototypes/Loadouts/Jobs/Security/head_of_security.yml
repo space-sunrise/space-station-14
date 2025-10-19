@@ -6,7 +6,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobHeadOfSecurity
-      time: 20h
+      time: 72000 #20 hrs
 
 #Sunrise-Start
 - type: loadoutEffectGroup

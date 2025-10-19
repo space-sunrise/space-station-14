@@ -28,6 +28,10 @@
       BZ: danger #SunRise edit
       Healium: stationNO #SunRise edit
       Nitrium: stationNO #SunRise edit
+  - type: Tag
+    tags:
+      - AirSensor
+      - ForceFixRotations
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl
@@ -89,10 +93,6 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { state: gsensor1 }
           False: { state: gsensor0 }
-  - type: Tag
-    tags:
-    - AirSensor
-    - ForceFixRotations
 
 - type: entity
   parent: BaseItem

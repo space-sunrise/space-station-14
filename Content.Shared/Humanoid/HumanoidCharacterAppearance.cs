@@ -460,7 +460,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             SkinColorationStrategyInput.Unary => skinColoration.FromUnary(speciesPrototype.DefaultHumanSkinTone),
             SkinColorationStrategyInput.Color => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
-            _ => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
         };
 
         return new(
@@ -470,13 +469,13 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             Color.Black,
             skinColor,
-            new(),
+            new (),
             speciesPrototype.DefaultWidth, //Sunrise
             speciesPrototype.DefaultHeight //Sunrise
         );
     }
 
-    private static IReadOnlyList<Color> _realisticEyeColors = new List<Color>
+    private static IReadOnlyList<Color> RealisticEyeColors = new List<Color>
     {
         Color.Brown,
         Color.Gray,
@@ -525,16 +524,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             newFacialHairStyle = random.Pick(facialDict.Keys.ToList());
         }
 
-        // pick a random realistic hair color from the list and randomize it juuuuust a little bit.
-        newHairColor = random.Pick(HairStyles.RealisticHairColors);
-        newHairColor = newHairColor
-            .WithRed(RandomizeColor(newHairColor.R))
-            .WithGreen(RandomizeColor(newHairColor.G))
-            .WithBlue(RandomizeColor(newHairColor.B));
-
-        // and pick a random realistic eye color from the list.
-        newEyeColor = random.Pick(_realisticEyeColors);
-
         var protoMan = IoCManager.Resolve<IPrototypeManager>();
         var speciesPrototype = protoMan.Index<SpeciesPrototype>(species);
         var strategy = protoMan.Index(speciesPrototype.SkinColoration).Strategy;
@@ -543,7 +532,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
             SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
-            _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
         };
 
         var newHairColor = colorPalette[1]; // Sunrise-Start

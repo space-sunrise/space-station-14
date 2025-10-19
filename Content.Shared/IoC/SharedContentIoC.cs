@@ -6,11 +6,11 @@ namespace Content.Shared.IoC
 {
     public static class SharedContentIoC
     {
-        public static void Register(IDependencyCollection deps)
+        public static void Register()
         {
-            deps.Register<MarkingManager, MarkingManager>();
-            deps.Register<ContentLocalizationManager, ContentLocalizationManager>();
-            deps.Register<CultistWordGeneratorManager, CultistWordGeneratorManager>(); // Sunrise-Edit
+            IoCManager.Register<MarkingManager, MarkingManager>();
+            IoCManager.Register<ContentLocalizationManager, ContentLocalizationManager>();
+            IoCManager.Register<CultistWordGeneratorManager, CultistWordGeneratorManager>(); // Sunrise-Edit
         }
     }
 }

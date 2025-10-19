@@ -25,11 +25,3 @@
   name: slurred
   components:
   - type: SlurredAccent
-
-# Causes words your be to scrambled. Who?
-- type: entity
-  parent: SpeechStatusEffectBase
-  id: StatusEffectScrambled
-  name: scrambled
-  components:
-  - type: ScrambledAccent

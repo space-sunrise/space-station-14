@@ -19,8 +19,7 @@
             Mangleness: 0.15 #Sunrise-Edit
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Desoxyephedrine
+        - !type:ReagentThreshold
           min: 30
         damage:
           types:
@@ -28,7 +27,7 @@
             Asphyxiation: 2
     Narcotic:
       effects:
-      - !type:MovementSpeedModifier
+      - !type:MovespeedModifier
         walkSpeedModifier: 1.35
         sprintSpeedModifier: 1.35
       - !type:GenericStatusEffect
@@ -36,15 +35,13 @@
         component: StutteringAccent
       - !type:Jitter
       - !type:ModifyStatusEffect
+        conditions:
         effectProto: StatusEffectStunned
-        time: 3
-        type: Remove
-      - !type:ModifyKnockdown
         time: 3
         type: Remove
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentCondition
+        - !type:ReagentThreshold
           reagent: Haloperidol
           max: 0.01
         effectProto: StatusEffectDrowsiness
@@ -54,8 +51,7 @@
       effects:
       - !type:ResetNarcolepsy
         conditions:
-        - !type:ReagentCondition
-          reagent: Desoxyephedrine
+        - !type:ReagentThreshold
           min: 20
       - !type:ModifyBleedAmount # Sunrise-Start # Кровотечение(кровь из носа) из-за того что мет повышает давление
         amount: 0.4
@@ -87,7 +83,7 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:MovementSpeedModifier
+      - !type:MovespeedModifier
         walkSpeedModifier: 1.25
         sprintSpeedModifier: 1.25
       #Sunrise-Start
@@ -98,8 +94,7 @@
       #Sunrise-End
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Ephedrine
+        - !type:ReagentThreshold
           min: 20.5
         damage:
           types:
@@ -107,15 +102,13 @@
             Asphyxiation: 2
       - !type:Jitter
       - !type:ModifyStatusEffect
+        conditions:
         effectProto: StatusEffectStunned
-        time: 1
-        type: Remove
-      - !type:ModifyKnockdown
         time: 1
         type: Remove
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentCondition
+        - !type:ReagentThreshold
           reagent: Haloperidol
           max: 0.01
         effectProto: StatusEffectDrowsiness
@@ -130,8 +123,7 @@
       effects:
       - !type:ResetNarcolepsy
         conditions:
-        - !type:ReagentCondition
-          reagent: Ephedrine
+        - !type:ReagentThreshold
           min: 30
 
 - type: reagent
@@ -149,7 +141,7 @@
     Narcotic:
       metabolismRate: 1.0
       effects:
-      - !type:MovementSpeedModifier
+      - !type:MovespeedModifier
         walkSpeedModifier: 1.3
         sprintSpeedModifier: 1.3
       #Sunrise-Start
@@ -160,37 +152,35 @@
       #Sunrise-End
       - !type:HealthChange
         conditions:
-          - !type:ReagentCondition
-            reagent: Stimulants
+          - !type:ReagentThreshold
             min: 80 #please wait 3 minutes before using another stimpack
         damage:
           types:
             Poison: 1
       - !type:AdjustReagent
         conditions:
-        - !type:ReagentCondition
+        - !type:ReagentThreshold
           reagent: ChloralHydrate
           min: 1
         reagent: ChloralHydrate
         amount: -10
       - !type:ModifyStatusEffect
+        conditions:
         effectProto: StatusEffectStunned
-        time: 3
-        type: Remove
-      - !type:ModifyKnockdown
         time: 3
         type: Remove
       - !type:GenericStatusEffect
         key: StaminaModifier
         component: StaminaModifier
         time: 3
+        type: Add
       - !type:ModifyStatusEffect
         effectProto: StatusEffectForcedSleeping
         time: 3
         type: Remove
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentCondition
+        - !type:ReagentThreshold
           reagent: Haloperidol
           max: 0.01
         effectProto: StatusEffectDrowsiness
@@ -221,7 +211,7 @@
             shouldHave: false
         - !type:HealthChange
           conditions:
-          - !type:TotalDamageCondition
+          - !type:TotalDamage
             min: 70 # only heals when you're more dead than alive
           damage: # heals at the same rate as tricordrazine, doesn't heal poison because if you OD'd I'm not giving you a safety net
             groups:
@@ -249,6 +239,7 @@
         effectProto: StatusEffectSeeingRainbow
         time: 16
         type: Add
+        refresh: false
 
 - type: reagent
   id: Nicotine
@@ -275,7 +266,7 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:MovementSpeedModifier
+      - !type:MovespeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:HealthChange
@@ -286,7 +277,8 @@
         effectProto: StatusEffectSeeingRainbow
         time: 10
         type: Add
-      - !type:Vomit # Vomiting is a symptom of brain damage
+        refresh: false
+      - !type:ChemVomit # Vomiting is a symptom of brain damage
         probability: 0.05
       - !type:Drunk # Headaches and slurring are major symptoms of brain damage, this is close enough
         boozePower: 5
@@ -306,6 +298,7 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
+        refresh: false
 
 - type: reagent
   id: Bananadine
@@ -322,6 +315,7 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
+        refresh: false
 
 # Probably replace this one with sleeping chem when putting someone in a comatose state is easier
 - type: reagent
@@ -336,18 +330,16 @@
   meltingPoint: 128.0
   metabolisms:
     Narcotic:
-      effects: # It would be nice to have speech slurred or mumbly, but accents are a bit iffy atm. Same for distortion effects.
-      - !type:MovementSpeedModifier
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
+      effects:
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentCondition
+        - !type:ReagentThreshold
           reagent: Nocturine
           min: 8
         effectProto: StatusEffectForcedSleeping
-        time: 6
-        delay: 5
+        time: 3
+        delay: 6
+        type: Add
 
 - type: reagent
   id: MuteToxin
@@ -367,6 +359,7 @@
         component: Muted
         type: Add
         time: 10
+        refresh: false
 
 - type: reagent
   id: NorepinephricAcid
@@ -402,8 +395,7 @@
         - norepinephricacid-effect-darkness
         - norepinephricacid-effect-blindness
         conditions:
-        - !type:ReagentCondition
-          reagent: NorepinephricAcid
+        - !type:ReagentThreshold
           min: 20
         probability: 0.03
         #If anyone wants to add a light dimming or grayscale effect when under 20u, be my guest
@@ -411,8 +403,7 @@
         key: TemporaryBlindness
         component: TemporaryBlindness
         conditions:
-        - !type:ReagentCondition
-          reagent: NorepinephricAcid
+        - !type:ReagentThreshold
           min: 20
 
 - type: reagent
@@ -482,8 +473,7 @@
         emote: Scream
         probability: 0.08
         conditions:
-        - !type:ReagentCondition
-          reagent: TearGas
+        - !type:ReagentThreshold
           min: 4
       - !type:Emote
         emote: Cough
@@ -492,16 +482,14 @@
         key: TemporaryBlindness
         component: TemporaryBlindness
         conditions:
-        - !type:ReagentCondition
-          reagent: TearGas
+        - !type:ReagentThreshold
           min: 4
-      - !type:MovementSpeedModifier
+      - !type:MovespeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-        time: 1.5
+        statusLifetime: 1.5
         conditions: # because of the remainding after effect, threshold is given so the effects ends simultaniously
-        - !type:ReagentCondition
-          reagent: TearGas
+        - !type:ReagentThreshold
           min: 4
 
 - type: reagent
@@ -520,24 +508,21 @@
         showInChat: true
         probability: 0.1
         conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
+        - !type:ReagentThreshold
           max: 20
       - !type:Emote
         emote: Whistle
         showInChat: true
         probability: 0.1
         conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
+        - !type:ReagentThreshold
           max: 20
       - !type:Emote
         emote: Crying
         showInChat: true
         probability: 0.1
         conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
+        - !type:ReagentThreshold
           min: 20
       - !type:PopupMessage # we dont have sanity/mood so this will have to do
         type: Local
@@ -548,10 +533,10 @@
         - "psicodine-effect-at-peace"
         probability: 0.2
         conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
+        - !type:ReagentThreshold
           max: 20
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
+        refresh: false

@@ -142,8 +142,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
-        Heat: 4
+        Blunt: 14
   - type: PointLight
     enabled: true
     color: "#ff4300"
@@ -211,15 +210,14 @@
           bounds: "-0.15,-0.45,0.15,0.15"
         hard: false
         mask:
-        - Opaque
-        - Impassable
-        - BulletImpassable
+          - Impassable
+          - BulletImpassable
       fly-by: *flybyfixture
   - type: Ammo
   - type: Projectile
     damage:
       types:
-        Shock: 0
+        Shock: 1
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
     forceSound: true
@@ -227,8 +225,7 @@
     lifetime: 0.170 # Very short range
   - type: StunOnCollide
     stunAmount: 0
-    knockdownAmount: 2.5 # Enough to subdue and follow up with a stun baton
-    drop: false #Ranged KD and item drop are too strong in one package
+    knockdownAmount: 2.5 # Enough to subdue and follow up with a stun batong
     slowdownAmount: 2.5
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -256,7 +253,6 @@
     lifetime: 1.0 # Not so short range
   - type: StunOnCollide
     stunAmount: 5
-    drop: true # this is the evil taser
     knockdownAmount: 10
     slowdownAmount: 10
     walkSpeedModifier: 0.5
@@ -290,7 +286,6 @@
           bounds: "-0.15,-0.3,0.15,0.3"
         hard: false
         mask:
-        - Opaque
         - Impassable
         - BulletImpassable
       fly-by: *flybyfixture
@@ -331,7 +326,6 @@
           bounds: "-0.15,-0.3,0.15,0.3"
         hard: false
         mask:
-        - Opaque
         - Impassable
         - BulletImpassable
       fly-by: *flybyfixture
@@ -406,7 +400,7 @@
     - state: omnilaser
       shader: unshaded
   - type: Ammo
-    muzzleFlash: MuzzleFlashEffectOmnilaser
+    muzzleFlash: null
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -417,8 +411,6 @@
         hard: false
         mask:
         - Opaque
-        - Impassable
-        - BulletImpassable
       fly-by: *flybyfixture
   - type: Projectile
     #   soundHit:  Waiting on serv3
@@ -437,9 +429,6 @@
   parent: WatcherBolt
   categories: [ HideSpawnMenu ]
   components:
-  - type: Reflective
-    reflective:
-    - Energy
   - type: Projectile
     #   soundHit:  Waiting on serv3
     impactEffect: BulletImpactEffectDisabler
@@ -454,7 +443,7 @@
 - type: entity
   name: magmawing watcher bolt
   id: WatcherBoltMagmawing
-  parent: WatcherBolt
+  parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -463,8 +452,6 @@
     - state: omnilaser_greyscale
       shader: unshaded
       color: orangered
-  - type: Ammo
-    muzzleFlash: MuzzleFlashEffectHeavyLaser
   - type: Projectile
     #   soundHit:  Waiting on serv3
     impactEffect: BulletImpactEffectOrangeDisabler
@@ -480,9 +467,6 @@
   parent: WatcherBoltMagmawing
   categories: [ HideSpawnMenu ]
   components:
-  - type: Reflective
-    reflective:
-    - Energy
   - type: Projectile
     #   soundHit:  Waiting on serv3
     impactEffect: BulletImpactEffectOrangeDisabler
@@ -1152,7 +1136,6 @@
           bounds: "-0.15,-0.3,0.15,0.3"
         hard: false
         mask:
-        - Opaque
         - Impassable
         - BulletImpassable
       fly-by: *flybyfixture
@@ -1307,7 +1290,6 @@
           bounds: "-0.15,-0.3,0.15,0.3"
         hard: false
         mask:
-        - Opaque
         - Impassable
         - BulletImpassable
       fly-by: *flybyfixture
@@ -1330,7 +1312,7 @@
     spread: 30
 
 - type: entity
-  name: lethal laser barrage
+  name: narrow laser barrage
   id: BulletLaserSpreadNarrow
   categories: [ HideSpawnMenu ]
   parent: BulletLaser
@@ -1350,55 +1332,6 @@
     proto: BulletDisablerSmg
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
     spread: 9
-
-- type: entity
-  name: magnum laser bolt
-  id: BulletLaserMagnum
-  categories: [ HideSpawnMenu ]
-  parent: BulletLaser
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_magnum.rsi
-    layers:
-    - state: magnum
-      shader: unshaded
-  - type: PointLight
-    enabled: true
-    color: "#ff4300"
-  - type: Projectile
-    impactEffect: BulletImpactEffectOrangeDisabler
-    damage:
-      types:
-        Heat: 30
-
-- type: entity
-  name: magnum window-piercing bolt
-  id: BulletLaserWindowPiercingMagnum
-  categories: [ HideSpawnMenu ]
-  parent: BulletLaser
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_magnum.rsi
-    layers:
-    - state: magnum_piercing
-      shader: unshaded
-  - type: PointLight
-    enabled: true
-    color: "#ff4300"
-  - type: Projectile
-    impactEffect: BulletImpactEffectOrangeDisabler
-    damage:
-      types:
-        Heat: 20
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.1,-0.1,0.1,0.1"
-        hard: false
-        mask:
-        - Opaque
 
 # SUNRISE
 

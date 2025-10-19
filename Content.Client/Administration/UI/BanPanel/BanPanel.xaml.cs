@@ -231,7 +231,7 @@ public sealed partial class BanPanel : DefaultWindow
         var roleGroupCheckbox = new Button
         {
             Name = $"{groupName}GroupCheckbox",
-            Text = Loc.GetString("role-bans-ban-group"),
+            Text = "Ban all",
             Margin = new Thickness(0, 0, 5, 0),
             ToggleMode = true,
         };
@@ -396,7 +396,7 @@ public sealed partial class BanPanel : DefaultWindow
         TimeLine.Text = args.Text;
         if (!double.TryParse(args.Text, out var result))
         {
-            ExpiresLabel.Text = Loc.GetString("ban-panel-expiry-error");
+            ExpiresLabel.Text = "err";
             ErrorLevel |= ErrorLevelEnum.Minutes;
             TimeLine.ModulateSelfOverride = Color.Red;
             UpdateSubmitEnabled();

@@ -1,4 +1,4 @@
-﻿# Donut
+# Donut
 
 # There is a newer, better version of the donutbox from tgstation included in the
 # donut.rsi. The reason it isn't implemented is it requires a StackVisuals offsetting
@@ -204,7 +204,6 @@
   parent: BoxCardboard
   id: FoodBoxPizza
   name: pizza box
-  description: A box for pizza. It keeps in the heat, the smell, and the memories of the best five minutes of your life.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
@@ -238,10 +237,16 @@
     price: 0
 
 - type: entity
+  name: pizza box
   parent: FoodBoxPizza
   id: FoodBoxPizzaFilled
   suffix: Filled
   components:
+  - type: Sprite
+    layers:
+    - state: box
+    - state: box-open
+      map: ["enum.StorageVisualLayers.Door"]
   - type: StorageFill
     contents:
     - id: FoodPizzaArnold
@@ -280,7 +285,8 @@
     - id: KnifePlastic
 
 - type: entity
-  parent: FoodBoxPizza
+  name: pizza box
+  parent: FoodBoxPizzaFilled
   id: FoodBoxPizzaCotton
   suffix: Cotton Pizza
   components:
@@ -386,6 +392,8 @@
   components:
   - type: Sprite
     state: spicy-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketSpicy
@@ -398,6 +406,8 @@
   components:
   - type: Sprite
     state: teriyaki-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketTeriyaki
@@ -410,6 +420,8 @@
   components:
   - type: Sprite
     state: pizza-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketPizza
@@ -422,6 +434,8 @@
   components:
   - type: Sprite
     state: stonk-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketStonk
@@ -446,6 +460,8 @@
   components:
   - type: Sprite
     state: berry-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketBerry
@@ -458,6 +474,8 @@
   components:
   - type: Sprite
     state: banana-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketHonk
@@ -471,6 +489,8 @@
   components:
   - type: Sprite
     state: dink-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketDink
@@ -483,6 +503,8 @@
   components:
   - type: Sprite
     state: moth-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
     - id: FoodDonkpocketMoth
@@ -498,6 +520,8 @@
   - type: Sprite
     sprite: Objects/Storage/Happyhonk/clown.rsi
     state: box
+    layers:
+    - state: box
   - type: Item
     sprite: Objects/Storage/Happyhonk/clown.rsi
     heldPrefix: box
@@ -509,7 +533,6 @@
     tags:
     - Trash
     - HappyHonk
-    - BoxCardboard
   - type: StorageFill
     contents:
       - id: ToyMouse
@@ -520,7 +543,7 @@
         orGroup: GiftPool
       - id: ToyFigurinePassenger
         orGroup: GiftPool
-      - id: ToyFigurineGriffin
+      - id: ToyGriffin
         orGroup: GiftPool
       - id: ToyHonk
         orGroup: GiftPool
@@ -534,7 +557,7 @@
         orGroup: GiftPool
       - id: ToyOdysseus
         orGroup: GiftPool
-      - id: ToyFigurineOwlman
+      - id: ToyOwlman
         orGroup: GiftPool
       - id: ToyDeathRipley
         orGroup: GiftPool
@@ -550,7 +573,7 @@
         orGroup: GiftPool
       - id: ToyDurand
         orGroup: GiftPool
-      - id: ToyFigurineSkeleton
+      - id: ToySkeleton
         orGroup: GiftPool
       - id: FoamBlade
         orGroup: GiftPool
@@ -585,8 +608,10 @@
     - MimeHappyHonk
   - type: Sprite
     sprite: Objects/Storage/Happyhonk/mime.rsi
+    state: box
   - type: Item
     sprite: Objects/Storage/Happyhonk/mime.rsi
+    heldPrefix: box
 
 - type: entity
   id: HappyHonkNukie
@@ -597,8 +622,10 @@
   components:
   - type: Sprite
     sprite: Objects/Storage/Happyhonk/nukie.rsi
+    state: box
   - type: Item
     sprite: Objects/Storage/Happyhonk/nukie.rsi
+    heldPrefix: box
   - type: StorageFill
     contents:
       - id: C4
@@ -677,12 +704,13 @@
   - type: Tag
     tags:
     - Trash
-    - CluwneHappyHonk # BAD: Intentional removal of parent tag
-    - BoxCardboard
+    - CluwneHappyHonk
   - type: Sprite
     sprite: Objects/Storage/Happyhonk/cluwne.rsi
+    state: box
   - type: Item
     sprite: Objects/Storage/Happyhonk/cluwne.rsi
+    heldPrefix: box
   - type: StorageFill
     contents:
       - id: CluwneHorn
@@ -713,7 +741,7 @@
         orGroup: GiftPool
       - id: ToyFigurinePassenger
         orGroup: GiftPool
-      - id: ToyFigurineGriffin
+      - id: ToyGriffin
         orGroup: GiftPool
       - id: ToyHonk
         orGroup: GiftPool
@@ -727,7 +755,7 @@
         orGroup: GiftPool
       - id: ToyOdysseus
         orGroup: GiftPool
-      - id: ToyFigurineOwlman
+      - id: ToyOwlman
         orGroup: GiftPool
       - id: ToyDeathRipley
         orGroup: GiftPool
@@ -743,7 +771,7 @@
         orGroup: GiftPool
       - id: ToyDurand
         orGroup: GiftPool
-      - id: ToyFigurineSkeleton
+      - id: ToySkeleton
         orGroup: GiftPool
       - id: FoamBlade
         orGroup: GiftPool
@@ -790,7 +818,7 @@
         orGroup: GiftPool
       - id: ToyFigurinePassenger
         orGroup: GiftPool
-      - id: ToyFigurineGriffin
+      - id: ToyGriffin
         orGroup: GiftPool
       - id: ToyHonk
         orGroup: GiftPool
@@ -804,7 +832,7 @@
         orGroup: GiftPool
       - id: ToyOdysseus
         orGroup: GiftPool
-      - id: ToyFigurineOwlman
+      - id: ToyOwlman
         orGroup: GiftPool
       - id: ToyDeathRipley
         orGroup: GiftPool
@@ -820,7 +848,7 @@
         orGroup: GiftPool
       - id: ToyDurand
         orGroup: GiftPool
-      - id: ToyFigurineSkeleton
+      - id: ToySkeleton
         orGroup: GiftPool
       - id: FoamBlade
         orGroup: GiftPool
@@ -854,7 +882,7 @@
     grid:
     - 0,0,1,1
     maxItemSize: Normal
-    whitelist: # TODO BoxCardboard shouldn't have whitelisted storage
+    whitelist:
       tags:
       - ClothMade
   - type: Item

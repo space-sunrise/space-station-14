@@ -29,8 +29,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12
-        Heat: 5
+        Blunt: 2
+        Heat: 15
 
 - type: entity
   id: BulletRifleUranium

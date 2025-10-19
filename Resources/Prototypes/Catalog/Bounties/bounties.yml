@@ -202,16 +202,14 @@
 
 - type: cargoBounty
   id: BountyKnife
-  reward: 2000
+  reward: 6000
   description: bounty-description-knife
   entries:
   - name: bounty-item-knife
     amount: 5
     whitelist:
       components:
-      - Sharp
-      tags:
-      - UtilityKnife # required because retracted utility knives are not Sharp
+        - Sharp
 
 - type: cargoBounty
   id: BountyLemon

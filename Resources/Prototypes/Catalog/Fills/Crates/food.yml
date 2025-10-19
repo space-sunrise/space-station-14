@@ -25,7 +25,7 @@
 
 - type: entity
   id: CrateFoodCooking
-  parent: CrateFreezer
+  parent: CratePlastic
   name: kitchen supplies crate
   description: Extra kitchen supplies, in case the botanists are absent.
   components:
@@ -79,7 +79,7 @@
 
 - type: entity
   id: CrateFoodBarSupply
-  parent: CrateFreezer
+  parent: CratePlastic
   name: bartending supplies crate
   description: Extra Bar supplies, in case the clown was allowed in the bar unsupervised.
   components:
@@ -106,7 +106,7 @@
 
 - type: entity
   id: CrateFoodSoftdrinks
-  parent: CrateFreezer
+  parent: CratePlastic
   name: softdrinks crate
   description: A variety of sodas to complement a small party, without having to empty the soda machines. Includes 14 sodas.
   components:
@@ -129,7 +129,7 @@
 
 - type: entity
   id: CrateFoodGetMore
-  parent: CrateFreezer
+  parent: CratePlastic
   name: Getmore Bakemore crate
   description: Getmore branded snacks and baking supplies for the creative chef, all without the need of emptying your station's Getmore machines!
   components:

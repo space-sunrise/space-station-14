@@ -5,10 +5,9 @@
   setPreference: true
   playTimeTracker: AntagInitialInfected # Sunrise-Edit
   objective: roles-antag-initial-infected-objective
-  guides: [ Zombies ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 1h
+    time: 54000 # 15h # Sunrise-RoleTime
   guides: [ Zombies ]
   # Sunrise-Edit
   previewIcon:

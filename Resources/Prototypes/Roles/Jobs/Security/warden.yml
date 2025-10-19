@@ -6,10 +6,7 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 5h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10h
+      time: 54000 #15 hrs # Sunrise-RoleTime
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"
@@ -25,11 +22,11 @@
   - External
   - Detective
   - Cryogenics
-  - GenpopEnter
-  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: WardenGear
@@ -37,11 +34,10 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
   storage:
     back:
     - Flash
-    - MagazinePistol
+#    - MagazineGlock22 # Sunrise-Edit
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

@@ -438,7 +438,7 @@
   - type: Storage
     grid:
     - 0,0,5,3
-    whitelist: # TODO cardboard boxes shouldn't have whitelisting
+    whitelist:
       tags:
       - Candle
   - type: StorageFill

@@ -58,10 +58,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-    - type: DeviceNetwork
-      configurators: []
-      deviceLists: []
-      transmitFrequencyId: ArrivalsShuttleTimer
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier

@@ -252,29 +252,15 @@
       path: /Audio/Voice/Vox/shriek1.ogg
     Laugh:
       path: /Audio/Voice/Vox/vox_laugh.ogg
-    Cough:
-      path: /Audio/Voice/Vox/vox_cough.ogg
-    Sigh:
-      path: /Audio/Voice/Vox/vox_sigh.ogg
-    Click:
-      path: /Audio/Voice/Vox/vox_click.ogg
-    Chitter:
-      path: /Audio/Voice/Vox/vox_chitter.ogg
     Honk:
       collection: BikeHorn
-    Crying:
-      path: /Audio/Voice/Vox/vox_cry.ogg
     Weh:
       collection: Weh
     Hew:
       collection: Hew
-    Gasp:
-      path: /Audio/Effects/Gasp/vox_gasp.ogg
-    DefaultDeathgasp:
-      path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
   params:
     variation: 0.125
-    # TODO: We need vox sounds for the other emotes
+    # We need vox sounds for the other emotes
 
 - type: emoteSounds
   id: UnisexDiona
@@ -534,10 +520,6 @@
 #       collection: VulpkaninWhines
 #     Howl:
 #       collection: VulpkaninHowls
-#     Gasp:
-#       collection: MaleGasp
-#     DefaultDeathgasp:
-#       collection: MaleDeathGasp
 
 # - type: emoteSounds
 #   id: FemaleVulpkanin
@@ -566,10 +548,7 @@
 #       collection: VulpkaninWhines
 #     Howl:
 #       collection: VulpkaninHowls
-#     Gasp:
-#       collection: FemaleGasp
-#     DefaultDeathgasp:
-#       collection: FemaleDeathGasp
+
 
 # body emotes
 - type: emoteSounds

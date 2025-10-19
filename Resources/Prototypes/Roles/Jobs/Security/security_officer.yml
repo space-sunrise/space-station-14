@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 2.5h
+      time: 18000 #5 hrs # Sunrise-RoleTime
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
@@ -19,23 +19,24 @@
   - Service
   - External
   - Cryogenics
-  - GenpopEnter
-  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: SecurityOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
+    id: SecurityPDA
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHelmetBasic
     gloves: ClothingHandsGlovesColorBlack
   storage:
     back:
     - Flash
-    - MagazinePistol
+#    - MagazineGlock22 # Sunrise-Edit
 
 - type: chameleonOutfit
   id: SecurityOfficerChameleonOutfit

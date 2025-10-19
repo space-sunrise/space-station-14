@@ -1,4 +1,4 @@
-using Content.Shared.Power;
+using Content.Server.Power.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 
