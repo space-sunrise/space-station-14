@@ -65,86 +65,61 @@
   id: ClothingBeltPrisonDoctorMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison doctor belt
-  suffix: Metus
-  description: Stylish blue prison doctor belt.
+  description: Clean yet aged, the clasp holds by conscience and habit, much like its owner.
   components:
   - type: Sprite
     layers:
     - state: icon
     - state: overlay-icon
       color: "#99D2FF"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
 
 - type: entity
   id: ClothingBeltPrisonChefMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison chef belt
-  suffix: Metus
-  description: Stylish white prison chef belt.
+  description: A simple belt with a metal buckle, traces of oil and flour speak of long shifts without rest.
   components:
   - type: Sprite
     layers:
     - state: icon
     - state: overlay-icon
       color: "#ffffff"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
 
 - type: entity
   id: ClothingBeltPrisonEngineerMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison engineer belt
-  suffix: Metus
-  description: Stylish yellow prison engineer belt.
+  description: Reliable, carelessly fitted to the uniform, showing a habit of keeping everything within reach.
   components:
   - type: Sprite
     layers:
     - state: icon
     - state: overlay-icon
       color: "#ffd900"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
 
 - type: entity
   id: ClothingBeltPrisonScientistMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison scientist belt
-  suffix: Metus
-  description: Stylish purple prison scientist belt.
+  description: Stern, marked by instruments and foreign hands, as if it has outlasted more than one owner.
   components:
   - type: Sprite
     layers:
     - state: icon
     - state: overlay-icon
       color: "#9d1edd"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
 
 - type: entity
   id: ClothingBeltPrisonWorkerMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison worker belt
-  suffix: Metus
-  description: Stylish red prison worker belt.
+  description: Heavy and coarse, with traces of impacts and scorched leather, carrying everything gathered from work across the prison’s many parts.
   components:
   - type: Sprite
     layers:
     - state: icon
     - state: overlay-icon
       color: "#df0400"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
 
 - type: entity
   parent: ClothingBeltStorageBase
