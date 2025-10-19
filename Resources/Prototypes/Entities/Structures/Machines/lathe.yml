@@ -142,8 +142,8 @@
     - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    #- SecurityAmmoStatic
-    - SecurityStaticSunrise
+    - SecurityAmmoStatic
+    - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -440,6 +440,9 @@
     - SecurityDynamicSunrise # Sunrise-Add
     - SecurityDynamicSunriseClothing # Sunrise-Add
     - SecurityDynamicSunriseMech # Sunrise-Add
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SyndicateAmmoStatic
   - type: MaterialStorage
     whitelist:
       tags:
@@ -475,8 +478,11 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      #- SecurityAmmoStatic
+      - SecurityAmmoStatic
       - SecurityStaticSunrise # Sunrise-Add
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+      - SyndicateAmmoStatic
     - type: MaterialStorage
       whitelist:
         tags:
@@ -622,6 +628,10 @@
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
     - BioGenStaticSunrise # Sunrise-Add
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BioGenEmagStatic
+    - HostileCubesStatic
 
 - type: entity
   parent: BaseLathe

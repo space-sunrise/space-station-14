@@ -20,7 +20,7 @@
     outerClothing: ClothingOuterSuitSpaceNinjaBiocode # Sunrise-Edit
     shoes: ClothingShoesSpaceNinjaBiocode # Sunrise-Edit
     id: AgentIDCard
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetNinja
     pocket1: SpiderCharge
     pocket2: HandHeldMassScanner
     belt: EnergyKatanaBiocode # Sunrise-Edit
