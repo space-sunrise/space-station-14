@@ -42,6 +42,7 @@
     - id: PlushieMoth
     - id: PlushieArachind
     - id: PlushiePenguin
+    - id: PlushieVulp
     # Sunrise-start
     - !type:GroupSelector
       children:

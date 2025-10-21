@@ -5,10 +5,10 @@
   setPreference: true
   playTimeTracker: AntagHeadRevolutionary # Sunrise-Edit
   objective: roles-antag-rev-head-objective
+  guides: [ Revolutionaries ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
-  guides: [ Revolutionaries ]
+    time: 1h
   # Sunrise-Edit
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi

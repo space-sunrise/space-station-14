@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Components;
@@ -23,11 +22,10 @@ using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Weapons.Reflect;
-using Content.Shared.Damage.Components;
+using Content.Shared.Weapons.Hitscan.Components;
+using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
-using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -155,6 +153,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 continue;
             }
 
+            // TODO: Clean this up in a gun refactor at some point - too much copy pasting
             switch (shootable)
             {
                 //🌟Starlight🌟
@@ -243,7 +242,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     CreateAndFireProjectiles(ent.Value, newAmmo);
 
                     break;
-                case HitscanPrototype hitscan:
+                case HitscanAmmoComponent hitscan:
 
                     EntityUid? lastHit = null;
                     List<(EntityCoordinates fromCoordinates, float distance, Angle mapDirection, EntityUid? hitEntity)> effects = [];
@@ -297,14 +296,7 @@ public sealed partial class GunSystem : SharedGunSystem
                             if (!ev.Reflected)
                                 break;
 
-                            fromEffect = Transform(hit).Coordinates;
-                            from = TransformSystem.ToMapCoordinates(fromEffect);
-                            dir = ev.Direction;
-                            lastUser = hit;
-                        }
-                    }
-
-                    if (lastHit != null)
+                    var hitscanEv = new HitscanTraceEvent
                     {
                         var hitEntity = lastHit.Value;
                         if (hitscan.StaminaDamage > 0f)
@@ -686,7 +678,7 @@ public sealed partial class GunSystem : SharedGunSystem
         RaiseNetworkEvent(message, filter);
     }
 
-    public void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound)
+    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound)
     {
         DebugTools.Assert(!Deleted(otherEntity), "Impact sound entity was deleted");
 

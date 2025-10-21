@@ -1,4 +1,5 @@
 using Content.Server.Medical.Components;
+using Content.Server.PowerCell;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.AbstractAnalyzer;
 using Content.Server.Body.Components;
@@ -13,6 +14,7 @@ using Content.Shared.Interaction;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
