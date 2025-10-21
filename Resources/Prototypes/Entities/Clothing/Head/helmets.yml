@@ -44,9 +44,9 @@
     - WhitelistChameleon
     - SecurityHelmet
     - TopCovered # INTERACTIONS
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
+#  - type: HideLayerClothing # Sunrise Edit
+#    layers:
+#      Hair: HEAD
 
 #Mercenary Helmet
 - type: entity
@@ -87,9 +87,9 @@
         Caustic: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.75
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
+#  - type: HideLayerClothing # Sunrise Edit
+#    layers:
+#      Hair: HEAD
 
 #Syndicate SWAT Helmet
 - type: entity
@@ -134,9 +134,9 @@
     - SecurityHelmet
     - FullCovered # INTERACTIONS
   # SUNRISE EDIT
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
+#  - type: HideLayerClothing # Sunrise Edit
+#    layers:
+#      Hair: HEAD
 
 #Bombsuit Helmet
 - type: entity
@@ -470,9 +470,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
+#  - type: HideLayerClothing # Sunrise Edit
+#    layers:
+#      Hair: HEAD
 
 #Bone Helmet
 #No need to hide the hair on this one
