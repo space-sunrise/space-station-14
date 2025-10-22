@@ -505,3 +505,6 @@ uplink-coalpen-kit-desc = A medical kit containing 6 coal auto-injectors for tre
 
 uplink-acolyte-armor-name = Acolyte Armor
 uplink-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.
+
+uplink-50blessing-name = 50 blessings gift set
+uplink-50blessing-desc = For agents who want to hide their identity in style,with love by Egor Semenov.
