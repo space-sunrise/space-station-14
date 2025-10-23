@@ -18,7 +18,7 @@
   - type: Hunger
   - type: Speech
     speechVerb: Felinid
-    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
   - type: Thirst
     dehydrationDamage:
       types:
