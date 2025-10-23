@@ -225,7 +225,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
             state: belt
-  - type: NightVision
+  - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier
     modifier: 2
@@ -234,11 +234,8 @@
       Male: UnisexResomi
       Female: UnisexResomi
       Unsexed: UnisexResomi
-  - type: TypingIndicator
-    proto: resomi
   - type: Speech
     speechVerb: Resomi
-    speechSounds: UnisexResomi
     allowedEmotes: ['Chirp', 'Hisses', 'Growl', 'Scree', 'Call', 'Squawk']
   - type: Tag
     tags:
