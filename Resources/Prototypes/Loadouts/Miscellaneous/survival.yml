@@ -18,14 +18,11 @@
     - Moth
     - Reptilian
     - Vulpkanin
-    # Sunrise-Start
-    - Swine
-    - Felinid
-    - Predator
-    - Tajaran
-    - Demon
-    - Resomi
-    # Sunrise-End
+    - Swine # Sunrise-Edit
+    - Felinid # Sunrise-Edit
+    - Predator # Sunrise-Edit
+    - Tajaran # Sunrise-Edit
+    - Demon # Sunrise-Edit
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
@@ -84,14 +81,11 @@
     - Human
     - Reptilian
     - Vulpkanin
-    # Sunrise-Start
-    - Swine
-    - Felinid
-    - Predator
-    - Tajaran
-    - Demon
-    - Resomi
-    # Sunrise-End
+    - Swine # Sunrise-Edit - Fix missing emergency kit for swine mime
+    - Felinid # Sunrise-Edit
+    - Predator # Sunrise-Edit
+    - Tajaran # Sunrise-Edit
+    - Demon # Sunrise-Edit
 
 - type: loadoutEffectGroup
   id: OxygenBreatherMimeMoth

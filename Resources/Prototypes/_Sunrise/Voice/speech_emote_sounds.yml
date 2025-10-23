@@ -211,16 +211,12 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
-    Sigh:
-      collection: FemaleSigh
-    Crying:
-      path: /Audio/_Sunrise/Voice/Resomi/resomi_cry.ogg
     Cough:
       collection: FemaleCoughs
-    Yawn:
-      collection: FemaleYawn
-    Trill:
-      collection: ResomiTrills
+    Hisses:
+      collection: FelinidHisses
+    Growl:
+      collection: FelinidGrowls
     Scree:
       collection: ResomiScrees
     Call:
