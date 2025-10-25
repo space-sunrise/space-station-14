@@ -21,4 +21,4 @@ ent-PresentRandomCash = { ent-PresentBase }
 ent-PresentTrash = wrapping paper
     .desc = Carefully folded, taped, and tied with a bow. Then ceremoniously ripped apart and tossed on the floor.
 ent-PresentMasksHM = 50 blessings gift set
-    .desc = For agents who want to hide their identity in style,with love by Egor Semenov.
+    .desc = For agents who want to hide their identity in style, with love by Egor Semenov.
