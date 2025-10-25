@@ -550,7 +550,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatTony
-  name: tony
+  name: Tony
   description: 'Man, this party sucks, I fucking hate these people'
   components:
   - type: Sprite
@@ -577,7 +577,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBear
-  name: mark
+  name: Mark
   description: 'Say your prayers, son. You are already dead in this world.'
   components:
   - type: Sprite
@@ -604,7 +604,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBiker
-  name: biker
+  name: Biker
   description: 'I WAS BORN IN USA.'
   components:
   - type: Sprite
@@ -631,7 +631,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatZebra
-  name: corey
+  name: Corey
   description: 'Fuck You!'
   components:
   - type: Sprite
