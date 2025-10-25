@@ -40,9 +40,9 @@
         Slash: 2
   - type: Vocal
     sounds:
-      Male: MaleFelinid
-      Female: FemaleFelinid
-      Unsexed: MaleFelinid
+      Male: MaleTajaran
+      Female: FemaleTajaran
+      Unsexed: MaleTajaran
   - type: Temperature
     heatDamageThreshold: 400
     coldDamageThreshold: 200
