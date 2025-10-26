@@ -9,6 +9,7 @@ using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
+using Content.Server.Ani;
 using Content.Server.BugReports;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
@@ -70,6 +71,8 @@ namespace Content.Server.Entry
             var cfg = IoCManager.Resolve<IConfigurationManager>();
             var res = IoCManager.Resolve<IResourceManager>();
             var logManager = IoCManager.Resolve<ILogManager>();
+
+            PatchManager.Patch(logManager);
 
             LoadConfigPresets(cfg, res, logManager.GetSawmill("configpreset"));
 
