@@ -211,17 +211,22 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: DurandChassis
-    requiredParts:
-      DurandHead: false
-      DurandLArm: false
-      DurandRArm: false
-      DurandLLeg: false
-      DurandRLeg: false
+  - type: MechAssemblyVisuals
+    statePrefix: clarke
   - type: Sprite
     state: durand_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Clarke:
+      - ClarkeHead
+      - ClarkeLArm
+      - ClarkeRArm
+      - ClarkeTreads
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Clarke
+    node: start
 
 - type: entity
   parent: BaseDurandPartItem
@@ -356,17 +361,23 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: GygaxChassis
-    requiredParts:
-      GygaxHead: false
-      GygaxLArm: false
-      GygaxRArm: false
-      GygaxLLeg: false
-      GygaxRLeg: false
+  - type: MechAssemblyVisuals
+    statePrefix: gygax
   - type: Sprite
     state: gygax_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Gygax:
+      - GygaxHead
+      - GygaxLArm
+      - GygaxRArm
+      - GygaxLLeg
+      - GygaxRLeg
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Gygax
+    node: start
 
 - type: entity
   parent: BaseGygaxPartItem
@@ -628,17 +639,23 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: RipleyMKIIChassis
-    requiredParts:
-      RipleyMKIIUpgradeKit: false
-      RipleyLArm: false
-      RipleyRArm: false
-      RipleyLLeg: false
-      RipleyRLeg: false
+  - type: MechAssemblyVisuals
+    statePrefix: ripleymkii
   - type: Sprite
     state: ripleymkii_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      RipleyMKII:
+      - RipleyMKIIUpgradeKit
+      - RipleyLArm
+      - RipleyRArm
+      - RipleyLLeg
+      - RipleyRLeg
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: RipleyMKII
+    node: start
 
 - type: entity
   id: RipleyMKIIChassis
@@ -1005,17 +1022,23 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: PhazonChassis
-    requiredParts:
-      PhazonHead: false
-      PhazonLArm: false
-      PhazonRArm: false
-      PhazonLLeg: false
-      PhazonRLeg: false
+  - type: MechAssemblyVisuals
+    statePrefix: phazon
   - type: Sprite
     state: phazon_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Phazon:
+      - PhazonHead
+      - PhazonLArm
+      - PhazonRArm
+      - PhazonLLeg
+      - PhazonRLeg
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Phazon
+    node: start
 
 - type: entity
   parent: BasePhazonPartItem

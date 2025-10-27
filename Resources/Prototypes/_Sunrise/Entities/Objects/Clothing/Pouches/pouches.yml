@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseClothingBeltSounds, ClothingBeltStorageBase]
+  parent: ClothingBeltStorageBase
   id: Pouch
   categories: [ HideSpawnMenu ]
   components:
