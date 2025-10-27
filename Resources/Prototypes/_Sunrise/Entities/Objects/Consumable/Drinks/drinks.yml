@@ -79,7 +79,7 @@
     state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkKvassGlass
   suffix: kvass
   components:
@@ -94,7 +94,7 @@
       sprite: _Sunrise/Objects/Consumable/Drinks/kvass.rsi
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   name: chamomile tincture
   id: DrinkChamomileTincture
   components:

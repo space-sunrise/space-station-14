@@ -151,6 +151,7 @@
   name: internal affairs agent ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
     - state: idiaa
@@ -163,6 +164,7 @@
   name: magistrate ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
     - state: idmagistrat
