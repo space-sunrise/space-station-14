@@ -1,3 +1,4 @@
+# TODO: разобратся куда пропал родитель BaseClothingBeltSounds
 - type: entity
   parent: ClothingBeltStorageBase
   id: Pouch

@@ -142,7 +142,7 @@
     - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+  #  - SecurityAmmoStatic # Sunrise - comment
     - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
@@ -478,7 +478,7 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+    #  - SecurityAmmoStatic # Sunrise - comment
       - SecurityStaticSunrise # Sunrise-Add
     - type: EmagLatheRecipes
       emagStaticPacks:

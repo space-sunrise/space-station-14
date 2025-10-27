@@ -212,20 +212,21 @@
     containers:
       mech-assembly-container: !type:Container
   - type: MechAssemblyVisuals
-    statePrefix: clarke
+    statePrefix: durand
   - type: Sprite
     state: durand_harness+o
     noRot: true
   - type: PartAssembly
     parts:
-      Clarke:
-      - ClarkeHead
-      - ClarkeLArm
-      - ClarkeRArm
-      - ClarkeTreads
+      Durand:
+      - DurandHead
+      - DurandLArm
+      - DurandRArm
+      - DurandLLeg
+      - DurandRLeg
     containerId: mech-assembly-container
   - type: Construction
-    graph: Clarke
+    graph: Durand
     node: start
 
 - type: entity
