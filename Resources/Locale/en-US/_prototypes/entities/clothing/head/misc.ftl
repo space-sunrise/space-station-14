@@ -41,15 +41,4 @@ ent-ClothingHeadHatHairflower = hairflower
     .desc = A beautiful hairflower that can be inserted between locks of hair.
 ent-ClothingHeadPerformerWig = performer's wig
     .desc = On a closer inspection, it appears that it is made from optic fiber.
-ent-ClothingHeadHatTony = Tony
-    .desc = Man, this party sucks, I fucking hate these people.
-ent-ClothingHeadHatBear = Mark
-    .desc = Say your prayers, son. You're already dead in this world.
-ent-ClothingHeadHatBiker = Biker
-    .desc = I WAS BORN IN USA.
-ent-ClothingHeadHatZebra = Corey
-    .desc = Fuck you!
-ent-ClothingHeadHatSwanTwo = Esh
-    .desc = We're all going to die here.
-ent-ClothingHeadHatSwanOne = Alex
-    .desc = Ha-ha-ha...We had a nice walk.
+

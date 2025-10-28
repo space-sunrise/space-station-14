@@ -560,13 +560,11 @@
     sprite: _Sunrise/Clothing/Mask/tonytiger.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
     - FullCovered # INTERACTIONS
-  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -587,13 +585,11 @@
     sprite: _Sunrise/Clothing/Mask/markbear.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
     - FullCovered # INTERACTIONS
-  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -614,13 +610,11 @@
     sprite: _Sunrise/Clothing/Mask/biker.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
     - FullCovered # INTERACTIONS
-  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -641,13 +635,11 @@
     sprite: _Sunrise/Clothing/Mask/zebra.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
     - FullCovered # INTERACTIONS
-  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -668,13 +660,11 @@
     sprite: _Sunrise/Clothing/Mask/swantwo.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
     - FullCovered # INTERACTIONS
-  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair
@@ -695,13 +685,11 @@
     sprite: _Sunrise/Clothing/Mask/swanone.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
     - FullCovered # INTERACTIONS
-  # SUNRISE EDIT
   - type: HideLayerClothing
     slots:
     - Hair

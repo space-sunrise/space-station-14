@@ -37,7 +37,8 @@ uplink-hardsuit-syndie-commander-name = скафандр Командира Си
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
 uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
-
+uplink-50blessing-name = Подарочный набор 50 благословений
+uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
 ## Weapon
 
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
@@ -137,3 +138,4 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+#

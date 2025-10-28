@@ -2060,3 +2060,14 @@
   - !type:BuyerDepartmentCondition
     whitelist:
       - Science
+
+- type: listing
+  id: Uplink50blessingset
+  name: uplink-50blessing-name
+  description: uplink-50blessing-desc
+  productEntity: PresentMasksHM
+  discountCategory: rareDiscounts
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless

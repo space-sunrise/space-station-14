@@ -68,6 +68,8 @@ uplink-clothing-thieving-gloves-name = Воровские перчатки
 uplink-clothing-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые выглядят как обычные!
 uplink-clothing-chameleon-thieving-gloves-name = Воровские перчатки "Хамелеон"
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
+uplink-50blessing-name = Подарочный набор 50 благословений
+uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
 ## Weapon
 
 uplink-syndicate-rapier-name = Рапира Синдиката
@@ -191,3 +193,4 @@ uplink-syndicate-teleporter-desc = Экспериментальное устро
 
 uplink-syndicate-law-name = Плата законов (Синдикат)
 uplink-syndicate-law-desc = Электронная плата, содержащая набор законов Синдиката.
+

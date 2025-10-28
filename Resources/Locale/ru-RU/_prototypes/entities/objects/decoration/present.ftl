@@ -23,5 +23,4 @@ ent-PresentTrash = обёрточная бумага
 ent-PresentRandomAsh = { ent-PresentBase }
     .suffix = Заполненный, Пепел
     .desc = { ent-PresentBase.desc }
-ent-PresentMasksHM = подарочный набор 50 благословений
-    .desc = Для агентов что хотят скрыть свою личность стильно, с любовью от Егора Cемёнова.
+

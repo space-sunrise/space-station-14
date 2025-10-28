@@ -43,15 +43,4 @@ ent-ClothingHeadHatHairflower = цветок для волос
     .desc = Красивый цветок для волос, который можно вставить между локонами.
 ent-ClothingHeadPerformerWig = парик исполнителя
     .desc = При ближайшем рассмотрении видно, что он сделан из оптоволокна.
-ent-ClothingHeadHatTony = Тони
-    .desc = Чувак, эта вечеринка отстой, я блять ненавижу этих людей.
-ent-ClothingHeadHatBear = Марк
-    .desc = Простись со своими близкими! В этом мире ты уже мёртв.
-ent-ClothingHeadHatBiker = Байкер
-    .desc = Я БЫЛ РОЖДЁН В США.
-ent-ClothingHeadHatZebra = Кори
-    .desc = Пошёл ты!
-ent-ClothingHeadHatSwanTwo = Эш
-    .desc = Мы все тут подохнем.
-ent-ClothingHeadHatSwanOne = Алекс
-    .desc = Ха-ха-ха...Мы неплохо погуляли.
+
