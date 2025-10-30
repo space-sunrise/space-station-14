@@ -331,6 +331,8 @@
     - CorgiWearable
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
+  - type: AddAccentClothing
+    accent: BarkAccent
 
 - type: entity
   parent: ClothingOuterBase

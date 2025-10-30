@@ -5,10 +5,9 @@ using Content.Shared.Electrocution;
 
 namespace Content.Shared.Silicons.StationAi;
 
+// Handles airlock radial
 public abstract partial class SharedStationAiSystem
 {
-    // Handles airlock radial
-
     private void InitializeAirlock()
     {
         SubscribeLocalEvent<DoorBoltComponent, StationAiBoltEvent>(OnAirlockBolt);
@@ -21,10 +20,15 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnAirlockBolt(EntityUid ent, DoorBoltComponent component, StationAiBoltEvent args)
     {
-        if (component.BoltWireCut
-            || HasComp<RunicDoorComponent>(ent))
+        if (component.BoltWireCut || !PowerReceiver.IsPowered(ent) || HasComp<RunicDoorComponent>(ent)) // Sunrise-Edit
         {
             ShowDeviceNotRespondingPopup(args.User);
+            return;
+        }
+
+        if (!_access.IsAllowed(args.User, ent))
+        {
+            ShowDeviceNoAccessPopup(args.User);
             return;
         }
 
@@ -47,6 +51,12 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
+        if (!_access.IsAllowed(args.User, ent))
+        {
+            ShowDeviceNoAccessPopup(args.User);
+            return;
+        }
+
         _airlocks.SetEmergencyAccess((ent, component), args.EmergencyAccess, args.User, predicted: true);
     }
 
@@ -62,6 +72,12 @@ public abstract partial class SharedStationAiSystem
         )
         {
             ShowDeviceNotRespondingPopup(args.User);
+            return;
+        }
+
+        if (!_access.IsAllowed(args.User, ent))
+        {
+            ShowDeviceNoAccessPopup(args.User);
             return;
         }
 

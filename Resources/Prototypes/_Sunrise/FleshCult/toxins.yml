@@ -14,26 +14,26 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Flesh"
-            invert: true
-          scaleByQuantity: false
+            inverted: true
+          scaling: false
           ignoreResistances: true
           damage:
             types:
               Caustic: 15
         - !type:Emote
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Flesh"
-            invert: true
+            inverted: true
           emote: Scream
           probability: 0.9
         - !type:PopupMessage
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Flesh"
-            invert: true
+            inverted: true
           type: Local
           visualType: Large
           messages: [ "generic-reagent-effect-burning-insides" ]
@@ -53,29 +53,30 @@
       effects:
       - !type:CauseFleshCultInfection
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Flesh"
-          invert: true
-        - !type:ReagentThreshold
+          inverted: true
+        - !type:ReagentCondition
+          reagent: Carol
           min: 5
       - !type:ModifyBloodLevel
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Flesh"
         amount: 5
       - !type:SatiateThirst
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Flesh"
         factor: 2.5
       - !type:SatiateHunger
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Flesh"
         factor: 2.5
       - !type:HealthChange
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Flesh"
         damage:
           groups:

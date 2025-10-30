@@ -4,6 +4,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;

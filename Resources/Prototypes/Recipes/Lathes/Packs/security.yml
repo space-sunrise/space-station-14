@@ -31,8 +31,8 @@
 
 # Shared between secfab and emagged autolathe
 #- type: latheRecipePack
-#  id: SecurityAmmoStatic
-#  recipes:
+  #  id: SecurityAmmoStatic
+  #  recipes:
   #- BoxLethalshot
   #- BoxShotgunSlug
   #- MagazineBoxLightRifle
@@ -49,9 +49,6 @@
   #- MagazinePistolSubMachineGunTopMountedEmpty
   #- MagazineRifle
   #- MagazineRifleEmpty
-  #- MagazineShotgun
-  #- MagazineShotgunEmpty
-  #- MagazineShotgunSlug
   #- SpeedLoaderMagnum
   #- SpeedLoaderMagnumEmpty
 

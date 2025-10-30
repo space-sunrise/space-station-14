@@ -99,7 +99,6 @@
     filterReagentGroups:
      - Medicine
     onlyAffectsMobs: true
-    filterPoison: true
     doAfterTime: 0.75
     transferAmount: 5
   - type: UseDelay
