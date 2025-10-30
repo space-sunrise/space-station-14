@@ -36,7 +36,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
+    icon: { sprite: _Sunrise/Effects/bubblegum.rsi, state: smack_ya_one }
     itemIconStyle: NoItem
     priority: -1
     useDelay: 8
@@ -53,7 +53,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon: _Sunrise/Effects/bubblegum.rsi/smack ya one.png
+    icon: { sprite: _Sunrise/Effects/bubblegum.rsi, state: smack_ya_one }
     itemIconStyle: NoItem
     priority: -1
     useDelay: 10

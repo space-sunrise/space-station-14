@@ -19,9 +19,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
         time: 1
@@ -47,9 +47,9 @@
       - !type:SatiateThirst
         factor: 4
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
 
 - type: reagent
   id: ChangelingSting
@@ -89,9 +89,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
         time: 2
@@ -221,9 +221,9 @@
       - !type:SatiateThirst
         factor: 4
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
 
 - type: reagent
   id: SpaceMountainWind
@@ -284,9 +284,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.1

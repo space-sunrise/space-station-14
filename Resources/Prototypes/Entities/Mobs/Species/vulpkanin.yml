@@ -69,8 +69,10 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    # Sunrise-Start
+    #- map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    #- map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    # Sunrise-End
     - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
@@ -106,8 +108,10 @@
       visible: false
   - type: HumanoidAppearance
     species: Vulpkanin
-    undergarmentTop: UndergarmentTopTanktopVulpkanin
-    undergarmentBottom: UndergarmentBottomBoxersVulpkanin
+    # Sunrise-Start
+    #undergarmentTop: UndergarmentTopTanktopVulpkanin
+    #undergarmentBottom: UndergarmentBottomBoxersVulpkanin
+    # Sunrise-End
     hideLayersOnEquip:
     - Snout
     - SnoutCover

@@ -1,6 +1,5 @@
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.Entry;
-using Content.Server._Sunrise.GuideGenerator;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
@@ -9,6 +8,7 @@ using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
+using Content.Server.Ani;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
 using Content.Server.Database;
@@ -107,6 +107,8 @@ namespace Content.Server.Entry
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
 
+            PatchManager.Patch(_log);
+
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
             var aczProvider = new ContentMagicAczProvider(Dependencies);
@@ -137,13 +139,9 @@ namespace Content.Server.Entry
             _ghostKick.Initialize();
             _serverInfo.Initialize();
             _serverApi.Initialize();
-            _contributorsManager.Initialize(); // Sunrise-Edit
-            _serversHubManager.Initialize(); // Sunrise-Edit
-            _playerCacheManager.Initialize(); // Sunrise-Edit
-            _ttsManager.Initialize(); // Sunrise-Edit
-            IoCManager.Resolve<PlayerCacheManager>().Initialize(); // Sunrise-Edit
 
             // Sunrise-Sponsors-Start
+            _ttsManager.Initialize(); // Sunrise-Edit
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
             // Sunrise-Sponsors-End
@@ -172,17 +170,6 @@ namespace Content.Server.Entry
                 file = _res.UserData.OpenWriteText(resPath.WithName("react_" + dest));
                 ReactionJsonGenerator.PublishJson(file);
                 file.Flush();
-                // Wiki-Start
-                file = _res.UserData.OpenWriteText(resPath.WithName("entity_" + dest));
-                EntityJsonGenerator.PublishJson(file);
-                file.Flush();
-                file = _res.UserData.OpenWriteText(resPath.WithName("mealrecipes_" + dest));
-                MealsRecipesJsonGenerator.PublishJson(file);
-                file.Flush();
-                file = _res.UserData.OpenWriteText(resPath.WithName("healthchangereagents_" + dest));
-                HealthChangeReagentsJsonGenerator.PublishJson(file);
-                file.Flush();
-                // Wiki-End
                 IoCManager.Resolve<IBaseServer>().Shutdown("Data generation done");
                 Dependencies.Resolve<IBaseServer>().Shutdown("Data generation done");
                 return;
@@ -201,6 +188,9 @@ namespace Content.Server.Entry
             _connection.PostInit();
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
+            _contributorsManager.Initialize(); // Sunrise-Edit
+            _serversHubManager.Initialize(); // Sunrise-Edit
+            _playerCacheManager.Initialize(); // Sunrise-Edit
 
             // Sunrise-Sponsors-Start
             SunriseServerEntry.PostInit();

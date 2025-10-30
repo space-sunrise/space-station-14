@@ -3,7 +3,7 @@
   minTemp: 120
   maxTemp: 300
   effects:
-  - !type:CreateEntityReactionEffect
+  - !type:SpawnEntity
     entity: EffectHearts
   priority: 100
   reactants:
