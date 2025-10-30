@@ -41,6 +41,7 @@ using Content.Shared.Stacks;
 using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.Temperature.Components;
 using Robust.Shared.Utility;
 using Content.Shared._Sunrise.Kitchen.Components; //Sunrise-Edit
 

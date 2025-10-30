@@ -18,5 +18,6 @@
     <PackageVersion Include="OpenTK" Version="4.9.4" />
     <PackageVersion Include="Veldrid" Version="4.8.0" />
     <PackageVersion Include="Veldrid.SPIRV" Version="1.0.15" />
+    <PackageVersion Include="Lib.Harmony" Version="2.4.1" />
   </ItemGroup>
 </Project>

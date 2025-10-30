@@ -4,6 +4,7 @@ using Content.Shared.Damage;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Popups;
+using Content.Shared.Power.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 

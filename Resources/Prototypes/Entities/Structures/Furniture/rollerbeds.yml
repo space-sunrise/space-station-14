@@ -34,7 +34,7 @@
           shape:
             !type:PhysShapeCircle
             radius: 0.35
-          density: 80
+          density: 20
           mask:
           - MobMask
     - type: Damageable
@@ -111,7 +111,6 @@
     - state: cheap_rollerbed_buckled
       map: ["buckledLayer"]
       visible: false
-  - type: Appearance
 
 - type: entity
   parent: CheapRollerBed
@@ -141,7 +140,6 @@
     - state: emergency_rollerbed_buckled
       map: ["buckledLayer"]
       visible: false
-  - type: Appearance
 
 - type: entity
   parent: EmergencyRollerBed

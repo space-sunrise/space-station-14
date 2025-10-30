@@ -1,4 +1,18 @@
 - type: entity
+  id: BaseClothingBeltSounds
+  abstract: true
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltSyndieWebbing
   name: syndie webbing
@@ -110,7 +124,7 @@
   - type: Item
     size: Normal
     shape:
-    - 0,0,0,6 
+    - 0,0,0,6
   - type: ItemSlots
     slots:
       item:
