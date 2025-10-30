@@ -168,7 +168,8 @@
       - !type:Electrocute
         probability: 0.35
         conditions: # Sunrise-Edit
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Licoxide
           min: 1
 
 - type: reagent

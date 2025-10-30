@@ -55,6 +55,7 @@ public static class ServerPackaging
         "Npgsql",
         "Microsoft",
         "NetCord",
+        "0Harmony",
     };
 
     private static readonly List<string> ServerNotExtraAssemblies = new()

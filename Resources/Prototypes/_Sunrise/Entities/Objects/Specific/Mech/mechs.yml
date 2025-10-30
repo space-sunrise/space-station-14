@@ -11,7 +11,6 @@
     entryDelay: 1
   - type: MechAir
   - type: GravityAffected
-    weightless: true
   - type: AirFilter
     # everything except oxygen and nitrogen
     gases:

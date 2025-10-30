@@ -454,7 +454,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     {
         var protoMan = IoCManager.Resolve<IPrototypeManager>();
         var speciesPrototype = protoMan.Index<SpeciesPrototype>(species);
-
         var skinColoration = protoMan.Index(speciesPrototype.SkinColoration).Strategy;
         var skinColor = skinColoration.InputType switch
         {
@@ -513,32 +512,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 break;
         }
 
-        // grab the species skin coloration type.
-        var skinType = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species).SkinColoration;
-
-        // declare some defaults. ensures that the hair and eyes on hues-colored species don't match the skin or one another.
-        var newSkinColor = colorPalette[0];
         var newHairColor = colorPalette[1];
         var newEyeColor = colorPalette[2];
-
-        // now we do some color logic.
-        switch (skinType)
-        {
-            // if the species is HumanToned:
-            case HumanoidSkinColor.HumanToned:
-                // quantize the randomized skin color to the nearest acceptable HumanToned color.
-                var tone = Math.Round(Humanoid.SkinColor.HumanSkinToneFromColor(newSkinColor));
-                newSkinColor = Humanoid.SkinColor.HumanSkinTone((int)tone);
-
-                // pick a random realistic hair color from the list and randomize it juuuuust a little bit.
-                newHairColor = random.Pick(HairStyles.RealisticHairColors);
-                newHairColor = newHairColor
-                    .WithRed(RandomizeColor(newHairColor.R))
-                    .WithGreen(RandomizeColor(newHairColor.G))
-                    .WithBlue(RandomizeColor(newHairColor.B));
-
-                // and pick a random realistic eye color from the list.
-                newEyeColor = random.Pick(_realisticEyeColors);
 
         var protoMan = IoCManager.Resolve<IPrototypeManager>();
         var skinType = protoMan.Index<SpeciesPrototype>(species).SkinColoration;
@@ -550,6 +525,15 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
             _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
         };
+
+        newHairColor = random.Pick(HairStyles.RealisticHairColors);
+        newHairColor = newHairColor
+            .WithRed(RandomizeColor(newHairColor.R))
+            .WithGreen(RandomizeColor(newHairColor.G))
+            .WithBlue(RandomizeColor(newHairColor.B));
+
+        // and pick a random realistic eye color from the list.
+        newEyeColor = random.Pick(_realisticEyeColors);
 
         //Sunrise start
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);

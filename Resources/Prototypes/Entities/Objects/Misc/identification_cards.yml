@@ -528,6 +528,10 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Brigmedic
+  # Sunrise-Start
+  - type: PresetIdCard
+    job: Brigmedic
+  # Sunrise-End
 
 - type: entity
   parent: SecurityIDCard
@@ -728,17 +732,6 @@
   - type: PresetIdCard
     job: Botanist
 
-# Move to _Sunrise
-#- type: entity
-#  parent: IDCardStandard
-#  id: BrigmedicIDCard
-#  name: brigmedic ID card
-#  components:
-#  - type: Sprite
-#    layers:
-#    - state: default
-#    - state: idbrigmedic
-
 - type: entity
   parent: IDCardStandard
   id: LibrarianIDCard
@@ -879,7 +872,7 @@
   description: A generically printed ID card for scummy prisoners.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: Objects/Misc/id_cards.rsi
     layers:
     - state: orange
     - sprite: *icon-rsi
@@ -918,9 +911,9 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
-      layers:
-        - state: default
-        - state: stripe_top
+    layers:
+    - state: default
+    - state: stripe_top
       color: "#5dc574"
     - state: stripe_bottom
       color: "#3f9b53"

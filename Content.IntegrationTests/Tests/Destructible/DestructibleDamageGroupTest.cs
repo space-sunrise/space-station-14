@@ -1,5 +1,4 @@
 using Content.Shared.Damage;
-using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible.Thresholds.Triggers;
