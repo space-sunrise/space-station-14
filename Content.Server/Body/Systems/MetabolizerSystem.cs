@@ -66,31 +66,31 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         {
             _solutionContainerSystem.EnsureSolution(body, entity.Comp.SolutionName, out _);
         }
+    }
 
-        public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
-        {
-            if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
-                return false;
+    public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    {
+        if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
+            return false;
 
-            if (component.MetabolizerTypes == null)
-                component.MetabolizerTypes = new();
+        if (component.MetabolizerTypes == null)
+            component.MetabolizerTypes = new();
 
-            return component.MetabolizerTypes.Add(metabolizerType);
-        }
+        return component.MetabolizerTypes.Add(metabolizerType);
+    }
 
-        public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
-        {
-            if (component.MetabolizerTypes == null)
-                return true;
+    public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    {
+        if (component.MetabolizerTypes == null)
+            return true;
 
-            return component.MetabolizerTypes.Remove(metabolizerType);
-        }
+        return component.MetabolizerTypes.Remove(metabolizerType);
+    }
 
-        public void ClearMetabolizerTypes(MetabolizerComponent component)
-        {
-            if (component.MetabolizerTypes != null)
-                component.MetabolizerTypes.Clear();
-        }
+    public void ClearMetabolizerTypes(MetabolizerComponent component)
+    {
+        if (component.MetabolizerTypes != null)
+            component.MetabolizerTypes.Clear();
     }
 
     private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref ApplyMetabolicMultiplierEvent args)

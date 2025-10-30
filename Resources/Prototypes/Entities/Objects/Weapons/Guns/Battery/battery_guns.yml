@@ -927,7 +927,6 @@
     autoRechargeRate: 48
     autoRechargePause: true
     autoRechargePauseTime: 10
-    autoRechargePauseTime: 30
   # Sunrise-start
   - type: KnockbackByUserTag
     doestContain:

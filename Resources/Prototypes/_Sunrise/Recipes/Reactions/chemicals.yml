@@ -8,5 +8,5 @@
     Water:
       amount: 0.5
   effects:
-  - !type:FlashReactionEffect
+  - !type:Flash
 

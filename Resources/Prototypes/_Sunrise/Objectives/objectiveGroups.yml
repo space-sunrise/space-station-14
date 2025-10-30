@@ -10,7 +10,6 @@
   weights:
     CMOHyposprayVampireStealObjective: 1
     RDHardsuitVampireStealObjective: 1
-    EnergyShotgunVampireStealObjective: 1
     MagbootsVampireStealObjective: 1
     ClipboardVampireStealObjective: 1
     CaptainIDVampireStealObjective: 1

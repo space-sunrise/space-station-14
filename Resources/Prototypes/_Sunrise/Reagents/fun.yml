@@ -16,7 +16,6 @@
       - !type:GenericStatusEffect
         key: LoveEffect
         component: LoveVision
-        refresh: false
         time: 10.0  # Полная баночка = 5 минут
         type: Add
       - !type:Jitter
@@ -39,7 +38,7 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:Temperature
+          - !type:TemperatureCondition
             max: 213.0
           damage:
             types:

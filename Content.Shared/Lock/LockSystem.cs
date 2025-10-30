@@ -357,7 +357,7 @@ public sealed class LockSystem : EntitySystem
             return true;
 
         if (!quiet)
-            _sharedPopupSystem.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), uid, user);
+            _sharedPopupSystem.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), user, user);
         return false;
     }
 
@@ -368,8 +368,8 @@ public sealed class LockSystem : EntitySystem
 
         if (!quiet)
         {
-            var denyReason = accessEv.DenyReason ?? _defaultDenyReason;
-            _sharedPopupSystem.PopupClient(denyReason, ent, user);
+            var denyReason = _defaultDenyReason;
+            _sharedPopupSystem.PopupClient(denyReason, uid, user);
         }
 
         return false;

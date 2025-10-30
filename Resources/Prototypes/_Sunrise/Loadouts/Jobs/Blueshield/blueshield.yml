@@ -39,11 +39,6 @@
     neck: ClothingBSMantle
 
 - type: loadout
-  id: AssaultBeltBS
-  equipment:
-    belt: ClothingBeltAssaultFilled
-
-- type: loadout
   id: BlueShieldWebbing
   equipment:
     belt: ClothingBeltBlueShieldWebbingFilled

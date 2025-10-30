@@ -369,7 +369,8 @@
       #Sunrise-Start
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Epinephrine
           min: 5
         damage:
           types:
@@ -755,9 +756,9 @@
         - !type:SatiateThirst
           factor: 6
           conditions:
-          - !type:OrganType
-            type: Dwarf
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
+            inverted: true
         - !type:ModifyBloodLevel
           amount: 6
 
@@ -1240,7 +1241,8 @@
       # Sunrise-Start
       - !type:DeconvertCultist
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Holywater
           min: 10 # Пусть культистов крови не будут выбивать сразу из раунда, а попробуют перевести в нормальных людей
       # Sunrise-End
     Medicine:
@@ -1248,15 +1250,15 @@
       #If vampire
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Vampire
+        - !type:MetabolizerTypeCondition
+          type: [ Vampire ]
         damage:
           types:
             Heat: 2
       - !type:Emote
         conditions:
-        - !type:OrganType
-          type: Vampire
+        - !type:MetabolizerTypeCondition
+          type: [ Vampire ]
         emote: Scream
         probability: 0.3
       #If not vampire
@@ -1264,9 +1266,9 @@
         conditions:
         - !type:TotalDamageCondition
           max: 50
-        - !type:OrganType
-          type: Vampire
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Vampire ]
+          inverted: true
         damage:
           types:
             # Sunrise-Start
@@ -1626,7 +1628,7 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 180.0
         damage:
           groups:
@@ -1638,7 +1640,7 @@
       - !type:ReduceRotting
         seconds: 1
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 180.0
         - !type:MobStateCondition
           mobstate: Dead
@@ -1658,7 +1660,7 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 213.0
         damage:
           types:
@@ -1679,7 +1681,7 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 200.0
         damage:
           types:
@@ -1700,7 +1702,7 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 200.0
         damage:
           groups:

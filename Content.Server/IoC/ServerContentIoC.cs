@@ -90,6 +90,7 @@ internal static class ServerContentIoC
         deps.Register<ServersHubManager>();
         deps.Register<ContributorsManager>();
         deps.Register<PlayerCacheManager>();
+        deps.Register<TTSManager>();
         SunriseServerContentIoC.Register();
         // Sunrise-End
     }

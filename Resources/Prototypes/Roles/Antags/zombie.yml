@@ -9,7 +9,6 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h
-  guides: [ Zombies ]
   # Sunrise-Edit
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
