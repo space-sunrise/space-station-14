@@ -6,6 +6,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Popups;
 using Content.Shared.Actions;
+using Content.Shared.EntityEffects.Effects.Solution;
 using Robust.Shared.Localization;
 
 namespace Content.Shared._Sunrise.Medical.PsychologistSystem;
@@ -98,7 +99,7 @@ public sealed partial class PsychologistSystem : EntitySystem
                     {
                         foreach (var effect in metabolism.Value.Effects)
                         {
-                            if (effect is AdjustReagent adjust && adjust.Reagent != null && adjust.Reagent == ent.Comp.ReagentForBlock)
+                            if (effect is AdjustReagent adjust && adjust.Reagent == ent.Comp.ReagentForBlock)
                             {
                                 args.Cancelled = true;
                                 return;

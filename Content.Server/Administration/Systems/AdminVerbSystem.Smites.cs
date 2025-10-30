@@ -9,7 +9,6 @@ using Content.Server.Body.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
-using Content.Server.Medical;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Physics.Components;
 using Content.Server.Pointing.Components;
@@ -40,6 +39,7 @@ using Content.Shared.Gravity;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Medical;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -160,7 +160,6 @@ public sealed partial class AdminVerbSystem
             {
                 _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
                 EnsureComp<TabletopDraggableComponent>(args.Target);
-                RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
                 var xform = Transform(args.Target);
                 _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"),
                     args.Target,
@@ -1142,43 +1141,6 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<TimedDespawnComponent>(rod, out var despawn))
             despawn.Lifetime = offset.Length() / speed * 3; // exists thrice as long as it takes to get to you.
-
-        Verb terminate = new()
-        {
-            Text = "admin-smite-terminate-name",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("Mobs/Species/Terminator/parts.rsi"), "skull_icon"),
-            Act = () =>
-            {
-                if (!TryComp<MindContainerComponent>(args.Target, out var mindContainer) || mindContainer.Mind == null)
-                    return;
-
-                var coords = Transform(args.Target).Coordinates;
-                var mindId = mindContainer.Mind.Value;
-                _terminator.CreateSpawner(coords, mindId);
-
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-terminate-prompt"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-terminate-description")
-        };
-        args.Verbs.Add(terminate);
-
-        Verb randomDeath = new()
-        {
-            Text = "admin-smite-random-death-name",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-            Act = () =>
-            {
-                RandomDeath(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-random-death-description")
-        };
-        args.Verbs.Add(randomDeath);
-
     }
 
     public void RandomDeath(EntityUid target)

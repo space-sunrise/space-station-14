@@ -22,7 +22,7 @@
     CaptainGunStealObjective: 0.5
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
-    EnergyShotgunStealObjective: 0.5
+    EnergyMagnumStealObjective: 0.5
     # Sunrise-Start
     PlutoniumCoreStealObjective: 0.5
     #MultiphaseEnergygunStealObjective: 1 # Sunrise-Edit: ОСЩ больше не появляется на станции
