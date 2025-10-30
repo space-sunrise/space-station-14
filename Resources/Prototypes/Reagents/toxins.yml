@@ -528,9 +528,8 @@
         amount: 0.25
       - !type:AdjustReagent
         conditions:
-        - !type:OrganType
-          type: Vampire
-          shouldHave: true
+        - !type:MetabolizerTypeCondition
+          type: [ Vampire ]
         reagent: Protein
         amount: 0.5
 
@@ -578,9 +577,9 @@
         component: Pacified
         time: 2
         conditions:
-          - !type:ReagentThreshold
-            reagent: Pax
-            min: 1
+        - !type:ReagentCondition
+          reagent: Pax
+          min: 1
 
 - type: reagent
   id: Honk
@@ -686,7 +685,8 @@
       - !type:Electrocute
         probability: 0.8
         conditions: # Sunrise-Edit
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Tazinide
           min: 1
 
 - type: reagent

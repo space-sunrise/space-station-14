@@ -3,25 +3,35 @@
   name: species-name-vulpkanin
   roundStart: true
   prototype: MobVulpkanin
-  sprites: MobVulpkaninSprites
+  #sprites: MobVulpkaninSprites
   defaultSkinTone: "#5a3f2d"
   markingLimits: MobVulpkaninMarkingLimits
   dollPrototype: MobVulpkaninDummy
   skinColoration: VulpkaninColors
   maleFirstNames: names_vulpkanin_male
   femaleFirstNames: names_vulpkanin_female
-  lastNames: names_vulpkanin_last
+  maleLastNames: names_vulpkanin_last
+  femaleLastNames: names_vulpkanin_last
+  # Sunrise-Start
+  bodyTypes:
+  - HumanNormal
+  # Sunrise-End
 
-- type: speciesBaseSprites
-  id: MobVulpkaninSprites
+#- type: speciesBaseSprites
+#  id: MobVulpkaninSprites
+- type: bodyType
+  id: VulpkaninNormal
+  name: body-normal
   sprites:
     Head: MobVulpkaninHead
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     SnoutCover: MobHumanoidAnyMarking
-    UndergarmentTop: MobHumanoidAnyMarking
-    UndergarmentBottom: MobHumanoidAnyMarking
+    # Sunrise-Start
+    #UndergarmentTop: MobHumanoidAnyMarking
+    #UndergarmentBottom: MobHumanoidAnyMarking
+    # Sunrise-End
     Chest: MobVulpkaninTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -64,12 +74,14 @@
       points: 1
       required: true
       defaultMarkings: [ VulpEar ]
-    UndergarmentTop:
-      points: 1
-      required: false
-    UndergarmentBottom:
-      points: 1
-      required: false
+    # Sunrise-Start
+    #UndergarmentTop:
+    #  points: 1
+    #  required: false
+    #UndergarmentBottom:
+    #  points: 1
+    #  required: false
+    # Sunrise-End
     Arms:
       points: 6
       required: false

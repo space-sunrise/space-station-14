@@ -10,9 +10,9 @@
       - !type:SatiateThirst
         factor: 3
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
   reactiveEffects:
     Extinguish:
       methods: [ Touch ]
@@ -35,9 +35,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 0.1

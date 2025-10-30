@@ -264,8 +264,6 @@
     solution: shell
   - type: Spillable
     solution: shell
-  - type: Drink
-    solution: shell
   - type: Construction
     graph: ImprovisedShotgunShellEmptyGraph
     node: shell

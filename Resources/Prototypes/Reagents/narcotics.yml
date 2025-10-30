@@ -57,18 +57,20 @@
         - !type:ReagentCondition
           reagent: Desoxyephedrine
           min: 20
-      - !type:ModifyBleedAmount # Sunrise-Start # Кровотечение(кровь из носа) из-за того что мет повышает давление
+      - !type:ModifyBleed # Sunrise-Start # Кровотечение(кровь из носа) из-за того что мет повышает давление
         amount: 0.4
         conditions:
-        - !type:ReagentThreshold
-            min: 10
+        - !type:ReagentCondition
+          reagent: Desoxyephedrine
+          min: 10
       - !type:PopupMessage # От мета боль в груди и учащенное сердцебиение
         visualType: Medium
         messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
         type: Local
         probability: 0.5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+            reagent: Desoxyephedrine
             min: 10
       - !type:Drunk # Пусть кружит голову от подобного вещества
         boozePower: 5 # Sunrise-End
@@ -216,9 +218,9 @@
         - !type:SatiateThirst
           factor: 1
           conditions:
-          - !type:OrganType
-            type: Dwarf
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
+            inverted: true
         - !type:HealthChange
           conditions:
           - !type:TotalDamageCondition
@@ -446,7 +448,7 @@
         - norepinephricacid-effect-darkness
         - norepinephricacid-effect-blindness
       - !type:HealthChange
-        scaleByQuantity: false
+        scaling: false
         ignoreResistances: false
         damage:
           types:

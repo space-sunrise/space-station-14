@@ -1,7 +1,4 @@
 using System.Collections.Frozen;
-using Content.Server.Popups;
-using Content.Shared._Sunrise.Animations;
-using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Robust.Shared.Audio;
@@ -107,7 +104,7 @@ public abstract partial class SharedChatSystem
         if (didEmote && emote.PopupMessages.Count != 0)
         {
             var action = Loc.GetString(_random.Pick(emote.PopupMessages), ("entity", source));
-            _popupSystem.PopupEntity(action, source);
+            _popup.PopupEntity(action, source);
         }
         // Sunrise-End
 

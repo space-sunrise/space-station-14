@@ -165,6 +165,21 @@
         },
         {
             "name": "abductor"
+        },
+        {
+            "name": "idmagistrat"
+        },
+        {
+            "name": "idiaa"
+        },
+        {
+            "name": "stripe_bottom"
+        },
+        {
+            "name": "stripe_top"
+        },
+        {
+            "name": "centcom"
         }
     ]
 }

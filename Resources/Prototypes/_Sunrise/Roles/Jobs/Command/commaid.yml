@@ -38,5 +38,5 @@
   id: JobIconComMaid
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: commaid
+    state: CommandMaid
 
