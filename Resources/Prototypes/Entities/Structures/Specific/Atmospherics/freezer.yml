@@ -12,11 +12,11 @@
   id: AirSensorFreezer
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentPump]
+  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPump] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentPumpFreezer
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentScrubber]
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubber] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentScrubberFreezer
 
 # air alarm proto with auto: false to prevent the automatic switching of modes overriding the default values

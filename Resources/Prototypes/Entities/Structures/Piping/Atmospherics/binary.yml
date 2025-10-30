@@ -461,6 +461,14 @@
         - state: gasCanisterPort
           map: [ "enum.SubfloorLayers.FirstLayer" ]
     - type: AtmosPipeLayers
+    # Carpmosia-start - Atmos Alt Prototypes
+      alternativePrototypes:
+        Primary: GasPort
+        Secondary: GasPortAlt1
+        Tertiary: GasPortAlt2
+        Quaternary: GasPortAlt3
+        Quinary: GasPortAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
       spriteRsiPaths: {}
     - type: Appearance
     - type: PipeColorVisuals
@@ -511,6 +519,14 @@
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
     - type: AtmosPipeLayers
+    # Carpmosia-start - Atmos Alt Prototypes
+      alternativePrototypes:
+        Primary: GasDualPortVentPump
+        Secondary: GasDualPortVentPumpAlt1
+        Tertiary: GasDualPortVentPumpAlt2
+        Quaternary: GasDualPortVentPumpAlt3
+        Quinary: GasDualPortVentPumpAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
       spriteRsiPaths: {}
     - type: GenericVisualizer
       visuals:

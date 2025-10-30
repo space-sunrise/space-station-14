@@ -25,12 +25,13 @@
   id: AirSensorVox
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentPump]
+  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPump] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentPumpVox
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentScrubber]
+  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubber] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentScrubberVox
+<<<<<<< HEAD
   components:
   - type: GasVentScrubber
     wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
@@ -47,6 +48,22 @@
     - Electrovae
     - ChargedElectrovae
     #SunRise-End
+=======
+# Carpmosia-start - Atmos Alt Prototypes
+#  components:
+#  - type: GasVentScrubber
+#    wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
+#    filterGases:
+#    - Oxygen # filter out oxygen as well as regular harmful gases
+#    - CarbonDioxide
+#    - Plasma
+#    - Tritium
+#    - WaterVapor
+#    - Ammonia
+#    - NitrousOxide
+#    - Frezon
+# Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

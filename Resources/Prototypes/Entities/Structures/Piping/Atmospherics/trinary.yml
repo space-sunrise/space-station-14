@@ -46,6 +46,20 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasFilter
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+<<<<<<< HEAD
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasFilter
+        Secondary: GasFilterAlt1
+        Tertiary: GasFilterAlt2
+    # end region
+    # Carpmosia-start - Atmos Alt Prototypes
+        Quaternary: GasFilterAlt3
+        Quinary: GasFilterAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -113,6 +127,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> e9439bd201 (Unfix)
@@ -127,15 +142,24 @@
 >>>>>>> e9439bd201 (Unfix)
 =======
   # region starlight
+=======
+  # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
   - type: AtmosPipeLayers
     alternativePrototypes:
       Primary: GasFilterFlipped
       Secondary: GasFilterFlippedAlt1
       Tertiary: GasFilterFlippedAlt2
+<<<<<<< HEAD
   # end region
 >>>>>>> 5774eaee7c (Flipped Mixer and Filter fix)
 =======
 >>>>>>> e9439bd201 (Unfix)
+=======
+      Quaternary: GasFilterFlippedAlt3
+      Quinary: GasFilterFlippedAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
   - type: Flippable
     mirrorEntity: GasFilter
   - type: Appearance
@@ -195,6 +219,20 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasMixer
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+<<<<<<< HEAD
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasMixer
+        Secondary: GasMixerAlt1
+        Tertiary: GasMixerAlt2
+    # end region
+    # Carpmosia-start - Atmos Alt Prototypes
+        Quaternary: GasMixerAlt3
+        Quinary: GasMixerAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -259,6 +297,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> e9439bd201 (Unfix)
@@ -273,15 +312,24 @@
 >>>>>>> e9439bd201 (Unfix)
 =======
   # region starlight
+=======
+  # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
   - type: AtmosPipeLayers
     alternativePrototypes:
       Primary: GasMixerFlipped
       Secondary: GasMixerFlippedAlt1
       Tertiary: GasMixerFlippedAlt2
+<<<<<<< HEAD
   # end region
 >>>>>>> 5774eaee7c (Flipped Mixer and Filter fix)
 =======
 >>>>>>> e9439bd201 (Unfix)
+=======
+      Quaternary: GasMixerFlippedAlt3
+      Quinary: GasMixerFlippedAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -360,6 +408,20 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: off
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+<<<<<<< HEAD
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: PressureControlledValve
+        Secondary: PressureControlledValveAlt1
+        Tertiary: PressureControlledValveAlt2
+    # end region
+    # Carpmosia-start - Atmos Alt Prototypes
+        Quaternary: PressureControlledValveAlt3
+        Quinary: PressureControlledValveAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
+>>>>>>> 85de8d5b4f (Added missing prototypes for some pipe layered devices (#70))
     - type: Appearance
     - type: GenericVisualizer
       visuals:
