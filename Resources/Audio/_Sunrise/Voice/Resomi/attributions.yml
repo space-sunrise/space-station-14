@@ -4,7 +4,9 @@
   source: "https://xeno-canto.org"
 
 - files: [resomi_scream.ogg]
-  copyright: "idk"
+  license: "CC-BY-SA-3.0"
+  copyright: ""
+  source: ""
 
 - files: [resomi_chirp1.ogg, resomi_chirp2.ogg, resomi_chirp3.ogg, resomi_chirp4.ogg, resomi_chirp5.ogg]
   copyright: "Bird Chirps by whiskeyecho, Taken from https://freesound.org/"
