@@ -244,7 +244,7 @@
   - type: Speech
     speechVerb: Resomi
     speechSounds: UnisexResomi
-    allowedEmotes: ['Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'ResomiChirp']
+    allowedEmotes: ['Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'ResomiChirping']
   - type: Tag
     tags:
     - CanPilot
