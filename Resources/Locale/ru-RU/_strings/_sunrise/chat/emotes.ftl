@@ -15,3 +15,5 @@ chat-emote-msg-scree = верещит
 chat-emote-name-call = зовёт
 chat-emote-name-squawk = скрипит
 chat-emote-name-scree = верещит
+chat-emote-msg-trill = трещит!
+chat-emote-msg-resomi-chirp = чирикает!

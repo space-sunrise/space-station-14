@@ -163,3 +163,7 @@
       collection: ResomiSquawk
     SevereCough:
       collection: FemaleSevereCough
+    Growl:
+      collection: FelinidGrowls
+    Hisses:
+      collection: FelinidHisses

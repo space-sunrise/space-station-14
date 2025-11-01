@@ -298,7 +298,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-chirp"]
+  chatMessages: ["chat-emote-msg-resomi-chirp"]
   chatTriggers:
     - chirp
     - chirp.
