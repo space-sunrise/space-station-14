@@ -91,7 +91,7 @@
     interactFailureString: petting-failure-monkey
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-      collection: Chirp
+      collection: ResomiChirp
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
   - type: Hands
