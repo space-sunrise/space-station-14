@@ -91,7 +91,7 @@
     interactFailureString: petting-failure-monkey
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-      collection: ResomiChirp
+      collection: Chirp
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
   - type: Hands
@@ -244,7 +244,7 @@
   - type: Speech
     speechVerb: Resomi
     speechSounds: UnisexResomi
-    allowedEmotes: ['Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'ResomiChirp']
+    allowedEmotes: ['Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'Chirp']
   - type: Tag
     tags:
     - CanPilot
