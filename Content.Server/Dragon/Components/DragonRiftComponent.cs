@@ -37,4 +37,15 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
 
     [ViewVariables(VVAccess.ReadWrite), DataField("spawn", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SpawnPrototype = "MobCarpDragon";
+
+    // Sunrise-Start
+    [DataField]
+    public int MaxAliveCarps = 16;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public int AliveCarps = 0;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool IsSpawnAccumulating = true;
+    // Sunrise-End
 }

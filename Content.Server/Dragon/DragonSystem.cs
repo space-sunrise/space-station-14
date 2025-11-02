@@ -1,7 +1,6 @@
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
-using Content.Server.Station.Systems; // Sunrise-Edit
 using Content.Shared.Actions;
 using Content.Shared.Damage; // Sunrise-Edit
 using Content.Shared.Devour; // Sunrise-Edit
@@ -37,7 +36,6 @@ public sealed partial class DragonSystem : EntitySystem
 
     // Sunrise-Start
     [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     // Sunrise-End
 
@@ -168,7 +166,7 @@ public sealed partial class DragonSystem : EntitySystem
 
         // cant put a rift on a construction
 
-        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.MachineMask).Count > 0)
+        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.BulletImpassable).Count > 0)
         {
             _popup.PopupEntity(Loc.GetString("carp-rift-in-solid"), uid, uid);
             return;
