@@ -115,6 +115,12 @@ public sealed class DevourSystem : EntitySystem
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)args.Args.Target))
         {
             _containerSystem.Insert(args.Args.Target.Value, ent.Comp.Stomach);
+            // Sunrise-Start
+            if (TryComp(args.Args.Target, out MobStateComponent? mobState))
+            {
+                RaiseLocalEvent(new DragonDevourMobEvent(args.Args.User, (args.Args.Target.Value, mobState)));
+            }
+            // Sunrise-End
         }
         //TODO: Figure out a better way of removing structures via devour that still entails standing still and waiting for a DoAfter. Somehow.
         //If it's not alive, it must be a structure.
@@ -143,3 +149,11 @@ public sealed partial class DevourActionEvent : EntityTargetActionEvent;
 [Serializable, NetSerializable]
 public sealed partial class DevourDoAfterEvent : SimpleDoAfterEvent;
 
+// Sunrise-Start
+[Serializable]
+public sealed partial class DragonDevourMobEvent(EntityUid devourer, Entity<MobStateComponent> devoured) : EntityEventArgs
+{
+    public EntityUid Devourer { get; init; } = devourer;
+    public Entity<MobStateComponent> Devoured { get; init; } = devoured;
+}
+// Sunrise-End

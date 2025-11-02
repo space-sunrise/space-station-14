@@ -1,8 +1,10 @@
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
-using Content.Server.Roles;
+using Content.Server.Station.Systems; // Sunrise-Edit
 using Content.Shared.Actions;
+using Content.Shared.Damage; // Sunrise-Edit
+using Content.Shared.Devour; // Sunrise-Edit
 using Content.Shared.Dragon;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
@@ -11,9 +13,11 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Systems;
+using Content.Shared.Physics; // Sunrise-Edit
+using Content.Shared.Station.Components; // Sunrise-Edit
 using Content.Shared.Zombies;
+using Robust.Server.GameObjects; // Sunrise-Edit
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Dragon;
@@ -30,6 +34,12 @@ public sealed partial class DragonSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+
+    // Sunrise-Start
+    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    // Sunrise-End
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
 
@@ -57,6 +67,7 @@ public sealed partial class DragonSystem : EntitySystem
         SubscribeLocalEvent<DragonComponent, RefreshMovementSpeedModifiersEvent>(OnDragonMove);
         SubscribeLocalEvent<DragonComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<DragonComponent, EntityZombifiedEvent>(OnZombified);
+        SubscribeLocalEvent<DragonDevourMobEvent>(OnDragonDevourMob); // Sunrise-Edit
     }
 
     public override void Update(float frameTime)
@@ -146,6 +157,25 @@ public sealed partial class DragonSystem : EntitySystem
             return;
         }
 
+        // Sunrise-Start
+
+        // Have to be on a station
+        if (!TryComp<StationMemberComponent>(xform.ParentUid, out var _))
+        {
+            _popup.PopupEntity(Loc.GetString("carp-rift-not-station"), uid, uid);
+            return;
+        }
+
+        // cant put a rift on a construction
+
+        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.Impassable).Count > 0)
+        {
+            _popup.PopupEntity(Loc.GetString("carp-rift-in-solid"), uid, uid);
+            return;
+        }
+
+        // Sunrise-End
+
         // cant stack rifts near eachother
         foreach (var (_, riftXform) in EntityQuery<DragonRiftComponent, TransformComponent>(true))
         {
@@ -204,6 +234,19 @@ public sealed partial class DragonSystem : EntitySystem
         if (comp.SoundRoar != null)
             _audio.PlayPvs(comp.SoundRoar, uid);
     }
+
+    // Sunrise-Start
+    private void OnDragonDevourMob(DragonDevourMobEvent args)
+    {
+        if (!TryComp(args.Devourer, out DragonComponent? dragonComp))
+            return;
+
+        if (args.Devoured.Comp.CurrentState != MobState.Dead)
+        {
+            _damageableSystem.TryChangeDamage(args.Devoured.Owner, dragonComp.DamageOnDevour, ignoreResistances: true);
+        }
+    }
+    //Suntise-End
 
     /// <summary>
     /// Delete all rifts this dragon made.
