@@ -185,6 +185,7 @@
   id: MobDragon
   components:
   # Sunrise edit start
+  - type: AntiRottingContainer
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-dragon-name
     description: ghost-panel-antagonist-dragon-description
@@ -192,6 +193,11 @@
   # Sunrise edit end
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
+    # Sunrise-Start
+    damageOnDevour:
+      types:
+        Caustic: 120
+    # Sunrise-End
   - type: GhostRole
     mindRoles:
     - MindRoleDragon
@@ -206,6 +212,7 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+    - StunImmune
     - CarpRiftHealTarget
   # Sunrise-end
 

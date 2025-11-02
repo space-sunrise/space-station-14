@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -65,5 +66,10 @@ namespace Content.Server.Dragon
         /// </summary>
         [DataField]
         public ProtoId<NpcFactionPrototype> Faction = "Carps";
+
+        // Sunrise-Start
+        [DataField(required: true)]
+        public DamageSpecifier DamageOnDevour = default!;
+        // Sunrise-End
     }
 }
