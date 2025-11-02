@@ -19,6 +19,8 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Магазин для Deagle
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
+uplink-pistoltec9-magazine-name = пистолетный магазин tec-9 (.20 безгильзовый)
+uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин на 20 патронов,под калибр, используемый агентами синдиката.
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -52,6 +54,8 @@ uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-pistoltec9-name = Тек-9 Тактикал
+uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как Египесткий  АК-47.
 
 ## Cyborgs
 

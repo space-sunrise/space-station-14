@@ -23,3 +23,8 @@ ent-WeaponRevolverSpearheadBlack = Spearhead autorevolver
     .desc = { ent-WeaponRevolverSpearhead.desc }
 ent-WeaponPistolM1984 = D1984
     .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.
+ent-WeaponPistolTec9 = Tec-9 Tactical
+    .desc- { ent-WeaponPistolTec9.desc }
+ent-WeaponPistolTec9Biocode = { ent-WeaponPistolTec9 }
+    .suffix = BIOCODE
+    .desc = { ent-WeaponPistolTec9.desc }

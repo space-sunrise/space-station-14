@@ -2071,3 +2071,26 @@
     Telecrystal: 1
   categories:
   - UplinkPointless
+
+- type: listing
+  id: UplinkPistolTec9Magazine
+  name: uplink-pistoltec9-magazine-name
+  description: uplink-pistoltec9-magazine-desc
+  productEntity: BaseMagazinePistolCaselessRifleTec9
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: uplinkWeaponPistolTec9
+  name: uplink-pistoltec9-name
+  description: uplink-pistoltec9-desc
+  productEntity: WeaponPistolTec9Biocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry
