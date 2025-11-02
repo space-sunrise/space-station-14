@@ -38,7 +38,7 @@ uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный м�
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
 uplink-pistoltec9-magazine-name = пистолетный магазин tec-9 (.20 безгильзовый)
-uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин под распостранённый патрон, используемый агентами синдиката.
+uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин под распространённый патрон, используемый агентами синдиката.
 
 
 ## Misc
