@@ -6,15 +6,17 @@ using Content.Shared.Damage;
 using Content.Shared.Dragon;
 using Content.Shared.Examine;
 using Content.Shared.Sprite;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization.Manager;
 using System.Numerics;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
+// Sunrise-Start
+using Content.Shared.Mobs.Components;
+using Content.Server._Sunrise.DragonsBrood;
+// Sunrise-End
 
 namespace Content.Server.Dragon;
 
@@ -38,6 +40,7 @@ public sealed class DragonRiftSystem : EntitySystem
         SubscribeLocalEvent<DragonRiftComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DragonRiftComponent, AnchorStateChangedEvent>(OnAnchorChange);
         SubscribeLocalEvent<DragonRiftComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<DragonsBroodDeadEvent>(OnDragonsBroodDead); // Sunrise-Add
     }
 
     private void OnGetState(Entity<DragonRiftComponent> ent, ref ComponentGetState args)
@@ -73,7 +76,12 @@ public sealed class DragonRiftSystem : EntitySystem
                 comp.Accumulator += frameTime;
             }
 
-            comp.SpawnAccumulator += frameTime;
+            // Sunrise-Start
+            if (comp.IsSpawnAccumulating)
+            {
+                comp.SpawnAccumulator += frameTime;
+            }
+            // Sunrise-End
 
             if (comp.State < DragonRiftState.AlmostFinished && comp.Accumulator > comp.MaxAccumulator / 2f)
             {
@@ -102,9 +110,29 @@ public sealed class DragonRiftSystem : EntitySystem
 
                 if (comp.Dragon != null)
                     _npc.SetBlackboard(ent, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
+
+                // Sunrise-Start
+                if (TryComp<MobStateComponent>(ent, out var _))
+                {
+                    AddComp(ent, new DragonsBroodComponent { MotherRift = uid });
+                }
+
+                comp.AliveCarps++;
+                CheckMaxSpawn(comp);
+                // Sunrise-End
             }
         }
     }
+
+    // Sunrise-Start
+    private void OnDragonsBroodDead(DragonsBroodDeadEvent args)
+    {
+        args.RiftComp.Comp.AliveCarps--;
+        CheckMaxSpawn(args.RiftComp.Comp);
+    }
+
+    private void CheckMaxSpawn(DragonRiftComponent comp) => comp.IsSpawnAccumulating = comp.AliveCarps < comp.MaxAliveCarps;
+    // Sunrise-End
 
     private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
     {
