@@ -168,7 +168,7 @@ public sealed partial class DragonSystem : EntitySystem
 
         // cant put a rift on a construction
 
-        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.Impassable).Count > 0)
+        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.MachineMask).Count > 0)
         {
             _popup.PopupEntity(Loc.GetString("carp-rift-in-solid"), uid, uid);
             return;
