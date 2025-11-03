@@ -9,6 +9,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Systems;
@@ -158,18 +159,25 @@ public sealed partial class DragonSystem : EntitySystem
         // Sunrise-Start
 
         // Have to be on a station
-        if (!TryComp<StationMemberComponent>(xform.ParentUid, out var _))
+        if (!HasComp<StationMemberComponent>(xform.ParentUid))
         {
             _popup.PopupEntity(Loc.GetString("carp-rift-not-station"), uid, uid);
             return;
         }
 
         // cant put a rift on a construction
+        var bodies = _physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.BulletImpassable);
 
-        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.BulletImpassable).Count > 0)
+        if (bodies.Count > 0)
         {
-            _popup.PopupEntity(Loc.GetString("carp-rift-in-solid"), uid, uid);
-            return;
+            foreach (var body in bodies)
+            {
+                if (HasComp<MobStateComponent>(body))
+                    continue;
+
+                _popup.PopupEntity(Loc.GetString("carp-rift-in-solid"), uid, uid);
+                return;
+            }
         }
 
         // Sunrise-End
