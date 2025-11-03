@@ -112,7 +112,7 @@ public sealed class DragonRiftSystem : EntitySystem
                     _npc.SetBlackboard(ent, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
 
                 // Sunrise-Start
-                if (TryComp<MobStateComponent>(ent, out var _))
+                if (HasComp<MobStateComponent>(ent))
                 {
                     AddComp(ent, new DragonsBroodComponent { MotherRift = uid });
                 }
