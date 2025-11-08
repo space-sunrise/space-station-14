@@ -1,5 +1,6 @@
 using Content.Client.Audio;
 using Content.Server.GameTicking.Prototypes;
+using Content.Shared.CCVar;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
@@ -31,6 +32,12 @@ public sealed partial class ExtraTab : Control
             SunriseCCVars.TTSRadioVolume,
             SliderTtsRadio,
             scale: ContentAudioSystem.TtsMultiplier);
+
+        Control.AddOptionSlider(
+            CCVars.StorageLimit,
+            StorageLimitSlider,
+            (int)StorageLimitSlider.Slider.MinValue,
+            (int)StorageLimitSlider.Slider.MaxValue);
 
         Control.AddOptionCheckBox(SunriseCCVars.TTSClientEnabled, TtsClientCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.TTSClientQueueEnabled, TtsClientCheckBoxQueue);

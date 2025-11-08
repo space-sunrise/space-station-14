@@ -42,6 +42,10 @@
                 <CheckBox Name="ChatIconsEnableCheckBox" Text="{Loc 'ui-options-chat-icons-enable'}" />
                 <CheckBox Name="ChatPointingVisualsEnableCheckBox" Text="{Loc 'ui-options-chat-pointing-visuals-enable'}" />
 
+                <!-- Inventory -->
+                <Label Text="{Loc 'ui-options-sunrise-general-inventory'}" StyleClasses="LabelKeyText"/>
+                <ui:OptionSlider Name="StorageLimitSlider" Title="{Loc 'ui-options-storage-limit'}" />
+
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

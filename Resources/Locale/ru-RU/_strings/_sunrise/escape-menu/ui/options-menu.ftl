@@ -34,3 +34,5 @@ ui-options-trace-tooltip =
 ui-options-tts-enabled = ТТС интеграция
 ui-options-tts-queue = Использовать очередь для TTS рации?
 ui-options-tts-radio-ghost-enabled = ТТС рации в призраке
+ui-options-sunrise-general-inventory = Инвентарь
+ui-options-storage-limit = Сколько окон хранилища может быть открыто одновременно.
