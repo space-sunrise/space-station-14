@@ -117,20 +117,28 @@ public sealed partial class SponsorTierEntry : Control
             if (!_prototypeManager.TryIndex(openGhostRole, out EntityPrototype? ghostRolePrototype))
                 continue;
 
-            var dummyEnt = _entityManager.SpawnEntity(ghostRolePrototype.ID, MapCoordinates.Nullspace);
-
-            var view = new SpriteView
+            try
             {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4)
-            };
+                var dummyEnt = _entityManager.SpawnEntity(ghostRolePrototype.ID, MapCoordinates.Nullspace);
 
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4)
+                };
 
-            var panel = CreateEntityIcon($"ent-{ghostRolePrototype.ID}", view);
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
 
-            OpenGhostRolesGrid.AddChild(panel);
+                var panel = CreateEntityIcon($"ent-{ghostRolePrototype.ID}", view);
+
+                OpenGhostRolesGrid.AddChild(panel);
+            }
+            catch (NullReferenceException)
+            {
+                // Entity system not fully initialized yet, skip this ghost role
+                continue;
+            }
         }
 
         OpenGhostRolesBox.Visible = OpenGhostRolesGrid.ChildCount > 0;
@@ -143,20 +151,28 @@ public sealed partial class SponsorTierEntry : Control
             if (!_prototypeManager.TryIndex(priorityGhostRole, out EntityPrototype? ghostRolePrototype))
                 continue;
 
-            var dummyEnt = _entityManager.SpawnEntity(ghostRolePrototype.ID, MapCoordinates.Nullspace);
-
-            var view = new SpriteView
+            try
             {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4)
-            };
+                var dummyEnt = _entityManager.SpawnEntity(ghostRolePrototype.ID, MapCoordinates.Nullspace);
 
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4)
+                };
 
-            var panel = CreateEntityIcon($"ent-{ghostRolePrototype.ID}", view);
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
 
-            PriorityGhostRolesGrid.AddChild(panel);
+                var panel = CreateEntityIcon($"ent-{ghostRolePrototype.ID}", view);
+
+                PriorityGhostRolesGrid.AddChild(panel);
+            }
+            catch (NullReferenceException)
+            {
+                // Entity system not fully initialized yet, skip this ghost role
+                continue;
+            }
         }
 
         PriorityGhostRolesBox.Visible = PriorityGhostRolesGrid.ChildCount > 0;
@@ -195,25 +211,33 @@ public sealed partial class SponsorTierEntry : Control
             if (!_prototypeManager.TryIndex(allowedLoadout, out LoadoutPrototype? loadoutPrototype))
                 continue;
 
-            var entProtoId = _entityManager.System<LoadoutSystem>().GetFirstOrNull(loadoutPrototype);
-            var name = _entityManager.System<LoadoutSystem>().GetName(loadoutPrototype);
-
-            var view = new SpriteView
+            try
             {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(6, 6)
-            };
-            _spriteViews.Add(view);
+                var entProtoId = _entityManager.System<LoadoutSystem>().GetFirstOrNull(loadoutPrototype);
+                var name = _entityManager.System<LoadoutSystem>().GetName(loadoutPrototype);
 
-            if (entProtoId != null)
-            {
-                var dummyEnt = _entityManager.SpawnEntity(entProtoId, MapCoordinates.Nullspace);
-                view.SetEntity(dummyEnt);
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(6, 6)
+                };
+                _spriteViews.Add(view);
+
+                if (entProtoId != null)
+                {
+                    var dummyEnt = _entityManager.SpawnEntity(entProtoId, MapCoordinates.Nullspace);
+                    view.SetEntity(dummyEnt);
+                }
+
+                var panel = CreateEntityIcon(name, view);
+
+                AllowedLoadoutsGrid.AddChild(panel);
             }
-
-            var panel = CreateEntityIcon(name, view);
-
-            AllowedLoadoutsGrid.AddChild(panel);
+            catch (NullReferenceException)
+            {
+                // Entity system not fully initialized yet, skip this loadout
+                continue;
+            }
         }
 
         AllowedLoadoutsBox.Visible = AllowedLoadoutsGrid.ChildCount > 0;
@@ -247,41 +271,49 @@ public sealed partial class SponsorTierEntry : Control
             if (humanoid == null)
                 continue;
 
-            var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
-
-            EntityUid dummyEnt;
-
-            if (previewEntity == null)
+            try
             {
-                var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
-                dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+                var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
 
-                _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
-                _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+                EntityUid dummyEnt;
 
-                if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                if (previewEntity == null)
                 {
-                    var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
-                    _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                    var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
+                    dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+
+                    _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
+                    _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+
+                    if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                    {
+                        var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
+                        _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                    }
                 }
+                else
+                {
+                    dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+                }
+
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4)
+                };
+
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
+
+                var panel = CreateEntityIcon(roleProto.Name, view);
+
+                BypassRolesGrid.AddChild(panel);
             }
-            else
+            catch (NullReferenceException)
             {
-                dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+                // Entity system not fully initialized yet, skip this role
+                continue;
             }
-
-            var view = new SpriteView
-            {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4)
-            };
-
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
-
-            var panel = CreateEntityIcon(roleProto.Name, view);
-
-            BypassRolesGrid.AddChild(panel);
         }
 
         BypassRolesBox.Visible = BypassRolesGrid.ChildCount > 0;
@@ -294,19 +326,27 @@ public sealed partial class SponsorTierEntry : Control
             if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesPrototype))
                 continue;
 
-            var dummyEnt = _entityManager.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
-
-            var view = new SpriteView
+            try
             {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4),
-            };
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
+                var dummyEnt = _entityManager.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
 
-            var panel = CreateEntityIcon(speciesPrototype.Name, view);
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4),
+                };
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
 
-            AllowedSpeciesGrid.AddChild(panel);
+                var panel = CreateEntityIcon(speciesPrototype.Name, view);
+
+                AllowedSpeciesGrid.AddChild(panel);
+            }
+            catch (NullReferenceException)
+            {
+                // Entity system not fully initialized yet, skip this species
+                continue;
+            }
         }
 
         AllowedSpeciesBox.Visible = AllowedSpeciesGrid.ChildCount > 0;
@@ -326,26 +366,34 @@ public sealed partial class SponsorTierEntry : Control
             if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesProto))
                 continue;
 
-            var dummyEnt = _entityManager.SpawnEntity(speciesProto.DollPrototype, MapCoordinates.Nullspace);
-
-            var humanoidAppearance = _entityManager.EnsureComponent<HumanoidAppearanceComponent>(dummyEnt);
-            var spriteComponent = _entityManager.EnsureComponent<SpriteComponent>(dummyEnt);
-
-            var view = new SpriteView
+            try
             {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4),
-            };
+                var dummyEnt = _entityManager.SpawnEntity(speciesProto.DollPrototype, MapCoordinates.Nullspace);
 
-            _entityManager.System<HumanoidAppearanceSystem>().ApplyMarking(markingProto, null, true,
-                (dummyEnt, humanoidAppearance, spriteComponent));
+                var humanoidAppearance = _entityManager.EnsureComponent<HumanoidAppearanceComponent>(dummyEnt);
+                var spriteComponent = _entityManager.EnsureComponent<SpriteComponent>(dummyEnt);
 
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4),
+                };
 
-            var panel = CreateEntityIcon($"marking-{markingProto.ID}", view);
+                _entityManager.System<HumanoidAppearanceSystem>().ApplyMarking(markingProto, null, true,
+                    (dummyEnt, humanoidAppearance, spriteComponent));
 
-            AllowedMarkingsGrid.AddChild(panel);
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
+
+                var panel = CreateEntityIcon($"marking-{markingProto.ID}", view);
+
+                AllowedMarkingsGrid.AddChild(panel);
+            }
+            catch (NullReferenceException)
+            {
+                // Entity system not fully initialized yet, skip this marking
+                continue;
+            }
         }
 
         AllowedMarkingsBox.Visible = AllowedMarkingsGrid.ChildCount > 0;
@@ -395,41 +443,49 @@ public sealed partial class SponsorTierEntry : Control
             if (humanoid == null)
                 continue;
 
-            var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
-
-            EntityUid dummyEnt;
-
-            if (previewEntity == null)
+            try
             {
-                var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
-                dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+                var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
 
-                _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
-                _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+                EntityUid dummyEnt;
 
-                if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                if (previewEntity == null)
                 {
-                    var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
-                    _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                    var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
+                    dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+
+                    _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
+                    _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+
+                    if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                    {
+                        var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
+                        _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                    }
                 }
+                else
+                {
+                    dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+                }
+
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4)
+                };
+
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
+
+                var panel = CreateEntityIcon(roleProto.Name, view);
+
+                PriorityRolesGrid.AddChild(panel);
             }
-            else
+            catch (NullReferenceException)
             {
-                dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+                // Entity system not fully initialized yet, skip this role
+                continue;
             }
-
-            var view = new SpriteView
-            {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4)
-            };
-
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
-
-            var panel = CreateEntityIcon(roleProto.Name, view);
-
-            PriorityRolesGrid.AddChild(panel);
         }
 
         PriorityRolesBox.Visible = PriorityRolesGrid.ChildCount > 0;
@@ -448,41 +504,49 @@ public sealed partial class SponsorTierEntry : Control
             if (humanoid == null)
                 continue;
 
-            var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
-
-            EntityUid dummyEnt;
-
-            if (previewEntity == null)
+            try
             {
-                var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
-                dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+                var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
 
-                _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
-                _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+                EntityUid dummyEnt;
 
-                if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                if (previewEntity == null)
                 {
-                    var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
-                    _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                    var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
+                    dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+
+                    _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
+                    _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+
+                    if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                    {
+                        var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
+                        _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                    }
                 }
+                else
+                {
+                    dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+                }
+
+                var view = new SpriteView
+                {
+                    SetSize = new Vector2(128, 128),
+                    Scale = new Vector2(4, 4)
+                };
+
+                view.SetEntity(dummyEnt);
+                _spriteViews.Add(view);
+
+                var panel = CreateEntityIcon(roleProto.Name, view);
+
+                OpenRolesGrid.AddChild(panel);
             }
-            else
+            catch (NullReferenceException)
             {
-                dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+                // Entity system not fully initialized yet, skip this role
+                continue;
             }
-
-            var view = new SpriteView
-            {
-                SetSize = new Vector2(128, 128),
-                Scale = new Vector2(4, 4)
-            };
-
-            view.SetEntity(dummyEnt);
-            _spriteViews.Add(view);
-
-            var panel = CreateEntityIcon(roleProto.Name, view);
-
-            OpenRolesGrid.AddChild(panel);
         }
 
         OpenRolesBox.Visible = OpenRolesGrid.ChildCount > 0;
