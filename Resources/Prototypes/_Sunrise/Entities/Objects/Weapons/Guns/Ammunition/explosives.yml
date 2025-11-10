@@ -119,7 +119,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlastContact
+    proto: BulletGrenadeBlastTimer
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -133,7 +133,7 @@
   - type: CartridgeAmmo
     proto: BulletGrenadeBlastTimer
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
     - state: blast
       map: ["enum.AmmoVisualLayers.Base"]
@@ -167,7 +167,7 @@
   - type: CartridgeAmmo
     proto: BulletGrenadeFragTimer
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
     - state: frag
       map: ["enum.AmmoVisualLayers.Base"]
@@ -184,7 +184,7 @@
   - type: CartridgeAmmo
     proto: BulletGrenadeEMPTimer
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
     - state: emp
       map: ["enum.AmmoVisualLayers.Base"]

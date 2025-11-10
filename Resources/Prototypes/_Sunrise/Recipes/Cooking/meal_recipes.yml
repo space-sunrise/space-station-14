@@ -5,3 +5,15 @@
   time: 10
   solids:
     CannabisVitaLeaves: 1
+
+- type: microwaveMealRecipe
+  id: RecipeMiso
+  name: miso recipe
+  result: FoodSoupMiso
+  time: 15
+  group: Soup
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    FoodTofuSlice: 1

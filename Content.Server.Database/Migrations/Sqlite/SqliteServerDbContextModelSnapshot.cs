@@ -133,10 +133,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("admin_log_id");
 
-                    b.Property<long>("CurTime")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("cur_time");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT")
                         .HasColumnName("date");
@@ -933,6 +929,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
+                    b.Property<int>("AllMarkingsGradientDirection")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("all_markings_gradient_direction");
+
+                    b.Property<bool>("AllMarkingsGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("all_markings_gradient_enabled");
+
+                    b.Property<string>("AllMarkingsGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("all_markings_gradient_secondary_color");
+
                     b.Property<string>("BodyType")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -953,14 +962,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_color");
 
-                    b.Property<int>("FacialHairColorType")
+                    b.Property<int>("FacialHairGradientDirection")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("facial_hair_color_type");
+                        .HasColumnName("facial_hair_gradient_direction");
 
-                    b.Property<string>("FacialHairExtendedColor")
+                    b.Property<bool>("FacialHairGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("facial_hair_gradient_enabled");
+
+                    b.Property<string>("FacialHairGradientSecondaryColor")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("facial_hair_extended_color");
+                        .HasColumnName("facial_hair_gradient_secondary_color");
 
                     b.Property<string>("FacialHairName")
                         .IsRequired()
@@ -982,14 +995,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color");
 
-                    b.Property<int>("HairColorType")
+                    b.Property<int>("HairGradientDirection")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("hair_color_type");
+                        .HasColumnName("hair_gradient_direction");
 
-                    b.Property<string>("HairExtendedColor")
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientSecondaryColor")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("hair_extended_color");
+                        .HasColumnName("hair_gradient_secondary_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()

@@ -211,7 +211,7 @@
   # Sunrise-end
 
 - type: entity
-  parent: [ClothingHandsSmooth, BaseToggleClothing, BaseMajorContraband] # SUNRISE EDIT
+  parent: [ClothingHandsSmooth, BaseToggleClothing, BaseHighlyIllegalContraband] # SUNRISE EDIT
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -245,6 +245,7 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
+        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:

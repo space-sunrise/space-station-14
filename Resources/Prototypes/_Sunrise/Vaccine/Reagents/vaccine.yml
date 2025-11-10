@@ -20,7 +20,8 @@
       effects:
         - !type:CureDiseaseInfection
           conditions:
-            - !type:ReagentThreshold
+            - !type:ReagentCondition
+              reagent: Vaccine
               min: 10
 
 - type: reagent
@@ -37,5 +38,6 @@
         - !type:CureDiseaseInfection
           innoculate: true
           conditions:
-            - !type:ReagentThreshold
+            - !type:ReagentCondition
+              reagent: VaccinePlus
               min: 7

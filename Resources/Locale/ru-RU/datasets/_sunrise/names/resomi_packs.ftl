@@ -1,0 +1,14 @@
+names-resomi-packs-dataset-1 = Набор Авиатор
+names-resomi-packs-dataset-2 = Набор Экранные дятлы
+names-resomi-packs-dataset-3 = Набор Защитник корпуса
+names-resomi-packs-dataset-4 = Набор Железный коготь
+names-resomi-packs-dataset-5 = Набор Страж люка
+names-resomi-packs-dataset-6 = Набор Спринтер
+names-resomi-packs-dataset-7 = Набор Плазменный коготь
+names-resomi-packs-dataset-8 = Набор Железная лапа
+names-resomi-packs-dataset-9 = Набор Стальное гнездо
+names-resomi-packs-dataset-10 = Набор Серебряное перо
+names-resomi-packs-dataset-11 = Набор Шахтерский коготь
+names-resomi-packs-dataset-12 = Набор Охотник
+names-resomi-packs-dataset-13 = Набор Темные перья
+names-resomi-packs-dataset-14 = Набор Гнездо техобслуживания

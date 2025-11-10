@@ -6,7 +6,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
@@ -25,7 +24,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -70,7 +68,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -157,7 +154,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -268,8 +264,6 @@
     solution: shell
   - type: Spillable
     solution: shell
-  - type: Drink
-    solution: shell
   - type: Construction
     graph: ImprovisedShotgunShellEmptyGraph
     node: shell
@@ -285,7 +279,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite

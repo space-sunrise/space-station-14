@@ -5,31 +5,28 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Disease;
 
-public sealed partial class CureDiseaseInfection : EntityEffect
+public sealed partial class CureDiseaseInfectionEntityEffectSystem : EntityEffectSystem<SickComponent, CureDiseaseInfection>
+{
+    [Dependency] private readonly EntityManager _entityManager = default!;
+
+    protected override void Effect(Entity<SickComponent> entity, ref EntityEffectEvent<CureDiseaseInfection> args)
+    {
+        if (_entityManager.TryGetComponent<DiseaseRoleComponent>(entity.Owner, out var disease))
+        {
+            var comp = _entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(entity.Owner);
+            comp.Immune = args.Effect.Innoculate;
+            comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
+        }
+    }
+}
+
+public sealed partial class CureDiseaseInfection : EntityEffectBase<CureDiseaseInfection>
 {
     [DataField]
     public bool Innoculate;
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
-        if (Innoculate)
-            return "ок";
-
-        return "окей";
-    }
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        var entityManager = args.EntityManager;
-        if (!entityManager.HasComponent<SickComponent>(args.TargetEntity)) return;
-        if (entityManager.TryGetComponent<SickComponent>(args.TargetEntity, out var sick))
-        {
-            if (entityManager.TryGetComponent<DiseaseRoleComponent>(sick.owner, out var disease))
-            {
-                var comp = entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(args.TargetEntity);
-                comp.Immune = Innoculate;
-                comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
-            }
-        }
+        return Loc.GetString("entity-effect-guidebook-cure-zombie-infection", ("chance", Probability));
     }
 }

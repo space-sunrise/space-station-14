@@ -66,7 +66,7 @@ public abstract partial class SharedGunSystem
         if (component.SelectedMode == fire)
             return;
 
-        DebugTools.Assert((component.AvailableModes  & fire) != 0x0);
+        DebugTools.Assert((component.AvailableModes & fire) != 0x0);
         component.SelectedMode = fire;
 
         if (!Paused(uid))
@@ -110,32 +110,45 @@ public abstract partial class SharedGunSystem
         SelectFire(uid, component, args.Mode, args.Performer);
     }
 
-    private void OnGunSelected(EntityUid uid, GunComponent component, HandSelectedEvent args)
+    private void OnGunSelected(Entity<GunComponent> ent, ref HandSelectedEvent args)
     {
+        var uid = ent.Owner;
+
         if (Timing.ApplyingState)
-             return;
-
-        if (component.FireRateModified <= 0)
             return;
 
-        var fireDelay = 1f / component.FireRateModified;
-        if (fireDelay.Equals(0f))
-            return;
-
-        if (!component.ResetOnHandSelected)
+        if (ent.Comp.FireRateModified <= 0)
             return;
 
         if (Paused(uid))
             return;
 
-        // If someone swaps to this weapon then reset its cd.
-        var curTime = Timing.CurTime;
-        var minimum = curTime + TimeSpan.FromSeconds(fireDelay);
+        if (TryComp<EquipDelayComponent>(uid, out var delayComp))
+        {
+            var delay = delayComp.EquipDelayTime;
+            var curTime = Timing.CurTime;
 
-        if (minimum < component.NextFire)
-            return;
+            var minimum = curTime + TimeSpan.FromSeconds(delay);
 
-        component.NextFire = minimum;
-        Dirty(uid, component);
+            if (minimum < ent.Comp.NextFire)
+                return;
+
+            ent.Comp.NextFire = minimum;
+
+            DirtyField(uid, ent.Comp, nameof(GunComponent.NextFire));
+        }
+        else
+        {
+            var curTime = Timing.CurTime;
+
+            var minimum = curTime + TimeSpan.FromSeconds(0.3);
+
+            if (minimum < ent.Comp.NextFire)
+                return;
+
+            ent.Comp.NextFire = minimum;
+
+            DirtyField(uid, ent.Comp, nameof(GunComponent.NextFire));
+        }
     }
 }

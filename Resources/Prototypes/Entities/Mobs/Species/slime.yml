@@ -73,7 +73,7 @@
     damage:
       types:
         Heat: -0.14
-        Mangleness: -0.02 #Sunrise-Edit
+        Mangleness: -0.03 #Sunrise-Edit
       groups:
         Brute: -0.14
   - type: DamageVisuals
@@ -98,15 +98,15 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
     - reagents: [ Water ]
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
+        scaling: true
         damage:
           types:
-            Heat: 0.1
+            Heat: 0.05
       - !type:PopupMessage
         type: Local
         visualType: Large

@@ -138,7 +138,6 @@
   name: loadout-group-blueshield-belt
   loadouts:
   - BlueShieldWebbing
-  - AssaultBeltBS
 
 - type: loadoutGroup
   id: BlueShieldNeck
@@ -224,7 +223,7 @@
   loadouts:
   - GlockBox
   - ACP14Box
-  - SnubRevolverBox 
+  - SnubRevolverBox
   - MK58Box
   - MK58GoldBox
   - WeaponDominator
@@ -240,7 +239,7 @@
   loadouts:
   - CadetWeaponGlockBox
   - CadetWeaponACP14Box
-  - SnubRevolverBox 
+  - SnubRevolverBox
   - CadetWeaponMK58Box
   - MK58GoldBox
   - CadetWeaponMiniEnergyGun
@@ -1266,6 +1265,7 @@
 - type: loadoutGroup
   id: ComMaidHead
   name: loadout-group-commaid-head
+  minLimit: 0
   loadouts:
   - ComMaidHurseHat
   - ComMaidBonnyEars
@@ -1278,11 +1278,19 @@
   - ComMaidElegantJumpskirt
   - ComMaidSunriseJumpskirt
   - ComMaidBunnyUniform
+  - ComMaidJumpsuitLawyerBlack
   - ComMaidTacticalJumpskirt
+
+- type: loadoutGroup
+  id: ComMaidBackpack
+  name: loadout-group-commaid-backpack
+  loadouts:
+  - ComMaidBackpackSatchelLeather
 
 - type: loadoutGroup
   id: ComMaidNeck
   name: loadout-group-commaid-neck
+  minLimit: 0
   loadouts:
   - ComMaidBunnyButterfly
 
@@ -1292,10 +1300,12 @@
   loadouts:
   - ComMaidShoes
   - ComMaidBunnyShoes
+  - ComMaidShoesBootsLaceup
 
 - type: loadoutGroup
   id: ComMaidGloves
   name: loadout-group-commaid-gloves
+  minLimit: 0
   loadouts:
   - ComMaidBunnyManjets
   - ComMaidGlovesWhite

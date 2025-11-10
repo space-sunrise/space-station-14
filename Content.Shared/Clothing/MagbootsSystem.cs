@@ -15,7 +15,6 @@ namespace Content.Shared.Clothing;
 public sealed class SharedMagbootsSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
@@ -54,7 +53,7 @@ public sealed class SharedMagbootsSystem : EntitySystem
         if (TryComp<MovedByPressureComponent>(user, out var moved))
             moved.Enabled = !state;
 
-        _gravity.RefreshWeightless(user, !state);
+        _gravity.RefreshWeightless(user);
 
         if (state)
             _alerts.ShowAlert(user, ent.Comp.MagbootsAlert);
