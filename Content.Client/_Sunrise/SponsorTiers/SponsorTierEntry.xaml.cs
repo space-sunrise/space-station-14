@@ -110,8 +110,11 @@ public sealed partial class SponsorTierEntry : Control
         SizeFlavorLabel.Text = $"{sizeFlavor}";
     }
 
-    private void LoadOpenGhostRoles(IReadOnlyCollection<string> openGhostRoles)
+    private void LoadOpenGhostRoles(IReadOnlyCollection<string>? openGhostRoles)
     {
+        if (openGhostRoles == null)
+            return;
+
         foreach (var openGhostRole in openGhostRoles)
         {
             if (!_prototypeManager.TryIndex(openGhostRole, out EntityPrototype? ghostRolePrototype))
@@ -136,8 +139,11 @@ public sealed partial class SponsorTierEntry : Control
         OpenGhostRolesBox.Visible = OpenGhostRolesGrid.ChildCount > 0;
     }
 
-    private void LoadPriorityGhostRoles(IReadOnlyCollection<string> priorityGhostRoles)
+    private void LoadPriorityGhostRoles(IReadOnlyCollection<string>? priorityGhostRoles)
     {
+        if (priorityGhostRoles == null)
+            return;
+
         foreach (var priorityGhostRole in priorityGhostRoles)
         {
             if (!_prototypeManager.TryIndex(priorityGhostRole, out EntityPrototype? ghostRolePrototype))
@@ -162,8 +168,11 @@ public sealed partial class SponsorTierEntry : Control
         PriorityGhostRolesBox.Visible = PriorityGhostRolesGrid.ChildCount > 0;
     }
 
-    private void LoadAllowedVoices(IReadOnlyCollection<string> allowedVoices)
+    private void LoadAllowedVoices(IReadOnlyCollection<string>? allowedVoices)
     {
+        if (allowedVoices == null)
+            return;
+
         foreach (var allowedVoice in allowedVoices)
         {
             if (!_prototypeManager.TryIndex(allowedVoice, out TTSVoicePrototype? voicePrototype))
@@ -188,8 +197,11 @@ public sealed partial class SponsorTierEntry : Control
         TTSVoicesBox.Visible = TTSVoicesGrid.ChildCount > 0;
     }
 
-    private void LoadAllowedLoadouts(IReadOnlyCollection<string> allowedLoadouts)
+    private void LoadAllowedLoadouts(IReadOnlyCollection<string>? allowedLoadouts)
     {
+        if (allowedLoadouts == null)
+            return;
+
         foreach (var allowedLoadout in allowedLoadouts)
         {
             if (!_prototypeManager.TryIndex(allowedLoadout, out LoadoutPrototype? loadoutPrototype))
@@ -219,8 +231,11 @@ public sealed partial class SponsorTierEntry : Control
         AllowedLoadoutsBox.Visible = AllowedLoadoutsGrid.ChildCount > 0;
     }
 
-    private void LoadGhostThemes(IReadOnlyCollection<string> ghostThemes)
+    private void LoadGhostThemes(IReadOnlyCollection<string>? ghostThemes)
     {
+        if (ghostThemes == null)
+            return;
+
         foreach (var ghostTheme in ghostThemes)
         {
             if (!_prototypeManager.TryIndex(ghostTheme, out GhostThemePrototype? ghostThemePrototype))
@@ -234,8 +249,11 @@ public sealed partial class SponsorTierEntry : Control
         GhostThemesBox.Visible = GhostThemesGrid.ChildCount > 0;
     }
 
-    private void LoadBypassRoles(IReadOnlyCollection<string> bypassRoles)
+    private void LoadBypassRoles(IReadOnlyCollection<string>? bypassRoles)
     {
+        if (bypassRoles == null)
+            return;
+
         foreach (var bypassRole in bypassRoles)
         {
             if (!_prototypeManager.TryIndex(bypassRole, out JobPrototype? roleProto))
@@ -287,8 +305,11 @@ public sealed partial class SponsorTierEntry : Control
         BypassRolesBox.Visible = BypassRolesGrid.ChildCount > 0;
     }
 
-    private void LoadAllowedSpecies(IReadOnlyCollection<string> speciesList)
+    private void LoadAllowedSpecies(IReadOnlyCollection<string>? speciesList)
     {
+        if (speciesList == null)
+            return;
+
         foreach (var species in speciesList)
         {
             if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesPrototype))
@@ -312,8 +333,11 @@ public sealed partial class SponsorTierEntry : Control
         AllowedSpeciesBox.Visible = AllowedSpeciesGrid.ChildCount > 0;
     }
 
-    private void LoadAllowedMarkings(IReadOnlyCollection<string> markingsList)
+    private void LoadAllowedMarkings(IReadOnlyCollection<string>? markingsList)
     {
+        if (markingsList == null)
+            return;
+
         foreach (var marking in markingsList)
         {
             if (!_prototypeManager.TryIndex(marking, out MarkingPrototype? markingProto))
@@ -352,8 +376,11 @@ public sealed partial class SponsorTierEntry : Control
 
     }
 
-    private void LoadPriorityAntags(IReadOnlyCollection<string> priorityAntags)
+    private void LoadPriorityAntags(IReadOnlyCollection<string>? priorityAntags)
     {
+        if (priorityAntags == null)
+            return;
+
         foreach (var priorityAntag in priorityAntags)
         {
             if (!_prototypeManager.TryIndex(priorityAntag, out AntagPrototype? antagProto))
@@ -367,8 +394,11 @@ public sealed partial class SponsorTierEntry : Control
         PriorityAntagBox.Visible = PriorityAntagGrid.ChildCount > 0;
     }
 
-    private void LoadOpenAntags(IReadOnlyCollection<string> openAntags)
+    private void LoadOpenAntags(IReadOnlyCollection<string>? openAntags)
     {
+        if (openAntags == null)
+            return;
+
         foreach (var openAntag in openAntags)
         {
             if (!_prototypeManager.TryIndex(openAntag, out AntagPrototype? antagProto))
@@ -382,8 +412,11 @@ public sealed partial class SponsorTierEntry : Control
         OpenAntagBox.Visible = OpenAntagGrid.ChildCount > 0;
     }
 
-    private void LoadPriorityRoles(IReadOnlyCollection<string> priorityRoles)
+    private void LoadPriorityRoles(IReadOnlyCollection<string>? priorityRoles)
     {
+        if (priorityRoles == null)
+            return;
+
         foreach (var priorityRole in priorityRoles)
         {
             if (!_prototypeManager.TryIndex(priorityRole, out JobPrototype? roleProto))
@@ -435,8 +468,11 @@ public sealed partial class SponsorTierEntry : Control
         PriorityRolesBox.Visible = PriorityRolesGrid.ChildCount > 0;
     }
 
-    private void LoadOpenRoles(IReadOnlyCollection<string> openRoles)
+    private void LoadOpenRoles(IReadOnlyCollection<string>? openRoles)
     {
+        if (openRoles == null)
+            return;
+
         foreach (var openRole in openRoles)
         {
             if (!_prototypeManager.TryIndex(openRole, out JobPrototype? roleProto))
