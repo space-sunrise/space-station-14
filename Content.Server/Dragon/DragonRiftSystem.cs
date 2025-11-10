@@ -115,10 +115,10 @@ public sealed class DragonRiftSystem : EntitySystem
                 if (HasComp<MobStateComponent>(ent))
                 {
                     AddComp(ent, new DragonsBroodComponent { MotherRift = uid });
+                    comp.AliveCarps++;
+                    CheckMaxSpawn(comp);
                 }
 
-                comp.AliveCarps++;
-                CheckMaxSpawn(comp);
                 // Sunrise-End
             }
         }
@@ -127,8 +127,10 @@ public sealed class DragonRiftSystem : EntitySystem
     // Sunrise-Start
     private void OnDragonsBroodDead(DragonsBroodDeadEvent args)
     {
-        args.RiftComp.Comp.AliveCarps--;
-        CheckMaxSpawn(args.RiftComp.Comp);
+        if (args.Rift.Comp.AliveCarps > 0)
+            args.Rift.Comp.AliveCarps--;
+
+        CheckMaxSpawn(args.Rift.Comp);
     }
 
     private void CheckMaxSpawn(DragonRiftComponent comp) => comp.IsSpawnAccumulating = comp.AliveCarps < comp.MaxAliveCarps;

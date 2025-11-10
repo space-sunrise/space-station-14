@@ -150,10 +150,6 @@ public sealed partial class DevourActionEvent : EntityTargetActionEvent;
 public sealed partial class DevourDoAfterEvent : SimpleDoAfterEvent;
 
 // Sunrise-Start
-[Serializable]
-public sealed partial class DragonDevourMobEvent(EntityUid devourer, Entity<MobStateComponent> devoured) : EntityEventArgs
-{
-    public EntityUid Devourer { get; init; } = devourer;
-    public Entity<MobStateComponent> Devoured { get; init; } = devoured;
-}
+public record struct DragonDevourMobEvent(EntityUid Devourer, Entity<MobStateComponent> Devoured);
 // Sunrise-End
+
