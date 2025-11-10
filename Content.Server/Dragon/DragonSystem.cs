@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Damage; // Sunrise-Edit
 using Content.Shared.Devour; // Sunrise-Edit
+using Content.Shared.Devour.Components;
 using Content.Shared.Dragon;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
@@ -244,7 +245,7 @@ public sealed partial class DragonSystem : EntitySystem
     // Sunrise-Start
     private void OnDragonDevourMob(DragonDevourMobEvent args)
     {
-        if (!TryComp(args.Devourer, out DragonComponent? dragonComp))
+        if (!TryComp<DragonComponent>(args.Devourer, out var dragonComp))
             return;
 
         if (args.Devoured.Comp.CurrentState != MobState.Dead)
