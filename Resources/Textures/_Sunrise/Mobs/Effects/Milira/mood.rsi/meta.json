@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by БАНУМБАС",
+    "states": [
+        {
+            "name": "milira_mood_insane"
+        },
+        {
+            "name": "milira_mood_horrible"
+        },
+        {
+            "name": "milira_mood_terrible"
+        },
+        {
+            "name": "milira_mood_bad"
+        },
+        {
+            "name": "milira_mood_meh"
+        },
+        {
+            "name": "milira_mood_neutral"
+        },
+        {
+            "name": "milira_mood_good"
+        },
+        {
+            "name": "milira_mood_great"
+        },
+        {
+            "name": "milira_mood_exceptional"
+        },
+        {
+            "name": "milira_mood_perfect"
+        },
+        {
+            "name": "milira_mood_dead"
+        }
+    ]
+}
