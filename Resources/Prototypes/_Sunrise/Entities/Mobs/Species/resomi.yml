@@ -27,7 +27,7 @@
       Burn:
         sprite: _Sunrise/Mobs/Effects/Resomi/burn_damage.rsi
   - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
+    sprite: _Sunrise/Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
   - type: HumanoidAppearance
