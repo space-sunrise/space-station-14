@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Abilities.Milira;
 /// <summary>
 /// Компонент, позволяющий раскрывать и складывать крылья путём замены маркингов.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class WingToggleComponent : Component
 {
     /// <summary>
@@ -30,6 +30,6 @@ public sealed partial class WingToggleComponent : Component
     /// <summary>
     /// Индикатор, раскрыты ли сейчас крылья.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public bool WingsOpened;
 }
