@@ -1,10 +1,14 @@
 using Content.Server.Actions;
+using Content.Server.Popups;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Popups;
 using Content.Shared.Toggleable;
 using Content.Shared._Sunrise.Abilities.Milira;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Abilities.Milira;
@@ -17,6 +21,7 @@ public sealed class WingToggleSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
@@ -26,6 +31,7 @@ public sealed class WingToggleSystem : EntitySystem
         SubscribeLocalEvent<WingToggleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<WingToggleComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<WingToggleComponent, ToggleActionEvent>(OnToggleAction);
+        SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
     }
 
     private void OnMapInit(EntityUid uid, WingToggleComponent component, MapInitEvent args)
@@ -41,6 +47,24 @@ public sealed class WingToggleSystem : EntitySystem
         args.Handled = TryToggleWings(uid, component);
     }
 
+    private void OnEquipAttempt(EntityUid uid, WingToggleComponent component, ref IsEquippingAttemptEvent args)
+    {
+        if (!component.WingsOpened)
+            return;
+
+        if (args.Slot != "outerClothing")
+            return;
+
+        args.Cancel();
+        args.Reason = "action-wing-toggle-equip-blocked";
+
+        var message = Loc.GetString("wing-toggle-equip-blocked");
+        _popup.PopupEntity(message, uid, uid, PopupType.Medium);
+
+        if (args.Equipee != uid)
+            _popup.PopupEntity(message, args.Equipee, args.Equipee, PopupType.Medium);
+    }
+
     public bool TryToggleWings(EntityUid uid, WingToggleComponent? component = null, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref component, ref humanoid, false))
@@ -53,8 +77,7 @@ public sealed class WingToggleSystem : EntitySystem
         {
             if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outer) && outer != null)
             {
-                var sharedSystem = EntitySystem.Get<SharedWingToggleSystem>();
-                sharedSystem.ShowOpenBlockedPopup(uid);
+                _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), uid, uid, PopupType.Medium);
                 return false;
             }
         }
