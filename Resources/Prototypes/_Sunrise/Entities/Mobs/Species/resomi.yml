@@ -30,20 +30,6 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
-  - type: MoodVisuals
-    sprite: _Sunrise/Mobs/Effects/Milira/mood.rsi
-    moodStates:
-      Insane: milira_mood_insane
-      Horrible: milira_mood_horrible
-      Terrible: milira_mood_terrible
-      Bad: milira_mood_bad
-      Meh: milira_mood_meh
-      Neutral: milira_mood_neutral
-      Good: milira_mood_good
-      Great: milira_mood_great
-      Exceptional: milira_mood_exceptional
-      Perfect: milira_mood_perfect
-      Dead: milira_mood_dead
   - type: HumanoidAppearance
     species: Resomi
   - type: Fixtures
