@@ -1,7 +1,6 @@
 using Content.Shared.Inventory.Events;
-using Content.Shared.Popups;
+using Content.Shared.Tag;
 using Content.Shared._Sunrise.Abilities.Milira;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Sunrise.Abilities.Milira;
 
@@ -10,7 +9,7 @@ namespace Content.Shared._Sunrise.Abilities.Milira;
 /// </summary>
 public sealed class SharedWingToggleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -27,14 +26,10 @@ public sealed class SharedWingToggleSystem : EntitySystem
         if (args.Slot != "outerClothing")
             return;
 
+        if (component.AllowedTag != null && _tagSystem.HasTag(args.Equipment, component.AllowedTag.Value))
+            return;
+
         args.Cancel();
-        args.Reason = "action-wing-toggle-equip-blocked";
-
-        var message = Loc.GetString("wing-toggle-equip-blocked");
-        _popup.PopupEntity(message, uid, uid, PopupType.Medium);
-
-        if (args.Equipee != uid)
-            _popup.PopupEntity(message, args.Equipee, args.Equipee, PopupType.Medium);
     }
 }
 

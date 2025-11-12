@@ -1,3 +1,4 @@
+using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.ViewVariables;
@@ -32,4 +33,11 @@ public sealed partial class WingToggleComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public bool WingsOpened;
+
+    /// <summary>
+    /// Тег, который должен быть у предмета одежды, чтобы его можно было одеть при раскрытых крыльях.
+    /// Если предмет имеет этот тег, блокировка не сработает.
+    /// </summary>
+    [DataField]
+    public ProtoId<TagPrototype>? AllowedTag = "WingToggleAllowed";
 }
