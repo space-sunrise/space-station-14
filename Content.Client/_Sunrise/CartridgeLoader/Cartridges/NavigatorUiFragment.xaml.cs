@@ -7,7 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using System.Numerics;
 
-namespace Content.Client.CartridgeLoader.Cartridges;
+namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
 [GenerateTypedNameReferences]
 public sealed partial class NavigatorUiFragment : BoxContainer

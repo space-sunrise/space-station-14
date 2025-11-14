@@ -1,8 +1,9 @@
+using Content.Client.CartridgeLoader.Cartridges;
 using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.CartridgeLoader.Cartridges;
+namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
 public sealed partial class NavigatorUi : UIFragment
 {
