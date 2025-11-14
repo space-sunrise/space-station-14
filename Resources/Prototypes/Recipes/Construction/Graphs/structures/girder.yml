@@ -263,7 +263,7 @@
             - !type:EntityAnchored { }
           steps:
             - material: Plasteel
-              amount: 2
+              amount: 4
               doAfter: 1
 
         - to: shuttleWall
@@ -281,6 +281,36 @@
             - material: Plasteel
               amount: 2
               doAfter: 1
+        # Sunrise-start
+        - to: diagonalshuttleWallSD
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - tool: Welding
+              doAfter: 4
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - material: Plasteel
+              amount: 2
+              doAfter: 1
+
+        - to: shuttleWallSD
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - tool: Screwing
+              doAfter: 2
+            - material: MetalRod
+              amount: 6
+              doAfter: 1
+            - material: Plasteel
+              amount: 4
+              doAfter: 1
+        # Sunrise-end
 
         - to: diagonalshuttleWall
           conditions:
@@ -526,3 +556,95 @@
           steps:
             - tool: Brushing
               doAfter: 12
+
+    # Sunrise-start
+    - node: shuttleWallSD
+      entity: WallShuttleSD
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 6
+          steps:
+            - tool: Welding
+              doAfter: 10
+            - tool: Cutting
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 5
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 4
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 3
+            - tool: Welding
+              doAfter: 10
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 2
+            - tool: Prying
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 1
+            - tool: Screwing
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 0
+            - tool: Cutting
+              doAfter: 4
+
+    - node: diagonalshuttleWallSD
+      entity: WallShuttleDiagonalSD
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+          steps:
+          #To-Do: Add deconstruct visuals
+            - tool: Welding
+              doAfter: 5
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+            - tool: Welding
+              doAfter: 10
+            - tool: Prying
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1

@@ -86,3 +86,92 @@
   - type: Appearance
   - type: Ricochetable
     chance: 1
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallShuttleDiagonalSD
+  name: shuttle wall SD
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Sunrise/Structures/Walls/shuttle_diagonal_SD.rsi
+    state: state0
+  - type: Icon
+    sprite: _Sunrise/Structures/Walls/shuttle_diagonal_SD.rsi
+    state: state0
+  - type: Physics
+    bodyType: Static
+  - type: Ricochetable
+    chance: 0.5
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: Girder
+    node: diagonalshuttleWallSD
+
+- type: entity
+  parent: WallShuttle
+  id: WallShuttleSD
+  name: shuttle wall SD
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    sprite: _Sunrise/Structures/Walls/shuttle_SD.rsi
+  - type: Icon
+    sprite: _Sunrise/Structures/Walls/shuttle_SD.rsi
+    state: full
+  - type: Construction
+    graph: Girder
+    node: shuttleWallSD
+  - type: Reflect
+    reflects: Energy
+    reflectProb: 0.5
+  - type: Ricochetable
+    chance: 0.5

@@ -1328,3 +1328,32 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Sunrise-start
+
+- type: construction
+  id: ShuttleWallSD
+  graph: Girder
+  startNode: start
+  targetNode: shuttleWallSD
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DiagonalShuttleWallSD
+  name: construction-recipe-diagonal-shuttle-wall-sd
+  graph: Girder
+  startNode: start
+  targetNode: diagonalshuttleWallSD
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

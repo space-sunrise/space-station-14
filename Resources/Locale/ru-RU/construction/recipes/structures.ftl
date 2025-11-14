@@ -1,4 +1,5 @@
 construction-recipe-diagonal-shuttle-wall = стена шаттла (диагональная)
+construction-recipe-diagonal-shuttle-wall-sd = стена шаттла СБ (диагональная)
 construction-window-diagonal = окно (диагональное)
 construction-recipe-reinforced-window-diagonal = армированное окно (диагональное)
 construction-recipe-clockwork-window-diagonal = часовое окно (диагональное)
