@@ -479,5 +479,7 @@ public enum LogType
     /// </summary>
     Instrument = 103,
 
+    // Sunrise-Start
     Interactions = 104,
+    // Sunrise-End
 }

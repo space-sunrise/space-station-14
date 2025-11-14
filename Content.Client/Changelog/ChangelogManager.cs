@@ -121,16 +121,15 @@ namespace Content.Client.Changelog
             });
         }
 
+        // Sunrise-Start
         public Changelog MergeChangelogs(List<Changelog> changelogs)
         {
             var combinedChangelog = new Changelog();
 
             foreach (var changelog in changelogs)
             {
-                // Объединение списков записей
                 combinedChangelog.Entries.AddRange(changelog.Entries);
 
-                // Объединение свойств
                 if (!string.IsNullOrEmpty(changelog.Name))
                 {
                     combinedChangelog.Name = changelog.Name;
@@ -147,11 +146,11 @@ namespace Content.Client.Changelog
                 }
             }
 
-            // Упорядочивание по времени
             combinedChangelog.Entries = combinedChangelog.Entries.OrderBy(entry => entry.Time).ToList();
 
             return combinedChangelog;
         }
+        // Sunrise-End
 
         public void PostInject()
         {

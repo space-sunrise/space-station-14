@@ -33,8 +33,8 @@ namespace Content.Client.VendingMachines.UI
 
         public VendingMachineMenu()
         {
-            MinSize = new Vector2(250, 150); // Sunrise-Resize
-            SetSize = new Vector2(450, 150); // Sunrise-Resize
+            MinSize = new Vector2(250, 150); // Sunrise-Edit
+            SetSize = new Vector2(450, 150); // Sunrise-Edit
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 

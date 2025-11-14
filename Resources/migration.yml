@@ -39,32 +39,32 @@ BoxMagazinePistolCaselessRifleHighVelocity: BoxMagazinePistolCaselessRifle
 BoxMagazinePistolHighCapacityHighVelocity: BoxMagazinePistolHighCapacity
 BoxMagazinePistolHighVelocity: BoxMagazinePistol
 BoxMagazinePistolSubMachineGunHighVelocity: BoxMagazinePistolSubMachineGun
-BoxMagazineRifleHighVelocity: BoxMagazineRifleSP
+BoxMagazineRifleHighVelocity: BoxMagazineRifleSP # Sunrise-Edit
 BulletCaselessRifleHighVelocity: BulletCaselessRifle
 BulletLightRifleHighVelocity: BulletLightRifle
 BulletMagnumHighVelocity: BulletMagnum
 BulletPistolHighVelocity: BulletPistol
 BulletRifleHighVelocity: BulletRifle
 CartridgeCaselessRifleHighVelocity: CartridgeCaselessRifle
-CartridgeLightRifleHighVelocity: CartridgeLightRifleFMJ
-CartridgeMagnumHighVelocity: CartridgeMagnumFMJ
-CartridgePistolHighVelocity: CartridgePistolFMJ
-CartridgeRifleHighVelocity: CartridgeRifleFMJ
+CartridgeLightRifleHighVelocity: CartridgeLightRifleFMJ # Sunrise-Edit
+CartridgeMagnumHighVelocity: CartridgeMagnumFMJ # Sunrise-Edit
+CartridgePistolHighVelocity: CartridgePistolFMJ # Sunrise-Edit
+CartridgeRifleHighVelocity: CartridgeRifleFMJ # Sunrise-Edit
 MagazineBoxCaselessRifleHighVelocity: MagazineBoxCaselessRifle
-MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifleFMJ
-MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP
-MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ
-MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ
+MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifleFMJ # Sunrise-Edit
+MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP # Sunrise-Edit
+MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ # Sunrise-Edit
+MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ # Sunrise-Edit
 MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
 MagazineCaselessRifleShortHighVelocity: null
 MagazineLightRifleHighVelocity: MagazineLightRifleFMJ
 MagazineMagnumSubMachineGunHighVelocity: null
 MagazinePistolCaselessRifleHighVelocity: MagazinePistolCaselessRifle
-MagazinePistolHighCapacityHighVelocity: MagazinePistolHighCapacityFMJ
-MagazinePistolHighVelocity: MagazinePistolFMJ
-MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGunSP
-MagazineRifleHighVelocity: MagazineRifleFMJ
-SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnumFMJ
+MagazinePistolHighCapacityHighVelocity: MagazinePistolHighCapacityFMJ # Sunrise-Edit
+MagazinePistolHighVelocity: MagazinePistolFMJ # Sunrise-Edit
+MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGunSP # Sunrise-Edit
+MagazineRifleHighVelocity: MagazineRifleFMJ # Sunrise-Edit
+SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnumFMJ # Sunrise-Edit
 SpeedLoaderPistolHighVelocity: SpeedLoaderPistol
 
 # 2023-08-07
@@ -88,7 +88,8 @@ GeneratorUranium: PortableGeneratorSuperPacman
 GeneratorPlasmaMachineCircuitboard: PortableGeneratorPacmanMachineCircuitboard
 GeneratorUraniumMachineCircuitboard: PortableGeneratorSuperPacmanMachineCircuitboard
 
-# 2023-12-10 //Sunrise edit
+# 2023-12-10
+# Sunrise-Edit
 # SpawnPointSeniorResearcher: null
 # SpawnPointSeniorOfficer: null
 # SpawnPointSeniorEngineer: null
@@ -156,6 +157,7 @@ TransmitterSubspaceStockPart: null
 ClothingHeadHatHoodRad: null
 
 # 2024-01-12
+# Sunrise-Edit
 #SpaceMedipen: null
 
 # 2024-01-18
@@ -293,28 +295,33 @@ BulletMagnumRubber: BulletMagnum
 BulletLightRifleRubber: BulletLightRifle
 BulletRifleRubber: BulletRifle
 BulletCaselessRifleRubber: BulletCaselessRifle
-CartridgePistolRubber: CartridgePistolFMJ
-CartridgeLightRifleRubber: CartridgeLightRifleSP
-CartridgeRifleRubber: CartridgeRifleSP
+CartridgePistolRubber: CartridgePistolFMJ # Sunrise-Edit
+CartridgeLightRifleRubber: CartridgeLightRifleSP # Sunrise-Edit
+CartridgeRifleRubber: CartridgeRifleSP # Sunrise-Edit
 CartridgeCaselessRifleRubber: CartridgeCaselessRifle
-# MagazinePistolRubber: MagazinePistol # Its me! Rubber!
-MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP
+# Sunrise-Edit
+# MagazinePistolRubber: MagazinePistol
+MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
-# MagazineMagnumRubber: MagazineMagnum # Its me! Rubber!
+# Sunrise-Edit
+# MagazineMagnumRubber: MagazineMagnum
 MagazineMagnumSubMachineGunRubber: null
-MagazineLightRifleRubber: MagazineLightRifleSP
-MagazineRifleRubber: MagazineRifleSP
+MagazineLightRifleRubber: MagazineLightRifleSP # Sunrise-Edit
+MagazineRifleRubber: MagazineRifleSP # Sunrise-Edit
 MagazineCaselessRifleRubber: MagazineCaselessRifle
 MagazineCaselessRifleShortRubber: null
 SpeedLoaderPistolRubber: SpeedLoaderPistol
-# SpeedLoaderMagnumRubber: SpeedLoaderMagnumSP # Its me! Rubber!
+# Sunrise-Edit
+# SpeedLoaderMagnumRubber: SpeedLoaderMagnumSP
 MagazineBoxPistolRubber: MagazineBoxPistolSP
 # RIP box of magnum rubbers 202X to 2024
+# Sunrise-Edit
 # MagazineBoxMagnumRubber: MagazineBoxMagnumSP
-MagazineBoxLightRifleRubber: MagazineBoxLightRifleSP
-MagazineBoxRifleRubber: MagazineBoxRifleSP
+MagazineBoxLightRifleRubber: MagazineBoxLightRifleSP # Sunrise-Edit
+MagazineBoxRifleRubber: MagazineBoxRifleSP # Sunrise-Edit
 MagazineBoxRifleBigRubber: MagazineBoxRifleBig
 MagazineBoxCaselessRifleRubber: MagazineBoxCaselessRifle
+# Sunrise-Edit
 #MagazineBoxCaselessRifleBigRubber: MagazineBoxCaselessRifle10x24
 # BoxMagazinePistolRubber: BoxMagazinePistol
 BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
@@ -326,6 +333,7 @@ BoxMagazineMagnumSubMachineGunRubber: null
 WeaponPistolMk58Nonlethal: WeaponPistolMk58
 WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
+# Sunrise-Edit
 #WeaponRifleLecterRubber: WeaponRifleLecter
 
 # 2024-04-26
@@ -616,6 +624,7 @@ AirlockMaintCommonLocked: AirlockMaintLocked
 AirlockMaintIntLocked: AirlockMaintLocked
 
 # 2025-04-26
+# Sunrise-Edit
 #ComputerCargoShuttle: ComputerShuttleCargo
 CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
 

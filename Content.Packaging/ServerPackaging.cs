@@ -55,7 +55,7 @@ public static class ServerPackaging
         "Npgsql",
         "Microsoft",
         "NetCord",
-        "0Harmony",
+        "0Harmony", // Sunrise-Edit
     };
 
     private static readonly List<string> ServerNotExtraAssemblies = new()

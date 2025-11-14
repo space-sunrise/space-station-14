@@ -274,7 +274,7 @@ public sealed partial class ChatUIController : UIController
         SetChatWindowOpacity(opacity);
     }
 
-    public void SetChatWindowOpacity(float opacity)
+    public void SetChatWindowOpacity(float opacity) // Sunrise-Edit
     {
         var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
 

@@ -34,8 +34,10 @@ namespace Content.IntegrationTests.Tests.Buckle
   - type: Body
     prototype: Human
   - type: StandingState
+    # Sunrise-Start
   - type: Appearance
   - type: DoAfter
+    # Sunrise-End
 
 - type: entity
   name: {StrapDummyId}

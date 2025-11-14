@@ -34,8 +34,6 @@ public sealed partial class MindTests
         {
             Console.WriteLine(pair.Client.EntMan.ToPrettyString(ent));
         }
-		
-		Console.WriteLine($"Client entity count: {pair.Client.EntMan.EntityCount}");
 
         Assert.That(pair.Client.EntMan.EntityCount, Is.EqualTo(0));
 

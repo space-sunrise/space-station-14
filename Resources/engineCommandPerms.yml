@@ -8,6 +8,8 @@
   - vvread
   - vvwrite
   - vvinvoke
+  # Sunrise-Edit
+  # - spin
 
 - Flags: DEBUG
   Commands:
@@ -135,7 +137,7 @@
   - fuck
   - replay_recording_start
   - replay_recording_stop
-  - spin
+  - spin # Sunrise-Edit
 
 - Flags: QUERY
   Commands:
