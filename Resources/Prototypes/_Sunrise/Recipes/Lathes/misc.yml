@@ -34,3 +34,11 @@
   materials:
     Steel: 1000
     Plastic: 500
+
+- type: latheRecipe
+  id: Binoculars
+  result: Binoculars
+  completetime: 5
+  materials:
+    Steel: 500
+    Glass: 200

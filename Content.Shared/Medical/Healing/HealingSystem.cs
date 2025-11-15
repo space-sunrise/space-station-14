@@ -31,6 +31,7 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedStackSystem _stacks = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;//Sunrise-Edit
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
@@ -141,9 +142,17 @@ public sealed class HealingSystem : EntitySystem
 
         // Logic to determine the whether or not to repeat the healing action
         args.Repeat = HasDamage((args.Used.Value, healing), target) && !dontRepeat;
-        if (!args.Repeat && !dontRepeat)
-            _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), target.Owner, args.User);
         args.Handled = true;
+
+        if (!args.Repeat)
+        {
+            _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), target.Owner, args.User);
+            return;
+        }
+
+        // Update our self heal delay so it shortens as we heal more damage.
+        if (args.User == target.Owner)
+            args.Args.Delay = healing.Delay * GetScaledHealingPenalty(target.Owner, healing.SelfHealPenaltyMultiplier);
     }
 
     private bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
@@ -214,6 +223,14 @@ public sealed class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
+        //Sunrise-Start
+        if (TryComp<MobStateComponent>(target.Owner, out var state))
+        {
+            if (!healing.Comp.WorksOnTheDead && _mobStateSystem.IsDead(target.Owner, state))
+                return false;
+        }
+        //Sunrise-End
+
         // Starlight start
         if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
         {
@@ -248,7 +265,7 @@ public sealed class HealingSystem : EntitySystem
 
         var delay = isNotSelf
             ? healing.Comp.Delay
-            : healing.Comp.Delay * GetScaledHealingPenalty(healing);
+            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
 
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: healing)
@@ -267,21 +284,37 @@ public sealed class HealingSystem : EntitySystem
     /// <summary>
     /// Scales the self-heal penalty based on the amount of damage taken
     /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="component"></param>
-    /// <returns></returns>
-    public float GetScaledHealingPenalty(Entity<HealingComponent> healing)
+    /// <param name="ent">Entity we're healing</param>
+    /// <param name="mod">Maximum modifier we can have.</param>
+    /// <returns>Modifier we multiply our healing time by</returns>
+    public float GetScaledHealingPenalty(Entity<DamageableComponent?, MobThresholdsComponent?> ent, float mod)
     {
-        var output = healing.Comp.Delay;
-        if (!TryComp<MobThresholdsComponent>(healing, out var mobThreshold) ||
-            !TryComp<DamageableComponent>(healing, out var damageable))
-            return output;
-        if (!_mobThresholdSystem.TryGetThresholdForState(healing, MobState.Critical, out var amount, mobThreshold))
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, false))
+            return mod;
+
+        if (!_mobThresholdSystem.TryGetThresholdForState(ent, MobState.Critical, out var amount, ent.Comp2))
+            return 1;
+
+        var percentDamage = (float)(ent.Comp1.TotalDamage / amount);
+        //basically make it scale from 1 to the multiplier.
+
+        var output = percentDamage * (mod - 1) + 1;
+        return Math.Max(output, 1);
+    }
+
+    //Sunrise-Start
+    public float GetScaledHealingPenaltyFixed(Entity<HealingComponent> healing, EntityUid user) //Sunrise-Edit
+    {
+        if (!TryComp<MobThresholdsComponent>(user, out var mobThreshold) ||
+            !TryComp<DamageableComponent>(user, out var damageable))
+            return 1;
+        if (!_mobThresholdSystem.TryGetThresholdForState(user, MobState.Critical, out var amount, mobThreshold))
             return 1;
 
         var percentDamage = (float)(damageable.TotalDamage / amount);
         //basically make it scale from 1 to the multiplier.
         var modifier = percentDamage * (healing.Comp.SelfHealPenaltyMultiplier - 1) + 1;
-        return Math.Max(modifier, 1);
+        return Math.Max(modifier, 1.5f);
     }
+    //Sunrise-End
 }

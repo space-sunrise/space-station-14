@@ -33,21 +33,27 @@
     - WhitelistChameleon
   - type: ArmorSparkEffect #starlight
   - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+    damageCoefficient: 0.9 # Sunrise-Add
   # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
-  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  parent: ClothingOuterArmorBase #[ BaseSecurityBartenderContraband, ClothingOuterArmorBase] # Sunrise-Edit
   id: ClothingOuterArmorBasic
   components:
   - type: Tag
     tags:
     - CorgiWearable
     - WhitelistChameleon
-    - NudeBottom # Sunrise-Add
-  - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+    # Sunrise-start
+    - NudeBottom
+    - ArmorBasic
+  - type: StaminaResistance
+    damageCoefficient: 0.9
+  - type: Construction
+    graph: UpgradeArmorVest
+    node: start
+  # Sunrise-end
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -63,7 +69,7 @@
     sprite: Clothing/OuterClothing/Armor/security_slim.rsi
 
 - type: entity
-  parent: ClothingOuterArmorBase
+  parent: [ ClothingOuterArmorPlate, ClothingOuterArmorBase] # Sunrise-Edit
   id: ClothingOuterArmorBulletproof
   name: bulletproof vest
   description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
@@ -85,7 +91,7 @@
     damageCoefficient: 0.80
 
 - type: entity
-  parent: ClothingOuterArmorBase
+  parent: [ClothingOuterArmorBase, ClothingOuterArmorHeatAbsorb] # Sunrise-Edit
   id: ClothingOuterArmorReflective
   name: reflective vest
   description: An armored vest with advanced shielding to protect against energy weapons.
@@ -195,7 +201,7 @@
   - type: StaticPrice
     price: 1500
   - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.85 # Sunrise-Add
+    damageCoefficient: 0.75 # Sunrise-Add
 
 #Elite web vest
 - type: entity
@@ -343,7 +349,7 @@
   # Sunrise-End
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband, ClothingOuterArmorStab]
   id: ClothingOuterArmorRiot
   name: riot suit
   description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.

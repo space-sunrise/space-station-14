@@ -137,4 +137,18 @@ namespace Content.Shared.Administration
             Typing = typing;
         }
     }
+
+    /// <summary>
+    ///     Sent by server to notify a client when their message was blocked due to cooldown.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class BwoinkCooldownMessage : EntityEventArgs
+    {
+        public TimeSpan RemainingCooldown { get; }
+
+        public BwoinkCooldownMessage(TimeSpan remainingCooldown)
+        {
+            RemainingCooldown = remainingCooldown;
+        }
+    }
 }

@@ -28,15 +28,8 @@ public sealed class TTSManager
         "tts_wanted_count",
         "Amount of wanted TTS audio.");
 
-    private static readonly Counter WantedRadioCount = Metrics.CreateCounter(
-        "tts_wanted_radio_count",
-        "Amount of wanted TTS radio audio.");
-
-    private static readonly Counter WantedAnnounceCount = Metrics.CreateCounter(
-        "tts_wanted_announce_count",
-        "Amount of wanted TTS Announce audio.");
-
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ILogManager _logMan = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -45,7 +38,7 @@ public sealed class TTSManager
 
     public void Initialize()
     {
-        _sawmill = Logger.GetSawmill("tts");
+        _sawmill = _logMan.GetSawmill("tts");
         _cfg.OnValueChanged(SunriseCCVars.TTSApiUrl, OnApiUrlChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSApiToken, OnApiTokenChanged, true);
     }
@@ -132,22 +125,6 @@ public sealed class TTSManager
 
         uriBuilder.Query = query.ToString();
         return uriBuilder.ToString();
-    }
-
-    public async Task<byte[]?> ConvertTextToSpeechRadio(TTSVoicePrototype voicePrototype, string text)
-    {
-        WantedRadioCount.Inc();
-        var soundData = await ConvertTextToSpeech(voicePrototype, text, "radio");
-
-        return soundData;
-    }
-
-    public async Task<byte[]?> ConvertTextToSpeechAnnounce(TTSVoicePrototype voicePrototype, string text)
-    {
-        WantedAnnounceCount.Inc();
-        var soundData = await ConvertTextToSpeech(voicePrototype, text, "announce");
-
-        return soundData;
     }
 
     private record GenerateVoiceRequest

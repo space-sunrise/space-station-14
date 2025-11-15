@@ -138,3 +138,85 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: Zombie
+  name: listing-disease-zombie-name
+  description: listing-disease-zombie-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
+  productAction: ActionDiseaseZombie
+  cost:
+    DiseasePoints: 200
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: InfectCharge
+  name: listing-disease-infect-charge-name
+  description: listing-disease-infect-charge-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: action }
+  cost:
+    DiseasePoints: 10
+  categories:
+  - DiseaseInfectionCategory
+
+#Sunrise-start
+- type: listing
+  id: BaseChance
+  name: listing-disease-base-chance-name
+  description: listing-disease-base-chance-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: baseChance }
+  raiseProductEventOnUser: true
+  cost:
+    DiseasePoints: 20
+  categories:
+  - DiseaseEvolutionCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: InfectChance
+  name: listing-disease-infect-chance-name
+  description: listing-disease-infect-chance-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: coughChance }
+  raiseProductEventOnUser: true
+  cost:
+    DiseasePoints: 15
+  categories:
+  - DiseaseEvolutionCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Shield
+  name: listing-disease-shield-name
+  description: listing-disease-shield-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: shield }
+  raiseProductEventOnUser: true
+  cost:
+    DiseasePoints: 15
+  categories:
+  - DiseaseEvolutionCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Lethal
+  name: listing-disease-lethal-name
+  description: listing-disease-lethal-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
+  raiseProductEventOnUser: true
+  cost:
+    DiseasePoints: 15
+  categories:
+  - DiseaseEvolutionCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+#Sunrise-End

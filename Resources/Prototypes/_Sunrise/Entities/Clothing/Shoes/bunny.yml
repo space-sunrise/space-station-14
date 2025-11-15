@@ -1,0 +1,28 @@
+﻿- type: entity
+  parent: ClothingShoesBase
+  id: BunnyShoes
+  name: bunny shoes
+  suffix: Bunny
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/bunny_shoes.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm
+
+- type: entity
+  parent: BunnyShoes
+  id: BunnyShoesFilled
+  suffix: Bunny, Filled
+  components:
+  - type: StorageFill
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
+

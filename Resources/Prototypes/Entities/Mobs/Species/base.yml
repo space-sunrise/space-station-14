@@ -40,6 +40,7 @@
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.Back" ] # SUNRISE
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -122,7 +123,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   - type: StatusEffects
     allowed:
     - Electrocution
@@ -184,6 +185,9 @@
     factions:
     - NanoTrasen
   - type: CreamPied
+  - type: ParcelWrapOverride
+    parcelPrototype: WrappedParcelHumanoid
+    wrapDelay: 5
   - type: Stripping
   - type: UserInterface
     interfaces:
@@ -273,11 +277,11 @@
   - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
     allowedStates:
     - Alive
-    damageCap: 20
+    damageCap: 30 #Sunrise-Edit
     damage:
       types:
         Heat: -0.07
-        Mangleness: -0.01 #SUNRISE-EDIT
+        Mangleness: -0.02 #SUNRISE-EDIT
       groups:
         Brute: -0.07
   - type: Fingerprint
@@ -375,6 +379,7 @@
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.Back" ] # SUNRISE
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

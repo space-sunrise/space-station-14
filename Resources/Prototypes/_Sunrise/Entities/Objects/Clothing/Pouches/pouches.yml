@@ -85,3 +85,17 @@
     contents:
       - id: MagazinePistolSubMachineGun
         amount: 4
+
+- type: entity
+  parent: PouchAmmo
+  id: PouchAmmoFilledPistol40
+  suffix: Filled pistol .40
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistol40SP
+        amount: 2
+      - id: MagazinePistol40FMJ
+        amount: 1
+      - id: MagazinePistol40HP
+        amount: 1

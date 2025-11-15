@@ -225,3 +225,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_groom_suit.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/wedding/black_groom_suit.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformSkirtSunriseMaid
+  name: ezz ha ha
+  description: ezz lol lmao rofl
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi

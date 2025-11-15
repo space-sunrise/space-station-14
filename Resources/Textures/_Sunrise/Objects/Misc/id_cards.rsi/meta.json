@@ -143,7 +143,43 @@
             "name": "idintern-tech"
         },
         {
+            "name": "idengineer-space-prison"
+        },
+        {
+            "name": "idscientist-space-prison"
+        },
+        {
+            "name": "iddoctor-space-prison"
+        },
+        {
+            "name": "idchef-space-prison"
+        },
+        {
+            "name": "idworker-space-prison"
+        },
+        {
+            "name": "idinspector-space-prison"
+        },
+        {
+            "name": "idcommaid"
+        },
+        {
             "name": "abductor"
+        },
+        {
+            "name": "idmagistrat"
+        },
+        {
+            "name": "idiaa"
+        },
+        {
+            "name": "stripe_bottom"
+        },
+        {
+            "name": "stripe_top"
+        },
+        {
+            "name": "centcom"
         }
     ]
 }

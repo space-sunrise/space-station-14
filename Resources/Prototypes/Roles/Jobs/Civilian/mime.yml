@@ -4,8 +4,8 @@
   description: job-description-mime
   playTimeTracker: JobMime
   requirements:
-  - !type:OverallPlaytimeRequirement
-      time: 18000 #5 hrs # Sunrise-RoleTime
+    - !type:OverallPlaytimeRequirement
+      time: 4h
   startingGear: MimeGear
   icon: "JobIconMime"
   supervisors: job-supervisors-hop

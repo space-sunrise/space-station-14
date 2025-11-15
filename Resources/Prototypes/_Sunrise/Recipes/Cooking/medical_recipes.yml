@@ -1,0 +1,362 @@
+#pen recycling recipes
+
+- type: microwaveMealRecipe
+  id: RecipeCleanEmergencyMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    EmergencyMedipen: 1
+  reagents:
+    SpaceCleaner: 1
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanAntiPoisonMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    AntiPoisonMedipen: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanBruteAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    BruteAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanBurnAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    BurnAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanRadAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    RadAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanCombatMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    CombatMedipen: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanStimpackNT
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    StimpackNT: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanStellibininAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    StellibininAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanWehMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    WehMedipen: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanPolyAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    PolyAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanBruizAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    BruizAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanLacerAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    LacerAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanAirlossAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    AirlossAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanPunctAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    PunctAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: RecipeCleanPyraAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    PyraAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+- type: microwaveMealRecipe
+  id: SpaceMedipenAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    SpaceMedipen: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler 
+
+  #pen recipes
+  #Upstream recipes
+
+- type: microwaveMealRecipe
+  id: RecipeEmergencyMedipen
+  name: emergency medipen
+  result: EmergencyMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Epinephrine: 12
+    TranexamicAcid: 3
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipeAntiPoisonMedipen
+  name: poison auto-injector
+  result: AntiPoisonMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Ultravasculine: 10
+    Epinephrine: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipeBruteAutoInjector
+  name: brute auto-injector
+  result: BruteAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Bicaridine: 15
+    TranexamicAcid: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipeBurnAutoInjector
+  name: burn auto-injector
+  result: BurnAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Dermaline: 10
+    Leporazine: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipeRadAutoInjector
+  name: rad auto-injector
+  result: RadAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Arithrazine: 15
+    Bicaridine: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePunctAutoInjector
+  name: puncturase auto-injector
+  result: PunctAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Puncturase: 10
+    TranexamicAcid: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePyraAutoInjector
+  name: pyrazine auto-injector
+  result: PyraAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Pyrazine: 5
+    Dermaline: 10
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipeAirlossAutoInjector
+  name: airloss auto-injector
+  result: AirlossAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Saline: 15
+    DexalinPlus: 15
+  recipeType: MedicalAssembler
+
+#Frontier pen recipes
+
+- type: microwaveMealRecipe
+  id: RecipePenLacerAutoInjector
+  name: lacerinol auto-injector
+  result: LacerAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Lacerinol: 10
+    TranexamicAcid: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenBruizAutoInjector
+  name: bruizine auto-injector
+  result: BruizAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Bruizine: 10
+    TranexamicAcid: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenPolyAutoInjector
+  name: polypyrylium oligomers auto-injector
+  result: PolyAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    PolypyryliumOligomers: 20
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenCombatMedipen
+  name: Omnizine auto-injector
+  result: CombatMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Omnizine: 25
+    TranexamicAcid: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenStimpackNT
+  name: Ephedrine auto-injector
+  result: StimpackNT
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Ephedrine: 16
+    Epinephrine: 8
+    Tricordrazine: 6
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenCrisisAutoInjector
+  name: Stellibinin auto-injector
+  result: StellibininAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Stellibinin: 10
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenWehMedipen
+  name: Weh Medipen
+  result: WehMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    JuiceThatMakesYouWeh: 60
+  recipeType: MedicalAssembler
+
+#Frontier pen recipes

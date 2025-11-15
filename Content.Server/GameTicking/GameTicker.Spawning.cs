@@ -153,12 +153,13 @@ namespace Content.Server.GameTicking
             var character = GetPlayerProfile(player);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if (jobBans == null || jobId != null && jobBans.Contains(jobId))
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
                 return;
 
             if (jobId != null)
             {
-                var ev = new IsJobAllowedEvent(player, new ProtoId<JobPrototype>(jobId));
+                var jobs = new List<ProtoId<JobPrototype>> {jobId};
+                var ev = new IsRoleAllowedEvent(player, jobs, null);
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;
@@ -330,17 +331,18 @@ namespace Content.Server.GameTicking
                         playDefault: false,
                         colorOverride: Color.Gold);
                 }
-                else
-                {
-                    _chatSystem.DispatchStationAnnouncement(station,
-                        Loc.GetString("latejoin-arrival-announcement",
-                            ("character", MetaData(mob).EntityName),
-                            ("gender", character.Gender), // Russian-LastnameGender
-                            ("entity", mob),
-                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        Loc.GetString("latejoin-arrival-sender"),
-                        playDefault: false);
-                }
+                // else
+                // {
+                //     _chatSystem.DispatchStationAnnouncement(station,
+                //         Loc.GetString("latejoin-arrival-announcement",
+                //             ("character", MetaData(mob).EntityName),
+                //             ("gender", character.Gender), // Russian-LastnameGender
+                //             ("entity", mob),
+                //             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                //         Loc.GetString("latejoin-arrival-sender"),
+                //         playDefault: false,
+                //         playTts: false);
+                // }
             }
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

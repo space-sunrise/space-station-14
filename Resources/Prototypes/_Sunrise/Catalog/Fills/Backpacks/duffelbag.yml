@@ -1,26 +1,41 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledBauer
-  name: Bauer-127 bundle
-  description: "The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set."
+  name: Sniper bundle
+  description: "Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles."
   components:
   - type: StorageFill
     contents:
       - id: WeaponRifleBauer127Biocode
       - id: MagazineBauer127
-      - id: MagazineBauer127
+        amount: 3
+      - id: MagazineBoxAntiMateriel
+        amount: 2
+      - id: ClothingEyesGlassesThermalSyndie
+      - id: PowerCellSyndicate
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledDragunov
-  name: Dragunov bundle
-  description: "The iconic Dragunov magazine rifle with 2 raspy magazines in the set."
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateSuperAmmoFilled
+  name: ammo bundle
+  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW."
   components:
   - type: StorageFill
     contents:
-      - id: WeaponSniperDragunovBiocode
-      - id: MagazineDragunov
-      - id: MagazineDragunov
+      - id: SMGAmmoKit # Sunrise-edit
+        amount: 1
+      - id: ShotGunKit # Sunrise-edit
+        amount: 1
+      - id: LMGKit # Sunrise-edit
+        amount: 1
+      - id: MMGKit  # Sunrise-edit
+        amount: 1
+      - id: CaselessAmmoKit  # Sunrise-edit
+        amount: 1
+      - id: RifleAmmoKit  # Sunrise-edit
+        amount: 1
+      - id: DragunovAmmoKit  # Sunrise-edit
+        amount: 1
 
 #ERT_Uplink
 - type: entity

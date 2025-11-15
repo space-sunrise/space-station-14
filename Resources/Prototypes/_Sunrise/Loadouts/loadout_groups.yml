@@ -138,7 +138,6 @@
   name: loadout-group-blueshield-belt
   loadouts:
   - BlueShieldWebbing
-  - AssaultBeltBS
 
 - type: loadoutGroup
   id: BlueShieldNeck
@@ -224,6 +223,7 @@
   loadouts:
   - GlockBox
   - ACP14Box
+  - SnubRevolverBox
   - MK58Box
   - MK58GoldBox
   - WeaponDominator
@@ -239,6 +239,7 @@
   loadouts:
   - CadetWeaponGlockBox
   - CadetWeaponACP14Box
+  - SnubRevolverBox
   - CadetWeaponMK58Box
   - MK58GoldBox
   - CadetWeaponMiniEnergyGun
@@ -252,6 +253,7 @@
   maxLimit: 1
   loadouts:
   - DetectiveWeapon
+  - WeaponRevolverSnubRevolver
   - DetectiveWeapon20h
   - DetectiveWeapon50h
   - DetectiveWeapon50h2
@@ -321,12 +323,12 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  - Sunrise-GlovesNitrileBlack
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileOrange
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileBlack
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileOrange
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  - Sunrise-GlovesNitrileBlue
+  # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: SeniorPhysicianHead
@@ -441,12 +443,12 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  - Sunrise-GlovesNitrileBlack
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileOrange
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileBlack
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileOrange
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  - Sunrise-GlovesNitrileBlue
+  # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: SunriseChemistHead
@@ -505,9 +507,9 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileOrange
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileOrange
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
 
 - type: loadoutGroup
@@ -632,10 +634,10 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  - Sunrise-GlovesNitrileBlue
+  # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: PathologistHead
@@ -722,9 +724,9 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileBlack
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileBlack
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
 
 - type: loadoutGroup
@@ -1257,3 +1259,55 @@
   name: loadout-group-uniformntr
   loadouts:
   - JumpsuitNTR
+
+# ComMaid Groups
+
+- type: loadoutGroup
+  id: ComMaidHead
+  name: loadout-group-commaid-head
+  minLimit: 0
+  loadouts:
+  - ComMaidHurseHat
+  - ComMaidBonnyEars
+  - ComMaidTacticalHeadband
+
+- type: loadoutGroup
+  id: ComMaidJumpsuit
+  name: loadout-group-commaid-jumpsuit
+  loadouts:
+  - ComMaidElegantJumpskirt
+  - ComMaidSunriseJumpskirt
+  - ComMaidBunnyUniform
+  - ComMaidJumpsuitLawyerBlack
+  - ComMaidTacticalJumpskirt
+
+- type: loadoutGroup
+  id: ComMaidBackpack
+  name: loadout-group-commaid-backpack
+  loadouts:
+  - ComMaidBackpackSatchelLeather
+
+- type: loadoutGroup
+  id: ComMaidNeck
+  name: loadout-group-commaid-neck
+  minLimit: 0
+  loadouts:
+  - ComMaidBunnyButterfly
+
+- type: loadoutGroup
+  id: ComMaidShoes
+  name: loadout-group-commaid-shoes
+  loadouts:
+  - ComMaidShoes
+  - ComMaidBunnyShoes
+  - ComMaidShoesBootsLaceup
+
+- type: loadoutGroup
+  id: ComMaidGloves
+  name: loadout-group-commaid-gloves
+  minLimit: 0
+  loadouts:
+  - ComMaidBunnyManjets
+  - ComMaidGlovesWhite
+  - ComMaidGlovesTactical
+

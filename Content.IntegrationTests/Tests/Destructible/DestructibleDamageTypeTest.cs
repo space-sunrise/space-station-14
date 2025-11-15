@@ -1,7 +1,7 @@
-using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Destructible.Thresholds.Triggers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Configuration;
@@ -91,7 +91,7 @@ namespace Content.IntegrationTests.Tests.Destructible
                     Assert.That(threshold.Trigger, Is.InstanceOf<AndTrigger>());
                 });
 
-                var trigger = (AndTrigger) threshold.Trigger;
+                var trigger = (AndTrigger)threshold.Trigger;
 
                 Assert.Multiple(() =>
                 {
@@ -159,7 +159,7 @@ namespace Content.IntegrationTests.Tests.Destructible
                     Assert.That(threshold.Trigger, Is.InstanceOf<AndTrigger>());
                 });
 
-                trigger = (AndTrigger) threshold.Trigger;
+                trigger = (AndTrigger)threshold.Trigger;
 
                 Assert.Multiple(() =>
                 {

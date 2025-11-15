@@ -29,8 +29,8 @@
        variation: 0.125
     activatedDamage:
       types:
-        Slash: 4
-        Heat: 4
+        Slash: 3
+        Heat: 3
         Structural: 10
   - type: MeleeWeapon
     angle: 0
@@ -126,39 +126,34 @@
     pryPowered: true
     useSound: /Audio/Items/jaws_pry.ogg
 
-#G.O.R.I.L.L.A. cyber arm
 - type: entity
-  name: gorrila arm
-  parent: [BaseItem, BaseScienceContraband]
+  name: G.O.R.I.L.L.A. gauntlet
+  parent: BaseItem
   id: CyberGorillaArm
-  description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
+  description: A robust piece of research equipment. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/gorilla.rsi
-    state: storage
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
-  - type: Reflect
-    reflectProb: 0.10
-  - type: UseDelay
-    delay: 1.20
-  - type: UseDelayOnMeleeHit
+    state: icon
+  - type: Item
+    size: Large
+    storedSprite:
+      state: storage
+      sprite: Objects/Weapons/Melee/gorilla.rsi
   - type: MeleeWeapon
-    attackRate: 1
+    attackRate: 0.5
     angle: 0
+    bluntStaminaDamageFactor: 2
     animation: WeaponArcFist
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 30
-        Structural: 25
+        Blunt: 20
     soundHit:
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: CorePoweredThrower
   - type: MeleeThrowOnHit
     unanchorOnHit: true
-    stunTime: 1.5
   - type: ItemSlots
     slots:
       core_slot:
@@ -178,15 +173,120 @@
         Cold: 100
         Radiation: 100
     slots: NONE
-  - type: Item
+  - type: Prying
+    speedModifier: 2
+    pryPowered: true
+
+#G.O.R.I.L.L.A. cyber arm #Syndie Upgrade
+- type: entity
+  name: experimental G.O.R.I.L.L.A. gauntlet
+  parent: [CyberGorillaArm, BaseScienceContraband]
+  id: CyberGorillaArmUpgraded
+  description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/gorilla.rsi
+    state: storage
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Reflect
+    reflectProb: 0.25
+  - type: UseDelay
+    delay: 1
+  - type: UseDelayOnMeleeHit
+  - type: MeleeWeapon
+    attackRate: 1
+    angle: 0
+    bluntStaminaDamageFactor: 2
+    animation: WeaponArcFist
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 30
+        Structural: 25
+    soundHit:
+      path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
+  - type: MeleeThrowOnHit
+    unanchorOnHit: true
+    stunTime: 1.5
   - type: Tool
     qualities:
       - Prying
     useSound: /Audio/Items/jaws_pry.ogg
+  - type: ToolTileCompatible
+    delay: 1
   - type: Prying
-    speedModifier: 1.25
+    speedModifier: 5
     pryPowered: true
-    useSound: /Audio/Items/jaws_pry.ogg
+    useSound: /Audio/Machines/airlock_creaking.ogg
+
+# C.H.I.M.P. cyber arm
+- type: entity
+  name: C.H.I.M.P. handcannon
+  parent: [BaseWeaponBatterySmall, BaseScienceContraband]
+  id: CyberPistolCHIMP
+  description: Just because it's a little C.H.I.M.P. doesn't mean it can't punch like an A.P.E.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      visible: false
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    bigTrigger: true
+  - type: ProjectileBatteryAmmoProvider
+    proto: AnomalousParticleDeltaStrong
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: AnomalousParticleSigmaStrong
+      fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+    autoRechargePauseTime: 1
+
+- type: entity #Syndie Upgrade of C.H.I.M.P. cyber arm
+  name: experimental C.H.I.M.P. handcannon
+  parent: [CyberPistolCHIMP, BaseSyndicateContraband]
+  id: CyberPistolCHIMPUpgraded
+  description: This C.H.I.M.P. seems to have a greater punch than usual...
+  components:
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleOmegaStrong
+      fireCost: 100
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: AnomalousParticleSigmaStrong
+      fireCost: 100
 
 # Laser pulser arms
 - type: entity
@@ -275,4 +375,43 @@
           tags:
           - Grenade
           - HandGrenadeAmmo
-          - ArtilleryShell
+
+# Atmos Thrower
+- type: entity
+  name: Atmos grenade thrower
+  parent: BaseWeaponBattery
+  id: CyberGrenadeThrowerAtmos
+  description: A one-of-a-kind prototype of emergency repair module mounted in arm that uses various engi grenade configurations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
+    state: icon
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    projectileSpeed: 15
+    bigTrigger: true
+  - type: ProjectileBatteryAmmoProvider
+    proto: AirGrenade
+    fireCost: 130
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AirGrenade
+      fireCost: 130
+    - proto: MetalFoamGrenade
+      fireCost: 260
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 4
+        staminaMultiplier: 25
+      Felinid:
+        knockback: 2 #half of what resomi take
+        staminaMultiplier: 25

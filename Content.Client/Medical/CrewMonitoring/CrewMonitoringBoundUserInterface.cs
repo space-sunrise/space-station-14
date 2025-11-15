@@ -31,6 +31,7 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
 
         _menu = this.CreateWindow<CrewMonitoringWindow>();
         _menu.Set(stationName, gridUid);
+        _menu.SetBoundUserInterface(this);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -42,6 +43,7 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
             case CrewMonitoringState st:
                 EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
                 _menu?.ShowSensors(st.Sensors, Owner, xform?.Coordinates);
+                _menu?.UpdateCorpseAlertToggle(st.CorpseAlertEnabled);
                 break;
         }
     }

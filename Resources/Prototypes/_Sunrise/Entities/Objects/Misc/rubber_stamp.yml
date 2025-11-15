@@ -121,3 +121,16 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-specops
+
+- type: entity
+  name: prison inspector's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPrisonInspector
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-prison-inspector
+      stampedColor: "#494793"
+      stampState: "paper_stamp-lawyer"
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/stamps.rsi
+      state: stamp-specops

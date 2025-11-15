@@ -19,7 +19,6 @@
     - Handcuffs
   - type: MeleeWeapon
     wideAnimationRotation: 90
-    resetOnHandSelected: false
     animation: WeaponArcDisarm
     damage:
       types:
