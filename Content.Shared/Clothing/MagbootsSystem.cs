@@ -76,7 +76,7 @@ public sealed class SharedMagbootsSystem : EntitySystem
 
     private void OnIsWeightless(Entity<BorgMagbootsComponent> ent, ref IsWeightlessEvent args)
     {
-        if (args.Handled || !_toggle.IsActivated(ent.Owner))
+        if (args.Handled || !ent.Comp.On)
             return;
 
         // do not cancel weightlessness if the person is in off-grid.
