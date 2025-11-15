@@ -6,6 +6,7 @@ using Content.Shared.Trigger.Systems;
 using Content.Shared._Sunrise.Trigger;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 
 namespace Content.Shared._Sunrise.Trigger;
 
@@ -14,6 +15,7 @@ public sealed class UnsnareOnTriggerSystem : EntitySystem
     [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
 
     public override void Initialize()
     {
@@ -35,19 +37,19 @@ public sealed class UnsnareOnTriggerSystem : EntitySystem
 
         foreach (var ensnareEntity in ensnareable.Container.ContainedEntities.ToList())
         {
-            if (TryComp<EnsnaringComponent>(ensnareEntity, out var ensnaring))
-            {
-                _container.Remove(ensnareEntity, ensnareable.Container, force: true);
-                ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
-                Dirty(target.Value, ensnareable);
-                ensnaring.Ensnared = null;
+            if (!TryComp<EnsnaringComponent>(ensnareEntity, out var ensnaring))
+                continue;
 
-                if (ensnaring.DestroyOnRemove)
-                    _entityManager.QueueDeleteEntity(ensnareEntity);
+            _container.Remove(ensnareEntity, ensnareable.Container, force: true);
+            ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
+            Dirty(target.Value, ensnareable);
+            ensnaring.Ensnared = null;
 
-                var ev = new EnsnareRemoveEvent(ensnaring.WalkSpeed, ensnaring.SprintSpeed);
-                RaiseLocalEvent(target.Value, ev);
-            }
+            if (ensnaring.DestroyOnRemove && (_netManager.IsServer || IsClientSide(ensnareEntity)))
+                _entityManager.QueueDeleteEntity(ensnareEntity);
+
+            var ev = new EnsnareRemoveEvent(ensnaring.WalkSpeed, ensnaring.SprintSpeed);
+            RaiseLocalEvent(target.Value, ev);
         }
 
         _ensnareable.UpdateAlert(target.Value, ensnareable);
