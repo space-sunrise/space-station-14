@@ -102,10 +102,6 @@ public sealed class FelinidLickingSystem : EntitySystem
         {
             StartLicking(uid, target, component, damageable);
         }
-        else
-        {
-            _popup.PopupClient(Loc.GetString("felinid-licking-stop"), uid, uid);
-        }
 
         args.Handled = true;
     }
