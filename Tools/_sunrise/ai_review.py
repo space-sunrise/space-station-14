@@ -24,22 +24,31 @@ def read_file(path: str) -> str:
         return ""
 
 def call_gemini_chat(system_prompt: str, user_prompt: str) -> str:
-    response = genai.chats.create(
-        model=MODEL,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        temperature=TEMPERATURE,
-        max_output_tokens=MAX_OUTPUT_TOKENS,
+    contents = [
+        types.Content(
+            role="system",
+            parts=[types.Part.from_text(text=system_prompt)],
+        ),
+        types.Content(
+            role="user",
+            parts=[types.Part.from_text(text=user_prompt)],
+        ),
+    ]
+
+    generate_content_config = types.GenerateContentConfig(
+        thinking_config=types.ThinkingConfig(thinking_budget=-1),
     )
-    try:
-        return response.last["content"][0]["text"]
-    except Exception:
-        try:
-            return response.candidates[0].messages[0].content[0].text
-        except Exception:
-            return str(response)
+
+    response = ""
+    for chunk in client.models.generate_content_stream(
+        model=MODEL,
+        contents=contents,
+        config=generate_content_config,
+    ):
+        response += chunk.text
+
+    return response
+
 
 def run_ai_review(gdd: str, diff: str, title: str, body: str) -> str:
     system_prompt = "Ты — главный геймдизайнер проекта Sunrise Station. Проанализируй Pull Request."
