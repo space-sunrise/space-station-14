@@ -1,5 +1,5 @@
 ent-BolaSyndicate = бола синдиката
     .desc = Бола синдиката, предназначенная явно не для мирных целей.
 
-ent-BolaSyndicateBioсode = { ent-BolaSyndicate }
+ent-BolaSyndicateBiocode = { ent-BolaSyndicate }
     .desc = { ent-BolaSyndicate.desc }
