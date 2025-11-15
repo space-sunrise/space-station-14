@@ -43,7 +43,7 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
     public int MaxAliveCarps = 16;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public int AliveCarps = 0;
+    public int AliveCarps;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsSpawnAccumulating = true;

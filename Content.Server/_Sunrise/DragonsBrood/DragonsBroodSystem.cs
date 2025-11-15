@@ -39,4 +39,5 @@ public sealed class DragonsBroodSystem : EntitySystem
     }
 }
 
+[Serializable]
 public record struct DragonsBroodDeadEvent(Entity<DragonRiftComponent> Rift);
