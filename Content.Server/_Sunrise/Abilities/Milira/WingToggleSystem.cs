@@ -42,6 +42,10 @@ public sealed class WingToggleSystem : EntitySystem
         if (args.Handled)
             return;
 
+
+        if (component.ActionEntity == null || args.Action.Owner != component.ActionEntity.Value)
+            return;
+
         args.Handled = TryToggleWings(uid, component);
     }
 
@@ -88,6 +92,15 @@ public sealed class WingToggleSystem : EntitySystem
 
         component.WingsOpened = openTarget;
         Dirty(uid, component);
+
+        if (component.WingsOpened)
+        {
+            EnsureComp<WingFlightComponent>(uid);
+        }
+        else
+        {
+            RemCompDeferred<WingFlightComponent>(uid);
+        }
         return true;
     }
 

@@ -10,3 +10,16 @@
     itemIconStyle: NoItem
     useDelay: 5
     checkCanInteract: false
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleFlight
+  name: Take Flight
+  description: Launch into flight, trading stamina for speed.
+  components:
+  - type: Action
+    #icon: { sprite: TODO, state: TODO }
+    # iconOn: { sprite: TODO, state: TODO }
+    itemIconStyle: NoItem
+    checkCanInteract: false
+    useDelay: 1.5
