@@ -18,3 +18,7 @@
     factions:
     - Syndicate
     alertText: Данный предмет биокодирован. Вы не можете его использовать.
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
