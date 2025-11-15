@@ -28,7 +28,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
-using Content.Shared._Sunrise.Biocode;
 // Sunrise-End
 
 namespace Content.Server.Medical;
@@ -54,7 +53,6 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!; // Sunrise-Edit
-    [Dependency] private readonly BiocodeSystem _biocode = default!; // Sunrise-Edit
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -121,13 +119,10 @@ public sealed class DefibrillatorSystem : EntitySystem
             return false;
 
         // Sunrise-Start
-        if (TryComp<BiocodeComponent>(uid, out var biocode) && user != null &&
-           !_biocode.CanUse(user.Value, biocode.Factions))
-        {
-            if (!string.IsNullOrEmpty(biocode.AlertText))
-                _popup.PopupEntity(biocode.AlertText, uid, user.Value);
+        var canZapEvent = new SunriseCanZapEvent(uid, target, user);
+        RaiseLocalEvent(uid, ref canZapEvent);
+        if (canZapEvent.Cancelled)
             return false;
-        }
         // Sunrise-End
 
         if (!targetCanBeAlive && _mobState.IsAlive(target, mobState))
