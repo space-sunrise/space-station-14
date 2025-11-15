@@ -14,7 +14,7 @@ if not API_KEY:
     print("ERROR: GEMINI_API_KEY not set", file=sys.stderr)
     sys.exit(1)
 
-genai.configure(api_key=API_KEY)
+client = genai.Client(api_key=API_KEY)
 
 def read_file(path: str) -> str:
     try:
@@ -24,7 +24,7 @@ def read_file(path: str) -> str:
         return ""
 
 def call_gemini_chat(system_prompt: str, user_prompt: str) -> str:
-    response = genai.chat.create(
+    response = genai.chats.create(
         model=MODEL,
         messages=[
             {"role": "system", "content": system_prompt},
@@ -46,16 +46,16 @@ def run_ai_review(gdd: str, diff: str, title: str, body: str) -> str:
     user_prompt = f"""
     === TITLE ===
     {title}
-    
+
     === DESCRIPTION ===
     {body}
-    
+
     === GAME DESIGN DOCUMENT ===
     {gdd}
-    
+
     === PULL REQUEST DIFF ===
     {diff}
-    
+
     Ответь:
     1. Соответствует ли PR идеям GDD?
     2. Понижает или повышает ли баланс?
