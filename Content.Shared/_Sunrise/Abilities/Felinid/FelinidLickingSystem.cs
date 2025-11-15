@@ -12,6 +12,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Sunrise.Abilities.Felinid;
 
@@ -119,7 +120,7 @@ public sealed class FelinidLickingSystem : EntitySystem
     /// <param name="errorMessage">Сообщение об ошибке (если есть)</param>
     /// <returns>True, если можно облизывать</returns>
     private bool CanLick(EntityUid licker, EntityUid target, FelinidLickingComponent component,
-        out DamageableComponent? damageable, out string? errorMessage)
+        [NotNullWhen(true)] out DamageableComponent? damageable, out string? errorMessage)
     {
         damageable = null;
         errorMessage = null;
