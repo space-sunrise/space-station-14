@@ -321,7 +321,7 @@
     duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Amber.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_amber.yml"
 
 - type: entity
   id: ERTShuttleAssaultRed
@@ -333,7 +333,7 @@
     duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Red.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_red.yml"
 
 - type: entity
   id: ERTShuttleAssaultGamma
@@ -345,7 +345,7 @@
     duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Gamma.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_gamma.yml"
 
 
 - type: entity
@@ -379,7 +379,7 @@
   - type: StationEvent
     startAnnouncement: null
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/infiltrator_raid.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/infiltrator_raid.yml"
 
 - type: entity
   id: NukeopsInstigator

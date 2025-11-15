@@ -8,9 +8,10 @@
     Pirate: 1
     PirateSmall: 0.25
     LoneOperative: 1
-    Instigator: 0.7
-    Infiltrator: 0.25
+    Instigator: 0.6
+    Infiltrator: 0.35
     Nukeops: 0.05
+    Abductors: 0.5
     # Sunrise-end
 
 - type: ninjaHackingThreat
@@ -53,4 +54,9 @@
   id: PirateSmall
   announcement: terror-pirate-small
   rule: PirateSmall
+
+- type: ninjaHackingThreat
+  id: Abductors
+  announcement: terror-abductor
+  rule: AbductorsSpawn
 # Sunrise-end

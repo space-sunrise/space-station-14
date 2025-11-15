@@ -361,4 +361,43 @@
       - state: base-colorA-inhand-right
         color: "#808080"
       - state: base-colorB-inhand-right
-    
+
+- type: entity
+  name: coal auto-injector
+  parent: ChemicalMedipen
+  id: CoalAutoInjector
+  description: Clears your blood and treats poison damage over 30 seconds.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#404040"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#404040"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: coalpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: coalpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Charcoal
+          Quantity: 15
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: false
+    injectOnly: true

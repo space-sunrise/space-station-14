@@ -946,6 +946,21 @@
   - !type:ListingLimitedStockCondition
     stock: 3
 
+- type: listing
+  id: ERTUplinkCoalpenKit
+  name: uplink-coalpen-kit-name
+  description: uplink-coalpen-kit-desc
+  productEntity: CoalpenKitFilled
+  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: coalpen }
+  cost:
+    Crystallite: 12
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+
 # Дополнительное:
 
 - type: listing

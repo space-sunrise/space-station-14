@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 7200 #2 hrs # Sunrise-RoleTime
+      time: 2.5h
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
@@ -26,8 +26,6 @@
   equipment:
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-    eyes: ClothingEyesHudMedical # Sunrise-Edit
-    id: MedicalPDA
   #storage:
     #back:
     #- Stuff
@@ -37,6 +35,7 @@
   job: MedicalDoctor
   equipment:
     head: ClothingHeadNurseHat
+    eyes: ClothingEyesHudMedical
     mask: ClothingMaskSterile
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLab

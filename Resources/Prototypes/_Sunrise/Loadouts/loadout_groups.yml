@@ -138,7 +138,6 @@
   name: loadout-group-blueshield-belt
   loadouts:
   - BlueShieldWebbing
-  - AssaultBeltBS
 
 - type: loadoutGroup
   id: BlueShieldNeck
@@ -224,7 +223,7 @@
   loadouts:
   - GlockBox
   - ACP14Box
-  - SnubRevolverBox 
+  - SnubRevolverBox
   - MK58Box
   - MK58GoldBox
   - WeaponDominator
@@ -240,7 +239,7 @@
   loadouts:
   - CadetWeaponGlockBox
   - CadetWeaponACP14Box
-  - SnubRevolverBox 
+  - SnubRevolverBox
   - CadetWeaponMK58Box
   - MK58GoldBox
   - CadetWeaponMiniEnergyGun

@@ -1055,6 +1055,46 @@
   - !type:ListingLimitedStockCondition
     stock: 2
 
+#Sunrise-start
+- type: listing
+  id: UplinkCoalAutoInjector
+  name: uplink-coal-auto-injector-name
+  description: uplink-coal-auto-injector-desc
+  productEntity: CoalAutoInjector
+  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: coalpen }
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkCoalpenKit
+  name: uplink-coalpen-kit-name
+  description: uplink-coalpen-kit-desc
+  productEntity: CoalpenKitFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+#Sunrise-end
+
 - type: listing
   id: UplinkSyndicateRapier
   name: uplink-syndicate-rapier-name
