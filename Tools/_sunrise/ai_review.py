@@ -26,7 +26,7 @@ def read_file(path: str) -> str:
 def call_gemini_chat(system_prompt: str, user_prompt: str) -> str:
     contents = [
         types.Content(
-            role="system",
+            role="model",
             parts=[types.Part.from_text(text=system_prompt)],
         ),
         types.Content(
