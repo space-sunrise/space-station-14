@@ -11,6 +11,9 @@ namespace Content.Shared._Sunrise.Fun
         [DataField("minDegreesPerSecond")] public float MinDegPerSec = 500f;
         [DataField("maxDegreesPerSecond")] public float MaxDegPerSec = 2000f;
         [DataField("brakeFactor")] public float BrakeFactor = 0.968f;
+        [DataField("forceStopSpeed")] public float ForceStopSpeed = 10f;
+        [DataField("smothStopAtSecond")] public float SmothStopAtSecond = 0.5f;
+        [DataField("smothStopBrakeFactor")] public float SmothStopBrakeFactor = 0.995f;
 
         [ViewVariables] public bool IsSpinning;
         [ViewVariables] public float RemainingSeconds;

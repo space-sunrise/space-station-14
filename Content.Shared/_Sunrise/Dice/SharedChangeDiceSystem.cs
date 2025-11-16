@@ -1,13 +1,8 @@
-using Content.Shared.Examine;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Popups;
-using Content.Shared.Throwing;
+using Content.Shared.Dice;
 using Content.Shared.Verbs;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Dice;
+namespace Content.Shared._Sunrise.Dice;
 
 public sealed class ChangeDiceVerbSystem : EntitySystem
 {
@@ -30,7 +25,7 @@ public sealed class ChangeDiceVerbSystem : EntitySystem
         args.Verbs.Add(new AlternativeVerb()
         {
             Text = Loc.GetString("comp-change-dice-sides-number"),
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
 
             Act = () =>
             {

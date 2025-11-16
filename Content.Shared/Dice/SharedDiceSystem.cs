@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Dice;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -100,8 +101,8 @@ public abstract class SharedDiceSystem : EntitySystem
     // Sunrise-Edit
     private void OnChangeDiceSetValueMessage(Entity<DiceComponent> entity, ref ChangeDiceSetValueMessage args)
     {
-        entity.Comp.SetSides((int)args.startValue, (int)args.endValue);
-        _popup.PopupPredicted(Loc.GetString("comp-change-dice-sides-amount", ("startAmount", (int)args.startValue), ("endAmount", (int)args.endValue)), entity, entity.Owner);
+        entity.Comp.SetSides((int)args.StartValue, (int)args.EndValue);
+        _popup.PopupPredicted(Loc.GetString("comp-change-dice-sides-amount", ("startAmount", (int)args.StartValue), ("endAmount", (int)args.EndValue)), entity, entity.Owner);
         Dirty(entity);
     }
 }

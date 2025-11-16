@@ -26,8 +26,9 @@ namespace Content.Server._Sunrise.Fun
 
         private void OnAlternativeInteract(Entity<SpinnerComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
         {
-            if (CompOrNull<GhostComponent>(args.User) is not null) return;
-            if (CompOrNull<TransformComponent>(ent) is null) return;
+            if (CompOrNull<GhostComponent>(args.User) is not null || CompOrNull<TransformComponent>(ent) is null)
+                return;
+
             HandleSpinnerActivation(ent, args.User);
         }
 
@@ -51,23 +52,23 @@ namespace Content.Server._Sunrise.Fun
         private void HandleSpinnerActivation(Entity<SpinnerComponent> ent, EntityUid userId)
         {
             var userName = CompOrNull<MetaDataComponent>(userId)?.EntityName;
-            if (ent.Comp.IsSpinning)
+            if (!ent.Comp.IsSpinning)
             {
-                if (ent.Comp.RemainingSeconds > ent.Comp.MaxSpinSeconds) return;
-                if (ent.Comp.CurrentDegPerSec > ent.Comp.MaxDegPerSec) return;
-
-                var seconds = _random.NextFloat(ent.Comp.MinSpinSeconds, ent.Comp.MaxSpinSeconds);
-                var degPerSec = _random.NextFloat(ent.Comp.MinDegPerSec, ent.Comp.MaxDegPerSec);
-
-                ent.Comp.RemainingSeconds += seconds;
-                ent.Comp.CurrentDegPerSec += degPerSec;
-                _popupSystem.PopupEntity($"{userName} {Loc.GetString("arrow-speed-up")}", userId);
-                Dirty(ent, ent.Comp);
+                StartSpin(ent, ent.Comp);
+                _popupSystem.PopupEntity($"{userName} {Loc.GetString("arrow-spin-start")}", userId);
                 return;
             }
 
-            StartSpin(ent, ent.Comp);
-            _popupSystem.PopupEntity($"{userName} {Loc.GetString("arrow-spin-start")}", userId);
+            if (ent.Comp.RemainingSeconds > ent.Comp.MaxSpinSeconds) return;
+            if (ent.Comp.CurrentDegPerSec > ent.Comp.MaxDegPerSec) return;
+
+            var seconds = _random.NextFloat(ent.Comp.MinSpinSeconds, ent.Comp.MaxSpinSeconds);
+            var degPerSec = _random.NextFloat(ent.Comp.MinDegPerSec, ent.Comp.MaxDegPerSec);
+
+            ent.Comp.RemainingSeconds += seconds;
+            ent.Comp.CurrentDegPerSec += degPerSec;
+            _popupSystem.PopupEntity($"{userName} {Loc.GetString("arrow-speed-up")}", userId);
+            Dirty(ent, ent.Comp);
         }
 
         private void StartSpin(EntityUid uid, SpinnerComponent comp)
@@ -104,7 +105,7 @@ namespace Content.Server._Sunrise.Fun
                 if (comp.RemainingSeconds <= 0f)
                 {
                     comp.CurrentDegPerSec *= comp.BrakeFactor;
-                    if (MathF.Abs(comp.CurrentDegPerSec) < 10f)
+                    if (MathF.Abs(comp.CurrentDegPerSec) < comp.ForceStopSpeed)
                     {
                         comp.IsSpinning = false;
                         comp.CurrentDegPerSec = 0f;
@@ -114,8 +115,8 @@ namespace Content.Server._Sunrise.Fun
                     }
                 }
 
-                if (comp.RemainingSeconds > 0f && comp.RemainingSeconds < 0.5f)
-                    comp.CurrentDegPerSec *= 0.995f;
+                if (comp.RemainingSeconds > 0f && comp.RemainingSeconds < comp.SmothStopAtSecond)
+                    comp.CurrentDegPerSec *= comp.SmothStopBrakeFactor;
 
                 Dirty(uid, comp);
             }

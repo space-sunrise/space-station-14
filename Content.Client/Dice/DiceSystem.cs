@@ -24,7 +24,8 @@ public sealed class DiceSystem : SharedDiceSystem
         if (state == null)
             return;
         // Sunrise-Edit
-        if (entity.Comp.IsNotStandardDice) { return; }
+        if (entity.Comp.IsNotStandardDice)
+            return;
         // Sunrise-Edit-End
         var prefix = state.Substring(0, state.IndexOf('_'));
         _sprite.LayerSetRsiState((entity.Owner, sprite), 0, $"{prefix}_{entity.Comp.CurrentValue}");

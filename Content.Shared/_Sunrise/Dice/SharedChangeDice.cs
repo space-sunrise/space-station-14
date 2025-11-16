@@ -1,7 +1,7 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Dice
+namespace Content.Shared._Sunrise.Dice
 {
     [Serializable, NetSerializable]
     public sealed class ChangeDiceInterfaceState : BoundUserInterfaceState
@@ -19,13 +19,13 @@ namespace Content.Shared.Dice
     [Serializable, NetSerializable]
     public sealed class ChangeDiceSetValueMessage : BoundUserInterfaceMessage
     {
-        public FixedPoint2 startValue;
-        public FixedPoint2 endValue;
+        public FixedPoint2 StartValue;
+        public FixedPoint2 EndValue;
 
         public ChangeDiceSetValueMessage(FixedPoint2 startAmount, FixedPoint2 endAmount)
         {
-            startValue = startAmount;
-            endValue = endAmount;
+            StartValue = startAmount;
+            EndValue = endAmount;
         }
     }
 

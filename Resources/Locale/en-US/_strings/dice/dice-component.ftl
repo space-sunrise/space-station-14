@@ -3,4 +3,4 @@ dice-component-on-examine-message-part-2 = It has landed on a [color=white]{$cur
 dice-component-on-roll-land = { CAPITALIZE(THE($die)) } lands on a {$currentSide}.
 
 # Sunrise Edit
-dice-community-on-examine-message-part-3 = Dice with sides from [color=lightgray]{ $startSide }[/color] to [color=lightgray]{ $endSide }[/color].
+dice-component-on-examine-message-part-3 = Dice with sides from [color=lightgray]{ $startSide }[/color] to [color=lightgray]{ $endSide }[/color].

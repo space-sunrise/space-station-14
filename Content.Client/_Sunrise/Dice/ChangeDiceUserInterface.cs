@@ -1,9 +1,9 @@
-using Content.Shared.Dice;
+using Content.Shared._Sunrise.Dice;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Dice.UI
+namespace Content.Client._Sunrise.Dice.UI
 {
     [UsedImplicitly]
     public sealed class ChangeDiceUserInterface : BoundUserInterface

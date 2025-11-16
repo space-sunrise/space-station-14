@@ -3,7 +3,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client.Dice.UI
+namespace Content.Client._Sunrise.Dice
 {
     [GenerateTypedNameReferences]
     public sealed partial class ChangeDiceWindow : DefaultWindow
