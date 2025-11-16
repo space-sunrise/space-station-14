@@ -263,7 +263,7 @@
             - !type:EntityAnchored { }
           steps:
             - material: Plasteel
-              amount: 4
+              amount: 2
               doAfter: 1
 
         - to: shuttleWall
