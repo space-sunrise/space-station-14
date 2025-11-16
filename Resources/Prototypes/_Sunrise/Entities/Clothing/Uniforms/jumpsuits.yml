@@ -387,3 +387,43 @@
     - NudeTop # INTERACTIONS
     - WhitelistChameleon
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPencilSkirt
+  name: Pencil Skirt
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pencilhuencil.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pencilhuencil.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformSadSkirt
+  name: Sad Skirt
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sadskirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sadskirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMajimaTishka
+  name: Majima
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tishkamajima.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tishkamajima.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMetatonTishka
+  name: Metatontishka
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/metatontishka.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/metatontishka.rsi
