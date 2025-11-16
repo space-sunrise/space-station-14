@@ -64,6 +64,7 @@
 
 - type: hitscan
   id: RedLightLaser
+  maxLength: 45
   damage:
     types:
       Heat: 7
@@ -125,7 +126,7 @@
 
 - type: hitscan
   id: RedShuttleLaser
-  maxLength: 60
+  maxLength: 80
   damage:
     types:
       Heat: 45
