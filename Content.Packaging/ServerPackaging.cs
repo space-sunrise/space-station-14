@@ -24,7 +24,6 @@ public static class ServerPackaging
 
     private static IReadOnlySet<string> ServerContentIgnoresResources { get; } = new HashSet<string>
     {
-        "ServerInfo",
         "Changelog",
     };
 
