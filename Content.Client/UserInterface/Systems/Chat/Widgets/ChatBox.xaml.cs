@@ -131,7 +131,9 @@ public partial class ChatBox : UIWidget
         {
             if (child.Name != "_v_scroll")
             {
+                // Dispose child controls to clean up any embedded entities (chat icons)
                 Contents.RemoveChild(child);
+                child.Dispose();
             }
         }
     }
@@ -233,6 +235,11 @@ public partial class ChatBox : UIWidget
         base.Dispose(disposing);
 
         if (!disposing) return;
+        
+        // Sunrise-Start: Clear chat contents to clean up embedded entities
+        ClearChatContents();
+        // Sunrise-End
+        
         _controller.UnregisterChat(this);
         ChatInput.Input.OnTextEntered -= OnTextEntered;
         ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;

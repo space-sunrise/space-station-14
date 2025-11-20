@@ -58,6 +58,10 @@ namespace Content.Client.Lobby
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
 
+        // Sunrise-Start: Track loaded lobby resources for cleanup
+        private string? _loadedLobbyParallax;
+        // Sunrise-End
+
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
 
@@ -148,10 +152,21 @@ namespace Content.Client.Lobby
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
+            // Sunrise-Start: Unload lobby resources to free memory
+            UnloadLobbyResources();
+            // Sunrise-End
+
             Lobby = null;
 
             _serversHubManager.ServersDataListChanged -= RefreshServersHubHeader;
             _contributorsManager.ContributorsDataListChanged -= RefreshContributorsHeader;
+
+            // Sunrise-Start: Unsubscribe from config changes
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged);
+            // Sunrise-End
         }
 
         private void RefreshServersHubHeader(List<ServerHubEntry> servers)
@@ -444,6 +459,9 @@ namespace Content.Client.Lobby
 
             _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax);
             Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;
+            // Sunrise-Start: Track loaded parallax for cleanup
+            _loadedLobbyParallax = lobbyParallaxPrototype.Parallax;
+            // Sunrise-End
         }
 
         private void UpdateLobbyType()
@@ -476,6 +494,16 @@ namespace Content.Client.Lobby
                 return;
 
             SetLobbyParallax(_gameTicker.LobbyParallax!);
+        }
+
+        private void UnloadLobbyResources()
+        {
+            // Unload lobby parallax to free video memory
+            if (_loadedLobbyParallax != null)
+            {
+                _parallaxManager.UnloadParallax(_loadedLobbyParallax);
+                _loadedLobbyParallax = null;
+            }
         }
 
         // Sunrise-end

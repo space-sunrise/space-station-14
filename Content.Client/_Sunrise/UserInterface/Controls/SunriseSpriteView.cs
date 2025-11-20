@@ -95,6 +95,17 @@ public class SunriseStaticSpriteView : Control
         SetEntity(uid);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (disposing)
+        {
+            // Sunrise-Start: Clean up cached sprite to free memory
+            _cachedSprite = null;
+            // Sunrise-End
+        }
+    }
+
     public void SetEntity(EntityUid uid)
     {
         if (Entity.Owner == uid)
