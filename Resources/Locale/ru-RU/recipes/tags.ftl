@@ -126,7 +126,14 @@ construction-graph-tag-upgradedrozd = улучшение Дрозда
 construction-graph-tag-upgradelecter = улучшение Лектера
 construction-graph-tag-ModularReceiverAuto = автоматический модульный ресивер
 construction-graph-tag-coin = монета
-construction-graph-tag-upgradevestsec = улучшение бронежилета СБ
+construction-graph-tag-webvest = улучшение бронежилета СБ
+construction-graph-tag-stbvest = улучшение бронежилета СБ
+construction-graph-tag-pltvest = улучшение бронежилета СБ
+construction-graph-tag-absrbvest = улучшение бронежилета СБ
+construction-graph-tag-blltvest = улучшение бронежилета СБ
+construction-graph-tag-hblltvest = улучшение бронежилета СБ
+construction-graph-tag-rflctvest = улучшение бронежилета СБ
+construction-graph-tag-riotvest = улучшение бронежилета СБ
 construction-graph-tag-gorilla-upgrade-kit = чип улучшения перчатки Г.О.Р.И.Л.Л.А.
 # Щиты и защита
 construction-graph-tag-strobe-shield = стробоскопический щит

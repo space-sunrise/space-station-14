@@ -12,58 +12,66 @@
       - !type:Polymorph
         prototype: PermanentlyHuman
         conditions:
-          - !type:OrganType
-            type: Primate
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Primate ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyReptilian
         conditions:
-          - !type:OrganType
-            type: Kobold
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Kobold ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyTajaran
         conditions:
-          - !type:OrganType
-            type: Felinid
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Felinid ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlySlime
         conditions:
-          - !type:OrganType
-            type: WildSlime
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ WildSlime ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyMoth
         conditions:
-          - !type:OrganType
-            type: Mothroach
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Mothroach ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlySwine
         conditions:
-          - !type:OrganType
-            type: Pig
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Pig ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyVox
         conditions:
-          - !type:OrganType
-            type: Chiken
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Chiken ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyVulpkanin
         conditions:
-          - !type:OrganType
-            type: InferiorVulpkanin
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ InferiorVulpkanin ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
 
 - type: reagent

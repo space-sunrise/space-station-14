@@ -17,11 +17,9 @@
             <ItemList Name="MarkingList" VerticalExpand="True" />
         </ScrollContainer>
 
-        <!-- Sunrise-Edit -->
         <!-- Color sliders -->
-        <BoxContainer Name="ColorSelectorContainer" HorizontalExpand="True" />
-        <!-- <ScrollContainer MinHeight="200" HorizontalExpand="True"> -->
-        <!--     <BoxContainer Name="ColorSelectorContainer" HorizontalExpand="True" /> -->
-        <!-- </ScrollContainer> -->
+        <ScrollContainer MinHeight="200" HorizontalExpand="True">
+            <BoxContainer Name="ColorSelectorContainer" HorizontalExpand="True" />
+        </ScrollContainer>
     </BoxContainer>
 </BoxContainer>

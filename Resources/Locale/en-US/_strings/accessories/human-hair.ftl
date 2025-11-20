@@ -200,3 +200,4 @@ marking-HumanHairVolaju = Volaju
 marking-HumanHairWisp = Wisp
 marking-HumanHairLongWithBangs = Long With Bangs
 marking-HumanHairCatTail = Cattail
+marking-HumanHairOverEyePigtail = Pigtail (Over Eye)

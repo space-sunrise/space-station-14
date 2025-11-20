@@ -14,7 +14,7 @@
         volume: -4
         maxDistance: 3
     # Sunrise added end
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Item
     size: Small

@@ -47,6 +47,21 @@
   - HyposprayMedical
 
 - type: technology
+  id: MedicalAssembler
+  name: research-technology-medical-assembler
+  icon:
+    sprite: _Sunrise/Structures/Machines/medical_assembler.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - MedicalAssemblerMachineCircuitboard
+  - BlankMediPen
+  technologyPrerequisites:
+    - MedicalHyposprays
+
+- type: technology
   id: SurgeryTechAdvanced
   name: research-technology-advanced-surgery
   icon:

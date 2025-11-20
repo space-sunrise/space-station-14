@@ -9,6 +9,15 @@
     "states": [
         {
             "name": "lock"
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "inferno_shield"
+        },
+        {
+            "name": "pie"
         }
     ]
 }

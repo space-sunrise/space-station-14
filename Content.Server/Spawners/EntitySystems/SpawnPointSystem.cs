@@ -4,6 +4,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Shared._Sunrise.Misc; // Sunrise-Edit
 
 namespace Content.Server.Spawners.EntitySystems;
 
@@ -30,6 +31,21 @@ public sealed class SpawnPointSystem : EntitySystem
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
+            // Sunrise-Start
+            var hasRoundStart = EntityManager.HasComponent<RoundStartSpawnPointComponent>(uid);
+            var hasLateJoin = EntityManager.HasComponent<LateJoinSpawnPointComponent>(uid);
+            if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+            {
+                if (hasLateJoin)
+                    continue;
+            }
+            else if (_gameTicker.RunLevel == GameRunLevel.InRound)
+            {
+                if (hasRoundStart)
+                    continue;
+            }
+            // Sunrise-End
+
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
@@ -60,7 +76,7 @@ public sealed class SpawnPointSystem : EntitySystem
 
             if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
+                (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
             {
                 possiblePositions.Add(xform.Coordinates);
             }
@@ -86,13 +102,14 @@ public sealed class SpawnPointSystem : EntitySystem
             // TODO: Refactor gameticker spawning code so we don't have to do this!
             var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
 
-            if (points2.MoveNext(out var spawnPoint, out var xform))
+            if (points2.MoveNext(out _, out var xform))
             {
+                Log.Error($"Unable to pick a valid spawn point, picking random spawner as a backup.\nRunLevel: {_gameTicker.RunLevel} Station: {ToPrettyString(args.Station)} Job: {args.Job}");
                 possiblePositions.Add(xform.Coordinates);
             }
             else
             {
-                Log.Error("No spawn points were available!");
+                Log.Error($"No spawn points were available!\nRunLevel: {_gameTicker.RunLevel} Station: {ToPrettyString(args.Station)} Job: {args.Job}");
                 return;
             }
         }

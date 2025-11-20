@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseAction
+  id: ActionLickingWounds
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      temporary: true
+      useDelay: 6
+      icon:
+        sprite: /Textures/_Sunrise/Actions/felionoid.rsi
+        state: licking
+      itemIconStyle: NoItem
+    - type: TargetAction
+      repeat: false
+      range: 2
+      checkCanAccess: true
+    - type: EntityTargetAction
+      canTargetSelf: true
+      event: !type:LickingWoundsTargetActionEvent

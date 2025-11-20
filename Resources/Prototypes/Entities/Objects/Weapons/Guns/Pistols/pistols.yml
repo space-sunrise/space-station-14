@@ -222,6 +222,8 @@
     - SemiAuto
     soundGunshot:
       collection: glock18 # Sunrise-Edit
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: N1984

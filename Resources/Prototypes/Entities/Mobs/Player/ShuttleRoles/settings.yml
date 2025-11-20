@@ -290,6 +290,7 @@
   id: VisitorPsychologist
   parent: VisitorMedical
   components:
+    - type: PsychologistBlockAlcohol
     - type: GhostRole
       name: job-name-psychologist
     - type: Loadout

@@ -1,20 +1,23 @@
 using System.Linq;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Systems;
 using Content.Server.PowerCell;
-using Content.Server.Station.Systems;
-using Content.Server.Storage.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Morgue.Components;
 using Content.Shared.Pinpointer;
+using Content.Server.Power.EntitySystems;//Sunrise-Edit
+using Content.Shared.Power.Components;//Sunrise-Edit
+using Content.Shared.PowerCell;//Sunrise-Edit
+using Content.Shared.UserInterface;//Sunrise-Edit
 using Content.Shared.Storage.Components;
+using Content.Shared.Verbs;//Sunrise-Edit
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+
+//Sunrise-Edit
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -31,6 +34,8 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringToggleCorpseAlertMessage>(OnToggleCorpseAlert);//Sunrise-Edit
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, GetVerbsEvent<InteractionVerb>>(AddToggleVerb);//Sunrise-Edit
     }
 
     public override void Update(float frameTime)
@@ -51,7 +56,20 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
             // Check for corpses with sensors outside morgues
             if (HasCorpsesOutsideMorgue(component))
             {
-                _audio.PlayPvs(component.CorpseAlertSound, uid);
+                if (HasComp<ActivatableUIRequiresPowerCellComponent>(uid) && TryComp<PowerCellDrawComponent>(uid, out var draw))
+                {
+                    if (_cell.HasActivatableCharge(uid, draw))
+                    {
+                        _audio.PlayPvs(component.CorpseAlertSound, uid);
+                    }
+                }
+                if (HasComp<ActivatableUIRequiresPowerComponent>(uid))
+                {
+                    if (this.IsPowered(uid, EntityManager))
+                    {
+                        _audio.PlayPvs(component.CorpseAlertSound, uid);
+                    }
+                }
             }
         }
     }
@@ -112,7 +130,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         // Update all sensors info
         var allSensors = component.ConnectedSensors.Values.ToList();
-        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors));
+        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors, component.DoCorpseAlert));
     }
 
     /// <summary>
@@ -158,4 +176,42 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         return false;
     }
+
+    //Sunrise-Start
+    private void OnToggleCorpseAlert(EntityUid uid, CrewMonitoringConsoleComponent component, CrewMonitoringToggleCorpseAlertMessage args)
+    {
+        component.DoCorpseAlert = !component.DoCorpseAlert;
+        UpdateUserInterface(uid, component);
+    }
+    private void AddToggleVerb(EntityUid uid, CrewMonitoringConsoleComponent component, GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        InteractionVerb verb = new();
+        if (component.DoCorpseAlert)
+        {
+            verb.Text = Loc.GetString("item-toggle-deactivate-alert");
+        }
+        else
+        {
+            verb.Text = Loc.GetString("item-toggle-activate-alert");
+        }
+        verb.Act = () => ToggleAlert(uid, component);
+        args.Verbs.Add(verb);
+    }
+
+    public void ToggleAlert(EntityUid uid, CrewMonitoringConsoleComponent component)
+    {
+        if (component.DoCorpseAlert)
+        {
+            component.DoCorpseAlert = false;
+        }
+        else
+        {
+            component.DoCorpseAlert = true;
+        }
+        Dirty(uid, component);
+    }
+    //Sunrise-End
 }

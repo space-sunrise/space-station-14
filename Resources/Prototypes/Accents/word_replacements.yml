@@ -643,6 +643,7 @@
     chatsan-word-65: chatsan-replacement-65
     chatsan-word-66: chatsan-replacement-66
     chatsan-word-67: chatsan-replacement-67
+    chatsan-word-68: chatsan-replacement-68
 
 - type: accent
   id: liar
@@ -653,23 +654,32 @@
     liar-word-3: liar-word-replacement-3
     liar-word-4: liar-word-replacement-4
     liar-word-5: liar-word-replacement-5
+    liar-word-5-2: liar-word-replacement-5
     liar-word-6: liar-word-replacement-6
     liar-word-7: liar-word-replacement-7
+    liar-word-7-2: liar-word-replacement-7
+    liar-word-7-3: liar-word-replacement-7
     liar-word-8: liar-word-replacement-8
     liar-word-9: liar-word-replacement-9
     liar-word-10: liar-word-replacement-10
     liar-word-11: liar-word-replacement-11
-    liar-word-12: liar-word-replacement-12
+    # liar-word-12: liar-word-replacement-12 sure -> nah is too confusing.
     liar-word-13: liar-word-replacement-13
     liar-word-14: liar-word-replacement-14
+    liar-word-14-2: liar-word-replacement-14
     liar-word-15: liar-word-replacement-15
+    liar-word-15-2: liar-word-replacement-15
     liar-word-16: liar-word-replacement-16
+    liar-word-16-2: liar-word-replacement-16
     liar-word-17: liar-word-replacement-17
     liar-word-18: liar-word-replacement-18
+    liar-word-18-2: liar-word-replacement-18
     liar-word-19: liar-word-replacement-19
     liar-word-20: liar-word-replacement-20
+    liar-word-20-2: liar-word-replacement-20
     liar-word-21: liar-word-replacement-21
     liar-word-22: liar-word-replacement-22
+    liar-word-22-2: liar-word-replacement-22
     liar-word-23: liar-word-replacement-23
     liar-word-24: liar-word-replacement-24
     liar-word-25: liar-word-replacement-25
@@ -682,15 +692,12 @@
     liar-word-32: liar-word-replacement-32
     liar-word-33: liar-word-replacement-33
     liar-word-34: liar-word-replacement-34
-    liar-word-34-2: liar-word-replacement-34
     liar-word-35: liar-word-replacement-35
     liar-word-36: liar-word-replacement-36
     liar-word-37: liar-word-replacement-37
+    liar-word-37-2: liar-word-replacement-37
     liar-word-38: liar-word-replacement-38
     liar-word-39: liar-word-replacement-39
-    liar-word-40: liar-word-replacement-40
-    liar-word-41: liar-word-replacement-41
-    liar-word-42: liar-word-replacement-42
 
 - type: accent
   id: german
@@ -854,3 +861,54 @@
     accent-moldovan-words-31: accent-moldovan-words-replace-31
     accent-moldovan-words-32: accent-moldovan-words-replace-32
     accent-moldovan-words-33: accent-moldovan-words-replace-33
+
+# Sunrise-start
+- type: accent
+  id: formal
+  wordReplacements:
+    accent-formal-words-101: accent-formal-words-replace-101 # авд -> агент внутренних дел
+    accent-formal-words-102: accent-formal-words-replace-102 # адик -> адъютант
+    accent-formal-words-106: accent-formal-words-replace-106 # гп -> глава персонала
+    accent-formal-words-107: accent-formal-words-replace-107 # хоп -> глава персонала
+    accent-formal-words-108: accent-formal-words-replace-108 # гсб -> глава службы безопасности
+    accent-formal-words-109: accent-formal-words-replace-109 # хос -> глава службы безопасности
+    accent-formal-words-110: accent-formal-words-replace-110 # гв -> главный врач
+    accent-formal-words-111: accent-formal-words-replace-111 # смо -> главный врач
+    accent-formal-words-112: accent-formal-words-replace-112 # хопа -> главы персонала
+    accent-formal-words-113: accent-formal-words-replace-113 # хоса -> главы службы безопасности
+    accent-formal-words-114: accent-formal-words-replace-114 # дек -> детектив
+    accent-formal-words-115: accent-formal-words-replace-115 # дет -> детектив
+    accent-formal-words-116: accent-formal-words-replace-116 # дэк -> детектив
+    accent-formal-words-117: accent-formal-words-replace-117 # дека -> детектива
+    accent-formal-words-118: accent-formal-words-replace-118 # дэка -> детектива
+    accent-formal-words-119: accent-formal-words-replace-119 # деку -> детективу
+    accent-formal-words-120: accent-formal-words-replace-120 # дэку -> детективу
+    accent-formal-words-121: accent-formal-words-replace-121 # км -> квартирмейстер
+    accent-formal-words-122: accent-formal-words-replace-122 # кма -> квартирмейстера
+    accent-formal-words-123: accent-formal-words-replace-123 # ксщ -> командир синего щита
+    accent-formal-words-124: accent-formal-words-replace-124 # лобр -> лидер отряда быстрого реагирования
+    accent-formal-words-125: accent-formal-words-replace-125 # нр -> научный руководитель
+    accent-formal-words-126: accent-formal-words-replace-126 # рд -> научный руководитель
+    accent-formal-words-127: accent-formal-words-replace-127 # ншцк -> начальник штаба центрального командования
+    accent-formal-words-128: accent-formal-words-replace-128 # карго -> отдел снабжения
+    accent-formal-words-129: accent-formal-words-replace-129 # обр -> отряд быстрого реагирования
+    accent-formal-words-130: accent-formal-words-replace-130 # рхбзз -> отряд радиационной химической биологической и зомби защиты
+    accent-formal-words-131: accent-formal-words-replace-131 # овн -> офицер внутреннего надзора
+    accent-formal-words-132: accent-formal-words-replace-132 # исн -> офицер исполнительной судебно-надзорной службы
+    accent-formal-words-133: accent-formal-words-replace-133 # осщ -> офицер синего щита
+    accent-formal-words-134: accent-formal-words-replace-134 # осо -> офицер спецопераций
+    accent-formal-words-135: accent-formal-words-replace-135 # оцк -> офицер центрального командования
+    accent-formal-words-136: accent-formal-words-replace-136 # исны -> офицеры исполнительной судебно-надзорной службы
+    accent-formal-words-137: accent-formal-words-replace-137 # пнт -> представитель NanoTrasen
+    accent-formal-words-138: accent-formal-words-replace-138 # пункт -> пунктураз
+    accent-formal-words-139: accent-formal-words-replace-139 # нио -> рнд
+    accent-formal-words-140: accent-formal-words-replace-140 # варденом -> смотрителем
+    accent-formal-words-141: accent-formal-words-replace-141 # вард -> смотритель
+    accent-formal-words-142: accent-formal-words-replace-142 # варден -> смотритель
+    accent-formal-words-143: accent-formal-words-replace-143 # вардену -> смотрителю
+    accent-formal-words-144: accent-formal-words-replace-144 # вардена -> смотрителя
+    accent-formal-words-145: accent-formal-words-replace-145 # сии -> станционный ИИ
+    accent-formal-words-146: accent-formal-words-replace-146 # пцк -> представитель центрального командования
+    accent-formal-words-147: accent-formal-words-replace-147 # нра -> научного руководителя
+    accent-formal-words-148: accent-formal-words-replace-148 # нру -> научному руководителю
+# Sunrise-end

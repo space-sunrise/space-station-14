@@ -277,3 +277,187 @@
   - type: BallisticAmmoProvider
     proto: CartridgePistolImprovised
     capacity: 6
+
+# SMG .40 (45 ACP pistol caliber)
+- type: entity
+  id: BaseMagazinePistol40SubMachineGun  # 45 ACP pistol caliber
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolDPSubMachineGun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistolDP
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/smg_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistol40SubMachineGunEmpty
+  name: SMG magazine (.40 any)
+  suffix: empty
+  parent: BaseMagazinePistol40SubMachineGun
+  description: 20-round one stack magazine for submachine guns.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistol40SubMachineGunSP
+  name: SMG magazine (.40 SP)
+  parent: BaseMagazinePistol40SubMachineGun
+  description: 20-round one stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CartridgePistol40SP
+    whitelist:
+      tags:
+      - CartridgePistolDP
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#575EF5"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazinePistol40SubMachineGunHP
+  name: SMG magazine (.40 HP)
+  parent: BaseMagazinePistol40SubMachineGun
+  description: 20-round one stack magazine for submachine guns. Intended to hold hollow-point ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CartridgePistol40HP
+    whitelist:
+      tags:
+      - CartridgePistolDP
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#F5514C"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazinePistol40SubMachineGunFMJ
+  name: SMG magazine (.40 FMJ)
+  parent: BaseMagazinePistol40SubMachineGun
+  description: 20-round one stack magazine for submachine guns. Intended to hold full-metal-jacket ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CartridgePistol40FMJ
+    whitelist:
+      tags:
+      - CartridgePistolDP
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#080706"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#080706"
+
+- type: entity
+  id: MagazinePistol40SubMachineGunAP
+  name: SMG magazine (.40 AP)
+  parent: BaseMagazinePistol40SubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CartridgePistol40AP
+    whitelist:
+      tags:
+      - CartridgePistolDP
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#540000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#540000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#540000"

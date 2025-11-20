@@ -13,7 +13,7 @@
     Desoantizyne: 2.7
 
 - type: reaction
-  id: H-32
+  id: Apoptodon
   reactants:
     Cryoxadone:
       amount: 1
@@ -27,7 +27,7 @@
       amount: 1
       catalyst: true
   products:
-    H-32: 4
+    Apoptodon: 4
 
 - type: reaction
   id: Celliminol
@@ -90,3 +90,46 @@
       amount: 1
   products:
     Inc: 4
+
+- type: reaction
+  id: H-32
+  reactants:
+    Arithrazine:
+      amount: 1
+    Bicaridine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    H-32: 3
+
+- type: reaction
+  id: Antidon
+  reactants:
+    Ultravasculine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Epinephrine:
+      amount: 1
+  products:
+    Antidon: 3
+
+- type: reaction
+  id: Brutedon
+  reactants:
+    Bicaridine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Epinephrine:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    Brutedon: 1
+
