@@ -2,6 +2,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TapePlayer;
 using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 
 namespace Content.Client._Sunrise.TapePlayer
 {
@@ -10,6 +11,7 @@ namespace Content.Client._Sunrise.TapePlayer
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IClientNetManager _netManager = default!;
 
         public override void Initialize()
         {
@@ -28,6 +30,9 @@ namespace Content.Client._Sunrise.TapePlayer
 
         private void OnTapePlayerClientOptionChanged(bool option)
         {
+            if (!_netManager.IsConnected)
+                return;
+
             RaiseNetworkEvent(new ClientOptionTapePlayerEvent(option));
         }
 

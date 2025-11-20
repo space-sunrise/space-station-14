@@ -1,12 +1,14 @@
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 
 namespace Content.Client._Sunrise.DamageOverlay;
 
 public sealed class DamageOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IClientNetManager _netManager = default!;
 
     public override void Initialize()
     {
@@ -28,6 +30,9 @@ public sealed class DamageOverlaySystem : EntitySystem
 
     private void OnDamageOverlayOptionChanged(bool option)
     {
+        if (!_netManager.IsConnected)
+            return;
+
         var enable = _cfg.GetCVar(SunriseCCVars.DamageOverlayEnable);
         var enableSelf = _cfg.GetCVar(SunriseCCVars.DamageOverlaySelf);
         var enableStructures = _cfg.GetCVar(SunriseCCVars.DamageOverlayStructures);

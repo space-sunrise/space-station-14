@@ -12,6 +12,7 @@ using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.TTS;
@@ -28,6 +29,7 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IClientNetManager _netManager = default!;
 
     private ISawmill _sawmill = default!;
     private static readonly MemoryContentRoot ContentRoot = new();
@@ -83,6 +85,9 @@ public sealed class TTSSystem : EntitySystem
 
     public void RequestPreviewTts(string voiceId)
     {
+        if (!_netManager.IsConnected)
+            return;
+
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }
 
@@ -103,6 +108,9 @@ public sealed class TTSSystem : EntitySystem
 
     private void OnTtsClientOptionChanged(bool option)
     {
+        if (!_netManager.IsConnected)
+            return;
+
         RaiseNetworkEvent(new ClientOptionTTSEvent(option));
     }
 
