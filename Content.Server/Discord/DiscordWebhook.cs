@@ -1,8 +1,11 @@
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Discord;
 
@@ -12,9 +15,10 @@ public sealed class DiscordWebhook : IPostInjectInit
         { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
     [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     private const string BaseUrl = "https://discord.com/api/v10/webhooks";
-    private readonly HttpClient _http = new();
+    private HttpClient _http = default!;
     private ISawmill _sawmill = default!;
 
     private string GetUrl(WebhookIdentifier identifier)
@@ -114,6 +118,49 @@ public sealed class DiscordWebhook : IPostInjectInit
     void IPostInjectInit.PostInject()
     {
         _sawmill = _log.GetSawmill("DISCORD");
+        _http = CreateHttpClient();
+    }
+
+    private HttpClient CreateHttpClient()
+    {
+        var proxyAddress = _configuration.GetCVar(CCVars.DiscordProxyAddress);
+        
+        if (string.IsNullOrWhiteSpace(proxyAddress))
+        {
+            _sawmill.Debug("No proxy configured for Discord webhooks.");
+            return new HttpClient();
+        }
+
+        try
+        {
+            var proxy = new WebProxy(proxyAddress);
+            
+            var proxyUsername = _configuration.GetCVar(CCVars.DiscordProxyUsername);
+            var proxyPassword = _configuration.GetCVar(CCVars.DiscordProxyPassword);
+            
+            if (!string.IsNullOrWhiteSpace(proxyUsername) && !string.IsNullOrWhiteSpace(proxyPassword))
+            {
+                proxy.Credentials = new NetworkCredential(proxyUsername, proxyPassword);
+                _sawmill.Info("Configured Discord webhooks to use proxy with authentication.");
+            }
+            else
+            {
+                _sawmill.Info("Configured Discord webhooks to use proxy without authentication.");
+            }
+
+            var handler = new HttpClientHandler
+            {
+                Proxy = proxy,
+                UseProxy = true
+            };
+
+            return new HttpClient(handler);
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"Failed to configure proxy for Discord webhooks: {e.Message}. Using direct connection.");
+            return new HttpClient();
+        }
     }
 
     /// <summary>
