@@ -59,8 +59,11 @@ namespace Content.Server._Sunrise.Fun
                 return;
             }
 
-            if (ent.Comp.RemainingSeconds > ent.Comp.MaxSpinSeconds) return;
-            if (ent.Comp.CurrentDegPerSec > ent.Comp.MaxDegPerSec) return;
+            if (ent.Comp.RemainingSeconds > ent.Comp.MaxSpinSeconds)
+                return;
+
+            if (ent.Comp.CurrentDegPerSec > ent.Comp.MaxDegPerSec)
+                return;
 
             var seconds = _random.NextFloat(ent.Comp.MinSpinSeconds, ent.Comp.MaxSpinSeconds);
             var degPerSec = _random.NextFloat(ent.Comp.MinDegPerSec, ent.Comp.MaxDegPerSec);

@@ -28,7 +28,7 @@ namespace Content.Client._Sunrise.Dice.UI
 
             _window.ApplyButton.OnPressed += _ =>
             {
-                if (int.TryParse(_window.AmountStartLineEdit.Text, out var x) & int.TryParse(_window.AmountEndLineEdit.Text, out var y))
+                if (int.TryParse(_window.AmountStartLineEdit.Text, out var x) && int.TryParse(_window.AmountEndLineEdit.Text, out var y))
                 {
                     SendMessage(new ChangeDiceSetValueMessage(FixedPoint2.New(x), FixedPoint2.New(y)));
                     _window.Close();

@@ -14,7 +14,3 @@ ent-d6Dice = d6
     .desc = A die with six sides. Basic and serviceable.
 ent-d4Dice = d4
     .desc = A die with four sides. The nerd's caltrop.
-ent-hyperDice = Hypercube
-    .desc =
-        A customizable multidimensional singular hypercube for numerical generation. The latest technology in board games.
-        One cube to rule them all.
