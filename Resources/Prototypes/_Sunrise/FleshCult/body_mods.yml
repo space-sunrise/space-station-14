@@ -7,8 +7,8 @@
   suffix: Flesh Cult
   components:
   - type: ClothingSpeedModifier
-    walkModifier: 1.2
-    sprintModifier: 1.25
+    walkModifier: 1.15 # Fish-edit
+    sprintModifier: 1.2 # Fish-edit
   - type: Sprite
     sprite: _Sunrise/FleshCult/FleshBodyMods/flesh_spider.rsi
   - type: Clothing
@@ -20,7 +20,7 @@
     footstepSoundCollection:
       collection: FootstepSpiderLegs
       params:
-        volume: 10
+        volume: 15 # Fish-edit
   - type: HideLayerClothing
     slots:
       - RFoot
@@ -46,10 +46,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.7
+        # Fish-start
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.9
+        Caustic: 0.7
+        # Fish-end
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
@@ -78,7 +81,7 @@
         Blunt: 0.3
         Slash: 0.3
         Piercing: 0.3
-        Heat: 0.5
+        Heat: 0.6 # Fish-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85

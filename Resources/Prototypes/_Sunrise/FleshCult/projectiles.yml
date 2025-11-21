@@ -36,5 +36,5 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Piercing: 15
+        Piercing: 12 # Fish-edit
 
