@@ -36,11 +36,12 @@ def find_yaml_sprite_references() -> Set[str]:
     references = set()
     
     # Паттерны для поиска спрайтов в YAML
+    # Поддерживаем как простые пути, так и пути в кавычках
     patterns = [
-        re.compile(r'sprite:\s*([^\s]+\.rsi)', re.IGNORECASE),
-        re.compile(r'sprite:\s*([^\s#\n]+)', re.IGNORECASE),
-        re.compile(r'texture:\s*([^\s#\n]+)', re.IGNORECASE),
-        re.compile(r'path:\s*([^\s#\n]+\.(?:png|rsi))', re.IGNORECASE),
+        re.compile(r'sprite:\s*(["\']?)([^\s#\n"\']+\.rsi)\1', re.IGNORECASE),
+        re.compile(r'sprite:\s*(["\']?)([^\s#\n"\']+)\1', re.IGNORECASE),
+        re.compile(r'texture:\s*(["\']?)([^\s#\n"\']+)\1', re.IGNORECASE),
+        re.compile(r'path:\s*(["\']?)([^\s#\n"\']+\.(?:png|rsi))\1', re.IGNORECASE),
     ]
     
     # Также ищем в Maps (они могут содержать спрайты)
@@ -61,10 +62,12 @@ def find_yaml_sprite_references() -> Set[str]:
                 for pattern in patterns:
                     matches = pattern.findall(content)
                     for match in matches:
+                        # Для паттернов с группами захвата берём последнюю группу (сам путь)
+                        path = match[-1] if isinstance(match, tuple) else match
                         # Очищаем путь от кавычек и лишних символов
-                        match = match.strip('"\'')
-                        if match and not match.startswith('#'):
-                            references.add(match)
+                        path = path.strip('"\'')
+                        if path and not path.startswith('#'):
+                            references.add(path)
             except Exception as e:
                 print(f"Предупреждение: не удалось прочитать {yaml_file}: {e}", file=sys.stderr)
     
@@ -76,10 +79,11 @@ def find_csharp_texture_references() -> Set[str]:
     references = set()
     
     # Паттерны для поиска текстур в C# коде
+    # Поддерживаем как абсолютные пути (/Textures/), так и относительные
     patterns = [
-        re.compile(r'["\'](/Textures/[^"\']+)', re.IGNORECASE),
+        re.compile(r'["\'](?:/Textures/)?([^"\']*?\.(?:rsi|png|svg|jpg|jpeg))["\']', re.IGNORECASE),
         re.compile(r'new\s+ResPath\s*\(\s*["\']([^"\']+)["\']', re.IGNORECASE),
-        re.compile(r'SpriteSpecifier\.[^(]+\([^"\']*["\']([^"\']+\.rsi)["\']', re.IGNORECASE),
+        re.compile(r'SpriteSpecifier\.[^(]+\([^"\']*["\']([^"\']+)["\']', re.IGNORECASE),
     ]
     
     for content_dir in CONTENT_DIRS:

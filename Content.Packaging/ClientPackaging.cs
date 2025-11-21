@@ -68,6 +68,9 @@ public static class ClientPackaging
         dropSvgPass.AddDependency(graph.Input).AddBefore(graph.PresetPasses);
 
         // Sunrise-Start: Фильтрация неиспользуемых текстур
+        // Предварительно загружаем список неиспользуемых текстур для производительности
+        UnusedTextureFilter.PreloadUnusedTextures(logger);
+        
         var dropUnusedTexturesPass = new AssetPassFilterDrop(f => 
             f.Path.Contains("/Textures/") && UnusedTextureFilter.IsTextureUnused(f.Path, logger))
         {

@@ -10,8 +10,18 @@ namespace Content.Packaging;
 public static class UnusedTextureFilter
 {
     private static HashSet<string>? _unusedTextures;
+    private static HashSet<string>? _unusedTexturesLowerCase;
     private static readonly object _lock = new();
     private static readonly Regex RsiPathRegex = new(@"^(.+\.rsi)/", RegexOptions.Compiled);
+
+    /// <summary>
+    /// Предварительно загружает список неиспользуемых текстур.
+    /// Вызовите этот метод перед массовой фильтрацией для лучшей производительности.
+    /// </summary>
+    public static void PreloadUnusedTextures(IPackageLogger logger)
+    {
+        LoadUnusedTextures(logger);
+    }
 
     /// <summary>
     /// Загружает список неиспользуемых текстур из JSON файла.
@@ -23,7 +33,8 @@ public static class UnusedTextureFilter
             if (_unusedTextures != null)
                 return;
 
-            _unusedTextures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            _unusedTextures = new HashSet<string>(StringComparer.Ordinal);
+            _unusedTexturesLowerCase = new HashSet<string>(StringComparer.Ordinal);
 
             var unusedTexturesJson = Path.Combine("Resources", ".unused_textures.json");
             
@@ -50,6 +61,7 @@ public static class UnusedTextureFilter
                             if (!string.IsNullOrEmpty(path))
                             {
                                 _unusedTextures.Add(path);
+                                _unusedTexturesLowerCase!.Add(path.ToLowerInvariant());
                             }
                         }
                     }
@@ -67,7 +79,8 @@ public static class UnusedTextureFilter
             }
             catch (Exception ex)
             {
-                logger.Error($"Ошибка при загрузке списка неиспользуемых текстур: {ex.Message}");
+                logger.Error($"Ошибка при загрузке списка неиспользуемых текстур: {ex.GetType().Name}: {ex.Message}");
+                logger.Verbose($"Stack trace: {ex.StackTrace}");
             }
         }
     }
@@ -87,8 +100,13 @@ public static class UnusedTextureFilter
         if (normalized.StartsWith("Resources/"))
             normalized = normalized.Substring(10);
 
-        // Проверяем прямое совпадение
+        // Проверяем прямое совпадение (case-sensitive для точности)
         if (_unusedTextures.Contains(normalized))
+            return true;
+
+        // Проверяем с игнорированием регистра как запасной вариант
+        // (для защиты от несоответствий в путях на Windows)
+        if (_unusedTexturesLowerCase!.Contains(normalized.ToLowerInvariant()))
             return true;
 
         // Для файлов внутри RSI директорий проверяем родительскую RSI
@@ -96,7 +114,8 @@ public static class UnusedTextureFilter
         if (rsiMatch.Success)
         {
             var rsiPath = rsiMatch.Groups[1].Value;
-            if (_unusedTextures.Contains(rsiPath))
+            if (_unusedTextures.Contains(rsiPath) || 
+                _unusedTexturesLowerCase.Contains(rsiPath.ToLowerInvariant()))
                 return true;
         }
 
