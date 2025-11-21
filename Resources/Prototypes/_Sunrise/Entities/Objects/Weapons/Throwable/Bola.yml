@@ -1,127 +1,33 @@
 - type: entity
   name: bolasec
-  parent: [BaseItem, BaseSecurityContraband]
+  parent: [Bola, BaseSecurityContraband]
   id: BolaSecurity
   description: Linked together with some spare cuffs and metal.
   components:
-  - type: Item
-    size: Normal
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasecurity.rsi
     state: icon
-  - type: EmitSoundOnThrow
-    sound: /Audio/Weapons/bolathrow.ogg
-  - type: EmitSoundOnLand
-    sound: /Audio/Effects/snap.ogg
-  - type: Construction
-    graph: Bola
-    node: bola
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 15
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 5
   - type: Ensnaring
-    freeTime: 2.0
-    breakoutTime: 3.5
     walkSpeed: 0.6
     sprintSpeed: 0.6
     staminaDamage: 10
-    canThrowTrigger: true
-    canMoveBreakout: true
-    maxEnsnares: 1
     destroyOnRemove: true
-  - type: LandAtCursor
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.4
-        density: 20 # derived from base_item
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
   - type: Tag
     tags:
     - BolaSecurity
 
 - type: entity
   name: bolasyn
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [Bola, BaseSyndicateContraband]
   id: BolaSyndicate
   description: Linked together with some spare cuffs and metal.
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasyndicate.rsi
     state: icon
-  - type: EmitSoundOnThrow
-    sound: /Audio/Weapons/bolathrow.ogg
-  - type: EmitSoundOnLand
-    sound: /Audio/Effects/snap.ogg
-  - type: Construction
-    graph: Bola
-    node: bola
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 15
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 5
   - type: Ensnaring
     freeTime: 2.5
     breakoutTime: 5.5
     walkSpeed: 0.60
     sprintSpeed: 0.60
     staminaDamage: 30
-    canThrowTrigger: true
-    canMoveBreakout: true
-    maxEnsnares: 1
-  - type: LandAtCursor
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.4
-        density: 20 # derived from base_item
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
