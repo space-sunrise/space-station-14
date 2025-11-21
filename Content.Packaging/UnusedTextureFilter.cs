@@ -37,11 +37,11 @@ public static class UnusedTextureFilter
             _unusedTexturesLowerCase = new HashSet<string>(StringComparer.Ordinal);
 
             var unusedTexturesJson = Path.Combine("Resources", ".unused_textures.json");
-            
+
             if (!File.Exists(unusedTexturesJson))
             {
                 logger.Info($"Файл списка неиспользуемых текстур не найден: {unusedTexturesJson}");
-                logger.Info("Для генерации списка выполните: python3 Tools/find_unused_textures.py --output Resources/.unused_textures.json");
+                logger.Info("Для генерации списка выполните: python3 Tools/_sunrise/find_unused_textures.py --output Resources/.unused_textures.json");
                 return;
             }
 
@@ -49,7 +49,7 @@ public static class UnusedTextureFilter
             {
                 var json = File.ReadAllText(unusedTexturesJson);
                 using var document = JsonDocument.Parse(json);
-                
+
                 var root = document.RootElement;
                 if (root.TryGetProperty("unused_textures", out var unusedArray))
                 {
@@ -114,7 +114,7 @@ public static class UnusedTextureFilter
         if (rsiMatch.Success)
         {
             var rsiPath = rsiMatch.Groups[1].Value;
-            if (_unusedTextures.Contains(rsiPath) || 
+            if (_unusedTextures.Contains(rsiPath) ||
                 _unusedTexturesLowerCase.Contains(rsiPath.ToLowerInvariant()))
                 return true;
         }

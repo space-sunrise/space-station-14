@@ -23,13 +23,13 @@
 
 ```bash
 # Запустить анализ (результат сохранится в Resources/.unused_textures.json)
-python3 Tools/find_unused_textures.py
+python3 Tools/_sunrise/find_unused_textures.py
 
 # Или указать другой путь
-python3 Tools/find_unused_textures.py --output custom_path.json
+python3 Tools/_sunrise/find_unused_textures.py --output custom_path.json
 
 # Подробный вывод с примерами найденных ссылок
-python3 Tools/find_unused_textures.py --verbose
+python3 Tools/_sunrise/find_unused_textures.py --verbose
 ```
 
 ### Шаг 2: Упаковка клиента с фильтрацией
@@ -62,7 +62,7 @@ dotnet run --project Content.Packaging client
 
 ```yaml
 - name: Generate unused textures list
-  run: python3 Tools/find_unused_textures.py
+  run: python3 Tools/_sunrise/find_unused_textures.py
 
 - name: Package client
   run: dotnet run --project Content.Packaging client --no-wipe-release
