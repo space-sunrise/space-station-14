@@ -67,7 +67,16 @@ public static class ClientPackaging
         };
         dropSvgPass.AddDependency(graph.Input).AddBefore(graph.PresetPasses);
 
-        AssetGraph.CalculateGraph([pass, dropSvgPass, ..graph.AllPasses], logger);
+        // Sunrise-Start: Фильтрация неиспользуемых текстур
+        var dropUnusedTexturesPass = new AssetPassFilterDrop(f => 
+            f.Path.Contains("/Textures/") && UnusedTextureFilter.IsTextureUnused(f.Path, logger))
+        {
+            Name = "DropUnusedTexturesPass",
+        };
+        dropUnusedTexturesPass.AddDependency(graph.Input).AddBefore(graph.PresetPasses);
+        // Sunrise-End
+
+        AssetGraph.CalculateGraph([pass, dropSvgPass, dropUnusedTexturesPass, ..graph.AllPasses], logger);
 
         var inputPass = graph.Input;
 

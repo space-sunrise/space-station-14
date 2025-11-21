@@ -298,6 +298,9 @@ desktop.ini
 # Images generated using the MapRenderer
 Resources/MapImages
 
+# Generated list of unused textures
+Resources/.unused_textures.json
+
 ## Docfx stuff
 /Content.Docfx/api/
 /Content.Docfx/*site
