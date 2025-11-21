@@ -1,4 +1,4 @@
-comp-change-dice-sides-amount =  Sides selected from {$startAmount} to {$endAmount}.
+comp-change-dice-sides-amount = Sides selected from {$startAmount} to {$endAmount}.
 comp-change-dice-sides-number = Adjust number of sides
 
 ui-sides-amount-title = Setting the hypercube range:

@@ -119,7 +119,7 @@ namespace Content.Server._Sunrise.Fun
                 }
 
                 if (comp.RemainingSeconds > 0f && comp.RemainingSeconds < comp.SmothStopAtSecond)
-                    comp.CurrentDegPerSec *= comp.SmothStopBrakeFactor;
+                    comp.CurrentDegPerSec *= comp.SmoothStopBrakeFactor;
 
                 Dirty(uid, comp);
             }

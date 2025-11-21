@@ -21,7 +21,7 @@ namespace Content.Shared._Sunrise.Fun
         [DataField]
         public float SmothStopAtSecond = 0.5f;
         [DataField]
-        public float SmothStopBrakeFactor = 0.995f;
+        public float SmoothStopBrakeFactor = 0.995f;
 
         [ViewVariables]
         public bool IsSpinning;
