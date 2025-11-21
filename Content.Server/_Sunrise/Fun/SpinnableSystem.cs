@@ -118,7 +118,7 @@ namespace Content.Server._Sunrise.Fun
                     }
                 }
 
-                if (comp.RemainingSeconds > 0f && comp.RemainingSeconds < comp.SmothStopAtSecond)
+                if (comp.RemainingSeconds > 0f && comp.RemainingSeconds < comp.SmoothStopAtSecond)
                     comp.CurrentDegPerSec *= comp.SmoothStopBrakeFactor;
 
                 Dirty(uid, comp);

@@ -4,7 +4,7 @@ comp-change-dice-sides-number = Adjust number of sides
 ui-sides-amount-title = Setting the hypercube range:
 
 ui-sides-amount-start-placeholder = Generation from:
-ui-sides-amount-end-placeholder = Generate to:
+ui-sides-amount-end-placeholder = Generation to:
 
 ui-sides-amount-apply = Apply changes
 

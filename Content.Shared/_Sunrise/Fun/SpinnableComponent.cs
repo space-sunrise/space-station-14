@@ -19,7 +19,7 @@ namespace Content.Shared._Sunrise.Fun
         [DataField]
         public float ForceStopSpeed = 10f;
         [DataField]
-        public float SmothStopAtSecond = 0.5f;
+        public float SmoothStopAtSecond = 0.5f;
         [DataField]
         public float SmoothStopBrakeFactor = 0.995f;
 
