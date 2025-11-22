@@ -75,6 +75,11 @@ namespace Content.Client._Sunrise.MentorHelp
 
             // Set initial state
             SwitchState(ViewState.TicketsList);
+
+            MessagesContainer.OnChildAdded += _ =>
+            {
+                MessagesScroll.VScrollTarget = float.MaxValue;
+            };
         }
 
         /// <summary>
@@ -232,6 +237,7 @@ namespace Content.Client._Sunrise.MentorHelp
             if (_selectedTicket?.Id == ticketId && TicketViewState.Visible)
             {
                 DisplayTicketMessages(messages);
+                ScrollToBottomDeferred();
             }
         }
 
@@ -333,51 +339,59 @@ namespace Content.Client._Sunrise.MentorHelp
         private void DisplayTicketMessages(List<MentorHelpMessageData> messages)
         {
             MessagesContainer.RemoveAllChildren();
-
             DateTime? lastDate = null;
 
             foreach (var message in messages.OrderBy(m => m.SentAt))
             {
-                // Ensure we show a date header when the day changes
                 var sentAt = message.SentAt;
                 var sentDate = sentAt.Date;
+
                 if (lastDate == null || lastDate.Value != sentDate)
                 {
                     lastDate = sentDate;
+
                     var dateLabel = new RichTextLabel
                     {
-                        Text = $"[center=\"{sentAt:dd.MM.yyyy}\"]",
-                        HorizontalExpand = true
+                        HorizontalExpand = true,
+                        Margin = new Thickness(0, 10, 0, 5)
                     };
+
+                    dateLabel.Text = $"[center][bold]{sentAt:dd.MM.yyyy}[/bold][/center]";
 
                     MessagesContainer.AddChild(dateLabel);
                 }
 
-                var messageBox = new PanelContainer
-                {
-                    StyleClasses = { "PanelColorMedium" },
-                    HorizontalExpand = true,
-                    Margin = new Thickness(0, 2)
-                };
-
-                var vbox = new BoxContainer
+                var messageBox = new BoxContainer
                 {
                     Orientation = BoxContainer.LayoutOrientation.Vertical,
-                    HorizontalExpand = true
+                    Margin = new Thickness(0, 4)
                 };
 
-                // Format: [HH:mm] Author: message
-                var content = new RichTextLabel
+                var nameLine = new RichTextLabel();
+                nameLine.Text = $"[bold]{sentAt:HH:mm}[/bold] {message.FormattedSender}:";
+
+                var textLine = new RichTextLabel
                 {
-                    Text = $"[bold]{sentAt:HH:mm}[/bold] {message.FormattedSender}: {message.Message}",
                     HorizontalExpand = true
                 };
+                textLine.Text = message.Message;
 
-                vbox.AddChild(content);
-                messageBox.AddChild(vbox);
+                messageBox.AddChild(nameLine);
+                messageBox.AddChild(textLine);
+
                 MessagesContainer.AddChild(messageBox);
             }
         }
+
+        private void ScrollToBottomDeferred()
+        {
+            var uiManager = IoCManager.Resolve<IUserInterfaceManager>();
+            uiManager.DeferAction(() =>
+            {
+                MessagesScroll.VScrollTarget = float.MaxValue;
+            });
+        }
+
 
         private void OpenNewTicketDialog()
         {
