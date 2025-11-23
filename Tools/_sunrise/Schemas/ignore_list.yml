@@ -168,7 +168,6 @@ ignore_list:
   - <index>
   - 'MHelp'
   - 'Net-ERR*?*%'
-  - 'ВОДА'
   - 'Holo Girl'
 
 ignore_files:
