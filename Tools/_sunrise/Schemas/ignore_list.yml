@@ -153,6 +153,7 @@ ignore_list:
   - 'T'
   - 'H₂O'
   - 'v2.1'
+  - 'v0.2.1'
   - 'v 1.6'
   - 'Sol Dry'
   - 'Ds ujdjhbnt nhfyckbnjv.'
@@ -167,6 +168,8 @@ ignore_list:
   - <index>
   - 'MHelp'
   - 'Net-ERR*?*%'
+  - 'ВОДА'
+  - 'Holo Girl'
 
 ignore_files:
   - 'italian.ftl'
