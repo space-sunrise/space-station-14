@@ -74,9 +74,20 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     {
         EnsureUIHelper();
 
-        // Open the window and instruct UI to open the specific ticket
-        Open();
-        UIHelper?.OpenTicket(message.TicketId);
+        if (!UIHelper!.IsOpen)
+        {
+            UIHelper.OpenWindow();
+            UIHelper.OpenTicket(message.TicketId);
+            return;
+        }
+
+        if (UIHelper.CurrentTicketId == message.TicketId)
+        {
+            _mentorHelpSystem?.RequestTicketMessages(message.TicketId);
+            return;
+        }
+
+        UIHelper.OpenTicket(message.TicketId);
     }
 
     public void OnSystemUnloaded(MentorHelpSystem system)
@@ -159,7 +170,13 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
             UnreadTicketReceived();
         }
 
-        UIHelper!.TicketUpdated(message.Ticket);
+
+        UIHelper.TicketUpdated(message.Ticket);
+
+        if (UIHelper.IsOpen && UIHelper.CurrentTicketId == message.Ticket.Id)
+        {
+            _mentorHelpSystem?.RequestTicketMessages(message.Ticket.Id);
+        }
     }
 
     private void OnTicketsListReceived(object? sender, MentorHelpTicketsListMessage message)
@@ -260,6 +277,7 @@ public interface IMentorHelpUIHandler : IDisposable
 {
     bool IsOpen { get; }
     bool HasMentorPermissions { get; }
+    int? CurrentTicketId { get; }
     event Action? OnClose;
 
     void OpenWindow();
@@ -275,6 +293,7 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
     public bool IsOpen { get; private set; }
     public bool HasMentorPermissions => false;
     public event Action? OnClose;
+    public int? CurrentTicketId { get; private set; }
 
     private readonly NetUserId _ownerUserId;
     private readonly MentorHelpSystem? _mentorHelpSystem;
@@ -312,6 +331,7 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
 
     public void OpenTicket(int ticketId)
     {
+        CurrentTicketId = ticketId;
         // Ensure window is open
         OpenWindow();
         // Ask control to focus the ticket if possible
@@ -353,6 +373,7 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
 /// </summary>
 public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
 {
+    public int? CurrentTicketId { get; private set; }
     public bool IsOpen { get; private set; }
     public bool HasMentorPermissions => true;
     public event Action? OnClose;
@@ -393,6 +414,7 @@ public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
 
     public void OpenTicket(int ticketId)
     {
+        CurrentTicketId = ticketId;
         OpenWindow();
         _window?.MentorHelp.TryOpenTicket(ticketId);
         _mentorHelpSystem?.RequestTicketMessages(ticketId);

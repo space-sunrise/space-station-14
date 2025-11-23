@@ -96,7 +96,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 var now = DateTimeOffset.UtcNow;
                 var ticket = new MentorHelpTicket
                 {
-                    PlayerId = session.UserId.UserId,
+                    PlayerId = session.UserId,
                     Subject = message.Subject.Trim(),
                     Status = MentorHelpTicketStatus.Open,
                     CreatedAt = now,
@@ -265,6 +265,16 @@ namespace Content.Server._Sunrise.MentorHelp
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 var messageData = await ConvertToMessageDataAsync(ticketMessage);
                 await NotifyTicketMessage(ticketData, messageData);
+
+                if (hasMentorPerms)
+                {
+                    var userId = new NetUserId(ticket.PlayerId);
+
+                    if (_playerManager.TryGetSessionById(userId, out var authorSession))
+                    {
+                        RaiseNetworkEvent(new MentorHelpOpenTicketMessage(ticket.Id), authorSession.Channel);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -292,7 +302,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 }
 
                 // Check permissions - player can close their own ticket, mentors/admins can close any
-                var isTicketOwner = ticket.PlayerId == session.UserId.UserId;
+                var isTicketOwner = ticket.PlayerId == session.UserId;
                 var hasMentorPerms = HasMentorPermissions(session);
 
                 if (!isTicketOwner && !hasMentorPerms)
@@ -487,12 +497,12 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 RaiseNetworkEvent(new MentorHelpTicketMessagesMessage(message.TicketId, messageDatas), session.Channel);
                 _sawmill.Info("Sent {0} messages for ticket #{1} to {2} ({3})", messageDatas.Count, message.TicketId, session.Name, session.UserId);
-             }
-             catch (Exception ex)
-             {
-                 _sawmill.Error($"Error requesting mentor help messages for ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
-             }
-         }
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"Error requesting mentor help messages for ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
+            }
+        }
 
 
         private async Task<MentorHelpTicketData> ConvertToTicketDataAsync(MentorHelpTicket ticket)
