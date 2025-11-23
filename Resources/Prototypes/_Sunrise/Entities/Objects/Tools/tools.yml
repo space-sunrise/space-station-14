@@ -146,7 +146,7 @@
   - type: ToolTileCompatible
   - type: Tool
     qualities:
-      - Screwing
+      - Anchoring
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -167,9 +167,6 @@
           state: crowbar
         useSound:
           path: /Audio/Items/crowbar.ogg
-  - type: ToolRefinable
-    refineResult:
-    - id: CrowbarWrenchScrewdriverMakeshift
   - type: Tag
     tags:
       - Crowbar
