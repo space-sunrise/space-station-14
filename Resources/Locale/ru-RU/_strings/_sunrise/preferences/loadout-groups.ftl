@@ -27,6 +27,7 @@ loadout-group-chemist-head = Химик, голова
 loadout-group-chemist-mask = Химик, маска
 loadout-group-chemist-neck = Химик, шея
 loadout-group-chemist-shoes = Химик, обувь
+loadout-group-chemist-misc = Химик, химия
 loadout-group-chief-engineer-backpack = Старший инженер, рюкзак
 loadout-group-chief-engineer-gloves = Старший инженер, перчатки
 loadout-group-chief-engineer-mask = Старший инженер, маска

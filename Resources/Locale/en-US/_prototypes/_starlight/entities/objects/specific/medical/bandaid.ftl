@@ -14,3 +14,5 @@ ent-PatchClown = clown patch
     .desc = { ent-BasePatch.desc }
 ent-PatchPack = patch pack
     .desc = Storage of multiple patches efficiently.
+ent-BluespacePillPatchCanister = bluespace drug storage
+    .desc = A technologically advanced device for storing small-sized medications such as patches and pills. It has two containers of different shapes connected to a central storage compartment.
