@@ -15,7 +15,7 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             RobustXamlLoader.Load(this);
 
-            MinSize = new Vector2(800, 500);
+            MinSize = new Vector2(650, 450);
         }
     }
 }

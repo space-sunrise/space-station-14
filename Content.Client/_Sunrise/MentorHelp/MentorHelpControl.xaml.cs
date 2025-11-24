@@ -11,6 +11,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Robust.Shared.Configuration;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -22,6 +24,7 @@ namespace Content.Client._Sunrise.MentorHelp
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly IConfigurationManager _config = default!;
 
         private MentorHelpSystem? _mentorHelpSystem;
         private NetUserId _ownerUserId;
@@ -46,6 +49,13 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
+
+            PlaySound.Pressed = _config.GetCVar(SunriseCCVars.MentorHelpSoundEnabled);
+
+            PlaySound.OnToggled += args =>
+            {
+                _config.SetCVar(SunriseCCVars.MentorHelpSoundEnabled, args.Pressed);
+            };
 
             // Wire up button events
             NewTicketButton.OnPressed += _ => OpenNewTicketDialog();

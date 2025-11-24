@@ -19,6 +19,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Audio;
 
 namespace Content.Client._Sunrise.MentorHelp;
 
@@ -40,7 +41,8 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     private bool _hasMentorPermissions;
     private bool _hasUnreadTickets;
     private bool _mentorHelpSoundEnabled;
-    private string? _mentorHelpSound;
+    public static readonly SoundSpecifier? MentorHelpSound =
+        new SoundPathSpecifier("/Audio/_Sunrise/Effects/adminticketopen.ogg");
 
     private Button? LobbyMHelpButton => (UIManager.ActiveScreen as LobbyGui)?.MHelpButton;
     private MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
@@ -52,7 +54,6 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         base.Initialize();
 
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
-        _config.OnValueChanged(SunriseCCVars.MentorHelpSound, v => _mentorHelpSound = v, true); // Reuse ahelp sound for now
         _config.OnValueChanged(SunriseCCVars.MentorHelpSoundEnabled, v => _mentorHelpSoundEnabled = v, true);
     }
 
@@ -157,9 +158,9 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     private void OnTicketUpdated(object? sender, MentorHelpTicketUpdateMessage message)
     {
-        if (_mentorHelpSound != null && _mentorHelpSoundEnabled)
+        if (_mentorHelpSoundEnabled)
         {
-            _audio.PlayGlobal(_mentorHelpSound, Filter.Local(), false);
+            _audio.PlayGlobal(MentorHelpSound, Filter.Local(), false, AudioParams.Default.WithVolume(-3f));
             _clyde.RequestWindowAttention();
         }
 
