@@ -1,3 +1,20 @@
+- type: loadoutEffectGroup
+  id: MasterChemist100h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 360000 #100 hrs
+
+- type: loadout
+  id: ChemistGoldBeaker
+  equipment:
+    pocket1: GoldenBeaker
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterChemist100h
+
 - type: loadout
   id: ChemistBeret
   equipment:
