@@ -19,12 +19,12 @@
   - type: AmmoCounter
   - type: GunWieldBonus # Sunrise-start
     minAngle: -20
-    maxAngle: -30
+    maxAngle: -45
   - type: Gun
     minAngle: 23
     maxAngle: 90
-    angleIncrease: 1.75
-    angleDecay: 15  # Sunrise-end
+    angleIncrease: 1.25
+    angleDecay: 20  # Sunrise-end
     fireRate: 5
     selectedMode: FullAuto
     availableModes:

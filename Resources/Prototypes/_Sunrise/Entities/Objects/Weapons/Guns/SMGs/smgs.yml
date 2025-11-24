@@ -16,11 +16,11 @@
     minAngle: -2.9
     maxAngle: -30
   - type: Gun
-    minAngle: 6
-    maxAngle: 65
-    angleIncrease: 2.95
-    angleDecay: 24
-    fireRate: 8
+    minAngle: 3
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 20
+    fireRate: 10
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:
@@ -55,13 +55,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_cocked.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.86
-    sprintModifier: 0.86
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
 
 - type: entity
   name: MP-38

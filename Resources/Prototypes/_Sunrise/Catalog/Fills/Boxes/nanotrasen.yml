@@ -197,9 +197,24 @@
   name: box of .308 SP magazines
   parent: BoxMagazine
   id: BoxMagazineRifleNanotrasen
-  description: A box full of 7,62x51 Nanotrasen Soft Point magazines.
+  description: A box full of 7,62x51 magazines.
   components:
   - type: StorageFill
     contents:
       - id: MagazineRifleHeavySP
-        amount: 4
+        amount: 2
+      - id: MagazineRifleHeavyFMJ
+      - id: MagazineRifleHeavyHP
+
+- type: entity
+  name: box of M-52 magazines
+  parent: BoxMagazine
+  id: BoxMagazineRifleM52
+  description: A box full of 5,56x45 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifleM52SP
+        amount: 2
+      - id: MagazineRifleM52FMJ
+      - id: MagazineRifleM52HP
