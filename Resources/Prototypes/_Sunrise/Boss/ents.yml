@@ -110,7 +110,7 @@
     # Meme
     - id: ClothingNeckGoldmedal
       prob: 0.5
-    - id: BibleSatanic
+    - id: BibleNarsie
       prob: 0.4
     - id: MobGoliath
       prob: 0.2
