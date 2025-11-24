@@ -103,3 +103,40 @@
             ClownBorg: [ 2, 2 ]
             PeaceBorg: [ 2, 2 ]
             SecurityBorg: [ 4, 4 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm
+          - Delegates
+          - Cyborgs
+          - Testing
+          - Anomaly
+          - Replenishment
+          - IntelWeapons
+          - Reports
+          - Reconnaissance
+          - Saboteurs
+          - Furs
+          - Crew
+          - CleaningUp
+          - HumanitarianAid
+          - PersonnelRecovery
+          - CrewEducation
+         #- VirusFlesh

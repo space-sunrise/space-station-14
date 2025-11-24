@@ -26,8 +26,6 @@ namespace Content.Client._Sunrise.MentorHelp
 
             _mentorHelpSystem = mentorHelpSystem;
             _mentorHelpSystem.OnStatisticsReceived += OnStatisticsReceived;
-
-            _mentorHelpSystem.RequestStatistics();
         }
 
         public void Uninitialize()
@@ -38,7 +36,6 @@ namespace Content.Client._Sunrise.MentorHelp
                 _mentorHelpSystem = null;
             }
         }
-
 
         private void OnStatisticsReceived(object? sender, MentorHelpStatisticsMessage message)
         {
@@ -67,6 +64,12 @@ namespace Content.Client._Sunrise.MentorHelp
                 entry.UpdateData(stat);
                 StatisticsContainer.AddChild(entry);
             }
+        }
+
+        protected override void Opened()
+        {
+            base.Opened();
+            _mentorHelpSystem?.RequestStatistics();
         }
     }
 }
