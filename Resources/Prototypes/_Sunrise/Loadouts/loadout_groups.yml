@@ -222,10 +222,9 @@
   maxLimit: 1
   loadouts:
   - GlockBox
-  - ACP14Box
-  - SnubRevolverBox
   - MK58Box
   - MK58GoldBox
+  - SnubRevolverBox
   - WeaponDominator
   - WeaponDisabler
 #  - WeaponTaser
@@ -238,10 +237,9 @@
   maxLimit: 1
   loadouts:
   - CadetWeaponGlockBox
-  - CadetWeaponACP14Box
-  - SnubRevolverBox
   - CadetWeaponMK58Box
   - MK58GoldBox
+  - SnubRevolverBox
   - CadetWeaponMiniEnergyGun
   - CadetWeaponDisabler
 
@@ -258,6 +256,21 @@
   - DetectiveWeapon50h
   - DetectiveWeapon50h2
   - DetectiveWeapon100h
+
+- type: loadoutGroup
+  id: SunriseWardenGun
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - GlockBox
+  - MK58Box
+  - MK58GoldBox
+  - ACP14Box
+  - SnubRevolverBox
+  - WeaponDominator
+  - WeaponDisabler
+#  - WeaponTaser
 
 # Security  HoS
 - type: loadoutGroup
