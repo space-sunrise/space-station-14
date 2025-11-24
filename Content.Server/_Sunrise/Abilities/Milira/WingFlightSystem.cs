@@ -6,13 +6,18 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Toggleable;
 using Content.Shared._Sunrise.Abilities.Milira;
+using Content.Shared.Physics;
 using Robust.Shared.Localization;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Server._Sunrise.Abilities.Milira;
 
@@ -27,6 +32,7 @@ public sealed class WingFlightSystem : EntitySystem
     [Dependency] private readonly HumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedWingFlightSystem _shared = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     public override void Initialize()
     {
@@ -51,6 +57,7 @@ public sealed class WingFlightSystem : EntitySystem
             _actions.RemoveAction(uid, component.ActionEntity);
 
         _shared.SetFlightEnabled(uid, false, component);
+        DisableFlightPassability(uid, component);
         UpdateMarkings(uid, component, enable: false);
         component.SustainAccumulator = 0f;
         component.AppliedMarkingOnEnable = false;
@@ -104,6 +111,7 @@ public sealed class WingFlightSystem : EntitySystem
         UpdateActionToggle(uid, component);
         UpdateMarkings(uid, component, enable: true);
         SetScaleImmediate(uid, component, staminaPercent);
+        EnableFlightPassability(uid, component);
     }
 
     private void DisableFlight(EntityUid uid, WingFlightComponent component)
@@ -111,6 +119,7 @@ public sealed class WingFlightSystem : EntitySystem
         _shared.SetFlightEnabled(uid, false, component);
         UpdateActionToggle(uid, component);
         UpdateMarkings(uid, component, enable: false);
+        DisableFlightPassability(uid, component);
         component.SustainAccumulator = 0f;
     }
 
@@ -282,6 +291,48 @@ public sealed class WingFlightSystem : EntitySystem
 
         var remaining = MathF.Max(0f, stamina.CritThreshold - stamina.StaminaDamage);
         return Math.Clamp(remaining / stamina.CritThreshold, 0f, 1f);
+    }
+
+    private void EnableFlightPassability(EntityUid uid, WingFlightComponent component)
+    {
+        if (!TryComp(uid, out PhysicsComponent? physics))
+            return;
+
+        EnsureComp<CanMoveInAirComponent>(uid);
+        _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
+
+        if (!TryComp(uid, out FixturesComponent? fixtures))
+            return;
+
+        foreach (var (id, fixture) in fixtures.Fixtures)
+        {
+            component.OriginalCollisionMasks.TryAdd(id, fixture.CollisionMask);
+            component.OriginalCollisionLayers.TryAdd(id, fixture.CollisionLayer);
+            _physics.RemoveCollisionMask(uid, id, fixture, (int) CollisionGroup.MidImpassable, manager: fixtures);
+        }
+    }
+
+    private void DisableFlightPassability(EntityUid uid, WingFlightComponent component)
+    {
+        RemCompDeferred<CanMoveInAirComponent>(uid);
+
+        if (TryComp(uid, out PhysicsComponent? physics))
+            _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);
+
+        if (TryComp(uid, out FixturesComponent? fixtures))
+        {
+            foreach (var (id, fixture) in fixtures.Fixtures)
+            {
+                if (component.OriginalCollisionMasks.TryGetValue(id, out var mask))
+                    _physics.SetCollisionMask(uid, id, fixture, mask, manager: fixtures);
+
+                if (component.OriginalCollisionLayers.TryGetValue(id, out var layer))
+                    _physics.SetCollisionLayer(uid, id, fixture, layer, manager: fixtures);
+            }
+        }
+
+        component.OriginalCollisionMasks.Clear();
+        component.OriginalCollisionLayers.Clear();
     }
 }
 

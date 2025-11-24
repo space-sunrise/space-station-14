@@ -4,6 +4,7 @@ using Content.Server.Humanoid;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Inventory;
+using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Toggleable;
 using Content.Shared._Sunrise.Abilities.Milira;
@@ -96,10 +97,12 @@ public sealed class WingToggleSystem : EntitySystem
         if (component.WingsOpened)
         {
             EnsureComp<WingFlightComponent>(uid);
+            EnsureComp<JumpAbilityComponent>(uid);
         }
         else
         {
             RemCompDeferred<WingFlightComponent>(uid);
+            RemCompDeferred<JumpAbilityComponent>(uid);
         }
         return true;
     }

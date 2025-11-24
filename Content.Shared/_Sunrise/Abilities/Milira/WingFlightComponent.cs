@@ -139,5 +139,17 @@ public sealed partial class WingFlightComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<int, string> OriginalMarkings = new();
+
+    /// <summary>
+    /// Исходные коллизии фикстур, чтобы при завершении полёта вернуть проход блокирующих тайлов.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<string, int> OriginalCollisionMasks = new();
+
+    /// <summary>
+    /// Исходные слои фикстур, сохраняются вместе с масками для симметричного возврата.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<string, int> OriginalCollisionLayers = new();
 }
 
