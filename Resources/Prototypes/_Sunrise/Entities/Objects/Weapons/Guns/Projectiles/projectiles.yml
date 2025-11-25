@@ -66,7 +66,7 @@
   - type: Projectile
     damage:
       types:
-        Shock: 8
+        Shock: 5
   - type: EmpOnTrigger
     range: 2
     energyConsumption: 30000
@@ -91,7 +91,7 @@
   - type: Projectile
     damage:
       types:
-        Shock: 25
+        Shock: 15
         Structural: 5
   - type: EmpOnTrigger
     range: 6
@@ -117,7 +117,7 @@
   - type: Projectile
     damage:
       types:
-        Shock: 50
+        Shock: 30
         Structural: 15
   - type: EmpOnTrigger
     range: 10
@@ -140,7 +140,7 @@
 - type: entity
   name: tesla gun lightning
   id: TeslaGunBulletLarge
-  parent: BaseBullet
+  parent: TeslaGunBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
@@ -153,12 +153,11 @@
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 85
-  - type: EmbeddableProjectile
   - type: Projectile
     deleteOnCollide: false
     damage:
       types:
-        Shock: 75
+        Shock: 50
         Structural: 25
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
