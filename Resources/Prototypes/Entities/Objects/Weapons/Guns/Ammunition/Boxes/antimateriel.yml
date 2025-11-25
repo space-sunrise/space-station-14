@@ -2,7 +2,7 @@
   abstract: true
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineBoxAntiMateriel
-  name: ammunition box (14mm anti-materiel)
+  name: ammunition box (15mm anti-materiel)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -32,7 +32,7 @@
 - type: entity
   parent: BaseMagazineBoxAntiMateriel
   id: MagazineBoxAntiMateriel
-  name: ammunition box (14mm anti-materiel)
+  name: ammunition box (15mm anti-materiel)
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMateriel
@@ -46,7 +46,7 @@
 # Sunrise-start
 - type: entity
   id: BaseMagazineBoxBelt127
-  name: heavy ammo belt (14mm anti-materiel)
+  name: heavy ammo belt (15mm anti-materiel)
   description: Big ammo belt for big beast.
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
@@ -91,7 +91,7 @@
 
 - type: entity
   id: MagazineBoxBelt127Empty
-  name: heavy ammo belt (14mm any)
+  name: heavy ammo belt (15mm any)
   suffix: empty
   parent: BaseMagazineBoxBelt127
   components:
@@ -106,7 +106,7 @@
 
 - type: entity
   id: MagazineBoxBelt127
-  name: heavy ammo belt (14mm armor-pierce)
+  name: heavy ammo belt (15mm armor-pierce)
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider
@@ -132,7 +132,7 @@
 
 - type: entity
   id: MagazineBoxBelt127Artillery
-  name: heavy ammo belt (14mm anti-materiel)
+  name: heavy ammo belt (15mm anti-materiel)
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider
@@ -154,7 +154,7 @@
 
 - type: entity
   id: MagazineBoxBelt127Frag
-  name: heavy ammo belt (14mm frag)
+  name: heavy ammo belt (15mm frag)
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider
@@ -180,7 +180,7 @@
 
 - type: entity
   id: MagazineBoxBelt127Blast
-  name: heavy ammo belt (14mm blast)
+  name: heavy ammo belt (15mm blast)
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider
@@ -206,7 +206,7 @@
 
 - type: entity
   id: MagazineBoxBelt127Emp
-  name: heavy ammo belt (14mm emp)
+  name: heavy ammo belt (15mm emp)
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider

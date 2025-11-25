@@ -783,7 +783,7 @@
     Steel: 1312
     Uranium: 1312
 
-## 12.7/14мм/.60
+## 15мм/.60
 - type: latheRecipe
   id: MagazineBauer127
   result: MagazineBauer127
