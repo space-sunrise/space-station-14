@@ -1715,6 +1715,27 @@
     - AtmosphericTechnician
 
 - type: listing
+  id: UplinkMedHyposprayNoFilter
+  name: uplink-med-hypospray-name
+  description: uplink-med-hypospray-desc
+  productEntity: HyposprayMedicalNoFilterBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - MedicalDoctor
+    - Chemist
+    - Paramedic
+    - SeniorPhysician
+    - MedicalIntern
+
+- type: listing
   id: uplinkCArmouredJumpsuit
   name: uplink-armoured-jumpsuit-name
   description: uplink-armoured-jumpsuit-desc
