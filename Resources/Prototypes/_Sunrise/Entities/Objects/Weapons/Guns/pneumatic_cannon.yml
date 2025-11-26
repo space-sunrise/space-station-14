@@ -39,7 +39,7 @@
     availableModes:
     - FullAuto
   - type: Item
-    size: Small
+    size: Normal
     shape:
     - 0,0,1,1
   - type: StorageFill
