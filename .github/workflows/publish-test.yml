@@ -24,15 +24,17 @@ jobs:
       with:
         submodules: 'recursive'
 
-    - name: Checkout SunrisePrivate
-      uses: actions/checkout@v4.2.2
-      with:
-        repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
-        path: SunrisePrivate
-        ssh-key: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
+    # Не включать пока приват не будет обновлен к мастеру
 
-    - name: Move Sunrise Private files
-      run: python3 Tools/_sunrise/move_private.py --clone-dir "SunrisePrivate" --target-dirs "Resources" "Content.Client" "Content.Server" "Content.Shared"
+    #- name: Checkout SunrisePrivate
+    #  uses: actions/checkout@v4.2.2
+    #  with:
+    #    repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
+    #    path: SunrisePrivate
+    #    ssh-key: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
+
+    #- name: Move Sunrise Private files
+    #  run: python3 Tools/_sunrise/move_private.py --clone-dir "SunrisePrivate" --target-dirs "Resources" "Content.Client" "Content.Server" "Content.Shared"
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0

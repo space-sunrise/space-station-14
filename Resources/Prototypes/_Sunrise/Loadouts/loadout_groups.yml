@@ -526,6 +526,14 @@
   - MedicalWinterBoots
 
 - type: loadoutGroup
+  id: SunriseChemistMisc
+  name: loadout-group-chemist-misc
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ChemistGoldBeaker
+
+- type: loadoutGroup
   id: SunrisePsychologistHead
   name: loadout-group-psychologist-head
   minLimit: 0
@@ -863,6 +871,7 @@
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
 #  - TrinketsEngineeringTT
+  - TrinketsEngineeringGCW
   - TrinketsEngineeringST
 
 - type: loadoutGroup
