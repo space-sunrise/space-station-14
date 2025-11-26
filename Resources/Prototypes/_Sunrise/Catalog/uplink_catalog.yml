@@ -1736,6 +1736,54 @@
     - MedicalIntern
 
 - type: listing
+  id: UplinkSyringePistol
+  productEntity: LauncherSyringePistol
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - MedicalDoctor
+    - Chemist
+    - Paramedic
+    - SeniorPhysician
+    - MedicalIntern
+    - ChiefMedicalOfficer
+    - ResearchDirector
+    - SeniorResearcher
+    - Scientist
+    - ResearchAssistant
+
+- type: listing
+  id: UplinkSyringeGunAuto
+  productEntity: LauncherSyringeRapid
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - MedicalDoctor
+    - Chemist
+    - Paramedic
+    - SeniorPhysician
+    - MedicalIntern
+    - ChiefMedicalOfficer
+    - ResearchDirector
+    - SeniorResearcher
+    - Scientist
+    - ResearchAssistant
+
+- type: listing
   id: uplinkCArmouredJumpsuit
   name: uplink-armoured-jumpsuit-name
   description: uplink-armoured-jumpsuit-desc
