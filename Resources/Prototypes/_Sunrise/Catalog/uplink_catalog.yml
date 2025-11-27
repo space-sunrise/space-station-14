@@ -2138,6 +2138,10 @@
     - ResearchAssistant
     - Scientist
     - ResearchDirector
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkCaneShotgun
@@ -2180,6 +2184,10 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Science
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+        - SurplusBundle
 
 - type: listing
   id: UplinkAnomalyCoreContainer
@@ -2197,6 +2205,10 @@
     - !type:BuyerDepartmentCondition
       whitelist:
       - Science
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+        - SurplusBundle
 
 - type: listing
   id: UplinkDeathAcidifierImplanterAgent
@@ -2228,11 +2240,10 @@
   categories:
   - UplinkChemicals
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerWhitelistCondition
     blacklist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
+      components:
+      - SurplusBundle
   - !type:BuyerDepartmentCondition
     whitelist:
       - Science
@@ -2251,11 +2262,10 @@
   categories:
   - UplinkChemicals
   conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - LoneOpsUplink
-      - NukeOpsUplink
   - !type:BuyerDepartmentCondition
     whitelist:
       - Science
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
