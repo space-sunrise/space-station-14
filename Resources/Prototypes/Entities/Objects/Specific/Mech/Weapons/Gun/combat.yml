@@ -385,7 +385,8 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack_six
   - type: Gun
-    fireRate: 0.25
+    fireRate: 0.75
+    projectileSpeed: 23
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -399,6 +400,27 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+
+# Sunrise-start
+- type: entity
+  id: WeaponMechCombatMissileRack8Frag
+  name: BRM-8 Missile Rack
+  description: Tubes must be reloaded from the outside.
+  suffix: Mech Weapon, Gun, Combat, Missile
+  parent: WeaponMechCombatMissileRack6
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  - type: Gun
+    fireRate: 0.75
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeRocketFrag
+    fireCost: 200
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+# Sunrise-end
 
 - type: entity
   id: WeaponMechCombatFlashbangLauncher

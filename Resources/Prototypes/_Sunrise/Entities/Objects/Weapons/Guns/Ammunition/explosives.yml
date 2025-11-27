@@ -192,3 +192,24 @@
   - type: SpentAmmoVisuals
     state: frag
     suffix: false
+
+# mech
+- type: entity
+  id: CartridgeRocketFrag
+  name: frag rocket
+  parent: [BaseItem, BaseMajorContraband]
+  description: A frag warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRocket
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletfragRocket
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20

@@ -116,6 +116,42 @@
     reflective:
     - Energy
 
+# Mechs
+- type: entity
+  id: BulletfragRocket
+  name: frag rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 40
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+  - type: AmbientSound
+    enabled: true
+    volume: 2
+    range: 14
+    sound:
+      path: /Audio/Effects/Grenades/Supermatter/supermatter_loop.ogg
+
 # Shells that used for friendship and duster
 
 - type: entity

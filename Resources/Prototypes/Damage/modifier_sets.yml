@@ -395,7 +395,7 @@
     Blunt: 0.8
     Slash: 0.8
     Piercing: 0.9
-    Shock: 2
+    Shock: 1
     Heat: 0.8
   flatReductions:
     Blunt: 2
@@ -407,7 +407,7 @@
     Blunt: 0.75
     Slash: 0.75
     Piercing: 0.7
-    Shock: 2.75
+    Shock: 2
     Heat: 0.7
     Structural: 0.55
   flatReductions:
@@ -420,7 +420,7 @@
     Blunt: 0.6
     Slash: 0.6
     Piercing: 0.5
-    Shock: 3.75
+    Shock: 3
     Heat: 0.8
     Structural: 0.45
   flatReductions:
@@ -435,7 +435,7 @@
     Blunt: 0.5
     Slash: 0.5
     Piercing: 0.3
-    Shock: 4.5
+    Shock: 3.5
     Heat: 0.75
     Structural: 0.4
   flatReductions:
@@ -445,12 +445,12 @@
     Piercing: 5
 
 - type: damageModifierSet
-  id: MediumArmorSyndi #35 35 50 -400 20
+  id: MediumArmorSyndi #35 35 50 -300 20
   coefficients:
     Blunt: 0.65
     Slash: 0.65
     Piercing: 0.5
-    Shock: 3.75
+    Shock: 3
     Heat: 0.8
     Structural: 0.45
   flatReductions:
@@ -460,12 +460,12 @@
     Piercing: 4
 
 - type: damageModifierSet
-  id: HeavyArmorSyndi #45 45 6 -500 25
+  id: HeavyArmorSyndi #45 45 55 -350 25
   coefficients:
     Blunt: 0.55
     Slash: 0.55
-    Piercing: 0.4
-    Shock: 4.5
+    Piercing: 0.35
+    Shock: 3.5
     Heat: 0.75
     Structural: 0.4
   flatReductions:
