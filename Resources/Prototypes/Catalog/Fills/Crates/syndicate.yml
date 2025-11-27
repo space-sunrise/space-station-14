@@ -112,7 +112,7 @@
   suffix: Filled
   parent: CrateSyndicate
   name: Cybersun death bundle
-  description: Contains a set of Cybersan heavy armored mechs.
+  description: Contains a Death Ripley MK-II mech with basic maintenance supplies.
   components:
   - type: StorageFill
     contents:

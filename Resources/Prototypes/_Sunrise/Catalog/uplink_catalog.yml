@@ -1801,6 +1801,7 @@
   - !type:BuyerJobCondition
     whitelist:
     - Roboticist
+  - !type:BuyerWhitelistCondition
     blacklist:
       components:
       - SurplusBundle
@@ -1821,6 +1822,7 @@
   - !type:BuyerJobCondition
     whitelist:
     - Roboticist
+  - !type:BuyerWhitelistCondition
     blacklist:
       components:
       - SurplusBundle
@@ -1842,6 +1844,7 @@
   - !type:BuyerJobCondition
     whitelist:
     - Roboticist
+  - !type:BuyerWhitelistCondition
     blacklist:
       components:
       - SurplusBundle
@@ -1866,6 +1869,7 @@
   - !type:BuyerJobCondition
     whitelist:
     - Roboticist
+  - !type:BuyerWhitelistCondition
     blacklist:
       components:
       - SurplusBundle
@@ -1890,6 +1894,7 @@
   - !type:BuyerJobCondition
     whitelist:
     - Roboticist
+  - !type:BuyerWhitelistCondition
     blacklist:
       components:
       - SurplusBundle
