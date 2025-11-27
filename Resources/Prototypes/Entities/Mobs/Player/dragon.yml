@@ -148,6 +148,7 @@
     - CannotSuicide
     - DoorBumpOpener
     - StunImmune
+    - CarpRiftHealTarget # Sunrise-edit
   - type: Puller
     needsHands: false
   - type: RandomMetadata
@@ -201,13 +202,6 @@
   - type: GuideHelp
     guides:
     - MinorAntagonists
-  # Sunrise-start
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - CarpRiftHealTarget
-  # Sunrise-end
 
 - type: entity
   categories: [ HideSpawnMenu ]
