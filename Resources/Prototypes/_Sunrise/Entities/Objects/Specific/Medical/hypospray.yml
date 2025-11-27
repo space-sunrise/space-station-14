@@ -118,7 +118,7 @@
   parent: [ BaseItem, BaseSyndicateContraband ]
   id: HyposprayMedicalNoFilterBox
   name: hacked medical hypospray
-  description: A box containing a A sterile injector for rapid administration of drugs to patients. The internal toxin filter was removed during hacking. The packaging disintegrates upon opening, leaving no residue.
+  description: A box containing a sterile injector for rapid administration of drugs to patients. The internal toxin filter was removed during hacking. The packaging disintegrates upon opening, leaving no residue.
   components:
   - type: Item
     size: Small
