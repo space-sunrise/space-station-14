@@ -543,3 +543,7 @@
 
 - type: Tag
   id: Table
+
+# Clothing
+- type: Tag
+  id: HardsuitMining
