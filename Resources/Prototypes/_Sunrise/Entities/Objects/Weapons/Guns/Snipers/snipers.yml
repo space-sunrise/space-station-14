@@ -48,11 +48,11 @@
             - MagazineDragunov
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: CartridgeHeavyRifleRFMJ
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeHeavyRifleR
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

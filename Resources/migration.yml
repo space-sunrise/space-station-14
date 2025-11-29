@@ -855,6 +855,8 @@ GrenadeFlash: GrenadeFlashTimer
 GrenadeFrag: GrenadeFragTimer
 WeaponEnergyGunMini: WeaponMiniEnergyGun
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
+MagazinePPSH41: MagazinePistolSubMachineGunPPSHExtended
+MagazinePPSH41Extended: null
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
