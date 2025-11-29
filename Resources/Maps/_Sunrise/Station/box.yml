@@ -112211,7 +112211,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-16.5
       parent: 2
-- proto: DoubleEmergencyOxygenTankFilled
+- proto: ExtendedEmergencyOxygenTankFilled
   entities:
   - uid: 7221
     components:
@@ -171242,7 +171242,7 @@ entities:
     - type: Transform
       pos: 59.5,-37.5
       parent: 2
-- proto: LockerSalvageSpecialistFilled
+- proto: LockerSalvageSpecialistFilledHardsuit
   entities:
   - uid: 9782
     components:
@@ -199536,7 +199536,7 @@ entities:
     - type: Transform
       pos: -53.48062,-20.945404
       parent: 2
-- proto: SpaceCash5000
+- proto: PresentRandomCash
   entities:
   - uid: 27479
     components:
