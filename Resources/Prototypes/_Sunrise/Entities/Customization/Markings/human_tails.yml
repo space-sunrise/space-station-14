@@ -33,24 +33,24 @@
   - sprite: _Sunrise/Mobs/Customization/big_fox_tail.rsi
     state: tail_fox_wag_stripes_third
 
-- type: marking
-  id: SharkTail
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin]
-  sponsorOnly: false # Sunrise
-  sprites:
-  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
-    state: shark_tail
+#- type: marking
+#  id: SharkTail
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin]
+#  sponsorOnly: false # Sunrise
+#  sprites:
+#  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
+#    state: shark_tail
 
-- type: marking
-  id: LizardTail
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin]
-  sponsorOnly: false # Sunrise
-  sprites:
-  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
-    state: lizard_tail_primary
-  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
-    state: lizard_tail_secondary
+#- type: marking
+#  id: LizardTail
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin]
+#  sponsorOnly: false # Sunrise
+#  sprites:
+#  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
+#    state: lizard_tail_primary
+#  - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
+#    state: lizard_tail_secondary
