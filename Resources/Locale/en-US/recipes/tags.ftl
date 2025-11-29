@@ -150,6 +150,8 @@ construction-graph-tag-fire-helmet = fire helmet
 
 # salvage
 construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
+construction-graph-tag-mining-hardsuit = mining hardsuit
+construction-graph-tag-nvd = NVD
 
 # clothing
 construction-graph-tag-backpack = backpack

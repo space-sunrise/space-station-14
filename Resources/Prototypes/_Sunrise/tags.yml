@@ -547,3 +547,6 @@
 # Clothing
 - type: Tag
   id: HardsuitMining
+
+- type: Tag
+  id: NightVisionDevice

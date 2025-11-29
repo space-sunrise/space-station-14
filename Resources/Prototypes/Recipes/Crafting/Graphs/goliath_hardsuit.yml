@@ -20,28 +20,3 @@
         doAfter: 10
   - node: hardsuitGoliath
     entity: ClothingOuterHardsuitGoliath
-
-# Sunrise-start
-- type: constructionGraph
-  id: HardsuitGoliathSalvage
-  start: start
-  graph:
-  - node: start
-    edges:
-    - to: hardsuitGoliath
-      steps:
-      - tag: HardsuitMining
-        icon:
-          sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
-          state: icon
-        name: construction-graph-tag-spationaut-hardsuit
-        doAfter: 10
-      - material: Durathread
-        amount: 5
-        doAfter: 10
-      - material: GoliathHide
-        amount: 15
-        doAfter: 10
-  - node: hardsuitGoliath
-    entity: ClothingOuterHardsuitSalvageGoliath
-# Sunrise-end

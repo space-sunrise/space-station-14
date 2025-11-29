@@ -600,7 +600,7 @@
     sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitGoliath
+    clothingPrototype: ClothingHeadHelmetHardsuitSalvageGoliath
   - type: Construction
     graph: HardsuitGoliathSalvage
     node: hardsuitGoliath

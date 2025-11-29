@@ -326,3 +326,95 @@
         Piercing: 0.8
   - type: FlashImmunity
   - type: EyeProtection
+
+#Goliath Hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitSalvageGoliath
+  name: goliath hardsuit helmet
+  description: A sturdy hardsuit helmet plated with chitin and studded with several goliath eyes; its old lamp has been swapped for night-vision optics.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-light-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-light-dog
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-reptilian
+      - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-dog
+      - state: equipped-head-unshaded-dog
+        shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Appearance
+  - type: UseDelay
+    delay: 3
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
+  - type: PowerCellDraw
+    drawRate: 2
+    useRate: 20
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 6
+    autoRechargePause: true
+    autoRechargePauseTime: 1
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
