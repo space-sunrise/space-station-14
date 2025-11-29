@@ -674,15 +674,6 @@
 
 # Non Stationary Ammunition
 - type: latheRecipe
-  id: MagazineMP38
-  result: MagazineMP38
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
   id: MagazineLightMachineGunMG60
   result: MagazineLightMachineGunMG60
   categories:
@@ -690,15 +681,6 @@
   completetime: 5
   materials:
     Steel: 3700
-
-- type: latheRecipe
-  id: MagazinePPSH41
-  result: MagazinePPSH41
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 1200
 
 - type: latheRecipe
   id: MagazineRPD
@@ -881,15 +863,6 @@
   completetime: 5
   materials:
     Steel: 835
-
-- type: latheRecipe
-  id: MagazineAK
-  result: MagazineAK
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 565
 
 - type: latheRecipe
   id: MagazineDragunov
