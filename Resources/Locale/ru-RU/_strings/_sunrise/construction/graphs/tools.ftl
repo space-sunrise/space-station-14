@@ -16,3 +16,5 @@ recipe-blingfold-name = повязка на глаза
 recipe-blingfold-description = Полоса непроницаемого материала.
 recipe-makeshifthandcuffs-name = самодельные наручники
 recipe-makeshifthandcuffs-description = Самодельные наручники, изготовленные из запасных кабелей.
+recipe-Multiplexer-name = мультиплексор
+recipe-Multiplexer-description = Высокоуровневый логический элемент для маршрутизации сигналов. Можно изменить исполняемую функцию с помощью отвертки.

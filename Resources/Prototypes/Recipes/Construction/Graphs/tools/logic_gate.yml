@@ -51,6 +51,15 @@
       - material: Cable
         amount: 2
         doAfter: 1
+    #Sunrise-start
+    - to: multiplexer
+      steps:
+      - material: Steel
+        amount: 1
+      - material: Manipulator
+        amount: 2
+        doAfter: 1
+    #Sunrise-end
   - node: logic_gate
     entity: LogicGateOr
     edges:
@@ -102,3 +111,19 @@
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2
+  #Sunrise-start
+  - node: multiplexer
+    entity: Multiplexer
+    edges:
+    - to: empty
+      steps:
+      - tool: Prying
+        doAfter: 2
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:SpawnPrototype
+        prototype: MicroManipulatorStockPart
+        amount: 2
+  #Sunrise-end

@@ -1,0 +1,99 @@
+- type: entity
+  parent: BaseLogicItem
+  id: Multiplexer
+  name: multiplexer
+  description: A configurable multiplexer/demultiplexer device that can route signals between multiple inputs and outputs.
+  components:
+    - type: Sprite
+      drawdepth: ThinPipe
+      sprite: _Sunrise/DeviceAdvanced/gates.rsi
+      layers:
+        - state: base
+        - state: mux
+          map: ["enum.MultiplexerLayers.Gate"]
+    - type: UseDelay
+      delay: 0.5
+    - type: Multiplexer
+    - type: DeviceLinkSink
+      ports:
+        - MuxInputA
+        - MuxInputB
+        - MuxInputC
+        - MuxInputD
+        - MuxSelectA
+        - MuxSelectB
+        - DemuxInput
+    - type: DeviceLinkSource
+      ports:
+        - MuxOutput
+        - MuxOutputA
+        - MuxOutputB
+        - MuxOutputC
+        - MuxOutputD
+    - type: Construction
+      node: multiplexer
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.MultiplexerVisuals.Gate:
+          enum.MultiplexerLayers.Gate:
+            Mux: { state: mux }
+            Demux: { state: demux }
+
+# Multiplexer Input Ports
+- type: sinkPort
+  id: MuxInputA
+  name: signal-port-name-multiplexer-input-a
+  description: signal-port-description-multiplexer-input-a
+- type: sinkPort
+  id: MuxInputB
+  name: signal-port-name-multiplexer-input-b
+  description: signal-port-description-multiplexer-input-b
+- type: sinkPort
+  id: MuxInputC
+  name: signal-port-name-multiplexer-input-c
+  description: signal-port-description-multiplexer-input-c
+- type: sinkPort
+  id: MuxInputD
+  name: signal-port-name-multiplexer-input-d
+  description: signal-port-description-multiplexer-input-d
+
+# Demultiplexer Input Port
+- type: sinkPort
+  id: DemuxInput
+  name: signal-port-name-demultiplexer-input
+  description: signal-port-description-demultiplexer-input
+
+# Select Ports shared
+- type: sinkPort
+  id: MuxSelectA
+  name: signal-port-name-multiplexer-select-a
+  description: signal-port-description-multiplexer-select-a
+- type: sinkPort
+  id: MuxSelectB
+  name: signal-port-name-multiplexer-select-b
+  description: signal-port-description-multiplexer-select-b
+
+# Multiplexer Output Port
+- type: sourcePort
+  id: MuxOutput
+  name: signal-port-name-multiplexer-output
+  description: signal-port-description-multiplexer-output
+
+# Demultiplexer Output Ports
+- type: sourcePort
+  id: MuxOutputA
+  name: signal-port-name-demultiplexer-output-a
+  description: signal-port-description-demultiplexer-output-a
+- type: sourcePort
+  id: MuxOutputB
+  name: signal-port-name-demultiplexer-output-b
+  description: signal-port-description-demultiplexer-output-b
+- type: sourcePort
+  id: MuxOutputC
+  name: signal-port-name-demultiplexer-output-c
+  description: signal-port-description-demultiplexer-output-c
+- type: sourcePort
+  id: MuxOutputD
+  name: signal-port-name-demultiplexer-output-d
+  description: signal-port-description-demultiplexer-output-d

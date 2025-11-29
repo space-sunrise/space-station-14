@@ -37,3 +37,13 @@
   targetNode: memory_cell
   category: construction-category-tools
   objectType: Item
+
+#Sunrise-start
+- type: construction
+  id: Multiplexer
+  graph: LogicGate
+  startNode: start
+  targetNode: multiplexer
+  category: construction-category-tools
+  objectType: Item
+#Sunrise-end
