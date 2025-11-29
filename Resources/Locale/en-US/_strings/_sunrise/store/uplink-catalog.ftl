@@ -137,3 +137,7 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+
+## Jobs
+uplink-heavy-cleanade-name = Heavy Duty Cleanade
+uplink-heavy-cleanade-desc = An outwardly normal cleaning grenade filled with an extremely corrosive chemical which is visually identical to regular space cleaner foam. Best used for "cleaning" crowded medical facilities.

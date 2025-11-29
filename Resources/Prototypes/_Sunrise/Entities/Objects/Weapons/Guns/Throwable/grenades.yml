@@ -39,3 +39,34 @@
   - type: Tag
     tags:
     - HandGrenadeAmmo
+
+- type: entity
+  parent: CleanerGrenade
+  id: CleanerGrenadeAcid
+  suffix: Acid
+  components:
+  - type: SmokeOnTrigger
+    duration: 20 # Spends longer dissolving people who don't or can't get out of the cloud
+    spreadAmount: 50
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: UniversalSolvent
+        Quantity: 30
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: CleanerGrenadeAcidBox
+  name: deep-cleanade box
+  description: A box containing a deep-cleaning grenade. Removes up to 99.99% of germs, dirt, and crew members. The packaging disintegrates upon opening, leaving no residue.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxicons.rsi
+    state: cleanade
+  - type: SpawnItemsOnUse
+    items:
+    - id: CleanerGrenadeAcid
+    sound:
+      path: /Audio/Effects/unwrap.ogg

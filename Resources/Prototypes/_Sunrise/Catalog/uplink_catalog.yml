@@ -1671,6 +1671,20 @@
     - Clown
 
 - type: listing
+  id: uplinkHeavyCleanade
+  name: uplink-heavy-cleanade-name
+  description: uplink-heavy-cleanade-desc
+  productEntity: CleanerGrenadeAcidBox
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Janitor
+
+- type: listing
   id: UplinkClusterSyndieMiniBomb
   name: uplink-cluster-mini-bomb-name
   description: uplink-cluster-mini-bomb-desc
