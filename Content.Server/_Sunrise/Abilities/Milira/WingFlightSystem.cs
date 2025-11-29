@@ -8,6 +8,8 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
 using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Physics;
@@ -33,6 +35,7 @@ public sealed class WingFlightSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedWingFlightSystem _shared = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -82,6 +85,9 @@ public sealed class WingFlightSystem : EntitySystem
 
     private void EnableFlight(EntityUid uid, WingFlightComponent component)
     {
+        if (_standing.IsDown(uid))
+            return;
+
         if (!TryComp(uid, out StaminaComponent? stamina))
         {
             Activate(uid, component, null, 1f);

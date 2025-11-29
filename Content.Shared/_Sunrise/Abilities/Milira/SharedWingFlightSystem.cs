@@ -1,5 +1,7 @@
 using System;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Abilities.Milira;
@@ -11,6 +13,7 @@ public sealed class SharedWingFlightSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     public override void Initialize()
     {
@@ -18,6 +21,10 @@ public sealed class SharedWingFlightSystem : EntitySystem
 
         SubscribeLocalEvent<WingFlightComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<WingFlightComponent, RefreshFrictionModifiersEvent>(OnRefreshFriction);
+        SubscribeLocalEvent<WingFlightComponent, DownAttemptEvent>(OnDownAttempt);
+        SubscribeLocalEvent<WingFlightComponent, KnockDownAttemptEvent>(OnKnockDownAttempt);
+        SubscribeLocalEvent<WingFlightComponent, DownedEvent>(OnDowned);
+        SubscribeLocalEvent<WingFlightComponent, KnockedDownEvent>(OnKnockedDown);
     }
 
     /// <summary>
@@ -114,6 +121,38 @@ public sealed class SharedWingFlightSystem : EntitySystem
             comp.InertiaEndTime = null;
             _movement.RefreshFrictionModifiers(uid);
             Dirty(uid, comp);
+        }
+    }
+
+    private bool IsFlightOrInertiaActive(WingFlightComponent component)
+    {
+        return component.FlightEnabled || component.InertiaActive;
+    }
+
+    private void OnDownAttempt(EntityUid uid, WingFlightComponent component, ref DownAttemptEvent args)
+    {
+        if (IsFlightOrInertiaActive(component))
+            args.Cancel();
+    }
+
+    private void OnKnockDownAttempt(EntityUid uid, WingFlightComponent component, ref KnockDownAttemptEvent args)
+    {
+        if (IsFlightOrInertiaActive(component))
+            args.Cancelled = true;
+    }
+
+    private void OnDowned(EntityUid uid, WingFlightComponent component, ref DownedEvent args)
+    {
+        if (IsFlightOrInertiaActive(component))
+            _standing.Stand(uid, force: true);
+    }
+
+    private void OnKnockedDown(EntityUid uid, WingFlightComponent component, ref KnockedDownEvent args)
+    {
+        if (IsFlightOrInertiaActive(component))
+        {
+            RemComp<KnockedDownComponent>(uid);
+            _standing.Stand(uid, force: true);
         }
     }
 }
