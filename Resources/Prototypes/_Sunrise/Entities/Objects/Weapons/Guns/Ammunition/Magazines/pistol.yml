@@ -98,13 +98,13 @@
   - type: Appearance
 
 - type: entity
-  id: MagazinePPSH41
+  id: MagazinePistolSubMachineGunPPSHExtended
   name: PPSH magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - MagazinePPSH41
+    - MagazineSMGPPSH
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolSP  # 57x28
@@ -129,13 +129,6 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
-
-- type: entity
-  parent: MagazinePPSH41
-  id: MagazinePPSH41Extended
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 85
 
 - type: entity
   parent: MagazineMP5
