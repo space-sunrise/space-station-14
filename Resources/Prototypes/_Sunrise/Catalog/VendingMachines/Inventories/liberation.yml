@@ -33,6 +33,8 @@
     WeaponRifleLecterMk2: 3
     WeaponRifleFoam: 3
     WeaponSTG44: 3
+    WeaponRifleARG: 3
+    WeaponRifleM52: 3
     WeaponRifleM90GrenadeLauncher: 3
     WeaponRifleLecter: 3
     WeaponRifleM16A4: 3
@@ -68,7 +70,6 @@
     WeaponSubMachineGunMP5: 3
     WeaponSubMachineGunSkorpion: 3
     WeaponSubMachineGunNewVector: 3
-    WeaponSubMachineGunPPSH41: 3
     WeaponAMS-42: 3
     WeaponAJ100: 3
     WeaponSIAR52: 3
@@ -104,7 +105,7 @@
     PowerpackDL6902: 3
     WeaponDL6902: 3
     WeaponMinigun: 3
-
+    WeaponLightMachineGunDP28: 3
     WeaponLaserSvalinn: 3
     WeaponLaserGun: 3
     WeaponMakeshiftLaser: 3
@@ -194,10 +195,39 @@
     MagazinePistolImprovisedFilled: 8
     MagazinePistolSubMachineGunImprovisedFilled: 8
     MagazineBoxImprovisedPistol: 3
-
+    MagazinePistolSubMachineGunPPSHExtended: 3
+    MagazinePistolSubMachineGunPPSH: 3
     # Rifle Ammo
     MagazineBoxImprovisedRifle: 3
-
+    MagazineLightRifleMaxim: 3
+    MagazineRifleM52AP: 5
+    MagazineRifleM52FMJ: 5
+    MagazineRifleM52HP: 5
+    MagazineRifleM52SP: 5
+    MagazineRifleM52Incendiary: 5
+    MagazineRifleM52Practice: 5
+    MagazineRifleM52Uranium: 5
     #Lasers IK
     MagazineBatteryLr30: 8
     MagazineBatteryLr60: 8
+    # Test Tools
+    AdminPDA: 3
+    AccessConfiguratorUniversal: 3
+    # Mechs
+    MechHauler: 2
+    MechBigYarrkeBattery: 2
+    MechPaddyFilled: 2
+    MechRipley2DeathBattery: 2
+    MechRipley2Battery: 2
+    MechSecPod: 2
+    MechMaulerSyndieFilled: 2
+    MechMarauderFilled: 2
+    MechSeraphFilled: 2
+    MechLockerBattery: 2
+    MechPhazonBattery: 2
+    MechHonkerFilled: 2
+    MechRoverSyndieFilled: 2
+    MechDurandBattery: 2
+    MechNTGygaxFilled: 2
+    MechGygaxSyndieFilled: 2
+    MechGygaxBattery: 2
