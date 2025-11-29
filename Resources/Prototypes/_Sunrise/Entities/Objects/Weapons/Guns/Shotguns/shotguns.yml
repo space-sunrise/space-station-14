@@ -7,8 +7,6 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/spas_12_2/tiny.rsi
   - type: Item
     size: Large
-    shape:
-    - 0,0,4,0
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/spas_12_2/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/spas_12_2/tiny.rsi
@@ -39,8 +37,6 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi
   - type: Item
     size: Large
-    shape:
-    - 0,0,4,0
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/tiny.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/tiny.rsi
