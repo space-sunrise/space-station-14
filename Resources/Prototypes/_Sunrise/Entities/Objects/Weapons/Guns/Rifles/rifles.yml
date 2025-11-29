@@ -102,7 +102,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Gun
     minAngle: 2.9
@@ -161,7 +161,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,3,2
+    - 0,0,2,1
   - type: GunWieldBonus
     minAngle: -1
     maxAngle: -25
@@ -222,7 +222,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
   - type: Gun
     minAngle: 2.8
@@ -286,7 +286,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: Gun
     minAngle: 2.85
@@ -356,7 +356,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: Gun
     minAngle: 2
@@ -421,7 +421,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: Gun
     minAngle: 1.75
@@ -486,7 +486,7 @@
   - type: Item
     size: Huge
     shape:
-      - 0,0,4,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
   - type: Gun
     minAngle: 1.8
@@ -544,7 +544,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Gun
     minAngle: 1
@@ -602,7 +602,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: Gun
     minAngle: 2
@@ -662,7 +662,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: Gun
     fireRate: 3.5
@@ -715,7 +715,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/scarh/tiny.rsi
   - type: Gun
     minAngle: 1
