@@ -190,6 +190,13 @@
     - board
   - type: RadiationBlocker
     resistance: 1
+  # Sunrise-start
+  - type: Fixtures
+    fixtures:
+      fix1:
+        layer:
+        - GlassLayer
+  # Sunrise-end
 
 - type: entity
   id: ShuttersWindowOpen

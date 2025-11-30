@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/16/2025 16:06:16
-  entityCount: 473
+  time: 11/30/2025 08:44:36
+  entityCount: 477
 maps: []
 grids:
 - 44868
@@ -633,67 +633,78 @@ entities:
     - type: Transform
       pos: 2.5,-13.5
       parent: 44868
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 217
     components:
     - type: Transform
       pos: 0.5,-13.5
       parent: 44868
-- proto: AirlockSecurityGlassLocked
+    - type: DeviceLinkSink
+      invokeCounter: 1
+- proto: AirlockSecurityShuttle
   entities:
   - uid: 280
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-6.5
+      pos: 5.5,-2.5
       parent: 44868
-- proto: AirlockSecurityLocked
-  entities:
   - uid: 284
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -0.5,-4.5
+      pos: 3.5,-8.5
       parent: 44868
   - uid: 285
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-8.5
+      pos: -2.5,-2.5
       parent: 44868
   - uid: 299
     components:
     - type: Transform
-      pos: -2.5,-2.5
+      pos: 1.5,-6.5
       parent: 44868
   - uid: 306
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,-8.5
+      pos: 1.5,-0.5
       parent: 44868
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 307
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 3.5,-4.5
+      pos: -0.5,-4.5
       parent: 44868
   - uid: 308
     components:
     - type: Transform
-      pos: 5.5,-2.5
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-4.5
       parent: 44868
   - uid: 313
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-0.5
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-8.5
       parent: 44868
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 314
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,-11.5
       parent: 44868
+    - type: DeviceLinkSource
+      linkedPorts:
+        217:
+        - - DoorStatus
+          - DoorBolt
+        172:
+        - - DoorStatus
+          - DoorBolt
 - proto: AirSensor
   entities:
   - uid: 44881
@@ -1292,6 +1303,14 @@ entities:
       fixtures: {}
 - proto: ClosetWallEmergencyFilledRandom
   entities:
+  - uid: 325
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-9.5
+      parent: 44868
+    - type: Fixtures
+      fixtures: {}
   - uid: 44972
     components:
     - type: Transform
@@ -1460,21 +1479,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-5.5
       parent: 44868
-- proto: CrateEngineeringCableBulk
+- proto: CrateFoodMRE
   entities:
-  - uid: 44980
+  - uid: 321
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 44868
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.8856695
-          Nitrogen: 7.0937095
 - proto: CrateGenericSteel
   entities:
   - uid: 51012
@@ -3392,6 +3403,18 @@ entities:
     - type: Transform
       pos: 0.5,-7.5
       parent: 44868
+- proto: VendingMachineWallMedical
+  entities:
+  - uid: 324
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-2.5
+      parent: 44868
+    - type: Fixtures
+      fixtures: {}
+    missingComponents:
+    - AccessReader
 - proto: WallShuttleDiagonalSD
   entities:
   - uid: 242
@@ -3462,6 +3485,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,-9.5
+      parent: 44868
+  - uid: 322
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-12.5
+      parent: 44868
+  - uid: 323
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-12.5
       parent: 44868
 - proto: WallShuttleSD
   entities:
