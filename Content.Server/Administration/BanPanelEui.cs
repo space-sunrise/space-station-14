@@ -116,6 +116,7 @@ public sealed class BanPanelEui : BaseEui
         if (ban.BannedJobs?.Length > 0 || ban.BannedAntags?.Length > 0)
         {
             var now = DateTimeOffset.UtcNow;
+            List<string> roles = [];
             foreach (var role in ban.BannedJobs ?? [])
             {
                 _banManager.CreateRoleBan(
@@ -130,6 +131,7 @@ public sealed class BanPanelEui : BaseEui
                     ban.Reason,
                     now
                 );
+                roles.Add(role.Id);
             }
 
             foreach (var role in ban.BannedAntags ?? [])
@@ -146,8 +148,10 @@ public sealed class BanPanelEui : BaseEui
                     ban.Reason,
                     now
                 );
+                roles.Add(role.Id);
             }
-            _banManager.WebhookUpdateRoleBans(targetUid, target, Player.UserId, addressRange, targetHWid, roles, minutes, severity, reason, now); // Sunrise-Edit
+
+            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, now); // Sunrise-Edit
 
             Close();
 

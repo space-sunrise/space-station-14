@@ -8,7 +8,10 @@
   color: "#381600"
   metamorphicSprite:
     sprite: _Sunrise/Objects/Consumable/Drinks/kvass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
 
 - type: reagent
   id: ChamomileTincture
@@ -19,23 +22,27 @@
   flavor: chamomile_tincture
   metamorphicSprite:
     sprite: _Sunrise/Objects/Consumable/Drinks/chamomileTincture.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: -2
-      - !type:ChemCleanBloodstream
+      - !type:CleanBloodstream
+        excluded: ChamomileTincture
         cleanseRate: 1
 
 - type: reagent
@@ -53,9 +60,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0
@@ -86,9 +93,9 @@
       - !type:SatiateThirst
         factor: 3
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.03

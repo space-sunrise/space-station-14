@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.Lobby;
-using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -29,7 +28,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
-    private readonly List<BanInfo> _jobBans = new();
+    private readonly List<string> _jobBans = new();
     private readonly List<string> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
@@ -111,7 +110,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         List<ProtoId<JobPrototype>>? jobs,
         List<ProtoId<AntagPrototype>>? antags,
         HumanoidCharacterProfile? profile,
-        [NotNullWhen(false)] out FormattedMessage? reason, bool skipBanCheck = false)
+        [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 
@@ -157,7 +156,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(job);
-        if (!CheckRoleRequirements(reqs, profile, out reason))
+        if (!CheckRoleRequirements(reqs, job.ID, profile, out reason))
             return false;
 
         // Sunrise-Start
@@ -195,10 +194,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(antag);
-        if (!CheckRoleRequirements(reqs, job.ID, profile, out reason))
+        if (!CheckRoleRequirements(reqs, antag.ID, profile, out reason))
             return false;
 
-        return true; // Sunrise-Edit
+        return true;
     }
 
     // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
@@ -256,20 +255,12 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public IEnumerable<KeyValuePair<string, TimeSpan>> FetchPlaytimeByRoles()
     {
         var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
-        var antagsToMap = _prototypes.EnumeratePrototypes<AntagPrototype>();
 
         foreach (var job in jobsToMap)
         {
             if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
             {
                 yield return new KeyValuePair<string, TimeSpan>(job.Name, locJobName);
-            }
-        }
-        foreach (var antag in antagsToMap)
-        {
-            if (_roles.TryGetValue(antag.PlayTimeTracker, out var locAntagName))
-            {
-                yield return new KeyValuePair<string, TimeSpan>(antag.Name, locAntagName);
             }
         }
     }
@@ -282,52 +273,5 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         }
 
         return _roles;
-    }
-
-    /// <summary>
-    /// Checks if any of the specified ban types (jobs or antags) are currently active for the provided bans.
-    /// </summary>
-    /// <param name="bans">The collection of bans to check against.</param>
-    /// <param name="banTypes">The collection of ban types (roles or antags) to check.</param>
-    /// <param name="banReason">The reason for the ban, if found.</param>
-    /// <param name="expirationTime">The expiration time of the ban, if found.</param>
-    /// <returns>True if an active ban is found, otherwise false.</returns>
-    private bool IsBanned(IEnumerable<BanInfo> bans, IEnumerable<string> banTypes, [NotNullWhen(true)] out string? banReason, out DateTime? expirationTime)
-    {
-        banReason = null;
-        expirationTime = null;
-
-        foreach (var banType in banTypes)
-        {
-            var ban = bans.FirstOrDefault(b => b.Role == banType);
-            if (ban != null)
-            {
-                banReason = ban.Reason ?? string.Empty;
-                expirationTime = ban.ExpirationTime ?? null;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public List<BanInfo> GetAntagBans()
-    {
-        return _roleBans.Where(ban => ban.Role != null && ban.Role.StartsWith("Antag:")).ToList();
-    }
-
-    public List<BanInfo> GetRoleBans()
-    {
-        return _roleBans.Where(ban => ban.Role != null && ban.Role.StartsWith("Job:")).ToList();
-    }
-
-    public bool IsAntagBanned(IEnumerable<string> antags, [NotNullWhen(true)] out string? banReason, out DateTime? expirationTime)
-    {
-        return IsBanned(GetAntagBans(), antags, out banReason, out expirationTime);
-    }
-
-    public bool IsRoleBanned(IEnumerable<string> roles, [NotNullWhen(true)] out string? banReason, out DateTime? expirationTime)
-    {
-        return IsBanned(GetRoleBans(), roles, out banReason, out expirationTime);
     }
 }

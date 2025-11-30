@@ -106,10 +106,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 var reason = group.Key.reason;
                 var name = group.Key.Name;
                 var description = group.Key.Description;
+                var prototypeId = group.Key.PrototypeId;
                 var prototypesAllowed = group.Key.Item3;
 
                 // Adding a new role
-                _window.AddEntry(name, description, prototypesAllowed, reason, group, spriteSystem);
+                _window.AddEntry(name, description, prototypeId, prototypesAllowed, reason, group, spriteSystem);
             }
 
             // Restore the Collapsible box state if it is saved

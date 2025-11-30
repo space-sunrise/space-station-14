@@ -8,7 +8,7 @@
   - PredatorNormal
   markingLimits: MobPredatorMarkingLimits
   dollPrototype: MobPredatorDummy
-  skinColoration: None
+  skinColoration: Hues
   sponsorOnly: false
   defaultHeight: 1.05
   defaultWidth: 1.1
