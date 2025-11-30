@@ -79,7 +79,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: Item
     size: Large
-    storedOffset: 0,-2
+    storedOffset: 0,-5
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -3
