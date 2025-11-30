@@ -131,8 +131,10 @@
   components:
     - type: HolosignProjector
       signProto: HolosignForcefield
-      chargeUse: 120
-      countPerTileLimit: 2   # Sunrise - Added
+      # Sunrise - Start
+      chargeUse: 350
+      countPerTileLimit: 1
+      # Sunrise - End
     - type: Sprite
       sprite: Objects/Devices/Holoprojectors/field.rsi
       state: icon
