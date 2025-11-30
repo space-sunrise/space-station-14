@@ -35,3 +35,7 @@
   storage:
     back:
     - RubberStampCentcom
+
+- type: chameleonOutfit
+  id: CentCommOperatorChameleonOutfit
+  job: CentCommOperator

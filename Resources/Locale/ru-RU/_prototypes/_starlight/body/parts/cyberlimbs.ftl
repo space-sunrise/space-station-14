@@ -1,34 +1,44 @@
-ent-PartCyber = кибернетическая часть тела
-    .desc = { ent-BaseItem.desc }
-ent-LeftArmCyber = левая кибернетическая рука
+ent-PartCyber = кибер часть тела
+    .desc = Можно перенастроить на другую сторону с помощью отвёртки.
+
+ent-LeftArmCyber = левая кибер рука
     .desc = { ent-PartCyber.desc }
-ent-RightArmCyber = правая кибернетическая рука
+ent-RightArmCyber = правая кибер рука
     .desc = { ent-PartCyber.desc }
-ent-LeftHandCyber = левая кибернетическая кисть
+
+ent-LeftHandCyber = левая кибер кисть
     .desc = { ent-PartCyber.desc }
-ent-RightHandCyber = правая кибернетическая кисть
+ent-RightHandCyber = правая кибер кисть
     .desc = { ent-PartCyber.desc }
-ent-LeftLegCyber = левая кибернетическая нога
+
+ent-LeftLegCyber = левая кибер нога
     .desc = { ent-PartCyber.desc }
-ent-RightLegCyber = правая кибернетическая нога
+ent-RightLegCyber = правая кибер нога
     .desc = { ent-PartCyber.desc }
-ent-LeftFootCyber = левая кибернетическая ступня
+
+ent-LeftFootCyber = левая кибер ступня
     .desc = { ent-PartCyber.desc }
-ent-RightFootCyber = правая кибернетическая ступня
+ent-RightFootCyber = правая кибер ступня
     .desc = { ent-PartCyber.desc }
-ent-LeftArmCyberReaper = left reaper arm
+
+ent-LeftArmCyberReaper = левая кибер рука Рипера
     .desc = { ent-PartCyber.desc }
-ent-RightArmCyberReaper = right reaper arm
+ent-RightArmCyberReaper = правая кибер рука Рипера
     .desc = { ent-PartCyber.desc }
-ent-LeftArmCyberMechwright = left mechwright arm
+
+ent-LeftArmCyberMechwright = левая кибер рука Механика
     .desc = { ent-PartCyber.desc }
-ent-RightArmCyberMechwright = right mechwright arm
+ent-RightArmCyberMechwright = правая кибер рука Механика
     .desc = { ent-PartCyber.desc }
-ent-LeftArmCyberBulwark = left bulwark arm
+
+ent-LeftArmCyberBulwark = левая кибер рука Крепость
     .desc = { ent-PartCyber.desc }
-ent-RightArmCyberBulwark = right bulwark arm
+ent-RightArmCyberBulwark = правая кибер рука Крепость
     .desc = { ent-PartCyber.desc }
-ent-LeftArmCyberMantisBlade = left mantis blade arm
+
+ent-LeftArmCyberMantisBlade = левая кибер рука-клинок богомола
+    .suffix = Синдикат
     .desc = { ent-PartCyber.desc }
-ent-RightArmCyberMantisBlade = right mantis blade arm
+ent-RightArmCyberMantisBlade = правая кибер рука-клинок богомола
+    .suffix = Синдикат
     .desc = { ent-PartCyber.desc }

@@ -1,10 +1,10 @@
-ent-EffectNightVision = night vision
+ent-EffectNightVision = ночное зрение
     .desc = { "" }
-ent-EffectNightVisionGreen = night vision
+ent-EffectNightVisionGreen = ночное зрение
     .desc = { "" }
-ent-EffectNightVisioSpecies = night vision
+ent-EffectNightVisioSpecies = ночное зрение
     .desc = { "" }
-ent-EffectNightVisionHandcraft = night vision
+ent-EffectNightVisionHandcraft = ночное зрение
     .desc = { "" }
-ent-EffectNightVisionSyndie = night vision
+ent-EffectNightVisionSyndie = ночное зрение
     .desc = { "" }

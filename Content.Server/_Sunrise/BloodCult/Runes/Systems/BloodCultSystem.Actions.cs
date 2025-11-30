@@ -4,15 +4,17 @@ using Content.Server.Body.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
-using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Destructible;
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared.Destructible.Thresholds.Triggers;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Hands.Components;
@@ -131,7 +133,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (!TryComp<BloodstreamComponent>(user, out var bloodstreamComponent))
                 return;
 
-            _bloodstreamSystem.TryModifyBloodLevel(user, howMuchBloodTake, bloodstreamComponent);
+            _bloodstreamSystem.TryModifyBloodLevel((user, bloodstreamComponent), howMuchBloodTake);
             // SUNRISE-TODO: Допустим другие не должны слышать данный звук так как дуафтер скрыт.
             _audio.PlayLocal(new SoundPathSpecifier("/Audio/_Sunrise/BloodCult/blood.ogg"),
                 user,
@@ -169,26 +171,20 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             BloodCultistComponent component,
             CultBloodRitualInstantActionEvent args)
         {
-            var hands = _handsSystem.EnumerateHands(uid);
-            var enumerateHands = hands as Hand[] ?? Enumerable.ToArray<Hand>(hands);
-            foreach (var enumerateHand in enumerateHands)
+            foreach (var hand in _handsSystem.EnumerateHands(uid))
             {
-                if (enumerateHand.Container == null)
+                var containedEntity = _handsSystem.GetHeldItem(uid, hand);
+                if (!TryComp(containedEntity, out MetaDataComponent? metaData))
                     continue;
-                foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
+                if (metaData.EntityPrototype == null)
+                    continue;
+                if (metaData.EntityPrototype.ID == CultBloodSpeelPrototypeId)
                 {
-                    if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
-                        continue;
-                    if (metaData.EntityPrototype == null)
-                        continue;
-                    if (metaData.EntityPrototype.ID == CultBloodSpeelPrototypeId)
-                    {
-                        QueueDel(containerContainedEntity);
-                        return;
-                    }
-
-                    _handsSystem.TryDrop(uid, checkActionBlocker: false);
+                    QueueDel(containedEntity);
+                    return;
                 }
+
+                _handsSystem.TryDrop(uid, checkActionBlocker: false);
             }
 
             var spell = Spawn(CultBloodSpeelPrototypeId, Transform(uid).Coordinates);
@@ -251,14 +247,14 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
 
             if (HasComp<BorgChassisComponent>(args.Target))
-                _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(args.Target), 2, 100000, 5f);
+                _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(args.Target), 2, 100000, TimeSpan.FromSeconds(5));
 
-            _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(3), true);
+            _stunSystem.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(3));
             _stuttering.DoStutter(args.Target, TimeSpan.FromSeconds(30), true);
-            _flashSystem.Flash(args.Target, uid, null, 3, 10);
+            _flashSystem.Flash(args.Target, uid, null, TimeSpan.FromSeconds(3), 10);
 
             if (TryComp<BloodstreamComponent>(uid, out var bloodstreamComponent))
-                _bloodstreamSystem.TryModifyBloodLevel(uid, -10, bloodstreamComponent);
+                _bloodstreamSystem.TryModifyBloodLevel((uid, bloodstreamComponent), -10);
 
             args.Handled = true;
         }
@@ -324,8 +320,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             BloodCultistComponent component,
             CultEmpPulseTargetActionEvent args)
         {
-            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 5, 10000, 5f);
-            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 2, 100000, 10f);
+            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 5, 10000, TimeSpan.FromSeconds(5));
+            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 2, 100000, TimeSpan.FromSeconds(10));
 
             args.Handled = true;
         }
@@ -380,7 +376,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
                     var material = _entityManager.SpawnEntity(RunicMetalPrototypeId, transform);
 
-                    _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -15, bloodstreamComponent);
+                    _bloodstreamSystem.TryModifyBloodLevel((args.Performer, bloodstreamComponent), -15);
 
                     if (!_entityManager.TryGetComponent<StackComponent>(material, out var stackNew))
                         return;
@@ -412,7 +408,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
                     var shell = _entityManager.SpawnEntity(ConstructShellPrototypeId, transform);
 
-                    _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -15, bloodstreamComponent);
+                    _bloodstreamSystem.TryModifyBloodLevel((args.Performer, bloodstreamComponent), -15);
 
                     _popupSystem.PopupEntity(Loc.GetString($"Сталь превращается в {MetaData(shell).EntityName}!"),
                         args.Performer,
@@ -477,7 +473,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 destructible.Thresholds.Add(damageThreshold);
             }
 
-            _bloodstreamSystem.TryModifyBloodLevel(args.User, -15, bloodstreamComponent);
+            _bloodstreamSystem.TryModifyBloodLevel((args.User, bloodstreamComponent), -15);
 
             var ev = new TwistedConstructSpellUsedEvent();
             RaiseLocalEvent(args.User, ev);
@@ -500,7 +496,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var xform = Transform(args.Performer).Coordinates;
             var dagger = _entityManager.SpawnEntity(cultPrototype.DaggerProto, xform);
 
-            _bloodstreamSystem.TryModifyBloodLevel(args.Performer, -30, bloodstreamComponent);
+            _bloodstreamSystem.TryModifyBloodLevel((args.Performer, bloodstreamComponent), -30);
             _handsSystem.TryPickupAnyHand(args.Performer, dagger);
             args.Handled = true;
         }

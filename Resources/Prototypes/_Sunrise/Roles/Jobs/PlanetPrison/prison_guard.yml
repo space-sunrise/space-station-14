@@ -40,3 +40,10 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltPrisonGuardianFilled
     pocket1: WeaponSubMachineGunSkorpion  # Почему бы и нет, ппшка на резине
+
+- type: chameleonOutfit
+  id: PrisonGuardChameleonOutfit
+  job: PrisonGuard
+  equipment:
+    head: ClothingHeadHelmetBasic
+

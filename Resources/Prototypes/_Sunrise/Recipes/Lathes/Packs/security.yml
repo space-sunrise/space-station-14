@@ -13,7 +13,10 @@
     - MagazineBoxMagnumRubber
     - MagazineMagnumRubber
     - MagazineMagnum
+    - MagazineMagnumFMJ
+    - MagazineMagnumHP
     - MagazineMagnumEmpty
+    - MagazineMagnumPractice
     # Pistol
     - MagazineBoxPistolSP
     - MagazineBoxPistolHP
@@ -26,16 +29,21 @@
     - MagazineBoxRifleSP
     - MagazineBoxRifleHP
     - MagazineBoxRifleFMJ
+    # Rifle Heavy
+    - MagazineBoxHeavyRifleFMJ
+    - MagazineBoxHeavyRifleHP
+    - MagazineBoxHeavyRifleSP
+    - MagazineBoxHeavyRiflePractice
     # Shotgun
     - BoxLethalshot
     - BoxShotgunSlug
     - BoxShellTranquilizer
     #####################MAGAZINE#######################
     # LMG
-    - LightRifleHeavyMagazineSP
-    - LightRifleHeavyMagazineHP
-    - LightRifleHeavyMagazineFMJ
-    - LightRifleHeavyMagazineEmpty
+    - LightRifleMagazineSP
+    - LightRifleMagazineHP
+    - LightRifleMagazineFMJ
+    - LightRifleMagazineEmpty
     # Light Rifle
     - MagazineLightRifleSP
     - MagazineLightRifleHP
@@ -78,6 +86,11 @@
     - MagazineRifleHP
     - MagazineRifleFMJ
     - MagazineRifleEmpty
+    # Rifle Heavy
+    - MagazineRifleHeavyFMJ
+    - MagazineRifleHeavyHP
+    - MagazineRifleHeavySP
+    - MagazineRifleHeavyEmpty
     # Shotgun Magazine
     - MagazineShotgun
     - MagazineShotgunEmpty
@@ -93,7 +106,7 @@
   id: SecurityDynamicSunrise
   recipes:
     - WeaponEnergyGun
-    - WeaponEnergyGunMini
+    - WeaponMiniEnergyGun
     - WeaponEnergyGunPistol
     - WeaponGunLaserCarbineAutomatic
     - MagazineBatteryLr30
@@ -131,11 +144,15 @@
     - MagazineBoxPistolIncendiary
     - MagazineBoxPistolUranium
     - MagazineBoxPistolAP
-    #- MagazineBoxPistol40AP
+    - MagazineBoxPistol40AP
   # Rifle
     - MagazineBoxRifleIncendiary
     - MagazineBoxRifleUranium
     - MagazineBoxRifleAP
+  # Heavy Rifle
+    - MagazineBoxHeavyRifleAP
+    - MagazineBoxHeavyRifleIncendiary
+    - MagazineBoxHeavyRifleUranium
   # Shotgun
     - BoxBeanbag
     - BoxShotgunIncendiary
@@ -143,9 +160,9 @@
     - BoxShellTranquilizer
   #####################MAGAZINE#######################
   # LMG
-    - LightRifleHeavyMagazineIncendiary
-    - LightRifleHeavyMagazineUranium
-    - LightRifleHeavyMagazineAP
+    - LightRifleMagazineIncendiary
+    - LightRifleMagazineUranium
+    - LightRifleMagazineAP
   # Light Rifle
     - MagazineLightRifleIncendiary
     - MagazineLightRifleUranium
@@ -154,11 +171,13 @@
     - SpeedLoaderMagnumIncendiary
     - SpeedLoaderMagnumUranium
     - SpeedLoaderMagnumAP
+    - MagazineMagnumUranium
+    - MagazineMagnumAP
   # Pistol
     - MagazinePistolIncendiary
     - MagazinePistolUranium
     - MagazinePistolAP
-    #- MagazinePistol40AP
+    - MagazinePistol40AP
   # Pistol High Capacity
     - MagazinePistolHighCapacityIncendiary
     - MagazinePistolHighCapacityUranium
@@ -167,14 +186,20 @@
     - MagazinePistolSubMachineGunIncendiary
     - MagazinePistolSubMachineGunUranium
     - MagazinePistolSubMachineGunAP
+    - MagazinePistolSubMachineGunRubber
     # SMG Top Mounted
     - MagazinePistolSubMachineGunTopMountedAP
     - MagazinePistolSubMachineGunTopMountedIncendiary
     - MagazinePistolSubMachineGunTopMountedUranium
+    - MagazinePistolSubMachineGunTopMountedRubber
   # Rifle
     - MagazineRifleIncendiary
     - MagazineRifleUranium
     - MagazineRifleAP
+  # Rifle Heavy
+    - MagazineRifleHeavyIncendiary
+    - MagazineRifleHeavyAP
+    - MagazineRifleHeavyUranium
   # Shotgun
     - MagazineShotgunBeanbag
     - MagazineShotgunIncendiary
@@ -190,6 +215,14 @@
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat
+    - VestSecUpgradePlate
+    - VestSecUpgradeStab
+    - VestSecUpgradeHeat
+    - VestSecUpgradeBullet
+    - VestSecUpgradeRiot
+    - VestSecUpgradeReflective
+    - VestSecUpgradeWeb
+    - VestSecUpgradeBulletHeavy
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech

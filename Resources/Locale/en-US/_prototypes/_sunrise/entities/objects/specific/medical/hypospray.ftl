@@ -8,3 +8,5 @@ ent-StimpackNT = ephedrine injector
     .desc = Contains enough ephedrine for you to have the chemical's effect for 30 seconds. Use it when you're sure you're ready to throw down.
 ent-StimpackMiniNT = ephedrine microinjector
     .desc = A microinjector of ephedrine that give you about 15 seconds of the chemical's effects.
+ent-CoalAutoInjector = coal auto-injector
+    .desc = Clears your blood and treats poison damage over 30 seconds.

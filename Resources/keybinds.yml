@@ -190,7 +190,7 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: J # Sunrise-Edit
+  key: U
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -241,9 +241,10 @@ binds:
 - function: OpenGuidebook
   type: State
   key: NumpadNum0
-- function: OpenAHelp
-  type: State
-  key: F1
+# Sunrise-Edit
+#- function: OpenAHelp
+#  type: State
+#  key: F1
 - function: OpenInventoryMenu
   type: State
   key: I
@@ -254,6 +255,18 @@ binds:
 - function: SmartEquipBelt
   type: State
   key: E
+  mod1: Shift
+- function: SmartEquipPocket1
+  type: State
+  key: F
+  mod1: Shift
+- function: SmartEquipPocket2
+  type: State
+  key: G
+  mod1: Shift
+- function: SmartEquipSuitStorage
+  type: State
+  key: H
   mod1: Shift
 - function: OpenBackpack
   type: State
@@ -525,6 +538,9 @@ binds:
 - function: Arcade3
   type: State
   key: Z
+#- function: ToggleKnockdown
+#  type: State
+#  key: C
 - function: OpenAbilitiesMenu
   type: State
   key: K
@@ -632,13 +648,9 @@ binds:
 - function: CockGun # Это не то о чем вы подумали, товарищ визард.
   type: State
   key: C
-- function: Reloading # Да, перезарядка в РП игре на кнопочку.
-  type: State
-  key: R
 - function: ToggleStanding # Упал-отжался.
   type: State
-  key: Control
-  mod1: Alt
+  key: R
 - function: Jump # Да, мы прыгаем в 2д игре.
   type: State
   key: Space
@@ -648,4 +660,10 @@ binds:
 - function: MeleeGunAttack
   type: State
   key: MouseMiddle
+- function: OpenMentorHelp
+  type: State
+  key: O
+- function: OpenHelpChoice
+  type: State
+  key: F1
 # Sunrise-End

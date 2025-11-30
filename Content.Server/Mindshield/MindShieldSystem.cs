@@ -7,6 +7,7 @@ using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Roles.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Mindshield;
@@ -27,25 +28,22 @@ public sealed class MindShieldSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
-        SubscribeLocalEvent<MindShieldImplantComponent, EntGotRemovedFromContainerMessage>(OnImplantDraw);
-        SubscribeLocalEvent<SubdermalImplantComponent, ImplantEjectEvent>(ImplantCheck);
+        SubscribeLocalEvent<MindShieldImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
+        SubscribeLocalEvent<SubdermalImplantComponent, ImplantRemovedEvent>(ImplantCheck);
     }
 
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
-        if (ev.Implanted == null)
-            return;
-
-        EnsureComp<MindShieldComponent>(ev.Implanted.Value);
-        MindShieldRemovalCheck(ev.Implanted.Value, ev.Implant);
+        EnsureComp<MindShieldComponent>(ev.Implanted);
+        MindShieldRemovalCheck(ev.Implanted, ev.Implant);
     }
 
     // Sunrise-Start
-    public void ImplantCheck(EntityUid uid, SubdermalImplantComponent comp, ref ImplantEjectEvent ev)
+    public void ImplantCheck(EntityUid uid, SubdermalImplantComponent comp, ref ImplantRemovedEvent ev)
     {
-        if (HasComp<MindShieldImplantComponent>(ev.Implant) && ev.Implanted != null)
+        if (HasComp<MindShieldImplantComponent>(ev.Implant))
         {
-            RemCompDeferred<MindShieldComponent>(ev.Implanted.Value);
+            RemCompDeferred<MindShieldComponent>(ev.Implanted);
         }
     }
     // Sunrise-End
@@ -69,9 +67,9 @@ public sealed class MindShieldSystem : EntitySystem
         }
     }
 
-    private void OnImplantDraw(Entity<MindShieldImplantComponent> ent, ref EntGotRemovedFromContainerMessage args)
+    private void OnImplantRemoved(Entity<MindShieldImplantComponent> ent, ref ImplantRemovedEvent args)
     {
-        RemComp<MindShieldComponent>(args.Container.Owner);
+        RemComp<MindShieldComponent>(args.Implanted);
     }
 }
 

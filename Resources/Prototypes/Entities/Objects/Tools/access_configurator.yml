@@ -48,6 +48,8 @@
       - Security
       - Service
       - Theatre
+      - GenpopEnter
+      - GenpopLeave
       - BlueShield # Sunrise
       - BlueShieldEnsign # Sunrise
       - Ntrep # Sunrise

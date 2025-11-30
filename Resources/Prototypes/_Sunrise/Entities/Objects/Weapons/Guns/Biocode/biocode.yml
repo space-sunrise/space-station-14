@@ -49,6 +49,16 @@
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
+  parent: WeaponRifleEstoc
+  id: WeaponRifleEstocBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBiocode
   suffix: BIOCODE
@@ -91,6 +101,16 @@
 - type: entity
   parent: WeaponPistolViper
   id: WeaponPistolViperBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleBiocode
   suffix: BIOCODE
   components:
   - type: FactionWeaponBlocker
@@ -201,6 +221,26 @@
 - type: entity
   parent: WeaponShotgunMinotaur
   id: WeaponShotgunMinotaurBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: WeaponMiniEnergyCrossbow
+  id: WeaponMiniEnergyCrossbowBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: WeaponSubMachineGunC40r
+  id: WeaponSubMachineGunC40rBiocode
   suffix: BIOCODE
   components:
   - type: FactionWeaponBlocker

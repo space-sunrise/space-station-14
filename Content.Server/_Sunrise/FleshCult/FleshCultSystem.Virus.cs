@@ -64,7 +64,7 @@ public sealed partial class FleshCultSystem
                     if (comp.NextParalyze <= curTime)
                     {
                         comp.NextParalyze = curTime + TimeSpan.FromSeconds(comp.ParalyzeInterval);
-                        _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(comp.ParalyzeTime), true);
+                        _stunSystem.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(comp.ParalyzeTime));
                     }
                     if (comp.NextJitter <= curTime)
                     {

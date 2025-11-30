@@ -15,6 +15,7 @@ stack-reinforced-plasma-glass = армированное плазменное с
 stack-reinforced-uranium-glass = армированное урановое стекло
 stack-gunpowder = порох
 stack-cardboard = картон
+stack-phosphorus = фосфорный порошок
 stack-bones =
     { $amount ->
         [1] кость

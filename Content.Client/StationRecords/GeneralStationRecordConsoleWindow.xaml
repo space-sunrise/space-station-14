@@ -17,9 +17,9 @@
                     <ItemList Name="RecordListing" />
                 </ScrollContainer>
             </BoxContainer>
-            <BoxContainer Orientation="Vertical" Margin="5">
+            <BoxContainer Orientation="Vertical" Margin="5" HorizontalExpand="True" VerticalExpand="True">
                 <Label Name="RecordContainerStatus" Visible="False" Text="{Loc 'general-station-record-console-select-record-info'}"/>
-                <Control Name="RecordContainer" Visible="False"/>
+                <BoxContainer Name="RecordContainer" Visible="False" HorizontalExpand="True" VerticalExpand="True"/>
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

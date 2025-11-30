@@ -34,65 +34,15 @@
   - type: InstantAction
     event: !type:DiseaseShopActionEvent
 
-- type: entity
-  parent: BaseAction
-  id: ActionDiseaseBaseChance
-  name: listing-disease-base-chance-name
-  description: listing-disease-base-chance-description
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Sunrise/Actions/disease.rsi
-      state: baseChance
-  - type: InstantAction
-    event: !type:DiseaseAddBaseChanceEvent
 
-- type: entity
-  parent: BaseAction
-  id: ActionDiseaseInfectChance
-  name: listing-disease-infect-chance-name
-  description: listing-disease-infect-chance-description
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Sunrise/Actions/disease.rsi
-      state: coughChance
-  - type: InstantAction
-    event: !type:DiseaseAddCoughChanceEvent
 
-- type: entity
-  parent: BaseAction
-  id: ActionDiseaseShield
-  name: listing-disease-shield-name
-  description: listing-disease-shield-description
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Sunrise/Actions/disease.rsi
-      state: shield
-  - type: InstantAction
-    event: !type:DiseaseAddShieldEvent
 
-- type: entity
-  parent: BaseAction
-  id: ActionDiseaseLethal
-  name: listing-disease-lethal-name
-  description: listing-disease-lethal-description
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Sunrise/Actions/disease.rsi
-      state: lethal
-  - type: InstantAction
-    event: !type:DiseaseAddLethalEvent
+
+
+
+
+
+
 
 #Store
 
@@ -265,5 +215,35 @@
     event: !type:DiseaseAddSymptomEvent
       symptom: "Insult"
       minLevel: 2
+
+- type: entity
+  parent: BaseAction
+  id: ActionDiseaseZombie
+  name: listing-disease-zombie-name
+  description: listing-disease-zombie-description
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: zombie
+  - type: InstantAction
+    event: !type:DiseaseZombieEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionDiseaseInfo
+  name: listing-disease-info-name
+  description: listing-disease-info-description
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: blindness
+  - type: InstantAction
+    event: !type:DiseaseInfoEvent
 
 

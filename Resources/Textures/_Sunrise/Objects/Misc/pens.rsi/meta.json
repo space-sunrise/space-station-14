@@ -29,11 +29,22 @@
         "name": "pen_hop"
     },
     {
+        "name": "pen-maid"
+    },
+    {
       "name": "pen-inhand-left",
       "directions": 4
     },
     {
       "name": "pen-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen-maid-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen-maid-inhand-right",
       "directions": 4
     },
     {

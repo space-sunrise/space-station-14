@@ -13,6 +13,11 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Content.Shared._Sunrise.Misc;
+using Content.Shared.Xenoarchaeology.Artifact.Components;
+using Content.Shared.Xenoarchaeology.Artifact;
+using Content.Shared.Actions.Components;
+using Content.Shared.Actions;
 
 namespace Content.Server._Sunrise.Interrogator
 {
@@ -26,6 +31,8 @@ namespace Content.Server._Sunrise.Interrogator
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedPointLightSystem _light = default!;
+        [Dependency] private readonly SharedXenoArtifactSystem _xenoArtifactSystem = default!;
+        [Dependency] private readonly SharedActionsSystem _actions = default!;
 
         public override void Initialize()
         {
@@ -136,6 +143,30 @@ namespace Content.Server._Sunrise.Interrogator
 
         private void EjectImplants(EntityUid target)
         {
+            bool hadXenoArtifactThrowingAutoInjector = HasComp<XenoArtifactThrowingAutoInjectorMarkComponent>(target) && HasComp<XenoArtifactComponent>(target);
+            _xenoArtifactSystem.RemoveXenoArtifactComponent(target);
+            // Удаляем action, если был заражён
+            if (hadXenoArtifactThrowingAutoInjector && TryComp<ActionsComponent>(target, out var actionsComp))
+            {
+                if (TryComp<XenoArtifactComponent>(target, out var artifactComp))
+                {
+                    foreach (var actionId in actionsComp.Actions)
+                    {
+                        if (_actions.GetAction(actionId) is { } actionEnt &&
+                            TryComp<MetaDataComponent>(actionEnt.Owner, out var meta) &&
+                            meta.EntityPrototype?.ID != null &&
+                            meta.EntityPrototype.ID == artifactComp.SelfActivateAction)
+                        {
+                            _actions.RemoveAction(new Entity<ActionsComponent?>(target, actionsComp), actionId);
+                            break;
+                        }
+                    }
+                }
+            }
+            if (hadXenoArtifactThrowingAutoInjector)
+            {
+                Spawn("ScrapGlass", Transform(target).Coordinates);
+            }
             if (_container.TryGetContainer(target, ImplanterComponent.ImplantSlotId, out var implantContainer))
             {
                 var implantCompQuery = GetEntityQuery<SubdermalImplantComponent>();

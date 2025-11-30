@@ -1,11 +1,11 @@
 - type: damageModifierSet
   id: Felinid
   coefficients:
-    Blunt: 1.1
-    Piercing: 1.1
-    Slash: 1.1
-    Cold: 1.1
-    Heat: 1.1
+    Blunt: 1.2
+    Piercing: 1.2
+    Slash: 1.2
+    Cold: 0.8
+    Heat: 1.2
 
 - type: damageModifierSet
   id: Swine
@@ -41,18 +41,16 @@
 - type: damageModifierSet
   id: Dragon
   coefficients:
-    Blunt: 0.7
-    Slash: 0.7
-    Piercing: 0.7
-    Heat: 0.6
+    Heat: 0.9
     Shock: 0.5
 
 - type: damageModifierSet
   id: Rift
   coefficients:
-    Blunt: 0.6
-    Slash: 0.6
-    Piercing: 0.6
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.5
+    Heat: 0.8
 
 - type: damageModifierSet
   id: CultRobe
@@ -68,4 +66,14 @@
   coefficients:
     Heat: 1.15
 
+- type: damageModifierSet
+  id: GorillaRampaging
+  coefficients:
+    Blunt: 1.25
+    Cellular: 0
 
+- type: damageModifierSet
+  id: Resomi
+  coefficients:
+    Cold: 0.75
+    Heat: 1.25

@@ -1,4 +1,5 @@
 bwoink-user-title = Admin Message
+bwoink-admin-title = Admin Help
 
 bwoink-system-starmute-message-no-other-users = *System: Nobody is available to receive your message. Try pinging Game Admins on Discord.
 
@@ -26,6 +27,8 @@ admin-bwoink-play-sound = Bwoink?
 bwoink-title-none-selected = None selected
 
 bwoink-system-rate-limited = System: you are sending messages too quickly.
+bwoink-cooldown-message = Too fast! Wait {$seconds}s before sending another message.
+bwoink-input-placeholder = Type your message here...
 bwoink-system-player-disconnecting = has disconnected.
 bwoink-system-player-reconnecting = has reconnected.
 bwoink-system-player-banned = has been banned for: {$banReason}

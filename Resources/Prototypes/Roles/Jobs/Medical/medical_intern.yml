@@ -4,12 +4,14 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 3600 #1 hr # Sunrise-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 5h
+      inverted: true # stop playing intern if you're good at med!
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine
-  canBeAntag: true # Sunrise-Edit
+  canBeAntag: false
   displayWeight: 0  # Sunrise-Edit
   access:
   - Medical
@@ -18,12 +20,11 @@
 - type: startingGear
   id: MedicalInternGear
   equipment:
-#    shoes: ClothingShoesColorWhite # Sunrise-Edit
+    shoes: ClothingShoesColorWhite
     id: MedicalInternPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
-    eyes: ClothingEyesHudMedical # Sunrise-Edit
   #storage:
     #back:
     #- Stuff

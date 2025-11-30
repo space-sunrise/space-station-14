@@ -22,9 +22,9 @@
     shoes: ClothingShoesColorWhite
     id: ZookeeperPDA
     ears: ClothingHeadsetService
-  #storage:
-    #back:
-    #- Stuff
+  storage:
+    back:
+    - MedkitFilled # Аптечка первой помощи для первых пациентов
 
 - type: chameleonOutfit
   id: ZookeeperChameleonOutfit
@@ -36,4 +36,3 @@
     neck: ClothingNeckScarfStripedBrown
     belt: ClothingBeltStorageWaistbag
     gloves: ClothingHandsGlovesColorBrown
-

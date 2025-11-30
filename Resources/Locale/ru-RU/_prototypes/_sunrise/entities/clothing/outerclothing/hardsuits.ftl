@@ -36,3 +36,5 @@ ent-ClothingOuterHardsuitPirateCapSun = капитанский пиратски�
     .suffix = Pirate, Sunrise
 ent-ClothingOuterHardsuitChameleon = синдикатовский хамелеон
     .desc = Глядя на его материалы, в голове невольно всплывают образы из области научной фантастики.
+ent-ClothingOuterHardsuitInfiltration = скафандр инфильтратора
+    .desc = Усиленный скафандр Синдиката, созданный для скрытных операций. Совмещает защиту и активную маскировку.

@@ -254,6 +254,7 @@
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitPirateCapSun
+  categories: [ HideSpawnMenu ]
   name: pirate captain's hardsuit helmet
   suffix: Pirate, Sunrise
   description: A special hardsuit helmet, made for the captain of a pirate ship.
@@ -278,6 +279,7 @@
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitPirateSun
+  categories: [ HideSpawnMenu ]
   name: pirate hardsuit helmet
   suffix: Pirate, Sunrise
   description: A special hardsuit helmet, made for Scooner.
@@ -298,4 +300,29 @@
         Heat: 0.85
   - type: FlashImmunity
   - type: EyeProtection
-  
+
+- type: entity
+  parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitInfiltration
+  categories: [ HideSpawnMenu ]
+  name: syndicate infiltration hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  #- type: PointLight
+    #color: "#880808"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+  - type: FlashImmunity
+  - type: EyeProtection

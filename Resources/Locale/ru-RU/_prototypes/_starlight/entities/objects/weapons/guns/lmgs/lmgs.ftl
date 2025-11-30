@@ -1,4 +1,4 @@
-ent-WeaponLightMachineGunM492 = M492 Smart LMG
-    .desc = A high tech non-traditional LMG built specifically for combating the big threats among us. Uses .30 ammo.
-ent-WeaponLightMachineGunDP28 = DP-28 LMG
-    .desc = From RA-TA-TA-TA with love. Uses .30 ammo.
+ent-WeaponLightMachineGunM492 = М492 Умный легкий пулемет
+    .desc = Высокотехнологичный легкий пулемет нестандартной конструкции, созданный специально для борьбы с крупными угрозами среди нас. Использует патроны калибра .30.
+ent-WeaponLightMachineGunDP28 = Легкий пулемет ДП-28
+    .desc = С любовью, РА-ТА-ТА-ТА. Использует патроны калибра .30.

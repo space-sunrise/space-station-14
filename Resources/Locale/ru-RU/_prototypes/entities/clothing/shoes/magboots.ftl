@@ -12,3 +12,6 @@ ent-ClothingShoesBootsMagSyndie = кроваво-красные магнитны
     .desc = Созданные по технологии реверс-инжиниринга магнитные ботинки с встроенными ускорителями. Вмещает 0,75 Л газа.
 ent-ActionToggleMagboots = Переключить магнитные ботинки
     .desc = Включает или выключает магнитные ботинки.
+ent-ClothingShoesBootsMagSyndieBiocode = { ent-ClothingShoesBootsMagSyndie }
+    .suffix = БИОКОД
+    .desc = { ent-ClothingShoesBootsMagSyndie.desc }

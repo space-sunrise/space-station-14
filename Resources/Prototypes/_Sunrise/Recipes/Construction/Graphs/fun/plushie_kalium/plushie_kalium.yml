@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: PlushieKaliumDouble1
+  start: start
+  graph:
+    - node: start
+      entity: PlushieKalium
+      edges:
+        - to: auto
+          steps:
+            - tag: PlushieKalium
+              name: construction-graph-tag-plushiekalium
+              doAfter: 3
+    - node: auto
+      entity: PlushieKaliumDouble

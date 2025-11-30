@@ -4,7 +4,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: HumanoidAppearance
     species: Tajaran
     hideLayersOnEquip:
@@ -55,6 +54,10 @@
     heatDamage:
       types:
         Heat : 0.1
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
+  - type: FlashModifier
+    modifier: 1.4
   - type: Perishable
   - type: MobThresholds
     thresholds:
@@ -65,7 +68,7 @@
     speciesId: human
   - type: FootprintEmitter
   - type: Carriable
-  - type: ToggleableNightVision
+  - type: NightVision
     effect: EffectNightVisioSpecies
 
 - type: entity

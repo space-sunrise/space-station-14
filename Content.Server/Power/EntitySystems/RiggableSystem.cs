@@ -4,6 +4,7 @@ using Content.Server.Kitchen.Components;
 using Content.Server.Power.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
+using Content.Shared.Power.Components;
 using Content.Shared.Rejuvenate;
 
 namespace Content.Server.Power.EntitySystems;
@@ -31,6 +32,10 @@ public sealed class RiggableSystem : EntitySystem
 
     private void OnMicrowaved(Entity<RiggableComponent> entity, ref BeingMicrowavedEvent args)
     {
+        //Sunrise-Start
+        if (!args.BeingHeated && !args.BeingIrradiated)
+            return;
+        //Sunrise-End
         if (TryComp<BatteryComponent>(entity, out var batteryComponent))
         {
             if (batteryComponent.CurrentCharge == 0)

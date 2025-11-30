@@ -150,7 +150,7 @@ public sealed class BloodCultWeaponSystem : EntitySystem
         if (HasComp<BloodCultistComponent>(args.User))
             return;
 
-        _stunSystem.TryParalyze(args.User, TimeSpan.FromSeconds(component.StuhTime), true);
+        _stunSystem.TryAddParalyzeDuration(args.User, TimeSpan.FromSeconds(component.StuhTime));
         _damageableSystem.TryChangeDamage(args.User, component.Damage, origin: uid);
     }
 }

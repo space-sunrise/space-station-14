@@ -1,8 +1,8 @@
-ent-WeaponRevolverMakeshift = Makeshift Revolver
-    .desc = Little more than a hand-cannon with a high chance of blowing up in your face.
-ent-WeaponRevolverImprovised = Improvised Revolver
-    .desc = A revolver that has two barrels and no cylinder. Can you really call this a revolver?
-ent-WeaponRevolverForged = Forged Revolver
-    .desc = The best Tider engineering can offer, a revolver with the ability to hold 4 bullets!
-ent-WeaponRevolverSnubRevolver = snub-nose revolver
-    .desc = A single-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 6 rounds of .45 magnum.
+ent-WeaponRevolverMakeshift = Самодельный револьвер
+    .desc = Едва ли не ручная пушка с высоким шансом взорваться прямо у вас в руках.
+ent-WeaponRevolverImprovised = Кустарный револьвер
+    .desc = Револьвер, у которого два ствола и нет барабана. Можно ли это вообще назвать револьвером?
+ent-WeaponRevolverForged = Кованый револьвер
+    .desc = Лучшее, что может предложить инженерная мысль Тайдеров: револьвер, способный вместить 4 патрона!
+ent-WeaponRevolverSnubRevolver = короткоствольный револьвер
+    .desc = Револьвер одинарного действия, производимый различными компаниями. Он легко доступен на гражданском рынке, что делает его популярным выбором среди частных детективов. Вы чувствуете себя удачливым, просто держа его. Заряжается 6 патронами .45 магнум.

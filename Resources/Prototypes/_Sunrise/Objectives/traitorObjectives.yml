@@ -5,10 +5,10 @@
   - type: Objective
     difficulty: 3
   - type: NotJobRequirement
-    job: BlueShieldEnsign
+    job: BlueShieldOfficer
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
-    owner: командир «Синий щит»
+    owner: офицер «Синий щит»
 
 - type: entity
   parent: BaseCMOStealObjective

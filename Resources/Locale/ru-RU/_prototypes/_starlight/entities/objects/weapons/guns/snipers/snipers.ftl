@@ -1,6 +1,6 @@
-ent-WeaponSniperMakeshift = Makeshift Repeater Rifle
-    .desc = It'll blow a hole in the guy you point this at, if it doesn't snap your wrist first.
-ent-WeaponSniperImprovised = Improvised Repeater Rifle
-    .desc = Can ALMOST reliably hit a target!
-ent-WeaponSniperForged = Forged Repeater Rifle
-    .desc = The best a tider can achive, reliable fire-rate and accuracy with a satisfying lever-action system. What more can you ask for?
+ent-WeaponSniperMakeshift = Самодельная винтовка-повторитель
+    .desc = Она проделает дыру в том, на кого вы ее наведете, если только не вывихнет вам запястье первой.
+ent-WeaponSniperImprovised = Импровизированная винтовка-повторитель
+    .desc = Почти надежно попадает в цель!
+ent-WeaponSniperForged = Кованая винтовка-повторитель
+    .desc = Лучшее, чего может достичь тайдер: надежная скорострельность и точность в сочетании с приятной системой рычажного действия. Чего еще можно желать?

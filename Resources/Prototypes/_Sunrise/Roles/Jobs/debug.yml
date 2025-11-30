@@ -2,7 +2,8 @@
   id: DebugSecurityOfficerGear
   equipment:
     head: ClothingHeadHelmetBasic
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterVestArmorSec
+    shoes: ClothingShoesBootsJackSec
 
 - type: entity
   save: false
@@ -16,8 +17,9 @@
 - type: startingGear
   id: DebugBulletProofGear
   equipment:
-    head: ClothingHeadHelmetBasic
+    head: ClothingHeadHelmetPubg
     outerClothing: ClothingOuterArmorBulletproof
+    shoes: ClothingShoesBootsJackSec
 
 - type: entity
   save: false
@@ -48,6 +50,7 @@
   equipment:
     head: ClothingHeadHatSyndieMAA
     outerClothing: ClothingOuterVestWeb
+    shoes: ClothingUnderSocksCoder
 
 - type: entity
   save: false

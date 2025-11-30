@@ -38,6 +38,8 @@
   - MagazineBoxRifleIncendiary
   - MagazinePistolSubMachineGunTopMountedIncendiary #Sunrise-Add
   - MagazinePistolHighCapacityIncendiary # Sunrise-Add
+  - MagazineRifleHeavyIncendiary # Sunrise-Add
+  - MagazineBoxHeavyRifleIncendiary # Sunrise-Add
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -53,7 +55,7 @@
   # Sunrise-Start
   - WeaponMechCombatFiredartLaser
   - WeaponEnergyGun
-  - WeaponEnergyGunMini
+  - WeaponMiniEnergyGun
   # Sunrise-End
 
 - type: technology
@@ -72,6 +74,8 @@
   - WeaponDisabler
   # Sunrise-Start
   - WeaponMechCombatDisabler
+  - MagazinePistolSubMachineGunTopMountedRubber
+  - MagazinePistolSubMachineGunRubber
   # Sunrise-End
 
 - type: technology
@@ -89,6 +93,7 @@
   - MagazinePistolSubMachineGunUranium
   - MagazineLightRifleUranium
   - SpeedLoaderMagnumUranium
+  - MagazineMagnumUranium
   - MagazineBoxPistolUranium
   - MagazineBoxMagnumUranium
   - MagazineBoxLightRifleUranium
@@ -96,6 +101,8 @@
   - BoxShotgunUranium
   - MagazinePistolSubMachineGunTopMountedUranium #Sunrise-Add
   - MagazinePistolHighCapacityUranium # Sunrise-Add
+  - MagazineRifleHeavyUranium # Sunrise-Add
+  - MagazineBoxHeavyRifleUranium # Sunrise-Add
 
 - type: technology
   id: AdvancedRiotControl
@@ -111,8 +118,10 @@
   - TelescopicShield
   - HoloprojectorSecurity
   - WeaponDisablerSMG
-  - ClothingHeadHelmetPubg  # Sunrise-Add
   - FlareGunSecurityUpgrade # Sunrise-Add
+  - VestSecUpgradePlate # Sunrise-Add
+  - VestSecUpgradeStab # Sunrise-Add
+  - VestSecUpgradeHeat # Sunrise-Add
 
 - type: technology
   id: ExplosiveTechnology
@@ -131,6 +140,8 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
+  - CableDetStack1
+  - EmptyDetonator
 
 - type: technology
   id: SpecialMeans
@@ -207,6 +218,18 @@
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
+
+- type: technology
+  id: DualWieldingTechnology
+  name: research-technology-dual-wielding-technology
+  icon:
+    sprite: Clothing/Back/Specific/harmpack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingBackpackHarmpack
 
 # Tier 3
 

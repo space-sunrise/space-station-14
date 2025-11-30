@@ -1,0 +1,13 @@
+# © SUNRISE, Contributor: UnilTan
+# Licensed under SUNRISE CLA
+# Full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+# Hair/fur linear gradient used in customization
+- type: shader
+  id: HairGradient
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/hair_linear_gradient.swsl"
+  params:
+    color1: 1, 0, 0
+    color2: 1, 1, 1
+    direction: 0
+  light_mode: shaded

@@ -61,7 +61,7 @@
   id: ManifestedSpirit
   supportedGroups:
     - Metaphysical
-    - Brute
+  # - Brute # Sunrise-Edit
   supportedTypes:
     - Heat
     - Shock

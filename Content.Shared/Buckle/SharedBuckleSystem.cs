@@ -32,7 +32,7 @@ public abstract partial class SharedBuckleSystem : EntitySystem
     [Dependency] private readonly SharedJointSystem _joints = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;

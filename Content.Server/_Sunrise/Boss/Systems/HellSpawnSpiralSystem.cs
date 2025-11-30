@@ -34,7 +34,7 @@ public sealed class HellSpawnSpiralSystem : EntitySystem
     private async void OnSpiral(EntityUid uid, HellSpawnSpiralComponent component, HellSpawnSpiralActionEvent args)
     {
         var xform = Transform(uid);
-        _stun.TrySlowdown(uid, TimeSpan.FromSeconds(2), true, 0f, 0f);
+        _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(2));
 
         var vectors = GenerateVectors(component.FireballCount);
         foreach (var vector in vectors)

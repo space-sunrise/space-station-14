@@ -148,6 +148,18 @@
     organ: Ephedrine
 
 - type: entity
+  id: OrganDubiousGoal
+  parent: [BaseOrganDubious]
+  name: gland
+  description: Suspicious alien gland, replaces the heart.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+    state: vent
+  - type: AbductorOrgan
+    organ: TraitorGoal
+
+- type: entity
   id: RandomOrganDubious
   name: random gland
   description: a random abductor gland
@@ -175,3 +187,4 @@
       - id: OrganDubiousOwo
       - id: OrganDubiousLiar
       - id: OrganDubiousPacified
+      - id: OrganDubiousGoal

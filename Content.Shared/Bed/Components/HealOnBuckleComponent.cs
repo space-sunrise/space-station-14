@@ -23,7 +23,7 @@ namespace Content.Shared.Bed.Components
         /// Damage multiplier that gets applied if the entity is sleeping.
         /// </summary>
         [DataField]
-        public float SleepMultiplier = 3f;
+        public float SleepMultiplier = 1.5f;
 
         /// <summary>
         /// Next time that <see cref="Damage"/> will be applied.

@@ -16,7 +16,6 @@ public abstract partial class SharedGunSystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // 🌟Starlight🌟
 
 
     protected virtual void InitializeBallistic()
@@ -67,6 +66,7 @@ public abstract partial class SharedGunSystem
         Audio.PlayPredicted(component.SoundInsert, uid, args.User);
         args.Handled = true;
         UpdateBallisticAppearance(uid, component);
+        UpdateAmmoCount(args.Target);
         DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
     }
 
@@ -162,7 +162,9 @@ public abstract partial class SharedGunSystem
                 Del(ent.Value);
         }
 
-        // repeat if there is more space in the target and more ammo to fill it
+        UpdateBallisticAppearance(args.Target.Value, component);
+        UpdateAmmoCount(args.Target.Value);
+        // repeat if there is more space in the target and more ammo to fill
         var moreSpace = target.Entities.Count + target.UnspawnedCount < target.Capacity;
         var moreAmmo = component.Entities.Count + component.UnspawnedCount > 0;
         args.Repeat = moreSpace && moreAmmo;
@@ -198,13 +200,13 @@ public abstract partial class SharedGunSystem
         {
             var firstAmmo = component.Entities[^1];
             if (TryComp<MetaDataComponent>(firstAmmo, out var meta) && meta.EntityPrototype?.ID != null &&
-                _prototypeManager.TryIndex<EntityPrototype>(meta.EntityPrototype.ID, out var entity))
+                ProtoManager.TryIndex<EntityPrototype>(meta.EntityPrototype.ID, out var entity))
             {
                 ammoTypeName = entity.Name;
             }
         }
 
-        else if (component.UnspawnedCount > 0 && component.Proto != null && _prototypeManager.TryIndex(component.Proto, out EntityPrototype? proto))
+        else if (component.UnspawnedCount > 0 && component.Proto != null && ProtoManager.TryIndex(component.Proto, out EntityPrototype? proto))
         {
             ammoTypeName = proto.Name;
         }

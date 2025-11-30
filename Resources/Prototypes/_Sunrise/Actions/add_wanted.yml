@@ -1,0 +1,15 @@
+- type: entity
+  id: ActionAddWanted
+  name: Submit a wanted
+  description: Puts the target on the wanted list.
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Clothing/Eyes/Hud/sec.rsi
+      state: icon
+  - type: TargetAction
+    range: -1
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:AddWantedEvent

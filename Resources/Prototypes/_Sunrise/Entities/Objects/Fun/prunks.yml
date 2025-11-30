@@ -5,7 +5,7 @@
   id: FakeGrenade
   parent: GrenadeBase
   components:
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3
     beepInterval: 0.46
     beepSound:
@@ -17,7 +17,6 @@
       path: /Audio/Effects/Grenades/Supermatter/smbeep.ogg
       params:
         volume: -5
-    beepInterval: 2 # 2 beeps total (at 0 and 2)
   - type: TwoStageTrigger
     triggerDelay: 3
     components:

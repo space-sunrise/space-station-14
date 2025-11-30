@@ -345,6 +345,39 @@ public sealed partial class ShuttleSystem
         }
     }
 
+    // Sunrise-Start
+    public void FTLToDockСonfig(
+        EntityUid shuttleUid,
+        ShuttleComponent component,
+        DockingConfig config,
+        float? startupTime = null,
+        float? hyperspaceTime = null,
+        string? priorityTag = null,
+        bool ignored = false,
+        bool deletedTrash = false)
+    {
+        if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
+            return;
+
+        startupTime ??= DefaultStartupTime;
+        hyperspaceTime ??= DefaultTravelTime;
+
+        hyperspace.StartupTime = startupTime.Value;
+        hyperspace.TravelTime = hyperspaceTime.Value;
+        hyperspace.StateTime = StartEndTime.FromStartDuration(
+            _gameTiming.CurTime,
+            TimeSpan.FromSeconds(hyperspace.StartupTime));
+        hyperspace.PriorityTag = priorityTag;
+        hyperspace.Ignored = ignored; // Sunrise-Edit
+        hyperspace.DeleteTrash = deletedTrash; // Sunrise-Edit
+
+        _console.RefreshShuttleConsoles(shuttleUid);
+
+        hyperspace.TargetCoordinates = config.Coordinates;
+        hyperspace.TargetAngle = config.Angle;
+    }
+    // Sunrise-End
+
     private bool TrySetupFTL(EntityUid uid, ShuttleComponent shuttle, [NotNullWhen(true)] out FTLComponent? component)
     {
         component = null;
@@ -641,10 +674,7 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
-                if (!_statusQuery.TryGetComponent(child, out var status))
-                    continue;
-
-                _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
+                _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // Sunrise-Start
                 if (_physicsQuery.TryGetComponent(child, out var physics))
@@ -725,7 +755,7 @@ public sealed partial class ShuttleSystem
         // only toss if its on lattice/space
         var tile = _mapSystem.GetTileRef(shuttleEntity, shuttleGrid, childXform.Coordinates);
 
-        if (!tile.IsSpace(_tileDefManager))
+        if (!_turf.IsSpace(tile))
             return;
 
         var throwDirection = childXform.LocalPosition - shuttleBody.LocalCenter;
@@ -836,7 +866,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     /// <param name="minOffset">Min offset for the final FTL.</param>
     /// <param name="maxOffset">Max offset for the final FTL from the box we spawn.</param>
-    private bool TryGetFTLProximity(
+    public bool TryGetFTLProximity( // Sunrise-Edit
         EntityUid shuttleUid,
         EntityCoordinates targetCoordinates,
         out EntityCoordinates coordinates, out Angle angle,
@@ -881,11 +911,7 @@ public sealed partial class ShuttleSystem
         while (iteration < FTLProximityIterations)
         {
             grids.Clear();
-            // We pass in an expanded offset here so we can safely do a random offset later.
-            // We don't include this in the actual targetAABB because then we would be double-expanding it.
-            // Once in this loop, then again when placing the shuttle later.
-            // Note that targetAABB already has expansionAmount factored in already.
-            _mapManager.FindGridsIntersecting(mapId, targetAABB.Enlarged(maxOffset), ref grids);
+            _mapManager.FindGridsIntersecting(mapId, targetAABB, ref grids);
 
             foreach (var grid in grids)
             {
@@ -918,6 +944,10 @@ public sealed partial class ShuttleSystem
                 if (nearbyGrids.Contains(uid))
                     continue;
 
+                // We pass in an expanded offset here so we can safely do a random offset later.
+                // We don't include this in the actual targetAABB because then we would be double-expanding it.
+                // Once in this loop, then again when placing the shuttle later.
+                // Note that targetAABB already has expansionAmount factored in already.
                 targetAABB = targetAABB.Union(
                     _transform.GetWorldMatrix(uid)
                     .TransformBox(Comp<MapGridComponent>(uid).LocalAABB.Enlarged(expansionAmount)));
@@ -937,7 +967,7 @@ public sealed partial class ShuttleSystem
 
         // TODO: This should prefer the position's angle instead.
         // TODO: This is pretty crude for multiple landings.
-        if (nearbyGrids.Count > 1 || !HasComp<MapComponent>(targetXform.GridUid))
+        if (nearbyGrids.Count >= 1)
         {
             // Pick a random angle
             var offsetAngle = _random.NextAngle();
@@ -946,13 +976,9 @@ public sealed partial class ShuttleSystem
             var minRadius = MathF.Max(targetAABB.Width / 2f, targetAABB.Height / 2f);
             spawnPos = targetAABB.Center + offsetAngle.RotateVec(new Vector2(_random.NextFloat(minRadius + minOffset, minRadius + maxOffset), 0f));
         }
-        else if (shuttleBody != null)
-        {
-            (spawnPos, angle) = _transform.GetWorldPositionRotation(targetXform);
-        }
         else
         {
-            spawnPos = _transform.GetWorldPosition(targetXform);
+            spawnPos = _transform.ToWorldPosition(targetCoordinates);
         }
 
         var offset = Vector2.Zero;
@@ -973,10 +999,10 @@ public sealed partial class ShuttleSystem
         }
 
         // Rotate our localcenter around so we spawn exactly where we "think" we should (center of grid on the dot).
-        var transform = new Transform(spawnPos, angle);
-        spawnPos = Robust.Shared.Physics.Transform.Mul(transform, offset);
+        var transform = new Transform(_transform.ToWorldPosition(xform.Coordinates), angle);
+        var adjustedOffset = Robust.Shared.Physics.Transform.Mul(transform, offset);
 
-        coordinates = new EntityCoordinates(targetXform.MapUid.Value, spawnPos - offset);
+        coordinates = new EntityCoordinates(targetXform.MapUid.Value, spawnPos + adjustedOffset);
         return true;
     }
 

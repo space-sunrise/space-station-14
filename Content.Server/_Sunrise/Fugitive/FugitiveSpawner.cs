@@ -58,7 +58,7 @@ namespace Content.Server._Sunrise.Fugitive
                     fugitive, entity, ExamineRange, null)), true,
                 Shared.Popups.PopupType.LargeCaution);
 
-            _stun.TryParalyze(fugitive, TimeSpan.FromSeconds(2), false);
+            _stun.TryAddParalyzeDuration(fugitive, TimeSpan.FromSeconds(2));
             _audioSystem.PlayPvs(component.SpawnSoundPath, uid, AudioParams.Default.WithVolume(-6f));
 
             if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
@@ -81,7 +81,7 @@ namespace Content.Server._Sunrise.Fugitive
                 if (!TryComp<SubdermalImplantComponent>(implantEnt, out var implantComp))
                     return;
 
-                _subdermalImplant.ForceImplant(fugitive, implantEnt, implantComp);
+                _subdermalImplant.ForceImplant(fugitive, (implantEnt, implantComp));
             }
 
             if (TryComp<ContainerManagerComponent>(fugitive, out var containerManagerComponent))

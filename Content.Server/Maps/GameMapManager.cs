@@ -21,7 +21,6 @@ public sealed class GameMapManager : IGameMapManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IResourceManager _resMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     private readonly Queue<string> _previousMaps = new();
@@ -111,7 +110,7 @@ public sealed class GameMapManager : IGameMapManager
 
     public void AddExcludedMap(string mapId)
     {
-        if (!_cfg.GetCVar(SunriseCCVars.ExcludeMaps))
+        if (!_configurationManager.GetCVar(SunriseCCVars.ExcludeMaps))
             return;
 
         _excludedMaps.Add(mapId);

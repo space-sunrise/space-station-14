@@ -325,6 +325,35 @@
     proto: null
 
 # Sunrise-Start
+
+- type: entity
+  parent: MagazinePistolSubMachineGunTopMounted
+  id: MagazinePistolSubMachineGunTopMountedRubber
+  name: WT550 magazine (.35 auto top-mounted rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+    - state: stripe
+      color: "#00c1b8"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+        color: "#00c1b8"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+        color: "#00c1b8"
+
+
 - type: entity
   parent: MagazinePistolSubMachineGunTopMounted
   id: MagazinePistolSubMachineGunTopMountedUranium
@@ -821,12 +850,18 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#575EF5"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
       right:
       - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
 
 - type: entity
   id: MagazinePistolSubMachineGunEmpty
@@ -851,6 +886,38 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolSubMachineGunRubber
+  name: SMG magazine (.35 auto rubber)
+  parent: BaseMagazinePistolSubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgePistolRubber
+    whitelist:
+      tags:
+      - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#00c1b8"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00c1b8"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00c1b8"
+
+- type: entity
   id: MagazinePistolSubMachineGunSP
   name: SMG magazine (.35 auto SP)
   parent: BaseMagazinePistolSubMachineGun
@@ -859,7 +926,7 @@
   - type: BallisticAmmoProvider
     capacity: 30
     proto: CartridgePistolSP
-    whitelist:
+    whitelist: # Redundant
       tags:
       - CartridgePistol
     soundInsert:

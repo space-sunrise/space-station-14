@@ -2,7 +2,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
 using Content.Server.Popups;
-using Content.Server.Speech.Muting;
+using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -72,6 +72,10 @@ public sealed class CritMobActionsSystem : EntitySystem
         _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString("action-name-crit-last-words"), "",
             (string lastWords) =>
             {
+                // if a person is gibbed/deleted, they can't say last words
+                if (Deleted(uid))
+                    return;
+
                 // Intentionally does not check for muteness
                 if (actor.PlayerSession.AttachedEntity != uid
                     || !_mobState.IsCritical(uid))

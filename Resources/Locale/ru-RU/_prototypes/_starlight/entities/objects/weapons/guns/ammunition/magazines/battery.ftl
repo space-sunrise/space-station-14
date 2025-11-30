@@ -1,6 +1,6 @@
-ent-BaseMagazineBattery = magazine (laser)
+ent-BaseMagazineBattery = магазин (лазерный)
     .desc = { ent-BaseItem.desc }
-ent-MagazineBatteryLr30 = magazine (laser)
+ent-MagazineBatteryLr30 = магазин (лазерный)
     .desc = { ent-BaseMagazineBattery.desc }
-ent-MagazineBatteryLr60 = large magazine (laser)
+ent-MagazineBatteryLr60 = большой магазин (лазерный)
     .desc = { ent-BaseMagazineBattery.desc }
