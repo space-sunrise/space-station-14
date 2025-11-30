@@ -40,8 +40,8 @@
   # Sunrise-start
   - type: PhysicalComposition
     materialComposition:
-      steel: 15
-      plastic: 15
+      Steel: 15
+      Plastic: 15
   # Sunrise-end
 
 # Paints
