@@ -41,6 +41,7 @@ namespace Content.Server._Sunrise.MentorHelp
         private List<MentorHelpStatisticsData>? _mentorStatsCache;
         private DateTimeOffset? _mentorStatsCacheTime;
         private readonly float _mentorCacheInterval = 10;
+        private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
 
         public override void Initialize()
         {
@@ -54,6 +55,8 @@ namespace Content.Server._Sunrise.MentorHelp
                     SunriseCCVars.MentorHelpRateLimitCount,
                     PlayerRateLimitedAction)
             );
+
+            SubscribeNetworkEvent<MentorHelpClientTypingUpdated>(OnClientTypingUpdated);
 
             _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
             IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
@@ -657,6 +660,33 @@ namespace Content.Server._Sunrise.MentorHelp
                 .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Mentor) ?? false)
                 .Select(p => p.Channel)
                 .ToList();
+        }
+
+        private async void OnClientTypingUpdated(MentorHelpClientTypingUpdated msg, EntitySessionEventArgs args)
+        {
+            var session = args.SenderSession;
+            var ticket = await _dbManager.GetMentorHelpTicketAsync(msg.TicketId);
+            if (ticket == null)
+                return;
+
+            var update = new MentorHelpPlayerTypingUpdated(msg.TicketId, session.UserId, session.Name, msg.Typing);
+            var recipients = new List<INetChannel>();
+
+            if (_playerManager.TryGetSessionById(new NetUserId(ticket.PlayerId), out var authorSession))
+            {
+                if (!authorSession.UserId.Equals(session.UserId))
+                    recipients.Add(authorSession.Channel);
+            }
+
+            if (ticket.AssignedToUserId.HasValue &&
+                _playerManager.TryGetSessionById(new NetUserId(ticket.AssignedToUserId.Value), out var mentorSession))
+            {
+                if (!mentorSession.UserId.Equals(session.UserId))
+                    recipients.Add(mentorSession.Channel);
+            }
+
+            foreach (var rakushka in recipients)
+                RaiseNetworkEvent(update, rakushka);
         }
     }
 }

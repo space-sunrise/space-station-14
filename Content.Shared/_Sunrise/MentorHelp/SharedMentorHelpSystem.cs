@@ -273,4 +273,34 @@ namespace Content.Shared._Sunrise.MentorHelp
             TicketId = ticketId;
         }
     }
+
+    [Serializable, NetSerializable]
+    public sealed class MentorHelpClientTypingUpdated : EntityEventArgs
+    {
+        public int TicketId { get; }
+        public bool Typing { get; }
+
+        public MentorHelpClientTypingUpdated(int ticketId, bool typing)
+        {
+            TicketId = ticketId;
+            Typing = typing;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class MentorHelpPlayerTypingUpdated : EntityEventArgs
+    {
+        public int TicketId { get; }
+        public NetUserId UserId { get; }
+        public string PlayerName { get; }
+        public bool Typing { get; }
+
+        public MentorHelpPlayerTypingUpdated(int ticketId, NetUserId userId, string playerName, bool typing)
+        {
+            TicketId = ticketId;
+            UserId = userId;
+            PlayerName = playerName;
+            Typing = typing;
+        }
+    }
 }

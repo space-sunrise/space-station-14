@@ -1,5 +1,6 @@
 using Content.Shared._Sunrise.MentorHelp;
 using JetBrains.Annotations;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -9,11 +10,15 @@ namespace Content.Client._Sunrise.MentorHelp
     [UsedImplicitly]
     public sealed class MentorHelpSystem : SharedMentorHelpSystem
     {
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
+
         public event EventHandler<MentorHelpTicketUpdateMessage>? OnTicketUpdated;
         public event EventHandler<MentorHelpTicketsListMessage>? OnTicketsListReceived;
         public event EventHandler<MentorHelpTicketMessagesMessage>? OnTicketMessagesReceived;
         public event EventHandler<MentorHelpStatisticsMessage>? OnStatisticsReceived;
         public event EventHandler<MentorHelpOpenTicketMessage>? OnOpenTicketReceived;
+        private (TimeSpan Timestamp, bool Typing) _lastTypingUpdateSent;
+
 
         protected override void OnCreateTicketMessage(MentorHelpCreateTicketMessage message, EntitySessionEventArgs eventArgs)
         {
@@ -149,6 +154,18 @@ namespace Content.Client._Sunrise.MentorHelp
         public void RequestStatistics()
         {
             RaiseNetworkEvent(new MentorHelpRequestStatisticsMessage());
+        }
+
+        public void SendInputTextUpdated(int ticketId, bool typing)
+        {
+            if (_lastTypingUpdateSent.Typing == typing &&
+                _lastTypingUpdateSent.Timestamp + TimeSpan.FromSeconds(1) > _gameTiming.RealTime)
+            {
+                return;
+            }
+
+            _lastTypingUpdateSent = (_gameTiming.RealTime, typing);
+            RaiseNetworkEvent(new MentorHelpClientTypingUpdated(ticketId, typing));
         }
     }
 }

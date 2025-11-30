@@ -72,3 +72,7 @@ help-choice-ahelp-desc-label = [color=#CCCCCC][font size=12]• Админ-по�
 help-choice-mhelp-desc-label = [color=#CCCCCC][font size=12]• Ментор-помощь - для вопросов о механиках игры и помощи новичкам[/font][/color]
 
 help-kwoink-play-sound = Квоньк?
+
+mentor-help-statistics-column-mentor = Ментор
+mentor-help-statistics-column-tickets = Взятых тикетов
+mentor-help-statistics-column-messages = Сообщений

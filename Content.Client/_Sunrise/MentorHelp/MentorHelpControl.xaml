@@ -82,6 +82,7 @@
                     </ScrollContainer>
 
                     <BoxContainer Name="ReplyPanel" Access="Public" Orientation="Vertical" HorizontalExpand="True" Margin="5">
+                        <RichTextLabel Name="TypingIndicator" Access="Public" />
                         <LineEdit Name="ReplyInput" Access="Public" PlaceHolder="{Loc 'mentor-help-reply-placeholder'}"
                                   HorizontalExpand="True" />
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 5 0 0">

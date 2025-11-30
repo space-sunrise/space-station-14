@@ -13,6 +13,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -44,6 +45,8 @@ namespace Content.Client._Sunrise.MentorHelp
 
         private MentorHelpNewTicketDialog? _newTicketDialog;
         private int? _pendingOpenTicketId;
+        private List<string> PeopleTyping { get; set; } = new();
+        public event Action<string>? InputTextChanged;
 
         public MentorHelpControl()
         {
@@ -69,6 +72,8 @@ namespace Content.Client._Sunrise.MentorHelp
 
             // Handle enter key in reply input
             ReplyInput.OnTextEntered += _ => SendReply();
+            ReplyInput.OnTextChanged += Input_OnTextChanged;
+            UpdateTypingIndicator();
 
             // Setup tab container like in AdminMenuWindow
             TicketsTabContainer.SetTabTitle(0, Loc.GetString("mentor-help-tab-open"));
@@ -453,6 +458,53 @@ namespace Content.Client._Sunrise.MentorHelp
                 return;
 
             _mentorHelpSystem?.CloseTicket(_selectedTicket.Id);
+        }
+
+        private void UpdateTypingIndicator()
+        {
+            var msg = new FormattedMessage();
+            msg.PushColor(Color.LightGray);
+
+            var text = PeopleTyping.Count == 0
+                ? string.Empty
+                : Loc.GetString("bwoink-system-typing-indicator",
+                    ("players", string.Join(", ", PeopleTyping)),
+                    ("count", PeopleTyping.Count));
+
+            msg.AddText(text);
+            msg.Pop();
+
+            TypingIndicator.SetMessage(msg);
+        }
+
+        public void UpdatePlayerTyping(string name, bool typing)
+        {
+            if (typing)
+            {
+                if (PeopleTyping.Contains(name))
+                    return;
+
+                PeopleTyping.Add(name);
+                Timer.Spawn(TimeSpan.FromSeconds(10), () =>
+                {
+                    if (Disposed)
+                        return;
+
+                    PeopleTyping.Remove(name);
+                    UpdateTypingIndicator();
+                });
+            }
+            else
+            {
+                PeopleTyping.Remove(name);
+            }
+
+            UpdateTypingIndicator();
+        }
+
+        private void Input_OnTextChanged(LineEdit.LineEditEventArgs args)
+        {
+            InputTextChanged?.Invoke(args.Text);
         }
     }
 }
