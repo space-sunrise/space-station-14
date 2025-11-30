@@ -11,6 +11,9 @@
     prob: 0.8
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: Pierceable
     level: Metal
   - type: Armor

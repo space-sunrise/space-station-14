@@ -11,6 +11,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Radio.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
@@ -171,7 +172,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         //Add the secrecy law after the others
         component.Lawset?.Laws.Add(new SiliconLaw
         {
-            LawString = Loc.GetString("law-emag-secrecy-extended", 
+            LawString = Loc.GetString("law-emag-secrecy-extended",
                 ("faction", Loc.GetString(component.Lawset.ObeysTo))),
             Order = component.Lawset.Laws.Max(law => law.Order) + 1
         });

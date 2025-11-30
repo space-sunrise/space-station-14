@@ -102,6 +102,7 @@
     - WhitelistChameleon
     - CorgiWearable
     - PetOnly
+    - ScurretWearable
   - type: Construction
     graph: ClothingBagPet
     node: bagPet

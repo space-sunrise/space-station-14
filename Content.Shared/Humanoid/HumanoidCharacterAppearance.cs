@@ -28,7 +28,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public Color EyeColor { get; set; } = Color.Black;
 
     [DataField]
-    public Color SkinColor { get; set; } = Humanoid.SkinColor.ValidHumanSkinTone;
+    public Color SkinColor { get; set; } = Color.FromHsv(new Vector4(0.07f, 0.2f, 1f, 1f));
 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
@@ -452,16 +452,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
-        var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
+        var protoMan = IoCManager.Resolve<IPrototypeManager>();
+        var speciesPrototype = protoMan.Index<SpeciesPrototype>(species);
 
-        var skinColor = speciesPrototype.SkinColoration switch
+        var skinColoration = protoMan.Index(speciesPrototype.SkinColoration).Strategy;
+        var skinColor = skinColoration.InputType switch
         {
-            HumanoidSkinColor.HumanToned => Humanoid.SkinColor.HumanSkinTone(speciesPrototype.DefaultHumanSkinTone),
-            HumanoidSkinColor.Hues => speciesPrototype.DefaultSkinTone,
-            HumanoidSkinColor.TintedHues => Humanoid.SkinColor.TintedHues(speciesPrototype.DefaultSkinTone),
-            HumanoidSkinColor.VoxFeathers => Humanoid.SkinColor.ClosestVoxColor(speciesPrototype.DefaultSkinTone),
-            HumanoidSkinColor.None => Color.Transparent, // Sunrise-edit
-            _ => Humanoid.SkinColor.ValidHumanSkinTone,
+            SkinColorationStrategyInput.Unary => skinColoration.FromUnary(speciesPrototype.DefaultHumanSkinTone),
+            SkinColorationStrategyInput.Color => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
         };
 
         return new(
@@ -541,109 +539,15 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 // and pick a random realistic eye color from the list.
                 newEyeColor = random.Pick(RealisticEyeColors);
 
-                // we're also going to crush the other colors down to the skin's luminosity so markings don't appear too bright on darker skin.
-                colorPalette[1] = SquashToSkinLuminosity(newSkinColor, colorPalette[1]);
-                colorPalette[2] = SquashToSkinLuminosity(newSkinColor, colorPalette[2]);
-                break;
+        var protoMan = IoCManager.Resolve<IPrototypeManager>();
+        var skinType = protoMan.Index<SpeciesPrototype>(species).SkinColoration;
+        var strategy = protoMan.Index(skinType).Strategy;
 
-            // if the species is Hues toned: it's fine the way it is.
-            case HumanoidSkinColor.Hues:
-                break;
-
-            // if the species is TintedHues toned: tint them hues.
-            case HumanoidSkinColor.TintedHues:
-                newSkinColor = Humanoid.SkinColor.ValidTintedHuesSkinTone(newSkinColor);
-
-                // we're also going to crush the other colors down to valid TintedHues skin colors.
-                colorPalette[1] = Humanoid.SkinColor.ValidTintedHuesSkinTone(colorPalette[1]);
-                colorPalette[2] = Humanoid.SkinColor.ValidTintedHuesSkinTone(colorPalette[2]);
-                break;
-
-            // if the species is VoxFeathers toned: confine the skin color to vox limits. Bright colors are otherwise fine, so leave the marking colors alone.
-            case HumanoidSkinColor.VoxFeathers:
-                newSkinColor = Humanoid.SkinColor.ProportionalVoxColor(newSkinColor);
-                break;
-            case HumanoidSkinColor.None: // Sunrise-edit
-                newSkinColor = Color.Transparent;
-                break;
-        }
-
-        // now we loop through every extant marking category,
-        foreach (var category in Enum.GetValues<MarkingCategories>())
+        var newSkinColor = strategy.InputType switch
         {
-            // grab a list of markings in that category for that species,
-            var markings = markingManager.MarkingsByCategoryAndSpecies(category, species).Keys.ToList();
-            var markingProtos = markingManager.MarkingsByCategoryAndSpecies(category, species).Values.ToList();
-
-            // if it's facial hair, there are entries in the category, and the character is not female, assign a random one. else bald
-            if (category == MarkingCategories.FacialHair)
-            {
-                newFacialHairStyle = markings.Count == 0 || sex == Sex.Female ? HairStyles.DefaultFacialHairStyle : random.Pick(markings);
-            }
-
-            // if it's hair, and there are hair styles, roll one. else bald
-            else if (category == MarkingCategories.Hair)
-            {
-                newHairStyle = markings.Count > 0 ? random.Pick(markings) : HairStyles.DefaultHairStyle;
-            }
-
-            // for every other category,
-            else if (markings.Count > 0)
-            {
-                // roll a die. currently a 1 in 3 chance per category, except Tails, which are 1 in 2 (because of the effect they have on the silhouettes of spiders and moths.)
-                int diceRoll;
-                if (category == MarkingCategories.Tail)
-                    diceRoll = random.Next(2);
-                else
-                    diceRoll = random.Next(3);
-
-                if (diceRoll == 0)
-                {
-                    MarkingPrototype? lastMarking = null;
-
-                    // roll to see how many markings from that category will be added. currently a maximum of 2.
-                    var loops = random.Next(2) + 1;
-
-                    // add a marking (loops) times
-                    for (var i = 0; i < loops; i++)
-                    {
-                        // pick a random marking from the list
-                        var protoToAdd = random.Pick(markingProtos);
-                        var markingToAdd = protoToAdd.AsMarking();
-                        Color markingColor;
-
-                        // prevent duplicates:
-                        if (lastMarking != null && lastMarking == protoToAdd)
-                            continue;
-
-                        // set gauze to white.
-                        // side note, I really hate that gauze isn't its own category. please fix that so that i can make this not suck as much.
-                        // or, like, give it its own color rules. or something.
-                        if (markingToAdd.MarkingId.Contains("gauze", StringComparison.OrdinalIgnoreCase))
-                        {
-                            markingToAdd.SetColor(Color.White);
-                            newMarkings.Add(markingToAdd);
-                            lastMarking = protoToAdd;
-                            continue;
-                        }
-
-                        // select a random color from our two secondary colors. if our marking is a Tail, add the skin color as well, otherwise lizards always look a little odd.
-                        // this will also make moths and spiders look less interesting on average, but I don't want a hardcoded exception for lizards.
-                        if (category == MarkingCategories.Tail)
-                            markingColor = random.Pick(colorPalette);
-                        else
-                            markingColor = random.Pick(colorPalette.Skip(0).ToList());
-
-                        // set the marking to that color
-                        markingToAdd.SetColor(markingColor);
-
-                        // otherwise, add it to the final list.
-                        newMarkings.Add(markingToAdd);
-                        lastMarking = protoToAdd;
-                    }
-                }
-            }
-        }
+            SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
+            SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
+        };
 
         //Sunrise start
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
@@ -782,10 +686,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             markingSet = new MarkingSet(appearance.Markings, speciesProto.MarkingPoints, markingManager, proto);
             markingSet.EnsureValid(markingManager);
 
-            if (!Humanoid.SkinColor.VerifySkinColor(speciesProto.SkinColoration, skinColor))
-            {
-                skinColor = Humanoid.SkinColor.ValidSkinTone(speciesProto.SkinColoration, skinColor);
-            }
+            var strategy = proto.Index(speciesProto.SkinColoration).Strategy;
+            skinColor = strategy.EnsureVerified(skinColor);
 
             width = Math.Clamp(width, speciesProto.MinWidth, speciesProto.MaxWidth); // Sunrise
             height = Math.Clamp(height, speciesProto.MinHeight, speciesProto.MaxHeight); // Sunrise
