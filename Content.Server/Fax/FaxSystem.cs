@@ -565,6 +565,14 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
 
+        // Sunrise-Start
+        if (paper.ImageContent != null)
+        {
+            payload[FaxConstants.FaxPaperImageData] = paper.ImageContent;
+            payload[FaxConstants.FaxPaperImageScaleData] = paper.ImageScale ?? Vector2.One;
+        }
+        // Sunrise-End
+
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
         _adminLogger.Add(LogType.Action,

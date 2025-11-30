@@ -5,8 +5,10 @@
   - Tools
   completetime: 4
   materials:
-    Glass: 500
-    Steel: 500
+    Glass: 250
+    Steel: 250
+    Plastic: 400
+    Gold: 100
 
 - type: latheRecipe
   id: ScalpelAdvanced
@@ -88,3 +90,22 @@
     Steel: 300
     Plasma: 100
     Glass: 100
+
+- type: latheRecipe
+  id: BlankMediPen
+  result: BlankMediPen
+  completetime: 2
+  materials:
+    Plastic: 50
+    Steel: 25
+
+- type: latheRecipe
+  id: BluespacePillPatchCanister
+  result: BluespacePillPatchCanister
+  completetime: 2
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 300
+    Plasma: 100
+    Silver: 50

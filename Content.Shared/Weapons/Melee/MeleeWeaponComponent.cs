@@ -34,12 +34,6 @@ public sealed partial class MeleeWeaponComponent : Component
     [AutoPausedField]
     public TimeSpan NextAttack;
 
-    /// <summary>
-    /// Starts attack cooldown when equipped if true.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ResetOnHandSelected = true;
-
     /*
      * Melee combat works based around 2 types of attacks:
      * 1. Click attacks with left-click. This attacks whatever is under your mnouse
@@ -70,12 +64,6 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool ResistanceBypass = false;
-
-    /// <summary>
-    /// Sunrise Edit bypass OnWide
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ResistanceBypassOnWide = false;
 
     /// <summary>
     /// Base damage for this weapon. Can be modified via heavy damage or other means.

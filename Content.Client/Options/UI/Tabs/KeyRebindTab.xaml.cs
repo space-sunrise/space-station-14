@@ -169,6 +169,8 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.Reloading);
             AddButton(ContentKeyFunctions.Interact);
             AddButton(ContentKeyFunctions.LookUp);
+            AddButton(ContentKeyFunctions.OpenMentorHelp);
+            AddButton(ContentKeyFunctions.OpenHelpChoice);
             AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(SunriseCCVars.HoldLookUp), HandleHoldLookUp);
             // Sunrise-End
 
@@ -211,6 +213,9 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);
+            AddButton(ContentKeyFunctions.SmartEquipPocket1);
+            AddButton(ContentKeyFunctions.SmartEquipPocket2);
+            AddButton(ContentKeyFunctions.SmartEquipSuitStorage);
             AddButton(ContentKeyFunctions.OpenBackpack);
             AddButton(ContentKeyFunctions.OpenBelt);
             AddButton(ContentKeyFunctions.ThrowItemInHand);

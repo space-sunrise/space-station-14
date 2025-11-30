@@ -22,6 +22,7 @@
   - type: Speech
     speechVerb: Vox
     speechSounds: Vox
+    allowedEmotes: ['Click', 'Chitter']
   - type: TypingIndicator
     proto: vox
   - type: Vocal
@@ -37,16 +38,55 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vox
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          FoodMeatChickenFriedVox:
+            min: 3
+            max: 5
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: PassiveDamage
     # Augment normal health regen to be able to tank some Poison damage
     # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
     allowedStates:
     - Alive
-    damageCap: 20
+    damageCap: 30 #Sunrise-Edit
     damage:
       types:
         Heat: -0.07
         Poison: -0.2 # needs to be less than the PendingZombieComponent does or they never become zombies by the disease.
+        Mangleness: -0.02 #Sunrise-Edit
       groups:
         Brute: -0.07
   - type: DamageVisuals
@@ -81,9 +121,6 @@
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     # Sunrise-start
-    - map: ["bra"]
-    - map: ["pants"]
-    - map: ["socks"]
     - map: ["jumpsuit"]
     # Sunrise-end
     - map: [ "gloves" ]
@@ -96,6 +133,7 @@
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ] # This is not in the default order
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -123,6 +161,7 @@
             sprite: Mobs/Species/Vox/displacement.rsi
             state: hair
   - type: Inventory
+    templateId: nonUnderwear # Sunrise-Edit
     speciesId: vox
     displacements:
       jumpsuit:
@@ -201,6 +240,7 @@
   - type: Body
     prototype: Vox
   - type: Inventory
+    templateId: nonUnderwear # Sunrise-Edit
     speciesId: vox
     displacements:
       jumpsuit:

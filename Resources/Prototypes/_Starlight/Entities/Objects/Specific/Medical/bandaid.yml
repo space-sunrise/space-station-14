@@ -12,7 +12,7 @@
       patch:
         maxVol: 20
   - type: Item
-    size: Small
+    size: Tiny
   - type: Appearance
   - type: Patch
   - type: Tag
@@ -22,6 +22,21 @@
 - type: entity
   id: Patch
   parent: BasePatch
+
+- type: entity
+  id: PatchBruteSmall
+  name: brute patch small
+  parent: BasePatch
+  components:
+  - type: Sprite
+    state: bandaid-brute
+  - type: SolutionContainerManager
+    solutions:
+      patch:
+        maxVol: 20
+        reagents:
+        - ReagentId: Tricordrazine
+          Quantity: 10
 
 - type: entity
   id: PatchBrute
@@ -65,8 +80,41 @@
       patch:
         maxVol: 20
         reagents:
+        - ReagentId: Dermaline
+          Quantity: 15
+
+- type: entity
+  id: PatchOmni
+  name: omni patch
+  parent: BasePatch
+  components:
+  - type: Sprite
+    state: bandaid-burn
+  - type: SolutionContainerManager
+    solutions:
+      patch:
+        maxVol: 20
+        reagents:
         - ReagentId: Omnizine
+          Quantity: 12 #Sunrise-Edit
+        - ReagentId: TranexamicAcid #Sunrise-Edit
+          Quantity: 3 #Sunrise-Edit
+
+- type: entity
+  id: PatchViagra
+  name: Viarga patch
+  parent: BasePatch
+  components:
+  - type: Sprite
+    state: bandaid-clown
+  - type: SolutionContainerManager
+    solutions:
+      patch:
+        maxVol: 20
+        reagents:
+        - ReagentId: Aphrodisiac
           Quantity: 20
+
 
 - type: entity
   id: PatchMedical
@@ -129,3 +177,35 @@
     whitelist:
       tags:
       - Patch
+
+- type: entity
+  name: bluespace drug storage
+  id: BluespacePillPatchCanister
+  parent: BaseStorageItem
+  description: A technologically advanced device for storing small-sized medications such as patch and pills, it has two containers of different shapes, which unite the central storage of the device.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Chemistry/bluespace_pillcanister.rsi
+    state: icon
+  - type: Item
+    size: Small
+    storedRotation: -90
+    sprite: _Sunrise/Objects/Specific/Chemistry/bluespace_pillcanister.rsi
+  - type: Tag
+    tags:
+      - PillCanister
+      - PatchPack
+  - type: Storage
+    grid:
+    - 0,0,4,2
+    - 6,0,10,2
+    quickInsert: true
+    areaInsert: true
+    areaInsertRadius: 1
+    storageInsertSound: /Audio/Effects/pill_insert.ogg
+    storageRemoveSound: /Audio/Effects/pill_remove.ogg
+    whitelist:
+      tags:
+      - Pill
+      - Patch
+  - type: Dumpable

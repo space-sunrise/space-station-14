@@ -9,7 +9,7 @@
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec.rsi
     - type: Construction
-      graph: VestArmorSecurity
+      graph: UpgradeArmorVest
       node: start
 
 - type: entity

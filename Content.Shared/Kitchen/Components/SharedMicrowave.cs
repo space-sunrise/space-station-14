@@ -80,7 +80,9 @@ namespace Content.Shared.Kitchen.Components
     [NetSerializable, Serializable]
     public enum MicrowaveUiKey
     {
-        Key
+        Key,
+        ElectricRangeKey, //Sunrise-Edit
+        MedicalAssemblerKey, //Sunrise-Edit
     }
 
 }

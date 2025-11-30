@@ -19,6 +19,7 @@
   - ClarkePeripheralsElectronics
   - ImplantExtractorMachineCircuitboard
   - ExosuitFabricatorHyperConvectionMachineCircuitboard
+  - MedicalAssemblerMachineCircuitboard
 
 - type: latheRecipePack
   id: PowerCages

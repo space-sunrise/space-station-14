@@ -1,2 +1,14 @@
 ent-RandomRockSpawner = Mining Rock Spawner
     .desc = { ent-MarkerBase.desc }
+ent-MineWallRockSpawner = Mining Wall Rock Spawner
+    .desc = Spawns rock wall and decor.
+ent-MineWallRockMobCrabSpawner = Mining Wall Rock Spawner [Ore Crab 15%]
+    .desc = Spawns rock wall, mining which may spawn a random Ore Crab.
+ent-MineWallRockMobCarpSpawner = Mining Wall Rock Spawner [Carp 10%]
+    .desc = Spawns rock wall (no plasma, with stones), mining which may spawn a random Carp.
+ent-MineWallRockMobSpaceSpawner = Mining Wall Rock Spawner [Space Mob 10%]
+    .desc = Spawns rock wall (no ore, no beams, more crystals and barricades), mining which may spawn a random Space Mob.
+ent-MineWallRockMobAsteroidSpawner = Mining Wall Rock Spawner [Asteroid Mob 10%]
+    .desc = Spawns rock wall (+spaceshroom), mining which may spawn a random Asteroid Mob.
+ent-MineWallRockMobXenoSpawner = Mining Wall Rock Spawner [Xeno 10%]
+    .desc = Spawns rock wall, mining which may spawn a random Xenomorph.

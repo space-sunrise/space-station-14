@@ -185,14 +185,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             return;
         }
 
-        // Check if the user has a ban on "Revolutionary"
-        // Check if the user has a ban on "Revolutionary"
-        if (mind != null && mind.UserId.HasValue && _banManager.IsAntagBanned(mind.UserId.Value, "Rev"))
-        {
-            KillDueToBan(ev.Target);
-            return;
-        }
-
         _npcFaction.AddFaction(ev.Target, RevolutionaryNpcFaction);
         var revComp = EnsureComp<RevolutionaryComponent>(ev.Target);
 

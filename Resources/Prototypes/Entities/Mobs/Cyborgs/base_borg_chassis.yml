@@ -61,6 +61,7 @@
       - Piercing
       - Heat
       - Shock
+      - Mangleness #Sunrise-Edit
     locPrefix: silicon
   - type: UserInterface
     interfaces:
@@ -74,12 +75,15 @@
       # Only used for NT borgs that can switch type, defined here to avoid copy-pasting the rest of this component.
       enum.BorgSwitchableTypeUiKey.SelectBorgType:
         type: BorgSelectTypeUserInterface
+      enum.BorgVoiceUiKey.Key:
+        type: BorgVoiceBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
   - type: ActionGrant
     actions:
     - ActionViewLaws
+    - ActionChangeBorgVoice
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
@@ -117,6 +121,7 @@
     allowSelfRepair: false
   # Sunrise-End
   - type: BorgChassis
+  - type: BorgVoice # Sunrise-TTS: Allow cyborgs to change their voice
   - type: LockingWhitelist
     blacklist:
       components:
@@ -413,6 +418,7 @@
     - Syndicate
   - type: ActiveRadio
     channels:
+    - Binary
     - Syndicate
   - type: ShowSyndicateIcons
   - type: MovementAlwaysTouching
@@ -438,6 +444,7 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
+  - type: BlockLawChange
   # Sunrise-end
 
 - type: entity
@@ -459,6 +466,44 @@
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
+
+- type: entity
+  id: BaseBorgChassisSyndicateDerelict #For assault borg and maybe others in time
+  parent: BaseBorgChassis # We don't want them to see Nukies or have syndi comms, their database is out of date
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: SyndicateStatic #Non-subverted version so they can still be changed
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons
+  - type: NpcFactionMember # They're still syndicate even if they can't listen to the radio or see icons
+    factions:
+    - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: AccessReader
+    access: [ [ "SyndicateAgent" ], [ "NuclearOperative" ] ]
+  - type: IntrinsicRadioTransmitter # Copy components from base SyndiBorg but without the stuff we don't want
+    channels:
+    - Binary #1984
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: MovementAlwaysTouching
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: PointLight
+    color: "#dd200b"
 
 - type: entity
   parent: BaseBorgChassisNotIonStormable

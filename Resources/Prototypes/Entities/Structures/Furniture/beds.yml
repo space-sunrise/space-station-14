@@ -13,7 +13,7 @@
         Blunt: -0.1
         Piercing: -0.05 #SUNRISE-EDIT
         Slash: -0.05 #SUNRISE-EDIT
-        Mangleness: -0.02 #SUNRISE-EDIT
+        Mangleness: -0.05 #SUNRISE-EDIT
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -22,7 +22,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.05"
-        density: 190
+        density: 1900 #SUNRISE-EDIT
         mask:
         - TableMask
   - type: Sprite
@@ -69,6 +69,7 @@
     anchored: true
     noRot: true
   - type: Anchorable
+    delay: 5 #SUNRISE-EDIT
   - type: Pullable
   - type: CanSleepOnBuckle # Sunrise-Edit
 
@@ -86,11 +87,11 @@
       types:
         Poison: -0.2
         Heat: -0.1 #SUNRISE-EDIT
-        Cold: -0.4
+        Cold: -0.2 #SUNRISE-EDIT
         Blunt: -0.2
         Piercing: -0.1 #SUNRISE-EDIT
         Slash: -0.1 #SUNRISE-EDIT
-        Mangleness: -0.1 #SUNRISE-EDIT
+        Mangleness: -0.15 #SUNRISE-EDIT
   - type: Construction
     graph: bed
     node: medicalbed

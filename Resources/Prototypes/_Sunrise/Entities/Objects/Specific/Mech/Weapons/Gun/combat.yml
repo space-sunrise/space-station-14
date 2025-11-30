@@ -18,7 +18,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeRifleSP
-    fireCost: 7
+    fireCost: 5
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -44,10 +44,12 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeHeavyRifleRSP
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 8
   - type: Appearance
   - type: AmmoCounter
+  - type: StaticPrice
+    price: 3500
 
 - type: entity
   id: WeaponMechCombatMG
@@ -60,23 +62,25 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_mg.rsi
     state: mecha_mg
   - type: Gun
-    minAngle: -10
-    maxAngle: 18
-    angleIncrease: 3.5
-    angleDecay: 9
-    fireRate: 12
+    minAngle: -15
+    maxAngle: 40
+    burstFireRate: 10
     shotsPerBurst: 8
-    burstCooldown: 0.65
+    burstCooldown: 1.5
     selectedMode: Burst
     availableModes:
       - Burst
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
+      params:
+        volume: -3
   - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeRifleSP
+    proto: CartridgeRifleHeavyFMJ
     fireCost: 8
   - type: Appearance
   - type: AmmoCounter
+  - type: StaticPrice
+    price: 1000
 
 - type: entity
   id: WeaponMechCombatPirateCannon

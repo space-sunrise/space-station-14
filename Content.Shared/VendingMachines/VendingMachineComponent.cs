@@ -77,6 +77,7 @@ namespace Content.Shared.VendingMachines
 
         public string? NextItemToEject;
 
+        [DataField]
         public bool Broken;
 
         /// <summary>
@@ -148,6 +149,12 @@ namespace Content.Shared.VendingMachines
         /// </summary>
         [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan NextEmpEject = TimeSpan.Zero;
+
+        /// <summary>
+        /// Audio entity used during restock in case the doafter gets canceled.
+        /// </summary>
+        [DataField]
+        public EntityUid? RestockStream;
 
         #region Client Visuals
 
@@ -307,5 +314,7 @@ namespace Content.Shared.VendingMachines
         public TimeSpan? DenyEnd;
 
         public TimeSpan? DispenseOnHitEnd;
+
+        public bool Broken;
     }
 }

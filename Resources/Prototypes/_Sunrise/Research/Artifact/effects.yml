@@ -161,7 +161,7 @@
     triggerDecreasesDurability: true
   - type: ArtifactStartGameRule
     rules:
-      EvilTwinSpawn: 2
+      ParadoxCloneSpawn: 2
 
 - type: entity
   id: SunriseArtifactTeleport

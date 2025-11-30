@@ -218,19 +218,19 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineVP70
+  id: MagazineVP78
   name: VP70 magazine
   parent: BaseItem
   components:
     - type: Tag
       tags:
-        - MagazineVP70
+        - MagazineVP78
     - type: BallisticAmmoProvider
-      proto: CartridgePistolFMJ  # 57x28
+      proto: CartridgePistol40SP  # 45 ACP
       mayTransfer: true
       whitelist:
         tags:
-          - CartridgePistol  # 57x28
+          - CartridgePistolDP # 45 ACP
       capacity: 16
     - type: Item
       size: Small
@@ -293,11 +293,11 @@
     - MagazineACP14
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeMagnumSP  # 57x28
+    proto: CartridgePistol40SP  # 45 ACP
     whitelist:
       tags:
-      - CartridgeMagnum  # 57x28
-    capacity: 7
+      - CartridgePistolDP # 45 ACP
+    capacity: 10
   - type: Item
     size: Small
   - type: ContainerContainer

@@ -277,6 +277,10 @@ public sealed class SharedCarryingSystem : EntitySystem
 
     private void Carry(EntityUid carrier, EntityUid carried, CarriableComponent component)
     {
+        if (TryComp<BeingCarriedComponent>(carrier, out var beingCarried))
+        {
+            DropCarried(beingCarried.Carrier, carrier);
+        }
         if (TryComp<PullableComponent>(carried, out var pullable))
             _pullingSystem.TryStopPull(carried, pullable, carrier);
 

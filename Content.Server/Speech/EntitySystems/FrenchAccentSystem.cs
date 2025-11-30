@@ -11,8 +11,7 @@ public sealed class FrenchAccentSystem : EntitySystem
 {
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
 
-    private static readonly Regex RegexK = new(@"к", RegexOptions.IgnoreCase); // Sunrise-Edit
-    private static readonly Regex RegexR = new(@"р", RegexOptions.IgnoreCase); // Sunrise-Edit
+private static readonly Regex RegexKR = new(@"[кКрР]", RegexOptions.Compiled | RegexOptions.NonBacktracking);
     private static readonly Regex RegexSpacePunctuation = new(@"(?<=\w\w)[!?;:](?!\w)", RegexOptions.IgnoreCase);
 
     public override void Initialize()
@@ -27,13 +26,17 @@ public sealed class FrenchAccentSystem : EntitySystem
         var msg = message;
 
         msg = _replacement.ApplyReplacements(msg, "french");
-
-        // replaces к with кх at the start of words.
-        msg = RegexK.Replace(msg, "кх"); // Sunrise-Edit
-
-        // replaces р with х at the start of words.
-        msg = RegexR.Replace(msg, "х"); // Sunrise-Edit
-
+// Sunrise-Edit Start
+        // replaces 'к/К' with 'кх/КХ' and 'р/Р' with 'х/Х' globally (preserves case) in a single pass.
+        msg = RegexKR.Replace(msg, static m => m.Value[0] switch
+        {
+            'К' => "КХ",
+            'к' => "кх",
+            'Р' => "Х",
+            'р' => "х",
+            _ => m.Value
+        });
+// Sunrise -Edit End
         // spaces out ! ? : and ;.
         msg = RegexSpacePunctuation.Replace(msg, " $&");
 

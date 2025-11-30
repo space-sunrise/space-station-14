@@ -186,13 +186,6 @@
         volume: 12
   - type: StaticPrice
     price: 2000
-  - type: CartridgeAmmo #Sunrise-Start
-    proto: BulletSyndieMiniBomb
-    deleteOnSpawn: true
-  - type: SpentAmmoVisuals
-  - type: Tag
-    tags:
-    - HandGrenadeAmmo #Sunrise-End
 
 - type: entity
   name: self destruct
@@ -209,6 +202,8 @@
     totalIntensity: 400
     intensitySlope: 30
     maxIntensity: 125
+    deleteAfterExplosion: false
+    repeatable: true
     canCreateVacuum: true
   - type: TimerTrigger
     delay: 4.5
@@ -621,8 +616,8 @@
     air:
       volume: 1000
       moles: # Target is 3117.84 mols total for filling 30 tiles (goal is 101.325 kPa @ 20C)
-      - 654.7464 # oxygen
-      - 2463.0936 # nitrogen
+        Oxygen: 654.7464 # oxygen
+        Nitrogen: 2463.0936 # nitrogen
       temperature: 293.15
   - type: StaticPrice
     price: 350
@@ -632,6 +627,13 @@
         enabled:
           True: { state: active }
           False: { state: spent }
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletAirGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 # Non-explosive "dummy" grenades to use as a distraction.
 

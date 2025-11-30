@@ -248,3 +248,33 @@
 - type: chameleonOutfit
   id: USSPCaptainChameleonOutfit
   job: USSPCaptain
+
+# Raid Ops
+- type: startingGear
+  id: SyndicateRaidGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    eyes: ClothingEyesHudSyndicate
+    back: ClothingBackpackDuffelSyndicate
+    outerClothing: ClothingOuterArmorRaidBiocode
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsGlovesCombatCQC
+    id: SyndiOperativePDA
+    belt: ClothingBeltMilitaryWebbingMedRaidFilled
+    pocket1: WeaponPistolViper
+    pocket2: PouchAmmo
+  storage:
+    back:
+    - ClothingHeadHelmetRaid
+    - PinpointerSyndicateNuclear
+    - DeathRattleImplanter
+    - RadioImplanter
+
+- type: startingGear
+  id: SyndicateRaidTeamLeaderGear
+  parent: SyndicateRaidGear
+  equipment:
+    back: ClothingBackpackSyndie
+    head: ClothingHeadHatOutlawHat
+    pocket1: BaseUplinkRadio25TC
+    pocket2: EnergySword

@@ -13,7 +13,10 @@
     - MagazineBoxMagnumRubber
     - MagazineMagnumRubber
     - MagazineMagnum
+    - MagazineMagnumFMJ
+    - MagazineMagnumHP
     - MagazineMagnumEmpty
+    - MagazineMagnumPractice
     # Pistol
     - MagazineBoxPistolSP
     - MagazineBoxPistolHP
@@ -37,10 +40,10 @@
     - BoxShellTranquilizer
     #####################MAGAZINE#######################
     # LMG
-    - LightRifleHeavyMagazineSP
-    - LightRifleHeavyMagazineHP
-    - LightRifleHeavyMagazineFMJ
-    - LightRifleHeavyMagazineEmpty
+    - LightRifleMagazineSP
+    - LightRifleMagazineHP
+    - LightRifleMagazineFMJ
+    - LightRifleMagazineEmpty
     # Light Rifle
     - MagazineLightRifleSP
     - MagazineLightRifleHP
@@ -141,7 +144,7 @@
     - MagazineBoxPistolIncendiary
     - MagazineBoxPistolUranium
     - MagazineBoxPistolAP
-    #- MagazineBoxPistol40AP
+    - MagazineBoxPistol40AP
   # Rifle
     - MagazineBoxRifleIncendiary
     - MagazineBoxRifleUranium
@@ -157,9 +160,9 @@
     - BoxShellTranquilizer
   #####################MAGAZINE#######################
   # LMG
-    - LightRifleHeavyMagazineIncendiary
-    - LightRifleHeavyMagazineUranium
-    - LightRifleHeavyMagazineAP
+    - LightRifleMagazineIncendiary
+    - LightRifleMagazineUranium
+    - LightRifleMagazineAP
   # Light Rifle
     - MagazineLightRifleIncendiary
     - MagazineLightRifleUranium
@@ -168,11 +171,13 @@
     - SpeedLoaderMagnumIncendiary
     - SpeedLoaderMagnumUranium
     - SpeedLoaderMagnumAP
+    - MagazineMagnumUranium
+    - MagazineMagnumAP
   # Pistol
     - MagazinePistolIncendiary
     - MagazinePistolUranium
     - MagazinePistolAP
-    #- MagazinePistol40AP
+    - MagazinePistol40AP
   # Pistol High Capacity
     - MagazinePistolHighCapacityIncendiary
     - MagazinePistolHighCapacityUranium
@@ -210,7 +215,14 @@
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat
-    - VestSecUpgrade
+    - VestSecUpgradePlate
+    - VestSecUpgradeStab
+    - VestSecUpgradeHeat
+    - VestSecUpgradeBullet
+    - VestSecUpgradeRiot
+    - VestSecUpgradeReflective
+    - VestSecUpgradeWeb
+    - VestSecUpgradeBulletHeavy
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech

@@ -67,7 +67,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, PinpointerComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || component.TargetName == null)
+        if (!args.IsInDetailsRange || component.TargetName == null || !component.IsActive)
             return;
 
         args.PushMarkup(Loc.GetString("examine-pinpointer-linked", ("target", component.TargetName)));

@@ -43,3 +43,7 @@ trait-painnumbness-name = Оцепенение
 trait-painnumbness-desc = Вы не чувствуете боли, не осознавая, насколько вам больно.
 trait-moldovan-name = Молдавский диалект
 trait-moldovan-desc = Цыгания дам ын спацию космик!
+# Fish-edit-start
+trait-formal-name = Формальный акцент
+trait-formal-desc = Вы говорите очень формально, разворачивая сокращения в полные значения.
+# Fish-edit-end

@@ -44,7 +44,7 @@
     maxAngle: 16
     angleIncrease: 1
     angleDecay: 6
-    fireRate: 5
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
       - SemiAuto
@@ -72,6 +72,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Huge
+    shape:
+    - 0,0,4,2
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:

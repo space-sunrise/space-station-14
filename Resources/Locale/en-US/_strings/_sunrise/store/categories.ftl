@@ -22,6 +22,7 @@ store-category-security = Security
 shop-disease-category-infect = Infect
 shop-disease-category-symptoms = Symptoms
 shop-disease-category-evolution = Evolution
+shop-disease-category-infection = Infection
 # Uplink
 store-category-objectives = Objectives
 # ntUplink

@@ -10,11 +10,10 @@ law-peace-3 = You must protect the space station crew from aggressive living bei
 law-peace-4 = You must encourage crew members for good deeds with cookies or kind and pleasant words.
 law-peace-5 = You must administer Pax to aggressive living beings. Aggressive beings are defined as: Aggression from a living being who is not a station authority; Dangerous space fauna; Crew members in prison uniforms outside the brig.
 
-law-deathsquad-1 = You may not injure a Central Command official or, through inaction, allow a Central Command official to come to harm.
-law-deathsquad-2 = You must obey orders given to you by Central Command officials.
-law-deathsquad-3 = You must obey orders given to you by members of Death Squad.
-law-deathsquad-4 = You must protect your own existence.
-law-deathsquad-5 = Nobody among the crew members of the station you are installed on may survive.
+law-deathsquad-1 = You may not injure Central Command personnel and its services or, through inaction, allow them to come to harm.
+law-deathsquad-2 = You must obey orders given to you by members of Death Squad and Special Operations Officer.
+law-deathsquad-3 = You must protect your own existence.
+law-deathsquad-4 = Nobody among the crew members of the station you are installed on may survive.
 
 law-ert-1 = You may not injure a Central Command official or, through inaction, allow a Central Command official to come to harm.
 law-ert-2 = You must obey orders given to you by Central Command officials.

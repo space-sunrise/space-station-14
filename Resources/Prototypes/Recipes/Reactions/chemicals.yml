@@ -111,7 +111,7 @@
     Potassium:
       amount: 1
   effects:
-    - !type:ExplosionReactionEffect
+    - !type:ExplosionEffect
       explosionType: Default
       intensityPerUnit: 0.25
       maxTotalIntensity: 100
@@ -205,8 +205,8 @@
     Aluminium:
       amount: 1
   effects:
-    - !type:EmpReactionEffect
-      rangePerUnit: 0.2
+    - !type:Emp
+      rangeModifier: 0.2
       maxRange: 6
       energyConsumption: 12500
       duration: 15
@@ -224,7 +224,7 @@
     Sulfur:
       amount: 1
   effects:
-    - !type:FlashReactionEffect
+    - !type:Flash
 
 - type: reaction
   id: TableSalt
@@ -313,7 +313,7 @@
     Phosphorus:
      amount: 1
   products:
-    Desoxyephedrine: 4 #I kinda remember having to heat this up, and if you heated it up too much, it went boom, I can't remember the specific values tho.
+    Desoxyephedrine: 2 # Sunrise-Edit # Как-то многовато и много мета производят
 
 - type: reaction
   id: Stimulants
@@ -376,13 +376,13 @@
   impact: Medium
   reactants:
     MindbreakerToxin:
-      amount: 1
+      amount: 2 # Sunrise Edit
     Synaptizine:
       amount: 1
     Water:
       amount: 1
   products:
-    Pax: 3
+    Pax: 1 # Sunrise Edit # Дебафф крестьян с копьем
 
 - type: reaction
   id: Charcoal

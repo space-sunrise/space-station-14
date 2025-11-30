@@ -10,9 +10,9 @@
         maxVol: 30
         reagents:
         - ReagentId: Sugar
-          Quantity: 6
+          Quantity: 3
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 9
         - ReagentId: Saline
           Quantity: 3
         - ReagentId: Vitamin
@@ -34,15 +34,15 @@
       food:
         maxVol: 30
         reagents:
-        - ReagentId: Sugar
-          Quantity: 3
-        - ReagentId: Dermaline
+        - ReagentId: Tricordrazine
+          Quantity: 6
+        - ReagentId: Vitamin
           Quantity: 9
         - ReagentId: Saline
-          Quantity: 6
-        - ReagentId: TranexamicAcid 
-          Quantity: 3 
-        - ReagentId: Dylovene
+          Quantity: 3
+        - ReagentId: HemostaticPowder
+          Quantity: 3
+        - ReagentId: Omnizine
           Quantity: 9
   - type: Sprite
     sprite: _Sunrise/Objects/Consumable/Food/candy.rsi

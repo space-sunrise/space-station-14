@@ -21,6 +21,7 @@
             Adjutant: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+            ComMaid: [ 1, 1 ]
             #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 2 ]

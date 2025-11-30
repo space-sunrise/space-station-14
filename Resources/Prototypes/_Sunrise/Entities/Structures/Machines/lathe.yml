@@ -52,3 +52,38 @@
         - RawMaterial
         - Ingot
   - type: OreSiloClient
+
+- type: entity
+  id: AutolathePrison
+  parent: Autolathe
+  name: prison autolathe
+  description: Produces basic metal and glass items of prison standard.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/prison_autolathe.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    staticPacks:
+    - ToolsStaticPrison
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - CargoStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - RollerBedsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStaticPrison
+    - HydroponicsStatic

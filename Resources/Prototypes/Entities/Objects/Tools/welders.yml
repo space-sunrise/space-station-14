@@ -151,8 +151,8 @@
       Welder:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 250
-        maxVol: 250
+          Quantity: 500 # Sunrise-Edit
+        maxVol: 500 # Sunrise-Edit
   - type: Tool
     speedModifier: 1.3
 
@@ -216,8 +216,8 @@
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]
   id: RefuelingWelder
-  name: refuling welding tool
-  description: "An slow welder that can refuel itself over time."
+  name: refueling welding tool
+  description: "A slow welder that can refuel itself over time."
   components:
   - type: Tool
     speedModifier: 0.5
