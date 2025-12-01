@@ -855,6 +855,9 @@ GrenadeFlash: GrenadeFlashTimer
 GrenadeFrag: GrenadeFragTimer
 WeaponEnergyGunMini: WeaponMiniEnergyGun
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
+# Super Matter
+SupermatterFlatpack: SupermatterFlatpackAnchored
+SupermatterCrystal: SupermatterFlatpackAnchored
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP

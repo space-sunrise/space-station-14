@@ -65,3 +65,15 @@
     - state: large
   - type: Flatpack
     entity: SupermatterCrystal
+
+- type: entity
+  parent: SupermatterFlatpack
+  id: SupermatterFlatpackAnchored
+  name: supermatter flatpack
+  description: A flatpack used for constructing a Supermatter Crystal.
+  suffix: Anchored
+  components:
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: BlockedTool
