@@ -208,18 +208,19 @@
   - Bra
   - Pants
   - Socks
+- type: roleLoadout
+  id: JobPrisonScientist
+  groups:
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
 
 - type: roleLoadout
   id: JobPrisonEngineer
   groups:
-  - StationEngineerHead
-  - StationEngineerJumpsuit
-  - StationEngineerBackpack
-  - StationEngineerOuterClothing
   - TrinketsEngineering
   - Trinkets
-  - SurvivalExtended
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -227,12 +228,13 @@
 - type: roleLoadout
   id: JobPrisonPilot
   groups:
+  - PrisonGuardHead
   - PrisonGuardJumpsuit
   - PrisonGuardBackpack
   - SecurityShoes
+  - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets
-  - SurvivalSecurity
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -241,11 +243,7 @@
 - type: roleLoadout
   id: JobPrisonWorker
   groups:
-  - BartenderJumpsuit
-  - CommonBackpack
-  - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -284,16 +282,7 @@
 - type: roleLoadout
   id: JobPrisonChef
   groups:
-  - GroupTankHarness
-  - ChefHead
-  - ChefMask
-  - ChefJumpsuit
-  - CommonBackpack
-  - ChefOuterClothing
-  - Glasses
-  - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -301,18 +290,7 @@
 - type: roleLoadout
   id: JobPrisonDoctor
   groups:
-  - GroupTankHarness
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - Glasses
-  - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
   - Bra
   - Pants
   - Socks
@@ -321,13 +299,24 @@
   id: JobHeadOfPrison
   groups:
   - PrisonGuardHead
-  - PrisonGuardJumpsuit
+  # - PrisonGuardJumpsuit комбенизон должен отличаться от охраны
   - PrisonGuardBackpack
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathToolSecurity
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonInspector
+  groups:
+  - LawyerNeck
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -470,6 +459,7 @@
   groups:
   - ComMaidHead
   - ComMaidJumpsuit
+  - ComMaidBackpack
   - ComMaidNeck
   - ComMaidShoes
   - ComMaidGloves

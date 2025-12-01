@@ -40,7 +40,7 @@ public sealed class HairDyeSystem : EntitySystem
         args.Verbs.Add(new InteractionVerb()
         {
             Text = (comp.Mode) ? Loc.GetString("hairdye-switch-hair") : Loc.GetString("hairdye-switch-facial"),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Verbicons/dot.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
             Act = () => { comp.Mode = !comp.Mode; },
         });
     }

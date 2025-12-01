@@ -76,6 +76,7 @@
   - type: Tag
     tags:
     - NTUplink
+    - ERTRed
 
 - type: entity
   parent: BaseUplinkNTERT
@@ -100,6 +101,31 @@
   - type: Tag
     tags:
     - NTUplink
+    - ERTGamma
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERTEpsilon
+  name: Bluespace DeathSquad visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: Epsilon
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 150
+      Crystallite: 150
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTEpsilon
 
 - type: entity
   parent: BaseUplinkNTERT
@@ -124,6 +150,7 @@
   - type: Tag
     tags:
     - NTUplink
+    - BlueShield
 
 - type: entity
   parent: BaseUplinkNTERT
@@ -151,6 +178,10 @@
     tags:
     - NTUplink
     - Debug
+    - ERTRed
+    - ERTGamma
+    - ERTEpsilon
+    - CBURN
 
 - type: entity
   parent: [ClothingHandsGlovesPowerglove, StorePresetNTUplink, BaseCentcommContraband]
@@ -235,6 +266,10 @@
     balance:
       Bluecrystal: 15
       Crystallite: 20
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTRed
 
 - type: entity
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
@@ -246,6 +281,10 @@
     balance:
       Bluecrystal: 50
       Crystallite: 75
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTRed
 
 - type: entity
   parent: ClothingHandsPowerGlovesUplinkNTERTAmber
@@ -257,6 +296,10 @@
     balance:
       Bluecrystal: 25
       Crystallite: 30
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTGamma
 
 - type: entity
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
@@ -268,6 +311,10 @@
     balance:
       Bluecrystal: 75
       Crystallite: 100
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTGamma
 
 - type: entity
   parent: ClothingHandsPowerGlovesUplinkNTERTAmber
@@ -288,3 +335,30 @@
     balance:
       Bluecrystal: 15
       Crystallite: 40
+  - type: Tag
+    tags:
+    - NTUplink
+    - CBURN
+
+- type: entity
+  parent: ClothingHandsPowerGlovesUplinkNTERTAmber
+  id: ClothingHandsPowerGlovesUplinkNTERTEpsilon
+  suffix: Uplink, Epsilon
+  name: Power Gloves
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
+        Heat: 5
+        Structural: 10
+  - type: IgniteOnMeleeHit
+    fireStacks: .15
+  - type: Store
+    balance:
+      Bluecrystal: 75
+      Crystallite: 75
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTEpsilon

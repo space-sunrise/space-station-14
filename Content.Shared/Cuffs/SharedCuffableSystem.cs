@@ -249,13 +249,18 @@ namespace Content.Shared.Cuffs
             args.Cancel();
         }
 
-        private void HandleStopPull(EntityUid uid, CuffableComponent component, AttemptStopPullingEvent args)
+        private void HandleStopPull(EntityUid uid, CuffableComponent component, ref AttemptStopPullingEvent args)
         {
             if (args.User == null || !Exists(args.User.Value))
                 return;
 
             if (args.User.Value == uid && !component.CanStillInteract)
+            {
+                //TODO: UX feedback. Simply blocking the normal interaction feels like an interface bug
+
                 args.Cancelled = true;
+            }
+
         }
 
         private void OnRemoveCuffsAlert(Entity<CuffableComponent> ent, ref RemoveCuffsAlertEvent args)
@@ -484,35 +489,19 @@ namespace Content.Shared.Cuffs
             if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
                 return false;
 
-            var ev = new TargetHandcuffedEvent();
-            RaiseLocalEvent(target, ref ev);
-
-            // Starlight-Abductor start
-            EnsureComp<HandcuffComponent>(handcuff, out var handcuffsComp);
-            handcuffsComp.Used = true;
-            Dirty(handcuff, handcuffsComp);
-            // Starlight-Abductor end
-
             // Success!
             _hands.TryDrop(user, handcuff);
 
-            // _container.Insert(handcuff, component.Container); // Starlight-Abductor edit
-            // UpdateHeldItems(target, handcuff, component); // Starlight-Abductor edit
+            _container.Insert(handcuff, component.Container);
 
-            // Sunrise-Start
-            var cuffedEvent = new CuffedEvent(user, target);
-            RaiseLocalEvent(target, ref cuffedEvent);
-            // Sunrise-End
+            var ev = new TargetHandcuffedEvent();
+            RaiseLocalEvent(target, ref ev);
 
-            // Starlight-Abductor start
-            var result = _container.Insert(handcuff, component.Container);
             UpdateHeldItems(target, handcuff, component);
 
-            return result;
-            // Starlight-Abductor end
+            return true;
         }
 
-        // Sunrise-Start
         public bool TryCuffingNow(EntityUid user, EntityUid target, EntityUid handcuff,
             HandcuffComponent? handcuffComponent = null, CuffableComponent? cuffable = null)
         {

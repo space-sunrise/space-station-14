@@ -7,3 +7,16 @@
     solutions:
       stomach:
         maxVol: 50
+
+- type: entity
+  id: OrganTajaranEyes
+  parent: OrganHumanEyes
+  name: eye
+  description: "I see you!"
+  components:
+  - type: FunctionalOrgan
+    comps:
+    - type: ToggleableNightVision
+      effect: EffectNightVisioSpecies
+    - type: FlashModifier
+      modifier: 2

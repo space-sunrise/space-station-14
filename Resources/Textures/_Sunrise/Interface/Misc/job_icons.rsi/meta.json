@@ -62,6 +62,12 @@
             "name": "PrisonEngineer"
         },
         {
+            "name": "PrisonScientist"
+        },
+        {
+            "name": "PrisonInspector"
+        },
+        {
             "name": "Barber"
         },
         {
@@ -98,7 +104,7 @@
             "name": "Borg"
         },
         {
-            "name": "commaid"
+            "name": "CommandMaid"
         },
         {
             "name": "Brigmedic"

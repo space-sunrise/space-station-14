@@ -17,6 +17,9 @@ namespace Content.Server.Database
     {
         public SqliteServerDbContext(DbContextOptions<SqliteServerDbContext> options) : base(options)
         {
+#if USE_SYSTEM_SQLITE
+            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_sqlite3());
+#endif
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -26,6 +29,7 @@ namespace Content.Server.Database
             options.ConfigureWarnings(x =>
             {
                 x.Ignore(CoreEventId.ManyServiceProvidersCreatedWarning);
+                x.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning); //Lua: Игнорируем предупреждение о pending changes
 #if DEBUG
                 // for tests
                 x.Ignore(CoreEventId.SensitiveDataLoggingEnabledWarning);

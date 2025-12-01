@@ -1,6 +1,6 @@
 <Document>
 [bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/СБ-СВП[/bold]
+[bold]Форма {corpString}/СБ[/bold]
 [head=3]Свидетельство о правонарушении[/head]
 
 [italic]Время от начала смены и дата: {timeString}[/italic]

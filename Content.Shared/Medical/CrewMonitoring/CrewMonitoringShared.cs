@@ -13,9 +13,16 @@ public enum CrewMonitoringUIKey
 public sealed class CrewMonitoringState : BoundUserInterfaceState
 {
     public List<SuitSensorStatus> Sensors;
+    public bool CorpseAlertEnabled;
 
-    public CrewMonitoringState(List<SuitSensorStatus> sensors)
+    public CrewMonitoringState(List<SuitSensorStatus> sensors, bool corpseAlertEnabled = false)
     {
         Sensors = sensors;
+        CorpseAlertEnabled = corpseAlertEnabled;
     }
+}
+
+[Serializable, NetSerializable]
+public sealed class CrewMonitoringToggleCorpseAlertMessage : BoundUserInterfaceMessage
+{
 }

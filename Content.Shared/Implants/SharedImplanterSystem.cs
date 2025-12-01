@@ -70,6 +70,18 @@ public abstract class SharedImplanterSystem : EntitySystem
         ChangeOnImplantVisualizer(uid, component);
         Dirty(uid, component);
     }
+
+    private bool CanImplantOther(EntityUid user, EntityUid target, EntityUid implanter, ImplanterComponent component)
+    {
+        if (component.OnlySelfImplant && target != user)
+        {
+            var selfMessage = Loc.GetString("implanter-only-self-implant");
+            _popup.PopupEntity(selfMessage, implanter, user);
+            return false;
+        }
+
+        return true;
+    }
     // Sunrise-End
 
     private void OnExamine(EntityUid uid, ImplanterComponent component, ExaminedEvent args)
@@ -130,6 +142,9 @@ public abstract class SharedImplanterSystem : EntitySystem
     //Set to draw mode if not implant only
     public void Implant(EntityUid user, EntityUid target, EntityUid implanter, ImplanterComponent component)
     {
+        if (!CanImplantOther(user, target, implanter, component)) // Sunrise-Edit
+            return;
+
         if (!CanImplant(user, target, implanter, component, out var implant, out _))
             return;
 

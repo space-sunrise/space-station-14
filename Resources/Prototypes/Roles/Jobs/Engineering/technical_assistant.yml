@@ -5,11 +5,15 @@
   playTimeTracker: JobTechnicalAssistant
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 3600 #1 hr # Sunrise-RoleTime
+      time: 1h
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 5h
+      inverted: true # stop playing intern if you're good at engineering!
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering
-  canBeAntag: true # Sunrise-Edit
+  canBeAntag: false
   displayWeight: 0 # Sunrise-Edit
   access:
   - Maintenance
@@ -19,7 +23,7 @@
 - type: startingGear
   id: TechnicalAssistantGear
   equipment:
-#    shoes: ClothingShoesBootsWork # Sunrise-Edit
+    shoes: ClothingShoesBootsWork
     id: TechnicalAssistantPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering

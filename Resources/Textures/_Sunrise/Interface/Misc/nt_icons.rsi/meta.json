@@ -26,6 +26,9 @@
       "name": "ar18"
     },
     {
+      "name": "lr30"
+    },
+    {
       "name": "Base_Icon"
     },
     {
@@ -399,6 +402,15 @@
     },
     {
       "name": "zauer"
+    },
+    {
+      "name": "box_40"
+    },
+    {
+      "name": "box_40_fmj"
+    },
+    {
+      "name": "box_40_sp"
     }
   ]
 }

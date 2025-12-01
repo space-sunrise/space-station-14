@@ -16,6 +16,7 @@ using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
 using Robust.Client.Graphics;
+using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -37,6 +38,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly IInputManager _input = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private BwoinkSystem? _bwoinkSystem;
@@ -101,19 +103,19 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     {
         _bwoinkSystem = system;
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
+        _bwoinkSystem.OnBwoinkCooldownReceived += ReceivedCooldown;
 
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.OpenAHelp,
-                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
-            .Register<AHelpUIController>();
+        _input.SetInputCommand(ContentKeyFunctions.OpenAHelp,
+            InputCmdHandler.FromDelegate(_ => ToggleWindow()));
     }
 
     public void OnSystemUnloaded(BwoinkSystem system)
     {
-        CommandBinds.Unregister<AHelpUIController>();
+        _input.SetInputCommand(ContentKeyFunctions.OpenAHelp, null);
 
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
+        _bwoinkSystem!.OnBwoinkCooldownReceived -= ReceivedCooldown;
         _bwoinkSystem = null;
     }
 
@@ -156,6 +158,12 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         }
 
         UIHelper!.Receive(message);
+    }
+
+    private void ReceivedCooldown(object? sender, BwoinkCooldownMessage message)
+    {
+        EnsureUIHelper();
+        UIHelper?.OnCooldownReceived(message);
     }
 
     private void DiscordRelayUpdated(BwoinkDiscordRelayUpdated args, EntitySessionEventArgs session)
@@ -250,7 +258,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         helper.ClydeWindow = _clyde.CreateWindow(new WindowCreateParameters
         {
             Maximized = false,
-            Title = "Admin Help",
+            Title = Loc.GetString("bwoink-admin-title"),
             Monitor = monitor,
             Width = 900,
             Height = 500
@@ -342,6 +350,7 @@ public interface IAHelpUIHandler : IDisposable
     public void ToggleWindow();
     public void DiscordRelayChanged(bool active);
     public void PeopleTypingUpdated(BwoinkPlayerTypingUpdated args);
+    public void OnCooldownReceived(BwoinkCooldownMessage message);
     public event Action OnClose;
     public event Action OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
@@ -430,6 +439,16 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     {
         if (_activePanelMap.TryGetValue(args.Channel, out var panel))
             panel.UpdatePlayerTyping(args.PlayerName, args.Typing);
+    }
+
+    public void OnCooldownReceived(BwoinkCooldownMessage message)
+    {
+        // For admins, we might want to show a message in the currently active panel
+        // For now, we'll pass it to all panels to handle
+        foreach (var (_, panel) in _activePanelMap)
+        {
+            panel.OnCooldownReceived(message);
+        }
     }
 
     // Sunrise-Start
@@ -621,6 +640,11 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     {
     }
 
+    public void OnCooldownReceived(BwoinkCooldownMessage message)
+    {
+        _chatPanel?.OnCooldownReceived(message);
+    }
+
     public event Action? OnClose;
     public event Action? OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
@@ -637,6 +661,10 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         if (_window is { Disposed: false })
             return;
         _chatPanel = new BwoinkPanel(text => SendMessageAction?.Invoke(_ownerId, text, true, false));
+        // Sunrise-Start
+        _chatPanel.AHelpDescLabel.Visible = true;
+        _chatPanel.AdminWhoButton.Visible = true;
+        // Sunrise-End
         _chatPanel.InputTextChanged += text => InputTextChanged?.Invoke(_ownerId, text);
         _chatPanel.RelayedToDiscordLabel.Visible = relayActive;
         _window = new DefaultWindow()
@@ -644,7 +672,7 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
             TitleClass="windowTitleAlert",
             HeaderClass="windowHeaderAlert",
             Title=Loc.GetString("bwoink-user-title"),
-            MinSize = new Vector2(500, 300),
+            MinSize = new Vector2(900, 500), // Sunrise-Edit
         };
         _window.OnClose += () => { OnClose?.Invoke(); };
         _window.OnOpen += () => { OnOpen?.Invoke(); };

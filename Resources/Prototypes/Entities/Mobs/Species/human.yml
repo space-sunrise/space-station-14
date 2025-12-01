@@ -27,7 +27,7 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-    # MARKINGS START
+# MARKINGS START
     bodyTypeMarkingsDisplacement:
       body-fat-m:
         Hair:
@@ -556,7 +556,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-  # MARKINGS START
+# MARKINGS START
     bodyTypeMarkingsDisplacement:
       body-fat-m:
         Hair:

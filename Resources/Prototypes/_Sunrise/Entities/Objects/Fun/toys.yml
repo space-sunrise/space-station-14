@@ -576,6 +576,16 @@
     state: plushie-miron
 
 - type: entity
+  id: PlushieSeyaa
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Plush Seya-Tanaka
+  description: An ordinary plush vulpkanin with dark fur, but it seems to be watching you.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-seyaa
+
+- type: entity
   id: PlushieBublegum
   parent: BasePlushie
   name: Plush Bubblegum
@@ -939,6 +949,16 @@
         volume: 5
   - type: UseDelay
     delay: 2
+
+- type: entity
+  id: PlushieVelma
+  parent: BasePlushie
+  name: Plush Eustachius Gorky
+  description: A slightly alternatively gifted researcher. Sometimes, in the evenings, he repeats - "Have you seen Kainara?".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-velma
 
 - type: entity
   id: PlushieMihailOsipov

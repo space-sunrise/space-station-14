@@ -32,6 +32,9 @@ ghost-role-information-silicon-rules = You are a [color={role-type-silicon-color
 ghost-role-information-mouse-name = Mouse
 ghost-role-information-mouse-description = A hungry and mischievous mouse.
 
+ghost-role-information-cancer-mouse-name = Cancer Mouse
+ghost-role-information-cancer-mouse-description = An irradiated mouse, spread your affliction and seek food.
+
 ghost-role-information-mothroach-name = Mothroach
 ghost-role-information-mothroach-description = A cute but mischievous mothroach.
 
@@ -268,6 +271,15 @@ ghost-role-information-derelict-mining-cyborg-description = You are a salvage cy
 
 ghost-role-information-derelict-syndicate-assault-cyborg-name = Derelict Syndicate Assault Cyborg
 ghost-role-information-derelict-syndicate-assault-cyborg-description = You are an early model syndicate assault cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
+
+ghost-role-information-derelict-syndicate-reaper-cyborg-name = Derelict Syndicate Reaper Cyborg
+ghost-role-information-derelict-syndicate-reaper-cyborg-description = You are a derelict syndicate reaper cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
+
+ghost-role-information-derelict-syndicate-saboteur-cyborg-name = Derelict Syndicate Saboteur Cyborg
+ghost-role-information-derelict-syndicate-saboteur-cyborg-description = You are a derelict syndicate saboteur cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
+
+ghost-role-information-derelict-syndicate-medical-cyborg-name = Derelict Syndicate Medical Cyborg
+ghost-role-information-derelict-syndicate-medical-cyborg-description = You are a derelict syndicate medical cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 
 ghost-role-information-security-name = Security
 ghost-role-information-security-description = You are part of a security task force, but seem to have found yourself in a strange situation...

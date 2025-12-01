@@ -19,6 +19,12 @@ namespace Content.Client.Communications.UI
         public bool CanAnnounce;
         public bool CanBroadcast;
         public bool CanCall;
+        // Sunrise-Start
+        public bool CanRelay;
+        public bool IsRelaying;
+        public float RelayCooldownRemaining;
+        public float RelayTimeRemaining;
+        // Sunrise-End
         public bool AlertLevelSelectable;
         public bool CountdownStarted;
         public string CurrentLevel = string.Empty;
@@ -28,6 +34,7 @@ namespace Content.Client.Communications.UI
         public event Action<string>? OnAlertLevel;
         public event Action<string>? OnAnnounce;
         public event Action<string>? OnBroadcast;
+        public event Action? OnToggleRelay; // Sunrise-Edit
 
         public CommunicationsConsoleMenu()
         {
@@ -58,6 +65,11 @@ namespace Content.Client.Communications.UI
             BroadcastButton.OnPressed += _ => OnBroadcast?.Invoke(Rope.Collapse(MessageInput.TextRope));
             BroadcastButton.Disabled = !CanBroadcast;
 
+            // Sunrise-Start
+            RelayButton.OnPressed += _ => OnToggleRelay?.Invoke();
+            RelayButton.Disabled = !CanRelay;
+            // Sunrise-End
+
             AlertLevelButton.OnItemSelected += args =>
             {
                 var metadata = AlertLevelButton.GetItemMetadata(args.Id);
@@ -78,6 +90,7 @@ namespace Content.Client.Communications.UI
         {
             base.FrameUpdate(args);
             UpdateCountdown();
+            UpdateRelayUi(); // Sunrise-Edit
         }
 
         // The current alert could make levels unselectable, so we need to ensure that the UI reacts properly.
@@ -122,6 +135,7 @@ namespace Content.Client.Communications.UI
             if (!CountdownStarted)
             {
                 CountdownLabel.SetMessage(string.Empty);
+                CountdownLabel.Visible = false; // Sunrise-Edit
                 EmergencyShuttleButton.Text = Loc.GetString("comms-console-menu-call-shuttle");
                 return;
             }
@@ -132,6 +146,36 @@ namespace Content.Client.Communications.UI
             var infoText = Loc.GetString($"comms-console-menu-time-remaining",
                 ("time", diff.ToString(@"hh\:mm\:ss", CultureInfo.CurrentCulture)));
             CountdownLabel.SetMessage(infoText);
+            CountdownLabel.Visible = true; // Sunrise-Edit
         }
+
+        // Sunrise-Start
+        public void UpdateRelayUi()
+        {
+            RelayButton.Disabled = !CanRelay && !IsRelaying;
+            if (IsRelaying)
+            {
+                RelayButton.Text = Loc.GetString("comms-console-menu-relay-stop");
+                var remaining = TimeSpan.FromSeconds(Math.Max(0f, RelayTimeRemaining));
+                var text = Loc.GetString("comms-console-menu-relay-time-left", ("time", remaining.ToString(@"mm\:ss", CultureInfo.CurrentCulture)));
+                RelayStatusLabel.Visible = true;
+                RelayStatusLabel.SetMessage(text);
+            }
+            else if (RelayCooldownRemaining > 0f)
+            {
+                var remaining = TimeSpan.FromSeconds(RelayCooldownRemaining);
+                RelayButton.Text = Loc.GetString("comms-console-menu-relay-button");
+                RelayStatusLabel.SetMessage(Loc.GetString("comms-console-menu-relay-cooldown", ("time", remaining.ToString(@"mm\:ss", CultureInfo.CurrentCulture))));
+                RelayStatusLabel.Visible = true;
+                RelayButton.Disabled = true;
+            }
+            else
+            {
+                RelayButton.Text = Loc.GetString("comms-console-menu-relay-button");
+                RelayStatusLabel.Visible = false;
+                RelayStatusLabel.SetMessage(string.Empty);
+            }
+        }
+        // Sunrise-End
     }
 }

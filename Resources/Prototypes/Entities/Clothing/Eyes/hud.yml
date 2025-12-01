@@ -31,6 +31,7 @@
     - Inorganic
     - Silicon
     - Mech # Sunrise-edit
+  - type: ShowAccessReaderSettings
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]

@@ -241,9 +241,10 @@ binds:
 - function: OpenGuidebook
   type: State
   key: NumpadNum0
-- function: OpenAHelp
-  type: State
-  key: F1
+# Sunrise-Edit
+#- function: OpenAHelp
+#  type: State
+#  key: F1
 - function: OpenInventoryMenu
   type: State
   key: I
@@ -254,6 +255,18 @@ binds:
 - function: SmartEquipBelt
   type: State
   key: E
+  mod1: Shift
+- function: SmartEquipPocket1
+  type: State
+  key: F
+  mod1: Shift
+- function: SmartEquipPocket2
+  type: State
+  key: G
+  mod1: Shift
+- function: SmartEquipSuitStorage
+  type: State
+  key: H
   mod1: Shift
 - function: OpenBackpack
   type: State
@@ -647,4 +660,10 @@ binds:
 - function: MeleeGunAttack
   type: State
   key: MouseMiddle
+- function: OpenMentorHelp
+  type: State
+  key: O
+- function: OpenHelpChoice
+  type: State
+  key: F1
 # Sunrise-End

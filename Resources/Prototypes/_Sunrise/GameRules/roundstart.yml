@@ -13,13 +13,6 @@
   - type: FugitiveRule
 
 - type: entity
-  id: EvilTwin
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: EvilTwinRule
-
-- type: entity
   id: PlanetPrison
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]

@@ -191,6 +191,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
 
+    /// <summary>
+    /// Link to replays to show in menus.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksReplays =
+        CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
+
     /**
      * Lobby
      */
@@ -540,7 +546,7 @@ public sealed partial class SunriseCCVars : CVars
     /// Название корпорации для подстановки в документы
     /// </summary>
     public static readonly CVarDef<string> DocumentCorporationName =
-        CVarDef.Create("doc.corp_name", "Nanotrasen", CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("doc.corp_name", "NanoTrasen", CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Смешение автозаполнения времени в часах
@@ -559,4 +565,19 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<string> DocumentTemplatePool =
         CVarDef.Create("doc.template_pool", "Sunrise", CVar.SERVER | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> MentorHelpAdminPrefix =
+        CVarDef.Create("mentor_help.admin_prefix", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> MentorHelpRateLimitPeriod =
+        CVarDef.Create("mentor_help.rate_limit_period", 2f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> MentorHelpRateLimitCount =
+        CVarDef.Create("mentor_help.rate_limit_count", 10, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> MentorHelpSound =
+        CVarDef.Create("mentor_help.mentor_help_sound", "/Audio/_Sunrise/Effects/adminticketopen.ogg", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    public static readonly CVarDef<bool> MentorHelpSoundEnabled =
+        CVarDef.Create("mentor_help.mentor_help_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

@@ -199,6 +199,7 @@
       Quantity: 1
     - ReagentId: Dermaline
       Quantity: 1
+    keepSolution: false
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
@@ -223,6 +224,8 @@
         Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
+    - ReagentId: Tricordrazine
+      Quantity: 2
     - ReagentId: Bruizine
       Quantity: 1
     - ReagentId: Puncturase
@@ -249,6 +252,9 @@
       Quantity: 0.1
     - ReagentId: Saline
       Quantity: 1
+    - ReagentId: Phalanximine
+      Quantity: 0.5   
+    keepSolution: false
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
@@ -893,3 +899,144 @@
   - type: Hypospray
     onlyAffectsMobs: true
     injectOnly: true
+
+- type: entity
+  name: service cyborg dispenser (soda)
+  parent: BaseBorgShaker
+  id: BorgShakerSoda
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Water
+      Quantity: 1
+    - ReagentId: Ice
+      Quantity: 1
+    - ReagentId: Coffee
+      Quantity: 1
+    - ReagentId: Cream
+      Quantity: 1
+    - ReagentId: Tea
+      Quantity: 1
+    - ReagentId: GreenTea
+      Quantity: 1
+    - ReagentId: IcedTea
+      Quantity: 1
+    - ReagentId: IcedGreenTea
+      Quantity: 1
+    - ReagentId: Cola
+      Quantity: 1
+    - ReagentId: SpaceMountainWind
+      Quantity: 1
+    - ReagentId: DrGibb
+      Quantity: 1
+    - ReagentId: SpaceUp
+      Quantity: 1
+    - ReagentId: TonicWater
+      Quantity: 1
+    - ReagentId: SodaWater
+      Quantity: 1
+    - ReagentId: LemonLime
+      Quantity: 1
+    - ReagentId: Sugar
+      Quantity: 1
+    - ReagentId: JuiceOrange
+      Quantity: 1
+    - ReagentId: JuiceLime
+      Quantity: 1
+    - ReagentId: JuiceWatermelon
+      Quantity: 1
+
+- type: entity
+  name: service cyborg dispenser (booze)
+  parent: BaseBorgShaker
+  id: BorgShakerBooze
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Beer
+        Quantity: 1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Beer
+      Quantity: 1
+    - ReagentId: CoffeeLiqueur
+      Quantity: 1
+    - ReagentId: Whiskey
+      Quantity: 1
+    - ReagentId: Wine
+      Quantity: 1
+    - ReagentId: Vodka
+      Quantity: 1
+    - ReagentId: Gin
+      Quantity: 1
+    - ReagentId: Rum
+      Quantity: 1
+    - ReagentId: Tequila
+      Quantity: 1
+    - ReagentId: Vermouth
+      Quantity: 1
+    - ReagentId: Cognac
+      Quantity: 1
+    - ReagentId: Ale
+      Quantity: 1
+    - ReagentId: Mead
+      Quantity: 1
+
+- type: entity
+  parent: BaseItem
+  id: BaseBorgShaker
+  name: service cyborg dispenser
+  description: A dispenser that can switch between several reagents.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+  - type: MixableSolution
+    solution: drink
+  - type: Shakeable
+  - type: FitsInDispenser
+    solution: drink
+  - type: DrawableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: Spillable
+    solution: drink
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+  - type: ReactionMixer
+    mixOnInteract: false
+    reactionTypes:
+    - Shake
+  - type: ExaminableSolution
+    solution: drink
+    heldOnly: true
+    examinableWhileClosed: true
+  - type: SolutionItemStatus
+    solution: drink

@@ -47,6 +47,21 @@
   - HyposprayMedical
 
 - type: technology
+  id: MedicalAssembler
+  name: research-technology-medical-assembler
+  icon:
+    sprite: _Sunrise/Structures/Machines/medical_assembler.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - MedicalAssemblerMachineCircuitboard
+  - BlankMediPen
+  technologyPrerequisites:
+    - MedicalHyposprays
+
+- type: technology
   id: SurgeryTechAdvanced
   name: research-technology-advanced-surgery
   icon:
@@ -134,7 +149,83 @@
   radioChannels:
   - Medical
 
+- type: technology
+  id: FunctionalCyberLimbsTech
+  name: research-technology-functional-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 2
+  cost: 14000
+  recipeUnlocks:
+    - ImplantCaseReaper
+    - ImplantCaseMechwright
+    - ImplantCaseRobust
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Engineering
+  - Service
+
+- type: technology
+  id: AtmosCyberLimbsTech
+  name: research-technology-atmos-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 2
+  cost: 6500
+  recipeUnlocks:
+    - ImplantCaseAtmos
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AtmosphericTech
+  radioChannels:
+  - Medical
+  - Engineering
+
+- type: technology
+  id: JanitorialCyberLimbsTech
+  name: research-technology-jani-cyberlimbs
+  icon:
+    sprite: _Sunrise/Objects/Tools/cyber_advmop.rsi
+    state: advmop
+  discipline: Biochemical
+  tier: 2
+  cost: 1984
+  recipeUnlocks:
+    - ImplantCaseJani
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AdvancedCleaning
+  radioChannels:
+  - Medical
+  - Service
+
 # Tier 3
+- type: technology
+  id: HackCyberLimbsTech
+  name: research-technology-hack-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 3
+  cost: 404 # ERROR #ERR*?*%!
+  recipeUnlocks:
+    - ImplantCaseHack
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AdvancedToolsTechnology
+    - BasicXenoArcheology
+  radioChannels:
+  - Medical
+  - Engineering
+  - Service
+
 - type: technology
   id: ImplantExtractor
   name: research-technology-implant-extractor
@@ -165,24 +256,6 @@
   - Medical
 
 - type: technology
-  id: FunctionalCyberLimbsTech
-  name: research-technology-functional-cyberlimbs
-  icon:
-    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-    state: cyber-hand-left
-  discipline: Biochemical
-  tier: 3
-  cost: 9220
-  recipeUnlocks:
-    - ImplantCaseReaper
-    - ImplantCaseMechwright
-  technologyPrerequisites:
-    - CyberLimbsTech
-  radioChannels:
-  - Security
-  - Medical
-
-- type: technology
   id: ScienceCyberLimbsTech
   name: research-technology-science-cyberlimbs
   icon:
@@ -192,8 +265,7 @@
   tier: 3
   cost: 3500
   recipeUnlocks:
-    - ImplantCaseGorillaL
-    - ImplantCaseGorillaR
+    - ImplantCaseGorilla
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - AnomalyCoreHarnessing
