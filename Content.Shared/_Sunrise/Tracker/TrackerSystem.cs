@@ -31,7 +31,7 @@ public sealed class TrackerSystem : EntitySystem
 
     private void OnRemove(Entity<TrackerComponent> ent, ref ComponentRemove args)
     {
-        _alerts.ClearAlert(ent, ent.Comp.Alert);
+        _alerts.ClearAlert(ent.Owner, ent.Comp.Alert);
     }
 
     private void OnClickedAlert(Entity<TrackerComponent> ent, ref TrackerClickedAlertEvent args)
@@ -90,9 +90,7 @@ public sealed class TrackerSystem : EntitySystem
         var newComponent = GetCurrentComponent(ent.Comp);
 
         if (oldComponent != newComponent)
-        {
             _popup.PopupPredictedCursor(Loc.GetString("tracker-component-changed", ("component", newComponent)), ent.Owner, PopupType.Small);
-        }
 
         UpdateDirection(ent);
         Dirty(ent);
@@ -111,17 +109,14 @@ public sealed class TrackerSystem : EntitySystem
         var targets = new List<EntityUid>();
         var componentType = _componentFactory.GetRegistration(componentName).Type;
 
-        var allEntities = EntityQuery<MetaDataComponent>().Select(e => e.Owner).ToList();
-
-        foreach (var entity in allEntities)
+        var query = EntityQueryEnumerator<MetaDataComponent>();
+        while (query.MoveNext(out var uid, out _))
         {
-            if (entity == exclude)
+            if (uid == exclude)
                 continue;
 
-            if (EntityManager.HasComponent(entity, componentType) && !targets.Contains(entity))
-            {
-                targets.Add(entity);
-            }
+            if (EntityManager.HasComponent(uid, componentType) && !targets.Contains(uid))
+                targets.Add(uid);
         }
 
         return targets;
@@ -129,7 +124,7 @@ public sealed class TrackerSystem : EntitySystem
 
     private void UpdateDirection(Entity<TrackerComponent> ent, MapCoordinates? coordinates = null)
     {
-        _alerts.ClearAlertCategory(ent, TrackerCategory);
+        _alerts.ClearAlertCategory(ent.Owner, TrackerCategory);
         var severity = DirectionTrackerSystem.CenterSeverity;
 
         if (coordinates != null)
@@ -184,20 +179,19 @@ public sealed class TrackerSystem : EntitySystem
         var shortestDistance = float.MaxValue;
         EntityUid? closestTarget = null;
 
-        var allEntities = EntityQuery<MetaDataComponent>().Select(e => e.Owner).ToList();
-
-        foreach (var entity in allEntities)
+        var query = EntityQueryEnumerator<MetaDataComponent>();
+        while (query.MoveNext(out var uid, out _))
         {
-            if (entity == ent.Owner || !EntityManager.HasComponent(entity, componentType))
+            if (uid == ent.Owner || !EntityManager.HasComponent(uid, componentType))
                 continue;
 
             var distance = (_transform.GetWorldPosition(ent.Owner) -
-                           _transform.GetWorldPosition(entity)).LengthSquared();
+                            _transform.GetWorldPosition(uid)).LengthSquared();
 
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
-                closestTarget = entity;
+                closestTarget = uid;
             }
         }
 
