@@ -11,7 +11,7 @@
   parent: BaseBarSign
   id: BarSignRNDmoment
   name: RND Moment
-  description: Will RND be able to?
+  description: Will RND manage this time?
   components:
   - type: BarSign
     current: rndmoment

@@ -6,9 +6,9 @@ barsign-prototype-description-alcoholic = Pour and that's it. These are hard tim
 ## RNDmoment
 
 barsign-prototype-name-RNDmoment = RND moment
-barsign-prototype-description-RNDmoment = Will RND be able to?
+barsign-prototype-description-RNDmoment = Will RND manage this time?
 
 ## Aliensjaws
 
-barsign-prototype-name-aliensjaws = Aliens Jaws
+barsign-prototype-name-aliensjaws = Alien's Jaws
 barsign-prototype-description-aliensjaws = Get both your jaws ready for some acidic drinks!
