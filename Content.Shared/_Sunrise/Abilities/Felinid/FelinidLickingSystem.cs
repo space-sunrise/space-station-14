@@ -5,13 +5,14 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Sunrise.Abilities.Felinid;
 
@@ -23,9 +24,9 @@ public sealed class FelinidLickingSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()
     {
@@ -43,35 +44,19 @@ public sealed class FelinidLickingSystem : EntitySystem
 
     private void OnLickingAction(EntityUid uid, FelinidLickingComponent component, LickingWoundsTargetActionEvent args)
     {
-        if (args.Handled)
-            return;
-
-        if (_standing.IsDown(uid))
+        if (args.Handled || args.Target == null) // мда
             return;
 
         var target = args.Target;
-        if (target == null)
-            return;
 
-        if (HasIngestionBlocker(uid))
+        if (!CanLick(uid, target, component, out var damageable, out var errorMessage))
         {
-            _popup.PopupClient(Loc.GetString("felinid-licking-blocked-by-blocker"), uid, uid);
-            args.Handled = true;
+            if (errorMessage != null)
+                _popup.PopupClient(errorMessage, uid, uid);
             return;
         }
 
-        if (HasInnerOrOuterClothing(target))
-        {
-            _popup.PopupClient(Loc.GetString("felinid-licking-blocked-by-clothing"), uid, uid);
-            args.Handled = true;
-            return;
-        }
-
-        if (!TryComp<DamageableComponent>(target, out var damageable))
-            return;
-
-        StartLicking(uid, target, component, damageable);
-        args.Handled = true;
+        StartLicking(uid, target, component, damageable!);
     }
 
     private void StartLicking(EntityUid uid, EntityUid target, FelinidLickingComponent licking, DamageableComponent damageable)
@@ -95,14 +80,14 @@ public sealed class FelinidLickingSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damageable))
             return;
 
-        var healed = _damageable.TryChangeDamage(target, component.Damage, true, origin: uid);
+        _damageable.TryChangeDamage(target, component.Damage, true, origin: uid);
 
         if (component.StopBleeding && TryComp<BloodstreamComponent>(target, out var bloodstream))
         {
-            var isBleeding = bloodstream.BleedAmount > 0;
+            var wasBleeding = bloodstream.BleedAmount > 0;
             _bloodstreamSystem.TryModifyBleedAmount((target, bloodstream), component.BloodlossModifier);
 
-            if (isBleeding != bloodstream.BleedAmount > 0)
+            if (wasBleeding && bloodstream.BleedAmount <= 0)
             {
                 var popup = (uid == target)
                     ? Loc.GetString("medical-item-stop-bleeding-self")
@@ -113,18 +98,59 @@ public sealed class FelinidLickingSystem : EntitySystem
 
         _audio.PlayPredicted(component.HealingEndSound, uid, uid);
 
-        if (HasDamageToHeal(target, damageable, component))
+        if (_mobStateSystem.IsAlive(target) && HasDamageToHeal(target, damageable, component))
         {
             StartLicking(uid, target, component, damageable);
-        }
-        else
-        {
-            _popup.PopupClient("felinid-licking-stop", uid, uid);
         }
 
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Проверяет, можно ли облизывать раны цели
+    /// </summary>
+    /// <param name="licker">Тот, кто облизывает</param>
+    /// <param name="target">Цель</param>
+    /// <param name="component">Компонент облизывания</param>
+    /// <param name="damageable">Компонент урона цели (если доступен)</param>
+    /// <param name="errorMessage">Сообщение об ошибке (если есть)</param>
+    /// <returns>True, если можно облизывать</returns>
+    private bool CanLick(EntityUid licker, EntityUid target, FelinidLickingComponent component,
+        [NotNullWhen(true)] out DamageableComponent? damageable, out string? errorMessage)
+    {
+        damageable = null;
+        errorMessage = null;
+
+        if (_standing.IsDown(licker))
+            return false;
+
+        if (!TryComp<DamageableComponent>(target, out damageable))
+            return false;
+
+        if (!_mobStateSystem.IsAlive(target))
+            return false;
+
+        if (HasIngestionBlocker(licker))
+        {
+            errorMessage = Loc.GetString("felinid-licking-blocked-by-blocker");
+            return false;
+        }
+
+        if (HasInnerOrOuterClothing(target))
+        {
+            errorMessage = Loc.GetString("felinid-licking-blocked-by-clothing");
+            return false;
+        }
+
+        if (!HasDamageToHeal(target, damageable, component))
+            return false;
+
+        return true;
+    }
+
+    /// <summary>
+    /// Проверяет, есть ли у сущности урон, который можно вылечить
+    /// </summary>
     private bool HasDamageToHeal(EntityUid target, DamageableComponent damageable, FelinidLickingComponent licking)
     {
         foreach (var (type, amount) in licking.Damage.DamageDict)
@@ -145,6 +171,9 @@ public sealed class FelinidLickingSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Проверяет, есть ли у сущности блокировщик приема пищи (маска или шлем)
+    /// </summary>
     private bool HasIngestionBlocker(EntityUid uid)
     {
         if (!TryComp<InventoryComponent>(uid, out var inventory))
@@ -156,9 +185,13 @@ public sealed class FelinidLickingSystem : EntitySystem
             if (TryComp<IngestionBlockerComponent>(item, out var blocker) && blocker.Enabled)
                 return true;
         }
+
         return false;
     }
 
+    /// <summary>
+    /// Проверяет, есть ли у сущности внутренняя или внешняя одежда
+    /// </summary>
     private bool HasInnerOrOuterClothing(EntityUid uid)
     {
         if (!TryComp<InventoryComponent>(uid, out var inventory))

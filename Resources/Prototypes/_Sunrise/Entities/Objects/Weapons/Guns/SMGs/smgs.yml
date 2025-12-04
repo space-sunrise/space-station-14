@@ -5,8 +5,6 @@
   components:
   - type: Item
     size: Large
-    shape:
-    - 0,0,3,2
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/p90.rsi
     layers:
@@ -74,8 +72,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: Item
     size: Large
-    shape:
-    - 0,0,3,2
+    storedOffset: 0,-5
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -3
@@ -131,8 +128,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: Item
     size: Large
-    shape:
-    - 0,0,2,2
+    storedOffset: 0,-2
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
     minAngle: -5
@@ -190,9 +186,8 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: Item
     size: Large
-    shape:
-    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+    storedOffset: 0,-2
   - type: GunWieldBonus
     minAngle: -5
     maxAngle: -18
@@ -252,8 +247,6 @@
   components:
   - type: Item
     size: Normal
-    shape:
-    - 0,0,2,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/skorpion.rsi
     layers:
@@ -322,8 +315,6 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: Item
     size: Large
-    shape:
-    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: Gun
     burstFireRate: 22

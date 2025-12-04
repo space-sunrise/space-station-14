@@ -32,6 +32,8 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn.rsi
   - type: Item
     size: Small
+    shape:
+    - 0,0,2,0
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn_inhands_64x.rsi
   - type: Gun
     spread: 30

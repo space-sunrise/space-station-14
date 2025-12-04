@@ -175,7 +175,7 @@
 #end
 
 - type: entity
-  parent: Airlock
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
   id: AirlockXenoborg
   name: xenoborg airlock
   components:
@@ -185,7 +185,7 @@
     group: null
 
 - type: entity
-  parent: Airlock
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
   id: AirlockHatchSyndicate
   name: airtight hatch
   suffix: Syndicate
@@ -343,7 +343,7 @@
     sprite: Structures/Doors/Airlocks/Glass/basic.rsi
 
 - type: entity
-  parent: Airlock
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
   id: AirlockXeno
   suffix: Xeno
   components:
@@ -353,7 +353,7 @@
     group: null
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
   id: AirlockGlassXeno
   suffix: Xeno
   components:

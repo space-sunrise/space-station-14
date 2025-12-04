@@ -15,7 +15,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,7,2
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -93,7 +93,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,6,2
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
     minAngle: -21
@@ -167,7 +167,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,8,2
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -291,7 +291,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,1
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater_inhands_64x.rsi
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi

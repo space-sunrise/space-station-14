@@ -48,6 +48,7 @@
     - id: Binoculars
     - id: WeaponEnergyShotgun
     - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
+    - id: ClothingHandsKnuckleDustersStun # Sunrise-edit
 
 - type: entityTable
   id: FillLockerWardenHarduit

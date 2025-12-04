@@ -254,6 +254,15 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1 # makes its stats identical to other variants of bag of holding
   - type: HeldSpeedModifier
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+      Silver: 300
+      Cloth: 500
+      Plasma: 600
+      Uranium: 40
+  # Sunrise-end
 
 - type: entity
   parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]
