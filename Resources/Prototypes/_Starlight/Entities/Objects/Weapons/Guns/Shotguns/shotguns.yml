@@ -14,7 +14,7 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
-    capacity: 7
+    capacity: 8
   - type: Construction
     graph: ShotgunRiotSawn
     node: start
@@ -38,7 +38,7 @@
   - type: Gun
     spread: 30
   - type: BallisticAmmoProvider
-    capacity: 4
+    capacity: 5
   - type: Construction
     graph: ShotgunRiotSawn
     node: shotgunsawn
