@@ -15,4 +15,8 @@ public enum MultiplexerLayers : byte
 }
 
 [Serializable, NetSerializable]
-public enum MuxState : byte { Demux, Mux }
+public enum MuxState : byte
+{
+    Demux,
+    Mux
+}
