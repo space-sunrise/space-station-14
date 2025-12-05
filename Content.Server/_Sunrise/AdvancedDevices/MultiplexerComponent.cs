@@ -43,5 +43,4 @@ public sealed partial class MultiplexerComponent : Component
     [DataField] public bool LastDemuxOutputB;
     [DataField] public bool LastDemuxOutputC;
     [DataField] public bool LastDemuxOutputD;
-    [DataField] public string? Error = null;
 }
