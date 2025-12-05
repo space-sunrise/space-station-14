@@ -15,7 +15,6 @@ namespace Content.Server._Sunrise.AdvancedDevices;
 public sealed class MultiplexerSystem : EntitySystem
 {
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -56,8 +55,8 @@ public sealed class MultiplexerSystem : EntitySystem
 
     private void SwitchPorts(EntityUid uid, MultiplexerComponent comp)
     {
-        _entityManager.RemoveComponent<DeviceLinkSinkComponent>(uid);
-        _entityManager.RemoveComponent<DeviceLinkSourceComponent>(uid);
+        RemComp<DeviceLinkSinkComponent>(uid);
+        RemComp<DeviceLinkSourceComponent>(uid);
 
         if (comp.State == MuxState.Mux)
         {
