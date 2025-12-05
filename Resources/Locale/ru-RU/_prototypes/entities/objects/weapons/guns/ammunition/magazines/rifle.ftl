@@ -19,6 +19,7 @@ ent-MagazineRiflePractice = магазин (5,56мм учебные)
     .desc = { ent-BaseMagazineRifle.desc }
 ent-MagazineRifleUranium = магазин (5,56мм урановые)
     .desc = { ent-BaseMagazineRifle.desc }
+##
 ent-MagazineRifleBoxSP = короб магазина L6 SAW (5,56мм SP)
     .desc = Коробка, содержащая ленту из 150 патронов калибра .20, используемая легкими пулеметами, такими как L6. Предназначена для хранения кинетических боеприпасов общего назначения.
 ent-MagazineRifleBoxFMJ = короб магазина L6 SAW (5,56мм FMJ)
@@ -27,3 +28,18 @@ ent-MagazineLightRifleBoxIncendiary = короб патронов L6 SAW (5,56м
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineLightRifleBoxUranium = короб патронов L6 SAW (5,56мм урановые)
     .desc = { ent-BaseMagazineLightRifle.desc }
+
+ent-MagazineRifleM52SP = магазин М-52 (5,56мм SP)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleM52HP = магазин М-52 (5,56мм HP)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleM52FMJ = магазин М-52 (5,56мм FMJ)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleM52AP = магазин М-52 (5,56мм AP)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleM52Incendiary = магазин М-52 (5,56мм зажигательные)
+    .desc = { ent-MagazineRifle.desc }
+ent-MagazineRifleM52Practice = магазин М-52 (5,56мм учебные)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleM52Uranium = магазин М-52 (5,56мм урановые)
+    .desc = { ent-BaseMagazineRifle.desc }
