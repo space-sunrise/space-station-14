@@ -89,7 +89,7 @@
         prob: 0.25
       - id: WeaponSubMachineGunSkorpion
         prob: 0.15
-      - id: WeaponSubMachineGunPPSH41
+      - id: WeaponSubMachineGunPPSH
         prob: 0.10
       - id: WeaponSTG44
         prob: 0.10
