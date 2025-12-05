@@ -9,7 +9,8 @@ namespace Content.Server._Sunrise.AdvancedDevices;
 [RegisterComponent, Access(typeof(MultiplexerSystem))]
 public sealed partial class MultiplexerComponent : Component
 {
-    [DataField] public MuxState State = MuxState.Mux;
+    [DataField]
+    public MuxState State = MuxState.Mux;
     [DataField] public SoundSpecifier CycleSound = new SoundPathSpecifier("/Audio/Machines/lightswitch.ogg");
     [DataField] public ProtoId<ToolQualityPrototype> CycleQuality = "Screwing";
 
