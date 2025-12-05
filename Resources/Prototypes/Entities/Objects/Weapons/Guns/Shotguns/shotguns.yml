@@ -215,7 +215,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 1
+    fireRate: 1.5 # Sunrise-edit
   - type: GunSpreadModifier
     spread: 0.6
   - type: Tag
