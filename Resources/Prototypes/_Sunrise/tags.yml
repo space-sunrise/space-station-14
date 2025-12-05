@@ -216,9 +216,6 @@
   id: NoSpinOnThrow
 
 - type: Tag
-  id: MagazineSTG44
-
-- type: Tag
   id: PowerpackFlame
 
 - type: Tag

@@ -245,7 +245,7 @@
       - state: inhand-right-stripe
         color: "#40F57A"
 
-
+#Sunrise-start
 # M-52
 
 - type: entity
@@ -464,7 +464,6 @@
       - state: inhand-right-stripe
         color: "#40F57A"
 
-#Sunrise-start
 # Magazines L6 SAW
 - type: entity
   id: MagazineRifleBoxSP
