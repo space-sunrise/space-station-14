@@ -22,7 +22,7 @@
 
 - type: entity
   name: sawn-off riot shotgun
-  parent: [BaseWeaponShotgunPump, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunPump, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
   components:
@@ -37,7 +37,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn_inhands_64x.rsi
   - type: Gun
     spread: 30
-  - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 4
   - type: Construction
@@ -46,7 +45,7 @@
     deconstructionTarget: null
 
 - type: entity
-  parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
+  parent: WeaponShotgunRiotSawn
   id: WeaponShotgunRiotSawnEmpty
   suffix: Empty
   components:

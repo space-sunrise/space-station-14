@@ -7,8 +7,6 @@
   - type: Tag
     tags:
     - CartridgeLightRifle
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceSP
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x39.rsi # Sunrise-Edit
     scale: 0.60, 0.60 # Sunrise-Added
@@ -98,8 +96,8 @@
   name: cartridge (.30 rifle incendiary)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceIncendiary
+  - type: CartridgeAmmo
+    proto: BulletLightRifleIncendiary
   - type: Sprite
     layers:
       - state: base
