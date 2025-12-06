@@ -1213,20 +1213,16 @@
   pierceChance: 0.30
   ricochetChance: 0.40
 
-- type: hitscan
+- type: entity
   id: BulletRifleTraceHeavyIncendiary
-  parent: BulletTrace
-  igniteOnCollision: true
-  damage:
-    types:
-      Blunt: 3
-      Heat: 20
-  pierceChance: 0.60
-  ricochetChance: 0.30
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: incendiary
+  parent: BaseBulletIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Heat: 3
 
 - type: hitscan
   id: BulletRifleTraceHeavyUranium

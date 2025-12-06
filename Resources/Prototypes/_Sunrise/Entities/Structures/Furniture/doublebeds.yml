@@ -24,7 +24,7 @@
     sprite: _Sunrise/Entities/Structures/Furniture/doublebeds.rsi
     state: doublebed
     noRot: true
-    drawdepth: Puddles
+    drawdepth: HighFloorObjects
   - type: Strap
     position: Down
     rotation: -90

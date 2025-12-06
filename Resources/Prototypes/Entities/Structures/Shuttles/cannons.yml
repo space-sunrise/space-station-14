@@ -92,7 +92,7 @@
           tags:
             - PowerCage # Sunrise-edit
   - type: HitscanBatteryAmmoProvider
-    proto: RedShuttleMediumLaser #RedLightLaser
+    proto: RedLightLaser
     fireCost: 30 # Sunrise-edit #changed from 50 to 30
 
 - type: entity

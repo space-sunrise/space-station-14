@@ -4,13 +4,29 @@
   description: uplink-syndie-nvd-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi, state: icon }
   productEntity: ClothingEyesNVDSyndicate
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkWearables
+
+- type: listing
+  id: UplinkClothingEyesGlassesThermal
+  name: uplink-syndie-thermal-name
+  description: uplink-thermal-desc
+  productEntity: ClothingEyesGlassesThermal
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkClothingEyesGlassesThermalSyndie
@@ -20,17 +36,11 @@
   productEntity: ClothingEyesGlassesThermalSyndieBiocode
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 6
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkAmmoPouch
@@ -64,26 +74,6 @@
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkClothingEyesGlassesThermal
-  name: uplink-syndie-thermal-name
-  description: uplink-syndie-thermal-desc
-  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
-  productEntity: ClothingEyesGlassesThermalSyndieBiocode
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 6
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
@@ -200,42 +190,6 @@
   categories:
   - UplinkAmmo
 
-# - type: listing
-#   id: UplinkMagazineShotgunIncendiary
-#   name: uplink-magazine-shotgun-name
-#   description: uplink-magazine-shotgun-desc
-#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: base }
-#   productEntity: MagazineShotgunIncendiary
-#   discountCategory: usualDiscounts
-#   discountDownTo:
-#     Telecrystal: 1
-#   cost:
-#     Telecrystal: 3
-#   categories:
-#   - UplinkAmmo
-#   conditions:
-#   - !type:StoreWhitelistCondition
-#     whitelist:
-#       tags:
-#       - NukeOpsUplink
-#       - LoneOpsUplink
-
-# - type: listing
-#   id: UplinkMagazineShotgunUranium
-#   description: uplink-magazine-bulldog-uranium-desc
-#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
-#   productEntity: MagazineShotgunUranium
-#   cost:
-#     Telecrystal: 7
-#   categories:
-#   - UplinkAmmo
-#   conditions:
-#   - !type:StoreWhitelistCondition
-#     whitelist:
-#       tags:
-#       - NukeOpsUplink
-#       - LoneOpsUplink
-
 # For the LMG
 - type: listing
   id: UplinkMagazineLightRifleBox
@@ -255,23 +209,6 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
-
-
-# - type: listing
-#   id: UplinkMagazineLightRifleBoxIncendiary
-#   description: uplink-magazine-lmg-desc
-#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: red }
-#   productEntity: MagazineLightRifleBoxIncendiary
-#   cost:
-#     Telecrystal: 8
-#   categories:
-#   - UplinkAmmo
-#   conditions:
-#   - !type:StoreWhitelistCondition
-#     whitelist:
-#       tags:
-#       - NukeOpsUplink
-#       - LoneOpsUplink
 
 # For the SIAR52
 - type: listing
@@ -1529,9 +1466,9 @@
   productEntity: ClothingEyesGlassesNVG
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 3
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkWearables
 
@@ -1669,6 +1606,20 @@
   - !type:BuyerJobCondition
     whitelist:
     - Clown
+
+- type: listing
+  id: uplinkHeavyCleanade
+  name: uplink-heavy-cleanade-name
+  description: uplink-heavy-cleanade-desc
+  productEntity: CleanerGrenadeAcidBox
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Janitor
 
 - type: listing
   id: UplinkClusterSyndieMiniBomb

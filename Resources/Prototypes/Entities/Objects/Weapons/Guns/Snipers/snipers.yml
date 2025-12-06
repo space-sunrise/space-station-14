@@ -50,8 +50,8 @@
       collection: SnipersDrop
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.35
+    maxOffset: 4
+    pvsIncrease: 0.4
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -154,7 +154,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 14 # Sunrise-Edit
-    pvsIncrease: 1.5 # Sunrise-Edit
+    pvsIncrease: 1.4 # Sunrise-Edit
   - type: StaticPrice
     price: 3500
 

@@ -32,6 +32,7 @@ uplink-syndie-nvd-name = ПНВ Синдиката
 uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
 uplink-syndie-thermal-name = оптический термальный Визор
 uplink-syndie-thermal-desc = Компактный термальный сканер. Его визор оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников NanoTrasen.
+uplink-thermal-desc = Компактный термальный сканер. Идеально подходит для выявления секретов сотрудников NanoTrasen за стенами.
 uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
 uplink-hardsuit-syndie-commander-name = скафандр Командира Синдиката
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
@@ -137,3 +138,7 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+
+## Jobs
+uplink-heavy-cleanade-name = Heavy Duty Cleanade
+uplink-heavy-cleanade-desc = An outwardly normal cleaning grenade filled with an extremely corrosive chemical which is visually identical to regular space cleaner foam. Best used for "cleaning" crowded medical facilities.

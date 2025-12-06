@@ -15,19 +15,19 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "HumanoidXeno"
-          invert: true
-        scaleByQuantity: true
+          inverted: true
+        scaling: true
         ignoreResistances: false
         damage:
           types:
             Caustic: 0.2
       - !type:Emote
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "HumanoidXeno"
-          invert: true
+          inverted: true
         emote: Scream
         probability: 0.2
   metabolisms:
@@ -36,26 +36,26 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "HumanoidXeno"
-          invert: true
+          inverted: true
         damage:
           types:
             Caustic: 1
       - !type:PopupMessage
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "HumanoidXeno"
-          invert: true
+          inverted: true
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
       - !type:Emote
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "HumanoidXeno"
-          invert: true
+          inverted: true
         emote: Scream
         probability: 0.25
 
@@ -74,19 +74,19 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Predator"
-            invert: true
-          scaleByQuantity: true
+            inverted: true
+          scaling: true
           ignoreResistances: false
           damage:
             types:
               Caustic: 1
         - !type:Emote
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Predator"
-            invert: true
+            inverted: true
           emote: Scream
           probability: 0.8
   metabolisms:
@@ -94,17 +94,17 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Predator"
-            invert: true
+            inverted: true
           damage:
             types:
               Caustic: 3
         - !type:PopupMessage
           conditions:
-          - !type:HasTag
+          - !type:TagCondition
             tag: "Predator"
-            invert: true
+            inverted: true
           type: Local
           visualType: Large
           messages: [ "generic-reagent-effect-burning-insides" ]
@@ -162,7 +162,6 @@
         component: Muted
         type: Add
         time: 80
-        refresh: true
 
 - type: reagent
   id: NocturineAbductor
@@ -178,10 +177,9 @@
       effects:
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: NocturineAbductor
           min: 8
         effectProto: StatusEffectForcedSleeping
         time: 120
         type: Add
-        refresh: true

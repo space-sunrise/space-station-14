@@ -8,16 +8,6 @@
   - chat-speech-verb-felinid-4
 
 - type: speechVerb
-  id: Vulpkanin
-  name: chat-speech-verb-name-vulpkanin
-  speechVerbStrings:
-  - chat-speech-verb-vulpkanin-1
-  - chat-speech-verb-vulpkanin-2
-  - chat-speech-verb-vulpkanin-3
-  - chat-speech-verb-vulpkanin-4
-  - chat-speech-verb-vulpkanin-5
-
-- type: speechVerb
   id: Swine
   name: chat-speech-verb-name-swine
   speechVerbStrings:

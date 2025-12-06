@@ -12,7 +12,5 @@ ent-MobSwineRandomization = { ent-MobSwine }
     .desc = { ent-MobSwine.desc }
 ent-MobVoxRandomization = { ent-MobVox }
     .desc = { ent-MobVox.desc }
-ent-MobVulpkaninRandomization = { ent-MobVulpkanin }
-    .desc = { ent-MobVulpkanin.desc }
 ent-MobFelinidRandomization = { ent-MobFelinid }
     .desc = { ent-MobFelinid.desc }

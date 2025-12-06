@@ -7,7 +7,7 @@
   components:
   - type: Action
     useDelay: 30
-    icon: Effects/hearts.rsi/hearts.png
+    icon: { sprite: Effects/hearts.rsi, state: hearts }
   - type: TargetAction
     range: 3
     interactOnMiss: false

@@ -330,7 +330,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         }
 
                         if (hitscan.Emp != null)
-                            _emp.EmpPulse(_transform.GetMapCoordinates(hitEntity), hitscan.Emp.Range, hitscan.Emp.EnergyConsumption, hitscan.Emp.DisableDuration);
+                            _emp.EmpPulse(_transform.GetMapCoordinates(hitEntity), hitscan.Emp.Range, hitscan.Emp.EnergyConsumption, TimeSpan.FromSeconds(hitscan.Emp.DisableDuration));
 
                         var dmg = hitscan.Damage;
 

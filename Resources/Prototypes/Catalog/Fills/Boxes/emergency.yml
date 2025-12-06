@@ -271,6 +271,7 @@
     - id: DrinkWaterBottleFull
   - type: Tag
     tags:
+    - BoxCardboard
     - BoxHug
 
 - type: entity
@@ -320,7 +321,7 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
+    - id: FoodBreadNutriBatard
     - id: DrinkWaterBottleFull
 
 - type: entity
@@ -344,7 +345,7 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
+    - id: FoodBreadNutriBatard
     - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -374,7 +375,7 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
+    - id: FoodBreadCottonNutriBatard
     - id: DrinkWaterBottleFull
 
 - type: entity
