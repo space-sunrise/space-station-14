@@ -85,6 +85,18 @@
     - TeslaToy
 
 - type: loadout
+  id: TrinketsEngineeringGCW
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - GoldenCrowbarWrench
+
+- type: loadout
   id: TrinketsEngineeringTFCF
   effects:
   - !type:JobRequirementLoadoutEffect

@@ -5,7 +5,7 @@
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: Empty
-  categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -31,11 +31,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERTAmber
+  id: UplinkNTERTAmber
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 75BC, 75C, Amber
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -55,11 +54,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERTRed
+  id: UplinkNTERTRed
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 100BC, 100C, Red
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -80,11 +78,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERTGamma
+  id: UplinkNTERTGamma
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 200BC, 200C, Gamma
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -105,7 +102,7 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERTEpsilon
+  id: UplinkNTERTEpsilon
   name: Bluespace DeathSquad visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: Epsilon
@@ -129,7 +126,7 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERTBlueShield
+  id: UplinkNTERTBlueShield
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: 8BC, 10C, BlueShield
@@ -154,7 +151,7 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERTDebug
+  id: UplinkNTERTDebug
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
   suffix: DEBUG
@@ -184,11 +181,46 @@
     - CBURN
 
 - type: entity
+  parent: [ClothingHandsGlovesPowerglove, BaseMajorContraband]
+  id: ClothingHandsPowerGlovesNoUplink
+  name: power gloves
+  description: A solid argument made of duraplastalloy fibers in any brawl — just hope the other guy doesn’t bring a gun.
+  suffix: No Uplink
+  components:
+  - type: Item
+    size: Normal
+  - type: Clothing
+    equipSound: /Audio/_Sunrise/Weapons/Guns/Lasers/Pulse/pickup1.ogg
+    unequipSound: /Audio/_Sunrise/Weapons/Guns/Lasers/Pulse/drop1.ogg
+    equipDelay: 1.5
+    unequipDelay: 3
+    stripDelay: 20
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 14
+        Structural: 6
+    bluntStaminaDamageFactor: 1.75
+    soundHit:
+      collection: PunchHard
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
+  - type: Reflect
+    reflectProb: .05
+  - type: Insulated
+
+- type: entity
   parent: [ClothingHandsGlovesPowerglove, StorePresetNTUplink, BaseCentcommContraband]
   id: BaseClothingHandsPowerGlovesUplinkNTERT
   name: ERT power gloves
   description: A solid argument made of duraplastalloy fibers in any brawl — just hope the other guy doesn’t bring a gun. Comes with a built-in ERT-standard uplink.
   suffix: Uplink, Empty
+  categories: [ HideSpawnMenu ]
   components:
   - type: Item
     size: Normal
@@ -238,7 +270,7 @@
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
   id: ClothingHandsPowerGlovesUplinkNTERTAmber
   suffix: Uplink, Amber
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Store
     balance:
@@ -249,7 +281,7 @@
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
   id: ClothingHandsPowerGlovesUplinkNTERTAmberLeader
   suffix: Uplink, Amber, Leader
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Store
     balance:
@@ -260,7 +292,7 @@
   parent: ClothingHandsPowerGlovesUplinkNTERTAmber
   id: ClothingHandsPowerGlovesUplinkNTERTRed
   suffix: Uplink, Red
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Store
     balance:
@@ -275,7 +307,7 @@
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
   id: ClothingHandsPowerGlovesUplinkNTERTRedLeader
   suffix: Uplink, Red, Leader
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Store
     balance:
@@ -290,7 +322,7 @@
   parent: ClothingHandsPowerGlovesUplinkNTERTAmber
   id: ClothingHandsPowerGlovesUplinkNTERTGamma
   suffix: Uplink, Gamma
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Store
     balance:
@@ -305,7 +337,7 @@
   parent: BaseClothingHandsPowerGlovesUplinkNTERT
   id: ClothingHandsPowerGlovesUplinkNTERTGammaLeader
   suffix: Uplink, Gamma, Leader
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Store
     balance:
@@ -321,7 +353,7 @@
   id: ClothingHandsPowerGlovesUplinkNTERTCBURN
   suffix: Uplink, CBURN
   name: CBURN Power Gloves
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: MeleeWeapon
     damage:

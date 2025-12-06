@@ -68,3 +68,14 @@
         Steel: 5
         Glass: 2
         Cable: 4
+
+- type: entity
+  id: ThrusterSyndicateMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: thruster syndie machine board
+  components:
+  - type: MachineBoard
+    prototype: ThrusterSyndicate
+    stackRequirements:
+      Manipulator: 4
+      Steel: 5

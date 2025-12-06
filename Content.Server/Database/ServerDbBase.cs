@@ -278,11 +278,11 @@ namespace Content.Server.Database
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
-                    Color.FromHex(profile.HairColor),
+                    Color.FromHex(string.IsNullOrEmpty(profile.HairColor) ? "#000000FF" : profile.HairColor),
                     profile.FacialHairName,
-                    Color.FromHex(profile.FacialHairColor),
-                    Color.FromHex(profile.EyeColor),
-                    Color.FromHex(profile.SkinColor),
+                    Color.FromHex(string.IsNullOrEmpty(profile.FacialHairColor) ? "#000000FF" : profile.FacialHairColor),
+                    Color.FromHex(string.IsNullOrEmpty(profile.EyeColor) ? "#000000FF" : profile.EyeColor),
+                    Color.FromHex(string.IsNullOrEmpty(profile.SkinColor) ? "#C0967FFF" : profile.SkinColor),
                     markings,
                     profile.Width,
                     profile.Height
@@ -290,13 +290,13 @@ namespace Content.Server.Database
                 {
                     // Sunrise: Load gradient settings from database
                     HairGradientEnabled = profile.HairGradientEnabled,
-                    HairGradientSecondaryColor = Color.FromHex(profile.HairGradientSecondaryColor ?? "#FFFFFF"),
+                    HairGradientSecondaryColor = Color.FromHex(string.IsNullOrEmpty(profile.HairGradientSecondaryColor) ? "#FFFFFF" : profile.HairGradientSecondaryColor),
                     HairGradientDirection = profile.HairGradientDirection,
                     FacialHairGradientEnabled = profile.FacialHairGradientEnabled,
-                    FacialHairGradientSecondaryColor = Color.FromHex(profile.FacialHairGradientSecondaryColor ?? "#FFFFFF"),
+                    FacialHairGradientSecondaryColor = Color.FromHex(string.IsNullOrEmpty(profile.FacialHairGradientSecondaryColor) ? "#FFFFFF" : profile.FacialHairGradientSecondaryColor),
                     FacialHairGradientDirection = profile.FacialHairGradientDirection,
                     AllMarkingsGradientEnabled = profile.AllMarkingsGradientEnabled,
-                    AllMarkingsGradientSecondaryColor = Color.FromHex(profile.AllMarkingsGradientSecondaryColor ?? "#FFFFFF"),
+                    AllMarkingsGradientSecondaryColor = Color.FromHex(string.IsNullOrEmpty(profile.AllMarkingsGradientSecondaryColor) ? "#FFFFFF" : profile.AllMarkingsGradientSecondaryColor),
                     AllMarkingsGradientDirection = profile.AllMarkingsGradientDirection
                 },
                 spawnPriority,

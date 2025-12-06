@@ -1,4 +1,4 @@
-- type: species
+﻿- type: species
   id: Demon
   name: species-name-demon
   roundStart: true
@@ -36,6 +36,7 @@
     RLeg: MobDemonRLeg
     LFoot: MobDemonLFoot
     RFoot: MobDemonRFoot
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: DemonSlim
@@ -60,6 +61,7 @@
     RLeg: MobDemonSlimRLeg
     LFoot: MobDemonSlimLFoot
     RFoot: MobDemonSlimRFoot
+    Back: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobDemonMarkingLimits
@@ -90,6 +92,9 @@
       required: false
     Arms:
       points: 2
+      required: false
+    Back:
+      points: 1
       required: false
 
 - type: humanoidBaseSprite
