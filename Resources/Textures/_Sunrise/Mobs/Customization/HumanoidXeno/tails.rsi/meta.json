@@ -36,6 +36,26 @@
       "directions": 4
 	},
     {
+      "name": "alt_queen_tail",
+      "directions": 4
+	},
+    {
+      "name": "boiler_tail",
+      "directions": 4
+	},
+    {
+      "name": "carrier_tail",
+      "directions": 4
+	},
+    {
+      "name": "cougar_tail",
+      "directions": 4
+	},
+    {
+      "name": "crusher_tail",
+      "directions": 4
+	},
+    {
 	  "name": "tail_wagging",
 	  "directions": 4,
       "delays": [
