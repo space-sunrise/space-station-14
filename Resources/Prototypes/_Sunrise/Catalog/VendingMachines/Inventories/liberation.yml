@@ -308,7 +308,13 @@
     MagazineBoxAntiMateriel: 3
     # LMG Ammo
     MagazineLightMachineGunMG60: 5
-    MagazineRPD: 5
+    MagazineLightRifleBeltBox: 5
+    MagazineLightRifleBeltBoxHP: 5
+    MagazineLightRifleBeltBoxFMJ: 5
+    MagazineLightRifleBeltBoxAP: 5
+    MagazineLightRifleBeltBoxIncendiary: 5
+    MagazineLightRifleBeltBoxPractice: 5
+    MagazineLightRifleBeltBoxUranium: 5
     MagazineMachineGunMG42: 5
     MagazineDl6902: 5
     MagazineBoxRifleMachineSP: 3

@@ -1,53 +1,60 @@
-# - type: entity
-#   name: M492 Smart LMG
-#   id: WeaponLightMachineGunM492
-#   parent: [BaseWeaponLightMachineGun, BaseSecurityContraband]
-#   description: A high tech non-traditional LMG built specifically for combating the big threats among us. Uses .30 ammo.
-#   components:
-#   - type: Sprite
-#     sprite: _Starlight/Objects/Weapons/Guns/LMGs/M492.rsi
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-3
-#       map: ["enum.GunVisualLayers.Mag"]
-#   - type: Clothing
-#     sprite: _Starlight/Objects/Weapons/Guns/LMGs/M492.rsi
-#     quickEquip: false
-#     slots:
-#     - Back
-#     - suitStorage
-#   - type: GunRequiresWield
-#   - type: MagazineVisuals
-#     magState: mag
-#     steps: 4
-#     zeroVisible: true
-#   - type: Gun
-#     minAngle: 20
-#     maxAngle: 35
-#     angleIncrease: 2
-#     angleDecay: 10
-#     fireRate: 6
-#   - type: Appearance
-#   - type: RestrictByEquippedTag
-#     requiredTag: "RequiredForLmgTag"
-#     denialMessage: "lmg-restricted-to-hardsuit-message"
-#     denialSound: /Audio/Machines/custom_deny.ogg
-#   - type: ItemSlots
-#     slots:
-#       gun_chamber:
-#         name: Chamber
-#         startingItem: CartridgeLightRifleSP
-#         priority: 1
-#         whitelist:
-#           tags:
-#             - CartridgeLightRifle
-#       gun_magazine:
-#         name: Magazine
-#         startingItem: LightRifleHeavyMagazineSP
-#         whitelist:
-#           tags:
-#             - LightRifleHeavy
+- type: entity
+  name: M492 Smart LMG
+  id: WeaponLightMachineGunM492
+  parent: [BaseWeaponLightMachineGun, BaseSecurityContraband]
+  description: A high tech non-traditional LMG built specifically for combating the big threats among us. Uses .30 ammo.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/M492.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/M492.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Gun
+    minAngle: 10
+    maxAngle: 35
+    angleIncrease: 0.75
+    angleDecay: 15
+    fireRate: 6
+  - type: Appearance
+  # - type: RestrictByEquippedTag # Need Port from starlight #https://github.com/ss14Starlight/space-station-14/pull/1104
+  #   requiredTag: "RequiredForLmgTag"
+  #   denialMessage: "lmg-restricted-to-hardsuit-message"
+  #   denialSound: /Audio/Machines/custom_deny.ogg
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBeltBox
+        whitelist:
+          tags:
+            - LightRifleHeavy
+  - type: Biocode # delete after port
+    factions:
+    - NanoTrasen
+  - type: FactionClothingBlocker
 
 - type: entity
   name: DP-28 LMG
