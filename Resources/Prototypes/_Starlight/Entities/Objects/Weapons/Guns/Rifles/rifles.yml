@@ -218,7 +218,7 @@
   name: Leikha
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleLeikha
-  description: A high end military grade assault rifle. This one has been retrofitted with a scope and a burst reciever. Uses .20 rifle ammo.
+  description: A high end military grade assault rifle. This one has been retrofitted with a scope and a burst receiver. Uses .20 rifle ammo.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16a4.rsi
