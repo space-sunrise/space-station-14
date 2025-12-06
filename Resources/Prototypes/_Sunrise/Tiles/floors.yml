@@ -14,7 +14,7 @@
 
 - type: tile
   id: LatticeDiagonalSL
-  name: tiles-lattice
+  name: tiles-lattice-diagonal
   sprite: /Textures/_Sunrise/Tiles/lattice_s_l.png
   baseTurf: Space
   isSubfloor: true
@@ -30,7 +30,7 @@
 
 - type: tile
   id: LatticeDiagonalSR
-  name: tiles-lattice
+  name: tiles-lattice-diagonal
   sprite: /Textures/_Sunrise/Tiles/lattice_s_r.png
   baseTurf: Space
   isSubfloor: true
@@ -46,7 +46,7 @@
 
 - type: tile
   id: LatticeDiagonalNL
-  name: tiles-lattice
+  name: tiles-lattice-diagonal
   sprite: /Textures/_Sunrise/Tiles/lattice_n_l.png
   baseTurf: Space
   isSubfloor: true
@@ -62,7 +62,7 @@
 
 - type: tile
   id: LatticeDiagonalNR
-  name: tiles-lattice
+  name: tiles-lattice-diagonal
   sprite: /Textures/_Sunrise/Tiles/lattice_n_r.png
   baseTurf: Space
   isSubfloor: true
