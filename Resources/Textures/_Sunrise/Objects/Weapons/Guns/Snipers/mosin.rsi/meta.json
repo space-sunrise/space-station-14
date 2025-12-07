@@ -9,12 +9,6 @@
     "states": [
 	{
 		"name": "icon"
-	},
-	{
-		"name": "bolt-open"
-	},
-	{
-		"name": "base"
-    }
+	}
     ]
 }

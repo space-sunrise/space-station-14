@@ -115,7 +115,11 @@
   # Sunrise start
   - type: Gun
     pump: true
-    fireRate: 1
+    fireRate: 1.3
+  - type: Item
+    storedSprite:
+      sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin.rsi
+      state: icon
   # Sunrise end
 
 - type: entity
