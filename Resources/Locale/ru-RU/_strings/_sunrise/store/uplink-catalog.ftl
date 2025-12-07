@@ -69,7 +69,8 @@ uplink-clothing-thieving-gloves-desc = Незаметно обчищайте к�
 uplink-clothing-chameleon-thieving-gloves-name = Воровские перчатки "Хамелеон"
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
 ## Weapon
-
+uplink-swat-helmet-syndicate-name = Шлем Спецназа
+uplink-swat-helmet-syndicate-desc = Станцию нужно саботировать,с модным шлемом на голове, я его дам, для этого нужно иметь план, план я не дам.
 uplink-syndicate-rapier-name = Рапира Синдиката
 uplink-syndicate-rapier-desc = Элегантная рапира из пластитана с алмазным наконечником. Рапира поставляется в собственных ножнах и способна пробить практически любую защиту если бить точно.
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
