@@ -100,8 +100,6 @@
     WeaponSniperRepeater: 3
     WeaponRifleBauer127: 3
     WeaponSniperDragunov: 3
-    WeaponSniperMosinNew: 3
-    WeaponSniperMosinLubed: 3
 
     WeaponLauncherChinaLake: 3
     WeaponLauncherRocket: 3
@@ -226,7 +224,12 @@
     ShellShotgunImprovisedIncendiary: 8
     ShellShotgunImprovisedUranium: 8
     ShellShotgunCoin: 8
-
+    # Ammo Shotgun Magazine
+    MagazineShotgun: 8
+    MagazineShotgunUranium: 8
+    MagazineShotgunSlug: 8
+    MagazineShotgunBeanbag: 8
+    MagazineShotgunIncendiary: 8
     # Ammo magnum
     MagazineBoxImprovisedMagnum: 3
     SpeedLoaderMagnumRubber: 8
@@ -239,6 +242,42 @@
     MagazineBoxMagnumHP: 3
     MagazineBoxMagnumFMJ: 3
     MagazineBoxMagnumAP: 3
+    # Pistol 45 Ammo
+    MagazineMagnumPractice: 3
+    MagazineMagnumRubber: 3
+    MagazineMagnum: 3
+    MagazineMagnumHP: 3
+    MagazineMagnumFMJ: 3
+    MagazineMagnumUranium: 3
+    MagazineMagnumAP: 3
+    # Pistol 40 mag Ammo
+    MagazinePistol40SP: 3
+    MagazinePistol40HP: 3
+    MagazinePistol40FMJ: 3
+    MagazinePistol40AP: 3
+    # Pistol 40 smg Ammo
+    MagazinePistol40SubMachineGunSP: 3
+    MagazinePistol40SubMachineGunHP: 3
+    MagazinePistol40SubMachineGunFMJ: 3
+    MagazinePistol40SubMachineGunAP: 3
+    # Pistol 35 smg Ammo
+    MagazinePistolSubMachineGunPractice: 3
+    MagazinePistolSubMachineGunRubber: 3
+    MagazinePistolSubMachineGunUranium: 3
+    MagazinePistolSubMachineGunIncendiary: 3
+    MagazinePistolSubMachineGunSP: 3
+    MagazinePistolSubMachineGunHP: 3
+    MagazinePistolSubMachineGunFMJ: 3
+    MagazinePistolSubMachineGunAP: 3
+    # Pistol 550 smg Ammo
+    MagazinePistolSubMachineGunTopMountedRubber: 3
+    MagazinePistolSubMachineGunTopMountedPractice: 3
+    MagazinePistolSubMachineGunTopMountedIncendiary: 3
+    MagazinePistolSubMachineGunTopMountedUranium: 3
+    MagazinePistolSubMachineGunTopMountedHP: 3
+    MagazinePistolSubMachineGunTopMountedSP: 3
+    MagazinePistolSubMachineGunTopMounted: 3
+    MagazinePistolSubMachineGunTopMountedAP: 3
     # Pistol Ammo
     MagazinePistolImprovisedFilled: 8
     MagazinePistolSubMachineGunImprovisedFilled: 8
