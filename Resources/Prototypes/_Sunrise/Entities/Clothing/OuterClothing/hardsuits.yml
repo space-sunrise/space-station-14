@@ -517,9 +517,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -564,10 +561,21 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellSyndicate
         disableEject: true
         whitelist:
           tags:
             - PowerCell
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - Hardsuit
+    - FullBodyOuter # SUNRISE EDIT
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 8500
