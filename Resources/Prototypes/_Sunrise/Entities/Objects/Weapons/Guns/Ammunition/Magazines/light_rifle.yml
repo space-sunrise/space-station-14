@@ -1,70 +1,4 @@
 - type: entity
-  id: MagazineAK
-  name: Universal AK magazne
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-      - MagazineAK
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
-    capacity: 30
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/rifle_machine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazineMP38
-  name: MP38 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineMP38
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgePistolSP
-    whitelist:
-      tags:
-      - CartridgePistol
-    capacity: 32
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp38.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
   id: MagazineScorpion
   name: Scorpion magazine
   parent: BaseItem
@@ -218,19 +152,19 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineVP70
+  id: MagazineVP78
   name: VP70 magazine
   parent: BaseItem
   components:
     - type: Tag
       tags:
-        - MagazineVP70
+        - MagazineVP78
     - type: BallisticAmmoProvider
-      proto: CartridgePistolFMJ  # 57x28
+      proto: CartridgePistol40SP  # 45 ACP
       mayTransfer: true
       whitelist:
         tags:
-          - CartridgePistol  # 57x28
+          - CartridgePistolDP # 45 ACP
       capacity: 16
     - type: Item
       size: Small
@@ -293,11 +227,11 @@
     - MagazineACP14
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeMagnumSP  # 57x28
+    proto: CartridgePistol40SP  # 45 ACP
     whitelist:
       tags:
-      - CartridgeMagnum  # 57x28
-    capacity: 7
+      - CartridgePistolDP # 45 ACP
+    capacity: 10
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -313,39 +247,6 @@
   - type: MagazineVisuals
     magState: mag
     steps: 6
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazineSTG44
-  name: STG44 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineSTG44
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-      - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
-    capacity: 30
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/stg44.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
     zeroVisible: false
   - type: Appearance
 

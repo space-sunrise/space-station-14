@@ -48,6 +48,7 @@
       - id: AntiPoisonMedipen
       - id: PillCanisterDylovene
       - id: PillCanisterCharcoal
+      - id: CoalAutoInjector
 
 - type: entity
   id: MedkitOxygenFilled
@@ -120,4 +121,5 @@
     contents:
       - id: StimpackMiniNT
         amount: 6
+
 #Sunrse-end

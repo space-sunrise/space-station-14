@@ -131,6 +131,45 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<string, Dictionary<Sex, Dictionary<HumanoidVisualLayers, DisplacementData>>> BodyTypeSexMarkingsDisplacement = new();
+
+    //Sunrise start Hair/Fur gradient settings (client-applied shader parameters)
+    [DataField, AutoNetworkedField]
+    public bool HairGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color HairGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int HairGradientDirection = 0;
+
+    [DataField, AutoNetworkedField]
+    public bool FacialHairGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color FacialHairGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int FacialHairGradientDirection = 0; //Sunrise end
+
+    // Sunrise start Global gradient for all markings (except skin/base layers)
+    [DataField, AutoNetworkedField]
+    public bool AllMarkingsGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color AllMarkingsGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int AllMarkingsGradientDirection = 0;
+    // Sunrise end
 }
 
 [DataDefinition]

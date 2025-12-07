@@ -70,6 +70,42 @@
     - id: WeaponIONRifle
 
 - type: entity
+  parent: GunSafe
+  id: GunSafeSMRTGun
+  name: SMART Safe
+  description: Heavy reinforced special gun save delivered from NanoTrasen Smart Arms Division for field testing. Contain unique Smart gun LMG.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLightMachineGunM492
+    - id: ClothingBeltSecurityWebbing
+    - id: MagazineLightRifleBeltBox # two, one already in lmg
+    - id: MagazineLightRifleBeltBoxFMJ
+    - id: MagazineLightRifleBeltBoxHP
+    - id: MagazineLightRifleBeltBoxIncendiary # All types to manage all variants of threats
+  - type: AccessReader
+    access: [["CentralCommand"]]
+    alertAccesses:
+      gamma: GammaAlertAccesses
+  - type: Godmode
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 2000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
   id: ClosetPatologoanatom
   name: patologoanatom's locker
   parent: LockerBaseSecure
@@ -120,3 +156,49 @@
     - id: RubberStampPath
     - id: ClothingOuterHospitalGown
       amount: 2
+
+- type: entity
+  id: LockerMiningSpecialist
+  parent: LockerBaseSecure
+  suffix: Empty
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: mining
+    stateDoorOpen: mining_open
+    stateDoorClosed: mining_door
+  - type: AccessReader
+    access: [["Mining"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+
+- type: entity
+  id: LockerMiningSpecialistFilled
+  parent: LockerMiningSpecialist
+  suffix: Filled, Hardsuit
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterHardsuitSalvage
+    - id: ToolboxMechanicalFilledAllTools
+    - id: ClothingMaskGasExplorer
+    - id: AirTankFilled
+    - id: RadioHandheld
+    - id: OreBag
+    - id: Nanopaste
+    - id: WeaponProtoKineticAccelerator
+    - id: HandHeldMassScanner
+    - id: PKAUpgradeRange
+      prob: 0.1
+    - id: PKAUpgradeFireRate
+      prob: 0.1
+    - id: PKAUpgradeDamage
+      prob: 0.1

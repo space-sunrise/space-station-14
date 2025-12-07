@@ -145,3 +145,13 @@
       amount: 1
   products:
     Coffee: 2
+
+- type: reaction
+  id: Butterbeer
+  reactants:
+    Beer:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    Butterbeer: 2

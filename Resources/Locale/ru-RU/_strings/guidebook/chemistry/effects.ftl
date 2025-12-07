@@ -1,3 +1,16 @@
+second = { $count ->
+    [one] секунда
+    [few] секунды
+    [many] секунд
+   *[other] секунд
+}
+
+dead = { $count ->
+    [one] мёртвый
+    [few] мёртвых
+    [many] мёртвых
+   *[other] мёртвых
+}
 -create-3rd-person =
     { $chance ->
         [1] Создаёт

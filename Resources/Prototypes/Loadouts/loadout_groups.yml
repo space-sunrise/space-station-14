@@ -18,6 +18,9 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
+  - BoxFolderBaseThreePapers
+  - BoxFolderPlasticClipboardThreePapers
+  - BoxFolderClipboardThreePapers
   - ClothingWraps # Sunrise
   - ClothingWrapsHigh # Sunrise
   - ClothingNeckNanoTrasenPin  # Sunrise
@@ -79,7 +82,6 @@
   - Glasses
   - GlassesJamjar
   - GlassesJensen
-  - GlassesStuttering
 
 - type: loadoutGroup
   id: GroupTankHarness
@@ -292,6 +294,13 @@
   - BartenderWintercoat
 
 - type: loadoutGroup
+  id: BartenderGoldenShaker
+  name: loadout-group-bartender-shaker
+  minLimit: 0
+  loadouts:
+  - BartenderGoldenShaker
+
+- type: loadoutGroup
   id: ChefHead
   name: loadout-group-chef-head
   minLimit: 0
@@ -402,10 +411,11 @@
   minLimit: 1
   loadouts:
   - Bible
-  - BibleDruid
   - BibleNanoTrasen
-  - BibleSatanic
-  - BibleTanakh
+  - BibleDruid
+  - BibleHonk
+  - BibleRatvar
+  - BibleNarsie
 
 - type: loadoutGroup
   id: JanitorHead
@@ -783,6 +793,13 @@
 #Sunrise-end
 
 - type: loadoutGroup
+  id: CargoTechnicianID
+  name: loadout-group-cargo-technician-id
+  loadouts:
+  - CargoTechnicianPDA
+  - SeniorCourierPDA
+
+- type: loadoutGroup
   id: SalvageSpecialistBackpack
   name: loadout-group-salvage-specialist-backpack
   loadouts:
@@ -1142,6 +1159,7 @@
   loadouts:
   - WardenHead
   - WardenBeret
+  - ClothingHeadHatCapWardenAlt # Sunrise-Edit
 
 - type: loadoutGroup
   id: WardenJumpsuit
@@ -1156,6 +1174,7 @@
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
+  - ClothingOuterCoatWardenAlt # Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityHead
@@ -1198,7 +1217,6 @@
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
   loadouts:
-  - ArmorVestSec
   - ArmorVest
   - ArmorVestSlim
   - SecurityOfficerWintercoat
@@ -1443,8 +1461,8 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
 # Sunrise-end
   - NitrileGloves
 

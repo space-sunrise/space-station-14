@@ -4,7 +4,7 @@
   name: backpack
   description: You wear this on your back and put items into it.
   components:
-  - type: ContainerInteractionAnimation # Sunrise added
+  - type: ContainerInteractionAnimation # Sunrise-Edit
   - type: Sprite
     sprite: Clothing/Back/Backpacks/backpack.rsi
     state: icon
@@ -31,10 +31,18 @@
     delay: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: NestingContainer # Sunrise-Edit
   - type: Tag
     tags:
     - WhitelistChameleon
     - Backpack
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+      Plastic: 25
+      Cloth: 500
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBackpack
@@ -47,6 +55,12 @@
   - type: Storage
     storageOpenSound:
       collection: BikeHorn
+      params:
+        variation: 0.125
+    storageInsertSound:
+      collection: FootstepClown
+      params:
+        variation: 0.125
 
 - type: entity
   parent: ClothingBackpack
@@ -122,6 +136,9 @@
   components:
   - type: Sprite
     sprite: Clothing/Back/Backpacks/mime.rsi
+  - type: Storage
+    storageOpenSound: null
+    storageInsertSound: null
 
 - type: entity
   parent: ClothingBackpack
@@ -312,6 +329,15 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+      Silver: 300
+      Cloth: 500
+      Plasma: 600
+      Uranium: 40
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBackpackClown

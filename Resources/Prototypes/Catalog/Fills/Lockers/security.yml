@@ -28,6 +28,7 @@
     children:
     - id: FlashlightSeclite
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
@@ -45,7 +46,9 @@
       amount: 2
     - id: NetworkConfigurator
     - id: Binoculars
+    - id: WeaponEnergyShotgun
     - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
+    - id: ClothingHandsKnuckleDustersStun # Sunrise-edit
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -72,6 +75,7 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingUniformJumpsuitSecGrey
       prob: 0.3
     - id: ClothingHeadHelmetBasic
@@ -105,10 +109,11 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesSecurity
+    - id: WeaponTaser
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
-    - id: ClothingOuterHardsuitBrigmedic
+    - id: ClothingOuterHardsuitBrigmedicSunrise # Sunrise-edit
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
     - id: ClothingOuterCoatAMG
@@ -244,8 +249,13 @@
     children:
     - id: WeaponRifleLecter
       amount: 2
-    - id: MagazineRifleFMJ
+    - id: WeaponRifleLeikha
+    - id: MagazineRifleSP
       amount: 4
+    - id: MagazineRifleFMJ
+      amount: 2
+    - id: MagazineRifleHP
+      amount: 2
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

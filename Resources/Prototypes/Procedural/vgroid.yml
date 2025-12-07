@@ -32,37 +32,37 @@
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockIron
-      count: 50
+      count: 45 # Sunrise-edit
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockCoal
-      count: 50
+      count: 45 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockQuartz
-      count: 50
+      count: 45 # Sunrise-edit
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockSalt
-      count: 50
+      count: 40 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockGold
-      count: 40
+      count: 35 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockSilver
-      count: 40
+      count: 35 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
@@ -74,7 +74,7 @@
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockUranium
-      count: 35
+      count: 30 # Sunrise-edit
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
@@ -95,6 +95,56 @@
       count: 60 # you don't really hit it on purpose so it should be common
       minGroupSize: 1
       maxGroupSize: 1
+      # Sunrise-start
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockIronCrab
+      count: 7
+      minGroupSize: 3
+      maxGroupSize: 3
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockCoalCrab
+      count: 7
+      minGroupSize: 2
+      maxGroupSize: 2
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockQuartzCrab
+      count: 7
+      minGroupSize: 4
+      maxGroupSize: 4
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockGoldCrab
+      count: 5
+      minGroupSize: 3
+      maxGroupSize: 3
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockSilverCrab
+      count: 5
+      minGroupSize: 3
+      maxGroupSize: 3
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockBananium
+      count: 7
+      minGroupSize: 2
+      maxGroupSize: 3
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockBananiumCrab
+      count: 5
+      minGroupSize: 2
+      maxGroupSize: 3
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockUraniumCrab
+      count: 5
+      minGroupSize: 2
+      maxGroupSize: 3
+      # Sunrise-end
 
 # Configs
 - type: dungeonConfig

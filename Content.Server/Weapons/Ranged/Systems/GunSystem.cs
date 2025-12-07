@@ -52,6 +52,7 @@ using Content.Shared.Pinpointer;
 using Robust.Server.GameObjects;
 using System.Collections.Generic;
 using Content.Server.PowerCell;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo;
 
@@ -329,7 +330,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         }
 
                         if (hitscan.Emp != null)
-                            _emp.EmpPulse(_transform.GetMapCoordinates(hitEntity), hitscan.Emp.Range, hitscan.Emp.EnergyConsumption, hitscan.Emp.DisableDuration);
+                            _emp.EmpPulse(_transform.GetMapCoordinates(hitEntity), hitscan.Emp.Range, hitscan.Emp.EnergyConsumption, TimeSpan.FromSeconds(hitscan.Emp.DisableDuration));
 
                         var dmg = hitscan.Damage;
 

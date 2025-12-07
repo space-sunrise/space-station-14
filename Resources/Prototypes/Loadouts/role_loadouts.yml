@@ -76,6 +76,7 @@
   - BartenderJumpsuit
   - CommonBackpack
   - BartenderOuterClothing
+  - BartenderGoldenShaker
   - Glasses
   - Survival
   - Trinkets
@@ -254,6 +255,7 @@
 
 - type: roleLoadout
   id: JobMusician
+  canCustomizeName: true
   groups:
   - GroupTankHarness
   - MusicianJumpsuit
@@ -319,6 +321,7 @@
   - SunriseCargoTechNeck
   # Sunrise-end
   - CargoTechnicianShoes
+  - CargoTechnicianID
   - Glasses
   - Survival
   - Trinkets
@@ -569,7 +572,7 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
-  - SunriseSecurityGun
+  - SunriseWardenGun
   - Bra
   - Pants
   - Socks
@@ -738,6 +741,7 @@
   # Sunrise-start
   - SunriseChemistNeck
   - SunriseChemistShoes
+  - SunriseChemistMisc
   # Sunrise-end
 #  - MedicalShoes #Sunrise-edit
   - SurvivalMedical

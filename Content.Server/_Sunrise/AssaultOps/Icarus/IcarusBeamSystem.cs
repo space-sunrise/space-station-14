@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;

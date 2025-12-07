@@ -1,5 +1,8 @@
 - type: docTemplatePool
   id: Sunrise
+  stationGoalHeader:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_centcom
   templates:
     - Appeal
     - ApplicationAccess
@@ -36,7 +39,6 @@
     - PermissionDisposeBody
     - PermissionEquipment
     - PermissionToCarryWeapons
-    - PermissionToExtendMarriage
     - PermissionToTravelInCaseOfThreat
     - PrescriptionDrugAuthorization
     - ProductManufacturingOrder
@@ -64,3 +66,66 @@
     - NoticeOfLiquidation
     - NoteBeginningMilitaryActions
     - ReportAccomplishmentGoals
+    - OrderAppointmentInterim
+    - OrderAnnulmentOfRight
+    - ApplicationChangePosition
+    - ApplicationPetRegistration
+    - ReportQilluRepresentative
+    - ExplanatoryNote
+    - ReportCrewAccessChange
+    - RequestLegalProtection
+    - RequestDeprivationLegalProtection
+    - RequestDeprivationVetoRight
+    - RequestImmediateIntervention
+    - OrderSynthesizeEssentialDrugs
+    - MedicalDutyRoster
+    - ReportUsedMedications
+    - ReportExtractionSec
+    - ReportMedicalIntervention
+    - PermissionPrescriptionDrug
+    - DirectiveMedicalIntervention
+    - PsychologicalHealthReport
+    - ConsentMedicalIntervention
+    - InfectionCertificate
+    - OrderQuarantine
+    - EpidemiologicalConclusion
+    - ConsentVivisection
+    - ContractLegalAid
+    - ReportServiceInvestigation
+    - RequestCaseReview
+    - OrderGrantLegalProtection
+    - OrderDeprivationLegalProtection
+    - ReportPowerSources
+    - DutyRosterEngineering
+    - AdministrativeBanOrder
+    - OrderDismissalSecurity
+    - OrderParolePrisonerSecurity
+    - PermissionExosuitCreation
+    - PermissionExosuitUsage
+    - DirectiveSecurityDuty
+    - InventoryWeapons
+    - ReportInvestigation
+    - ReportExtractionMed
+    - DirectiveMedicalInterventionSecurity
+    - ReportSecurityStaffCheck
+    - ReportLawAndConductViolations
+    - ReportDetainedCrew
+    - ReportArtifactResearch
+    - ListScienceDepartmentDuty
+    - OrderSupplyResourcesEquipment
+    - PermissionExpeditionSend
+    - PermissionToExtendMarriage
+    - KitchenMenu
+    - BarMenu
+    - RequestPrisonerTransport
+    - ReportPrisonerCount
+    - ReportPrisonerRelease
+    - RequestEvacuationPrisoners
+    - ApplicationAppointmentInterimWarden
+    - AppealToWarden
+    - OrderEvacuation
+    - OrderProvideCCReport
+    - DecreeHeadsPresence
+    - OrderCentcom
+    - OrderReport
+    - OrderCentcomTransferStationStaff

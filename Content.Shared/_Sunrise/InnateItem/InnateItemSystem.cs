@@ -14,6 +14,7 @@ public sealed class InnateItemSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
 
     private static readonly EntProtoId InnateEntityTargetAction = "InnateEntityTargetAction";
     private static readonly EntProtoId InnateInstantActionAction = "InnateInstantActionAction";
@@ -81,7 +82,8 @@ public sealed class InnateItemSystem : EntitySystem
     {
         foreach (var itemProto in prototypeIds)
         {
-            if (itemProto == null) continue;
+            if (itemProto == null)
+                continue;
 
             var spawnedItem = Spawn(itemProto);
 
@@ -97,7 +99,8 @@ public sealed class InnateItemSystem : EntitySystem
 
             var action = Spawn(actionPrototypeId);
 
-            _actionsSystem.SetIcon(action, new SpriteSpecifier.EntityPrototype(MetaData(spawnedItem).EntityPrototype!.ID));
+            _actionsSystem.SetIcon(action,
+                new SpriteSpecifier.EntityPrototype(MetaData(spawnedItem).EntityPrototype!.ID));
 
             // Устанавливаем соответствующий тип события в зависимости от типа действия
             if (isEntityTarget)
@@ -105,6 +108,10 @@ public sealed class InnateItemSystem : EntitySystem
             else
                 _actionsSystem.SetEvent(action, new InnateInstantActionEvent(spawnedItem));
 
+            _metadata.SetEntityName(action, MetaData(spawnedItem).EntityName);
+            _metadata.SetEntityDescription(action, MetaData(spawnedItem).EntityDescription);
+
+            _actionContainer.AddAction(uid, action);
             _actionsSystem.AddAction(uid, action, uid);
             component.Actions.Add(action);
         }

@@ -29,20 +29,6 @@
 
 - type: entity
   parent: BaseGameRule
-  id: EvilTwinSpawn
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    minimumPlayers: 2
-    weight: 15
-    earliestStart: 10
-    reoccurrenceDelay: 20
-    duration: null
-  - type: LateJoinSpawnRule
-    prototype: SpawnPointEvilTwin
-
-- type: entity
-  parent: BaseGameRule
   id: TerminatorSpawn
   categories: [ HideSpawnMenu ]
   components:
@@ -164,3 +150,12 @@
         sound: /Audio/_Sunrise/Abductor/abductor.ogg
       mindRoles:
       - AbductorVictimRole
+
+- type: entity
+  parent: BaseGameRule
+  id: EpsilonDeathSquadLawset
+  components:
+  - type: StationEvent
+    weight: 0 # Only triggered by code/admin
+    duration: 1
+  - type: EpsilonDeathSquadLawset

@@ -412,3 +412,244 @@
   - type: InnateItem
     entityTargetActions:
     - AccessBreaker
+
+- type: entity
+  parent: BaseBorgChassisSyndicateDerelict
+  id: SyndicateAssaultBorgChassisDerelictSunrise
+  name: derelict syndicate assault cyborg
+  description: A lean, mean killing machine with access to a variety of deadly modules. This one is more rust-orange than blood-red.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: synd_sec
+    - state: synd_sec_e
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: synd_sec_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: synd_sec
+    name: derelict syndicate assault cyborg
+  - type: BorgChassis
+    maxModules: 3
+    moduleWhitelist: # Note - the Derelict Assault Borg does not have a traversal module. This is intentional as Assault Borgs have space traversal with their c20 and free space movement, and they can navigate to the station using the pinpointer.
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateAssault
+    hasMindState: synd_sec_e
+    noMindState: synd_sec
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Binary
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: PointLight
+    color: "#ffffff"
+    radius: 4
+    energy: 2
+  - type: TTS
+    voice: Sentrybot
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4.5
+  - type: InnateItem
+    entityTargetActions:
+    - AccessBreaker
+  - type: Construction
+    node: derelictcyborg
+
+- type: entity
+  parent: BaseBorgChassisSyndicateDerelict
+  id: SyndicateReaperBorgChassisDerelictSunrise
+  name: derelict syndicate reaper cyborg
+  description: A stealthy infiltration unit designed for sabotage and assassination. This one has seen better days.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: syndi_reaper
+    - state: syndi_reaper_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: syndi_reaper_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: syndi_reaper
+    name: derelict syndicate reaper cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+      - BorgModuleSyndicate
+    hasMindState: syndi_reaper_e
+    noMindState: syndi_reaper_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Binary
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: PointLight
+    color: "#00ff00"
+    radius: 4
+    energy: 2
+  - type: TTS
+    voice: Sentrybot
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: InnateItem
+    entityTargetActions:
+    - AccessBreaker
+  - type: Construction
+    node: derelictcyborg
+
+- type: entity
+  parent: BaseBorgChassisSyndicateDerelict
+  id: SyndicateSaboteurBorgChassisDerelictSunrise
+  name: derelict syndicate saboteur cyborg
+  description: A specialized infiltration unit designed for sabotage and espionage. This one has been through the wars.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: spider
+    - state: spider_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: spider_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: spider
+    name: derelict syndicate saboteur cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
+    hasMindState: spider_e
+    noMindState: spider_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Binary
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: PointLight
+    color: "#00ff00"
+    radius: 4
+    energy: 2
+  - type: TTS
+    voice: Sentrybot
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: InnateItem
+    entityTargetActions:
+    - AccessBreaker
+  - type: Construction
+    node: derelictcyborg
+
+- type: entity
+  parent: BaseBorgChassisSyndicateDerelict
+  id: SyndicateMedicalBorgChassisDerelictSunrise
+  name: derelict syndicate medical cyborg
+  description: A medical support unit designed for field operations. This one's medical protocols seem to have degraded.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: synd_medical
+    - state: synd_medical_e
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: synd_medical_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: synd_medical
+    name: derelict syndicate medical cyborg
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleMedical
+      - BorgModuleSyndicate
+    hasMindState: synd_medical_e
+    noMindState: synd_medical
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Binary
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: PointLight
+    color: "#00ff00"
+    radius: 4
+    energy: 2
+  - type: TTS
+    voice: Sentrybot
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: InnateItem
+    entityTargetActions:
+    - AccessBreaker
+  - type: Construction
+    node: derelictcyborg

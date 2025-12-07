@@ -8,8 +8,6 @@
     tags:
       - Cartridge
       - CartridgeHeavyRifle
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavySP
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x51.rsi
     scale: 0.60, 0.60
@@ -29,8 +27,6 @@
     tags:
       - Cartridge
       - CartridgeHeavyRifleR
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavySP
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x54.rsi
     scale: 0.60, 0.60
@@ -121,8 +117,8 @@
   name: cartridge (.308 incendiary)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyIncendiary
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -227,8 +223,8 @@
   name: cartridge (7.62mmR incendiary)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyIncendiary
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyIncendiary
   - type: Sprite
     layers:
       - state: base

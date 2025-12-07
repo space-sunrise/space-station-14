@@ -8,6 +8,16 @@
     state: long_primary
 
 - type: marking
+  id: HumanoidXenoTailsWagging
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sponsorOnly: false
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: tail_wagging
+
+- type: marking
   id: HumanoidXenoTailsPredalien
   bodyPart: Tail
   markingCategory: Tail

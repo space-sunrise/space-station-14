@@ -13,7 +13,10 @@
     - MagazineBoxMagnumRubber
     - MagazineMagnumRubber
     - MagazineMagnum
+    - MagazineMagnumFMJ
+    - MagazineMagnumHP
     - MagazineMagnumEmpty
+    - MagazineMagnumPractice
     # Pistol
     - MagazineBoxPistolSP
     - MagazineBoxPistolHP
@@ -37,10 +40,10 @@
     - BoxShellTranquilizer
     #####################MAGAZINE#######################
     # LMG
-    - LightRifleHeavyMagazineSP
-    - LightRifleHeavyMagazineHP
-    - LightRifleHeavyMagazineFMJ
-    - LightRifleHeavyMagazineEmpty
+    - MagazineLightRifleBeltBoxSP
+    - MagazineLightRifleBeltBoxHP
+    - MagazineLightRifleBeltBoxFMJ
+    - MagazineLightRifleBeltBoxEmpty
     # Light Rifle
     - MagazineLightRifleSP
     - MagazineLightRifleHP
@@ -88,10 +91,6 @@
     - MagazineRifleHeavyHP
     - MagazineRifleHeavySP
     - MagazineRifleHeavyEmpty
-    # Shotgun Magazine
-    - MagazineShotgun
-    - MagazineShotgunEmpty
-    - MagazineShotgunSlug
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
     - SpeedLoaderShotgunEmpty
@@ -116,7 +115,6 @@
 #    - MagazineRifleExtended
 #    - MagazineAR18Extended
 #    - MagazineM28Extended
-#    - MagazineV31Extended
 #   - MagazineBauer127Extended
 #    - MagazineBR64Extended
 #    - MagazineDragunovExtended
@@ -141,7 +139,7 @@
     - MagazineBoxPistolIncendiary
     - MagazineBoxPistolUranium
     - MagazineBoxPistolAP
-    #- MagazineBoxPistol40AP
+    - MagazineBoxPistol40AP
   # Rifle
     - MagazineBoxRifleIncendiary
     - MagazineBoxRifleUranium
@@ -157,9 +155,9 @@
     - BoxShellTranquilizer
   #####################MAGAZINE#######################
   # LMG
-    - LightRifleHeavyMagazineIncendiary
-    - LightRifleHeavyMagazineUranium
-    - LightRifleHeavyMagazineAP
+    - MagazineLightRifleBeltBoxIncendiary
+    - MagazineLightRifleBeltBoxUranium
+    - MagazineLightRifleBeltBoxAP
   # Light Rifle
     - MagazineLightRifleIncendiary
     - MagazineLightRifleUranium
@@ -168,11 +166,13 @@
     - SpeedLoaderMagnumIncendiary
     - SpeedLoaderMagnumUranium
     - SpeedLoaderMagnumAP
+    - MagazineMagnumUranium
+    - MagazineMagnumAP
   # Pistol
     - MagazinePistolIncendiary
     - MagazinePistolUranium
     - MagazinePistolAP
-    #- MagazinePistol40AP
+    - MagazinePistol40AP
   # Pistol High Capacity
     - MagazinePistolHighCapacityIncendiary
     - MagazinePistolHighCapacityUranium
@@ -196,8 +196,6 @@
     - MagazineRifleHeavyAP
     - MagazineRifleHeavyUranium
   # Shotgun
-    - MagazineShotgunBeanbag
-    - MagazineShotgunIncendiary
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
   # Grenade
@@ -210,7 +208,14 @@
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat
-    - VestSecUpgrade
+    - VestSecUpgradePlate
+    - VestSecUpgradeStab
+    - VestSecUpgradeHeat
+    - VestSecUpgradeBullet
+    - VestSecUpgradeRiot
+    - VestSecUpgradeReflective
+    - VestSecUpgradeWeb
+    - VestSecUpgradeBulletHeavy
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech
@@ -227,3 +232,11 @@
     - WeaponMechCombatDisabler
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
+
+- type: latheRecipePack
+  id: SyndicateAmmoSunrise
+  recipes:
+  - MagazineLightRifleBoxIncendiary
+  - MagazineLightRifleBoxUranium
+  - MagazineShotgunIncendiary
+  - MagazineShotgunBeanbag

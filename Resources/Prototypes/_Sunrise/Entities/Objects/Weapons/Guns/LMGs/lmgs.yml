@@ -108,7 +108,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRPD
+        startingItem: MagazineLightRifleBeltBox
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2

@@ -18,8 +18,14 @@ namespace Content.Shared.Communications
         public List<string>? AlertLevels;
         public string CurrentAlert;
         public float CurrentAlertDelay;
+        // Sunrise-Start
+        public readonly bool CanRelay;
+        public readonly bool IsRelaying;
+        public readonly float RelayCooldownRemaining;
+        public readonly float RelayTimeRemaining;
+        // Sunrise-End
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null)
+        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null, bool canRelay = false, bool isRelaying = false, float relayCooldownRemaining = 0f, float relayTimeRemaining = 0f) // Sunrise-Edit
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -28,6 +34,12 @@ namespace Content.Shared.Communications
             AlertLevels = alertLevels;
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
+            // Sunrise-Start
+            CanRelay = canRelay;
+            IsRelaying = isRelaying;
+            RelayCooldownRemaining = relayCooldownRemaining;
+            RelayTimeRemaining = relayTimeRemaining;
+            // Sunrise-End
         }
     }
 
@@ -62,6 +74,13 @@ namespace Content.Shared.Communications
             Message = message;
         }
     }
+
+    // Sunrise-Start
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleToggleRelayMessage : BoundUserInterfaceMessage
+    {
+    }
+    // Sunrise-End
 
     [Serializable, NetSerializable]
     public sealed class CommunicationsConsoleCallEmergencyShuttleMessage : BoundUserInterfaceMessage

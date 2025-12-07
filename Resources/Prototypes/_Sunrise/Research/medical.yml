@@ -29,13 +29,9 @@
   cost: 4000
   recipeUnlocks:
     - LeftArmCyber
-    - RightArmCyber
     - LeftHandCyber
-    - RightHandCyber
     - LeftLegCyber
-    - RightLegCyber
     - LeftFootCyber
-    - RightFootCyber
 
 # Tier 2
 - type: technology
@@ -49,6 +45,21 @@
   cost: 6500
   recipeUnlocks:
   - HyposprayMedical
+
+- type: technology
+  id: MedicalAssembler
+  name: research-technology-medical-assembler
+  icon:
+    sprite: _Sunrise/Structures/Machines/medical_assembler.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - MedicalAssemblerMachineCircuitboard
+  - BlankMediPen
+  technologyPrerequisites:
+    - MedicalHyposprays
 
 - type: technology
   id: SurgeryTechAdvanced
@@ -70,6 +81,20 @@
     - SurgeryTech
 
 - type: technology
+  id: HandheldCrewMonitorTech
+  name: research-technology-hanheld-crew-monitor
+  icon:
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
+  discipline: Biochemical
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+    - HandheldCrewMonitor
+  technologyPrerequisites:
+    - SurgeryTech
+
+- type: technology
   id: CyberImplantsTech
   name: research-technology-basic-eye-implants
   icon:
@@ -79,10 +104,10 @@
   tier: 2
   cost: 10000
   recipeUnlocks:
-    - EyeImplantWelding
-    - EyeImplantMedical
-    - EyeImplantChemical
-    - EyeImplantSecurity
+    - ImplantCaseImplantWelding
+    - ImplantCaseImplantMedical
+    - ImplantCaseImplantChemical
+    - ImplantCaseImplantSecurity
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:
@@ -124,7 +149,83 @@
   radioChannels:
   - Medical
 
+- type: technology
+  id: FunctionalCyberLimbsTech
+  name: research-technology-functional-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 2
+  cost: 14000
+  recipeUnlocks:
+    - ImplantCaseReaper
+    - ImplantCaseMechwright
+    - ImplantCaseRobust
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Engineering
+  - Service
+
+- type: technology
+  id: AtmosCyberLimbsTech
+  name: research-technology-atmos-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 2
+  cost: 6500
+  recipeUnlocks:
+    - ImplantCaseAtmos
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AtmosphericTech
+  radioChannels:
+  - Medical
+  - Engineering
+
+- type: technology
+  id: JanitorialCyberLimbsTech
+  name: research-technology-jani-cyberlimbs
+  icon:
+    sprite: _Sunrise/Objects/Tools/cyber_advmop.rsi
+    state: advmop
+  discipline: Biochemical
+  tier: 2
+  cost: 1984
+  recipeUnlocks:
+    - ImplantCaseJani
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AdvancedCleaning
+  radioChannels:
+  - Medical
+  - Service
+
 # Tier 3
+- type: technology
+  id: HackCyberLimbsTech
+  name: research-technology-hack-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 3
+  cost: 404 # ERROR #ERR*?*%!
+  recipeUnlocks:
+    - ImplantCaseHack
+  technologyPrerequisites:
+    - FunctionalCyberLimbsTech
+    - AdvancedToolsTechnology
+    - BasicXenoArcheology
+  radioChannels:
+  - Medical
+  - Engineering
+  - Service
+
 - type: technology
   id: ImplantExtractor
   name: research-technology-implant-extractor
@@ -137,27 +238,21 @@
   recipeUnlocks:
   - ImplantExtractorMachineCircuitboard
 
-
 - type: technology
-  id: FunctionalCyberLimbsTech
-  name: research-technology-functional-cyberlimbs
+  id: AutoMenders
+  name: research-technology-autoMenders
   icon:
-    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-    state: cyber-hand-left
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: mender
   discipline: Biochemical
   tier: 3
-  cost: 9220
+  cost: 7500
   recipeUnlocks:
-    - LeftArmCyberReaper
-    - RightArmCyberReaper
-    - LeftArmCyberMechwright
-    - RightArmCyberMechwright
-    - LeftArmCyberBulwark
-    - RightArmCyberBulwark
+  - AutoMenderBrute
+  - AutoMenderBurn
   technologyPrerequisites:
-    - CyberLimbsTech
+  - MedicalHyposprays
   radioChannels:
-  - Security
   - Medical
 
 - type: technology
@@ -170,8 +265,7 @@
   tier: 3
   cost: 3500
   recipeUnlocks:
-    - LeftArmCyberGorilla
-    - RightArmCyberGorilla
+    - ImplantCaseGorilla
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - AnomalyCoreHarnessing
@@ -188,10 +282,11 @@
     state: cybermantisbladesec
   discipline: Biochemical
   tier: 3
-  cost: 4000
+  cost: 8000
   recipeUnlocks:
-    - LeftArmCyberMantisBladeMaxGuard
-    - RightArmCyberMantisBladeMaxGuard
+    - ImplantCaseMantisBladeMaxGuard
+    - ImplantCaseBulwark
+    - ImplantCaseBonesaw
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - CombatEquipment
@@ -207,12 +302,10 @@
     state: laser_cyborg
   discipline: Biochemical
   tier: 3
-  cost: 4500
+  cost: 7500
   recipeUnlocks:
-    - LeftArmCyberLaserEmitter
-    - RightArmCyberLaserEmitter
-    - LeftArmCyberGrenadeThrower
-    - RightArmCyberGrenadeThrower
+    - ImplantCaseLaserEmitter
+    - ImplantCaseGrenadeThrower
   technologyPrerequisites:
     - FunctionalCyberLimbsTech
     - WeaponizedLaserManipulation
@@ -230,7 +323,7 @@
   tier: 3
   cost: 7500
   recipeUnlocks:
-    - CyberEyeNightVision
+    - ImplantCaseNightVision
   technologyPrerequisites:
     - CyberImplantsTech
   radioChannels:
@@ -247,7 +340,7 @@
   tier: 3
   cost: 8500
   recipeUnlocks:
-    - CyberEyeThermal
+    - ImplantCaseThermal
   technologyPrerequisites:
     - CyberEyeNightVision
   radioChannels:
@@ -267,6 +360,7 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - BluespacePillPatchCanister # Sunrise-Add
   radioChannels:
   - Medical
 

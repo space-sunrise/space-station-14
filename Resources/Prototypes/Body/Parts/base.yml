@@ -48,9 +48,6 @@
     vital: true
   - type: Input
     context: "ghost"
-  - type: Tag
-    tags:
-      - Head
 
 - type: entity
   id: BaseLeftArm

@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.CopyMachine;
 
@@ -9,5 +10,6 @@ public sealed partial class DocTemplatePoolPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public List<ProtoId<DocTemplatePrototype>> Templates = new ();
+    public List<ProtoId<DocTemplatePrototype>> Templates = new();
+    [DataField] public SpriteSpecifier? StationGoalHeader;
 }

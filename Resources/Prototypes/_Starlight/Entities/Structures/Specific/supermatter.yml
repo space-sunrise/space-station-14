@@ -11,8 +11,6 @@
     anchored: true
   - type: InteractionOutline
   - type: Clickable
-  - type: Anchorable
-    delay: 2
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -27,7 +25,6 @@
         - FullTileMask
         layer:
         - FullTileLayer
-  - type: Pullable
   - type: Sprite
     sprite: _Starlight/Objects/Specific/supermatter.rsi
     layers:

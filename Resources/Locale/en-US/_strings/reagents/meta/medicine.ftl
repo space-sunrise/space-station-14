@@ -1,3 +1,15 @@
+reagent-name-apoptodon = Apoptodon
+reagent-desc-apoptodon = An advanced radioactive solution for regenerating the body in cold conditions. Offsets rotting, but inflicts radiation and cellular damage. Works on both dead and living.
+
+reagent-name-h-32 = H-32
+reagent-desc-h-32 = A cryo-based reagent developed in the field with increased radiation. Works on both dead and living.
+
+reagent-name-antidon = Antidon
+reagent-desc-antidon = A cryo-based specialized poison treatment reagent that effectively neutralizes toxic damage. Works on both dead and living.
+
+reagent-name-brutedon = Brutedon
+reagent-desc-brutedon = A cryo-based advanced brute damage treatment that heals all types of physical trauma. Works on both dead and living.
+
 reagent-name-cryptobiolin = cryptobiolin
 reagent-desc-cryptobiolin = Causes confusion and dizziness.
 
@@ -14,10 +26,10 @@ reagent-name-bicaridine = bicaridine
 reagent-desc-bicaridine = An analgesic which is highly effective at treating brute damage. It's useful for stabilizing people who have been severely beaten, as well as treating less life-threatening injuries.
 
 reagent-name-cryoxadone = cryoxadone
-reagent-desc-cryoxadone = Required for the proper function of cryogenics. Heals all standard types of damage, but only works in temperatures under 213K. It can treat and rejuvenate plants when applied in small doses.
+reagent-desc-cryoxadone = Required for the proper function of cryogenics. Heals all standard types of damage, but only works in temperatures under 213K. It can treat and rejuvenate plants when applied in small doses. Works only on living.
 
 reagent-name-doxarubixadone = doxarubixadone
-reagent-desc-doxarubixadone = A cryogenics chemical. Heals cellular damage caused by dangerous gasses and chemicals.
+reagent-desc-doxarubixadone = A cryogenics chemical. Heals cellular damage caused by dangerous gasses and chemicals. Works only on living.
 
 reagent-name-dermaline = dermaline
 reagent-desc-dermaline = An advanced chemical that is more effective at treating burn damage than kelotane.
@@ -128,13 +140,13 @@ reagent-name-insuzine = insuzine
 reagent-desc-insuzine = Rapidly repairs dead tissue caused by electrocution, but cools you slightly. Completely freezes the patient when overdosed.
 
 reagent-name-opporozidone = opporozidone
-reagent-desc-opporozidone= A difficult to synthesize cryogenic drug used to regenerate rotting tissue and brain matter.
+reagent-desc-opporozidone = A difficult to synthesize cryogenic drug used to regenerate rotting tissue and brain matter. Works only on dead.
 
 reagent-name-necrosol = necrosol
-reagent-desc-necrosol = A necrotic substance that seems to be able to heal frozen corpses. It can treat and rejuvenate plants when applied in small doses.
+reagent-desc-necrosol = A necrotic substance that seems to be able to heal frozen corpses. It can treat and rejuvenate plants when applied in small doses. Works on both dead and living.
 
 reagent-name-aloxadone = aloxadone
-reagent-desc-aloxadone = A cryogenics chemical. Used to treat severe burns and frostbite via regeneration of the affected tissue. Works regardless of the patient being alive or dead.
+reagent-desc-aloxadone = A cryogenics chemical. Used to treat severe burns and frostbite via regeneration of the affected tissue. Works on both dead and living.
 
 reagent-name-mannitol = mannitol
 reagent-desc-mannitol = Efficiently restores brain damage.

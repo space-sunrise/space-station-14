@@ -1,0 +1,15 @@
+- type: barSign
+  id: aliensjaws
+  name: barsign-prototype-name-aliensjaws
+  icon:
+    sprite: _Sunrise/Structures/Wallmounts/barsign.rsi
+    state: aliensjaws
+  description: barsign-prototype-description-aliensjaws
+
+- type: barSign
+  id: rndmoment
+  name: barsign-prototype-name-RNDmoment
+  icon:
+    sprite: _Sunrise/Structures/Wallmounts/barsign.rsi
+    state: rndmoment
+  description: barsign-prototype-description-RNDmoment

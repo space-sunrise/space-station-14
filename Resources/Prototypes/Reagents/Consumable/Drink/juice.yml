@@ -58,9 +58,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:AdjustReagent
         reagent: Oculine
         amount: 0.5

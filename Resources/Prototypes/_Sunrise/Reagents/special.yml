@@ -12,58 +12,66 @@
       - !type:Polymorph
         prototype: PermanentlyHuman
         conditions:
-          - !type:OrganType
-            type: Primate
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Primate ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyReptilian
         conditions:
-          - !type:OrganType
-            type: Kobold
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Kobold ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyTajaran
         conditions:
-          - !type:OrganType
-            type: Felinid
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Felinid ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlySlime
         conditions:
-          - !type:OrganType
-            type: WildSlime
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ WildSlime ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyMoth
         conditions:
-          - !type:OrganType
-            type: Mothroach
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Mothroach ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlySwine
         conditions:
-          - !type:OrganType
-            type: Pig
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Pig ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyVox
         conditions:
-          - !type:OrganType
-            type: Chiken
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ Chiken ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
       - !type:Polymorph
         prototype: PermanentlyVulpkanin
         conditions:
-          - !type:OrganType
-            type: InferiorVulpkanin
-          - !type:ReagentThreshold
+          - !type:MetabolizerTypeCondition
+            type: [ InferiorVulpkanin ]
+          - !type:ReagentCondition
+            reagent: Darvinium
             min: 5
 
 - type: reagent
@@ -73,3 +81,50 @@
   desc: reagent-desc-inc
   physicalDesc: reagent-physical-desc-glowing
   color: "#000000"
+
+- type: reagent # Port #31777 Wiz
+  id: UniversalSolvent
+  name: reagent-name-universal-solvent
+  desc: reagent-desc-universal-solvent
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor:
+  color: "#c8ff69" # Everyone is accustomed to this color being the safe foam, so... >:D
+  recognizable: false
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  tileReactions:
+    - !type:CleanTileReaction {} # It still cleans, just the scope of what it cleans is... larger...
+    - !type:CleanDecalsReaction {}
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 4 # High skin contact damage to remain effective against internals users.
+      - !type:PopupMessage
+        type: Local
+        visualType: LargeCaution
+        messages: [ "universalsolvent-effect-skin" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.5
+  metabolisms:
+    Poison:
+      metabolismRate : 3.00
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 6 # 2 damage per unit
+      - !type:PopupMessage
+        type: Local
+        visualType: LargeCaution
+        messages: [ "universalsolvent-effect-organs" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.3

@@ -26,9 +26,10 @@
     jumpsuit: ClothingUniformJumpsuitMiningSpecialist
     id: MiningPDA
     ears: ClothingHeadsetMining
-  storage:
-    back:
-    - EnergyPickaxe # Временно.
+    belt: OreBag
+    head: ClothingHeadHatHardhatYellowDark
+    pocket1: MineralScannerUnpowered
+    pocket2: EnergyPickaxe
 
 - type: chameleonOutfit
   id: MiningSpecialistChameleonOutfit

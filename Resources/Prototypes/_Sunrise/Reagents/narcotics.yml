@@ -18,7 +18,8 @@
             Mangleness: 0.3
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Desoantizyne
           min: 25
         damage:
           types:
@@ -31,8 +32,7 @@
         component: SeeingRainbows
         type: Add
         time: 30
-        refresh: true
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 1.35
         sprintSpeedModifier: 1.50
       - !type:Jitter
@@ -51,7 +51,7 @@
         probability: 0.25
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Haloperidol
           max: 0.01
         key: Drowsiness
@@ -61,5 +61,6 @@
       effects:
       - !type:ResetNarcolepsy
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Desoantizyne
           min: 20

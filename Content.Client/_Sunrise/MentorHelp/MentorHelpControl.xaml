@@ -1,0 +1,102 @@
+﻿<Control
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.Administration.UI.CustomControls">
+    <PanelContainer StyleClasses="BackgroundDark">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Orientation="Horizontal" SetHeight="40" HorizontalExpand="True" Margin="5">
+                <Button Name="NewTicketButton" Access="Public" Text="{Loc 'mentor-help-new-ticket'}"
+                        StyleClasses="ButtonBig" Margin="0 0 10 0"/>
+                <Button Name="AdminWhoButton" Access="Public" Text="{Loc 'admin-who-button'}" Margin="0 0 10 0" />
+                <Button Name="StatisticsButton" Access="Public" Text="{Loc 'mentor-help-statistics'}"
+                        StyleClasses="ButtonBig" Visible="False" Margin="0 0 10 0" />
+                <Control HorizontalExpand="True" />
+                <Button Name="BackToListButton" Access="Public" Text="{Loc 'mentor-help-back-to-list'}"
+                        StyleClasses="ButtonBig" HorizontalAlignment="Right" Visible="False" />
+            </BoxContainer>
+
+            <Control Name="DefaultState" VerticalExpand="True" HorizontalExpand="True">
+                <TabContainer Name="TicketsTabContainer" Access="Public" VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-id'}" SizeFlagsStretchRatio="1" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-player'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-status'}" SizeFlagsStretchRatio="2" HorizontalExpand="True"  HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-assigned'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-subject'}" SizeFlagsStretchRatio="5" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                        </BoxContainer>
+                        <controls:HSeparator/>
+
+                        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" MinHeight="150">
+                            <BoxContainer Name="OpenTicketsList" Access="Public" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"/>
+                        </ScrollContainer>
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-id'}" SizeFlagsStretchRatio="1" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-player'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-status'}" SizeFlagsStretchRatio="2" HorizontalExpand="True"  HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-assigned'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                            <Label Text="{Loc 'mentor-help-column-subject'}" SizeFlagsStretchRatio="5" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <controls:VSeparator/>
+                        </BoxContainer>
+                        <controls:HSeparator/>
+
+                        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" MinHeight="150">
+                            <BoxContainer Name="ClosedTicketsList" Access="Public" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"/>
+                        </ScrollContainer>
+                    </BoxContainer>
+                </TabContainer>
+            </Control>
+
+            <Control Name="TicketViewState" Visible="False" VerticalExpand="True" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                    <PanelContainer StyleClasses="PanelColorMedium" HorizontalExpand="True" Margin="5">
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
+                            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                <Label Text="{Loc 'mentor-help-label-id'}" Margin="0 0 5 0" />
+                                <Label Name="TicketIdLabel" Access="Public" StyleClasses="LabelHeading" Margin="6 0 20 0" />
+                                <Label Text="{Loc 'mentor-help-label-subject'}" Margin="0 0 5 0" />
+                                <Label Name="TicketSubjectLabel" Access="Public" StyleClasses="LabelHeading" Margin="8 0 0 0" />
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Horizontal" SeparationOverride="3" HorizontalAlignment="Stretch" HorizontalExpand="True" Margin="0 6 0 0">
+                                <Label Name="TicketStatus" Access="Public" StyleClasses="PdaContentFooterText" HorizontalExpand="True" HorizontalAlignment="Left"/>
+                                <Label Name="TicketAssigned" Access="Public" StyleClasses="PdaContentFooterText" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                                <Label Name="TicketCreated" Access="Public" StyleClasses="PdaContentFooterText" HorizontalExpand="True" HorizontalAlignment="Right" />
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <ScrollContainer Name="MessagesScroll" Access="Public" VerticalExpand="True" HorizontalExpand="True" Margin="5">
+                        <BoxContainer Name="MessagesContainer" Access="Public" Orientation="Vertical" />
+                    </ScrollContainer>
+
+                    <BoxContainer Name="ReplyPanel" Access="Public" Orientation="Vertical" HorizontalExpand="True" Margin="5">
+                        <LineEdit Name="ReplyInput" Access="Public" PlaceHolder="{Loc 'mentor-help-reply-placeholder'}"
+                                  HorizontalExpand="True" />
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 5 0 0">
+                            <Button Name="ClaimButton" Access="Public" Text="{Loc 'mentor-help-claim'}"
+                                    StyleClasses="ButtonBig" />
+                            <Button Name="UnassignButton" Access="Public" Text="{Loc 'mentor-help-unassign'}"
+                                    StyleClasses="ButtonBig" />
+                            <Button Name="CloseTicketButton" Access="Public" Text="{Loc 'mentor-help-close-ticket'}"
+                                    StyleClasses="ButtonBig" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </BoxContainer>
+            </Control>
+        </BoxContainer>
+    </PanelContainer>
+</Control>

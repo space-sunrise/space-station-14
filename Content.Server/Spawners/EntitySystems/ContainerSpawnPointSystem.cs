@@ -2,7 +2,6 @@
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Preferences;
-using Content.Shared.Roles;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -32,6 +31,13 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
 
         if (args.DesiredSpawnPointType == SpawnPointType.Observer)
             return;
+
+        // If it's just a spawn pref check if it's for cryo (silly).
+        if (args.HumanoidCharacterProfile?.SpawnPriority != SpawnPriorityPreference.Cryosleep &&
+            (!_proto.Resolve(args.Job, out var jobProto) || jobProto.JobEntity == null))
+        {
+            return;
+        }
 
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
         var cryoContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
@@ -82,10 +88,21 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
             if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container, manager))
                 continue;
 
-            if (_container.Insert(args.SpawnResult.Value, container, containerXform: xform))
-                break;
+            if (!_container.Insert(args.SpawnResult.Value, container, containerXform: xform))
+                continue;
+
+            var ev = new ContainerSpawnEvent(args.SpawnResult.Value);
+            RaiseLocalEvent(uid, ref ev);
+
+            return;
         }
 
         // Даже если не удалось поместить в контейнер - моб уже заспавнен на координатах криокапсулы
     }
 }
+
+/// <summary>
+/// Raised on a container when a player is spawned into it.
+/// </summary>
+[ByRefEvent]
+public record struct ContainerSpawnEvent(EntityUid Player);
