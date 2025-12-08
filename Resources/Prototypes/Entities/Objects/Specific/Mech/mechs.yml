@@ -208,6 +208,7 @@
   - type: ExplosionResistance # Sunrise-Edit
     damageCoefficient: 0.8 # Sunrise-Edit
   - type: ProtectedFromStepTriggers # Sunrise-added
+  - type: ComplexInteraction # Sunrise-added
 
 # Ripley MK-I
 - type: entity
