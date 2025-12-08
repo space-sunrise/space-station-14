@@ -81,6 +81,38 @@
     stock: 4
 
 - type: listing
+  id: ERTUplinkWeaponLightMachineGunM492
+  productEntity: ClothingBackpackDuffelWeaponLightMachineGunM492
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m492 }
+  cost:
+    Bluecrystal: 20
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+
+- type: listing
+  id: ERTUplinkWeaponLightMachineGunM492CBURN
+  productEntity: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m492cburn }
+  cost:
+    Bluecrystal: 20
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
   id: ERTUplinkWeaponLightMachineGunMG42
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
@@ -98,12 +130,12 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkPowerpackMinigunMG100
+  id: ERTUplinkPowerpackMinigunMG100Incendiary
   description: ntuplink-gun-minigun-desc
-  productEntity: PowerpackMinigunMG100
+  productEntity: PowerpackMinigunMG100Incendiary
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
   cost:
-    Bluecrystal: 38
+    Bluecrystal: 37
   categories:
     - NTAutoGun
   conditions:
@@ -113,6 +145,23 @@
     whitelist:
       tags:
       - CBURN
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkPowerpackMinigunMG100
+  description: ntuplink-gun-minigun-desc
+  productEntity: PowerpackMinigunMG100
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
+  cost:
+    Bluecrystal: 37
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
       - ERTGamma
       - ERTEpsilon
 

@@ -236,17 +236,30 @@
         - id: MagazineRifleHeavyFMJ
           amount: 2
 
-#- type: entity
-#  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
-#  parent: ClothingBackpackDuffelMilitary
-#  name: Bundle mg342
-#  description: MG-342 with 2 raspy magazines.
-#  components:
-#    - type: StorageFill
-#      contents:
-#        - id: WeaponMachineGunMG42
-#        - id: MagazineMachineGunMG42
-#          amount: 2
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunM492
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle smart gun M492
+  description: M492 with 2 raspy SP and FMJ belt-box.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunM492
+        - id: MagazineLightRifleBeltBox
+        - id: MagazineLightRifleBeltBoxFMJ
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle M492 "Incinerator"
+  description: M492 with 3 raspy Incendiary belt-box.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunM492
+        - id: MagazineLightRifleBeltBoxIncendiary
+          amount: 3
+        - id: FireExtinguisher
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSniperHristovFilled
