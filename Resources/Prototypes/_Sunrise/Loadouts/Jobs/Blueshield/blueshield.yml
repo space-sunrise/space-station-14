@@ -51,6 +51,6 @@
 
 - type: loadout
   id: BlueshieldAsh12
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - ClothingBackpackDuffelWeaponRifleAsh12
