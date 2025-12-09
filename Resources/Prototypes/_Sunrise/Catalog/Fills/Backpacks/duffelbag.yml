@@ -245,6 +245,18 @@
           amount: 4
 
 - type: entity
+  id: ClothingBackpackDuffelWeaponRifleAsh12
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle ASH-12
+  description: ASH-12 with 5 magazines.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAsh12
+    - id: MagazineAsh12
+      amount: 5
+
+- type: entity
   id: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
   parent: ClothingBackpackDuffelNanotrasenMedical
   name: nanotrasen medical bundle
@@ -340,3 +352,5 @@
       - id: ClothingHandsGlovesCombatCQC
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
+
+

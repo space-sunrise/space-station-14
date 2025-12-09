@@ -42,3 +42,15 @@
   id: BlueShieldWebbing
   equipment:
     belt: ClothingBeltBlueShieldWebbingFilled
+
+- type: loadout
+  id: BlueshieldWT550
+  inhand:
+  - ClothingBackpackDuffelWeaponSubMachineGunWt550
+
+
+- type: loadout
+  id: BlueshieldAsh12
+  sponsorOnly: false
+  inhand:
+  - ClothingBackpackDuffelWeaponRifleAsh12

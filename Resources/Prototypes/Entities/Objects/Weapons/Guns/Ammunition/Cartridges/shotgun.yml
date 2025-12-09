@@ -60,6 +60,10 @@
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunSlugTrace
+  - type: Tag
+    tags:
+    - ShotgunSlug
+    - ShellShotgun
 
 - type: entity
   id: ShellShotgunFlare
