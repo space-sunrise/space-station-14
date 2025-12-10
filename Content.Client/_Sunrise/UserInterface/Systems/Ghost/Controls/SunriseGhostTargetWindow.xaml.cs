@@ -55,6 +55,7 @@ public sealed partial class SunriseGhostTargetWindow : DefaultWindow
         _playerWarps = GetSortedByName(_playerWarps);
         _placeWarps = GetSortedByName(_placeWarps);
         _antagonists = GetSortedByName(_antagonists);
+        _antagonists.RemoveAll(i => i.IsDead); // Убираем мертвых антагонистов из списка
 
         PlayersAllocation();
         AddButtons();

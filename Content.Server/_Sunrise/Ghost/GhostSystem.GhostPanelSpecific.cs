@@ -111,7 +111,8 @@ public sealed partial class GhostSystem
                 meta.EntityName,
                 component.Name,
                 component.Description,
-                component.Priority
+                component.Priority,
+                _mobState.IsDead(uid)
             );
 
             yield return warp;
