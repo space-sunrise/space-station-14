@@ -37,7 +37,6 @@
 - type: entity
   id: BaseMagazineBauer127
   name: magazine (15mm anti-materiel)
-  description: Standart EarthGov type of heavy magazines.
   parent: [ BaseItem, BaseMajorContraband ]
   abstract: true
   components:
@@ -71,7 +70,6 @@
 - type: entity
   id: MagazineBauer127
   name: magazine (15mm anti-materiel)
-  description: Standart EarthGov type of heavy magazines.
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
@@ -103,7 +101,6 @@
 - type: entity
   id: MagazineBauer127Artillery
   name: magazine (15mm space anti-materiel)
-  description: Standart EarthGov type of heavy magazines.
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
@@ -133,9 +130,17 @@
         color: "#7f009b"
 
 - type: entity
+  id: MagazineBauer127ArtilleryLarge
+  name: large magazine (15mm space anti-materiel)
+  parent: MagazineBauer127Artillery
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMaterielArtillery
+    capacity: 35
+
+- type: entity
   id: MagazineBauer127Frag
   name: magazine (15mm frag anti-materiel)
-  description: Standart EarthGov type of heavy magazines.
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
@@ -167,7 +172,6 @@
 - type: entity
   id: MagazineBauer127Blast
   name: magazine (15mm blast anti-materiel)
-  description: Standart EarthGov type of heavy magazines.
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
@@ -199,7 +203,6 @@
 - type: entity
   id: MagazineBauer127Emp
   name: magazine (15mm emp anti-materiel)
-  description: Standart EarthGov type of heavy magazines.
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
