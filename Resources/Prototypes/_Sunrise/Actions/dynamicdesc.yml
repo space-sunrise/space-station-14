@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseMentalAction
+  id: DynamicDescChangeAction
+  name: Change-Desc
+  description: Change-Desc-Description
+  components:
+  - type: Action
+    useDelay: 10
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:DynamicDescChangeEvent
