@@ -652,6 +652,20 @@
     energy: 0.5
   - type: DeleteOnTrigger
 
+- type: entity
+  id: BulletHeavyRifleArtillery
+  name: bullet (.308)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+      Piercing: 25
+      Structural: 15
+  - type: StaminaDamageOnCollide
+    damage: 5
+
 # .60 small grenade
 - type: entity
   id: BulletAntiMaterielFrag

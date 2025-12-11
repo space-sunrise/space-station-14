@@ -136,7 +136,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMaterielArtillery
-    capacity: 35
+    capacity: 20
 
 - type: entity
   id: MagazineBauer127Frag
