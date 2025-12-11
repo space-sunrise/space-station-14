@@ -15,7 +15,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,7,2
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -48,11 +48,11 @@
             - MagazineDragunov
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: CartridgeHeavyRifleRFMJ
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeHeavyRifleR
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -93,7 +93,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,6,2
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
     minAngle: -21
@@ -167,7 +167,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,8,2
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -261,28 +261,6 @@
   - type: GunRequiresWield
 
 - type: entity
-  name: Kardashev-Mosin
-  parent: BaseWeaponSniper
-  id: WeaponSniperMosinNew
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/big.rsi
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,4,1
-    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
-  - type: Gun
-    pump: true
-    fireRate: 0.8
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-  - type: GunRequiresWield
-
-- type: entity
   name: N2524 Repeater
   parent: [ BaseWeaponSniper, BaseGunWieldable, BaseMinorContraband ]
   id: WeaponSniperRepeater
@@ -291,7 +269,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,1
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater_inhands_64x.rsi
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi

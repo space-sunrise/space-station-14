@@ -873,3 +873,11 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
     state: maletalternative
+
+- type: marking
+  id: HumanHairCatTail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/human_hair.rsi
+      state: cattail

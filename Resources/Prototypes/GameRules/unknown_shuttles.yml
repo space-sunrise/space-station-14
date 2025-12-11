@@ -350,7 +350,7 @@
   parent: BaseUnknownShuttleRule
   components:
   - type: StationEvent
-    startAnnouncement: station-event-pirate-shuttle-incoming
+    startAnnouncement: null
     # startAudio: /Audio/Ambience/Antag/pirate_start.ogg
     # duration: -0
     # endAudio: /Audio/Ambience/Antag/pirate_start.ogg
@@ -362,7 +362,7 @@
   parent: BaseUnknownShuttleRule
   components:
   - type: StationEvent
-    startAnnouncement: station-event-scoone-shuttle-incoming
+    startAnnouncement: null
     # startAudio: /Audio/Ambience/Antag/pirate_start.ogg
     # duration: -0
     # endAudio: /Audio/Ambience/Antag/pirate_start.ogg

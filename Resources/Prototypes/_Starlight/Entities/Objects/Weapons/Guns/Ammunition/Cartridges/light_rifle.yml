@@ -16,6 +16,7 @@
         color: "#717171"
   - type: Tag
     tags:
+      - Cartridge
       - CartridgeLightRifle
       - CartridgeLightRifleImprovised
   - type: Construction

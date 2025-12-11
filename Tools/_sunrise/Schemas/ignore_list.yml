@@ -141,7 +141,9 @@ ignore_list:
   - 'AKM'       # Для ent-WeaponRifleAKM
   - 'MG-342'    # Для ent-WeaponMachineGunMG42
   - 'v3.0.9'
+  - 'v0.2.1'
   - 'F₃BZ'
+  - 'Holo Girl'
   - 'BZ'
   - 'NH₃'
   - 'CO₂'

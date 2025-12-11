@@ -1,4 +1,91 @@
 - type: entity
+  name: BaseWeaponRifleSunrise
+  parent: [BaseItem, BaseGunWieldable]
+  id: BaseWeaponRifleSunrise
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: 0 # Set to 0 because GunRequiresWield
+    maxAngle: 0
+  - type: Gun
+    minAngle: 3
+    maxAngle: 9
+    angleIncrease: 2
+    angleDecay: 3
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleSP
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 0.1
+      Felinid:
+        knockback: 0.1
+
+- type: entity
   name: AKMS
   parent: BaseWeaponRifle
   id: WeaponRifleAKM
@@ -15,7 +102,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Gun
     minAngle: 2.9
@@ -74,7 +161,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,3,2
+    - 0,0,2,1
   - type: GunWieldBonus
     minAngle: -1
     maxAngle: -25
@@ -135,7 +222,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
   - type: Gun
     minAngle: 2.8
@@ -199,7 +286,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: Gun
     minAngle: 2.85
@@ -269,7 +356,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: Gun
     minAngle: 2
@@ -334,7 +421,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: Gun
     minAngle: 1.75
@@ -376,11 +463,8 @@
     delay: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    maxOffset: 4
+    pvsIncrease: 0.4
 
 - type: entity
   name: AR-18
@@ -399,7 +483,7 @@
   - type: Item
     size: Huge
     shape:
-      - 0,0,4,2
+    - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
   - type: Gun
     minAngle: 1.8
@@ -457,7 +541,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Gun
     minAngle: 1
@@ -515,7 +599,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/scarh/tiny.rsi
   - type: Gun
     minAngle: 1

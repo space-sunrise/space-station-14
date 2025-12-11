@@ -220,11 +220,6 @@
   - type: UseDelay
   - type: IgnitionSource
     ignited: false
-  #Sunrise-start
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 260
-  #Sunrise-end
 
 - type: entity
   name: flippo engraved lighter
