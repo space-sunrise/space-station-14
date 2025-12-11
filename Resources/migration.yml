@@ -839,8 +839,6 @@ MagazineBR64Extended: null
 MagazineBR64: null
 MagazineAR18Extended: null
 MagazineAR18: null
-MagazineSTG44: null
-MagazineV31: null
 ClothingOuterHardsuitPilot: null
 ClothingOuterHardsuitPirateEVASun: ClothingOuterEVASuitPirate
 CrateArmoryMagazineBoxLightRifleBig: null
@@ -851,8 +849,6 @@ WeaponShotgunPaladin12: null
 GunSafeShotgunPaladin: null
 WeaponXM1014: null
 WeaponShotgunZauer: null
-WeaponSTG44: null
-WeaponRifleV31: null
 HandheldCamera: null # Не надо маппить, оно есть в автоматах
 GrenadeBlast: GrenadeBlastTimer
 GrenadeEMP: GrenadeEMPTimer
