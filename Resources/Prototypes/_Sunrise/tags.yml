@@ -99,6 +99,9 @@
 - type: Tag
   id: ImprovisedAmmoBox
 
+- type: Tag
+  id: CannonBallMini
+
 # Weapons
 - type: Tag
   id: WrappedWeapon
@@ -149,6 +152,9 @@
   id: GorillaUpgradeKit
 
 # Magazines:
+- type: Tag
+  id: MagazineCannonBallMini
+
 - type: Tag
   id: MagazinePistolDPSubMachineGun
 
