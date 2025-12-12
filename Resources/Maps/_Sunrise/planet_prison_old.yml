@@ -2,8 +2,8 @@ meta:
   format: 7
   category: Map
   engineVersion: 267.3.0
-  forkId: ""
-  forkVersion: ""
+  forkId: sunrise_station_public
+  forkVersion: 3d80bc67e29ff5b1800ca079560bb68a4e8e9a51
   time: 12/12/2025 15:39:39
   entityCount: 13262
 maps:
