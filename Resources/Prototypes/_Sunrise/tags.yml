@@ -49,6 +49,9 @@
 - type: Tag
   id: TrayScanner
 
+- type: Tag
+  id: NVDHandcrafted
+
 # Uplinks
 - type: Tag
   id: NTUplink
