@@ -10,11 +10,11 @@
       appearanceDataInit:
         enum.PdaVisuals.PdaType:
           !type:String
-          pda-lawyer
+          pda-iaa
     - type: PdaBorderColor
       borderColor: "#6f6192"
     - type: Icon
-      state: pda-lawyer
+      state: pda-iaa
 
 - type: entity
   parent: CaptainPDA
@@ -33,11 +33,11 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-captain
+        pda-magistrat
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
-    state: pda-captain
+    state: pda-magistrat
 
 - type: entity
   parent: BasePDA
@@ -457,12 +457,12 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-seniorofficer
+        pda-securitypilot
   - type: PdaBorderColor
     borderColor: "#802d29"
     accentVColor: "#DFDFDF"
   - type: Icon
-    state: pda-seniorofficer
+    state: securitypilot
 
 - type: entity
   parent: CaptainPDA
@@ -481,11 +481,11 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-captain
+        pda-representative
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
-    state: pda-captain
+    state: pda-representative
 
 - type: entity
   parent: BasePDA
@@ -498,9 +498,9 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-bartender
+        pda-barber
   - type: Icon
-    state: pda-bartender
+    state: pda-barber
 
 - type: entity
   parent: BasePDA
@@ -648,12 +648,12 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-cargo
+       pda-mailman
   - type: PdaBorderColor
     borderColor: "#e39751"
     accentVColor: "#003cc9"
   - type: Icon
-    state: pda-cargo
+    state: pda-mailman
 
 - type: entity
   parent: BasePDA

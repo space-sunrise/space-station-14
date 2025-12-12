@@ -10,8 +10,9 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda
+  # Sunrise-Start
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -19,12 +20,12 @@
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
       visible: false
-    - state: "id_overlay"
+    - state: "id_inserted"
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
-      visible: false
   - type: Icon
-    sprite: Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  # Sunrise-End
     state: pda
   - type: Pda
     paiSlot:
@@ -134,8 +135,9 @@
   id: BaseWidePDA
   abstract: true
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi # Sunrise-Edit
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -143,10 +145,11 @@
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
       visible: false
-    - state: "id_overlay_wide"
+    - state: "id_inserted_wide"
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
       visible: false
+  # Sunrise-End
 
 - type: entity
   parent: BasePDA
