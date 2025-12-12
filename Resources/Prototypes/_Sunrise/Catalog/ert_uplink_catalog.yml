@@ -4,7 +4,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunDrozdMk2
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: drozd }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 10
   categories:
     - NTAutoGun
   conditions:
@@ -16,7 +16,7 @@
   productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 10
   categories:
     - NTAutoGun
   conditions:
@@ -29,7 +29,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunWt550
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: wt550 }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 10
   categories:
     - NTAutoGun
   conditions:
@@ -55,12 +55,12 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkWeaponAMS42Filled
-  name: ntuplink-gun-bundleams42-name
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
-  productEntity: ClothingBackpackDuffelWeaponAMS42Filled
+  id: ERTUplinkWeaponRifleG36Filled
+  name: ntuplink-gun-bundleg36-name
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: g36 }
+  productEntity: ClothingBackpackDuffelWeaponRifleG36Filled
   cost:
-    Bluecrystal: 12
+    Bluecrystal: 13
   categories:
   - NTAutoGun
   conditions:
@@ -68,17 +68,73 @@
     stock: 4
 
 - type: listing
-  id: ERTUplinkWeaponRifleG36Filled
-  name: ntuplink-gun-bundleg36-name
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: g36 }
-  productEntity: ClothingBackpackDuffelWeaponRifleG36Filled
+  id: ERTUplinkWeaponRifleSKM24Filled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM24Filled
   cost:
-    Bluecrystal: 12
+    Bluecrystal: 13
   categories:
   - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM24FilledCBURN
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
+  cost:
+    Bluecrystal: 13
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkWeaponAMS42Filled
+  name: ntuplink-gun-bundleams42-name
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
+  productEntity: ClothingBackpackDuffelWeaponAMS42Filled
+  cost:
+    Bluecrystal: 15
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM28Filled
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM28Filled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m28 }
+  cost:
+    Bluecrystal: 15
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM28FilledCBURN
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m28 }
+  cost:
+    Bluecrystal: 15
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkWeaponLightMachineGunM492
@@ -117,7 +173,7 @@
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 35
+    Bluecrystal: 33
   categories:
     - NTAutoGun
   conditions:
@@ -164,18 +220,6 @@
       tags:
       - ERTGamma
       - ERTEpsilon
-
-- type: listing
-  id: ERTUplinkWeaponRifleM28Filled
-  productEntity: ClothingBackpackDuffelWeaponRifleM28Filled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m28 }
-  cost:
-    Bluecrystal: 14
-  categories:
-  - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: ERTUplinklWeaponRifleM52Filled

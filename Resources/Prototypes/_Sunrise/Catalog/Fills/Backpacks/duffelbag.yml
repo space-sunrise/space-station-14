@@ -201,28 +201,62 @@
         - id: BoxShotgunSlug
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleAR18Filled
+  id: ClothingBackpackDuffelWeaponRifleSKM24Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle AR18
-  description: AR18 with 2 raspy magazines.
+  name: Bundle SKM-24
+  description: SKM-24 with 6 raspy various magazines.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponRifleAR18
-        - id: MagazineRifleHeavySP
+        - id: WeaponRifleSKM24Nano
+        - id: MagazineLightRifleSP
+          amount: 3
+        - id: MagazineLightRifleFMJ
+          amount: 1
+        - id: MagazineLightRifleHP
           amount: 2
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleM28Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle M28
-  description: M28 with 3 raspy magazines.
+  id: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle SKM-24
+  description: AR18 with 6 raspy Incendiary magazines.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponRifleM28
+        - id: WeaponRifleSKM24
+        - id: MagazineLightRifleIncendiary
+          amount: 6
+        - id: FireExtinguisher
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSKM28Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle SKM-28
+  description: SKM-28 with 6 raspy various magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM28Nano
+        - id: MagazineRifleHeavyFMJ
+          amount: 1
         - id: MagazineRifleHeavySP
           amount: 3
+        - id: MagazineRifleHeavyHP
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle SKM-28
+  description: SKM-28 with 6 raspy Incendiary magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM28
+        - id: MagazineLightRifleIncendiary
+          amount: 6
+        - id: FireExtinguisher
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleBR64Filled

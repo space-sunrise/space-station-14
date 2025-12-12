@@ -238,22 +238,6 @@
 
 - type: entity
   parent: GunSafeBaseSecure
-  id: GunSafeRifleAR18
-  name: safe
-  suffix: AR-18
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleAR18
-      amount: 2
-    - id: WeaponRifleM28
-    - id: MagazineRifleHeavySP
-      amount: 6
-    - id: MagazineRifleHeavyHP
-      amount: 4
-
-- type: entity
-  parent: GunSafeBaseSecure
   id: GunSafeRifleFamas
   name: safe
   suffix: Famas
@@ -480,7 +464,6 @@
     - !type:GroupSelector
       weight: 5
       children:
-      - id: GunSafeRifleAR18
       - id: GunSafeRifleAKMU
 
 # SMG Spawner
