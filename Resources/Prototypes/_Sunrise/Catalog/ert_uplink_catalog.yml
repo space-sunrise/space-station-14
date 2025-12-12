@@ -66,22 +66,30 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
 
 - type: listing
   id: ERTUplinkWeaponRifleSKM24Filled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm24nano }
   productEntity: ClothingBackpackDuffelWeaponRifleSKM24Filled
   cost:
-    Bluecrystal: 13
+    Bluecrystal: 12
   categories:
   - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkWeaponRifleSKM24FilledCBURN
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm24 }
   productEntity: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
   cost:
     Bluecrystal: 13
@@ -107,11 +115,15 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkWeaponRifleSKM28Filled
   productEntity: ClothingBackpackDuffelWeaponRifleSKM28Filled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m28 }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm28nano }
   cost:
     Bluecrystal: 15
   categories:
@@ -119,11 +131,15 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkWeaponRifleSKM28FilledCBURN
   productEntity: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m28 }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm28 }
   cost:
     Bluecrystal: 15
   categories:
@@ -191,7 +207,7 @@
   productEntity: PowerpackMinigunMG100Incendiary
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
   cost:
-    Bluecrystal: 37
+    Bluecrystal: 35
   categories:
     - NTAutoGun
   conditions:
@@ -209,7 +225,7 @@
   productEntity: PowerpackMinigunMG100
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
   cost:
-    Bluecrystal: 37
+    Bluecrystal: 35
   categories:
     - NTAutoGun
   conditions:
@@ -642,6 +658,11 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 6
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
 
 - type: listing
   id: ERTUplinkMagazineMagnum
@@ -675,7 +696,7 @@
   productEntity: MagazineP90
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
   cost:
-    Crystallite: 5
+    Crystallite: 2
   categories:
     - NTAmmo
   conditions:
@@ -683,6 +704,64 @@
     whitelist:
       tags:
       - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMagazineP90HP
+  productEntity: MagazineP90HP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 2
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMagazineP90FMJ
+  productEntity: MagazineP90FMJ
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 3
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMagazineP90Incendiary
+  productEntity: MagazineP90Incendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 4
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkMagazineP90AP
+  productEntity: MagazineP90AP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 5
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
       - ERTEpsilon
 
 - type: listing

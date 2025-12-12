@@ -128,13 +128,15 @@
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle p90
-  description: P-90 with 3 raspy magazines.
+  description: P-90 with 4 raspy magazines.
   components:
     - type: StorageFill
       contents:
         - id: WeaponSubMachineGunP90
         - id: MagazineP90
-          amount: 3
+          amount: 2
+        - id: MagazineP90HP
+        - id: MagazineP90FMJ
 
 - type: entity
   id: ClothingBackpackDuffelWeaponAMS42Filled
@@ -254,7 +256,7 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleSKM28
-        - id: MagazineLightRifleIncendiary
+        - id: MagazineRifleHeavyIncendiary
           amount: 6
         - id: FireExtinguisher
 
@@ -290,7 +292,7 @@
   components:
     - type: StorageFill
       contents:
-        - id: WeaponLightMachineGunM492
+        - id: WeaponLightMachineGunM492Cburn
         - id: MagazineLightRifleBeltBoxIncendiary
           amount: 3
         - id: FireExtinguisher

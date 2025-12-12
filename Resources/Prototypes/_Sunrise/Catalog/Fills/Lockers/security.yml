@@ -261,7 +261,7 @@
       amount: 3
       orGroup: SKM
     - id: WeaponRifleSKM24Syndi
-      prob: 0.05
+      prob: 0.1
       orGroup: SKM
     - id: WeaponRifleSKM24Nano
       prob: 0.6
@@ -277,7 +277,7 @@
       amount: 3
       orGroup: SKM2
     - id: WeaponRifleSKM24Syndi
-      prob: 0.05
+      prob: 0.1
       orGroup: SKM2
     - id: WeaponRifleSKM24Nano
       prob: 0.6
@@ -293,7 +293,7 @@
       amount: 3
       orGroup: SKM3
     - id: WeaponRifleSKM24Syndi
-      prob: 0.05
+      prob: 0.1
       orGroup: SKM3
     - id: WeaponRifleSKM24Nano
       prob: 0.6
@@ -309,7 +309,7 @@
       amount: 3
       orGroup: SKM4
     - id: WeaponRifleSKM24Syndi
-      prob: 0.05
+      prob: 0.1
       orGroup: SKM4
     - id: WeaponRifleSKM24Nano
       prob: 0.6

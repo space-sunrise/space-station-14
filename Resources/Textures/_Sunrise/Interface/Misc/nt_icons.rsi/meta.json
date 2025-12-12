@@ -26,9 +26,6 @@
       "name": "ams42"
     },
     {
-      "name": "ar18"
-    },
-    {
       "name": "lr30"
     },
     {
@@ -189,9 +186,6 @@
     },
     {
       "name": "lnt620"
-    },
-    {
-      "name": "m28"
     },
     {
       "name": "m492"
@@ -417,6 +411,18 @@
     },
     {
       "name": "box_40_sp"
+    },
+    {
+      "name": "skm24"
+    },
+    {
+      "name": "skm28"
+    },
+    {
+      "name": "skm24nano"
+    },
+    {
+      "name": "skm28nano"
     }
   ]
 }
