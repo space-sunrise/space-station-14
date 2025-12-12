@@ -429,6 +429,16 @@
     state: Nanotrasen
   jobName: job-name-centcomoff
 
+# sunrise-start
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDeathsquad
+  icon:
+    sprite: *icon-rsi
+    state: DeathSquad
+  allowSelection: false
+# sunrise-end
+
 - type: jobIcon
   parent: JobIcon
   id: JobIconAdmin
