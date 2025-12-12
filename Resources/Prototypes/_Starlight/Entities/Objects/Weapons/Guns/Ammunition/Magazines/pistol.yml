@@ -92,6 +92,7 @@
   id: MagazinePistol40Base
   name: "Pistol Magazine (.40)"
   parent: BaseMagazinePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol40SP

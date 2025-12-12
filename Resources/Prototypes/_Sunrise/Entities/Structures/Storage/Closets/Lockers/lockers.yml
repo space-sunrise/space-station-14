@@ -70,6 +70,42 @@
     - id: WeaponIONRifle
 
 - type: entity
+  parent: GunSafe
+  id: GunSafeSMRTGun
+  name: SMART Safe
+  description: Heavy reinforced special gun save delivered from NanoTrasen Smart Arms Division for field testing. Contain unique Smart gun LMG.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLightMachineGunM492
+    - id: ClothingBeltSecurityWebbing
+    - id: MagazineLightRifleBeltBox # two, one already in lmg
+    - id: MagazineLightRifleBeltBoxFMJ
+    - id: MagazineLightRifleBeltBoxHP
+    - id: MagazineLightRifleBeltBoxIncendiary # All types to manage all variants of threats
+  - type: AccessReader
+    access: [["CentralCommand"]]
+    alertAccesses:
+      gamma: GammaAlertAccesses
+  - type: Godmode
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 2000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
   id: ClosetPatologoanatom
   name: patologoanatom's locker
   parent: LockerBaseSecure

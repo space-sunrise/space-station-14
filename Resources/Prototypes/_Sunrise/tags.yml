@@ -165,16 +165,10 @@
   id: MagazineBauer127
 
 - type: Tag
-  id: MagazineAK
-
-- type: Tag
   id: MagazineAR18
 
 - type: Tag
   id: MagazineP90
-
-- type: Tag
-  id: MagazineMP38
 
 - type: Tag
   id: MagazineMP7
@@ -222,16 +216,7 @@
   id: NoSpinOnThrow
 
 - type: Tag
-  id: MagazineSTG44
-
-- type: Tag
-  id: MagazineV31
-
-- type: Tag
   id: PowerpackFlame
-
-- type: Tag
-  id: MagazinePPSH41
 
 - type: Tag
   id: MagazineDl6902

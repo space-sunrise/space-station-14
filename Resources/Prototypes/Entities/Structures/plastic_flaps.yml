@@ -96,7 +96,8 @@
   - type: StaticPrice
     price: 100
   - type: Anchorable
-    delay: 999
+    flags:
+    - Anchorable
 
 - type: entity
   id: PlasticFlapsAirtightOpaque

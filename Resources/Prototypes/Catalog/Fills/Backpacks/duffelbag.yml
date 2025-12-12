@@ -46,7 +46,7 @@
       - id: MagazineShotgun
         amount: 3
       - id: MagazineShotgunSlug
-#     - id: ThermalImagingGoggles
+      - id: ClothingEyesGlassesThermalSyndie # Sunrise-edit
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

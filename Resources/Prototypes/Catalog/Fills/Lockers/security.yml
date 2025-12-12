@@ -48,6 +48,7 @@
     - id: Binoculars
     - id: WeaponEnergyShotgun
     - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
+    - id: ClothingHandsKnuckleDustersStun # Sunrise-edit
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -248,8 +249,13 @@
     children:
     - id: WeaponRifleLecter
       amount: 2
-    - id: MagazineRifleFMJ
+    - id: WeaponRifleLeikha
+    - id: MagazineRifleSP
       amount: 4
+    - id: MagazineRifleFMJ
+      amount: 2
+    - id: MagazineRifleHP
+      amount: 2
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
