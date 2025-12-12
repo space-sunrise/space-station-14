@@ -91,7 +91,7 @@
 - type: cargoProduct
   id: ServiceBureaucracy
   icon:
-    sprite: Objects/Misc/pens.rsi
+    sprite: _Sunrise/Objects/Misc/pens.rsi # Sunrise-Edit
     state: pen
   product: CrateServiceBureaucracy
   cost: 1000

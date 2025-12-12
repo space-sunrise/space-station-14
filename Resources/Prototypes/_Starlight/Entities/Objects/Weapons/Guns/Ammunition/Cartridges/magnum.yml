@@ -18,6 +18,7 @@
     tags:
       - Cartridge
       - CartridgeMagnumImprovised
+      - CartridgeMagnum
   - type: Construction
     graph: ImprovisedMagnumBulletGraph
     node: shell

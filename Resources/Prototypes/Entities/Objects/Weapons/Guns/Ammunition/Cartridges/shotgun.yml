@@ -122,10 +122,8 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
-    soundEject:
-      collection: ShellEject
-    hitscan: ShellShotgunIncendiaryTrace
+  - type: CartridgeAmmo
+    proto: PelletShotgunIncendiarySpread
 
 - type: entity
   id: ShellShotgunPractice

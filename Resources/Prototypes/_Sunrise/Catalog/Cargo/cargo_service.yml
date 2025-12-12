@@ -11,7 +11,7 @@
 - type: cargoProduct
   id: CrateServiceCopyMachineRestock
   icon:
-    sprite: Objects/Misc/pens.rsi
+    sprite: _Sunrise/Objects/Misc/pens.rsi # Sunrise-Edit
     state: pen
   product: CrateServiceCopyMachineRestock
   cost: 1000

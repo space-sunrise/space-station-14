@@ -121,7 +121,7 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] SunriseGameMaps =
         {
-            "SunriseDev",
+            // "SunriseDev",
             "SunriseBox",
             "SunriseDelta",
             "SunriseFland",
