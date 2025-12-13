@@ -685,6 +685,8 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: Item # Sunrise-Edit
     size: Small
+    shape:
+    - 0,0,2,2
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
