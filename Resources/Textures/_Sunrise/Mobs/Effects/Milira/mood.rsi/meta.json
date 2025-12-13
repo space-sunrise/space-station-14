@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "mood_bad"
+        },
+        {
+            "name": "mood_meh"
+        },
+        {
+            "name": "mood_neutral"
+        },
+        {
+            "name": "mood_good"
+        },
+        {
+            "name": "mood_great"
+        },
+        {
+            "name": "mood_dead"
+        }
+    ]
+}
