@@ -60,7 +60,7 @@ public sealed class WingToggleSystem : EntitySystem
 
         if (!component.WingsOpened)
         {
-            if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outer) && outer != null)
+            if (_inventory.TryGetSlotEntity(uid, "outerClothing", out _))
             {
                 _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), uid, uid, PopupType.Medium);
                 return false;
@@ -88,7 +88,7 @@ public sealed class WingToggleSystem : EntitySystem
             changed = true;
         }
 
-        if (!changed && openTarget != component.WingsOpened)
+        if (!changed)
             return false;
 
         component.WingsOpened = openTarget;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.ViewVariables;
@@ -48,7 +47,7 @@ public sealed partial class WingFlightComponent : Component
     /// Длительность инерции после выключения полёта.
     /// </summary>
     [DataField]
-    public TimeSpan InertiaDuration = TimeSpan.FromSeconds(2.0f);
+    public TimeSpan InertiaDuration = TimeSpan.FromSeconds(2.0);
 
     /// <summary>
     /// Активен ли полёт сейчас.

@@ -160,6 +160,9 @@ public sealed class WingFlightSystem : EntitySystem
             {
                 var current = markings[i].MarkingId;
 
+                if (string.IsNullOrEmpty(current))
+                    continue;
+
                 if (current.EndsWith(flightSuffix))
                     continue;
 

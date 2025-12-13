@@ -14,6 +14,7 @@ public sealed partial class WingToggleComponent : Component
     /// <summary>
     /// Прототип экшена, позволяющего переключать состояние крыльев.
     /// </summary>
+    [DataField]
     public EntProtoId Action = "ActionToggleWings";
 
     /// <summary>
