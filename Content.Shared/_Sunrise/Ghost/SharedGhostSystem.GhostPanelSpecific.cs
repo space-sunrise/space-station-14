@@ -50,7 +50,7 @@ public abstract partial class SharedGhostSystem
     /// <param name="AntagonistName">Название антагониста</param>
     /// <param name="AntagonistDescription">Описание антагониста</param>
     /// <param name="Priority">Приоритет отображения антагониста</param>
-    /// /// <param name="IsDead">Мертв ли антагонист?</param>
+    /// <param name="IsDead">Мертв ли антагонист?</param>
     [Serializable, NetSerializable]
     public record struct GhostWarpGlobalAntagonist(
         NetEntity Entity,
