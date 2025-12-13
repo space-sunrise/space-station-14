@@ -383,7 +383,7 @@
   # SUNRISE EDIT
 
 - type: entity
-  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityCommandContraband]
+  parent: ClothingOuterCoatCaptain # SUNRISE-EDIT
   id: ClothingOuterCoatCaptainOvercoat
   name: captain's overcoat
   description: Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
@@ -392,14 +392,14 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        Heat: 0.5
-        Caustic: 0.9
+  #- type: Armor # SUNRISE-EDIT
+  #  modifiers:
+  #    coefficients:
+  #      Blunt: 0.5
+  #      Slash: 0.5
+  #      Piercing: 0.6
+  #      Heat: 0.5
+  #      Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
