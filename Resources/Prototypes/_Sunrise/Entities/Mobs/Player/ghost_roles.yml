@@ -17,7 +17,7 @@
     pocket1: SpeedLoaderMagnumSP
     pocket2: SpeedLoaderMagnumSP
   inhand:
-  - WeaponRevolverSpearhead
+  - ClothingHandsPowerGlovesUplinkNTERTAmberLeader
   storage:
     back:
     - BoxErtLeaderKit
@@ -26,7 +26,7 @@
     - MagazineMagnum
     - Omnitool
     - Flash
-    - ClothingHandsPowerGlovesUplinkNTERTAmberLeader
+    - WeaponRevolverSpearhead
 
 - type: startingGear
   id: ERTLeaderGearRed
@@ -37,7 +37,7 @@
     head: ClothingHeadHatERTLeaderBeret
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
-    neck: ClothingNeckCloakWhite
+    neck: SecurityWhistle
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentComSunrise
@@ -98,9 +98,9 @@
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
     pocket1: SecurityWhistle
-    pocket2: ClothingHandsPowerGlovesUplinkNTERTAmber
+    pocket2: WeaponDominator
   inhand:
-  - WeaponDominator
+  - ClothingHandsPowerGlovesUplinkNTERTAmber
   storage:
     back:
     - BoxErtBaseKit
@@ -180,7 +180,7 @@
     pocket1: LanternFlash
     pocket2: DrinkWaterBottleFull
   inhand:
-  - WeaponRevolverSpearhead
+  - ClothingHandsPowerGlovesUplinkNTERTAmber
   storage:
     back:
     - BoxErtBaseKit
@@ -189,7 +189,7 @@
     - SpeedLoaderMagnumSP
     - FlippoLighterSunriseBlack
     - Candle
-    - ClothingHandsPowerGlovesUplinkNTERTAmber
+    - WeaponRevolverSpearhead
 
 # Engineer
 - type: startingGear
@@ -208,7 +208,7 @@
     pocket1: CableMVStack
     pocket2: CableHVStack
   inhand:
-  - WeaponEnergyGun
+  - ClothingHandsPowerGlovesUplinkNTERTAmber
   - RCD
   storage:
     back:
@@ -221,7 +221,6 @@
     - SheetGlass
     - SheetSteel
     - PowerCellHigh
-    - ClothingHandsPowerGlovesUplinkNTERTAmber
 
 - type: startingGear
   id: ERTEngineerGearGamma
@@ -272,7 +271,7 @@
     belt: ClothingBeltMedicalFilled
     pocket1: MedipenCombatInjector
   inhand:
-  - MedkitAdvancedFilled
+  - ClothingHandsPowerGlovesUplinkNTERTAmber
   - DefibrillatorCompact
   storage:
     back:
@@ -288,7 +287,6 @@
     - ChemistryBottleOmnizine
     - ChemistryBottleEpinephrine
     - ChemistryBottleEphedrine
-    - ClothingHandsPowerGlovesUplinkNTERTAmber
 
 - type: startingGear
   id: ERTMedicalGearGamma
@@ -345,14 +343,13 @@
     pocket2: HoloprojectorField
   inhand:
   - WeaponLauncherHydra
-  - AdvMopItem
+  - ClothingHandsPowerGlovesUplinkNTERTAmber
   storage:
     back:
     - BoxErtBaseKit
     - LightReplacer
     - BoxCleanerGrenades
     - CrowbarRed
-    - ClothingHandsPowerGlovesUplinkNTERTAmber
 
 - type: startingGear
   id: ERTJanitorGearGamma
