@@ -624,19 +624,15 @@ public sealed class FaxSystem : EntitySystem
         // Sunrise-start - For portable faxes (items), attempt to add to inventory instead of dropping to floor
         if (HasComp<ItemComponent>(uid))
         {
-            var successfullyInserted = false;
+            bool successfullyInserted = _container.TryGetContainingContainer(uid, out var parentContainer) &&
+                                        _container.Insert(printed, parentContainer);
             // 1. Try to insert into the container that holds the fax (e.g. backpack)
-            if (_container.TryGetContainingContainer(uid, out var parentContainer) &&
-                _container.Insert(printed, parentContainer))
-            {
-                successfullyInserted = true;
-            }
 
             // 2. If not suitable, try to put it in the fax's own storage (if it has one)
             if (!successfullyInserted && _container.TryGetContainer(uid, "storagebase", out var container))
             {
-               if (_container.Insert(printed, container))
-                   successfullyInserted = true;
+                if (_container.Insert(printed, container))
+                    successfullyInserted = true;
             }
 
             // 3. Fallback: If we couldn't insert it anywhere, ensure it's on the grid/map (drop it)
