@@ -7,10 +7,10 @@
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagSec
-    head: ClothingHeadEVAHelmetERTLeader
+    head: ClothingHeadEVAHelmetERTNewLeader
     eyes: ClothingEyesGlassesSecurity
     neck: SecurityWhistle
-    outerClothing: ClothingOuterArmorAmberCom
+    outerClothing: ClothingOuterArmorAmberNewCom
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
@@ -90,10 +90,10 @@
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagSec
-    head: ClothingHeadEVAHelmetERTSecurity
+    head: ClothingHeadEVAHelmetERTNewSecurity
     eyes: ClothingEyesGlassesSecurity
     neck: HandheldCamera
-    outerClothing: ClothingOuterArmorAmberSec
+    outerClothing: ClothingOuterArmorAmberNewSec
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilled
@@ -170,9 +170,8 @@
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesBootsMagSec
-    head: ClothingHeadEVAHelmetERTChaplain
+    head: ClothingHeadEVAHelmetERTNewChaplain
     eyes: ClothingEyesHudMedSec
-    neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterArmorAmberChap
     id: ERTChaplainPDA
     ears: ClothingHeadsetAltCentComSunrise
@@ -198,10 +197,10 @@
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesBootsMag
-    head: ClothingHeadEVAHelmetERTEngineer
+    head: ClothingHeadEVAHelmetERTNewEngineer
     eyes: ClothingEyesHudDiagnosticERT
     neck: HandheldCamera
-    outerClothing: ClothingOuterArmorAmberEng
+    outerClothing: ClothingOuterArmorAmberNewEng
     id: ERTEngineerPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltChiefEngineerFilled
@@ -262,10 +261,10 @@
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMagSec
-    head: ClothingHeadEVAHelmetERTMedic
+    head: ClothingHeadEVAHelmetERTNewMedic
     neck: HandheldCamera
     eyes: ClothingEyesHudMedical
-    outerClothing: ClothingOuterArmorAmberMed
+    outerClothing: ClothingOuterArmorAmberNewMed
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltMedicalFilled
@@ -332,10 +331,10 @@
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
     shoes: ClothingShoesBootsMagSci
-    head: ClothingHeadEVAHelmetERTJanitor
+    head: ClothingHeadEVAHelmetERTNewJanitor
     neck: HandheldCamera
     eyes: ClothingEyesGlassesSecurity
-    outerClothing: ClothingOuterArmorAmberJan
+    outerClothing: ClothingOuterArmorAmberNewJan
     id: ERTJanitorPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltJanitorFilled
