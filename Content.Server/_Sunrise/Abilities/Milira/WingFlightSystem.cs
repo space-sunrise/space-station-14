@@ -163,22 +163,19 @@ public sealed class WingFlightSystem : EntitySystem
                 if (current.EndsWith(flightSuffix))
                     continue;
 
-                var desired = $"{current}{flightSuffix}";
-                if (desired == current)
-                    continue;
-                if (!_prototype.HasIndex<MarkingPrototype>(desired))
+                string desired;
+                if (!string.IsNullOrEmpty(openSuffix) && current.EndsWith(openSuffix))
                 {
-                    if (!string.IsNullOrEmpty(openSuffix) && current.EndsWith(openSuffix))
-                    {
-                        var baseId = current[..^openSuffix.Length];
-                        desired = $"{baseId}{flightSuffix}";
-                        if (!_prototype.HasIndex<MarkingPrototype>(desired))
-                            continue;
-                    }
-                    else
-                    {
+                    var baseId = current[..^openSuffix.Length];
+                    desired = $"{baseId}{flightSuffix}";
+                    if (!_prototype.HasIndex<MarkingPrototype>(desired))
                         continue;
-                    }
+                }
+                else
+                {
+                    desired = $"{current}{flightSuffix}";
+                    if (desired == current || !_prototype.HasIndex<MarkingPrototype>(desired))
+                        continue;
                 }
 
                 component.OriginalMarkings[i] = current;

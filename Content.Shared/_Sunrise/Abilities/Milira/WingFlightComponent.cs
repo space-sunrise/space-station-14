@@ -23,7 +23,7 @@ public sealed partial class WingFlightComponent : Component
     /// Суффикс маркинга, используемый при активном полёте.
     /// </summary>
     [DataField]
-    public string Suffix = "FlightEnabled";
+    public string Suffix = "Flight";
 
     /// <summary>
     /// Экземпляр действия полёта на сущности.
@@ -35,7 +35,7 @@ public sealed partial class WingFlightComponent : Component
     /// Множитель скорости ходьбы и бега во время полёта.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float SpeedModifier = 1.5f;
+    public float SpeedModifier = 1.3f;
 
     /// <summary>
     /// Модификатор наземного трения при полёте и во время инерции.
@@ -109,12 +109,6 @@ public sealed partial class WingFlightComponent : Component
     /// </summary>
     [DataField]
     public float AutoDisableThreshold = 0.25f;
-
-    /// <summary>
-    /// Необязательный тег одежды, разрешающий визуал полёта при занятом слоте верхней одежды.
-    /// </summary>
-    [DataField]
-    public ProtoId<TagPrototype>? AllowedClothingTag = "WingToggleAllowed";
 
     /// <summary>
     /// Момент завершения инерции (только сервер).

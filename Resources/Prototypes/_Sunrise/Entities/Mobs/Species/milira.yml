@@ -1,0 +1,74 @@
+- type: entity
+  save: false
+  name: Urist McMilira
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobMilira
+  abstract: true
+  components:
+  - type: Interactions
+  - type: WingToggle
+  #- type: MoodVisuals
+  #  sprite: _Sunrise/Mobs/Effects/Milira/mood.rsi
+  #  moodStates:
+  - type: Hunger
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: full
+  - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: HumanoidAppearance
+    species: Milira
+  - type: Speech
+    speechVerb: Human
+  - type: Body
+    prototype: Milira
+    requiredLegs: 2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Critical
+      140: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      40: 0.7
+      55: 0.5
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+  - type: Stamina
+    critThreshold: 100 # да, так надо, потому что стамина у милир сжигается при полёте, не меняйте это
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  #- type: Damageable
+  #  damageContainer: Biological
+  #  damageModifierSet: Human
+  - type: FootprintEmitter
+  - type: Carriable
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobMiliraDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy milira meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Milira
+
