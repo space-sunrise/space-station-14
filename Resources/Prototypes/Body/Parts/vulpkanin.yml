@@ -22,7 +22,7 @@
   name: vulpkanin head
   components:
   - type: Sprite
-    state: head_m
+    state: head_m_big_muzzle # Sunrise-Edit
 
 - type: entity
   parent: [ PartVulpkanin, BaseLeftArm ]
@@ -62,7 +62,7 @@
   name: left vulpkanin leg
   components:
   - type: Sprite
-    state: l_leg
+    state: l_leg_curved # Sunrise-Edit
 
 - type: entity
   parent: [ PartVulpkanin, BaseRightLeg ]
@@ -70,7 +70,7 @@
   name: right vulpkanin leg
   components:
   - type: Sprite
-    state: r_leg
+    state: r_leg_curved # Sunrise-Edit
 
 - type: entity
   parent: [ PartVulpkanin, BaseLeftFoot ]
@@ -78,7 +78,7 @@
   name: left vulpkanin foot
   components:
   - type: Sprite
-    state: l_foot
+    state: l_foot_curved # Sunrise-Edit
 
 - type: entity
   parent: [ PartVulpkanin, BaseRightFoot ]
@@ -86,4 +86,4 @@
   name: right vulpkanin foot
   components:
   - type: Sprite
-    state: r_foot
+    state: r_foot_curved # Sunrise-Edit
