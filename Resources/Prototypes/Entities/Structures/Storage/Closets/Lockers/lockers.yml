@@ -701,3 +701,29 @@
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: representative_door
+  # Sunrise-start
+  - type: StorageFill
+    contents:
+    - id: HandheldFax
+  # Sunrise-end
+
+# Sunrise-start
+- type: entity
+  id: LockerRepresentativeEmpty
+  name: representative locker
+  parent: LockerBaseSecure
+  suffix: Empty
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+
+- type: entity
+  id: LockerRepresentativeFilled
+  parent: LockerRepresentative
+  suffix: Filled
+  # Sunrise-end
