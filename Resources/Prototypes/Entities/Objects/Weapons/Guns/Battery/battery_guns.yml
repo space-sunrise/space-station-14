@@ -683,6 +683,8 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: Item # Sunrise-Edit
+    size: Small
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
