@@ -2094,3 +2094,16 @@
       tags:
       - LoneOpsUplink
       - NukeOpsUplink
+
+- type: listing
+  id: uplinkWeaponPistolDeagleGolden
+  name: uplink-goldendeagle-name
+  description: uplink-goldendeagle-desc
+  productEntity: WeaponPistolDeagleGoldenBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkPointless

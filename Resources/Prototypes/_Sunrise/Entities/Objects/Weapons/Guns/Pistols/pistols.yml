@@ -474,3 +474,54 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  name: Golden Desert Eagle
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolDeagleGolden
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
+  - type: Gun
+    minAngle: 3.5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 10
+    fireRate: 5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: deagle
+      params:
+        volume: 100
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDeagle
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMagnum
+          - MagazineDeagle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeMagnum
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

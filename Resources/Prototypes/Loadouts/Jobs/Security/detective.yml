@@ -52,7 +52,18 @@
   id: DetectiveArmorVest
   equipment:
     outerClothing: ClothingOuterVestDetective
-
+#Sunrise-Start
+- type: loadout
+  id: DetectiveDiscoCoat
+  equipment:
+    outerClothing: ClothingOuterDiscoAssBlazerDetective
+ effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 #20 hrs
+#Sunrise-End
 - type: loadout
   id: DetectiveCoat
   equipment:
@@ -90,7 +101,6 @@
       !type:RoleTimeRequirement
       role: JobDetective
       time: 360000 #100 hrs
-
 
 #Weapons Detective
 
