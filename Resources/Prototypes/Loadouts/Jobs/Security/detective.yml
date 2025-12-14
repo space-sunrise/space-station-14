@@ -36,6 +36,15 @@
   id: DetectiveJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetective
+#Sunrise-Start
+- type: loadout
+  id: ClothingUniformJumpSuitSuperStarCop
+  equipment:
+    jumpsuit: ClothingUniformJumpSuitSuperStarCop
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+#Sunrise-End
 
 - type: loadout
   id: NoirJumpsuit
