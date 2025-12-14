@@ -164,13 +164,7 @@
   - type: StorageFill
     contents:
     - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
-    - id: MagazinePistolSubMachineGunIncendiary
+      amount: 8
   - type: Sprite
     layers:
     - state: box_of_doom_big
