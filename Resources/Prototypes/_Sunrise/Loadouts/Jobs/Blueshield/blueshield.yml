@@ -1,4 +1,13 @@
-- type: loadout
+
+- type: loadoutEffectGroup
+  id: MisterBlueShit
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 20h
+
   id: BlueShieldBackpack
   equipment:
     back: ClothingBackpackBlueShield
@@ -54,3 +63,6 @@
   sponsorOnly: true
   inhand:
   - ClothingBackpackDuffelWeaponRifleAsh12
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit
