@@ -57,7 +57,7 @@
   id: DetectiveDiscoCoat
   equipment:
     outerClothing: ClothingOuterDiscoAssBlazerDetective
- effects:
+  effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement

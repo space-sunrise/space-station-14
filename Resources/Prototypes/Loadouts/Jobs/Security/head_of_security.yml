@@ -34,7 +34,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobHeadOfSecurity
-      time: 119040 #1984 hrs
+      time: 7142400 #1984 hrs
 
 #WeaponsHos
 

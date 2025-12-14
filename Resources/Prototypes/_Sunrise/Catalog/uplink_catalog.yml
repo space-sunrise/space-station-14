@@ -2096,7 +2096,7 @@
       - NukeOpsUplink
 
 - type: listing
-  id: uplinkWeaponPistolDeagleGolden
+  id: UplinkWeaponPistolDeagleGolden
   name: uplink-goldendeagle-name
   description: uplink-goldendeagle-desc
   productEntity: WeaponPistolDeagleGoldenBiocode
