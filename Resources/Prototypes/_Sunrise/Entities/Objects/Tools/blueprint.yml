@@ -1,0 +1,83 @@
+# region Base
+- type: entity
+  parent: BaseBlueprint
+  id: BaseBlueprintSunrise
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    layers:
+      - state: icon-base
+        color: "#7da0ba"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    size: Normal
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#7da0ba"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#7da0ba"
+      - state: inhand-right-text
+  - type: Tag # defaults to autolathe-insertable
+    tags:
+    - BlueprintAutolathe
+    - Document
+    - Paper
+
+- type: entity
+  parent: BaseBlueprint
+  id: BaseBlueprintSecurity
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    layers:
+      - state: icon-base
+        color: "#d21a1a"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: FaxableObject
+  - type: Item
+    size: Normal
+    sprite: _Sunrise/Objects/Tools/blueprints.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#d21a1a"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#d21a1a"
+      - state: inhand-right-text
+
+# region security
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagAsh12Slug
+  name: ash-12 magazine (.50 slug) blueprint
+  description: A blueprint with a schematic of a ash-12 magazine with slugs. It can be inserted into an autolathe and security fabricator.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineAsh12

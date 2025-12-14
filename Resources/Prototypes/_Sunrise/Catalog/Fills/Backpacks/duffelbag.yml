@@ -254,7 +254,8 @@
     contents:
     - id: WeaponRifleAsh12
     - id: MagazineAsh12
-      amount: 5
+      amount: 3
+    - id: BlueprintMagAsh12Slug
 
 - type: entity
   id: ClothingBackpackDuffelNanotrasenMedicalBundleFilled

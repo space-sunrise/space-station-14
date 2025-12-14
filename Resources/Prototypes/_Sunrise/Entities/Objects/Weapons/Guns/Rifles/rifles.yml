@@ -824,6 +824,7 @@
   id: WeaponRifleAsh12
   components:
   - type: Sprite
+    scale: 0.8,0.8
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/big.rsi
     layers:
     - state: base
@@ -835,12 +836,12 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,4,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/tiny.rsi
   - type: Gun
     minAngle: 3
     maxAngle: 24
-    angleIncrease: 1.25
+    angleIncrease: 2
     angleDecay: 12
     fireRate: 3
     soundGunshot:
