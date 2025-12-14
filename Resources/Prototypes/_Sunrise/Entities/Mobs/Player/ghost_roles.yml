@@ -22,8 +22,8 @@
     back:
     - BoxErtLeaderKit
     - BoxZiptie
-    - MagazineMagnum
-    - MagazineMagnum
+    - SpeedLoaderMagnumSP
+    - SpeedLoaderMagnumSP
     - Omnitool
     - Flash
     - WeaponRevolverSpearhead
@@ -33,7 +33,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatERTLeaderBeret
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
@@ -61,7 +61,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatERTLeaderBeret
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
@@ -113,7 +113,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatBeretSecurity
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
@@ -139,7 +139,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatBeretSecurity
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
@@ -226,7 +226,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatBeretEngineering
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
@@ -238,7 +238,7 @@
     pocket1: CableMVStack
     pocket2: CableHVStack
   inhand:
-  - WeaponEnergyGun
+  - DoubleEmergencyOxygenTankFilled
   - RCDRecharging
   storage:
     back:
@@ -292,7 +292,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatCapCMO
     neck: HandheldCamera
     mask: ClothingMaskGasERT
@@ -355,7 +355,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagERT
     head: ClothingHeadHatBeretRND
     mask: ClothingMaskGasERT
     neck: HandheldCamera
@@ -368,7 +368,7 @@
     pocket2: HoloprojectorField
   inhand:
   - WeaponLauncherHydra
-  - AdvMopItem
+  - DoubleEmergencyOxygenTankFilled
   storage:
     back:
     - BoxErtBaseKit
