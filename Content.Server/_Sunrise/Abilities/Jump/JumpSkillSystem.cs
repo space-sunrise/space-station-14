@@ -1,14 +1,13 @@
 using Content.Server.Actions;
-using Content.Shared._Sunrise.SunriseStanding;
+using Content.Shared._Sunrise.Abilities.Jump;
 using Content.Shared._Sunrise.Abilities.Resomi;
 using Content.Shared.Throwing;
 using Content.Shared.Standing;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Sunrise.Abilities.Resomi;
+namespace Content.Server._Sunrise.Abilities.Jump;
 
-public sealed class ResomiSkillSystem : EntitySystem
+public sealed class JumpSkillSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
@@ -19,13 +18,13 @@ public sealed class ResomiSkillSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ResomiSkillComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<ResomiSkillComponent, ResomiJumpActionEvent>(OnJump);
+        SubscribeLocalEvent<JumpSkillComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<JumpSkillComponent, JumpActionEvent>(OnJump);
     }
 
-    private void OnStartup(EntityUid uid, ResomiSkillComponent component, ComponentStartup args) => _action.AddAction(uid, component.ActionJumpId);
+    private void OnStartup(EntityUid uid, JumpSkillComponent component, ComponentStartup args) => _action.AddAction(uid, component.ActionJumpId);
 
-    private void OnJump(EntityUid uid, ResomiSkillComponent component, ResomiJumpActionEvent args)
+    private void OnJump(EntityUid uid, JumpSkillComponent component, JumpActionEvent args)
     {
         if (args.Handled || _standing.IsDown(uid))
             return;
