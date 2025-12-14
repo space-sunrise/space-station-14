@@ -29009,14 +29009,6 @@ entities:
     - type: Transform
       pos: 107.65897,92.6414
       parent: 2
-- proto: Brutepack10Lingering
-  entities:
-  - uid: 1674
-    components:
-    - type: Transform
-      rot: -31.415926535897945 rad
-      pos: 71.46992,94.604095
-      parent: 2
 - proto: Bucket
   entities:
   - uid: 1675
@@ -189960,7 +189952,7 @@ entities:
     - type: Transform
       pos: 75.5,119.5
       parent: 2
-- proto: LockerBlueshieldFilledUplinkMultiphase
+- proto: TelecomServerFilledBlueShield
   entities:
   - uid: 28284
     components:
