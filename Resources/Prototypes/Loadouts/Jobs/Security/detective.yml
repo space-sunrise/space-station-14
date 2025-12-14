@@ -58,11 +58,8 @@
   equipment:
     outerClothing: ClothingOuterDiscoAssBlazerDetective
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobDetective
-      time: 72000 #20 hrs
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
 #Sunrise-End
 - type: loadout
   id: DetectiveCoat
