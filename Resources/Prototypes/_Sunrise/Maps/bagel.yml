@@ -26,7 +26,7 @@
           ComMaid: [ 1, 1 ]
           #service
           Bartender: [ 2, 2 ]
-          Botanist: [ 3, 3 ]
+          Botanist: [ 2, 2 ]
           Chef: [ 2, 2 ]
           Janitor: [ 2, 2 ]
           Chaplain: [ 1, 1 ]
