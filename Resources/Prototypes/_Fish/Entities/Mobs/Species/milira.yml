@@ -40,33 +40,26 @@
   - type: Body
     prototype: Milira
     requiredLegs: 2
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      70: Critical
-      140: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      40: 0.7
-      55: 0.5
-  - type: MeleeWeapon
-    soundHit:
-      collection: AlienClaw
-    angle: 30
-    animation: WeaponArcClaw
-    damage:
+  - type: Temperature
+    heatDamageThreshold: 313
+    coldDamageThreshold: 230
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
       types:
-        Slash: 5
+        Cold : 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 1.5 #per second, scales with temperature & other constants
   - type: Stamina
-    critThreshold: 100 # да, так надо, потому что стамина у милир сжигается при полёте, не меняйте это
+    critThreshold: 100 # не убавляйте милирам стамину в угоду баланса
   - type: Vocal
     sounds:
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: MaleHuman
-  #- type: Damageable
-  #  damageContainer: Biological
-  #  damageModifierSet: Human
+  - type: Damageable
+    damageModifierSet: Milira
   - type: FootprintEmitter
   - type: Carriable
 

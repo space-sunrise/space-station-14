@@ -7,7 +7,7 @@
   - MiliraNormal
   markingLimits: MobMiliraMarkingLimits
   dollPrototype: MobMiliraDummy
-  skinColoration: HumanToned
+  skinColoration: MiliraLightTones
   youngAge: 18
   oldAge: 30
   maxAge: 60

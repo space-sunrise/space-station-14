@@ -1,4 +1,6 @@
 using Content.Client._Fish.Mood;
+using Content.Client._Sunrise.BloodCult;
+using Content.Shared._Fish.Abilities.Milira;
 using Content.Shared._Sunrise.Mood;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
@@ -49,10 +51,21 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
             UpdateAppearance(uid, component, args.Sprite, args.Component);
     }
 
+    private bool ShouldHideMoodVisuals(EntityUid uid)
+    {
+        return HasComp<PentagramComponent>(uid) && HasComp<WingToggleComponent>(uid);
+    }
+
     private void UpdateAppearance(EntityUid uid, MoodVisualsComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
         if (!SpriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var index, false))
             return;
+
+        if (ShouldHideMoodVisuals(uid))
+        {
+            SpriteSystem.LayerSetVisible((uid, sprite), index, false);
+            return;
+        }
 
         if (!AppearanceSystem.TryGetData<MoodThreshold>(uid, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
         {
