@@ -4,7 +4,7 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Sunrise.Abilities.Milira;
+namespace Content.Shared._Fish.Abilities.Milira;
 
 /// <summary>
 /// Шейред система для полёта расы милира, оно использует другую систему для изменения масштаба крыльев, а также изменяет маркинг, и тратит стамину.

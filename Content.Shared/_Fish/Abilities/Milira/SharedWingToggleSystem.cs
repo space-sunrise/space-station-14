@@ -1,8 +1,8 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Tag;
-using Content.Shared._Sunrise.Abilities.Milira;
+using Content.Shared._Fish.Abilities.Milira;
 
-namespace Content.Shared._Sunrise.Abilities.Milira;
+namespace Content.Shared._Fish.Abilities.Milira;
 
 /// <summary>
 /// Shared система для блокировки одевания одежды при раскрытых крыльях.

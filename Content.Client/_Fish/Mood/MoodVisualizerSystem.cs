@@ -1,9 +1,9 @@
-using Content.Client._Sunrise.Mood;
+using Content.Client._Fish.Mood;
 using Content.Shared._Sunrise.Mood;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Sunrise.Mood;
+namespace Content.Client._Fish.Mood;
 
 /// <summary>
 /// This handles the display of mood effects on entities with mood component.

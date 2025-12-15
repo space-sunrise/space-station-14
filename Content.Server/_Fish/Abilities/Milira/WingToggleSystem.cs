@@ -7,11 +7,11 @@ using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Toggleable;
-using Content.Shared._Sunrise.Abilities.Milira;
+using Content.Shared._Fish.Abilities.Milira;
 using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Sunrise.Abilities.Milira;
+namespace Content.Server._Fish.Abilities.Milira;
 
 /// <summary>
 /// Система, позволяющая раскрывать и складывать крылья путём замены маркингов.

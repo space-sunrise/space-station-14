@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.ViewVariables;
 
-namespace Content.Shared._Sunrise.Abilities.Milira;
+namespace Content.Shared._Fish.Abilities.Milira;
 
 /// <summary>
 /// Компонент, позволяющий раскрывать и складывать крылья путём замены маркингов.

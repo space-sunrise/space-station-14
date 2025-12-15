@@ -1,7 +1,7 @@
 using Content.Shared._Sunrise.Mood;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 
-namespace Content.Client._Sunrise.Mood;
+namespace Content.Client._Fish.Mood;
 
 /// <summary>
 /// Sets which sprite RSI is used for displaying the mood visuals and what state to use based on the current mood threshold.
