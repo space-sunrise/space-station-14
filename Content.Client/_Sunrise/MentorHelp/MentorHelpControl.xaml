@@ -10,6 +10,7 @@
                         StyleClasses="ButtonBig" Margin="0 0 10 0"/>
                 <Button Name="StatisticsButton" Access="Public" Text="{Loc 'mentor-help-statistics'}"
                         StyleClasses="ButtonBig" Visible="False" Margin="0 0 10 0" />
+                <CheckBox Name="AutoOpenTickets" Access="Public" Text="{Loc 'mentor-help-auto-open-tickets'}" ToolTip="{Loc 'mentor-help-auto-open-tickets-tooltip'}" HorizontalAlignment="Right" Margin="0 0 10 0"/>
                 <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'help-kwoink-play-sound'}" Pressed="True" HorizontalAlignment="Right"/>
                 <Control HorizontalExpand="True" />
                 <Button Name="BackToListButton" Access="Public" Text="{Loc 'mentor-help-back-to-list'}"

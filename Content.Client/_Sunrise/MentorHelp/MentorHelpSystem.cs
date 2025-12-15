@@ -17,6 +17,7 @@ namespace Content.Client._Sunrise.MentorHelp
         public event EventHandler<MentorHelpTicketMessagesMessage>? OnTicketMessagesReceived;
         public event EventHandler<MentorHelpStatisticsMessage>? OnStatisticsReceived;
         public event EventHandler<MentorHelpOpenTicketMessage>? OnOpenTicketReceived;
+        public event EventHandler<MentorHelpPlayerTypingUpdated>? OnPlayerTypingUpdated;
         private (TimeSpan Timestamp, bool Typing) _lastTypingUpdateSent;
 
 
@@ -64,11 +65,17 @@ namespace Content.Client._Sunrise.MentorHelp
             SubscribeNetworkEvent<MentorHelpTicketMessagesMessage>(OnTicketMessages);
             SubscribeNetworkEvent<MentorHelpStatisticsMessage>(OnStatistics);
             SubscribeNetworkEvent<MentorHelpOpenTicketMessage>(OnOpenTicket);
+            SubscribeNetworkEvent<MentorHelpPlayerTypingUpdated>(OnTypingUpdated);
         }
 
         private void OnOpenTicket(MentorHelpOpenTicketMessage message, EntitySessionEventArgs eventArgs)
         {
             OnOpenTicketReceived?.Invoke(this, message);
+        }
+
+        private void OnTypingUpdated(MentorHelpPlayerTypingUpdated message, EntitySessionEventArgs eventArgs)
+        {
+            OnPlayerTypingUpdated?.Invoke(this, message);
         }
 
         private void OnTicketUpdate(MentorHelpTicketUpdateMessage message, EntitySessionEventArgs eventArgs)

@@ -1,9 +1,9 @@
 ui-lobby-mhelp-button = MHelp
-ui-options-function-open-mentor-help = Открыть ментор помощь
+ui-options-function-open-mentor-help = Открыть Ментор помощь - Xevro 2000
 ui-options-function-open-help-choice = Открыть выбор помощи
 
 # Mentor Help Window
-mentor-help-window-title = Ментор помощь
+mentor-help-window-title = Ментор помощь - Xevro 2000
 
 # Tabs
 mentor-help-tab-open = Открытые
@@ -12,13 +12,18 @@ mentor-help-tab-closed = Закрытые
 # Buttons
 mentor-help-statistics = Статистика
 mentor-help-new-ticket = Новый тикет
-mentor-help-back-to-list = Назад к списку
+mentor-help-back-to-list = Назад
 mentor-help-send-reply = Отправить
 mentor-help-claim = Взять
 mentor-help-unassign = Освободить
 mentor-help-close-ticket = Закрыть
+mentor-help-close-confirm = Вы уверены?
 mentor-help-cancel = Отмена
 mentor-help-close = Закрыть
+mentor-help-auto-open-tickets = Авто-открытие
+mentor-help-auto-open-tickets-tooltip = Автоматически открывать тикет при новых сообщениях
+mentor-help-ticket-activity-unread = Новое сообщение
+mentor-help-ticket-activity-author = Игрок написал
 
 # Table columns
 mentor-help-column-id = ID

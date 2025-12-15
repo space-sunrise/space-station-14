@@ -122,14 +122,13 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 _sawmill.Info($"Player {session.Name} ({session.UserId}) created mentor help ticket #{ticket.Id}: {ticket.Subject}");
 
-                // Notify player
                 var ticketData = await ConvertToTicketDataAsync(ticket);
-                RaiseNetworkEvent(new MentorHelpTicketUpdateMessage(ticketData), session.Channel);
+                await NotifyTicketUpdate(ticketData);
                 // Instruct the player's client to open the newly created ticket
                 RaiseNetworkEvent(new MentorHelpOpenTicketMessage(ticket.Id), session.Channel);
 
-                // Notify mentors/admins
-                await NotifyMentorsOfNewTicket(ticketData);
+                var messageData = await ConvertToMessageDataAsync(ticketMessage);
+                await NotifyTicketMessage(ticketData, messageData);
             }
             catch (Exception ex)
             {
@@ -160,6 +159,11 @@ namespace Content.Server._Sunrise.MentorHelp
                 if (ticket.Status == MentorHelpTicketStatus.Closed)
                 {
                     _sawmill.Warning($"Mentor {session.Name} ({session.UserId}) tried to claim closed ticket #{message.TicketId}");
+                    return;
+                }
+
+                if (ticket.AssignedToUserId.HasValue && ticket.AssignedToUserId.Value != session.UserId.UserId)
+                {
                     return;
                 }
 
@@ -267,6 +271,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 // Notify relevant parties
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 var messageData = await ConvertToMessageDataAsync(ticketMessage);
+                await NotifyTicketUpdate(ticketData);
                 await NotifyTicketMessage(ticketData, messageData);
 
                 if (hasMentorPerms)
@@ -305,7 +310,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 }
 
                 // Check permissions - player can close their own ticket, mentors/admins can close any
-                var isTicketOwner = ticket.PlayerId == session.UserId;
+                var isTicketOwner = ticket.PlayerId == session.UserId.UserId;
                 var hasMentorPerms = HasMentorPermissions(session);
 
                 if (!isTicketOwner && !hasMentorPerms)
@@ -491,10 +496,29 @@ namespace Content.Server._Sunrise.MentorHelp
 
             try
             {
+                var ticket = await _dbManager.GetMentorHelpTicketAsync(message.TicketId);
+                if (ticket == null)
+                {
+                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to request messages for non-existent ticket #{message.TicketId}");
+                    return;
+                }
+
+                var hasMentorPerms = HasMentorPermissions(session);
+                var isTicketOwner = ticket.PlayerId == session.UserId.UserId;
+
+                if (!hasMentorPerms && !isTicketOwner)
+                {
+                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to request messages for ticket #{message.TicketId} without permissions");
+                    return;
+                }
+
                 var allMessages = await _dbManager.GetMentorHelpMessagesByTicketAsync(message.TicketId);
                 var messageDatas = new List<MentorHelpMessageData>();
                 foreach (var msg in allMessages.OrderBy(m => m.SentAt))
                 {
+                    if (!hasMentorPerms && msg.IsStaffOnly)
+                        continue;
+
                     messageDatas.Add(await ConvertToMessageDataAsync(msg));
                 }
 
@@ -606,15 +630,6 @@ namespace Content.Server._Sunrise.MentorHelp
             return name;
         }
 
-        private async Task NotifyMentorsOfNewTicket(MentorHelpTicketData ticketData)
-        {
-            var mentors = GetTargetMentors();
-            foreach (var mentor in mentors)
-            {
-                RaiseNetworkEvent(new MentorHelpTicketUpdateMessage(ticketData), mentor);
-            }
-        }
-
         private async Task NotifyTicketUpdate(MentorHelpTicketData ticketData)
         {
             // Notify the player
@@ -670,7 +685,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 return;
 
             var update = new MentorHelpPlayerTypingUpdated(msg.TicketId, session.UserId, session.Name, msg.Typing);
-            var recipients = new List<INetChannel>();
+            var recipients = new HashSet<INetChannel>();
 
             if (_playerManager.TryGetSessionById(new NetUserId(ticket.PlayerId), out var authorSession))
             {
@@ -690,4 +705,3 @@ namespace Content.Server._Sunrise.MentorHelp
         }
     }
 }
-

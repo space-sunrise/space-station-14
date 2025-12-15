@@ -5,6 +5,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
+using Robust.Shared.Localization;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -13,8 +14,20 @@ namespace Content.Client._Sunrise.MentorHelp
     {
         private static readonly Color NormalColor = Color.FromHex("#202023");
         private static readonly Color HoverColor = Color.FromHex("#2F2F33");
+        private static readonly Color UnreadColor = Color.FromHex("#4A1F1F");
+        private static readonly Color UnreadHoverColor = Color.FromHex("#5A2626");
+        private static readonly Color AuthorUnreadColor = Color.FromHex("#17395C");
+        private static readonly Color AuthorUnreadHoverColor = Color.FromHex("#1B4470");
+        private static readonly Color UnassignedColor = Color.FromHex("#1E3A1E");
+        private static readonly Color UnassignedHoverColor = Color.FromHex("#274B27");
+        private static readonly Color ClosedColor = Color.FromHex("#3B0F0F");
+        private static readonly Color ClosedHoverColor = Color.FromHex("#4A1414");
+        private static readonly Color AwaitingColor = Color.FromHex("#3A2F12");
+        private static readonly Color AwaitingHoverColor = Color.FromHex("#4A3B17");
 
         private MentorHelpTicketData? _ticketData;
+        private bool _newMessageFromAuthor;
+        private bool _isHovering;
 
         public event Action<MentorHelpTicketData>? OnTicketSelected;
 
@@ -30,14 +43,14 @@ namespace Content.Client._Sunrise.MentorHelp
 
             BackgroundColorPanel.OnMouseEntered += args =>
             {
-                var panel = (StyleBoxFlat)BackgroundColorPanel.PanelOverride!;
-                panel.BackgroundColor = HoverColor;
+                _isHovering = true;
+                UpdateBackgroundColor();
             };
 
             BackgroundColorPanel.OnMouseExited += args =>
             {
-                var panel = (StyleBoxFlat)BackgroundColorPanel.PanelOverride!;
-                panel.BackgroundColor = NormalColor;
+                _isHovering = false;
+                UpdateBackgroundColor();
             };
 
             BackgroundColorPanel.OnKeyBindDown += args =>
@@ -57,15 +70,77 @@ namespace Content.Client._Sunrise.MentorHelp
             IdLabel.Text = $"#{ticketData.Id}";
             PlayerLabel.Text = ticketData.PlayerName;
 
-            var statusText = GetStatusText(ticketData.Status);
-            StatusLabel.Text = statusText;
-
             AssignedLabel.Text = ticketData.AssignedToName ?? Loc.GetString("mentor-help-unassigned");
+            AssignedLabel.FontColorOverride = ticketData.AssignedToUserId == null
+                && ticketData.Status != MentorHelpTicketStatus.Closed
+                ? Color.FromHex("#7CFF7C")
+                : null;
 
-            var subjectText = ticketData.Subject;
-            if (ticketData.HasUnreadMessages)
-                subjectText = "* " + subjectText;
-            SubjectLabel.Text = subjectText;
+            SubjectLabel.Text = ticketData.Subject;
+            UpdateStatusLabel();
+            UpdateBackgroundColor();
+        }
+
+        public void SetNewMessageFromAuthor(bool newMessageFromAuthor)
+        {
+            if (_newMessageFromAuthor == newMessageFromAuthor)
+                return;
+
+            _newMessageFromAuthor = newMessageFromAuthor;
+            UpdateStatusLabel();
+            UpdateBackgroundColor();
+        }
+
+        private void UpdateStatusLabel()
+        {
+            if (_ticketData == null)
+                return;
+
+            var statusText = GetStatusText(_ticketData.Status);
+            if (_ticketData.HasUnreadMessages && _newMessageFromAuthor)
+                statusText = $"{statusText} • {Loc.GetString("mentor-help-ticket-activity-author")}";
+            else if (_ticketData.HasUnreadMessages)
+                statusText = $"{statusText} • {Loc.GetString("mentor-help-ticket-activity-unread")}";
+
+            StatusLabel.Text = statusText;
+        }
+
+        private void UpdateBackgroundColor()
+        {
+            if (BackgroundColorPanel.PanelOverride is not StyleBoxFlat panel || _ticketData == null)
+                return;
+
+            var isUnread = _ticketData.HasUnreadMessages;
+            var isAuthorUnread = isUnread && _newMessageFromAuthor;
+            var isUnassigned = !isUnread && _ticketData.AssignedToUserId == null;
+            var isClosed = _ticketData.Status == MentorHelpTicketStatus.Closed;
+            var isAwaiting = _ticketData.Status == MentorHelpTicketStatus.AwaitingResponse;
+
+            var normal = isClosed
+                ? ClosedColor
+                : isAwaiting
+                    ? AwaitingColor
+                    : isAuthorUnread
+                        ? AuthorUnreadColor
+                        : isUnread
+                            ? UnreadColor
+                            : isUnassigned
+                                ? UnassignedColor
+                                : NormalColor;
+
+            var hover = isClosed
+                ? ClosedHoverColor
+                : isAwaiting
+                    ? AwaitingHoverColor
+                    : isAuthorUnread
+                        ? AuthorUnreadHoverColor
+                        : isUnread
+                            ? UnreadHoverColor
+                            : isUnassigned
+                                ? UnassignedHoverColor
+                                : HoverColor;
+
+            panel.BackgroundColor = _isHovering ? hover : normal;
         }
 
         private string GetStatusText(MentorHelpTicketStatus status)

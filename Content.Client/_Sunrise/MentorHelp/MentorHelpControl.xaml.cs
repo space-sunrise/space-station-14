@@ -14,6 +14,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Utility;
+using Content.Client.Stylesheets;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -24,7 +25,6 @@ namespace Content.Client._Sunrise.MentorHelp
     public sealed partial class MentorHelpControl : Control
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
 
         private MentorHelpSystem? _mentorHelpSystem;
@@ -33,6 +33,7 @@ namespace Content.Client._Sunrise.MentorHelp
         private List<MentorHelpTicketData> _tickets = new();
         private MentorHelpTicketData? _selectedTicket;
         private Dictionary<int, List<MentorHelpMessageData>> _ticketMessages = new();
+        private readonly HashSet<int> _newMessageFromAuthorTickets = new();
 
         private readonly Dictionary<int, TicketEntryControl> _openTicketControls = new();
         private readonly Dictionary<int, TicketEntryControl> _closedTicketControls = new();
@@ -48,16 +49,25 @@ namespace Content.Client._Sunrise.MentorHelp
         private List<string> PeopleTyping { get; set; } = new();
         public event Action<string>? InputTextChanged;
 
+        private bool _closeConfirming;
+        private int? _closeConfirmTicketId;
+
         public MentorHelpControl()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
             PlaySound.Pressed = _config.GetCVar(SunriseCCVars.MentorHelpSoundEnabled);
+            AutoOpenTickets.Pressed = _config.GetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage);
 
             PlaySound.OnToggled += args =>
             {
                 _config.SetCVar(SunriseCCVars.MentorHelpSoundEnabled, args.Pressed);
+            };
+
+            AutoOpenTickets.OnToggled += args =>
+            {
+                _config.SetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, args.Pressed);
             };
 
             // Wire up button events
@@ -143,6 +153,14 @@ namespace Content.Client._Sunrise.MentorHelp
         // State switching like in LobbyGui
         private void SwitchState(ViewState state)
         {
+            if (state == ViewState.TicketsList && _selectedTicket != null)
+            {
+                _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, false);
+                PeopleTyping.Clear();
+                UpdateTypingIndicator();
+                ResetCloseConfirm();
+            }
+
             DefaultState.Visible = false;
             TicketViewState.Visible = false;
             BackToListButton.Visible = false;
@@ -221,11 +239,13 @@ namespace Content.Client._Sunrise.MentorHelp
                 if (controls.TryGetValue(ticket.Id, out var existingControl))
                 {
                     existingControl.UpdateData(ticket);
+                    existingControl.SetNewMessageFromAuthor(_newMessageFromAuthorTickets.Contains(ticket.Id));
                 }
                 else
                 {
                     var control = new TicketEntryControl();
                     control.UpdateData(ticket);
+                    control.SetNewMessageFromAuthor(_newMessageFromAuthorTickets.Contains(ticket.Id));
                     control.OnTicketSelected += OnTicketSelected;
                     controls[ticket.Id] = control;
                     container.AddChild(control);
@@ -235,7 +255,20 @@ namespace Content.Client._Sunrise.MentorHelp
 
         private void OnTicketSelected(MentorHelpTicketData ticket)
         {
+            if (_selectedTicket != null)
+            {
+                _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, false);
+            }
+
             _selectedTicket = ticket;
+            PeopleTyping.Clear();
+            UpdateTypingIndicator();
+            ReplyInput.Text = string.Empty;
+            ResetCloseConfirm();
+
+            _newMessageFromAuthorTickets.Remove(ticket.Id);
+            ticket.HasUnreadMessages = false;
+            UpdateTicket(ticket);
             SwitchState(ViewState.TicketView);
 
             // Clear previous messages first
@@ -248,6 +281,41 @@ namespace Content.Client._Sunrise.MentorHelp
         public void UpdateTicketMessages(int ticketId, List<MentorHelpMessageData> messages)
         {
             _ticketMessages[ticketId] = messages;
+
+            var ticketIndex = _tickets.FindIndex(t => t.Id == ticketId);
+            if (ticketIndex >= 0 && messages.Count > 0)
+            {
+                var ticket = _tickets[ticketIndex];
+                var lastMessage = messages[^1];
+
+                if (ticket.UpdatedAt < lastMessage.SentAt)
+                    ticket.UpdatedAt = lastMessage.SentAt;
+
+                var isViewingTicket = _selectedTicket?.Id == ticketId && TicketViewState.Visible;
+
+                var isRelevant = !_hasMentorPermissions
+                    ? ticket.PlayerId == _ownerUserId
+                    : ticket.AssignedToUserId == null || ticket.AssignedToUserId == _ownerUserId;
+
+                if (isRelevant)
+                {
+                    var unread = !isViewingTicket && lastMessage.SenderUserId != _ownerUserId;
+                    ticket.HasUnreadMessages = unread;
+
+                    if (_hasMentorPermissions && unread && lastMessage.SenderUserId == ticket.PlayerId)
+                        _newMessageFromAuthorTickets.Add(ticketId);
+                    else
+                        _newMessageFromAuthorTickets.Remove(ticketId);
+                }
+                else
+                {
+                    ticket.HasUnreadMessages = false;
+                    _newMessageFromAuthorTickets.Remove(ticketId);
+                }
+
+                _tickets[ticketIndex] = ticket;
+                RefreshTicketsList();
+            }
 
             if (_selectedTicket?.Id == ticketId && TicketViewState.Visible)
             {
@@ -321,13 +389,17 @@ namespace Content.Client._Sunrise.MentorHelp
             var canReply = _selectedTicket.Status != MentorHelpTicketStatus.Closed;
             var isAssignedToMe = _selectedTicket.AssignedToUserId == _ownerUserId;
             var isOpen = _selectedTicket.Status != MentorHelpTicketStatus.Closed;
+            var isUnassigned = _selectedTicket.AssignedToUserId == null;
 
             // Hide reply panel for closed tickets
             ReplyPanel.Visible = canReply;
 
+            if (!isOpen)
+                ResetCloseConfirm();
+
             if (_hasMentorPermissions)
             {
-                ClaimButton.Visible = isOpen && !isAssignedToMe;
+                ClaimButton.Visible = isOpen && isUnassigned;
                 UnassignButton.Visible = isOpen && isAssignedToMe;
                 CloseTicketButton.Visible = isOpen;
             }
@@ -337,6 +409,14 @@ namespace Content.Client._Sunrise.MentorHelp
                 UnassignButton.Visible = false;
                 CloseTicketButton.Visible = isOpen; // Players can close their own tickets
             }
+        }
+
+        private void ResetCloseConfirm()
+        {
+            _closeConfirming = false;
+            _closeConfirmTicketId = null;
+            CloseTicketButton.Text = Loc.GetString("mentor-help-close-ticket");
+            CloseTicketButton.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
         }
 
         private string GetStatusText(MentorHelpTicketStatus status)
@@ -457,6 +537,26 @@ namespace Content.Client._Sunrise.MentorHelp
             if (_selectedTicket == null)
                 return;
 
+            if (!_closeConfirming || _closeConfirmTicketId != _selectedTicket.Id)
+            {
+                _closeConfirming = true;
+                _closeConfirmTicketId = _selectedTicket.Id;
+                CloseTicketButton.Text = Loc.GetString("mentor-help-close-confirm");
+                CloseTicketButton.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
+
+                Timer.Spawn(TimeSpan.FromSeconds(2), () =>
+                {
+                    if (Disposed)
+                        return;
+
+                    if (_closeConfirming && _closeConfirmTicketId == _selectedTicket?.Id)
+                        ResetCloseConfirm();
+                });
+
+                return;
+            }
+
+            ResetCloseConfirm();
             _mentorHelpSystem?.CloseTicket(_selectedTicket.Id);
         }
 
@@ -477,8 +577,11 @@ namespace Content.Client._Sunrise.MentorHelp
             TypingIndicator.SetMessage(msg);
         }
 
-        public void UpdatePlayerTyping(string name, bool typing)
+        public void UpdatePlayerTyping(int ticketId, string name, bool typing)
         {
+            if (_selectedTicket?.Id != ticketId || !TicketViewState.Visible)
+                return;
+
             if (typing)
             {
                 if (PeopleTyping.Contains(name))
@@ -505,6 +608,11 @@ namespace Content.Client._Sunrise.MentorHelp
         private void Input_OnTextChanged(LineEdit.LineEditEventArgs args)
         {
             InputTextChanged?.Invoke(args.Text);
+
+            if (_selectedTicket == null)
+                return;
+
+            _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, args.Text.Length > 0);
         }
     }
 }

@@ -33,13 +33,14 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MentorHelpSystem? _mentorHelpSystem;
     public IMentorHelpUIHandler? UIHelper;
-    private bool _hasMentorPermissions;
-    private bool _hasUnreadTickets;
+    private readonly HashSet<int> _unreadTicketIds = new();
+
+    // Последнее состояние тикетов. Нужны для фильтрации "моих" тикетов и авто-открытия.
+    private readonly Dictionary<int, MentorHelpTicketData> _ticketDataById = new();
     private bool _mentorHelpSoundEnabled;
     public static readonly SoundSpecifier? MentorHelpSound =
         new SoundPathSpecifier("/Audio/_Sunrise/Effects/adminticketopen.ogg");
@@ -64,6 +65,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         _mentorHelpSystem.OnTicketsListReceived += OnTicketsListReceived;
         _mentorHelpSystem.OnTicketMessagesReceived += OnTicketMessagesReceived;
         _mentorHelpSystem.OnOpenTicketReceived += OnOpenTicketReceived;
+        _mentorHelpSystem.OnPlayerTypingUpdated += OnPlayerTypingUpdated;
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenMentorHelp,
@@ -100,6 +102,8 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
             _mentorHelpSystem.OnTicketUpdated -= OnTicketUpdated;
             _mentorHelpSystem.OnTicketsListReceived -= OnTicketsListReceived;
             _mentorHelpSystem.OnTicketMessagesReceived -= OnTicketMessagesReceived;
+            _mentorHelpSystem.OnOpenTicketReceived -= OnOpenTicketReceived;
+            _mentorHelpSystem.OnPlayerTypingUpdated -= OnPlayerTypingUpdated;
             _mentorHelpSystem = null;
         }
 
@@ -112,33 +116,36 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     public void OnStateEntered(GameplayState state)
     {
-        EnsureUIHelper();
-        SubscribeToButtons();
+        if (GameMHelpButton != null)
+        {
+            GameMHelpButton.OnPressed -= MHelpButtonPressed;
+            GameMHelpButton.OnPressed += MHelpButtonPressed;
+            GameMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
+            UpdateButtonStyling();
+        }
     }
 
     public void OnStateExited(GameplayState state)
     {
-        // Keep UI helper for potential return to game
+        if (GameMHelpButton != null)
+            GameMHelpButton.OnPressed -= MHelpButtonPressed;
     }
 
     public void OnStateEntered(LobbyState state)
     {
-        EnsureUIHelper();
-        SubscribeToButtons();
+        if (LobbyMHelpButton != null)
+        {
+            LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
+            LobbyMHelpButton.OnPressed += MHelpButtonPressed;
+            LobbyMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
+            UpdateButtonStyling();
+        }
     }
 
     public void OnStateExited(LobbyState state)
     {
-        // Keep UI helper for potential return to lobby
-    }
-
-    private void SubscribeToButtons()
-    {
-        if (GameMHelpButton != null)
-            GameMHelpButton.OnPressed += MHelpButtonPressed;
-
         if (LobbyMHelpButton != null)
-            LobbyMHelpButton.OnPressed += MHelpButtonPressed;
+            LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
     }
 
     private void MHelpButtonPressed(BaseButton.ButtonEventArgs obj)
@@ -148,8 +155,6 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     private void OnAdminStatusUpdated()
     {
-        _hasMentorPermissions = _adminManager.HasFlag(AdminFlags.Mentor);
-
         if (UIHelper is not { IsOpen: true })
             return;
 
@@ -166,13 +171,11 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         EnsureUIHelper();
 
-        if (!UIHelper!.IsOpen)
-        {
-            UnreadTicketReceived();
-        }
-
-
-        UIHelper.TicketUpdated(message.Ticket);
+        _ticketDataById[message.Ticket.Id] = message.Ticket;
+        if (!IsRelevantTicket(message.Ticket.Id))
+            _unreadTicketIds.Remove(message.Ticket.Id);
+        UpdateButtonStyling();
+        UIHelper!.TicketUpdated(message.Ticket);
 
         if (UIHelper.IsOpen && UIHelper.CurrentTicketId == message.Ticket.Id)
         {
@@ -183,13 +186,40 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     private void OnTicketsListReceived(object? sender, MentorHelpTicketsListMessage message)
     {
         EnsureUIHelper();
+        foreach (var ticket in message.Tickets)
+        {
+            _ticketDataById[ticket.Id] = ticket;
+            if (!IsRelevantTicket(ticket.Id))
+                _unreadTicketIds.Remove(ticket.Id);
+        }
+        UpdateButtonStyling();
         UIHelper!.TicketsListReceived(message.Tickets);
     }
 
     private void OnTicketMessagesReceived(object? sender, MentorHelpTicketMessagesMessage message)
     {
         EnsureUIHelper();
+
+        UpdateUnreadTickets(message.TicketId, message.Messages);
+
+        var autoOpen = _config.GetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage);
+        var shouldAutoOpen = autoOpen && ShouldAutoOpenTicket(message.TicketId, message.Messages);
+
+        if (shouldAutoOpen && UIHelper is { IsOpen: true } helper && helper.CurrentTicketId != message.TicketId)
+        {
+            helper.OpenTicket(message.TicketId);
+        }
+        else if (shouldAutoOpen && UIHelper is { IsOpen: false } closedHelper)
+        {
+            closedHelper.OpenTicket(message.TicketId);
+        }
+
         UIHelper!.TicketMessagesReceived(message.TicketId, message.Messages);
+    }
+
+    private void OnPlayerTypingUpdated(object? sender, MentorHelpPlayerTypingUpdated message)
+    {
+        UIHelper?.PlayerTypingUpdated(message.TicketId, message.PlayerName, message.Typing);
     }
 
     public void EnsureUIHelper()
@@ -200,7 +230,11 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
             return;
 
         UIHelper?.Dispose();
-        var ownerUserId = _playerManager.LocalUser!.Value;
+        var localUser = _playerManager.LocalUser;
+        if (localUser == null)
+            return;
+
+        var ownerUserId = localUser.Value;
 
         UIHelper = hasMentorPerms
             ? new MentorMentorHelpUIHandler(ownerUserId, _mentorHelpSystem)
@@ -214,7 +248,13 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     /// </summary>
     public void Open()
     {
+        if (_playerManager.LocalUser == null)
+            return;
+
         EnsureUIHelper();
+        if (UIHelper == null)
+            return;
+
         UIHelper!.OpenWindow();
         SetMentorHelpPressed(true);
     }
@@ -231,7 +271,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     private void SetMentorHelpPressed(bool pressed)
     {
         UIManager.ClickSound();
-        UnreadTicketRead();
+        UnreadTicketsRead();
 
         if (GameMHelpButton != null)
         {
@@ -244,21 +284,88 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         }
     }
 
-    private void UnreadTicketReceived()
+    private void UnreadTicketsRead()
     {
-        _hasUnreadTickets = true;
+        _unreadTicketIds.Clear();
         UpdateButtonStyling();
     }
 
-    private void UnreadTicketRead()
+    private void UpdateUnreadTickets(int ticketId, List<MentorHelpMessageData> messages)
     {
-        _hasUnreadTickets = false;
+        var localUser = _playerManager.LocalUser;
+        if (localUser == null)
+            return;
+
+        if (!IsRelevantTicket(ticketId))
+        {
+            _unreadTicketIds.Remove(ticketId);
+            UpdateButtonStyling();
+            return;
+        }
+
+        if (messages.Count == 0)
+        {
+            _unreadTicketIds.Remove(ticketId);
+            UpdateButtonStyling();
+            return;
+        }
+
+        var lastMessage = messages[^1];
+        var isIncoming = lastMessage.SenderUserId != localUser.Value;
+        var isViewingTicket = UIHelper is { IsOpen: true } helper && helper.CurrentTicketId == ticketId;
+        var unread = isIncoming && !isViewingTicket;
+
+        if (unread)
+            _unreadTicketIds.Add(ticketId);
+        else
+            _unreadTicketIds.Remove(ticketId);
+
         UpdateButtonStyling();
+    }
+
+    private bool IsRelevantTicket(int ticketId)
+    {
+        var localUser = _playerManager.LocalUser;
+        if (localUser == null || !_ticketDataById.TryGetValue(ticketId, out var ticket))
+            return false;
+
+        var localId = localUser.Value;
+        var isMentor = _adminManager.HasFlag(AdminFlags.Mentor);
+
+        if (isMentor)
+            return ticket.AssignedToUserId == null || ticket.AssignedToUserId == localId;
+
+        return ticket.PlayerId == localId;
+    }
+
+    private bool ShouldAutoOpenTicket(int ticketId, List<MentorHelpMessageData> messages)
+    {
+        var localUser = _playerManager.LocalUser;
+        if (localUser == null || !_ticketDataById.TryGetValue(ticketId, out var ticket))
+            return false;
+
+        var localId = localUser.Value;
+        var isOwner = ticket.PlayerId == localId;
+        var isAssignedToMe = ticket.AssignedToUserId == localId;
+
+        // Авто-открытие только у автора тикета и назначенного ментора
+        if (!isOwner && !isAssignedToMe)
+            return false;
+
+        if (messages.Count == 0)
+            return false;
+
+        var lastMessage = messages[^1];
+        return lastMessage.SenderUserId != localId;
     }
 
     private void UpdateButtonStyling()
     {
-        if (_hasUnreadTickets)
+        var unreadCount = _unreadTicketIds.Count;
+        var hasUnread = unreadCount > 0;
+        var displayCount = unreadCount;
+
+        if (hasUnread)
         {
             GameMHelpButton?.StyleClasses.Add(MenuButton.StyleClassRedTopButton);
             LobbyMHelpButton?.StyleClasses.Add("ButtonColorRed");
@@ -267,6 +374,18 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         {
             GameMHelpButton?.StyleClasses.Remove(MenuButton.StyleClassRedTopButton);
             LobbyMHelpButton?.StyleClasses.Remove("ButtonColorRed");
+        }
+
+        if (LobbyMHelpButton != null)
+        {
+            var baseText = Loc.GetString("ui-lobby-mhelp-button");
+            LobbyMHelpButton.Text = displayCount > 0 ? $"{baseText} ({displayCount})" : baseText;
+        }
+
+        if (GameMHelpButton != null)
+        {
+            var baseTooltip = Loc.GetString("ui-options-function-open-mentor-help");
+            GameMHelpButton.ToolTip = displayCount > 0 ? $"{baseTooltip} ({displayCount})" : baseTooltip;
         }
     }
 }
@@ -287,6 +406,7 @@ public interface IMentorHelpUIHandler : IDisposable
     void TicketUpdated(MentorHelpTicketData ticket);
     void TicketsListReceived(List<MentorHelpTicketData> tickets);
     void TicketMessagesReceived(int ticketId, List<MentorHelpMessageData> messages);
+    void PlayerTypingUpdated(int ticketId, string playerName, bool typing);
 }
 
 public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
@@ -361,6 +481,12 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
     public void TicketMessagesReceived(int ticketId, List<MentorHelpMessageData> messages)
     {
         _window?.MentorHelp.UpdateTicketMessages(ticketId, messages);
+    }
+
+    // Обновление статуса печати, все еще печатает ли игрок
+    public void PlayerTypingUpdated(int ticketId, string playerName, bool typing)
+    {
+        _window?.MentorHelp.UpdatePlayerTyping(ticketId, playerName, typing);
     }
 
     public void Dispose()
@@ -441,6 +567,12 @@ public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
     public void TicketMessagesReceived(int ticketId, List<MentorHelpMessageData> messages)
     {
         _window?.MentorHelp.UpdateTicketMessages(ticketId, messages);
+    }
+
+    // Обновление статуса печати, все еще печатает ли ментор
+    public void PlayerTypingUpdated(int ticketId, string playerName, bool typing)
+    {
+        _window?.MentorHelp.UpdatePlayerTyping(ticketId, playerName, typing);
     }
 
     public void Dispose()
