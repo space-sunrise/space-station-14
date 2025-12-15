@@ -248,13 +248,13 @@
   id: ClothingBackpackDuffelWeaponRifleAsh12
   parent: ClothingBackpackDuffelMilitary
   name: Bundle ASH-12
-  description: ASH-12 with 3 magazines and a blueprint.
+  description: ASH-12 with 5 magazines and a blueprint.
   components:
   - type: StorageFill
     contents:
     - id: WeaponRifleAsh12
     - id: MagazineAsh12
-      amount: 3
+      amount: 5
     - id: BlueprintMagAsh12Slug
 
 - type: entity
