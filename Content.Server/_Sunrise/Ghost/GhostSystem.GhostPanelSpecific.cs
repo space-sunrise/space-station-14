@@ -106,7 +106,10 @@ public sealed partial class GhostSystem
         var query = AllEntityQuery<GhostPanelAntagonistMarkerComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var component, out var meta))
         {
-            var IsDead = _mobState.IsDead(uid);
+            if (!component.Enabled)
+                continue;
+
+            var isDead = _mobState.IsDead(uid);
 
             var warp = new GhostWarpGlobalAntagonist(
                 GetNetEntity(uid),
@@ -114,7 +117,7 @@ public sealed partial class GhostSystem
                 component.Name,
                 component.Description,
                 component.Priority,
-                IsDead
+                isDead
             );
 
             yield return warp;
