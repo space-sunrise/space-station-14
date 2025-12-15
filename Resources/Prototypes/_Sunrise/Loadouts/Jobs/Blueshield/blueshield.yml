@@ -8,6 +8,7 @@
       role: JobBlueShield
       time: 20h
 
+- type: loadout
   id: BlueShieldBackpack
   equipment:
     back: ClothingBackpackBlueShield
