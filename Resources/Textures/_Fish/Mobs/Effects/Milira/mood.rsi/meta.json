@@ -8,22 +8,28 @@
     },
     "states": [
         {
-            "name": "mood_bad"
+            "name": "mood_bad",
+            "directions": 4
         },
         {
-            "name": "mood_meh"
+            "name": "mood_meh",
+            "directions": 4
         },
         {
-            "name": "mood_neutral"
+            "name": "mood_neutral",
+            "directions": 4
         },
         {
-            "name": "mood_good"
+            "name": "mood_good",
+            "directions": 4
         },
         {
-            "name": "mood_great"
+            "name": "mood_great",
+            "directions": 4
         },
         {
-            "name": "mood_dead"
+            "name": "mood_dead",
+            "directions": 4
         }
     ]
 }
