@@ -9,8 +9,8 @@
   dollPrototype: MobMiliraDummy
   skinColoration: MiliraLightTones
   youngAge: 18
-  oldAge: 30
-  maxAge: 60
+  oldAge: 100
+  maxAge: 300
   defaultHeight: 1.0
   defaultWidth: 1.0
   maxHeight: 1.1

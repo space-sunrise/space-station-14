@@ -65,7 +65,6 @@
 
 - type: entity
   save: false
-  name: Urist McHands
   parent: MobHumanDummy
   id: MobMiliraDummy
   categories: [ HideSpawnMenu ]

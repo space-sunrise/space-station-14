@@ -1,4 +1,4 @@
 - type: skinColoration
   id: MiliraLightTones
   strategy: !type:HumanTonedSkinColoration
-    maxTone: 35
+    maxTone: 25
