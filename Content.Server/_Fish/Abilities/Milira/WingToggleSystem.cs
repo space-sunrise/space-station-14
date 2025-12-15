@@ -43,7 +43,6 @@ public sealed class WingToggleSystem : EntitySystem
         if (args.Handled)
             return;
 
-
         if (component.ActionEntity == null || args.Action.Owner != component.ActionEntity.Value)
             return;
 

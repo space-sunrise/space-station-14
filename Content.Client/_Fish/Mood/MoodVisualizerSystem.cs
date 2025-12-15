@@ -1,4 +1,3 @@
-using Content.Client._Fish.Mood;
 using Content.Client._Sunrise.BloodCult;
 using Content.Shared._Fish.Abilities.Milira;
 using Content.Shared._Sunrise.Mood;
