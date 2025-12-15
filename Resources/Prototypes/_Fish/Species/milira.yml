@@ -97,7 +97,7 @@
   id: MobMiliraTorsoMale
   baseSprite:
     sprite: _Fish/Mobs/Species/Milira/parts.rsi
-    state: torso_f
+    state: torso_m
 
 - type: humanoidBaseSprite
   id: MobMiliraTorsoFemale

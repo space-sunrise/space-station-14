@@ -1,2 +1,2 @@
-ent-MobMilira = Милира
-    .desc = Представитель вида милира.
+ent-MobMilira = Урист МакМилира
+    .desc = { ent-BaseMobSpeciesOrganic.desc }
