@@ -25,7 +25,7 @@
       - id: MagazineBoxAntiMateriel
       - id: ClothingNeckTieRed
       - id: ClothingHandsGlovesLatex
-      - id: ClothingUniformJumpsuitLawyerBlack
+      - id: ClothingUniformJumpsuitArmouredBlack # Sunrise-edit
       - id: BarberScissors
 
 - type: entity
