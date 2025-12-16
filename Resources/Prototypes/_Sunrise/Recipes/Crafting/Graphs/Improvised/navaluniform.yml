@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: ClothingNavalJacket
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: navaljacket
+        steps:
+          - material: Cloth
+            amount: 6
+            doAfter: 1
+    - node: navaljacket
+      entity: ClothingNavalJacket
+
+- type: constructionGraph
+  id: ClothingNavalBoots
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: navalboots
+        steps:
+          - material: Cloth
+            amount: 4
+            doAfter: 1
+    - node: navalboots
+      entity: ClothingNavalBoots

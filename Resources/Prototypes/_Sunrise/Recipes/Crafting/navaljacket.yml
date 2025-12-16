@@ -1,0 +1,10 @@
+- type: construction
+  name: construction-graph-tag-naval-jacket
+  id: ClothingNavalJacket
+  graph: ClothingNavalJacket
+  startNode: start
+  targetNode: navaljacket
+  category: construction-category-clothing
+  description: construction-graph-tag-naval-jacket-desc
+  icon: { sprite: _Sunrise/Clothing/Uniforms/naval-jacket.rsi, state: icon }
+  objectType: Item

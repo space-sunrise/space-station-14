@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingNavalJacket
+  name: Naval Jacket
+  description: Dark blue waterproof jacket with reflective details.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/naval-jacket.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/naval-jacket.rsi
+  - type: Item
+    sprite: _Sunrise/Clothing/Uniforms/naval-jacket.rsi
+  - type: Construction
+    graph: NavalJacketCraft
+    node: NavalJacket
