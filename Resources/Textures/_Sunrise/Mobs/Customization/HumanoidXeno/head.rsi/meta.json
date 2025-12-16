@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Made for sunrise",
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by (Discord) bulbo44kkey for sunrise",
   "size": {
     "x": 32,
     "y": 32
@@ -53,6 +53,62 @@
     },
     {
       "name": "predalien_teeth",
+      "directions": 4
+    },
+    {
+      "name": "alt_pretor_head",
+      "directions": 4
+    },
+    {
+      "name": "alt_pretor_teeth",
+      "directions": 4
+    },
+    {
+      "name": "alt_queen_head",
+      "directions": 4
+    },
+    {
+      "name": "alt_queen_teeth",
+      "directions": 4
+    },
+    {
+      "name": "boiler_head",
+      "directions": 4
+    },
+    {
+      "name": "boiler_teeth",
+      "directions": 4
+    },
+    {
+      "name": "carrier_head",
+      "directions": 4
+    },
+    {
+      "name": "carrier_teeth",
+      "directions": 4
+    },
+    {
+      "name": "cougar_head",
+      "directions": 4
+    },
+    {
+      "name": "cougar_teeth",
+      "directions": 4
+    },
+    {
+      "name": "crusher_head",
+      "directions": 4
+    },
+    {
+      "name": "crusher_teeth",
+      "directions": 4
+    },
+    {
+      "name": "worker_head",
+      "directions": 4
+    },
+    {
+      "name": "worker_teeth",
       "directions": 4
     }
   ]
