@@ -94,6 +94,12 @@
   - type: Pinpointer
     component: NukeDisk
     targetName: nuclear authentication disk
+  # Sunrise-start
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  # Sunrise-end
 
 - type: entity
   name: universal pinpointer

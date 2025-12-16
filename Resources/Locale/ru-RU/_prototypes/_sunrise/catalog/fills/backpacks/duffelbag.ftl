@@ -1,4 +1,4 @@
-ent-ClothingBackpackDuffelSyndicateFilledBauer = Набор "Снайпер"
+ent-ClothingBackpackDuffelSyndicateFilledBauer127 = Набор "Снайпер"
     .desc = Знаковая тяжёлая антиматериальная снайперская винтовка вместе с тремя запасными магазинами, ящиком крупнокалиберных патронов и тепловизионными очками.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Набор MP5
     .desc = Mp5 c 2мя магазинами.

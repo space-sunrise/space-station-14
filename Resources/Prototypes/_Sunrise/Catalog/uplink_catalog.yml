@@ -739,7 +739,7 @@
 
 - type: listing
   id: UplinkWeaponBauer127
-  productEntity: ClothingBackpackDuffelSyndicateFilledBauer
+  productEntity: ClothingBackpackDuffelSyndicateFilledBauer127
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:

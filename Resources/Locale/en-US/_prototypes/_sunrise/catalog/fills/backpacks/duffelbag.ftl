@@ -1,4 +1,4 @@
-ent-ClothingBackpackDuffelSyndicateFilledBauer = Bauer-127 bundle
+ent-ClothingBackpackDuffelSyndicateFilledBauer127 = Bauer-127 bundle
     .desc = The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set.
 ent-ClothingBackpackDuffelSyndicateFilledDragunov = Dragunov bundle
     .desc = The iconic Dragunov magazine rifle with 2 raspy magazines in the set.

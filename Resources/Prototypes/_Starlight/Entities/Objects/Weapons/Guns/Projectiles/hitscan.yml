@@ -57,13 +57,13 @@
   damage:
     types:
       Piercing: 75
-      Structural: 226
-  staminaDamage: 35
-  armorPenetration: 0.35
-  pierceChance: 0.95 # Sunrise-TODO: Отдельный патрон Пенетратор как в ЫЫ13
+      Structural: 50
+  staminaDamage: 50
+  armorPenetration: 0.5
+  pierceChance: 0.99
   pierceLevel: Rock
-  ricochetChance: 0.6
-  steps: 20
+  ricochetChance: 0.2
+  steps: 30
   derivation: 0.005
 
 - type: hitscan

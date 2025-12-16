@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledBauer
+  id: ClothingBackpackDuffelSyndicateFilledBauer127
   name: Sniper bundle
   description: "Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles."
   components:
@@ -11,8 +11,7 @@
         amount: 3
       - id: MagazineBoxAntiMateriel
         amount: 2
-      - id: ClothingEyesGlassesThermalSyndie
-      - id: PowerCellSyndicate
+      - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo

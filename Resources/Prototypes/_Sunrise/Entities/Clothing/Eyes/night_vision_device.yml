@@ -116,6 +116,9 @@
         visible: false
         shader: unshaded
         map: [ "light" ]
+  - type: PowerCellDraw
+    drawRate: 2
+    useRate: 10
   - type: ShowSyndicateIcons
   - type: ComponentToggler
     parent: true
