@@ -1315,6 +1315,8 @@
   packetPrototype: AmbrosiaDeusSeeds
   productPrototypes:
     - FoodAmbrosiaDeus
+  mutationPrototypes:
+    - AmbrosiaGaia
   lifespan: 25
   maturation: 10
   production: 3

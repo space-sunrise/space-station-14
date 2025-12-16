@@ -39,6 +39,17 @@
   description: construction-graph-tag-sunflower-crown-desc
 
 - type: construction
+  name: construction-graph-tag-lily-wreath
+  id: LilyWreath
+  graph: LilyWreath
+  startNode: start
+  targetNode: lilywreath
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-lily-wreath-desc
+
+
+- type: construction
   name: construction-graph-tag-atmoscross
   id: AtmosCrossCraft
   graph: AtmosCrossCraft

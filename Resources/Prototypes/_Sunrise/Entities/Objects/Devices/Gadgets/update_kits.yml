@@ -1,0 +1,14 @@
+- type: entity
+  name: livearth
+  parent: BaseItem
+  id: HydroponicsTrayGayaUpgrade
+  description: An experimental set for improving a hydroponic tray.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/livearth.rsi
+    state: livearth
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - HydroponicsTrayGayaUpgrade

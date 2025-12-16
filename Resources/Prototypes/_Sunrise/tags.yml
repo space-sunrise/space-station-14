@@ -528,3 +528,15 @@
 
 - type: Tag
   id: Table
+
+- type: Tag
+  id: LilyBouquet
+
+- type: Tag
+  id: LilyWreath
+
+- type: Tag
+  id: Lily
+
+- type: Tag
+  id: HydroponicsTrayGayaUpgrade

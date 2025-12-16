@@ -9,7 +9,7 @@
     EmergencyMedipen: 1
   reagents:
     SpaceCleaner: 1
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanAntiPoisonMedipen
@@ -20,7 +20,7 @@
     AntiPoisonMedipen: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanBruteAutoInjector
@@ -31,7 +31,7 @@
     BruteAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanBurnAutoInjector
@@ -42,7 +42,7 @@
     BurnAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanRadAutoInjector
@@ -53,7 +53,7 @@
     RadAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanCombatMedipen
@@ -64,7 +64,7 @@
     CombatMedipen: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanStimpackNT
@@ -75,7 +75,7 @@
     StimpackNT: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanStellibininAutoInjector
@@ -86,7 +86,7 @@
     StellibininAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanWehMedipen
@@ -97,7 +97,7 @@
     WehMedipen: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanPolyAutoInjector
@@ -108,7 +108,7 @@
     PolyAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanBruizAutoInjector
@@ -119,7 +119,7 @@
     BruizAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanLacerAutoInjector
@@ -130,7 +130,7 @@
     LacerAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanAirlossAutoInjector
@@ -141,7 +141,7 @@
     AirlossAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanPunctAutoInjector
@@ -152,7 +152,7 @@
     PunctAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeCleanPyraAutoInjector
@@ -163,7 +163,7 @@
     PyraAutoInjector: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: SpaceMedipenAutoInjector
@@ -174,7 +174,7 @@
     SpaceMedipen: 1
   reagents:
     SpaceCleaner: 5
-  recipeType: MedicalAssembler 
+  recipeType: MedicalAssembler
 
   #pen recipes
   #Upstream recipes
@@ -360,3 +360,17 @@
   recipeType: MedicalAssembler
 
 #Frontier pen recipes
+
+- type: microwaveMealRecipe
+  id: RecipeRegenerativeMeshAlter
+  name: regenerative mesh recipe
+  result: RegenerativeMesh
+  time: 10
+  group: Medicinal
+  solids:
+    FoodAloe: 1
+    Ointment: 1
+    MaterialCloth1: 1
+  reagents:
+    Siderlac: 20
+    Dermaline: 20
