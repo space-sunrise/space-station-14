@@ -17,7 +17,7 @@
   components:
   - type: Objective
     icon:
-      sprite: Objects/Tools/emag.rsi
+      sprite: _Sunrise/Objects/Tools/emag.rsi # Sunrise-Edit
       state: icon
   - type: NumberObjective
     min: 15
