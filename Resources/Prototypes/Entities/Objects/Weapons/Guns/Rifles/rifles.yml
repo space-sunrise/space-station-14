@@ -19,12 +19,12 @@
   - type: AmmoCounter
   - type: GunWieldBonus # Sunrise-start
     minAngle: -20
-    maxAngle: -30
+    maxAngle: -45
   - type: Gun
     minAngle: 23
     maxAngle: 90
-    angleIncrease: 1.75
-    angleDecay: 15  # Sunrise-end
+    angleIncrease: 1.25
+    angleDecay: 20  # Sunrise-end
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -78,8 +78,8 @@
         knockback: 0.1
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4.5
-    pvsIncrease: 0.45
+    maxOffset: 3
+    pvsIncrease: 0.3
   # Sunrise end
 
 - type: entity
@@ -230,7 +230,7 @@
   name: XL8
   description: |-
     The Experimental Lecter 8
-    An unreasonably expensive military grade assault rifle with integrated optic. 
+    An unreasonably expensive military grade assault rifle with integrated optic.
     Uses .20 rifle ammo.
   components:
   - type: Sprite
@@ -239,8 +239,8 @@
     sprite: Objects/Weapons/Guns/Rifles/XL8.rsi
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 5 # Sunrise-Edit
+    pvsIncrease: 0.5 # Sunrise-Edit
   - type: StaticPrice
     price: 1500 #3x lecter
   - type: Gun
@@ -250,7 +250,7 @@
     - Burst
     - SemiAuto
     - FullAuto
-  
+
 - type: entity
   name: Estoc DMR
   parent: [BaseWeaponRifle, BaseSyndicateContraband]

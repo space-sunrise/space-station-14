@@ -12,6 +12,11 @@
     - Book
   - type: StaticPrice
     price: 35
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  # Sunrise-end
 
 - type: entity
   parent: BaseHyperLinkBook

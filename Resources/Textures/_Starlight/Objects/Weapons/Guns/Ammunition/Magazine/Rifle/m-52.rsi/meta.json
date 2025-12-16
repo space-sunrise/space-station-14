@@ -5,34 +5,13 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taked from RU Paradise station, updated by Rinary for new ammo types and mag states, inhands by TiniestShark (github)",
+    "copyright": "Taked from RU Paradise station, updated by Rinary for new ammo types and mag states, inhands by TiniestShark (github) added stripe fuction by KaiserMaus",
     "states": [
         {
             "name": "base"
         },
         {
-            "name": "practice"
-        },
-        {
-            "name": "red"
-        },
-        {
-            "name": "rubber"
-        },
-        {
-            "name": "uranium"
-        },
-        {
-            "name": "ap"
-        },
-        {
-            "name": "sp"
-        },
-        {
-            "name": "fmj"
-        },
-        {
-            "name": "incendiary"
+            "name": "stripe"
         },
         {
             "name": "mag-1"

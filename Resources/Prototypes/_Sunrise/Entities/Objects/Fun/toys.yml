@@ -1504,3 +1504,52 @@
       path: /Audio/Items/Defib/defib_zap.ogg
       params:
         volume: 100
+
+# region Figurine
+# Только для Фигурок. Покусаю!
+- type: entity
+  abstract: true
+  parent: BaseFigurine
+  id: BasePlayerFigurine
+  description: A small, detailed miniature.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/player_figurines.rsi
+    scale: 0.5, 0.5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: BasePlayerFigurine
+  id: PFigurineGuardRat
+  name: guard rat
+  # description:
+  components:
+  - type: Sprite
+    state: guardrat
+  - type: RandomMetadata
+    nameSegments:
+    - NamesRegalratKingdom
+    - NamesRegalratTitle
+    nameFormat: name-format-regal-rat
+
+- type: entity
+  parent: BasePlayerFigurine
+  id: PFigurineChaminaM
+  name: Chamina Maus
+  # description:
+  components:
+  - type: Sprite
+    state: chamina_maus
+
+- type: entity
+  parent: BasePlayerFigurine
+  id: PFigurinePirateJugger
+  name: Murmillo
+  # description:
+  components:
+  - type: Sprite
+    layers:
+    - state: pirate_jugger
+    - state: pirate_jugger_unshaded
+      shader: unshaded

@@ -38,8 +38,8 @@
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 4, 4 ]
-            StationEngineer: [ 6, 6 ]
+            AtmosphericTechnician: [ 3, 3 ]
+            StationEngineer: [ 5, 5 ]
             TechnicalAssistant: [ 5, 5 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
@@ -53,7 +53,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
-            Scientist: [ 6, 6 ]
+            Scientist: [ 5, 5 ]
             ResearchAssistant: [ 5, 5 ]
             Roboticist: [ 3, 3 ]
             #security
@@ -67,8 +67,8 @@
             SecurityCadet: [ 5, 5 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 4, 4 ]
-            # MiningSpecialist: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 1, 1 ]
             CargoTechnician: [ 3, 3 ]
             MailCarrier: [ 2, 2 ]
             #civilian
@@ -81,7 +81,6 @@
             #law
             IAA: [ 1, 1 ]
             Lawyer: [ 3, 3 ]
-            NtrOfficer: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]

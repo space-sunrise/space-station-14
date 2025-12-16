@@ -80,6 +80,7 @@
         color: "#717171"
   - type: Tag
     tags:
+      - Cartridge
       - CartridgePistol
       - CartridgePistolImprovised
   - type: Construction
