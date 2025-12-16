@@ -61,15 +61,7 @@
   id: DetectiveArmorVest
   equipment:
     outerClothing: ClothingOuterVestDetective
-#Sunrise-Start
-- type: loadout
-  id: DetectiveDiscoCoat
-  equipment:
-    outerClothing: ClothingOuterDiscoAssBlazerDetective
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterDetective
-#Sunrise-End
+
 - type: loadout
   id: DetectiveCoat
   equipment:
@@ -151,5 +143,13 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterDetective100h
+
+- type: loadout
+  id: ClothingUniformJumpSuitSuperStarCop
+  equipment:
+    jumpsuit: ClothingUniformJumpSuitSuperStarCop
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
 
 #Sunrise-End

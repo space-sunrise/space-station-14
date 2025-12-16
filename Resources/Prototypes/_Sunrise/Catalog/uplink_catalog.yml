@@ -1103,7 +1103,7 @@
   productEntity: BeltSheathSyndieFilledBox
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 5
   cost:
     Telecrystal: 6
   categories:
@@ -2083,9 +2083,9 @@
   productEntity: ClothingHeadHelmetSwatSyndicate
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkWearables
   conditions:
