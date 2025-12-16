@@ -19,6 +19,14 @@
       "directions": 4
     },
     {
+      "name": "equipped-EYES-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-arachnid-unshaded",
+      "directions": 4
+    },
+    {
       "name": "inhand-left",
       "directions": 4
     },
