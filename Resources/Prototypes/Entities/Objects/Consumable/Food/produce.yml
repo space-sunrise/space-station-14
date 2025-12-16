@@ -1101,7 +1101,16 @@
         - ReagentId: Vitamin
           Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/apple.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/apple.rsi
+# Sunrise-Start
+    state: produce_green
+  - type: RandomSprite
+    available:
+    - 0:
+        produce_green: ""
+        produce_red: ""
+        produce_yellow: ""
+# Sunrise-End
   - type: Item
     heldPrefix: produce
   - type: Produce

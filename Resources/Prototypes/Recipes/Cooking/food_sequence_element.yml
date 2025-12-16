@@ -696,8 +696,14 @@
   id: Apple
   name: food-sequence-content-apple
   sprites:
+  - sprite: _Sunrise/Objects/Specific/Hydroponics/apple.rsi
+# Sunrise-Start
+    state: produce_green
   - sprite: Objects/Specific/Hydroponics/apple.rsi
-    state: produce
+    state: produce_yellow
+  - sprite: Objects/Specific/Hydroponics/apple.rsi
+    state: produce_red
+# Sunrise-End
   tags:
   - Fruit
 
