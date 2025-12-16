@@ -1,0 +1,125 @@
+- type: entity
+  parent: BaseItem
+  id: BaseBucket
+  name: base bucket
+  abstract: true
+  components:
+  - type: Clickable
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 250
+  - type: MixableSolution
+    solution: bucket
+  - type: SolutionTransfer
+    transferAmount: 100
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: Spillable
+    solution: bucket
+  - type: SpillWhenWorn
+    solution: bucket
+  - type: DrawableSolution
+    solution: bucket
+  - type: RefillableSolution
+    solution: bucket
+  - type: DrainableSolution
+    solution: bucket
+  - type: SolutionItemStatus
+    solution: bucket
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+  - type: ExaminableSolution
+    solution: bucket
+  - type: DnaSubstanceTrace
+
+- type: entity
+  parent: BaseBucket
+  id: WateringCan
+  name: watering can
+  description: It's a watering can. It is scientifically proved that using a watering can to simulate rain increases plant happiness!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Hydroponics/watering_can.rsi
+    layers:
+    - state: icon
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-1
+      visible: false
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+
+- type: entity
+  parent: BaseBucket
+  id: OldWateringCan
+  name: old watering can
+  description: An old watering can, shoddily painted to look like it was made of wood for some dubious reason...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Hydroponics/watering_can_old.rsi
+    layers:
+    - state: icon
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      sprite: _Sunrise/Objects/Tools/Hydroponics/watering_can.rsi
+      state: fill-1
+      visible: false
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+
+- type: entity
+  parent: MarkerBase
+  id: RandomWateringCan
+  name: random watering can spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Objects/Tools/Hydroponics/watering_can.rsi
+      state: icon
+  - type: RandomSpawner
+    offset: 0.0
+    rareChance: 0.1
+    prototypes:
+    - WateringCan
+    rarePrototypes:
+    - OldWateringCan
+
+# Todo сделать бс лейку
+
+#- type: entity
+#  parent: Bucket
+#  id: AdvancedWateringCan
+#  name: advanced watering can
+#  description: Everything a botanist would want in a watering can. This marvel of technology generates its own water!
+#  components:
+#  - type: Sprite
+#    sprite: _Sunrise/Objects/Tools/Hydroponics/watering_can_advanced.rsi
+#    layers:
+#    - state: icon
+#    - map: ["enum.SolutionContainerLayers.Fill"]
+#      sprite: _Sunrise/Objects/Tools/Hydroponics/watering_can.rsi
+#      state: fill-1
+#      visible: false
+#  - type: SolutionRegeneration
+#    solution: bucket
+#    generated:
+#      reagents:
+#      - ReagentId: Water
+#        Quantity: 50

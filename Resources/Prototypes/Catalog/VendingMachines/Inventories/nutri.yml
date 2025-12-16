@@ -4,14 +4,15 @@
     HydroponicsToolSpade: 4
     HydroponicsToolMiniHoe: 4
     HydroponicsToolClippers: 4
+    PlantAnalyzer: 4 # Sunrise-Add
     HydroponicsToolScythe: 4
     HydroponicsToolHatchet: 4
-    PlantAnalyzer: 4
     Dropper: 4
-    PlantBag: 3
-    PlantBGoneSpray: 20
-    WeedSpray: 20
-    PestSpray: 20
+    WateringCan: 4 # Sunrise-Add
+    PlantBag: 6 # Sunrise-Edit 3>6
+    PlantBGoneSpray: 5 # Sunrise-Edit 20>5
+    WeedSpray: 5 # Sunrise-Edit 20>5
+    PestSpray: 5 # Sunrise-Edit 20>5
     Syringe: 5
     ChemistryBottleRobustHarvest: 3
     ChemistryBottleEZNutrient: 3
