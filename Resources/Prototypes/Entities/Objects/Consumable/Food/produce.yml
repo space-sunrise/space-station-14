@@ -1213,14 +1213,14 @@
         reagents:
         - ReagentId: Cornmeal
           Quantity: 15
-        #- ReagentId: Nutriment # Sunrise-edit
-        #  Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 5
   - type: Tag
     tags:
     - Corn
     - Vegetable
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/corn.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/corn.rsi # Sunrise-Edit
   - type: Produce
     seedId: corn
   - type: Extractable
@@ -1338,7 +1338,7 @@
         - ReagentId: Nutriment
           Quantity: 5
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/chanterelle.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/chanterelle.rsi # Sunrise-Edit
   - type: Item
     heldPrefix: produce
   - type: Produce
@@ -1514,7 +1514,7 @@
           - ReagentId: Vitamin
             Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/chilly.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/chilly.rsi # Sunrise-Edit
   - type: Item
     heldPrefix: produce
   - type: Produce
@@ -1544,7 +1544,7 @@
         - ReagentId: Dermaline
           Quantity: 10
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/aloe.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/aloe.rsi # Sunrise-Edit
   - type: Item
     heldPrefix: produce
   - type: Produce
@@ -1868,7 +1868,7 @@
         - ReagentId: Nutriment
           Quantity: 5
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/fly_amanita.rsi # Sunrise-Edit
   - type: Item
     heldPrefix: produce
   - type: Produce
@@ -2337,7 +2337,7 @@
         - ReagentId: Vitamin
           Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/berries.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/berries.rsi # Sunrise-Edit
   - type: Item
     heldPrefix: produce
   - type: Produce
@@ -2595,7 +2595,7 @@
   parent: FoodProduceBase
   components:
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/cotton.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/cotton.rsi # Sunrise-Edit
   - type: FlavorProfile
     flavors:
       - cotton
@@ -2627,7 +2627,7 @@
   parent: FoodProduceBase
   components:
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/pyrotton.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/pyrotton.rsi # Sunrise-Edit
   - type: FlavorProfile
     flavors:
       - pyrotton

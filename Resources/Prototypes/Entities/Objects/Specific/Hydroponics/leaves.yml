@@ -7,7 +7,7 @@
   description: "Recently legalized in most galaxies."
   components:
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/cannabis.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/cannabis.rsi # Sunrise-Edit
   - type: Produce
     seedId: cannabis
   - type: Food
@@ -74,7 +74,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+    - sprite: _Sunrise/Objects/Specific/Hydroponics/rainbow_cannabis.rsi # Sunrise-Edit
       state: produce
       shader: unshaded
   - type: Produce
@@ -129,7 +129,7 @@
         - ReagentId: Psicodine
           Quantity: 0.48
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/rainbow_cannabis.rsi # Sunrise-Edit
     state: dried
 
 - type: entity
