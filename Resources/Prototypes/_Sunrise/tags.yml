@@ -156,6 +156,9 @@
   id: MagazinePistolSubMachineGunCap
 
 - type: Tag
+  id: MagazineBoxL6Cap
+
+- type: Tag
   id: MagazineM28
 
 - type: Tag

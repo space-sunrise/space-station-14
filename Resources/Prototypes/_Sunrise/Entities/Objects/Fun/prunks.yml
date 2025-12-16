@@ -215,7 +215,7 @@
 
 - type: entity
   id: MagazineSMGCap
-  name: smg magazine (Cap)
+  name: smg magazine (cap)
   parent: BaseMagazinePistolSubMachineGun
   description: 30-round double-stack magazine for pistols. Intended to Cap ammunition.
   components:
@@ -227,6 +227,7 @@
     whitelist:
       tags:
         - CartridgeCap
+        - BulletFoam
     capacity: 30
     proto: CartridgeCap
   - type: Sprite
@@ -249,42 +250,67 @@
         color: "#00dacf"
 
 - type: entity
+  id: MagazineSMGFoam
+  name: smg magazine (foam)
+  parent: MagazineSMGCap
+  description: 30-round double-stack magazine for pistols. Intended to Foam munition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletFoam
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#277340"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#277340"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#277340"
+
+- type: entity
+  parent: MagazineRifleBoxSP
+  id: MagazineCapBox
+  name: ammunition box (cap)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - BulletFoam
+        - CartridgeCap
+    proto: CartridgeCap
+    capacity: 100
+  - type: Tag
+    tags:
+      - MagazineBoxL6Cap
+
+- type: entity
+  parent: MagazineCapBox
+  id: MagazineFoamBoxSunrise
+  name: ammunition box (foam)
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletFoam
+
+- type: entity
   name: C-20r submachine gun
-  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
+  parent: [BaseMinorContraband, WeaponSubMachineGunC20r]
   id: WeaponSubMachineGunC20rFake
   description: A classic and widespread submachine gun, infamous for its use by the Clowns. Looks almost like the real thing! Ages 8 and up.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/fake_c20r.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/fake_c20r.rsi
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -16
-  - type: Gun
-    minAngle: 21
-    maxAngle: 32
-    shotsPerBurst: 5
-    availableModes:
-    - Burst
-    - FullAuto
-    - SemiAuto
-    soundGunshot:
-      collection: aug
-  - type: ChamberMagazineAmmoProvider
-    autoEject: true
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: true
-  - type: Appearance
   - type: StaticPrice
     price: 500
   - type: ItemSlots
@@ -306,12 +332,51 @@
         whitelist:
           tags:
           - CartridgeCap
+          - BulletFoam
+
+- type: entity
+  name: L6 SAW
+  parent: [BaseMinorContraband, WeaponLightMachineGunL6]
+  id: WeaponLightMachineGunL6Fake
+  description: L6 Squad Automatic Weapon is a deadly light machine gun often used by the Honk Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of darts. Feeds from darts belts.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6_fake.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6_fake.rsi
+  - type: StaticPrice
+    price: 1200
+  - type: Gun
+    minAngle: 21
+    maxAngle: 70
+    angleIncrease: 1
+    angleDecay: 16
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineCapBox
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineBoxL6Cap
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCap
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeCap
+          - BulletFoam
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSMGFake
   name: C-20r bundle
   description: "Old faithful: The classic donksoft C-20r Submachine Gun, bundled with three magazines."
+  suffix: Fake
   components:
   - type: Storage
     grid:
@@ -321,3 +386,22 @@
       - id: WeaponSubMachineGunC20rFake
       - id: MagazineSMGCap
         amount: 2
+      - id: MagazineSMGFoam
+        amount: 2
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffell6Fake
+  name: L6 SAW bundle
+  description: "More dakka: The iconic donksoft L6 lightmachinegun, bundled with 2 box magazines."
+  suffix: Fake
+  components:
+  - type: Storage
+    grid:
+    - 0,0,6,3
+  - type: StorageFill
+    contents:
+      - id: WeaponLightMachineGunL6Fake
+      - id: MagazineCapBox
+        amount: 2
+      - id: MagazineFoamBoxSunrise
