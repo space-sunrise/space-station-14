@@ -133,7 +133,7 @@
     proto: MasterDetective100h
 
 - type: loadout
-  id: ClothingUniformJumpSuitSuperStarCop
+  id: ClothingUniformJumpSuitSuperStarCop20h
   equipment:
     jumpsuit: ClothingUniformJumpSuitSuperStarCop
   effects:
@@ -141,7 +141,7 @@
     proto: MasterDetective
 
 - type: loadout
-  id: ClothingOuterDiscoAssBlazerDetective
+  id: ClothingOuterDiscoAssBlazerDetective20h
   equipment:
     outerClothing: ClothingOuterDiscoAssBlazerDetective
   effects:
