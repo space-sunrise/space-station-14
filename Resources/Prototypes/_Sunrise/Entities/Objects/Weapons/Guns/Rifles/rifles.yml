@@ -547,11 +547,18 @@
     - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Gun
-    minAngle: 1
+    minAngle: 2
     maxAngle: 15
-    angleIncrease: 1.25
-    angleDecay: 10
-    fireRate: 5
+    angleIncrease: 1
+    angleDecay: 15
+    fireRate: 6
+    burstFireRate: 8
+    selectedMode: SemiAuto
+    availableModes:
+    - Burst
+    - SemiAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.25
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
