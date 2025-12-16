@@ -212,7 +212,7 @@
   id: ClothingHeadsetAltMedical
   name: steal-target-groups-clothing-headset-alt-medical
   sprite:
-    sprite: Clothing/Ears/Headsets/medical.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medical.rsi # Sunrise-Edit
     state: icon_alt
 
 - type: stealTargetGroup
