@@ -170665,7 +170665,7 @@ entities:
           showEnts: False
           occludes: True
           ent: 11636
-- proto: GunSafeBlueShield
+- proto: SuitStorageBlueShield
   entities:
   - uid: 800
     components:
@@ -173640,7 +173640,7 @@ entities:
     - type: Transform
       pos: 23.5,-56.5
       parent: 2
-- proto: LockerBlueshieldFilledHardsuit
+- proto: LockerBlueShieldOfficerFilled
   entities:
   - uid: 22956
     components:
