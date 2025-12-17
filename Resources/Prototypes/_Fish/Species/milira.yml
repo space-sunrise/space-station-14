@@ -58,7 +58,8 @@
       defaultMarkings: [ MiliraWingBasic ]
     HeadTop:
       points: 1
-      required: false
+      required: true
+      defaultMarkings: [ MiliraEars ]
     Chest:
       points: 1
       required: false
