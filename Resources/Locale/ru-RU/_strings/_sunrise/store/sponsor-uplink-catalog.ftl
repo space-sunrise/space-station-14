@@ -219,7 +219,7 @@ uplink-sunrise-pill-canister-hyronalin-name = Баночка для таблет
 uplink-sunrise-pill-canister-dexalin-name = Баночка для таблеток (дексалин)
 uplink-sunrise-bloodpack-name = Пакет крови (10 шт)
 uplink-sunrise-gauze-name = Марлевый бинт (10 шт)
-uplink-sunrise-clothing-neck-med-cloak-name = Плащ сострадания 
+uplink-sunrise-clothing-neck-med-cloak-name = Плащ сострадания
 
 ## Research
 
