@@ -16,7 +16,7 @@
             prefixCreator: 'TG'
         - type: SpawnGridAndDockToStation
           grids:
-          - gridPath: /Maps/_Sunrise/Shuttles/mining.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/miner.yml
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/security.yml
             priorityTag: DockSecurity
