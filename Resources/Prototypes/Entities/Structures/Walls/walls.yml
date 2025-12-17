@@ -1447,9 +1447,9 @@
   - type: IconSmooth
     key: walls
     base: mining
-  - type: RandomIconSmooth
-    randomStates:
-    - mining
+  # - type: RandomIconSmooth # sunrise-edit # We dont have diferent 2.5d sprites
+  #   randomStates:
+  #   - mining
   - type: Appearance
 
 - type: entity
