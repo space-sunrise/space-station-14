@@ -23,6 +23,7 @@
     contents:
       - id: WeaponSniperHristovBiocode # Sunrise-edit
       - id: MagazineBoxAntiMateriel
+      - id: MagazineBauer127Penetrator # Sunrise-add
       - id: ClothingNeckTieRed
       - id: ClothingHandsGlovesLatex
       - id: ClothingUniformJumpsuitArmouredBlack # Sunrise-edit
