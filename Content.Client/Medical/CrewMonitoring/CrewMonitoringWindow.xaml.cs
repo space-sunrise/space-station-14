@@ -33,7 +33,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
     private NetEntity? _trackedEntity;
     private bool _tryToScrollToListFocus;
     private Texture? _blipTexture;
-    private CrewMonitoringBoundUserInterface? _boundUserInterface;
+    private BoundUserInterface? _boundUserInterface; // Sunrise - edit
 
     public CrewMonitoringWindow()
     {
@@ -45,28 +45,30 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
         CorpseAlertToggle.OnPressed += OnCorpseAlertTogglePressed;
-        
+
         // Initialize corpse alert toggle to "off" state
         UpdateCorpseAlertToggle(false);
         CorpseAlertToggle.Disabled = false;
     }
 
-    public void Set(string stationName, EntityUid? mapUid)
+    // Sunrise - Start
+    public void Set(string stationName, EntityUid? monitoringGridUid)
     {
-        _blipTexture = _spriteSystem.Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));
 
-        if (_entManager.TryGetComponent<TransformComponent>(mapUid, out var xform))
-            NavMap.MapUid = xform.GridUid;
+        _blipTexture ??= _spriteSystem.Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));
 
-        else
-            NavMap.Visible = false;
+        NavMap.Visible = monitoringGridUid != null;
+        if (monitoringGridUid != null)
+            NavMap.MapUid = monitoringGridUid.Value;
+
 
         StationName.AddStyleClass("LabelBig");
         StationName.Text = stationName;
         NavMap.ForceNavMapUpdate();
     }
+    // Sunrise - End
 
-    public void SetBoundUserInterface(CrewMonitoringBoundUserInterface boundUserInterface)
+    public void SetBoundUserInterface(BoundUserInterface boundUserInterface) // Sunrise - Edit
     {
         _boundUserInterface = boundUserInterface;
     }
@@ -79,18 +81,30 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             TryToScrollToFocus();
     }
 
-    public void ShowSensors(List<SuitSensorStatus> sensors, EntityUid monitor, EntityCoordinates? monitorCoords)
+    public void ShowSensors(List<SuitSensorStatus> sensors, EntityUid monitor, EntityCoordinates? monitorCoords, bool hasServer) // Sunrise - edit
     {
         ClearOutDatedData();
 
-        // No server label
+        // Sunrise - Start
+        // Два разных состояния. Не найден сервер и не найдены доступные датчики
+        if (!hasServer)
+        {
+            NoServerLabel.Visible = true;
+            NoServerLabel.Text = Loc.GetString("crew-monitoring-ui-no-server-label");
+            NoServerLabel.FontColorOverride = Color.Red;
+            return;
+        }
+
         if (sensors.Count == 0)
         {
             NoServerLabel.Visible = true;
+            NoServerLabel.Text = Loc.GetString("crew-monitoring-ui-no-sensors-label");
+            NoServerLabel.FontColorOverride = Color.LightGray;
             return;
         }
 
         NoServerLabel.Visible = false;
+        // Sunrise - End
 
         // Collect one status per user, using the sensor with the most data available.
         Dictionary<NetEntity, SuitSensorStatus> uniqueSensorsMap = new();
@@ -474,7 +488,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             CorpseAlertToggle.Text = Loc.GetString("crew-monitoring-corpse-alert-off");
             CorpseAlertToggle.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
         }
-        
+
         // Re-enable the button when server state is received
         CorpseAlertToggle.Disabled = false;
     }
@@ -483,7 +497,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
     {
         // Disable button to prevent spam clicks
         CorpseAlertToggle.Disabled = true;
-        
+
         // Send message to server
         _boundUserInterface?.SendMessage(new CrewMonitoringToggleCorpseAlertMessage());
     }

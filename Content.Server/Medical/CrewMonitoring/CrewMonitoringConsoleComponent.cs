@@ -13,6 +13,19 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     /// </summary>
     public Dictionary<string, SuitSensorStatus> ConnectedSensors = new();
 
+    // Sunrise - Start
+    /// <summary>
+    ///     Грид который отображается на карте (только грид где у становлен сервер мониторинга)
+    /// </summary>
+    public EntityUid? MonitoringGrid;
+
+    /// <summary>
+    ///     Время последнего полученного состояния от сервера. Нужно чтобы отличать состояния "сервер не найден"
+    ///     от "сервер есть, но датчиков нет"
+    /// </summary>
+    public TimeSpan LastServerStateReceived;
+    // Sunrise - End
+
     /// <summary>
     ///     After what time sensor consider to be lost.
     /// </summary>

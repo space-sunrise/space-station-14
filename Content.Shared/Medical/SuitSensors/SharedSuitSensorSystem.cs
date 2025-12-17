@@ -68,12 +68,22 @@ public abstract class SharedSuitSensorSystem : EntitySystem
     /// <returns>True if the sensor is assigned to a station or assigning it was successful. False otherwise.</returns>
     public bool CheckSensorAssignedStation(Entity<SuitSensorComponent> sensor)
     {
-        if (!sensor.Comp.StationId.HasValue && Transform(sensor.Owner).GridUid == null)
+        // Sunrise - Start
+        // Не сбрасываем привязку к станции
+        if (sensor.Comp.StationId.HasValue)
+            return true;
+
+        if (Transform(sensor.Owner).GridUid == null)
             return false;
 
-        sensor.Comp.StationId = _stationSystem.GetOwningStation(sensor.Owner);
+        var station = _stationSystem.GetOwningStation(sensor.Owner);
+        if (!station.HasValue)
+            return false;
+
+        sensor.Comp.StationId = station;
         Dirty(sensor);
-        return sensor.Comp.StationId.HasValue;
+        return true;
+        // Sunrise - End
     }
 
     private void OnMapInit(Entity<SuitSensorComponent> ent, ref MapInitEvent args)
@@ -348,7 +358,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         var transform = ent.Comp2;
 
         // check if sensor is enabled and worn by user
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) || transform.GridUid == null)
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) || transform.MapUid == null)
             return null;
 
         // Sunrise-Start
@@ -361,6 +371,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         var userJob = Loc.GetString("suit-sensor-component-unknown-job");
         var userJobIcon = "JobIconNoId";
         var userJobDepartments = new List<string>();
+        var userJobDepartmentIds = new List<string>(); // Sunrise - Add
 
         if (_idCardSystem.TryFindIdCard(sensor.User.Value, out var card))
         {
@@ -371,7 +382,10 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             userJobIcon = card.Comp.JobIcon;
 
             foreach (var department in card.Comp.JobDepartments)
+            {
+                userJobDepartmentIds.Add(department); // Sunrise - Add
                 userJobDepartments.Add(Loc.GetString(_proto.Index(department).Name));
+            }
         }
 
         // get health mob state
@@ -390,7 +404,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             totalDamageThreshold = critThreshold.Value.Int();
 
         // finally, form suit sensor status
-        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments, sensorMapId); // Sunrise-Edit
+        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments, userJobDepartmentIds, sensorMapId); // Sunrise-Edit
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:
@@ -443,6 +457,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             [SuitSensorConstants.NET_JOB] = status.Job,
             [SuitSensorConstants.NET_JOB_ICON] = status.JobIcon,
             [SuitSensorConstants.NET_JOB_DEPARTMENTS] = status.JobDepartments,
+            [SuitSensorConstants.NET_JOB_DEPARTMENT_IDS] = status.JobDepartmentIds,  // Sunrise - Add передача для клиентских фильров
             [SuitSensorConstants.NET_IS_ALIVE] = status.IsAlive,
             [SuitSensorConstants.NET_SUIT_SENSOR_UID] = status.SuitSensorUid,
             [SuitSensorConstants.NET_OWNER_UID] = status.OwnerUid,
@@ -481,6 +496,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_IS_ALIVE, out bool? isAlive)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_OWNER_UID, out NetEntity ownerUid)) return null;
+        payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENT_IDS, out List<string>? jobDepartmentIds); // Sunrise - Add Поле опциональное поэтому без return null
 
         // try get total damage and cords (optionals)
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
@@ -488,7 +504,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
         payload.TryGetValue(SuitSensorConstants.MAP_ID, out MapId? mapId); // Sunrise-Edit
 
-        var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments, mapId) // Sunrise-Edit
+        var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments, jobDepartmentIds ?? new List<string>(), mapId) // Sunrise-Edit
         {
             IsAlive = isAlive.Value,
             TotalDamage = totalDamage,

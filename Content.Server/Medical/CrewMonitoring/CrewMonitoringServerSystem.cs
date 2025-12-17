@@ -2,6 +2,7 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Medical.SuitSensors;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Medical.CrewMonitoring; // Sunrise - edit
 using Content.Shared.Medical.SuitSensor;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
@@ -14,6 +15,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!; // Sunrise - Added
 
     private const float UpdateRate = 3f;
     private float _updateDiff;
@@ -83,12 +85,28 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        // Sunrise - Start
+        // Удаление из Dictionary во время foreach приводит к исключению, поэтому собираем ключики отдельно
+        // Вероятно можно улучшить код
+        var timeout = TimeSpan.FromSeconds(component.SensorTimeout);
+        List<string>? toRemove = null;
+
         foreach (var (address, sensor) in component.SensorStatus)
         {
             var dif = _gameTiming.CurTime - sensor.Timestamp;
-            if (dif.Seconds > component.SensorTimeout)
-                component.SensorStatus.Remove(address);
+            if (dif <= timeout)
+                continue;
+
+            toRemove ??= new List<string>();
+            toRemove.Add(address);
         }
+
+        if (toRemove == null)
+            return;
+
+        foreach (var address in toRemove)
+            component.SensorStatus.Remove(address);
+        // Sunrise - End
     }
 
     /// <summary>
@@ -101,13 +119,45 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
 
         var serverTransform = Transform(uid);
         var serverMapId = serverTransform.MapID;
+        // Sunrise - Start
+        var serverGrid = serverTransform.GridUid;
+        var serverPos = _transformSystem.GetWorldPosition(serverTransform);
+        var rangeSquared = serverComponent.MonitoringRange * serverComponent.MonitoringRange;
+
+        // Фильтр только на гриде сервера и только в радиусу
+        var filteredStatus = new Dictionary<string, SuitSensorStatus>(serverComponent.SensorStatus.Count);
+        foreach (var (address, status) in serverComponent.SensorStatus)
+        {
+            var owner = GetEntity(status.OwnerUid);
+            if (!EntityManager.EntityExists(owner))
+                continue;
+
+            var ownerXform = Transform(owner);
+            if (ownerXform.MapID != serverMapId)
+                continue;
+
+            // Сенсор работает в космосе пока в радиусе сервера мониторинга
+            if (serverGrid != null && ownerXform.GridUid != null && ownerXform.GridUid != serverGrid)
+                continue;
+
+            var ownerPos = _transformSystem.GetWorldPosition(ownerXform);
+            if ((serverPos - ownerPos).LengthSquared() > rangeSquared)
+                continue;
+
+            filteredStatus[address] = status;
+        }
+        // Sunrise - End
 
         var payload = new NetworkPayload()
         {
             [DeviceNetworkConstants.Command] = DeviceNetworkConstants.CmdUpdatedState,
-            [SuitSensorConstants.NET_STATUS_COLLECTION] = serverComponent.SensorStatus,
+            [SuitSensorConstants.NET_STATUS_COLLECTION] = filteredStatus, // Sunrise - Added
             [SuitSensorConstants.MAP_ID] = serverMapId,
         };
+        // Sunrise - Start
+        if (serverGrid != null)
+            payload[CrewMonitoringNetKeys.MonitoringGrid] = GetNetEntity(serverGrid.Value);
+        // Sunrise - End
 
         _deviceNetworkSystem.QueuePacket(uid, null, payload, device: device);
     }

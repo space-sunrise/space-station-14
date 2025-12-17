@@ -28,6 +28,7 @@
         machine_board: !type:Container
         machine_parts: !type:Container
     - type: CrewMonitoringServer
+      monitoringRange: 180 # Sunrise - edit
     - type: SingletonDeviceNetServer
     - type: DeviceNetwork
       deviceNetId: Wireless

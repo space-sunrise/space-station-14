@@ -1,15 +1,16 @@
 using Content.Shared.Medical.CrewMonitoring;
 using Robust.Client.UserInterface;
-using Robust.Shared.Map; // Sunrise - edit
+using Robust.Shared.Map;
+using System.Linq;
 
-namespace Content.Client.Medical.CrewMonitoring;
+namespace Content.Client.Medical.CrewMonitoring.Brigmedic;
 
-public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
+public sealed class BrigmedicCrewMonitoringBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private CrewMonitoringWindow? _menu;
 
-    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public BrigmedicCrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
@@ -18,18 +19,16 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
         base.Open();
 
         _menu = this.CreateWindow<CrewMonitoringWindow>();
-        _menu.Set(string.Empty, null); // Sunrise - Add  открываем в пустом состоянии чтобы избавится от старых данных
+        _menu.Set(string.Empty, null);
         _menu.SetBoundUserInterface(this);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-
         switch (state)
         {
             case CrewMonitoringState st:
-                // Sunrise - Start
                 EntityUid? monitoringGridUid = null;
                 var stationName = string.Empty;
 
@@ -42,12 +41,15 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
 
                 _menu?.Set(stationName, monitoringGridUid);
 
+                var securityDepartmentSensors = st.Sensors
+                    .Where(sensor => sensor.JobDepartmentIds.Contains("Security"))
+                    .ToList();
+
                 EntityCoordinates? monitorCoords = null;
                 if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
                     monitorCoords = xform.Coordinates;
 
-                _menu?.ShowSensors(st.Sensors, Owner, monitorCoords, st.HasServer);
-                // Sunrise - End
+                _menu?.ShowSensors(securityDepartmentSensors, Owner, monitorCoords, st.HasServer);
                 _menu?.UpdateCorpseAlertToggle(st.CorpseAlertEnabled);
                 break;
         }

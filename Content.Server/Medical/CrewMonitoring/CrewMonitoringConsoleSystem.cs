@@ -102,6 +102,12 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         if (mapId != consoleMapId)
             return;
 
+        // Sunrise - Start
+        payload.TryGetValue(CrewMonitoringNetKeys.MonitoringGrid, out NetEntity? monitoringGrid);
+        component.MonitoringGrid = monitoringGrid.HasValue ? GetEntity(monitoringGrid.Value) : null;
+        component.LastServerStateReceived = _gameTiming.CurTime;
+        // Sunrise - End
+
         component.ConnectedSensors = sensorStatus;
         UpdateUserInterface(uid, component);
     }
@@ -122,15 +128,24 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         if (!_uiSystem.IsUiOpen(uid, CrewMonitoringUIKey.Key))
             return;
 
-        // The grid must have a NavMapComponent to visualize the map in the UI
-        var xform = Transform(uid);
-
-        if (xform.GridUid != null)
-            EnsureComp<NavMapComponent>(xform.GridUid.Value);
+        // Sunrise - Start
+        // На карте показываем только грид на котором находится сервер мониторинга, не показываем другие гриды
+        if (component.MonitoringGrid != null && EntityManager.EntityExists(component.MonitoringGrid.Value))
+            EnsureComp<NavMapComponent>(component.MonitoringGrid.Value);
+        // Sunrise - End
 
         // Update all sensors info
         var allSensors = component.ConnectedSensors.Values.ToList();
-        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors, component.DoCorpseAlert));
+
+        var monitoringGridNet = component.MonitoringGrid != null && EntityManager.EntityExists(component.MonitoringGrid.Value)
+            ? (NetEntity?)GetNetEntity(component.MonitoringGrid.Value)
+            : null;
+
+        var hasServer = component.LastServerStateReceived != TimeSpan.Zero
+                        && _gameTiming.CurTime - component.LastServerStateReceived < TimeSpan.FromSeconds(component.SensorTimeout);
+
+        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors, component.DoCorpseAlert, monitoringGridNet, hasServer));
+        // Sunrise - End
     }
 
     /// <summary>

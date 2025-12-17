@@ -1,8 +1,8 @@
 - type: entity
-  name: CommandFriend™ X-02
+  name: Command crew monitor X-02
   parent: [ BaseHandheldComputer, BaseRestrictedContraband ]
   id: HandheldBSOCrewMonitor
-  description: Does not monitor the competence levels of command members.
+  description: Displays suit sensor statuses for Command and Central Command.
   components:
 #  - type: Tag
 #    tags:

@@ -1,5 +1,5 @@
-ent-HandheldBSOCrewMonitor = CommandFriend™ X-02
-    .desc = Does not monitor the competence levels of command members.
+ent-HandheldBSOCrewMonitor = Command crew monitor X-02
+    .desc = Displays suit sensor statuses for Command and Central Command.
 ent-HandheldBSOCrewMonitorEmpty = { ent-HandheldBSOCrewMonitor }
     .suffix = Empty
     .desc = { ent-HandheldBSOCrewMonitor.desc }
