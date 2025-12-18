@@ -17,6 +17,7 @@ using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Localization;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;
@@ -31,6 +32,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 {
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
@@ -380,13 +382,13 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         if (LobbyMHelpButton != null)
         {
-            var baseText = Loc.GetString("ui-lobby-mhelp-button");
+            var baseText = _loc.GetString("ui-lobby-mhelp-button");
             LobbyMHelpButton.Text = displayCount > 0 ? $"{baseText} ({displayCount})" : baseText;
         }
 
         if (GameMHelpButton != null)
         {
-            var baseTooltip = Loc.GetString("ui-options-function-open-mentor-help");
+            var baseTooltip = _loc.GetString("ui-options-function-open-mentor-help");
             GameMHelpButton.ToolTip = displayCount > 0 ? $"{baseTooltip} ({displayCount})" : baseTooltip;
         }
     }

@@ -15,6 +15,7 @@ using Robust.Shared.Configuration;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Utility;
 using Content.Client.Stylesheets;
+using Robust.Shared.Localization;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -27,6 +28,7 @@ namespace Content.Client._Sunrise.MentorHelp
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly ILocalizationManager _loc = default!;
 
         private const double CloseConfirmTimeoutSeconds = 2;
         private const double TypingIndicatorTimeoutSeconds = 10;
@@ -86,8 +88,8 @@ namespace Content.Client._Sunrise.MentorHelp
             UpdateTypingIndicator();
 
             // Setup tab container like in AdminMenuWindow
-            TicketsTabContainer.SetTabTitle(0, Loc.GetString("mentor-help-tab-open"));
-            TicketsTabContainer.SetTabTitle(1, Loc.GetString("mentor-help-tab-closed"));
+            TicketsTabContainer.SetTabTitle(0, _loc.GetString("mentor-help-tab-open"));
+            TicketsTabContainer.SetTabTitle(1, _loc.GetString("mentor-help-tab-closed"));
 
             // Handle tab changes to load closed tickets when needed
             TicketsTabContainer.OnTabChanged += OnTabChanged;
@@ -397,10 +399,10 @@ namespace Content.Client._Sunrise.MentorHelp
             TicketSubjectLabel.Text = _selectedTicket.Subject;
 
             // Компактная строка: статус | назначен | создано
-            TicketStatus.Text = Loc.GetString("mentor-help-status-label", ("status", GetStatusText(_selectedTicket.Status)));
-            TicketAssigned.Text = Loc.GetString("mentor-help-assigned-label",
-                ("assigned", _selectedTicket.AssignedToName ?? Loc.GetString("mentor-help-unassigned")));
-            TicketCreated.Text = Loc.GetString("mentor-help-created-label",
+            TicketStatus.Text = _loc.GetString("mentor-help-status-label", ("status", GetStatusText(_selectedTicket.Status)));
+            TicketAssigned.Text = _loc.GetString("mentor-help-assigned-label",
+                ("assigned", _selectedTicket.AssignedToName ?? _loc.GetString("mentor-help-unassigned")));
+            TicketCreated.Text = _loc.GetString("mentor-help-created-label",
                 ("created", _selectedTicket.CreatedAt.ToString("dd.MM.yyyy HH:mm")));
         }
 
@@ -442,7 +444,7 @@ namespace Content.Client._Sunrise.MentorHelp
             _closeConfirming = false;
             _closeConfirmTicketId = null;
             _closeConfirmResetOn = null;
-            CloseTicketButton.Text = Loc.GetString("mentor-help-close-ticket");
+            CloseTicketButton.Text = _loc.GetString("mentor-help-close-ticket");
             CloseTicketButton.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
         }
 
@@ -450,11 +452,11 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             return status switch
             {
-                MentorHelpTicketStatus.Open => Loc.GetString("mentor-help-status-open"),
-                MentorHelpTicketStatus.Assigned => Loc.GetString("mentor-help-status-assigned"),
-                MentorHelpTicketStatus.AwaitingResponse => Loc.GetString("mentor-help-status-awaiting"),
-                MentorHelpTicketStatus.Closed => Loc.GetString("mentor-help-status-closed"),
-                _ => Loc.GetString("mentor-help-status-unknown")
+                MentorHelpTicketStatus.Open => _loc.GetString("mentor-help-status-open"),
+                MentorHelpTicketStatus.Assigned => _loc.GetString("mentor-help-status-assigned"),
+                MentorHelpTicketStatus.AwaitingResponse => _loc.GetString("mentor-help-status-awaiting"),
+                MentorHelpTicketStatus.Closed => _loc.GetString("mentor-help-status-closed"),
+                _ => _loc.GetString("mentor-help-status-unknown")
             };
         }
 
@@ -568,7 +570,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 _closeConfirming = true;
                 _closeConfirmTicketId = _selectedTicket.Id;
                 _closeConfirmResetOn = _gameTiming.RealTime + TimeSpan.FromSeconds(CloseConfirmTimeoutSeconds);
-                CloseTicketButton.Text = Loc.GetString("mentor-help-close-confirm");
+                CloseTicketButton.Text = _loc.GetString("mentor-help-close-confirm");
                 CloseTicketButton.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
 
                 return;
@@ -585,7 +587,7 @@ namespace Content.Client._Sunrise.MentorHelp
 
             var text = PeopleTyping.Count == 0
                 ? string.Empty
-                : Loc.GetString("bwoink-system-typing-indicator",
+                : _loc.GetString("bwoink-system-typing-indicator",
                     ("players", string.Join(", ", PeopleTyping)),
                     ("count", PeopleTyping.Count));
 

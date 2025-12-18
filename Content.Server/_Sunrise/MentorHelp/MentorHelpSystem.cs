@@ -36,8 +36,6 @@ namespace Content.Server._Sunrise.MentorHelp
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
-        private ISawmill _sawmill = default!;
-
         private List<MentorHelpStatisticsData>? _mentorStatsCache;
         private DateTimeOffset? _mentorStatsCacheTime;
         private readonly float _mentorCacheInterval = 10;
@@ -45,8 +43,6 @@ namespace Content.Server._Sunrise.MentorHelp
         public override void Initialize()
         {
             base.Initialize();
-
-            _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("MHELP");
 
             _rateLimit.Register(
                 RateLimitKey,
@@ -63,7 +59,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
         private void PlayerRateLimitedAction(ICommonSession session)
         {
-            _sawmill.Warning($"Player {session.Name} ({session.UserId}) was rate limited for mentor help");
+            Log.Warning($"Player {session.Name} ({session.UserId}) was rate limited for mentor help");
         }
 
         private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
@@ -83,13 +79,13 @@ namespace Content.Server._Sunrise.MentorHelp
             // Validate input
             if (string.IsNullOrWhiteSpace(message.Subject) || string.IsNullOrWhiteSpace(message.Message))
             {
-                _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to create mentor help ticket with empty subject or message");
+                Log.Warning($"Player {session.Name} ({session.UserId}) tried to create mentor help ticket with empty subject or message");
                 return;
             }
 
             if (message.Subject.Length > 256 || message.Message.Length > 4096)
             {
-                _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to create mentor help ticket with too long subject or message");
+                Log.Warning($"Player {session.Name} ({session.UserId}) tried to create mentor help ticket with too long subject or message");
                 return;
             }
 
@@ -119,7 +115,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 };
                 await _dbManager.AddMentorHelpMessageAsync(ticketMessage);
 
-                _sawmill.Info($"Player {session.Name} ({session.UserId}) created mentor help ticket #{ticket.Id}: {ticket.Subject}");
+                Log.Info($"Player {session.Name} ({session.UserId}) created mentor help ticket #{ticket.Id}: {ticket.Subject}");
 
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 await NotifyTicketUpdate(ticketData);
@@ -131,7 +127,7 @@ namespace Content.Server._Sunrise.MentorHelp
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error creating mentor help ticket for {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error creating mentor help ticket for {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -142,7 +138,7 @@ namespace Content.Server._Sunrise.MentorHelp
             // Check permissions
             if (!HasMentorPermissions(session))
             {
-                _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to claim mentor help ticket without permissions");
+                Log.Warning($"Player {session.Name} ({session.UserId}) tried to claim mentor help ticket without permissions");
                 return;
             }
 
@@ -151,13 +147,13 @@ namespace Content.Server._Sunrise.MentorHelp
                 var ticket = await _dbManager.GetMentorHelpTicketAsync(message.TicketId);
                 if (ticket == null)
                 {
-                    _sawmill.Warning($"Mentor {session.Name} ({session.UserId}) tried to claim non-existent ticket #{message.TicketId}");
+                    Log.Warning($"Mentor {session.Name} ({session.UserId}) tried to claim non-existent ticket #{message.TicketId}");
                     return;
                 }
 
                 if (ticket.Status == MentorHelpTicketStatus.Closed)
                 {
-                    _sawmill.Warning($"Mentor {session.Name} ({session.UserId}) tried to claim closed ticket #{message.TicketId}");
+                    Log.Warning($"Mentor {session.Name} ({session.UserId}) tried to claim closed ticket #{message.TicketId}");
                     return;
                 }
 
@@ -173,7 +169,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
 
-                _sawmill.Info($"Mentor {session.Name} ({session.UserId}) claimed ticket #{ticket.Id}");
+                Log.Info($"Mentor {session.Name} ({session.UserId}) claimed ticket #{ticket.Id}");
 
                 // Notify all relevant parties
                 var ticketData = await ConvertToTicketDataAsync(ticket);
@@ -181,7 +177,7 @@ namespace Content.Server._Sunrise.MentorHelp
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error claiming mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error claiming mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -198,13 +194,13 @@ namespace Content.Server._Sunrise.MentorHelp
                 var ticket = await _dbManager.GetMentorHelpTicketAsync(message.TicketId);
                 if (ticket == null)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to reply to non-existent ticket #{message.TicketId}");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to reply to non-existent ticket #{message.TicketId}");
                     return;
                 }
 
                 if (ticket.Status == MentorHelpTicketStatus.Closed)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to reply to closed ticket #{message.TicketId}");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to reply to closed ticket #{message.TicketId}");
                     return;
                 }
 
@@ -214,21 +210,21 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 if (!isTicketOwner && !hasMentorPerms)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to reply to ticket #{message.TicketId} without permissions");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to reply to ticket #{message.TicketId} without permissions");
                     return;
                 }
 
                 // Staff-only messages can only be sent by mentors/admins
                 if (message.IsStaffOnly && !hasMentorPerms)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to send staff-only message without permissions");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to send staff-only message without permissions");
                     return;
                 }
 
                 // Validate message
                 if (string.IsNullOrWhiteSpace(message.Message) || message.Message.Length > 4096)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to send invalid message to ticket #{message.TicketId}");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to send invalid message to ticket #{message.TicketId}");
                     return;
                 }
 
@@ -265,7 +261,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
 
-                _sawmill.Info($"Player {session.Name} ({session.UserId}) replied to ticket #{message.TicketId}");
+                Log.Info($"Player {session.Name} ({session.UserId}) replied to ticket #{message.TicketId}");
 
                 // Notify relevant parties
                 var ticketData = await ConvertToTicketDataAsync(ticket);
@@ -285,7 +281,7 @@ namespace Content.Server._Sunrise.MentorHelp
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error adding reply to mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error adding reply to mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -298,13 +294,13 @@ namespace Content.Server._Sunrise.MentorHelp
                 var ticket = await _dbManager.GetMentorHelpTicketAsync(message.TicketId);
                 if (ticket == null)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to close non-existent ticket #{message.TicketId}");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to close non-existent ticket #{message.TicketId}");
                     return;
                 }
 
                 if (ticket.Status == MentorHelpTicketStatus.Closed)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to close already closed ticket #{message.TicketId}");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to close already closed ticket #{message.TicketId}");
                     return;
                 }
 
@@ -314,7 +310,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 if (!isTicketOwner && !hasMentorPerms)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to close ticket #{message.TicketId} without permissions");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to close ticket #{message.TicketId} without permissions");
                     return;
                 }
 
@@ -326,7 +322,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
 
-                _sawmill.Info($"Player {session.Name} ({session.UserId}) closed ticket #{ticket.Id}");
+                Log.Info($"Player {session.Name} ({session.UserId}) closed ticket #{ticket.Id}");
 
                 // Notify relevant parties
                 var ticketData = await ConvertToTicketDataAsync(ticket);
@@ -334,7 +330,7 @@ namespace Content.Server._Sunrise.MentorHelp
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error closing mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error closing mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -356,7 +352,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     // Mentor/admin requesting all tickets (both open and closed)
                     if (!HasMentorPermissions(session))
                     {
-                        _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to request all mentor help tickets without permissions");
+                        Log.Warning($"Player {session.Name} ({session.UserId}) tried to request all mentor help tickets without permissions");
                         return;
                     }
 
@@ -376,7 +372,7 @@ namespace Content.Server._Sunrise.MentorHelp
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error requesting mentor help tickets for {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error requesting mentor help tickets for {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -386,7 +382,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
             if (!HasMentorPermissions(session))
             {
-                _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to unassign mentor help ticket without permissions");
+                Log.Warning($"Player {session.Name} ({session.UserId}) tried to unassign mentor help ticket without permissions");
                 return;
             }
 
@@ -395,13 +391,13 @@ namespace Content.Server._Sunrise.MentorHelp
                 var ticket = await _dbManager.GetMentorHelpTicketAsync(message.TicketId);
                 if (ticket == null)
                 {
-                    _sawmill.Warning($"Mentor {session.Name} ({session.UserId}) tried to unassign non-existent ticket #{message.TicketId}");
+                    Log.Warning($"Mentor {session.Name} ({session.UserId}) tried to unassign non-existent ticket #{message.TicketId}");
                     return;
                 }
 
                 if (ticket.Status == MentorHelpTicketStatus.Closed)
                 {
-                    _sawmill.Warning($"Mentor {session.Name} ({session.UserId}) tried to unassign closed ticket #{message.TicketId}");
+                    Log.Warning($"Mentor {session.Name} ({session.UserId}) tried to unassign closed ticket #{message.TicketId}");
                     return;
                 }
 
@@ -411,14 +407,14 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
 
-                _sawmill.Info($"Mentor {session.Name} ({session.UserId}) unassigned ticket #{ticket.Id}");
+                Log.Info($"Mentor {session.Name} ({session.UserId}) unassigned ticket #{ticket.Id}");
 
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 await NotifyTicketUpdate(ticketData);
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error unassigning mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error unassigning mentor help ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -440,7 +436,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
             if (!HasMentorPermissions(session))
             {
-                _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to request mentor help statistics without permissions");
+                Log.Warning($"Player {session.Name} ({session.UserId}) tried to request mentor help statistics without permissions");
                 return;
             }
 
@@ -483,7 +479,7 @@ namespace Content.Server._Sunrise.MentorHelp
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error requesting mentor help statistics for {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error requesting mentor help statistics for {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -491,14 +487,14 @@ namespace Content.Server._Sunrise.MentorHelp
         {
             var session = eventArgs.SenderSession;
 
-            _sawmill.Info("Received RequestTicketMessages for ticket #{0} from {1} ({2})", message.TicketId, session.Name, session.UserId);
+            Log.Info("Received RequestTicketMessages for ticket #{0} from {1} ({2})", message.TicketId, session.Name, session.UserId);
 
             try
             {
                 var ticket = await _dbManager.GetMentorHelpTicketAsync(message.TicketId);
                 if (ticket == null)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to request messages for non-existent ticket #{message.TicketId}");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to request messages for non-existent ticket #{message.TicketId}");
                     return;
                 }
 
@@ -507,7 +503,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 if (!hasMentorPerms && !isTicketOwner)
                 {
-                    _sawmill.Warning($"Player {session.Name} ({session.UserId}) tried to request messages for ticket #{message.TicketId} without permissions");
+                    Log.Warning($"Player {session.Name} ({session.UserId}) tried to request messages for ticket #{message.TicketId} without permissions");
                     return;
                 }
 
@@ -522,11 +518,11 @@ namespace Content.Server._Sunrise.MentorHelp
                 }
 
                 RaiseNetworkEvent(new MentorHelpTicketMessagesMessage(message.TicketId, messageDatas), session.Channel);
-                _sawmill.Info("Sent {0} messages for ticket #{1} to {2} ({3})", messageDatas.Count, message.TicketId, session.Name, session.UserId);
+                Log.Info("Sent {0} messages for ticket #{1} to {2} ({3})", messageDatas.Count, message.TicketId, session.Name, session.UserId);
             }
             catch (Exception ex)
             {
-                _sawmill.Error($"Error requesting mentor help messages for ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
+                Log.Error($"Error requesting mentor help messages for ticket #{message.TicketId} by {session.Name} ({session.UserId}): {ex}");
             }
         }
 
@@ -623,7 +619,7 @@ namespace Content.Server._Sunrise.MentorHelp
             var name = playerData?.LastSeenUserName;
             if (string.IsNullOrWhiteSpace(name))
             {
-                Logger.Warning($"GetPlayerNameAsync: No name found for userId {userId}, returning 'Unknown'.");
+                Log.Warning($"GetPlayerNameAsync: No name found for userId {userId}, returning 'Unknown'.");
                 return "Unknown";
             }
             return name;
