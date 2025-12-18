@@ -227,6 +227,12 @@
 - type: Tag
   id: SyndicateRapier
 
+- type: Tag
+  id: ShotgunSlug
+
+- type: Tag
+  id: MagazineAsh12
+
 # Material bag:
 
 - type: Tag
