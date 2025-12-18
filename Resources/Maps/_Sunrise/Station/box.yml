@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/12/2025 13:39:08
-  entityCount: 35976
+  time: 12/18/2025 11:45:08
+  entityCount: 35979
 maps:
 - 1
 grids:
@@ -27429,7 +27429,7 @@ entities:
       pos: 14.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1123906.2
+      secondsUntilStateChange: -1124067.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -27488,7 +27488,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -1127394.6
+      secondsUntilStateChange: -1127556
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -27620,7 +27620,7 @@ entities:
       pos: -9.5,-14.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -776219.56
+      secondsUntilStateChange: -776381
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -28705,7 +28705,7 @@ entities:
       pos: -24.5,13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -52115.14
+      secondsUntilStateChange: -52276.574
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -28762,7 +28762,7 @@ entities:
       pos: -24.5,15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -52114.87
+      secondsUntilStateChange: -52276.305
       state: Opening
     - type: AccessReader
       accessListsOriginal: []
@@ -28781,8 +28781,10 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -50.5,-43.5
+      pos: -50.5,-48.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: AirlockExternalGlassPersonalShuttle
   entities:
   - uid: 7411
@@ -29234,7 +29236,7 @@ entities:
       pos: 19.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1113783.4
+      secondsUntilStateChange: -1113944.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29324,7 +29326,7 @@ entities:
       pos: 13.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -506655.75
+      secondsUntilStateChange: -506817.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29491,7 +29493,7 @@ entities:
       pos: 29.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -477519.8
+      secondsUntilStateChange: -477681.25
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29584,7 +29586,7 @@ entities:
       pos: -17.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -877351.44
+      secondsUntilStateChange: -877512.9
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29888,7 +29890,7 @@ entities:
       pos: 81.5,-34.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -396198.97
+      secondsUntilStateChange: -396360.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29982,7 +29984,7 @@ entities:
       pos: -9.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -812743.4
+      secondsUntilStateChange: -812904.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30026,7 +30028,7 @@ entities:
       pos: 21.5,23.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -504042
+      secondsUntilStateChange: -504203.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30073,7 +30075,7 @@ entities:
       pos: -2.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -812184.4
+      secondsUntilStateChange: -812345.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30185,7 +30187,7 @@ entities:
       pos: 4.5,3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -555547.3
+      secondsUntilStateChange: -555708.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30412,7 +30414,7 @@ entities:
       pos: 29.5,-22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -35448.484
+      secondsUntilStateChange: -35609.918
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30899,7 +30901,7 @@ entities:
       pos: 20.5,35.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -756300.56
+      secondsUntilStateChange: -756462
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31027,6 +31029,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 26.5,16.5
+      parent: 2
+- proto: AirlockShuttleAssembly
+  entities:
+  - uid: 800
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -50.5,-43.5
       parent: 2
 - proto: AirlockTheatreLocked
   entities:
@@ -103950,7 +103960,7 @@ entities:
       pos: 33.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1366249.8
+      secondsUntilStateChange: -1366411.1
       state: Opening
   - uid: 11707
     components:
@@ -115330,7 +115340,7 @@ entities:
       pos: 28.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -66.20021
+      secondsUntilStateChange: -227.63358
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -170665,13 +170675,6 @@ entities:
           showEnts: False
           occludes: True
           ent: 11636
-- proto: SuitStorageBlueShield
-  entities:
-  - uid: 800
-    components:
-    - type: Transform
-      pos: -10.5,-13.5
-      parent: 2
 - proto: GunSafeIonRifle
   entities:
   - uid: 30298
@@ -173642,10 +173645,10 @@ entities:
       parent: 2
 - proto: LockerBlueShieldOfficerFilled
   entities:
-  - uid: 22956
+  - uid: 35978
     components:
     - type: Transform
-      pos: -13.500187,-13.444952
+      pos: -13.5,-13.5
       parent: 2
 - proto: LockerBooze
   entities:
@@ -187158,6 +187161,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -89.5,-54.5
       parent: 2
+  - uid: 22956
+    components:
+    - type: Transform
+      pos: -50.5,-49.5
+      parent: 2
   - uid: 23056
     components:
     - type: Transform
@@ -187601,6 +187609,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-21.5
+      parent: 2
+  - uid: 35976
+    components:
+    - type: Transform
+      pos: -50.5,-46.5
       parent: 2
 - proto: RailingCorner
   entities:
@@ -202912,7 +202925,7 @@ entities:
       pos: 74.5,23.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1066393.4
+      secondsUntilStateChange: -1066554.8
       state: Opening
   - uid: 21149
     components:
@@ -208509,6 +208522,13 @@ entities:
         moles:
           Oxygen: 1.7459903
           Nitrogen: 6.568249
+- proto: SuitStorageBlueShield
+  entities:
+  - uid: 35977
+    components:
+    - type: Transform
+      pos: -10.5,-13.5
+      parent: 2
 - proto: SuitStorageCaptain
   entities:
   - uid: 23490
@@ -215839,7 +215859,7 @@ entities:
       pos: 19.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -395937.28
+      secondsUntilStateChange: -396098.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -244543,7 +244563,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -993042.8
+      secondsUntilStateChange: -993204.25
       state: Opening
     - type: Airlock
       autoClose: False
