@@ -41,7 +41,6 @@ namespace Content.Server._Sunrise.MentorHelp
         private List<MentorHelpStatisticsData>? _mentorStatsCache;
         private DateTimeOffset? _mentorStatsCacheTime;
         private readonly float _mentorCacheInterval = 10;
-        private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
 
         public override void Initialize()
         {
@@ -700,8 +699,8 @@ namespace Content.Server._Sunrise.MentorHelp
                     recipients.Add(mentorSession.Channel);
             }
 
-            foreach (var rakushka in recipients)
-                RaiseNetworkEvent(update, rakushka);
+            foreach (var recipient in recipients)
+                RaiseNetworkEvent(update, recipient);
         }
     }
 }

@@ -1,9 +1,9 @@
 ui-lobby-mhelp-button = MHelp
-ui-options-function-open-mentor-help = Открыть Ментор помощь - Xevro 2000
+ui-options-function-open-mentor-help = Открыть Ментор помощь
 ui-options-function-open-help-choice = Открыть выбор помощи
 
 # Mentor Help Window
-mentor-help-window-title = Ментор помощь - Xevro 2000
+mentor-help-window-title = Ментор помощь
 
 # Tabs
 mentor-help-tab-open = Открытые
