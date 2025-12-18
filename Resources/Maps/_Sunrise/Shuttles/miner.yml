@@ -1909,18 +1909,6 @@ entities:
     - type: Transform
       pos: 0.51104593,5.5
       parent: 1
-- proto: LootSpawnerIndustrialFluff
-  entities:
-  - uid: 395
-    components:
-    - type: Transform
-      pos: -4.5,2.5
-      parent: 1
-  - uid: 396
-    components:
-    - type: Transform
-      pos: -2.5,-1.5
-      parent: 1
 - proto: MiningWindow
   entities:
   - uid: 4
