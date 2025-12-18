@@ -43,7 +43,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     private readonly Dictionary<int, MentorHelpTicketData> _ticketDataById = new();
     private bool _mentorHelpSoundEnabled;
     public static readonly SoundSpecifier? MentorHelpSound =
-        new SoundPathSpecifier("/Audio/_Sunrise/Effects/adminticketopen.ogg");
+        new SoundPathSpecifier("/Audio/_Sunrise/Effects/adminticketopen.ogg", AudioParams.Default.WithVolume(-3f));
 
     private Button? LobbyMHelpButton => (UIManager.ActiveScreen as LobbyGui)?.MHelpButton;
     private MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
@@ -163,15 +163,17 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     private void OnTicketUpdated(object? sender, MentorHelpTicketUpdateMessage message)
     {
-        if (_mentorHelpSoundEnabled)
+
+        _ticketDataById[message.Ticket.Id] = message.Ticket;
+
+        if (_mentorHelpSoundEnabled && IsRelevantTicket(message.Ticket.Id))
         {
-            _audio.PlayGlobal(MentorHelpSound, Filter.Local(), false, AudioParams.Default.WithVolume(-3f));
+            _audio.PlayGlobal(MentorHelpSound, Filter.Local(), false);
             _clyde.RequestWindowAttention();
         }
 
         EnsureUIHelper();
 
-        _ticketDataById[message.Ticket.Id] = message.Ticket;
         if (!IsRelevantTicket(message.Ticket.Id))
             _unreadTicketIds.Remove(message.Ticket.Id);
         UpdateButtonStyling();

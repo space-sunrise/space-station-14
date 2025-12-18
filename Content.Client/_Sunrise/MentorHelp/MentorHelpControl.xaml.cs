@@ -25,7 +25,12 @@ namespace Content.Client._Sunrise.MentorHelp
     public sealed partial class MentorHelpControl : Control
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
-        [Dependency] private readonly IConfigurationManager _config = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
+
+        private const double CloseConfirmTimeoutSeconds = 2;
+        private const double TypingIndicatorTimeoutSeconds = 10;
+        private bool _isDisposed;
 
         private MentorHelpSystem? _mentorHelpSystem;
         private NetUserId _ownerUserId;
@@ -47,28 +52,23 @@ namespace Content.Client._Sunrise.MentorHelp
         private MentorHelpNewTicketDialog? _newTicketDialog;
         private int? _pendingOpenTicketId;
         private List<string> PeopleTyping { get; set; } = new();
+        private readonly Dictionary<string, TimeSpan> _typingTimeouts = new();
         public event Action<string>? InputTextChanged;
 
         private bool _closeConfirming;
         private int? _closeConfirmTicketId;
+        private TimeSpan? _closeConfirmResetOn;
 
         public MentorHelpControl()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
-            PlaySound.Pressed = _config.GetCVar(SunriseCCVars.MentorHelpSoundEnabled);
-            AutoOpenTickets.Pressed = _config.GetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage);
+            _cfg.OnValueChanged(SunriseCCVars.MentorHelpSoundEnabled, OnMentorHelpSoundEnabledChanged, true);
+            _cfg.OnValueChanged(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, OnMentorHelpAutoOpenChanged, true);
 
-            PlaySound.OnToggled += args =>
-            {
-                _config.SetCVar(SunriseCCVars.MentorHelpSoundEnabled, args.Pressed);
-            };
-
-            AutoOpenTickets.OnToggled += args =>
-            {
-                _config.SetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, args.Pressed);
-            };
+            PlaySound.OnToggled += OnPlaySoundToggled;
+            AutoOpenTickets.OnToggled += OnAutoOpenTicketsToggled;
 
             // Wire up button events
             NewTicketButton.OnPressed += _ => OpenNewTicketDialog();
@@ -105,6 +105,32 @@ namespace Content.Client._Sunrise.MentorHelp
             {
                 MessagesScroll.VScrollTarget = float.MaxValue;
             };
+        }
+
+        private void OnPlaySoundToggled(BaseButton.ButtonToggledEventArgs args)
+        {
+            if (_isDisposed)
+                return;
+
+            _cfg.SetCVar(SunriseCCVars.MentorHelpSoundEnabled, args.Pressed);
+        }
+
+        private void OnAutoOpenTicketsToggled(BaseButton.ButtonToggledEventArgs args)
+        {
+            if (_isDisposed)
+                return;
+
+            _cfg.SetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, args.Pressed);
+        }
+
+        private void OnMentorHelpSoundEnabledChanged(bool enabled)
+        {
+            PlaySound.Pressed = enabled;
+        }
+
+        private void OnMentorHelpAutoOpenChanged(bool enabled)
+        {
+            AutoOpenTickets.Pressed = enabled;
         }
 
         /// <summary>
@@ -157,6 +183,7 @@ namespace Content.Client._Sunrise.MentorHelp
             {
                 _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, false);
                 PeopleTyping.Clear();
+                _typingTimeouts.Clear();
                 UpdateTypingIndicator();
                 ResetCloseConfirm();
             }
@@ -256,12 +283,11 @@ namespace Content.Client._Sunrise.MentorHelp
         private void OnTicketSelected(MentorHelpTicketData ticket)
         {
             if (_selectedTicket != null)
-            {
                 _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, false);
-            }
 
             _selectedTicket = ticket;
             PeopleTyping.Clear();
+            _typingTimeouts.Clear();
             UpdateTypingIndicator();
             ReplyInput.Text = string.Empty;
             ResetCloseConfirm();
@@ -415,6 +441,7 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             _closeConfirming = false;
             _closeConfirmTicketId = null;
+            _closeConfirmResetOn = null;
             CloseTicketButton.Text = Loc.GetString("mentor-help-close-ticket");
             CloseTicketButton.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
         }
@@ -480,8 +507,7 @@ namespace Content.Client._Sunrise.MentorHelp
 
         private void ScrollToBottomDeferred()
         {
-            var uiManager = IoCManager.Resolve<IUserInterfaceManager>();
-            uiManager.DeferAction(() =>
+            _ui.DeferAction(() =>
             {
                 MessagesScroll.VScrollTarget = float.MaxValue;
             });
@@ -541,17 +567,9 @@ namespace Content.Client._Sunrise.MentorHelp
             {
                 _closeConfirming = true;
                 _closeConfirmTicketId = _selectedTicket.Id;
+                _closeConfirmResetOn = _gameTiming.RealTime + TimeSpan.FromSeconds(CloseConfirmTimeoutSeconds);
                 CloseTicketButton.Text = Loc.GetString("mentor-help-close-confirm");
                 CloseTicketButton.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
-
-                Timer.Spawn(TimeSpan.FromSeconds(2), () =>
-                {
-                    if (Disposed)
-                        return;
-
-                    if (_closeConfirming && _closeConfirmTicketId == _selectedTicket?.Id)
-                        ResetCloseConfirm();
-                });
 
                 return;
             }
@@ -584,22 +602,16 @@ namespace Content.Client._Sunrise.MentorHelp
 
             if (typing)
             {
-                if (PeopleTyping.Contains(name))
-                    return;
+                var now = _gameTiming.RealTime;
+                _typingTimeouts[name] = now + TimeSpan.FromSeconds(TypingIndicatorTimeoutSeconds);
 
-                PeopleTyping.Add(name);
-                Timer.Spawn(TimeSpan.FromSeconds(10), () =>
-                {
-                    if (Disposed)
-                        return;
-
-                    PeopleTyping.Remove(name);
-                    UpdateTypingIndicator();
-                });
+                if (!PeopleTyping.Contains(name))
+                    PeopleTyping.Add(name);
             }
             else
             {
                 PeopleTyping.Remove(name);
+                _typingTimeouts.Remove(name);
             }
 
             UpdateTypingIndicator();
@@ -613,6 +625,60 @@ namespace Content.Client._Sunrise.MentorHelp
                 return;
 
             _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, args.Text.Length > 0);
+        }
+
+        protected override void FrameUpdate(FrameEventArgs args)
+        {
+            base.FrameUpdate(args);
+
+            if (Disposed)
+                return;
+
+            var now = _gameTiming.RealTime;
+
+            if (_closeConfirmResetOn < now)
+            {
+                if (_closeConfirming && _closeConfirmTicketId == _selectedTicket?.Id)
+                    ResetCloseConfirm();
+
+                _closeConfirmResetOn = null;
+            }
+
+            if (PeopleTyping.Count == 0)
+                return;
+
+            var updatedTypingIndicator = false;
+
+            for (var g = PeopleTyping.Count - 1; g >= 0; g--)
+            {
+                var name = PeopleTyping[g];
+
+                if (!_typingTimeouts.TryGetValue(name, out var timeoutAt) || timeoutAt > now)
+                    continue;
+
+                PeopleTyping.RemoveAt(g);
+                _typingTimeouts.Remove(name);
+                updatedTypingIndicator = true;
+            }
+
+            if (updatedTypingIndicator)
+                UpdateTypingIndicator();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (!disposing)
+                return;
+
+            _isDisposed = true;
+
+            PlaySound.OnToggled -= OnPlaySoundToggled;
+            AutoOpenTickets.OnToggled -= OnAutoOpenTicketsToggled;
+
+            _cfg.UnsubValueChanged(SunriseCCVars.MentorHelpSoundEnabled, OnMentorHelpSoundEnabledChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, OnMentorHelpAutoOpenChanged);
         }
     }
 }

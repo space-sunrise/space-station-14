@@ -18,6 +18,7 @@ namespace Content.Client._Sunrise.MentorHelp
         public event EventHandler<MentorHelpStatisticsMessage>? OnStatisticsReceived;
         public event EventHandler<MentorHelpOpenTicketMessage>? OnOpenTicketReceived;
         public event EventHandler<MentorHelpPlayerTypingUpdated>? OnPlayerTypingUpdated;
+        private const double TypingUpdateResendIntervalSeconds = 1;
         private (TimeSpan Timestamp, bool Typing) _lastTypingUpdateSent;
 
 
@@ -166,7 +167,7 @@ namespace Content.Client._Sunrise.MentorHelp
         public void SendInputTextUpdated(int ticketId, bool typing)
         {
             if (_lastTypingUpdateSent.Typing == typing &&
-                _lastTypingUpdateSent.Timestamp + TimeSpan.FromSeconds(1) > _gameTiming.RealTime)
+                _lastTypingUpdateSent.Timestamp + TimeSpan.FromSeconds(TypingUpdateResendIntervalSeconds) > _gameTiming.RealTime)
             {
                 return;
             }

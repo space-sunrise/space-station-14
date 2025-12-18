@@ -13,17 +13,14 @@ namespace Content.Client._Sunrise.MentorHelp
     public sealed partial class TicketEntryControl : Control
     {
         private static readonly Color NormalColor = Color.FromHex("#202023");
-        private static readonly Color HoverColor = Color.FromHex("#2F2F33");
         private static readonly Color UnreadColor = Color.FromHex("#4A1F1F");
-        private static readonly Color UnreadHoverColor = Color.FromHex("#5A2626");
         private static readonly Color AuthorUnreadColor = Color.FromHex("#17395C");
-        private static readonly Color AuthorUnreadHoverColor = Color.FromHex("#1B4470");
         private static readonly Color UnassignedColor = Color.FromHex("#1E3A1E");
-        private static readonly Color UnassignedHoverColor = Color.FromHex("#274B27");
         private static readonly Color ClosedColor = Color.FromHex("#3B0F0F");
-        private static readonly Color ClosedHoverColor = Color.FromHex("#4A1414");
         private static readonly Color AwaitingColor = Color.FromHex("#3A2F12");
-        private static readonly Color AwaitingHoverColor = Color.FromHex("#4A3B17");
+        private static readonly Color UnassignedAssigneeLabelColor = Color.FromHex("#7CFF7C");
+
+        private const float HoverColorLerp = 0.06f;
 
         private MentorHelpTicketData? _ticketData;
         private bool _newMessageFromAuthor;
@@ -73,7 +70,7 @@ namespace Content.Client._Sunrise.MentorHelp
             AssignedLabel.Text = ticketData.AssignedToName ?? Loc.GetString("mentor-help-unassigned");
             AssignedLabel.FontColorOverride = ticketData.AssignedToUserId == null
                 && ticketData.Status != MentorHelpTicketStatus.Closed
-                ? Color.FromHex("#7CFF7C")
+                ? UnassignedAssigneeLabelColor
                 : null;
 
             SubjectLabel.Text = ticketData.Subject;
@@ -116,31 +113,37 @@ namespace Content.Client._Sunrise.MentorHelp
             var isClosed = _ticketData.Status == MentorHelpTicketStatus.Closed;
             var isAwaiting = _ticketData.Status == MentorHelpTicketStatus.AwaitingResponse;
 
-            var normal = isClosed
-                ? ClosedColor
-                : isAwaiting
-                    ? AwaitingColor
-                    : isAuthorUnread
-                        ? AuthorUnreadColor
-                        : isUnread
-                            ? UnreadColor
-                            : isUnassigned
-                                ? UnassignedColor
-                                : NormalColor;
-
-            var hover = isClosed
-                ? ClosedHoverColor
-                : isAwaiting
-                    ? AwaitingHoverColor
-                    : isAuthorUnread
-                        ? AuthorUnreadHoverColor
-                        : isUnread
-                            ? UnreadHoverColor
-                            : isUnassigned
-                                ? UnassignedHoverColor
-                                : HoverColor;
+            var normal = GetNormalBackgroundColor(isClosed, isAwaiting, isAuthorUnread, isUnread, isUnassigned);
+            var hover = Color.InterpolateBetween(normal, Color.White, HoverColorLerp);
 
             panel.BackgroundColor = _isHovering ? hover : normal;
+        }
+
+        private static Color GetNormalBackgroundColor(
+            bool isClosed,
+            bool isAwaiting,
+            bool isAuthorUnread,
+            bool isUnread,
+            bool isUnassigned)
+        {
+
+            if (isClosed)
+                return ClosedColor;
+
+            if (isAwaiting)
+                return AwaitingColor;
+
+            if (isAuthorUnread)
+                return AuthorUnreadColor;
+
+            if (isUnread)
+                return UnreadColor;
+
+            if (isUnassigned)
+                return UnassignedColor;
+
+            return NormalColor;
+
         }
 
         private string GetStatusText(MentorHelpTicketStatus status)
