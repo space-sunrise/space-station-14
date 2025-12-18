@@ -2,7 +2,9 @@ meta:
   format: 7
   category: Grid
   engineVersion: 267.3.0
-  time: 12/18/2025 13:38:01
+  forkId: ""
+  forkVersion: ""
+  time: 12/18/2025 13:48:52
   entityCount: 393
 maps: []
 grids:
@@ -44,6 +46,7 @@ entities:
       name: NTMS-754 "Горняк"
     - type: Transform
       pos: -0.5078125,-0.4609375
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -1139,8 +1142,11 @@ entities:
   - uid: 378
     components:
     - type: Transform
+      anchored: True
       pos: -0.5,-5.5
       parent: 1
+    - type: Physics
+      bodyType: Static
     - type: Lock
       locked: False
 - proto: DefibrillatorCabinetFilled
@@ -1873,8 +1879,11 @@ entities:
   - uid: 380
     components:
     - type: Transform
+      anchored: True
       pos: 1.5,-5.5
       parent: 1
+    - type: Physics
+      bodyType: Static
     - type: Lock
       locked: False
 - proto: LockerFreezerBase
@@ -2049,28 +2058,39 @@ entities:
   - uid: 142
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      anchored: True
       pos: -4.5,-1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 147
     components:
     - type: Transform
+      anchored: True
       pos: -3.5,3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PaperBin10
   entities:
   - uid: 235
     components:
     - type: Transform
+      anchored: True
       pos: 0.5,-3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PortableGeneratorJrPacman
   entities:
   - uid: 381
     components:
     - type: Transform
+      anchored: True
       pos: -2.5,-5.5
       parent: 1
+    - type: Physics
+      bodyType: Static
     - type: CMExplosionEffect
 - proto: PortableGeneratorPacman
   entities:
@@ -3067,8 +3087,11 @@ entities:
   - uid: 221
     components:
     - type: Transform
+      anchored: True
       pos: -2.5,-7.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 233
@@ -3081,14 +3104,17 @@ entities:
   - uid: 220
     components:
     - type: Transform
+      anchored: True
       pos: -3.5,-7.5
       parent: 1
+    - type: Physics
+      bodyType: Static
     - type: CMExplosionEffect
 - proto: Wrench
   entities:
   - uid: 264
     components:
     - type: Transform
-      pos: -1.5249276,1.195658
+      pos: -1.5202422,1.1994451
       parent: 1
 ...
