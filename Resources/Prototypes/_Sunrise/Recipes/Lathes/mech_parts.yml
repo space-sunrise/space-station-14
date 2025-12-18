@@ -60,7 +60,7 @@
   - Durand
   completetime: 60
   materials:
-    Steel: 2500
+    Steel: 3000
     Glass: 2000
     Silver: 1500
 
@@ -71,7 +71,7 @@
   - Durand
   completetime: 60
   materials:
-    Steel: 3000
+    Steel: 3500
     Plasteel: 2000
     Silver: 900
     Uranium: 600
@@ -96,7 +96,7 @@
   - Durand
   completetime: 45
   materials:
-    Steel: 1300
+    Steel: 1700
     Silver: 300
 
 - type: latheRecipe
@@ -106,7 +106,7 @@
   - Durand
   completetime: 45
   materials:
-    Steel: 1300
+    Steel: 1700
     Silver: 300
 
 - type: latheRecipe
@@ -116,7 +116,7 @@
   - Durand
   completetime: 45
   materials:
-    Steel: 1300
+    Steel: 1700
     Silver: 300
 
 - type: latheRecipe
@@ -126,7 +126,7 @@
   - Durand
   completetime: 45
   materials:
-    Steel: 1300
+    Steel: 1700
     Silver: 300
 
 # Gygax
