@@ -437,7 +437,7 @@
     accentVColor: "#cc3d3d"
     accentHColor: "#3d3d40"
   - type: Icon
-    state: securitypilot
+    state: pda-securitypilot
 
 - type: entity
   parent: CaptainPDA

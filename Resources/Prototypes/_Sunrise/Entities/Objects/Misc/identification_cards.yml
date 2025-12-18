@@ -645,7 +645,7 @@
       offset: *icon-offset
       state: CommandMaid
     - type: Item
-    heldPrefix: silver
+      heldPrefix: silver
   - type: PresetIdCard
     job: ComMaid
 
