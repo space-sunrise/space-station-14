@@ -1254,6 +1254,39 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkSyndicateBombEMP
+  description: uplink-exploding-syndicate-empbomb-desc
+  productEntity: SyndicateBombEMP
+  cost:
+    Telecrystal: 7
+  categories:
+    - UplinkExplosives
+  restockTime: 1800
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkSyndicateBombNukieEMP
+  description: uplink-exploding-syndicate-empbomb-desc
+  productEntity: SyndicateBombEMP
+  cost:
+    Telecrystal: 9
+  categories:
+    - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+- type: listing
   id: UplinkBouquet
   name: uplink-bouquet-name
   description: uplink-bouquet-desc
