@@ -375,7 +375,7 @@
 #   soundHit:  Waiting on serv3
     damage:
       types:
-        Heat: 15 # Sunrise-edit
+        Heat: 15
         Structural: 35 # Sunrise-added
   # mining laser real
   - type: GatheringProjectile
@@ -553,7 +553,7 @@
     damage:
       types:
         Blunt: 15
-        Structural: 20 # Sunrise-edit # Port WZ 38119
+        Structural: 20
   # Short lifespan
   - type: TimedDespawn
     lifetime: 0.22 # roughly 5.5 tiles

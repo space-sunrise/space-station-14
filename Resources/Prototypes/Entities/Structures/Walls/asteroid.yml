@@ -48,12 +48,10 @@
           path: /Audio/Effects/break_stone.ogg
           params:
             volume: -6
-  # Sunrise-start
   - type: Gatherable
     toolWhitelist:
       tags:
       - Pickaxe
-  # Sunrise-end
   - type: Fixtures
     fixtures:
       fix1:

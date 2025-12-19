@@ -13,7 +13,6 @@
 - type: damageModifierSet
   id: StructuralMetallicStrong
   coefficients:
-    # Sunrise-start # port WZ 38119
     Blunt: 0.75
     Slash: 0.75
     Piercing: 0.75
@@ -25,7 +24,6 @@
     Piercing: 20
     Heat: 15
     Structural: 25
-  # Sunrise-end
 
 - type: damageModifierSet
   id: StructuralMetallic
@@ -38,7 +36,7 @@
     Slash: 10
     Piercing: 10
     Heat: 10
-    Structural: 15 # Sunrise-edit
+    Structural: 15
 
 - type: damageModifierSet
   id: Rock
