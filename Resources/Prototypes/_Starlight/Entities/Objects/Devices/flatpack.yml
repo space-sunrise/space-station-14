@@ -76,7 +76,8 @@
   - type: InteractionOutline
   - type: Transform
     anchored: true
-  - type: BlockedTool
+  - type: Anchorable
+    flags: Anchorable
 
 - type: entity
   parent: [BaseFlatpack, BaseScienceContraband]
