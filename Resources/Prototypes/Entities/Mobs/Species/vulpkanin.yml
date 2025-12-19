@@ -73,8 +73,9 @@
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     # Sunrise-Start
-    #- map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    #- map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
     # Sunrise-End
     - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]

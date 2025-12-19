@@ -541,11 +541,18 @@
     - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Gun
-    minAngle: 1
+    minAngle: 2
     maxAngle: 15
-    angleIncrease: 1.25
-    angleDecay: 10
-    fireRate: 5
+    angleIncrease: 1
+    angleDecay: 15
+    fireRate: 6
+    burstFireRate: 8
+    selectedMode: SemiAuto
+    availableModes:
+    - Burst
+    - SemiAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.25
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
@@ -698,3 +705,71 @@
         whitelist:
           tags:
             - CartridgeRifle
+
+- type: entity
+  name: ASH-12
+  parent: BaseWeaponRifleSunrise
+  id: WeaponRifleAsh12
+  components:
+  - type: Sprite
+    scale: 0.8,0.8
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/tiny.rsi
+  - type: Gun
+    minAngle: 3
+    maxAngle: 24
+    angleIncrease: 2
+    angleDecay: 12
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/fire.ogg
+      params:
+        volume: 25
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineAsh12
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/ash12_mag_in.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/ash12_mag_out.ogg
+        priority: 3
+        whitelist:
+          tags:
+            - MagazineAsh12
+      gun_chamber:
+        name: Chamber
+        startingItem: ShellShotgunSlug
+        priority: 1
+        whitelist:
+          tags:
+            - ShotgunSlug
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.65
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/cycle.ogg
+    soundBoltOpened:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/bolt-open.ogg
+    soundBoltClosed:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/bolt-closed.ogg
