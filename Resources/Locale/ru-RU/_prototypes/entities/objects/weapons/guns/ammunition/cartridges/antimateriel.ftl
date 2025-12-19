@@ -6,5 +6,5 @@ ent-CartridgeAntiMaterielBlast = патрон (15мм разрывной)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgeAntiMaterielFrag = патрон (15мм осколочный)
     .desc = { ent-BaseCartridge.desc }
-ent-CartridgeAntiMaterielEmp = патрон (15мм эми)
+ent-CartridgeAntiMaterielEmp = патрон (15мм ЭМИ)
     .desc = { ent-BaseCartridge.desc }
