@@ -152,6 +152,15 @@
   id: GorillaUpgradeKit
 
 # Magazines:
+# - type: Tag
+#   id: MagazineCaselessRifle # Sunrise-todo Uncomite with upstream https://forum.spacestation14.com/t/remove-unused-tags-tied-to-unused-entities/25626
+
+# - type: Tag
+#   id: MagazineHeavyRifle
+
+# - type: Tag
+#   id: SpeedLoaderRifle
+
 - type: Tag
   id: MagazinePistolDPSubMachineGun
 
