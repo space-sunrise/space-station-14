@@ -49,6 +49,9 @@
 - type: Tag
   id: TrayScanner
 
+- type: Tag
+  id: NVDHandcrafted
+
 # Uplinks
 - type: Tag
   id: NTUplink
@@ -534,3 +537,10 @@
 
 - type: Tag
   id: Table
+
+# Clothing
+- type: Tag
+  id: HardsuitMining
+
+- type: Tag
+  id: NightVisionDevice
