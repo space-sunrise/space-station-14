@@ -353,7 +353,7 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: MagazineBoxAntiMaterielFrag
+  id: UplinkBoxAntiMaterielFrag
   description: uplink-sniper-ammo-frag-desc
   productEntity: MagazineBoxAntiMaterielFrag
   cost:
@@ -367,7 +367,7 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: MagazineBoxAntiMaterielEmp
+  id: UplinkBoxAntiMaterielEmp
   description: uplink-sniper-ammo-emp-desc
   productEntity: MagazineBoxAntiMaterielEmp
   cost:
@@ -381,7 +381,7 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: MagazineBoxAntiMaterielBlast
+  id: UplinkBoxAntiMaterielBlast
   description: uplink-sniper-ammo-blast-desc
   productEntity: MagazineBoxAntiMaterielBlast
   cost:
@@ -809,11 +809,11 @@
   id: UplinkWeaponBauer127
   productEntity: ClothingBackpackDuffelSyndicateFilledBauer127
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
-  discountCategory: veryRareDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 18
   cost:
-    Telecrystal: 22
+    Telecrystal: 23
   categories:
   - UplinkWeaponry
   conditions:
