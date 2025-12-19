@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Interactions
-  - type: ResomiSkill
+  - type: JumpSkill
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
@@ -60,12 +60,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Critical
-      140: Dead
+      75: Critical
+      150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      40: 0.7
-      55: 0.5
+      50: 0.7
+      60: 0.5
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw

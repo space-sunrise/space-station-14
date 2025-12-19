@@ -187,6 +187,15 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+      Silver: 300
+      Cloth: 500
+      Plasma: 600
+      Uranium: 40
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBackpackSatchelHolding

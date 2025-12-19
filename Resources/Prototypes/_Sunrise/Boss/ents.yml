@@ -1,7 +1,8 @@
 ﻿- type: entity
   parent: MobHellspawn
   id: MobHellspawnBoss
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ]
+  suffix: Boss
   components:
   - type: Damageable
     damageContainer: BiologicalMetaphysical
@@ -35,6 +36,12 @@
     thresholds:
       0: Alive
       750: Dead
+  - type: Stamina
+    critThreshold: 175
+    stunTime: 2
+  - type: AmbientSound
+    sound: /Audio/Ambience/ambiodd.ogg
+    range: 15
   # Abilities start
   - type: NPCUseActionWhenTargetInRange
     actions:
@@ -71,8 +78,12 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Blunt: 50
-        Structural: 70
+        Blunt: 40
+        Slash: 10
+        Structural: 50
+  - type: MeleeThrowOnHit
+    distance: 2
+    speed: 12
   # Abilities end
   - type: Butcherable
     spawned:
@@ -80,20 +91,78 @@
       prob: 0.5
     - id: ClothingUniformJumpsuitGalaxyRed
       prob: 0.5
-    - id: ResearchDiskDebug
-      prob: 0.05
-    - id: ClothingNeckGoldmedal
-      prob: 0.5
+    - id: PKAUpgradeDamage
+      prob: 0.25
+    - id: PKAUpgradeFireRate
+      prob: 0.25
+    - id: PKAUpgradeRange
+      prob: 0.25
     - id: PowerCellAntiqueProto
       prob: 0.2
-    - id: ClothingOuterHardsuitMaxim
+    - id: ArtifactFragment
+      amount: 3
+    - id: ComplexXenoArtifactItem
+      prob: 0.5
+    - id: MedipenCombatInjector
       prob: 0.2
+    - id: LeftArmCyberGorillaUpgraded
+      prob: 0.15
+    # Meme
+    - id: ClothingNeckGoldmedal
+      prob: 0.5
+    - id: BibleNarsie
+      prob: 0.4
+    - id: MobGoliath
+      prob: 0.2
+    - id: MobBasilisk
+      prob: 0.2
+    - id: SoulShardGhost
+      prob: 0.15
+    - id: MobSkeletonPirate
+      prob: 0.1
+    - id: SpawnPointGhostParadoxClone
+      prob: 0.1
+    - id: SpawnPointGhostParadoxClone
+      prob: 0.1
+    - id: SpawnPointGhostParadoxClone
+      prob: 0.1
+    - id: ResearchDiskDebug
+      prob: 0.05
+    # Armors
+    - id: ClothingOuterHardsuitSalvage
+      prob: 0.25
+    - id: ClothingOuterHardsuitGoliath
+      prob: 0.2
+    - id: ClothingOuterHardsuitMaxim
+      prob: 0.15
+    - id: ClothingOuterSoftsuitCBURN
+      prob: 0.1
+    # Weapons
+    - id: WeaponShotgunGA12
+      prob: 0.2
+    - id: WeaponPistolM1984
+      prob: 0.15
+    - id: ClothingHandsPowerGlovesNoUplink
+      prob: 0.25
+    - id: WeaponMeleeMoltenCollider
+      prob: 0.2
+    - id: WeaponMeleeMoltenAmputator
+      prob: 0.15
+    - id: WeaponShotgunCycler
+      prob: 0.1
     - id: HyperEutacticBlade
       prob: 0.05
-    - id: WeaponMeleeMoltenCollider
-      prob: 0.3
-    - id: WeaponMeleeMoltenAmputator
+    # Boss lunch
+    - id: MaterialGoliathHide1
+      prob: 0.25
+    - id: MaterialGoliathHide1
       prob: 0.2
+    - id: MaterialGoliathHide1
+      prob: 0.15
+    - id: FoodMeatGoliath
+      prob: 0.15
+    - id: FoodMeatGoliath
+      prob: 0.1
   - type: Destructible
     thresholds:
     - trigger:
@@ -121,7 +190,9 @@
   - type: Tag
     tags:
     - Hellspawn
-
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
 
 - type: entity
   parent: AltarFangs
@@ -130,13 +201,13 @@
   placement:
     mode: SnapgridCenter
   components:
-#  - type: UserInterface
-#    interfaces:
-#      enum.HellSpawnArenaUiKey.Key:
-#        type: HellSpawnArenaConsoleBoundUserInterface
-#  - type: ActivatableUI
-#    key: enum.HellSpawnArenaUiKey.Key
-#  - type: HellSpawnConsole
+  - type: UserInterface
+    interfaces:
+      enum.HellSpawnArenaUiKey.Key:
+        type: HellSpawnArenaConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.HellSpawnArenaUiKey.Key
+  - type: HellSpawnConsole
   - type: Godmode
   - type: BlockedTool
 
@@ -194,6 +265,7 @@
     damage:
       types:
         Heat: 15
+        Blunt: 5
   - type: IgniteOnCollide
     fireStacks: 1
     count: 10

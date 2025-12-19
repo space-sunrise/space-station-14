@@ -44,6 +44,11 @@
     damage:
       types:
         Blunt: 1
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  # Sunrise-end
 
 - type: entity
   parent: BaseItem
@@ -69,6 +74,11 @@
   - type: DamageOtherOnHit
     damage:
       types:
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  # Sunrise-end
 
 - type: entity
   id: BookSpaceEncyclopedia

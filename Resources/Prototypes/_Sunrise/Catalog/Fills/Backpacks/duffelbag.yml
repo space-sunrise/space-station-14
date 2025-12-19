@@ -109,6 +109,22 @@
       amount: 1
 
 - type: entity
+  id: ClothingBackpackDuffelWeaponRifleM52Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle M-52
+  description: Premium assault rifle with 3 raspy FMJ magazines, 2 SP and 1 HP.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleM52
+        - id: MagazineRifleM52FMJ
+          amount: 3
+        - id: MagazineRifleM52SP
+          amount: 2
+        - id: MagazineRifleM52HP
+          amount: 1
+
+- type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle p90
@@ -245,6 +261,19 @@
           amount: 4
 
 - type: entity
+  id: ClothingBackpackDuffelWeaponRifleAsh12
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle ASH-12
+  description: ASH-12 with 5 magazines and a blueprint.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAsh12
+    - id: MagazineAsh12
+      amount: 5
+    - id: BlueprintMagAsh12Slug
+
+- type: entity
   id: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
   parent: ClothingBackpackDuffelNanotrasenMedical
   name: nanotrasen medical bundle
@@ -340,3 +369,5 @@
       - id: ClothingHandsGlovesCombatCQC
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
+
+

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "resprited by seraphimttt (Discord) | SUNRISE ",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "banner-red"
+    },
+    {
+      "name": "banner-blue"
+    },
+    {
+      "name": "banner-yellow"
+    },
+    {
+      "name": "banner-green"
+    },
+    {
+      "name": "banner_engineering"
+    },
+    {
+      "name": "banner_medical"
+    },
+    {
+      "name": "banner_science"
+    },
+    {
+      "name": "banner_cargo"
+    },
+    {
+      "name": "banner_security"
+    },
+    {
+      "name": "banner_revolution"
+    },
+    {
+      "name": "banner_syndicate"
+    },
+    {
+      "name": "banner_ussp"
+    }
+  ]
+}

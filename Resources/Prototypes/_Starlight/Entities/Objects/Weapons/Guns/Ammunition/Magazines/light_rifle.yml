@@ -6,20 +6,22 @@
   - type: Tag
     tags:
       - LightRifleHeavy
+      - MagazineRPD
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeLightRifle
     capacity: 100
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,2,1
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_heavy.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/light_rifle_box.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Normal
   - type: MagazineVisuals
     magState: mag
     steps: 8
@@ -27,8 +29,112 @@
   - type: Appearance
 
 - type: entity
-  id: LightRifleMagazineEmpty
-  name: "Magazine Box (7.62 any)"
+  id: MagazineLightRifleBeltBox
+  name: "belt box (7.62 SP)"
+  parent: LightRifleHeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleSP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#575EF5"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazineLightRifleBeltBoxHP
+  name: "belt box (7.62 HP)"
+  parent: LightRifleHeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#F5514C"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazineLightRifleBeltBoxFMJ
+  name: "belt box (7.62 FMJ)"
+  parent: LightRifleHeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleFMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#080706"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#080706"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#080706"
+
+- type: entity
+  id: MagazineLightRifleBeltBoxAP
+  name: "belt box (7.62 AP)"
+  parent: LightRifleHeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#540000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#540000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#540000"
+
+- type: entity
+  id: MagazineLightRifleBeltBoxEmpty
+  name: "belt box (7.62 any)"
   suffix: empty
   parent: LightRifleHeavyBase
   components:
@@ -38,75 +144,16 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
-  id: LightRifleMagazineSP
-  name: "Magazine Box (7.62 SP)"
-  parent: LightRifleHeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: sp
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: LightRifleMagazineHP
-  name: "Magazine Box (7.62 HP)"
-  parent: LightRifleHeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: hp
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: LightRifleMagazineFMJ
-  name: "Magazine Box (7.62 FMJ)"
-  parent: LightRifleHeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: fmj
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: LightRifleMagazineIncendiary
-  name: "Magazine Box (7.62 incendiary)"
+  id: MagazineLightRifleBeltBoxIncendiary
+  name: "belt box (7.62 incendiary)"
   parent: LightRifleHeavyBase
   components:
   - type: BallisticAmmoProvider
@@ -115,18 +162,50 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
-    - state: incendiary
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
+    - state: stripe
+      color: "#ff6e52"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff6e52"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff6e52"
 
 - type: entity
-  id: LightRifleMagazineUranium
-  name: "Magazine Box (7.62 uranium)"
+  id: MagazineLightRifleBeltBoxPractice
+  name: "belt box (7.62 practice)"
+  parent: LightRifleHeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRiflePractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#dbdbdb"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dbdbdb"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dbdbdb"
+
+- type: entity
+  id: MagazineLightRifleBeltBoxUranium
+  name: "belt box (7.62 uranium)"
   parent: LightRifleHeavyBase
   components:
   - type: BallisticAmmoProvider
@@ -135,31 +214,17 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
-    - state: uranium
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: LightRifleMagazineAP
-  name: "Magazine Box (7.62 AP)"
-  parent: LightRifleHeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: ap
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
+    - state: stripe
+      color: "#40F57A"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"

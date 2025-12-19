@@ -33,7 +33,7 @@
   - MagazineBoxPistol40AP
   - MagazineBoxRifleAP
   - MagazineBoxLightRifleAP
-  - LightRifleMagazineAP
+  - MagazineLightRifleBeltBoxAP
   - MagazinePistolSubMachineGunAP
   - MagazinePistolSubMachineGunTopMountedAP
   - MagazinePistolHighCapacityAP
@@ -136,7 +136,6 @@
 #  - MagazineMP5Extended
 #  - MagazineMP7Extended
 #  - MagazineRifleExtended
-#  - MagazineV31Extended
 #  - MagazineDragunovExtended
 #  radioChannels:
 #  - Security

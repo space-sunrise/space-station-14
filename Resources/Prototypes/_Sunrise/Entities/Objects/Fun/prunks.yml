@@ -107,6 +107,14 @@
     probability: 0.5 # Sunrise-Edit
 
 - type: entity
+  id: ToySwordDoubledFake
+  parent: ToySwordDoubled
+  components:
+  - type: Construction
+    graph: EnergySwordDoubleGraph
+    node: doubletoy
+
+- type: entity
   name: packaged anomaly
   description: A universal assembly package used to create a fake anomaly. Specially from Hohohonkers!
   id: FaketAnomalyIceFlatpack
@@ -124,7 +132,7 @@
 - type: entity
   name: anomaly
   description: An incomprehensible joke in space. Should you really be standing this close to it?
-  id: FaketAnomalyIce
+  id: FaketAnomalyIce # AnomalyIce
   parent: BaseStructureDynamic
   components:
   - type: Anomaly
@@ -140,11 +148,16 @@
     sound:
       path: /Audio/Ambience/anomaly_drone.ogg
   - type: Sprite
-    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    sprite: _Sunrise/Structures/Specific/anomalies.rsi
+    scale: 0.9, 0.9
     layers:
-    - state: anom
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-ice-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: pulse
+    - state: anomaly-ice-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
   - type: PointLight

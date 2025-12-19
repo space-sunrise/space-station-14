@@ -223,7 +223,7 @@
     - type: Contraband
       severity: Syndicate
   - type: Sprite
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/e_dagger.rsi # Sunrise-Edit
     layers:
     - state: e_sword
     - state: e_sword_blade
@@ -233,7 +233,7 @@
       map: [ "blade" ]
   - type: Item
     size: Tiny
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/e_dagger.rsi # Sunrise-Edit
   - type: PointLight
     enabled: false
     radius: 1.5
