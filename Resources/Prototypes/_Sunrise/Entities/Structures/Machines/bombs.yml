@@ -33,6 +33,7 @@
       totalIntensity: 20.0
       intensitySlope: 5
       maxIntensity: 4
+      canCreateVacuum: false
     - type: EmpOnTrigger
       keysIn:
       - timer
