@@ -1853,7 +1853,7 @@
 
 - type: listing
   id: UplinkMechMissileRack8Frag
-  description: uplink-mech-missle-rack8frag-desc
+  description: uplink-mech-missile-rack8frag-desc
   productEntity: WeaponMechCombatMissileRack8Frag
   discountCategory: veryRareDiscounts
   discountDownTo:

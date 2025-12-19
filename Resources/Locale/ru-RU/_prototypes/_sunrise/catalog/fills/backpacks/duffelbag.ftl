@@ -1,5 +1,5 @@
 ent-ClothingBackpackDuffelSyndicateFilledBauer127 = Набор "Элитный Снайпер"
-    .desc = "Ты у меня на прицеле: Содежит Bauer SR-127 с тремя магазинами, коробкой 15×115 антиматерильных, набором спецбоеприпасов а так же уникальные термальные очки"
+    .desc = "Ты у меня на прицеле: Содержит Bauer SR-127 с тремя магазинами, коробкой 15×115 антиматериальных, набором спецбоеприпасов, а также уникальные термальные очки"
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Набор MP5
     .desc = Mp5 c 2мя магазинами.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP7Filled = Набор MP7
