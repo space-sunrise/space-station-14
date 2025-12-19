@@ -40,10 +40,10 @@
     - BoxShellTranquilizer
     #####################MAGAZINE#######################
     # LMG
-    - LightRifleMagazineSP
-    - LightRifleMagazineHP
-    - LightRifleMagazineFMJ
-    - LightRifleMagazineEmpty
+    - MagazineLightRifleBeltBoxSP
+    - MagazineLightRifleBeltBoxHP
+    - MagazineLightRifleBeltBoxFMJ
+    - MagazineLightRifleBeltBoxEmpty
     # Light Rifle
     - MagazineLightRifleSP
     - MagazineLightRifleHP
@@ -91,10 +91,6 @@
     - MagazineRifleHeavyHP
     - MagazineRifleHeavySP
     - MagazineRifleHeavyEmpty
-    # Shotgun Magazine
-    - MagazineShotgun
-    - MagazineShotgunEmpty
-    - MagazineShotgunSlug
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
     - SpeedLoaderShotgunEmpty
@@ -119,7 +115,6 @@
 #    - MagazineRifleExtended
 #    - MagazineAR18Extended
 #    - MagazineM28Extended
-#    - MagazineV31Extended
 #   - MagazineBauer127Extended
 #    - MagazineBR64Extended
 #    - MagazineDragunovExtended
@@ -160,9 +155,9 @@
     - BoxShellTranquilizer
   #####################MAGAZINE#######################
   # LMG
-    - LightRifleMagazineIncendiary
-    - LightRifleMagazineUranium
-    - LightRifleMagazineAP
+    - MagazineLightRifleBeltBoxIncendiary
+    - MagazineLightRifleBeltBoxUranium
+    - MagazineLightRifleBeltBoxAP
   # Light Rifle
     - MagazineLightRifleIncendiary
     - MagazineLightRifleUranium
@@ -201,8 +196,6 @@
     - MagazineRifleHeavyAP
     - MagazineRifleHeavyUranium
   # Shotgun
-    - MagazineShotgunBeanbag
-    - MagazineShotgunIncendiary
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
   # Grenade
@@ -239,3 +232,11 @@
     - WeaponMechCombatDisabler
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
+
+- type: latheRecipePack
+  id: SyndicateAmmoSunrise
+  recipes:
+  - MagazineLightRifleBoxIncendiary
+  - MagazineLightRifleBoxUranium
+  - MagazineShotgunIncendiary
+  - MagazineShotgunBeanbag

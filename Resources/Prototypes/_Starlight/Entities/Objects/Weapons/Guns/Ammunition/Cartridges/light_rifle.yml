@@ -17,6 +17,7 @@
   - type: Tag
     tags:
       - Cartridge
+      - CartridgeLightRifle
       - CartridgeLightRifleImprovised
   - type: Construction
     graph: ImprovisedLightRifleBulletGraph

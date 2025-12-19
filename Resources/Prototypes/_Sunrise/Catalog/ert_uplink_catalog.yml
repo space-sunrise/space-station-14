@@ -85,7 +85,7 @@
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 45
+    Bluecrystal: 35
   categories:
     - NTAutoGun
   conditions:
@@ -103,7 +103,7 @@
   productEntity: PowerpackMinigunMG100
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
   cost:
-    Bluecrystal: 45
+    Bluecrystal: 38
   categories:
     - NTAutoGun
   conditions:
@@ -115,18 +115,6 @@
       - CBURN
       - ERTGamma
       - ERTEpsilon
-
-- type: listing
-  id: ERTUplinkWeaponRifleAR18Filled
-  productEntity: ClothingBackpackDuffelWeaponRifleAR18Filled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ar18 }
-  cost:
-    Bluecrystal: 13
-  categories:
-  - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: ERTUplinkWeaponRifleM28Filled
@@ -141,12 +129,30 @@
     stock: 3
 
 - type: listing
+  id: ERTUplinklWeaponRifleM52Filled
+  name: ntuplink-gun-bundlem52-name
+  productEntity: ClothingBackpackDuffelWeaponRifleM52Filled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m52 }
+  cost:
+    Bluecrystal: 25
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
   id: ERTUplinkWeaponRifleBR64Filled
   name: ntuplink-gun-bundlebr64-name
   productEntity: ClothingBackpackDuffelWeaponRifleBR64Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: br64 }
   cost:
-    Bluecrystal: 25
+    Bluecrystal: 20
   categories:
   - NTAutoGun
   conditions:
@@ -177,12 +183,11 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkWeaponShotgunZauer
-  name: ntuplink-gun-bundlezauer-name
+  id: ERTUplinkWeaponShotgunCycler
   productEntity: ClothingBackpackDuffelWeaponShotgunCycler
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: zauer }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cycler }
   cost:
-    Bluecrystal: 20
+    Bluecrystal: 23
   categories:
   - NTAutoGun
   conditions:
@@ -534,6 +539,18 @@
     stock: 6
 
 - type: listing
+  id: ERTUplinkBoxMagazineRifleM52
+  productEntity: BoxMagazineRifleM52
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
+  cost:
+    Crystallite: 9
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
   id: ERTUplinkMagazineMagnum
   productEntity: MagazineMagnum
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_magnum }
@@ -565,7 +582,7 @@
   productEntity: MagazineP90
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
   cost:
-    Crystallite: 6
+    Crystallite: 5
   categories:
     - NTAmmo
   conditions:
@@ -580,7 +597,7 @@
   productEntity: SMGAmmoKit
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg }
   cost:
-    Crystallite: 12
+    Crystallite: 9
   categories:
   - NTAmmo
   conditions:
@@ -626,7 +643,7 @@
   productEntity: MagazineMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_mg342 }
   cost:
-    Crystallite: 8
+    Crystallite: 6
   categories:
   - NTAmmo
   conditions:
@@ -901,9 +918,25 @@
 - type: listing
   id: ERTUplinkStimkitFilledNT
   productEntity: StimkitFilledNT
+  name: uplink-stimkit-nt-name
+  description: uplink-stimkit-nt-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: stimkit }
   cost:
     Crystallite: 12
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: ERTUplinkCoalpenKit
+  name: uplink-coalpen-kit-name
+  description: uplink-coalpen-kit-desc
+  productEntity: CoalpenKitFilled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: stimkit }
+  cost:
+    Crystallite: 10
   categories:
   - NTMedicine
   conditions:
@@ -945,21 +978,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
-
-- type: listing
-  id: ERTUplinkCoalpenKit
-  name: uplink-coalpen-kit-name
-  description: uplink-coalpen-kit-desc
-  productEntity: CoalpenKitFilled
-  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: coalpen }
-  cost:
-    Crystallite: 12
-  categories:
-  - NTMedicine
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
 
 # Дополнительное:
 

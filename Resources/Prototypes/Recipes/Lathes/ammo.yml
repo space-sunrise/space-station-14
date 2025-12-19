@@ -45,8 +45,7 @@
   result: MagazineRifleIncendiary
   materials:
     Steel: 25
-    Plastic: 225 #Sunrise-edit
-    Plasma: 225 #Sunrise-add
+    Plastic: 450
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -76,8 +75,7 @@
   id: MagazineBoxRifleIncendiary
   result: MagazineBoxRifleIncendiary
   materials:
-    Plastic: 375 #Sunrise-edit
-    Plasma: 375 #Sunrise-add
+    Plastic: 750
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
@@ -123,8 +121,7 @@
   result: MagazineLightRifleIncendiary
   materials:
     Steel: 25
-    Plastic: 270 #Sunrise-edit
-    Plasma: 270 #Sunrise-add
+    Plastic: 540
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -154,8 +151,7 @@
   id: MagazineBoxLightRifleIncendiary
   result: MagazineBoxLightRifleIncendiary
   materials:
-    Plastic: 450 #Sunrise-edit
-    Plasma: 450 #Sunrise-add
+    Plastic: 900
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
@@ -193,8 +189,7 @@
   result: MagazinePistolIncendiary
   materials:
     Steel: 25
-    Plastic: 60 #Sunrise-edit
-    Plasma: 60 #Sunrise-add
+    Plastic: 120
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -232,8 +227,7 @@
   result: MagazinePistolSubMachineGunIncendiary
   materials:
     Steel: 25
-    Plastic: 135 # Sunrise-edit
-    Plasma: 140 # Sunrise-add
+    Plastic: 275
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -277,8 +271,7 @@
   id: MagazineBoxPistolIncendiary
   result: MagazineBoxPistolIncendiary
   materials:
-    Plastic: 300 #Sunrise-edit
-    Plasma: 300 #Sunrise-add
+    Plastic: 600
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
@@ -316,8 +309,7 @@
   result: SpeedLoaderMagnumIncendiary
   materials:
     Steel: 50
-    Plastic: 75 #Sunrise-edit
-    Plasma: 75 #Sunrise-add
+    Plastic: 150
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -347,8 +339,7 @@
   id: MagazineBoxMagnumIncendiary
   result: MagazineBoxMagnumIncendiary
   materials:
-    Plastic: 120 #Sunrise-edit
-    Plasma: 120 #Sunrise-add
+    Plastic: 240
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
@@ -386,8 +377,7 @@
   result: MagazineShotgunIncendiary
   materials:
     Steel: 100
-    Plastic: 95 #Sunrise-edit
-    Plasma: 95 #Sunrise-add
+    Plastic: 190
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -418,8 +408,7 @@
   result: BoxShotgunIncendiary
   materials:
     Steel: 80
-    Plastic: 160 #Sunrise-edit
-    Plasma: 160 #Sunrise-add
+    Plastic: 320
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
