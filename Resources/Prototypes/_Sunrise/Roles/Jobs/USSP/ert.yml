@@ -432,6 +432,7 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
   components:
     - type: Loadout
       prototypes: [CBURNGearEVA]

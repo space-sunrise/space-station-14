@@ -37,8 +37,8 @@
     belt: ClothingBeltBandolier
   storage:
     back:
-    - WeaponShotgunDoubleBarreled
-    - BoxShotgunIncendiary
+    # - WeaponShotgunDoubleBarreled #Sunrise-Edit
+    # - BoxShotgunIncendiary #Sunrise-Edit
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
