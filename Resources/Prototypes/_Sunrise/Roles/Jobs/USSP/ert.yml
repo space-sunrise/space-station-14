@@ -33,6 +33,7 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
   parent: EventHumanoidCentcommSunrise
   randomizeName: false
   components:
@@ -62,6 +63,11 @@
       state: ertleadereva
     - type: RandomHumanoidSpawner
       settings: ERTLeaderRed
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderRed
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: randomHumanoidSettings
   id: ERTLeaderRed
@@ -76,6 +82,11 @@
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGearRed ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderRed
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderGamma
@@ -84,6 +95,11 @@
   components:
     - type: RandomHumanoidSpawner
       settings: ERTLeaderGamma
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderGamma
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: randomHumanoidSettings
   id: ERTLeaderGamma
@@ -98,6 +114,11 @@
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGearGamma ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderGamma
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 ## ERT Security
 
 - type: entity
@@ -464,6 +485,7 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
   - Resomi
   components:
     - type: Loadout
