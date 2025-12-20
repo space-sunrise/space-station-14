@@ -2410,3 +2410,42 @@
     blacklist:
       components:
       - SurplusBundle
+
+- type: listing
+  id: UplinkHeadsetEncryptionKeyMaster
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: crypt_red2 }
+  productEntity: EncryptionKeySyndieMaster
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDeception
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+
+- type: listing
+  id: UplinkHeadsetEncryptionKeyMasterNukie
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: crypt_red2 }
+  productEntity: EncryptionKeySyndieMaster
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkDeception
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
