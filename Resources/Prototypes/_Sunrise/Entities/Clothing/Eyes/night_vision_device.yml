@@ -62,6 +62,9 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+  - type: Tag
+    tags:
+    - NightVisionDevice
 
 - type: entity
   name: NVD Security
@@ -146,3 +149,6 @@
     components:
       - type: NightVision
         effect: EffectNightVisionHandcraft
+  - type: Tag
+    tags:
+    - NVDHandcrafted

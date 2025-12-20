@@ -48,6 +48,10 @@
           path: /Audio/Effects/break_stone.ogg
           params:
             volume: -6
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
   - type: Fixtures
     fixtures:
       fix1:
@@ -94,6 +98,11 @@
     intensitySlope: 2.5
     maxIntensity: 10
     canCreateVacuum: false
+  # Sunrise-start
+  - type: Gatherable # nasty hack to cover the fact that this needs to not be single-hit destruction.
+    toolWhitelist:
+      tags: [ ]
+  # Sunrise-end
   - type: Destructible
     thresholds:
     - trigger:
