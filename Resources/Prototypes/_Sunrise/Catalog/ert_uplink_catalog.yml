@@ -354,7 +354,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - CBURN
       - ERTGamma
       - ERTEpsilon
 
@@ -372,7 +371,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - CBURN
       - ERTGamma
       - ERTEpsilon
 
@@ -402,7 +400,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - CBURN
       - ERTGamma
       - ERTEpsilon
 
@@ -412,6 +409,18 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lnt620 }
   cost:
     Bluecrystal: 10
+  categories:
+  - NTLasers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
+  id: ERTUplinkWeaponGunLaserCarbineAutomatic
+  productEntity: WeaponGunLaserCarbineAutomatic
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ik60 }
+  cost:
+    Bluecrystal: 11
   categories:
   - NTLasers
   conditions:
