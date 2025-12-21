@@ -7,8 +7,6 @@
   - type: Tag
     tags:
       - CartridgeMagnum
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletMagnumTraceSP
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -116,8 +114,8 @@
   parent: BaseCartridgeMagnum
   description: Heavy magnum cartridge mostly used by revolvers. Armor piercing ammunition is renowned for its ability to cut straight through body armor.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletMagnumTraceIncendiary
+  - type: CartridgeAmmo
+    proto: BulletMagnumIncendiary
   - type: Sprite
     layers:
       - state: base

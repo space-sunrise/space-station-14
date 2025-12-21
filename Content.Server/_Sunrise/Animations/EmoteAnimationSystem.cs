@@ -30,12 +30,18 @@ public sealed class EmoteAnimationSystem : EntitySystem
     {
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EmoteAnimationComponent, EmoteEvent>(OnEmote);
-        SubscribeLocalEvent<EmoteAnimationComponent, PlayEmoteMessage>(OnPlayEmote);
+        SubscribeAllEvent<PlayEmoteMessage>(OnPlayEmote);
     }
 
-    private void OnPlayEmote(EntityUid uid, EmoteAnimationComponent component, PlayEmoteMessage args)
+    private void OnPlayEmote(PlayEmoteMessage msg, EntitySessionEventArgs args)
     {
-        if (!_prototypeManager.TryIndex(args.ProtoId, out var proto))
+        if (args.SenderSession.AttachedEntity is not {} uid)
+            return;
+
+        if (!HasComp<EmoteAnimationComponent>(uid))
+            return;
+
+        if (!_prototypeManager.TryIndex(msg.ProtoId, out var proto))
             return;
 
         _chat.TryEmoteWithChat(uid, proto.ID);

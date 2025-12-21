@@ -160,6 +160,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - HardsuitMining # Sunrise-add
 
 #Goliath Hardsuit
 - type: entity

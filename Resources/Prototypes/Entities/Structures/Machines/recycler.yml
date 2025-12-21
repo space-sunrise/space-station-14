@@ -17,6 +17,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.15,-0.15,0.15,0.15"
+        density: 5000 # sunrise-added
         hard: false
         layer:
         - FullTileLayer

@@ -49,6 +49,11 @@
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 15
+  # Sunrise-end
 
 - type: entity
   name: steel dark checker tile
