@@ -10,6 +10,7 @@ loadout-group-backntr = ИСН, рюкзак
 loadout-group-barber-jumpsuit = Униформа парикмахера
 loadout-group-blueshield-belt = Офицер «Синий щит», пояс
 loadout-group-blueshield-neck = Офицер «Синий щит», шея
+loadout-group-blueshield-gun = Офицер «Синий щит», Табельное
 loadout-group-blueshield-backpack = Офицер «Синий щит», рюкзак
 loadout-group-blueshield-jumpsuit = Офицер «Синий щит», комбинезон
 loadout-group-bodycam = Бодикамера

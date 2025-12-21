@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Characters created by their respective owners. Each item worn has its respective license and copyright. Final figurine sprites made by KaiserMaus.",
+  "size": {
+    "x": 32,
+    "y": 34
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "guardrat"
+    },
+    {
+      "name": "chamina_maus"
+    },
+    {
+      "name": "pirate_jugger"
+    },
+    {
+      "name": "pirate_jugger_unshaded"
+    }
+  ]
+}

@@ -10,3 +10,14 @@
   effects:
   - !type:Flash
 
+- type: reaction
+  id: UniversalSolvent # Chemists are already war criminals, they can have the mustard gas chemical.
+  reactants:
+    FluorosulfuricAcid:
+      amount: 1
+    Bleach:
+      amount: 1
+    Vestine:
+      amount: 4
+  products:
+    UniversalSolvent: 6

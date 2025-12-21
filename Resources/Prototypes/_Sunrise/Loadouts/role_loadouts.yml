@@ -99,6 +99,7 @@
   - Bra
   - Pants
   - Socks
+  - BlueshieldGun
 
 - type: roleLoadout
   id: JobSeniorOfficer

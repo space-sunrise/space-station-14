@@ -57,6 +57,7 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
+    - id: WeaponMiniEnergyGun #  Sunrise-edit
 
 # No laser table + Laser table
 - type: entityTable
@@ -138,11 +139,13 @@
     - id: HoPIDCard
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
-    - id: FlippoLighterSunriseHop  # Sunrise-Flippo
+    # Sunrise-start
+    - id: FlippoLighterSunriseHop
     - id: DrinkInc
-    - id: SheetOfficePaper # Sunrise-edit
-      amount: 1
-    - id: PlantAnalyzerCartridge # Sunrise-Add
+    - id: SheetOfficePaper
+    - id: WeaponMiniEnergyGun
+    - id: PlantAnalyzerCartridge
+    # Sunrise-end
 
 - type: entity
   id: LockerHeadOfPersonnelFilled

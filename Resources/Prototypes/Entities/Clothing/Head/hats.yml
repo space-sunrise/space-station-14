@@ -311,9 +311,9 @@
   description: A hat made out of a box.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/cardborg_h.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cardborg_h.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Head/Hats/cardborg_h.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cardborg_h.rsi # Sunrise-Edit
   - type: TypingIndicatorClothing
     proto: robot
   - type: IdentityBlocker

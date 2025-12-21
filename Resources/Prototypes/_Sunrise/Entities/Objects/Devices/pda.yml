@@ -10,11 +10,12 @@
       appearanceDataInit:
         enum.PdaVisuals.PdaType:
           !type:String
-          pda-lawyer
+          pda-iaa
     - type: PdaBorderColor
-      borderColor: "#6f6192"
+      borderColor: "#665c99"
+      accentVColor: "#3d3d40"
     - type: Icon
-      state: pda-lawyer
+      state: pda-iaa
 
 - type: entity
   parent: CaptainPDA
@@ -33,11 +34,12 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-captain
+        pda-magistrat
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#e6bd45"
+    accentVColor: "#3d3d40"
   - type: Icon
-    state: pda-captain
+    state: pda-magistrat
 
 - type: entity
   parent: BasePDA
@@ -53,6 +55,10 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-blueshield
+  - type: PdaBorderColor
+    borderColor: "#546c8c"
+    accentHColor: "#3d3d40"
+    accentVColor: "#3d3d40"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
@@ -70,7 +76,11 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-blueshield
+        pda-blueshield-ensign
+  - type: PdaBorderColor
+    borderColor: "#546c8c"
+    accentHColor: "#3d3d40"
+    accentVColor: "#3d3d40"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
@@ -89,6 +99,10 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-blueshield
+  - type: PdaBorderColor
+    borderColor: "#546c8c"
+    accentHColor: "#3d3d40"
+    accentVColor: "#3d3d40"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
@@ -108,8 +122,9 @@
         !type:String
         pda-patologoanatom
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#447987"
+    borderColor: "#a3b2cc"
+    accentHColor: "#3d3d40"
+    accentVColor: "#2f6e67"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-patologoanatom
@@ -129,6 +144,8 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-space-prison-prisoner
+  - type: PdaBorderColor
+    borderColor: "#787983"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner
@@ -204,8 +221,8 @@
         !type:String
         pda-space-prison-engineer
   - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#615f00"
+    borderColor: "#cc7014"
+    accentVColor: "#cc5200"
   - type: Icon
     state: pda-space-prison-engineer
 
@@ -223,8 +240,8 @@
         !type:String
         pda-space-prison-scientist
   - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#390f4e"
+    borderColor: "#cc7014"
+    accentVColor: "#7a2699"
   - type: Icon
     state: pda-space-prison-scientist
 
@@ -242,8 +259,8 @@
         !type:String
         pda-space-prison-doctor
   - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#26465a"
+    borderColor: "#cc7014"
+    accentVColor: "#2f6e67"
   - type: Icon
     state: pda-space-prison-doctor
 
@@ -261,8 +278,8 @@
         !type:String
         pda-space-prison-chef
   - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#423842"
+    borderColor: "#cc7014"
+    accentVColor: "#198019"
   - type: Icon
     state: pda-space-prison-chef
 
@@ -330,8 +347,9 @@
         !type:String
         pda-space-prison-pilot
   - type: PdaBorderColor
-    borderColor: "#c05905"
-    accentVColor: "#DFDFDF"
+    borderColor: "#cc7014"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#3d3d40"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-pilot
@@ -342,6 +360,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -370,7 +389,7 @@
       - NewsReaderCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: BaseMedicalPDA
   id: RoboticistPDA
   name: roboticist's PDA
   description: It's covered in something sticky.
@@ -383,16 +402,10 @@
         !type:String
         pda-roboticist
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#8900c9"
+    borderColor: "#a3b2cc"
+    accentVColor: "#d95e00"
   - type: Icon
     state: pda-roboticist
-  - type: HealthAnalyzer
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
-    damageContainers:
-    - Synth
-    - Silicon
 
 - type: entity
   parent: BaseSecurityPDA
@@ -405,12 +418,13 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-seniorofficer
+        pda-securitypilot
   - type: PdaBorderColor
-    borderColor: "#802d29"
-    accentVColor: "#DFDFDF"
+    borderColor: "#637199"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#3d3d40"
   - type: Icon
-    state: pda-seniorofficer
+    state: pda-securitypilot
 
 - type: entity
   parent: CaptainPDA
@@ -429,11 +443,13 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-captain
+        pda-representative
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#e6bd45"
+    accentVColor: "#4b78a6"
+    accentHColor: "#3d3d40"
   - type: Icon
-    state: pda-captain
+    state: pda-representative
 
 - type: entity
   parent: BasePDA
@@ -446,9 +462,12 @@
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-bartender
+        pda-barber
+  - type: PdaBorderColor
+    borderColor: "#616266"
+    accentVColor: "#198019"
   - type: Icon
-    state: pda-bartender
+    state: pda-barber
 
 - type: entity
   parent: BasePDA
@@ -466,8 +485,8 @@
         !type:String
         pda-adj
   - type: PdaBorderColor
-    borderColor: "#1b2426"
-    accentVColor: "#62584a"
+    borderColor: "#2e4259"
+    accentVColor: "#a3b2cc"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-adj
@@ -487,6 +506,8 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-ussp
+  - type: PdaBorderColor
+    borderColor: "#891417"
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -571,6 +592,10 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-isn-operator
+  - type: PdaBorderColor
+    borderColor: "#616266"
+    accentVColor: "#a3b2cc"
+    accentHColor: "#a3b2cc"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-isn-operator
@@ -583,6 +608,11 @@
   components:
   - type: Pda
     id: NtrLeadGuardIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-isn-leader
 
 - type: entity
   parent: BasePDA
@@ -596,12 +626,12 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-cargo
+       pda-mailcarrier
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#003cc9"
+    borderColor: "#996e2e"
+    accentVColor: "#a3b2cc"
   - type: Icon
-    state: pda-cargo
+    state: pda-mailcarrier
 
 - type: entity
   parent: BasePDA
@@ -619,8 +649,8 @@
         !type:String
         pda-mining
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentVColor: "#3e3ac3"
+    borderColor: "#996e2e"
+    accentVColor: "#262699"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-mining
@@ -652,6 +682,9 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-commaid
+  - type: PdaBorderColor
+    borderColor: "#b36bb3"
+    accentVColor: "#a3b2cc"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-commaid
