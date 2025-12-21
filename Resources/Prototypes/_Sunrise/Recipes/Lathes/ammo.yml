@@ -785,8 +785,8 @@
     Steel: 300
 
 - type: latheRecipe
-  id: MagazineBauer127Artillery
-  result: MagazineBauer127Artillery
+  id: MagazineBauer127
+  result: MagazineBauer127
   materials:
     Steel: 275
 
