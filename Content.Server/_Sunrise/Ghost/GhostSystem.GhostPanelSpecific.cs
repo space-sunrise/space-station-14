@@ -109,15 +109,12 @@ public sealed partial class GhostSystem
             if (!component.Enabled)
                 continue;
 
-            var isDead = _mobState.IsDead(uid);
-
             var warp = new GhostWarpGlobalAntagonist(
                 GetNetEntity(uid),
                 meta.EntityName,
                 component.Name,
                 component.Description,
-                component.Priority,
-                isDead
+                component.Priority
             );
 
             yield return warp;

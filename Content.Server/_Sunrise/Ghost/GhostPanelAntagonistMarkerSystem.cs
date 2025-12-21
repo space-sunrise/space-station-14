@@ -19,17 +19,16 @@ public sealed class GhostPanelAntagonistMarkerSystem : EntitySystem
         if (!TryComp<MobStateComponent>(ent, out var mobState))
             return;
 
-        var enabled = mobState.CurrentState != MobState.Dead;
-        if (ent.Comp.Enabled == enabled)
-            return;
-
-        ent.Comp.Enabled = enabled;
-        Dirty(ent, ent.Comp);
+        UpdateEnabled(ent, mobState.CurrentState != MobState.Dead);
     }
 
     private void OnMobStateChanged(Entity<GhostPanelAntagonistMarkerComponent> ent, ref MobStateChangedEvent args)
     {
-        var enabled = args.NewMobState != MobState.Dead;
+        UpdateEnabled(ent, args.NewMobState != MobState.Dead);
+    }
+
+    private void UpdateEnabled(Entity<GhostPanelAntagonistMarkerComponent> ent, bool enabled)
+    {
         if (ent.Comp.Enabled == enabled)
             return;
 
