@@ -7,8 +7,6 @@
   - type: Tag
     tags:
       - CartridgePistol
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceSP
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -114,8 +112,8 @@
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceIncendiary
+  - type: CartridgeAmmo
+    proto: BulletPistolIncendiary
   - type: Sprite
     layers:
       - state: base

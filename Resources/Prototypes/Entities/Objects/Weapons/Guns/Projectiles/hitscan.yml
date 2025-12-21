@@ -51,7 +51,7 @@
   id: RedMediumLaser
   damage:
     types:
-      Heat: 17
+      Heat: 20 # Sunrise-edit
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_laser

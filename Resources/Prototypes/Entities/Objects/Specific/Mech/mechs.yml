@@ -373,7 +373,7 @@
     baseState: death
     openState: death-open
     brokenState: death-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.1
     airtight: true
     pilotWhitelist:
       components:
@@ -386,16 +386,16 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 30
-        Structural: 20
+        Blunt: 25
+        Structural: 25
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
-    baseSprintSpeed: 4.25
+    baseSprintSpeed: 4
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -423,7 +423,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageMedium
+      - PowerCageSyndicate
 
 # Paddy
 - type: entity

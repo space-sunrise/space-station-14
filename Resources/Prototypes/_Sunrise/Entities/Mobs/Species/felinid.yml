@@ -451,12 +451,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Critical
-      170: Dead
+      100: Critical
+      200: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      55: 0.7
-      65: 0.5
+      60: 0.7
+      70: 0.5
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -468,7 +468,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 90
+    critThreshold: 100
   - type: FootprintEmitter
   - type: Vocal
     sounds:
@@ -507,7 +507,7 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
   - type: Carriable
-  - type: NightVision
+  - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier
     modifier: 2

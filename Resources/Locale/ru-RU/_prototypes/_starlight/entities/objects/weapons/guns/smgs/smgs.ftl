@@ -1,7 +1,5 @@
 ent-WeaponSubMachineGunSP91RC = SP-91-RC
     .desc = Компактный пистолет-пулемет, предназначенный для контроля беспорядков.
-ent-WeaponSubMachineGunPPSH = PPSH 59 SMG
-    .desc = Любимец ветеранов КССР и повсюду внушает страх протоколам дружественного огня. Использует патроны калибра .35.
 ent-WeaponSubMachineGunMakeshift = самодельный ПП
     .desc = Скрепленный тканью и мечтами, он зловеще дребезжит при каждом выстреле.
 ent-WeaponSubMachineGunImprovised = импровизированный ПП

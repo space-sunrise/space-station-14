@@ -99,7 +99,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: PokerCardTwoClub
+    - id: PokerCardThreeClub
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
     scale: 0.5,0.5

@@ -34,12 +34,21 @@
     zeroVisible: false
   - type: Appearance
 
+# region Bauer127 Mag
 - type: entity
   id: BaseMagazineBauer127
   name: magazine (15mm anti-materiel)
+  description: A large magazine for a heavy weapon, holds 15x115mm anti-materiel rounds.
   parent: [ BaseItem, BaseMajorContraband ]
   abstract: true
   components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-6
   - type: Tag
     tags:
       - MagazineBauer127
@@ -54,36 +63,57 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 7
     zeroVisible: false
   - type: Appearance
 
 - type: entity
   id: MagazineBauer127
   name: magazine (15mm anti-materiel)
+  description: A large magazine for a heavy weapon, holds 15x115mm anti-materiel rounds.
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeAntiMateriel  # AntiMateriel
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
+    proto: CartridgeAntiMateriel
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineBauer127Large
+  name: large magazine (15mm space anti-materiel)
+  parent: MagazineBauer127
+  components:
+  - type: Sprite
+    scale: 1,1.5
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMateriel
+    capacity: 21
+
+- type: entity
+  id: MagazineBauer127Penetrator
+  name: magazine (15mm penetrator)
+  parent: BaseMagazineBauer127
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMaterielPenetrator
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#9b0000"
@@ -99,62 +129,17 @@
         color: "#9b0000"
 
 - type: entity
-  id: MagazineBauer127Artillery
-  name: magazine (15mm space anti-materiel)
-  parent: BaseMagazineBauer127
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeAntiMaterielArtillery  # AntiMateriel
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#7f009b"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#7f009b"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#7f009b"
-
-- type: entity
-  id: MagazineBauer127ArtilleryLarge
-  name: large magazine (15mm space anti-materiel)
-  parent: MagazineBauer127Artillery
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeAntiMaterielArtillery
-    capacity: 20
-
-- type: entity
   id: MagazineBauer127Frag
-  name: magazine (15mm frag anti-materiel)
+  name: magazine (15mm frag)
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMaterielFrag
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#7ea53b"
@@ -171,21 +156,16 @@
 
 - type: entity
   id: MagazineBauer127Blast
-  name: magazine (15mm blast anti-materiel)
+  name: magazine (15mm blast)
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMaterielBlast
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#8d6425"
@@ -202,21 +182,16 @@
 
 - type: entity
   id: MagazineBauer127Emp
-  name: magazine (15mm emp anti-materiel)
+  name: magazine (15mm emp)
   parent: BaseMagazineBauer127
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMaterielEmp
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#005396"
@@ -231,7 +206,7 @@
       - state: inhand-right-stripe
         color: "#005396"
 
-#Magazine
+# region other Magazine
 - type: entity
   id: BaseMagazineDragunov
   name: "magazine Dragunov (7,62mmR)"

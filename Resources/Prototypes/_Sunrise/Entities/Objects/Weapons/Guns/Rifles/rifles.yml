@@ -76,8 +76,8 @@
   - type: HeldSpeedModifier
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4.5
-    pvsIncrease: 0.45
+    maxOffset: 3
+    pvsIncrease: 0.3
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -102,7 +102,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Gun
     minAngle: 2.9
@@ -161,7 +161,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,3,2
+    - 0,0,2,1
   - type: GunWieldBonus
     minAngle: -1
     maxAngle: -25
@@ -222,7 +222,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
   - type: Gun
     minAngle: 2.8
@@ -286,7 +286,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: Gun
     minAngle: 2.85
@@ -356,7 +356,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: Gun
     minAngle: 2
@@ -398,11 +398,8 @@
     delay: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    maxOffset: 5
+    pvsIncrease: 0.5
 
 - type: entity
   name: M-28
@@ -421,7 +418,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: Gun
     minAngle: 1.75
@@ -463,11 +460,8 @@
     delay: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    maxOffset: 4
+    pvsIncrease: 0.4
 
 - type: entity
   name: AR-18
@@ -486,7 +480,7 @@
   - type: Item
     size: Huge
     shape:
-      - 0,0,4,2
+    - 0,0,2,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
   - type: Gun
     minAngle: 1.8
@@ -544,14 +538,21 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Gun
-    minAngle: 1
+    minAngle: 2
     maxAngle: 15
-    angleIncrease: 1.25
-    angleDecay: 10
-    fireRate: 5
+    angleIncrease: 1
+    angleDecay: 15
+    fireRate: 6
+    burstFireRate: 8
+    selectedMode: SemiAuto
+    availableModes:
+    - Burst
+    - SemiAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.25
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
@@ -586,119 +587,6 @@
     delay: 0.35
 
 - type: entity
-  name: STG 44
-  parent: BaseWeaponRifleSunrise
-  id: WeaponSTG44
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,5,2
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
-  - type: Gun
-    minAngle: 2
-    maxAngle: 19
-    angleIncrease: 2.25
-    angleDecay: 10
-    fireRate: 5.25
-    soundGunshot:
-      collection: ak47
-  - type: ChamberMagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineSTG44
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineSTG44
-          - MagazineLightRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifleSP
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-
-- type: entity
-  name: V-31 assault rifle
-  parent: BaseWeaponRifleSunrise
-  id: WeaponRifleV31
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,5,2
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
-  - type: Gun
-    fireRate: 3.5
-    minAngle: 1
-    maxAngle: 12
-    soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_shot.ogg
-      params:
-        volume: -2
-  - type: ChamberMagazineAmmoProvider
-    autoEject: true
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineV31
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineV31
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-
-- type: entity
   name: scar-h
   parent: BaseWeaponRifleSunrise
   id: WeaponRifleScarH
@@ -715,7 +603,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/scarh/tiny.rsi
   - type: Gun
     minAngle: 1
@@ -817,3 +705,71 @@
         whitelist:
           tags:
             - CartridgeRifle
+
+- type: entity
+  name: ASH-12
+  parent: BaseWeaponRifleSunrise
+  id: WeaponRifleAsh12
+  components:
+  - type: Sprite
+    scale: 0.8,0.8
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/tiny.rsi
+  - type: Gun
+    minAngle: 3
+    maxAngle: 24
+    angleIncrease: 2
+    angleDecay: 12
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/fire.ogg
+      params:
+        volume: 25
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineAsh12
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/ash12_mag_in.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/ash12_mag_out.ogg
+        priority: 3
+        whitelist:
+          tags:
+            - MagazineAsh12
+      gun_chamber:
+        name: Chamber
+        startingItem: ShellShotgunSlug
+        priority: 1
+        whitelist:
+          tags:
+            - ShotgunSlug
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.65
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/cycle.ogg
+    soundBoltOpened:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/bolt-open.ogg
+    soundBoltClosed:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/bolt-closed.ogg

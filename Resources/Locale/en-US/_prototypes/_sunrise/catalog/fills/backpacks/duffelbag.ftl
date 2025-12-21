@@ -1,5 +1,5 @@
-ent-ClothingBackpackDuffelSyndicateFilledBauer = Bauer-127 bundle
-    .desc = The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set.
+ent-ClothingBackpackDuffelSyndicateFilledBauer127 = Elite Sniper Bundle
+    .desc = "I've got you in my sights: includes a Bauer SR-127 with three magazines, a 15×115 anti-materiel ammo box, a spread of specialty rounds, and unique thermal goggles."
 ent-ClothingBackpackDuffelSyndicateFilledDragunov = Dragunov bundle
     .desc = The iconic Dragunov magazine rifle with 2 raspy magazines in the set.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Bundle MP5

@@ -61,8 +61,10 @@
   abstract: true
   components:
   - type: PlanetPrisonStation
-    stations:
+    stationsModern:
     - PlanetPrison
+    stationsOld:
+    - PlanetPrisonOld
     biomes:
     - PlainGrasslands
     - PlainLowDesert

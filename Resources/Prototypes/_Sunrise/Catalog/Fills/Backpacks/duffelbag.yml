@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledBauer
+  id: ClothingBackpackDuffelSyndicateFilledBauer127
   name: Sniper bundle
   description: "Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles."
   components:
@@ -10,9 +10,15 @@
       - id: MagazineBauer127
         amount: 3
       - id: MagazineBoxAntiMateriel
+      - id: MagazineBauer127Penetrator
         amount: 2
-      - id: ClothingEyesGlassesThermalSyndie
-      - id: PowerCellSyndicate
+      - id: MagazineBauer127Frag
+        amount: 2
+      - id: MagazineBauer127Blast
+        amount: 2
+      - id: MagazineBauer127Emp
+        amount: 2
+      - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -107,6 +113,22 @@
       amount: 2
     - id: MagazineRifleSP
       amount: 1
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleM52Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle M-52
+  description: Premium assault rifle with 3 raspy FMJ magazines, 2 SP and 1 HP.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleM52
+        - id: MagazineRifleM52FMJ
+          amount: 3
+        - id: MagazineRifleM52SP
+          amount: 2
+        - id: MagazineRifleM52HP
+          amount: 1
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
@@ -245,6 +267,19 @@
           amount: 4
 
 - type: entity
+  id: ClothingBackpackDuffelWeaponRifleAsh12
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle ASH-12
+  description: ASH-12 with 5 magazines and a blueprint.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAsh12
+    - id: MagazineAsh12
+      amount: 5
+    - id: BlueprintMagAsh12Slug
+
+- type: entity
   id: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
   parent: ClothingBackpackDuffelNanotrasenMedical
   name: nanotrasen medical bundle
@@ -340,3 +375,5 @@
       - id: ClothingHandsGlovesCombatCQC
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
+
+
