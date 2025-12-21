@@ -44,7 +44,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     // Последнее состояние тикетов. Нужны для фильтрации "моих" тикетов и авто-открытия.
     private readonly Dictionary<int, MentorHelpTicketData> _ticketDataById = new();
     private bool _mentorHelpSoundEnabled;
-    public static readonly SoundSpecifier? MentorHelpSound =
+    private static readonly SoundSpecifier? MentorHelpSound =
         new SoundPathSpecifier("/Audio/_Sunrise/Effects/adminticketopen.ogg", AudioParams.Default.WithVolume(-3f));
 
     private Button? LobbyMHelpButton => (UIManager.ActiveScreen as LobbyGui)?.MHelpButton;
@@ -121,7 +121,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         if (GameMHelpButton != null)
         {
             // Защита от повторной подписки, OnStateEntered может вызываться несколько раз
-            // Аналогично в Content.Client/UserInterface/Systems/Bwoink/AHelpUIController.cs:296
+            // Аналогично в Content.Client/UserInterface/Systems/Bwoink/AHelpUIController.cs (метод OnStateEntered)
             GameMHelpButton.OnPressed -= MHelpButtonPressed;
             GameMHelpButton.OnPressed += MHelpButtonPressed;
             GameMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
@@ -139,7 +139,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     {
         if (LobbyMHelpButton != null)
         {
-            // То же самое для лобби, см. Content.Client/UserInterface/Systems/Bwoink/AHelpUIController.cs:320
+            // То же самое для лобби, см. Content.Client/UserInterface/Systems/Bwoink/AHelpUIController.cs (метод OnStateEntered)
             LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
             LobbyMHelpButton.OnPressed += MHelpButtonPressed;
             LobbyMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
