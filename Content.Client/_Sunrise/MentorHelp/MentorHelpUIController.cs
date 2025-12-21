@@ -120,6 +120,8 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     {
         if (GameMHelpButton != null)
         {
+            // Защита от повторной подписки, OnStateEntered может вызываться несколько раз
+            // Аналогично в Content.Client/UserInterface/Systems/Bwoink/AHelpUIController.cs:296
             GameMHelpButton.OnPressed -= MHelpButtonPressed;
             GameMHelpButton.OnPressed += MHelpButtonPressed;
             GameMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
@@ -137,6 +139,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     {
         if (LobbyMHelpButton != null)
         {
+            // То же самое для лобби, см. Content.Client/UserInterface/Systems/Bwoink/AHelpUIController.cs:320
             LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
             LobbyMHelpButton.OnPressed += MHelpButtonPressed;
             LobbyMHelpButton.Pressed = UIHelper?.IsOpen ?? false;

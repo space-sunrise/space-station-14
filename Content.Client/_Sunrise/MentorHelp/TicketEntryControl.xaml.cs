@@ -130,7 +130,6 @@ namespace Content.Client._Sunrise.MentorHelp
             bool isUnread,
             bool isUnassigned)
         {
-
             if (isClosed)
                 return ClosedColor;
 
