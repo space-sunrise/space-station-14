@@ -753,9 +753,29 @@
     types:
       Piercing: 2
       Slash: 2
+      Structural: 3
   pierceChance: 0.01
   ricochetChance: 0.05
+  staminaDamage: 3
   count: 18
+  spread: 45
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: shard
+
+- type: hitscan
+  id: PelletShotgunImprovisedSpreadTraceLarge
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 2
+      Slash: 2
+      Structural: 3
+  pierceChance: 0.01
+  ricochetChance: 0.5
+  staminaDamage: 3
+  count: 36
   spread: 45
   bullet:
     sprite:
@@ -1144,7 +1164,7 @@
     types:
       Piercing: 26
       Structural: 10
-  armorPenetration: -0.25
+  armorPenetration: -0.1
   pierceChance: 0.40
   ricochetChance: 0.30
   staminaDamage: 5
@@ -1175,7 +1195,7 @@
       Structural: 5
   armorPenetration: 0.35
   pierceChance: 0.8
-  ricochetChance: 0.40
+  ricochetChance: 0.80
   staminaDamage: 3
   pierceLevel: Metal
   bullet:
@@ -1190,9 +1210,9 @@
     types:
       Piercing: 20 #- 30%
       Structural: 2
-  armorPenetration: 0.80
-  pierceChance: 0.85
-  ricochetChance: 0.30
+  armorPenetration: 0.5
+  pierceChance: 0.9
+  ricochetChance: 0.50
   staminaDamage: 1
   pierceLevel: HardenedMetal
   bullet:

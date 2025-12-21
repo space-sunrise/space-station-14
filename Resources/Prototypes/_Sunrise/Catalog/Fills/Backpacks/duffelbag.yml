@@ -134,13 +134,15 @@
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle p90
-  description: P-90 with 3 raspy magazines.
+  description: P-90 with 4 raspy magazines.
   components:
     - type: StorageFill
       contents:
         - id: WeaponSubMachineGunP90
         - id: MagazineP90
-          amount: 3
+          amount: 2
+        - id: MagazineP90HP
+        - id: MagazineP90FMJ
 
 - type: entity
   id: ClothingBackpackDuffelWeaponAMS42Filled
@@ -207,28 +209,62 @@
         - id: BoxShotgunSlug
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleAR18Filled
+  id: ClothingBackpackDuffelWeaponRifleSKM24Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle AR18
-  description: AR18 with 2 raspy magazines.
+  name: Bundle SKM-24
+  description: SKM-24 with 6 raspy various magazines.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponRifleAR18
-        - id: MagazineRifleHeavySP
+        - id: WeaponRifleSKM24Nano
+        - id: MagazineLightRifleSP
+          amount: 3
+        - id: MagazineLightRifleFMJ
+          amount: 1
+        - id: MagazineLightRifleHP
           amount: 2
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleM28Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle M28
-  description: M28 with 3 raspy magazines.
+  id: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle SKM-24
+  description: AR18 with 6 raspy Incendiary magazines.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponRifleM28
+        - id: WeaponRifleSKM24
+        - id: MagazineLightRifleIncendiary
+          amount: 6
+        - id: FireExtinguisher
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSKM28Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle SKM-28
+  description: SKM-28 with 6 raspy various magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM28Nano
+        - id: MagazineRifleHeavyFMJ
+          amount: 1
         - id: MagazineRifleHeavySP
           amount: 3
+        - id: MagazineRifleHeavyHP
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle SKM-28
+  description: SKM-28 with 6 raspy Incendiary magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM28
+        - id: MagazineRifleHeavyIncendiary
+          amount: 6
+        - id: FireExtinguisher
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleBR64Filled
@@ -242,17 +278,30 @@
         - id: MagazineRifleHeavyFMJ
           amount: 2
 
-#- type: entity
-#  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
-#  parent: ClothingBackpackDuffelMilitary
-#  name: Bundle mg342
-#  description: MG-342 with 2 raspy magazines.
-#  components:
-#    - type: StorageFill
-#      contents:
-#        - id: WeaponMachineGunMG42
-#        - id: MagazineMachineGunMG42
-#          amount: 2
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunM492
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle smart gun M492
+  description: M492 with 2 raspy SP and FMJ belt-box.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunM492
+        - id: MagazineLightRifleBeltBox
+        - id: MagazineLightRifleBeltBoxFMJ
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle M492 "Incinerator"
+  description: M492 with 3 raspy Incendiary belt-box.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunM492Cburn
+        - id: MagazineLightRifleBeltBoxIncendiary
+          amount: 3
+        - id: FireExtinguisher
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSniperHristovFilled

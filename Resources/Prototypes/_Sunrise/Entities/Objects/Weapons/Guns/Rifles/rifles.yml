@@ -402,126 +402,6 @@
     pvsIncrease: 0.5
 
 - type: entity
-  name: M-28
-  parent: BaseWeaponRifleSunrise
-  id: WeaponRifleM28
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,3,2
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
-  - type: Gun
-    minAngle: 1.75
-    maxAngle: 18
-    angleIncrease: 0.85
-    angleDecay: 8
-    fireRate: 4.5
-    soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineRifleHeavySP
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineHeavyRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeRifleHeavySP
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeHeavyRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.75
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
-
-- type: entity
-  name: AR-18
-  parent: BaseWeaponRifleSunrise
-  id: WeaponRifleAR18
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,2,2
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/tiny.rsi
-  - type: Gun
-    minAngle: 1.8
-    maxAngle: 24
-    angleIncrease: 1.25
-    angleDecay: 8
-    fireRate: 4.5
-    soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineRifleHeavySP
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineHeavyRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeRifleHeavySP
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgeHeavyRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-
-- type: entity
   name: M16A4
   parent: BaseWeaponRifleSunrise
   id: WeaponRifleM16A4
@@ -773,3 +653,264 @@
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/bolt-open.ogg
     soundBoltClosed:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/bolt-closed.ogg
+
+- type: entity
+  name: SKM-24
+  parent: [BaseWeaponRifle, BaseMajorContraband]
+  id: WeaponRifleSKM24
+  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/tiny.rsi
+  - type: Gun
+    fireRate: 4.45
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleFMJ
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  parent: WeaponRifleSKM24
+  id: WeaponRifleSKM24White
+  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Saved is earned. Wood replaced with cheap plastic.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
+
+- type: entity
+  parent: WeaponRifleSKM24
+  id: WeaponRifleSKM24Green
+  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. The favorite color of low-income mercenaries and ordinary USSP members.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
+
+- type: entity
+  parent: WeaponRifleSKM24
+  id: WeaponRifleSKM24Scrap
+  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. This specimen has seen some rough stuff...and not just once.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
+  - type: WeaponDismantleOnShoot
+    dismantleDistance: 4
+    dismantleChance: 0.006 # Примерно 150-200 патронов
+    selfDamage:
+      types:
+        Blunt: 5
+        Heat: 5
+    items:
+      - id: ModularBarrel
+        launchAngle: 0
+        prob: 1
+      - id: ModularReceiverAuto
+        launchAngle: 90
+        prob: 0.75
+      - id: RifleStock
+        launchAngle: 180
+        prob: 0.80
+      - id: MagazineLightRifleEmpty
+        launchAngle: -90
+        prob: 1
+      - id: CartridgeLightRifleFMJ
+        launchAngle: 45
+        prob: 1
+      - id: CartridgeLightRifleFMJ
+        launchAngle: -45
+        prob: 0.80
+      - id: CartridgeLightRifleFMJ
+        launchAngle: 75
+        prob: 0.75
+      - id: CartridgeLightRifleFMJ
+        launchAngle: -75
+        prob: 0.5
+      - id: CartridgeLightRifleFMJ
+        launchAngle: 120
+        prob: 0.3
+      - id: CartridgeLightRifleFMJ
+        launchAngle: 120
+        prob: 0.25
+      - id: CartridgeLightRifleFMJ
+        launchAngle: -120
+        prob: 0.2
+      - id: CartridgeLightRifleFMJ
+        launchAngle: -120
+        prob: 0.15
+
+- type: entity
+  parent: WeaponRifleSKM24
+  id: WeaponRifleSKM24Syndi
+  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Spare option if you lost all your telecrystals at the casino.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
+
+- type: entity
+  parent: WeaponRifleSKM24
+  id: WeaponRifleSKM24Nano
+  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi
+
+- type: entity
+  name: SKM-28
+  parent: [BaseWeaponRifle, BaseMajorContraband]
+  id: WeaponRifleSKM28
+  description: A marksman conversion of the standard SKM-24. Features an extended heavy barrel, reworked internals, and a mounted optical sight. Chambered in .308.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Base/big.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Base/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Base/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -28
+    maxAngle: -50
+  - type: Gun
+    minAngle: 30
+    maxAngle: 65
+    angleIncrease: 1.5
+    angleDecay: 15
+    fireRate: 4
+    shotsPerBurst: 3
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - SemiAuto
+    burstFireRate: 11
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm28/skm28_shot.ogg
+      params:
+        pitch: 0.8
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleHeavyFMJ
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineHeavyRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleHeavySP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeHeavyRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.75
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 7
+    pvsIncrease: 0.7
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  parent: WeaponRifleSKM28
+  id: WeaponRifleSKM28Syndi
+  description: A marksman conversion of the standard SKM-24. Features an extended heavy barrel, reworked internals, and a mounted optical sight. Chambered in .308. Good choice Nukie.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Syndicate/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Syndicate/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Syndicate/tiny.rsi
+
+- type: entity
+  parent: WeaponRifleSKM28
+  id: WeaponRifleSKM28Nano
+  description: A marksman conversion of the standard SKM-24. Features an extended heavy barrel, reworked internals, and a mounted optical sight. Chambered in .308. Money doesn't smell.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Nano/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Nano/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Nano/tiny.rsi

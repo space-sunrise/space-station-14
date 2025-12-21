@@ -10,7 +10,7 @@
       state: ertleader
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
+      - NamesMilitaryFirstLeaderAmber
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -33,6 +33,7 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
   parent: EventHumanoidCentcommSunrise
   randomizeName: false
   components:
@@ -47,7 +48,7 @@
       prototypes: [ ERTLeaderGearAmber ]
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
+      - NamesMilitaryFirstLeaderAmber
       - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -62,6 +63,11 @@
       state: ertleadereva
     - type: RandomHumanoidSpawner
       settings: ERTLeaderRed
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderRed
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: randomHumanoidSettings
   id: ERTLeaderRed
@@ -76,6 +82,11 @@
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGearRed ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderRed
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderGamma
@@ -84,6 +95,11 @@
   components:
     - type: RandomHumanoidSpawner
       settings: ERTLeaderGamma
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderGamma
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 
 - type: randomHumanoidSettings
   id: ERTLeaderGamma
@@ -98,6 +114,11 @@
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGearGamma ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeaderGamma
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
 ## ERT Security
 
 - type: entity
@@ -111,7 +132,7 @@
       state: ertsecurity
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmber
       - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTSecurityAmber
@@ -129,7 +150,7 @@
       job: ERTSecurity
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmber
       - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTSecurityGearAmber ]
@@ -155,6 +176,10 @@
       job: ERTSecurity
     - type: Loadout
       prototypes: [ ERTSecurityGearRed ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstRed
+      - NamesMilitaryLast
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityGamma
@@ -163,6 +188,10 @@
   components:
     - type: RandomHumanoidSpawner
       settings: ERTSecurityGamma
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGamma
+      - NamesMilitaryLast
 
 - type: randomHumanoidSettings
   id: ERTSecurityGamma
@@ -177,7 +206,10 @@
       job: ERTSecurity
     - type: Loadout
       prototypes: [ ERTSecurityGearGamma ]
-
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGamma
+      - NamesMilitaryLast
 ## ERT Chaplain
 
 - type: entity
@@ -191,7 +223,7 @@
       state: chaplain #needs an ERT variant once a good suit it made.
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTChaplainAmber
@@ -210,7 +242,7 @@
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTChaplainGearAmber ]
@@ -228,7 +260,7 @@
       state: ertjanitor
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTJanitorAmber
@@ -246,7 +278,7 @@
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTJanitorGearAmber ]
@@ -262,6 +294,10 @@
       state: ertjanitoreva
     - type: RandomHumanoidSpawner
       settings: ERTJanitorGamma
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGammaSpecial
+      - NamesMilitaryLast
 
 - type: randomHumanoidSettings
   id: ERTJanitorGamma
@@ -276,7 +312,10 @@
       job: ERTJanitor
     - type: Loadout
       prototypes: [ ERTJanitorGearGamma ]
-
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGammaSpecial
+      - NamesMilitaryLast
 ## ERT Engineer
 
 - type: entity
@@ -290,7 +329,7 @@
       state: ertengineer
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTEngineerAmber
@@ -308,7 +347,7 @@
       job: ERTEngineer
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTEngineerGearAmber ]
@@ -324,6 +363,10 @@
       state: ertengineereva
     - type: RandomHumanoidSpawner
       settings: ERTEngineerGamma
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGammaSpecial
+      - NamesMilitaryLast
 
 - type: randomHumanoidSettings
   id: ERTEngineerGamma
@@ -338,7 +381,10 @@
       job: ERTEngineer
     - type: Loadout
       prototypes: [ ERTEngineerGearGamma ]
-
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGammaSpecial
+      - NamesMilitaryLast
 ## ERT Medic
 
 - type: entity
@@ -352,7 +398,7 @@
       state: ertmedical
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTMedicalAmber
@@ -370,7 +416,7 @@
       job: ERTMedical
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - NamesMilitaryFirstAmberSpecial
       - NamesMilitaryLast
     - type: Loadout
       prototypes: [ ERTMedicalGearAmber ]
@@ -386,6 +432,10 @@
       state: ertmedicaleva
     - type: RandomHumanoidSpawner
       settings: ERTMedicalGamma
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGammaSpecial
+      - NamesMilitaryLast
 
 - type: randomHumanoidSettings
   id: ERTMedicalGamma
@@ -400,7 +450,10 @@
       job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearGamma ]
-
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstGammaSpecial
+      - NamesMilitaryLast
 ## CBURN EVA VARIANT
 
 - type: entity
@@ -432,6 +485,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Resomi
   components:
     - type: Loadout
       prototypes: [CBURNGearEVA]

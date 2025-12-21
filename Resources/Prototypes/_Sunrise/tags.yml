@@ -105,6 +105,9 @@
 - type: Tag
   id: ImprovisedAmmoBox
 
+- type: Tag
+  id: CannonBallMini
+
 # Weapons
 - type: Tag
   id: WrappedWeapon
@@ -165,7 +168,16 @@
 #   id: SpeedLoaderRifle
 
 - type: Tag
+  id: MagazineCannonBallMini
+
+- type: Tag
   id: MagazinePistolDPSubMachineGun
+
+- type: Tag
+  id: MagazinePistolSubMachineGunCap
+
+- type: Tag
+  id: MagazineBoxL6Cap
 
 - type: Tag
   id: MagazineM28
@@ -281,6 +293,9 @@
 
 - type: Tag
   id: Phazon
+
+- type: Tag
+  id: PaddyMech
 
 - type: Tag
   id: ClarkeCentralControlModule

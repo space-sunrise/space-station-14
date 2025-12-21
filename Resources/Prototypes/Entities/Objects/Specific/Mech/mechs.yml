@@ -8,10 +8,13 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+      - PaddyMech
   - type: Speech
     speechSounds: Borg
   - type: TTS
     voice: Crysis2AICostume
+  - type: Prying
+    pryPowered: true
 
 - type: entity
   id: IndustrialMech
@@ -208,6 +211,7 @@
   - type: ExplosionResistance # Sunrise-Edit
     damageCoefficient: 0.8 # Sunrise-Edit
   - type: ProtectedFromStepTriggers # Sunrise-added
+  - type: ComplexInteraction # Sunrise-added
 
 # Ripley MK-I
 - type: entity
@@ -449,13 +453,14 @@
   - type: Mech
     equipmentWhitelist:
       tags:
-      - CombatMech
+      - PaddyMech
       - IndustrialMech
     baseState: paddy
     openState: paddy-open
     brokenState: paddy-broken
     mechToPilotDamageMultiplier: 0.60
     airtight: true
+    maxEquipmentAmount: 4
     #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
       components:
@@ -476,7 +481,7 @@
       types:
         Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
         Structural: 10
-    bluntStaminaDamageFactor: 1
+    bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
