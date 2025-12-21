@@ -98,11 +98,6 @@ namespace Content.Client._Sunrise.MentorHelp
                 return;
 
             var statusText = GetStatusText(_ticketData.Status);
-            if (_ticketData.HasUnreadMessages && _newMessageFromAuthor)
-                statusText = $"{statusText} • {_loc.GetString("mentor-help-ticket-activity-author")}";
-            else if (_ticketData.HasUnreadMessages)
-                statusText = $"{statusText} • {_loc.GetString("mentor-help-ticket-activity-unread")}";
-
             StatusLabel.Text = statusText;
         }
 

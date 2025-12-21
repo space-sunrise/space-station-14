@@ -40,6 +40,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     private MentorHelpSystem? _mentorHelpSystem;
     public IMentorHelpUIHandler? UIHelper;
     private readonly HashSet<int> _unreadTicketIds = new();
+    private readonly Dictionary<int, int> _lastMessageIdByTicket = new();
 
     // Последнее состояние тикетов. Нужны для фильтрации "моих" тикетов и авто-открытия.
     private readonly Dictionary<int, MentorHelpTicketData> _ticketDataById = new();
@@ -168,16 +169,20 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     private void OnTicketUpdated(object? sender, MentorHelpTicketUpdateMessage message)
     {
-
+        // Новый тикет
+        var isNewTicket = !_ticketDataById.ContainsKey(message.Ticket.Id);
         _ticketDataById[message.Ticket.Id] = message.Ticket;
 
-        if (_mentorHelpSoundEnabled && IsRelevantTicket(message.Ticket.Id))
+        EnsureUIHelper();
+
+        // Звук для менторов только при появлении нового тикета
+        if (isNewTicket && _mentorHelpSoundEnabled && _adminManager.HasFlag(AdminFlags.Mentor) && IsRelevantTicket(message.Ticket.Id))
         {
             _audio.PlayGlobal(MentorHelpSound, Filter.Local(), false);
-            _clyde.RequestWindowAttention();
-        }
 
-        EnsureUIHelper();
+            if (UIHelper is { IsOpen: false })
+                _clyde.RequestWindowAttention();
+        }
 
         if (!IsRelevantTicket(message.Ticket.Id))
             _unreadTicketIds.Remove(message.Ticket.Id);
@@ -209,19 +214,63 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         UpdateUnreadTickets(message.TicketId, message.Messages);
 
+        // Звук только на новые входящие сообщения
+        TryPlaySoundForNewMessage(message.TicketId, message.Messages);
+
         var autoOpen = _config.GetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage);
         var shouldAutoOpen = autoOpen && ShouldAutoOpenTicket(message.TicketId, message.Messages);
 
-        if (shouldAutoOpen && UIHelper is { IsOpen: true } helper && helper.CurrentTicketId != message.TicketId)
-        {
-            helper.OpenTicket(message.TicketId);
-        }
-        else if (shouldAutoOpen && UIHelper is { IsOpen: false } closedHelper)
-        {
+        // Автооткрытие работает только когда окно закрыто, ибо раздражает постоянными переключениями
+        if (shouldAutoOpen && UIHelper is { IsOpen: false } closedHelper)
             closedHelper.OpenTicket(message.TicketId);
-        }
 
         UIHelper!.TicketMessagesReceived(message.TicketId, message.Messages);
+    }
+
+    /// <summary>
+    /// Проигрывает звук только на новое входящее сообщение по тикету
+    /// </summary>
+    private void TryPlaySoundForNewMessage(int ticketId, List<MentorHelpMessageData> messages)
+    {
+        if (!_mentorHelpSoundEnabled || messages.Count == 0)
+            return;
+
+        var lastMessage = messages[^1];
+
+        if (!_lastMessageIdByTicket.TryGetValue(ticketId, out var previousMessageId))
+        {
+            _lastMessageIdByTicket[ticketId] = lastMessage.Id;
+            return;
+        }
+
+        // Не новое сообщение
+        if (previousMessageId == lastMessage.Id)
+            return;
+
+        _lastMessageIdByTicket[ticketId] = lastMessage.Id;
+
+        var localUser = _playerManager.LocalUser;
+
+        // Без звука свое сообщение
+        if (localUser == null || lastMessage.SenderUserId == localUser.Value)
+            return;
+
+        // Тикет не релевантентен
+        if (!IsRelevantTicket(ticketId))
+            return;
+
+        var isViewingTicket = UIHelper is { IsOpen: true } helper && helper.CurrentTicketId == ticketId;
+        var isWindowClosed = UIHelper is { IsOpen: false };
+
+        // Окно открыто, но мы не в этом тикете
+        if (!isViewingTicket && !isWindowClosed)
+            return;
+
+        // Новое входящее сообщение
+        _audio.PlayGlobal(MentorHelpSound, Filter.Local(), false);
+
+        if (isWindowClosed)
+            _clyde.RequestWindowAttention();
     }
 
     private void OnPlayerTypingUpdated(object? sender, MentorHelpPlayerTypingUpdated message)
@@ -447,6 +496,7 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
         _window.OnClose += () =>
         {
             IsOpen = false;
+            CurrentTicketId = null;
             OnClose?.Invoke();
             _window = null;
         };
@@ -470,9 +520,14 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
 
     public void CloseWindow()
     {
-        _window?.Close();
-        IsOpen = false;
-        OnClose?.Invoke();
+        CurrentTicketId = null;
+        if (_window == null)
+        {
+            IsOpen = false;
+            return;
+        }
+
+        _window.Close();
     }
 
     public void TicketUpdated(MentorHelpTicketData ticket)
@@ -536,6 +591,7 @@ public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
         _window.OnClose += () =>
         {
             IsOpen = false;
+            CurrentTicketId = null;
             OnClose?.Invoke();
             _window = null;
         };
@@ -556,9 +612,14 @@ public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
 
     public void CloseWindow()
     {
-        _window?.Close();
-        IsOpen = false;
-        OnClose?.Invoke();
+        CurrentTicketId = null;
+        if (_window == null)
+        {
+            IsOpen = false;
+            return;
+        }
+
+        _window.Close();
     }
 
     public void TicketUpdated(MentorHelpTicketData ticket)

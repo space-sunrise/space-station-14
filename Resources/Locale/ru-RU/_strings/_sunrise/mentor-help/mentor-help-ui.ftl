@@ -76,7 +76,7 @@ help-choice-mhelp-button = Ментор-помощь
 help-choice-ahelp-desc-label = [color=#CCCCCC][font size=12]• Админ-помощь - для жалоб на игроков, сообщений о багах и нарушениях правил[/font][/color]
 help-choice-mhelp-desc-label = [color=#CCCCCC][font size=12]• Ментор-помощь - для вопросов о механиках игры и помощи новичкам[/font][/color]
 
-help-kwoink-play-sound = Звук при сообщении
+help-kwoink-play-sound = Звук сообщений
 
 mentor-help-statistics-column-mentor = Ментор
 mentor-help-statistics-column-tickets = Взятых тикетов
