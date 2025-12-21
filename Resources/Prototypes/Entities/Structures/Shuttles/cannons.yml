@@ -414,7 +414,7 @@
 - type: entity
   id: SignalButtonLongbow
   parent: SignalButton
-  name: Longbow Fire Button
+  name: Longbow 127 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -423,7 +423,7 @@
 - type: entity
   id: SignalButtonVympel
   parent: SignalButton
-  name: Vympel Fire Button
+  name: Vympel 127-2 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -432,7 +432,7 @@
 - type: entity
   id: SignalButtonQuadling
   parent: SignalButton
-  name: Quadling Fire Button
+  name: Quadling 127-4 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -441,7 +441,7 @@
 - type: entity
   id: SignalButtonSquall
   parent: SignalButton
-  name: Squall Fire Button
+  name: Squall 308 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -570,7 +570,7 @@
       tags:
         - CartridgeAntiMateriel
     capacity: 30
-    proto: CartridgeAntiMaterielArtillery
+    proto: Null
     soundInsert:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -607,7 +607,7 @@
     scale: 1.05, 1.05
     layers:
     - state: bal-127
-    - state: mag-13
+    - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:

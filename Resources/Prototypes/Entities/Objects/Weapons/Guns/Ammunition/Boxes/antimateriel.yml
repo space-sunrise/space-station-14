@@ -53,8 +53,8 @@
   components:
   - type: MultiHandedItem
   - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -84,7 +84,7 @@
     - state: icon
     size: Large
     shape:
-    - 0,0,3,1
+    - 0,0,2,1
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -110,7 +110,7 @@
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeAntiMateriel
+    proto: CartridgeAntiMaterielPenetrator
   - type: Sprite
     layers:
     - state: base
@@ -136,7 +136,7 @@
   parent: BaseMagazineBoxBelt127
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeAntiMaterielArtillery
+    proto: CartridgeAntiMateriel
   - type: Sprite
     layers:
     - state: base

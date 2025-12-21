@@ -1,6 +1,6 @@
 ent-CartridgeAntiMateriel = cartridge (15mm armor-pierce)
     .desc = { ent-BaseCartridge.desc }
-ent-CartridgeAntiMaterielArtillery = cartridge (15mm anti-materiel)
+ent-CartridgeAntiMateriel = cartridge (15mm anti-materiel)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgeAntiMaterielBlast = cartridge (15mm blast)
     .desc = { ent-BaseCartridge.desc }

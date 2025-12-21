@@ -697,8 +697,8 @@
   - type: Projectile
     damage:
       types:
-      Piercing: 25
-      Structural: 15
+        Piercing: 25
+        Structural: 15
   - type: StaminaDamageOnCollide
     damage: 5
 

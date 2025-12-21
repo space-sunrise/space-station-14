@@ -323,7 +323,7 @@
   - MagazineBoxPistol40AP
   - MagazineBoxRifleAP
   - MagazineBoxHeavyRifleAP
-  - LightRifleMagazineAP
+  - MagazineLightRifleBeltBoxAP
   - MagazineLightRifleAP
   - SpeedLoaderMagnumAP
   - MagazineMagnumAP
@@ -354,9 +354,9 @@
   - MagazinePistolHighCapacityHP
   - MagazinePistolHighCapacityFMJ
   # LMG
-  - LightRifleMagazineSP
-  - LightRifleMagazineHP
-  - LightRifleMagazineFMJ
+  - MagazineLightRifleBeltBoxSP
+  - MagazineLightRifleBeltBoxHP
+  - MagazineLightRifleBeltBoxFMJ
 
 - type: latheRecipePack
   id: SyndicateAmmoSunrise
