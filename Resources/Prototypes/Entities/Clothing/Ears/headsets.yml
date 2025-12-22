@@ -22,7 +22,7 @@
   - type: Clothing
     slots:
     - ears
-    sprite: Clothing/Ears/Headsets/base.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/base.rsi # Sunrise-Edit
   - type: GuideHelp
     guides:
     - Radio
@@ -33,7 +33,7 @@
   name: passenger headset
   components:
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/base.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/base.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadset
@@ -47,9 +47,9 @@
       - EncryptionKeyCargo
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/cargo.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/cargo.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/cargo.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/cargo.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadsetCargo
@@ -58,9 +58,9 @@
   description: Headset used by shaft miners.
   components:
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/mining.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/mining.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/mining.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/mining.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadsetCargo, BaseCommandContraband]
@@ -87,9 +87,9 @@
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/centcom.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/centcom.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
@@ -102,9 +102,9 @@
       key_slots:
       - EncryptionKeyStationMaster
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/command.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/command.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadset
@@ -118,9 +118,9 @@
       - EncryptionKeyEngineering
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/engineering.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/engineering.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/engineering.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/engineering.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadsetEngineering, BaseCommandContraband]
@@ -147,9 +147,9 @@
       - EncryptionKeyMedical
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/medical.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medical.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/medical.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medical.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadsetMedical, BaseCommandContraband]
@@ -176,9 +176,9 @@
       - EncryptionKeyScience
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/science.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/science.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/science.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/science.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadsetScience
@@ -192,9 +192,9 @@
       - EncryptionKeyMedicalScience
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/medicalscience.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medicalscience.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/medicalscience.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medicalscience.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadsetScience
@@ -208,9 +208,9 @@
       - EncryptionKeyRobo
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/robotics.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/robotics.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/robotics.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/robotics.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadsetScience, BaseCommandContraband]
@@ -237,9 +237,9 @@
       - EncryptionKeySecurity
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/security.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/security.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadset, BaseSecurityContraband]
@@ -254,9 +254,9 @@
       - EncryptionKeySecurity
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/brigmedic.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/brigmedic.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/brigmedic.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/brigmedic.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadset
@@ -270,9 +270,9 @@
       - EncryptionKeyService
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/service.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/service.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/service.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/service.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadset
@@ -285,9 +285,9 @@
         key_slots:
         - EncryptionKeyFreelance
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/freelance.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/freelance.rsi # Sunrise-Edit
     - type: Clothing
-      sprite: Clothing/Ears/Headsets/freelance.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/freelance.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadset, BaseMagicalContraband]
@@ -300,9 +300,9 @@
         key_slots:
         - EncryptionKeyStationMaster
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/wizard.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/wizard.rsi # Sunrise-Edit
     - type: Clothing
-      sprite: Clothing/Ears/Headsets/wizard.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/wizard.rsi # Sunrise-Edit
 
 - type: entity
   parent: [ClothingHeadset, BaseMajorContraband]
@@ -311,6 +311,6 @@
   description: Who could refuse to wear this stylish black and green headset?
   components:
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/ninja.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/ninja.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/ninja.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/ninja.rsi # Sunrise-Edit

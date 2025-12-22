@@ -3,27 +3,52 @@
   start: start
   graph:
     - node: start
+      entity: EnergySwordBiocode
       edges:
-        - to: DoubleEnergySwordNode
+        - to: toy
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: double
           steps:
             - tag: EnergySword
-              name: ent-EnergySword # Sunrise edit
+              name: ent-EnergySword
               doAfter: 2
-
-    - node: DoubleEnergySwordNode
+    - node: toy
+      entity: ToySwordFake
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: double
       entity: EnergySwordDoubleBiocode
       edges:
-      - to: deconstruct
-        steps:
-        - tool: Screwing
-          doAfter: 2
-
+        - to: deconstruct
+          steps:
+            - tool: Anchoring
+              doAfter: 2
+        - to: doubletoy
+          steps:
+            - tool: Screwing
+              doAfter: 1
     - node: deconstruct
       actions:
         - !type:GivePrototype
           prototype: EnergySwordBiocode
           amount: 2
         - !type:DeleteEntity
+    - node: doubletoy
+      entity: ToySwordDoubledFake
+      edges:
+        - to: double
+          steps:
+            - tool: Screwing
+              doAfter: 1
+        - to: deconstruct
+          steps:
+            - tool: Anchoring
+              doAfter: 2
 
 - type: constructionGraph
   id: ToySwordDoubledGraph

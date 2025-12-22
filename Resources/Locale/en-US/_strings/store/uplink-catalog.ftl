@@ -506,5 +506,8 @@ uplink-coal-auto-injector-desc = A specialized auto-injector containing coal-bas
 uplink-coalpen-kit-name = Coalpen Kit
 uplink-coalpen-kit-desc = A medical kit containing 6 coal auto-injectors for treating poison damage and clearing blood toxins.
 
+uplink-stimkit-nt-name = Stim Kit
+uplink-stimkit-nt-desc = A medical kit containing 6 ephedrine auto-injectors.
+
 uplink-acolyte-armor-name = Acolyte Armor
 uplink-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.

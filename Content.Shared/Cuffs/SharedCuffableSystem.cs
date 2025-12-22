@@ -352,7 +352,7 @@ namespace Content.Shared.Cuffs
 
             if (!args.Cancelled && TryAddNewCuffs(target, user, uid, cuffable))
             {
-                // component.Used = true; // Starlight-Abductor edit
+                component.Used = true;
                 _audio.PlayPredicted(component.EndCuffSound, uid, user);
 
                 var popupText = (user == target)

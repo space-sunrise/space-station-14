@@ -110,31 +110,20 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (tile is null || _turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable))
             return false;
 
-        var currAabb = _physics.GetWorldAABB(user);
-        if (currAabb.Size == Vector2.Zero)
-            return true;
+        var bodies = _physics.GetEntitiesIntersectingBody(user, (int)CollisionGroup.Impassable);
 
-        var mapCoords = _transform.ToMapCoordinates(coords);
-        var half = currAabb.Size / 2f;
-        var center = mapCoords.Position;
+        foreach (var body in bodies)
+        {
+            if (body == user)
+                continue;
 
-        var targetAabb = new Box2(
-            center.X - half.X,
-            center.Y - half.Y,
-            center.X + half.X,
-            center.Y + half.Y
-        );
+            if (!Transform(body).Anchored)
+                continue;
 
-        if (!_physics.TryCollideRect(targetAabb, mapCoords.MapId))
-            return true;
+            return false;
+        }
 
-        static bool Overlaps(Box2 a, Box2 b) =>
-            a.Left < b.Right && a.Right > b.Left && a.Bottom < b.Top && a.Top > b.Bottom;
-
-        if (Overlaps(targetAabb, currAabb))
-            return true;
-
-        return false;
+        return true;
     }
 
     private bool TryFindSafeTile(EntityUid user, EntityCoordinates origin, out EntityCoordinates? result)

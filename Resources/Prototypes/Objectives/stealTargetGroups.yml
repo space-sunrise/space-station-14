@@ -61,7 +61,7 @@
   id: CaptainIDCard
   name: steal-target-groups-captain-id-card
   sprite:
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     state: icon-captain
 
 - type: stealTargetGroup
@@ -154,7 +154,7 @@
   id: IDCard
   name: steal-target-groups-id-cards
   sprite:
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     state: default
 
 - type: stealTargetGroup
@@ -212,7 +212,7 @@
   id: ClothingHeadsetAltMedical
   name: steal-target-groups-clothing-headset-alt-medical
   sprite:
-    sprite: Clothing/Ears/Headsets/medical.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medical.rsi # Sunrise-Edit
     state: icon_alt
 
 - type: stealTargetGroup
