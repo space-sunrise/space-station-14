@@ -876,6 +876,7 @@
 
 # .308 belt box
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: RifleHeavyMagazineArtillery
   result: RifleHeavyMagazineArtillery
   materials:
