@@ -10,7 +10,7 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server.Discord;
 
-public sealed class DiscordWebhook : IPostInjectInit
+public sealed class DiscordWebhook : IPostInjectInit, IDisposable
 {
     private static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions
         { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
@@ -23,7 +23,7 @@ public sealed class DiscordWebhook : IPostInjectInit
     private ISawmill _sawmill = default!;
 
     // Sunrise added start
-    private const char CustomHeadersSplitter = '!';
+    private const char CustomHeadersSplitter = '|';
     private static readonly TimeSpan Timeout = TimeSpan.FromSeconds(30f);
     // Sunrise added end
 
@@ -173,11 +173,16 @@ public sealed class DiscordWebhook : IPostInjectInit
 
     public SocketsHttpHandler CreateHandler(string proxyAddress)
     {
+        if (!Uri.TryCreate(proxyAddress, UriKind.Absolute, out var proxyUri))
+        {
+            _sawmill.Error($"Invalid proxy URI: {proxyAddress}. Discord connections will fail.");
+            throw new UriFormatException($"Invalid proxy address: {proxyAddress}");
+        }
+
         var proxyUsername = _configuration.GetCVar(SunriseCCVars.DiscordProxyUsername);
         var proxyPassword = _configuration.GetCVar(SunriseCCVars.DiscordProxyPassword);
 
         var handler = new SocketsHttpHandler();
-        var proxyUri = new Uri(proxyAddress);
 
         NetworkCredential? credentials = null;
         if (!string.IsNullOrWhiteSpace(proxyUsername) && !string.IsNullOrWhiteSpace(proxyPassword))
@@ -215,6 +220,12 @@ public sealed class DiscordWebhook : IPostInjectInit
             var headerName = parts[0].Trim();
             var headerValue = parts[1].Trim();
 
+            if (string.IsNullOrWhiteSpace(headerName))
+            {
+                _sawmill.Error($"Empty header name in: {header}");
+                continue;
+            }
+
             client.DefaultRequestHeaders.Add(headerName, headerValue);
             usedHeadersCount++;
         }
@@ -226,6 +237,11 @@ public sealed class DiscordWebhook : IPostInjectInit
         return true;
     }
     #endregion
+
+    public void Dispose()
+    {
+        _http.Dispose();
+    }
     // Sunrise edit end
 
     /// <summary>

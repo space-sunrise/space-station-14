@@ -239,6 +239,9 @@ namespace Content.Server.Entry
             // TODO Should this be awaited?
             _discordLink.Shutdown();
             _discordChatLink.Shutdown();
+
+            // Sunrise added start
+            _discord.Dispose();
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)

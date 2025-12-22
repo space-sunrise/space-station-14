@@ -24,7 +24,7 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("discord.proxy_password", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     Custom headers to add to Discord webhook requests. Format: "Header1:Value1!Header2:Value2"
+    ///     Custom headers to add to Discord webhook requests. Format: "Header1:Value1|Header2:Value2"
     /// </summary>
     public static readonly CVarDef<string> DiscordCustomHeaders =
         CVarDef.Create("discord.custom_headers", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
