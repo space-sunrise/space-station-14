@@ -1740,13 +1740,10 @@
        pda-pirate
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#616266"
+    borderColor: "#333333"
   # Sunrise-End
   - type: Icon
     state: pda-pirate
-  # Sunrise-start
-  - type: PdaBorderColor
-    borderColor: "#333333"
   - type: CartridgeLoader
     preinstalled:
     - NotekeeperCartridge
