@@ -137,10 +137,10 @@
     - MagazineBoxAntiMateriel
     #####################MAGAZINE#######################
     # LMG
-    - LightRifleMagazineSP
-    - LightRifleMagazineHP
-    - LightRifleMagazineFMJ
-    - LightRifleMagazineEmpty
+    - MagazineLightRifleBeltBoxSP
+    - MagazineLightRifleBeltBoxHP
+    - MagazineLightRifleBeltBoxFMJ
+    - MagazineLightRifleBeltBoxEmpty
     # Light Rifle
     - MagazineLightRifleSP
     - MagazineLightRifleHP
@@ -332,7 +332,7 @@
 - type: latheRecipePack
   id: SyndicateAmmoSunrise
   recipes:
-  - MagazineLightRifleBoxIncendiary
-  - MagazineLightRifleBoxUranium
-  - MagazineShotgunIncendiary
-  - MagazineShotgunBeanbag
+    - MagazineRifleBoxIncendiary
+    - MagazineRifleBoxUranium
+    - MagazineShotgunIncendiary
+    - MagazineShotgunBeanbag

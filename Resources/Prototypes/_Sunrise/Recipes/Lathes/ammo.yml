@@ -715,8 +715,8 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleBoxUranium
-  result: MagazineLightRifleBoxUranium
+  id: MagazineRifleBoxUranium
+  result: MagazineRifleBoxUranium
   materials:
     Steel: 150
     Plastic: 475
@@ -733,15 +733,6 @@
   parent: BaseAmmoRecipe
   id: MagazineRifleBoxFMJ
   result: MagazineRifleBoxFMJ
-  materials:
-    Steel: 1100
-
-- type: latheRecipe
-  id: MagazineRifleBoxFMJ
-  result: MagazineRifleBoxFMJ
-  categories:
-  - Ammo
-  completetime: 5
   materials:
     Steel: 1100
 
