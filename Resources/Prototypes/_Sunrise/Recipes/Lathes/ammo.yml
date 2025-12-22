@@ -779,6 +779,7 @@
 
 ## 15мм/.60
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBauer127Penetrator
   result: MagazineBauer127Penetrator
   materials:
@@ -786,12 +787,14 @@
     Uranium: 200
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBauer127
   result: MagazineBauer127
   materials:
     Steel: 275
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBauer127Emp
   result: MagazineBauer127Emp
   completetime: 3
@@ -801,6 +804,7 @@
     Glass: 35
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBauer127Blast
   result: MagazineBauer127Blast
   completetime: 3
@@ -810,6 +814,7 @@
     Gold: 200
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBauer127Frag
   result: MagazineBauer127Frag
   completetime: 3
@@ -819,24 +824,28 @@
     Gold: 100
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxBelt127Empty
   result: MagazineBoxBelt127Empty
   materials:
     Steel: 200
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxBelt127
   result: MagazineBoxBelt127
   materials:
     Steel: 1000
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxBelt127Artillery
   result: MagazineBoxBelt127Artillery
   materials:
     Steel: 900
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxBelt127Emp
   result: MagazineBoxBelt127Emp
   completetime: 3
@@ -846,6 +855,7 @@
     Glass: 150
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxBelt127Blast
   result: MagazineBoxBelt127Blast
   completetime: 3
@@ -855,6 +865,7 @@
     Gold: 1500
 
 - type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineBoxBelt127Frag
   result: MagazineBoxBelt127Frag
   completetime: 3

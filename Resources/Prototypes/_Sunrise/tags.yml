@@ -23,9 +23,6 @@
   id: HumanoidXeno
 
 - type: Tag
-  id: Humanoid
-
-- type: Tag
   id: DockGamma
 
 - type: Tag
