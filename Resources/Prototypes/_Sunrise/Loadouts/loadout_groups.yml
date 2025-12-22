@@ -147,6 +147,15 @@
   - BlueShieldCoat
 
 - type: loadoutGroup
+  id: BlueshieldGun
+  name: loadout-group-blueshield-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - BlueshieldWT550
+  - BlueshieldAsh12
+
+- type: loadoutGroup
   id: BarberJumpsuit
   name: loadout-group-barber-jumpsuit
   loadouts:

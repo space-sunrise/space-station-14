@@ -68,8 +68,6 @@
     speciesId: human
   - type: FootprintEmitter
   - type: Carriable
-  - type: NightVision
-    effect: EffectNightVisioSpecies
 
 - type: entity
   save: false

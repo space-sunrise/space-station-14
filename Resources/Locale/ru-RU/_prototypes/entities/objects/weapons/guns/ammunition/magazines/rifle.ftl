@@ -28,7 +28,8 @@ ent-MagazineLightRifleBoxIncendiary = короб патронов L6 SAW (5,56 �
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineLightRifleBoxUranium = короб патронов L6 SAW (5,56 урановые)
     .desc = { ent-BaseMagazineLightRifle.desc }
-
+ent-MagazineRifleM52Empty = магазин М-52 (5,56 любые)
+    .desc = { ent-BaseMagazineRifle.desc }
 ent-MagazineRifleM52SP = магазин М-52 (5,56 SP)
     .desc = { ent-BaseMagazineRifle.desc }
 ent-MagazineRifleM52HP = магазин М-52 (5,56 HP)

@@ -306,6 +306,13 @@
   - type: Gun
     fireRate: 2
   - type: BallisticAmmoProvider
+    # sunrise-start
+    proto: CannonBallGrapeshotMini
+    whitelist:
+      tags:
+      - ShellShotgun
+      - CannonBallMini
+   # sunrise-end
     capacity: 1
   - type: StaticPrice
     price: 0

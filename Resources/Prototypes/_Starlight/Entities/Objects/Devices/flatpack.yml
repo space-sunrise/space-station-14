@@ -65,3 +65,34 @@
     - state: large
   - type: Flatpack
     entity: SupermatterCrystal
+
+- type: entity
+  parent: SupermatterFlatpack
+  id: SupermatterFlatpackAnchored
+  name: supermatter flatpack
+  description: A flatpack used for constructing a Supermatter Crystal.
+  suffix: Anchored
+  components:
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+    flags: Anchorable
+
+- type: entity
+  parent: [BaseFlatpack, BaseScienceContraband]
+  id: ResearchAndDevelopmentServerFlatpack
+  name: R&D server flatpack
+  description: A flatpack used for constructing a R&D server.
+  components:
+  - type: Flatpack
+    entity: ResearchAndDevelopmentServer
+
+- type: entity
+  parent: [BaseFlatpack, BaseScienceContraband]
+  id: ResearchAndDevelopmentComputerFlatpack
+  name: R&D computer flatpack
+  description: A flatpack used for constructing a R&D computer.
+  components:
+  - type: Flatpack
+    entity: ComputerResearchAndDevelopment

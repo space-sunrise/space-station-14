@@ -127,7 +127,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
             var container = _container.EnsureContainer<ContainerSlot>(cryoStorage.Value, "storage");
 
-            if (!_container.Insert(uid, container))
+            if (_container.Insert(uid, container))
                 _cryostorage.HandleEnterCryostorage((uid, containedComp), comp.UserId);
         }
     }
