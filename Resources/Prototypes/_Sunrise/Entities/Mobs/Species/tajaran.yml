@@ -18,7 +18,7 @@
   - type: Hunger
   - type: Speech
     speechVerb: Felinid
-    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
   - type: Thirst
     dehydrationDamage:
       types:
@@ -40,9 +40,9 @@
         Slash: 2
   - type: Vocal
     sounds:
-      Male: MaleFelinid
-      Female: FemaleFelinid
-      Unsexed: MaleFelinid
+      Male: MaleTajaran
+      Female: FemaleTajaran
+      Unsexed: MaleTajaran
   - type: Temperature
     heatDamageThreshold: 400
     coldDamageThreshold: 200
@@ -68,8 +68,6 @@
     speciesId: human
   - type: FootprintEmitter
   - type: Carriable
-  - type: NightVision
-    effect: EffectNightVisioSpecies
 
 - type: entity
   save: false

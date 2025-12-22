@@ -264,6 +264,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/big.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
+    storedOffset: 0,-1
   - type: Gun
     minAngle: 3.75
     maxAngle: 16

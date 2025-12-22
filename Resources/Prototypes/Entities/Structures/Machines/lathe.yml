@@ -142,7 +142,7 @@
     - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-  #  - SecurityAmmoStatic # Sunrise - comment
+    - SecurityStaticSunrise # Sunrise-Add
     - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
@@ -229,7 +229,7 @@
     # Sunrise-End
   - type: EmagLatheRecipes
     emagDynamicPacks:
-    - SecurityAmmo
+    # - SecurityAmmo # Sunrise-edit
     - SecurityExplosives
     - SecurityEquipment
     - SecurityWeapons
@@ -239,6 +239,7 @@
     - MedicalCyberlimbDynamic # Sunrise-Add
     - MedicalCyberOrgansDynamic # Sunrise-Add
     - MedicalImplantDynamic # Sunrise-Add
+    - SyndicateAmmoSunrise # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -452,6 +453,20 @@
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
+  # sunrise-start
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintAutolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # sunrise-end
 
 - type: entity
   id: AmmoTechFab

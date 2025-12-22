@@ -1815,6 +1815,20 @@
     - Civilian
 
 - type: listing
+  id: UplinkSunriseProtoAdvMop
+  productEntity: ProtoAdvMop
+  cost:
+    Suntick: 40
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
   id: UplinkSunriseMousetrap
   name: uplink-sunrise-mousetrap-name
   productEntity: Mousetrap

@@ -345,7 +345,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = Loc.GetString("admin-verbs-grant-all-access"),
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/id_cards.rsi"), "centcom"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Sunrise/Objects/Misc/id_cards.rsi"), "blue"), // Sunrise-Edit
                 Act = () =>
                 {
                     GiveAllAccess(activeId.Value);
@@ -360,7 +360,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = Loc.GetString("admin-verbs-revoke-all-access"),
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/id_cards.rsi"), "default"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Sunrise/Objects/Misc/id_cards.rsi"), "default"), // Sunrise-Edit
                 Act = () =>
                 {
                     RevokeAllAccess(activeId.Value);
@@ -378,7 +378,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = Loc.GetString("admin-verbs-grant-all-access"),
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/id_cards.rsi"), "centcom"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Sunrise/Objects/Misc/id_cards.rsi"), "blue"), // Sunrise-Edit
                 Act = () =>
                 {
                     GiveAllAccess(args.Target);
@@ -393,7 +393,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = Loc.GetString("admin-verbs-revoke-all-access"),
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/id_cards.rsi"), "default"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Sunrise/Objects/Misc/id_cards.rsi"), "default"), // Sunrise-Edit
                 Act = () =>
                 {
                     RevokeAllAccess(args.Target);
