@@ -1108,7 +1108,7 @@
   id: UplinkRadioJammer
   name: uplink-radio-jammer-name
   description: uplink-radio-jammer-desc
-  productEntity: RadioJammer
+  productEntity: RadioJammerBox # Sunrise-edit
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2

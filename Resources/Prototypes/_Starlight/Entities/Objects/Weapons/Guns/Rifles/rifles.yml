@@ -39,17 +39,17 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: GunWieldBonus
-    minAngle: -3
-    maxAngle: -4
+    minAngle: -8
+    maxAngle: -14
   - type: Gun
-    minAngle: 4
-    maxAngle: 16
+    minAngle: 10
+    maxAngle: 25
     angleIncrease: 1.75
     angleDecay: 6
-    fireRate: 4
+    fireRate: 2
     shotsPerBurst: 3
-    burstFireRate: 7
-    burstCooldown: 0.75
+    burstFireRate: 5
+    burstCooldown: 1
     selectedMode: Burst
     availableModes:
       - SemiAuto
@@ -190,6 +190,8 @@
     fireRate: 8
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
+      params:
+        volume: -3
   - type: MagazineVisuals
     magState: mag
     steps: 3

@@ -8,6 +8,15 @@
     Glass: 50
     Plasma: 25
 
+# Blueprints
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineAsh12
+  result: MagazineAsh12
+  materials:
+    Steel: 200
+    Plastic: 100
+
 # .40 Pistol (.45 ACP)
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe

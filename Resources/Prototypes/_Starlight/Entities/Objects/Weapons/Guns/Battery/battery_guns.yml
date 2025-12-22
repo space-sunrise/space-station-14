@@ -93,11 +93,12 @@
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
-        - blue
         - violet
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
     - proto: RedLaserBeam
       fireCost: 66.6
       magState: lethal
@@ -108,6 +109,8 @@
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
 
 - type: entity
   name: X-01 multiphase energy gun
@@ -141,11 +144,11 @@
     zeroVisible: true
   - type: HitscanBatteryAmmoProvider
     proto: DisablerBolt
-    fireCost: 40
+    fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
-      fireCost: 40
+      fireCost: 50
       magState: disable
       visualState: disable-unshaded
     - proto: RedLaserBeam
@@ -153,15 +156,19 @@
       magState: kill
       visualState: kill-unshaded
     - proto: DestroyBeam
-      fireCost: 750
+      fireCost: 250
       magState: destroy
       visualState: destroy-unshaded
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
+        - violet
+        - yellow
         - gamma
+        - epsilon
+        - delta
     - proto: EmpPulse
-      fireCost: 600
+      fireCost: 300
       magState: ion
       visualState: ion-unshaded
       conditions:
@@ -171,14 +178,23 @@
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
+        - blue
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 10
+    autoRechargeRate: 12
     autoRechargePause: true
-    autoRechargePauseTime: 15
+    autoRechargePauseTime: 30
   - type: Tag
     tags:
     - HighRiskItem

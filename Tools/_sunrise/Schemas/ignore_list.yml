@@ -201,3 +201,5 @@ ignore_files:
   - role-types.ftl
   - rmobjective.ftl
   - persistence-save-command.ftl
+  - 'xeno_last.ftl'
+  - 'xeno_first.ftl'

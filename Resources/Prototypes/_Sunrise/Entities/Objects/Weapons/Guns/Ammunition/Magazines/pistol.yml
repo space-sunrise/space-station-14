@@ -1,6 +1,6 @@
 - type: entity
   id: MagazineP90
-  name: P90 magazine
+  name: P90 magazine (SP)
   parent: BaseItem
   components:
   - type: Tag
@@ -30,6 +30,38 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineP90HP
+  name: P90 magazine (HP)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+
+- type: entity
+  id: MagazineP90FMJ
+  name: P90 magazine (FMJ)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+
+- type: entity
+  id: MagazineP90Incendiary
+  name: P90 magazine (incendiary)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+
+- type: entity
+  id: MagazineP90AP
+  name: P90 magazine (AP)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
 
 - type: entity
   id: MagazineMP7

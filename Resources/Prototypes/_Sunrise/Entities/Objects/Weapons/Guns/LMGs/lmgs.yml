@@ -163,10 +163,10 @@
     minAngle: 0
     maxAngle: 0
   - type: Gun
-    minAngle: 5
-    maxAngle: 125
-    angleIncrease: 3
-    angleDecay: 70
+    minAngle: 6
+    maxAngle: 90
+    angleIncrease: 2
+    angleDecay: 60
     fireRate: 12
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
@@ -176,7 +176,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMachineGunMG42
+        startingItem: RifleHeavyMagazineFMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2

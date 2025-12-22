@@ -60,7 +60,7 @@
   - Durand
   completetime: 60
   materials:
-    Steel: 2500
+    Steel: 3000
     Glass: 2000
     Silver: 1500
 
@@ -69,17 +69,19 @@
   result: DurandArmorPlate
   categories:
   - Durand
-  completetime: 20
+  completetime: 60
   materials:
-    Steel: 3000
+    Steel: 3500
+    Plasteel: 2000
     Silver: 900
+    Uranium: 600
 
 - type: latheRecipe
   id: DurandHead
   result: DurandHead
   categories:
   - Durand
-  completetime: 20
+  completetime: 45
   materials:
     Steel: 1500
     Glass: 800
@@ -92,40 +94,40 @@
   result: DurandLArm
   categories:
   - Durand
-  completetime: 30
+  completetime: 45
   materials:
-    Steel: 1100
-    Silver: 250
+    Steel: 1700
+    Silver: 300
 
 - type: latheRecipe
   id: DurandLLeg
   result: DurandLLeg
   categories:
   - Durand
-  completetime: 30
+  completetime: 45
   materials:
-    Steel: 1100
-    Silver: 250
+    Steel: 1700
+    Silver: 300
 
 - type: latheRecipe
   id: DurandRLeg
   result: DurandRLeg
   categories:
   - Durand
-  completetime: 30
+  completetime: 45
   materials:
-    Steel: 1100
-    Silver: 250
+    Steel: 1700
+    Silver: 300
 
 - type: latheRecipe
   id: DurandRArm
   result: DurandRArm
   categories:
   - Durand
-  completetime: 30
+  completetime: 45
   materials:
-    Steel: 1100
-    Silver: 250
+    Steel: 1700
+    Silver: 300
 
 # Gygax
 - type: latheRecipe
@@ -133,7 +135,7 @@
   result: GygaxHarness
   categories:
   - Gygax
-  completetime: 30
+  completetime: 45
   materials:
     Steel: 2500
     Glass: 2000
@@ -143,28 +145,30 @@
   result: GygaxArmorPlate
   categories:
   - Gygax
-  completetime: 30
+  completetime: 60
   materials:
     Steel: 3000
+    Plasteel: 1000
 
 - type: latheRecipe
   id: GygaxHead
   result: GygaxHead
   categories:
   - Gygax
-  completetime: 30
+  completetime: 45
   materials:
     Steel: 1500
-    Glass: 250
-    Uranium: 300
-    Diamond: 200
+    Glass: 300
+    Uranium: 200
+    Plasma: 200
+    Diamond: 300
 
 - type: latheRecipe
   id: GygaxLArm
   result: GygaxLArm
   categories:
   - Gygax
-  completetime: 30
+  completetime: 45
   materials:
     Steel: 1100
 
@@ -173,7 +177,7 @@
   result: GygaxLLeg
   categories:
   - Gygax
-  completetime: 30
+  completetime: 45
   materials:
     Steel: 1100
 
@@ -182,7 +186,7 @@
   result: GygaxRLeg
   categories:
   - Gygax
-  completetime: 30
+  completetime: 45
   materials:
     Steel: 1100
 
@@ -191,7 +195,7 @@
   result: GygaxRArm
   categories:
   - Gygax
-  completetime: 30
+  completetime: 45
   materials:
     Steel: 1100
 

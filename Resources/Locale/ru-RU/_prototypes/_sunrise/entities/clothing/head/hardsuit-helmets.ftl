@@ -25,3 +25,5 @@ ent-ClothingHeadHelmetHardsuitPirateCapSun = космический шлем к�
     .suffix = Пират, Рассвет
 ent-ClothingHeadHelmetHardsuitInfiltration = шлем скафандра для инфильтрации Синдиката
     .desc = { ent-ClothingHeadHardsuitBase.desc }
+ent-ClothingHeadHelmetHardsuitSalvageGoliath = шлем скафандра «Голиаф»
+    .desc = Прочный шлем, украшенный глазами голиафа а так же его хитиновым панцирем. похоже фонарик шлема заменен на ПНВ.
