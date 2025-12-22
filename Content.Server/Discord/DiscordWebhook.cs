@@ -240,7 +240,7 @@ public sealed class DiscordWebhook : IPostInjectInit, IDisposable
 
     public void Dispose()
     {
-        _http.Dispose();
+        _http?.Dispose();
     }
     // Sunrise edit end
 

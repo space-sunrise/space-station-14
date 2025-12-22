@@ -242,6 +242,7 @@ namespace Content.Server.Entry
 
             // Sunrise added start
             _discord.Dispose();
+            // Sunrise added end
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)
