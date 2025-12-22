@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
@@ -20,6 +21,11 @@ public sealed class DiscordWebhook : IPostInjectInit
     private const string BaseUrl = "https://discord.com/api/v10/webhooks";
     private HttpClient _http = default!;
     private ISawmill _sawmill = default!;
+
+    // Sunrise added start
+    private const char CustomHeadersSplitter = '!';
+    private static readonly TimeSpan Timeout = TimeSpan.FromSeconds(30f);
+    // Sunrise added end
 
     private string GetUrl(WebhookIdentifier identifier)
     {
@@ -118,50 +124,109 @@ public sealed class DiscordWebhook : IPostInjectInit
     void IPostInjectInit.PostInject()
     {
         _sawmill = _log.GetSawmill("DISCORD");
+    }
+
+    // Sunrise edit start
+    // Тут добавлена поддержка прокси и кастомных заголовков. РКН сосать
+    #region HTTP client
+
+    public void SetupClient()
+    {
         _http = CreateHttpClient();
+    }
+
+    public HttpClient GetClient()
+    {
+        return _http;
     }
 
     private HttpClient CreateHttpClient()
     {
-        var proxyAddress = _configuration.GetCVar(CCVars.DiscordProxyAddress);
-        
+        HttpClient client;
+        var proxyAddress = _configuration.GetCVar(SunriseCCVars.DiscordProxyAddress);
+
         if (string.IsNullOrWhiteSpace(proxyAddress))
         {
+            client = new HttpClient();
             _sawmill.Debug("No proxy configured for Discord webhooks.");
-            return new HttpClient();
         }
-
-        try
+        else
         {
-            var proxy = new WebProxy(proxyAddress);
-            
-            var proxyUsername = _configuration.GetCVar(CCVars.DiscordProxyUsername);
-            var proxyPassword = _configuration.GetCVar(CCVars.DiscordProxyPassword);
-            
-            if (!string.IsNullOrWhiteSpace(proxyUsername) && !string.IsNullOrWhiteSpace(proxyPassword))
-            {
-                proxy.Credentials = new NetworkCredential(proxyUsername, proxyPassword);
-                _sawmill.Info("Configured Discord webhooks to use proxy with authentication.");
-            }
-            else
-            {
-                _sawmill.Info("Configured Discord webhooks to use proxy without authentication.");
-            }
-
-            var handler = new HttpClientHandler
-            {
-                Proxy = proxy,
-                UseProxy = true
-            };
-
-            return new HttpClient(handler);
+            client = CreateClientWithProxies(proxyAddress);
+            _sawmill.Info("Configured Discord webhooks to use proxies");
         }
-        catch (Exception e)
-        {
-            _sawmill.Error($"Failed to configure proxy for Discord webhooks: {e.Message}. Using direct connection.");
-            return new HttpClient();
-        }
+
+        // Add custom headers if configured
+        TryAddCustomHeaders(client);
+
+        return client;
     }
+
+    private HttpClient CreateClientWithProxies(string proxyAddress)
+    {
+        var handler = CreateHandler(proxyAddress);
+        var client = new HttpClient(handler);
+        client.Timeout = Timeout;
+
+        return client;
+    }
+
+    public SocketsHttpHandler CreateHandler(string proxyAddress)
+    {
+        var proxyUsername = _configuration.GetCVar(SunriseCCVars.DiscordProxyUsername);
+        var proxyPassword = _configuration.GetCVar(SunriseCCVars.DiscordProxyPassword);
+
+        var handler = new SocketsHttpHandler();
+        var proxyUri = new Uri(proxyAddress);
+
+        NetworkCredential? credentials = null;
+        if (!string.IsNullOrWhiteSpace(proxyUsername) && !string.IsNullOrWhiteSpace(proxyPassword))
+            credentials = new NetworkCredential(proxyUsername, proxyPassword);
+
+        var proxy = new WebProxy(proxyUri, false, null, credentials)
+        {
+            UseDefaultCredentials = false,
+        };
+
+        handler.Proxy = proxy;
+        handler.UseProxy = true;
+        handler.ConnectTimeout = Timeout;
+
+        return handler;
+    }
+
+    private bool TryAddCustomHeaders(HttpClient client)
+    {
+        var customHeaders = _configuration.GetCVar(SunriseCCVars.DiscordCustomHeaders);
+        if (string.IsNullOrWhiteSpace(customHeaders))
+            return false;
+
+        var usedHeadersCount = 0;
+        var headers = customHeaders.Split(CustomHeadersSplitter);
+        foreach (var header in headers)
+        {
+            var parts = header.Trim().Split(':', 2);
+            if (parts.Length != 2)
+            {
+                _sawmill.Error($"Invalid header: {header}");
+                continue;
+            }
+
+            var headerName = parts[0].Trim();
+            var headerValue = parts[1].Trim();
+
+            client.DefaultRequestHeaders.Add(headerName, headerValue);
+            usedHeadersCount++;
+        }
+
+        if (usedHeadersCount == 0)
+            return false;
+
+        _sawmill.Info($"Configured Discord webhooks with {usedHeadersCount} custom headers.");
+        return true;
+    }
+    #endregion
+    // Sunrise edit end
 
     /// <summary>
     ///     Logs detailed information about the HTTP response received from a Discord webhook request.

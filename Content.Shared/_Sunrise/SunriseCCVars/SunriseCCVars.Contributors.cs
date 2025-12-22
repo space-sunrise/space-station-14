@@ -2,7 +2,6 @@ using Robust.Shared.Configuration;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
 
-[CVarDefs]
 public sealed partial class SunriseCCVars
 {
     public static readonly CVarDef<bool> ContributorsEnable =
