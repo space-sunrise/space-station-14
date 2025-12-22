@@ -62,3 +62,6 @@ ent-AnomalyTechBeam = { "" }
 ent-AnomalySanta = { ent-BaseAnomaly }
     .suffix = Санта
     .desc = { ent-BaseAnomaly.desc }
+ent-AnomalyBanana = { ent-BaseAnomaly }
+    .suffix = Банан
+    .desc = { ent-BaseAnomaly.desc }

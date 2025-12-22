@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_tajaran_female
+  values:
+    prefix: names-tajaran-female-dataset-
+    count: 80

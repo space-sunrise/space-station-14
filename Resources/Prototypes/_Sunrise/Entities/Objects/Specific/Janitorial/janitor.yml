@@ -1,0 +1,66 @@
+- type: entity
+  parent: BaseItem
+  name: prototype advanced mop
+  id: ProtoAdvMop
+  description: Miniature telescopic prototype of the advanced mop. The reservoir is only a third of the original and the self-refill trickles in slowly.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Specific/Janitorial/protoadvmop.rsi
+      layers:
+      - state: advmop
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-2
+        visible: false
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 2
+      fillBaseName: fill-
+      inHandsFillBaseName: -fill-
+      inHandsMaxFillLevels: 2
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+         collection: MetalThud
+    - type: Spillable
+      solution: absorbed
+      spillWhenThrown: false
+      preventMelee: false
+    - type: DrainableSolution
+      solution: absorbed
+    - type: Wieldable
+    - type: IncreaseDamageOnWield
+      damage:
+        types:
+          Blunt: 3
+    - type: Item
+      size: Large
+      shape:
+      - 0,0,2,1
+      sprite: _Sunrise/Objects/Specific/Janitorial/protoadvmop.rsi
+    - type: Absorbent
+      pickupAmount: 30
+      useAbsorberSolution: true
+    - type: UseDelay
+      delay: 0.5
+    - type: SolutionRegeneration
+      solution: absorbed
+      generated:
+        reagents:
+        - ReagentId: Water
+          Quantity: 0.5
+    - type: SolutionPurge
+      solution: absorbed
+      preserve:
+      - Water
+      quantity: 10
+    - type: SolutionContainerManager
+      solutions:
+        absorbed:
+          maxVol: 30
+    - type: Tag
+      tags:
+        - Mop
+        - MopAdv
+    - type: DnaSubstanceTrace

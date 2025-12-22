@@ -187,6 +187,11 @@
     - Airlocks
     - WirePanels
     - Networking
+  # Sunrise-start
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  # Sunrise-end
   placement:
     mode: SnapgridCenter
 

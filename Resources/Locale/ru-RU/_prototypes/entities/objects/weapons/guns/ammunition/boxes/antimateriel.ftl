@@ -1,8 +1,12 @@
-ent-BaseMagazineBoxAntiMateriel = ящик с боеприпасами (.60 антиматериальные)
+ent-BaseMagazineBoxAntiMateriel = коробка патронов (15мм антиматериальные)
     .desc = { ent-BaseItem.desc }
-ent-MagazineBoxAntiMateriel = ящик с боеприпасами (.60 антиматериальные)
+ent-MagazineBoxAntiMateriel = { ent-BaseMagazineBoxAntiMateriel}
     .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
-ent-MagazineBoxAntiMaterielAP = ящик с боеприпасами (.60 антиматериальные АП)
+ent-MagazineBoxAntiMaterielAP = коробка патронов (15мм бронебойные)
     .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
-ent-MagazineBoxAntiMaterielBig = коробка патронов (.60 антиматериальные)
+ent-MagazineBoxAntiMaterielBlast = коробка патронов (15мм разрывные)
+    .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
+ent-MagazineBoxAntiMaterielFrag = коробка патронов (15мм осколочные)
+    .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
+ent-MagazineBoxAntiMaterielEmp = коробка патронов (15мм эми)
     .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
