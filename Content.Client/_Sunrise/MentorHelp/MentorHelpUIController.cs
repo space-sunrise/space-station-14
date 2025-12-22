@@ -80,7 +80,10 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     {
         EnsureUIHelper();
 
-        if (!UIHelper!.IsOpen)
+        if (UIHelper == null)
+            return;
+
+        if (!UIHelper.IsOpen)
         {
             UIHelper.OpenWindow();
             UIHelper.OpenTicket(message.TicketId);
@@ -161,7 +164,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
     private void OnAdminStatusUpdated()
     {
-        if (UIHelper is not { IsOpen: true })
+        if (UIHelper == null || !UIHelper.IsOpen)
             return;
 
         EnsureUIHelper();
@@ -175,19 +178,24 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         EnsureUIHelper();
 
+        if (UIHelper == null)
+            return;
+
         // Звук для менторов только при появлении нового тикета
         if (isNewTicket && _mentorHelpSoundEnabled && _adminManager.HasFlag(AdminFlags.Mentor) && IsRelevantTicket(message.Ticket.Id))
         {
             _audio.PlayGlobal(MentorHelpSound, Filter.Local(), false);
 
-            if (UIHelper is { IsOpen: false })
+            if (!UIHelper.IsOpen)
                 _clyde.RequestWindowAttention();
         }
 
         if (!IsRelevantTicket(message.Ticket.Id))
             _unreadTicketIds.Remove(message.Ticket.Id);
+
         UpdateButtonStyling();
-        UIHelper!.TicketUpdated(message.Ticket);
+
+        UIHelper.TicketUpdated(message.Ticket);
 
         if (UIHelper.IsOpen && UIHelper.CurrentTicketId == message.Ticket.Id)
         {
@@ -205,7 +213,11 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
                 _unreadTicketIds.Remove(ticket.Id);
         }
         UpdateButtonStyling();
-        UIHelper!.TicketsListReceived(message.Tickets);
+
+        if (UIHelper == null)
+            return;
+
+        UIHelper.TicketsListReceived(message.Tickets);
     }
 
     private void OnTicketMessagesReceived(object? sender, MentorHelpTicketMessagesMessage message)
@@ -221,10 +233,13 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         var shouldAutoOpen = autoOpen && ShouldAutoOpenTicket(message.TicketId, message.Messages);
 
         // Автооткрытие работает только когда окно закрыто, ибо раздражает постоянными переключениями
-        if (shouldAutoOpen && UIHelper is { IsOpen: false } closedHelper)
-            closedHelper.OpenTicket(message.TicketId);
+        if (shouldAutoOpen && UIHelper != null && !UIHelper.IsOpen)
+            UIHelper.OpenTicket(message.TicketId);
 
-        UIHelper!.TicketMessagesReceived(message.TicketId, message.Messages);
+        if (UIHelper == null)
+            return;
+
+        UIHelper.TicketMessagesReceived(message.TicketId, message.Messages);
     }
 
     /// <summary>
@@ -259,8 +274,8 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         if (!IsRelevantTicket(ticketId))
             return;
 
-        var isViewingTicket = UIHelper is { IsOpen: true } helper && helper.CurrentTicketId == ticketId;
-        var isWindowClosed = UIHelper is { IsOpen: false };
+        var isViewingTicket = UIHelper != null && UIHelper.IsOpen && UIHelper.CurrentTicketId == ticketId;
+        var isWindowClosed = UIHelper != null && !UIHelper.IsOpen;
 
         // Окно открыто, но мы не в этом тикете
         if (!isViewingTicket && !isWindowClosed)
@@ -311,7 +326,8 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
         if (UIHelper == null)
             return;
 
-        UIHelper!.OpenWindow();
+        UIHelper.OpenWindow();
+
         SetMentorHelpPressed(true);
     }
 
@@ -368,7 +384,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         var lastMessage = messages[^1];
         var isIncoming = lastMessage.SenderUserId != localUser.Value;
-        var isViewingTicket = UIHelper is { IsOpen: true } helper && helper.CurrentTicketId == ticketId;
+        var isViewingTicket = UIHelper != null && UIHelper.IsOpen && UIHelper.CurrentTicketId == ticketId;
         var unread = isIncoming && !isViewingTicket;
 
         if (unread)
