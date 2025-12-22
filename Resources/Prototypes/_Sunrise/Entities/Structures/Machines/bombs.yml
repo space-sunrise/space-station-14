@@ -1,0 +1,47 @@
+- type: entity
+  parent: [BaseHardBomb, BaseSyndicateContraband]
+  id: SyndicateBombEMP
+  name: syndicate EMP bomb
+  description: A EMP bomb for Syndicate operatives and agents alike. Bomb designed to wreak havoc on electronic systems.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Structures/Machines/bomb.rsi
+      layers:
+        - state: syndicate-bomb
+        - state: syndicate-bomb-active
+          visible: false
+          map: [ "primed" ]
+        - state: syndicate-bomb-wires
+          visible: false
+          map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+    - type: GenericVisualizer
+      visuals:
+        enum.DefusableVisuals.Active:
+          primed:
+            True: { visible: true }
+            False: { visible: false }
+        enum.WiresVisualLayers.MaintenancePanel:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: true }
+            False: { visible: false }
+    - type: PointLight
+      color: "#0063C7"
+      radius: 1.1
+      softness: 1
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 20.0
+      intensitySlope: 5
+      maxIntensity: 4
+      canCreateVacuum: false
+    - type: EmpOnTrigger
+      keysIn:
+      - timer
+      range: 33
+      energyConsumption: 5000000
+      disableDuration: 120
+    - type: DeleteOnTrigger
+      keysIn:
+      - timer
+    - type: StaticPrice
+      price: 10000 # Good luck!

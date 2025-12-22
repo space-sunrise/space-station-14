@@ -107,4 +107,16 @@
       - id: MechPaintMaulerMeowler
         prob: 0.25
 
+- type: entity
+  id: CrateCybersunRipleyBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun death bundle
+  description: Contains a Death Ripley MK-II mech with basic maintenance supplies.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechRipley2DeathBattery
+      - id: ToolboxSyndicateMechRepair
+      - id: ToyDeathRipley
 #sunrise-end

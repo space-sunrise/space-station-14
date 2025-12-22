@@ -118,7 +118,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         infoText.AppendLine("├─ " + Loc.GetString("disease-info-infected-count") + ": " + component.Infected.Count);
         infoText.Append("└─ " + Loc.GetString("disease-info-total-infected") + ": " + component.SickOfAllTime);
 
-        _popup.PopupEntity(infoText.ToString(), uid, PopupType.Large);
+        _popup.PopupEntity(infoText.ToString(), uid, uid, PopupType.Large);
     }
 
 
