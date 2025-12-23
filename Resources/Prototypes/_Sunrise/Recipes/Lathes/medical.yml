@@ -92,6 +92,25 @@
     Glass: 100
 
 - type: latheRecipe
+  id: BlankMediPen
+  result: BlankMediPen
+  completetime: 2
+  materials:
+    Plastic: 50
+    Steel: 25
+
+- type: latheRecipe
+  id: BluespacePillPatchCanister
+  result: BluespacePillPatchCanister
+  completetime: 2
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 300
+    Plasma: 100
+    Silver: 50
+
+- type: latheRecipe
   id: Ampula
   result: Ampula
   completetime: 2

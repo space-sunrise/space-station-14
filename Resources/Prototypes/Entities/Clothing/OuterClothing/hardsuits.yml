@@ -242,7 +242,7 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
-      beakerSlot: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot #Sunrise-Edit
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots
@@ -254,10 +254,10 @@
           tags:
             - PowerCell
             - PowerCellSmall
-      beakerSlot:
+      beakerSlot: #Sunrise-Start
         whitelist:
           tags:
-          - FitsHardsuit
+          - FitsHardsuit #Sunrise-End
   - type: EnergyDomeGenerator
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink

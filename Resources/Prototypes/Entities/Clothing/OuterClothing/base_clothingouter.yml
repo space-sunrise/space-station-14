@@ -168,17 +168,17 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-      beakerSlot: !type:ContainerSlot # Sunrise-Edit
-  - type: Inject # Sunrise-Edit
-    openCloseDelay: 1.5 # Sunrise-Edit
-    autoClose: true # Sunrise-Edit
-    autoCloseDelay: 6 # Sunrise-Edit
-  - type: ItemSlots # Sunrise-Edit
-    slots: # Sunrise-Edit
-      beakerSlot: # Sunrise-Edit
-        whitelist: # Sunrise-Edit
-          tags: # Sunrise-Edit
-          - FitsHardsuit # Sunrise-Edit
+      beakerSlot: !type:ContainerSlot # Sunrise-Start
+  - type: Inject
+    openCloseDelay: 1.5
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit # Sunrise-End
   - type: GroupExamine
   - type: Tag
     tags:
