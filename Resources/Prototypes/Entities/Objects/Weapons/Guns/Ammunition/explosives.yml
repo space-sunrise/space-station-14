@@ -124,7 +124,7 @@
     suffix: false
 
 - type: entity
-  parent: GrenadeFragContact # Sunrise-edit
+  parent: BaseBulletTrigger
   id: GrenadeCleanade
   name: cleanade grenade round
   components:

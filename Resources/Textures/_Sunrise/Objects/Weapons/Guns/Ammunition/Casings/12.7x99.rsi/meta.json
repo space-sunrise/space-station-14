@@ -11,10 +11,10 @@
             "name": "base"
         },
         {
-            "name": "tip"
+            "name": "base-spent"
         },
         {
-            "name": "base-spent"
+            "name": "tip"
         }
     ]
 }

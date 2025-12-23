@@ -11,8 +11,6 @@
     - ArtilleryShell
   - type: Item
     size: Small
-    shape:
-    - 0,0,0,2
   - type: Sprite
 
 - type: entity
@@ -21,10 +19,9 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFragContact
+    proto: BulletShellFragArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    scale: 0.8, 1.15
     layers:
     - state: frag
       map: ["enum.AmmoVisualLayers.Base"]
@@ -39,10 +36,9 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBaton
+    proto: ShellBatonArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    scale: 1.2, 1.4
     layers:
     - state: baton
       map: ["enum.AmmoVisualLayers.Base"]
@@ -57,10 +53,9 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlastContact
+    proto: BulletShellBlastArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    scale: 0.8, 1.15
     layers:
     - state: blast
       map: ["enum.AmmoVisualLayers.Base"]
@@ -75,10 +70,9 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFlashContact
+    proto: BulletShellFlashArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    scale: 0.8, 1.15
     layers:
     - state: flash
       map: ["enum.AmmoVisualLayers.Base"]
@@ -93,10 +87,9 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeEMPContact
+    proto: BulletShellEMPArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    scale: 1.2, 1.4
     layers:
     - state: emp
       map: ["enum.AmmoVisualLayers.Base"]
@@ -183,6 +176,23 @@
   - type: Appearance
   - type: SpentAmmoVisuals
     state: blast
+    suffix: false
+
+- type: entity
+  id: GrenadeFlashTimer
+  name: timer flash grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFlashTimer
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: flash
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: flash
     suffix: false
 
 - type: entity

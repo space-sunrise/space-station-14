@@ -23,7 +23,7 @@
     explosionType: Default
     maxIntensity: 10
     intensitySlope: 3
-    totalIntensity: 120 # about a ~4 tile radius
+    totalIntensity: 100
     canCreateVacuum: false
   - type: TimerTrigger
     beepSound:

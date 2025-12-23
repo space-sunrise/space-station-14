@@ -1,7 +1,7 @@
 ent-SyndyFlashGrenade = Светошумовая граната синдиката
     .desc = Определенно пахнет подделкой.
 ent-ExShrapnelGrenade = осколочно-фугасная граната
-    .desc = Осколочная граната, создающая небольшой, но разрушительный взрыв и осыпающая шрапнелью.
+    .desc = Граната, создающая небольшой, но разрушительный взрыв.
 ent-CleanerGrenadeAcid = { ent-CleanerGrenade }
     .desc = { ent-CleanerGrenade.desc }
 ent-CleanerGrenadeAcidBox = коробка с гранатой глубокой очистки

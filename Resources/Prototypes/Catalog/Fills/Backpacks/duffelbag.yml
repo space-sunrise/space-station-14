@@ -200,7 +200,7 @@
         amount: 2
       - id: GrenadeBlastTimer # Sunrise-edit
         amount: 2
-      - id: GrenadeFlashContact # Sunrise-edit
+      - id: GrenadeFlashTimer # Sunrise-edit
         amount: 2
       - id: GrenadeFragTimer # Sunrise-edit
         amount: 2

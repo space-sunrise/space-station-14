@@ -129,7 +129,7 @@
     activatedDamage:
         types:
             Heat: 8
-            Slash: 12
+            Slash: 10
   - type: MeleeWeapon
     damage:
       types:
