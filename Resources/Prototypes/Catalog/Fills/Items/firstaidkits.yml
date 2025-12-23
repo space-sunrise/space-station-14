@@ -54,6 +54,7 @@
       - id: AntiPoisonMedipen
       - id: PillCanisterDylovene
       - id: PillCanisterCharcoal
+      - id: CoalAutoInjector
       - id: AmpulaDylo # Sunrise-Edit
         amount: 2 # Sunrise-Edit
 
