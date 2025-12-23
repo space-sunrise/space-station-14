@@ -12,11 +12,11 @@
   recipes:
   - Beaker
   - LargeBeaker
+  - Ampula # Sunrise-Edit
   - Syringe
   - PillCanister
   - HandLabeler
   - BaseChemistryEmptyVial
-  - Dropper
 
 - type: latheRecipePack
   parent: BasicChemistryStatic
@@ -97,7 +97,6 @@
   - CryostasisBeaker
   - SyringeCryostasis
   - BluespaceBeaker
-  - BluespacePillPatchCanister # Sunrise-Add
   - SyringeBluespace
   - LauncherSyringe
   - MiniSyringe

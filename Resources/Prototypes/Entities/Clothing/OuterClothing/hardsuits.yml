@@ -242,6 +242,7 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots
@@ -253,6 +254,10 @@
           tags:
             - PowerCell
             - PowerCellSmall
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: EnergyDomeGenerator
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink

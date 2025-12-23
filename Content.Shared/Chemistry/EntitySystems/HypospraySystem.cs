@@ -21,6 +21,8 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
 using Robust.Shared.Utility;
+using Content.Shared.Inventory;
+using Content.Shared._Sunrise.HardsuitInjection.Components;
 // Sunrise-End
 
 namespace Content.Shared.Chemistry.EntitySystems;
@@ -37,6 +39,7 @@ public sealed class HypospraySystem : EntitySystem
     // Sunrise-Start
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     // Sunrise-End
 
     public override void Initialize()
@@ -154,6 +157,19 @@ public sealed class HypospraySystem : EntitySystem
             if (_useDelay.IsDelayed((uid, delayComp)))
                 return false;
         }
+        // Sunrise-Start
+        if (_inventory.TryGetSlotEntity(target, "outerClothing", out var suit))
+        {
+            if (TryComp<InjectComponent>(suit, out var injectComp))
+            {
+                if (injectComp.Locked)
+                {
+                    _popup.PopupEntity(Loc.GetString("hardsuitinjection-True"), target, user);
+                    return false;
+                }
+            }
+        }
+        // Sunrise-End
 
         string? msgFormat = null;
 

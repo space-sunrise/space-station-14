@@ -118,12 +118,24 @@
   - NanoTrasenRepresentativeCoatOpen
 
 - type: loadoutGroup
+  id: NanoTrasenRepresentativeBackpack
+  name: loadout-group-hop-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - NanoTrasenRepresentativeModsuit
+
+- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:
   - BlueShieldBackpack
   - BlueShieldSatchel
   - BlueShieldDuffel
+  - BlueShieldModsuit
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -1317,6 +1329,7 @@
   name: loadout-group-commaid-backpack
   loadouts:
   - ComMaidBackpackSatchelLeather
+  - ComMaidModsuit
 
 - type: loadoutGroup
   id: ComMaidNeck

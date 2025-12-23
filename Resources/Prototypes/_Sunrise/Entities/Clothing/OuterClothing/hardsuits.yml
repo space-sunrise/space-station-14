@@ -159,6 +159,7 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots
@@ -169,6 +170,10 @@
         whitelist:
           tags:
             - PowerCell
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: EnergyDomeGenerator
     damageEnergyDraw: 4
     domePrototype: EnergyDomeSmallRed
@@ -635,6 +640,9 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Item
     size: Huge
   - type: ProtectedFromStepTriggers
@@ -733,6 +741,14 @@
     color: "gold"
   - type: ExplosionResistance
     damageCoefficient: 0.4
+  - type: Pierceable
+    level: Metal
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
@@ -741,7 +757,7 @@
 
 ##Modsuit blueshield
 - type: entity
-  parent: ClothingOuterHardsuitBlueShield
+  parent: ClothingOuterModsuitBase
   id: ClothingModsuitBlueshield
   name: blueshield hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.
