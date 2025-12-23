@@ -8,6 +8,16 @@
     state: long_primary
 
 - type: marking
+  id: HumanoidXenoTailsWagging
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sponsorOnly: false
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: tail_wagging
+
+- type: marking
   id: HumanoidXenoTailsPredalien
   bodyPart: Tail
   markingCategory: Tail
@@ -60,6 +70,51 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
     state: spitter
+
+- type: marking
+  id: HumanoidXenoTailsAltQueenV2
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: alt_queen_tail
+
+- type: marking
+  id: HumanoidXenoTailsBoiler
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: boiler_tail
+
+- type: marking
+  id: HumanoidXenoTailsCarrier
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: carrier_tail
+
+- type: marking
+  id: HumanoidXenoTailsCougar
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: cougar_tail
+
+- type: marking
+  id: HumanoidXenoTailsCrusher
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: crusher_tail
 
 - type: marking
   id: HumanoidXenoChestPredalien
@@ -164,3 +219,80 @@
     state: predalien_teeth
   - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
     state: predalien_mandibles
+
+- type: marking
+  id: HumanoidXenoHeadAltPretor
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: alt_pretor_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: alt_pretor_teeth
+
+- type: marking
+  id: HumanoidXenoHeadAltQueen
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: alt_queen_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: alt_queen_teeth
+
+- type: marking
+  id: HumanoidXenoHeadBoilerHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: boiler_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: boiler_teeth
+
+- type: marking
+  id: HumanoidXenoHeadCarrierHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: carrier_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: carrier_teeth
+
+- type: marking
+  id: HumanoidXenoHeadCougarHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cougar_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cougar_teeth
+
+- type: marking
+  id: HumanoidXenoHeadCrusherHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: crusher_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: crusher_teeth
+
+- type: marking
+  id: HumanoidXenoHeadWorkerHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: worker_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: worker_teeth

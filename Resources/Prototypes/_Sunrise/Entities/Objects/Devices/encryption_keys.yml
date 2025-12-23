@@ -77,3 +77,28 @@
     layers:
     - state: crypt_red
     - state: synd_label
+
+- type: entity
+  parent: EncryptionKeySyndie
+  id: EncryptionKeySyndieMaster
+  name: blood-red master encryption key
+  description: Encryption key for coordinating with allies and tapping other channels. Intel is a weapon.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Syndicate
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    defaultChannel: Syndicate
+  - type: Sprite
+    layers:
+    - state: crypt_red2
+    - state: synd_label
+  - type: StaticPrice
+    price: 4500

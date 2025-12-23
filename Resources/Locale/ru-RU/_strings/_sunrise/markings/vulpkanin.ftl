@@ -1,4 +1,4 @@
-marking-VulpHeadSlash = Голова Вульпканина
+﻿marking-VulpHeadSlash = Голова Вульпканина
 marking-VulpHeadTiger = Голова Вульпканина (Тигр)
 marking-VulpHeadTigerFace = Голова Вульпканина (Тигриное лицо)
 marking-VulpEar = Уши Вульпканина

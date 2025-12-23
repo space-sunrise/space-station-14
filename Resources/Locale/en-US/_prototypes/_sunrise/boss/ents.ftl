@@ -1,4 +1,5 @@
 ent-MobHellspawnBoss = { ent-MobHellspawn }
+    .suffix = Boss
     .desc = { ent-MobHellspawn.desc }
 ent-ComputerBossTravel = boss battle altar
     .desc = { ent-AltarFangs.desc }

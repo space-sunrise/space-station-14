@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Mech.Components;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
@@ -16,6 +15,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Content.Shared.Power.Components;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
@@ -35,6 +35,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Chat;
+
 namespace Content.Server.Mech.Systems;
 
 /// <inheritdoc/>
@@ -93,10 +95,12 @@ public sealed partial class MechSystem : SharedMechSystem
         #endregion
     }
 
+    // Sunrise-Start
     private void OnMechSay(EntityUid uid, MechComponent component, MechSayEvent args)
     {
-        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(args.Message), InGameICChatType.Speak, ChatTransmitRange.Normal);
+        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(args.Message), InGameICChatType.Whisper, ChatTransmitRange.Normal);
     }
+    // Sunrise-End
 
     private void OnMechCanMoveEvent(EntityUid uid, MechComponent component, UpdateCanMoveEvent args)
     {
@@ -315,6 +319,7 @@ public sealed partial class MechSystem : SharedMechSystem
         }
     }
 
+    // Sunrise-Start
     private void SayCritMessage(EntityUid uid, MechComponent component, DamageableComponent damage, bool damageIncreased)
     {
         if (!damageIncreased)
@@ -343,11 +348,21 @@ public sealed partial class MechSystem : SharedMechSystem
                     _ => string.Empty
                 };
 
-                if (!string.IsNullOrEmpty(message))
-                    _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(message), InGameICChatType.Speak, ChatTransmitRange.Normal);
+                if (string.IsNullOrEmpty(message))
+                    return;
+
+                var chatType = newState switch
+                {
+                    MechHealthState.Critical => InGameICChatType.Speak,
+                    MechHealthState.Damaged => InGameICChatType.Whisper,
+                    _ => InGameICChatType.Whisper
+                };
+
+                _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(message), chatType, ChatTransmitRange.Normal);
             }
         }
     }
+    // Sunrise-End
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {

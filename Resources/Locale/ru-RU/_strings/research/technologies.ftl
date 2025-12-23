@@ -52,6 +52,7 @@ research-technology-combat-powercells = Боевые Супербатареи
 research-technology-thermal-weaponry = Тепловое оружие
 research-technology-basic-shuttle-armament = Базовое корабельное вооружение
 research-technology-advanced-shuttle-weapon = Продвинутое корабельное оружие
+research-technology-hitech-shuttle-weapon = Высокотехнологичное корабельное оружие
 research-technology-explosive-mech-ammunition = Взрывоопасные боеприпасы для меха
 research-technology-basic-robotics = Основы робототехники
 research-technology-basic-anomalous-research = Основы исследования аномалий

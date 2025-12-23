@@ -104,10 +104,16 @@
             "name": "Borg"
         },
         {
-            "name": "commaid"
+            "name": "CommandMaid"
         },
         {
             "name": "Brigmedic"
+        },
+        {
+            "name": "Nanotrasen"
+        },
+        {
+            "name": "Adjutant"
         }
     ]
 }

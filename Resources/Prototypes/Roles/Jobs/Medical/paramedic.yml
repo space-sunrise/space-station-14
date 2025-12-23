@@ -4,20 +4,16 @@
   description: job-description-paramedic
   playTimeTracker: JobParamedic
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 14400 #4 hrs # Sunrise-RoleTime
-    - !type:OverallPlaytimeRequirement
-      time: 36000 # 15 hrs # Sunrise-RoleTime
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 2.5h
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
-  canBeAntag: false # Sunrise-Edit
   supervisors: job-supervisors-cmo
   displayWeight: 25  # Sunrise
   access:
   - Medical
   - Maintenance
-  - External # Sunrise-Add
   extendedAccess:
   - Chemistry
 
@@ -27,7 +23,6 @@
     id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
-    eyes: ClothingEyesHudMedical # Sunrise-Edit
   storage:
     back:
     - EmergencyRollerBedSpawnFolded

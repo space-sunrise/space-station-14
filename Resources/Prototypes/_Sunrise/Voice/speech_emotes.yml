@@ -4,7 +4,7 @@
   name: chat-emote-name-mews
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -28,7 +28,7 @@
   name: chat-emote-name-meows
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -55,7 +55,7 @@
   name: chat-emote-name-hisses
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -79,7 +79,7 @@
   name: chat-emote-name-purrs
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -94,81 +94,6 @@
     - Purrs
     - Purrs.
     - Purrs!
-
-- type: emote
-  id: Growl
-  name: chat-emote-name-growls
-  category: Vocal
-  available: false
-  icon: _Sunrise/Actions/felionoid.rsi/cat_print.png
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: [рычит!]
-  chatTriggers:
-  - рычит
-  - рычит.
-  - рычит!
-  - Growls
-  - Growls.
-  - Growls!
-
-- type: emote
-  id: Bark
-  name: chat-emote-name-bark
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: [лает.]
-  chatTriggers:
-  - гав
-  - гав.
-  - гав!
-  - лает
-  - лаять
-  - лает!
-  - лает.
-  - bark.
-  - bark!
-  - barks.
-  - barks!
-  - barked.
-  - barked!
-  - barking.
-
-- type: emote
-  id: Howl
-  name: chat-emote-name-howl
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: [воет.]
-  chatTriggers:
-  - выть
-  - воет
-  - воет!
-  - воет.
-  - выть.
-  - выть!
-  - howl.
-  - howl!
-  - howls.
-  - howls!
-  - howling.
-  - howled.
 
 - type: emote
   id: Oink
@@ -239,7 +164,7 @@
   name: chat-emote-name-scree
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/resomi.rsi/bird_call.png
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -269,7 +194,7 @@
   name: chat-emote-name-call
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/resomi.rsi/bird_call.png
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -299,7 +224,7 @@
   name: chat-emote-name-squawk
   category: Vocal
   available: false
-  icon: _Sunrise/Actions/resomi.rsi/bird_call.png
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal

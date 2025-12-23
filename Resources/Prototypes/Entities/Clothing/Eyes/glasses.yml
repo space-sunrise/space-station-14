@@ -291,7 +291,7 @@
     - type: Tag
       tags:
       - PetWearable
-      - WhitelistChameleo
+      - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, BaseHighlyIllegalContraband,BaseNightVisionDevice]

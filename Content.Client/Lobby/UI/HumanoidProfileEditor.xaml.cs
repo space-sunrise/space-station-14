@@ -333,7 +333,6 @@ namespace Content.Client.Lobby.UI
 
             #region Hair
 
-
             HairStylePicker.OnMarkingSelect += newStyle =>
             {
                 if (Profile is null)
@@ -695,7 +694,8 @@ namespace Content.Client.Lobby.UI
             SpeciesButton.Clear();
             _species.Clear();
 
-            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart).OrderBy(s => Loc.GetString(s.Name))); //Lua: Сортировка рас по алфавиту
+            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
+            _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
             var speciesIds = _species.Select(o => o.ID).ToList();
 
             for (var i = 0; i < _species.Count; i++)
@@ -781,6 +781,14 @@ namespace Content.Client.Lobby.UI
                 };
 
                 antagContainer.AddChild(selector);
+
+                antagContainer.AddChild(new Button()
+                {
+                    Disabled = true,
+                    Text = Loc.GetString("loadout-window"),
+                    HorizontalAlignment = HAlignment.Right,
+                    Margin = new Thickness(3f, 0f, 0f, 0f),
+                });
 
                 AntagList.AddChild(antagContainer);
             }
@@ -1039,11 +1047,7 @@ namespace Content.Client.Lobby.UI
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (_requirements.IsRoleBanned(new[] { $"Job:{job.ID}" }, out var banReason, out var expirationTime))
-                    {
-                        selector.LockDueToBan(banReason, expirationTime);
-                    }
-                    else if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason, true))
+                    if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                     {
                         selector.LockRequirements(reason);
                     }
@@ -1244,15 +1248,6 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
-                // Sunrise-start
-                case HumanoidSkinColor.None:
-                {
-                    Skin.Visible = false;
-                    RgbSkinColorContainer.Visible = false;
-                    _rgbSkinColorSelector.Color = Color.Transparent;
-                    break;
-                }
-                // Sunrise-end
             }
 
             ReloadProfilePreview();
@@ -1819,7 +1814,7 @@ namespace Content.Client.Lobby.UI
                 return;
 
             StartExport();
-            await using var file = await _dialogManager.OpenFile(new FileDialogFilters(new FileDialogFilters.Group("yml")));
+            await using var file = await _dialogManager.OpenFile(new FileDialogFilters(new FileDialogFilters.Group("yml")), FileAccess.Read);
 
             if (file == null)
             {

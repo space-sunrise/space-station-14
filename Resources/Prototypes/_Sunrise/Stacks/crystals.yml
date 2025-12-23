@@ -1,0 +1,11 @@
+- type: stack
+  id: Bluecrystal
+  name: construction-graph-tag-blue-crystal
+  icon: Objects/Specific/Syndicate/telecrystal.rsi
+  spawn: Bluecrystal1
+
+- type: stack
+  id: Crystallite
+  name: construction-graph-tag-crystallite
+  icon: Objects/Specific/Syndicate/telecrystal.rsi
+  spawn: Crystallite1

@@ -5,7 +5,7 @@
   components:
   - type: Action
     icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
-    iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
+    iconOn: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon-on }
     itemIconStyle: NoItem
     priority: 12
   - type: InstantAction

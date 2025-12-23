@@ -54,7 +54,7 @@ uplink-whitehole-grenade-name = Whitehole Grenade
 uplink-whitehole-grenade-desc = Grenade that repulses everything around for about 10 seconds. Very useful in small rooms and for chasing someone.
 
 uplink-penguin-grenade-name = Grenade Penguin
-uplink-penguin-grenade-desc = A small, highly-aggressive penguin with a grenade strapped around its neck. Harvested by the Syndicate from icy shit-hole planets.
+uplink-penguin-grenade-desc = A small, highly-aggressive penguin with a grenade strapped around its neck. Trained to ignore all Syndicate agents and relentlessly pursue a single, random nearby target when released.
 
 uplink-c4-name = C-4
 uplink-c4-desc = Use it to breach walls, airlocks or sabotage equipment. It can be attached to almost all objects and has a modifiable timer with a minimum setting of 10 seconds.
@@ -91,7 +91,7 @@ uplink-pistol-magazine-name = Pistol Magazine (.35 auto)
 uplink-pistol-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Viper.
 
 uplink-pistol-magazine-c20r-name = SMG magazine (.35 auto)
-uplink-pistol-magazine-c20r-desc = Rifle magazine with 30 cartridges. Compatible with C-20r.
+uplink-pistol-magazine-c20r-desc = SMG magazine with 30 cartridges. Compatible with C-20r.
 
 uplink-magazine-bulldog-pellet-name = Drum magazine (.50 pellet)
 uplink-magazine-bulldog-pellet-desc = Shotgun magazine with 8 shells filled with buckshot. Compatible with the Bulldog.
@@ -111,7 +111,7 @@ uplink-speedloader-magnu-desc = Revolver speedloader with 6 armor-piercing cartr
 uplink-mosin-ammo-name = Ammunition box (.30 rifle)
 uplink-mosin-ammo-desc = A box of 60 cartridges for the surplus rifle.
 
-uplink-sniper-ammo-name = Ammunition box (.60 antimateriel)
+uplink-sniper-ammo-name = Ammunition box (15mm antimateriel)
 uplink-sniper-ammo-desc = A box of 10 cartridges for the Hristov sniper rifle.
 
 # Utility
@@ -140,6 +140,9 @@ uplink-syndie-intellicard-desc = The best friend in the fight against AI!
 
 uplink-agent-id-card-name = Agent ID Card
 uplink-agent-id-card-desc = A modified ID card that can copy accesses from other cards and change its name and job title at-will.
+
+uplink-syndicate-id-card-name = Syndicate ID Card
+uplink-syndicate-id-card-desc = A Syndicate ID card, with Syndicate access. Unlikely to be useful on its own, but goes great with reconfigured doors. Does not come with access-copying functionality.
 
 uplink-black-jetpack-name = Black Jetpack
 uplink-black-jetpack-desc = A black jetpack. It allows you to fly around in space. Refills not included, use your fuel wisely.
@@ -502,6 +505,9 @@ uplink-coal-auto-injector-desc = A specialized auto-injector containing coal-bas
 
 uplink-coalpen-kit-name = Coalpen Kit
 uplink-coalpen-kit-desc = A medical kit containing 6 coal auto-injectors for treating poison damage and clearing blood toxins.
+
+uplink-stimkit-nt-name = Stim Kit
+uplink-stimkit-nt-desc = A medical kit containing 6 ephedrine auto-injectors.
 
 uplink-acolyte-armor-name = Acolyte Armor
 uplink-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.

@@ -89,7 +89,7 @@
   id: UplinkEnergyDagger
   name: uplink-edagger-name
   description: uplink-edagger-desc
-  icon: { sprite: /Textures/Objects/Weapons/Melee/e_dagger.rsi, state: icon }
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Melee/e_dagger.rsi, state: icon } # Sunrise-Edit
   productEntity: EnergyDaggerBox
   discountCategory: rareDiscounts
   discountDownTo:
@@ -464,7 +464,7 @@
   id: UplinkExplodingPen
   name: uplink-exploding-pen-name
   description: uplink-exploding-pen-desc
-  icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
+  icon: { sprite: /Textures/_Sunrise/Objects/Misc/pens.rsi, state: pen } # Sunrise-Edit
   productEntity: PenExplodingBox
   discountCategory: usualDiscounts
   discountDownTo:
@@ -741,7 +741,7 @@
   id: UplinkHypopen
   name: uplink-hypopen-name
   description: uplink-hypopen-desc
-  icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
+  icon: { sprite: /Textures/_Sunrise/Objects/Misc/pens.rsi, state: pen } # Sunrise-Edit
   productEntity: HypopenBox
   discountCategory: rareDiscounts
   discountDownTo:
@@ -912,6 +912,15 @@
       - LoneOpsUplink # Sunrise-Edit
 
 # Deception
+- type: listing
+  id: UplinkSyndicateIDCard
+  name: uplink-syndicate-id-card-name
+  description: uplink-syndicate-id-card-desc
+  productEntity: SyndicateIDCard
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDeception
 
 - type: listing
   id: UplinkAgentIDCard
@@ -1099,7 +1108,7 @@
   id: UplinkRadioJammer
   name: uplink-radio-jammer-name
   description: uplink-radio-jammer-desc
-  productEntity: RadioJammer
+  productEntity: RadioJammerBox # Sunrise-edit
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
