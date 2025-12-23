@@ -537,4 +537,14 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/sportsmans.rsi
 
+- type: entity
+  parent: ClothingOuterCoatDetectiveLoadout
+  id: ClothingOuterDiscoAssBlazerDetective
+  name: disco ass blazer detective
+  description: Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
 

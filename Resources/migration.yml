@@ -8,6 +8,8 @@
 # WallSolid: Window
 # Table: null
 
+
+
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
 ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
@@ -888,4 +890,8 @@ WeaponRifleV31: null
 MagazineV31: null
 WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
+
+# 2025-12-21
+ClothingNeckCMOCloak: ClothingNeckMedCloak
+
 # Sunrise-End

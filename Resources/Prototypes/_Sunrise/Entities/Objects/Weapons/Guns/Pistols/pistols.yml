@@ -474,3 +474,14 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  name: Golden Desert Eagle
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleGolden
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
+

@@ -581,9 +581,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> MentorHelpRateLimitCount =
         CVarDef.Create("mentor_help.rate_limit_count", 10, CVar.SERVERONLY);
 
-    public static readonly CVarDef<string> MentorHelpSound =
-        CVarDef.Create("mentor_help.mentor_help_sound", "/Audio/_Sunrise/Effects/adminticketopen.ogg", CVar.ARCHIVE | CVar.CLIENTONLY);
-
     public static readonly CVarDef<bool> MentorHelpSoundEnabled =
         CVarDef.Create("mentor_help.mentor_help_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// Авто-открывать тикет при получении нового сообщения (только для автора и назначенного ментора).
+    /// </summary>
+    public static readonly CVarDef<bool> MentorHelpAutoOpenOnNewMessage =
+        CVarDef.Create("mentor_help.auto_open_on_new_message", false, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

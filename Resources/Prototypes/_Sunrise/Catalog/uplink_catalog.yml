@@ -1173,7 +1173,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 10
+    Telecrystal: 7
   categories:
   - UplinkWeaponry
   conditions:
@@ -2449,3 +2449,36 @@
       - NukeOpsUplink
       - LoneOpsUplink
       - AssaultOpsUplink
+
+- type: listing
+  id: UplinkClothingHeadHelmetSwatSyndicate
+  name: uplink-swat-helmet-syndicate-name
+  description: uplink-swat-helmet-syndicate-desc
+  icon: { sprite: Clothing/Head/Helmets/swat_syndicate.rsi, state: icon }
+  productEntity: ClothingHeadHelmetSwatSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkWearables
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - LoneOpsUplink
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkWeaponPistolDeagleGolden
+  name: uplink-goldendeagle-name
+  description: uplink-goldendeagle-desc
+  productEntity: WeaponPistolDeagleGoldenBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkPointless
