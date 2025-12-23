@@ -171,6 +171,12 @@
   id: MagazineCannonBallMini
 
 - type: Tag
+  id: MagazineBoxL6Cap
+
+- type: Tag
+  id: MagazinePistolSubMachineGunCap
+
+- type: Tag
   id: MagazinePistolDPSubMachineGun
 
 - type: Tag
