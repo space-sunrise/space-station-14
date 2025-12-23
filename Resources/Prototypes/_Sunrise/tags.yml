@@ -568,3 +568,7 @@
 
 - type: Tag
   id: NightVisionDevice
+
+# Modsuit
+- type: Tag
+  id: ModsuitCore

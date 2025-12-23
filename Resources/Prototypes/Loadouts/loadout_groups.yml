@@ -246,6 +246,7 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+  - CommonModsuit #Sunrise-edit
 
 - type: loadoutGroup
   id: PassengerNeck
