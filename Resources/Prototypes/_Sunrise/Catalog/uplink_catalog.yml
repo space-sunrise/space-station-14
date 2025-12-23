@@ -2459,13 +2459,13 @@
   cost:
     Telecrystal: 3
   categories:
-  - UplinkWearables
+    - UplinkWearables
   conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - LoneOpsUplink
-      - NukeOpsUplink
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - LoneOpsUplink
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkWeaponPistolDeagleGolden
@@ -2478,4 +2478,4 @@
   cost:
     Telecrystal: 20
   categories:
-  - UplinkPointless
+    - UplinkPointless
