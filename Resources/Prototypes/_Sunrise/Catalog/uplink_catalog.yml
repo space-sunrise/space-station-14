@@ -1173,7 +1173,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 6
+    Telecrystal: 7
   categories:
   - UplinkWeaponry
   conditions:
