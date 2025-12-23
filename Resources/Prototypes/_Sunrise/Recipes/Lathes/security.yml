@@ -452,3 +452,14 @@
     Durathread: 400
     Plastic: 250
     Glass: 250
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponIonCarbine
+  result: WeaponIonCarbine
+  materials:
+    Steel: 1500
+    Glass: 750
+    Plastic: 500
+    Gold: 500
+    Uranium: 400

@@ -863,6 +863,7 @@ MagazinePPSH41Extended: null
 WeaponSTG44: null
 MagazineSTG44: null
 WeaponSniperMosinNew: null
+WeaponIONRifle: WeaponIonRifle
 # Super Matter
 SupermatterFlatpack: SupermatterFlatpackAnchored
 SupermatterCrystal: SupermatterFlatpackAnchored
