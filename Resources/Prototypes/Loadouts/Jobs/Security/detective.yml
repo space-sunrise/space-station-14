@@ -135,7 +135,7 @@
 - type: loadout
   id: ClothingUniformJumpSuitSuperStarCop20h
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSuperStarCop
+    jumpsuit: ClothingUniformJumpsuitSuperstarCop
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterDetective
