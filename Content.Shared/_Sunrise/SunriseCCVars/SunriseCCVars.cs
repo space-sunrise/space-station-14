@@ -5,6 +5,7 @@ namespace Content.Shared._Sunrise.SunriseCCVars;
 
 // TODO: Разбиние на partial файлы
 // TODO: Документация по каждому из сиваров
+[CVarDefs]
 public sealed partial class SunriseCCVars : CVars
 {
     /**

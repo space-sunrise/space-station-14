@@ -25,6 +25,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Content.Server.Discord;
 using Content.Shared._Sunrise.SunriseCCVars;
 using JetBrains.Annotations;
 using Robust.Shared;
@@ -49,6 +50,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
 
+    // Sunrise added start - поддержка прокси
+    [Dependency] private readonly DiscordWebhook _discord = default!;
+    // Sunrise added end
+
     private IServerServiceAuthManager? _serviceAuth;
 
     private ISawmill _sawmill = default!;
@@ -56,7 +61,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     public const string SawmillId = "admin.bans";
     public const string PrefixAntag = "Antag:";
     public const string PrefixJob = "Job:";
-    private readonly HttpClient _httpClient = new();
+    private HttpClient _httpClient = default!; // Sunrise edit - поддержка прокси
     private string _serverName = string.Empty;
     private string _webhookUrl = string.Empty;
     private WebhookData? _webhookData;
@@ -73,6 +78,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public void Initialize()
     {
+        // Sunrise added start - поддержка прокси
+        _httpClient = _discord.GetClient();
+        // Sunrise added end
+
         _netManager.RegisterNetMessage<MsgRoleBans>();
 
         _db.SubscribeToJsonNotification<BanNotificationData>(
