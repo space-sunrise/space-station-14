@@ -97,11 +97,11 @@ public sealed class FollowerSystem : EntitySystem
         if (ev.User == ev.Target || IsClientSide(ev.Target))
             return;
 
-        if (HasComp<GhostComponent>(ev.User))
+        if (TryComp<GhostComponent>(ev.User, out var ghost)) // Sunrise-edit
         {
             var verb = new AlternativeVerb()
             {
-                Priority = 10,
+                Priority = ghost.CanGhostInteract ? -10 : 10, // Sunrise-edit: Prioritize actions over follow for Aghost
                 Act = () => StartFollowingEntity(ev.User, ev.Target),
                 Impact = LogImpact.Low,
                 Text = Loc.GetString("verb-follow-text"),

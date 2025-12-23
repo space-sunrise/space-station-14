@@ -1131,6 +1131,13 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  # sunrise-start
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    respectMidiLimits: false
+    handheld: true
+  # sunrise-end
 
 - type: entity
   parent: CentcomPDA
