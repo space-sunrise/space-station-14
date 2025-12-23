@@ -2445,7 +2445,10 @@
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
-      - Science
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkClothingHeadHelmetSwatSyndicate
