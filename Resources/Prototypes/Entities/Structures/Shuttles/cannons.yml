@@ -607,7 +607,7 @@
     scale: 1.05, 1.05
     layers:
     - state: bal-127
-    - state: mag-0
+    - state: mag-13
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
