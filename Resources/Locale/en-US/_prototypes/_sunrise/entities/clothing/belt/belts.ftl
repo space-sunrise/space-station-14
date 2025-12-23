@@ -19,3 +19,6 @@ ent-ClothingBeltMilitaryWebbingMedSunrise = medical chest rig
     .desc = A set of tactical webbing worn by Gorlex Marauder medic operatives have additional layer of durathread for keeping chemical inside safety.
 ent-ClothingAbductorBelt = abductor belt
     .desc = Can hold various OUR things.
+ent-TrashBagAmmo = ammunition belt-bag
+    .suffix = ShuttleBattle
+    .desc = A robust bag for shuttle gun specialists alike to carry large amounts of casing. Magnetises any nearby empty cassing when attached to a belt.

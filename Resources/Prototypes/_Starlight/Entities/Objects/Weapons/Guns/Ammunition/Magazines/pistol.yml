@@ -317,7 +317,7 @@
   name: SMG magazine (.40 any)
   suffix: empty
   parent: BaseMagazinePistol40SubMachineGun
-  description: 20-round one stack magazine for submachine guns.
+  description: 20-round double stack magazine for submachine guns.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -338,7 +338,7 @@
   id: MagazinePistol40SubMachineGunSP
   name: SMG magazine (.40 SP)
   parent: BaseMagazinePistol40SubMachineGun
-  description: 20-round one stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
+  description: 20-round double stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     capacity: 20
@@ -371,7 +371,7 @@
   id: MagazinePistol40SubMachineGunHP
   name: SMG magazine (.40 HP)
   parent: BaseMagazinePistol40SubMachineGun
-  description: 20-round one stack magazine for submachine guns. Intended to hold hollow-point ammunition.
+  description: 20-round double stack magazine for submachine guns. Intended to hold hollow-point ammunition.
   components:
   - type: BallisticAmmoProvider
     capacity: 20
@@ -404,7 +404,7 @@
   id: MagazinePistol40SubMachineGunFMJ
   name: SMG magazine (.40 FMJ)
   parent: BaseMagazinePistol40SubMachineGun
-  description: 20-round one stack magazine for submachine guns. Intended to hold full-metal-jacket ammunition.
+  description: 20-round double stack magazine for submachine guns. Intended to hold full-metal-jacket ammunition.
   components:
   - type: BallisticAmmoProvider
     capacity: 20

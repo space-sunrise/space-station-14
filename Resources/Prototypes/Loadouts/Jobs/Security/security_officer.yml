@@ -144,6 +144,15 @@
   id: SecurityWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterSecFilled
+#Sunrise-Start
+- type: loadout
+  id: ClothingShoesGreenLizardskin
+  equipment:
+    shoes: ClothingShoesGreenLizardskin
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+#Sunrise-End
 
 # PDA
 - type: loadout

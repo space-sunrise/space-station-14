@@ -59,6 +59,8 @@ uplink-deagle-desc = Cерьёзный аргумент в споре. Выгр�
 uplink-pistoltec9-name = Тек-9 Тактикал
 uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как Египесткий  АК-47.
 
+uplink-goldendeagle-name = Золотой Десерт Игл
+uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
 ## Cyborgs
 
 uplink-reinforcement-radio-syndicate-cyborg-assault-name = Телепорт подкрепления боевого борга синдиката

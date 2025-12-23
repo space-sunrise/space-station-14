@@ -12,6 +12,7 @@ using Content.Server.Ani;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
 using Content.Server.Database;
+using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -88,6 +89,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
         [Dependency] private readonly TTSManager _ttsManager = default!; // Sunrise-Edit
+        [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         public override void PreInit()
@@ -141,9 +143,10 @@ namespace Content.Server.Entry
             _serverApi.Initialize();
 
             // Sunrise-Sponsors-Start
-            _ttsManager.Initialize(); // Sunrise-Edit
+            _ttsManager.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
+            _discord.SetupClient();
             // Sunrise-Sponsors-End
 
             _voteManager.Initialize();
@@ -236,6 +239,10 @@ namespace Content.Server.Entry
             // TODO Should this be awaited?
             _discordLink.Shutdown();
             _discordChatLink.Shutdown();
+
+            // Sunrise added start
+            _discord.Dispose();
+            // Sunrise added end
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)

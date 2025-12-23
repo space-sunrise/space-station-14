@@ -23,6 +23,9 @@ ent-WeaponRevolverSpearheadBlack = Spearhead autorevolver
     .desc = { ent-WeaponRevolverSpearhead.desc }
 ent-WeaponPistolM1984 = D1984
     .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.
+ent-WeaponPistolDeagleGolden = Golden Desert Eagle
+    .desc = Fires a .45 magnum cartridge. Engraved: All I remember of him are two gold-plated .45 Desert Eagles.
+
 ent-WeaponPistolTec9 = Tec-9 Tactical
     .desc = Very cheap to produce and very easy to use, as reliable as the Egyptian AK-47.
 ent-WeaponPistolTec9Biocode = { ent-WeaponPistolTec9 }

@@ -32,3 +32,5 @@ ent-CartridgeHeavyRifleRUranium = патрон (7.62mmR урановый)
     .desc = { ent-BaseCartridgeHeavyRifleR.desc }
 ent-SpeedLoaderHeavyRifleRFMJ = ускоритель заряжания (7.62mmR FMJ)
     .desc = { ent-BaseItem.desc }
+ent-CartridgeRifleHeavyArtillery = патрон (.308 космо)
+    .desc = { ent-BaseCartridgeRifleHeavy.desc }
