@@ -147,6 +147,15 @@
   - BlueShieldCoat
 
 - type: loadoutGroup
+  id: BlueshieldGun
+  name: loadout-group-blueshield-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - BlueshieldWT550
+  - BlueshieldAsh12
+
+- type: loadoutGroup
   id: BarberJumpsuit
   name: loadout-group-barber-jumpsuit
   loadouts:
@@ -222,10 +231,9 @@
   maxLimit: 1
   loadouts:
   - GlockBox
-  - ACP14Box
-  - SnubRevolverBox
   - MK58Box
   - MK58GoldBox
+  - SnubRevolverBox
   - WeaponDominator
   - WeaponDisabler
 #  - WeaponTaser
@@ -238,10 +246,9 @@
   maxLimit: 1
   loadouts:
   - CadetWeaponGlockBox
-  - CadetWeaponACP14Box
-  - SnubRevolverBox
   - CadetWeaponMK58Box
   - MK58GoldBox
+  - SnubRevolverBox
   - CadetWeaponMiniEnergyGun
   - CadetWeaponDisabler
 
@@ -258,6 +265,21 @@
   - DetectiveWeapon50h
   - DetectiveWeapon50h2
   - DetectiveWeapon100h
+
+- type: loadoutGroup
+  id: SunriseWardenGun
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - GlockBox
+  - MK58Box
+  - MK58GoldBox
+  - ACP14Box
+  - SnubRevolverBox
+  - WeaponDominator
+  - WeaponDisabler
+#  - WeaponTaser
 
 # Security  HoS
 - type: loadoutGroup
@@ -524,6 +546,14 @@
   - Sunrise-ShoesGreen
   - Sunrise-ShoesCyan
   - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: SunriseChemistMisc
+  name: loadout-group-chemist-misc
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ChemistGoldBeaker
 
 - type: loadoutGroup
   id: SunrisePsychologistHead
@@ -863,6 +893,7 @@
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
 #  - TrinketsEngineeringTT
+  - TrinketsEngineeringGCW
   - TrinketsEngineeringST
 
 - type: loadoutGroup

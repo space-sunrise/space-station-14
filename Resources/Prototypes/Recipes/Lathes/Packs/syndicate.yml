@@ -9,3 +9,7 @@
   - MagazineShotgunSlug
   - MagazinePistolCaselessRifle
   - MagazineBoxAntiMateriel
+  # Sunrise-start
+  - MagazineRifleBoxSP
+  - MagazineRifleBoxFMJ
+  # Sunrise-end

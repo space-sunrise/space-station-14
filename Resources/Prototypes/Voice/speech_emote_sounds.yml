@@ -439,6 +439,10 @@
       collection: BikeHorn
     Gasp:
       collection: MaleGasp
+    # Sunrise-Start
+    SevereCough:
+      path: /Audio/_Sunrise/Voice/Moth/moth_severe_cough.ogg
+    # Sunrise-End
     DefaultDeathgasp:
       collection: MothDeathGasp
 

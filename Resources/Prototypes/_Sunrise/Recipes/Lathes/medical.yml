@@ -95,6 +95,17 @@
   id: BlankMediPen
   result: BlankMediPen
   completetime: 2
-  materials:    
+  materials:
     Plastic: 50
     Steel: 25
+
+- type: latheRecipe
+  id: BluespacePillPatchCanister
+  result: BluespacePillPatchCanister
+  completetime: 2
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 300
+    Plasma: 100
+    Silver: 50

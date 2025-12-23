@@ -1160,21 +1160,6 @@
     - ChiefMedicalOfficer
 
 - type: listing
-  id: UplinkSunriseClothingNeckCMOCloak
-  name: uplink-sunrise-clothing-neck-cmo-cloak-name
-  productEntity: ClothingNeckCMOCloak
-  cost:
-    Suntick: 15
-  categories:
-  - CMOHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - ChiefMedicalOfficer
-
-- type: listing
   id: UplinkSunriseClothingSpecialHeadHatHardhatCMO
   name: uplink-sunrise-clothing-special-head-hat-hardhat-name
   productEntity: ClothingSpecialHeadHatHardhatCMO
@@ -1660,6 +1645,21 @@
     whitelist:
     - Medical
 
+- type: listing
+  id: UplinkSunriseClothingNeckMedCloak
+  name: uplink-sunrise-clothing-neck-med-cloak-name
+  productEntity: ClothingNeckMedCloak
+  cost:
+    Suntick: 20
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
 # Research
 
 - type: listing
@@ -1810,6 +1810,20 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseProtoAdvMop
+  productEntity: ProtoAdvMop
+  cost:
+    Suntick: 40
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:BuyerDepartmentCondition
     whitelist:
     - Civilian
