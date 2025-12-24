@@ -32,3 +32,5 @@ ent-CartridgeHeavyRifleRUranium = cartridge (7.62mmR uranium)
     .desc = { ent-BaseCartridgeHeavyRifleR.desc }
 ent-SpeedLoaderHeavyRifleRFMJ = speed loader (7.62mmR FMJ)
     .desc = { ent-BaseItem.desc }
+ent-CartridgeRifleHeavyArtillery = cartridge (.308 space)
+    .desc = { ent-BaseCartridgeRifleHeavy.desc }

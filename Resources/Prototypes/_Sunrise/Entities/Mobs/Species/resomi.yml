@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Interactions
-  - type: JumpSkill
+  # - type: JumpSkill
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:

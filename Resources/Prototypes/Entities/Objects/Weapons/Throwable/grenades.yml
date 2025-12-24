@@ -449,6 +449,15 @@
       path: /Audio/Effects/countdown.ogg
   - type: StaticPrice
     price: 666 # 2000 for 3, I love fractions
+  - type: Tag #Sunrise-Start
+    tags:
+    - HandGrenade
+    - GrenadeFlashBang
+    - HandGrenadeAmmo
+  - type: CartridgeAmmo
+    proto: BulletEMPGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals #Sunrise-End
 
 - type: entity
   name: holy hand grenade

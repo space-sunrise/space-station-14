@@ -49,6 +49,9 @@
 - type: Tag
   id: TrayScanner
 
+- type: Tag
+  id: NVDHandcrafted
+
 # Uplinks
 - type: Tag
   id: NTUplink
@@ -98,6 +101,9 @@
 
 - type: Tag
   id: ImprovisedAmmoBox
+
+- type: Tag
+  id: CannonBallMini
 
 # Weapons
 - type: Tag
@@ -149,8 +155,26 @@
   id: GorillaUpgradeKit
 
 # Magazines:
+# - type: Tag
+#   id: MagazineCaselessRifle # Sunrise-todo Uncomite with upstream https://forum.spacestation14.com/t/remove-unused-tags-tied-to-unused-entities/25626
+
+# - type: Tag
+#   id: MagazineHeavyRifle
+
+# - type: Tag
+#   id: SpeedLoaderRifle
+
+- type: Tag
+  id: MagazineCannonBallMini
+
 - type: Tag
   id: MagazinePistolDPSubMachineGun
+
+- type: Tag
+  id: MagazinePistolSubMachineGunCap
+
+- type: Tag
+  id: MagazineBoxL6Cap
 
 - type: Tag
   id: MagazineM28
@@ -227,6 +251,12 @@
 - type: Tag
   id: SyndicateRapier
 
+- type: Tag
+  id: ShotgunSlug
+
+- type: Tag
+  id: MagazineAsh12
+
 # Material bag:
 
 - type: Tag
@@ -260,6 +290,9 @@
 
 - type: Tag
   id: Phazon
+
+- type: Tag
+  id: PaddyMech
 
 - type: Tag
   id: ClarkeCentralControlModule
@@ -528,3 +561,10 @@
 
 - type: Tag
   id: Table
+
+# Clothing
+- type: Tag
+  id: HardsuitMining
+
+- type: Tag
+  id: NightVisionDevice

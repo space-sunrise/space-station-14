@@ -1,0 +1,48 @@
+- type: entity
+  name: syringe pistol
+  description: Load full of poisoned syringes for optimal fun. Now in fun size.
+  parent: LauncherSyringe
+  id: LauncherSyringePistol
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Cannons/syringe_pistol.rsi
+    layers:
+    - state: syringe_gun
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-4
+  - type: StorageFill
+    contents:
+    - id: MiniSyringe
+      amount: 3
+
+- type: entity
+  name: rapid syringe gun
+  description: Load full of poisoned syringes for optimal fun. Now with additional storage for funs.
+  parent: LauncherSyringe
+  id: LauncherSyringeRapid
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Cannons/syringe_rapidgun.rsi
+    layers:
+    - state: syringe_gun
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,4,1
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+  - type: StorageFill
+    contents:
+    - id: MiniSyringe
+      amount: 10

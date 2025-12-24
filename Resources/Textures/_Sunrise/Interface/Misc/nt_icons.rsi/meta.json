@@ -17,6 +17,9 @@
       "name": "m52"
     },
     {
+      "name": "ik60"
+    },
+    {
       "name": "adv-mop"
     },
     {
@@ -24,9 +27,6 @@
     },
     {
       "name": "ams42"
-    },
-    {
-      "name": "ar18"
     },
     {
       "name": "lr30"
@@ -191,7 +191,10 @@
       "name": "lnt620"
     },
     {
-      "name": "m28"
+      "name": "m492"
+    },
+    {
+      "name": "m492cburn"
     },
     {
       "name": "mag_br64"
@@ -411,6 +414,27 @@
     },
     {
       "name": "box_40_sp"
+    },
+    {
+      "name": "skm24"
+    },
+    {
+      "name": "skm28"
+    },
+    {
+      "name": "skm28nano"
+    },
+    {
+      "name": "skm24nano"
+    },
+    {
+      "name": "342fmj"
+    },
+    {
+      "name": "342ap"
+    },
+    {
+      "name": "342incendiary"
     }
   ]
 }

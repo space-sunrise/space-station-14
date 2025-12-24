@@ -121,6 +121,19 @@
     - ShellBlastArtillery
     - ShellEMPArtillery
     - ShellFlashArtillery
+    - MagazineBauer127
+    - RifleHeavyMagazineArtillery
+    - MagazineBoxBelt127Artillery
+    - MagazineBauer127Blast
+    - MagazineBauer127Frag
+    - MagazineBauer127Emp
+    - MagazineBoxBelt127Empty
+    - MagazineBoxBelt127
+    - MagazineBoxBelt127Artillery
+    - MagazineBoxBelt127Blast
+    - MagazineBoxBelt127Frag
+    - MagazineBoxBelt127Emp
+    #
     - EnergyDomeDirectionalTurtle
     - WeaponTemperatureGun
     - ModularReceiverAuto
@@ -232,6 +245,118 @@
     - WeaponMechCombatDisabler
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
+
+- type: latheRecipePack
+  id: ShuttleBattleStatic
+  recipes:
+    #####################MAGAZINE#######################
+    # Light Rifle
+    - MagazineLightRifleSP
+    - MagazineLightRifleHP
+    - MagazineLightRifleFMJ
+    # SMG
+    - MagazinePistolSubMachineGunSP
+    - MagazinePistolSubMachineGunHP
+    - MagazinePistolSubMachineGunFMJ
+    # SMG Top Mounted
+    - MagazinePistolSubMachineGunTopMounted # FMJ
+    - MagazinePistolSubMachineGunTopMountedSP
+    - MagazinePistolSubMachineGunTopMountedHP
+    # Rifle
+    - MagazineRifleSP
+    - MagazineRifleHP
+    - MagazineRifleFMJ
+    # Shotgun Speedloader
+    - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunSlug
+    # Shuttle stuff
+    - MagazineGrenadeEmpty
+    - ShellFragArtillery
+    - ShellEMPArtillery
+    # .60/14mm cannon
+    - MagazineBauer127
+    - MagazineBauer127Penetrator
+    - MagazineBauer127Blast
+    - MagazineBauer127Frag
+    - MagazineBauer127Emp
+    # .60/14mm auto-cannon
+    - MagazineBoxBelt127Empty
+    - MagazineBoxBelt127
+    - MagazineBoxBelt127Artillery
+    # .308 Cannon
+    - RifleHeavyMagazineFMJ
+    - RifleHeavyMagazineHP
+    - RifleHeavyMagazineSP
+    - RifleHeavyMagazineArtillery
+    # Structure
+    - PowerCageRechargerCircuitboard
+    - ShuttleGunDusterCircuitboard
+    - ShuttleGunFriendshipCircuitboard
+    - ShuttleGunPerforatorCircuitboard
+    - ShuttleGunSvalinnMachineGunCircuitboard
+    - TurboItemRechargerCircuitboard
+    - ShuttleGunSquallCircuitboard
+    - ShuttleGunVympelCircuitboard
+    - ShuttleGunLongbowCircuitboard
+    - ShuttleGunTeslaOrionCircuitboard
+    - ShuttleGunBeamstormMachineGunCircuitboard
+
+- type: latheRecipePack
+  id: ShuttleBattleDynamic
+  recipes:
+    # Shuttle stuff
+  - ShellBlastArtillery
+  - MagazineBoxBelt127Frag
+  - MagazineBoxBelt127Blast
+  - MagazineBoxBelt127Emp
+  - ShuttleGunQuadlingCircuitboard
+  - ShuttleGunTeslaHyperionCircuitboard
+  # Shotgun Magazine
+  - MagazineShotgun
+  - MagazineShotgunEmpty
+  - MagazineShotgunSlug
+  # # # AP
+  - RifleHeavyMagazineAP
+  - MagazineBoxLightRifleAP
+  - MagazineBoxMagnumAP
+  - MagazineBoxPistolAP
+  - MagazineBoxPistol40AP
+  - MagazineBoxRifleAP
+  - MagazineBoxHeavyRifleAP
+  - MagazineLightRifleBeltBoxAP
+  - MagazineLightRifleAP
+  - SpeedLoaderMagnumAP
+  - MagazineMagnumAP
+  - MagazinePistolAP
+  - MagazinePistol40AP
+  - MagazinePistolHighCapacityAP
+  - MagazinePistolSubMachineGunAP
+  - MagazinePistolSubMachineGunTopMountedAP
+  - MagazineRifleAP
+  - MagazineRifleHeavyAP
+  # Rifle Heavy
+  - MagazineRifleHeavyFMJ
+  - MagazineRifleHeavyHP
+  - MagazineRifleHeavySP
+  # Magnum
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumHP
+  - SpeedLoaderMagnumFMJ
+  # Pistol
+  - MagazinePistolSP
+  - MagazinePistolHP
+  - MagazinePistolFMJ
+  - MagazinePistol40SP
+  - MagazinePistol40HP
+  - MagazinePistol40FMJ
+  # Pistol High Capacity
+  - MagazinePistolHighCapacitySP
+  - MagazinePistolHighCapacityHP
+  - MagazinePistolHighCapacityFMJ
+  # LMG
+  - MagazineLightRifleBeltBoxSP
+  - MagazineLightRifleBeltBoxHP
+  - MagazineLightRifleBeltBoxFMJ
 
 - type: latheRecipePack
   id: SyndicateAmmoSunrise

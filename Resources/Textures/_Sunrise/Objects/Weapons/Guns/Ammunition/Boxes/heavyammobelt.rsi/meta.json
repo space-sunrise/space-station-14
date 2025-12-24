@@ -1,0 +1,93 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "inhands by seraphimttt (Discord), stripes and mag- by KaiserMaus",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "stripe"
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "mag-1"
+        },
+        {
+            "name": "mag-2"
+        },
+        {
+            "name": "mag-3"
+        },
+        {
+            "name": "mag-4"
+        },
+        {
+            "name": "mag-5"
+        },
+        {
+            "name": "mag-6"
+        },
+        {
+            "name": "mag-7"
+        },
+        {
+            "name": "mag-8"
+        },
+        {
+            "name": "mag-9"
+        },
+        {
+            "name": "mag-10"
+        },
+        {
+            "name": "mag-11"
+        },
+        {
+            "name": "mag-12"
+        },
+        {
+            "name": "mag-13"
+        },
+        {
+            "name": "mag-14"
+        },
+        {
+            "name": "mag-15"
+        },
+        {
+            "name": "mag-16"
+        },
+        {
+            "name": "mag-17"
+        },
+        {
+            "name": "mag-18"
+        },
+        {
+            "name": "mag-19"
+        },
+        {
+            "name": "inhand-left-mag",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-stripe",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-mag",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-stripe",
+            "directions": 4
+        }
+    ]
+}
