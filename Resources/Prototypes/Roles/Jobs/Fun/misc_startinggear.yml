@@ -137,6 +137,7 @@
     id: AdminPDA
     belt: ClothingBeltChiefEngineerFilled # Sunrise-add
     eyes: ClothingEyesHudSyndicateMedic # Sunrise-add
+    head: ClothingHeadHatCowboyWhite # Sunrise-add
   storage:
     back:
     - GasAnalyzer
