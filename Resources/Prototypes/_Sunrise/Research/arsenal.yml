@@ -118,6 +118,23 @@
   radioChannels:
   - Security
 
+- type: technology
+  id: PortableIonWeaponry
+  name: research-technology-ion-technology
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponIonCarbine
+  technologyPrerequisites:
+  - PortableMicrofusionWeaponry
+  - ThermalWeaponry
+  radioChannels:
+  - Security
+
 # Tier 2
 
 # Sunrise-TODO: Требует ребаланса с учетом новых типов боеприпасов

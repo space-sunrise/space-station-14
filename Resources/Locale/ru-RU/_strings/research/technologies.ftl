@@ -17,6 +17,7 @@ research-technology-ripley-mkii = Рипли MK-II
 research-technology-clarke = Кларк
 research-technology-gygax = Гигакс
 research-technology-durand = Дюранд
+research-technology-ion-technology = Ионное вооружение
 research-technology-dual-wielding-technology = Технология многорукого боя
 research-technology-advanced-atmospherics = Продвинутые атмос-технологии
 research-technology-advanced-tools = Продвинутые инструменты

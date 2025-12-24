@@ -727,3 +727,9 @@
     handheld: true
     bank: 1
     program: 2
+
+- type: entity
+  parent: SeniorOfficerPDA
+  id: SecuritySergeantPDA
+  name: security sergeant PDA
+  description: Still functional. Unlike its owner, it does not shout at you.

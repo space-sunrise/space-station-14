@@ -33,3 +33,9 @@
   values:
     prefix: advertisement-piratehumanoid-
     count: 48
+
+- type: localizedDataset
+  id: NarSieAds
+  values:
+    prefix: advertisement-narsie-
+    count: 8

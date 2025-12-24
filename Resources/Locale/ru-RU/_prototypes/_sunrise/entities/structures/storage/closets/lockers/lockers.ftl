@@ -1,12 +1,14 @@
-ent-LockerBlueShield = шкафчик синего офицера щита
+ent-LockerBlueShield = шкаф офицера «Синий щит»
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerBlueShieldEnsign = шкафчик лейтенанта синего щита
     .desc = { ent-LockerBlueShield.desc }
 ent-LockerPilot = шкаф Пилота
     .desc = { ent-LockerBaseSecure.desc }
-ent-GunSafeIonRifle = оружейный сейф с ионной пушкой
-    .suffix = Ионная пушка
+ent-GunSafeIonRifle = специальный оружейный сейф
+    .suffix = Ионная-термальная пушка
     .desc = { ent-GunSafe.desc }
+ent-GunSafeSMRTGun = оружейный сейф SMART
+    .desc = Тяжело укреплённый специальный сейф отдела Smart Arms NanoTrasen для полевых испытаний. Содержит уникальный комплект Smart gun LMG и тяжёлую энергетическую снайперскую винтовку.
 ent-ClosetPatologoanatom = шкафчик патологоанатома
     .desc = У каждого свои скелеты в шкафу... у него буквально.
     .suffix = Пусто
