@@ -20431,7 +20431,7 @@ entities:
           decals:
             39775: -15,10
         - node:
-            color: '#008CFF99'
+            color: '#008cff99'
             id: SidingLineE
           decals:
             38205: 9,-13
@@ -213239,7 +213239,7 @@ entities:
       - stampedColor: '#C69B17FF'
         stampedName: Ведущий Инженер Лисеев
       content: >2-
-                                       
+
 
 
 

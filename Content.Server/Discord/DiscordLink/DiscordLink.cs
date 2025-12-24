@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using NetCord;
 using NetCord.Gateway;
@@ -35,6 +38,8 @@ public sealed class DiscordLink : IPostInjectInit
 {
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
+
+    [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise added
 
     /// <summary>
     ///    The Discord client. This is null if the bot is not connected.
@@ -106,6 +111,7 @@ public sealed class DiscordLink : IPostInjectInit
                              | GatewayIntents.MessageContent
                              | GatewayIntents.DirectMessages,
             Logger = new DiscordSawmillLogger(_sawmillLog),
+            RestClientConfiguration = CreateClientConfiguration(), // Sunrise added - поддержка прокси
         });
         _client.MessageCreate += OnCommandReceivedInternal;
         _client.MessageCreate += OnMessageReceivedInternal;
@@ -236,4 +242,29 @@ public sealed class DiscordLink : IPostInjectInit
     }
 
     #endregion
+
+    // Sunrise added start - поддержка прокси
+    private RestClientConfiguration CreateClientConfiguration()
+    {
+        var httpMessageHandler = CreateHttpMessageHandler();
+        var restClientConfiguration = new RestClientConfiguration
+        {
+            RequestHandler = httpMessageHandler != null ? new RestRequestHandler(httpMessageHandler) : null,
+        };
+
+        return restClientConfiguration;
+    }
+
+    private SocketsHttpHandler? CreateHttpMessageHandler()
+    {
+        var proxyAddress = _configuration.GetCVar(SunriseCCVars.DiscordProxyAddress);
+        if (string.IsNullOrWhiteSpace(proxyAddress))
+        {
+            _sawmill.Debug("No proxy configured for Discord bot connection.");
+            return null;
+        }
+
+        return _discord.CreateHandler(proxyAddress);
+    }
+    // Sunrise added end
 }

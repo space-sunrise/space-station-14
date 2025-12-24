@@ -1,2 +1,2 @@
-ent-BulletAntiMaterial = пуля (.60 антиматериальная)
+ent-BulletAntiMaterial = пуля (15мм антиматериальная)
     .desc = { ent-BaseBulletHighVelocity.desc }

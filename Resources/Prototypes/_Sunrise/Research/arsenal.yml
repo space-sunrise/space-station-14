@@ -195,3 +195,20 @@
   - WeaponEnergyGunPistol
   radioChannels:
   - Security
+
+- type: technology
+  id: HiTechShuttleWeapon
+  name: research-technology-hitech-shuttle-weapon
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/heavyammobelt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - ShuttleGunTeslaHyperionCircuitboard
+  - ShuttleGunQuadlingCircuitboard
+  technologyPrerequisites:
+  - AdvancedShuttleWeapon
+  radioChannels: # Sunrise-Add
+  - Security
