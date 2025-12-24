@@ -125,7 +125,7 @@
 
 - type: hitscan
   id: RedShuttleLaser
-  maxLength: 60
+  maxLength: 100 # Sunrise-edit
   damage:
     types:
       Heat: 45

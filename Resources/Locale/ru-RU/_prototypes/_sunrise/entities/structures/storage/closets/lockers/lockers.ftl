@@ -1,4 +1,4 @@
-ent-LockerBlueShield = шкафчик синего офицера щита
+ent-LockerBlueShield = шкаф офицера «Синий щит»
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerBlueShieldEnsign = шкафчик лейтенанта синего щита
     .desc = { ent-LockerBlueShield.desc }

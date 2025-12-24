@@ -1650,6 +1650,9 @@
   - type: StartTimerOnShoot
   - type: TimerTrigger
     delay: 2
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
   - type: Fixtures
     fixtures:
       fix1:
