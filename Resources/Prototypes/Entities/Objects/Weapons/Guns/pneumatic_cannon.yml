@@ -159,7 +159,7 @@
       - SyringeGunAmmo
   - type: Gun
     fireRate: 1
-    selectedMode: FullAuto #Sunrise-Edit
+    selectedMode: FullAuto
     availableModes:
     - SemiAuto
     - FullAuto
@@ -173,7 +173,11 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,2,1
+    # sunrise-start
+    - 0,0,2,0
+    - 0,1,0,1
+    storedOffset: -5,-5
+    # sunrise-end
   - type: ContainerContainer
     containers:
       storagebase: !type:Container

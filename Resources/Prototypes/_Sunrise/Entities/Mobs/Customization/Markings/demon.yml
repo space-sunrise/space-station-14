@@ -1,9 +1,11 @@
-- type: marking
+﻿- type: marking
   id: DemonTail1
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: demon_tail
 
@@ -13,6 +15,8 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: long
 
@@ -22,8 +26,37 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: up
+
+- type: marking
+  id: DemonTailArrowAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_arrow_animated
+
+- type: marking
+  id: DemonTailBroomAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tail_broom_animated
+
+- type: marking
+  id: DemonTailDefault
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
 
 - type: marking
   id: DemonCowEars
@@ -282,6 +315,8 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_fishnet
 
@@ -291,6 +326,8 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_fin
 
@@ -300,6 +337,8 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_mermaid
 
@@ -309,6 +348,8 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_arrow
 
@@ -318,6 +359,8 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
+    state: tail
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: tail_trident
 
@@ -338,3 +381,30 @@
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
     state: arcana_ears
+
+- type: marking
+  id: SuccubusWingsDemon
+  bodyPart: Back
+  markingCategory: Back
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/demonwings.rsi
+    state: succubus_wings
+
+- type: marking
+  id: SuccubusWingsDemonTwo
+  bodyPart: Back
+  markingCategory: Back
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/demonwings.rsi
+    state: succubus_wings-2
+
+- type: marking
+  id: SuccubusWingsDemonAnimated
+  bodyPart: Back
+  markingCategory: Back
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/demonwings.rsi
+    state: succubus_wings_animated

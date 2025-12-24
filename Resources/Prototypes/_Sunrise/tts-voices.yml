@@ -13,6 +13,13 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
+  id: PlayBoyzTV
+  name: tts-voice-name-playboyztv
+  sex: Male
+  speaker: playboyztv
+  provider: ntts.fdev.team
+
+- type: ttsVoice
   id: Biden
   name: tts-voice-name-biden
   sex: Male
@@ -1046,6 +1053,30 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
+  id: GenericGoblinB
+  name: tts-voice-name-generic-goblin-b
+  sex: Male
+  speaker: generic_goblin_b
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: SanctuaryHouseElf
+  name: tts-voice-name-sanctuary-house-elf
+  sex: Male
+  speaker: sanctuary_house_elf
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: EverettClopton
+  name: tts-voice-name-everett-clopton
+  sex: Male
+  speaker: everett_clopton
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
   id: MisterHandyFL3
   name: tts-voice-name-mister-handy-fl3
   sex: Male
@@ -1097,6 +1128,22 @@
   sponsorOnly: true
 
 - type: ttsVoice
+  id: JohnHenryEdenFL3
+  name: tts-voice-name-john-henry-eden-fl3
+  sex: Male
+  speaker: john_henry_eden_fl3
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: SuperMutantFL3
+  name: tts-voice-name-super-mutant-fl3
+  sex: Male
+  speaker: super_mutant_fl3
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
   id: KovirNobleman
   name: tts-voice-name-kovir-nobleman
   sex: Male
@@ -1109,6 +1156,54 @@
   name: tts-voice-name-zoltan-chivay
   sex: Male
   speaker: zoltan_chivay
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: Vesemir
+  name: tts-voice-name-vesemir
+  sex: Male
+  speaker: vesemir
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: GuillaumeDeLaunfal
+  name: tts-voice-name-guillaume-de-launfal
+  sex: Male
+  speaker: guillaume_de_launfal
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: PhilippaEilhart
+  name: tts-voice-name-philippa-eilhart
+  sex: Female
+  speaker: philippa_eilhart
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: EwaldBorsodi
+  name: tts-voice-name-ewald-borsodi
+  sex: Male
+  speaker: ewald_borsodi
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: Dandelion
+  name: tts-voice-name-dandelion
+  sex: Male
+  speaker: dandelion
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: Shani
+  name: tts-voice-name-shani
+  sex: Female
+  speaker: shani
   roundStart: true
   provider: ntts.fdev.team
 
@@ -1781,5 +1876,45 @@
   sex: Male
   speaker: zeus_dota_2
   id: zeus_dota_2
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: Mita
+  name: tts-voice-name-mita
+  sex: Female
+  speaker: mita
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: MitaDream
+  name: tts-voice-name-mitadream
+  sex: Female
+  speaker: mitadream
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: MitaGhost
+  name: tts-voice-name-mitaghost
+  sex: Female
+  speaker: mitaghost
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: MitaKind
+  name: tts-voice-name-mitakind
+  sex: Female
+  speaker: mitakind
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: MitaShortHairs
+  name: tts-voice-name-mitashorthairs
+  sex: Female
+  speaker: mitashorthairs
   roundStart: true
   provider: ntts.fdev.team
