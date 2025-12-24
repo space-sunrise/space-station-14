@@ -811,8 +811,6 @@ EngineeringTechFabCircuitboard: null
 MagazineDeagle: null
 MagazineMagnum: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
-SuitStorageBlueShield: null
-LockerBlueShieldOfficerFilled: null
 PoweredLightBlueInterior: null
 RandomItem: null
 TableWoodReinforced: null
@@ -866,6 +864,7 @@ MagazinePPSH41Extended: null
 WeaponSTG44: null
 MagazineSTG44: null
 WeaponSniperMosinNew: null
+GunSafeBlueShield: null
 # Super Matter
 SupermatterFlatpack: SupermatterFlatpackAnchored
 SupermatterCrystal: SupermatterFlatpackAnchored
