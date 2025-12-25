@@ -52,6 +52,123 @@
     sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
 
 - type: entity
+  id: ClothingBeltPrisonGuardianMetus
+  parent: ClothingBeltSecurity
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+
+- type: entity
+  id: ClothingBeltPrisonGuardianFilledMetus
+  parent: ClothingBeltPrisonGuardianMetus
+  suffix: Metus
+  components:
+  - type: StorageFill
+    contents:
+    - id: Stunbaton
+    - id: FlashlightSeclite
+    - id: RadioHandheldSecurity
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: GrenadeFlashBang
+    - id: Flash
+
+- type: entity
+  id: ClothingBeltHeadOfPrisonMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: head of prison belt
+  description: On the inner side, traces of wear, a sign of long service within walls where nothing is forgotten.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#000000"
+  - type: StorageFill
+    contents:
+    - id: Stunbaton
+    - id: RadioHandheldSecurity
+    - id: FlashlightSeclite
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: TearGasGrenade
+    - id: Flash
+
+- type: entity
+  id: ClothingBeltPrisonInspectorMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison inspector belt
+  description: Tight and well-kept, as if out of habit to hold onto order in a place where it no longer exists.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#7471dd"
+
+- type: entity
+  id: ClothingBeltPrisonDoctorMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison doctor belt
+  description: Clean yet aged, the clasp holds by conscience and habit, much like its owner.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+
+- type: entity
+  id: ClothingBeltPrisonChefMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison chef belt
+  description: A simple belt with a metal buckle, traces of oil and flour speak of long shifts without rest.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+
+- type: entity
+  id: ClothingBeltPrisonEngineerMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison engineer belt
+  description: Reliable, carelessly fitted to the uniform, showing a habit of keeping everything within reach.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+
+- type: entity
+  id: ClothingBeltPrisonScientistMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison scientist belt
+  description: Stern, marked by instruments and foreign hands, as if it has outlasted more than one owner.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+
+- type: entity
+  id: ClothingBeltPrisonWorkerMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison worker belt
+  description: Heavy and coarse, with traces of impacts and scorched leather, carrying everything gathered from work across the prison’s many parts.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoS
   name: head of security's belt
@@ -217,3 +334,78 @@
   - type: Appearance
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  name: ammunition belt-bag
+  id: TrashBagAmmo
+  parent: BaseStorageItem
+  description: A robust bag for shuttle gun specialists alike to carry large amounts of casing. Magnetises any nearby empty cassing when attached to a belt.
+  suffix: ShuttleBattle
+  components:
+  - type: MagnetPickup
+    range: 2
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Syndicate/ammo_bag.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Objects/Specific/Syndicate/ammo_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,8
+    quickInsert: true
+    areaInsert: true
+    storageOpenSound:
+      collection: trashBagRustle
+    storageInsertSound:
+      collection: trashBagRustle
+    whitelist:
+      tags:
+        - Cartridge
+  - type: Dumpable
+  - type: Appearance
+  - type: Tag
+    tags:
+    - TrashBag
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  parent: ClothingBeltMedical
+  id: ClothingBeltMedicalElite
+  name: elite medical belt
+  description: A sterile belt with many pockets for pills and other medications.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.01 #Sunrise-edit
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+      - 0,0,1,1
+      - 3,0,10,1
+  - type: StorageFill
+    contents:
+    - id: MedicatedSuture
+    - id: RegenerativeMesh
+    - id: Hypospray
+    - id: ChemistryBottleAmbuzol
+    - id: ChemistryBottleHolywater
+    - id: ChemistryBottleLeporazine
+    - id: BluespacePillPatchCanister
+    - id: PillCanisterPotassiumIodide
+    - id: MedipenCombatInjector
+    - id: StimpackNT
+    - id: PunctAutoInjector
+    - id: AntiPoisonMedipen
+    - id: CombatMedipen
+    - id: CombatMedipen
+    - id: CombatMedipen

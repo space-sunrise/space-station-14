@@ -1,7 +1,5 @@
 ent-WeaponSubMachineGunSP91RC = SP-91-RC
     .desc = Compact submachine gun designed for riot control.
-ent-WeaponSubMachineGunPPSH = PPSH 59 SMG
-    .desc = Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
 ent-WeaponSubMachineGunMakeshift = makeshift SMG
     .desc = Held together with cloth and dreams, it rattles ominously with every shot.
 ent-WeaponSubMachineGunImprovised = improvised SMG

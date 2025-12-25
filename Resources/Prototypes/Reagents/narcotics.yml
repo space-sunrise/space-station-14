@@ -260,6 +260,15 @@
   flavor: bitter
   color: "#C0C0C0"
   physicalDesc: reagent-physical-desc-strong-smelling
+  #Sunrise-Start
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: -0.75
+  #Sunrise-End
   plantMetabolism:
   - !type:PlantAdjustHealth
     amount: -5

@@ -36,7 +36,7 @@
     gloves: ClothingHandsGlovesCombat
     neck: ClothingBSMantle
     back: ClothingBackpackSatchelBlueShield
-    pocket1: BaseUplinkNTERTBlueShield
+    pocket1: WeaponPistolM1984
     pocket2: WeaponTaser
   storage:
     back:

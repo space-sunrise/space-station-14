@@ -8,6 +8,15 @@
     Glass: 50
     Plasma: 25
 
+# Blueprints
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineAsh12
+  result: MagazineAsh12
+  materials:
+    Steel: 200
+    Plastic: 100
+
 # .40 Pistol (.45 ACP)
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
@@ -387,7 +396,7 @@
     Steel: 300
 
 - type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePistolSubMachineGunHP
   result: MagazinePistolSubMachineGunHP
   materials:
@@ -674,15 +683,6 @@
 
 # Non Stationary Ammunition
 - type: latheRecipe
-  id: MagazineMP38
-  result: MagazineMP38
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
   id: MagazineLightMachineGunMG60
   result: MagazineLightMachineGunMG60
   categories:
@@ -692,79 +692,70 @@
     Steel: 3700
 
 - type: latheRecipe
-  id: MagazinePPSH41
-  result: MagazinePPSH41
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 1200
-
-- type: latheRecipe
-  id: MagazineRPD
-  result: MagazineRPD
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 1465
-
-
-- type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineLightRifleBoxIncendiary
   result: MagazineLightRifleBoxIncendiary
   materials:
     Steel: 150
-    Plastic: 475
-    Plasma: 475
+    Plastic: 900
 
 - type: latheRecipe
-  id: MagazineLightRifleBox
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBoxUranium
+  result: MagazineLightRifleBoxUranium
+  materials:
+    Steel: 150
+    Plastic: 475
+    Uranium: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleBoxSP
   result: MagazineRifleBoxSP
-  categories:
-  - Ammo
-  completetime: 5
   materials:
     Steel: 1100
 
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleBoxFMJ
+  result: MagazineRifleBoxFMJ
+  materials:
+    Steel: 1100
 
-# Moved from ammo.yml
-# Base prototypes
-
+# RifleHeavyMagazine .308 belt box
 # 7.62 light Rifle Magazines
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
-  id: LightRifleMagazineEmpty
-  result: LightRifleMagazineEmpty
+  id: RifleHeavyMagazineEmpty
+  result: RifleHeavyMagazineEmpty
   materials:
     Steel: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleMagazineSP
-  result: LightRifleMagazineSP
+  id: RifleHeavyMagazineSP
+  result: RifleHeavyMagazineSP
   materials:
     Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleMagazineHP
-  result: LightRifleMagazineHP
+  id: RifleHeavyMagazineHP
+  result: RifleHeavyMagazineHP
   materials:
     Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleMagazineFMJ
-  result: LightRifleMagazineFMJ
+  id: RifleHeavyMagazineFMJ
+  result: RifleHeavyMagazineFMJ
   materials:
     Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleMagazineUranium
-  result: LightRifleMagazineUranium
+  id: RifleHeavyMagazineUranium
+  result: RifleHeavyMagazineUranium
   materials:
     Steel: 100
     Plastic: 1080
@@ -772,19 +763,181 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleMagazineIncendiary
-  result: LightRifleMagazineIncendiary
+  id: RifleHeavyMagazineIncendiary
+  result: RifleHeavyMagazineIncendiary
   materials:
     Steel: 100
     Plastic: 1350
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: LightRifleMagazineAP
-  result: LightRifleMagazineAP
+  id: RifleHeavyMagazineAP
+  result: RifleHeavyMagazineAP
   materials:
     Steel: 1312
     Uranium: 1312
+
+## 15мм/.60
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBauer127Penetrator
+  result: MagazineBauer127Penetrator
+  materials:
+    Steel: 300
+    Uranium: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBauer127
+  result: MagazineBauer127
+  materials:
+    Steel: 275
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBauer127Emp
+  result: MagazineBauer127Emp
+  completetime: 3
+  materials:
+    Steel: 250
+    Plastic: 200
+    Glass: 35
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBauer127Blast
+  result: MagazineBauer127Blast
+  completetime: 3
+  materials:
+    Steel: 500
+    Plastic: 500
+    Gold: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBauer127Frag
+  result: MagazineBauer127Frag
+  completetime: 3
+  materials:
+    Steel: 800
+    Plastic: 300
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBelt127Empty
+  result: MagazineBoxBelt127Empty
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBelt127
+  result: MagazineBoxBelt127
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBelt127Artillery
+  result: MagazineBoxBelt127Artillery
+  materials:
+    Steel: 900
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBelt127Emp
+  result: MagazineBoxBelt127Emp
+  completetime: 3
+  materials:
+    Steel: 800
+    Plastic: 900
+    Glass: 150
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBelt127Blast
+  result: MagazineBoxBelt127Blast
+  completetime: 3
+  materials:
+    Steel: 2000
+    Plastic: 3000
+    Gold: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBelt127Frag
+  result: MagazineBoxBelt127Frag
+  completetime: 3
+  materials:
+    Steel: 2500
+    Plastic: 1500
+    Gold: 450
+
+# .308 belt box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: RifleHeavyMagazineArtillery
+  result: RifleHeavyMagazineArtillery
+  materials:
+    Steel: 750
+
+# Moved from ammo.yml
+# Base prototypes
+
+# 7.62 light Rifle Magazines
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazineLightRifleBeltBoxEmpty
+  result: MagazineLightRifleBeltBoxEmpty
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBeltBoxSP
+  result: MagazineLightRifleBeltBox
+  materials:
+    Steel: 1412
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBeltBoxHP
+  result: MagazineLightRifleBeltBoxHP
+  materials:
+    Steel: 1412
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBeltBoxFMJ
+  result: MagazineLightRifleBeltBoxFMJ
+  materials:
+    Steel: 1412
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBeltBoxUranium
+  result: MagazineLightRifleBeltBoxUranium
+  materials:
+    Steel: 100
+    Plastic: 700
+    Uranium: 700
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBeltBoxIncendiary
+  result: MagazineLightRifleBeltBoxIncendiary
+  materials:
+    Steel: 100
+    Plastic: 1312
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleBeltBoxAP
+  result: MagazineLightRifleBeltBoxAP
+  materials:
+    Steel: 800
+    Uranium: 700
 
 #Speedloaders .50 Shotgun
 - type: latheRecipe
@@ -883,15 +1036,6 @@
     Steel: 835
 
 - type: latheRecipe
-  id: MagazineAK
-  result: MagazineAK
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 565
-
-- type: latheRecipe
   id: MagazineDragunov
   result: MagazineDragunov
   categories:
@@ -899,16 +1043,6 @@
   completetime: 5
   materials:
     Steel: 800
-
-- type: latheRecipe
-  id: MagazineV31
-  result: MagazineV31
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 985
-    Plastic: 600
 
 - type: latheRecipe
   id: MagazineACP14
@@ -1020,15 +1154,6 @@
 #  materials:
 #    Steel: 650
 #
-#- type: latheRecipe
-#  id: MagazineV31Extended
-#  result: MagazineV31Extended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 1300
-#    Plastic: 100
 #
 #- type: latheRecipe
 #  id: MagazineBauer127Extended
@@ -1086,3 +1211,12 @@
     Steel: 150
     Plastic: 100
     Glass: 20
+
+- type: latheRecipe
+  id: ShellFragArtillery
+  result: ShellFragArtillery
+  completetime: 3
+  materials:
+    Steel: 500
+    Plastic: 150
+    Gold: 50

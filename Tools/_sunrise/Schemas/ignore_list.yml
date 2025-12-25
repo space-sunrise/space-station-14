@@ -90,6 +90,8 @@ ignore_list:
   - 'STG 44'
   - 'ACP-14'
   - 'Glock-22'
+  - 'Desert Eagle'
+  - 'Metus'
   - 'GL-70'
   - 'M-41'
   - 'DEAD-BEEF'
@@ -141,7 +143,9 @@ ignore_list:
   - 'AKM'       # Для ent-WeaponRifleAKM
   - 'MG-342'    # Для ent-WeaponMachineGunMG42
   - 'v3.0.9'
+  - 'v0.2.1'
   - 'F₃BZ'
+  - 'Holo Girl'
   - 'BZ'
   - 'NH₃'
   - 'CO₂'
@@ -197,3 +201,6 @@ ignore_files:
   - role-types.ftl
   - rmobjective.ftl
   - persistence-save-command.ftl
+  - xeno_last.ftl
+  - xeno_first.ftl
+  - narsie.ftl

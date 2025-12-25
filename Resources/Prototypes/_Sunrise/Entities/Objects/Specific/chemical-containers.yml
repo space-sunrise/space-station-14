@@ -1,17 +1,4 @@
 - type: entity
-  id: AphrodisiacChemistryBottle
-  name: aphrodisiac bottle
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Aphrodisiac
-          Quantity: 30
-
-- type: entity
   id: PolytrinicAcidChemistryBottle
   suffix: polytrinic acid
   parent: BaseChemistryBottleFilled

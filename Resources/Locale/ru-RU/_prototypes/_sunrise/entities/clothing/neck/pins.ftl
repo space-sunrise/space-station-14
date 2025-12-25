@@ -18,3 +18,7 @@ ent-ClothingNeckVitezstviPin = значок Vitezstvi
     .desc = Значок корпорации Vitezstvi.
 ent-ClothingNeckReedIndustriesPin = значок Reed Industries
     .desc = Значок корпорации Reed Industries
+ent-ClothingNeckPlanetPrisonCellblockPin = значок тюремного блока
+    .desc = Значок забытого тюремного блока.
+ent-ClothingNeckPlanetPrisonLockdownPin = значок строгого режима
+    .desc = Значок пожизненного строгого режима.

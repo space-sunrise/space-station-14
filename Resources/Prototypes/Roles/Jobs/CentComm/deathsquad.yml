@@ -5,7 +5,7 @@
   playTimeTracker: JobDeathSquad
   setPreference: false
   startingGear: DeathSquadGear
-  icon: "JobIconNanotrasen"
+  icon: "JobIconDeathsquad" # Sunrise-edit
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -21,17 +21,17 @@
   id: DeathSquadGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitDeathSquad
-    back: ClothingBackpackDeathSquad
+    back: ClothingDeathSquadronBackpack # Sunrise-edit
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesHudSecurity
     ears: ClothingHeadsetAltCentCom
-    gloves: ClothingHandsGlovesCombat
+    # gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterHardsuitDeathsquad
     shoes: ClothingShoesBootsMagAdv
     id: DeathsquadPDA
-    pocket1: EnergySword
-    pocket2: EnergyShield
-    belt: ClothingBeltMilitaryWebbingMedFilled
+    pocket1: PouchAmmo # Sunrise-edit
+    pocket2: DoubleEmergencyOxygenTankFilled # Sunrise-edit
+    belt: ClothingBeltMedicalElite # Sunrise-edit
   storage:
     back:
     - WeaponPulsePistol
@@ -41,12 +41,18 @@
     - BoxFlashbang
     - ToolDebug # spanish army knife
     - WelderExperimental
-    - Hypospray
+    # - Hypospray # Sunrise-edit
     - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
     - FreedomImplanter
-    - ClothingHandsPowerGlovesUplinkNTERTEpsilon # Sunrise-added
+    # Sunrise-start
+    - EnergySword
+    - EnergyShield
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - BoxErtBaseKit
+    # Sunrise-end
   inhand:
-  - WeaponPulseRifle
+  - ClothingHandsPowerGlovesUplinkNTERTEpsilon # Sunrise-edit
 
 - type: chameleonOutfit
   id: DeathSquadChameleonOutfit

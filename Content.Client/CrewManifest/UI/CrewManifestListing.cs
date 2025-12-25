@@ -28,6 +28,10 @@ public sealed class CrewManifestListing : BoxContainer
             foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
             {
                 // this is a little expensive, and could be better
+                // Sunrise-Start
+                if (department.ManifestHidden)
+                    continue;
+                // Sunrise-End
                 if (department.Roles.Contains(entry.JobPrototype))
                 {
                     entryDict.GetOrNew(department).Add(entry);

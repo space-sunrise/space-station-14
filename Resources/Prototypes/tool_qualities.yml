@@ -82,3 +82,12 @@
   toolName: tool-quality-fine-screwing-tool-name
   spawn: ThinTippedScrewdriver
   icon: { sprite: Objects/Tools/screwdriver.rsi, state: screwdriver-map }
+
+# Sunrise-Start
+- type: tool
+  id: Axing
+  name: tool-quality-axing-name
+  toolName: tool-quality-axing-tool-name
+  spawn: FireAxe
+  icon: { sprite: Objects/Weapons/Melee/fireaxe.rsi, state: icon }
+# Sunrise-End

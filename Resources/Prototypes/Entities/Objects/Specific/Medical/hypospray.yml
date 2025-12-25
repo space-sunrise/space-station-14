@@ -522,7 +522,7 @@
         reagents:
           - ReagentId: Leporazine
             Quantity: 10
-          - ReagentId: Barozine
+          - ReagentId: BarozinePlus
             Quantity: 20
 
 - type: entity

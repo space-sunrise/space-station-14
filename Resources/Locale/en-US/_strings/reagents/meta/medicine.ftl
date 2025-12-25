@@ -167,3 +167,8 @@ reagent-name-dexalin-plus-saline = dexalin plus-saline
 reagent-name-hemostatic-powder = hemostatic powder
 reagent-desc-hemostatic-powder = Hemostatic powder based on a mixture of tranexamic acid and iron silicide. When overdosed, it severely poisons the body with toxins.
 
+reagent-name-retroindralyne = retroindralyne
+reagent-desc-retroindralyne = A very old anti-radiation drug, improved by modern scientists, has side effects.
+
+reagent-name-barozine-plus = barozine plus
+reagent-desc-barozine-plus = An advanced form of barozine only found in Space Medipens. Heals less, but an overdose is less painful.

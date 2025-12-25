@@ -8,3 +8,7 @@ ent-ExosuitFabricatorHyperConvectionMachineCircuitboard = гиперконвек
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-MedicalAssemblerMachineCircuitboard = Мед-О-Мат (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
+ent-AutolathePrisonMetusMachineCircuitboard = тюремный автолат (машинная плата)
+    .desc = Потускневшая, с обломанными креплениями и тонкими трещинами, местами ещё теплая от редких импульсов питания.
+ent-SewingPrinterMetusMachineCircuitboard = тюремный швейный принтер (машинная плата)
+    .desc = Изрезана следами пайки с закисшими контактами и следами перегораний, изредка мерцают тусклые диоды.

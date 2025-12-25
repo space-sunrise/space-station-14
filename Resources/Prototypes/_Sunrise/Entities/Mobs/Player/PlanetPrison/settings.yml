@@ -1,0 +1,111 @@
+- type: randomHumanoidSettings
+  id: PlanetPrisonHeadOfPrison
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-head-name
+      description: ghost-role-information-planet-prison-head-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ HeadOfPrisonGear ]
+      roleLoadout: [ JobHeadOfPrison ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonInspector
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-inspector-name
+      description: ghost-role-information-planet-prison-inspector-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonInspectorGear ]
+      roleLoadout: [ JobPrisonInspector ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonWorker
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-worker-name
+      description: ghost-role-information-planet-prison-worker-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonWorkerGear ]
+      roleLoadout: [ JobPrisonWorker ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonEngineer
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-engineer-name
+      description: ghost-role-information-planet-prison-engineer-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonEngineerGear ]
+      roleLoadout: [ JobPrisonEngineer ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonScientist
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-scientist-name
+      description: ghost-role-information-planet-prison-scientist-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonScientistGear ]
+      roleLoadout: [ JobPrisonScientist ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonDoctor
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-doctor-name
+      description: ghost-role-information-planet-prison-doctor-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonDoctorGear ]
+      roleLoadout: [ JobPrisonDoctor ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonChef
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-chef-name
+      description: ghost-role-information-planet-prison-chef-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonChefGear ]
+      roleLoadout: [ JobPrisonChef ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisoner
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-prisoner-name
+      description: ghost-role-information-planet-prison-prisoner-description
+      rules: ghost-role-information-freeagent-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PlanetPrisonerGear ]
+      roleLoadout: [ JobPlanetPrisoner ]

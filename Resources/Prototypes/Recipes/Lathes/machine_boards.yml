@@ -105,6 +105,49 @@
   result: ShuttleGunDusterCircuitboard
   completetime: 12
 
+# Sunrise-start
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunLongbowCircuitboard
+  result: ShuttleGunLongbowCircuitboard
+  completetime: 10
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunVympelCircuitboard
+  result: ShuttleGunVympelCircuitboard
+  completetime: 12
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunSquallCircuitboard
+  result: ShuttleGunSquallCircuitboard
+  completetime: 8
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunQuadlingCircuitboard
+  result: ShuttleGunQuadlingCircuitboard
+  completetime: 16
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunBeamstormMachineGunCircuitboard
+  result: ShuttleGunBeamstormMachineGunCircuitboard
+  completetime: 6
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunTeslaOrionCircuitboard
+  result: ShuttleGunTeslaOrionCircuitboard
+  completetime: 6
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunTeslaHyperionCircuitboard
+  result: ShuttleGunTeslaHyperionCircuitboard
+  completetime: 10
+# Sunrise-End
 ## Circuit imprinter
 
 ## Engineering
@@ -255,7 +298,7 @@
   parent: [BaseCircuitboardRecipe]
   id: SmartFridgeCircuitboard
   result: SmartFridgeCircuitboard
-  
+
 # Bar
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]

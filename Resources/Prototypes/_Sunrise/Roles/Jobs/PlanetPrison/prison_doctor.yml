@@ -7,19 +7,23 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 7200 # 2 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonDoctorGear
   icon: "JobIconPrisonDoctor"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
-  displayWeight: 60
+  displayWeight: 50
   access:
   - Security
   - Brig
   - Maintenance
   - Medical
   - Chemistry
+  - Paramedic
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -28,26 +32,27 @@
   id: PrisonDoctorGear
   equipment:
     id: PrisonDoctorPDA
-    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
-    head: ClothingHeadHatCapCMO
+    jumpsuit: UniformPrisonDoctorMetus
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorRiot
-    belt: ClothingBeltMedicalFilled
-    back: ClothingBackpackMedical
+    belt: ClothingBeltPrisonDoctorMetus
+    back: ClothingBackpackSatchelPrisonDoctorMetus
     shoes: ClothingShoesBootsJack
-    pocket1: SecurityWhistle
-    pocket2: WeaponDisabler
-  storage:
-    back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Flash
-      - GrenadeFlashBang
-      - Handcuffs
-      - FlashlightSeclite
+    pocket1: WeaponPistolG22Metus
+    pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonDoctorChameleonOutfit
   job: PrisonDoctor
+  equipment:
+    jumpsuit: UniformPrisonDoctorMetus
+    head: ClothingHeadHatBeretPrisonDoctorMetus
+    ears: ClothingHeadsetMedical
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorRiot
+    belt: ClothingBeltPrisonDoctorMetus
+    back: ClothingBackpackSatchelPrisonDoctorMetus
+    shoes: ClothingShoesBootsJack
