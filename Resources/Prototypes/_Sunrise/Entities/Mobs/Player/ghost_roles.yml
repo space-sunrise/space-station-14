@@ -172,7 +172,7 @@
     shoes: ClothingShoesBootsMagSec
     head: ClothingHeadEVAHelmetERTNewChaplain
     eyes: ClothingEyesHudMedSec
-    outerClothing: ClothingOuterArmorAmberChap
+    outerClothing: ClothingOuterArmorAmberNewChap
     id: ERTChaplainPDA
     ears: ClothingHeadsetAltCentComSunrise
     belt: ClothingBeltSecurityFilledERT

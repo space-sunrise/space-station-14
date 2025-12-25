@@ -27,6 +27,15 @@
       role: JobHeadOfSecurity
       time: 360000 #100 hrs
 
+- type: loadoutEffectGroup
+  id: MasterHoS1984h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 7142400 #1984 hrs
+
 #WeaponsHos
 
 - type: loadout
@@ -68,6 +77,14 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterHoS100h
+
+- type: loadout
+  id: HeadofSecurityWeapon1984h
+  equipment:
+    pocket1: WeaponPistolDeagleGolden
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS1984h
 
 #Sunrise-End
 

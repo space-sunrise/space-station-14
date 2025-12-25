@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/ca674eff9d23e04357b7609ef7e07eadfc1a993f, modified by ps3moira (github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "mag-practice-1"
+        },
+        {
+            "name": "mag-practice-2"
+        },
+        {
+            "name": "mag-practice-3"
+        },
+        {
+            "name": "mag-practice-4"
+        },
+        {
+            "name": "holy"
+        },
+        {
+            "name": "base"
+        }
+    ]
+}

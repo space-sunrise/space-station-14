@@ -207,19 +207,6 @@
 
 - type: entity
   parent: GunSafeBaseSecure
-  id: GunSafeRifleAKMU
-  name: safe
-  suffix: AKMU
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleAKMU
-      amount: 2
-    - id: MagazineLightRifleSP
-      amount: 4
-
-- type: entity
-  parent: GunSafeBaseSecure
   id: GunSafeRifleLecterMk2
   name: safe
   suffix: Lecter Mk2
@@ -238,22 +225,6 @@
 
 - type: entity
   parent: GunSafeBaseSecure
-  id: GunSafeRifleAR18
-  name: safe
-  suffix: AR-18
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleAR18
-      amount: 2
-    - id: WeaponRifleM28
-    - id: MagazineRifleHeavySP
-      amount: 6
-    - id: MagazineRifleHeavyHP
-      amount: 4
-
-- type: entity
-  parent: GunSafeBaseSecure
   id: GunSafeRifleFamas
   name: safe
   suffix: Famas
@@ -263,13 +234,90 @@
     - id: WeaponRifleFamas
       amount: 2
     - id: WeaponRifleG36
-      amount: 2
     - id: MagazineRifleSP
       amount: 4
     - id: MagazineRifleHP
       amount: 2
     - id: MagazineRifleFMJ
       amount: 2
+
+
+- type: entity
+  parent: GunSafeBaseSecure
+  id: GunSafeRifleAKMU
+  name: safe
+  suffix: SKM-24
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleSKM24
+      orGroup: SKM
+    - id: WeaponRifleSKM24White
+      orGroup: SKM
+    - id: WeaponRifleSKM24Green
+      orGroup: SKM
+    - id: WeaponRifleSKM24Scrap
+      prob: 0.2
+      amount: 3
+      orGroup: SKM
+    - id: WeaponRifleSKM24Syndi
+      prob: 0.1
+      orGroup: SKM
+    - id: WeaponRifleSKM24Nano
+      prob: 0.6
+      orGroup: SKM
+    - id: WeaponRifleSKM24
+      orGroup: SKM2
+    - id: WeaponRifleSKM24White
+      orGroup: SKM2
+    - id: WeaponRifleSKM24Green
+      orGroup: SKM2
+    - id: WeaponRifleSKM24Scrap
+      prob: 0.2
+      amount: 3
+      orGroup: SKM2
+    - id: WeaponRifleSKM24Syndi
+      prob: 0.1
+      orGroup: SKM2
+    - id: WeaponRifleSKM24Nano
+      prob: 0.6
+      orGroup: SKM2
+    - id: WeaponRifleSKM24
+      orGroup: SKM3
+    - id: WeaponRifleSKM24White
+      orGroup: SKM3
+    - id: WeaponRifleSKM24Green
+      orGroup: SKM3
+    - id: WeaponRifleSKM24Scrap
+      prob: 0.2
+      amount: 3
+      orGroup: SKM3
+    - id: WeaponRifleSKM24Syndi
+      prob: 0.1
+      orGroup: SKM3
+    - id: WeaponRifleSKM24Nano
+      prob: 0.6
+      orGroup: SKM3
+    - id: WeaponRifleSKM24
+      orGroup: SKM4
+    - id: WeaponRifleSKM24White
+      orGroup: SKM4
+    - id: WeaponRifleSKM24Green
+      orGroup: SKM4
+    - id: WeaponRifleSKM24Scrap
+      prob: 0.2
+      amount: 3
+      orGroup: SKM4
+    - id: WeaponRifleSKM24Syndi
+      prob: 0.1
+      orGroup: SKM4
+    - id: WeaponRifleSKM24Nano
+      prob: 0.6
+      orGroup: SKM4
+    - id: MagazineLightRifleSP
+      amount: 4
+    - id: MagazineLightRifleFMJ
+      amount: 4
 
 # region Shotguns safes
 - type: entity
@@ -472,16 +520,12 @@
       children:
       - id: GunSafeRifleLecter
       - id: GunSafeRifleM16A4
+      - id: GunSafeRifleAKMU
     - !type:GroupSelector
-      weight: 15
+      weight: 20
       children:
       - id: GunSafeRifleFamas
       - id: GunSafeRifleLecterMk2
-    - !type:GroupSelector
-      weight: 5
-      children:
-      - id: GunSafeRifleAR18
-      - id: GunSafeRifleAKMU
 
 # SMG Spawner
 - type: entity

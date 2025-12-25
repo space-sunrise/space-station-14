@@ -217,3 +217,47 @@
     - WhitelistChameleon
     - OpenNeck # INTERACTIONS
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckPlanetPrisonLockdownPin
+  name: lockdown pin
+  description: The pin of the lifelong Lockdown.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    layers:
+    - state: lockdown
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    clothingVisuals:
+      neck:
+      - state: lockdown-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckPlanetPrisonCellblockPin
+  name: cellblock pin
+  description: The pin of the forgotten cellblock.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    layers:
+    - state: cellblock
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    clothingVisuals:
+      neck:
+      - state: cellblock-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT

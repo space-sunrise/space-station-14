@@ -29,3 +29,25 @@
     tags:
     - CreepyLaugh
     - SubdermalImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantFreelance
+  name: radio implant
+  description: This implant grants access to the Freelance channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Freelance
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantFreelance
+  name: freelance death rattle implant
+  description: This implant will inform the Freelance radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: Freelance

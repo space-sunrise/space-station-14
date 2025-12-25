@@ -168,7 +168,7 @@
     - id: HandheldMechAnalyzer
     - id: CableApcStack
       amount: 3
-    - id: PowerCellSyndicate
+    - id: SyndicateIDCard
     - id: Nanopaste
       amount: 2
     - id: DoubleEmergencyOxygenTankFilled

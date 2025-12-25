@@ -109,7 +109,7 @@
   - type: ZombieImmune
   # Sunrise-Start
   - type: Repairable
-    doAfterDelay: 3
+    doAfterDelay: 2
     damage:
       types:
         Blunt: -15
@@ -117,7 +117,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 5 #SUNRISE-EDIT
+        Mangleness: 2 #SUNRISE-EDIT
     allowSelfRepair: false
   # Sunrise-End
   - type: BorgChassis
@@ -284,6 +284,7 @@
   - type: Stripping
     useDragDrop: false
   - type: CyborgSparkEffect
+  - type: MechVulnerableToEMP
   # Sunrise-end
 
 - type: entity
@@ -539,8 +540,10 @@
     - Mothership
     - Xenoborg
     - Binary
-  - type: Repairable
-    doAfterDelay: 13 # 25% more HP, so 30% more time to heal
+  # Sunrise-start
+  # - type: Repairable
+  #   doAfterDelay: 13 # 25% more HP, so 30% more time to heal
+  # Sunrise-end
   - type: BorgChassis
     maxModules: 0
     hasMindState: robot_e

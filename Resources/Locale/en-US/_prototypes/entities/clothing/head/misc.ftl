@@ -41,3 +41,4 @@ ent-ClothingHeadHatHairflower = hairflower
     .desc = A beautiful hairflower that can be inserted between locks of hair.
 ent-ClothingHeadPerformerWig = performer's wig
     .desc = On a closer inspection, it appears that it is made from optic fiber.
+

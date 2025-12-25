@@ -111,7 +111,7 @@ uplink-speedloader-magnu-desc = Revolver speedloader with 6 armor-piercing cartr
 uplink-mosin-ammo-name = Ammunition box (.30 rifle)
 uplink-mosin-ammo-desc = A box of 60 cartridges for the surplus rifle.
 
-uplink-sniper-ammo-name = Ammunition box (.60 antimateriel)
+uplink-sniper-ammo-name = Ammunition box (15mm antimateriel)
 uplink-sniper-ammo-desc = A box of 10 cartridges for the Hristov sniper rifle.
 
 # Utility
@@ -511,3 +511,4 @@ uplink-stimkit-nt-desc = A medical kit containing 6 ephedrine auto-injectors.
 
 uplink-acolyte-armor-name = Acolyte Armor
 uplink-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.
+

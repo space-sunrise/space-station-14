@@ -14,3 +14,20 @@
   - XenoborgModuleHeavyLaserRecipe
   - XenoborgModuleEnergySwordRecipe
   - XenoborgModuleSuperCloakDeviceRecipe
+
+# Sunrise-Start
+- type: latheRecipePack
+  id: XenoborgSunrise
+  recipes:
+  - XenoborgCircuitBoard
+  - NanopasteFull
+  - CableStack
+  - CableMVStack
+  - CableHVStack
+  - PowerCellXenoborgAdvance
+  - PowerCellXenoborg
+  - XenoborgModuleXrayRecipe
+  - XenoborgModuleTurboLaserRecipe
+  - BorgChargerCircuitboard
+  - MicroManipulatorStockPart
+# Sunrise-End

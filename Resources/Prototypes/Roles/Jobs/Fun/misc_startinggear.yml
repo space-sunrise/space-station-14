@@ -81,11 +81,11 @@
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHelmetSwat
     mask: ClothingMaskGasSwat
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterArmorBulletproofHeavy # Sunrise-Edit
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat
   inhand:
-   - WeaponSubMachineGunDrozd # Sunrise-Edit
+   - WeaponSubMachineGunWt550 # Sunrise-Edit
   storage:
     back:
     - BoxSurvivalSecurity

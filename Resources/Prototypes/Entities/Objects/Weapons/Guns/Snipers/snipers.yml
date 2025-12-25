@@ -50,8 +50,8 @@
       collection: SnipersDrop
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
+    maxOffset: 5
+    pvsIncrease: 0.5
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -139,13 +139,13 @@
   - type: GunRequiresWield
   - type: Gun
     pump: true # Sunrise-Edit
-    fireRate: 0.55 # Sunrise-Edit
+    fireRate: 0.6 # Sunrise-Edit
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
       collection: awp # Sunrise-Edit
-    projectileSpeed: 55 # Sunrise-Edit
+    projectileSpeed: 35 # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -157,8 +157,8 @@
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 14 # Sunrise-Edit
-    pvsIncrease: 1.4 # Sunrise-Edit
+    maxOffset: 13 # Sunrise-Edit
+    pvsIncrease: 1.3 # Sunrise-Edit
   - type: StaticPrice
     price: 3500
 
@@ -227,6 +227,7 @@
     whitelist:
       tags:
         - CartridgeMagnum # changed from Anti-material rifle rounds because it's a flintlock pistol not a Hristov
+        - CartridgeMagnumImprovised # Sunrise-added
     capacity: 1
     proto: CartridgeMagnumAP
   - type: StaticPrice

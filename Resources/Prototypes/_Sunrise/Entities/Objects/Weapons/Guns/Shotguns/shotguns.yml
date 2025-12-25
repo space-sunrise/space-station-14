@@ -1,6 +1,6 @@
 - type: entity
   name: Spas-12
-  parent: [BaseWeaponShotgun, GunMeleeMedium, BaseSecurityContraband]
+  parent: [BaseWeaponShotgun, BaseSecurityContraband]
   id: WeaponShotgunSPAS12
   components:
   - type: Sprite
@@ -29,7 +29,7 @@
 
 - type: entity
   name: Trenchgun L-4034
-  parent: [BaseWeaponShotgun, GunMedium, GunMeleeMedium, BaseSecurityContraband]
+  parent: [BaseWeaponShotgun, GunMedium, BaseSecurityContraband]
   id: WeaponShotgunTrenchgun4034
   components:
   - type: Sprite
@@ -62,7 +62,7 @@
 
 - type: entity
   name: Sawn Trenchgun L-4034
-  parent: [ WeaponShotgunTrenchgun4034, GunMeleeLight ]
+  parent: WeaponShotgunTrenchgun4034
   id: WeaponShotgunTrenchgun4034Sawn
   components:
   - type: Sprite

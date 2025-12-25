@@ -1,0 +1,76 @@
+- type: entity
+  name: appraisal tool
+  parent: RadioJammer
+  id: RadioJammerSyndicate
+  description: A beancounter's best friend, with a quantum connection to the galactic market and the ability to appraise even the toughest items. It will also tell you if a crate contains a completed bounty.
+  components:
+  - type: RadioJammer
+    frequenciesExcluded:
+    - 1213 # syndi radio
+  - type: Item
+    sprite: Objects/Tools/appraisal-tool.rsi
+    size: Small
+  - type: PriceGun
+  - type: UseDelay
+    delay: 3
+  - type: Tag
+    tags:
+    - AppraisalTool
+    - Sidearm
+  - type: Clothing
+    sprite: Objects/Tools/appraisal-tool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: RadioJammerBox
+  name: radio jammer
+  description: This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxicons.rsi
+    state: jammer
+  - type: SpawnItemsOnUse
+    items:
+    - id: RadioJammerSyndicate
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: the saboteur's communications jammer
+  parent: BaseItem
+  id: RadioJammerBorg
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/jammer.rsi
+    state: jammer
+  - type: RadioJammer
+    frequenciesExcluded:
+    - 1213 # syndi radio
+    settings:
+    - wattage: 1
+      range: 2.5
+      message: radio-jammer-component-set-message-low
+      name: radio-jammer-component-setting-low
+    - wattage: 2
+      range: 6
+      message: radio-jammer-component-set-message-medium
+      name: radio-jammer-component-setting-medium
+    - wattage: 12
+      range: 12
+      message: radio-jammer-component-set-message-high
+      name: radio-jammer-component-setting-high
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellRobotTool

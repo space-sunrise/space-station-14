@@ -23,6 +23,12 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+// Sunrise-Start
+using Content.Shared.FixedPoint;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Components;
+// Sunrise-End
 
 namespace Content.Server.Medical;
 
@@ -46,6 +52,7 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!; // Sunrise-Edit
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -70,7 +77,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (args.Target is not { } target)
             return;
 
-        if (!CanZap(uid, target, args.User, component))
+        if (!CanZap(uid, target, args.User, component, component.AllowUseOnAlive)) // Sunrise-Edit
             return;
 
         args.Handled = true;
@@ -111,6 +118,13 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (!_powerCell.HasActivatableCharge(uid, user: user))
             return false;
 
+        // Sunrise-Start
+        var canZapEvent = new SunriseCanZapEvent(uid, target, user);
+        RaiseLocalEvent(uid, ref canZapEvent);
+        if (canZapEvent.Cancelled)
+            return false;
+        // Sunrise-End
+
         if (!targetCanBeAlive && _mobState.IsAlive(target, mobState))
             return false;
 
@@ -135,7 +149,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (!CanZap(uid, target, user, component))
+        if (!CanZap(uid, target, user, component, component.AllowUseOnAlive)) // Sunrise-Edit
             return false;
 
         _audio.PlayPvs(component.ChargeSound, uid);
@@ -164,7 +178,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         target = selfEvent.DefibTarget;
 
         // Ensure thet new target is still valid.
-        if (selfEvent.Cancelled || !CanZap(uid, target, user, component, true))
+        if (selfEvent.Cancelled || !CanZap(uid, target, user, component, component.AllowUseOnAlive)) // Sunrise-Edit
             return;
 
         var targetEvent = new TargetBeforeDefibrillatorZapsEvent(user, uid, target);
@@ -172,7 +186,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         target = targetEvent.DefibTarget;
 
-        if (targetEvent.Cancelled || !CanZap(uid, target, user, component, true))
+        if (targetEvent.Cancelled || !CanZap(uid, target, user, component, component.AllowUseOnAlive)) // Sunrise-Edit
             return;
 
         if (!TryComp<MobStateComponent>(target, out var mob) ||
@@ -228,6 +242,18 @@ public sealed class DefibrillatorSystem : EntitySystem
                     InGameICChatType.Speak, true);
             }
         }
+
+        // Sunrise-Start
+        // Inject reagents if any are specified
+        if (component.Reagents.Count > 0 && TryComp<BloodstreamComponent>(target, out var bloodstream))
+        {
+            if (_solutionContainer.TryGetSolution(target, bloodstream.ChemicalSolutionName, out var solution))
+            {
+                foreach (var (reagent, amount) in component.Reagents)
+                    _solutionContainer.TryAddReagent(solution.Value, reagent, FixedPoint2.New(amount), out _);
+            }
+        }
+        // Sunrise-End
 
         var sound = dead || session == null
             ? component.FailureSound

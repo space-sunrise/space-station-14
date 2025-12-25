@@ -20,7 +20,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 7 # Sunrise-Edit
+        Blunt: 10
     soundHit:
       collection: MetalThud
   - type: Spillable
@@ -79,7 +79,7 @@
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 7 # Sunrise-Edit
+          Blunt: 10
       soundHit:
          collection: MetalThud
     - type: Spillable

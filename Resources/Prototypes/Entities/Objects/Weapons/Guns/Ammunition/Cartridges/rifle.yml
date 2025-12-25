@@ -9,7 +9,7 @@
       - CartridgeRifle
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/5.56x45.rsi # Sunrise-Edit
-    scale: 0.60, 0.60 # Sunrise-Added
+    scale: 0.55, 0.5 # Sunrise-Added
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]

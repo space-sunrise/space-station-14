@@ -1,0 +1,6 @@
+# Security Modules
+ 
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleAdvancedCombat
+  result: BorgModuleAdvancedCombat

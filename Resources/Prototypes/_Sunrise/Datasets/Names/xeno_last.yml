@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_xeno_last
+  values:
+    prefix: names-xeno-last-dataset-
+    count: 500

@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledBauer
+  id: ClothingBackpackDuffelSyndicateFilledBauer127
   name: Sniper bundle
   description: "Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles."
   components:
@@ -10,9 +10,15 @@
       - id: MagazineBauer127
         amount: 3
       - id: MagazineBoxAntiMateriel
+      - id: MagazineBauer127Penetrator
         amount: 2
-      - id: ClothingEyesGlassesThermalSyndie
-      - id: PowerCellSyndicate
+      - id: MagazineBauer127Frag
+        amount: 2
+      - id: MagazineBauer127Blast
+        amount: 2
+      - id: MagazineBauer127Emp
+        amount: 2
+      - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -128,13 +134,15 @@
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle p90
-  description: P-90 with 3 raspy magazines.
+  description: P-90 with 4 raspy magazines.
   components:
     - type: StorageFill
       contents:
         - id: WeaponSubMachineGunP90
         - id: MagazineP90
-          amount: 3
+          amount: 2
+        - id: MagazineP90HP
+        - id: MagazineP90FMJ
 
 - type: entity
   id: ClothingBackpackDuffelWeaponAMS42Filled
@@ -201,28 +209,62 @@
         - id: BoxShotgunSlug
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleAR18Filled
+  id: ClothingBackpackDuffelWeaponRifleSKM24Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle AR18
-  description: AR18 with 2 raspy magazines.
+  name: Bundle SKM-24
+  description: SKM-24 with 6 raspy various magazines.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponRifleAR18
-        - id: MagazineRifleHeavySP
+        - id: WeaponRifleSKM24Nano
+        - id: MagazineLightRifleSP
+          amount: 3
+        - id: MagazineLightRifleFMJ
+          amount: 1
+        - id: MagazineLightRifleHP
           amount: 2
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleM28Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle M28
-  description: M28 with 3 raspy magazines.
+  id: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle SKM-24
+  description: AR18 with 6 raspy Incendiary magazines.
   components:
     - type: StorageFill
       contents:
-        - id: WeaponRifleM28
+        - id: WeaponRifleSKM24
+        - id: MagazineLightRifleIncendiary
+          amount: 6
+        - id: FireExtinguisher
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSKM28Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle SKM-28
+  description: SKM-28 with 6 raspy various magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM28Nano
+        - id: MagazineRifleHeavyFMJ
+          amount: 1
         - id: MagazineRifleHeavySP
           amount: 3
+        - id: MagazineRifleHeavyHP
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle SKM-28
+  description: SKM-28 with 6 raspy Incendiary magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM28
+        - id: MagazineRifleHeavyIncendiary
+          amount: 6
+        - id: FireExtinguisher
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleBR64Filled
@@ -236,17 +278,30 @@
         - id: MagazineRifleHeavyFMJ
           amount: 2
 
-#- type: entity
-#  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
-#  parent: ClothingBackpackDuffelMilitary
-#  name: Bundle mg342
-#  description: MG-342 with 2 raspy magazines.
-#  components:
-#    - type: StorageFill
-#      contents:
-#        - id: WeaponMachineGunMG42
-#        - id: MagazineMachineGunMG42
-#          amount: 2
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunM492
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle smart gun M492
+  description: M492 with 2 raspy SP and FMJ belt-box.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunM492
+        - id: MagazineLightRifleBeltBox
+        - id: MagazineLightRifleBeltBoxFMJ
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
+  parent: ClothingBackpackDuffelCBURN
+  name: Bundle M492 "Incinerator"
+  description: M492 with 3 raspy Incendiary belt-box.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunM492Cburn
+        - id: MagazineLightRifleBeltBoxIncendiary
+          amount: 3
+        - id: FireExtinguisher
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSniperHristovFilled
@@ -259,6 +314,19 @@
         - id: WeaponSniperHristov
         - id: MagazineBoxAntiMateriel
           amount: 4
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleAsh12
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle ASH-12
+  description: ASH-12 with 5 magazines and a blueprint.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAsh12
+    - id: MagazineAsh12
+      amount: 5
+    - id: BlueprintMagAsh12Slug
 
 - type: entity
   id: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
@@ -356,3 +424,103 @@
       - id: ClothingHandsGlovesCombatCQC
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  parent: ClothingBackpackMessengerPirate
+  id: ClothingBackpackMessengerPirateDecoyKitFilled
+  name: decoy bundle
+  description: "Contains visual distractions. Smell and audio coming soon."
+  components:
+  - type: StorageFill
+    contents:
+      - id: BalloonPirate1
+      - id: BalloonPirate2
+      - id: BalloonPirate3
+      - id: BalloonPirate4
+      - id: BalloonPirate5
+      - id: BalloonPirate6
+      - id: BalloonPirate7
+      - id: BalloonPirate8
+      - id: GrenadeDummy
+        amount: 4
+      - id: SnapPop
+        amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelMilitaryBundleScaf
+  parent: ClothingBackpackDuffelMilitary
+  name: Scaf bundle
+  description: "Contains the old combat EVA suit."
+  components:
+    - type: StorageFill
+      contents:
+        - id: ClothingOuterHardsuitScaf
+        - id: ClothingHeadHelmetHardsuitScaf
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  id: ClothingBackpackDuffelMilitaryBundlePirateEva
+  parent: ClothingBackpackDuffelMilitary
+  name: Pirate EVA bundle
+  description: "Contains the old pirate EVA suit."
+  components:
+    - type: StorageFill
+      contents:
+        - id: ClothingHeadHelmetPirateOld
+        - id: ClothingOuterEVASuitPirateOld
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  id: ClothingBackpackMessengerMercenaryBundleSKM24
+  parent: ClothingBackpackMessengerMercenary
+  name: SKM-24 bundle
+  description: "Contains the cheap assault rifle."
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM24
+          orGroup: SKM24
+        - id: WeaponRifleSKM24Syndi
+          orGroup: SKM24
+        - id: WeaponRifleSKM24White
+          orGroup: SKM24
+        - id: WeaponRifleSKM24Nano
+          orGroup: SKM24
+        - id: WeaponRifleSKM24Green
+          orGroup: SKM24
+        - id: MagazineLightRifleFMJ
+        - id: MagazineLightRifleSP
+        - id: MagazineLightRifleSP
+        - id: MagazineLightRifleHP
+        - id: CigPackSyndicate
+        - id: CheapLighter
+
+- type: entity
+  id: ClothingBackpackMessengerPirateBundleSKM24Scrap
+  parent: ClothingBackpackMessengerPirate
+  name: SKM-24 bundle
+  description: "Contains the cheapest assault rifle."
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleSKM24Scrap
+        - id: MagazineLightRifleImprovised
+        - id: MagazineLightRifleImprovised
+        - id: MagazineLightRifleImprovised
+        - id: MagazineBoxImprovisedRifle
+          prob: 0.5
+          orGroup: MagRifle
+        - id: MagazineLightRifleFMJ
+          prob: 0.25
+          orGroup: MagRifle
+        - id: MagazineLightRifleAP
+          prob: 0.01
+          orGroup: MagRifle
+        - id: MagazineLightRifleHP
+          prob: 0.4
+          orGroup: MagRifle
+        - id: MagazineLightRifleSP
+          prob: 0.4
+          orGroup: MagRifle

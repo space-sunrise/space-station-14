@@ -118,6 +118,23 @@
   radioChannels:
   - Security
 
+- type: technology
+  id: PortableIonWeaponry
+  name: research-technology-ion-technology
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponIonCarbine
+  technologyPrerequisites:
+  - PortableMicrofusionWeaponry
+  - ThermalWeaponry
+  radioChannels:
+  - Security
+
 # Tier 2
 
 # Sunrise-TODO: Требует ребаланса с учетом новых типов боеприпасов
@@ -194,4 +211,35 @@
   - MagazineBatteryLr30
   - WeaponEnergyGunPistol
   radioChannels:
+  - Security
+
+- type: technology
+  id: AdvancedSecBorgsCombatModules
+  name: research-technology-advance-secborgs-combat
+  icon:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: security
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - BorgModuleAdvancedCombat
+  radioChannels:
+  - Security
+  
+- type: technology
+  id: HiTechShuttleWeapon
+  name: research-technology-hitech-shuttle-weapon
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/heavyammobelt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - ShuttleGunTeslaHyperionCircuitboard
+  - ShuttleGunQuadlingCircuitboard
+  technologyPrerequisites:
+  - AdvancedShuttleWeapon
+  radioChannels: # Sunrise-Add
   - Security

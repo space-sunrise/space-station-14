@@ -68,10 +68,10 @@
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 14
-    pvsIncrease: 1.65
+    maxOffset: 13
+    pvsIncrease: 1.3
   - type: UseDelay
-    delay: 0.5
+    delay: 1
   - type: GunRequiresWield
   - type: StaticPrice
     price: 5000
@@ -96,12 +96,12 @@
     - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -21
+    minAngle: -24
     maxAngle: -41
   - type: Gun
     minAngle: 25
-    maxAngle: 46
-    fireRate: 2.25
+    maxAngle: 45
+    fireRate: 3
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/SR-64/SR64_shot.ogg
       params:
@@ -140,12 +140,12 @@
   - type: UseDelay
     delay: 1
   - type: SpeedModifiedOnWield
-    walkModifier: 0.5
-    sprintModifier: 0.5
+    walkModifier: 0.25
+    sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 10
-    pvsIncrease: 1.25
+    maxOffset: 12
+    pvsIncrease: 1.2
   - type: ChamberMagazineAmmoProvider
     autoEject: true
     boltClosed: null
@@ -174,11 +174,11 @@
     maxAngle: -43
   - type: Gun
     pump: true
-    projectileSpeed: 55
+    projectileSpeed: 35
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    fireRate: 0.75
+    fireRate: 0.65
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -228,8 +228,8 @@
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 15
-    pvsIncrease: 2
+    maxOffset: 13
+    pvsIncrease: 1.3
   - type: StaticPrice
     price: 10000
 

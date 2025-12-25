@@ -57,6 +57,37 @@
   - type: FactionClothingBlocker
 
 - type: entity
+  name: M492 "Incinerator"
+  id: WeaponLightMachineGunM492Cburn
+  parent: [WeaponLightMachineGunM492, BaseCentcommContraband ]
+  description: A modification of the smart machine gun, created specifically for CBURN squads. Uses .30 rounds.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/M492_CBURN.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/M492_CBURN.rsi
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleIncendiary
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBeltBoxIncendiary
+        whitelist:
+          tags:
+            - LightRifleHeavy
+
+- type: entity
   name: DP-28 LMG
   id: WeaponLightMachineGunDP28
   parent: [BaseWeaponLightMachineGun, BaseMajorContraband] #BaseSovietContraband]

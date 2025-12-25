@@ -178,32 +178,6 @@
   - type: LoadMapRule
     preloadedGrid: NTIncorporation
 
-#Sunrise-Start
-- type: entity
-  id: UnknownShuttlePirateSmall
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: null
-    weight: 2
-    earliestStart: 35
-    minimumPlayers: 40
-  - type: LoadMapRule
-    preloadedGrid: PirateSmall
-
-- type: entity
-  id: UnknownShuttlePirateMedium
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: null
-    weight: 2
-    earliestStart: 20
-    minimumPlayers: 70
-  - type: LoadMapRule
-    preloadedGrid: PirateMedium
-#Sunrise-end
-
 - type: entity
   id: UnknownShuttleInstigator
   parent: BaseUnknownShuttleRule
@@ -347,6 +321,29 @@
   - type: LoadMapRule
     gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_gamma.yml"
 
+- type: entity
+  id: UnknownShuttlePirateSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    weight: 3
+    earliestStart: 10
+    minimumPlayers: 75
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/falcon.yml"
+
+- type: entity
+  id: UnknownShuttlePirateMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    weight: 2
+    earliestStart: 20
+    minimumPlayers: 75
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/rust_brass.yml"
 
 - type: entity
   id: PirateMedium
@@ -358,7 +355,7 @@
     # duration: -0
     # endAudio: /Audio/Ambience/Antag/pirate_start.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/pirate_medium.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/rust_brass.yml"
 
 - type: entity
   id: PirateSmall
@@ -370,7 +367,7 @@
     # duration: -0
     # endAudio: /Audio/Ambience/Antag/pirate_start.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/pirate_small.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/falcon.yml"
 
 - type: entity
   id: NukeopsInfiltrator

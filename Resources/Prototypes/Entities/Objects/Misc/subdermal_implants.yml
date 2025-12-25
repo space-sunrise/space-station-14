@@ -180,6 +180,8 @@
   - type: TriggerOnActivateImplant
   - type: UncuffOnTrigger
     targetUser: true
+  - type: UnsnareOnTrigger # Sunrise-Edit
+    targetUser: true
 
 - type: entity
   parent: BaseSubdermalImplant
