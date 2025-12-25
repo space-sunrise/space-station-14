@@ -15,3 +15,9 @@
   name: ui-options-hud-theme-medical
   path: /Textures/_Sunrise/Interface/Medical/
   order: 9
+
+- type: hudTheme
+  id: SS14XenoTheme
+  name: ui-options-hud-theme-xeno
+  path: /Textures/_Sunrise/Interface/Xeno/
+  order: 10

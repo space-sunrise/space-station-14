@@ -8,9 +8,9 @@
     - type: Tag
       tags: [] # ignore "WhitelistChameleon" tag
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/base.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/base.rsi # Sunrise-Edit
     - type: Clothing
-      sprite: Clothing/Ears/Headsets/base.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/base.rsi # Sunrise-Edit
     - type: ChameleonClothing
       slot: [ears]
       default: ClothingHeadsetGrey

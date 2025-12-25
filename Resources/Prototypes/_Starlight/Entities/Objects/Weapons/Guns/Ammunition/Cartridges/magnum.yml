@@ -16,8 +16,9 @@
         color: "#717171"
   - type: Tag
     tags:
-      - Cartridge
+      - CartridgeMagnum
       - CartridgeMagnumImprovised
+      - CartridgeMagnum
   - type: Construction
     graph: ImprovisedMagnumBulletGraph
     node: shell

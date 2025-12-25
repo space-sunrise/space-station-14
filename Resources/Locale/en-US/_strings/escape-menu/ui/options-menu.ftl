@@ -40,6 +40,16 @@ ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
 ui-options-bwoink-sound = Play AHelp Notification Sound
 ui-options-volume-label = Volume
+# Sunrise-Start
+ui-options-scp-echo-enabled = Echo effect
+ui-options-scp-echo-enabled-tooltip =
+    If enabled, each non-global sound will have an echo effect.
+    When enabled, all sounds may become louder. Use the volume slider to adjust the volume.
+ui-options-scp-echo-strong-preset-preferred = Use enhanced echo effect
+ui-options-scp-echo-strong-preset-preferred-tooltip =
+    Determines whether a strong echo effect will be used.
+    In the enhanced effect, sounds will have a longer tail.
+# Sunrise-End
 
 ## Graphics menu
 

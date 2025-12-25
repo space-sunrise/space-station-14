@@ -12,7 +12,7 @@
       patch:
         maxVol: 20
   - type: Item
-    size: Small
+    size: Tiny
   - type: Appearance
   - type: Patch
   - type: Tag
@@ -113,7 +113,7 @@
         maxVol: 20
         reagents:
         - ReagentId: Aphrodisiac
-          Quantity: 20
+          Quantity: 10
 
 
 - type: entity
@@ -177,3 +177,61 @@
     whitelist:
       tags:
       - Patch
+
+- type: entity
+  name: patch pack
+  parent: PatchPack
+  id: PatchPackBrute
+  suffix: Brute
+  components:
+  - type: Label
+    currentLabel: brute patch
+  - type: StorageFill
+    contents:
+    - id: PatchBrute
+      amount: 5
+
+- type: entity
+  name: patch pack
+  parent: PatchPack
+  id: PatchPackHeat
+  suffix: Heat
+  components:
+  - type: Label
+    currentLabel: Heat patch
+  - type: StorageFill
+    contents:
+    - id: PatchBurn
+      amount: 5
+
+- type: entity
+  name: bluespace drug storage
+  id: BluespacePillPatchCanister
+  parent: BaseStorageItem
+  description: A technologically advanced device for storing small-sized medications such as patch and pills, it has two containers of different shapes, which unite the central storage of the device.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Chemistry/bluespace_pillcanister.rsi
+    state: icon
+  - type: Item
+    size: Small
+    storedRotation: -90
+    sprite: _Sunrise/Objects/Specific/Chemistry/bluespace_pillcanister.rsi
+  - type: Tag
+    tags:
+      - PillCanister
+      - PatchPack
+  - type: Storage
+    grid:
+    - 0,0,4,2
+    - 6,0,10,2
+    quickInsert: true
+    areaInsert: true
+    areaInsertRadius: 1
+    storageInsertSound: /Audio/Effects/pill_insert.ogg
+    storageRemoveSound: /Audio/Effects/pill_remove.ogg
+    whitelist:
+      tags:
+      - Pill
+      - Patch
+  - type: Dumpable

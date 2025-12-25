@@ -14,6 +14,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -33,6 +34,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Silicons
@@ -66,6 +68,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -85,6 +88,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -101,6 +105,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -120,6 +125,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -136,6 +142,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -153,6 +160,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -174,6 +182,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -194,6 +203,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -212,6 +222,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -231,6 +242,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -251,6 +263,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -270,6 +283,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Cargo
@@ -301,6 +315,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -331,6 +346,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -357,6 +373,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Engineering
@@ -387,6 +404,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -415,6 +433,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -435,7 +454,7 @@
   - StationSunriseEngineerNeck
    # Sunrise-end
   - StationEngineerShoes
-  #- StationEngineerID
+  - StationEngineerID
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
@@ -444,6 +463,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -472,6 +492,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Science
@@ -494,6 +515,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -507,7 +529,7 @@
   - ScientistOuterClothing
   - ScientistGloves
   - ScientistShoes
-  #- ScientistPDA
+  - ScientistPDA
   - Glasses
   - Survival
   - Trinkets
@@ -516,6 +538,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -532,6 +555,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Security
@@ -555,6 +579,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -572,10 +597,11 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
-  - SunriseSecurityGun
+  - SunriseWardenGun
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -586,7 +612,7 @@
   - SecurityBackpack
   - SecurityOuterClothing
   - SecurityShoes
-  #- SecurityPDA
+  - SecurityPDA
   - SecurityBelt
   - SurvivalSecurity
   - Trinkets
@@ -598,6 +624,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -619,6 +646,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -635,6 +663,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Medical
@@ -665,6 +694,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -681,7 +711,7 @@
   - SunriseMedicalDoctorNeck
   # Sunrise-end
   - MedicalShoes
-  #- MedicalDoctorPDA
+  - MedicalDoctorPDA
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
@@ -691,6 +721,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -720,6 +751,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -741,6 +773,7 @@
   # Sunrise-start
   - SunriseChemistNeck
   - SunriseChemistShoes
+  - SunriseChemistMisc
   # Sunrise-end
 #  - MedicalShoes #Sunrise-edit
   - SurvivalMedical
@@ -751,6 +784,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -782,6 +816,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # Wildcards
@@ -798,6 +833,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -814,6 +850,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -843,6 +880,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 - type: roleLoadout
@@ -860,6 +898,7 @@
   - Bra
   - Pants
   - Socks
+  - Contributors
   # Sunrise-end
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs

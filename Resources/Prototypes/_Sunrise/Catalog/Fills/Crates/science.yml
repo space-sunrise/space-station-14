@@ -1,0 +1,11 @@
+- type: entity
+  id: CrateResearchServer
+  parent: CrateScienceSecure
+  name: research server crate
+  description: Contains a flatpack of a research server and a few research computers. Requires Science access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ResearchAndDevelopmentServerFlatpack
+    - id: ResearchAndDevelopmentComputerFlatpack
+      amount: 3

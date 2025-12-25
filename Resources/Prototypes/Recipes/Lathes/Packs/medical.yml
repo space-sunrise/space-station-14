@@ -12,6 +12,7 @@
   recipes:
   - Beaker
   - LargeBeaker
+  - Ampula # Sunrise-Edit
   - Syringe
   - PillCanister
   - HandLabeler
@@ -100,6 +101,7 @@
   - SyringeBluespace
   - LauncherSyringe
   - MiniSyringe
+  - BluespacePillPatchCanister # Sunrise-Add
 
 - type: latheRecipePack
   id: MedicalBoards
@@ -107,3 +109,8 @@
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  # Sunrise-start
+  - CloningConsoleComputerCircuitboard
+  - CloningPodMachineCircuitboard
+  - MedicalScannerMachineCircuitboard
+  # Sunrise-end

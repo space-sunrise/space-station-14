@@ -249,6 +249,7 @@
   - type: Food
     requiresSpecialDigestion: true
   - type: CognizinFix
+  - type: InjectNeed
   # Sunrise-End
 
 - type: entity

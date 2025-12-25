@@ -1,0 +1,242 @@
+# region Doubloons
+#sunrise-edit-start
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: DoubloonBase
+  description: A dirty coin used for nefarious pirate exchanges.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/doubloon.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Misc/doubloon.rsi
+    size: Tiny
+
+- type: entity
+  parent: DoubloonBase
+  id: Doubloon
+  name: Doubloon
+  suffix: 100 DB
+  components:
+  - type: Stack
+    stackType: Doubloon
+    baseLayer: base
+    layerStates:
+    - iron
+    - iron_2
+    - iron_3
+    - silver
+    - silver_2
+    - silver_3
+    - gold
+    - gold_2
+    - gold_3
+    - diamond
+    count: 100
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [1, 5, 10, 15, 25, 35, 50, 75, 85, 100]
+  - type: Sprite
+    state: diamond
+    layers:
+    - state: diamond
+      map: ["base"]
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: Doubloon
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 250
+  - type: Currency
+    price:
+      Doubloon: 1
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon1
+  name: Doubloon
+  suffix: 1 DB
+  components:
+  - type: Sprite
+    state: iron
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon5
+  name: Doubloon
+  suffix: 5 DB
+  components:
+  - type: Sprite
+    state: iron_2
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon15
+  name: Doubloon
+  suffix: 15 DB
+  components:
+  - type: Sprite
+    state: silver
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon50
+  name: Doubloon
+  suffix: 50 DB
+  components:
+  - type: Sprite
+    state: gold
+  - type: Stack
+    count: 50
+
+# region Uplinks
+- type: entity
+  parent: [BaseItem, StorePresetPirateUplink, BaseMajorContraband]
+  id: PirateUplink
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: oldradio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: oldradio
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Doubloon: 0
+    buySuccessSound:
+      path: /Audio/Machines/sonar-ping.ogg
+  - type: Tag
+    tags:
+    - PirateUplink
+
+- type: entity
+  parent: PirateUplink
+  id: PirateUplinkDebug
+  name: debug blackmarket radio
+  description: If you are not an admin please return this Debug things to the nearest admin.
+  categories: [ Debug ]
+  suffix: 999
+  components:
+  - type: Store
+    balance:
+      Doubloon: 9999
+
+- type: entity
+  parent: [BaseComputerSunrise, StorePresetPirateUplink]
+  id: ComputerPirateUplink
+  name: black market console
+  description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: rusted
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: pirate
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c99342"
+  - type: AccessReader
+    access: [[ "NuclearOperative" ]]
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Doubloon: 0
+  - type: BlockedTool
+  - type: Tag
+    tags:
+    - PirateUplink
+
+# Exchanger
+- type: entity
+  parent: [BaseComputerSunrise, StorePresetPirateExchanger]
+  id: ComputerPirateExchanger # Обменник для Пиратской бухты и прочих логовищ
+  name: black market exchanger
+  description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: rusted
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband_sell
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c96842"
+  - type: AccessReader
+    access: [[ "NuclearOperative" ]]
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Credit: 0
+  - type: Tag
+    tags:
+    - NoCommission
+
+- type: entity
+  parent: [BaseWallmountGlass, StorePresetPirateExchanger]
+  id: ComputerPirateExchangerWallmount # Обменник для Шаттла, берет комиссию до 30%
+  name: black market exchanger
+  description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/wall_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: rusted
+    - map: ["computerLayerScreen"]
+      state: pirate
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c96842"
+  - type: AccessReader
+    access: [[ "NuclearOperative" ]]
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Credit: 0
+  - type: AbductorDispencer # Sunrise-TODO: Избавиться от этого костыля, когда нибудь.
+  - type: Tag
+    tags:
+    - Commission

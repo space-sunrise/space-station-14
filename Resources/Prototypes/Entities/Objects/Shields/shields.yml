@@ -222,7 +222,7 @@
           Heat: 1
   # Sunrise-Start
     - type: Reflect
-      reflectProb: 0.75
+      reflectProb: 0.25
       reflects:
       - Energy
   # Sunrise-End
@@ -247,6 +247,14 @@
           Piercing: 0.5
         flatReductions:
           Piercing: 1
+  # Sunrise-Start
+    - type: Reflect
+      reflectProb: 0.1
+      spread: 180
+      soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+      reflects:
+      - NonEnergy
+  # Sunrise-End
 
 #Craftable shields
 

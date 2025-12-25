@@ -1,0 +1,46 @@
+name: AI Game Design Review
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  ai_review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout base branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      
+      - name: Get diff
+        run: |
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_branch
+          git diff ${{ github.event.pull_request.base.sha }} pr_branch > diff.txt
+
+      - name: Save PR metadata
+        run: |
+          echo "${{ github.event.pull_request.title }}" > pr_title.txt
+          echo "${{ github.event.pull_request.body }}" > pr_body.txt
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install google-genai
+
+      - name: Run AI review
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
+        run: |
+          python3 Tools/_sunrise/ai_review.py
+
+      - name: Post PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: ai_review.txt

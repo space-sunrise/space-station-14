@@ -1,0 +1,17 @@
+ent-ClothingHeadSoftsuitCBURN = CBURN шлем
+    .desc = Тяжёлый огнеупорный шлем, используемый подразделениями спецзачистки.
+ent-ClothingHeadHelmetPirate = абордажный EVA шлем
+    .desc = Простой и стильный шлем EVA. Создан для скромных космических подвигов и абордажей. Имеет пару серьёзных трещин, но не переживай — изолента всё исправит.
+    .suffix = Пират
+ent-ClothingHeadHelmetPirateAlt = абордажный EVA шлем
+    .desc = Простой и стильный шлем EVA с нарисованным черепом — для абордажа со вкусом.
+    .suffix = Пират
+ent-ClothingHeadHelmetPirateOld = EVA шлем
+    .desc = Шлем для скафандра, чтобы брать всех на абордаж.
+    .suffix = Пират
+ent-ClothingHeadHelmetPirateAlt2 = абордажный EVA шлем
+    .desc = Простой и стильный шлем EVA. Создан для скромных космических подвигов и абордажей.
+    .suffix = Пират
+ent-ClothingHeadHelmetHardsuitScaf = шлем скуфандра EVA
+    .desc = Крепкий шлем. Внутри пропах злостью прежнего владельца.
+    .suffix = Пират

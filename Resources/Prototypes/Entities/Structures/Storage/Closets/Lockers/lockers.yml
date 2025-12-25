@@ -688,16 +688,4 @@
     stateDoorOpen: mime_open
     stateDoorClosed: mime_door
 
-# Representative
-- type: entity
-  id: LockerRepresentative
-  name: representative locker
-  parent: LockerBaseSecure
-  components:
-  - type: Appearance
-  - type: AccessReader
-    access: [["Ntrep"]]
-  - type: EntityStorageVisuals
-    stateBaseClosed: hop
-    stateDoorOpen: hop_open
-    stateDoorClosed: representative_door
+

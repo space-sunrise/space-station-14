@@ -4,19 +4,11 @@
                Title="{Loc 'mentor-help-statistics-title'}"
                Resizable="False">
     <BoxContainer Orientation="Vertical" SeparationOverride="10">
-        <Label Name="HeaderLabel" Access="Public"
-               Text="{Loc 'mentor-help-statistics-header'}"
-               StyleClasses="LabelHeading"
-               HorizontalAlignment="Center" />
 
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
-            <controls:VSeparator/>
-            <Label Text="Ментор" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center"/>
-            <controls:VSeparator/>
-            <Label Text="Взятых тикетов" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center"/>
-            <controls:VSeparator/>
-            <Label Text="Сообщений" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center"/>
-            <controls:VSeparator/>
+            <Label Text="{Loc 'mentor-help-statistics-column-mentor'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+            <Label Text="{Loc 'mentor-help-statistics-column-tickets'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+            <Label Text="{Loc 'mentor-help-statistics-column-messages'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
         </BoxContainer>
         <controls:HSeparator/>
 

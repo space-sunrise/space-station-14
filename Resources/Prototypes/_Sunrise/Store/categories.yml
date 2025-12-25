@@ -190,3 +190,70 @@
   id: NTEquipment
   name: store-category-ntequipment
   priority: 8
+
+
+#Pirate uplink categoires
+- type: storeCategory
+  id: UplinkPirateWeaponry
+  name: store-category-weapons
+  priority: 0
+
+- type: storeCategory
+  id: UplinkPirateAmmo
+  name: store-category-ammo
+  priority: 1
+
+- type: storeCategory
+  id: UplinkPirateExplosives
+  name: store-category-explosives
+  priority: 2
+
+- type: storeCategory
+  id: UplinkPirateWearables
+  name: store-category-wearables
+  priority: 3
+
+- type: storeCategory
+  id: UplinkPirateChemicals
+  name: store-category-chemicals
+  priority: 4
+
+- type: storeCategory
+  id: UplinkPirateDeception
+  name: store-category-deception
+  priority: 5
+
+- type: storeCategory
+  id: UplinkPirateDisruption
+  name: store-category-disruption
+  priority: 6
+
+- type: storeCategory
+  id: UplinkPirateImplants
+  name: store-category-implants
+  priority: 7
+
+- type: storeCategory
+  id: UplinkPirateAllies
+  name: store-category-allies
+  priority: 8 # Sunrise-Edit
+
+- type: storeCategory
+  id: UplinkPiratePointless
+  name: store-category-pointless
+  priority: 9 # Sunrise-Edit
+
+- type: storeCategory
+  id: UplinkPirateCybernetics
+  name: store-category-cybernetics
+  priority: 10
+
+- type: storeCategory
+  id: UplinkPirateMechs
+  name: store-category-mechs
+  priority: 11
+
+- type: storeCategory
+  id: UplinkPirateExchanger
+  name: store-category-exchanger
+  priority: 1

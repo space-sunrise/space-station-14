@@ -87,37 +87,6 @@
     steps: 5
     zeroVisible: true
 
-# - type: entity
-#   name:  IK-30 laser carbine
-#   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
-#   id: WeaponGunLaserCarbineSemi
-#   description: "A semi-automatic battery laser carbine."
-#   components:
-#   - type: Sprite
-#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-unshaded-4
-#       map: ["enum.GunVisualLayers.MagUnshaded"]
-#       shader: unshaded
-#   - type: Gun
-#     selectedMode: SemiAuto
-#     fireRate: 2.75
-#     availableModes:
-#       - SemiAuto
-#   - type: Clothing
-#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
-#   - type: Item
-#     size: Huge
-#     shape:
-#     - 0,0,4,1
-#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
-#   - type: MagazineVisuals
-#     magState: mag
-#     steps: 5
-#     zeroVisible: true
-
 - type: entity
   name: energy gun
   parent: BaseWeaponBattery
@@ -139,7 +108,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,1
+    - 0,0,3,1
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -258,6 +227,12 @@
       - !type:AlertLevelCondition
         alertLevels:
         - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -349,42 +324,6 @@
     - Sidearm
   - type: StaticPrice
     price: 750
-
-# - type: entity
-#   name: IK-60 laser carbine
-#   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
-#   id: WeaponGunLaserCarbineAutomatic
-#   description: "A burst automatic battery laser carbine."
-#   components:
-#   - type: Sprite
-#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-unshaded-4
-#       map: ["enum.GunVisualLayers.MagUnshaded"]
-#       shader: unshaded
-#   - type: Gun
-#     minAngle: 1.5
-#     maxAngle: 20
-#     angleIncrease: 1.25
-#     angleDecay: 12
-#     selectedMode: Burst
-#     shotsPerBurst: 5
-#     burstCooldown: 0.15
-#     burstFireRate: 8
-#     availableModes:
-#     - Burst
-#   - type: Item
-#     size: Huge
-#     shape:
-#     - 0,0,4,1
-#   - type: Clothing
-#     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-#   - type: MagazineVisuals
-#     magState: mag
-#     steps: 5
-#     zeroVisible: true
 
 - type: entity
   name: Energy Pistol «Judge»
@@ -496,62 +435,6 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-
-- type: entity
-  parent: [BaseWeaponBattery, BaseGunPulseSound]
-  id: WeaponIONRifle
-  name: ion rifle
-  components:
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,5,2
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-    selectedMode: SemiAuto
-    fireRate: 0.5
-    availableModes:
-    - SemiAuto
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #25sec+60Sec Pause
-    autoRechargePause: true
-    autoRechargePauseTime: 60
-  - type: Wieldable
-  - type: GunRequiresWield
-  - type: HitscanBatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: EmpImmune
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 8
-    pvsIncrease: 0.5
-
 # Sunrise Colonial Marines
 
 - type: entity
@@ -1237,3 +1120,73 @@
   - type: Battery
     maxCharge: 400000
     startingCharge: 400000
+
+# XenoBorgs
+- type: entity
+  name: xenoborg turbo-laser
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgLaserMinigun
+  description: A big gun for big "Refrigerators". Fires so fast it overheats after a short burst, but at least you’ll definitely hit your target.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    minAngle: 6
+    maxAngle: 15
+    angleIncrease: 1
+    angleDecay: 5
+    fireRate: 12
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -2
+    availableModes:
+    - FullAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 33
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargePauseTime: 1
+    autoRechargeRate: 250
+    autoRechargePause: true
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  name: xenoborg X-ray cannon
+  parent: [BaseWeaponBattery, BaseXenoborgContraband]
+  id: XenoborgXrayGun
+  description: Weapon that uses concentrated x-ray energy against its target.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: ProjectileBatteryAmmoProvider # Sunrise-Edit
+    proto: CartridgeXrayBeam # Sunrise-Edit
+    fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30

@@ -20,6 +20,20 @@
   canWithdraw: true
 
 - type: currency
+  id: Doubloon
+  displayName: store-currency-display-doubloon
+  cash:
+    1: Doubloon1
+  canWithdraw: true
+
+- type: currency
+  id: Credit
+  displayName: store-currency-display-credit
+  cash:
+    1: SpaceCash
+  canWithdraw: true
+
+- type: currency
   id: StolenEssence
   displayName: store-currency-display-stolen-essence
   canWithdraw: false

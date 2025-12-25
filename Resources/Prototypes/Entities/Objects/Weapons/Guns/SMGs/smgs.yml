@@ -76,8 +76,8 @@
       collection: RiflesDrop
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.35
+    maxOffset: 2
+    pvsIncrease: 0.2
   # Sunrise end
 
 - type: entity

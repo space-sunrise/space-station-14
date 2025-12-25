@@ -1,0 +1,79 @@
+- type: entity
+  id: RandomHumanoidPlanetPrisonHeadOfPrison
+  name: head of prison ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: headofprison
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonHeadOfPrison
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonInspector
+  name: prison inspector ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisoninspector
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonInspector
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonWorker
+  name: prison worker ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonworker
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonWorker
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonEngineer
+  name: prison engineer ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonengineer
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonEngineer
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonScientist
+  name: prison scientist ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonscientist
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonScientist
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonDoctor
+  name: prison doctor ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisondoctor
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonDoctor
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonChef
+  name: prison chef ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonchef
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonChef
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonPrisoner
+  name: planet prisoner ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: planetprisoner
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisoner

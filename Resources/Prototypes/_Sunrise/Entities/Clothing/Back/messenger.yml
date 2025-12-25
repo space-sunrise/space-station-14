@@ -1,0 +1,338 @@
+# BASE
+- type: entity
+  abstract: true
+  parent: ClothingBackpack
+  id: ClothingMessenger
+  components:
+  ## One 2x6 and 4x5 pocket, two 3x2 pockets
+  - type: Storage
+    grid:
+    - 0,0,1,3
+    - 0,3,1,4
+    - 3,0,6,4
+    - 8,0,10,1
+    - 8,3,10,4
+
+- type: entity
+  parent: ClothingMessenger
+  id: ClothingBackpackMessengerPassenger
+  name: passenger messenger bag
+  description: A trendy looking messenger bag in tasteful colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#777b83"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#777b83"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#777b83"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#777b83"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+## Wild cards
+- type: entity
+  parent: ClothingBackpackMessengerPassenger
+  id: ClothingBackpackMessengerPilot
+  name: pilot messenger bag
+  description: A robust messenger bag for shuttle parts.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#3e2516"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#3e2516"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#3e2516"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#3e2516"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerPassenger
+  id: ClothingBackpackMessengerMercenary
+  name: mercenary messenger bag
+  description: A robust messenger bag for war crimes.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a36"
+    - state: icon-sling
+      color: "#6a6a36"
+    - state: icon-clasp
+      color: "#bbbb7a"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: sling-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: clasp-equipped-BACKPACK
+        color: "#bbbb7a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#6a6a36"
+      - state: clasp-inhand-left
+        color: "#bbbb7a"
+      right:
+      - state: base-inhand-right
+        color: "#6a6a36"
+      - state: clasp-inhand-right
+        color: "#bbbb7a"
+
+- type: entity
+  parent: ClothingBackpackMessengerPassenger
+  id: ClothingBackpackMessengerPrivateSecurity
+  name: private security messenger bag
+  description:  A robust messenger bag for committing war crimes on a payroll.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2286bd"
+    - state: icon-sling
+      color: "#9d1c1c"
+    - state: icon-clasp
+      color: "#935c3f"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#2286bd"
+      - state: sling-equipped-BACKPACK
+        color: "#9d1c1c"
+      - state: clasp-equipped-BACKPACK
+        color: "#935c3f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#2286bd"
+      - state: clasp-inhand-left
+        color: "#935c3f"
+      right:
+      - state: base-inhand-right
+        color: "#2286bd"
+      - state: clasp-inhand-right
+        color: "#935c3f"
+
+## Antagonists / Contraband
+- type: entity
+  parent:
+  - ClothingBackpackMessengerPassenger
+  id: ClothingBackpackMessengerSyndicate
+  name: syndicate messenger bag
+  description: A robust messenger bag for waging war against oppressors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#424242"
+    - state: icon-sling
+      color: "#7f0101"
+    - state: icon-clasp
+      color: "#7f0101"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#424242"
+      - state: sling-equipped-BACKPACK
+        color: "#7f0101"
+      - state: clasp-equipped-BACKPACK
+        color: "#7f0101"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#424242"
+      - state: clasp-inhand-left
+        color: "#7f0101"
+      right:
+      - state: base-inhand-right
+        color: "#424242"
+      - state: clasp-inhand-right
+        color: "#7f0101"
+
+- type: entity
+  parent:
+  - ClothingBackpackMessengerPassenger
+  id: ClothingBackpackMessengerBloodCult
+  name: cultist messenger bag
+  description: A watertight messenger bag for loyal Nar'Sie followers.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
+
+- type: entity
+  id: ClothingBackpackMessengerArcadia
+  name: arcadia messenger bag
+  parent: ClothingBackpackMessengerPassenger
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#bab0b0"
+    - state: icon-base-top
+      color: "#ffffff"
+    - state: icon-decor
+      color: "#c12d30"
+    - state: icon-sling
+      color: "#7d282c"
+    - state: icon-clasp
+      color: "#1f1f1f"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#bab0b0"
+      - state: base-top-equipped-BACKPACK
+        color: "#ffffff"
+      - state: decor-equipped-BACKPACK
+        color: "#c12d30"
+      - state: sling-equipped-BACKPACK
+        color: "#7d282c"
+      - state: clasp-equipped-BACKPACK
+        color: "#1f1f1f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#bab0b0"
+      - state: base-top-inhand-left
+        color: "#ffffff"
+      - state: decor-inhand-left
+        color: "#c12d30"
+      - state: clasp-inhand-left
+        color: "#1f1f1f"
+      right:
+      - state: base-inhand-right
+        color: "#bab0b0"
+      - state: base-top-inhand-right
+        color: "#ffffff"
+      - state: decor-inhand-right
+        color: "#c12d30"
+      - state: clasp-inhand-right
+        color: "#1f1f1f"
+
+- type: entity
+  parent:
+  - ClothingBackpackMessengerPassenger
+  id: ClothingBackpackMessengerPirate
+  name: pirate messenger bag
+  description: A robust messenger bag for war crimes. Yarr.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#3e2516"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#3e2516"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#3e2516"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#3e2516"
+      - state: clasp-inhand-right
+        color: "#96907c"

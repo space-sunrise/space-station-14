@@ -38,9 +38,9 @@
       visible: false
       shader: unshaded
   - type: Item
-    size: Large
+    size: Normal
     shape:
-    - 0,0,3,3
+    - 0,0,2,2
   - type: RadiationBlockingContainer
     resistance: 6
   - type: SealingCabinet

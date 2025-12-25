@@ -360,6 +360,7 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - BluespacePillPatchCanister # Sunrise-Add
   radioChannels:
   - Medical
 
@@ -376,5 +377,21 @@
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: CloningSystems
+  name: research-technology-cloning
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  discipline: Biochemical
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - CloningConsoleComputerCircuitboard
+  - CloningPodMachineCircuitboard
+  - MedicalScannerMachineCircuitboard
   radioChannels:
   - Medical

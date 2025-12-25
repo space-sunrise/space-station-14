@@ -36,6 +36,13 @@
     tags:
     - WhitelistChameleon
     - Backpack
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+      Plastic: 25
+      Cloth: 500
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBackpack
@@ -213,7 +220,7 @@
   description: A spacious backpack with lots of pockets, worn by the Commander of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertleader.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertleader.rsi # Sunrise-Edit
   - type: Storage
     grid:
     - 0,0,10,3
@@ -225,7 +232,7 @@
   description: A spacious backpack with lots of pockets, worn by Security Officers of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertsec.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertsec.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -234,7 +241,7 @@
   description: A spacious backpack with lots of pockets, worn by Medical Officers of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertmed.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertmed.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -243,7 +250,7 @@
   description: A spacious backpack with lots of pockets, worn by Engineers of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/erteng.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/erteng.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -252,7 +259,7 @@
   description: A spacious backpack with lots of pockets, worn by Janitors of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertjanitor.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertjanitor.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -261,7 +268,7 @@
   description: A spacious backpack with lots of pockets, worn by Clowns of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertclown.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertclown.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -270,7 +277,7 @@
   description: A spacious backpack with lots of pockets, worn by Chaplains of an Emergency Response Team.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertchaplain.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertchaplain.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingBackpackERTSecurity
@@ -322,6 +329,15 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+  # Sunrise-start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+      Silver: 300
+      Cloth: 500
+      Plasma: 600
+      Uranium: 40
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBackpackClown
