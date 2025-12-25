@@ -23,5 +23,5 @@ research-technology-secmelee-cyberlimbs = Боевые киберконечно�
 research-technology-secrange-cyberlimbs = Боевые киберконечности дальнего боя
 research-technology-nightvision-eyes = Импланты ночного видения
 research-technology-thermalvision-eyes = Импланты теплового зрения
-research-technology-medical-assembler = Продвинутое производство медикоментов
+research-technology-medical-assembler = Продвинутое производство медикаментов
 research-technology-cloning = Система клонирования
