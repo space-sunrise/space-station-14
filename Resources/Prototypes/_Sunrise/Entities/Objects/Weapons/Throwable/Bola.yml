@@ -1,5 +1,5 @@
 - type: entity
-  name: bolasec
+  name: security bola
   parent: [Bola, BaseSecurityContraband]
   id: BolaSecurity
   description: Linked together with some spare cuffs and metal.
@@ -17,7 +17,7 @@
     - BolaSecurity
 
 - type: entity
-  name: bolasyn
+  name: syndicate bola
   parent: [Bola, BaseSyndicateContraband]
   id: BolaSyndicate
   description: Linked together with some spare cuffs and metal.
