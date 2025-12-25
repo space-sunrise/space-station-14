@@ -45,8 +45,8 @@ public sealed class UnsnareOnTriggerSystem : EntitySystem
             Dirty(target.Value, ensnareable);
             ensnaring.Ensnared = null;
 
-            if (ensnaring.DestroyOnRemove && (_netManager.IsServer || IsClientSide(ensnareEntity)))
-                _entityManager.QueueDeleteEntity(ensnareEntity);
+            if (ensnaring.DestroyOnRemove)
+                PredictedQueueDel(ensnareEntity);
 
             var ev = new EnsnareRemoveEvent(ensnaring.WalkSpeed, ensnaring.SprintSpeed);
             RaiseLocalEvent(target.Value, ev);

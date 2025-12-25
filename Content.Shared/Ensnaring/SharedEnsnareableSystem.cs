@@ -33,7 +33,6 @@ public abstract class SharedEnsnareableSystem : EntitySystem
     [Dependency] private   readonly SharedHandsSystem _hands = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private   readonly IEntityManager _entityManager = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
@@ -89,7 +88,7 @@ public abstract class SharedEnsnareableSystem : EntitySystem
 
         // Sunrise-Start
         if (ensnaring.DestroyOnRemove)
-            _entityManager.QueueDeleteEntity(args.Args.Used);
+            QueueDel(args.Args.Used);
         else
             _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
         // Sunrise-End
