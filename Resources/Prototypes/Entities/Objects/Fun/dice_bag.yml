@@ -13,6 +13,7 @@
       - id: d12Dice
       - id: d20Dice
       - id: PercentileDie
+      - id: hyperDice
   - type: Sprite
     sprite: Objects/Fun/dice.rsi
     state: dicebag

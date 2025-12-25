@@ -702,3 +702,8 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-commaid
 
+- type: entity
+  parent: SeniorOfficerPDA
+  id: SecuritySergeantPDA
+  name: security sergeant PDA
+  description: Still functional. Unlike its owner, it does not shout at you.

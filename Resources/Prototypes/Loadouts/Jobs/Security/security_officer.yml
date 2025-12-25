@@ -166,7 +166,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
   equipment:
-    id: SeniorOfficerPDA
+    id: SecuritySergeantPDA #SeniorOfficerPDA Sunrise-edit
 
 # Misc
 - type: loadout
