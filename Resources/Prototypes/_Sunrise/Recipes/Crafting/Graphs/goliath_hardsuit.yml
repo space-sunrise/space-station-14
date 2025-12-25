@@ -1,0 +1,28 @@
+﻿- type: constructionGraph
+  id: HardsuitGoliathSalvage
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: hardsuitGoliath
+      steps:
+      - tag: HardsuitMining
+        icon:
+          sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
+          state: icon
+        name: construction-graph-tag-mining-hardsuit
+        doAfter: 10
+      - tag: NightVisionDevice
+        icon:
+          sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+          state: icon
+        name: construction-graph-tag-nvd
+        doAfter: 10
+      - material: Durathread
+        amount: 5
+        doAfter: 10
+      - material: GoliathHide
+        amount: 15
+        doAfter: 10
+  - node: hardsuitGoliath
+    entity: ClothingOuterHardsuitSalvageGoliath

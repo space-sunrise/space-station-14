@@ -123,3 +123,51 @@
       - Multitool
       - DoorElectronicsConfigurator
       - ShowWires
+
+- type: entity
+  name: golden crowbar-wrench
+  parent: Wrench
+  id: GoldenCrowbarWrench
+  description: 'A common tool for assembly and disassembly.'
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/golden_wrench.rsi
+    state: wrench
+  - type: Item
+    sprite: _Sunrise/Objects/Tools/golden_wrench.rsi
+    storedSprite:
+      sprite: _Sunrise/Objects/Tools/golden_wrench.rsi
+      state: storage
+  - type: Prying
+    enabled: false
+  - type: ToolTileCompatible
+  - type: Tool
+    qualities:
+      - Anchoring
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 9
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Anchoring
+        sprite:
+          sprite: _Sunrise/Objects/Tools/golden_wrench.rsi
+          state: wrench
+        useSound:
+          path: /Audio/Items/ratchet.ogg
+      - behavior: Prying
+        sprite:
+          sprite: _Sunrise/Objects/Tools/golden_wrench.rsi
+          state: crowbar
+        useSound:
+          path: /Audio/Items/crowbar.ogg
+  - type: Tag
+    tags:
+      - Crowbar
+      - Wrench

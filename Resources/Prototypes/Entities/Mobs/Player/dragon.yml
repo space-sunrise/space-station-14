@@ -86,8 +86,8 @@
       700: Dead #Sunrise-Edit
   - type: SlowOnDamage
     speedModifierThresholds:
-      400: 0.7 # Sunrise-Edit
-      550: 0.5 # Sunrise-Edit
+      360: 0.7 # Sunrise-Edit
+      580: 0.5 # Sunrise-Edit
   # disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
@@ -136,7 +136,7 @@
       components:
       - MobState
     chemical: Ichor
-    healRate: 20.0 #Sunrise-edit
+    healRate: 25.0 #Sunrise-edit
     whitelist:
       components:
       - MobState
@@ -148,6 +148,7 @@
     - CannotSuicide
     - DoorBumpOpener
     - StunImmune
+    - CarpRiftHealTarget # Sunrise-edit
   - type: Puller
     needsHands: false
   - type: RandomMetadata
@@ -164,7 +165,7 @@
   # Sunrise-Start
   - type: ExplosionResistance
     damageCoefficient: 0.3
-  - type: StaminaResistance
+  - type: StaminaResistance # Sunrise-TODO: По дракон должен получать урон по стамине, но в крит не падать а только замедлятся.
     damageCoefficient: 0.3
   - type: CollectiveMind
     minds:
@@ -201,13 +202,6 @@
   - type: GuideHelp
     guides:
     - MinorAntagonists
-  # Sunrise-start
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - CarpRiftHealTarget
-  # Sunrise-end
 
 - type: entity
   categories: [ HideSpawnMenu ]

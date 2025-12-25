@@ -16,7 +16,7 @@
             prefixCreator: 'TG'
         - type: SpawnGridAndDockToStation
           grids:
-          - gridPath: /Maps/_Sunrise/Shuttles/mining.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/miner.yml
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/security.yml
             priorityTag: DockSecurity
@@ -80,6 +80,7 @@
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 1, 1 ]
             CargoTechnician: [ 3, 3 ]
             MailCarrier: [ 2, 2 ]
             #civilian
@@ -103,3 +104,40 @@
             ClownBorg: [ 2, 2 ]
             PeaceBorg: [ 2, 2 ]
             SecurityBorg: [ 4, 4 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm
+          - Delegates
+          - Cyborgs
+          - Testing
+          - Anomaly
+          - Replenishment
+          - IntelWeapons
+          - Reports
+          - Reconnaissance
+          - Saboteurs
+          - Furs
+          - Crew
+          - CleaningUp
+          - HumanitarianAid
+          - PersonnelRecovery
+          - CrewEducation
+         #- VirusFlesh

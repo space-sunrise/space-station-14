@@ -132,3 +132,12 @@
   # icon:
   #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
   #   state: coinshot
+
+- type: construction
+  name: construction-graph-tag-mining-goliath-hardsuit
+  id: ClothingOuterHardsuitSalvageGoliath
+  graph: HardsuitGoliathSalvage
+  startNode: start
+  targetNode: hardsuitGoliath
+  category: construction-category-clothing
+  objectType: Item

@@ -460,3 +460,14 @@
   materials:
     Plastic: 300
     Steel: 300
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponIonCarbine
+  result: WeaponIonCarbine
+  materials:
+    Steel: 1500
+    Glass: 750
+    Plastic: 500
+    Gold: 500
+    Uranium: 400

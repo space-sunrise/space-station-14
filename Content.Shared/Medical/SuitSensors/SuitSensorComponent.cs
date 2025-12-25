@@ -17,7 +17,7 @@ public sealed partial class SuitSensorComponent : Component
     ///     Choose a random sensor mode when item is spawned.
     /// </summary>
     [DataField]
-    public bool RandomMode;
+    public bool RandomMode = true;
 
     /// <summary>
     ///     If true user can't change suit sensor mode

@@ -13,9 +13,9 @@ public abstract class SharedHellSpawnArenaSystem : EntitySystem
     public EntityUid? Arena;
     public MapId? ArenaMap;
 
-    public TimeSpan CooldownLength = TimeSpan.FromSeconds(3);
+    public TimeSpan CooldownLength = TimeSpan.FromSeconds(4);
     public HashSet<EntityUid> MarkedTargets = new();
-    public ResPath ShuttlePath = new("/Maps/_Sunrise/arena.yml");
+    public ResPath ShuttlePath = new("/Maps/_Sunrise/Nonstations/roundel-arena.yml");
     public List<EntityUid> Shuttles = [];
 
     /// <inheritdoc />

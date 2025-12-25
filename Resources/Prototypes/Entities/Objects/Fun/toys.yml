@@ -758,6 +758,14 @@
   - type: Tag
     tags:
     - ToySword
+
+- type: entity
+  parent: ToySword
+  id: ToySwordFake
+  components:
+  - type: Construction
+    graph: EnergySwordDoubleGraph
+    node: toy
   # Sunrise-End
 
 - type: entity

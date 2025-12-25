@@ -110,24 +110,7 @@
           messages: [ "generic-reagent-effect-burning-insides" ]
           probability: 0.33
 
-- type: reagent
-  id: Dylomet
-  name: reagent-name-dylomet
-  group: Toxins
-  desc: reagent-desc-dylomet
-  physicalDesc: reagent-physical-desc-translucent
-  flavor: bitter
-  color: "#CC1A79"
-  metabolisms:
-    Medicine:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 2
-            Asphyxiation: 2
-          groups:
-            Brute: 2
+
 
 - type: reagent
   id: StableMutagen

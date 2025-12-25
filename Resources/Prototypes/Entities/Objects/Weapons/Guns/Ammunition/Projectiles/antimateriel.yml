@@ -2,7 +2,7 @@
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   id: BulletAntiMateriel
-  name: bullet (.60 anti-materiel)
+  name: bullet (15mm anti-materiel)
   components:
   - type: Projectile
     damage:
