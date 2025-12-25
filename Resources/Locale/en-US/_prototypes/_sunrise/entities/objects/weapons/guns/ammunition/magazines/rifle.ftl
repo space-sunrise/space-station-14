@@ -1,7 +1,3 @@
-ent-MagazineV31 = { ent-BaseItem }
-    .desc = { ent-BaseItem.desc }
-ent-MagazineV31Extended = { ent-MagazineV31 }
-    .desc = { ent-MagazineV31.desc }
 ent-MagazineAR18 = magazine (7,62mm NT)
     .desc = { ent-BaseItem.desc }
 ent-MagazineAR18Extended = { ent-MagazineAR18 }

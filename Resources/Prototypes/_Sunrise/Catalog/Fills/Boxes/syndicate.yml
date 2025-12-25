@@ -156,25 +156,19 @@
     - state: box_of_doom
     - state: smg_base
 
-# - type: entity
-#   parent: BaseSyndicateAmmoKit
-#   id: SMGIncendiaryAmmoKit
-#   name: C20r Incendiary ammo kit
-#   components:
-#   - type: StorageFill
-#     contents:
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#     - id: MagazinePistolSubMachineGunIncendiary
-#   - type: Sprite
-#     layers:
-#     - state: box_of_doom_big
-#     - state: smg_red
+- type: entity
+  parent: BaseSyndicateAmmoKit
+  id: SMGIncendiaryAmmoKit
+  name: C20r Incendiary ammo kit
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazinePistolSubMachineGunIncendiary
+      amount: 8
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: smg_red
 
 # - type: entity
 #   parent: BaseSyndicateAmmoKit

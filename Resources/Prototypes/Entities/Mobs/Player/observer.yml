@@ -152,8 +152,8 @@
   components:
   - type: Action
     icon:
-      sprite: Clothing/Ears/Headsets/base.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/base.rsi # Sunrise-Edit
       state: icon
-    iconOn: Interface/Actions/ghostHearingToggled.png
+    iconOn: _Sunrise/Interface/Actions/ghostHearingToggled.png # Sunrise-Edit
   - type: InstantAction
     event: !type:ToggleGhostHearingActionEvent

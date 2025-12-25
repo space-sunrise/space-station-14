@@ -1,4 +1,11 @@
 # == Basic == #
+- type: entity
+  parent: Airlock
+  id: AirlockUnlitVisibleFalse
+  abstract: true
+  components:
+  - type: Airlock
+    openUnlitVisible: false
 
 - type: entity
   id: DoubleGlassAirlock

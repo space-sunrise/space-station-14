@@ -27,6 +27,8 @@
       collection: FelinidPurrs
     Growl:
       collection: FelinidGrowls
+    SevereCough:
+      collection: MaleSevereCough
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -57,6 +59,73 @@
       collection: FelinidPurrs
     Growl:
       collection: FelinidGrowls
+    SevereCough:
+      collection: FemaleSevereCough
+
+- type: emoteSounds
+  id: MaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Mew:
+      collection: FelinidMews
+    Meow:
+      collection: FelinidMeows
+    Hisses:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_hisses.ogg
+    Purr:
+      collection: FelinidPurrs
+    Growl:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_growl.ogg
+    SevereCough:
+      collection: MaleSevereCough
+
+- type: emoteSounds
+  id: FemaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Mew:
+      collection: FelinidMews
+    Meow:
+      collection: FelinidMeows
+    Hisses:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_hisses.ogg
+    Purr:
+      collection: FelinidPurrs
+    Growl:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_growl.ogg
+    SevereCough:
+      collection: FemaleSevereCough
+
 
 - type: emoteSounds
   id: UnisexSwine
@@ -85,6 +154,8 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
+    SevereCough:
+      collection: MaleSevereCough
   params:
     variation: 0.125
 

@@ -24,6 +24,7 @@ ntuplink-gun-bundlep90-name = Набор P-90
 ntuplink-gun-bundleams42-name = Набор AMS-42
 ntuplink-gun-bundleg36-name = Набор G36
 ntuplink-gun-bundlemg342-name = Набор MG-342
+ntuplink-gun-bundlem52-name = Набор М-52
 ntuplink-gun-bundlebr64-name = Набор BR-64
 ntuplink-gun-bundlezauer-name = Набор Zauer
 ntuplink-gun-bundlehristov-name = Набор Христов

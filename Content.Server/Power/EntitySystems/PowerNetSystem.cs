@@ -310,11 +310,12 @@ namespace Content.Server.Power.EntitySystems
             _lastFrameTime = (float)_frameStopwatch.Elapsed.TotalMilliseconds;
             _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
             _frameCount++;
-
+#if DEBUG
             if (_frameCount % 100 == 0)
             {
-                Logger.Debug($"PowerNetSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
+                Log.Debug($"PowerNetSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
             }
+#endif
         }
 
         private void ReconnectNetworks()
