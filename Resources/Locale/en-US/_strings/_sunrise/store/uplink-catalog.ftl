@@ -20,6 +20,8 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Магазин для Deagle
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
+uplink-pistoltec9-magazine-name = пистолетный магазин tec-9 (.20 безгильзовый)
+uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин на 20 патронов,под калибр, используемый агентами синдиката.
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -39,7 +41,8 @@ uplink-hardsuit-syndie-commander-name = скафандр Командира Си
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
 uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
-
+uplink-50blessing-name = Подарочный набор 50 благословений
+uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
 ## Weapon
 
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
@@ -53,6 +56,9 @@ uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-pistoltec9-name = Тек-9 Тактикал
+uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как Египесткий  АК-47.
+
 uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
 ## Cyborgs
@@ -141,6 +147,3 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
 
-## Jobs
-uplink-heavy-cleanade-name = Heavy Duty Cleanade
-uplink-heavy-cleanade-desc = An outwardly normal cleaning grenade filled with an extremely corrosive chemical which is visually identical to regular space cleaner foam. Best used for "cleaning" crowded medical facilities.

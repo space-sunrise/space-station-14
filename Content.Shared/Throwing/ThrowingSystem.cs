@@ -12,6 +12,9 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+// Sunrise-Start
+using Content.Shared._Sunrise.Biocode;
+// Sunrise-End
 
 namespace Content.Shared.Throwing;
 
@@ -138,6 +141,16 @@ public sealed class ThrowingSystem : EntitySystem
     {
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
             return;
+
+        // Sunrise-Start
+        if (user != null && HasComp<BiocodeComponent>(uid))
+        {
+            var ev = new AttemptThrowBiocodeEvent(uid, user);
+            RaiseLocalEvent(uid, ref ev);
+            if (ev.Cancelled)
+                return;
+        }
+        // Sunrise-End
 
         if (unanchor && HasComp<AnchorableComponent>(uid))
             _transform.Unanchor(uid);

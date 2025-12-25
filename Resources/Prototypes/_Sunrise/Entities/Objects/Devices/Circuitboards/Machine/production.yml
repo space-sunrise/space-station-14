@@ -1,4 +1,35 @@
 ﻿- type: entity
+  id: SewingPrinterMetusMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: prison sewing printer machine board
+  description: Scarred with solder marks, corroded contacts, and burn traces, dim LEDs flicker occasionally.
+  suffix: Machine Board, Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/module.rsi
+    state: prison_general
+  - type: MachineBoard
+    prototype: SewingPrinterMetus
+    stackRequirements:
+      Manipulator: 10
+
+- type: entity
+  id: AutolathePrisonMetusMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: prison autolathe machine board
+  description: Worn, with broken mounts and fine cracks, still warm in places from occasional power pulses.
+  suffix: Machine Board, Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/module.rsi
+    state: prison_general
+  - type: MachineBoard
+    prototype: AutolathePrisonMetus
+    stackRequirements:
+      Manipulator: 5
+      Glass: 2
+
+- type: entity
   id: CopyMachineMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: document printer machine board

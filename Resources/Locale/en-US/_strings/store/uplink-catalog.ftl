@@ -511,3 +511,4 @@ uplink-stimkit-nt-desc = A medical kit containing 6 ephedrine auto-injectors.
 
 uplink-acolyte-armor-name = Acolyte Armor
 uplink-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.
+

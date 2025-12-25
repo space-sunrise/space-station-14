@@ -36,6 +36,30 @@
     },
     {
         "name": "blueshieldoperative"
+    },
+    {
+        "name": "headofprison"
+    },
+    {
+        "name": "prisoninspector"
+    },
+    {
+        "name": "prisonworker"
+    },
+    {
+        "name": "prisonengineer"
+    },
+    {
+        "name": "prisonscientist"
+    },
+    {
+        "name": "prisondoctor"
+    },
+    {
+        "name": "prisonchef"
+    },
+    {
+        "name": "planetprisoner"
     }
   ]
 }

@@ -90,6 +90,8 @@ ignore_list:
   - 'STG 44'
   - 'ACP-14'
   - 'Glock-22'
+  - 'Desert Eagle'
+  - 'Metus'
   - 'GL-70'
   - 'M-41'
   - 'DEAD-BEEF'

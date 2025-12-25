@@ -10,6 +10,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
+using Content.Shared._Sunrise.Carrying;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 
@@ -40,6 +41,7 @@ public abstract class SharedNestingSystem : EntitySystem
         SubscribeLocalEvent<NestingMobComponent, NestingPickupDoAfterEvent>(OnPickupDoAfter);
         SubscribeLocalEvent<NestingContainerComponent, GetVerbsEvent<AlternativeVerb>>(AddInsertAltVerb);
         SubscribeLocalEvent<NestingContainerComponent, NestingInsertDoAfter>(OnInsertingDoAfter);
+        SubscribeLocalEvent<CarriableComponent, CanCarryEvent>(OnCanCarry);
     }
 
     private void OnInteractAttempt(Entity<NestingMobComponent> ent, ref InteractionAttemptEvent args)
@@ -185,6 +187,12 @@ public abstract class SharedNestingSystem : EntitySystem
 
         _hands.TryPickup(args.Args.User, args.Args.Target.Value, emptyHand, checkActionBlocker: false, handsComp: hands);
         args.Handled = true;
+    }
+
+    private void OnCanCarry(EntityUid uid, CarriableComponent component, CanCarryEvent args)
+    {
+        if (!HasComp<NestingMobComponent>(args.Carrier))
+            args.Cancel();
     }
 }
 

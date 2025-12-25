@@ -56,6 +56,9 @@
   id: JobSecurityPilot
 
 - type: playTimeTracker
+  id: JobPlanetPrisoner
+
+- type: playTimeTracker
   id: JobHeadOfPrison
 
 - type: playTimeTracker

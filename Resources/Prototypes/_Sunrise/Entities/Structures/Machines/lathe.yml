@@ -1,4 +1,23 @@
 - type: entity
+  parent: UniformPrinter
+  id: SewingPrinterMetus
+  name: prison sewing printer
+  description: Designed for producing textile items, maintaining order and identification within the prison.
+  suffix: Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/sewing_printer_metus.rsi
+    snapCardinals: false
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Lathe
+    staticPacks:
+    - ClothingMetusPlanetPrison
+    - BedsheetsMetus
+    - CarpetsMetus
+
+- type: entity
   id: ExosuitFabricatorHyperConvection
   name: exosuit fabricator hyper convection
   description: A highly-experimental Exosuit Fabricator that harnesses the power of extreme heat to slowly create objects more cost-effectively.
@@ -54,10 +73,11 @@
   - type: OreSiloClient
 
 - type: entity
-  id: AutolathePrison
+  id: AutolathePrisonMetus
   parent: Autolathe
   name: prison autolathe
   description: Produces basic metal and glass items of prison standard.
+  suffix: Metus
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/prison_autolathe.rsi
