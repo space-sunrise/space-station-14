@@ -116,10 +116,12 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
         _frameCount++;
 
+#if DEBUG
         if (_frameCount % 100 == 0)
         {
-            Logger.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
+            Log.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
         }
+#endif
 
         _exposedTimer += frameTime;
 

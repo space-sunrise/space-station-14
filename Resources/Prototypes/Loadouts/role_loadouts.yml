@@ -572,7 +572,7 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
-  - SunriseSecurityGun
+  - SunriseWardenGun
   - Bra
   - Pants
   - Socks
@@ -741,6 +741,7 @@
   # Sunrise-start
   - SunriseChemistNeck
   - SunriseChemistShoes
+  - SunriseChemistMisc
   # Sunrise-end
 #  - MedicalShoes #Sunrise-edit
   - SurvivalMedical

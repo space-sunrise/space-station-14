@@ -82,7 +82,7 @@
   name: medical hypospray
   parent: BaseItem
   description: A sterile injector for rapid administration of drugs to patients. It contains an internal Toxin filter.
-  id: HyposprayMedical
+  id: HyposprayMedicalNoFilter
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Medical/hypospray.rsi
@@ -96,15 +96,40 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    filterReagentGroups:
-     - Medicine
     onlyAffectsMobs: true
-    doAfterTime: 0.75
+    doAfterTime: 0.5
     transferAmount: 5
   - type: UseDelay
-    delay: 6
+    delay: 3
   - type: StaticPrice
     price: 300
+
+- type: entity
+  name: medical hypospray
+  parent: HyposprayMedicalNoFilter
+  description: A sterile injector for rapid administration of drugs to patients. It contains an internal Toxin filter.
+  id: HyposprayMedical
+  components:
+  - type: Hypospray
+    filterReagentGroups:
+     - Medicine
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: HyposprayMedicalNoFilterBox
+  name: hacked medical hypospray
+  description: A box containing a sterile injector for rapid administration of drugs to patients. The internal toxin filter was removed during hacking. The packaging disintegrates upon opening, leaving no residue.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/boxicons.rsi
+    state: medhypo
+  - type: SpawnItemsOnUse
+    items:
+    - id: HyposprayMedicalNoFilter
+    sound:
+      path: /Audio/Effects/unwrap.ogg
 
 # Medipens
 - type: entity

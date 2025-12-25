@@ -148,6 +148,6 @@
         shader: unshaded
     equipSound: /Audio/Mecha/mechmove03.ogg #starlight
     unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 3 #starlight
-    unequipDelay: 3 #starlight
+    equipDelay: 2 #starlight
+    unequipDelay: 2 #starlight
 # Sunrise-end

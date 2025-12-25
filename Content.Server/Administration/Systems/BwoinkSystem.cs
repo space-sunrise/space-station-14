@@ -48,6 +48,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
         [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
+        [Dependency] private readonly DiscordWebhook _discord = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -59,7 +60,7 @@ namespace Content.Server.Administration.Systems
         private WebhookData? _onCallData;
 
         private ISawmill _sawmill = default!;
-        private readonly HttpClient _httpClient = new();
+        private HttpClient _httpClient = default!;
 
         private string _footerIconUrl = string.Empty;
         private string _avatarUrl = string.Empty;
@@ -99,6 +100,10 @@ namespace Content.Server.Administration.Systems
         public override void Initialize()
         {
             base.Initialize();
+
+            // Sunrise added start
+            _httpClient = _discord.GetClient();
+            // Sunrise added end
 
             Subs.CVar(_config, CCVars.DiscordOnCallWebhook, OnCallChanged, true);
 
@@ -1026,7 +1031,7 @@ namespace Content.Server.Administration.Systems
         private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime, out TimeSpan remainingCooldown)
         {
             remainingCooldown = TimeSpan.Zero;
-            
+
             var lastMessage = _recentMessages
                 .Where(msg => msg.Channel == channelId)
                 .OrderByDescending(msg => msg.Timestamp)

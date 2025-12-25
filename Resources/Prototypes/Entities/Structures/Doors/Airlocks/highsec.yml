@@ -13,9 +13,9 @@
   - type: StationAiWhitelist
   - type: InteractionOutline
   - type: Sprite
-    snapCardinals: true
     sprite: Structures/Doors/Airlocks/highsec/highsec.rsi
     layers:
+    #- snapCardinals: true # Sunrise-edit
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
     - state: closed_unlit
@@ -132,3 +132,10 @@
     tags:
       - HighSecDoor
       # This tag is used to nagivate the Airlock construction graph. It's needed because this construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+  # Sunrise-start
+  - type: PlacementReplacement
+    key: walls
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  # Sunrise-end
