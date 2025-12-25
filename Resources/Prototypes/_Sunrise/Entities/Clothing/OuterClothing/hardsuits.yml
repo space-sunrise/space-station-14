@@ -576,6 +576,9 @@
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
+    targetSlot: outerClothing
+  - type: ItemToggle
+    canActivateInhand: false
   - type: ComponentToggler
     parent: true
     components:
