@@ -11,6 +11,11 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Robust.Shared.Configuration;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Utility;
+using Content.Client.Stylesheets;
+using Robust.Shared.Localization;
 
 namespace Content.Client._Sunrise.MentorHelp
 {
@@ -21,7 +26,13 @@ namespace Content.Client._Sunrise.MentorHelp
     public sealed partial class MentorHelpControl : Control
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly ILocalizationManager _loc = default!;
+
+        private const double CloseConfirmTimeoutSeconds = 2;
+        private const double TypingIndicatorTimeoutSeconds = 10;
+        private bool _isDisposed;
 
         private MentorHelpSystem? _mentorHelpSystem;
         private NetUserId _ownerUserId;
@@ -29,6 +40,7 @@ namespace Content.Client._Sunrise.MentorHelp
         private List<MentorHelpTicketData> _tickets = new();
         private MentorHelpTicketData? _selectedTicket;
         private Dictionary<int, List<MentorHelpMessageData>> _ticketMessages = new();
+        private readonly HashSet<int> _newMessageFromAuthorTickets = new();
 
         private readonly Dictionary<int, TicketEntryControl> _openTicketControls = new();
         private readonly Dictionary<int, TicketEntryControl> _closedTicketControls = new();
@@ -41,11 +53,24 @@ namespace Content.Client._Sunrise.MentorHelp
 
         private MentorHelpNewTicketDialog? _newTicketDialog;
         private int? _pendingOpenTicketId;
+        private List<string> PeopleTyping { get; set; } = new();
+        private readonly Dictionary<string, TimeSpan> _typingTimeouts = new();
+        public event Action<string>? InputTextChanged;
+
+        private bool _closeConfirming;
+        private int? _closeConfirmTicketId;
+        private TimeSpan? _closeConfirmResetOn;
 
         public MentorHelpControl()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
+
+            _cfg.OnValueChanged(SunriseCCVars.MentorHelpSoundEnabled, OnMentorHelpSoundEnabledChanged, true);
+            _cfg.OnValueChanged(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, OnMentorHelpAutoOpenChanged, true);
+
+            PlaySound.OnToggled += OnPlaySoundToggled;
+            AutoOpenTickets.OnToggled += OnAutoOpenTicketsToggled;
 
             // Wire up button events
             NewTicketButton.OnPressed += _ => OpenNewTicketDialog();
@@ -59,10 +84,12 @@ namespace Content.Client._Sunrise.MentorHelp
 
             // Handle enter key in reply input
             ReplyInput.OnTextEntered += _ => SendReply();
+            ReplyInput.OnTextChanged += Input_OnTextChanged;
+            UpdateTypingIndicator();
 
             // Setup tab container like in AdminMenuWindow
-            TicketsTabContainer.SetTabTitle(0, Loc.GetString("mentor-help-tab-open"));
-            TicketsTabContainer.SetTabTitle(1, Loc.GetString("mentor-help-tab-closed"));
+            TicketsTabContainer.SetTabTitle(0, _loc.GetString("mentor-help-tab-open"));
+            TicketsTabContainer.SetTabTitle(1, _loc.GetString("mentor-help-tab-closed"));
 
             // Handle tab changes to load closed tickets when needed
             TicketsTabContainer.OnTabChanged += OnTabChanged;
@@ -75,6 +102,37 @@ namespace Content.Client._Sunrise.MentorHelp
 
             // Set initial state
             SwitchState(ViewState.TicketsList);
+
+            MessagesContainer.OnChildAdded += _ =>
+            {
+                MessagesScroll.VScrollTarget = float.MaxValue;
+            };
+        }
+
+        private void OnPlaySoundToggled(BaseButton.ButtonToggledEventArgs args)
+        {
+            if (_isDisposed)
+                return;
+
+            _cfg.SetCVar(SunriseCCVars.MentorHelpSoundEnabled, args.Pressed);
+        }
+
+        private void OnAutoOpenTicketsToggled(BaseButton.ButtonToggledEventArgs args)
+        {
+            if (_isDisposed)
+                return;
+
+            _cfg.SetCVar(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, args.Pressed);
+        }
+
+        private void OnMentorHelpSoundEnabledChanged(bool enabled)
+        {
+            PlaySound.Pressed = enabled;
+        }
+
+        private void OnMentorHelpAutoOpenChanged(bool enabled)
+        {
+            AutoOpenTickets.Pressed = enabled;
         }
 
         /// <summary>
@@ -123,6 +181,15 @@ namespace Content.Client._Sunrise.MentorHelp
         // State switching like in LobbyGui
         private void SwitchState(ViewState state)
         {
+            if (state == ViewState.TicketsList && _selectedTicket != null)
+            {
+                _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, false);
+                PeopleTyping.Clear();
+                _typingTimeouts.Clear();
+                UpdateTypingIndicator();
+                ResetCloseConfirm();
+            }
+
             DefaultState.Visible = false;
             TicketViewState.Visible = false;
             BackToListButton.Visible = false;
@@ -201,11 +268,13 @@ namespace Content.Client._Sunrise.MentorHelp
                 if (controls.TryGetValue(ticket.Id, out var existingControl))
                 {
                     existingControl.UpdateData(ticket);
+                    existingControl.SetNewMessageFromAuthor(_newMessageFromAuthorTickets.Contains(ticket.Id));
                 }
                 else
                 {
                     var control = new TicketEntryControl();
                     control.UpdateData(ticket);
+                    control.SetNewMessageFromAuthor(_newMessageFromAuthorTickets.Contains(ticket.Id));
                     control.OnTicketSelected += OnTicketSelected;
                     controls[ticket.Id] = control;
                     container.AddChild(control);
@@ -215,7 +284,19 @@ namespace Content.Client._Sunrise.MentorHelp
 
         private void OnTicketSelected(MentorHelpTicketData ticket)
         {
+            if (_selectedTicket != null)
+                _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, false);
+
             _selectedTicket = ticket;
+            PeopleTyping.Clear();
+            _typingTimeouts.Clear();
+            UpdateTypingIndicator();
+            ReplyInput.Text = string.Empty;
+            ResetCloseConfirm();
+
+            _newMessageFromAuthorTickets.Remove(ticket.Id);
+            ticket.HasUnreadMessages = false;
+            UpdateTicket(ticket);
             SwitchState(ViewState.TicketView);
 
             // Clear previous messages first
@@ -229,9 +310,45 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             _ticketMessages[ticketId] = messages;
 
+            var ticketIndex = _tickets.FindIndex(t => t.Id == ticketId);
+            if (ticketIndex >= 0 && messages.Count > 0)
+            {
+                var ticket = _tickets[ticketIndex];
+                var lastMessage = messages[^1];
+
+                if (ticket.UpdatedAt < lastMessage.SentAt)
+                    ticket.UpdatedAt = lastMessage.SentAt;
+
+                var isViewingTicket = _selectedTicket?.Id == ticketId && TicketViewState.Visible;
+
+                var isRelevant = !_hasMentorPermissions
+                    ? ticket.PlayerId == _ownerUserId
+                    : ticket.AssignedToUserId == null || ticket.AssignedToUserId == _ownerUserId;
+
+                if (isRelevant)
+                {
+                    var unread = !isViewingTicket && lastMessage.SenderUserId != _ownerUserId;
+                    ticket.HasUnreadMessages = unread;
+
+                    if (_hasMentorPermissions && unread && lastMessage.SenderUserId == ticket.PlayerId)
+                        _newMessageFromAuthorTickets.Add(ticketId);
+                    else
+                        _newMessageFromAuthorTickets.Remove(ticketId);
+                }
+                else
+                {
+                    ticket.HasUnreadMessages = false;
+                    _newMessageFromAuthorTickets.Remove(ticketId);
+                }
+
+                _tickets[ticketIndex] = ticket;
+                RefreshTicketsList();
+            }
+
             if (_selectedTicket?.Id == ticketId && TicketViewState.Visible)
             {
                 DisplayTicketMessages(messages);
+                ScrollToBottomDeferred();
             }
         }
 
@@ -282,10 +399,10 @@ namespace Content.Client._Sunrise.MentorHelp
             TicketSubjectLabel.Text = _selectedTicket.Subject;
 
             // Компактная строка: статус | назначен | создано
-            TicketStatus.Text = Loc.GetString("mentor-help-status-label", ("status", GetStatusText(_selectedTicket.Status)));
-            TicketAssigned.Text = Loc.GetString("mentor-help-assigned-label",
-                ("assigned", _selectedTicket.AssignedToName ?? Loc.GetString("mentor-help-unassigned")));
-            TicketCreated.Text = Loc.GetString("mentor-help-created-label",
+            TicketStatus.Text = _loc.GetString("mentor-help-status-label", ("status", GetStatusText(_selectedTicket.Status)));
+            TicketAssigned.Text = _loc.GetString("mentor-help-assigned-label",
+                ("assigned", _selectedTicket.AssignedToName ?? _loc.GetString("mentor-help-unassigned")));
+            TicketCreated.Text = _loc.GetString("mentor-help-created-label",
                 ("created", _selectedTicket.CreatedAt.ToString("dd.MM.yyyy HH:mm")));
         }
 
@@ -300,13 +417,17 @@ namespace Content.Client._Sunrise.MentorHelp
             var canReply = _selectedTicket.Status != MentorHelpTicketStatus.Closed;
             var isAssignedToMe = _selectedTicket.AssignedToUserId == _ownerUserId;
             var isOpen = _selectedTicket.Status != MentorHelpTicketStatus.Closed;
+            var isUnassigned = _selectedTicket.AssignedToUserId == null;
 
             // Hide reply panel for closed tickets
             ReplyPanel.Visible = canReply;
 
+            if (!isOpen)
+                ResetCloseConfirm();
+
             if (_hasMentorPermissions)
             {
-                ClaimButton.Visible = isOpen && !isAssignedToMe;
+                ClaimButton.Visible = isOpen && isUnassigned;
                 UnassignButton.Visible = isOpen && isAssignedToMe;
                 CloseTicketButton.Visible = isOpen;
             }
@@ -318,66 +439,82 @@ namespace Content.Client._Sunrise.MentorHelp
             }
         }
 
+        private void ResetCloseConfirm()
+        {
+            _closeConfirming = false;
+            _closeConfirmTicketId = null;
+            _closeConfirmResetOn = null;
+            CloseTicketButton.Text = _loc.GetString("mentor-help-close-ticket");
+            CloseTicketButton.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
+        }
+
         private string GetStatusText(MentorHelpTicketStatus status)
         {
             return status switch
             {
-                MentorHelpTicketStatus.Open => Loc.GetString("mentor-help-status-open"),
-                MentorHelpTicketStatus.Assigned => Loc.GetString("mentor-help-status-assigned"),
-                MentorHelpTicketStatus.AwaitingResponse => Loc.GetString("mentor-help-status-awaiting"),
-                MentorHelpTicketStatus.Closed => Loc.GetString("mentor-help-status-closed"),
-                _ => Loc.GetString("mentor-help-status-unknown")
+                MentorHelpTicketStatus.Open => _loc.GetString("mentor-help-status-open"),
+                MentorHelpTicketStatus.Assigned => _loc.GetString("mentor-help-status-assigned"),
+                MentorHelpTicketStatus.AwaitingResponse => _loc.GetString("mentor-help-status-awaiting"),
+                MentorHelpTicketStatus.Closed => _loc.GetString("mentor-help-status-closed"),
+                _ => _loc.GetString("mentor-help-status-unknown")
             };
         }
 
         private void DisplayTicketMessages(List<MentorHelpMessageData> messages)
         {
             MessagesContainer.RemoveAllChildren();
-
             DateTime? lastDate = null;
 
             foreach (var message in messages.OrderBy(m => m.SentAt))
             {
-                // Ensure we show a date header when the day changes
                 var sentAt = message.SentAt;
                 var sentDate = sentAt.Date;
+
                 if (lastDate == null || lastDate.Value != sentDate)
                 {
                     lastDate = sentDate;
+
                     var dateLabel = new RichTextLabel
                     {
-                        Text = $"[center=\"{sentAt:dd.MM.yyyy}\"]",
-                        HorizontalExpand = true
+                        HorizontalExpand = true,
+                        Margin = new Thickness(0, 10, 0, 5)
                     };
+
+                    dateLabel.Text = $"[center][bold]{sentAt:dd.MM.yyyy}[/bold][/center]";
 
                     MessagesContainer.AddChild(dateLabel);
                 }
 
-                var messageBox = new PanelContainer
-                {
-                    StyleClasses = { "PanelColorMedium" },
-                    HorizontalExpand = true,
-                    Margin = new Thickness(0, 2)
-                };
-
-                var vbox = new BoxContainer
+                var messageBox = new BoxContainer
                 {
                     Orientation = BoxContainer.LayoutOrientation.Vertical,
-                    HorizontalExpand = true
+                    Margin = new Thickness(0, 4)
                 };
 
-                // Format: [HH:mm] Author: message
-                var content = new RichTextLabel
+                var nameLine = new RichTextLabel();
+                nameLine.Text = $"[bold]{sentAt:HH:mm}[/bold] {message.FormattedSender}:";
+
+                var textLine = new RichTextLabel
                 {
-                    Text = $"[bold]{sentAt:HH:mm}[/bold] {message.FormattedSender}: {message.Message}",
                     HorizontalExpand = true
                 };
+                textLine.Text = message.Message;
 
-                vbox.AddChild(content);
-                messageBox.AddChild(vbox);
+                messageBox.AddChild(nameLine);
+                messageBox.AddChild(textLine);
+
                 MessagesContainer.AddChild(messageBox);
             }
         }
+
+        private void ScrollToBottomDeferred()
+        {
+            _ui.DeferAction(() =>
+            {
+                MessagesScroll.VScrollTarget = float.MaxValue;
+            });
+        }
+
 
         private void OpenNewTicketDialog()
         {
@@ -428,7 +565,122 @@ namespace Content.Client._Sunrise.MentorHelp
             if (_selectedTicket == null)
                 return;
 
+            if (!_closeConfirming || _closeConfirmTicketId != _selectedTicket.Id)
+            {
+                _closeConfirming = true;
+                _closeConfirmTicketId = _selectedTicket.Id;
+                _closeConfirmResetOn = _gameTiming.RealTime + TimeSpan.FromSeconds(CloseConfirmTimeoutSeconds);
+                CloseTicketButton.Text = _loc.GetString("mentor-help-close-confirm");
+                CloseTicketButton.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
+
+                return;
+            }
+
+            ResetCloseConfirm();
             _mentorHelpSystem?.CloseTicket(_selectedTicket.Id);
+        }
+
+        private void UpdateTypingIndicator()
+        {
+            var msg = new FormattedMessage();
+            msg.PushColor(Color.LightGray);
+
+            var text = PeopleTyping.Count == 0
+                ? string.Empty
+                : _loc.GetString("bwoink-system-typing-indicator",
+                    ("players", string.Join(", ", PeopleTyping)),
+                    ("count", PeopleTyping.Count));
+
+            msg.AddText(text);
+            msg.Pop();
+
+            TypingIndicator.SetMessage(msg);
+        }
+
+        public void UpdatePlayerTyping(int ticketId, string name, bool typing)
+        {
+            if (_selectedTicket?.Id != ticketId || !TicketViewState.Visible)
+                return;
+
+            if (typing)
+            {
+                var now = _gameTiming.RealTime;
+                _typingTimeouts[name] = now + TimeSpan.FromSeconds(TypingIndicatorTimeoutSeconds);
+
+                if (!PeopleTyping.Contains(name))
+                    PeopleTyping.Add(name);
+            }
+            else
+            {
+                PeopleTyping.Remove(name);
+                _typingTimeouts.Remove(name);
+            }
+
+            UpdateTypingIndicator();
+        }
+
+        private void Input_OnTextChanged(LineEdit.LineEditEventArgs args)
+        {
+            InputTextChanged?.Invoke(args.Text);
+
+            if (_selectedTicket == null)
+                return;
+
+            _mentorHelpSystem?.SendInputTextUpdated(_selectedTicket.Id, args.Text.Length > 0);
+        }
+
+        protected override void FrameUpdate(FrameEventArgs args)
+        {
+            base.FrameUpdate(args);
+
+            if (Disposed)
+                return;
+
+            var now = _gameTiming.RealTime;
+
+            if (_closeConfirmResetOn < now)
+            {
+                if (_closeConfirming && _closeConfirmTicketId == _selectedTicket?.Id)
+                    ResetCloseConfirm();
+
+                _closeConfirmResetOn = null;
+            }
+
+            if (PeopleTyping.Count == 0)
+                return;
+
+            var updatedTypingIndicator = false;
+
+            for (var g = PeopleTyping.Count - 1; g >= 0; g--)
+            {
+                var name = PeopleTyping[g];
+
+                if (!_typingTimeouts.TryGetValue(name, out var timeoutAt) || timeoutAt > now)
+                    continue;
+
+                PeopleTyping.RemoveAt(g);
+                _typingTimeouts.Remove(name);
+                updatedTypingIndicator = true;
+            }
+
+            if (updatedTypingIndicator)
+                UpdateTypingIndicator();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (!disposing)
+                return;
+
+            _isDisposed = true;
+
+            PlaySound.OnToggled -= OnPlaySoundToggled;
+            AutoOpenTickets.OnToggled -= OnAutoOpenTicketsToggled;
+
+            _cfg.UnsubValueChanged(SunriseCCVars.MentorHelpSoundEnabled, OnMentorHelpSoundEnabledChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.MentorHelpAutoOpenOnNewMessage, OnMentorHelpAutoOpenChanged);
         }
     }
 }

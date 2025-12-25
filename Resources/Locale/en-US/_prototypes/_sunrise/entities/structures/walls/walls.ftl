@@ -4,3 +4,5 @@ ent-WallAbductorDiagonal = shuttle wall
 ent-WallAbductor = shuttle wall
     .suffix = Reinforced, Exterior
     .desc = { ent-BaseWall.desc }
+ent-WallCultIndestructible = { ent-WallCult }
+    .desc = { ent-WallCult.desc }

@@ -310,4 +310,31 @@
     solution: ammo
   - type: InjectableSolution
     solution: ammo
+
+- type: entity
+  id: PelletShotgunHoly
+  name: pellet (.50 holy)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletPractice
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 2
+        Holy: 18
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 10
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 10
+    solution: ammo
+  - type: PointLight
+    enabled: true
+    color: "#ffefc7"
+    radius: 2.0
+    energy: 4.0
 # Sunrise-end

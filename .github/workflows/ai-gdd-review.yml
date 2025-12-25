@@ -1,7 +1,7 @@
 name: AI Game Design Review
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -9,15 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get complete history
+      - name: Checkout base branch
         uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.pull_request.base.sha }}
           fetch-depth: 0
       
       - name: Get diff
         run: |
-          git fetch origin ${{ github.base_ref }} --depth=1 || true
-          git diff origin/${{ github.base_ref }}...HEAD > diff.txt
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_branch
+          git diff ${{ github.event.pull_request.base.sha }} pr_branch > diff.txt
 
       - name: Save PR metadata
         run: |

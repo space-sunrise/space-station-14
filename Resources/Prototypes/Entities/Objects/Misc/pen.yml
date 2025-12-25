@@ -5,10 +5,10 @@
   description: A dark ink pen.
   components:
   - type: Sprite
-    sprite: Objects/Misc/pens.rsi
+    sprite: _Sunrise/Objects/Misc/pens.rsi # Sunrise-Edit
     state: pen
   - type: Item
-    sprite: Objects/Misc/pens.rsi
+    sprite: _Sunrise/Objects/Misc/pens.rsi # Sunrise-Edit
     heldPrefix: pen
     size: Tiny
   - type: Tag
@@ -130,6 +130,10 @@
   components:
   - type: Sprite
     state: pen_cap
+  # Sunrise-Start
+  - type: Item
+    heldPrefix: pen_cap
+  # Sunrise-End
 
 - type: entity
   name: hop's fountain pen
@@ -139,6 +143,10 @@
   components:
   - type: Sprite
     state: pen_hop
+  # Sunrise-Start
+  - type: Item
+    heldPrefix: pen_hop
+  # Sunrise-End
 
 - type: entity
   name: wizard's magical pen
@@ -148,6 +156,10 @@
   components:
   - type: Sprite
     state: pen_wizard
+  # Sunrise-Start
+  - type: Item
+    heldPrefix: pen_wizard
+  # Sunrise-End
   - type: Tag
     tags:
     - WriteIgnoreStamps
