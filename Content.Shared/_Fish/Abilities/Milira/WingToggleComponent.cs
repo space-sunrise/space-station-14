@@ -8,7 +8,7 @@ namespace Content.Shared._Fish.Abilities.Milira;
 /// <summary>
 /// Компонент, позволяющий раскрывать и складывать крылья путём замены маркингов.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class WingToggleComponent : Component
 {
     /// <summary>

@@ -11,6 +11,9 @@ namespace Content.Client._Fish.Mood;
 /// </summary>
 public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent>
 {
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -24,9 +27,9 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
         // Need LayerMapTryGet because Init fails if there's no existing sprite / appearancecomp
         // which means in some setups (most frequently no AppearanceComp) the layer never exists.
         if (TryComp<SpriteComponent>(uid, out var sprite) &&
-            SpriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var layer, false))
+            _spriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var layer, false))
         {
-            SpriteSystem.RemoveLayer((uid, sprite), layer);
+            _spriteSystem.RemoveLayer((uid, sprite), layer);
         }
     }
 
@@ -35,11 +38,11 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
         if (!TryComp<SpriteComponent>(uid, out var sprite) || !TryComp(uid, out AppearanceComponent? appearance))
             return;
 
-        SpriteSystem.LayerMapReserve((uid, sprite), MoodVisualLayers.Mood);
-        SpriteSystem.LayerSetVisible((uid, sprite), MoodVisualLayers.Mood, false);
+        _spriteSystem.LayerMapReserve((uid, sprite), MoodVisualLayers.Mood);
+        _spriteSystem.LayerSetVisible((uid, sprite), MoodVisualLayers.Mood, false);
         sprite.LayerSetShader(MoodVisualLayers.Mood, "unshaded");
         if (component.Sprite != null)
-            SpriteSystem.LayerSetRsi((uid, sprite), MoodVisualLayers.Mood, new ResPath(component.Sprite));
+            _spriteSystem.LayerSetRsi((uid, sprite), MoodVisualLayers.Mood, new ResPath(component.Sprite));
 
         UpdateAppearance(uid, component, sprite, appearance);
     }
@@ -57,31 +60,31 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
 
     private void UpdateAppearance(EntityUid uid, MoodVisualsComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        if (!SpriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var index, false))
+        if (!_spriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var index, false))
             return;
 
         if (ShouldHideMoodVisuals(uid))
         {
-            SpriteSystem.LayerSetVisible((uid, sprite), index, false);
+            _spriteSystem.LayerSetVisible((uid, sprite), index, false);
             return;
         }
 
-        if (!AppearanceSystem.TryGetData<MoodThreshold>(uid, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
+        if (!_appearanceSystem.TryGetData<MoodThreshold>(uid, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
         {
-            SpriteSystem.LayerSetVisible((uid, sprite), index, false);
+            _spriteSystem.LayerSetVisible((uid, sprite), index, false);
             return;
         }
 
         // Check if we have a sprite state for this mood threshold
         if (!component.MoodStates.TryGetValue(moodThreshold, out var state))
         {
-            SpriteSystem.LayerSetVisible((uid, sprite), index, false);
+            _spriteSystem.LayerSetVisible((uid, sprite), index, false);
             return;
         }
 
         // Show the sprite layer and set the state
-        SpriteSystem.LayerSetVisible((uid, sprite), index, true);
-        SpriteSystem.LayerSetRsiState((uid, sprite), index, state);
+        _spriteSystem.LayerSetVisible((uid, sprite), index, true);
+        _spriteSystem.LayerSetRsiState((uid, sprite), index, state);
     }
 }
 

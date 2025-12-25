@@ -23,6 +23,7 @@ public sealed class WingToggleSystem : EntitySystem
     [Dependency] private readonly HumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -61,7 +62,7 @@ public sealed class WingToggleSystem : EntitySystem
         {
             if (_inventory.TryGetSlotEntity(uid, "outerClothing", out _))
             {
-                _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), uid, uid, PopupType.Medium);
+                _popup.PopupEntity(_loc.GetString("wing-toggle-open-blocked"), uid, uid, PopupType.Medium);
                 return false;
             }
         }

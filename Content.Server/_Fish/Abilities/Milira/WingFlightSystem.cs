@@ -36,6 +36,7 @@ public sealed class WingFlightSystem : EntitySystem
     [Dependency] private readonly SharedWingFlightSystem _shared = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -97,13 +98,13 @@ public sealed class WingFlightSystem : EntitySystem
         var staminaPercent = GetStaminaPercent(stamina);
         if (staminaPercent < component.ActivationThreshold)
         {
-            _popup.PopupEntity(Loc.GetString("wing-flight-popup-not-enough-stamina"), uid, uid, PopupType.Medium);
+            _popup.PopupEntity(_loc.GetString("wing-flight-popup-not-enough-stamina"), uid, uid, PopupType.Medium);
             return;
         }
 
         if (!_stamina.TryTakeStamina(uid, component.ActivationStaminaDamage, stamina, visual: true))
         {
-            _popup.PopupEntity(Loc.GetString("wing-flight-popup-activation-blocked"), uid, uid, PopupType.Small);
+            _popup.PopupEntity(_loc.GetString("wing-flight-popup-activation-blocked"), uid, uid, PopupType.Small);
             return;
         }
 
@@ -228,7 +229,7 @@ public sealed class WingFlightSystem : EntitySystem
             {
                 if (staminaPercent <= component.AutoDisableThreshold)
                 {
-                    _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), uid, uid, PopupType.Medium);
+                    _popup.PopupEntity(_loc.GetString("wing-flight-popup-auto-disable"), uid, uid, PopupType.Medium);
                     DisableFlight(uid, component);
                     SetScaleImmediate(uid, component, staminaPercent);
                     continue;
@@ -246,7 +247,7 @@ public sealed class WingFlightSystem : EntitySystem
                     if (_stamina.TryTakeStamina(uid, component.SustainStaminaPerSecond, stamina, visual: false))
                         continue;
 
-                    _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), uid, uid, PopupType.Medium);
+                    _popup.PopupEntity(_loc.GetString("wing-flight-popup-auto-disable"), uid, uid, PopupType.Medium);
                     DisableFlight(uid, component);
                     SetScaleImmediate(uid, component, staminaPercent);
                     break;
