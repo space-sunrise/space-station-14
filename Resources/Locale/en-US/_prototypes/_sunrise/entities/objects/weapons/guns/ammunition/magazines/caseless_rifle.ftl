@@ -1,4 +1,4 @@
 ent-BaseMagazinePistolCaselessRifleExtended = { ent-BaseMagazinePistolCaselessRifle }
     .desc = { ent-BaseMagazinePistolCaselessRifle.desc }
-ent-MagazineCannonBallMini = cannonball suitcase
-    .desc = A suitcase for neatly storing cannonballs for the pirate’s belt-fed cannon.
+ent-BaseMagazinePistolCaselessRifleTec9 = { ent-BaseMagazinePistolCaselessRifleTec9 }
+    .desc = { ent-BaseMagazinePistolCaselessRifleTec9.desc }

@@ -11,6 +11,7 @@ public sealed class HolosignSystem : EntitySystem
 {
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    private const float TileSearchRadius = 0.1f; // sunrise - add
 
     public override void Initialize()
     {
@@ -40,13 +41,31 @@ public sealed class HolosignSystem : EntitySystem
 
     private void OnBeforeInteract(EntityUid uid, HolosignProjectorComponent component, BeforeRangedInteractEvent args)
     {
-
+        // Sunrise - Start
         if (args.Handled
             || !args.CanReach // prevent placing out of range
             || HasComp<StorageComponent>(args.Target) // if it's a storage component like a bag, we ignore usage so it can be stored
-            || !_powerCell.TryUseCharge(uid, component.ChargeUse, user: args.User) // if no battery or no charge, doesn't work
             )
             return;
+
+        var tileCoords = args.ClickLocation.SnapToGrid(EntityManager);
+        var mapCoords = _transform.ToMapCoordinates(tileCoords);
+        var lookup = EntityManager.System<EntityLookupSystem>();
+
+        int count = 0;
+        foreach (var ent in lookup.GetEntitiesInRange(mapCoords, TileSearchRadius))
+        {
+            if (MetaData(ent).EntityPrototype?.ID == component.SignProto)
+            {
+                count++;
+                if (count >= component.CountPerTileLimit)
+                    return;
+            }
+        }
+
+        if (!_powerCell.TryUseCharge(uid, component.ChargeUse, user: args.User))
+            return;
+        // Sunrise - End
 
         // places the holographic sign at the click location, snapped to grid.
         // overlapping of the same holo on one tile remains allowed to allow holofan refreshes

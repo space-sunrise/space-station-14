@@ -68,12 +68,12 @@
 
 - type: entity
   parent: ClothingCloakBase # SUNRISE EDIT
-  id: ClothingNeckCMOCloak
-  name: chief medical officer's cloak
+  id: ClothingNeckMedCloak
+  name: medic's honor cloak
   description: Only the best of the best get it. Human who wears it has saved hundreds of lives.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Neck/Cloaks/cmocloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/medcloak.rsi
     state: icon
 
 - type: entity

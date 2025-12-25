@@ -108,6 +108,32 @@
         prob: 0.25
 
 - type: entity
+  id: CratePirateMechYarrkeBundle
+  suffix: Filled
+  parent: CrateLivestock
+  name: Blackmarket salvage mech bundle
+  description: Contains a set of Cybersan light armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechBigYarrkeBattery
+      - id: ToolboxSyndicateMechRepair
+
+- type: entity
+  id: CratePirateMechDollHouseBundle
+  suffix: Filled
+  parent: CrateLivestock
+  name: Blackmarket USSP mech bundle
+  description: Contains a set of Cybersan medium armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechDollHouseFilled
+      - id: ToolboxSyndicateMechRepair
+      - id: MechPaintDollHouseWarboss
+        prob: 0.25
+
+- type: entity
   id: CrateCybersunRipleyBundle
   suffix: Filled
   parent: CrateSyndicate

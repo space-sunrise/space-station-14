@@ -454,7 +454,7 @@
   - StationSunriseEngineerNeck
    # Sunrise-end
   - StationEngineerShoes
-  #- StationEngineerID
+  - StationEngineerID
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
@@ -529,7 +529,7 @@
   - ScientistOuterClothing
   - ScientistGloves
   - ScientistShoes
-  #- ScientistPDA
+  - ScientistPDA
   - Glasses
   - Survival
   - Trinkets
@@ -612,7 +612,7 @@
   - SecurityBackpack
   - SecurityOuterClothing
   - SecurityShoes
-  #- SecurityPDA
+  - SecurityPDA
   - SecurityBelt
   - SurvivalSecurity
   - Trinkets
@@ -711,7 +711,7 @@
   - SunriseMedicalDoctorNeck
   # Sunrise-end
   - MedicalShoes
-  #- MedicalDoctorPDA
+  - MedicalDoctorPDA
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets

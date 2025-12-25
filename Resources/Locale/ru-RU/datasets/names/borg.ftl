@@ -1,5 +1,5 @@
 names-borg-dataset-1 = Боб
-names-borg-dataset-2 = Джл
+names-borg-dataset-2 = Джо
 names-borg-dataset-3 = Бип
 names-borg-dataset-4 = Бип II
 names-borg-dataset-5 = Бумбокс
@@ -14,7 +14,7 @@ names-borg-dataset-13 = Глава роботов
 names-borg-dataset-14 = ЕВА 1
 names-borg-dataset-15 = Мистер Робист
 names-borg-dataset-16 = Жестянка
-names-borg-dataset-17 = К2-ПO
+names-borg-dataset-17 = Эр2-ПиO
 names-borg-dataset-18 = С-3-Д2
 names-borg-dataset-19 = Робби
 names-borg-dataset-20 = Робобот

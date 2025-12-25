@@ -40,7 +40,9 @@
   - MagazinePistolHighCapacityIncendiary # Sunrise-Add
   - MagazineRifleHeavyIncendiary # Sunrise-Add
   - MagazineBoxHeavyRifleIncendiary # Sunrise-Add
-  - MagazineLightRifleBoxIncendiary # Sunrise-Add
+  - MagazineRifleBoxIncendiary # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -78,6 +80,8 @@
   - MagazinePistolSubMachineGunTopMountedRubber
   - MagazinePistolSubMachineGunRubber
   # Sunrise-End
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: UraniumMunitions
@@ -104,8 +108,10 @@
   - MagazinePistolHighCapacityUranium # Sunrise-Add
   - MagazineRifleHeavyUranium # Sunrise-Add
   - MagazineBoxHeavyRifleUranium # Sunrise-Add
-  - MagazineLightRifleBoxUranium # Sunrise-Add
+  - MagazineRifleBoxUranium # Sunrise-Add
   - MagazineLightRifleBeltBoxUranium # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: AdvancedRiotControl
@@ -125,6 +131,8 @@
   - VestSecUpgradePlate # Sunrise-Add
   - VestSecUpgradeStab # Sunrise-Add
   - VestSecUpgradeHeat # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: ExplosiveTechnology
@@ -216,11 +224,19 @@
   - MagazineGrenadeEmpty
   - ShellFlashArtillery # Sunrise-Edit
   - ShellBlastArtillery # Sunrise-Edit
+  - ShellFragArtillery # Sunrise-Add
+  - RifleHeavyMagazineFMJ # Sunrise-Add
+  - RifleHeavyMagazineHP # Sunrise-Add
+  - RifleHeavyMagazineSP # Sunrise-Add
+  - RifleHeavyMagazineArtillery # Sunrise-Add
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
+  - ShuttleGunSquallCircuitboard # Sunrise-Add
   technologyPrerequisites:
   - SalvageWeapons
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: DualWieldingTechnology
@@ -233,6 +249,8 @@
   cost: 10000
   recipeUnlocks:
   - ClothingBackpackHarmpack
+  radioChannels: # Sunrise-Add
+  - Security
 
 # Tier 3
 
@@ -250,6 +268,8 @@
   - PortableRecharger
   - WeaponMechCombatImmolationGun # Sunrise-Add
   - WeaponMechCombatIon # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: ThermalWeaponry
@@ -276,5 +296,22 @@
   - ShellEMPArtillery # Sunrise-Edit
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
+  - ShuttleGunLongbowCircuitboard # Sunrise-start
+  - ShuttleGunVympelCircuitboard
+  - ShuttleGunTeslaOrionCircuitboard
+  - ShuttleGunBeamstormMachineGunCircuitboard
+  - MagazineBauer127
+  - MagazineBauer127Penetrator
+  - MagazineBauer127Blast
+  - MagazineBauer127Frag
+  - MagazineBauer127Emp
+  - MagazineBoxBelt127Empty
+  - MagazineBoxBelt127
+  - MagazineBoxBelt127Artillery
+  - MagazineBoxBelt127Blast
+  - MagazineBoxBelt127Frag
+  - MagazineBoxBelt127Emp # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
+  radioChannels: # Sunrise-Add
+  - Security

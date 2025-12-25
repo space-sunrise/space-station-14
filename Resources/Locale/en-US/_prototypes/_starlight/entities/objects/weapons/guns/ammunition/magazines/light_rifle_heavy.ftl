@@ -15,3 +15,5 @@ ent-RifleHeavyMagazineUranium = Magazine Box (.308 uranium)
     .desc = { ent-RifleHeavyBase.desc }
 ent-RifleHeavyMagazineAP = Magazine Box (.308 AP)
     .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineArtillery = Magazine Box (.308 space)
+    .desc = { ent-RifleHeavyBase.desc }

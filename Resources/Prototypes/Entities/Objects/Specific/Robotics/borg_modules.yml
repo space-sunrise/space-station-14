@@ -628,7 +628,7 @@
     hands:
     - item: JawsOfLife
     - item: PowerDrill
-    - item: WelderBorg # Sunrise-Edit
+    - item: WelderBorgAdvanced # Sunrise-Edit
     - item: Multitool
     - item: RemoteSignallerAdvanced
   - type: BorgModuleIcon

@@ -1,0 +1,28 @@
+# Head
+
+- type: loadout
+  id: PrisonWorker-ClothingHeadCapPrisonWorkerMetus
+  equipment:
+    head: ClothingHeadCapPrisonWorkerMetus
+
+- type: loadout
+  id: PrisonWorker-ClothingHeadHatBeretPrisonWorkerMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonWorkerMetus
+
+- type: loadout
+  id: PrisonWorker-ClothingHeadHatCapPrisonWorkerMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonWorkerMetus

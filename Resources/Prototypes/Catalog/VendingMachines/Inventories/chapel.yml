@@ -31,7 +31,8 @@
     ClothingHeadWhiteVeil: 1
     ClothingHeadBlackVeil: 1
     RedFlowers: 3
-    BlueFlowers: 3 
+    BlueFlowers: 3
+    ClothingUniformSadSkirt: 2
     # Sunrise-End
   contrabandInventory:
     FoodBakedBunHotX: 2

@@ -63,12 +63,8 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.6
-    sprintModifier: 0.6
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -115,6 +111,7 @@
         whitelist:
           tags:
           - MagazineRPD
+          - LightRifleHeavy
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifleSP
@@ -140,10 +137,6 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -215,12 +208,8 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.6
-    sprintModifier: 0.6
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -295,6 +284,32 @@
   - type: GunRequiresWield
   - type: StaticPrice
     price: 10000
+
+- type: entity
+  id: MagazineCannonBallMini
+  name: cannonball magazine
+  description: A compact drum of mini cannonballs for the pirate cannon.
+  components:
+    - type: Tag
+      tags:
+        - MagazineCannonBallMini
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - CannonBallMini
+      proto: CannonBallMini
+      capacity: 6
+      mayTransfer: true
+    - type: Item
+      size: Large
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: mag-5
+    - type: MagazineVisuals
+      magState: mag
+      steps: 6
+      zeroVisible: true
+    - type: Appearance
 
 - type: entity
   name: pirate cannon

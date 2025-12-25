@@ -44,16 +44,6 @@
     Celliminol: 5
 
 - type: reaction
-  id: Dylomet
-  reactants:
-    Dylovene:
-      amount: 1
-    Desoxyephedrine:
-      amount: 1
-  products:
-    Dylomet: 1
-
-- type: reaction
   id: StableMutagen
   reactants:
     Phalanximine:

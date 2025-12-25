@@ -40,6 +40,7 @@
     staticPacks:
     - EmptyXenoborgs
     - XenoborgUpgradeModules
+    - XenoborgSunrise # Sunrise-add
   - type: MaterialStorage
     whitelist:
       tags:

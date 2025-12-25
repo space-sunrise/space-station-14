@@ -103,12 +103,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: lawyer
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisoninspector
 
 - type: entity
   id: SpawnPointPrisonInspectorLateJoin
   parent: SpawnPointJobBase
-  name: prison inspector [Late Join]
+  name: prison inspector
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonInspector
@@ -117,8 +119,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: lawyer
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisoninspector
 
 - type: entity
   id: SpawnPointHeadOfPrison
@@ -131,12 +133,14 @@
   - type: Sprite
     layers:
       - state: green
-      - state: hos
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: headofprison
 
 - type: entity
   id: SpawnPointHeadOfPrisonLateJoin
   parent: SpawnPointJobBase
-  name: head of prison [Late Join]
+  name: head of prison
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: HeadOfPrison
@@ -145,8 +149,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: hos
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: headofprison
 
 - type: entity
   id: SpawnPointPrisonChef
@@ -159,12 +163,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: chef
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonchef
 
 - type: entity
   id: SpawnPointPrisonChefLateJoin
   parent: SpawnPointJobBase
-  name: prison's chef [Late Join]
+  name: prison's chef
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonChef
@@ -173,8 +179,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: chef
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonchef
 
 - type: entity
   id: SpawnPointPrisonDoctor
@@ -187,12 +193,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: doctor
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisondoctor
 
 - type: entity
   id: SpawnPointPrisonDoctorLateJoin
   parent: SpawnPointJobBase
-  name: prison's doctor [Late Join]
+  name: prison's doctor
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonDoctor
@@ -201,8 +209,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: doctor
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisondoctor
 
 - type: entity
   id: SpawnPointPrisonEngineer
@@ -215,12 +223,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: engineer
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonengineer
 
 - type: entity
   id: SpawnPointPrisonEngineerLateJoin
   parent: SpawnPointJobBase
-  name: prison's engineer [Late Join]
+  name: prison's engineer
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonEngineer
@@ -229,8 +239,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: engineer
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonengineer
 
 - type: entity
   id: SpawnPointPrisonScientist
@@ -243,12 +253,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: scientist
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonscientist
 
 - type: entity
   id: SpawnPointPrisonScientistLateJoin
   parent: SpawnPointJobBase
-  name: prison's scientist [Late Join]
+  name: prison's scientist
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonScientist
@@ -257,8 +269,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: scientist
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonscientist
 
 - type: entity
   id: SpawnPointPrisonGuard
@@ -276,7 +288,8 @@
 - type: entity
   id: SpawnPointPrisonGuardLateJoin
   parent: SpawnPointJobBase
-  name: prison's guard [Late Join]
+  name: prison's guard
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonGuard
@@ -304,7 +317,8 @@
 - type: entity
   id: SpawnPointPrisonPilotLateJoin
   parent: SpawnPointJobBase
-  name: prison's pilot [Late Join]
+  name: prison's pilot
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonPilot
@@ -326,12 +340,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: prisoner
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: planetprisoner
 
 - type: entity
   id: SpawnPointPlanetPrisonerLateJoin
   parent: SpawnPointJobBase
-  name: prisoner [Late Join]
+  name: prisoner
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PlanetPrisoner
@@ -340,8 +356,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: prisoner
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: planetprisoner
 
 - type: entity
   id: SpawnPointPrisonWorker
@@ -354,12 +370,14 @@
   - type: Sprite
     layers:
     - state: green
-    - state: serviceworker
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonworker
 
 - type: entity
   id: SpawnPointPrisonWorkerLateJoin
   parent: SpawnPointJobBase
-  name: prison's worker [Late Join]
+  name: prison's worker
+  suffix: Job Spawn, Late Join
   components:
   - type: SpawnPoint
     job_id: PrisonWorker
@@ -368,8 +386,8 @@
     layers:
       - sprite: Markers/cross.rsi
         state: pink
-      - sprite: Markers/jobs.rsi
-        state: serviceworker
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonworker
 
 - type: entity
   id: SpawnPointSeniorEngineer

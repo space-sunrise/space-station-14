@@ -171,7 +171,7 @@
     types:
       Blunt: 3
       Heat: 32
-  pierceChance: 0.69
+  pierceChance: 0.03
   derivation: 0.05
   ricochetChance: 0.48
   bullet:
@@ -215,6 +215,7 @@
 
 - type: hitscan
   id: BulletPistolTraceSP
+  name: ".35 SP"
   parent: BulletTrace
   damage:
     types:
@@ -248,6 +249,7 @@
 
 - type: hitscan
   id: BulletPistolTraceHP
+  name: ".35 HP"
   parent: BulletTrace
   damage:
     types:
@@ -261,6 +263,7 @@
 
 - type: hitscan
   id: BulletPistolTraceFMJ
+  name: ".35 FMJ"
   parent: BulletTrace
   damage:
     types:
@@ -297,7 +300,7 @@
     types:
       Blunt: 2
       Heat: 14
-  pierceChance: 0.69
+  pierceChance: 0.03
   derivation: 0.2
   ricochetChance: 0.48
   bullet:
@@ -542,7 +545,7 @@
     types:
       Blunt: 3
       Heat: 16
-  pierceChance: 0.69
+  pierceChance: 0.03
   derivation: 0.05
   ricochetChance: 0.48
   bullet:
@@ -570,6 +573,7 @@
 
 - type: hitscan
   id: BulletRifleTraceSP
+  name: "5.56 SP"
   parent: BulletTrace
   damage:
     types:
@@ -586,6 +590,7 @@
 
 - type: hitscan
   id: BulletRifleTraceHP
+  name: "5.56 HP"
   parent: BulletTrace
   damage:
     types:
@@ -598,6 +603,7 @@
 
 - type: hitscan
   id: BulletRifleTraceFMJ
+  name: "5.56 FMJ"
   parent: BulletTrace
   damage:
     types:
@@ -647,7 +653,7 @@
     types:
       Blunt: 2
       Heat: 15
-  pierceChance: 0.69
+  pierceChance: 0.03
   ricochetChance: 0.48
   bullet:
     sprite:
@@ -1079,7 +1085,7 @@
       sprite: Effects/emp.rsi
       state: emp_pulse
   emp:
-    range: 2
+    range: 0.75
     energyConsumption: 30000
     disableDuration: 10
   damage:
@@ -1168,7 +1174,7 @@
   pierceChance: 0.40
   ricochetChance: 0.30
   staminaDamage: 5
-  pierceLevel: Wood
+  pierceLevel: Metal
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -1181,7 +1187,7 @@
     types:
       Piercing: 28 #+ 30%
       Structural: 5
-  armorPenetration: -0.80
+  armorPenetration: -0.7
   staminaDamage: 10
   pierceChance: 0.05
   ricochetChance: 0.15
@@ -1197,7 +1203,7 @@
   pierceChance: 0.8
   ricochetChance: 0.80
   staminaDamage: 3
-  pierceLevel: Metal
+  pierceLevel: HardenedMetal
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -1214,7 +1220,7 @@
   pierceChance: 0.9
   ricochetChance: 0.50
   staminaDamage: 1
-  pierceLevel: HardenedMetal
+  pierceLevel: Rock
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -1280,6 +1286,7 @@
 
 - type: hitscan
   id: BulletPistolTraceRubber
+  name: ".35 Rubber"
   parent: BulletTrace
   damage:
     types:

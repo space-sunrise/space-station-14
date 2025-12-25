@@ -352,85 +352,48 @@
     clothingPrototype: ClothingHeadHelmetHardsuitUegCap
 
 #Pirate YARRRR!!
-
-#Pirate EVA Suit (Deep Space EVA Suit)
-- type: entity
-  parent:  ClothingOuterHardsuitBase
-  id:  ClothingOuterHardsuitPirateEVASun
-  name: deep space EVA suit
-  suffix: Pirate, Sunrise
-  description: A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.55
-  - type: FireProtection
-    reduction: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.75
-        Piercing: 0.8
-        Heat: 0.4
-        Radiation: 0.55
-        Caustic: 0.55
-  - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
-  - type: StaticPrice
-    price: 0
-
 #Pirate Hardsuit
 - type: entity
   parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitPirateSun
-  name: pirate hardsuit
-  suffix: Pirate, Sunrise
+  id: ClothingOuterHardsuitPirate
+  name: ancient hardsuit
+  suffix: Pirate
   description: An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pirate.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pirate.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.4
   - type: FireProtection
     reduction: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.6
-        Piercing: 0.65
+        Blunt: 0.6
+        Slash: 0.65
+        Piercing: 0.7
         Heat: 0.4
-        Radiation: 0.5
-        Caustic: 0.5
+        Radiation: 0.4
+        Caustic: 0.4
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPirateSun
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
   - type: StaticPrice
     price: 0
 
-
-#Pirate Captain Hardsuit
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitPirateCapSun
   name: pirate captain's hardsuit
-  suffix: Pirate, Sunrise
+  suffix: Pirate
   description: An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
   components:
   - type: Sprite
@@ -461,6 +424,79 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCapSun
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitPrivateer
+  name: freelance hardsuit
+  suffix: Pirate
+  description: A hardsuit worn by those who roam the stars without a flag, ready to dive into any raid or misadventure for a handful of doubloons. Scratched and dented but still holds air without duct tape.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: FireProtection
+    reduction: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.6
+        Piercing: 0.65
+        Heat: 0.5
+        Radiation: 0.4
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitPrivateerArmored
+  name: armored freelance hardsuit
+  suffix: Pirate
+  description: An upgraded version of the freelance hardsuit, pieced together from honestly acquired ballistic plates and fueled by a few bottles of rum. Heavy as a hangover but perfect for friendly visits with fireworks.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer_armored.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer_armored.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: FireProtection
+    reduction: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.6
+        Piercing: 0.4
+        Heat: 0.5
+        Radiation: 0.4
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
+  - type: StaticPrice
+    price: 0
+## Pirate end
 
 - type: entity
   parent: ClothingOuterHardsuitEVA

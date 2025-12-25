@@ -126,7 +126,7 @@
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 250 #Combined with damage resistances, IF raised, can tank 6 lector magdumps before finally breaking. You will STAM CRIT before then. If just held, or a laser is used it'll function like a normal shield more or less.
+            damage: 200 #Combined with damage resistances, IF raised, can tank 5 lector magdumps before finally breaking. You will STAM CRIT before then. If just held, or a laser is used it'll function like a normal shield more or less.
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]

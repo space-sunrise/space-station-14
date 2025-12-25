@@ -120,6 +120,23 @@ public sealed partial class NpcFactionSystem
         tracker.Entities.Remove(ent);
     }
 
+    // Sunrise-Start
+    /// <summary>
+    /// Makes an entity no longer be ignored, if it was.
+    /// Allows the NPC to attack the entity again.
+    /// </summary>
+    public void UnignoreEntity(Entity<FactionExceptionComponent?> ent, EntityUid target)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        if (!ent.Comp.Ignored.Remove(target) || !_trackerQuery.TryGetComponent(target, out var tracker))
+            return;
+
+        tracker.Entities.Remove(ent);
+    }
+    // Sunrise-End
+
     /// <summary>
     /// Makes a list of entities no longer be considered hostile, if it was.
     /// Doesn't apply to regular faction hostilities.

@@ -182,7 +182,7 @@
     generated:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 0.5 # Sunrise-Edit
+        Quantity: 1 # Sunrise-Edit
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
 

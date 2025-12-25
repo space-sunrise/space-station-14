@@ -70,6 +70,15 @@
 
 - type: Tag
   id: BlueShield
+
+- type: Tag
+  id: PirateUplink
+
+- type: Tag
+  id: Commission
+
+- type: Tag
+  id: NoCommission
 # Catridges:
 
 - type: Tag
@@ -154,6 +163,9 @@
 - type: Tag
   id: GorillaUpgradeKit
 
+- type: Tag
+  id: WeaponPistolTec9
+
 # Magazines:
 # - type: Tag
 #   id: MagazineCaselessRifle # Sunrise-todo Uncomite with upstream https://forum.spacestation14.com/t/remove-unused-tags-tied-to-unused-entities/25626
@@ -168,13 +180,16 @@
   id: MagazineCannonBallMini
 
 - type: Tag
-  id: MagazinePistolDPSubMachineGun
+  id: MagazineBoxL6Cap
 
 - type: Tag
   id: MagazinePistolSubMachineGunCap
 
 - type: Tag
-  id: MagazineBoxL6Cap
+  id: MagazinePistolDPSubMachineGun
+
+- type: Tag
+  id: MagazinePistolCaselessRifleTec9
 
 - type: Tag
   id: MagazineM28
@@ -284,6 +299,9 @@
 
 - type: Tag
   id: Mauler
+
+- type: Tag
+  id: DollHouse
 
 - type: Tag
   id: Durand
@@ -561,6 +579,9 @@
 
 - type: Tag
   id: Table
+
+- type: Tag
+  id: BolaSecurity
 
 # Clothing
 - type: Tag

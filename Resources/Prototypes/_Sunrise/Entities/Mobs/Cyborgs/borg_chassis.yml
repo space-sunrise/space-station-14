@@ -422,12 +422,12 @@
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
     layers:
-    - state: synd_sec
-    - state: synd_sec_e
+    - state: synd_sec_derelict
+    - state: synd_sec_derelict_e
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
       visible: false
-    - state: synd_sec_l
+    - state: synd_sec_derelict_l
       shader: unshaded
       map: ["light"]
       visible: false

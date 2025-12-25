@@ -201,6 +201,8 @@ construction-graph-tag-dried-cannabis-vita = сушеная каннабис в�
 construction-graph-tag-nanopaste = нанопаста
 construction-graph-tag-blue-crystal = синий кристалл
 construction-graph-tag-crystallite = кристаллит
+construction-graph-tag-doubloon = дублон
+construction-graph-tag-credit = кредит
 construction-graph-tag-suntick = сантики
 construction-graph-tag-runic-metal = рунический металл
 # Мебель

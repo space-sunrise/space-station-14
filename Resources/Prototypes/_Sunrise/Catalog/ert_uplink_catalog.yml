@@ -376,7 +376,7 @@
 
 - type: listing
   id: ERTUplinkWeaponIONRifle
-  productEntity: WeaponIONRifle
+  productEntity: WeaponIonRifle
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ion-r }
   cost:
     Bluecrystal: 10
