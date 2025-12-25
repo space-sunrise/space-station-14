@@ -339,8 +339,13 @@ public sealed class SharedCarryingSystem : EntitySystem
         if (!Resolve(carried, ref carriedComp, false))
             return false;
 
-        if (carriedComp.RequiresNestingMob && !HasComp<NestingMobComponent>(carrier))
-            return false;
+        if (carriedComp.RequiresNestingMob)
+        {
+            var ev = new CanCarryEvent(carrier);
+            RaiseLocalEvent(carried, ev);
+            if (ev.Cancelled)
+                return false;
+        }
 
         if (!HasComp<MapGridComponent>(Transform(carrier).ParentUid))
             return false;
