@@ -371,3 +371,7 @@ uplink-fake-mindshield-name = Имитатор защиты разума
 uplink-fake-mindshield-desc = Переключаемый имплант, воспроизводящий сигнатуры настоящего щита. Обманывает сканеры командования, создавая ложное присутствие защиты. (Имплантер NT не включён в поставку.)
 uplink-handcuffs-name = Наручники
 uplink-handcuffs-desc = Используется для удержания жертв.
+uplink-bola-syn-name = Бола Синдиката
+uplink-bola-syn-desc = Идеальная версия болы для Синдиката.
+uplink-interdyne-defibrillator-name = Дефибриллятор Interdyne
+uplink-interdyne-defibrillator-desc = Превосходный дефибриллятор, предназначенный для помощи и самообороны. Для настоящих медиков Синдиката.

@@ -168,7 +168,6 @@ uplink-sunrise-clothing-shoes-elite-captain-name = Captain's Boots
 uplink-sunrise-clothing-breath-mask-name = Medical Respirator
 uplink-sunrise-clothing-belt-medical-name = Chief Medical Officer's Medical Belt
 uplink-sunrise-clothing-outer-coat-overcoat-name = Chief Medical Officer's Lab Coat
-uplink-sunrise-clothing-neck-cmo-cloak-name = Chief Medical Officer's Cloak
 uplink-sunrise-clothing-special-head-hat-hardhat-name = Chief Medical Officer's Medical Cap
 uplink-sunrise-clothing-head-hat-cap-cmo-name = Medical's Beret
 
@@ -217,6 +216,7 @@ uplink-sunrise-pill-canister-hyronalin-name = Баночка для таблет
 uplink-sunrise-pill-canister-dexalin-name = Баночка для таблеток (дексалин)
 uplink-sunrise-bloodpack-name = Пакет крови (10 шт)
 uplink-sunrise-gauze-name = Марлевый бинт (10 шт)
+uplink-sunrise-clothing-neck-med-cloak-name = Cloak of Compassion
 
 ## Research
 

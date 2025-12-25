@@ -91,7 +91,7 @@
         prob: 0.15
       - id: WeaponSubMachineGunPPSH
         prob: 0.10
-      - id: WeaponIONRifle
+      - id: WeaponIonRifle
         prob: 0.05
       - id: WeaponSyndieLaserGun
         prob: 0.05

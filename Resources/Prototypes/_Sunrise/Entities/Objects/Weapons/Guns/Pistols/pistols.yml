@@ -512,3 +512,59 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  name: Golden Desert Eagle
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleGolden
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
+
+
+- type: entity
+  name: Tec-9 Tactical
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolTec9
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi
+    scale: 0.63, 0.63
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazinePistolCaselessRifleTec9
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+          - MagazinePistolCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeCaselessRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

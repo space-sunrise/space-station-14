@@ -76,6 +76,14 @@ ent-ClothingUniformJumpsuitHoSBlack = чёрный костюм начальни
     .desc = Это чёрный костюм начальника охраны.
 ent-ClothingUniformJumpsuitRDClassical = классический костюм директора исследований
     .desc = Это классический костюм директора исследований.
+ent-ClothingUniformPencilSkirt = юбка карандаш
+    .desc = Классический элемент гардероба, отличающийся прямым облегающим кроем.
+ent-ClothingUniformSadSkirt = траурная юбка
+    .desc = Юбка строгого силуэта, выполненная из плотной темной ткани, в готическом стиле.
+ent-ClothingUniformMajimaTishka = модный костюм якудзы
+    .desc = Блейзер со змеиным принтом, черный кожаный ремень с серебряной пряжкой.
+ent-ClothingUniformMetatonTishka = Модная форма музыканта
+    .desc = Руки можно потерять, когда в ногах такая стать!
 # комбинезоны Метус
 ent-UniformPrisonGuardMetus = комбинезон тюремного охранника
     .desc = { ent-ClothingUniformJumpsuitHoSOld.desc }

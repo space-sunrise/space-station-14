@@ -205,13 +205,12 @@
     stealGroup: WeaponEnergyGunMultiphase
 
 - type: entity
-  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband ]
   id: WeaponIonRifle
   name: ion rifle
-  suffix: Ion Centcomm
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -221,19 +220,21 @@
   - type: Item
     size: Ginormous
   - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     quickEquip: false
     slots:
     - Back
+    - SuitStorage
   - type: Gun
-    fireRate: 0.6
+    fireRate: 0.5
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40 #25sec+60Sec Pause
+    autoRechargeRate: 2
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: HitscanBatteryAmmoProvider
     proto: EmpPulse
-    fireCost: 250
+    fireCost: 125
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -267,7 +268,7 @@
     fireRate: 0.6
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargeRate: 2
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: HitscanBatteryAmmoProvider

@@ -63,26 +63,26 @@
 - type: entity
   parent: GunSafe
   id: GunSafeIonRifle
-  name: ion rifle safe
+  name: special security weapons
   components:
   - type: StorageFill
     contents:
-    - id: WeaponIONRifle
+    - id: WeaponIonRifle
+    - id: WeaponTemperatureGun
 
 - type: entity
   parent: GunSafe
   id: GunSafeSMRTGun
   name: SMART Safe
-  description: Heavy reinforced special gun save delivered from NanoTrasen Smart Arms Division for field testing. Contain unique Smart gun LMG.
+  description: Heavy reinforced special gun safe delivered from NanoTrasen Smart Arms Division for field testing. Contains the unique Smart gun LMG kit and a heavy energy sniper rifle.
   components:
   - type: StorageFill
     contents:
-    - id: WeaponLightMachineGunM492
+    - id: ClothingBackpackDuffelWeaponLightMachineGunM492
     - id: ClothingBeltSecurityWebbing
-    - id: MagazineLightRifleBeltBox # two, one already in lmg
-    - id: MagazineLightRifleBeltBoxFMJ
     - id: MagazineLightRifleBeltBoxHP
     - id: MagazineLightRifleBeltBoxIncendiary # All types to manage all variants of threats
+    - id: WeaponEnergySniper
   - type: AccessReader
     access: [["CentralCommand"]]
     alertAccesses:

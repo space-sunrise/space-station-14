@@ -112,6 +112,24 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
+  # Sunrise-Start
+  - type: Defibrillator
+    allowUseOnAlive: true
+    reagents:
+      Omnizine: 10
+      Epinephrine: 5
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellDefibrillatorSyndicate
+        disableEject: true
+        locked: true
+  - type: PowerCellDraw
+    useRate: 85
+  - type: PowerDrainOnMeleeHit
+    chargePerHit: 30
+  # Sunrise-End
   - type: MeleeWeapon
     damage:
       types:

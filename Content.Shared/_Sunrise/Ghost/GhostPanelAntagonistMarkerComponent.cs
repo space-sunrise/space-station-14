@@ -8,6 +8,12 @@ namespace Content.Shared._Sunrise.Ghost;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GhostPanelAntagonistMarkerComponent : Component
 {
+    /// <summary>
+    /// Включен ли маркер антагониста
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
+
     [DataField(required: true), AutoNetworkedField]
     public LocId Name;
 

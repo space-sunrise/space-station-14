@@ -113,7 +113,7 @@
         maxVol: 20
         reagents:
         - ReagentId: Aphrodisiac
-          Quantity: 20
+          Quantity: 10
 
 
 - type: entity

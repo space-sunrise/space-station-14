@@ -751,7 +751,7 @@
         - !type:HealthChange
           damage:
             types:
-              Mangleness: 0.2
+              Mangleness: -0.25
         #Sunrise-End
         - !type:SatiateThirst
           factor: 6
@@ -918,7 +918,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: -0.3
+            Mangleness: -1
       - !type:AdjustReagent # Против всяких крестьян с копьями
         reagent: Licoxide
         amount: -1

@@ -70,3 +70,5 @@ ent-PilotPDA = КПК пилота
     .desc = Имеет защиту от космической радиации.
 ent-CommaidPDA = КПК горничной командования
     .desc = { ent-BasePDA.desc }
+ent-SecuritySergeantPDA = КПК сержанта СБ
+    .desc = Всё ещё работает. В отличие от владельца, не кричит на вас.

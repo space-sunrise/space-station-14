@@ -23,7 +23,7 @@ uplink-grenade-emp-contact-name = контактная ЭМИ граната
 uplink-grenade-emp-contact-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
-uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 антиматериальные)
+uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (15мм антиматериальные)
 uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
 uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
 uplink-magazine-bauer127-extended-desc = Магазин для Bauer127. Содержит 15 патронов калибра .60 антиматериальный.
@@ -37,6 +37,9 @@ uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
+uplink-pistoltec9-magazine-name = пистолетный магазин tec-9 (.20 безгильзовый)
+uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин под распространённый патрон, используемый агентами синдиката.
+
 
 uplink-magazine-127-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для уничтожения мехов, киборгов или стркутур таких как решетки и окна, пары попаданий достаточно для пролома стены.
 uplink-magazine-127pen-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для ликвидации защищенных противников а так же целей за укрытиями и стенами, прекрасно сочетаются с термальным зрением.
@@ -78,8 +81,11 @@ uplink-clothing-thieving-gloves-name = Воровские перчатки
 uplink-clothing-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые выглядят как обычные!
 uplink-clothing-chameleon-thieving-gloves-name = Воровские перчатки "Хамелеон"
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
+uplink-50blessing-name = Подарочный набор 50 благословений
+uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
 ## Weapon
-
+uplink-swat-helmet-syndicate-name = Шлем Спецназа
+uplink-swat-helmet-syndicate-desc = Прочный шлем, созданный специально для тех, кто ценит целостность своей головы и конфиденциальность своих коварных замыслов. Окрашен в фирменные цвета спецназа Синдиката.
 uplink-syndicate-rapier-name = Рапира Синдиката
 uplink-syndicate-rapier-desc = Элегантная рапира из пластитана с алмазным наконечником. Рапира поставляется в собственных ножнах и способна пробить практически любую защиту если бить точно.
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
@@ -94,8 +100,12 @@ uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
 uplink-weapon-ussp-dmr-name = Набор Драгунов
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-goldendeagle-name = Золотой Десерт Игл
+uplink-goldendeagle-desc = Использует патрон «магнум» 45-го калибра. Выгравировано: "Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра".
 uplink-mini-energy-crossbow-name = Мини энерго-арбалет
 uplink-mini-energy-crossbow-desc =  Компактное оружие скрытного действия. Выпускает маломощные кинетические болты, вызывающие паралич и малое отравление. Эффективен на близком расстоянии.
+uplink-pistoltec9-name = Тек-9 тактикал
+uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как Египесткий  АК-47.
 
 ## Cyborgs
 
@@ -206,6 +216,4 @@ uplink-syndicate-teleporter-desc = Экспериментальное устро
 
 uplink-syndicate-law-name = Плата законов (Синдикат)
 uplink-syndicate-law-desc = Электронная плата, содержащая набор законов Синдиката.
-
-uplink-exploding-syndicate-empbomb-desc = Большая стационарная ЭМИ-бомба, выводящая из строя электронику, если её вовремя не обезвредить. Регулируемый таймер, минимум 180 секунд; отлично отключает инфраструктуру.
 

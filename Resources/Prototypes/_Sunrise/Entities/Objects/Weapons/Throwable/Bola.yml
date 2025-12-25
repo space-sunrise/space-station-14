@@ -1,0 +1,33 @@
+- type: entity
+  name: security bola
+  parent: [Bola, BaseSecurityContraband]
+  id: BolaSecurity
+  description: Linked together with some spare cuffs and metal.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasecurity.rsi
+    state: icon
+  - type: Ensnaring
+    walkSpeed: 0.6
+    sprintSpeed: 0.6
+    staminaDamage: 10
+    destroyOnRemove: true
+  - type: Tag
+    tags:
+    - BolaSecurity
+
+- type: entity
+  name: syndicate bola
+  parent: [Bola, BaseSyndicateContraband]
+  id: BolaSyndicate
+  description: Linked together with some spare cuffs and metal.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasyndicate.rsi
+    state: icon
+  - type: Ensnaring
+    freeTime: 2.5
+    breakoutTime: 5.5
+    walkSpeed: 0.60
+    sprintSpeed: 0.60
+    staminaDamage: 30

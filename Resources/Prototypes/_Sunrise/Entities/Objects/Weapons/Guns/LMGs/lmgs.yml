@@ -297,6 +297,32 @@
     price: 10000
 
 - type: entity
+  id: MagazineCannonBallMini
+  name: cannonball magazine
+  description: A compact drum of mini cannonballs for the pirate cannon.
+  components:
+    - type: Tag
+      tags:
+        - MagazineCannonBallMini
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - CannonBallMini
+      proto: CannonBallMini
+      capacity: 6
+      mayTransfer: true
+    - type: Item
+      size: Large
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: mag-5
+    - type: MagazineVisuals
+      magState: mag
+      steps: 6
+      zeroVisible: true
+    - type: Appearance
+
+- type: entity
   name: pirate cannon
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunPirateCannon
