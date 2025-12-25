@@ -209,60 +209,6 @@
   - Bra
   - Pants
   - Socks
-- type: roleLoadout
-  id: JobPrisonScientist
-  groups:
-  - Trinkets
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobPrisonEngineer
-  groups:
-  - TrinketsEngineering
-  - Trinkets
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobPrisonPilot
-  groups:
-  - PrisonGuardHead
-  - PrisonGuardJumpsuit
-  - PrisonGuardBackpack
-  - SecurityShoes
-  - SurvivalSecurity
-  - Trinkets
-  - SecurityTrinkets
-  - GroupSpeciesBreathTool
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobPrisonWorker
-  groups:
-  - Trinkets
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobPrisonGuard
-  groups:
-  - PrisonGuardHead
-  - PrisonGuardJumpsuit
-  - PrisonGuardBackpack
-  - SecurityShoes
-  - SurvivalSecurity
-  - Trinkets
-  - SecurityTrinkets
-  - GroupSpeciesBreathTool
-  - Bra
-  - Pants
-  - Socks
 
 - type: roleLoadout
   id: JobSecurityPilot
@@ -280,33 +226,34 @@
   - Pants
   - Socks
 
-- type: roleLoadout
-  id: JobPrisonChef
-  groups:
-  - Trinkets
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobPrisonDoctor
-  groups:
-  - Trinkets
-  - Bra
-  - Pants
-  - Socks
+#- type: roleLoadout
+#  id: JobPrisonGuard
+#  groups:
+#  - PrisonGuardHead
+#  - PrisonGuardJumpsuit
+#  - PrisonGuardBackpack
+#  - SecurityShoes
+#  - SurvivalSecurity
+#  - Trinkets
+#  - SecurityTrinkets
+#  - GroupSpeciesBreathTool
+#  - Bra
+#  - Pants
+#  - Socks
 
 - type: roleLoadout
   id: JobHeadOfPrison
   groups:
-  - PrisonGuardHead
-  # - PrisonGuardJumpsuit комбенизон должен отличаться от охраны
-  - PrisonGuardBackpack
-  - SecurityShoes
-  - SurvivalSecurity
-  - Trinkets
-  - SecurityTrinkets
-  - GroupSpeciesBreathToolSecurity
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  #- PrisonGuardHead
+  #- PrisonGuardJumpsuit комбенизон должен отличаться от охраны
+  #- PrisonGuardBackpack
+  #- SecurityShoes
+  #- SurvivalSecurity
+  #- Trinkets
+  #- SecurityTrinkets
+  #- GroupSpeciesBreathToolSecurity
   - Bra
   - Pants
   - Socks
@@ -314,13 +261,98 @@
 - type: roleLoadout
   id: JobPrisonInspector
   groups:
-  - LawyerNeck
-  - Trinkets
-  - Survival
-  - GroupSpeciesBreathTool
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - PrisonInspectorHats
+  - PrisonInspectorGlasses
+  #- Trinkets
+  #- Survival
+  #- GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobPrisonWorker
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - PrisonWorkerHead
+  #- Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonEngineer
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - PrisonEngineerHead
+  #- TrinketsEngineering
+  #- Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonScientist
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  #- Trinkets
+  - PrisonScientistHead
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonDoctor
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  #- Trinkets
+  - PrisonDoctorHead
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonChef
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  #- Trinkets
+  - PrisonChefHead
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPlanetPrisoner
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonerLoot
+  - PrisonerJumpsuit
+  #- GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+#- type: roleLoadout
+#  id: JobPrisonPilot
+#  groups:
+#  - PrisonGuardHead
+#  - PrisonGuardJumpsuit
+#  - PrisonGuardBackpack
+#  - SecurityShoes
+#  - SurvivalSecurity
+#  - Trinkets
+#  - SecurityTrinkets
+#  - GroupSpeciesBreathTool
+#  - Bra
+#  - Pants
+#  - Socks
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -342,15 +374,6 @@
   - CommonBackpack
   - Trinkets
   - Survival
-  - GroupSpeciesBreathTool
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobPlanetPrisoner
-  groups:
-  - PrisonerJumpsuit
   - GroupSpeciesBreathTool
   - Bra
   - Pants

@@ -8,6 +8,8 @@
 # WallSolid: Window
 # Table: null
 
+
+
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
 ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
@@ -809,8 +811,6 @@ EngineeringTechFabCircuitboard: null
 MagazineDeagle: null
 MagazineMagnum: null
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
-SuitStorageBlueShield: null
-LockerBlueShieldOfficerFilled: null
 PoweredLightBlueInterior: null
 RandomItem: null
 TableWoodReinforced: null
@@ -840,6 +840,7 @@ MagazineBR64: null
 MagazineAR18Extended: null
 MagazineAR18: null
 ClothingOuterHardsuitPilot: null
+ClothingOuterHardsuitPirateEVASun: ClothingOuterEVASuitPirate
 CrateArmoryMagazineBoxLightRifleBig: null
 CrateArmoryMagazineBoxRifleBig: null
 CrateArmoryM16A4: null
@@ -851,15 +852,26 @@ WeaponShotgunZauer: null
 HandheldCamera: null # Не надо маппить, оно есть в автоматах
 GrenadeBlast: GrenadeBlastTimer
 GrenadeEMP: GrenadeEMPTimer
-GrenadeFlash: GrenadeFlashTimer
-GrenadeFrag: GrenadeFragTimer
+GrenadeFlash: GrenadeFlashContact
+GrenadeFlashTimer: GrenadeFlashContact
+GrenadeFrag: GrenadeFragContact
 WeaponEnergyGunMini: WeaponMiniEnergyGun
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
+AphrodisiacChemistryBottle: null
+PatchViagra: null
+
 MagazinePPSH41: MagazinePistolSubMachineGunPPSHExtended
 MagazinePPSH41Extended: null
 WeaponSTG44: null
 MagazineSTG44: null
 WeaponSniperMosinNew: null
+WeaponIONRifle: WeaponIonRifle
+GunSafeBlueShield: null
+# Super Matter
+SupermatterFlatpack: SupermatterFlatpackAnchored
+SupermatterCrystal: SupermatterFlatpackAnchored
+WeaponRifleM28: WeaponRifleSKM28
+WeaponRifleAR18: null
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
@@ -879,4 +891,8 @@ WeaponRifleV31: null
 MagazineV31: null
 WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
+
+# 2025-12-21
+ClothingNeckCMOCloak: ClothingNeckMedCloak
+
 # Sunrise-End

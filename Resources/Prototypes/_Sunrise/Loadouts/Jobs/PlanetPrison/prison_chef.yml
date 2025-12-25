@@ -1,0 +1,52 @@
+# Head
+
+- type: loadout
+  id: PrisonChef-ClothingHeadCapPrisonChefMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 7200 # 2 hrs
+  equipment:
+    head: ClothingHeadCapPrisonChefMetus
+
+- type: loadout
+  id: PrisonChef-ClothingHeadHatBeretPrisonChefMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 25200 # 7 hrs
+  equipment:
+    head: ClothingHeadHatBeretPrisonChefMetus
+
+- type: loadout
+  id: PrisonChef-ClothingHeadHatCapPrisonChefMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 54000 # 15 hrs
+  equipment:
+    head: ClothingHeadHatCapPrisonChefMetus
+
+- type: loadout
+  id: PrisonChef-ClothingHeadHatChef
+  equipment:
+    head: ClothingHeadHatChef
+  groupBy: "Toque"
+
+- type: loadout
+  id: PrisonChef-ClothingHeadHatChefBlackToque
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 72000 # 20 hrs
+  equipment:
+    head: ClothingHeadHatChefBlackToque
+  groupBy: "Toque"

@@ -1,0 +1,261 @@
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitHoSOld
+  result: ClothingUniformJumpsuitHoSOld
+  materials:
+    Cloth: 3000
+    Durathread: 1500
+
+# Optional prisoner stock uniforms (grey variant)
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonerGrey
+  result: ClothingUniformJumpsuitPrisonerGrey
+
+# Metus Planet Prison jumpsuits
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: UniformPrisonGuardMetus
+  result: UniformPrisonGuardMetus
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: UniformPrisonDoctorMetus
+  result: UniformPrisonDoctorMetus
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: UniformPrisonChefMetus
+  result: UniformPrisonChefMetus
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: UniformPrisonEngineerMetus
+  result: UniformPrisonEngineerMetus
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: UniformPrisonScientistMetus
+  result: UniformPrisonScientistMetus
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: UniformPrisonWorkerMetus
+  result: UniformPrisonWorkerMetus
+
+# Metus hats/caps/berets per role (non-command hats)
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonDoctorMetus
+  result: ClothingHeadHatBeretPrisonDoctorMetus
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonDoctorMetus
+  result: ClothingHeadHatCapPrisonDoctorMetus
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonDoctorMetus
+  result: ClothingHeadCapPrisonDoctorMetus
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonChefMetus
+  result: ClothingHeadHatBeretPrisonChefMetus
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonChefMetus
+  result: ClothingHeadHatCapPrisonChefMetus
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonChefMetus
+  result: ClothingHeadCapPrisonChefMetus
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonEngineerMetus
+  result: ClothingHeadHatBeretPrisonEngineerMetus
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonEngineerMetus
+  result: ClothingHeadHatCapPrisonEngineerMetus
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonEngineerMetus
+  result: ClothingHeadCapPrisonEngineerMetus
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonScientistMetus
+  result: ClothingHeadHatBeretPrisonScientistMetus
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonScientistMetus
+  result: ClothingHeadHatCapPrisonScientistMetus
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonScientistMetus
+  result: ClothingHeadCapPrisonScientistMetus
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonWorkerMetus
+  result: ClothingHeadHatBeretPrisonWorkerMetus
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonWorkerMetus
+  result: ClothingHeadHatCapPrisonWorkerMetus
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonWorkerMetus
+  result: ClothingHeadCapPrisonWorkerMetus
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+# Generic guard hats (already have recipes elsewhere, added here only if missing)
+# Note: ClothingHeadHatBeretPrisonGuard and ClothingHeadCapPrisonGuard recipes exist in _Sunrise/Recipes/Lathes/clothing.yml
+
+# HoS cloak as Neck clothing
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakHOSCloak
+  result: ClothingNeckCloakHOSCloak
+  materials:
+    Cloth: 1000
+    Durathread: 1500
+
+# Chef black toque (entity exists in _Sunrise/Entities/Clothing/Head/hats.yml)
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatChefBlackToque
+  result: ClothingHeadHatChefBlackToque
+  materials:
+    Cloth: 3000
+    Durathread: 1500
+
+# Chef white hat into Hats category
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatChef
+  result: ClothingHeadHatChef
+  materials:
+    Cloth: 300
+
+
+# Metus variants for vanilla items with custom cost
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatBeretHoSMetus
+  result: ClothingHeadHatBeretHoS
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatCapHoSMetus
+  result: ClothingHeadHatCapHoS
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonGuardMetus
+  result: ClothingHeadHatBeretPrisonGuard
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonGuardMetus
+  result: ClothingHeadCapPrisonGuard
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetCosmosMetus
+  result: DoubleBedsheetCosmos
+  materials:
+    Cloth: 2500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: CarpetBlackMetus
+  result: FloorCarpetItemBlack
+  materials:
+    Cloth: 100
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: CarpetPinkMetus
+  result: FloorCarpetItemPink
+  materials:
+    Cloth: 100
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: CarpetOrangeMetus
+  result: FloorCarpetItemOrange
+  materials:
+    Cloth: 100
+    Durathread: 100
+

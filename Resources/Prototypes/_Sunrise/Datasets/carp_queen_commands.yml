@@ -1,0 +1,25 @@
+- type: localizedDataset
+  id: CarpQueenCommandStay
+  values:
+    prefix: carp-queen-command-stay-
+    count: 3
+
+- type: localizedDataset
+  id: CarpQueenCommandFollow
+  values:
+    prefix: carp-queen-command-follow-
+    count: 2
+
+- type: localizedDataset
+  id: CarpQueenCommandKill
+  values:
+    prefix: carp-queen-command-kill-
+    count: 4
+
+- type: localizedDataset
+  id: CarpQueenCommandLoose
+  values:
+    prefix: carp-queen-command-loose-
+    count: 2
+
+

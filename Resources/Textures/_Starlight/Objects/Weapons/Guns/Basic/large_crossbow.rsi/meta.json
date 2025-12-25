@@ -34,11 +34,11 @@
             ]
         },
         {
-            "name": "inhand-right",
+            "name": "equipped-SUITSTORAGE",
             "directions": 4
         },
         {
-            "name": "inhand-left",
+            "name": "equipped-BACKPACK",
             "directions": 4
         }
     ]

@@ -155,6 +155,26 @@
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
 
 - type: entity
+  name: Glock-22 Metus
+  description: Made to order for the security of the Metus planetary prison. Semi-automatic design. Uses .35 Auto caliber ammunition.
+  parent: WeaponPistolG22
+  id: WeaponPistolG22Metus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus/big.rsi
+  - type: Gun
+    fireRate: 3.4
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazinePistolHighCapacityRubber
+
+- type: entity
   name: Glock-22 Auto
   parent: WeaponPistolG22
   id: WeaponPistolG22Auto
@@ -374,6 +394,24 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
+- type: entity
+  name: Desert Eagle Metus
+  description: Scuffs from old hands mark the handle, heavy and steady, like a verdict passed more than once without trial.
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleMetus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
 # Sidearm for detectives.
 - type: entity
   parent: BaseWeaponRevolver
@@ -414,8 +452,8 @@
     sprintModifier: 0.97
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2.75
-    pvsIncrease: 1
+    maxOffset: 2.5
+    pvsIncrease: 0.25
   # - type: MeleeWeapon
   #   angle: 60
   #   range: 0.9
@@ -470,7 +508,63 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
-    pvsIncrease: 0.25
+    pvsIncrease: 0.2
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  name: Golden Desert Eagle
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleGolden
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
+
+
+- type: entity
+  name: Tec-9 Tactical
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolTec9
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi
+    scale: 0.63, 0.63
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazinePistolCaselessRifleTec9
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+          - MagazinePistolCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeCaselessRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

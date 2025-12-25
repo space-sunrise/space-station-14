@@ -1,0 +1,14 @@
+ent-ShellShotgunImprovisedEmpty = empty improvised shell
+    .desc = A hollow homemade shotgun shell that can be filled with a somewhat deadly variety of makeshift pellets.
+ent-ShellShotgunImprovised = improvised shotgun shell
+    .desc = A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
+ent-ShellShotgunImprovisedIncendiary = improvised shell (incendiary)
+    .desc = A homemade shotgun shell that shoots burning glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
+ent-ShellShotgunImprovisedUranium = improvised shell (uranium glass)
+    .desc = A homemade shotgun shell that shoots painful uranium glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
+ent-ShellShotgunCoin = improvised shell (coin slug)
+    .desc = A homemade shotgun slug that shoots a cylinder of coins. The stack has a tendency to break apart in the blast, limiting its effective range.
+ent-ShellShotgunBooze = shell (.50 beanbag)
+    .desc = { ent-BaseShellHitscanShotgun.desc }
+ent-ShellShotgunHoly = shell (.50 holy)
+    .desc = { ent-BaseShellShotgun.desc }

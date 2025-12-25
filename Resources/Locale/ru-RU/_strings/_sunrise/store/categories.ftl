@@ -39,3 +39,5 @@ store-category-ntmechs = Мехи
 store-category-ntexplosive = Взрывчатка
 store-category-ntammo = Боеприпасы
 store-category-ntequipment = Экипировка
+# PirateUplink
+store-category-exchanger = Обмен

@@ -61,7 +61,7 @@
         amount: 2
       - id: MagazinePistolSubMachineGunFMJ  # Sunrise-edit
         amount: 2
-      - id: MagazinePistol40SubMachineGunHP # Sunrise-add
+      - id: MagazinePistolSubMachineGunHP # Sunrise-add
 #     - id: SMGSuppressor
 
 - type: entity
@@ -200,7 +200,7 @@
         amount: 2
       - id: GrenadeBlastTimer # Sunrise-edit
         amount: 2
-      - id: GrenadeFlashTimer # Sunrise-edit
+      - id: GrenadeFlashContact # Sunrise-edit
         amount: 2
       - id: GrenadeFragTimer # Sunrise-edit
         amount: 2
@@ -387,7 +387,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: DefibrillatorSyndicate
+      #- id: DefibrillatorSyndicate
       - id: MedkitCombatFilled
         amount: 4
       - id: Tourniquet

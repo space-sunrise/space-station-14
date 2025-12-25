@@ -27,6 +27,8 @@
     sprite: Objects/Fun/Foam/foam_dart.rsi
     layers:
       - state: foamdart
+  - type: StaminaDamageOnCollide # sunrise-added
+    damage: 10 # sunrise-added
   - type: EmbeddableProjectile
     removalTime: .2
   - type: ThrowingAngle

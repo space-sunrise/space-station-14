@@ -37,7 +37,7 @@
   name: night vision
   components:
   - type: PointLight
-    color: "#0ee92b"
+    color: "#dae90e"
     energy: 0.1
     radius: 14
     softness: 20
@@ -51,4 +51,15 @@
     color: "#d61b1b"
     energy: 0.8
     radius: 20
+    softness: 20
+
+- type: entity
+  id: EffectNightVisionPirate
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#FF9833FF"
+    energy: 0.6
+    radius: 16
     softness: 20

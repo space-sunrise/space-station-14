@@ -77,3 +77,35 @@
   coefficients:
     Cold: 0.75
     Heat: 1.25
+
+# Pirate
+- type: damageModifierSet
+  id: MobPirateT1
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.7
+    Piercing: 0.5
+    Heat: 0.7
+    Caustic: 0.5
+
+- type: damageModifierSet
+  id: MobPirateT2
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.6
+    Piercing: 0.4
+    Heat: 0.6
+    Caustic: 0.5
+    Bloodloss: 0.7
+    Mangleness: 0.7
+
+- type: damageModifierSet
+  id: MobPirateT3
+  coefficients:
+    Blunt: 0.4
+    Slash: 0.5
+    Piercing: 0.3
+    Heat: 0.5
+    Caustic: 0.5
+    Bloodloss: 0.5
+    Mangleness: 0.5

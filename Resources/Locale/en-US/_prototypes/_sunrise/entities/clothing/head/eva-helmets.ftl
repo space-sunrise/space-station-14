@@ -1,0 +1,11 @@
+ent-ClothingHeadSoftsuitCBURN = CBURN шлем
+    .desc = Тяжёлый огнеупорный шлем, используемый подразделениями спецзачистки.
+ent-ClothingHeadHelmetPirate = пиратский космический шлем
+    .desc = Шлем для скафандра, имеет пару серьезных трещен, но не переживай, скотч всему голова.
+ent-ClothingHeadHelmetPirateAlt = пиратский космический шлем
+    .desc = Шлем для скафандра с нарисованным черепом, чтобы брать всех на абордаж на стиле.
+ent-ClothingHeadHelmetPirateOld = pirate hardsuit helmet
+    .desc = A special hardsuit helmet, made for Scooner.
+    .suffix = Pirate, Sunrise
+ent-ClothingHeadHelmetPirateAlt2 = пиратский космический шлем
+    .desc = Шлем для скафандра

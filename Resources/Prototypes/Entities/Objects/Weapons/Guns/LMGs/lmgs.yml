@@ -84,7 +84,7 @@
         staminaMultiplier: 100
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
+    maxOffset: 5
     pvsIncrease: 0.5
   # Sunrise end
 
@@ -109,10 +109,6 @@
   - type: StaticPrice
     price: 10000
   # Sunrise start
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85

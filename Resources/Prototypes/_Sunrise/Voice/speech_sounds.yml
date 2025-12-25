@@ -24,3 +24,12 @@
     path: /Audio/Items/brokenbikehorn.ogg
   exclaimSound:
     path: /Audio/Items/desk_bell_ring.ogg
+
+- type: speechSounds
+  id: UnisexResomi
+  saySound:
+    path: /Audio/_Sunrise/Voice/Talk/resomi_1.ogg
+  askSound:
+    path: /Audio/_Sunrise/Voice/Talk/resomi_1_ask.ogg
+  exclaimSound:
+    path: /Audio/_Sunrise/Voice/Talk/resomi_1_exclaim.ogg
