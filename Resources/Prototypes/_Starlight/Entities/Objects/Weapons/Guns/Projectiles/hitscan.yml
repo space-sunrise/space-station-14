@@ -1109,6 +1109,7 @@
   id: SniperBolt
   name: sniper bolt
   parent: EnergyTrace
+  igniteOnCollision: true
   bullet:
     sprite:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi

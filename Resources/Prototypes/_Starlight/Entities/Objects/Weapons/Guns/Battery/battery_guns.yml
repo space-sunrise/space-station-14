@@ -432,7 +432,7 @@
     slots:
     - Back
   - type: Gun
-    fireRate: 0.1
+    fireRate: 0.2
   - type: HitscanBatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
@@ -444,8 +444,8 @@
   - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
+    maxOffset: 8
+    pvsIncrease: 0.8
 
 - type: entity
   name: ANNIHILATOR
