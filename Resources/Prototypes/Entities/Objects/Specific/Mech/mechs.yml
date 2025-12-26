@@ -481,7 +481,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4
+    baseSprintSpeed: 3.75
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
