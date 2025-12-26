@@ -117,7 +117,8 @@
   id: AbductorVictimTechnologyDiskStealCollectionObjective
   components:
   - type: NotJobRequirement
-    job: Scientist
+    jobs:
+    - Scientist
   - type: StealCondition
     stealGroup: TechnologyDisk
     minCollectionSize: 5
@@ -131,7 +132,8 @@
   id: AbductorVictimMailStealCollectionObjective
   components:
   - type: NotJobRequirement
-    job: CargoTechnician
+    jobs:
+    - CargoTechnician
   - type: StealCondition
     stealGroup: Mail
     minCollectionSize: 4
@@ -174,7 +176,8 @@
   id: AbductorVictimMedicalTechFabCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    job: MedicalDoctor
+    jobs:
+    - MedicalDoctor
   - type: StealCondition
     stealGroup: MedicalTechFabCircuitboard
   - type: Objective
@@ -185,7 +188,8 @@
   id: AbductorVictimClothingHeadsetAltMedicalStealObjective
   components:
   - type: NotJobRequirement
-    job: ChiefMedicalOfficer
+    jobs:
+    - ChiefMedicalOfficer
   - type: StealCondition
     stealGroup: ClothingHeadsetAltMedical
   - type: Objective
@@ -196,7 +200,8 @@
   id: AbductorVictimFireAxeStealObjective
   components:
   - type: NotJobRequirement
-    job: AtmosphericTechnician
+    jobs:
+    - AtmosphericTechnician
   - type: StealCondition
     stealGroup: FireAxe
   - type: Objective
@@ -207,7 +212,8 @@
   id: AbductorVictimClothingEyesHudBeerStealObjective
   components:
   - type: NotJobRequirement
-    job: Bartender
+    jobs:
+    - Bartender
   - type: StealCondition
     stealGroup: ClothingEyesHudBeer
   - type: Objective
@@ -218,7 +224,8 @@
   id: AbductorVictimBibleStealObjective
   components:
   - type: NotJobRequirement
-    job: Chaplain
+    jobs:
+    - Chaplain
   - type: StealCondition
     stealGroup: Bible
   - type: Objective
@@ -231,7 +238,8 @@
   id: AbductorVictimXenoArtifactStealObjective
   components:
   - type: NotJobRequirement
-    job: Scientist
+    jobs:
+    - Scientist
   - type: StealCondition
     stealGroup: XenoArtifact
   - type: Objective
@@ -242,7 +250,8 @@
   id: AbductorVictimFreezerHeaterStealObjective
   components:
   - type: NotJobRequirement
-    job: AtmosphericTechnician
+    jobs:
+    - AtmosphericTechnician
   - type: StealCondition
     stealGroup: FreezerHeater
   - type: Objective
@@ -253,7 +262,8 @@
   id: AbductorVictimBoozeDispenserStealObjective
   components:
   - type: NotJobRequirement
-    job: Bartender
+    jobs:
+    - Bartender
   - type: StealCondition
     stealGroup: BoozeDispenser
   - type: Objective
@@ -264,7 +274,8 @@
   id: AbductorVictimAltarNanotrasenStealObjective
   components:
   - type: NotJobRequirement
-    job: Chaplain
+    jobs:
+    - Chaplain
   - type: StealCondition
     stealGroup: AltarNanotrasen
   - type: Objective
@@ -277,7 +288,8 @@
   id: AbductorVictimIanStealObjective
   components:
   - type: NotJobRequirement
-    job: HeadOfPersonnel
+    jobs:
+    - HeadOfPersonnel
   - type: StealCondition
     stealGroup: AnimalIan
   - type: Objective
@@ -297,7 +309,8 @@
   id: AbductorVictimMcGriffStealObjective
   components:
   - type: NotJobRequirement
-    job: Detective
+    jobs:
+    - Detective
   - type: StealCondition
     stealGroup: AnimalMcGriff
   - type: Objective
@@ -308,7 +321,8 @@
   id: AbductorVictimWalterStealObjective
   components:
   - type: NotJobRequirement
-    job: Chemist
+    jobs:
+    - Chemist
   - type: StealCondition
     stealGroup: AnimalWalter
   - type: Objective
@@ -328,7 +342,8 @@
   id: AbductorVictimRenaultStealObjective
   components:
   - type: NotJobRequirement
-    job: Captain
+    jobs:
+    - Captain
   - type: StealCondition
     stealGroup: AnimalRenault
   - type: Objective
@@ -339,7 +354,8 @@
   id: AbductorVictimShivaStealObjective
   components:
   - type: NotJobRequirement
-    job: SecurityOfficer
+    jobs:
+    - SecurityOfficer
   - type: StealCondition
     stealGroup: AnimalShiva
   - type: Objective
@@ -350,7 +366,8 @@
   id: AbductorVictimTropicoStealObjective
   components:
   - type: NotJobRequirement
-    job: AtmosphericTechnician
+    jobs:
+    - AtmosphericTechnician
   - type: StealCondition
     stealGroup: AnimalTropico
   - type: Objective

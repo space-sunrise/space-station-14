@@ -2068,6 +2068,13 @@
     Telecrystal: 26
   categories:
   - UplinkPointless
+  # Sunrise-start
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+  # Sunrise-end
 
 - type: listing
   id: UplinkOutlawHat
@@ -2148,6 +2155,13 @@
     Telecrystal: 20
   categories:
   - UplinkPointless
+  # Sunrise-start
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+  # Sunrise-end
 
 - type: listing
   id: UplinkScarfSyndieRed

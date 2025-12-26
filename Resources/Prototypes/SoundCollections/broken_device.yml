@@ -1,7 +1,7 @@
 ﻿- type: soundCollection
   id: BrokenDevice
   files:
-  - /Audio/Effects/electrical_short_circuit.ogg
+  - /Audio/_Sunrise/Effects/electrical_short_circuit.ogg
 
 - type: soundCollection
   id: ShortCircuit
@@ -11,5 +11,4 @@
 - type: soundCollection
   id: Alarm
   files:
-  - /Audio/Effects/beeps.ogg
-
+  - /Audio/_Sunrise/Effects/beeps.ogg
