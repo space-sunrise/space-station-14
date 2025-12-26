@@ -16,9 +16,9 @@
     quickEquip: false
     slots:
     - back
-  - type: Storage
+  - type: Storage # Basic Backpack size
     grid:
-    - 0,0,6,5
+    - 0,0,6,3
     maxItemSize: Huge
   - type: ContainerContainer
     containers:
