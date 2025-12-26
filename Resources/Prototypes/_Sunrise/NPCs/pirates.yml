@@ -19,7 +19,7 @@
       120: Critical
       140: Dead
   - type: Stamina
-    critThreshold: 125
+    baseCritThreshold: 125
   - type: DamageStateVisuals
   - type: RotationVisuals
     defaultRotation: 90
@@ -65,7 +65,7 @@
       80: Critical
       100: Dead
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -1155,7 +1155,7 @@
       400: 1.5
       450: 1.6
   - type: Stamina
-    critThreshold: 800
+    baseCritThreshold: 800
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.75
@@ -1238,7 +1238,7 @@
       215: 1.8
       225: 2
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
   - type: HellSpawnInvincibility
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
@@ -2550,7 +2550,7 @@
       400: 0.7
       550: 0.6
   - type: Stamina
-    critThreshold: 9999
+    baseCritThreshold: 9999
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2.25
