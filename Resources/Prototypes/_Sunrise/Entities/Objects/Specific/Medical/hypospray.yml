@@ -13,25 +13,26 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 100
+        maxVol: 80
         reagents:
         - ReagentId: Epinephrine
-          Quantity: 10
+          Quantity: 15
         - ReagentId: Omnizine
-          Quantity: 20
+          Quantity: 15
         - ReagentId: Saline
+          Quantity: 15
+        - ReagentId: Rororium
           Quantity: 20
-        - ReagentId: Puncturase
-          Quantity: 25
         - ReagentId: Dermaline
-          Quantity: 25
+          Quantity: 15
   - type: ExaminableSolution
     solution: pen
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 25
-    onlyAffectsMobs: true
-    injectOnly: true
+    ActiveModeProtoId: HyposprayInjectMode
+    AllowedModes:
+    - HyposprayInjectMode
+    CurrentTransferAmount: 20
   - type: UseDelay
     delay: 45
   - type: Appearance
@@ -66,8 +67,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
+  - type: Injector
+    solutionName: hypospray
+    ActiveModeProtoId: HyposprayDynamicMode
+    AllowedModes:
+    - HyposprayDynamicMode
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -95,10 +100,12 @@
         maxVol: 10
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    doAfterTime: 0.5
-    transferAmount: 5
+  - type: Injector
+    solutionName: hypospray
+    ActiveModeProtoId: HyposprayInjectMode
+    AllowedModes:
+    - HyposprayInjectMode
+    CurrentTransferAmount: 5
   - type: UseDelay
     delay: 3
   - type: StaticPrice
@@ -110,9 +117,11 @@
   description: A sterile injector for rapid administration of drugs to patients. It contains an internal Toxin filter.
   id: HyposprayMedical
   components:
-  - type: Hypospray
-    filterReagentGroups:
-     - Medicine
+  - type: Injector
+    solutionName: hypospray
+    ActiveModeProtoId: HyposprayInjectMode
+    AllowedModes:
+    - HyposprayInjectMode
 
 - type: entity
   parent: [ BaseItem, BaseSyndicateContraband ]

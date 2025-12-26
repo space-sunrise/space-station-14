@@ -25,7 +25,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: AmmoCounter
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleSP
     fireCost: 9
   - type: MagazineVisuals

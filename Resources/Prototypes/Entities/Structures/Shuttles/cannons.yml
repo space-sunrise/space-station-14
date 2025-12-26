@@ -860,7 +860,7 @@
         whitelist:
           tags:
             - PowerCage
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TeslaGunBullet
     fireCost: 400
   - type: BatteryWeaponFireModes
@@ -930,7 +930,7 @@
         whitelist:
           tags:
             - PowerCage
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TeslaGunBulletLarge
     fireCost: 900
   - type: BatteryWeaponFireModes

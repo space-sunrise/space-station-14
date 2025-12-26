@@ -367,7 +367,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFragTimer
     fireCost: 1000
   - type: Battery
@@ -607,7 +607,7 @@
     availableModes:
     - FullAuto
   - type: BatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    proto: RedLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -675,7 +675,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeAntiMateriel
     fireCost: 500
   - type: Battery
@@ -714,7 +714,7 @@
     burstCooldown: 1.15
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFragTimer
     fireCost: 250
   - type: Battery
@@ -1180,3 +1180,4 @@
     examinableWhileClosed: true
   - type: SolutionItemStatus
     solution: drink
+

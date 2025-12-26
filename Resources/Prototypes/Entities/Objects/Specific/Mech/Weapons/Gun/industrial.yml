@@ -16,7 +16,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletKineticShuttle
     fireCost: 25
   - type: Appearance
@@ -47,7 +47,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPlasmaSpread
     fireCost: 50
   - type: Appearance
@@ -71,7 +71,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPlasma
     fireCost: 25
   - type: Appearance

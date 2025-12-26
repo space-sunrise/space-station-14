@@ -13,16 +13,16 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -43,16 +43,16 @@
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -77,16 +77,16 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -107,16 +107,16 @@
         - id: ExtendedEmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -140,17 +140,17 @@
         - id: ClothingMaskGasSecurity
         - id: ExtendedEmergencyOxygenTankFilled #Sunrise-Edit
         - id: EmergencyMedipen
-    # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
+        # Sunrise-Start
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
         - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -170,17 +170,17 @@
         - id: ClothingMaskGasSecurity
         - id: ExtendedEmergencyNitrogenTankFilled #Sunrise-Edit
         - id: EmergencyMedipen
-    # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
+        # Sunrise-Start
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
         - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -205,16 +205,16 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -235,16 +235,16 @@
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -275,16 +275,16 @@
         - id: EmergencyFunnyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Tag
@@ -305,16 +305,16 @@
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Label
@@ -333,16 +333,16 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodBreadNutriBatard
         - id: DrinkWaterBottleFull
 
@@ -359,16 +359,16 @@
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodBreadNutriBatard
         - id: DrinkWaterBottleFull
   - type: Sprite
@@ -391,16 +391,16 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodBreadCottonNutriBatard
         - id: DrinkWaterBottleFull
 
@@ -419,16 +419,16 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         # Sunrise-Start
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    # Sunrise-End
+        - id: SpaceMedipen
+        - id: GlowstickRed
+          orGroup: Glowstick
+        - id: GlowstickPurple
+          orGroup: Glowstick
+        - id: GlowstickYellow
+          orGroup: Glowstick
+        - id: GlowstickBlue
+          orGroup: Glowstick
+        # Sunrise-End
         - id: FoodSnackNutribrick
   - type: Sprite
     layers:

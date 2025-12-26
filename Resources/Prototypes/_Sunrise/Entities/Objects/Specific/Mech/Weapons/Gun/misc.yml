@@ -15,7 +15,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletKineticTrash
     fireCost: 30
   - type: Appearance

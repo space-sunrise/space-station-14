@@ -85,7 +85,7 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletSnowBall
     fireCost: 49
   - type: Battery

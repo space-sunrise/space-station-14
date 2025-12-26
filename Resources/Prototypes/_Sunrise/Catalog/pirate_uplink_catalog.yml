@@ -433,7 +433,7 @@
   id: UplinkPirateMiniEnergyCrossbow
   name: uplink-mini-energy-crossbow-name
   description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbowBiocode
+  productEntity: WeaponEnergyCrossbowBiocode
   discountCategory: rarePirateDiscounts
   discountDownTo:
     Doubloon: 34
@@ -448,12 +448,12 @@
 
 - type: listing
   id: UplinkPirateEnergyCrossbow
-  productEntity: WeaponEnergyCrossbow
+  productEntity: WeaponEnergyCrossbowLarge
   discountCategory: rarePirateDiscounts
   discountDownTo:
-    Doubloon: 38
+    Doubloon: 35
   cost:
-    Doubloon: 45
+    Doubloon: 40
   restockTime: 2700
   categories:
   - UplinkPirateWeaponry

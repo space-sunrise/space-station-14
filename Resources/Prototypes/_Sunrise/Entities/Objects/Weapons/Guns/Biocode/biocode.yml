@@ -229,8 +229,8 @@
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
-  parent: WeaponMiniEnergyCrossbow
-  id: WeaponMiniEnergyCrossbowBiocode
+  parent: WeaponEnergyCrossbow
+  id: WeaponEnergyCrossbowBiocode
   suffix: BIOCODE
   components:
   - type: FactionWeaponBlocker

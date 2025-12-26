@@ -251,7 +251,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AnomalousParticleDeltaStrong
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -414,7 +414,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     projectileSpeed: 15
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AirGrenade
     fireCost: 130
   - type: BatteryWeaponFireModes
