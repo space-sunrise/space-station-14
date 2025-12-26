@@ -82,15 +82,15 @@
       - !type:ModifyBloodLevel
         amount: 1 # weaker than iron but pretty good all things considered
       - !type:SatiateHunger
-  pricePerUnit: 3
-  #sunrise-start
+    #sunrise-start
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           types:
             Mangleness: -0.2
-  #sunrise-end
+    #sunrise-end
+  pricePerUnit: 3
 
 - type: reagent
   id: Sugar #Candy and grains

@@ -331,7 +331,7 @@
   - type: FlavorProfile
     flavors:
     - corn
-  - type: Food
+  - type: Edible
     trash:
     - FoodCornTrash
   - type: SolutionContainerManager

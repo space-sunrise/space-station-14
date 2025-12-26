@@ -160,7 +160,6 @@
     allowedModes:
     doAfterTime: 1 #Sunrise-Edit
     preventOverdose: true #Sunrise-Edit
-  - HyposprayInjectMode
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
