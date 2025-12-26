@@ -70,7 +70,8 @@
             Heat: 0.4
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: BarozinePlus
             min: 50
         damage:
           types:
@@ -78,7 +79,8 @@
       - !type:ChemVomit
         probability: 0.1
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: BarozinePlus
             min: 30
       - !type:GenericStatusEffect
         key: PressureImmunity

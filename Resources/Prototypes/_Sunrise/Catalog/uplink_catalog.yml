@@ -1812,26 +1812,26 @@
     whitelist:
     - AtmosphericTechnician
 
-- type: listing
-  id: UplinkMedHyposprayNoFilter
-  name: uplink-med-hypospray-name
-  description: uplink-med-hypospray-desc
-  productEntity: HyposprayMedicalNoFilterBox
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - MedicalDoctor
-    - Chemist
-    - Paramedic
-    - SeniorPhysician
-    - MedicalIntern
+# - type: listing
+#   id: UplinkMedHyposprayNoFilter  # Sunrise-todo: change to jet injector
+#   name: uplink-med-hypospray-name
+#   description: uplink-med-hypospray-desc
+#   productEntity: HyposprayMedicalNoFilterBox
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     Telecrystal: 2
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - UplinkJob
+#   conditions:
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - MedicalDoctor
+#     - Chemist
+#     - Paramedic
+#     - SeniorPhysician
+#     - MedicalIntern
 
 - type: listing
   id: UplinkSyringePistol
@@ -2460,7 +2460,6 @@
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
-      - Science
     tags:
       - NukeOpsUplink
       - LoneOpsUplink
