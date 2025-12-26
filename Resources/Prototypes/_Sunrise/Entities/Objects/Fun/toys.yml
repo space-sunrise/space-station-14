@@ -1398,7 +1398,7 @@
     - NECK
   - type: ItemToggle
     soundActivate:
-      path: /Audio/Machines/energyshield_up.ogg
+      path: /Audio/_Sunrise/Machines/energyshield_up.ogg
     soundDeactivate:
       path: /Audio/Machines/energyshield_down.ogg
       params:

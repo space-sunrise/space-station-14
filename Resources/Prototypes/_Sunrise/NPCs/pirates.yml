@@ -1138,8 +1138,10 @@
       Dead:
         Base: bigbrother-broken
   - type: Bloodstream
-    bloodReagent: WeldingFuel
-    bloodMaxVolume: 200
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2536,8 +2538,10 @@
       Dead:
         Base: warboss-broken
   - type: Bloodstream
-    bloodReagent: WeldingFuel
-    bloodMaxVolume: 300
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
   - type: MobThresholds
     thresholds:
       0: Alive
