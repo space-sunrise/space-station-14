@@ -2460,7 +2460,6 @@
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
-      - Science
     tags:
       - NukeOpsUplink
       - LoneOpsUplink

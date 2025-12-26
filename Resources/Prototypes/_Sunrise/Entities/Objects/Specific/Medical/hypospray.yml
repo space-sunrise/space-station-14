@@ -29,7 +29,7 @@
     solution: pen
   - type: Injector
     solutionName: pen
-    ActiveModeProtoId: HyposprayInjectMode
+    activeModeProtoId: HyposprayInjectMode
     AllowedModes:
     - HyposprayInjectMode
     CurrentTransferAmount: 20
@@ -50,7 +50,7 @@
 
 - type: entity
   name: ERT hypospray
-  parent: [BaseItem, BaseGrandTheftContraband]
+  parent: [Hypospray, BaseCentcommContraband]
   description: A sterile injector for rapid administration of drugs to patients.
   id: HyposprayERT
   components:
@@ -63,25 +63,10 @@
     solutions:
       hypospray:
         maxVol: 20
-  - type: RefillableSolution
-    solution: hypospray
-  - type: ExaminableSolution
-    solution: hypospray
-  - type: Injector
-    solutionName: hypospray
-    ActiveModeProtoId: HyposprayDynamicMode
-    AllowedModes:
-    - HyposprayDynamicMode
-    - HyposprayInjectMode
   - type: UseDelay
-    delay: 0.5
+    delay: 0.15
   - type: StaticPrice
-    price: 750
-  - type: Tag
-    tags:
-    - HighRiskItem
-  - type: StealTarget
-    stealGroup: Hypospray
+    price: 1500
 
 - type: entity
   name: medical hypospray
@@ -102,7 +87,7 @@
     solution: hypospray
   - type: Injector
     solutionName: hypospray
-    ActiveModeProtoId: HyposprayInjectMode
+    activeModeProtoId: HyposprayInjectMode
     AllowedModes:
     - HyposprayInjectMode
     CurrentTransferAmount: 5
@@ -119,7 +104,7 @@
   components:
   - type: Injector
     solutionName: hypospray
-    ActiveModeProtoId: HyposprayInjectMode
+    activeModeProtoId: HyposprayInjectMode
     AllowedModes:
     - HyposprayInjectMode
 
