@@ -1,4 +1,5 @@
 using Content.Server.Maps;
+using Content.Shared.Maps;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;

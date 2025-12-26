@@ -373,7 +373,7 @@ public sealed partial class AdminLogsControl : Control
 
         for (var i = 0; i < impacts.Length - 1; i++)
         {
-            LogImpactContainer.GetChild(i).StyleClasses.Add("ButtonSquare");
+            LogImpactContainer.GetChild(i).StyleClasses.Add(StyleClass.ButtonSquare);
         }
 
         LogImpactContainer.GetChild(LogImpactContainer.ChildCount - 1).StyleClasses.Add("OpenLeft");

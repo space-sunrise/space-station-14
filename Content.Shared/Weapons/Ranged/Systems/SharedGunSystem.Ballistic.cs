@@ -1,5 +1,4 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -9,7 +8,8 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
-using Robust.Shared.Prototypes; // 🌟Starlight🌟
+using Robust.Shared.Prototypes;
+using Content.Shared.Emp; // 🌟Starlight🌟
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -18,7 +18,7 @@ public abstract partial class SharedGunSystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
 
-    [MustCallBase]
+
     protected virtual void InitializeBallistic()
     {
         SubscribeLocalEvent<BallisticAmmoProviderComponent, ComponentInit>(OnBallisticInit);
@@ -31,8 +31,7 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, InteractUsingEvent>(OnBallisticInteractUsing);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AfterInteractEvent>(OnBallisticAfterInteract);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AmmoFillDoAfterEvent>(OnBallisticAmmoFillDoAfter);
-        //SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse);
-
+        // SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse); // Sunrise edit
         SubscribeLocalEvent<BallisticAmmoSelfRefillerComponent, MapInitEvent>(OnBallisticRefillerMapInit);
         SubscribeLocalEvent<BallisticAmmoSelfRefillerComponent, EmpPulseEvent>(OnRefillerEmpPulsed);
     }
@@ -41,30 +40,39 @@ public abstract partial class SharedGunSystem
     {
         entity.Comp.NextAutoRefill = Timing.CurTime + entity.Comp.AutoRefillRate;
     }
-
     // Sunrise-Start
     // private void OnBallisticUse(EntityUid uid, BallisticAmmoProviderComponent component, UseInHandEvent args)
     // {
     //     if (args.Handled)
     //         return;
-    //
+
     //     ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), args.User);
     //     args.Handled = true;
     // }
-
     public void BallisticAmmoCockGun(EntityUid user, EntityUid uid, BallisticAmmoProviderComponent component)
     {
         ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), user);
     }
     // Sunrise-End
-
     private void OnBallisticInteractUsing(EntityUid uid, BallisticAmmoProviderComponent component, InteractUsingEvent args)
     {
         if (args.Handled)
             return;
 
-        if (TryBallisticInsert((uid, component), args.Used, args.User))
-            args.Handled = true;
+        if (_whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, args.Used))
+            return;
+
+        if (GetBallisticShots(component) >= component.Capacity)
+            return;
+
+        component.Entities.Add(args.Used);
+        Containers.Insert(args.Used, component.Container);
+        // Not predicted so
+        Audio.PlayPredicted(component.SoundInsert, uid, args.User);
+        args.Handled = true;
+        UpdateBallisticAppearance(uid, component);
+        UpdateAmmoCount(args.Target);
+        DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
     }
 
     private void OnBallisticAfterInteract(EntityUid uid, BallisticAmmoProviderComponent component, AfterInteractEvent args)
@@ -272,7 +280,8 @@ public abstract partial class SharedGunSystem
     {
         for (var i = 0; i < args.Shots; i++)
         {
-            EntityUid? ammoEntity = null;
+            EntityUid entity;
+
             if (component.Entities.Count > 0)
             {
                 entity = component.Entities[^1];
@@ -299,11 +308,7 @@ public abstract partial class SharedGunSystem
             {
                 component.UnspawnedCount--;
                 DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));
-                ammoEntity = Spawn(component.Proto, args.Coordinates);
-            }
-
-            if (ammoEntity is { } ent)
-            {
+                entity = Spawn(component.Proto, args.Coordinates);
 
                 if (TryComp<GunComponent>(uid, out var gun))
                 {
@@ -315,11 +320,7 @@ public abstract partial class SharedGunSystem
                     }
                 }
 
-                args.Ammo.Add((ent, EnsureShootable(ent)));
-                if (TryComp<BallisticAmmoSelfRefillerComponent>(uid, out var refiller))
-                {
-                    PauseSelfRefill((uid, refiller));
-                }
+                args.Ammo.Add((entity, EnsureShootable(entity)));
             }
         }
 

@@ -127,7 +127,11 @@ public sealed class UplinkSystem : EntitySystem
                 var pdaUid = containerSlot.ContainedEntity;
 
                 // Sunrtise-Start
-                if (_tagSystem.HasTag(pdaUid.ContainedEntity.Value, "SunriseUplink"))
+
+                if (pdaUid == null)
+                    return null;
+
+                if (_tagSystem.HasTag(pdaUid.Value, "SunriseUplink"))
                     continue;
                 // Sunrtise-End
 

@@ -37,6 +37,7 @@ using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Mech.Systems;
 

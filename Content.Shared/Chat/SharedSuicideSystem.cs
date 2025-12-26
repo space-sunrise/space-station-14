@@ -42,7 +42,7 @@ public sealed class SharedSuicideSystem : EntitySystem
             appliedDamageSpecifier.DamageDict[key] = Math.Ceiling((double) (value * lethalAmountOfDamage / totalDamage));
         }
 
-        _damageableSystem.ChangeDamage(target.AsNullable(), appliedDamageSpecifier, true, origin: target, useModifier: false, useVariance: false); // Sunrise-Edit
+        _damageableSystem.ChangeDamage(target.AsNullable(), appliedDamageSpecifier, true, origin: target, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
     }
 
     /// <summary>
@@ -66,6 +66,6 @@ public sealed class SharedSuicideSystem : EntitySystem
         }
 
         var damage = new DamageSpecifier(damagePrototype, lethalAmountOfDamage);
-        _damageableSystem.ChangeDamage(target.AsNullable(), damage, true, origin: target, useModifier: false, useVariance: false); // Sunrise-Edit
+        _damageableSystem.ChangeDamage(target.AsNullable(), damage, true, origin: target, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
     }
 }

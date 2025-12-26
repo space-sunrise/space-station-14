@@ -149,7 +149,7 @@ public sealed class SuicideCommandTests
             damageableComp = entManager.GetComponent<DamageableComponent>(player);
 
             var slashProto = protoMan.Index(DamageType);
-            damageableSystem.TryChangeDamage(player, new DamageSpecifier(slashProto, FixedPoint2.New(46.5)), useModifier: false, useVariance: false); // Sunrise-Edit
+            damageableSystem.ChangeDamage(player, new DamageSpecifier(slashProto, FixedPoint2.New(46.5)), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
         });
 
         // Check that running the suicide command kills the player

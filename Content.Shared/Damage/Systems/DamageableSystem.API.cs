@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Net.Sockets;
+using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -123,7 +124,10 @@ public sealed partial class DamageableSystem
         bool ignoreResistances = false,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-        bool ignoreGlobalModifiers = false
+        bool useVariance = true, // Sunrise
+        bool ignoreGlobalModifiers = false,
+        float armorPenetration = 0f, // 🌟Starlight🌟
+        bool canHeal = true // 🌟Starlight🌟
     )
     {
         var damageDone = new DamageSpecifier();
@@ -140,6 +144,20 @@ public sealed partial class DamageableSystem
         if (before.Cancelled)
             return damageDone;
 
+        // Sunrise-Start
+        if (useVariance)
+        {
+            var varianceMultiplier = 1f;
+            if (damage.GetTotal() > 0)
+            {
+                var min = 1f - NegativeVariance;
+                var max = 1f + PositiveVariance;
+                varianceMultiplier = _random.NextFloat(min, max);
+            }
+            damage *= varianceMultiplier;
+        }
+        // Sunrise-End
+
         // Apply resistances
         if (!ignoreResistances)
         {
@@ -151,13 +169,24 @@ public sealed partial class DamageableSystem
 
             // TODO DAMAGE
             // byref struct event.
-            var ev = new DamageModifyEvent(damage, origin);
+            var ev = new DamageModifyEvent(damage, origin, armorPenetration, canHeal); //starlight, added armor pen and heal flag
             RaiseLocalEvent(ent, ev);
             damage = ev.Damage;
 
             if (damage.Empty)
                 return damageDone;
         }
+
+        // 🌟Starlight🌟 start
+        var finalEv = new DamageBeforeApplyEvent
+        {
+            Damage = damage,
+            Origin = origin
+        };
+        RaiseLocalEvent(ent, finalEv);
+        if (finalEv.Cancelled)
+            return damage;
+        // 🌟Starlight🌟 end
 
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);

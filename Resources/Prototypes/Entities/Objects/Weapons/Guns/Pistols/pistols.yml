@@ -139,7 +139,7 @@
   # - type: ContainerContainer
   #   containers:
   #     ballistic-ammo: !type:Container
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPistolTraceSP
     fireCost: 100
   - type: Battery

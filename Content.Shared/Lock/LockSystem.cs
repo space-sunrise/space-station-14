@@ -357,7 +357,10 @@ public sealed class LockSystem : EntitySystem
             return true;
 
         if (!quiet)
-            _sharedPopupSystem.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), user, user);
+        {
+            var denyReason = accessEv.DenyReason ?? Loc.GetString(_defaultDenyReason);
+            _sharedPopupSystem.PopupClient(denyReason, ent, user);
+        }
         return false;
     }
 
@@ -365,12 +368,6 @@ public sealed class LockSystem : EntitySystem
     {
         if (HasComp<MindShieldComponent>(user))
             return true;
-
-        if (!quiet)
-        {
-            var denyReason = accessEv.DenyReason ?? Loc.GetString(_defaultDenyReason);
-            _sharedPopupSystem.PopupClient(denyReason, ent, user);
-        }
 
         return false;
     }

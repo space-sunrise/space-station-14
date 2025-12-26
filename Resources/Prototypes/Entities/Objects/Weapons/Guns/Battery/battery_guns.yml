@@ -549,7 +549,7 @@
     projectileSpeed: 35 # any higher and this causes issues in lag
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: HitscanBatteryAmmoProvider # Sunrise-Edit
+  - type: BatteryAmmoProvider # Sunrise-Edit
     proto: DisablerBoltPractice
     fireCost: 50
   - type: Tag
@@ -578,7 +578,7 @@
     slots:
       - suitStorage
       - Belt
-  - type: HitscanBatteryAmmoProvider # Sunrise-Edit
+  - type: BatteryAmmoProvider # Sunrise-Edit
     proto: DisablerBolt
     fireCost: 62.5
   - type: GuideHelp
@@ -616,7 +616,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: HitscanBatteryAmmoProvider # Sunrise-Edit
+  - type: BatteryAmmoProvider # Sunrise-Edit
     proto: DisablerBoltSmg
     fireCost: 25
   - type: MagazineVisuals

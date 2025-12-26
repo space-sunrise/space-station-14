@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -21,6 +22,11 @@ public sealed partial class DamageableSystem
 
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _damageableQuery = GetEntityQuery<DamageableComponent>();
+
+        _config.OnValueChanged(SunriseCCVars.DamagePositiveVariance, UpdatePositiveVariance, true); // Sunrise-Edit
+        _config.OnValueChanged(SunriseCCVars.DamageNegativeVariance, UpdateNegativeVariance, true); // Sunrise-Edit
+        _config.OnValueChanged(SunriseCCVars.DamageModifier, UpdateDamageModifier, true); // Sunrise-Edit
+        _config.OnValueChanged(SunriseCCVars.HealModifier, UpdateHealModifier, true); // Sunrise-Edit
 
         // Damage modifier CVars are updated and stored here to be queried in other systems.
         // Note that certain modifiers requires reloading the guidebook.
@@ -119,6 +125,28 @@ public sealed partial class DamageableSystem
         );
     }
 
+    // Sunrise-Start
+    private void UpdatePositiveVariance(float value)
+    {
+        PositiveVariance = value;
+    }
+
+    private void UpdateNegativeVariance(float value)
+    {
+        NegativeVariance = value;
+    }
+
+    private void UpdateHealModifier(float value)
+    {
+        HealModifier = value;
+    }
+
+    private void UpdateDamageModifier(float value)
+    {
+        DamageModifier = value;
+    }
+    // Sunrise-End
+
     /// <summary>
     ///     Initialize a damageable component
     /// </summary>
@@ -216,7 +244,7 @@ public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid?
 ///
 ///     For example, armor.
 /// </summary>
-public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
+public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f, bool canHeal = false) // 🌟Starlight🌟
     : EntityEventArgs, IInventoryRelayEvent
 {
     // Whenever locational damage is a thing, this should just check only that bit of armour.
@@ -224,6 +252,9 @@ public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin 
 
     public readonly DamageSpecifier OriginalDamage = damage;
     public DamageSpecifier Damage = damage;
+    public float ArmorPenetration = armorPenetration;   // 🌟Starlight🌟
+    public bool CanHeal = canHeal;  // 🌟Starlight🌟
+    public EntityUid? Origin = origin; //Starlight, but this is clearly a upstream bug
 }
 
 public sealed class DamageChangedEvent : EntityEventArgs

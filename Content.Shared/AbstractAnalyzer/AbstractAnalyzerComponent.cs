@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server.AbstractAnalyzer;
+namespace Content.Shared.AbstractAnalyzer;
 
 /// <summary>
 /// After scanning, retrieves the target Uid to use with its related UI.
@@ -43,7 +43,7 @@ public abstract partial class AbstractAnalyzerComponent : Component
     public EntityUid? ScannedEntity;
 
     /// <summary>
-    /// The maximum range in tiles at which the analyzer can receive continuous updates
+    /// The maximum range in tiles at which the analyzer can receive continuous updates, a value of null will be infinite range
     /// </summary>
     [DataField]
     public float? MaxScanRange = 2.5f;

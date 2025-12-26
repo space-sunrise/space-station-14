@@ -67,6 +67,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Damage;
 
 namespace Content.Server.Administration.Systems;
 
@@ -1198,7 +1199,7 @@ public sealed partial class AdminVerbSystem
                 { "Radiation", GetDamageToKill(target) }
             }
         };
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 
     private void Scorched(EntityUid target)
@@ -1223,7 +1224,7 @@ public sealed partial class AdminVerbSystem
                         { "Heat", GetDamageToKill(target) - 50 }
                     }
                 };
-                _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+                _damageable.SetDamage(target, damageSpecifier);
             });
         }
     }
@@ -1251,7 +1252,7 @@ public sealed partial class AdminVerbSystem
                 { "Toxin", GetDamageToKill(target) }
             }
         };
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 
     private void BluespaceAway(EntityUid target)
@@ -1287,6 +1288,6 @@ public sealed partial class AdminVerbSystem
             }
         };
 
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 }

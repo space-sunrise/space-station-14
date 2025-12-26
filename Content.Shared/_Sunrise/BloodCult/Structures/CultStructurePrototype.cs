@@ -4,21 +4,21 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.BloodCult.Structures;
 
-[Prototype("cultStructure")]
-public sealed class CultStructurePrototype : IPrototype
+[Prototype]
+public sealed partial class CultStructurePrototype : IPrototype
 {
-    [DataField("structureId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>), required: true)]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>), required: true)]
     public string StructureId = string.Empty;
 
     [DataField("name", required: true)]
     public string StructureName = string.Empty;
 
-    [DataField("icon", required: true)]
-    public SpriteSpecifier Icon { get; } = default!;
+    [DataField(required: true)]
+    public SpriteSpecifier Icon { get; private set; } = default!;
 
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
-    [DataField( required: true)]
+    [DataField(required: true)]
     public BloodCultType? CultType;
 }

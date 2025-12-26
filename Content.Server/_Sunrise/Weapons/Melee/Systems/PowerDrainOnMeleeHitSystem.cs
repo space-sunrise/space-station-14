@@ -1,11 +1,11 @@
 using Content.Server.Power.EntitySystems;
-using Content.Server.PowerCell;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared.PowerCell;
 
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
@@ -38,13 +38,13 @@ public sealed class PowerDrainOnMeleeHitSystem : EntitySystem
         // Prefer slotted power cell if present
         if (HasComp<PowerCellSlotComponent>(uid))
         {
-            if (!_powerCell.HasCharge(uid, comp.ChargePerHit, null, args.User))
+            if (!_powerCell.HasCharge(uid, comp.ChargePerHit, args.User))
             {
                 args.Handled = true;
                 return;
             }
 
-            if (!_powerCell.TryUseCharge(uid, comp.ChargePerHit, null, args.User))
+            if (!_powerCell.TryUseCharge(uid, comp.ChargePerHit, args.User))
             {
                 args.Handled = true;
                 return;
@@ -55,13 +55,13 @@ public sealed class PowerDrainOnMeleeHitSystem : EntitySystem
         // Fall back to direct BatteryComponent on the same entity
         if (TryComp<BatteryComponent>(uid, out var directBattery))
         {
-            if (directBattery.CurrentCharge < comp.ChargePerHit)
+            if (directBattery.ChargeRate < comp.ChargePerHit)
             {
                 args.Handled = true;
                 return;
             }
 
-            if (!_battery.TryUseCharge(uid, comp.ChargePerHit, directBattery))
+            if (!_battery.TryUseCharge(uid, comp.ChargePerHit))
             {
                 args.Handled = true;
                 return;

@@ -1,17 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.PowerCell;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
+using Content.Shared.PowerCell;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
-namespace Content.Server.AbstractAnalyzer;
+namespace Content.Shared.AbstractAnalyzer;
 
 public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfterEvent> : EntitySystem
     where TAnalyzerComponent : AbstractAnalyzerComponent
@@ -22,9 +21,10 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly IDynamicTypeFactory _typeFactory = default!;
 
     public override void Initialize()
     {
@@ -57,11 +57,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
 
             //Get distance between analyzer and the scanned entity
             var targetCoordinates = Transform(target).Coordinates;
-            if (component.MaxScanRange != null &&
-                !_transformSystem.InRange(
-                    targetCoordinates,
-                    transform.Coordinates,
-                    component.MaxScanRange.Value))
+            if (component.MaxScanRange is { } maxScanRange && !_transformSystem.InRange(targetCoordinates, transform.Coordinates, maxScanRange))
             {
                 //Range too far, disable updates
                 StopAnalyzingEntity((uid, component), target);
@@ -77,14 +73,15 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
     /// </summary>
     private void OnAfterInteract(Entity<TAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !ValidScanTarget(args.Target) || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Target == null || !args.CanReach || !ValidScanTarget(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
-        _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
+        _audio.PlayPredicted(uid.Comp.ScanningBeginSound, uid, null);
 
-        var doAfterCancelled = !_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, uid.Comp.ScanDelay, new TAnalyzerDoAfterEvent(), uid, target: args.Target, used: uid)
+        var doAfterEvent = _typeFactory.CreateInstance<TAnalyzerDoAfterEvent>();
+        var doAfterCancelled = !_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, uid.Comp.ScanDelay, doAfterEvent, uid, target: args.Target, used: uid)
         {
-            NeedHand = args.NeedHand, // Sunrise-Edit
+            NeedHand = true,
             BreakOnMove = true,
         });
 
@@ -97,11 +94,11 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
 
     private void OnDoAfter(Entity<TAnalyzerComponent> uid, ref TAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)
-            _audio.PlayPvs(uid.Comp.ScanningEndSound, uid);
+            _audio.PlayPredicted(uid.Comp.ScanningEndSound, uid, null);
 
         OpenUserInterface(args.User, uid);
         BeginAnalyzingEntity(uid, args.Target.Value);

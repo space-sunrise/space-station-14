@@ -336,7 +336,7 @@ public sealed class SolutionTransferSystem : EntitySystem
     /// </summary>
     private bool CanTransfer(SolutionTransferData data)
     {
-        var transferAttempt = new SolutionTransferAttemptEvent(data.SourceEntity, data.TargetEntity);
+        var transferAttempt = new SolutionTransferAttemptEvent(data.SourceEntity, data.TargetEntity, data.Source); // Starlight - add Source parameter
 
         // Check if the source is cancelling the transfer
         RaiseLocalEvent(data.SourceEntity, ref transferAttempt);

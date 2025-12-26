@@ -17,6 +17,7 @@ using Robust.Shared.Timing;
 using Content.Shared._Sunrise.Mech;
 using Content.Shared.Coordinates;
 using Content.Shared.Emp;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Sunrise.Mech;
 
@@ -86,7 +87,7 @@ public sealed partial class SunriseMechSystem : EntitySystem
 
         ent.Comp.NextPulseTime = curTime + ent.Comp.CooldownTime;
 
-        _damageable.TryChangeDamage(ent, ent.Comp.EmpDamage);
+        _damageable.TryChangeDamage(ent.Owner, ent.Comp.EmpDamage);
 
         EnsureComp<MechOnEMPPulseComponent>(ent);
     }

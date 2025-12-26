@@ -16,6 +16,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Content.Shared.PowerCell.Components;
 
 //Sunrise-Edit
 
@@ -58,7 +59,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
             {
                 if (HasComp<ActivatableUIRequiresPowerCellComponent>(uid) && TryComp<PowerCellDrawComponent>(uid, out var draw))
                 {
-                    if (_cell.HasActivatableCharge(uid, draw))
+                    if (_cell.HasActivatableCharge(uid))
                     {
                         _audio.PlayPvs(component.CorpseAlertSound, uid);
                     }

@@ -20,7 +20,7 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 30
   - type: ItemSlots
@@ -117,7 +117,7 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 60
   - type: BatteryWeaponFireModes
@@ -170,7 +170,7 @@
     autoRechargeRate: 60
     autoRechargePause: true
     autoRechargePauseTime: 6
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 90
   - type: BatteryWeaponFireModes
@@ -214,7 +214,7 @@
     - state: mag-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -299,7 +299,7 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -351,7 +351,7 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -415,7 +415,7 @@
     autoRechargeRate: 14 # ~2 minute
     autoRechargePause: true
     autoRechargePauseTime: 30
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 49
   - type: BatteryWeaponFireModes
@@ -453,7 +453,7 @@
     - state: mag-unshaded-2
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
   - type: MagazineVisuals
@@ -503,7 +503,7 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -548,7 +548,7 @@
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -597,7 +597,7 @@
   - type: Battery
     maxCharge: 8000
     startingCharge: 8000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -647,7 +647,7 @@
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: XrayLaser
     fireCost: 100
   - type: Wieldable
@@ -696,7 +696,7 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 100
   - type: Wieldable
@@ -744,7 +744,7 @@
         volume: 5
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 40
   - type: Wieldable
@@ -796,7 +796,7 @@
     availableModes:
       - SemiAuto
       - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: BatterySelfRecharger
@@ -843,7 +843,7 @@
         volume: -1
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 25
   - type: MultiHandedItem
@@ -876,7 +876,7 @@
     size: Small
     shape:
     - 0, 0, 1, 1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -927,7 +927,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AdvancedDisablerBolt
     fireCost: 1000
   - type: BatteryWeaponFireModes
@@ -981,7 +981,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
@@ -1037,7 +1037,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AdvancedDisablerBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
@@ -1100,7 +1100,7 @@
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AdvancedDisablerBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
@@ -1149,7 +1149,7 @@
         volume: -2
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 33
   - type: BatterySelfRecharger

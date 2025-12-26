@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Sunrise.Flyswatter;
 using Content.Shared.Body.Components;
 using Content.Shared.Weapons.Melee;
@@ -23,7 +24,12 @@ public sealed class FlyswatterSystem : EntitySystem
         if (flyswatter.InsectDamageMultiplier <= 1f)
             return;
 
-        if (component.BloodReagent != flyswatter.InsectBloodReagent)
+        // BloodstreamComponent doesn't have a single BloodReagent field.
+        // Inspect the bloodstream's reference solution contents for the reagent
+        // prototype ID configured on the flyswatter. This avoids calling methods
+        // on the Solution instance which may be restricted by component access.
+        var contents = component.BloodReferenceSolution?.Contents;
+        if (contents == null || !contents.Any(q => q.Reagent.Prototype == flyswatter.InsectBloodReagent))
             return;
 
         // 0 смысла если не бьет

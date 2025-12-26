@@ -260,7 +260,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         // Inject reagents if any are specified
         if (component.Reagents.Count > 0 && TryComp<BloodstreamComponent>(target, out var bloodstream))
         {
-            if (_solutionContainer.TryGetSolution(target, bloodstream.ChemicalSolutionName, out var solution))
+            if (_solutionContainer.TryGetSolution(target, bloodstream.BloodReferenceSolution.Name, out var solution))
             {
                 foreach (var (reagent, amount) in component.Reagents)
                     _solutionContainer.TryAddReagent(solution.Value, reagent, FixedPoint2.New(amount), out _);

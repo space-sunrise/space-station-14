@@ -2,6 +2,7 @@
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Doors;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;

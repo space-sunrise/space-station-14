@@ -213,7 +213,7 @@
       collection: syndi_plasma
       params:
         volume: -1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 25
   - type: Appearance

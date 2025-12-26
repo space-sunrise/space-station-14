@@ -1,4 +1,5 @@
 ﻿using Content.Server.Maps;
+using Content.Shared.Maps;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;

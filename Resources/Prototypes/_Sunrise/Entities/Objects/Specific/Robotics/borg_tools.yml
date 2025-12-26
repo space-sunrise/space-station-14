@@ -65,7 +65,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -568,7 +568,7 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider #ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider #ProjectileBatteryAmmoProvider
     proto: Pulse
     fireCost: 200
   - type: Battery
@@ -606,7 +606,7 @@
         volume: -1
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: Battery
@@ -646,7 +646,7 @@
         volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletRifleTraceSP
     fireCost: 50
   - type: Battery
@@ -756,7 +756,7 @@
     - FullAuto
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPistolTraceSP
     fireCost: 50
   - type: Battery
@@ -901,7 +901,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser #no levelcode system, because I give em disablersmg
     fireCost: 100
   - type: Battery
@@ -941,7 +941,7 @@
     - FullAuto
     soundGunshot:
       collection: glock22
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPistolTraceRubber
     fireCost: 100
   - type: BatteryWeaponFireModes # No AP, or Uranium rounds because can be created roundstart.
@@ -1019,7 +1019,7 @@
       - SemiAuto
     soundGunshot:
       collection: galil
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletRifleTraceSP
     fireCost: 100
   - type: BatteryWeaponFireModes # No AP, or Uranium rounds for balance reasons. Also no Levelcode system, and rubber bullets, because fck em.

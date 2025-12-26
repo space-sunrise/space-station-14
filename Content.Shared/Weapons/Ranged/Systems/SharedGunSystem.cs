@@ -42,6 +42,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -724,14 +725,25 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     protected abstract void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null);
 
+    public abstract void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound);
+
     /// <summary>
     /// Used for animated effects on the client.
     /// </summary>
     [Serializable, NetSerializable]
     public sealed class HitscanEvent : EntityEventArgs
     {
-        public ProtoId<HitscanPrototype> Hitscan;
-        public required Effect[][] Effects { get; init; }
+        // Starlight - comment out the upstream Sprites list in favor of tracking the hitscan and its traces
+        // public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance)> Sprites = new();
+        // Starilght start - we add the traces block below, and use that instead of the sprite list above.
+        public required List<HitscanTrace> Traces;
+
+        // The following set of properties are copied from the HitscanBasicVisualsComponent
+        public SpriteSpecifier? MuzzleFlash;
+        public SpriteSpecifier? TravelFlash;
+        public SpriteSpecifier? ImpactFlash;
+        public ExtendedSpriteSpecifier? Bullet;
+        public required float Speed;
     }
     [Serializable, NetSerializable]
     public struct Effect

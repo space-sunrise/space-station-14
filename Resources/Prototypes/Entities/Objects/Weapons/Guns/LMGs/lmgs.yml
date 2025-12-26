@@ -149,7 +149,7 @@
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: BulletRifleTraceSP
       fireCost: 100
     - type: Battery
