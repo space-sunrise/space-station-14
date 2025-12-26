@@ -179,19 +179,10 @@
   - type: HealthAnalyzer
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
-    damageContainers:
-    - Synth
-    - Silicon
   - type: Tag
     tags:
     - DiscreteHealthAnalyzer
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerCellSlotVisuals.Enabled:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
   - type: GuideHelp
     guides:
     - Robotics

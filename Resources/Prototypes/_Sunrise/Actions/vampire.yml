@@ -52,7 +52,7 @@
       sprite: Interface/Actions/actions_vampire.rsi
       state: glare
     sound: !type:SoundPathSpecifier
-      path: /Audio/Effects/Vampire/glare.ogg
+      path: /Audio/_Sunrise/Effects/Vampire/glare.ogg
   - type: EntityTargetAction
     whitelist:
       components:
@@ -102,7 +102,7 @@
       sprite: Interface/Actions/actions_vampire.rsi
       state: screech
     sound: !type:SoundPathSpecifier
-      path: /Audio/Effects/Vampire/screech_tone.ogg
+      path: /Audio/_Sunrise/Effects/Vampire/screech_tone.ogg
   - type: InstantAction
     event:
       !type:VampireScreechEvent
