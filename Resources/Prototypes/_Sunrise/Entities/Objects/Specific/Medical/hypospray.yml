@@ -5,7 +5,7 @@
   id: MedipenCombatInjector
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
+    sprite: _Sunrise/Objects/Specific/Medical/hypospray.rsi
     state: combat_minihypo
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
