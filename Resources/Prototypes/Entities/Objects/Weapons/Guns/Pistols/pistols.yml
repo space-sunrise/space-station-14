@@ -187,7 +187,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeCaselessRifle
         priority: 1
         whitelist:
           tags:

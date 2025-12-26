@@ -8,6 +8,7 @@ using Content.Shared.Audio;
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
@@ -72,6 +73,11 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+
+    /// <summary>
+    /// Default projectile speed
+    /// </summary>
+    public const float ProjectileSpeed = 40f;
 
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
@@ -508,7 +514,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityUid? user = null,
         bool throwItems = false);
 
-    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid? gunUid, EntityUid? user = null, float speed = 20f)
+    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid? gunUid, EntityUid? user = null, float speed = ProjectileSpeed)
     {
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
@@ -738,6 +744,32 @@ public abstract partial class SharedGunSystem : EntitySystem
         public NetCoordinates ImpactCoordinates;
         public NetEntity? ImpactEnt;
 
+    }
+
+    /// <summary>
+    /// Get the ammo count for a given EntityUid. Can be a firearm or magazine.
+    /// </summary>
+    public int GetAmmoCount(EntityUid uid)
+    {
+        var ammoEv = new GetAmmoCountEvent();
+        RaiseLocalEvent(uid, ref ammoEv);
+        return ammoEv.Count;
+    }
+
+    /// <summary>
+    /// Get the ammo capacity for a given EntityUid. Can be a firearm or magazine.
+    /// </summary>
+    public int GetAmmoCapacity(EntityUid uid)
+    {
+        var ammoEv = new GetAmmoCountEvent();
+        RaiseLocalEvent(uid, ref ammoEv);
+        return ammoEv.Capacity;
+    }
+
+    public override void Update(float frameTime)
+    {
+        UpdateBattery(frameTime);
+        UpdateBallistic(frameTime);
     }
 }
 

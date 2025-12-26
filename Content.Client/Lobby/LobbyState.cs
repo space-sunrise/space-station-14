@@ -17,6 +17,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
@@ -46,6 +47,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private readonly IPrototypeManager _protoMan = default!;
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
         [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly IResourceManager _resource = default!;

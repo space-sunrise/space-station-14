@@ -54,10 +54,12 @@ public partial class ChatBox : UIWidget
         _controller.RegisterChat(this);
     }
 
+    // Sunrise-Start
     public void SetChatOpacity()
     {
         _controller.SetChatWindowOpacity(_configurationManager.GetCVar(CCVars.ChatWindowOpacity));
     }
+    // Sunrise-End
 
     private void OnTextEntered(LineEditEventArgs args)
     {
@@ -94,7 +96,7 @@ public partial class ChatBox : UIWidget
 
     public void Repopulate()
     {
-        ClearChatContents(); // Sunrise
+        ClearChatContents(); // Sunrise-Edit
 
         foreach (var message in _controller.History)
         {
@@ -104,7 +106,7 @@ public partial class ChatBox : UIWidget
 
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
-        ClearChatContents(); // Sunrise
+        ClearChatContents(); // Sunrise-Edit
 
         foreach (var message in _controller.History)
         {
@@ -122,7 +124,7 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    // Sunrise start
+    // Sunrise-Start
     private void ClearChatContents()
     {
         Contents.Clear();
@@ -135,7 +137,7 @@ public partial class ChatBox : UIWidget
             }
         }
     }
-    // Sunrise end
+    // Sunrise-End
 
     public void AddLine(string message, Color color)
     {

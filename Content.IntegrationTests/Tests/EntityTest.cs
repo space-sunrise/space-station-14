@@ -109,11 +109,6 @@ namespace Content.IntegrationTests.Tests
                     .ToList();
                 foreach (var protoId in protoIds)
                 {
-                    // Sunrise-Start
-                    if (protoId == "Envelope")
-                        continue;
-                    // Sunrise-End
-
                     entityMan.SpawnEntity(protoId, map.GridCoords);
                 }
             });

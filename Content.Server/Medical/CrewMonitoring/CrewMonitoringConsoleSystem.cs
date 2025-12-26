@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.PowerCell;
+using Content.Shared.PowerCell;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Medical.CrewMonitoring;

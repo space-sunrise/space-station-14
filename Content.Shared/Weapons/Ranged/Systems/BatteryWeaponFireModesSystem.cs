@@ -22,6 +22,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
 
     public override void Initialize()

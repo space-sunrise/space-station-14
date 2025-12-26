@@ -125,6 +125,8 @@ internal sealed class BuckleSystem : SharedBuckleSystem
             !buckled ||
             args.Sprite == null)
         {
+            // Sunrise-Edit
+            //_rotationVisualizerSystem.SetHorizontalAngle((uid, rotVisuals), rotVisuals.DefaultRotation);
             return;
         }
 

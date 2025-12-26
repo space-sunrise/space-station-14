@@ -5,12 +5,14 @@
   description: It's a box with basic internals inside.
   suffix: Standard
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -21,8 +23,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -33,12 +35,14 @@
   id: BoxSurvivalNitrogen
   suffix: Standard N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -49,8 +53,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -65,12 +69,14 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Extended
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -81,8 +87,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -93,12 +99,14 @@
   id: BoxSurvivalEngineeringNitrogen
   suffix: Extended N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -109,8 +117,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -125,24 +133,26 @@
   description: It's a box with basic internals inside.
   suffix: Security
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: ExtendedEmergencyOxygenTankFilled #Sunrise-Edit
-    - id: EmergencyMedipen
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyOxygenTankFilled #Sunrise-Edit
+        - id: EmergencyMedipen
     # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
       orGroup: Glowstick
-    - id: GlowstickYellow
+        - id: GlowstickYellow
       orGroup: Glowstick
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -153,24 +163,26 @@
   id: BoxSurvivalSecurityNitrogen
   suffix: Security N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: ExtendedEmergencyNitrogenTankFilled #Sunrise-Edit
-    - id: EmergencyMedipen
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyNitrogenTankFilled #Sunrise-Edit
+        - id: EmergencyMedipen
     # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
     - id: GlowstickPurple
       orGroup: Glowstick
-    - id: GlowstickYellow
+        - id: GlowstickYellow
       orGroup: Glowstick
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -185,12 +197,14 @@
   description: It's a box with basic internals inside.
   suffix: Medical
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -201,8 +215,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -213,12 +227,14 @@
   id: BoxSurvivalMedicalNitrogen
   suffix: Medical N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -229,8 +245,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -251,12 +267,14 @@
     - state: heart
   - type: Item
     heldPrefix: hug
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyFunnyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -267,8 +285,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Tag
     tags:
     - BoxCardboard
@@ -279,12 +297,14 @@
   id: BoxHugNitrogen
   suffix: Emergency N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -295,8 +315,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Label
     currentLabel: reagent-name-nitrogen
 
@@ -305,12 +325,14 @@
   id: BoxMime
   suffix: Mime, Emergency
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -321,20 +343,22 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodBreadNutriBatard
-    - id: DrinkWaterBottleFull
+        - id: FoodBreadNutriBatard
+        - id: DrinkWaterBottleFull
 
 - type: entity
   parent: BoxSurvivalNitrogen
   id: BoxMimeNitrogen
   suffix: Mime, Emergency N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -345,8 +369,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodBreadNutriBatard
-    - id: DrinkWaterBottleFull
+        - id: FoodBreadNutriBatard
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -359,12 +383,14 @@
   id: BoxMimeMoth
   suffix: Mime, Emergency moth
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -375,8 +401,8 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodBreadCottonNutriBatard
-    - id: DrinkWaterBottleFull
+        - id: FoodBreadCottonNutriBatard
+        - id: DrinkWaterBottleFull
 
 - type: entity
   parent: BoxSurvivalBase # Sunrise-Edit
@@ -385,12 +411,14 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Syndicate
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    # Sunrise-Start
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        # Sunrise-Start
     - id: SpaceMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -401,7 +429,7 @@
     - id: GlowstickBlue
       orGroup: Glowstick
     # Sunrise-End
-    - id: FoodSnackNutribrick
+        - id: FoodSnackNutribrick
   - type: Sprite
     layers:
     - state: internals
@@ -412,10 +440,51 @@
   id: BoxSurvivalSyndicateNitrogen
   suffix: Syndicate N2
   components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: nitrogentank
+  - type: Label
+    currentLabel: reagent-name-nitrogen
+
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalMilitaryDouble
+  suffix: Military O2
+  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
+  components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskGasSyndicate
-    - id: ExtendedEmergencyNitrogenTankFilled
+    - id: ClothingMaskBreath
+    - id: DoubleEmergencyOxygenTankFilled
+    - id: EmergencyMedipen
+    - id: Flare
+    - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: extendedtank
+
+- type: entity
+  parent: BoxSurvivalMilitaryDouble
+  id: BoxSurvivalMilitaryDoubleNitrogen
+  suffix: Military N2
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskBreath
+    - id: DoubleEmergencyNitrogenTankFilled
     - id: EmergencyMedipen
     # Sunrise-Start
     - id: SpaceMedipen
@@ -429,6 +498,7 @@
       orGroup: Glowstick
     # Sunrise-End
     - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals

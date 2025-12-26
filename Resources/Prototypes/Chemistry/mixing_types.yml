@@ -39,13 +39,6 @@
     state: base
 
 - type: mixingCategory
-  id: Vaccinator
-  verbText: mixing-verb-vaccinator
-  icon:
-    sprite: Structures/Machines/vaccinator.rsi
-    state: icon
-
-- type: mixingCategory
   id: Electrolysis
   verbText: mixing-verb-electrolysis
   icon:

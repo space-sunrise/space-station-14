@@ -217,13 +217,15 @@
   parent: [ ClothingBackpack, BaseCentcommContraband ]
   id: ClothingBackpackERTLeader
   name: ERT leader backpack
-  description: A spacious backpack with lots of pockets, worn by the Commander of an Emergency Response Team.
+  description: A spacious backpack with lots of pockets, worn by the Leader of an Emergency Response Team.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertleader.rsi # Sunrise-Edit
   - type: Storage
     grid:
-    - 0,0,10,3
+    - 0,0,8,3
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
 
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -380,7 +382,7 @@
   id: ClothingBackpackDebug
   name: wackpack
   description: What the fuck is this?
-  suffix: Debug
+  suffix: DEBUG
   categories: [ Debug ] # Sunrise added
   components:
   - type: Storage
@@ -397,7 +399,7 @@
   id: ClothingBackpackDebug2
   name: big wackpack
   description: What the fuck is this?
-  suffix: Debug
+  suffix: DEBUG
   categories: [ Debug ] # Sunrise added
   components:
   - type: Storage
@@ -409,7 +411,7 @@
   id: ClothingBackpackDebug3
   name: gay wackpack
   description: What the fuck is this?
-  suffix: Debug
+  suffix: DEBUG
   categories: [ Debug ] # Sunrise added
   components:
   - type: Storage
@@ -431,7 +433,7 @@
   id: ClothingBackpackDebug4
   name: offset wackpack
   description: What the fuck is this?
-  suffix: Debug
+  suffix: DEBUG
   categories: [ Debug ] # Sunrise added
   components:
   - type: Storage
