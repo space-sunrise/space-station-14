@@ -6,7 +6,7 @@
   id: IndustrialRobotic
   name: research-technology-industrial-robotics
   icon:
-    sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
+    sprite: /Textures/_Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
     state: fab-idle
   discipline: Experimental
   tier: 3
@@ -22,7 +22,7 @@
   id: Phazon
   name: research-technology-phazon
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: /Textures/Objects/Specific/Mech/mecha.rsi
     state: phazon
   discipline: Experimental
   tier: 3

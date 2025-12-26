@@ -4,7 +4,7 @@
   id: Hydroponics
   name: research-technology-basic-hydroponics
   icon:
-    sprite: Structures/Machines/seed_extractor.rsi
+    sprite: /Textures/Structures/Machines/seed_extractor.rsi
     state: seedextractor
   discipline: CivilianServices
   tier: 1
@@ -18,7 +18,7 @@
   id: CritterMechs
   name: research-technology-critter-mechs
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: /Textures/Objects/Specific/Mech/mecha.rsi
     state: hamtr
   discipline: CivilianServices
   tier: 1

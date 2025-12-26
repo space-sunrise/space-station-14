@@ -111,7 +111,7 @@
 - type: cargoProduct
   id: ServicePersonnel
   icon:
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: /Textures/_Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     state: default
   product: CrateServicePersonnel
   cost: 1000
