@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client._Sunrise.InteractionsPanel.Models;
+using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.InteractionsPanel.Data.Components;
 using Content.Shared._Sunrise.InteractionsPanel.Data.Prototypes;
 using Content.Shared._Sunrise.InteractionsPanel.Data.UI;
