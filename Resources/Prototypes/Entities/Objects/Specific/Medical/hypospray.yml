@@ -118,8 +118,6 @@
       solutions:
         hypospray:
           maxVol: 3000
-    - type: Hypospray
-      onlyAffectsMobs: false
     - type: UseDelay
       delay: 0.0
 
@@ -162,7 +160,6 @@
     allowedModes:
     doAfterTime: 1 #Sunrise-Edit
     preventOverdose: true #Sunrise-Edit
-  - HyposprayInjectMode
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
