@@ -70,8 +70,6 @@
     startingCharge: 300
   - type: BatterySelfRecharger
     autoRechargeRate: 4.5
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 25
 
 - type: entity
@@ -146,5 +144,4 @@
     maxCharge: 1080
     startingCharge: 1080
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10

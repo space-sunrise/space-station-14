@@ -265,7 +265,6 @@
     - proto: AnomalousParticleSigmaStrong
       fireCost: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25
     autoRechargePauseTime: 1
 
@@ -323,7 +322,6 @@
     proto: RedLightLaser
     fireCost: 75
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 120
     autoRechargePauseTime: 8
   - type: MagazineVisuals
@@ -427,7 +425,6 @@
     maxCharge: 500
     startingCharge: 500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
   - type: KnockbackByUserTag
     doestContain:

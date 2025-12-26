@@ -94,7 +94,6 @@
     maxCharge: 100
     startingCharge: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100
   - type: AmmoCounter
   - type: Gun

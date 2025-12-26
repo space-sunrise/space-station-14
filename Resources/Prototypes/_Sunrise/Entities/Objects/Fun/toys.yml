@@ -1400,12 +1400,12 @@
     soundActivate:
       path: /Audio/_Sunrise/Machines/energyshield_up.ogg
     soundDeactivate:
-      path: /Audio/Machines/energyshield_down.ogg
+      path: /Audio/_Sunrise/Machines/energyshield_down.ogg
       params:
         volume: -2
   - type: ItemToggleActiveSound
     activeSound:
-      path: /Audio/Machines/energyshield_ambient.ogg
+      path: /Audio/_Sunrise/Machines/energyshield_ambient.ogg
       params:
         volume: -2
   - type: RandomMetadata
