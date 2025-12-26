@@ -34,7 +34,7 @@
       100: Critical
       200: Dead
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: Fixtures
     fixtures:
       fix1:

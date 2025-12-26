@@ -82,7 +82,7 @@
       0: Alive
       750: Dead
   - type: Stamina
-    critThreshold: 450
+    baseCritThreshold: 450
     stunTime: 2
   - type: AmbientSound
     sound: /Audio/Ambience/ambiodd.ogg

@@ -165,21 +165,21 @@
   abstract: true
   components:
   - type: Stamina
-    critThreshold: 80
+    baseCritThreshold: 80
 
 - type: entity
   id: MobStaminaSpecial
   abstract: true
   components:
   - type: Stamina
-    critThreshold: 200
+    baseCritThreshold: 200
 
 - type: entity
   id: MobStaminaBoss
   abstract: true
   components:
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
 #endregion
 
 #region Dungeon boss
@@ -195,7 +195,7 @@
   - type: Hands
   - type: Puller
   - type: Stamina
-    critThreshold: 999
+    baseCritThreshold: 999
   - type: Tag
     tags:
     - CanPilot
