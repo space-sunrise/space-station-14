@@ -118,8 +118,6 @@
       solutions:
         hypospray:
           maxVol: 3000
-    - type: Hypospray
-      onlyAffectsMobs: false
     - type: UseDelay
       delay: 0.0
 

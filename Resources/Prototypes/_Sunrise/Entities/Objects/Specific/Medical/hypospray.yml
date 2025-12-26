@@ -169,23 +169,25 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 30
+        maxVol: 35
         reagents:
         - ReagentId: Ephedrine
-          Quantity: 16
+          Quantity: 15
         - ReagentId: Epinephrine
-          Quantity: 8
+          Quantity: 10
         - ReagentId: Tricordrazine
-          Quantity: 6
+          Quantity: 10
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: stimpen_empty
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 30
-    onlyAffectsMobs: true
-    injectOnly: true
+    currentTransferAmount: 35
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
   - type: StaticPrice
     price: 950
 
@@ -217,19 +219,23 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 15
+        maxVol: 20
         reagents:
         - ReagentId: Ephedrine
           Quantity: 15
+        - ReagentId: Tricordrazine
+          Quantity: 5
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: microstimpen_empty
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 15 #Sunrise-Edit
-    onlyAffectsMobs: false
-    injectOnly: true
+    currentTransferAmount: 20
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
   - type: StaticPrice
     price: 250
 
@@ -335,11 +341,13 @@
         reagents:
         - ReagentId: PolypyryliumOligomers
           Quantity: 20
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 20
-    onlyAffectsMobs: false
-    injectOnly: true
+    currentTransferAmount: 20
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
 
 - type: entity
   name: stellibinin auto-injector
@@ -430,8 +438,10 @@
         reagents:
         - ReagentId: Charcoal
           Quantity: 15
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 15
-    onlyAffectsMobs: false
-    injectOnly: true
+    currentTransferAmount: 15
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    ignoreClosed: false
