@@ -360,7 +360,7 @@
     layers:
     - state: default
     - state: department-side
-      color: *color-service
+      color: "#639137"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: Barber
@@ -380,7 +380,7 @@
     layers:
     - state: silver
     - state: department-side
-      color: *color-command
+      color: "#1b67a5"
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Adjutant
@@ -399,7 +399,7 @@
     layers:
     - state: default
     - state: department-side
-      color: *color-medical
+      color: "#68aed6"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: Pathologist
