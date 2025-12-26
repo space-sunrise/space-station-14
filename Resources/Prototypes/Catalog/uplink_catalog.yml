@@ -1296,7 +1296,7 @@
   id: UplinkSurplusBundle
   name: uplink-surplus-bundle-name
   description: uplink-surplus-bundle-desc
-  productEntity: CrateSyndicateSurplusBundleAgent
+  productEntity: CrateSyndicateSurplusBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 10

@@ -3,7 +3,7 @@
   maxLength: 80
   damage:
     types:
-      Heat: 17
+      Heat: 20
       Structural: 13
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi

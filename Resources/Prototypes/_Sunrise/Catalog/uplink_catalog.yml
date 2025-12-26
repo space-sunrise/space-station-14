@@ -1355,7 +1355,7 @@
   id: UplinkMauler
   name: uplink-mech-teleporter-heavy-name
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler-open }
   productEntity: CrateCybersunMaulerBundle
   discountCategory: rareDiscounts
   discountDownTo:
@@ -2460,7 +2460,7 @@
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
-    tags:
+      tags:
       - NukeOpsUplink
       - LoneOpsUplink
       - AssaultOpsUplink

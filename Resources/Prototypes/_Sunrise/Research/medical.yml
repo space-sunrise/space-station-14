@@ -46,8 +46,8 @@
   recipeUnlocks:
   - MedicalAssemblerMachineCircuitboard
   - BlankMediPen
-  technologyPrerequisites:
-    - MedicalHyposprays
+  # technologyPrerequisites: # Sunrise-todo Привязать JetInjectors
+  #   - MedicalHyposprays
 
 - type: technology
   id: SurgeryTechAdvanced
@@ -238,8 +238,8 @@
   recipeUnlocks:
   - AutoMenderBrute
   - AutoMenderBurn
-  technologyPrerequisites:
-  - MedicalHyposprays
+  # technologyPrerequisites: # Sunrise-todo Привязать JetInjectors
+  # - MedicalHyposprays
   radioChannels:
   - Medical
 
