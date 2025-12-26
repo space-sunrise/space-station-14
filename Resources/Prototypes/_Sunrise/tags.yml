@@ -52,6 +52,9 @@
 - type: Tag
   id: NVDHandcrafted
 
+- type: Tag
+  id: PlantAnalyzer
+
 # Uplinks
 - type: Tag
   id: NTUplink
