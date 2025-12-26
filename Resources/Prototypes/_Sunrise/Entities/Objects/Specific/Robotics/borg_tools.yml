@@ -138,10 +138,12 @@
       reagents:
       - ReagentId: Epinephrine
         Quantity: 0.4
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
-    transferAmount: 5 #Sunrise-End
+  - type: Injector
+    solutionName: hypospray
+    ActiveModeProtoId: HyposprayInjectMode
+    AllowedModes:
+    - HyposprayInjectMode
+    CurrentTransferAmount: 5 #Sunrise-End
   - type: UseDelay
     delay: 1
 
@@ -790,9 +792,11 @@
         Quantity: 0.2
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
+  - type: Injector
+    solutionName: hypospray
+    ActiveModeProtoId: HyposprayInjectMode
+    AllowedModes:
+    - HyposprayInjectMode
 
 - type: entity
   parent: HandheldCrewMonitor

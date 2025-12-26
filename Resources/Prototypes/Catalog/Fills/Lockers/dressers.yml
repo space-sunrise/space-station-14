@@ -80,7 +80,7 @@
         - id: ClothingUniformJumpsuitHosFormal
         - id: ClothingOuterWinterHoS
         - id: ClothingNeckCloakHos
-      - id: ClothingHoSMantleCoat
+        - id: ClothingHoSMantleCoat
 
 - type: entity
   id: DresserQuarterMasterFilled
