@@ -11,6 +11,7 @@
   id: Inorganic
   supportedGroups:
     - Brute
+    - Deterioration # sunrise-edit
   supportedTypes:
     - Heat
     - Shock
@@ -28,6 +29,7 @@
   id: Silicon
   supportedGroups:
     - Brute
+    - Deterioration # sunrise-edit
   supportedTypes:
     - Heat
     - Shock

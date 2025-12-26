@@ -172,7 +172,16 @@ public sealed class HungerSystem : EntitySystem
 
         if (component.HungerThresholdDecayModifiers.TryGetValue(component.CurrentThreshold, out var modifier))
         {
-            component.ActualDecayRate = component.BaseDecayRate * modifier;
+            // Sunrise-Start
+            // component.ActualDecayRate = component.BaseDecayRate * modifier;
+            var sunriseModifier = modifier;
+            if (component.CurrentThreshold >= HungerThreshold.Okay)
+                sunriseModifier *= 4f;
+            else if (component.CurrentThreshold == HungerThreshold.Peckish)
+                sunriseModifier *= 2f;
+
+            component.ActualDecayRate = component.BaseDecayRate * sunriseModifier;
+            // Sunrise-End
             DirtyField(uid, component, nameof(HungerComponent.ActualDecayRate));
             SetAuthoritativeHungerValue((uid, component), GetHunger(component));
         }
@@ -190,7 +199,12 @@ public sealed class HungerSystem : EntitySystem
             component.StarvationDamage is { } damage &&
             !_mobState.IsDead(uid))
         {
-            _damageable.TryChangeDamage(uid, damage, true, false);
+            // Sunrise-Start
+            // _damageable.TryChangeDamage(uid, damage, true, false);
+            var hungerDamage = new DamageSpecifier();
+            hungerDamage.DamageDict.Add("Mangleness", 0.5);
+            _damageable.TryChangeDamage(uid, hungerDamage, true, false);
+            // Sunrise-End
         }
     }
 
@@ -286,6 +300,21 @@ public sealed class HungerSystem : EntitySystem
 
             UpdateCurrentThreshold(uid, hunger);
             DoContinuousHungerEffects(uid, hunger);
+
+            // Sunrise-Start
+            if (hunger.CurrentThreshold >= HungerThreshold.Okay)
+            {
+                var damage = new DamageSpecifier();
+                damage.DamageDict.Add("Mangleness", -0.03);
+                _damageable.TryChangeDamage(uid, damage, true, false);
+            }
+            else if (hunger.CurrentThreshold == HungerThreshold.Peckish)
+            {
+                var damage = new DamageSpecifier();
+                damage.DamageDict.Add("Mangleness", -0.01);
+                _damageable.TryChangeDamage(uid, damage, true, false);
+            }
+            // Sunrise-End
         }
     }
 }

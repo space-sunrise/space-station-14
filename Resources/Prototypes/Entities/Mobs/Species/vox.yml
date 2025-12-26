@@ -7,10 +7,14 @@
   - type: Interactions
   # SUNRISE EDIT
   - type: Hunger
+    starvationDamage:
+      types:
+        Mangleness: 0.5
   - type: Thirst
     dehydrationDamage:
       types:
-        Bloodloss: 0.5
+        # Bloodloss: 0.5
+        Mangleness: 0.5
         Asphyxiation: 0.5
   - type: Icon
     sprite: Mobs/Species/Vox/parts.rsi

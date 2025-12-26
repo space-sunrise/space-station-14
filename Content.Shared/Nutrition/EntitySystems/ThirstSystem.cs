@@ -164,7 +164,12 @@ public sealed class ThirstSystem : EntitySystem
             component.DehydrationDamage is { } damage &&
             !_mobState.IsDead(uid))
         {
-            _damageable.TryChangeDamage(uid, damage, true, false);
+            // Sunrise-Start
+            // _damageable.TryChangeDamage(uid, damage, true, false);
+            var thirstDamage = new DamageSpecifier();
+            thirstDamage.DamageDict.Add("Mangleness", 0.5);
+            _damageable.TryChangeDamage(uid, thirstDamage, true, false);
+            // Sunrise-End
         }
     }
 
@@ -197,23 +202,35 @@ public sealed class ThirstSystem : EntitySystem
         {
             case ThirstThreshold.OverHydrated:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 1.2f;
+                // Sunrise-Start
+                // component.ActualDecayRate = component.BaseDecayRate * 1.2f;
+                component.ActualDecayRate = component.BaseDecayRate * 1.2f * 4f;
+                // Sunrise-End
                 return;
 
             case ThirstThreshold.Okay:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate;
+                // Sunrise-Start
+                // component.ActualDecayRate = component.BaseDecayRate;
+                component.ActualDecayRate = component.BaseDecayRate * 4f;
+                // Sunrise-End
                 return;
 
             case ThirstThreshold.Thirsty:
                 // Same as okay except with UI icon saying drink soon.
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 0.8f;
+                // Sunrise-Start
+                // component.ActualDecayRate = component.BaseDecayRate * 0.8f;
+                component.ActualDecayRate = component.BaseDecayRate * 0.8f * 2f;
+                // Sunrise-End
                 return;
             case ThirstThreshold.Parched:
                 _movement.RefreshMovementSpeedModifiers(uid);
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 0.6f;
+                // Sunrise-Start
+                // component.ActualDecayRate = component.BaseDecayRate * 0.6f;
+                component.ActualDecayRate = component.BaseDecayRate * 0.6f; // Keep original decay multiplier for parched
+                // Sunrise-End
                 return;
 
             case ThirstThreshold.Dead:
@@ -239,6 +256,22 @@ public sealed class ThirstSystem : EntitySystem
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
             DoContinuousThirstEffects(uid, thirst);
+
+            // Sunrise-Start
+            if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay)
+            {
+                var damage = new DamageSpecifier();
+                damage.DamageDict.Add("Mangleness", -0.03);
+                _damageable.TryChangeDamage(uid, damage, true, false);
+            }
+            else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty)
+            {
+                var damage = new DamageSpecifier();
+                damage.DamageDict.Add("Mangleness", -0.01);
+                _damageable.TryChangeDamage(uid, damage, true, false);
+            }
+            // Sunrise-End
+
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)

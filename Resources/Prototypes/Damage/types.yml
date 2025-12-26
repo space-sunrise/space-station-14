@@ -98,5 +98,17 @@
   name: damage-type-mangleness
   armorCoefficientPrice: 1
   armorFlatPrice: 1
+  icon:
+    sprite: Interface/Alerts/damage_types.rsi
+    state: poison
+
+- type: damageType
+  id: Deterioration
+  name: damage-type-deterioration
+  armorCoefficientPrice: 1
+  armorFlatPrice: 1
+  icon:
+    sprite: Interface/Alerts/damage_types.rsi
+    state: poison
 #Sunrise-End
 
