@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by KaiserMaus (Git) base on tgstation at https://github.com/tgstation/tgstation/commit/e52683d3872347af447bb0ff74c420d4a4e91ea8",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+        {
+            "name": "emp_bullet"
+        },
+        {
+            "name": "ap_bullet"
+        }
+    ]
+}

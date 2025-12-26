@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockAbductorDispenser
+  name: alien dispenser restock
+  description: A box filled with weird organs. Load it into a alien dispenser to begin.
+  components:
+    - type: VendingMachineRestock
+      canRestock:
+        - AbductorGlandInventory
+    - type: Sprite
+      layers:
+        - state: base
+        - state: green_bit
+          shader: unshaded
+        - state: refill_medical
+
+- type: entity
+  id: AbductorTeleport
+  name: teleport device
+  parent: [ BaseItem, BaseMagicalContraband ]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.TeleportLocationUiKey.Key:
+        type: TeleportLocationsBoundUserInterface
+  - type: ActivatableUI
+    key: enum.TeleportLocationUiKey.Key
+  - type: Sprite
+    sprite: Objects/Devices/hand_teleporter.rsi
+    state: icon
+  - type: TeleportLocations
+    name: teleportation-device-window-title
+    teleportEffect: RadiationPulse
+    closeAfterTeleport: true
+    deleteAfterUse: true
+

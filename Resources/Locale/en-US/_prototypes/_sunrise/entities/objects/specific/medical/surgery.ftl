@@ -1,0 +1,16 @@
+ent-CauteryAbductor = abductor's cautery
+    .desc = { ent-Cautery.desc }
+ent-DrillAbductor = abductor's drill
+    .desc = { ent-Drill.desc }
+ent-ScalpelAbductor = abductor's scalpel
+    .desc = { ent-Scalpel.desc }
+ent-RetractorAbductor = abductor's retractor
+    .desc = A surgical tool used to hold open incisions.
+ent-HemostatAbductor = abductor's hemostat
+    .desc = A surgical tool used to compress blood vessels to prevent bleeding.
+ent-BoneSetterAbductor = abductor's bone setter
+    .desc = A surgical tool used for setting bones. It also breaks them quite well.
+ent-SawAbductor = abductor's circular saw
+    .desc = You think you can cut anything with it.
+ent-BoneGelAbductor = abductor's bottle of bone gel
+    .desc = { ent-BoneGel.desc }

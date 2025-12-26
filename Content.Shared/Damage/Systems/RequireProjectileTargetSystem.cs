@@ -1,12 +1,16 @@
+using Content.Shared.Damage.Components;
 using Content.Shared.Projectiles;
-using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Standing;
+using Content.Shared.Weapons.Ranged.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Shared.Damage.Components;
+namespace Content.Shared.Damage.Systems;
 
 public sealed class RequireProjectileTargetSystem : EntitySystem
 {
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<RequireProjectileTargetComponent, PreventCollideEvent>(PreventCollide);
@@ -17,16 +21,35 @@ public sealed class RequireProjectileTargetSystem : EntitySystem
     private void PreventCollide(Entity<RequireProjectileTargetComponent> ent, ref PreventCollideEvent args)
     {
         if (args.Cancelled)
-          return;
+            return;
 
         if (!ent.Comp.Active)
             return;
 
         var other = args.OtherEntity;
-        if (HasComp<ProjectileComponent>(other) &&
-            CompOrNull<TargetedProjectileComponent>(other)?.Target != ent)
+        if (TryComp(other, out ProjectileComponent? projectile))
         {
-            args.Cancelled = true;
+            var hasTarget = false;
+            if (TryComp<TargetedProjectileComponent>(other, out var targeted))
+            {
+                hasTarget = targeted.Targets.Contains(ent);
+            }
+
+            if (!hasTarget)
+            {
+                // Prevents shooting out of while inside of crates
+                var shooter = projectile.Shooter;
+                if (!shooter.HasValue)
+                    return;
+
+                // ProjectileGrenades delete the entity that's shooting the projectile,
+                // so it's impossible to check if the entity is in a container
+                if (TerminatingOrDeleted(shooter.Value))
+                    return;
+
+                if (!_container.IsEntityOrParentInContainer(shooter.Value))
+                    args.Cancelled = true;
+            }
         }
     }
 

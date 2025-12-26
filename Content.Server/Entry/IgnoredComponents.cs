@@ -12,7 +12,6 @@ namespace Content.Server.Entry
             "GuideHelp",
             "Clickable",
             "Icon",
-            "HandheldGPS",
             "CableVisualizer",
             "SolutionItemStatus",
             "UIFragment",
@@ -20,7 +19,10 @@ namespace Content.Server.Entry
             "InventorySlots",
             "LightFade",
             "HolidayRsiSwap",
-            "OptionsVisualizer"
+            "OptionsVisualizer",
+            "AnomalyScannerScreen",
+            "MultipartMachineGhost",
+            "HolidayClothingSwap" // Sunrise-Edit
         };
     }
 }

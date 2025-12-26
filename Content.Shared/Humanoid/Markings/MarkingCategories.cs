@@ -5,17 +5,20 @@ namespace Content.Shared.Humanoid.Markings
     [Serializable, NetSerializable]
     public enum MarkingCategories : byte
     {
+        Special,
         Hair,
         FacialHair,
         Head,
         HeadTop,
         HeadSide,
         Snout,
+        SnoutCover,
         Chest,
         Arms,
         Legs,
         Tail,
-        Overlay
+        Overlay,
+        Back, // SUNRISE
     }
 
     public static class MarkingCategoriesConversion
@@ -24,6 +27,7 @@ namespace Content.Shared.Humanoid.Markings
         {
             return layer switch
             {
+                HumanoidVisualLayers.Special => MarkingCategories.Special,
                 HumanoidVisualLayers.Hair => MarkingCategories.Hair,
                 HumanoidVisualLayers.FacialHair => MarkingCategories.FacialHair,
                 HumanoidVisualLayers.Head => MarkingCategories.Head,
@@ -40,6 +44,7 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.LFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
+                HumanoidVisualLayers.Back => MarkingCategories.Back, // SUNRISE
                 _ => MarkingCategories.Overlay
             };
         }

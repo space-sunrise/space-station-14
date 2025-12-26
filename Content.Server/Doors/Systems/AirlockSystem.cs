@@ -1,12 +1,13 @@
-using Content.Server.DeviceLinking.Events;
 using Content.Server.Power.Components;
 using Content.Server.Wires;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Interaction;
+using Content.Shared.Power;
 using Content.Shared.Wires;
 using Robust.Shared.Player;
-
+using Content.Shared.Silicons.StationAi;
 namespace Content.Server.Doors.Systems;
 
 public sealed class AirlockSystem : SharedAirlockSystem
@@ -17,27 +18,18 @@ public sealed class AirlockSystem : SharedAirlockSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<AirlockComponent, ComponentInit>(OnAirlockInit);
         SubscribeLocalEvent<AirlockComponent, SignalReceivedEvent>(OnSignalReceived);
 
         SubscribeLocalEvent<AirlockComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<AirlockComponent, ActivateInWorldEvent>(OnActivate, before: new[] { typeof(DoorSystem) });
     }
 
-    private void OnAirlockInit(EntityUid uid, AirlockComponent component, ComponentInit args)
-    {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var receiverComponent))
-        {
-            Appearance.SetData(uid, DoorVisuals.Powered, receiverComponent.Powered);
-            Appearance.SetData(uid, DoorVisuals.ClosedLights, true); // Resprite-Airlocks
-        }
-    }
-
     private void OnSignalReceived(EntityUid uid, AirlockComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == component.AutoClosePort)
+        if (args.Port == component.AutoClosePort && component.AutoClose)
         {
             component.AutoClose = false;
+            Dirty(uid, component);
         }
     }
 
@@ -45,11 +37,6 @@ public sealed class AirlockSystem : SharedAirlockSystem
     {
         component.Powered = args.Powered;
         Dirty(uid, component);
-
-        if (TryComp<AppearanceComponent>(uid, out var appearanceComponent))
-        {
-            Appearance.SetData(uid, DoorVisuals.Powered, args.Powered, appearanceComponent);
-        }
 
         if (!TryComp(uid, out DoorComponent? door))
             return;
@@ -75,6 +62,11 @@ public sealed class AirlockSystem : SharedAirlockSystem
             panel.Open &&
             TryComp<ActorComponent>(args.User, out var actor))
         {
+            //Sunrise-start
+            if (HasComp<StationAiHeldComponent>(args.User))
+                return;
+            //Sunrise-end
+
             if (TryComp<WiresPanelSecurityComponent>(uid, out var wiresPanelSecurity) &&
                 !wiresPanelSecurity.WiresAccessible)
                 return;
@@ -84,10 +76,11 @@ public sealed class AirlockSystem : SharedAirlockSystem
             return;
         }
 
-        if (component.KeepOpenIfClicked)
+        if (component.KeepOpenIfClicked && component.AutoClose)
         {
             // Disable auto close
             component.AutoClose = false;
+            Dirty(uid, component);
         }
     }
 }

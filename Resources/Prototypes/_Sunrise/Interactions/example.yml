@@ -1,0 +1,19 @@
+# ОЧЕНЬ ВАЖНО СОБЛЮДАТЬ ПОРЯДОК НАПИСАНИЯ ПРОТОТИПА!
+#
+#
+#- type: interaction
+#  id:
+#  name:
+#  description: # опционально
+#  icon:
+#  category:
+#  appearCondition:
+#  -
+#  interactionMessages:
+#  -
+#  interactionSounds: # опционально
+#  -
+#  spawnsEffect:
+#  effectChance:
+#  entityEffectId:
+#  cooldown:

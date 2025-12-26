@@ -3,6 +3,7 @@
   name: roles-antag-space-ninja-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagNinja # Sunrise-Edit
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
 
@@ -13,25 +14,31 @@
     jumpsuit: ClothingUniformJumpsuitNinja
     back: ClothingBackpackSatchel
     mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinja
+    head: ClothingHeadHelmetSpaceNinjaBiocode # Sunrise-Edit
     eyes: ClothingEyesVisorNinja
-    gloves: ClothingHandsGlovesSpaceNinja
-    outerClothing: ClothingOuterSuitSpaceNinja
-    shoes: ClothingShoesSpaceNinja
+    gloves: ClothingHandsGlovesSpaceNinjaBiocode # Sunrise-Edit
+    outerClothing: ClothingOuterSuitSpaceNinjaBiocode # Sunrise-Edit
+    shoes: ClothingShoesSpaceNinjaBiocode # Sunrise-Edit
     id: AgentIDCard
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetNinja
     pocket1: SpiderCharge
-    pocket2: PinpointerStation
-    belt: EnergyKatana
-    suitstorage: OxygenTankFilled
+    pocket2: HandHeldMassScanner
+    belt: EnergyKatanaBiocode # Sunrise-Edit
   inhand:
     - JetpackBlackFilled
   storage:
     back: # belt holds katana so satchel has the tools for sabotaging things
-    - BoxSurvival
     - Crowbar
     - Wrench
     - Screwdriver
     - Wirecutter
     - Welder
     - Multitool
+
+- type: chameleonOutfit
+  id: NinjaChameleonOutfit
+  name: roles-antag-space-ninja-name
+  startingGear: SpaceNinjaGear
+  equipment:
+    id: PassengerPDA
+    neck: ClothingNeckGoldmedal

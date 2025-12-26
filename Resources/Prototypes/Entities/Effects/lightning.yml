@@ -33,16 +33,31 @@
   name: lightning
   id: Lightning
   parent: BaseLightning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Lightning
       canArc: true
+      
+- type: entity
+  name: lightning
+  id: VampireLightning
+  parent: BaseLightning
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Lightning
+      canArc: true
+    - type: Sprite
+      sprite: /Textures/Effects/lightning.rsi
+      drawdepth: Effects
+      layers:
+      - state: "yellow_lightning"
+        shader: unshaded
 
 - type: entity
   name: spooky lightning
   id: LightningRevenant
   parent: BaseLightning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -66,7 +81,7 @@
   name: charged lightning
   id: ChargedLightning
   parent: BaseLightning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -85,7 +100,7 @@
   name: lightning
   id: Spark
   parent: BaseLightning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/Effects/lightning.rsi
@@ -112,7 +127,7 @@
   name: supercharged lightning
   id: SuperchargedLightning
   parent: ChargedLightning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -138,7 +153,7 @@
   name: hypercharged lightning
   id: HyperchargedLightning
   parent: ChargedLightning
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi

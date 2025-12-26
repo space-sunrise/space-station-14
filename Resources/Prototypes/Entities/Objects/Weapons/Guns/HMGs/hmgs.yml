@@ -2,36 +2,50 @@
   name: BaseWeaponHeavyMachineGun
   parent: BaseItem
   id: BaseWeaponHeavyMachineGun
-  description: Spray and pray
+  description: Spray and pray.
   abstract: true
   components:
   - type: Sprite
   - type: Item
     size: Ginormous
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: Gun
     fireRate: 20
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+      collection: m249 # Sunrise-Edit
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: StaticPrice
     price: 500
+  # Sunrise-Start
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 0.01
+        staminaMultiplier: 100
+      Felinid:
+        knockback: 0.01
+        staminaMultiplier: 100
+  # Sunrise-End
   # No chamber because HMG may want its own
 
 - type: entity
   name: minigun
   id: WeaponMinigun
-  parent: BaseWeaponHeavyMachineGun
+  parent: [ BaseWeaponHeavyMachineGun, BaseMajorContraband ]
   description: Vzzzzzt! Rahrahrahrah! Vrrrrr! Uses .10 rifle ammo.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
     layers:
     - state: icon
-      map: ["enum.GunVisualLayers.Base"]
   - type: Item
     sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
   - type: Gun
@@ -41,11 +55,6 @@
   - type: BallisticAmmoProvider
     proto: CartridgeMinigun
     capacity: 1000
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: Appearance
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

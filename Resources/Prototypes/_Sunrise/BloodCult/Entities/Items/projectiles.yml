@@ -1,0 +1,55 @@
+﻿- type: entity
+  id: BloodBoil
+  parent: BaseBullet
+  name: Blood Boil
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Weapons/projectiles.rsi
+    layers:
+    - state: bullet
+  - type: Projectile
+    damage:
+      groups:
+        Burn: 10
+        Brute: 10
+  - type: PointLight
+    enabled: true
+    color: "#ff4300"
+    radius: 2.0
+    energy: 7.0
+  - type: BloodBoilProjectile
+  - type: TimedDespawn
+    lifetime: 50
+
+- type: entity
+  id: BloodBolt
+  parent: BaseBullet
+  name: Blood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/Weapons/projectiles.rsi
+    layers:
+    - state: blood_bolt
+  - type: Projectile
+    damage:
+      groups:
+        Burn: 0
+  - type: BloodBolt
+    damage:
+      groups:
+        Brute: 20
+    healConstruct:
+      groups:
+        Brute: -20
+        Burn: -20
+        Toxin: -20
+    unholyVolume: 8
+  - type: PointLight
+    enabled: true
+    color: "#ff0000"
+    radius: 3.0
+    energy: 3.0
+  - type: TimedDespawn
+    lifetime: 10

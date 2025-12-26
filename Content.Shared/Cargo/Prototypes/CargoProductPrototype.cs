@@ -10,12 +10,12 @@ namespace Content.Shared.Cargo.Prototypes
     {
         /// <inheritdoc />
         [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<CargoProductPrototype>))]
-        public string[]? Parents { get; }
+        public string[]? Parents { get; private set; }
 
         /// <inheritdoc />
         [NeverPushInheritance]
         [AbstractDataField]
-        public bool Abstract { get; }
+        public bool Abstract { get; private set; }
 
         [DataField("name")] private string _name = string.Empty;
 
@@ -36,9 +36,9 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_name.Trim().Length != 0)
                     return _name;
 
-                if (IoCManager.Resolve<IPrototypeManager>().TryIndex(Product, out EntityPrototype? prototype))
+                if (IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype))
                 {
-                    _name = prototype.Name;
+                    _name = Loc.TryGetString($"{prototype.ID}-name", out var name) ? name : prototype.Name; //Sunrise-edit: Localization
                 }
 
                 return _name;
@@ -56,9 +56,9 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_description.Trim().Length != 0)
                     return _description;
 
-                if (IoCManager.Resolve<IPrototypeManager>().TryIndex(Product, out EntityPrototype? prototype))
+                if (IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype))
                 {
-                    _description = prototype.Description;
+                    _description = Loc.TryGetString($"{prototype.ID}-desc", out var desc) ? desc : prototype.Description; //Sunrise-edit: Localization
                 }
 
                 return _description;
@@ -93,6 +93,6 @@ namespace Content.Shared.Cargo.Prototypes
         ///     The prototype group of the product. (e.g. Contraband)
         /// </summary>
         [DataField]
-        public string Group { get; private set; } = "market";
+        public ProtoId<CargoMarketPrototype> Group { get; private set; } = "market";
     }
 }

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingHandsBase
   id: ClothingHandsGlovesAerostatic
   name: aerostatic gloves
@@ -8,8 +8,6 @@
       sprite: _Sunrise/Clothing/Hands/Gloves/kim.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Gloves/kim.rsi
-    - type: GloveHeatResistance
-      heatResistance: 1400
     - type: Insulated
 
 - type: entity
@@ -22,6 +20,206 @@
       sprite: _Sunrise/Clothing/Hands/Gloves/centcom_naval.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Gloves/centcom_naval.rsi
-    - type: GloveHeatResistance
-      heatResistance: 1400
     - type: Insulated
+
+- type: entity
+  parent: [ ClothingHandsGlovesCombat, BaseSecurityContraband ]
+  id: ClothingHandsGlovesLeatherHoS
+  name: leather gloves
+  description: Stylish black leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileBlack
+  name: black nitrile gloves
+  description: High-quality black nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - SmoothGloves # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon
+  # SUNRISE EDIT
+
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileGreen
+  name: green nitrile gloves
+  description: High-quality green nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - SmoothGloves # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon
+  # SUNRISE EDIT
+
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileOrange
+  name: orange nitrile gloves
+  description: High-quality orange nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - SmoothGloves # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon
+  # SUNRISE EDIT
+
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileRed
+  name: red nitrile gloves
+  description: High-quality red nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - SmoothGloves # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon
+  # SUNRISE EDIT
+
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileBlue
+  name: blue nitrile gloves
+  description: High-quality blue nitrile gloves. Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - SmoothGloves # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesChristmas
+  name: christmas gloves
+  description: Stylish Christmas leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesChristmasLong
+  name: christmas gloves long
+  description: Stylish Christmas long leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves_long.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves_long.rsi
+
+- type: entity
+  parent: [ ClothingHandsBase, BaseEngineeringContraband ]
+  id: InsulatedGlovesAtmos
+  name: insulated gloves atmos
+  description: Insulated gloves made especially for atmospheric technicians.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/insulated_gloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/insulated_gloves.rsi
+  - type: Insulated
+    preventOpperatinGuns: true
+  - type: TemperatureProtection
+    heatingCoefficient: 1.050
+    coolingCoefficient: 0.2
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: ClothingHandsGlovesFingerlessInsulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-blue
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesCombatCQC
+  name: combat gloves
+  description: These high-grade tactical gloves are fireproof and shock resistant.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/klawsbattle.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/klawsbattle.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1.7
+    damage:
+      types:
+        Blunt: 6
+        Slash: 4
+    bluntStaminaDamageFactor: 4
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true

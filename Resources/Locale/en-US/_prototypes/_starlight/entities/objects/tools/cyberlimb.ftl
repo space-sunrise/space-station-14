@@ -1,0 +1,10 @@
+ent-WrenchCyber = wrench
+    .desc = A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.
+ent-ScrewdriverCyber = screwdriver
+    .desc = Industrial grade torque in a small screwdriving package.
+ent-CrowbarCyber = crowbar
+    .desc = { ent-BaseItem.desc }
+ent-WirecutterCyber = wirecutter
+    .desc = This kills the wire.
+ent-WelderCyber = welding tool
+    .desc = Melts anything as long as it's fueled, don't forget your eye protection!

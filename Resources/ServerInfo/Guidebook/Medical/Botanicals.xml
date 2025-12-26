@@ -1,7 +1,7 @@
 <Document>
-# Ботаника
+# Botanicals
 
-Ботаника и Химия часто могут сотрудничать для производства лекарств получше (или развлекательных коктейлей). Возможно, стоит дать им необходимые удобрения, а взамен попросить несколько лекарственных растений.
+Botany and Chemistry can often work together to produce better medicine (or recreational cocktails). It may be worthwhile to give them the fertilizers they need, and request some medicinal plants in return.
 
 <Box>
 <GuideEntityEmbed Entity="FoodGalaxythistle"/>
@@ -11,11 +11,10 @@
 <GuideEntityEmbed Entity="Nettle"/>
 </Box>
 
-<GuideReagentEmbed Reagent="Ammonia"/>
-<GuideReagentEmbed Reagent="Diethylamine"/>
-<GuideReagentEmbed Reagent="EZNutrient"/>
-<GuideReagentEmbed Reagent="Left4Zed"/>
-<GuideReagentEmbed Reagent="RobustHarvest"/>
+<GuideReagentGroupEmbed Group="Botanical"/>
 <GuideReagentEmbed Reagent="UnstableMutagen"/>
+<GuideReagentEmbed Reagent="Cryoxadone"/>
+<GuideReagentEmbed Reagent="Dylovene"/>
+<GuideReagentEmbed Reagent="Phalanximine"/>
 
 </Document>

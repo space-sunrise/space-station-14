@@ -1,19 +1,69 @@
 ﻿- type: entity
-  id: SpawnPointEvilTwin
-  name: evil twin spawn point
+  id: SpawnPointGhostFoliant
+  name: ghost role spawn point
+  suffix: Foliant
   parent: MarkerBase
   components:
-    - type: EvilTwinSpawner
-    - type: GhostRole
-      name: Злой двойник
-      description: Вы - злой двойник какой-то другой персоны.
-      rules: |
-        Старайтесь действовать скрытно, никто не должен прознать о подмене!
-        Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
-    - type: GhostTakeoverAvailable
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      layers:
-        - state: green
-        - sprite: Mobs/Ghosts/ghost_human.rsi
-          state: icon
+  - type: GhostRole
+    makeSentient: true
+    allowMovement: true
+    allowSpeech: true
+    name: ghost-role-information-foliant-name
+    description: ghost-role-information-foliant-description
+    rules: ghost-role-information-foliant-rules
+    raffle:
+      settings: short
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
+  - type: GhostRoleMobSpawner
+    prototype: MobBook
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: _Sunrise/Mobs/Pets/dogbook.rsi
+        state: dogbook
+
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnPointGhostTerminator
+  name: terminator spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-exterminator-name
+    description: ghost-role-information-exterminator-description
+    rules: ghost-role-information-exterminator-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanTerminator
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Terminator/parts.rsi
+      state: full
+
+- type: entity
+  id: SpawnPointGhostCarpQueen
+  parent: SpawnPointGhostFoliant
+  suffix: carp queen
+  components:
+  - type: GhostRole
+    name: ghost-role-information-carp-queen-name
+    description: ghost-role-information-carp-queen-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobCarpQueen
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+        state: icon

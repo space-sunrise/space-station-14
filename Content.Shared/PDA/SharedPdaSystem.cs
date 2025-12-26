@@ -25,6 +25,8 @@ namespace Content.Shared.PDA
         {
             if (pda.IdCard != null)
                 pda.IdSlot.StartingItem = pda.IdCard;
+            if (pda.Pen != null)
+                pda.PenSlot.StartingItem = pda.Pen;
 
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaIdSlotId, pda.IdSlot);
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaPenSlotId, pda.PenSlot);
@@ -65,6 +67,12 @@ namespace Content.Shared.PDA
         private void UpdatePdaAppearance(EntityUid uid, PdaComponent pda)
         {
             Appearance.SetData(uid, PdaVisuals.IdCardInserted, pda.ContainedId != null);
+        }
+
+        public virtual void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null)
+        {
+            // This does nothing yet while I finish up PDA prediction
+            // Overriden by the server
         }
     }
 }

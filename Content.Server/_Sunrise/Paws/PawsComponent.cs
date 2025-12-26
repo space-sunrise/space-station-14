@@ -18,6 +18,8 @@ namespace Content.Server.Sunrise.Paws
         [DataField("thresholdDamage")]
         public FixedPoint2 ThresholdDamage = 5;
 
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("emotesTakeDamage")]
         public List<string> EmotesTakeDamage = new()
         {
             "Scream",

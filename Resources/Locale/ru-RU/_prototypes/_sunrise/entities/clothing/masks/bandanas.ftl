@@ -1,0 +1,10 @@
+ent-ClothingMaskBandOrange = оранжевая бандана
+    .desc = Оранжевая бандана, чтобы выглядеть круто.
+ent-ClothingMaskBandYellow = желтая бандана
+    .desc = Желтая бандана, чтобы выглядеть круто.
+ent-ClothingMaskBandCyan = голубая бандана
+    .desc = Голубая бандана, чтобы выглядеть круто.
+ent-ClothingMaskBandWhite = белая бандана
+    .desc = Белая бандана, чтобы выглядеть круто.
+ent-ClothingMaskBandPurple = фиолетовая бандана
+    .desc = Фиолетовая бандана, чтобы выглядеть круто.

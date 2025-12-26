@@ -1,0 +1,9 @@
+ent-Nanopaste = nanopaste
+    .suffix = Full
+    .desc = { ent-BaseHealingItem.desc }
+ent-Nanopaste1 = { ent-Nanopaste }
+    .suffix = Single
+    .desc = { ent-Nanopaste.desc }
+ent-Nanopaste10 = { ent-Nanopaste }
+    .suffix = Full
+    .desc = { ent-Nanopaste.desc }

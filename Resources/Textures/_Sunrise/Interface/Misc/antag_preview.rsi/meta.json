@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "SUNRISE",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "test"
+        },
+        {
+            "name": "initial_infected"
+        },
+        {
+            "name": "traitor"
+        },
+        {
+            "name": "changeling"
+        },
+        {
+            "name": "thief"
+        },
+        {
+            "name": "vampire"
+        },
+        {
+            "name": "nuke_medic"
+        },
+        {
+            "name": "nuke_operative"
+        },
+        {
+            "name": "nuke_commander"
+        },
+        {
+            "name": "blood_cultist"
+        },
+        {
+            "name": "flesh_cultist"
+        },
+        {
+            "name": "head_rev"
+        },
+        {
+            "name": "space_ninja"
+        }
+    ]
+}

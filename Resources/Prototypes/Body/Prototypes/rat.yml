@@ -13,6 +13,7 @@
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
+        cavity: null # Sunrise-edit
     legs:
       part: LegsAnimal
       connections:

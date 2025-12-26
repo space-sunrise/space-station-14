@@ -1,0 +1,143 @@
+﻿#- type: construction
+#  name: Алтын
+#  id: helmetpubg
+#  praph: helmetpubg
+#  startNode: start
+#  targetNode: hhelmetpubg
+#  category: construction-category-weapons
+#  description: Прочная каска для самых крутых.
+#  objectType: Item
+
+- type: construction
+  name: construction-graph-tag-geranium-crown
+  id: GeraniumCrown
+  graph: GeraniumCrown
+  startNode: start
+  targetNode: GeraniumCrown
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-geranium-crown-desc
+
+- type: construction
+  name: construction-graph-tag-poppy-crown
+  id: PoppyCrown
+  graph: PoppyCrown
+  startNode: start
+  targetNode: PoppyCrown
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-poppy-crown-desc
+
+- type: construction
+  name: construction-graph-tag-sunflower-crown
+  id: SunflowerCrown
+  graph: SunflowerCrown
+  startNode: start
+  targetNode: SunflowerCrown
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-sunflower-crown-desc
+
+- type: construction
+  name: construction-graph-tag-atmoscross
+  id: AtmosCrossCraft
+  graph: AtmosCrossCraft
+  startNode: start
+  targetNode: cross
+  category: construction-category-clothing
+  description: construction-graph-tag-atmoscross-desc
+  objectType: Item
+
+- type: construction
+  name: construction-graph-tag-white-wraps
+  id: Wraps
+  graph: WrapsCraft
+  startNode: start
+  targetNode: Wraps
+  category: construction-category-clothing
+  objectType: Item
+  description: construction-graph-tag-white-wraps-desc
+
+- type: construction
+  name: construction-graph-tag-white-high-wraps
+  id: WrapsHigh
+  graph: WrapsHighCraft
+  startNode: start
+  targetNode: WrapsHigh
+  category: construction-category-clothing
+  objectType: Item
+  description: construction-graph-tag-white-high-wraps-desc
+
+- type: construction
+  name: construction-graph-tag-shell-shotgun-improvised-empty
+  id: ShellShotgunImprovisedEmpty
+  graph: ImprovisedShotgunShellEmptyGraph
+  startNode: start
+  targetNode: shell
+  category: construction-category-weapons
+  objectType: Item
+  description: construction-graph-tag-shell-shotgun-improvised-empty-desc
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised-empty
+
+- type: construction
+  name: construction-graph-tag-shell-shotgun-improvised
+  id: ShellShotgunImprovised
+  graph: ImprovisedShotgunShellGraph
+  startNode: start
+  targetNode: shell
+  category: construction-category-weapons
+  objectType: Item
+  description: construction-graph-tag-shell-shotgun-improvised-desc
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised
+
+- type: construction
+  name: construction-graph-tag-shell-shotgun-improvised-incendiary
+  id: ShellShotgunImprovisedIncendiary
+  graph: ImprovisedIncendiaryShotgunShellGraph
+  startNode: start
+  targetNode: shell
+  category: construction-category-weapons
+  objectType: Item
+  description: construction-graph-tag-shell-shotgun-improvised-incendiary-desc
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised-incendiary
+
+- type: construction
+  name: construction-graph-tag-shell-shotgun-improvised-uranium
+  id: ShellShotgunImprovisedUranium
+  graph: ImprovisedUraniumShotgunShellGraph
+  startNode: start
+  targetNode: shell
+  category: construction-category-weapons
+  objectType: Item
+  description: construction-graph-tag-shell-shotgun-improvised-uranium-desc
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: improvised-uranium
+
+- type: construction
+  name: construction-graph-tag-shell-shotgun-coin
+  id: ShellShotgunCoin
+  graph: CoinShotgunShellGraph
+  startNode: start
+  targetNode: shell
+  category: construction-category-weapons
+  objectType: Item
+  description: construction-graph-tag-shell-shotgun-coin-desc
+  # icon:
+  #   sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+  #   state: coinshot
+
+- type: construction
+  name: construction-graph-tag-mining-goliath-hardsuit
+  id: ClothingOuterHardsuitSalvageGoliath
+  graph: HardsuitGoliathSalvage
+  startNode: start
+  targetNode: hardsuitGoliath
+  category: construction-category-clothing
+  objectType: Item

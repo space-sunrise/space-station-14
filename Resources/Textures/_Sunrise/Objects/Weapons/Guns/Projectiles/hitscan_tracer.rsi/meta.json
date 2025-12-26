@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "red_laser"
+    },
+    {
+      "name": "bullet"
+    },
+    {
+      "name": "practice"
+    },
+    {
+      "name": "uranium"
+    },
+    {
+      "name": "piercing"
+    },
+    {
+      "name": "grenade"
+    },
+    {
+      "name": "rubber"
+    },
+    {
+      "name": "slug"
+    },
+    {
+      "name": "buckshot"
+    },
+    {
+      "name": "grapeshot"
+    },
+    {
+      "name": "shard"
+    },
+    {
+      "name": "buckshot-flare"
+    },
+    {
+      "name": "depleted-uranium"
+    },
+    {
+      "name": "omni_laser"
+    },
+    {
+      "name": "heavy_laser"
+    },
+    {
+      "name": "blue_laser"
+    },
+    {
+      "name": "slug_uranium"
+    },
+    {
+      "name": "empty"
+    }
+  ]
+}

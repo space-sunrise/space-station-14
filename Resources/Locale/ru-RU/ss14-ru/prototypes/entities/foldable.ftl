@@ -1,2 +1,0 @@
-ent-BaseFoldable = складной
-    .desc = { "" }

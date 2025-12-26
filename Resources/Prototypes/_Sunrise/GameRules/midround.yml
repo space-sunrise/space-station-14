@@ -1,0 +1,10 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseGameRule
+  id: Exterminator
+  components:
+  - type: GenericAntagRule
+    agentName: terminator-round-end-agent-name
+    objectives:
+    - TerminateObjective
+    - ShutDownObjective

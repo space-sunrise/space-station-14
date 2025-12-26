@@ -1,0 +1,117 @@
+#Knight_of_the_Sun:
+- type: sponsorLoadout
+  id: SunriseSponsorTier2
+  equipment: SunriseSponsorTier2
+
+- type: startingGear
+  id: SunriseSponsorTier2
+  equipment:
+    neck: ClothingNeckSunriseBadge
+  storage:
+    back:
+    - SunriseUplink
+    - Suntick40
+
+#Sun:
+- type: sponsorLoadout
+  id: SunriseSponsorTier3
+  equipment: SunriseSponsorTier3
+
+- type: startingGear
+  id: SunriseSponsorTier3
+  equipment:
+    neck: ClothingNeckSunriseBadge
+  storage:
+    back:
+    - SunriseUplink
+    - Suntick80
+
+#Endless_Summer
+- type: sponsorLoadout
+  id: SunriseSponsorTier4
+  equipment: SunriseSponsorTier4
+
+- type: startingGear
+  id: SunriseSponsorTier4
+  equipment:
+    neck: ClothingNeckSunriseBadge
+  storage:
+    back:
+    - SunriseUplink
+    - Suntick100
+
+# FISHSTATION UPLINKS:
+
+# first level?
+- type: sponsorLoadout
+  id: FishSponsorTier1
+  equipment: FishSponsorTier1
+
+- type: startingGear
+  id: FishSponsorTier1
+  storage:
+    back:
+    - FishStationUplink
+    - Suntick40
+
+# second level?
+- type: sponsorLoadout
+  id: FishSponsorTier2
+  equipment: FishSponsorTier2
+
+- type: startingGear
+  id: FishSponsorTier2
+  storage:
+    back:
+    - FishStationUplink
+    - Suntick80
+
+# third level?
+- type: sponsorLoadout
+  id: FishSponsorTier3
+  equipment: FishSponsorTier3
+
+- type: startingGear
+  id: FishSponsorTier3
+  storage:
+    back:
+    - FishStationUplink
+    - Suntick100
+
+# NEWERA STATION
+
+# first level?
+- type: sponsorLoadout
+  id: NeweraSponsorTier1
+  equipment: NeweraSponsorTier1
+
+- type: startingGear
+  id: NeweraSponsorTier1
+  storage:
+    back:
+    - NeweraStationUplink
+    - Suntick40
+
+# second level?
+- type: sponsorLoadout
+  id: NeweraSponsorTier2
+  equipment: NeweraSponsorTier2
+
+- type: startingGear
+  id: NeweraSponsorTier2
+  storage:
+    back:
+    - NeweraStationUplink
+    - Suntick80
+
+# third level?
+- type: sponsorLoadout
+  id: NeweraSponsorTier3
+  equipment: NeweraSponsorTier3
+
+- type: startingGear
+  id: NeweraSponsorTier3
+  storage:
+    back:
+    - NeweraStationUplink
+    - Suntick100

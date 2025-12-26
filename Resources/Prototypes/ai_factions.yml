@@ -1,12 +1,23 @@
 - type: npcFaction
   id: Dragon
+  friendly:
+  - Carps # Sunrise Edit
   hostile:
-    - NanoTrasen
-    - Syndicate
-    - Xeno
-    - PetsNT
-    - Zombie
-    - Revolutionary
+  - NanoTrasen
+  - Syndicate
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  # Sunrise Edit
+  - Thief
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: NanoTrasen
@@ -16,22 +27,42 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - Dragon
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - Flesh
+  - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Mouse
   hostile:
-    - PetsNT
+  - PetsNT
+  - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Passive
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
   - Mouse
   - SimpleHostile
   - Zombie
   - Xeno
+  - AllHostile
+  - Dragon
+  # Sunrise Edit
+  - Carps
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
@@ -42,6 +73,19 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - Dragon
+  - Xeno
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: SimpleNeutral
@@ -54,6 +98,18 @@
   - Xeno
   - PetsNT
   - Zombie
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - Dragon
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Xeno
@@ -64,6 +120,18 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
+  - Wizard
+  - Dragon
+  - Xenoborg
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Zombie
@@ -75,6 +143,18 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - AllHostile
+  - Wizard
+  - Dragon
+  - Xenoborg
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Revolutionary
@@ -82,4 +162,91 @@
   - NanoTrasen
   - Zombie
   - SimpleHostile
+  - AllHostile
+  - Wizard
+  - Xenoborg
   - Dragon
+  # Sunrise Edit
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
+  - Pirate
+
+- type: npcFaction
+  id: AllHostile
+  hostile:
+  - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Wizard
+  - Xenoborg
+  - Dragon
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
+  - Pirate
+
+- type: npcFaction
+  id: Wizard
+  hostile:
+  - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Xenoborg
+  - Dragon
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - Xeno
+  - BloodCult
+  - Pirate
+
+- type: npcFaction
+  id: Xenoborg
+  hostile:
+  # they have brains
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  - Wizard
+
+  - Xeno # rivalry
+
+  # cause they are hostile to them
+  - SimpleHostile
+  - AllHostile
+
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Vampire
+  - FleshHuman
+  - Flesh
+  - Xeno
+  - BloodCult
+  - Pirate

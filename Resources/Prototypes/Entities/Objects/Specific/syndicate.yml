@@ -1,19 +1,43 @@
+#sunrise-edit-start
 - type: entity
-  name: telecrystal
-  parent: BaseItem
-  id: Telecrystal
-  suffix: 20 TC
+  abstract: true
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: TelecrystalBase
   description: It seems to be pulsing with suspiciously enticing energies.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
-    state: telecrystal
+    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
   - type: Item
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    sprite: _Sunrise/Objects/Specific/Syndicate/telecrystal.rsi
     size: Tiny
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  parent: TelecrystalBase
+  id: Telecrystal
+  name: Telecrystal
+  suffix: 100 TC
+  components:
   - type: Stack
-    count: 20
     stackType: Telecrystal
+    baseLayer: base
+    layerStates:
+    - telecrystal
+    - telecrystal_2
+    - telecrystal_3
+    count: 100
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [10, 50, 100]
+  - type: Sprite
+    state: telecrystal_3
+    layers:
+    - state: telecrystal_3
+      map: ["base"]
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: Telecrystal
   - type: StaticPrice
     price: 0
   - type: StackPrice
@@ -25,41 +49,51 @@
 - type: entity
   parent: Telecrystal
   id: Telecrystal1
+  name: Telecrystal
   suffix: 1 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 1
 
 - type: entity
   parent: Telecrystal
   id: Telecrystal5
+  name: Telecrystal
   suffix: 5 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 5
 
 - type: entity
   parent: Telecrystal
   id: Telecrystal10
+  name: Telecrystal
   suffix: 10 TC
   components:
+  - type: Sprite
+    state: telecrystal
   - type: Stack
     count: 10
+#sunrise-edit-end
 
 # Uplinks
 - type: entity
-  parent: [ BaseItem, StorePresetUplink ]
+  parent: [BaseItem, StorePresetUplink, BaseSyndicateContraband]
   id: BaseUplinkRadio
   name: syndicate uplink
   description: Suspiciously looking old radio...
   suffix: Empty
   components:
   - type: Sprite
-    sprite: Objects/Devices/communication.rsi
+    sprite: _Sunrise/Objects/Devices/communication.rsi #Sunrise-edit
     layers:
     - state: old-radio
   - type: Item
-    sprite: Objects/Devices/communication.rsi
+    sprite: _Sunrise/Objects/Devices/communication.rsi #Sunrise-edit
     heldPrefix: old-radio
   - type: UserInterface
     interfaces:
@@ -70,6 +104,11 @@
   - type: Store
     balance:
       Telecrystal: 0
+#Sunrise-start
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+#Sunrise-end
 
 - type: entity
   parent: BaseUplinkRadio
@@ -109,7 +148,19 @@
   components:
   - type: Store
     balance:
-      Telecrystal: 60
+      Telecrystal: 80 #Sunrise edit
+  - type: Tag
+    tags:
+    - LoneOpsUplink #Sunrise added
+
+- type: entity
+  parent: BaseUplinkRadio
+  id: BaseUplinkRadio0TC
+  suffix: NukeOps
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 0
   - type: Tag
     tags:
     - NukeOpsUplink
@@ -118,7 +169,23 @@
   parent: BaseUplinkRadio
   id: BaseUplinkRadioDebug
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: Store
     balance:
       Telecrystal: 99999
+
+# Sunrise-Start
+- type: entity
+  parent: BaseUplinkRadio
+  id: BaseUplinkRadioDebug999
+  suffix: DEBUG, NukeOps
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 999
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+# Sunrise-Start

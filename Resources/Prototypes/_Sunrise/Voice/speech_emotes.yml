@@ -1,8 +1,16 @@
 # vocal emotes
 - type: emote
-  id: Mews
+  id: Mew
   name: chat-emote-name-mews
   category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [мя!]
   chatTriggers:
     - mew
@@ -16,9 +24,17 @@
     - мя!
 
 - type: emote
-  id: Meows
+  id: Meow
   name: chat-emote-name-meows
   category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [мяу!]
   chatTriggers:
     - Meows
@@ -38,6 +54,14 @@
   id: Hisses
   name: chat-emote-name-hisses
   category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [шипит!]
   chatTriggers:
   - шипит
@@ -51,9 +75,17 @@
   - hissing!
 
 - type: emote
-  id: Purrs
+  id: Purr
   name: chat-emote-name-purrs
   category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [мурчит!]
   chatTriggers:
     - мурчит
@@ -64,50 +96,192 @@
     - Purrs!
 
 - type: emote
-  id: Growls
-  name: chat-emote-name-growls
-  category: Vocal
-  chatMessages: [рычит!]
-  chatTriggers:
-  - рычит
-  - рычит.
-  - рычит!
-  - Growls
-  - Growls.
-  - Growls!
-
-- type: emote
-  id: Bark
-  name: chat-emote-name-bark
-  category: Vocal
-  chatMessages: [barks.]
-  chatTriggers:
-  - bark.
-  - bark!
-  - barks.
-  - barks!
-  - barked.
-  - barked!
-  - barking.
-
-- type: emote
-  id: Howl
-  name: chat-emote-name-howl
-  category: Vocal
-  chatMessages: [howls.]
-  chatTriggers:
-  - howl.
-  - howl!
-  - howls.
-  - howls!
-  - howling.
-  - howled.
-
-- type: emote
   id: Oink
   name: chat-emote-name-oink
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [хрю!]
   chatTriggers:
+  - хрюкает.
+  - хрюкает!
+  - хрюкать.
+  - хрюкать!
+  - хрюкать
+  - хрю.
+  - хрю!
   - хрю
   - хряк.
+  - хряк
+  - хряк!
+
+- type: emote
+  id: Vomit
+  name: chat-emote-name-vomit
+  category: Vocal
+  chatMessages: [тошнит]
+
+- type: emote
+  id: Headache
+  name: chat-emote-name-headache
+  category: Vocal
+  chatMessages: [голова болит]
+
+- type: emote
+  id: Insult
+  name: chat-emote-name-insult
+  category: Vocal
+  chatMessages: [инсульт]
+
+- type: emote
+  id: Whines
+  name: chat-emote-name-whines
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/cry.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-whines"]
+  chatTriggers:
+  - скулит.
+  - скулит!
+  - скулить.
+  - скулить!
+  - скулит
+  - скулить
+
+- type: emote
+  id: Scree
+  name: chat-emote-name-scree
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-scree"]
+  chatTriggers:
+  - scree
+  - scree.
+  - scree!
+  - scree?
+  - screeing
+  - screeing.
+  - screeing!
+  - screeing?
+  - screes
+  - screes.
+  - screes!
+  - screes?
+  - скри
+  - скри.
+  - скри!
+
+- type: emote
+  id: Call
+  name: chat-emote-name-call
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-call"]
+  chatTriggers:
+  - call
+  - call.
+  - call!
+  - call?
+  - calling
+  - calling.
+  - calling!
+  - calling?
+  - calls
+  - calls.
+  - calls!
+  - calls?
+  - зовёт
+  - зовёт.
+  - зовёт!
+  - зовёт?
+
+- type: emote
+  id: Squawk
+  name: chat-emote-name-squawk
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-squawk"]
+  chatTriggers:
+  - squawk
+  - squawk.
+  - squawk!
+  - squawk?
+  - squawking
+  - squawking.
+  - squawking!
+  - squawking?
+  - squawks
+  - squawks.
+  - squawks!
+  - squawks?
+  - сквуэк
+  - сквуэк.
+  - сквуэк!
+  - сквуэк?
+  - сквуэкает
+  - сквуэкает.
+  - сквуэкает!
+  - сквуэкает?
+
+- type: emote
+  id: Trill
+  name: chat-emote-name-trill
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-trill"]
+  chatTriggers:
+  - trill
+  - trill.
+  - trill!
+  - trill?
+  - trills
+  - trills.
+  - trills!
+  - trills?
+  - trilling
+  - trilling.
+  - trilling!
+  - trilling?
+  - трещит
+  - трещит.
+  - трещит!
+  - трещит?

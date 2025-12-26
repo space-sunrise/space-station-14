@@ -1,12 +1,19 @@
+using Content.Shared._Sunrise.Dice;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Popups;
 using Content.Shared.Throwing;
-using Robust.Shared.GameStates;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Dice;
 
 public abstract class SharedDiceSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -14,76 +21,88 @@ public abstract class SharedDiceSystem : EntitySystem
         SubscribeLocalEvent<DiceComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<DiceComponent, LandEvent>(OnLand);
         SubscribeLocalEvent<DiceComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<DiceComponent, AfterAutoHandleStateEvent>(OnDiceAfterHandleState);
+        // Sunrise-Edit
+        SubscribeLocalEvent<DiceComponent, ChangeDiceSetValueMessage>(OnChangeDiceSetValueMessage);
     }
 
-    private void OnDiceAfterHandleState(EntityUid uid, DiceComponent component, ref AfterAutoHandleStateEvent args)
-    {
-        UpdateVisuals(uid, component);
-    }
-
-    private void OnUseInHand(EntityUid uid, DiceComponent component, UseInHandEvent args)
+    private void OnUseInHand(Entity<DiceComponent> entity, ref UseInHandEvent args)
     {
         if (args.Handled)
             return;
 
+        Roll(entity, args.User);
         args.Handled = true;
-        Roll(uid, component);
     }
 
-    private void OnLand(EntityUid uid, DiceComponent component, ref LandEvent args)
+    private void OnLand(Entity<DiceComponent> entity, ref LandEvent args)
     {
-        Roll(uid, component);
+        Roll(entity);
     }
 
-    private void OnExamined(EntityUid uid, DiceComponent dice, ExaminedEvent args)
+    private void OnExamined(Entity<DiceComponent> entity, ref ExaminedEvent args)
     {
         //No details check, since the sprite updates to show the side.
         using (args.PushGroup(nameof(DiceComponent)))
         {
-            args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-1", ("sidesAmount", dice.Sides)));
+            // Sunrise-Edit
+            if (entity.Comp.IsNotStandardDice)
+            {
+                args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-3", ("startSide", entity.Comp.StartFromSide), ("endSide", entity.Comp.Sides)));
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-1", ("sidesAmount", entity.Comp.Sides)));
+            }
+            // Sunrise-Edit-End
             args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-2",
-                ("currentSide", dice.CurrentValue)));
+                ("currentSide", entity.Comp.CurrentValue)));
         }
     }
 
-    public void SetCurrentSide(EntityUid uid, int side, DiceComponent? die = null)
+    private void SetCurrentSide(Entity<DiceComponent> entity, int side)
     {
-        if (!Resolve(uid, ref die))
-            return;
-
-        if (side < 1 || side > die.Sides)
+        if (side < 1 || side > entity.Comp.Sides)
         {
-            Log.Error($"Attempted to set die {ToPrettyString(uid)} to an invalid side ({side}).");
+            Log.Error($"Attempted to set die {ToPrettyString(entity)} to an invalid side ({side}).");
             return;
         }
 
-        die.CurrentValue = (side - die.Offset) * die.Multiplier;
-        Dirty(uid, die);
-        UpdateVisuals(uid, die);
+        entity.Comp.CurrentValue = (side - entity.Comp.Offset) * entity.Comp.Multiplier;
+        Dirty(entity);
     }
 
-    public void SetCurrentValue(EntityUid uid, int value, DiceComponent? die = null)
+    public void SetCurrentValue(Entity<DiceComponent> entity, int value)
     {
-        if (!Resolve(uid, ref die))
-            return;
-
-        if (value % die.Multiplier != 0 || value/ die.Multiplier + die.Offset < 1)
+        if (value % entity.Comp.Multiplier != 0 || value / entity.Comp.Multiplier + entity.Comp.Offset < 1)
         {
-            Log.Error($"Attempted to set die {ToPrettyString(uid)} to an invalid value ({value}).");
+            Log.Error($"Attempted to set die {ToPrettyString(entity)} to an invalid value ({value}).");
             return;
         }
 
-        SetCurrentSide(uid, value / die.Multiplier + die.Offset, die);
+        SetCurrentSide(entity, value / entity.Comp.Multiplier + entity.Comp.Offset);
     }
 
-    protected virtual void UpdateVisuals(EntityUid uid, DiceComponent? die = null)
+    private void Roll(Entity<DiceComponent> entity, EntityUid? user = null)
     {
-        // See client system.
+        var rand = new System.Random((int)_timing.CurTick.Value);
+
+        // Sunrise-Edit
+        var roll = rand.Next(entity.Comp.StartFromSide, entity.Comp.Sides + 1);
+        // Sunrise-Edit-End
+        SetCurrentSide(entity, roll);
+
+        var popupString = Loc.GetString("dice-component-on-roll-land",
+            ("die", entity),
+            ("currentSide", entity.Comp.CurrentValue));
+        _popup.PopupPredicted(popupString, entity, user);
+        _audio.PlayPredicted(entity.Comp.Sound, entity, user);
     }
 
-    public virtual void Roll(EntityUid uid, DiceComponent? die = null)
+    // Sunrise-Edit
+    private void OnChangeDiceSetValueMessage(Entity<DiceComponent> entity, ref ChangeDiceSetValueMessage args)
     {
-        // See the server system, client cannot predict rolling.
+        entity.Comp.SetSides((int)args.StartValue, (int)args.EndValue);
+        _popup.PopupPredicted(Loc.GetString("comp-change-dice-sides-amount", ("startAmount", (int)args.StartValue), ("endAmount", (int)args.EndValue)), entity, entity.Owner);
+        Dirty(entity);
     }
 }

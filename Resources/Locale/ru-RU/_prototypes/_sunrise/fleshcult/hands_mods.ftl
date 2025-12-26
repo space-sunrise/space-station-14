@@ -1,0 +1,12 @@
+ent-FleshClaw = Клешня из плоти
+    .desc = Ей можно вскрывать как двери так и людей.
+    .suffix = Культ плоти
+ent-FleshFist = Кулак плоти
+    .desc = Фистинг стоит триста баксов
+    .suffix = Культ плоти
+ent-FleshBlade = Клинок из плоти
+    .desc = Почти как у генокрада, только лучше.
+    .suffix = Культ плоти
+ent-FleshSpikeHandGun = пистолет с шипами
+    .suffix = Культ плоти
+    .desc = { ent-BaseItem.desc }

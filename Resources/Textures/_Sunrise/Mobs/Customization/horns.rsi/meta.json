@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "horns_argali2",
+      "directions": 4
+    },
+    {
+      "name": "horns_ayrshire2",
+      "directions": 4
+    },
+    {
+      "name": "horns_bambi",
+      "directions": 4
+    },
+    {
+      "name": "horns_big",
+      "directions": 4
+    },
+    {
+      "name": "horns_bighorn2",
+      "directions": 4
+    },
+    {
+      "name": "horns_corkscrew",
+      "directions": 4
+    },
+    {
+      "name": "horns_deathclaw",
+      "directions": 4
+    },
+    {
+      "name": "horns_deathclawgreat",
+      "directions": 4
+    },
+    {
+      "name": "horns_double2",
+      "directions": 4
+    },
+    {
+      "name": "horns_dragon",
+      "directions": 4
+    },
+    {
+      "name": "horns_mohawk",
+      "directions": 4
+    },
+    {
+      "name": "horns_myrsore2",
+      "directions": 4
+    },
+    {
+      "name": "horns_olddragon",
+      "directions": 4
+    },
+    {
+      "name": "horns_trike",
+      "directions": 4
+    },
+    {
+      "name": "full_spike",
+      "directions": 4
+    },
+    {
+      "name": "little_trike",
+      "directions": 4
+    }
+  ]
+}

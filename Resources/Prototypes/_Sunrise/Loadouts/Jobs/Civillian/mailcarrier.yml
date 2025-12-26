@@ -1,0 +1,9 @@
+﻿- type: loadout
+  id: MailCarrierJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformMailCarrier
+
+- type: loadout
+  id: MailCarrierJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformSkirtMailCarrier

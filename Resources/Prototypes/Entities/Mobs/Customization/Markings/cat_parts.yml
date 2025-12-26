@@ -1,9 +1,8 @@
 - type: marking
   id: CatEars
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Human]
-  sponsorOnly: true # Sunrise-Sponsors
+  bodyPart: Special
+  markingCategory: Special
+  sponsorOnly: false
   coloring:
     default:
       type:
@@ -26,8 +25,7 @@
   id: CatTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
-  sponsorOnly: true # Sunrise-Sponsors
+  sponsorOnly: false
   coloring:
     default:
       type:

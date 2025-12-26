@@ -1,0 +1,72 @@
+- type: job
+  id: PrisonInspector
+  name: job-name-prison-inspector
+  description: job-description-prison-inspector
+  playTimeTracker: JobPrisonInspector
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Law
+      time: 10800 # 3 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2 hrs
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: PrisonInspectorGear
+  icon: "JobIconPrisonInspector"
+  overrideConsoleVisibility: false
+  supervisors: job-supervisors-head-of-prison
+  displayWeight: 90
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Service
+  - Chemistry
+  - Medical
+  - Engineering
+  - Atmospherics
+  - Janitor
+  - Bar
+  - Hydroponics
+  - Kitchen
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonInspectorGear
+  equipment:
+    id: PrisonInspectorPDA
+    jumpsuit: ClothingUniformJumpsuitArmouredBlack
+    ears: ClothingHeadsetCommand
+    gloves: ClothingHandsGlovesForensic
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonInspectorMetus
+    back: ClothingBackpackSatchelPrisonInspectorMetus
+    shoes: ClothingShoesBootsJack
+    pocket1: WeaponRevolverInspector
+    pocket2: Flash
+  storage:
+    back:
+      - HyperLinkBookCorporateLaw
+      - BoxFolderClipboard
+      - ForensicScanner
+      - BoxEvidenceMarkers
+      - DrinkDetFlask
+      - RubberStampPrisonInspector
+      - PenCentcom
+
+- type: chameleonOutfit
+  id: PrisonInspectorChameleonOutfit
+  job: PrisonInspector
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitArmouredBlack
+    head: Sunrise-ClothingHeadHatDetGadget
+    ears: ClothingHeadsetCommand
+    gloves: ClothingHandsGlovesForensic
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonGuardianFilledMetus
+    back: ClothingBackpackSatchelPrisonGuard
+    shoes: ClothingShoesBootsJack

@@ -1,0 +1,29 @@
+- type: flavor
+  id: fourteen_loko_soda_plus
+  flavorType: Complex
+  description: flavor-complex-fourteen-loko-soda-plus
+
+- type: flavor
+  id: chamomile_tincture
+  flavorType: Complex
+  description: flavor-complex-chamomile-tincture
+
+- type: flavor
+  id: woodsawdust
+  flavorType: Complex
+  description: flavor-complex-sawdust
+
+- type: flavor
+  id: wallOfBricks
+  flavorType: Complex
+  description: flavor-complex-wall-of-bricks
+
+- type: flavor
+  id: abductorBlood
+  flavorType: Base
+  description: flavor-base-abductor-blood
+
+- type: flavor
+  id: butterscotch
+  flavorType: Complex
+  description: flavor-complex-butter-scotch

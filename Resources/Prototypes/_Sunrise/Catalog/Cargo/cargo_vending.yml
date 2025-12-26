@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CrateVendingMachineRestockPaintVend
+  icon:
+    sprite: _Sunrise/Objects/Specific/Service/vending_machine_restock.rsi
+    state: icon_cargo_paint
+  product: CrateVendingMachineRestockPaintVendFilled
+  cost: 5500
+  category: cargoproduct-category-name-service
+  group: market

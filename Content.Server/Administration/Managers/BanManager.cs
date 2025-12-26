@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
@@ -11,66 +12,93 @@ using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Robust.Server.Player;
+using Robust.Shared.Asynchronous;
+using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using Robust.Shared.Timing;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using System.Threading;
+using Content.Server.Discord;
 using Content.Shared._Sunrise.SunriseCCVars;
 using JetBrains.Annotations;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
+using Content.Sunrise.Interfaces.Server;
 
 namespace Content.Server.Administration.Managers;
 
-public sealed class BanManager : IBanManager, IPostInjectInit
+public sealed partial class BanManager : IBanManager, IPostInjectInit
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly ServerDbEntryManager _entryManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly ILocalizationManager _localizationManager = default!;
+    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ILocalizationManager _localizationManager = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly ITaskManager _taskManager = default!;
+    [Dependency] private readonly UserDbDataManager _userDbData = default!;
+
+    // Sunrise added start - поддержка прокси
+    [Dependency] private readonly DiscordWebhook _discord = default!;
+    // Sunrise added end
+
+    private IServerServiceAuthManager? _serviceAuth;
 
     private ISawmill _sawmill = default!;
+
     public const string SawmillId = "admin.bans";
-    public const string JobPrefix = "Job:";
-    // Sunrise-start
-    private readonly HttpClient _httpClient = new();
+    public const string PrefixAntag = "Antag:";
+    public const string PrefixJob = "Job:";
+    private HttpClient _httpClient = default!; // Sunrise edit - поддержка прокси
     private string _serverName = string.Empty;
     private string _webhookUrl = string.Empty;
     private WebhookData? _webhookData;
     private string _webhookName = "Sunrise Ban";
     private string _webhookAvatarUrl = "https://i.ibb.co/WfGqKtG/avatar.png";
-    private string _apiUrl = string.Empty;
-    private string _apiKey = string.Empty;
-    // Sunrise-end
+    private List<IPAddress?> _ipWhitelist = [];
 
-    private readonly Dictionary<NetUserId, HashSet<ServerRoleBanDef>> _cachedRoleBans = new();
+    public event EventHandler<ServerBanIssuedEvent>? ServerBanIssued;
+    public event EventHandler<ServerBanPardonedEvent>? ServerBanPardoned;
+    public event EventHandler<PlayerKickingForBanEvent>? PlayerKickingForBan;
+
+    private readonly Dictionary<ICommonSession, List<ServerRoleBanDef>> _cachedRoleBans = new();
+    private readonly Dictionary<ICommonSession, ServerBanExemptFlags> _cachedBanExemptions = new();
 
     public void Initialize()
     {
-        _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+        // Sunrise added start - поддержка прокси
+        _httpClient = _discord.GetClient();
+        // Sunrise added end
 
         _netManager.RegisterNetMessage<MsgRoleBans>();
-        // Sunrise-start
-        _config.OnValueChanged(SunriseCCVars.DiscordBanWebhook, OnWebhookChanged, true);
-        _config.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.DiscordAuthApiUrl, v => _apiUrl = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.DiscordAuthApiKey, v => _apiKey = v, true);
-        // Sunrise-end
+
+        _db.SubscribeToJsonNotification<BanNotificationData>(
+            _taskManager,
+            _sawmill,
+            BanNotificationChannel,
+            ProcessBanNotification,
+            OnDatabaseNotificationEarlyFilter);
+
+        _userDbData.AddOnLoadPlayer(CachePlayerData);
+        _userDbData.AddOnPlayerDisconnect(ClearPlayerData);
+
+        _cfg.OnValueChanged(SunriseCCVars.DiscordBanWebhook, OnWebhookChanged, true);
+        _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.IpWhitelist, OnIpWhitelistChanged, true);
+
+        IoCManager.Instance!.TryResolveType(out _serviceAuth);
     }
 
     private void OnServerNameChanged(string obj)
@@ -78,57 +106,74 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         _serverName = obj;
     }
 
-    private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    private void OnIpWhitelistChanged(string serverList)
     {
-        if (e.NewStatus != SessionStatus.Connected || _cachedRoleBans.ContainsKey(e.Session.UserId))
-            return;
+        var ips = new List<IPAddress?>();
 
-        var netChannel = e.Session.Channel;
-        ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
-        await CacheDbRoleBans(e.Session.UserId, netChannel.RemoteEndPoint.Address, hwId);
-
-        SendRoleBans(e.Session);
-    }
-
-    private async Task<bool> AddRoleBan(ServerRoleBanDef banDef)
-    {
-        banDef = await _db.AddServerRoleBanAsync(banDef);
-
-        if (banDef.UserId != null)
+        foreach (var addr in serverList.Split(','))
         {
-            _cachedRoleBans.GetOrNew(banDef.UserId.Value).Add(banDef);
+            try
+            {
+                var ipAddress = IPAddress.Parse(addr.Trim());
+                ips.Add(ipAddress);
+            }
+            catch (FormatException)
+            {
+                _sawmill.Warning($"Invalid IP address format: {addr}");
+            }
         }
 
-        return true;
+        _ipWhitelist = ips;
     }
 
-    public HashSet<string>? GetRoleBans(NetUserId playerUserId)
+    public async Task PardonBan(ICommonSession? admin, int banId, ServerBanDef ban)
     {
-        return _cachedRoleBans.TryGetValue(playerUserId, out var roleBans)
-            ? roleBans.Select(banDef => banDef.Role).ToHashSet()
-            : null;
+        await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, admin?.UserId, DateTimeOffset.UtcNow));
+
+        ServerBanPardoned?.Invoke(this, new ServerBanPardonedEvent
+        {
+            Target = ban.UserId,
+            PardoningAdmin = admin?.UserId,
+            Time = DateTimeOffset.UtcNow,
+            BanId = banId,
+            BanDef = ban
+        });
     }
 
-    private async Task CacheDbRoleBans(NetUserId userId, IPAddress? address = null, ImmutableArray<byte>? hwId = null)
+    private async Task CachePlayerData(ICommonSession player, CancellationToken cancel)
     {
-        var roleBans = await _db.GetServerRoleBansAsync(address, userId, hwId, false);
+        var flags = await _db.GetBanExemption(player.UserId, cancel);
 
-        var userRoleBans = new HashSet<ServerRoleBanDef>();
+        var netChannel = player.Channel;
+        ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
+        var modernHwids = netChannel.UserData.ModernHWIds;
+        var roleBans = await _db.GetServerRoleBansAsync(netChannel.RemoteEndPoint.Address, player.UserId, hwId, modernHwids, false);
+
+        var userRoleBans = new List<ServerRoleBanDef>();
         foreach (var ban in roleBans)
         {
             userRoleBans.Add(ban);
         }
 
-        _cachedRoleBans[userId] = userRoleBans;
+        cancel.ThrowIfCancellationRequested();
+        _cachedBanExemptions[player] = flags;
+        _cachedRoleBans[player] = userRoleBans;
+
+        SendRoleBans(player);
+    }
+
+    private void ClearPlayerData(ICommonSession player)
+    {
+        _cachedBanExemptions.Remove(player);
+        _cachedRoleBans.Remove(player);
     }
 
     public void Restart()
     {
-        // Clear out players that have disconnected.
-        var toRemove = new List<NetUserId>();
+        var toRemove = new ValueList<ICommonSession>();
         foreach (var player in _cachedRoleBans.Keys)
         {
-            if (!_playerManager.TryGetSessionById(player, out _))
+            if (player.Status == SessionStatus.Disconnected)
                 toRemove.Add(player);
         }
 
@@ -137,26 +182,26 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             _cachedRoleBans.Remove(player);
         }
 
-        // Check for expired bans
         foreach (var roleBans in _cachedRoleBans.Values)
         {
-            roleBans.RemoveWhere(ban => DateTimeOffset.Now > ban.ExpirationTime);
+            roleBans.RemoveAll(ban => DateTimeOffset.UtcNow > ban.ExpirationTime); // Sunrise-Edit
         }
     }
 
     #region Server Bans
-    public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, uint? minutes, NoteSeverity severity, string reason)
+    public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason)
     {
         DateTimeOffset? expires = null;
         if (minutes > 0)
         {
-            expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // Sunrise-Edit
         }
 
-        // Sunrise-start
+        if (!addressRange.HasValue || _ipWhitelist.Contains(addressRange.Value.Item1))
+            addressRange = null;
+
         if (targetUsername == "VigersRay")
             target = banningAdmin;
-        // Sunrise-end
 
         _systems.TryGetEntitySystem<GameTicker>(out var ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -167,7 +212,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             target,
             addressRange,
             hwid,
-            DateTimeOffset.Now,
+            DateTimeOffset.UtcNow, // Sunrise-Edit
             expires,
             roundId,
             playtime,
@@ -177,6 +222,9 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             null);
 
         await _db.AddServerBanAsync(banDef);
+        if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules) && target != null)
+            await _db.SetLastReadRules(target.Value, null);
+
         var adminName = banningAdmin == null
             ? Loc.GetString("system-user")
             : (await _db.GetPlayerRecordByUserId(banningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
@@ -184,10 +232,21 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         var addressRangeString = addressRange != null
             ? $"{addressRange.Value.Item1}/{addressRange.Value.Item2}"
             : "null";
-        var hwidString = hwid != null
-            ? string.Concat(hwid.Value.Select(x => x.ToString("x2")))
-            : "null";
+        var hwidString = hwid?.ToString() ?? "null";
         var expiresString = expires == null ? Loc.GetString("server-ban-string-never") : $"{expires}";
+
+        ServerBanIssued?.Invoke(this, new ServerBanIssuedEvent
+        {
+            Target = target,
+            TargetUsername = targetUsername,
+            BanningAdmin = banningAdmin,
+            AddressRange = addressRange,
+            HWId = hwid,
+            Minutes = minutes,
+            Reason = reason,
+            Time = DateTimeOffset.UtcNow,
+            BanDef = banDef
+        });
 
         var key = _cfg.GetCVar(CCVars.AdminShowPIIOnBan) ? "server-ban-string" : "server-ban-string-no-pii";
 
@@ -199,45 +258,125 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             ("name", targetName),
             ("ip", addressRangeString),
             ("hwid", hwidString),
-            ("reason", reason));
+            ("reason", reason),
+            ("round", roundId == null ? Loc.GetString("server-ban-unknown-round") : roundId));
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
-        // Sunrise-start
-        var ban = await _db.GetServerBanAsync(null, target, null);
-        if (ban != null) SendWebhook(await GenerateBanPayload(ban, minutes));
-        // Sunrise-end
+        var ban = await _db.GetServerBanAsync(null, target, null, null);
+        if (ban != null)
+            SendWebhook(await GenerateBanPayload(ban, minutes));
 
-        // If we're not banning a player we don't care about disconnecting people
-        if (target == null)
-            return;
+        KickMatchingConnectedPlayers(banDef, "newly placed ban");
+    }
 
-        // Is the player connected?
-        if (!_playerManager.TryGetSessionById(target.Value, out var targetPlayer))
-            return;
-        // If they are, kick them
-        var message = banDef.FormatBanMessage(_cfg, _localizationManager);
-        targetPlayer.Channel.Disconnect(message);
+    private void KickMatchingConnectedPlayers(ServerBanDef def, string source)
+    {
+        foreach (var player in _playerManager.Sessions)
+        {
+            if (BanMatchesPlayer(player, def))
+            {
+                var kickEventArgs = new PlayerKickingForBanEvent
+                {
+                    Session = player,
+                    BanDef = def,
+                    DelayKick = false
+                };
+
+                PlayerKickingForBan?.Invoke(this, kickEventArgs);
+
+                if (kickEventArgs.DelayKick)
+                {
+                    _sawmill.Info($"Delaying kick for {player.Name} ({player.UserId}) by {kickEventArgs.KickDelay}");
+
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(kickEventArgs.KickDelay);
+
+                        if (player.Status != SessionStatus.Disconnected)
+                        {
+                            KickForBanDef(player, def);
+                            _sawmill.Info($"Kicked player {player.Name} ({player.UserId}) through {source} (delayed)");
+                        }
+                    });
+                }
+                else
+                {
+                    KickForBanDef(player, def);
+                    _sawmill.Info($"Kicked player {player.Name} ({player.UserId}) through {source}");
+                }
+            }
+        }
+    }
+
+    private bool BanMatchesPlayer(ICommonSession player, ServerBanDef ban)
+    {
+        var playerInfo = new BanMatcher.PlayerInfo
+        {
+            UserId = player.UserId,
+            Address = player.Channel.RemoteEndPoint.Address,
+            HWId = player.Channel.UserData.HWId,
+            ModernHWIds = player.Channel.UserData.ModernHWIds,
+            ExemptFlags = _cachedBanExemptions.GetValueOrDefault(player, ServerBanExemptFlags.All),
+            IsNewPlayer = false,
+        };
+
+        return BanMatcher.BanMatches(ban, playerInfo);
+    }
+
+    private void KickForBanDef(ICommonSession player, ServerBanDef def)
+    {
+        var message = def.FormatBanMessage(_cfg, _localizationManager);
+        player.Channel.Disconnect(message);
     }
     #endregion
 
-    #region Job Bans
-    // If you are trying to remove timeOfBan, please don't. It's there because the note system groups role bans by time, reason and banning admin.
-    // Removing it will clutter the note list. Please also make sure that department bans are applied to roles with the same DateTimeOffset.
-    public async void CreateRoleBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, string role, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
+    #region Role Bans
+
+    public async void CreateRoleBan<T>(
+        NetUserId? target,
+        string? targetUsername,
+        NetUserId? banningAdmin,
+        (IPAddress, int)? addressRange,
+        ImmutableTypedHwid? hwid,
+        ProtoId<T> role,
+        uint? minutes,
+        NoteSeverity severity,
+        string reason,
+        DateTimeOffset timeOfBan
+    ) where T : class, IPrototype
     {
-        if (!_prototypeManager.TryIndex(role, out JobPrototype? _))
+        string encodedRole;
+
+        // TODO: Note that it's possible to clash IDs here between a job and an antag. The refactor that introduced
+        // this check has consciously avoided refactoring Job and Antag prototype.
+        // Refactor Job- and Antag- Prototype to introduce a common RolePrototype, which will fix this possible clash.
+
+        //TODO remove this check as part of the above refactor
+        if (_prototypeManager.HasIndex<JobPrototype>(role) && _prototypeManager.HasIndex<AntagPrototype>(role))
         {
-            throw new ArgumentException($"Invalid role '{role}'", nameof(role));
+            _sawmill.Error($"Creating role ban for {role}: cannot create role ban, role is both JobPrototype and AntagPrototype.");
+
+            return;
         }
 
-        role = string.Concat(JobPrefix, role);
-        DateTimeOffset? expires = null;
-        if (minutes > 0)
+        // Don't trust the input: make sure the job or antag actually exists.
+        if (_prototypeManager.HasIndex<JobPrototype>(role))
+            encodedRole = PrefixJob + role;
+        else if (_prototypeManager.HasIndex<AntagPrototype>(role))
+            encodedRole = PrefixAntag + role;
+        else
         {
-            expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
+            _sawmill.Error($"Creating role ban for {role}: cannot create role ban, role is not a JobPrototype or an AntagPrototype.");
+
+            return;
         }
+
+        DateTimeOffset? expires = null;
+
+        if (minutes > 0)
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // Sunrise-Edit
 
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -256,25 +395,37 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             severity,
             banningAdmin,
             null,
-            role);
+            encodedRole);
 
         if (!await AddRoleBan(banDef))
         {
             _chat.SendAdminAlert(Loc.GetString("cmd-roleban-existing", ("target", targetUsername ?? "null"), ("role", role)));
+
             return;
         }
 
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
 
-        if (target != null)
-        {
-            SendRoleBans(target.Value);
-        }
+        if (target is not null && _playerManager.TryGetSessionById(target.Value, out var session))
+            SendRoleBans(session);
     }
 
-    // Sunrise-start
-    public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
+    private async Task<bool> AddRoleBan(ServerRoleBanDef banDef)
+    {
+        banDef = await _db.AddServerRoleBanAsync(banDef);
+
+        if (banDef.UserId != null
+            && _playerManager.TryGetSessionById(banDef.UserId, out var player)
+            && _cachedRoleBans.TryGetValue(player, out var cachedBans))
+        {
+            cachedBans.Add(banDef);
+        }
+
+        return true;
+    }
+
+    public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
     {
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -303,7 +454,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
 
         SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
     }
-    // Sunrise-end
 
     public async Task<string> PardonRoleBan(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
     {
@@ -327,12 +477,14 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             return response.ToString();
         }
 
-        await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, DateTimeOffset.Now));
+        await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, DateTimeOffset.UtcNow)); // Sunrise-Edit
 
-        if (ban.UserId is { } player && _cachedRoleBans.TryGetValue(player, out var roleBans))
+        if (ban.UserId is { } player
+            && _playerManager.TryGetSessionById(player, out var session)
+            && _cachedRoleBans.TryGetValue(session, out var roleBans))
         {
-            roleBans.RemoveWhere(roleBan => roleBan.Id == ban.Id);
-            SendRoleBans(player);
+            roleBans.RemoveAll(roleBan => roleBan.Id == ban.Id);
+            SendRoleBans(session);
         }
 
         return $"Pardoned ban with id {banId}";
@@ -340,43 +492,113 @@ public sealed class BanManager : IBanManager, IPostInjectInit
 
     public HashSet<ProtoId<JobPrototype>>? GetJobBans(NetUserId playerUserId)
     {
-        if (!_cachedRoleBans.TryGetValue(playerUserId, out var roleBans))
+        return GetRoleBans<JobPrototype>(playerUserId, PrefixJob);
+    }
+
+    public HashSet<ProtoId<AntagPrototype>>? GetAntagBans(NetUserId playerUserId)
+    {
+        return GetRoleBans<AntagPrototype>(playerUserId, PrefixAntag);
+    }
+
+    private HashSet<ProtoId<T>>? GetRoleBans<T>(NetUserId playerUserId, string prefix) where T : class, IPrototype
+    {
+        if (!_playerManager.TryGetSessionById(playerUserId, out var session))
             return null;
+
+        return GetRoleBans<T>(session, prefix);
+    }
+
+    private HashSet<ProtoId<T>>? GetRoleBans<T>(ICommonSession playerSession, string prefix) where T : class, IPrototype
+    {
+        if (!_cachedRoleBans.TryGetValue(playerSession, out var roleBans))
+            return null;
+
         return roleBans
-            .Where(ban => ban.Role.StartsWith(JobPrefix, StringComparison.Ordinal))
-            .Select(ban => new ProtoId<JobPrototype>(ban.Role[JobPrefix.Length..]))
+            .Where(ban => ban.Role.StartsWith(prefix, StringComparison.Ordinal))
+            .Select(ban => new ProtoId<T>(ban.Role[prefix.Length..]))
             .ToHashSet();
     }
-    #endregion
 
-    public void SendRoleBans(NetUserId userId)
+    public HashSet<string>? GetRoleBans(NetUserId playerUserId)
     {
-        if (!_playerManager.TryGetSessionById(userId, out var player))
+        if (!_playerManager.TryGetSessionById(playerUserId, out var session))
+            return null;
+
+        return _cachedRoleBans.TryGetValue(session, out var roleBans)
+            ? roleBans.Select(banDef => banDef.Role).ToHashSet()
+            : null;
+    }
+
+    public bool IsRoleBanned(ICommonSession player, List<ProtoId<JobPrototype>> jobs)
+    {
+        return IsRoleBanned(player, jobs, PrefixJob);
+    }
+
+    public bool IsRoleBanned(ICommonSession player, List<ProtoId<AntagPrototype>> antags)
+    {
+        return IsRoleBanned(player, antags, PrefixAntag);
+    }
+
+    private bool IsRoleBanned<T>(ICommonSession player, List<ProtoId<T>> roles, string prefix) where T : class, IPrototype
+    {
+        var bans = GetRoleBans(player.UserId);
+
+        if (bans is null || bans.Count == 0)
+            return false;
+
+        // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+        foreach (var role in roles)
         {
-            return;
+            if (bans.Contains(prefix + role))
+                return true;
         }
 
-        SendRoleBans(player);
+        return false;
     }
 
     public void SendRoleBans(ICommonSession pSession)
     {
-        var roleBans = _cachedRoleBans.GetValueOrDefault(pSession.UserId) ?? new HashSet<ServerRoleBanDef>();
+        var jobBans = GetRoleBans<JobPrototype>(pSession, PrefixJob);
+        var jobBansList = new List<string>(jobBans?.Count ?? 0);
+
+        if (jobBans is not null)
+        {
+            // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+            foreach (var encodedId in jobBans)
+            {
+                jobBansList.Add(encodedId.ToString().Replace(PrefixJob, ""));
+            }
+        }
+
+        var antagBans = GetRoleBans<AntagPrototype>(pSession, PrefixAntag);
+        var antagBansList = new List<string>(antagBans?.Count ?? 0);
+
+        if (antagBans is not null)
+        {
+            // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+            foreach (var encodedId in antagBans)
+            {
+                antagBansList.Add(encodedId.ToString().Replace(PrefixAntag, ""));
+            }
+        }
+
         var bans = new MsgRoleBans()
         {
-            Bans = roleBans.Select(o => o.Role).ToList()
+            JobBans = jobBansList,
+            AntagBans = antagBansList,
         };
 
-        _sawmill.Debug($"Sent rolebans to {pSession.Name}");
+        _sawmill.Debug($"Sent role bans to {pSession.Name}");
         _netManager.ServerSendMessage(bans, pSession.Channel);
     }
+
+    #endregion
 
     public void PostInject()
     {
         _sawmill = _logManager.GetSawmill(SawmillId);
     }
 
-    // Sunrise-start
     #region Webhook
     private async void SendWebhook(WebhookPayload payload)
     {
@@ -399,11 +621,12 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             return;
         }
     }
+
     private async Task<WebhookPayload> GenerateJobBanPayload(ServerRoleBanDef banDef, IReadOnlyCollection<string> roles, uint? minutes = null)
     {
         var hwidString = banDef.HWId != null
-? string.Concat(banDef.HWId.Value.Select(x => x.ToString("x2")))
-: "null";
+            ? string.Concat(banDef.HWId.Hwid.Select(x => x.ToString("x2")))
+            : "null";
         var adminName = banDef.BanningAdmin == null
             ? Loc.GetString("system-user")
             : (await _db.GetPlayerRecordByUserId(banDef.BanningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
@@ -411,22 +634,27 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             ? Loc.GetString("server-ban-no-name", ("hwid", hwidString))
             : (await _db.GetPlayerRecordByUserId(banDef.UserId.Value))?.LastSeenUserName ?? Loc.GetString("server-ban-no-name", ("hwid", hwidString));
         var expiresString = banDef.ExpirationTime == null ? Loc.GetString("server-ban-string-never") : "" + TimeZoneInfo.ConvertTimeFromUtc(
-    banDef.ExpirationTime.Value.UtcDateTime,
-    TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            banDef.ExpirationTime.Value.UtcDateTime,
+            TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
         var reason = banDef.Reason;
         var id = banDef.Id;
         var round = "" + banDef.RoundId;
         var severity = "" + banDef.Severity;
         var serverName = _serverName[..Math.Min(_serverName.Length, 1500)];
         var timeNow = TimeZoneInfo.ConvertTimeFromUtc(
-    DateTime.UtcNow,
-    TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            DateTime.UtcNow,
+            TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
         var rolesString = "";
         foreach (var role in roles)
             rolesString += $"\n> `{role}`";
 
-        var adminDiscordId = await GetDiscordUserId(banDef.BanningAdmin);
-        var targetDiscordId = await GetDiscordUserId(banDef.UserId);
+        string? adminDiscordId = null;
+        string? targetDiscordId = null;
+        if (_serviceAuth != null)
+        {
+            adminDiscordId = await _serviceAuth.GetDiscordUserId(banDef.BanningAdmin);
+            targetDiscordId = await _serviceAuth.GetDiscordUserId(banDef.UserId);
+        }
 
         var adminLink = "";
         var targetLink = "";
@@ -448,7 +676,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             { "parse", new List<string> {"users"}.ToArray() }
         };
 
-        if (banDef.ExpirationTime != null && minutes != null) // Time ban
+        if (banDef.ExpirationTime != null && minutes != null)
             return new WebhookPayload
             {
                 Username = _webhookName,
@@ -460,35 +688,35 @@ public sealed class BanManager : IBanManager, IPostInjectInit
                     new()
                     {
                         Description = Loc.GetString(
-            "server-role-ban-string",
-            ("targetName", targetName),
-            ("targetLink", targetLink),
-            ("adminLink", adminLink),
-            ("adminName", adminName),
-            ("TimeNow", timeNow),
-            ("roles", rolesString),
-            ("expiresString", expiresString),
-            ("reason", reason),
-            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
+                            "server-role-ban-string",
+                            ("targetName", targetName),
+                            ("targetLink", targetLink),
+                            ("adminLink", adminLink),
+                            ("adminName", adminName),
+                            ("TimeNow", timeNow),
+                            ("roles", rolesString),
+                            ("expiresString", expiresString),
+                            ("reason", reason),
+                            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
                         Color = 0x004281,
-    Thumbnail = new EmbedThumbnail
+                        Thumbnail = new EmbedThumbnail
                         {
-                        Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/6/66/%D0%9E%D1%84%D0%B8%D1%86%D0%B5%D1%80_%D0%A1%D0%BB%D1%83%D0%B6%D0%B1%D1%8B_%D0%91%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D0%B8.png/revision/latest/scale-to-width-down/110?cb=20230216091617&path-prefix=ru",
-    },
-    Author = new EmbedAuthor
+                            Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/6/66/%D0%9E%D1%84%D0%B8%D1%86%D0%B5%D1%80_%D0%A1%D0%BB%D1%83%D0%B6%D0%B1%D1%8B_%D0%91%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D0%B8.png/revision/latest/scale-to-width-down/110?cb=20230216091617&path-prefix=ru",
+                        },
+                        Author = new EmbedAuthor
                         {
-                        Name = Loc.GetString("server-role-ban", ("mins", minutes.Value)) + $"",
-                        IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless" // Смайлик бан хаммера. URL прямо из дискорд)
+                            Name = Loc.GetString("server-role-ban", ("mins", minutes.Value)) + $"",
+                            IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless"
                         },
                         Footer = new EmbedFooter
                         {
                             Text =  Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
                             IconUrl = "https://cdn.discordapp.com/emojis/1143995749928030208.webp?size=40&quality=lossless"
                         },
-        },
+                    },
                 },
             };
-        else // Perma ban
+        else
             return new WebhookPayload
             {
                 Username = _webhookName,
@@ -500,64 +728,41 @@ public sealed class BanManager : IBanManager, IPostInjectInit
                     new()
                     {
                         Description = Loc.GetString(
-            "server-perma-role-ban-string",
-            ("targetName", targetName),
-            ("targetLink", targetLink),
-            ("adminLink", adminLink),
-            ("adminName", adminName),
-            ("TimeNow", timeNow),
-            ("roles", rolesString),
-            ("expiresString", expiresString),
-            ("reason", reason),
-            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
+                            "server-perma-role-ban-string",
+                            ("targetName", targetName),
+                            ("targetLink", targetLink),
+                            ("adminLink", adminLink),
+                            ("adminName", adminName),
+                            ("TimeNow", timeNow),
+                            ("roles", rolesString),
+                            ("expiresString", expiresString),
+                            ("reason", reason),
+                            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
                         Color = 0xffb840,
-    Thumbnail = new EmbedThumbnail
+                        Thumbnail = new EmbedThumbnail
                         {
-                        Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/4/4f/%D0%A1%D0%BC%D0%BE%D1%82%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C.png/revision/latest?cb=20230216091556&path-prefix=ru",
-    },
-    Author = new EmbedAuthor
+                            Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/4/4f/%D0%A1%D0%BC%D0%BE%D1%82%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C.png/revision/latest?cb=20230216091556&path-prefix=ru",
+                        },
+                        Author = new EmbedAuthor
                         {
-                        Name = $"{Loc.GetString("server-perma-role-ban")}",
-                        IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless" // Смайлик бан хаммера. URL прямо из дискорд)
+                            Name = $"{Loc.GetString("server-perma-role-ban")}",
+                            IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless"
                         },
                         Footer = new EmbedFooter
                         {
                             Text = Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
                             IconUrl = "https://cdn.discordapp.com/emojis/1143995749928030208.webp?size=40&quality=lossless"
                         },
-        },
+                    },
                 },
             };
-    }
-
-    public async Task<string?> GetDiscordUserId(NetUserId? userId, CancellationToken cancel = default)
-    {
-        if (_apiUrl == string.Empty)
-            return null;
-
-        _sawmill.Debug($"Player {userId} check Discord username");
-
-        var requestUrl = $"{_apiUrl}/get_discord_user/?user_id={WebUtility.UrlEncode(userId.ToString())}&key={_apiKey}";
-        var response = await _httpClient.GetAsync(requestUrl, cancel);
-        if (response.StatusCode == HttpStatusCode.NotFound)
-        {
-            return null;
-        }
-        if (!response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
-        }
-
-        var data = await response.Content.ReadFromJsonAsync<DiscordUserResponse>(cancellationToken: cancel);
-        return data!.UserId;
     }
 
     private async Task<WebhookPayload> GenerateBanPayload(ServerBanDef banDef, uint? minutes = null)
     {
         var hwidString = banDef.HWId != null
-    ? string.Concat(banDef.HWId.Value.Select(x => x.ToString("x2")))
-    : "null";
+            ? string.Concat(banDef.HWId.Hwid.Select(x => x.ToString("x2")))
+            : "null";
         var adminName = banDef.BanningAdmin == null
             ? Loc.GetString("system-user")
             : (await _db.GetPlayerRecordByUserId(banDef.BanningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
@@ -565,19 +770,24 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             ? Loc.GetString("server-ban-no-name", ("hwid", hwidString))
             : (await _db.GetPlayerRecordByUserId(banDef.UserId.Value))?.LastSeenUserName ?? Loc.GetString("server-ban-no-name", ("hwid", hwidString));
         var expiresString = banDef.ExpirationTime == null ? Loc.GetString("server-ban-string-never") : "" + TimeZoneInfo.ConvertTimeFromUtc(
-    banDef.ExpirationTime.Value.UtcDateTime,
-    TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            banDef.ExpirationTime.Value.UtcDateTime,
+            TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
         var reason = banDef.Reason;
         var id = banDef.Id;
         var round = "" + banDef.RoundId;
         var severity = "" + banDef.Severity;
         var serverName = _serverName[..Math.Min(_serverName.Length, 1500)];
         var timeNow = TimeZoneInfo.ConvertTimeFromUtc(
-    DateTime.UtcNow,
-    TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            DateTime.UtcNow,
+            TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
 
-        var adminDiscordId = await GetDiscordUserId(banDef.BanningAdmin);
-        var targetDiscordId = await GetDiscordUserId(banDef.UserId);
+        string? adminDiscordId = null;
+        string? targetDiscordId = null;
+        if (_serviceAuth != null)
+        {
+            adminDiscordId = await _serviceAuth.GetDiscordUserId(banDef.BanningAdmin);
+            targetDiscordId = await _serviceAuth.GetDiscordUserId(banDef.UserId);
+        }
 
         var adminLink = "";
         var targetLink = "";
@@ -599,7 +809,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             { "parse", new List<string> {"users"}.ToArray() }
         };
 
-        if (banDef.ExpirationTime != null && minutes != null) // Time ban
+        if (banDef.ExpirationTime != null && minutes != null)
             return new WebhookPayload
             {
                 Username = _webhookName,
@@ -611,34 +821,34 @@ public sealed class BanManager : IBanManager, IPostInjectInit
                     new()
                     {
                         Description = Loc.GetString(
-            "server-time-ban-string",
-            ("targetName", targetName),
-            ("targetLink", targetLink),
-            ("adminLink", adminLink),
-            ("adminName", adminName),
-            ("TimeNow", timeNow),
-            ("expiresString", expiresString),
-            ("reason", reason),
-            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
+                            "server-time-ban-string",
+                            ("targetName", targetName),
+                            ("targetLink", targetLink),
+                            ("adminLink", adminLink),
+                            ("adminName", adminName),
+                            ("TimeNow", timeNow),
+                            ("expiresString", expiresString),
+                            ("reason", reason),
+                            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
                         Color = 0x803045,
-    Thumbnail = new EmbedThumbnail
+                        Thumbnail = new EmbedThumbnail
                         {
-                        Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/f/ff/Clown.png/revision/latest?cb=20230217121049&path-prefix=ru",
-    },
-    Author = new EmbedAuthor
+                            Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/f/ff/Clown.png/revision/latest?cb=20230217121049&path-prefix=ru",
+                        },
+                        Author = new EmbedAuthor
                         {
-                        Name = Loc.GetString("server-time-ban", ("mins", minutes.Value)) + $" #{id}",
-                        IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless" // Смайлик бан хаммера. URL прямо из дискорд)
+                            Name = Loc.GetString("server-time-ban", ("mins", minutes.Value)) + $" #{id}",
+                            IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless"
                         },
                         Footer = new EmbedFooter
                         {
                             Text =  Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
                             IconUrl = "https://cdn.discordapp.com/emojis/1143995749928030208.webp?size=40&quality=lossless"
                         },
-        },
+                    },
                 },
             };
-        else // Perma ban
+        else
             return new WebhookPayload
             {
                 Username = _webhookName,
@@ -650,33 +860,34 @@ public sealed class BanManager : IBanManager, IPostInjectInit
                     new()
                     {
                         Description = Loc.GetString(
-            "server-perma-ban-string",
-            ("targetName", targetName),
-            ("targetLink", targetLink),
-            ("adminLink", adminLink),
-            ("adminName", adminName),
-            ("TimeNow", timeNow),
-            ("reason", reason),
-            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
+                            "server-perma-ban-string",
+                            ("targetName", targetName),
+                            ("targetLink", targetLink),
+                            ("adminLink", adminLink),
+                            ("adminName", adminName),
+                            ("TimeNow", timeNow),
+                            ("reason", reason),
+                            ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
                         Color = 0x8B0000,
-    Thumbnail = new EmbedThumbnail
+                        Thumbnail = new EmbedThumbnail
                         {
-                        Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/7/72/%D0%94%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%B8%D0%B2.png/revision/latest?cb=20230216091637&path-prefix=ru",
-    },
-    Author = new EmbedAuthor
+                            Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/7/72/%D0%94%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%B8%D0%B2.png/revision/latest?cb=20230216091637&path-prefix=ru",
+                        },
+                        Author = new EmbedAuthor
                         {
-                        Name = $"{Loc.GetString("server-perma-ban")} #{id}",
-                        IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless" // Смайлик бан хаммера. URL прямо из дискорд)
+                            Name = $"{Loc.GetString("server-perma-ban")} #{id}",
+                            IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless"
                         },
                         Footer = new EmbedFooter
                         {
                             Text = Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
                             IconUrl = "https://cdn.discordapp.com/emojis/1129769076647002122.webp?size=40&quality=lossless"
                         },
-        },
+                    },
                 },
             };
     }
+
     private void OnWebhookChanged(string url)
     {
         _webhookUrl = url;
@@ -684,12 +895,10 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         if (url == string.Empty)
             return;
 
-        // Basic sanity check and capturing webhook ID and token
         var match = Regex.Match(url, @"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$");
 
         if (!match.Success)
         {
-            // TODO: Ideally, CVar validation during setting should be better integrated
             _sawmill.Warning("Webhook URL does not appear to be valid. Using anyways...");
             return;
         }
@@ -703,9 +912,9 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         var webhookId = match.Groups[1].Value;
         var webhookToken = match.Groups[2].Value;
 
-        // Fire and forget
         _ = SetWebhookData(webhookId, webhookToken);
     }
+
     private async Task SetWebhookData(string id, string token)
     {
         var response = await _httpClient.GetAsync($"https://discord.com/api/v10/webhooks/{id}/{token}");
@@ -720,7 +929,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         _webhookData = JsonSerializer.Deserialize<WebhookData>(content);
     }
 
-    // https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
     private struct Embed
     {
         [JsonPropertyName("description")]
@@ -737,11 +945,12 @@ public sealed class BanManager : IBanManager, IPostInjectInit
 
         [JsonPropertyName("footer")]
         public EmbedFooter? Footer { get; set; } = null;
+
         public Embed()
         {
         }
     }
-    // https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure
+
     private struct EmbedAuthor
     {
         [JsonPropertyName("name")]
@@ -754,7 +963,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         {
         }
     }
-    // https://discord.com/developers/docs/resources/webhook#webhook-object-webhook-structure
+
     private struct WebhookData
     {
         [JsonPropertyName("guild_id")]
@@ -767,7 +976,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         {
         }
     }
-    // https://discord.com/developers/docs/resources/channel#message-object-message-structure
+
     private struct WebhookPayload
     {
         [JsonPropertyName("username")]
@@ -786,7 +995,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         public Dictionary<string, string[]> AllowedMentions { get; set; } =
             new()
             {
-                    { "parse", Array.Empty<string>() },
+                { "parse", Array.Empty<string>() },
             };
 
         public WebhookPayload()
@@ -794,7 +1003,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         }
     }
 
-    // https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
     private struct EmbedFooter
     {
         [JsonPropertyName("text")]
@@ -808,11 +1016,11 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         }
     }
 
-    // https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
     private struct EmbedThumbnail
     {
         [JsonPropertyName("url")]
         public string Url { get; set; } = "";
+
         public EmbedThumbnail()
         {
         }
@@ -822,14 +1030,13 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     {
         [JsonPropertyName("id")]
         public string Id { get; set; } = "";
+
         public User()
         {
         }
     }
-
     #endregion
 
     [UsedImplicitly]
     private sealed record DiscordUserResponse(string UserId, string Username);
-    // Sunrise-end
 }

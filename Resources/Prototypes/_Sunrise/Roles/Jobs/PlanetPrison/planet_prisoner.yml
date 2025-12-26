@@ -1,0 +1,32 @@
+﻿- type: job
+  id: PlanetPrisoner
+  name: job-name-planet-prisoner
+  description: job-description-planet-prisoner
+  playTimeTracker: JobPlanetPrisoner
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 36000 # 10 hrs
+  startingGear: PlanetPrisonerGear
+  alwaysUseSpawner: true
+  canBeAntag: false
+  icon: "JobIconPrisoner"
+  overrideConsoleVisibility: false
+  supervisors: job-supervisors-security
+  displayWeight: 10
+  special:
+    - !type:AddImplantSpecial
+      implants: [ TrackingImplant ]
+    - !type:AddComponentSpecial
+      components:
+      - type: PlanetPrisoner
+
+- type: startingGear
+  id: PlanetPrisonerGear
+  equipment:
+    shoes: ClothingShoesBootsPrisonerGrey
+    id: PlanetPrisonerPDA
+    ears: ClothingHeadsetGrey
+
+- type: chameleonOutfit
+  id: PlanetPrisonerChameleonOutfit
+  job: PlanetPrisoner

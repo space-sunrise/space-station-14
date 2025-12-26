@@ -1,0 +1,159 @@
+# Departmental
+- type: entity
+  id: ShelfStoreBar
+  parent: ShelfBase
+  suffix: Finance, Servise
+  name: bar store shelf
+  description: Made out of the finest synthetic wood for all alcohol holding needs.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Storeshelf/storeshelf_drink.rsi
+    state: base
+    layers:
+      - state: base
+      - state: drink-0
+      - map: ["enum.StorageFillLayers.Fill"]
+  - type: Appearance
+  - type: StorageFillVisualizer
+    maxFillLevels: 4
+    fillBaseName: drink
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 4
+            max: 12
+          MaterialWoodPlank1:
+            min: 1
+            max: 4
+          PartRodMetal1:
+            min: 2
+            max: 8
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Pullable
+  - type: Storage
+    grid:
+    - 0,0,9,3
+    maxItemSize: Normal
+    whitelist:
+      tags:
+        - DrinkGlass
+        - DrinkBottle
+        - DrinkCan
+        - Beer
+  - type: Construction
+    graph: Shelf
+    node: ShelfBar
+
+- type: entity
+  id: ShelfStoreKitchen
+  parent: ShelfBase
+  suffix: Finance, Servise
+  name: kitchen store shelf
+  description: Holds knifes, spice, and everything nice!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Storeshelf/storeshelf_food.rsi
+    state: base
+    layers:
+      - state: base
+      - state: food-0
+      - map: ["enum.StorageFillLayers.Fill"]
+  - type: Appearance
+  - type: StorageFillVisualizer
+    maxFillLevels: 4
+    fillBaseName: food
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 4
+            max: 12
+          MaterialWoodPlank1:
+            min: 1
+            max: 4
+          PartRodMetal1:
+            min: 2
+            max: 8
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Pullable
+  - type: Storage
+    grid:
+    - 0,0,9,3
+    maxItemSize: Normal
+    whitelist:
+      tags:
+        - DrinkBottle
+        - DrinkCan
+        - DrinkCup
+        - DrinkGlass
+        - Cake
+        - MonkeyCube
+        - Enzyme
+        - Mayo
+        - Packet
+        - Cleaver
+        - Knife
+        - KitchenKnife
+        - Burger
+        - Ingredient
+        - Trash
+        - Plastic
+        - FoodSnack
+  - type: Construction
+    graph: Shelf
+    node: ShelfKitchen

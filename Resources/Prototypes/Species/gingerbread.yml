@@ -1,16 +1,22 @@
 - type: species
   id: Gingerbread
-  name: species-name-human
+  name: species-name-gingerbread
   roundStart: false
   prototype: MobGingerbread
-  sprites: MobGingerbreadSprites
+  bodyTypes:
+  - GingerbreadNormal
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobGingerbreadDummy
   skinColoration: HumanToned
   defaultSkinTone: "#9a7c5a"
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
 
-- type: speciesBaseSprites
-  id: MobGingerbreadSprites
+- type: bodyType
+  id: GingerbreadNormal
+  name: body-normal
   sprites:
     Head: MobGingerbreadHead
     HeadTop: MobHumanoidAnyMarking

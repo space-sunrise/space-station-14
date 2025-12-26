@@ -1,17 +1,15 @@
 - type: entity
   id: BaseCartridgeRifle
   name: cartridge (.20 rifle)
-  parent: BaseCartridge
+  parent: [ BaseCartridge, BaseSecurityContraband ]
   abstract: true
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeRifle
-  - type: CartridgeAmmo
-    proto: BulletRifle
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/5.56x45.rsi # Sunrise-Edit
+    scale: 0.55, 0.5 # Sunrise-Added
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
@@ -19,20 +17,74 @@
   - type: SpentAmmoVisuals
 
 - type: entity
-  id: CartridgeRifle
-  name: cartridge (.20 rifle)
+  id: CartridgeRifleSP
+  name: cartridge (.20 rifle SP)
+  parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceSP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#3F47DB"
+
+- type: entity
+  id: CartridgeRifleHP
+  name: cartridge (.20 rifle HP)
   parent: BaseCartridgeRifle
   components:
-  - type: CartridgeAmmo
-    proto: BulletRifle
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgeRifleFMJ
+  name: cartridge (.20 rifle FMJ)
+  parent: BaseCartridgeRifle
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceFMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgeRifleAP
+  name: cartridge (.20 rifle AP)
+  parent: BaseCartridgeRifle
+  components:
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#540000"
 
 - type: entity
   id: CartridgeRiflePractice
   name: cartridge (.20 rifle practice)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Chalk ammunition is generally non-harmful, used for practice.
   components:
-  - type: CartridgeAmmo
-    proto: BulletRiflePractice
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTracePractice
   - type: Sprite
     layers:
       - state: base
@@ -45,9 +97,10 @@
   id: CartridgeRifleIncendiary
   name: cartridge (.20 rifle incendiary)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleIncendiary
+    proto: BulletLightRifleIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -60,9 +113,10 @@
   id: CartridgeRifleUranium
   name: cartridge (.20 rifle uranium)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
   components:
-  - type: CartridgeAmmo
-    proto: BulletRifleUranium
+  - type: HitScanCartridgeAmmo
+    hitscan: BulletRifleTraceUranium
   - type: Sprite
     layers:
       - state: base

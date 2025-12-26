@@ -1,0 +1,18 @@
+- type: entity
+  id: RandomIan
+  name: random ian spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Mobs/Pets/corgi.rsi
+        state: corgi_dead
+  - type: RandomSpawner
+    prototypes:
+      - MobCorgiLisa
+      - MobCorgiIan
+    chance: 0.95
+    rarePrototypes:
+      - MobCorgiIanOld
+    rareChance: 0.05

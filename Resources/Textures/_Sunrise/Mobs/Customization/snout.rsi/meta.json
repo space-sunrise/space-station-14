@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "snout_flat",
+      "directions": 4
+    },
+    {
+      "name": "snout_high",
+      "directions": 4
+    },
+    {
+      "name": "snout_croc",
+      "directions": 4
+    },
+    {
+      "name": "snout_tumb",
+      "directions": 4
+    },
+    {
+      "name": "snout_beak",
+      "directions": 4
+    },
+    {
+      "name": "snout_small",
+      "directions": 4
+    }
+  ]
+}

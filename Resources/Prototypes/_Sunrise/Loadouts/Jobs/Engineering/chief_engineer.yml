@@ -1,0 +1,46 @@
+- type: loadoutEffectGroup
+  id: BigMasterCE
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 360000 #100 hrs
+
+- type: loadout
+  id: ChiefEngineerBackpack
+  equipment:
+    back: ClothingBackpackCE
+
+- type: loadout
+  id: ChiefEngineerSatchel
+  equipment:
+    back: ClothingBackpackSatchelCE
+
+- type: loadout
+  id: ChiefEngineerDuffel
+  equipment:
+    back: ClothingBackpackDuffelCE
+
+# Head
+- type: loadout
+  id: ChiefEngineerHead
+  equipment:
+    head: ClothingHeadHatHardhatWhite
+
+- type: loadout
+  id: ChiefEngineerBeret
+  startingGear: EngineeringBeret
+
+- type: loadout
+  id: ChiefEngineerCrown
+  equipment:
+    head: ClothingHeadHatSingulo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BigMasterCE
+
+- type: loadout
+  id: Sunrise-BeretCE
+  equipment:
+    head: ClothingHeadHatBeretCE

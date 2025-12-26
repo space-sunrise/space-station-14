@@ -6,6 +6,7 @@
   name: "body part"
   abstract: true
   components:
+  - type: BaseLayerId
   - type: Damageable
     damageContainer: Biological
   - type: BodyPart
@@ -19,6 +20,13 @@
   - type: Tag
     tags:
       - Trash
+  # Sunrise-start
+  - type: SurgeryTarget
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  # Sunrise-end
 
 - type: entity
   id: BaseTorso
@@ -40,9 +48,6 @@
     vital: true
   - type: Input
     context: "ghost"
-  - type: Tag
-    tags:
-      - Head
 
 - type: entity
   id: BaseLeftArm

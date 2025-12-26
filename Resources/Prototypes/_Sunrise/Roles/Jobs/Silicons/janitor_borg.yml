@@ -1,0 +1,15 @@
+- type: job
+  id: JanitorBorg
+  name: job-name-janitor-borg
+  description: job-description-janitor-borg
+  playTimeTracker: JobJanitorBorg
+  icon: JobIconJanitorBorg
+  supervisors: job-supervisors-human
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 #20 hrs # Sunrise-Edit
+  canBeAntag: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgJanitorBattery
+  overrideConsoleVisibility: false
+  alwaysUseSpawner: true

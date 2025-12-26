@@ -1,0 +1,21 @@
+﻿- type: entity
+  parent: BaseAction
+  id: SmileAffection
+  name: Hugs
+  description: Smile hugs the target, restoring a certain amount of health to it.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    icon: { sprite: Effects/hearts.rsi, state: hearts }
+  - type: TargetAction
+    range: 3
+    interactOnMiss: false
+    ignoreContainer: true
+    targetingIndicator: true
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:SmileLoveActionEvent

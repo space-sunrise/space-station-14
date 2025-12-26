@@ -7,3 +7,43 @@
     containers:
       item:
       - CombatKnife
+
+- type: entity
+  id: ClothingBeltBlueShieldWebbingFilled
+  parent: ClothingBeltBlueShieldWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedkitCombatFilled
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: Stunbaton
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+
+- type: entity
+  id: ClothingShoesBootsBlueShieldFilled
+  parent: ClothingShoesBootsBlueShield
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.35
+
+- type: entity
+  id: ClothingBeltSecurityFilledERT
+  parent: ClothingBeltSecurity
+  suffix: Filled, ERT
+  components:
+  - type: StorageFill
+    contents:
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: HoloprojectorSecurity
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: Truncheon

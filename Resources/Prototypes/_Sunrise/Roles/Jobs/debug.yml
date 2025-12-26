@@ -1,0 +1,92 @@
+- type: startingGear
+  id: DebugSecurityOfficerGear
+  equipment:
+    head: ClothingHeadHelmetBasic
+    outerClothing: ClothingOuterVestArmorSec
+    shoes: ClothingShoesBootsJackSec
+
+- type: entity
+  save: false
+  name: Urist McBasic
+  parent: BaseMobHuman
+  id: MobHumanBasicArmor
+  components:
+  - type: Loadout
+    prototypes: [DebugSecurityOfficerGear]
+
+- type: startingGear
+  id: DebugBulletProofGear
+  equipment:
+    head: ClothingHeadHelmetPubg
+    outerClothing: ClothingOuterArmorBulletproof
+    shoes: ClothingShoesBootsJackSec
+
+- type: entity
+  save: false
+  name: Urist McBully
+  parent: BaseMobHuman
+  id: MobHumanBulletproof
+  components:
+  - type: Loadout
+    prototypes: [DebugBulletProofGear]
+
+- type: startingGear
+  id: DebugSWATGear
+  equipment:
+    head: ClothingHeadHelmetSwat
+    outerClothing: ClothingOuterArmorSWAT
+
+- type: entity
+  save: false
+  name: Urist McSWAT
+  parent: BaseMobHuman
+  id: MobHumanSWAT
+  components:
+  - type: Loadout
+    prototypes: [DebugSWATGear]
+
+- type: startingGear
+  id: DebugAntagAgentGear
+  equipment:
+    head: ClothingHeadHatSyndieMAA
+    outerClothing: ClothingOuterVestWeb
+    shoes: ClothingUnderSocksCoder
+
+- type: entity
+  save: false
+  name: Urist McAgent
+  parent: BaseMobHuman
+  id: MobHumanAgentGear
+  components:
+  - type: Loadout
+    prototypes: [DebugAntagAgentGear]
+
+- type: startingGear
+  id: DebugAntagNukieGear
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndie
+    outerClothing: ClothingOuterHardsuitSyndie
+
+- type: entity
+  save: false
+  name: Urist McNukie
+  parent: BaseMobHuman
+  id: MobHumanNukieGear
+  components:
+  - type: Loadout
+    prototypes: [DebugAntagNukieGear]
+
+- type: startingGear
+  id: DebugAntagjuggGear
+  equipment:
+    head: ClothingHeadHelmetHardsuitCybersun
+    outerClothing: ClothingOuterHardsuitJuggernaut
+
+- type: entity
+  save: false
+  name: Urist McJuggie
+  parent: BaseMobHuman
+  id: MobHumanjuggGear
+  components:
+  - type: Loadout
+    prototypes: [DebugAntagjuggGear]

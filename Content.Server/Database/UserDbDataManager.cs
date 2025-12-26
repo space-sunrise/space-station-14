@@ -38,7 +38,9 @@ public sealed class UserDbDataManager : IPostInjectInit
         var task = Load(session, cts.Token);
         var data = new UserData(cts, task);
 
-        _users.Add(session.UserId, data);
+        // ыыыыыыыыыыыыыы пачему так
+        if (!_users.TryAdd(session.UserId, data))
+            _sawmill.Info($"Ебучий _users уже содержит {session.UserId}");
     }
 
     public void ClientDisconnected(ICommonSession session)

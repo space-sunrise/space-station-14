@@ -1,0 +1,39 @@
+﻿- type: job
+  id: Roboticist
+  name: job-name-roboticist
+  description: job-description-roboticist
+  playTimeTracker: JobRoboticist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 14400 # 4 hrs
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 14400 # 4 hrs
+  startingGear: RoboticistGear
+  icon: JobIconRoboticist
+  supervisors: job-supervisors-rd
+  displayWeight: 30
+  access:
+    - Research
+    - Maintenance
+  #  - Engineering
+
+- type: startingGear
+  id: RoboticistGear
+  equipment:
+    id: RoboticistPDA
+    gloves: ClothingHandsGlovesRobohands
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesHudDiagnostic
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetRobotics
+    pocket1: Nanopaste
+    pocket2: Nanopaste
+
+- type: chameleonOutfit
+  id: RoboticistChameleonOutfit
+  job: Roboticist
+  equipment:
+    mask: ClothingMaskGas
+    shoes: ClothingShoesColorBlack

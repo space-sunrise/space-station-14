@@ -8,7 +8,12 @@
     damage:
       types:
         Poison: -0.1
+        Heat: -0.05 #SUNRISE-EDIT
+        Cold: -0.1 #SUNRISE-EDIT
         Blunt: -0.1
+        Piercing: -0.05 #SUNRISE-EDIT
+        Slash: -0.05 #SUNRISE-EDIT
+        Mangleness: -0.05 #SUNRISE-EDIT
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -17,16 +22,19 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.05"
-        density: 190
+        density: 1900 #SUNRISE-EDIT
         mask:
         - TableMask
   - type: Sprite
     sprite: Structures/Furniture/furniture.rsi
     state: bed
     noRot: true
+    drawdepth: HighFloorObjects #Sunrise-add
   - type: Strap
     position: Down
     rotation: -90
+    buckleOffsets:
+    - "0,-0.15"
   # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
   - type: Construction
     graph: bed
@@ -40,6 +48,12 @@
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 75
@@ -55,7 +69,9 @@
     anchored: true
     noRot: true
   - type: Anchorable
+    delay: 5 #SUNRISE-EDIT
   - type: Pullable
+  - type: CanSleepOnBuckle # Sunrise-Edit
 
 
 - type: entity
@@ -70,14 +86,19 @@
     damage:
       types:
         Poison: -0.2
-        Cold: -0.4
+        Heat: -0.1 #SUNRISE-EDIT
+        Cold: -0.2 #SUNRISE-EDIT
         Blunt: -0.2
+        Piercing: -0.1 #SUNRISE-EDIT
+        Slash: -0.1 #SUNRISE-EDIT
+        Mangleness: -0.15 #SUNRISE-EDIT
   - type: Construction
     graph: bed
     node: medicalbed
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
+  - type: CanSleepOnBuckle # Sunrise-Edit
 
 - type: entity
   parent: Bed
@@ -97,6 +118,15 @@
     damageModifierSet: Wood
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 75
@@ -136,6 +166,15 @@
     state: icon
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -168,6 +207,12 @@
         Cold: -0.5
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 75
@@ -179,3 +224,4 @@
           MaterialWoodPlank:
             min: 2
             max: 2
+  - type: CanSleepOnBuckle # Sunrise-Edit

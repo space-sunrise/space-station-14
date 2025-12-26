@@ -12,6 +12,8 @@
   - type: Tag
     tags:
     - Sheet
+    - ConstructionMaterial
+    - NoPaint  # Sunrise-edit
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -60,7 +62,12 @@
         reagents:
         - ReagentId: Cellulose
           Quantity: 3
-
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - SheetPaper
+    - Sheet
+  # Sunrise-End
 
 - type: entity
   parent: SheetPaper
@@ -107,9 +114,16 @@
         - ReagentId: Plasma
           Quantity: 10
         canReact: false
-  - type: Tag
-    tags:
-    - Sheet
+
+- type: entity
+  parent: SheetPlasma
+  id: SheetPlasma10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: plasma
+  - type: Stack
+    count: 10
 
 - type: entity
   parent: SheetPlasma
@@ -123,7 +137,7 @@
     count: 1
 
 - type: entity
-  parent: SheetOtherBase
+  parent: [PlasticSounds, SheetOtherBase] # Sunrise edit
   id: SheetPlastic
   name: plastic
   suffix: Full
@@ -132,6 +146,8 @@
     tags:
     - Plastic
     - Sheet
+    - ConstructionMaterial
+    - NoPaint  # Sunrise-edit
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -186,13 +202,13 @@
     count: 1
 
 - type: entity
-  parent: [SheetOtherBase, FoodBase]
+  parent: [SheetOtherBase, EdibleBase]
   id: SheetUranium
   name: uranium
   suffix: Full
   components:
   - type: Material
-  - type: Food
+  - type: Edible
     transferAmount: 10
   - type: BadFood
   - type: PhysicalComposition

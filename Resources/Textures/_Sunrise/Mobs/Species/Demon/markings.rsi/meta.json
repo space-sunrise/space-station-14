@@ -1,0 +1,311 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by discord:LunaLita#0840",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cow_ears",
+            "directions": 4
+        },
+        {
+            "name": "demon_ears",
+            "directions": 4
+        },
+        {
+            "name": "goatee",
+            "directions": 4
+        },
+        {
+            "name": "cow_horns",
+            "directions": 4
+        },
+        {
+            "name": "cow_spots",
+            "directions": 4
+        },
+        {
+            "name": "deer_antlers_horns",
+            "directions": 4
+        },
+        {
+            "name": "guards_stripes",
+            "directions": 4
+        },
+        {
+            "name": "lines_emperos",
+            "directions": 4
+        },
+        {
+            "name": "queen_lines",
+            "directions": 4
+        },
+        {
+            "name": "small_horns",
+            "directions": 4
+        },
+        {
+            "name": "tree_lines",
+            "directions": 4
+        },
+        {
+            "name": "trinity_spots",
+            "directions": 4
+        },
+        {
+            "name": "demon_tail",
+            "directions": 4
+        },
+        {
+            "name": "long",
+            "directions": 4
+        },
+        {
+            "name": "up",
+            "directions": 4
+        },
+        {
+            "name": "horns_broken_one",
+            "directions": 4
+        },
+        {
+            "name": "horns_directional",
+            "directions": 4
+        },
+        {
+            "name": "horns_double_alt",
+            "directions": 4
+        },
+        {
+            "name": "horns_double",
+            "directions": 4
+        },
+        {
+            "name": "horns_enormous",
+            "directions": 4
+        },
+        {
+            "name": "horns_goatee_alt",
+            "directions": 4
+        },
+        {
+            "name": "horns_goatee",
+            "directions": 4
+        },
+        {
+            "name": "horns_growths",
+            "directions": 4
+        },
+        {
+            "name": "horns_narrow",
+            "directions": 4
+        },
+        {
+            "name": "horns_scythe",
+            "directions": 4
+        },
+        {
+            "name": "horns_sharp",
+            "directions": 4
+        },
+        {
+            "name": "horns_sickle",
+            "directions": 4
+        },
+        {
+            "name": "horns_slim",
+            "directions": 4
+        },
+        {
+            "name": "horns_stout",
+            "directions": 4
+        },
+        {
+            "name": "horns_tapering",
+            "directions": 4
+        },
+        {
+            "name": "horns_thick",
+            "directions": 4
+        },
+        {
+            "name": "tail_arrow",
+            "directions": 4
+        },
+        {
+            "name": "tail_fin",
+            "directions": 4
+        },
+        {
+            "name": "tail_fishnet",
+            "directions": 4
+        },
+        {
+            "name": "tail_mermaid",
+            "directions": 4
+        },
+        {
+            "name": "tail_trident",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears_alt",
+            "directions": 4
+        },
+        {
+            "name": "arcana_ears",
+            "directions": 4
+        },
+        {
+            "name": "tail_arrow_animated",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "tail_broom_animated",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        }
+    ]
+}

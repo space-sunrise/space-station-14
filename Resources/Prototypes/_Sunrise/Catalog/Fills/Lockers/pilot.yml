@@ -1,0 +1,16 @@
+﻿- type: entity
+  id: LockerPilotFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerPilot
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadsetSecurity
+    - id: CigarGoldCase
+      prob: 0.25
+    - id: ClothingOuterHardsuitPilot
+    - id: OxygenTankFilled
+    - id: ClothingMaskGasPilot
+    - id: ShuttleSecurityFlatpack
+    - id: ClothingShoesBootsMagSec
+      prob: 0.75

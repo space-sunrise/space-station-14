@@ -3,10 +3,23 @@
   name: species-name-human
   roundStart: true
   prototype: MobHuman
-  sprites: MobHumanSprites
+  bodyTypes:
+  - HumanNormal
+  - HumanSlimFemale
+  - HumanSlimMale
+  - HumanGigaFemale
+  - HumanGigaMale
+  - HumanFatFemale
+  - HumanFatMale
+  - HumanDistrofikFemale
+  - HumanDistrofikMale
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
 
 # The lack of a layer means that
 # this person cannot have round-start anything
@@ -14,17 +27,19 @@
 # be defined as a 'custom base layer'
 # in either the mob's starting marking prototype,
 # or it has to be added in C#.
-- type: speciesBaseSprites
-  id: MobHumanSprites
+- type: bodyType
+  id: HumanNormal
+  name: body-normal
   sprites:
+    Special: MobHumanoidAnyMarking
     Head: MobHumanHead
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     Chest: MobHumanTorso
-    HeadTop: MobHumanoidAnyMarking # Sunrise-Sponsors
-    Tail: MobHumanoidAnyMarking # Sunrise-Sponsors
     Eyes: MobHumanoidEyes
+    HeadTop: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking #Sunrise-edit
     LArm: MobHumanLArm
     RArm: MobHumanRArm
     LHand: MobHumanLHand
@@ -37,6 +52,9 @@
 - type: markingPoints
   id: MobHumanMarkingLimits
   points:
+    Special: # the cat ear joke
+      points: 1
+      required: false
     Hair:
       points: 1
       required: false
@@ -46,14 +64,14 @@
     Snout:
       points: 1
       required: false
-    Tail:
+    Tail: # the cat tail joke
       points: 1 # Sunrise-Sponsors
       required: false
     HeadTop:
-      points: 1 # Sunrise-Sponsors
+      points: 1
       required: false
     Chest:
-      points: 1
+      points: 2
       required: false
     Legs:
       points: 2
@@ -84,13 +102,13 @@
 - type: humanoidBaseSprite
   id: MobHumanHeadMale
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobHumanHeadFemale
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: head_f
 
 - type: humanoidBaseSprite
@@ -102,59 +120,59 @@
 - type: humanoidBaseSprite
   id: MobHumanTorsoMale
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobHumanTorsoFemale
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobHumanLLeg
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobHumanLArm
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobHumanLHand
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobHumanLFoot
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobHumanRLeg
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobHumanRArm
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobHumanRHand
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobHumanRFoot
   baseSprite:
-    sprite: Mobs/Species/Human/parts.rsi
+    sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: r_foot

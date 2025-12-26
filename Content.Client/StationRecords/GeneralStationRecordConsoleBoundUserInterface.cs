@@ -1,4 +1,6 @@
+using Content.Shared._Sunrise.StationRecords;
 using Content.Shared.StationRecords;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.StationRecords;
 
@@ -15,15 +17,17 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
     {
         base.Open();
 
-        _window = new();
+        _window = this.CreateWindow<GeneralStationRecordConsoleWindow>();
         _window.OnKeySelected += key =>
             SendMessage(new SelectStationRecord(key));
         _window.OnFiltersChanged += (type, filterValue) =>
             SendMessage(new SetStationRecordFilter(type, filterValue));
         _window.OnDeleted += id => SendMessage(new DeleteStationRecord(id));
-        _window.OnClose += Close;
 
-        _window.OpenCentered();
+        // Sunrise added start
+        _window.OnSaved += (record, id) => SendMessage(new SaveStationRecord(record, id));
+        _window.OnPrinted += id => SendMessage(new PrintStationRecord(id));
+        // Sunrise added end
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -34,12 +38,5 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
             return;
 
         _window?.UpdateState(cast);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        _window?.Close();
     }
 }

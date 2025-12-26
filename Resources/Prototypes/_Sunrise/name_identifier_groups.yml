@@ -1,0 +1,39 @@
+﻿- type: nameIdentifierGroup
+  id: Boris
+  format: name-identifier-format-boris
+  minValue: 10
+  maxValue: 99
+
+- type: nameIdentifierGroup
+  id: Sofia
+  format: name-identifier-format-sofia
+  minValue: 10
+  maxValue: 99
+
+- type: nameIdentifierGroup
+  id: SyndieSecRobot
+  format: name-identifier-format-syndie-sec-robot
+  fullName: true
+  minValue: 10000
+  maxValue: 99999
+
+- type: nameIdentifierGroup
+  id: SyndieMedRobot
+  format: name-identifier-format-syndie-med-robot
+  fullName: true
+  minValue: 10000
+  maxValue: 99999
+
+- type: nameIdentifierGroup
+  id: SyndieReaperRobot
+  format: name-identifier-format-syndie-reaper-robot
+  minValue: 10000
+  maxValue: 99999
+
+- type: nameIdentifierGroup
+  id: InferiorVulpkanin
+  format: name-identifier-format-inferior-vulpkanin
+
+- type: nameIdentifierGroup
+  id: Felinid
+  format: name-identifier-format-felinid

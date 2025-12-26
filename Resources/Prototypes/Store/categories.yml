@@ -77,20 +77,40 @@
 - type: storeCategory
   id: UplinkAllies
   name: store-category-allies
-  priority: 8
+  priority: 8 # Sunrise-Edit
 
 - type: storeCategory
   id: UplinkJob
   name: store-category-job
-  priority: 9
+  priority: 10 # Sunrise-Edit
 
 - type: storeCategory
   id: UplinkPointless
   name: store-category-pointless
-  priority: 10
+  priority: 12 # Sunrise-Edit
+
+- type: storeCategory
+  id: UplinkObjectives
+  name: store-category-objectives
+  priority: 13 # Sunrise-Edit
 
 #revenant
 - type: storeCategory
   id: RevenantAbilities
   name: store-category-abilities
 
+#pai
+- type: storeCategory
+  id: PAIAbilities
+  name: store-category-abilities
+
+#changeling
+#todo: add actual categories when changeling design/abilities are fleshed out
+- type: storeCategory
+  id: ChangelingAbilities
+  name: store-category-abilities
+
+- type: storeCategory
+  id: DiscountedItems
+  name: store-discounted-items
+  priority: 200

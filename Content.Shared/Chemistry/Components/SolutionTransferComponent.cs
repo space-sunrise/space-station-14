@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Chemistry.Components;
@@ -6,7 +7,7 @@ namespace Content.Shared.Chemistry.Components;
 /// <summary>
 ///     Gives click behavior for transferring to/from other reagent containers.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SolutionTransferComponent : Component
 {
     /// <summary>
@@ -14,6 +15,7 @@ public sealed partial class SolutionTransferComponent : Component
     /// </summary>
     [DataField("transferAmount")]
     [ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField]
     public FixedPoint2 TransferAmount { get; set; } = FixedPoint2.New(5);
 
     /// <summary>
@@ -28,7 +30,7 @@ public sealed partial class SolutionTransferComponent : Component
     /// </summary>
     [DataField("maxTransferAmount")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 MaximumTransferAmount { get; set; } = FixedPoint2.New(50);
+    public FixedPoint2 MaximumTransferAmount { get; set; } = FixedPoint2.New(100);
 
     /// <summary>
     ///     Can this entity take reagent from reagent tanks?
@@ -50,4 +52,10 @@ public sealed partial class SolutionTransferComponent : Component
     [DataField("canChangeTransferAmount")]
     [ViewVariables(VVAccess.ReadWrite)]
     public bool CanChangeTransferAmount { get; set; } = false;
+
+    // Sunrise added start
+    [DataField]
+    public SoundSpecifier? TransferSound = new SoundCollectionSpecifier("SolutionTransfer",
+        AudioParams.Default.WithVolume(-5f).WithMaxDistance(3f).WithVariation(0.15f));
+    // Sunrise added end
 }

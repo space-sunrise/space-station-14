@@ -1,99 +1,130 @@
 using System.Collections.Immutable;
-using System.Runtime.InteropServices;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using Content.Server.Administration.Managers;
+using Content.Server.Chat.Managers;
+using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Sunrise.Interfaces.Server;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
-
+using Content.Sunrise.Interfaces.Shared;
 
 namespace Content.Server.Connection
 {
     public interface IConnectionManager
     {
         void Initialize();
-        Task<bool> HavePrivilegedJoin(NetUserId userId); // Sunrise-Queue
-
-        /// <summary>
-        /// Temporarily allow a user to bypass regular connection requirements.
-        /// </summary>
-        /// <remarks>
-        /// The specified user will be allowed to bypass regular player cap,
-        /// whitelist and panic bunker restrictions for <paramref name="duration"/>.
-        /// Bans are not bypassed.
-        /// </remarks>
-        /// <param name="user">The user to give a temporary bypass.</param>
-        /// <param name="duration">How long the bypass should last for.</param>
+        void PostInit();
+        Task<bool> HavePrivilegedJoin(NetUserId userId);
         void AddTemporaryConnectBypass(NetUserId user, TimeSpan duration);
+        void Update();
+        event EventHandler<PlayerConnectingWithBanEvent>? PlayerConnectingWithBan;
     }
 
-    /// <summary>
-    ///     Handles various duties like guest username assignment, bans, connection logs, etc...
-    /// </summary>
-    public sealed class ConnectionManager : IConnectionManager
+    public sealed partial class ConnectionManager : IConnectionManager
     {
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ILocalizationManager _loc = default!;
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
-        private IServerSponsorsManager? _sponsorsMgr; // Sunrise-Sponsors
+        [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private readonly IHttpClientHolder _http = default!;
+        [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
 
-        private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
+        private GameTicker? _ticker;
+        private ISharedSponsorsManager? _sponsorsMgr;
+        private List<IPAddress?> _ipWhitelist = [];
+
         private ISawmill _sawmill = default!;
+        private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
+        private readonly Dictionary<NetUserId, DateTime> _temporaryConnectionAllowed = [];
+        private IPIntel.IPIntel _ipintel = default!;
+
+        public event EventHandler<PlayerConnectingWithBanEvent>? PlayerConnectingWithBan;
+
+        public void PostInit()
+        {
+            InitializeWhitelist();
+        }
 
         public void Initialize()
         {
             _sawmill = _logManager.GetSawmill("connections");
 
-            IoCManager.Instance!.TryResolveType(out _sponsorsMgr); // Sunrise-Sponsors
+            _ipintel = new IPIntel.IPIntel(new IPIntelApi(_http, _cfg), _db, _cfg, _logManager, _chatManager, _gameTiming);
+
+            IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
             _netMgr.Connecting += NetMgrOnConnecting;
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
-            // Approval-based IP bans disabled because they don't play well with Happy Eyeballs.
-            // _netMgr.HandleApprovalCallback = HandleApproval;
+            _plyMgr.PlayerStatusChanged += PlayerStatusChanged;
+
+            _cfg.OnValueChanged(SunriseCCVars.IpWhitelist, OnIpWhitelistChanged, true);
+        }
+
+        private void OnIpWhitelistChanged(string serverList)
+        {
+            var ips = new List<IPAddress?>();
+
+            foreach (var addr in serverList.Split(','))
+            {
+                try
+                {
+                    var ipAddress = IPAddress.Parse(addr.Trim());
+                    ips.Add(ipAddress);
+                }
+                catch (FormatException)
+                {
+                    _sawmill.Warning($"Invalid IP address format: {addr}");
+                }
+            }
+
+            _ipWhitelist = ips;
         }
 
         public void AddTemporaryConnectBypass(NetUserId user, TimeSpan duration)
         {
             ref var time = ref CollectionsMarshal.GetValueRefOrAddDefault(_temporaryBypasses, user, out _);
             var newTime = _gameTiming.RealTime + duration;
-            // Make sure we only update the time if we wouldn't shrink it.
             if (newTime > time)
                 time = newTime;
         }
 
-        /*
-        private async Task<NetApproval> HandleApproval(NetApprovalEventArgs eventArgs)
+        public void AllowTemporaryConnection(NetUserId user, TimeSpan duration)
         {
-            var ban = await _db.GetServerBanByIpAsync(eventArgs.Connection.RemoteEndPoint.Address);
-            if (ban != null)
-            {
-                var expires = Loc.GetString("ban-banned-permanent");
-                if (ban.ExpirationTime is { } expireTime)
-                {
-                    var duration = expireTime - ban.BanTime;
-                    var utc = expireTime.ToUniversalTime();
-                    expires = Loc.GetString("ban-expires", ("duration", duration.TotalMinutes.ToString("N0")), ("time", utc.ToString("f")));
-                }
-                var reason = Loc.GetString("ban-banned-1") + "\n" + Loc.GetString("ban-banned-2", ("reason", this.Reason)) + "\n" + expires;;
-                return NetApproval.Deny(reason);
-            }
-
-            return NetApproval.Allow();
+            _temporaryConnectionAllowed[user] = DateTime.UtcNow + duration;
         }
-        */
+
+        public async void Update()
+        {
+            try
+            {
+                await _ipintel.Update();
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error("IPIntel update failed:" + e);
+            }
+        }
 
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
@@ -104,11 +135,14 @@ namespace Content.Server.Connection
 
             var serverId = (await _serverDbEntry.ServerEntity).Id;
 
+            var hwid = e.UserData.GetModernHwid();
+            var trust = e.UserData.Trust;
+
             if (deny != null)
             {
                 var (reason, msg, banHits) = deny.Value;
 
-                var id = await _db.AddConnectionLogAsync(userId, e.UserName, addr, e.UserData.HWId, reason, serverId);
+                var id = await _db.AddConnectionLogAsync(userId, e.UserName, addr, hwid, trust, reason, serverId);
                 if (banHits is { Count: > 0 })
                     await _db.AddServerBanHitsAsync(id, banHits);
 
@@ -120,35 +154,115 @@ namespace Content.Server.Connection
             }
             else
             {
-                await _db.AddConnectionLogAsync(userId, e.UserName, addr, e.UserData.HWId, null, serverId);
+                await _db.AddConnectionLogAsync(userId, e.UserName, addr, hwid, trust, null, serverId);
 
                 if (!ServerPreferencesManager.ShouldStorePrefs(e.AuthType))
                     return;
 
-                await _db.UpdatePlayerRecordAsync(userId, e.UserName, addr, e.UserData.HWId);
+                await _db.UpdatePlayerRecordAsync(userId, e.UserName, addr, hwid);
             }
+        }
+
+        private void PlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+        {
+            if (args.NewStatus == SessionStatus.Connected)
+            {
+                AdminAlertIfSharedConnection(args.Session);
+            }
+            else if (args.NewStatus == SessionStatus.Disconnected)
+            {
+                _temporaryConnectionAllowed.Remove(args.Session.UserId);
+            }
+        }
+
+        private void AdminAlertIfSharedConnection(ICommonSession newSession)
+        {
+            var playerThreshold = _cfg.GetCVar(CCVars.AdminAlertMinPlayersSharingConnection);
+            if (playerThreshold < 0)
+                return;
+
+            var addr = newSession.Channel.RemoteEndPoint.Address;
+
+            var otherConnectionsFromAddress = _plyMgr.Sessions.Where(session =>
+                    session.Status is SessionStatus.Connected or SessionStatus.InGame
+                    && session.Channel.RemoteEndPoint.Address.Equals(addr)
+                    && session.UserId != newSession.UserId)
+                .ToList();
+
+            var otherConnectionCount = otherConnectionsFromAddress.Count;
+            if (otherConnectionCount + 1 < playerThreshold)
+                return;
+
+            var username = newSession.Name;
+            var otherUsernames = string.Join(", ",
+                otherConnectionsFromAddress.Select(session => session.Name));
+
+            _chatManager.SendAdminAlert(Loc.GetString("admin-alert-shared-connection",
+                ("player", username),
+                ("otherCount", otherConnectionCount),
+                ("otherList", otherUsernames)));
         }
 
         private async Task<(ConnectionDenyReason, string, List<ServerBanDef>? bansHit)?> ShouldDeny(
             NetConnectingArgs e)
         {
-            // Check if banned.
             var addr = e.IP.Address;
             var userId = e.UserId;
             ImmutableArray<byte>? hwId = e.UserData.HWId;
             if (hwId.Value.Length == 0 || !_cfg.GetCVar(CCVars.BanHardwareIds))
             {
-                // HWId not available for user's platform, don't look it up.
-                // Or hardware ID checks disabled.
                 hwId = null;
             }
 
-            var bans = await _db.GetServerBansAsync(addr, userId, hwId, includeUnbanned: false);
+            var modernHwid = e.UserData.ModernHWIds;
+
+            if (modernHwid.Length == 0 && e.AuthType == LoginType.LoggedIn && _cfg.GetCVar(CCVars.RequireModernHardwareId))
+            {
+                return (ConnectionDenyReason.NoHwid, Loc.GetString("hwid-required"), null);
+            }
+
+            if (_ipWhitelist.Contains(addr))
+                addr = null;
+
+            var bans = await _db.GetServerBansAsync(addr, userId, hwId, modernHwid, includeUnbanned: false);
             if (bans.Count > 0)
             {
-                var firstBan = bans[0];
-                var message = firstBan.FormatBanMessage(_cfg, _loc);
-                return (ConnectionDenyReason.Ban, message, bans);
+                if (_temporaryConnectionAllowed.TryGetValue(userId, out var allowedUntil))
+                {
+                    if (DateTime.UtcNow <= allowedUntil)
+                    {
+                        _sawmill.Info($"Allowing temporary connection for banned player {userId}");
+                    }
+                    else
+                    {
+                        _temporaryConnectionAllowed.Remove(userId);
+                        var firstBan = bans[0];
+                        var message = firstBan.FormatBanMessage(_cfg, _loc);
+                        return (ConnectionDenyReason.Ban, message, bans);
+                    }
+                }
+                else
+                {
+                    var kickEvent = new PlayerConnectingWithBanEvent
+                    {
+                        UserId = userId,
+                        Bans = bans
+                    };
+
+                    PlayerConnectingWithBan?.Invoke(this, kickEvent);
+
+                    if (kickEvent.AllowConnection)
+                    {
+                        AllowTemporaryConnection(userId, kickEvent.ConnectionDuration);
+                        _sawmill.Info($"Allowing temporary connection for banned player {userId}");
+                    }
+                    else
+                    {
+                        var firstBan = bans[0];
+                        var message = firstBan.FormatBanMessage(_cfg, _loc);
+                        return (ConnectionDenyReason.Ban, message, bans);
+                    }
+                }
             }
 
             if (HasTemporaryBypass(userId))
@@ -157,23 +271,20 @@ namespace Content.Server.Connection
                 return null;
             }
 
-            var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
+            var adminData = await _db.GetAdminDataForAsync(e.UserId);
 
-            // Sunrise-Sponsors-Start
             var isPrivileged = await HavePrivilegedJoin(e.UserId);
             if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !isPrivileged)
-            // Sunrise-Sponsors-End
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
 
                 var minMinutesAge = _cfg.GetCVar(CCVars.PanicBunkerMinAccountAge);
-                var record = await _dbManager.GetPlayerRecordByUserId(userId);
+                var record = await _db.GetPlayerRecordByUserId(userId);
                 var validAccountAge = record != null &&
-                                      record.FirstSeenTime.CompareTo(DateTimeOffset.Now - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
+                                      record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
 
-                // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)
                 {
                     return (ConnectionDenyReason.Panic, customReason, null);
@@ -186,11 +297,10 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-account", ("minutes", minMinutesAge)))), null);
                 }
 
-                var minOverallHours = _cfg.GetCVar(CCVars.PanicBunkerMinOverallHours);
+                var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
                 var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
-                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalHours > minOverallHours;
+                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalMinutes > minOverallMinutes;
 
-                // Use the custom reason if it exists & they don't have the minimum time
                 if (customReason != string.Empty && !haveMinOverallTime && !bypassAllowed)
                 {
                     return (ConnectionDenyReason.Panic, customReason, null);
@@ -200,7 +310,7 @@ namespace Content.Server.Connection
                 {
                     return (ConnectionDenyReason.Panic,
                         Loc.GetString("panic-bunker-account-denied-reason",
-                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("hours", minOverallHours)))), null);
+                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
                 }
 
                 if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
@@ -209,29 +319,55 @@ namespace Content.Server.Connection
                 }
             }
 
-            // Sunrise-Queue-Start
+            _ticker ??= _entityManager.SystemOrNull<GameTicker>();
+            var wasInGame = _ticker != null &&
+                            _ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+                            status == PlayerGameStatus.JoinedGame;
+            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
-            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled)
-            // Sunrise-Queue-End
+            var softPlayerCount = _plyMgr.PlayerCount;
+
+            if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
+            {
+                softPlayerCount -= _adminManager.ActiveAdmins.Count();
+            }
+
+            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass && !isQueueEnabled) && !wasInGame)
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled))
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && adminData is null)
             {
-                var min = _cfg.GetCVar(CCVars.WhitelistMinPlayers);
-                var max = _cfg.GetCVar(CCVars.WhitelistMaxPlayers);
-                var playerCountValid = _plyMgr.PlayerCount >= min && _plyMgr.PlayerCount < max;
-
-                if (playerCountValid && await _db.GetWhitelistStatusAsync(userId) == false
-                                     && adminData is null)
+                if (_whitelists is null)
                 {
-                    var msg = Loc.GetString(_cfg.GetCVar(CCVars.WhitelistReason));
-                    // was the whitelist playercount changed?
-                    if (min > 0 || max < int.MaxValue)
-                        msg += "\n" + Loc.GetString("whitelist-playercount-invalid", ("min", min), ("max", max));
-                    return (ConnectionDenyReason.Whitelist, msg, null);
+                    _sawmill.Error("Whitelist enabled but no whitelists loaded.");
+                    return (ConnectionDenyReason.Whitelist, Loc.GetString("generic-misconfigured"), null);
                 }
+
+                foreach (var whitelist in _whitelists)
+                {
+                    if (!IsValid(whitelist, softPlayerCount))
+                    {
+                        continue;
+                    }
+
+                    var whitelistStatus = await IsWhitelisted(whitelist, e.UserData, _sawmill);
+                    if (!whitelistStatus.isWhitelisted)
+                    {
+                        return (ConnectionDenyReason.Whitelist, Loc.GetString("whitelist-fail-prefix", ("msg", whitelistStatus.denyMessage!)), null);
+                    }
+
+                    break;
+                }
+            }
+
+            if (_cfg.GetCVar(CCVars.GameIPIntelEnabled) && adminData == null)
+            {
+                var result = await _ipintel.IsVpnOrProxy(e);
+
+                if (result.IsBad)
+                    return (ConnectionDenyReason.IPChecks, result.Reason, null);
             }
 
             return null;
@@ -260,18 +396,16 @@ namespace Content.Server.Connection
             return assigned;
         }
 
-        // Sunrise-Sponsors-Start
         public async Task<bool> HavePrivilegedJoin(NetUserId userId)
         {
-            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && await _dbManager.GetAdminDataForAsync(userId) != null;
-            var havePriorityJoin = _sponsorsMgr != null && _sponsorsMgr.HavePriorityJoin(userId); // Sunrise-Sponsors
+            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && await _db.GetAdminDataForAsync(userId) != null;
+            var havePriorityJoin = _sponsorsMgr != null && _sponsorsMgr.HavePriorityJoin(userId);
             var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
             return adminBypass ||
-                   havePriorityJoin || // Sunrise-Sponsors
+                   havePriorityJoin ||
                    wasInGame;
         }
-        // Sunrise-Sponsors-End
     }
 }

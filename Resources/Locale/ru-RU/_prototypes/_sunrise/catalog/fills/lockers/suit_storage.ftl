@@ -1,0 +1,15 @@
+ent-SuitStorageBlueShield = { ent-SuitStorageBase }
+    .suffix = Синий щит
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStorageSecSunrise = { ent-SuitStorageBase }
+    .suffix = Служба безопасности, Санрайз
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStorageEVAPirateSun = { ent-SuitStorageBase }
+    .suffix = Пираты ЕВА, Санрайз
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStoragePirateSun = { ent-SuitStorageBase }
+    .suffix = Пираты, Санрайз
+    .desc = { ent-SuitStorageBase.desc }
+ent-SuitStoragePirateCapSun = { ent-SuitStorageBase }
+    .suffix = Капитан пиратов, Санрайз
+    .desc = { ent-SuitStorageBase.desc }

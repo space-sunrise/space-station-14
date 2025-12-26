@@ -1,0 +1,310 @@
+- type: entity
+  parent: ClothingMaskGasSecurity
+  id: ClothingMaskGasPilot
+  name: security pilot's gas mask
+  description: A gas mask made in the style of 21st century pilot masks.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/pilotmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/pilotmask.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasAtmosian
+  name: atmosian's gas mask
+  description: An improved gas mask used by the Atmosians. Fireproof!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/atmosian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/atmosian.rsi
+
+- type: entity
+  parent: ClothingMaskGasERT
+  id: ClothingMaskGasNTRG
+  name: NTR Guard's gas mask
+  description: An improved gas mask used by NTR Guard Squad.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/ntrguard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/ntrguard.rsi
+
+- type: entity
+  parent: ClothingMaskGasSwat
+  id: ClothingMaskGasNTRGLead
+  name: NTR Leader Guard's gas mask
+  description: An improved gas mask used by NTR Guard Squad.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/ntrguard_officer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/ntrguard_officer.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskSkull
+  name: skull mask
+  description: Ominous skull mask.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/death.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/death.rsi
+  - type: BreathMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingBreathMaskRD
+  name: gas mask with purple visor
+  description: Special gas mask of the head of the research department. It has a bright purple plasma glass visor, through which it will be much more interesting to search for anomalies and inhale freesor.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/rdmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/rdmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasExplorer
+  id: ClothingBreathMaskQM
+  name: handler's gas mask
+  description: While others are working, you watch them and enjoy life. Made specifically for apartment dwellers, allowing for a more convenient way to pass the time without having to pay attention to how something is eating your employee.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/qmmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/qmmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingMaskIAA
+  name: elite gas mask
+  description: Black gas mask with gold-plated element above the visor made of durable glass. You do not have to breathe the same air as the defendants. Protects against flares.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/iaamask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/iaamask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: FlashImmunity
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingEliteMaskGasHOP
+  name: head of personal's gas mask
+  description: Rugged gas mask in thematic navy blue color. The whole service department will be afraid of you in it.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/hopmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/hopmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingEliteMaskGasCaptain
+  name: captain's gas mask
+  description: Through the amber glass, the situation at the station seems less dire.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/cptmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/cptmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingBreathMaskCMO
+  name: medical respirator
+  description: Quality respirator.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/cmomask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/cmomask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingMaskGasCE
+  name: chef engineer's gas mask
+  description: Very durable and stylish white gas mask with a green stripe on the frontal area. Will allow you to correct the consequences of atmospheric technicians with bought diplomas.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/cemask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/cemask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalRed
+  name: red medical mask
+  description: A close-fitting red sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalred.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalred.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalGreen
+  name: green medical mask
+  description: A close-fitting green sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalgreen.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalgreen.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalOrange
+  name: orange medical mask
+  description: A close-fitting orange sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalorange.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalorange.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalBlack
+  name: black medical mask
+  description: A close-fitting black sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalblack.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalblack.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalBlue
+  name: blue medical mask
+  description: A close-fitting blue sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalblue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalblue.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileBlack
+  name: black sterile mask
+  description: A sterile black mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_black.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileOrange
+  name: orange sterile mask
+  description: A sterile orange mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_orange.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_orange.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileRed
+  name: red sterile mask
+  description: A sterile red mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_red.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_red.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileBlue
+  name: blue sterile mask
+  description: A sterile blue mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_blue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_blue.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileGreen
+  name: green sterile mask
+  description: A sterile green mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_green.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_green.rsi
+
+- type: entity
+  parent: [ ClothingMaskGasSwat, BaseSecurityContraband ]
+  id: ClothingMaskGasBlueShield
+  name: Blueshild gas mask
+  description: Gas Mask for real professionals. It may even help to get CE cameras with burning tritium!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/blueshield.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: [ ClothingMaskBase, BaseMajorContraband ]
+  id: ClothingMaskDogi
+  name: samurai mask
+  description: Traditional Japanese mask.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
+  - type: BreathMask
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered # INTERACTIONS
+  # SUNRISE EDIT

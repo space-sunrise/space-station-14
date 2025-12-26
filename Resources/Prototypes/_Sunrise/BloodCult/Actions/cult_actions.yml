@@ -1,0 +1,198 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionCultTwistedConstruction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    temporary: true
+    useDelay: 5
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: transmute
+    itemIconStyle: NoItem
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:CultTwistedConstructionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: InstantActionBloodMagic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    temporary: true
+    useDelay: 3
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: carve
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:CultBloodMagicInstantActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: InstantActionBloodRitual
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    temporary: true
+    useDelay: 3
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: manip
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:CultBloodRitualInstantActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultStun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    temporary: true
+    useDelay: 5
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: stun
+    itemIconStyle: NoItem
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+      - BorgChassis
+    event: !type:CultStunTargetActionEvent
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: DeleteWithoutCharges
+
+- type: entity
+  parent: BaseAction
+  id: ActionShadowShackles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    temporary: true
+    useDelay: 1
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: shackles
+    itemIconStyle: NoItem
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Cuffable
+    event: !type:CultShadowShacklesTargetActionEvent
+  - type: LimitedCharges
+    maxCharges: 4
+  - type: DeleteWithoutCharges
+
+
+- type: entity
+  parent: BaseAction
+  id: InstantActionEmpPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 5
+    temporary: true
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: emp
+  - type: InstantAction
+    event: !type:CultEmpPulseTargetActionEvent
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: DeleteWithoutCharges
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultTeleport
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      temporary: true
+      useDelay: 5
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: teleport
+      itemIconStyle: NoItem
+    - type: TargetAction
+      repeat: false
+      range: 2
+      checkCanAccess: true
+    - type: EntityTargetAction
+      whitelist:
+        components:
+        - BloodCultist
+      canTargetSelf: true
+      event: !type:CultTeleportTargetActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSummonCombatEquipment
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      temporary: true
+      useDelay: 5
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: equip
+      itemIconStyle: NoItem
+    - type: TargetAction
+      repeat: false
+      range: 2
+    - type: EntityTargetAction
+      canTargetSelf: true
+      whitelist:
+        components:
+        - HumanoidAppearance
+        - BloodCultist
+      event: !type:CultSummonCombatEquipmentTargetActionEvent
+    - type: LimitedCharges
+      maxCharges: 1
+    - type: DeleteWithoutCharges
+
+- type: entity
+  parent: BaseAction
+  id: InstantActionSummonCultDagger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      temporary: true
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: blood_dagger
+      useDelay: 5
+    - type: InstantAction
+      event: !type:CultSummonDaggerActionEvent
+    - type: LimitedCharges
+      maxCharges: 1
+    - type: DeleteWithoutCharges
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultReturnBloodSpear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    temporary: true
+    useDelay: 2
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: bloodspear
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:CultReturnBloodSpearActionEvent

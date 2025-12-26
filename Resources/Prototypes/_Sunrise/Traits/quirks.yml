@@ -1,0 +1,20 @@
+- type: trait
+  id: NoEmotions
+  name: trait-noemotions-name
+  description: trait-noemotions-desc
+  category: Quirks
+  components:
+  - type: NoEmotions
+
+- type: trait
+  id: FelinidVocal
+  name: trait-felinid-vocal-name
+  description: trait-felinid-vocal-desc
+  category: VocalTraits
+  cost: 1
+  components:
+  - type: ReplacementVocal
+    vocal:
+      Male: MaleFelinid
+      Female: FemaleFelinid
+      Unsexed: MaleFelinid

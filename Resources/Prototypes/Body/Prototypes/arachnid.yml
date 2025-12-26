@@ -1,6 +1,6 @@
 ﻿- type: body
   id: Arachnid
-  name: "Arachnid"
+  name: "arachnid"
   root: torso
   slots:
     head:
@@ -10,19 +10,31 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganArachnidEyes
+    # Sunrise-start
+        tongue: OrganHumanTongue
+        eye_implant: null
+    # Sunrise-end
     torso:
       part: TorsoArachnid
-      organs:
-        heart: OrganArachnidHeart
-        lungs: OrganAnimalLungs
-        stomach: OrganArachnidStomach
-        liver: OrganArachnidLiver
-        kidneys: OrganArachnidKidneys
+    # Sunrise-start
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
+    # Sunrise-end
+      organs:
+        heart: OrganArachnidHeart
+        lungs: OrganArachnidLungs
+        stomach: OrganArachnidStomach
+        liver: OrganArachnidLiver
+        kidneys: OrganArachnidKidneys
+        cavity: null # Sunrise-edit
+     # connections:
+     # - right arm
+     # - left arm
+     # - right leg
+     # - left leg
     right arm:
       part: RightArmArachnid
       connections:

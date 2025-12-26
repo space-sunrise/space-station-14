@@ -1,0 +1,26 @@
+shop-disease-currency = Очки эволюции
+listing-disease-cough-name = Кашель
+listing-disease-cough-description = Заражённые начинают кашлять.
+listing-disease-sneeze-name = Чих
+listing-disease-sneeze-description = Заражённые начинают чихать.
+listing-disease-vomit-name = Тошнота
+listing-disease-vomit-description = Заражённых начинает тошнить, вызывая рвоту.
+listing-disease-zombie-name = Зомбирование
+listing-disease-zombie-description = Все текущие заражённые становятся зомби (болезнь c них снимается).
+listing-disease-cry-name = Непроизвольные слёзы
+listing-disease-cry-description = У заражённых активно слезятся глаза, из-за чего кажется, что они плачут.
+listing-disease-narcolepsy-name = Сонливость
+listing-disease-narcolepsy-description = У заражённых появляется постоянное желание спать, с которым они иногда не могут справиться.
+listing-disease-muted-name = Немота
+listing-disease-muted-description = Мутация вызывает повреждение подъязычного нерва, приводя к параличу мышц языка, из-за чего больные теряют возможность нормально говорить.
+listing-disease-slowness-name = Изнеможение
+listing-disease-slowness-description = Вирус вызывает разрушение мышечных волокон, приводящее к атрофие и сопровождающееся слабостью. Снижает общую мобильность.
+listing-disease-bleed-name = Кровопотеря
+listing-disease-bleed-description = Вирус вызывает денатурацию гемоглобина крови, из-за чего у всех носителей появляется тяжелая степень анемии.
+listing-disease-blindness-name = Слепота
+listing-disease-blindness-description = Длительная болезнь приводит к отмиранию зрительного нерва, что приводит к практически полной слепоте больного.
+listing-disease-insult-name = Судороги
+listing-disease-insult-description = Длительная болезнь вызывает гиперстимуляцию двигательных нейронов, в результате чего больные могут испытывать перенапряжение мышц, приводящее к судорогам.
+
+listing-disease-info-name = Информация о болезни
+listing-disease-info-description = Просмотр текущей статистики болезни и прогресса.

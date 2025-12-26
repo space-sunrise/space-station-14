@@ -1,0 +1,64 @@
+- type: entity
+  parent: BaseItem
+  id: GlockBox
+  name: glock box
+  description: It contains a Glock22 and a rubber magazine for it. Did you want something else?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/glockbox.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Sunrise/Objects/Storage/glockbox.rsi
+    heldPrefix: glockb
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazinePistolHighCapacityRubber
+    - id: WeaponPistolG22
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: GlockBox
+  id: ACP14Box
+  name: ACP14 box
+  description: It contains a ACP14 and a rubber magazine for it. Did you want something else?
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: MagazinePistol40HP
+      - id: WeaponPistolACP14
+
+- type: entity
+  parent: GlockBox
+  id: MK58Box
+  name: MK58 box
+  description: It contains a MK58 and a rubber magazine for it. Did you want something else?
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponPistolMk58
+      - id: MagazinePistolRubber
+
+- type: entity
+  parent: GlockBox
+  id: MK58GoldBox
+  name: Gold MK58 box
+  description: It contains a Gold MK58 and a rubber magazine for it. Ave Security!
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponPistolGoldenMk58
+      - id: MagazinePistolRubber
+
+- type: entity
+  parent: GlockBox
+  id: SnubRevolverBox
+  name: Snub Revolver box
+  description: Inside rests a snub-nosed revolver with a rubber speedloader. Old-school firepower, ready at hand.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponRevolverSnubRevolver
+      - id: SpeedLoaderMagnumRubber

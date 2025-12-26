@@ -1,0 +1,55 @@
+- type: entity
+  name: plasma cutter
+  id: WeaponPlasmaCutter
+  parent: [BaseItem, BaseCargoContraband]
+  description: Fires low-damage Plasma bolts at a short range.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/plasma_cutter_industrial.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/plasma_cutter_industrial.rsi
+    size: Normal
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -23
+  - type: Wieldable
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    angleDecay: 25
+    minAngle: 24
+    maxAngle: 25
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletPlasma
+    capacity: 1
+    count: 1
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/plasma_cutter_industrial.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: UseDelay
+    delay: 1
+

@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.ExtendedAccess;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -6,7 +7,7 @@ namespace Content.Server.AlertLevel;
 [Prototype("alertLevels")]
 public sealed partial class AlertLevelPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Dictionary of alert levels. Keyed by string - the string key is the most important
@@ -71,5 +72,12 @@ public sealed partial class AlertLevelDetail
     /// How long it takes for the shuttle to arrive when called.
     /// </summary>
     [DataField("shuttleTime")] public TimeSpan ShuttleTime { get; private set; } = TimeSpan.FromMinutes(5);
+
+    // Sunrise added start
+    [DataField] public bool ForceEndRound;
+
+    [DataField] public ExtendedAccessOptions? ExtendedAccessOptions;
+
+    // Sunrise added end
 }
 

@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseItem
+  id: BaseMusicTape
+  name: tape
+  abstract: true
+  description:
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/tapes.rsi

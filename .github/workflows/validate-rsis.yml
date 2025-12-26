@@ -2,7 +2,7 @@ name: RSI Validator
 
 on:
   push:
-    branches: [ staging, trying ]
+    branches: [ master, staging, stable ]
   merge_group:
   pull_request:
     paths:
@@ -11,16 +11,17 @@ on:
 jobs:
   validate_rsis:
     name: Validate RSIs
+    if: github.actor != 'Sunrise-Bot'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.6.0
-      - name: Setup Submodule
-        run: git submodule update --init
-      - name: Pull engine updates
-        uses: space-wizards/submodule-dependency@v0.1.5
+      - uses: actions/checkout@v4.2.2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
       - name: Install Python dependencies
         run: |
           pip3 install --ignore-installed --user pillow jsonschema
       - name: Validate RSIs
         run: |
-          python3 RobustToolbox/Schemas/validate_rsis.py Resources/
+          python3 Tools/Schemas/validate_rsis.py Resources/Prototypes/

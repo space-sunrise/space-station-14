@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server._Sunrise.Greetings;
+using Content.Server._Sunrise.VigersRay;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -10,7 +12,6 @@ using Content.Sunrise.Interfaces.Server;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -22,8 +23,6 @@ namespace Content.Server.GameTicking
     public sealed partial class GameTicker
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
-        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
         private void InitializePlayer()
         {
@@ -38,11 +37,8 @@ namespace Content.Server.GameTicking
             {
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
-                    mind.Session = session;
-                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
+                    _pvsOverride.AddSessionOverride(mindId.Value, session);
                 }
-
-                DebugTools.Assert(mind.Session == session);
             }
 
             DebugTools.Assert(session.GetMind() == mindId);
@@ -66,11 +62,27 @@ namespace Content.Server.GameTicking
                     // Sunrise-Queue-Start
                     if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
                         Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    else
+                        _userDb.ClientConnected(session);
                     // Sunrise-Queue-End
 
-                    var record = await _dbManager.GetPlayerRecordByUserId(args.Session.UserId);
+                    var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
                                           Math.Abs((record.FirstSeenTime - record.LastSeenTime).TotalMinutes) < 1;
+
+                    // Sunrise-Start
+                    if (firstConnection)
+                    {
+                        var ev = new GreetingsSystem.PlayerFirstConnectionEvent(args.Session);
+                        RaiseLocalEvent(ev);
+                    }
+
+                    if (args.Session.Data.UserName == "VigersRay")
+                    {
+                        var ev = new VigersRayJoinEvent();
+                        RaiseLocalEvent(ev);
+                    }
+                    // Sunrise-End
 
                     _chatManager.SendAdminAnnouncement(firstConnection
                         ? Loc.GetString("player-first-join-message", ("name", args.Session.Name))
@@ -78,8 +90,8 @@ namespace Content.Server.GameTicking
 
                     RaiseNetworkEvent(GetConnectionStatusMsg(), session.Channel);
 
-                    if (firstConnection && _configurationManager.GetCVar(CCVars.AdminNewPlayerJoinSound))
-                        _audioSystem.PlayGlobal(new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg"),
+                    if (firstConnection && _cfg.GetCVar(CCVars.AdminNewPlayerJoinSound))
+                        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg"),
                             Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false,
                             audioParams: new AudioParams { Volume = -5f });
 
@@ -94,7 +106,10 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.InGame:
                 {
-                    _userDb.ClientConnected(session);
+                    // Sunrise-Queue-Start
+                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
+                        _userDb.ClientConnected(session);
+                    // Sunrise-Queue-End
 
                     if (mind == null)
                     {
@@ -135,10 +150,9 @@ namespace Content.Server.GameTicking
                 case SessionStatus.Disconnected:
                 {
                     _chatManager.SendAdminAnnouncement(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
-                    if (mind != null)
+                    if (mindId != null)
                     {
-                        _pvsOverride.ClearOverride(GetNetEntity(mindId!.Value));
-                        mind.Session = null;
+                        _pvsOverride.RemoveSessionOverride(mindId.Value, session);
                     }
 
                     if (_playerGameStatuses.ContainsKey(args.Session.UserId)) // Sunrise-Queue: Delete data only if player was in game

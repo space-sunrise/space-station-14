@@ -1,0 +1,9 @@
+- type: construction
+  name: construction-graph-tag-power-cage
+  id: MakeshiftPowerCage
+  graph: MakeshiftPowerCage
+  startNode: start
+  targetNode: makeshiftcage
+  category: construction-category-misc
+  description: construction-graph-tag-power-cage-desc
+  objectType: Item

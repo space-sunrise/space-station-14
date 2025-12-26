@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: ServiceCopyMachineMachine
+  icon:
+    sprite: _Sunrise/Structures/Machines/copy_machine.rsi
+    state: icon
+  product: CrateServiceCopyMachine
+  cost: 2000
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: CrateServiceCopyMachineRestock
+  icon:
+    sprite: _Sunrise/Objects/Misc/pens.rsi # Sunrise-Edit
+    state: pen
+  product: CrateServiceCopyMachineRestock
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: market

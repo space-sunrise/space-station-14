@@ -1,0 +1,24 @@
+- type: entity
+  parent: SyndicateTeleporter
+  id: SyndicateTeleporterBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
+    alertText: Данный предмет биокодирован. Вы не можете его использовать.
+
+- type: entity
+  parent: DefibrillatorSyndicate
+  id: DefibrillatorSyndicateBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+    alertText: Данный предмет биокодирован. Вы не можете его использовать.
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.

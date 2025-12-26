@@ -1,0 +1,83 @@
+- type: decal
+  id: SteelMonoN
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_n
+
+- type: decal
+  id: SteelMonoS
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_s
+
+- type: decal
+  id: SteelMonoW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_w
+
+- type: decal
+  id: SteelMonoE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_e
+
+- type: decal
+  id: SteelMonoNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_nw
+
+- type: decal
+  id: SteelMonoNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_ne
+
+- type: decal
+  id: SteelMonoSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_sw
+
+- type: decal
+  id: SteelMonoSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_mono_se
+
+- type: decal
+  id: SteelMCrNW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_cr_nw
+
+- type: decal
+  id: SteelMCrNE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_cr_ne
+
+- type: decal
+  id: SteelMCrSW
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_cr_sw
+
+- type: decal
+  id: SteelMCrSE
+  tags: ["station", "marking"]
+  sprite:
+    sprite: _Sunrise/Decals/steelmono.rsi
+    state: steel_cr_se

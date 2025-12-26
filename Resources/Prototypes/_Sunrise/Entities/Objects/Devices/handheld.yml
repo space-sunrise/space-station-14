@@ -1,0 +1,552 @@
+
+# Handheld Camera Monitor
+
+- type: entity
+  parent: BaseItem
+  id: BasePortableSurveillanceCameraMonitor
+  name: portable camera monitor
+  description: Allows you to monitor the crew from anywhere.
+  abstract: true
+  components:
+  - type: SurveillanceCameraMonitor
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: PortableSurveillanceCameraMonitor
+  parent:
+  - BasePortableSurveillanceCameraMonitor
+  - BaseHandheldComputer
+  suffix: Handheld, Powered
+
+- type: entity
+  id: PortableSurveillanceCameraMonitorEmpty
+  parent: PortableSurveillanceCameraMonitor
+  suffix: Handheld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi  # TODO: sprite
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: PortableSurveillanceCameraMonitorUnpowered
+  parent: BasePortableSurveillanceCameraMonitor
+  suffix: Handheld, Unpowered
+
+# Handheld Criminal Records
+
+- type: entity
+  name: hand-held criminal records monitor
+  parent: BaseItem
+  id: BaseHandheldCriminalRecordsMonitor
+  description: A hand-held crew monitor displaying the status of wanted persons on station.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_criminal_records_monitor.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: CriminalRecordsConsole
+  - type: UserInterface
+    interfaces:
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CriminalRecordsConsoleKey.Key
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: StaticPrice
+    price: 500
+  - type: GuideHelp
+    guides:
+      - CriminalRecords
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: HandheldCriminalRecordsMonitor
+  parent:
+  - BaseHandheldCriminalRecordsMonitor
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: HandheldCriminalRecordsMonitorEmpty
+  parent: HandheldCriminalRecordsMonitor
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_criminal_records_monitor.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: HandheldCriminalRecordsMonitorUnpowered
+  parent: BaseHandheldCriminalRecordsMonitor
+  suffix: Handheld, Unpowered
+
+# Handheld RoboAnalyzer
+
+- type: entity
+  id: BaseHandheldRoboAnalyzer
+  parent: BaseItem
+  name: cyborg analyzer
+  description: A hand-held cyborg scaner.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/roboanalyzer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Item
+    storedRotation: -90
+  - type: ActivatableUI
+    key: enum.HealthAnalyzerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+    - Synth
+    - Silicon
+  - type: Tag
+    tags:
+    - DiscreteHealthAnalyzer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: HandheldRoboAnalyzer
+  parent:
+  - BaseHandheldRoboAnalyzer
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: HandheldRoboAnalyzerEmpty
+  parent: HandheldRoboAnalyzer
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/roboanalyzer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: HandheldRoboAnalyzerUnpowered
+  parent: BaseHandheldRoboAnalyzer
+  suffix: Handheld, Unpowered
+
+# Handheld Mech Analyzer
+
+- type: entity
+  id: BaseHandheldMechAnalyzer
+  parent: BaseItem
+  name: mech analyzer
+  description: A hand-held mech scaner.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_analyzer
+    layers:
+    - state: mecha_analyzer
+    - state: mecha_analyzer_anim
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ActivatableUI
+    key: enum.HealthAnalyzerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+    - Mech
+  - type: Tag
+    tags:
+    - DiscreteHealthAnalyzer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: HandheldMechAnalyzer
+  parent:
+  - BaseHandheldMechAnalyzer
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: HandheldMechAnalyzerEmpty
+  parent: HandheldMechAnalyzer
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_analyzer
+    layers:
+    - state: mecha_analyzer
+    - state: mecha_analyzer_anim
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: HandheldMechAnalyzerUnpowered
+  parent: BaseHandheldMechAnalyzer
+  suffix: Handheld, Unpowered
+
+# Handheld Camera
+
+- type: entity
+  parent: BaseItem
+  id: BaseHandheldCamera
+  name: Body Camera
+  description: Camera
+  abstract: true
+  components:
+  - type: StationAiVision
+    range: 2
+  - type: Item
+    sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  - type: Eye
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraSetupUiKey.Camera:
+        type: SurveillanceCameraSetupBoundUi
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraHandheld
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCamera
+    networkSet: true
+    setupAvailableNetworks:
+      - SurveillanceCameraHandheld
+      - SurveillanceCamera
+  - type: SpamEmitSound
+    minInterval: 90
+    maxInterval: 300
+    sound:
+      path: /Audio/Machines/timer.ogg
+      params:
+        volume: -8
+        maxDistance: 10
+        variation: 0.05
+
+- type: entity
+  id: HandheldCamera
+  parent: BaseHandheldCamera
+  suffix: HandHeld
+
+# Atmos alerts console
+
+- type: entity
+  name: handheld atmos console
+  parent: BaseItem
+  id: BaseAtmosAlertsMonitor
+  description: A hand-held crew monitor displaying the status of wanted persons on station.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_atmos_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: AtmosAlertsComputer
+    beepSound:
+      path: /Audio/_Sunrise/Effects/beeps.ogg
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.AtmosAlertsComputerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AtmosAlertsComputerUiKey.Key:
+        type: AtmosAlertsComputerBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: AtmosAlertsMonitor
+  parent:
+  - BaseAtmosAlertsMonitor
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: AtmosAlertsMonitorEmpty
+  parent: AtmosAlertsMonitor
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_atmos_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: AtmosAlertsMonitorUnpowered
+  parent: BaseAtmosAlertsMonitor
+  suffix: Handheld, Unpowered
+
+ # Engi alerts console
+
+- type: entity
+  name: handheld power control console
+  parent: BaseItem
+  id: BaseEngiAlertsMonitor
+  description: A handheld console showing where the clown cut the wires again.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_wires_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: PowerMonitoringConsole
+  - type: PowerMonitoringCableNetworks
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      hv:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.PowerMonitoringConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PowerMonitoringConsoleUiKey.Key:
+        type: PowerMonitoringConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: EngiAlertsMonitor
+  parent:
+  - BaseEngiAlertsMonitor
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: EngiAlertsMonitorEmpty
+  parent: EngiAlertsMonitor
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_wires_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: EngiAlertsMonitorUnpowered
+  parent: BaseEngiAlertsMonitor
+  suffix: Handheld, Unpowered
+
+- type: entity
+  parent: BaseItem
+  id: MasterHandheldCamera
+  name: master body Camera
+  description: Camera
+  components:
+  - type: StationAiVision
+    range: 2
+  - type: Item
+    sprite: _Sunrise/Objects/Devices/master_handheld_camera.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Sunrise/Objects/Devices/master_handheld_camera.rsi
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  - type: Eye
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraSetupUiKey.Camera:
+        type: SurveillanceCameraSetupBoundUi
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraHandheld
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCamera
+    networkSet: true
+    setupAvailableNetworks:
+      - SurveillanceCameraHandheld
+      - SurveillanceCamera
+  - type: SpamEmitSound
+    minInterval: 90
+    maxInterval: 300
+    sound:
+      path: /Audio/Machines/timer.ogg
+      params:
+        volume: -8
+        maxDistance: 10
+        variation: 0.05
+  - type: RadioMicrophone
+    broadcastChannel: Security
+    listenRange: 1
+  - type: RadioSpeaker
+    channels:
+    - Security
+  - type: UseDelay
+    delay: 2
+  - type: EmitSoundOnUse
+    sound:
+      collection: BaseWhistle

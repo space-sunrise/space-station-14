@@ -1,0 +1,14 @@
+ent-PartAnimal = часть тела животного
+    .desc = { ent-BaseItem.desc }
+ent-HandsAnimal = лапы животного
+    .desc = { ent-PartAnimal.desc }
+ent-LegsAnimal = ноги животного
+    .desc = { ent-PartAnimal.desc }
+ent-FeetAnimal = ступни животного
+    .desc = { ent-PartAnimal.desc }
+ent-TorsoAnimal = туловище животного
+    .desc = { ent-PartAnimal.desc }
+ent-LeftHandSmartCorgi = лапа корги
+    .desc = { ent-PartAnimal.desc }
+ent-RightHandSmartCorgi = лапа корги
+    .desc = { ent-PartAnimal.desc }

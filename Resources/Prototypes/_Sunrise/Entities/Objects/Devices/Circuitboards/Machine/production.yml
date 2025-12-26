@@ -1,13 +1,128 @@
 ﻿- type: entity
-  id: PrinterDocMachineCircuitboard
+  id: SewingPrinterMetusMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: prison sewing printer machine board
+  description: Scarred with solder marks, corroded contacts, and burn traces, dim LEDs flicker occasionally.
+  suffix: Machine Board, Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/module.rsi
+    state: prison_general
+  - type: MachineBoard
+    prototype: SewingPrinterMetus
+    stackRequirements:
+      Manipulator: 10
+
+- type: entity
+  id: AutolathePrisonMetusMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: prison autolathe machine board
+  description: Worn, with broken mounts and fine cracks, still warm in places from occasional power pulses.
+  suffix: Machine Board, Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/module.rsi
+    state: prison_general
+  - type: MachineBoard
+    prototype: AutolathePrisonMetus
+    stackRequirements:
+      Manipulator: 5
+      Glass: 2
+
+- type: entity
+  id: CopyMachineMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: document printer machine board
   description: A machine printed circuit board for an document printer
   components:
     - type: MachineBoard
-      prototype: PrinterDoc
-      requirements:
-        MatterBin: 3
-        Manipulator: 1
-      materialRequirements:
+      prototype: CopyMachine
+      stackRequirements:
+        Manipulator: 4
         Glass: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: PacificatorCircuitboard
+  name: pacifism generator machine board
+  description: Makes all sentient beings within range pacifists.
+  components:
+  - type: MachineBoard
+    prototype: Pacificator
+    stackRequirements:
+      Manipulator: 7
+      Steel: 5
+      CableHV: 5
+      Uranium: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ReflectorMachineCircuitboard
+  name: reflector machine board
+  components:
+  - type: MachineBoard
+    prototype: Reflector
+    stackRequirements:
+      Manipulator: 3
+      Steel: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  name: hyper convection exosuit fabricator machine board
+  description: A machine printed circuit board for a hyper convection fabricator.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ExosuitFabricatorHyperConvection
+    stackRequirements:
+      Manipulator: 4
+      Glass: 5
+    tagRequirements:
+      Igniter:
+        amount: 1
+        defaultPrototype: Igniter
+
+- type: entity
+  id: MedicalAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medical assembler machine board
+  description: A machine printed circuit board for a medical assembler.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: MedicalAssembler
+      stackRequirements:
+        Manipulator: 3
+        Steel: 5
+        Glass: 2
+        Cable: 4
+
+- type: entity
+  id: PirateTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: pirate techfab machine board
+  description: A machine printed circuit board for an pirate techfab.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/module.rsi
+      state: pirate_stitcher
+    - type: Item
+      storedRotation: -90
+    - type: MachineBoard
+      prototype: PirateTechFab
+      stackRequirements:
+        Manipulator: 2
+
+- type: entity
+  id: ThrusterSyndicateMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: thruster syndie machine board
+  components:
+  - type: MachineBoard
+    prototype: ThrusterSyndicate
+    stackRequirements:
+      Manipulator: 4
+      Steel: 5

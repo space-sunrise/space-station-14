@@ -1,3 +1,19 @@
+# Sunrise edit start
+- type: entity
+  abstract: true
+  id: BaseClothingOuterSounds
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_drop.ogg
+# Sunrise edit end
+
 - type: entity
   abstract: true
   parent: Clothing
@@ -11,7 +27,7 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterBaseLarge
   components:
   - type: Item
@@ -23,12 +39,15 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: StaminaResistance   # Sunrise-Add
+    damageCoefficient: 0.85 # Sunrise-Add
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterStorageBase
   components:
+  - type: ContainerInteractionAnimation # Sunrise added
   - type: Storage
     grid:
     - 0,0,2,1
@@ -42,6 +61,13 @@
         type: StorageBoundUserInterface
   - type: StaticPrice
     price: 70
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # Sunrise-End
 
 - type: entity
   abstract: true
@@ -84,6 +110,13 @@
     - state: icon-open
       map: ["foldedLayer"]
       visible: true
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   abstract: true
@@ -105,19 +138,23 @@
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [innerclothing, feet]
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01
-  - type: FireProtection
-    reduction: 0.75 # almost perfectly sealed, atmos firesuit is better
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
-    walkModifier: 0.4
+    walkModifier: 0.6
     sprintModifier: 0.6
   - type: HeldSpeedModifier
   - type: Item
     size: Ginormous
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -131,13 +168,37 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      beakerSlot: !type:ContainerSlot # Sunrise-Start
+  - type: Inject
+    openCloseDelay: 1.5
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit # Sunrise-End
   - type: GroupExamine
   - type: Tag
     tags:
     - Hardsuit
     - WhitelistChameleon
-  - type: ClothingRequiredStepTriggerImmune
+    - FullBodyOuter # Sunrise-Edit
+    - WhitelistChameleonSuit #Sunrise-edit
+  - type: StaminaResistance #Sunrise-added
+    damageCoefficient: 0.8 #Sunrise-added
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: ArmorSparkEffect #starlight
 
 - type: entity
   abstract: true
@@ -145,19 +206,39 @@
   id: ClothingOuterEVASuitBase
   name: base EVA Suit
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [innerclothing, feet]
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01 # Not complete protection from fire
+    heatingCoefficient: 0.01 # Not complete protection from fire
+    coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  - type: StaminaResistance
+    damageCoefficient: 0.9
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase

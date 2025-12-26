@@ -11,6 +11,9 @@ namespace Content.Client.MainMenu.UI;
 [GenerateTypedNameReferences]
 public sealed partial class MainMenuControl : Control
 {
+    public const string StyleIdentifierMainMenu = "mainMenu";
+    public const string StyleIdentifierMainMenuVBox = "mainMenuVBox";
+
     public MainMenuControl(IResourceCache resCache, IConfigurationManager configMan)
     {
         RobustXamlLoader.Load(this);
@@ -22,7 +25,7 @@ public sealed partial class MainMenuControl : Control
         LayoutContainer.SetMarginTop(VBox, 30);
         LayoutContainer.SetGrowHorizontal(VBox, LayoutContainer.GrowDirection.Begin);
 
-        var logoTexture = resCache.GetResource<TextureResource>("/Textures/Logo/logo.png");
+        var logoTexture = resCache.GetResource<TextureResource>("/Textures/_Sunrise/Logo/logo-sunrise-slim.png"); // Sunrise-Edit
         Logo.Texture = logoTexture;
 
         var currentUserName = configMan.GetCVar(CVars.PlayerName);

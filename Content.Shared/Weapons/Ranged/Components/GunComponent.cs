@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
@@ -7,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 [Access(typeof(SharedGunSystem))]
 public sealed partial class GunComponent : Component
 {
@@ -36,7 +37,11 @@ public sealed partial class GunComponent : Component
     public SoundSpecifier? SoundMode = new SoundPathSpecifier("/Audio/Weapons/Guns/Misc/selector.ogg");
 
     #endregion
-
+    /// <summary>
+    /// How much the ammo spreads when shot, in degrees. Does nothing if count is 0.
+    /// </summary>
+    [DataField]
+    public Angle Spread = Angle.FromDegrees(5);
     #region Recoil
 
     // These values are very small for now until we get a debug overlay and fine tune it
@@ -61,6 +66,9 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan LastFire = TimeSpan.Zero;
+
+    [DataField]
+    public bool Pump = false;
 
     /// <summary>
     /// What the current spread is for shooting. This gets changed every time the gun fires.
@@ -141,7 +149,7 @@ public sealed partial class GunComponent : Component
     /// Who the gun is being requested to shoot at directly.
     /// </summary>
     [ViewVariables]
-    public EntityUid? Target = null;
+    public HashSet<EntityUid> Targets = new(); // Sunrise-Edit
 
     /// <summary>
     ///     The base value for how many shots to fire per burst.
@@ -155,6 +163,30 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public int ShotsPerBurstModified = 3;
+
+    /// <summary>
+    /// How long time must pass between burstfire shots.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float BurstCooldown = 0.25f;
+
+    /// <summary>
+    /// The fire rate of the weapon in burst fire mode.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float BurstFireRate = 8f;
+
+    /// <summary>
+    /// Whether the burst fire mode has been activated.
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public bool BurstActivated = false;
+
+    /// <summary>
+    /// The burst fire bullet count.
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public int BurstShotsCount = 0;
 
     /// <summary>
     /// Used for tracking semi-auto / burst
@@ -178,29 +210,23 @@ public sealed partial class GunComponent : Component
     public float FireRateModified;
 
     /// <summary>
-    /// Starts fire cooldown when equipped if true.
-    /// </summary>
-    [DataField]
-    public bool ResetOnHandSelected = true;
-
-    /// <summary>
     /// The base value for how fast the projectile moves.
     /// </summary>
     [DataField]
-    public float ProjectileSpeed = 25f;
+    public float ProjectileSpeed = SharedGunSystem.ProjectileSpeed;
 
     /// <summary>
     /// How fast the projectile moves.
     /// <seealso cref="GunRefreshModifiersEvent"/>
     /// </summary>
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public float ProjectileSpeedModified;
 
     /// <summary>
     /// When the gun is next available to be shot.
     /// Can be set multiple times in a single tick due to guns firing faster than a single tick time.
     /// </summary>
-    [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan NextFire = TimeSpan.Zero;
@@ -232,6 +258,21 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public bool ClumsyProof = false;
+
+    /// <summary>
+    /// Firing direction for an item not being held (e.g. shuttle cannons, thrown guns still firing).
+    /// </summary>
+    [DataField]
+    public Vector2 DefaultDirection = new Vector2(0, -1);
+
+    // Sunrise-Start
+    /// <summary>
+    /// Whether or not someone with
+    /// Insulated gloves can opperate this gun
+    /// </summary>
+    [DataField]
+    public bool BigTrigger = false;
+    // Sunrise-End
 }
 
 [Flags]

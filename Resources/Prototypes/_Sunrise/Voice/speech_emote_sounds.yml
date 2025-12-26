@@ -11,20 +11,24 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
+    Sigh:
+      collection: MaleSigh
     Crying:
       collection: MaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
     Hisses:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
+    SevereCough:
+      collection: MaleSevereCough
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -39,106 +43,89 @@
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
+    Sigh:
+      collection: FemaleSigh
     Crying:
       collection: FemaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
     Hisses:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
+    SevereCough:
+      collection: FemaleSevereCough
 
 - type: emoteSounds
-  id: UnisexSynth
+  id: MaleTajaran
   params:
     variation: 0.125
   sounds:
     Scream:
-      collection: SynthScreams
+      collection: FelinidScreams
     Laugh:
       collection: MaleLaugh
     Sneeze:
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
-    MonkeyScreeches:
-      collection: MonkeyScreeches
-    RobotBeep:
-      collection: RobotBeeps
-    Yawn:
-      collection: MaleYawn
-    Snore:
-      collection: Snores
-    Honk:
-      collection: BikeHorn
     Sigh:
       collection: MaleSigh
     Crying:
       collection: MaleCry
     Whistle:
       collection: Whistles
+    Mew:
+      collection: FelinidMews
+    Meow:
+      collection: FelinidMeows
+    Hisses:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_hisses.ogg
+    Purr:
+      collection: FelinidPurrs
+    Growl:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_growl.ogg
+    SevereCough:
+      collection: MaleSevereCough
 
 - type: emoteSounds
-  id: MaleVulpkanin
+  id: FemaleTajaran
   params:
     variation: 0.125
   sounds:
     Scream:
-      collection: VulpkaninScreams
-    Laugh:
-      collection: MaleLaugh
-    Sneeze:
-      collection: MaleSneezes
-    Cough:
-      collection: MaleCoughs
-    Crying:
-      collection: MaleCry
-    Whistle:
-      collection: Whistles
-    Sigh:
-      collection: MaleSigh
-    Growls:
-      collection: VulpkaninGrowls
-    Howl:
-      collection: VulpkaninHowl
-    Bark:
-      collection: VulpkaninBark
-
-- type: emoteSounds
-  id: FemaleVulpkanin
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      collection: VulpkaninScreams
+      collection: FelinidScreams
     Laugh:
       collection: FemaleLaugh
     Sneeze:
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
+    Sigh:
+      collection: FemaleSigh
     Crying:
       collection: FemaleCry
     Whistle:
       collection: Whistles
-    Sigh:
-      collection: FemaleSigh
-    Growls:
-      collection: VulpkaninGrowls
-    Howl:
-      collection: VulpkaninHowl
-    Bark:
-      collection: VulpkaninBark
+    Mew:
+      collection: FelinidMews
+    Meow:
+      collection: FelinidMeows
+    Hisses:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_hisses.ogg
+    Purr:
+      collection: FelinidPurrs
+    Growl:
+      path: /Audio/_Sunrise/Voice/Tajaran/tajaran_growl.ogg
+    SevereCough:
+      collection: FemaleSevereCough
+
 
 - type: emoteSounds
   id: UnisexSwine
@@ -151,10 +138,6 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -171,5 +154,87 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
+    SevereCough:
+      collection: MaleSevereCough
   params:
     variation: 0.125
+
+- type: emoteSounds
+  id: XenoHumanoid
+  sound:
+    collection: HumanoidXenoScreams
+  params:
+    variation: 0.125
+
+- type: emoteSounds
+  id: Predator
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: PredatorScreams
+    Sigh:
+      collection: PredatorSigh
+    Laugh:
+      collection: PredatorLaugh
+
+- type: emoteSounds
+  id: Reaper
+  sound:
+    path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
+    params:
+      volume: -2
+
+- type: emoteSounds
+  id: ClownGoblin
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: ClownGoblinScream
+
+- type: emoteSounds
+  id: UnisexResomi
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_Sunrise/Voice/Resomi/resomi_scream.ogg
+    Laugh:
+      collection: ResomiLaugh
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      path: /Audio/_Sunrise/Voice/Resomi/resomi_whistle.ogg
+    Chirp:
+      collection: ResomiChirp
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      path: /Audio/_Sunrise/Voice/Resomi/resomi_cry.ogg
+    Cough:
+      collection: FemaleCoughs
+    Yawn:
+      collection: FemaleYawn
+    Trill:
+      collection: ResomiTrills
+    Scree:
+      collection: ResomiScrees
+    Call:
+      collection: ResomiCalls
+    Squawk:
+      collection: ResomiSquawk
+    SevereCough:
+      collection: FemaleSevereCough
+    Growl:
+      collection: FelinidGrowls
+    Hisses:
+      collection: FelinidHisses

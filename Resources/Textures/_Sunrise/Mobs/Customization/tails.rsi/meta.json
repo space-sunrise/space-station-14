@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tail_curved",
+      "directions": 4
+    },
+    {
+      "name": "tail_curved2",
+      "directions": 4
+    },
+    {
+      "name": "tail_flexible",
+      "directions": 4
+    },
+    {
+      "name": "tail_flexible2",
+      "directions": 4
+    },
+    {
+      "name": "tail_ridge",
+      "directions": 4
+    },
+    {
+      "name": "tail_ridge2",
+      "directions": 4
+    },
+    {
+      "name": "tail_ridge3",
+      "directions": 4
+    },
+    {
+      "name": "tail_spiky",
+      "directions": 4
+    },
+    {
+      "name": "tail_spiky2",
+      "directions": 4
+    },
+    {
+      "name": "tail_spike",
+      "directions": 4
+    },
+    {
+      "name": "tail_spike2",
+      "directions": 4
+    },
+    {
+      "name": "tail_big",
+      "directions": 4
+    },
+    {
+      "name": "tail_big2",
+      "directions": 4
+    },
+    {
+      "name": "tail_big_spike",
+      "directions": 4
+    }
+  ]
+}

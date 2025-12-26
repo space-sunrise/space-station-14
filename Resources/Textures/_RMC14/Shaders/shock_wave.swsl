@@ -1,0 +1,40 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp vec2 renderScale;
+uniform lowp int count;
+uniform highp vec2[10] position;
+uniform highp float[10] sharpness;
+uniform highp float[10] width;
+uniform highp float[10] falloffPower;
+uniform highp float[10] time;
+
+void fragment() {
+    highp vec2 coord = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp float ratio = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x * 0.6;
+
+    highp vec2 totalOffset = vec2(0.0);
+
+    for (int i = 0; i < count; ++i) {
+        highp vec2 WaveCentre = position[i];
+
+        highp float Dist = distance(
+            vec2(coord.x, coord.y * ratio),
+            vec2(WaveCentre.x, WaveCentre.y * ratio)
+        );
+
+        highp float CurrentTime = time[i];
+
+        if (Dist <= (CurrentTime + 0.1) && Dist >= (CurrentTime - 0.1)) {
+            highp float Diff = Dist - CurrentTime;
+            highp float ScaleDiff = 1.0 - pow(abs(Diff * sharpness[i]), width[i]);
+            highp float DiffTime = Diff * ScaleDiff;
+            highp vec2 DiffTexCoord = normalize(coord - WaveCentre);
+
+            totalOffset += (DiffTexCoord * DiffTime) / (CurrentTime * Dist * falloffPower[i]);
+        }
+    }
+
+    coord += totalOffset;
+
+    highp vec4 Color = texture(SCREEN_TEXTURE, coord);
+    COLOR = Color;
+}

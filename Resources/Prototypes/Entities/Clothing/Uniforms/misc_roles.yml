@@ -8,6 +8,13 @@
     sprite: Clothing/Uniforms/Shorts/Color/red.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Shorts/Color/red.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - ClownSuit
+    - NudeTop # INTERACTIONS
+    - WhitelistChameleon
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformBase

@@ -1,5 +1,4 @@
-using Content.Shared.Speech;
-using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.VoiceMask;
 
@@ -7,17 +6,6 @@ namespace Content.Server.VoiceMask;
 public sealed partial class VoiceMaskerComponent : Component
 {
     [DataField]
-    public string LastSetName = "Unknown";
-
-    [DataField]
-    public ProtoId<SpeechVerbPrototype>? LastSpeechVerb;
-
-    [DataField]
-    public string? LastSetVoice; // Sunrise-TTS
-
-    [DataField]
-    public EntProtoId Action = "ActionChangeVoiceMask";
-
-    [DataField]
-    public EntityUid? ActionEntity;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string VoiceId = SharedHumanoidAppearanceSystem.DefaultVoice;
 }

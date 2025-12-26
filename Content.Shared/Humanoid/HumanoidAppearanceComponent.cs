@@ -1,6 +1,9 @@
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Robust.Shared.Enums;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -60,17 +63,24 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public Color SkinColor { get; set; } = Color.FromHex("#C0967F");
 
     /// <summary>
-    ///     Visual layers currently hidden. This will affect the base sprite
-    ///     on this humanoid layer, and any markings that sit above it.
+    ///     A map of the visual layers currently hidden to the equipment
+    ///     slots that are currently hiding them. This will affect the base
+    ///     sprite on this humanoid layer, and any markings that sit above it.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HashSet<HumanoidVisualLayers> HiddenLayers = new();
+    public Dictionary<HumanoidVisualLayers, SlotFlags> HiddenLayers = new();
 
     [DataField, AutoNetworkedField]
     public Sex Sex = Sex.Male;
 
     [DataField, AutoNetworkedField]
     public Color EyeColor = Color.Brown;
+
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public float Width = 1f; // Sunrise
+
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public float Height = 1f; // Sunrise
 
     /// <summary>
     ///     Hair color of this humanoid. Used to avoid looping through all markings
@@ -94,6 +104,72 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField("voice")]
     public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
     // Sunrise-TTS-End
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<BodyTypePrototype> BodyType { get; set; } = SharedHumanoidAppearanceSystem.DefaultBodyType;
+
+    /// <summary>
+    ///     The displacement maps that will be applied to specific layers of the humanoid.
+    /// </summary>
+    [DataField]
+    public Dictionary<HumanoidVisualLayers, DisplacementData> MarkingsDisplacement = new();
+
+    /// <summary>
+    ///     Body type specific displacement maps for markings. Format: "bodytype" -> layer -> DisplacementData
+    /// </summary>
+    [DataField]
+    public Dictionary<string, Dictionary<HumanoidVisualLayers, DisplacementData>> BodyTypeMarkingsDisplacement = new();
+
+    /// <summary>
+    ///     Sex specific displacement maps for markings. Format: sex -> layer -> DisplacementData
+    /// </summary>
+    [DataField]
+    public Dictionary<Sex, Dictionary<HumanoidVisualLayers, DisplacementData>> SexMarkingsDisplacement = new();
+
+    /// <summary>
+    ///     Body type and sex specific displacement maps for markings. Format: "bodytype" -> sex -> layer -> DisplacementData
+    /// </summary>
+    [DataField]
+    public Dictionary<string, Dictionary<Sex, Dictionary<HumanoidVisualLayers, DisplacementData>>> BodyTypeSexMarkingsDisplacement = new();
+
+    //Sunrise start Hair/Fur gradient settings (client-applied shader parameters)
+    [DataField, AutoNetworkedField]
+    public bool HairGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color HairGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int HairGradientDirection = 0;
+
+    [DataField, AutoNetworkedField]
+    public bool FacialHairGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color FacialHairGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int FacialHairGradientDirection = 0; //Sunrise end
+
+    // Sunrise start Global gradient for all markings (except skin/base layers)
+    [DataField, AutoNetworkedField]
+    public bool AllMarkingsGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color AllMarkingsGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int AllMarkingsGradientDirection = 0;
+    // Sunrise end
 }
 
 [DataDefinition]

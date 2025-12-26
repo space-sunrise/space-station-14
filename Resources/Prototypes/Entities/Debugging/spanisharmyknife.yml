@@ -4,10 +4,8 @@
   id: ToolDebug
   description: The pain of using this is almost too great to bear.
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Sprite
     sprite: Objects/Tools/debug.rsi
     state: icon
@@ -22,8 +20,6 @@
         Slash: 10
   - type: ToolTileCompatible
   - type: Tool
-    qualities:
-      - Prying
   - type: Prying
   - type: MultipleTool
     statusShowBehavior: true

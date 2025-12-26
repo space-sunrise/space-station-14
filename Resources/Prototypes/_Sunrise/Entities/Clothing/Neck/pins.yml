@@ -13,6 +13,12 @@
     clothingVisuals:
       neck:
       - state: comm-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -29,6 +35,12 @@
     clothingVisuals:
       neck:
       - state: donk-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -45,6 +57,12 @@
     clothingVisuals:
       neck:
       - state: earth-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -61,6 +79,12 @@
     clothingVisuals:
       neck:
       - state: logistika-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -77,6 +101,12 @@
     clothingVisuals:
       neck:
       - state: med-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -93,6 +123,12 @@
     clothingVisuals:
       neck:
       - state: nakamura-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -109,6 +145,12 @@
     clothingVisuals:
       neck:
       - state: nano-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -125,6 +167,12 @@
     clothingVisuals:
       neck:
       - state: sind-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingNeckPinBase
@@ -141,3 +189,75 @@
     clothingVisuals:
       neck:
       - state: vit-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckReedIndustriesPin
+  name: reed industries pin
+  description: The pin of corporation Reed Industries.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/reedindustriespin.rsi
+    layers:
+    - state: reedpin
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/reedindustriespin.rsi
+    clothingVisuals:
+      neck:
+      - state: reedpin-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckPlanetPrisonLockdownPin
+  name: lockdown pin
+  description: The pin of the lifelong Lockdown.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    layers:
+    - state: lockdown
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    clothingVisuals:
+      neck:
+      - state: lockdown-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckPlanetPrisonCellblockPin
+  name: cellblock pin
+  description: The pin of the forgotten cellblock.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    layers:
+    - state: cellblock
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/planet_prison_neck.rsi
+    clothingVisuals:
+      neck:
+      - state: cellblock-equipped
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck # INTERACTIONS
+  # SUNRISE EDIT

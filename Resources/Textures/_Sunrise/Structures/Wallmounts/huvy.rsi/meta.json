@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Huvy",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "bar"
+        },
+        {
+            "name": "botanyfood"
+        },
+        {
+            "name": "breadlies"
+        },
+        {
+            "name": "donk"
+        },
+        {
+            "name": "eatmeat"
+        },
+        {
+            "name": "morebread"
+        },
+        {
+            "name": "pie"
+        },
+        {
+            "name": "pizza"
+        }
+    ]
+}

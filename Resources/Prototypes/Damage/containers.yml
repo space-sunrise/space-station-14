@@ -31,6 +31,10 @@
   supportedTypes:
     - Heat
     - Shock
+    - Caustic # Sunrise-Edit
+    - Structural # Sunrise-Edit
+    - Mangleness # Sunrise-Edit
+
 
 - type: damageContainer
   id: Shield
@@ -52,3 +56,23 @@
   id: ShadowHaze
   supportedTypes:
     - Heat
+
+- type: damageContainer
+  id: ManifestedSpirit
+  supportedGroups:
+    - Metaphysical
+  # - Brute # Sunrise-Edit
+  supportedTypes:
+    - Heat
+    - Shock
+    - Caustic
+
+- type: damageContainer
+  id: BiologicalMetaphysical
+  supportedGroups:
+  - Brute
+  - Burn
+  - Toxin
+  - Airloss
+  - Genetic
+  - Metaphysical

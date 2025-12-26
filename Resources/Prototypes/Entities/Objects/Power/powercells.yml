@@ -1,7 +1,7 @@
 - type: entity
   id: BasePowerCell
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   components:
   - type: Item
     storedRotation: -90
@@ -30,12 +30,16 @@
   - type: Tag
     tags:
       - PowerCell
-  - type: Appearance
-  - type: PowerCellVisuals
   - type: Riggable
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
-    fireCost: 50
+  - type: Appearance
+  - type: BatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: true, state: o2}
+          Neither: {visible: true, state: o1}
+          Empty: {visible: false}
 
 - type: entity
   name: potato battery
@@ -95,6 +99,16 @@
     startingCharge: 0
 
 - type: entity
+  parent: PowerCellSmall
+  id: PowerCellSmallNuclear
+  name: small-capacity nuclear power cell
+  description: A self rechargeable power cell, designed for fast recharge rate at the expense of capacity.
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 36 # 10 seconds to recharge
+    autoRechargePauseTime: 30
+
+- type: entity
   name: medium-capacity power cell
   description: A rechargeable power cell. This is the popular and reliable version.
   id: PowerCellMedium
@@ -146,6 +160,12 @@
   - type: Battery
     maxCharge: 1080
     startingCharge: 1080
+  # Sunrise added start - для вайтлиста
+  - type: Tag
+    tags:
+    - PowerCellHigh
+    - PowerCell
+  # Sunrise added end
 
 - type: entity
   id: PowerCellHighPrinted
@@ -166,7 +186,7 @@
 
 - type: entity
   name: hyper-capacity power cell
-  description: A rechargeable standardized power cell. This one looks like a rare and powerful prototype.
+  description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, boasting 66% more capacity than its predecessor.
   id: PowerCellHyper
   suffix: Full
   parent: BasePowerCell
@@ -217,7 +237,6 @@
     maxCharge: 720
     startingCharge: 720
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
 
 - type: entity
@@ -253,7 +272,6 @@
       maxCharge: 1200
       startingCharge: 1200
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 40
 
 # Power cage (big heavy power cell for big devices)
@@ -278,13 +296,11 @@
   - type: Tag
     tags:
       - PowerCage
-  - type: HitscanBatteryAmmoProvider
-    proto: RedShuttleLaser
-    fireCost: 150
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
+  - type: EmpImmune # Мехи теперь имеют прямой урон от ЭМИ.
 
 - type: entity
   id: PowerCageSmall
@@ -367,7 +383,7 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: small
+      state: medium
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
@@ -384,10 +400,48 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: small
+      state: high
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
       visible: false
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  id: PowerCageSyndicate
+  parent: BasePowerCage
+  name: syndicate power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: syndicate
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 12400
+    startingCharge: 12400
+  - type: EmpImmune
+
+- type: entity
+  id: PowerCageERT
+  parent: BasePowerCage
+  name: NanoTrasen combat power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels. Immune to EMP.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: nanotrasen
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 12400
+    startingCharge: 12400
+  - type: EmpImmune

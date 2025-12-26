@@ -1,9 +1,12 @@
 - type: entity
   name: nuclear authentication disk
-  parent: BaseItem
+  parent: [BaseItem, BaseGrandTheftContraband, DiskSounds] # Sunrise
   id: NukeDisk
   description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from nanotrasen reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
   components:
+  # Sunrise added start
+  - type: ArtifactFunnyTarget
+  # Sunrise added end
   - type: NukeDisk
   - type: SpecialRespawn
     prototype: NukeDisk
@@ -17,15 +20,19 @@
   - type: WarpPoint
     follow: true
     location: nuke disk
+    blacklist:
+      tags:
+      - GhostOnlyWarp
   - type: Tag
     tags:
     - HighRiskItem
+    - GhostOnlyWarp
   - type: StealTarget
     stealGroup: NukeDisk
 
 - type: entity
   name: nuclear authentication disk
-  parent: BaseItem
+  parent: [BaseItem, BaseGrandTheftContraband, DiskSounds] # Sunrise
   id: NukeDiskFake
   suffix: Fake
   description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from nanotrasen reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
@@ -35,3 +42,6 @@
     state: icon
   - type: StaticPrice
     price: 1 # it's worth even less than normal items. Perfection.
+  - type: Tag
+    tags:
+    - FakeNukeDisk

@@ -1,13 +1,21 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Access.Systems;
 using Content.Server.Forensics;
-using Content.Server.GameTicking;
+using Content.Shared.Access.Components;
+using Content.Shared.Forensics.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using System.Linq;
+
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -35,12 +43,15 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
+        SubscribeLocalEvent<EntityRenamedEvent>(OnRename);
     }
 
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent args)
@@ -51,6 +62,31 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
     }
 
+    private void OnRename(ref EntityRenamedEvent ev)
+    {
+        // When a player gets renamed their card gets changed to match.
+        // Unfortunately this means that an event is called for it as well, and since TryFindIdCard will succeed if the
+        // given entity is a card and the card itself is the key the record will be mistakenly renamed to the card's name
+        // if we don't return early.
+        // We also do not include the PDA itself being renamed, as that triggers the same event (e.g. for chameleon PDAs).
+        if (HasComp<IdCardComponent>(ev.Uid) ||  HasComp<PdaComponent>(ev.Uid))
+            return;
+
+        if (_idCard.TryFindIdCard(ev.Uid, out var idCard))
+        {
+            if (TryComp(idCard, out StationRecordKeyStorageComponent? keyStorage)
+                && keyStorage.Key is {} key)
+            {
+                if (TryGetRecord<GeneralStationRecord>(key, out var generalRecord))
+                {
+                    generalRecord.Name = ev.NewName;
+                }
+
+                Synchronize(key);
+            }
+        }
+    }
+
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
         string? jobId, StationRecordsComponent records)
     {
@@ -59,13 +95,22 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             || !_prototypeManager.HasIndex<JobPrototype>(jobId))
             return;
 
+        // Sunrise-Start
+        // Чтобы борги отображались в манифесте экипажа.
+        var name = profile.Name;
         if (!_inventory.TryGetSlotEntity(player, "id", out var idUid))
-            return;
+        {
+            idUid = player;
+            name = MetaData(player).EntityName;
+        }
+
+        var silicon = HasComp<BorgChassisComponent>(player) || HasComp<StationAiHeldComponent>(player);
+        // Sunrise-End
 
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+        CreateGeneralRecord(station, idUid, name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records, silicon); // Sunrise-Edit
     }
 
 
@@ -107,7 +152,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         string? mobFingerprint,
         string? dna,
         HumanoidCharacterProfile profile,
-        StationRecordsComponent records)
+        StationRecordsComponent records,
+        bool silicon = false) // Sunrise-Edit
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
             throw new ArgumentException($"Invalid job prototype ID: {jobId}");
@@ -131,7 +177,9 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             Gender = gender,
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
-            DNA = dna
+            DNA = dna,
+            Silicon = silicon, // Sunrise-Edit
+            HumanoidProfile = profile, // Sunrise edit
         };
 
         var key = AddRecordEntry(station, record);
@@ -184,43 +232,31 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     }
 
     /// <summary>
-    ///     Try to get a record from this station's record entries,
-    ///     from the provided station record key. Will always return
-    ///     null if the key does not match the station.
+    /// Gets a random record from the station's record entries.
     /// </summary>
-    /// <param name="key">Station and key to try and index from the record set.</param>
+    /// <param name="ent">The EntityId of the station from which you want to get the record.</param>
     /// <param name="entry">The resulting entry.</param>
-    /// <param name="records">Station record component.</param>
     /// <typeparam name="T">Type to get from the record set.</typeparam>
-    /// <returns>True if the record was obtained, false otherwise.</returns>
-    public bool TryGetRecord<T>(StationRecordKey key, [NotNullWhen(true)] out T? entry, StationRecordsComponent? records = null)
+    /// <returns>True if a record was obtained. False otherwise.</returns>
+    public bool TryGetRandomRecord<T>(Entity<StationRecordsComponent?> ent, [NotNullWhen(true)] out T? entry, HashSet<uint> ignoredIds) // Sunrise-Edit
     {
         entry = default;
 
-        if (!Resolve(key.OriginStation, ref records))
+        if (!Resolve(ent.Owner, ref ent.Comp))
             return false;
 
-        return records.Records.TryGetRecordEntry(key.Id, out entry);
-    }
+        // Sunrise-Start
+        var keys = ent.Comp.Records.Keys;
+        if (keys.Count == 0)
+            return false;
 
-    /// <summary>
-    /// Returns an id if a record with the same name exists.
-    /// </summary>
-    /// <remarks>
-    /// Linear search so O(n) time complexity.
-    /// </remarks>
-    public uint? GetRecordByName(EntityUid station, string name, StationRecordsComponent? records = null)
-    {
-        if (!Resolve(station, ref records, false))
-            return null;
+        var filtered = keys.Where(id => !ignoredIds.Contains(id)).ToList();
+        if (!filtered.Any())
+            return false;
+        // Sunrise-End
 
-        foreach (var (id, record) in GetRecordsOfType<GeneralStationRecord>(station, records))
-        {
-            if (record.Name == name)
-                return id;
-        }
-
-        return null;
+        var key = _random.Pick(filtered); // Sunrise-Edit
+        return ent.Comp.Records.TryGetRecordEntry(key, out entry);
     }
 
     /// <summary>
@@ -232,21 +268,6 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
            return string.Empty;
 
         return record.Name;
-    }
-
-    /// <summary>
-    ///     Gets all records of a specific type from a station.
-    /// </summary>
-    /// <param name="station">The station to get the records from.</param>
-    /// <param name="records">Station records component.</param>
-    /// <typeparam name="T">Type of record to fetch</typeparam>
-    /// <returns>Enumerable of pairs with a station record key, and the entry in question of type T.</returns>
-    public IEnumerable<(uint, T)> GetRecordsOfType<T>(EntityUid station, StationRecordsComponent? records = null)
-    {
-        if (!Resolve(station, ref records))
-            return Array.Empty<(uint, T)>();
-
-        return records.Records.GetRecordsOfType<T>();
     }
 
     /// <summary>
@@ -339,10 +360,15 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         {
             StationRecordFilterType.Name =>
                 !someRecord.Name.ToLower().Contains(filterLowerCaseValue),
+            StationRecordFilterType.Job =>
+                !someRecord.JobTitle.ToLower().Contains(filterLowerCaseValue),
+            StationRecordFilterType.Species =>
+                !someRecord.Species.ToLower().Contains(filterLowerCaseValue),
             StationRecordFilterType.Prints => someRecord.Fingerprint != null
                 && IsFilterWithSomeCodeValue(someRecord.Fingerprint, filterLowerCaseValue),
             StationRecordFilterType.DNA => someRecord.DNA != null
                 && IsFilterWithSomeCodeValue(someRecord.DNA, filterLowerCaseValue),
+            _ => throw new IndexOutOfRangeException(nameof(filter.Type)),
         };
     }
 

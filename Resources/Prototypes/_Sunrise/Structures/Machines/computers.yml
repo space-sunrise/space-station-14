@@ -1,0 +1,551 @@
+- type: entity
+  parent: BaseComputer
+  id: BaseComputerSunrise
+  abstract: true
+  name: computer
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/computers.rsi
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: icarus
+    - map: [ "computerLayerKeys" ]
+      state: icarus_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+
+- type: entity
+  id: ComputerShipyard
+  parent: BaseComputerSunrise
+  name: shipyard console
+  description: Used to purchase and sell shuttles
+  components:
+  #- type: ShipyardConsole
+  #- type: AccessReader
+  #  access:
+  #  - [ Captain ]
+  #- type: ActivatableUI
+  #  key: enum.ShipyardConsoleUiKey.Shipyard
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.ShipyardConsoleUiKey.Shipyard
+  #    type: ShipyardConsoleBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: tech_key
+
+- type: entity
+  id: ComputerSaleConsole
+  parent: ComputerPalletConsole
+  name: sale console
+  suffix: Finance
+  description: Used to sell goods from linked teleport pods. Don't try to unscrew me, idiot.
+  components:
+  #- type: CargoPalletConsole
+  #  withdrawCash: true
+  #- type: ActivatableUI
+  #  key: enum.CargoPalletConsoleUiKey.Sale
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.CargoPalletConsoleUiKey.Sale
+  #    type: CargoPalletConsoleBoundUserInterface
+  - type: Computer
+    board: ComputerSaleConsoleCircuitboard
+
+- type: entity
+  id: ComputeStationBankConsole
+  parent: BaseComputerSunrise
+  name: station bank console
+  suffix: Finance
+  description: Here you can withdraw all the money from the station's account and fly to the Maldives or find out when the grandfathers will come for your heads. Don't try to unscrew me, idiot.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: station_account
+    - map: ["computerLayerKeys"]
+      state: station_account_key
+  #- type: StationBankConsole
+  #- type: ActivatableUI
+  #  key: enum.StationBankConsoleUiKey.Bank
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.StationBankConsoleUiKey.Bank
+  #    type: StationBankConsoleBoundUserInterface
+  - type: Computer
+    board: StationBankComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Captain"], ["HeadOfPersonnel"]]
+
+- type: entity
+  id: ComputeCargoSalaryConsole
+  parent: BaseComputerSunrise
+  name: cargo salary console
+  suffix: Finance
+  description: Here the captain can set the maximum salary for himself and the minimum for everyone else, here it is, totalitarianism. Don't try to unscrew me, idiot.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: salary
+    - map: ["computerLayerKeys"]
+      state: salary_key
+  #- type: CargoSalaryConsole
+  #- type: ActivatableUI
+  #  key: enum.CargoSalaryConsoleUiKey.Salary
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.CargoSalaryConsoleUiKey.Salary
+  #    type: CargoSalaryConsoleBoundUserInterface
+  - type: Computer
+    board: CargoSalaryComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Captain"], ["HeadOfPersonnel"]]
+
+- type: entity
+  id: ComputerCargoFinanceConsole
+  parent: BaseComputerSunrise
+  name: cargo finance console
+  suffix: Finance
+  description: Here you can see the station's income and current balance. Don't try to unscrew me, idiot.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: financial_accounting
+    - map: ["computerLayerKeys"]
+      state: financial_accounting_key
+  #- type: CargoFinanceConsole
+  #- type: ActivatableUI
+  #  key: enum.CargoFinanceConsoleUiKey.Finance
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.CargoFinanceConsoleUiKey.Finance
+  #    type: CargoFinanceConsoleBoundUserInterface
+  - type: Computer
+    board: CargoFinanceComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Captain"], ["HeadOfPersonnel"]]
+
+- type: entity
+  id: ComputerBountySaleConsole
+  parent: ComputerPalletConsole
+  name: bounty sale console
+  suffix: Finance
+  description: Here you can send requested goods
+  components:
+  - type: CargoPalletConsole
+    #withdrawCash: false
+    #cargoSource: Bounty
+    #tag: Intended only for order dispatch
+    #bounty: true
+  - type: Computer
+    board: ComputerBountySaleConsoleCircuitboard
+
+- type: entity
+  id: ComputerCallErtConsole
+  parent: BaseComputerSunrise
+  name: ERT call console
+  suffix: ERTCALL
+  description:
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  #- type: CallErtConsole
+  #- type: ActivatableUI
+  #  key: enum.CallErtConsoleUiKey.Key
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.CallErtConsoleUiKey.Key
+  #    type: CallErtConsoleBoundUserInterface
+  - type: Computer
+    board: CallErtComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Captain"], ["HeadOfPersonnel"]]
+
+- type: entity
+  id: ComputerApproveErtConsole
+  parent: BaseComputerSunrise
+  name: ERT approve console
+  suffix: ERTCALL
+  description:
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  #- type: ApproveErtConsole
+  #- type: ActivatableUI
+  #  key: enum.ApproveErtConsoleUiKey.Key
+  #- type: UserInterface
+  #  interfaces:
+  #  - key: enum.ApproveErtConsoleUiKey.Key
+  #    type: ApproveErtConsoleBoundUserInterface
+  - type: Computer
+    board: ApproveErtComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Captain"], ["HeadOfPersonnel"]]
+
+- type: entity
+  parent: BaseComputerSunrise
+  id: ComputerFineRecords
+  name: fine records computer
+  suffix: Finance, Security
+  description: This can be used to check fines and set them up for criminal scum. Only security can modify them.
+  components:
+  - type: CriminalRecordsConsole #Replace with Fine Console Component
+  - type: UserInterface
+    interfaces:
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CriminalRecordsConsoleKey.Key
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: forfeiture
+    - map: ["computerLayerKeys"]
+      state: forfeiture_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#8c381f"
+  - type: Computer
+    board: ComputerFineRecordsCircuitboard
+  - type: AccessReader
+    access: [["Security"]] #Warder\HoS only Magistrate?
+
+- type: entity
+  parent: BaseComputerSunrise
+  id: ComputerContrabandSale
+  name: contraband exchanger computer
+  suffix: Finance, Security
+  description: This can be used to validate contraband and exchange it to the station account. Only security can modify them.
+  components:
+  - type: CriminalRecordsConsole #Replace with Fine Console Component
+  - type: UserInterface
+    interfaces:
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CriminalRecordsConsoleKey.Key
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband_sell
+    - map: ["computerLayerKeys"]
+      state: contraband_sell_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#9e1414"
+  - type: Computer
+    board: ComputerContrabandSaleCircuitboard
+  - type: AccessReader
+    access: [["Security"]] #Warder\HoS only
+
+- type: entity
+  id: ComputerServiceSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Service
+  name: service sale console
+  description:
+  components:
+  - type: CargoPalletConsole
+    #tag: #Service sale
+    #whitelist:
+    #  components:
+    #  - Food
+
+- type: entity
+  id: ComputerSecuritySaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Security
+  name: security sale console
+  description:
+  components:
+  - type: CargoPalletConsole
+#    tag: #Security sale
+#    whitelist:
+#      components:
+#      - Gun
+
+- type: entity
+  id: ComputerMedicalSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Medical
+  name: medical sale console
+  description:
+  components:
+  - type: CargoPalletConsole
+#    tag: #Medical sale
+#    whitelist:
+#      components:
+#      - Healing
+
+- type: entity
+  id: ComputerMiningSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Salvage
+  name: mining sale console
+  description:
+  components:
+  - type: CargoPalletConsole
+#    tag: #Mining sale
+#    whitelist:
+#      components:
+#      - Material
+
+- type: entity
+  id: ComputerScienceSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, RND
+  name: science sale console
+  description:
+  components:
+  - type: CargoPalletConsole
+#    tag: #Science sale
+#    whitelist:
+#      components:
+#      - TechnologyDisk
+#      - MachineBoard
+#      - MachinePart
+#      - PowerCell
+
+- type: entity
+  parent: ComputerComms
+  id: CentcomComputerComms
+  name: centcom communications computer
+  components:
+  - type: AccessReader
+    access: [[ "Command" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-centcom
+    global: true
+    announceVoice: NecoArcTwo
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleCentComm
+  name: RCC shuttle console
+  description: Console for remote control of the Central Command Representative's shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: DroneConsole
+    components:
+    - type: CentCommShuttle
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: CentCommShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttlePrison
+  name: prison's shuttle console
+  description: Console for remote control of the prison's shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: DroneConsole
+    components:
+    - type: PrisonShuttle
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: PrisonShuttleConsoleCircuitboard
+
+- type: entity
+  parent: ComputerComms
+  id: PrisonComputerComms
+  name: prison communications computer
+  description: A console for controlling announcements in a space prison.
+  components:
+  - type: AccessReader
+    access: [[ "Security" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-prison
+    canShuttle: false
+    announceVoice: Voljin
+    global: false
+  - type: Computer
+    board: PrisonCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3556cc"
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleSecurity
+  name: security shuttle console
+  description: Console for remote control of the security shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: DroneConsole
+    components:
+    - type: SecurityShuttle
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: SecurityShuttleConsoleCircuitboard
+  - type: Anchorable
+
+- type: entity
+  parent: BaseComputer
+  id: CommandConsoleComputer
+  name: command line computer
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: command
+    - map: [ "computerLayerKeys" ]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: Computer
+    board: CommandConsoleCircuitboard
+  - type: ActivatableUI
+    key: enum.CommandConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CommandConsoleUiKey.Key:
+        type: CommandConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: CommandConsole

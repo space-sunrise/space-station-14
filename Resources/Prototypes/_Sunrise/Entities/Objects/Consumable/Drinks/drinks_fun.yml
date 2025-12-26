@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseSqueezeBottle
+  id: DrinkInc
+  name: inc tube
+  description:
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/lube-tube.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Inc
+          Quantity: 30

@@ -8,11 +8,18 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.Vote;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Ghost;
+using Content.Shared.Interaction;
+using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -21,7 +28,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
 
 namespace Content.Server.Voting.Managers
 {
@@ -38,21 +44,29 @@ namespace Content.Server.Voting.Managers
         [Dependency] private readonly IGameMapManager _gameMapManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly ISharedPlaytimeManager _playtimeManager = default!;
 
         private int _nextVoteId = 1;
 
         private readonly Dictionary<int, VoteReg> _votes = new();
         private readonly Dictionary<int, VoteHandle> _voteHandles = new();
 
+        private readonly List<ICommonSession> _ignoredMusicClients = [];
+
         private readonly Dictionary<StandardVoteType, TimeSpan> _standardVoteTimeout = new();
         private readonly Dictionary<NetUserId, TimeSpan> _voteTimeout = new();
         private readonly HashSet<ICommonSession> _playerCanCallVoteDirty = new();
         private readonly StandardVoteType[] _standardVoteTypeValues = Enum.GetValues<StandardVoteType>();
 
+        private readonly SoundSpecifier _voteAudio = new SoundPathSpecifier("/Audio/_Sunrise/voting.ogg");
+        private EntityUid? _voteAudioStream;
+
         public void Initialize()
         {
             _netManager.RegisterNetMessage<MsgVoteData>();
             _netManager.RegisterNetMessage<MsgVoteCanCall>();
+            _netManager.RegisterNetMessage<RequestVoteMusicDisableOptionMessage>();
+            _netManager.RegisterNetMessage<VoteMusicDisableOptionMessage>(OnClientVoteMusicDisableOption);
             _netManager.RegisterNetMessage<MsgVoteMenu>(ReceiveVoteMenu);
 
             _playerManager.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
@@ -63,13 +77,23 @@ namespace Content.Server.Voting.Managers
                 DirtyCanCallVoteAll();
             });
 
-            foreach (var kvp in _voteTypesToEnableCVars)
+            foreach (var kvp in VoteTypesToEnableCVars)
             {
                 _cfg.OnValueChanged(kvp.Value, _ =>
                 {
                     DirtyCanCallVoteAll();
                 });
             }
+        }
+
+        private async void OnClientVoteMusicDisableOption(VoteMusicDisableOptionMessage message)
+        {
+            var sender = message.MsgChannel;
+            var session = _playerManager.GetSessionByChannel(sender);
+            if (message.Disable)
+                _ignoredMusicClients.Add(session);
+            else
+                _ignoredMusicClients.Remove(session);
         }
 
         private void ReceiveVoteMenu(MsgVoteMenu message)
@@ -96,6 +120,9 @@ namespace Content.Server.Voting.Managers
                 }
 
                 DirtyCanCallVote(e.Session);
+                var message = new RequestVoteMusicDisableOptionMessage();
+                _netManager.ServerSendMessage(message, e.Session.Channel);
+
             }
             else if (e.NewStatus == SessionStatus.Disconnected)
             {
@@ -206,10 +233,34 @@ namespace Content.Server.Voting.Managers
 
             var entries = options.Options.Select(o => new VoteEntry(o.data, o.text)).ToArray();
 
+            if (_voteAudioStream != null && _entityManager.EntityExists(_voteAudioStream))
+            {
+                _entityManager.System<SharedAudioSystem>().Stop(_voteAudioStream);
+            }
+
+            var audio = _entityManager.System<SharedAudioSystem>();
+
+            _voteAudioStream = audio.PlayGlobal(
+                audio.ResolveSound(_voteAudio),
+                Filter.Broadcast().RemovePlayers(_ignoredMusicClients),
+                true,
+                AudioParams.Default.WithLoop(true).WithVolume(-10f))!.Value.Entity;
+
+            // Sunrise-Start
+            if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
+            {
+                if (_cfg.GetCVar(SunriseCCVars.VotePause))
+                    _entityManager.System<GameTicker>().PauseStart(true);
+                if (_cfg.GetCVar(SunriseCCVars.VoteDisableOOC))
+                    _cfg.SetCVar(CCVars.OocEnabled, false);
+            }
+            // Sunrise-End
+
             var start = _timing.RealTime;
             var end = start + options.Duration;
             var reg = new VoteReg(id, entries, options.Title, options.InitiatorText,
-                options.InitiatorPlayer, start, end);
+                options.InitiatorPlayer, start, end, options.VoterEligibility, options.DisplayVotes, options.DisplayVotesAdmins, // Sunrise-Edit
+                options.TargetEntity);
 
             var handle = new VoteHandle(this, reg);
 
@@ -245,12 +296,24 @@ namespace Content.Server.Voting.Managers
             msg.VoteId = v.Id;
             msg.VoteActive = !v.Finished;
 
+            if (!CheckVoterEligibility(player, v.VoterEligibility))
+            {
+                msg.VoteActive = false;
+                player.Channel.SendMessage(msg);
+                return;
+            }
+
             if (!v.Finished)
             {
                 msg.VoteTitle = v.Title;
                 msg.VoteInitiator = v.InitiatorText;
                 msg.StartTime = v.StartTime;
                 msg.EndTime = v.EndTime;
+
+                if (v.TargetEntity != null)
+                {
+                    msg.TargetEntity = v.TargetEntity.Value.Id;
+                }
             }
 
             if (v.CastVotes.TryGetValue(player, out var cast))
@@ -266,11 +329,17 @@ namespace Content.Server.Voting.Managers
                 }
             }
 
+            // Admin always see the vote count, even if the vote is set to hide it.
+            if (v.DisplayVotes || _adminMgr.HasAdminFlag(player, AdminFlags.Moderator) && v.DisplayVotesAdmins) // Sunrise-Edit
+            {
+                msg.DisplayVotes = true;
+            }
+
             msg.Options = new (ushort votes, string name)[v.Entries.Length];
             for (var i = 0; i < msg.Options.Length; i++)
             {
                 ref var entry = ref v.Entries[i];
-                msg.Options[i] = ((ushort) entry.Votes, entry.Text);
+                msg.Options[i] = (msg.DisplayVotes ? (ushort) entry.Votes : (ushort) 0, entry.Text);
             }
 
             player.Channel.SendMessage(msg);
@@ -326,7 +395,7 @@ namespace Content.Server.Voting.Managers
             if (!_cfg.GetCVar(CCVars.VoteEnabled))
                 return false;
             // Specific standard vote types can be disabled with cvars.
-            if (voteType != null && _voteTypesToEnableCVars.TryGetValue(voteType.Value, out var cvar) && !_cfg.GetCVar(cvar))
+            if (voteType != null && VoteTypesToEnableCVars.TryGetValue(voteType.Value, out var cvar) && !_cfg.GetCVar(cvar))
                 return false;
 
             // Cannot start vote if vote is already active (as non-admin).
@@ -362,13 +431,34 @@ namespace Content.Server.Voting.Managers
                 return;
             }
 
+            // Remove ineligible votes that somehow slipped through
+            foreach (var playerVote in v.CastVotes)
+            {
+                if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility))
+                {
+                    v.Entries[playerVote.Value].Votes -= 1;
+                    v.CastVotes.Remove(playerVote.Key);
+                }
+            }
+
             // Find winner or stalemate.
-            var winners = v.Entries
-                .GroupBy(e => e.Votes)
-                .OrderByDescending(g => g.Key)
-                .First()
-                .Select(e => e.Data)
-                .ToImmutableArray();
+            // Sunrise-Start: На случай пустых голосований
+            ImmutableArray<object> winners;
+            if (v.Entries.Any())
+            {
+                winners = v.Entries
+                    .GroupBy(e => e.Votes)
+                    .OrderByDescending(g => g.Key)
+                    .First()
+                    .Select(e => e.Data)
+                    .ToImmutableArray();
+            }
+            else
+            {
+                winners = ImmutableArray<object>.Empty;
+            }
+            // Sunrise-End
+
             // Store all votes in order for webhooks
             var voteTally = new List<int>();
             foreach(var entry in v.Entries)
@@ -378,8 +468,39 @@ namespace Content.Server.Voting.Managers
 
             v.Finished = true;
             v.Dirty = true;
-            var args = new VoteFinishedEventArgs(winners.Length == 1 ? winners[0] : null, winners, voteTally);
-            v.OnFinished?.Invoke(_voteHandles[v.Id], args);
+            // Sunrise-Start: На случай пустых голосований
+            if (_voteHandles.ContainsKey(v.Id))
+            {
+                var args = new VoteFinishedEventArgs(winners.Length == 1 ? winners[0] : null, winners, voteTally);
+                v.OnFinished?.Invoke(_voteHandles[v.Id], args);
+            }
+            else
+            {
+                Logger.Error($"Vote handle with Id {v.Id} does not exist in _voteHandles.");
+            }
+
+            var activeVotes = 0;
+            foreach (var vote in _votes)
+            {
+                if (vote.Value.Finished)
+                    continue;
+                activeVotes += 1;
+            }
+
+            if (activeVotes < 1)
+            {
+                _entityManager.System<SharedAudioSystem>().Stop(_voteAudioStream);
+                if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
+                {
+                    if (_cfg.GetCVar(SunriseCCVars.VotePause))
+                        _entityManager.System<GameTicker>().PauseStart(false);
+                    if (_cfg.GetCVar(SunriseCCVars.VoteDisableOOC))
+                        _cfg.SetCVar(CCVars.OocEnabled, true);
+                }
+            }
+
+            // Sunrise-End
+
             DirtyCanCallVoteAll();
         }
 
@@ -393,6 +514,37 @@ namespace Content.Server.Voting.Managers
             v.Dirty = true;
             v.OnCancelled?.Invoke(_voteHandles[v.Id]);
             DirtyCanCallVoteAll();
+        }
+
+        public bool CheckVoterEligibility(ICommonSession player, VoterEligibility eligibility)
+        {
+            if (eligibility == VoterEligibility.All)
+                return true;
+
+            if (eligibility == VoterEligibility.Ghost || eligibility == VoterEligibility.GhostMinimumPlaytime)
+            {
+                if (!_entityManager.TryGetComponent(player.AttachedEntity, out GhostComponent? ghostComp))
+                    return false;
+
+                if (eligibility == VoterEligibility.GhostMinimumPlaytime)
+                {
+                    var playtime = _playtimeManager.GetPlayTimes(player);
+                    if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan overallTime) || overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
+                        return false;
+
+                    if ((int)_timing.RealTime.Subtract(ghostComp.TimeOfDeath).TotalSeconds < _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime))
+                        return false;
+                }
+            }
+
+            if (eligibility == VoterEligibility.MinimumPlaytime)
+            {
+                var playtime = _playtimeManager.GetPlayTimes(player);
+                if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan overallTime) || overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
+                    return false;
+            }
+
+            return true;
         }
 
         public IEnumerable<IVoteHandle> ActiveVotes => _voteHandles.Values;
@@ -442,6 +594,10 @@ namespace Content.Server.Voting.Managers
             public readonly TimeSpan StartTime;
             public readonly TimeSpan EndTime;
             public readonly HashSet<ICommonSession> VotesDirty = new();
+            public readonly VoterEligibility VoterEligibility;
+            public readonly bool DisplayVotes;
+            public readonly bool DisplayVotesAdmins; // Sunrise-Edit
+            public readonly NetEntity? TargetEntity;
 
             public bool Cancelled;
             public bool Finished;
@@ -452,7 +608,7 @@ namespace Content.Server.Voting.Managers
             public ICommonSession? Initiator { get; }
 
             public VoteReg(int id, VoteEntry[] entries, string title, string initiatorText,
-                ICommonSession? initiator, TimeSpan start, TimeSpan end)
+                ICommonSession? initiator, TimeSpan start, TimeSpan end, VoterEligibility voterEligibility, bool displayVotes, bool displayVotesAdmins, NetEntity? targetEntity) // Sunrise-Edit
             {
                 Id = id;
                 Entries = entries;
@@ -461,6 +617,10 @@ namespace Content.Server.Voting.Managers
                 Initiator = initiator;
                 StartTime = start;
                 EndTime = end;
+                VoterEligibility = voterEligibility;
+                DisplayVotes = displayVotes;
+                DisplayVotesAdmins = displayVotesAdmins; // Sunrise-Edit
+                TargetEntity = targetEntity;
             }
         }
 
@@ -478,6 +638,14 @@ namespace Content.Server.Voting.Managers
             }
         }
 
+        public enum VoterEligibility
+        {
+            All,
+            Ghost, // Player needs to be a ghost
+            GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
+            MinimumPlaytime //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
+        }
+
         #endregion
 
         #region IVoteHandle API surface
@@ -492,6 +660,7 @@ namespace Content.Server.Voting.Managers
             public string InitiatorText => _reg.InitiatorText;
             public bool Finished => _reg.Finished;
             public bool Cancelled => _reg.Cancelled;
+            public IReadOnlyDictionary<ICommonSession, int> CastVotes => _reg.CastVotes;
 
             public IReadOnlyDictionary<object, int> VotesPerOption { get; }
 

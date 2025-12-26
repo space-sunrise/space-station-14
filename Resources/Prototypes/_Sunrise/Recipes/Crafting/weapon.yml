@@ -1,0 +1,7 @@
+- type: construction
+  id: RiotShieldStrobe
+  graph: RiotShieldStrobeConstruction
+  startNode: start
+  targetNode: shieldstrobe
+  category: construction-category-weapons
+  objectType: Item

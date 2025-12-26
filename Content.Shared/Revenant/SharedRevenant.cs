@@ -42,10 +42,6 @@ public sealed class HarvestDoAfterCancelled : EntityEventArgs
 {
 }
 
-public sealed partial class RevenantShopActionEvent : InstantActionEvent
-{
-}
-
 public sealed partial class RevenantDefileActionEvent : InstantActionEvent
 {
 }
@@ -62,6 +58,15 @@ public sealed partial class RevenantMalfunctionActionEvent : InstantActionEvent
 {
 }
 
+// Sunrise-Start
+public sealed partial class RevenantLockActionEvent : InstantActionEvent
+{
+}
+
+public sealed partial class RevenantDrainActionEvent : InstantActionEvent
+{
+}
+// Sunrise-End
 
 [NetSerializable, Serializable]
 public enum RevenantVisuals : byte
@@ -69,12 +74,4 @@ public enum RevenantVisuals : byte
     Corporeal,
     Stunned,
     Harvesting,
-}
-
-[NetSerializable, Serializable]
-public enum RevenantVisualLayers : byte
-{
-    Digit1,
-    Digit2,
-    Digit3
 }

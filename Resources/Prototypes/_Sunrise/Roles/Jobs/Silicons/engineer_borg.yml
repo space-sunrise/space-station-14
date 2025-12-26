@@ -1,0 +1,15 @@
+- type: job
+  id: EngineerBorg
+  name: job-name-engineer-borg
+  description: job-description-engineer-borg
+  playTimeTracker: JobEngineerBorg
+  icon: JobIconEngineerBorg
+  supervisors: job-supervisors-human
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 #20 hrs # Sunrise-Edit
+  canBeAntag: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgEngineerBattery
+  overrideConsoleVisibility: false
+  alwaysUseSpawner: true

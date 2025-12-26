@@ -1,0 +1,107 @@
+- type: entity
+  id: BaseCentCommShuttles
+  abstract: true
+  components:
+  - type: SpawnGridAndDockToStation
+    grids:
+    - gridPath: /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
+      priorityTag: DockCentComm
+
+- type: entity
+  id: BaseStationCentComm
+  abstract: true
+  components:
+  - type: StationCentComm
+    station: SunriseCentComm
+    shuttleWhitelist:
+      components:
+      - CentCommShuttle
+      - ErtShuttle
+
+- type: entity
+  id: BaseStationImmortal
+  abstract: true
+  components:
+  - type: StationImmortal
+
+- type: entity
+  id: BaseStationDontSelling
+  abstract: true
+  components:
+  - type: StationDontSellingGrid
+
+- type: entity
+  id: BaseStationTransitHub
+  abstract: true
+  components:
+  - type: StationTransitHub
+    map: /Maps/_Sunrise/Nonstations/transit_hub.yml
+    biomes:
+    - PlainGrasslands
+    - PlainLowDesert
+    - PlainSnow
+
+- type: entity
+  id: BaseStationGoal
+  abstract: true
+  components:
+  - type: StationGoal
+    goals:
+    - Shuttle
+    - Singularity
+    - SolarPanels
+    - Artifacts
+    - Bank
+    - Zoo
+    - MiningOutpost
+    - Tesla
+
+- type: entity
+  id: BaseStationPlanetPrison
+  abstract: true
+  components:
+  - type: PlanetPrisonStation
+    stationsModern:
+    - PlanetPrison
+    stationsOld:
+    - PlanetPrisonOld
+    biomes:
+    - PlainGrasslands
+    - PlainLowDesert
+    - PlainSnow
+    shuttleWhitelist:
+      components:
+      - SecurityShuttle
+      - PrisonShuttle
+      - ErtShuttle
+
+- type: entity
+  id: PrisonStationAlertLevels
+  abstract: true
+  components:
+  - type: AlertLevel
+    alertLevelPrototype: stationPrisonAlerts
+
+- type: entity
+  id: BaseStationAntagsTargets
+  abstract: true
+  components:
+  - type: StationAntagsTargets
+
+- type: entity
+  id: BaseStationCryoTeleport
+  abstract: true
+  components:
+  - type: StationCryoTeleport
+
+- type: entity
+  id: BaseStationMeteorSwarmTarget
+  abstract: true
+  components:
+  - type: StationMeteorSwarmTarget
+
+- type: entity
+  id: BaseStationRandomXenoArtifact
+  abstract: true
+  components:
+  - type: StationRandomXenoArtifact

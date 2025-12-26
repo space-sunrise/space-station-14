@@ -36,7 +36,7 @@
   id: HandsAnimal
   name: animal hands
   parent: PartAnimal
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -50,7 +50,7 @@
   id: LegsAnimal
   name: animal legs
   parent: PartAnimal
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -59,12 +59,13 @@
   - type: BodyPart
     partType: Leg
   - type: MovementBodyPart
+    maxDensity: 300
 
 - type: entity
   id: FeetAnimal
   name: animal feet
   parent: PartAnimal
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -77,7 +78,7 @@
   id: TorsoAnimal
   name: animal torso
   parent: PartAnimal
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -94,3 +95,28 @@
       - ReagentId: Blood
         Quantity: 20
 
+- type: entity
+  parent: PartAnimal
+  id: LeftHandSmartCorgi
+  name: corgi hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandSmartCorgi
+  name: corgi hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right

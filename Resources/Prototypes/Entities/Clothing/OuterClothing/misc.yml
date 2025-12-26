@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterApron
   name: apron
   description: A fancy apron for a stylish person.
@@ -8,9 +8,17 @@
     sprite: Clothing/OuterClothing/Misc/apron.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apron.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - Apron
+    - WhitelistChameleon
+    - Vest
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterApronBar
   suffix: Bartender
   name: apron
@@ -20,9 +28,17 @@
     sprite: Clothing/OuterClothing/Misc/apronbar.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apronbar.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - Apron
+    - WhitelistChameleon
+    - Vest
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterApronBotanist
   name: apron
   suffix: Botanical
@@ -32,9 +48,17 @@
     sprite: Clothing/OuterClothing/Misc/apronbotanist.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apronbotanist.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - Apron
+    - WhitelistChameleon
+    - Vest
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterApronChef
   name: apron
   suffix: Chef
@@ -44,9 +68,17 @@
     sprite: Clothing/OuterClothing/Misc/apronchef.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/apronchef.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - Apron
+    - WhitelistChameleon
+    - Vest
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterJacketChef
   name: chef jacket
   description: An apron-jacket used by a high class chef.
@@ -57,7 +89,7 @@
     sprite: Clothing/OuterClothing/Misc/chef.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterHoodieBlack
   name: black hoodie
   description: Oh my God, it's a black hoodie!
@@ -66,9 +98,15 @@
     sprite: Clothing/OuterClothing/Misc/black_hoodie.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/black_hoodie.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterHoodieGrey
   name: grey hoodie
   description: A grey hoodie.
@@ -77,25 +115,32 @@
     sprite: Clothing/OuterClothing/Misc/grey_hoodie.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/grey_hoodie.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterCardborg
   name: cardborg costume
   description: An ordinary cardboard box with holes cut in the sides.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Misc/cardborg.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Misc/cardborg.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Misc/cardborg.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Misc/cardborg.rsi # Sunrise-Edit
   - type: TypingIndicatorClothing
     proto: robot
   - type: Tag
     tags:
     - WhitelistChameleon
+    - FullCovered # INTERACTIONS
 
 - type: entity
-  parent: ClothingOuterBaseToggleable
+  parent: [ClothingOuterBaseToggleable, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterHoodieChaplain
   name: chaplain's hoodie
   description: Black and strict chaplain hoodie.
@@ -106,9 +151,15 @@
     sprite: Clothing/OuterClothing/Misc/chaplain_hoodie.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterPonchoClassic
   name: classic poncho
   description: A warm and comfy classic poncho.
@@ -119,9 +170,15 @@
     sprite: Clothing/OuterClothing/Misc/classicponcho.rsi
   - type: AddAccentClothing
     accent: SpanishAccent
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterRobesCult
   name: cult robes
   description: There's no cult without classic red/crimson cult robes.
@@ -130,9 +187,15 @@
     sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterRobesJudge
   name: judge robes
   description: This robe commands authority.
@@ -143,7 +206,7 @@
     sprite: Clothing/OuterClothing/Misc/judge.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterPoncho
   name: poncho
   description: A warm and comfy poncho.
@@ -154,9 +217,15 @@
     sprite: Clothing/OuterClothing/Misc/poncho.rsi
   - type: AddAccentClothing
     accent: SpanishAccent
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterSanta
   name: santa suit
   description: Ho ho ho!
@@ -165,17 +234,23 @@
     sprite: Clothing/OuterClothing/Misc/santa.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/santa.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullBodyOuter
+  # SUNRISE EDIT
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
+  parent: [ ClothingOuterBase, AllowSuitStorageClothingGasTanks, BaseMagicalContraband, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterWizardBase
   components:
   - type: WizardClothes
 
 # Is this wizard wearing a fanny pack???
 - type: entity
-  parent: ClothingOuterWizardBase
+  parent: [ClothingOuterWizardBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterWizardViolet
   name: violet wizard robes
   description: A bizarre gem-encrusted violet robe that radiates magical energies.
@@ -184,9 +259,13 @@
     sprite: Clothing/OuterClothing/Misc/violetwizard.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/violetwizard.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterWizardBase
+  parent: [ClothingOuterWizardBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterWizard
   name: wizard robes
   description: A bizarre gem-encrusted blue robe that radiates magical energies.
@@ -195,9 +274,13 @@
     sprite: Clothing/OuterClothing/Misc/wizard.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/wizard.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterWizardBase
+  parent: [ClothingOuterWizardBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterWizardRed
   name: red wizard robes
   description: Strange-looking, red, hat-wear that most certainly belongs to a real magic user.
@@ -206,9 +289,13 @@
     sprite: Clothing/OuterClothing/Misc/redwizard.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/redwizard.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterSkub
   name: skub suit
   description: 'Skub is crudely written on the outside of this cylindrical suit.'
@@ -219,7 +306,7 @@
     sprite: Clothing/OuterClothing/Misc/skubbody.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterPlagueSuit
   name: plague doctor suit
   description: A bad omen.
@@ -230,7 +317,7 @@
     sprite: Clothing/OuterClothing/Misc/plaguedoctorsuit.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterNunRobe
   name: nun robe
   description: Maximum piety in this star system.
@@ -239,9 +326,15 @@
     sprite: Clothing/OuterClothing/Misc/nunrobe.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/nunrobe.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterGhostSheet
   name: ghost sheet
   description: Spooky!!!
@@ -254,9 +347,15 @@
     graph: GhostSheet
     node: ghost_sheet
   - type: IdentityBlocker
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullCovered # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterHospitalGown
   name: hospital gown
   description: Made from the wool of slaughtered baby lambs.  The cruelty makes it softer.
@@ -265,9 +364,15 @@
     sprite: Clothing/OuterClothing/Misc/hospitalgown.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/hospitalgown.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeBottom # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterFlannelRed
   name: red flannel jacket
   description: An old fashioned red flannel jacket for space autumn.
@@ -300,10 +405,16 @@
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
   - type: TemperatureProtection
-    coefficient: 0.3
+    coolingCoefficient: 0.3
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterFlannelBlue
   name: blue flannel jacket
   description: An old fashioned blue flannel jacket for space autumn.
@@ -336,10 +447,16 @@
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
   - type: TemperatureProtection
-    coefficient: 0.3
+    coolingCoefficient: 0.3
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterFlannelGreen
   name: green flannel jacket
   description: An old fashioned green flannel jacket for space autumn.
@@ -372,10 +489,16 @@
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
   - type: TemperatureProtection
-    coefficient: 0.3
+    coolingCoefficient: 0.3
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - NudeFull # INTERACTIONS
+  # SUNRISE EDIT
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterRedRacoon
   name: red racoon suit
   description: Fluffy suit of red racoon!
@@ -384,3 +507,9 @@
     sprite: Clothing/OuterClothing/Misc/red_racoon.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/red_racoon.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullCovered # INTERACTIONS
+  # SUNRISE EDIT

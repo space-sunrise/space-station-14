@@ -1,0 +1,6 @@
+﻿- type: soundCollection
+  id: SQUEE
+  files:
+  - /Audio/Items/Toys/squee1.ogg
+  - /Audio/Items/Toys/squee2.ogg
+  - /Audio/Items/Toys/squee3.ogg

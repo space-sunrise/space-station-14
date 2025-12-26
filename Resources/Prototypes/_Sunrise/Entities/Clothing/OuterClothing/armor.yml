@@ -8,6 +8,11 @@
       sprite: _Sunrise/Clothing/OuterClothing/Armor/centcom_naval_carapace.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Armor/centcom_naval_carapace.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
+    - type: Pierceable
+      level: Metal
     - type: Armor
       modifiers:
         coefficients:
@@ -17,3 +22,460 @@
           Heat: 0.5
     - type: ExplosionResistance
       damageCoefficient: 0.65
+    - type: Tag
+      tags:
+      - NudeBottom
+      - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorBlueShield
+  name: blue shield's vest.
+  description: Blue and rugged.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/blueshield.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Item
+    size: Huge
+  - type: Tag
+    tags:
+    - Vest
+    - NudeBottom
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorSWAT
+  name: SWAT armor
+  description: NT's unsuccessful attempt to create universal and expensive protection. It provides excellent protection against many types of damage, but it also slows down extremely much.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+    equipSound: /Audio/Items/belt_equip.ogg
+    unequipSound: /Audio/Items/belt_equip.ogg
+    # equipDelay: 10
+    # unequipDelay: 12
+    # stripDelay: 16
+  - type: Item
+    size: Ginormous
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.45
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.05
+    coolingCoefficient: 0.45
+  - type: FireProtection
+    reduction: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.6
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+
+# region Amber ERT-var
+- type: entity
+  parent: [ClothingOuterArmorSWAT, BaseCentcommContraband ]
+  id: ClothingOuterArmorAmberCom
+  name: ERT Amber Leader armor
+  description: NT's universal flexible and well-armored suit with a powerful shoulder mounted flashlight ,it does not protect its wearer from space.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_com.rsi
+    layers:
+    - state: icon
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_com.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.6
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING-light
+        shader: unshaded
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: PointLight
+    enabled: false
+    color: "#00FFFFFF"
+    radius: 5
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberSec
+  name: ERT Amber armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_sec.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_sec.rsi
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberChap
+  name: ERT Amber Chaplain armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_chap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_chap.rsi
+  - type: PointLight
+    color: "#FFC458FF"
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberEng
+  name: ERT Amber Engineer armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_eng.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_eng.rsi
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberMed
+  name: ERT Amber Medic armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_med.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_med.rsi
+  - type: PointLight
+    color: "#ADFFECFF"
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberJan
+  name: ERT Amber Janitor armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_jan.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_OLD/amber_armor_jan.rsi
+  - type: PointLight
+    color: "#CBADFFFF"
+
+# region Amber ERT-new
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberNewCom
+  suffix: New
+  name: ERT Amber Leader armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_com.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_com.rsi
+  - type: PointLight
+    color: "#a7ffff"
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberNewSec
+  suffix: New
+  name: ERT Amber armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_sec.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_sec.rsi
+  - type: PointLight
+    color: "#e8e596"
+
+- type: entity
+  parent: ClothingOuterArmorAmberCom
+  id: ClothingOuterArmorAmberNewChap
+  suffix: New
+  name: ERT Amber Chaplain armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_chap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_chap.rsi
+  - type: PointLight
+    color: "#fff880"
+
+- type: entity
+  parent: ClothingOuterArmorAmberNewCom
+  id: ClothingOuterArmorAmberNewEng
+  suffix: New
+  name: ERT Amber Engineer armor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_eng.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_eng.rsi
+
+- type: entity
+  parent: ClothingOuterArmorAmberNewCom
+  id: ClothingOuterArmorAmberNewMed
+  name: ERT Amber Medic armor
+  suffix: New
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_med.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_med.rsi
+
+- type: entity
+  parent: ClothingOuterArmorAmberNewCom
+  id: ClothingOuterArmorAmberNewJan
+  name: ERT Amber Janitor armor
+  suffix: New
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_jan.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Amber_NEW/amber_armor_jan.rsi
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorAbductor
+  name: agent vest
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+    equippedPrefix: stealth
+  - type: Item
+    size: Normal
+  - type: AbductorVest
+  - type: ItemSwitch
+    state: Stealth
+    states:
+      Stealth: !type:ItemSwitchState
+        verb: abductor-armor-stealth
+        hiden: true
+        sprite:
+          sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+          state: icon
+        components:
+        - type: Pierceable
+          level: Metal
+        - type: Armor
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Heat: 0.85
+              Piercing: 0.85
+              Radiation: 0.85
+              Caustic: 0.25
+        - type: ExplosionResistance
+          damageCoefficient: 0.85
+        - type: ItemToggle
+          predictable: false
+          onUse: false
+          soundActivate:
+            path: /Audio/_Sunrise/Items/Goggles/activate.ogg # Брал с ПНВ компоненты, звук понравился, решил оставить :)
+          soundDeactivate:
+            path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+          soundFailToActivate:
+            path: /Audio/Machines/button.ogg
+        - type: ToggleClothing
+          action: AbductorVestToggleStealth
+          mustEquip: true
+          disableOnUnequip: true
+        - type: ComponentToggler
+          parent: true
+          components:
+          - type: Stealth
+          - type: StealthOnMove
+      Combat: !type:ItemSwitchState
+        verb: abductor-armor-combat
+        hiden: true
+        sprite:
+          sprite: _Sunrise/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+          state: combat-icon
+        components:
+        - type: Pierceable
+          level: Metal
+        - type: Armor
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Heat: 0.5
+              Piercing: 0.5
+              Radiation: 0.5
+              Caustic: 0.1
+        - type: ExplosionResistance
+          damageCoefficient: 0.5
+
+# Starlight
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorPlate
+  name: plate carrier
+  description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.55
+        Heat: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorStab
+  name: stabproof vest
+  description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorHeatAbsorb
+  name: heat absorbent vest
+  description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.55
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+      - Energy
+    reflectingInHands: false
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorBulletproofHeavy
+  name: bulletproof vest
+  description: A Type III heavy bulletproof vest with added legs and shouders protection that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Armor/bulletproof.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Armor/bulletproof.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.4
+        Heat: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.96
+    sprintModifier: 0.96

@@ -9,16 +9,21 @@ namespace Content.Shared.Movement.Events;
 [ByRefEvent]
 public readonly struct MoveInputEvent
 {
-    public readonly EntityUid Entity;
-    public readonly InputMoverComponent Component;
+    public readonly Entity<InputMoverComponent> Entity;
     public readonly MoveButtons OldMovement;
 
-    public bool HasDirectionalMovement => (Component.HeldMoveButtons & MoveButtons.AnyDirection) != MoveButtons.None;
+    public bool HasDirectionalMovement => (Entity.Comp.HeldMoveButtons & MoveButtons.AnyDirection) != MoveButtons.None;
 
-    public MoveInputEvent(EntityUid entity, InputMoverComponent component, MoveButtons oldMovement)
+    // Starlight-Abductor-edited
+
+    public readonly Direction Dir;
+    public readonly bool State;
+
+    public MoveInputEvent(Entity<InputMoverComponent> entity, MoveButtons oldMovement, Direction dir, bool state) // Starlight-Abductor-edited
     {
         Entity = entity;
-        Component = component;
         OldMovement = oldMovement;
+        Dir = dir;
+        State = state;
     }
 }

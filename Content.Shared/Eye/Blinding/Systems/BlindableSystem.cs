@@ -1,6 +1,12 @@
+using Content.Shared.Camera;
+using System.Linq;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using JetBrains.Annotations;
 
 namespace Content.Shared.Eye.Blinding.Systems;
@@ -9,12 +15,15 @@ public sealed class BlindableSystem : EntitySystem
 {
     [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
     [Dependency] private readonly EyeClosingSystem _eyelids = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<BlindableComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BlindableComponent, EyeDamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BlindableComponent, GetEyePvsScaleAttemptEvent>(OnGetEyePvsScaleAttemptEvent);
+        SubscribeLocalEvent<BlindableComponent, GetEyeOffsetAttemptEvent>(OnGetEyeOffsetAttemptEvent);
     }
 
     private void OnRejuvenate(Entity<BlindableComponent> ent, ref RejuvenateEvent args)
@@ -28,6 +37,18 @@ public sealed class BlindableSystem : EntitySystem
         _eyelids.UpdateEyesClosable((ent.Owner, ent.Comp));
     }
 
+    private void OnGetEyePvsScaleAttemptEvent(Entity<BlindableComponent> ent, ref GetEyePvsScaleAttemptEvent args)
+    {
+        if (ent.Comp.IsBlind)
+            args.Cancelled = true;
+    }
+
+    private void OnGetEyeOffsetAttemptEvent(Entity<BlindableComponent> ent, ref GetEyeOffsetAttemptEvent args)
+    {
+        if (ent.Comp.IsBlind)
+            args.Cancelled = true;
+    }
+
     [PublicAPI]
     public void UpdateIsBlind(Entity<BlindableComponent?> blindable)
     {
@@ -36,8 +57,15 @@ public sealed class BlindableSystem : EntitySystem
 
         var old = blindable.Comp.IsBlind;
 
+        var forceBlind = false;
+        if(TryComp<BodyComponent>(blindable.Owner, out var body))
+        {
+            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
+            forceBlind = eyes.Count == 0;
+        }
+
         // Don't bother raising an event if the eye is too damaged.
-        if (blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage)
+        if (blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage || forceBlind)
         {
             blindable.Comp.IsBlind = true;
         }

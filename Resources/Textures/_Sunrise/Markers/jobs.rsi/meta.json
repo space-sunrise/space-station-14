@@ -8,13 +8,58 @@
   },
   "states": [
     {
-      "name": "jobicon"
+        "name": "jobicon"
     },
     {
-      "name": "green"
+        "name": "green"
+    },
+    {
+        "name": "adjutant"
     },
 	{
-	  "name": "magistrat"
-	}
+	    "name": "magistrat"
+	},
+    {
+        "name": "ntrep"
+    },
+    {
+        "name": "blueshield"
+    },
+    {
+        "name": "ntrleader"
+    },
+    {
+        "name": "ntrguard"
+    },
+    {
+        "name": "barber"
+    },
+    {
+        "name": "blueshieldoperative"
+    },
+    {
+        "name": "headofprison"
+    },
+    {
+        "name": "prisoninspector"
+    },
+    {
+        "name": "prisonworker"
+    },
+    {
+        "name": "prisonengineer"
+    },
+    {
+        "name": "prisonscientist"
+    },
+    {
+        "name": "prisondoctor"
+    },
+    {
+        "name": "prisonchef"
+    },
+    {
+        "name": "planetprisoner"
+    }
   ]
 }

@@ -6,7 +6,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server.StationRecords.Systems;
 
-public sealed class GeneralStationRecordConsoleSystem : EntitySystem
+public sealed partial class GeneralStationRecordConsoleSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -20,11 +20,14 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 
         Subs.BuiEvents<GeneralStationRecordConsoleComponent>(GeneralStationRecordConsoleKey.Key, subs =>
         {
-            subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
+            subs.Event<BoundUIOpenedEvent>(OnOpened);
             subs.Event<SelectStationRecord>(OnKeySelected);
             subs.Event<SetStationRecordFilter>(OnFiltersChanged);
             subs.Event<DeleteStationRecord>(OnRecordDelete);
         });
+
+        // Sunrise added
+        InitializeSunrise();
     }
 
     private void OnRecordDelete(Entity<GeneralStationRecordConsoleComponent> ent, ref DeleteStationRecord args)
@@ -33,6 +36,23 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
             return;
 
         var owning = _station.GetOwningStation(ent.Owner);
+
+        // Sunrise added start
+        if (owning == null)
+            return;
+
+        // Дополнительная серверная проверка на случай педиков с читами
+        if (!HasAccess(ent, args.Actor))
+            return;
+
+        if (!_stationRecords.TryGetRecord<GeneralStationRecord>(new StationRecordKey(args.Id, owning.Value), out var record))
+            return;
+
+        var message = Loc.GetString("station-record-deleted", ("name", record.Name));
+        var popup = Loc.GetString("station-record-deleted-successfully");
+
+        DoFeedback(ent, message, popup);
+        // Sunrise added end
 
         if (owning != null)
             _stationRecords.RemoveRecord(new StationRecordKey(args.Id, owning.Value));
@@ -93,7 +113,8 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var key = new StationRecordKey(id, owningStation.Value);
         _stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords);
 
-        GeneralStationRecordConsoleState newState = new(id, record, listing, console.Filter, ent.Comp.CanDeleteEntries);
+        // Sunrise edit
+        GeneralStationRecordConsoleState newState = new(id, record, listing, console.Filter, ent.Comp.CanDeleteEntries, ent.Comp.CanRedactSensitiveData, ent.Comp.HasAccess);
         _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, newState);
     }
 }

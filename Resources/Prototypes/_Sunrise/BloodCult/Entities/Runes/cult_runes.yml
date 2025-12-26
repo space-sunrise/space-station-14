@@ -1,0 +1,151 @@
+﻿- type: entity
+  parent: CollideRune
+  id: OfferingRune
+  name: "Offering Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: offering
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "Mah'weyh pleggh at e'ntrath!"
+  - type: CultRuneOffering
+
+- type: entity
+  parent: CollideRune
+  id: BuffRune
+  name: "Buff Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: empower
+      color: '#008080'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "Qu'laris ver'don, thal'sorin mik'thar!"
+  - type: CultRuneBuff
+
+- type: entity
+  parent: CollideRune
+  id: EmpoweringRune
+  name: "Empower Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: empower
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+  - type: CultEmpower
+
+- type: entity
+  parent: CollideRune
+  id: TeleportRune
+  name: "Teleport Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: teleport
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "Sas'so c'arta forbici!"
+    gatherInvokers: false
+  - type: CultRuneTeleport
+  - type: UserInterface
+    interfaces:
+      enum.NameSelectorUIKey.Key:
+        type: NameSelectorBUI
+      enum.RuneTeleporterUiKey.Key:
+        type: TeleportRunesListWindowBUI
+
+- type: entity
+  parent: CollideRune
+  id: SummoningRune
+  name: "Summoning Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: summon
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "N'ath reth sh'yro eth d'rekkathnor!"
+    gatherInvokers: true
+  - type: CultRuneSummoning
+
+- type: entity
+  parent: CollideRune
+  id: ReviveRune
+  name: "Revive Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: revive
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!"
+  - type: CultRuneRevive
+
+- type: entity
+  parent: CollideRune
+  id: BarrierRune
+  name: "Barrier Rune"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: barrier
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "Khari'd! Eske'te tannin!"
+  - type: CultRuneBarrier
+
+- type: entity
+  parent: CollideRune
+  id: BloodBoilRune
+  name: "Blood Boil"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/rune.rsi
+    netsync: false
+    layers:
+    - state: blood_boil
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "Dedo ol'btoh!"
+  - type: CultRuneBloodBoil
+    projectilePrototype: BloodBoil
+
+- type: entity
+  parent: BaseRune
+  id: ApocalypseRune
+  name: "Ritual of Dimensional Rending"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/apocalypse.rsi
+    layers:
+    - state: apoc
+      color: '#F80000'
+  - type: Appearance
+  - type: CultRuneBase
+    invokePhrase: "TOK-LYR RQA-NAP G'OLT-ULOFT!"
+    cultistGatheringRange: 3
+  - type: CultRuneApocalypse

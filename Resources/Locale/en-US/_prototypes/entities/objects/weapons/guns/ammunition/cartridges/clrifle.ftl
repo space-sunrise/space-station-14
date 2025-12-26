@@ -1,0 +1,12 @@
+ent-CartridgeClRifleBase = cartridge (.25 rifle)
+    .desc = { ent-BaseCartridge.desc }
+    .suffix = { "" }
+ent-CartridgeClRifle = cartridge (.25 caseless)
+    .desc = { ent-CartridgeClRifleBase.desc }
+    .suffix = { "" }
+ent-CartridgeClRifleFlash = cartridge (.25 caseless flash)
+    .desc = { ent-CartridgeClRifleBase.desc }
+    .suffix = { "" }
+ent-CartridgeClRiflePractice = cartridge (.25 caseless practice)
+    .desc = { ent-CartridgeClRifleBase.desc }
+    .suffix = { "" }

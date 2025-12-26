@@ -9,7 +9,7 @@
     whitelist:
       tags:
         - CartridgePistol
-    proto: CartridgePistol
+    proto: CartridgePistolSP
     capacity: 60
   - type: Item
     size: Small
@@ -20,18 +20,33 @@
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
 # Boxes
 - type: entity
   parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistol
-  name: ammunition box (.35 auto)
+  id: MagazineBoxPistolSP
+  name: ammunition box (.35 auto SP)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolHP
+  name: ammunition box (.35 auto HP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
   - type: Sprite
     layers:
     - state: base
@@ -41,8 +56,54 @@
 
 - type: entity
   parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolFMJ
+  name: ammunition box (.35 auto FMJ)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolAP
+  name: ammunition box (.35 auto AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolRubber
+  name: ammunition box (.35 auto rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+- type: entity
+  parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolPractice
   name: ammunition box (.35 auto practice)
+  description: A cardboard box of .35 auto rounds. Intended to hold harmless practice ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -55,9 +116,10 @@
     - state: practice
 
 - type: entity
-  id: MagazineBoxPistolIncendiary
   parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolIncendiary
   name: ammunition box (.35 auto incendiary)
+  description: A cardboard box of .35 auto rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
@@ -70,9 +132,10 @@
     - state: incendiary
 
 - type: entity
-  id: MagazineBoxPistolUranium
   parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolUranium
   name: ammunition box (.35 auto uranium)
+  description: A cardboard box of .35 auto rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium

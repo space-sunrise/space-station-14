@@ -13,15 +13,124 @@
       state: stamp-iaa
 
 - type: entity
-  name: psychologist's rubber stamp
+  name: magistrat's rubber stamp
   parent: RubberStampBase
-  id: RubberStampPsychologist
+  id: RubberStampMagistrat
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: stamp-component-stamped-name-psychologist
-    stampedColor: "#0082AE"
-    stampState: "paper_stamp-psychologist"
+    stampedName: Магистрат
+    stampedColor: "#FF5297"
+    stampState: "paper_stamp-magistrat"
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
-    state: stamp-psychologist
+    state: stamp-magistrat
+
+- type: entity
+  name: NT representative's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampNtrep
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ntrep
+    stampedColor: "#fcc032"
+    stampState: "paper_stamp-ntrep"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-ntrep
+
+- type: entity
+  name: Pathologist rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPath
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-path
+    stampedColor: "#003153"
+    stampState: "paper_stamp-path"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-path
+
+- type: entity
+  name: Adjutant's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampAdj
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-adj
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-adj
+
+- type: entity
+  name: Head of Prison rubber stamp
+  parent: RubberStampBase
+  id: RubberStampNpt
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-npt
+    stampedColor: "#c94f26"
+    stampState: "paper_stamp-npt"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-npt
+
+- type: entity
+  name: VETO rubber stamp
+  parent: RubberStampBase
+  id: RubberStampVeto
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-veto
+    stampedColor: "#D32F2FFF"
+    stampState: "paper_stamp-veto"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-veto
+
+- type: entity
+  name: Redo rubber stamp
+  parent: RubberStampBase
+  id: RubberStampRedo
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-redo
+    stampedColor: "#1A237EFF"
+    stampState: "paper_stamp-redo"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-redo
+
+- type: entity
+  name: Special Operations rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSpecOps
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-specops
+    stampedColor: "#4543b4"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-specops
+
+- type: entity
+  name: prison inspector's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPrisonInspector
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-prison-inspector
+      stampedColor: "#494793"
+      stampState: "paper_stamp-lawyer"
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/stamps.rsi
+      state: stamp-specops

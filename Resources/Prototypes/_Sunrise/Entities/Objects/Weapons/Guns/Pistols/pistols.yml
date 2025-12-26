@@ -1,0 +1,570 @@
+- type: entity
+  name: BasePistol
+  parent: BaseWeaponPistol
+  id: BaseWeaponPistolSunrise
+  suffix: Sunrise
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    minAngle: 4.7 #Max Effect Range 8
+    maxAngle: 14.1
+    angleIncrease: 1.25
+    angleDecay: 0.5
+    fireRate: 4
+    useKey: true
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: MeleeWeapon
+    angle: 60
+    range: 0.9
+    damage:
+      types:
+        Blunt: 8
+    bluntStaminaDamageFactor: 2.0
+    attackRate: 1
+    autoAttack: false
+  - type: AltFireMelee
+    attackType: Light
+
+- type: entity
+  name: combat pistol VP-70
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolVP78
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
+  - type: Gun
+    fireRate: 4.25
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40FMJ
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolDP
+          - MagazineVP78
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40FMJ # .45 ACP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+
+- type: entity
+  name: Glock-22
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolG22
+  suffix: Sunrise, Security
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
+  - type: Tag
+    tags:
+    - WeaponPistolG22
+    - Sidearm
+  - type: Construction
+    graph: Glock22AutoCraft
+    node: start
+  - type: Gun
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: glock22
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineGlock22
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazinePistolHighCapacity
+          - MagazineGlock22
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
+
+- type: entity
+  name: Glock-22 Metus
+  description: Made to order for the security of the Metus planetary prison. Semi-automatic design. Uses .35 Auto caliber ammunition.
+  parent: WeaponPistolG22
+  id: WeaponPistolG22Metus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus/big.rsi
+  - type: Gun
+    fireRate: 3.4
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazinePistolHighCapacityRubber
+
+- type: entity
+  name: Glock-22 Auto
+  parent: WeaponPistolG22
+  id: WeaponPistolG22Auto
+  description: Designed by Nanotrasen’s Small Arms Division, the Glock-22 Auto is a premium full-automatic sidearm built for superior performance and reliability. Featuring a simple yet robust recoil-operated mechanism, it serves as a high-end replacement for the standard Glock 22. Favored by station security and emergency response teams, it delivers greater firepower and durability in high-risk scenarios. Uses .35 pistol magazines.
+  suffix: Sunrise, Security
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
+  - type: Gun
+    minAngle: 6.2 #Max Effect Range 6
+    maxAngle: 18.6
+    angleIncrease: 1.25
+    angleDecay: 0.5
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: glock22
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazinePistolHighCapacity
+          - MagazineGlock22
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
+
+- type: entity
+  name: HI Browning-88 M4
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolHIB88M4
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/hi_browning/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/hi_browning/tiny.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineHIBrowning
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazinePistolHighCapacity
+          - MagazineHIBrowning
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolFMJ
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: ACP-14
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolACP14
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
+    storedOffset: 0,-1
+  - type: Gun
+    minAngle: 3.75
+    maxAngle: 16
+    angleIncrease: 2.75
+    angleDecay: 15
+    fireRate: 4.25
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_DE50.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineACP14
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineACP14
+          - MagazinePistolDP
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40SP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistolDP
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: Mateba
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverMatebaNew
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
+# Sidearm HOS and Nukies.
+- type: entity
+  name: Desert Eagle
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolDeagle
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
+  - type: Gun
+    minAngle: 3.5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 10
+    fireRate: 5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: deagle
+      params:
+        volume: 100
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDeagle
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMagnum
+          - MagazineDeagle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeMagnum
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: Desert Eagle Metus
+  description: Scuffs from old hands mark the handle, heavy and steady, like a verdict passed more than once without trial.
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleMetus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
+# Sidearm for detectives.
+- type: entity
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverSpearhead
+  name: Spearhead autorevolver
+  description: A bulky revolver, occasionally carried by assault troops and officers in SWAT, as well as civilian law enforcement. Fires .45 Magnum rounds. #Fires .357 Magnum rounds.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/spearhead.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/spearhead.rsi
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -2.7
+    maxAngle: -10
+  - type: Gun
+    selectedMode: FullAuto
+    minAngle: 5
+    maxAngle: 18
+    angleIncrease: 5
+    angleDecay: 2.75
+    fireRate: 2.5
+    availableModes:
+    - FullAuto
+    useKey: true
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_cmb_1.ogg
+    soundEmpty:
+      path: /Audio/_RMC14/Weapons/Guns/gun_cmb_click1.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.97
+    sprintModifier: 0.97
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  # - type: MeleeWeapon
+  #   angle: 60
+  #   range: 0.9
+  #   damage:
+  #     types:
+  #       Blunt: 10
+  #   bluntStaminaDamageFactor: 2.0
+  #   attackRate: 1
+  #   autoAttack: false
+  # - type: AltFireMelee
+  #   attackType: Light
+
+- type: entity
+  parent: WeaponRevolverSpearhead
+  id: WeaponRevolverSpearheadBlack
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/spearheadblack.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/spearheadblack.rsi
+
+- type: entity
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolM1984
+  name: D1984
+  description: A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
+  - type: Item
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -3.5
+    maxAngle: -10
+  - type: Gun
+    selectedMode: SemiAuto
+    minAngle: 4.7
+    maxAngle: 25
+    angleIncrease: 2
+    angleDecay: 14
+    fireRate: 8
+    availableModes:
+    - SemiAuto
+    useKey: true
+    soundGunshot:
+      collection: m1984
+    soundEmpty:
+      path: /Audio/_RMC14/Weapons/Guns/gun_cmb_click1.ogg
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.99
+    sprintModifier: 0.99
+
+- type: entity
+  name: Golden Desert Eagle
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleGolden
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
+
+
+- type: entity
+  name: Tec-9 Tactical
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolTec9
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi
+    scale: 0.63, 0.63
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazinePistolCaselessRifleTec9
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+          - MagazinePistolCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeCaselessRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

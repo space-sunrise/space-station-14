@@ -1,0 +1,37 @@
+sponsors-tiers-gui-title = Уровни спонсорства
+sponsor-tiers-gui-yes = Да
+sponsor-tiers-gui-no = Нет
+sponsor-tiers-gui-entry-info = Информация
+sponsor-tiers-gui-tier = Тир:
+sponsor-tiers-gui-extra-slots = Дополнительные слоты персонажей:
+sponsor-tiers-gui-ooc-color = Цвет OOC:
+sponsor-tiers-gui-priority-join = Приоритетный вход:
+sponsor-tiers-gui-allowed-respawn = Новая жизнь:
+sponsor-tiers-gui-allowed-flavor = Описание персонажа:
+sponsor-tiers-gui-size-flavor = Лимит описания персонажа:
+sponsor-tiers-gui-allowed-species = Эксклюзивные расы
+sponsor-tiers-gui-allowed-species-description = Открывает вам доступ к данным расам.
+sponsor-tiers-gui-priority-antags = Приоритеты антагонистов
+sponsor-tiers-gui-priority-antags-description = Вы будете приоритетно получать данных антагонистов в начале раунда.
+sponsor-tiers-gui-open-antags = Открытие антагонистов
+sponsor-tiers-gui-open-antags-description = Позволяет вам обходить требования по игровому времени для данных антагонистов.
+sponsor-tiers-gui-priority-roles = Приоритеты ролей
+sponsor-tiers-gui-priority-roles-description = Вы будете приоритетно получать данные роли в начале раунда.
+sponsor-tiers-gui-open-roles = Открытие ролей
+sponsor-tiers-gui-open-roles-description = Позволяет вам обходить требования по игровому времени для этих ролей.
+sponsor-tiers-gui-allowed-markings = Кастомизация
+sponsor-tiers-gui-allowed-markings-description = Открывает доступ к данным кастомизациям персонажа.
+sponsor-tiers-gui-bypass-roles = Проходка ролей
+sponsor-tiers-gui-bypass-roles-description = Позволяет вам заходить за эти роли в обход лимита.
+sponsor-tiers-gui-ghost-themes = Скины призрака
+sponsor-tiers-gui-ghost-themes-description = Будучи призраком вы сможете поменять внешность на одну из этих.
+sponsor-tiers-gui-priority-ghost-roles = Приоритет ролей призраков
+sponsor-tiers-gui-priority-ghost-roles-description = Вы будете приоритетно получать данные роли призраков во время лотореи.
+sponsor-tiers-gui-open-ghost-roles = Открытие ролей призраков
+sponsor-tiers-gui-open-ghost-roles-description = Позволяет вам обходить требования по игровому времени для этих ролей призраков.
+sponsor-tiers-gui-allowed-loadouts = Эксклюзивные лоадауты
+sponsor-tiers-gui-allowed-loadouts-description = Открывает доступ к указанным предметам в лоадауте.
+sponsor-tiers-gui-tts-voices = Эксклюзивные голоса
+sponsor-tiers-gui-tts-voices-description =
+    Открывает возможность использовать данные голоса для ваших персонажей.
+    Вы можете нажать на любой голос чтобы услышать как он звучит.

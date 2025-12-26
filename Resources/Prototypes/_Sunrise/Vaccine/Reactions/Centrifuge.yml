@@ -1,0 +1,35 @@
+- type: reaction
+  id: DiseaseBloodBreakdownFirst
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    DiseaseBloodFirst:
+      amount: 15
+  products:
+    Water: 6
+    DiseaseBloodReagent: 9
+
+- type: reaction
+  id: DiseaseBloodBreakdownSecond
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    DiseaseBloodSecond:
+      amount: 15
+  products:
+    Water: 6
+    DiseaseBloodReagent: 9
+
+- type: reaction
+  id: DiseaseBloodBreakdownThird
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    DiseaseBloodThird:
+      amount: 15
+  products:
+    Water: 6
+    DiseaseBloodReagent: 9

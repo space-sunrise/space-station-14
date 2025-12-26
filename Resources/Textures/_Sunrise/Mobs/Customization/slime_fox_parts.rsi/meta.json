@@ -8,12 +8,12 @@
   },
   "states": [
     {
-      "name": "ears_slime_fox_inner",
-      "directions": 4
+        "name": "ears_slime_fox_inner",
+        "directions": 4
     },
     {
-      "name": "ears_slime_fox_outer",
-      "directions": 4
+        "name": "ears_slime_fox_outer",
+        "directions": 4
     }
   ]
 }

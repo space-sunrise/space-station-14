@@ -27,7 +27,7 @@ public sealed partial class RevenantComponent : Component
     /// <summary>
     /// Prototype to spawn when the entity dies.
     /// </summary>
-    [DataField("spawnOnDeathPrototype", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField("spawnOnDeathPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SpawnOnDeathPrototype = "Ectoplasm";
 
     /// <summary>
@@ -86,7 +86,7 @@ public sealed partial class RevenantComponent : Component
     /// The amount of essence that is needed to use the ability.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("defileCost")]
-    public FixedPoint2 DefileCost = -30;
+    public FixedPoint2 DefileCost = 30;
 
     /// <summary>
     /// The status effects applied after the ability
@@ -121,7 +121,7 @@ public sealed partial class RevenantComponent : Component
     /// The amount of essence that is needed to use the ability.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("overloadCost")]
-    public FixedPoint2 OverloadCost = -40;
+    public FixedPoint2 OverloadCost = 40;
 
     /// <summary>
     /// The status effects applied after the ability
@@ -149,7 +149,7 @@ public sealed partial class RevenantComponent : Component
     /// The amount of essence that is needed to use the ability.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("blightCost")]
-    public float BlightCost = -50;
+    public float BlightCost = 50;
 
     /// <summary>
     /// The status effects applied after the ability
@@ -171,7 +171,7 @@ public sealed partial class RevenantComponent : Component
     /// The amount of essence that is needed to use the ability.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("malfunctionCost")]
-    public FixedPoint2 MalfunctionCost = -60;
+    public FixedPoint2 MalfunctionCost = 60;
 
     /// <summary>
     /// The status effects applied after the ability
@@ -201,6 +201,40 @@ public sealed partial class RevenantComponent : Component
     public EntityWhitelist? MalfunctionBlacklist;
     #endregion
 
+    // Sunrise-Start
+    [DataField("lockDebuffs")]
+    public Vector2 LockDebuffs = new(2, 8);
+
+    #region Drain Ability
+    [DataField("drainDebuffs")]
+    public Vector2 DrainDebuffs = new(2, 8);
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainRadius")]
+    public float DrainRadius = 2.2f;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMin")]
+    public int DrainDamageMin = 1;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMax")]
+    public int DrainDamageMax = 9;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageType")]
+    public string DrainDamageType = "Cellular";
+
+    /// <summary>
+    /// Part of damage converted to currency
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("stolenEssenceCurrencyRate")]
+    public float StolenEssenceCurrencyRate = 0.22f;
+
+    /// <summary>
+    /// Part of damage converted to essence
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("essenceGainRate")]
+    public float EssenceGainRate = 0.6f;
+    #endregion
+    // Sunrise-End
+
     [DataField]
     public ProtoId<AlertPrototype> EssenceAlert = "Essence";
 
@@ -214,6 +248,4 @@ public sealed partial class RevenantComponent : Component
     [DataField("harvestingState")]
     public string HarvestingState = "harvesting";
     #endregion
-
-    [DataField] public EntityUid? Action;
 }

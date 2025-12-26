@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Ghost;
@@ -21,6 +22,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {
@@ -70,6 +72,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (component.VerbOnly || !ShouldAddVerb(uid, component, args))
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         args.Verbs.Add(new ActivationVerb
         {
             Act = () => InteractUI(args.User, uid, component),
@@ -83,6 +93,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
     {
         if (!component.VerbOnly || !ShouldAddVerb(uid, component, args))
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Verbs.Add(new Verb
         {
@@ -101,22 +119,25 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (_whitelistSystem.IsWhitelistFail(component.RequiredItems, args.Using ?? default))
             return false;
 
-        if (component.RequireHands)
+        if (component.RequiresComplex)
         {
             if (args.Hands == null)
                 return false;
 
             if (component.InHandsOnly)
             {
-                if (!_hands.IsHolding(args.User, uid, out var hand, args.Hands))
+                if (!_hands.IsHolding((args.User, args.Hands), uid, out var hand))
                     return false;
 
-                if (component.RequireActiveHand && args.Hands.ActiveHand != hand)
+                if (component.RequireActiveHand && args.Hands.ActiveHandId != hand)
                     return false;
             }
         }
 
-        return args.CanInteract || HasComp<GhostComponent>(args.User) && !component.BlockSpectators;
+        return ((args.CanInteract
+            || HasComp<GhostComponent>(args.User)
+            && !component.BlockSpectators))
+            && RaiseCanOpenEventChecks(args.User, uid, silent: true); // silent to prevent popups or sounds when only looking at the verb
     }
 
     private void OnUseInHand(EntityUid uid, ActivatableUIComponent component, UseInHandEvent args)
@@ -129,6 +150,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         if (component.RequiredItems != null)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Handled = InteractUI(args.User, uid, component);
     }
@@ -144,6 +173,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (component.RequiredItems != null)
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         args.Handled = InteractUI(args.User, uid, component);
     }
 
@@ -157,6 +194,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         if (component.RequiredItems == null)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (_whitelistSystem.IsWhitelistFail(component.RequiredItems, args.Used))
             return;
@@ -191,19 +236,22 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (!_blockerSystem.CanInteract(user, uiEntity) && (!HasComp<GhostComponent>(user) || aui.BlockSpectators))
             return false;
 
-        if (aui.RequireHands)
+        if (aui.RequiresComplex)
+        {
+            if (!_blockerSystem.CanComplexInteract(user))
+                return false;
+        }
+
+        if (aui.InHandsOnly)
         {
             if (!TryComp(user, out HandsComponent? hands))
                 return false;
 
-            if (aui.InHandsOnly)
-            {
-                if (!_hands.IsHolding(user, uiEntity, out var hand, hands))
-                    return false;
+            if (!_hands.IsHolding((user, hands), uiEntity, out var hand))
+                return false;
 
-                if (aui.RequireActiveHand && hands.ActiveHand != hand)
-                    return false;
-            }
+            if (aui.RequireActiveHand && hands.ActiveHandId != hand)
+                return false;
         }
 
         if (aui.AdminOnly && !_adminManager.IsAdmin(user))
@@ -222,11 +270,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         // If we've gotten this far, fire a cancellable event that indicates someone is about to activate this.
         // This is so that stuff can require further conditions (like power).
-        var oae = new ActivatableUIOpenAttemptEvent(user);
-        var uae = new UserOpenActivatableUIAttemptEvent(user, uiEntity);
-        RaiseLocalEvent(user, uae);
-        RaiseLocalEvent(uiEntity, oae);
-        if (oae.Cancelled || uae.Cancelled)
+        if (!RaiseCanOpenEventChecks(user, uiEntity))
             return false;
 
         // Give the UI an opportunity to prepare itself if it needs to do anything
@@ -238,7 +282,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
         _uiSystem.OpenUi(uiEntity, aui.Key, user);
 
         //Let the component know a user opened it so it can do whatever it needs to do
-        var aae = new AfterActivatableUIOpenEvent(user, user);
+        var aae = new AfterActivatableUIOpenEvent(user);
         RaiseLocalEvent(uiEntity, aae);
 
         return true;
@@ -274,13 +318,32 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
     private void OnHandDeselected(Entity<ActivatableUIComponent> ent, ref HandDeselectedEvent args)
     {
-        if (ent.Comp.RequireHands && ent.Comp.InHandsOnly && ent.Comp.RequireActiveHand)
+        if (ent.Comp.InHandsOnly && ent.Comp.RequireActiveHand)
             CloseAll(ent, ent);
     }
 
     private void OnHandUnequipped(Entity<ActivatableUIComponent> ent, ref GotUnequippedHandEvent args)
     {
-        if (ent.Comp.RequireHands && ent.Comp.InHandsOnly)
+        if (ent.Comp.InHandsOnly)
             CloseAll(ent, ent);
+    }
+
+    private bool RaiseCanOpenEventChecks(EntityUid user, EntityUid uiEntity, bool silent = false)
+    {
+        // If we've gotten this far, fire a cancellable event that indicates someone is attempting to activate this UI.
+        // This is so that stuff can require further conditions (like power).
+        var uae = new UserOpenActivatableUIAttemptEvent(user, uiEntity, silent);
+        RaiseLocalEvent(user, uae);
+
+        if (uae.Cancelled)
+            return false;
+
+        var oae = new ActivatableUIOpenAttemptEvent(user, silent);
+        RaiseLocalEvent(uiEntity, oae);
+
+        if (oae.Cancelled)
+            return false;
+
+        return true;
     }
 }

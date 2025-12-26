@@ -1,110 +1,113 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/blob/e71d6c4fba5a51f99b81c295dcaec4fc2f58fb19/icons/mob/screen1.dmi | Brigmedic icon made by PuroSlavKing (Github) | Zombie icon made by RamZ | Zookeper by netwy (discort) | Rev and Head Rev icon taken from https://tgstation13.org/wiki/HUD and edited by coolmankid12345 (Discord) | Mindshield icon taken from https://github.com/tgstation/tgstation/blob/master/icons/mob/huds/hud.dmi | Pilot icon made by poemota (Discord)",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/blob/e71d6c4fba5a51f99b81c295dcaec4fc2f58fb19/icons/mob/screen1.dmi | Brigmedic icon made by PuroSlavKing (Github) | Zombie icon made by RamZ | Zookeper by netwy (discort) | Rev and Head Rev icon taken from https://tgstation13.org/wiki/HUD and edited by coolmankid12345 (Discord) | Mindshield icon taken from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi | Admin recolored from MedicalIntern by TsjipTsjip | StationAi resprite to 8x8 size by lunarcomets | Service Worker resprite by anno_midi (Discord) and spanky-spanky (Github) | service icons darkened by frobnic8 (Discord and Github)",
     "size": {
         "x": 8,
         "y": 8
     },
     "states": [
         {
-            "name": "Detective"
+            "name": "Admin"
         },
         {
-            "name": "QuarterMaster"
-        },
-        {
-            "name": "Botanist"
-        },
-        {
-            "name": "Borg"
-        },
-        {
-            "name": "Boxer"
+            "name": "Adjutant"
         },
         {
             "name": "AtmosphericTechnician"
         },
         {
-            "name": "Nanotrasen"
+            "name": "Bartender"
         },
         {
-            "name": "Prisoner"
+            "name": "Borg"
         },
         {
-            "name": "Janitor"
+            "name": "Botanist"
         },
         {
-            "name": "Chemist"
+            "name": "Boxer"
         },
         {
-            "name": "StationEngineer"
-        },
-        {
-            "name": "SecurityOfficer"
-        },
-        {
-            "name": "NoId"
-        },
-        {
-            "name": "ChiefMedicalOfficer"
-        },
-        {
-            "name": "Roboticist"
-        },
-        {
-            "name": "Chaplain"
-        },
-        {
-            "name": "Lawyer"
-        },
-        {
-            "name": "Unknown"
-        },
-        {
-            "name": "Librarian"
-        },
-        {
-            "name": "CargoTechnician"
-        },
-        {
-            "name": "Scientist"
-        },
-        {
-            "name": "ResearchAssistant"
-        },
-        {
-            "name": "Geneticist"
-        },
-        {
-            "name": "Clown"
+            "name": "Brigmedic"
         },
         {
             "name": "Captain"
         },
         {
-            "name": "HeadOfPersonnel"
+            "name": "CargoTechnician"
         },
         {
-            "name": "Virologist"
+            "name": "CBURN"
         },
         {
-            "name": "ShaftMiner"
+            "name": "Chaplain"
         },
         {
-            "name": "Passenger"
+            "name": "Chef"
+        },
+        {
+            "name": "Chemist"
         },
         {
             "name": "ChiefEngineer"
         },
         {
-            "name": "Bartender"
+            "name": "ChiefMedicalOfficer"
+        },
+        {
+            "name": "Clown"
+        },
+        {
+            "name": "Cluwne"
+        },
+        {
+            "name": "Detective"
+        },
+        {
+            "name": "DeathSquad"
+        },
+        {
+            "name": "ERTChaplain"
+        },
+        {
+            "name": "ERTEngineer"
+        },
+        {
+            "name": "ERTJanitor"
+        },
+        {
+            "name": "ERTLeader"
+        },
+        {
+            "name": "ERTMedical"
+        },
+        {
+            "name": "ERTSecurity"
+        },
+        {
+            "name": "Geneticist"
+        },
+		{
+            "name": "HeadOfPersonnel"
         },
         {
             "name": "HeadOfSecurity"
         },
         {
-            "name": "Brigmedic"
+            "name": "HeadRevolutionary"
+        },
+        {
+            "name": "InitialInfected"
+        },
+        {
+            "name": "Janitor"
+        },
+        {
+            "name": "Lawyer"
+        },
+        {
+            "name": "Librarian"
         },
         {
             "name": "Pilot"
@@ -113,37 +116,64 @@
             "name": "MedicalDoctor"
         },
         {
-            "name": "Paramedic"
-        },
-        {
-            "name": "Chef"
-        },
-        {
-            "name": "Warden"
-        },
-        {
-            "name": "ResearchDirector"
+            "name": "MedicalIntern"
         },
         {
             "name": "Mime"
         },
         {
+            "name": "MindShield",
+            "delays": [
+                [
+                    1.0,
+                    1.0
+                ]
+            ]
+        },
+        {
             "name": "Musician"
         },
         {
-            "name": "Reporter"
+            "name": "Nanotrasen"
+        },
+        {
+            "name": "NoId"
+        },
+        {
+            "name": "ParadoxClone"
+        },
+        {
+            "name": "Paramedic"
+        },
+        {
+            "name": "Passenger"
+        },
+        {
+            "name": "Prisoner"
         },
         {
             "name": "Psychologist"
         },
         {
-            "name": "MedicalIntern"
+            "name": "QuarterMaster"
         },
         {
-            "name": "TechnicalAssistant"
+            "name": "Reporter"
         },
         {
-            "name": "ServiceWorker"
+            "name": "ResearchAssistant"
+        },
+        {
+            "name": "ResearchDirector"
+        },
+        {
+            "name": "Revolutionary"
+        },
+        {
+            "name": "Roboticist"
+        },
+        {
+            "name": "Scientist"
         },
         {
             "name": "SecurityCadet"
@@ -152,50 +182,73 @@
             "name": "IAA"
         },
         {
+            "name": "SecurityOfficer"
+        },
+        {
+            "name": "SeniorEngineer"
+        },
+        {
+            "name": "SeniorOfficer"
+        },
+        {
+            "name": "SeniorPhysician"
+        },
+        {
+            "name": "SeniorResearcher"
+        },
+        {
+            "name": "ServiceWorker"
+        },
+        {
+            "name": "Magistrat"
+        },
+        {
+            "name": "ShaftMiner"
+        },
+        {
+            "name": "StationAi"
+        },
+        {
+            "name": "StationEngineer"
+        },
+        {
+            "name": "Syndicate"
+        },
+        {
+            "name": "SyndicateCommander"
+        },
+        {
+            "name": "SyndicateCorpsman"
+        },
+        {
+            "name": "SyndicateOperative"
+        },
+        {
+            "name": "TechnicalAssistant"
+        },
+        {
+            "name": "Unknown"
+        },
+        {
+            "name": "Virologist"
+        },
+        {
+            "name": "Visitor"
+        },
+        {
+            "name": "Warden"
+        },
+        {
+            "name": "Wizard"
+        },
+        {
             "name": "Zombie"
         },
         {
             "name": "Zookeeper"
         },
         {
-            "name": "SeniorEngineer"
-        },
-        {
-            "name": "SeniorResearcher"
-        },
-        {
-            "name": "SeniorPhysician"
-        },
-        {
-            "name": "SeniorOfficer"
-        },
-        {
-            "name": "Revolutionary"
-        },
-        {
-            "name": "HeadRevolutionary"
-        },
-		{
-			"name": "Magistrat"
-		},
-        {
-            "name": "MindShield",
-            "delays":
-            [
-                [1.0,1.0]
-            ]
-        },
-        {
-            "name": "Syndicate"
-        },
-        {
-            "name": "Visitor"
-        },
-        {
-            "name": "InitialInfected"
-        },
-        {
-            "name": "Admin"
+            "name": "Vampire"
         }
     ]
 }

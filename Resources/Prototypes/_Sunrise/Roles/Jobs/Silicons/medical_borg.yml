@@ -1,0 +1,15 @@
+- type: job
+  id: MedicalBorg
+  name: job-name-medical-borg
+  description: job-description-medical-borg
+  playTimeTracker: JobMedicalBorg
+  icon: JobIconMedicalBorg
+  supervisors: job-supervisors-human
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 #20 hrs # Sunrise-Edit
+  canBeAntag: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgMedicalBattery
+  overrideConsoleVisibility: false
+  alwaysUseSpawner: true

@@ -1,0 +1,13 @@
+- type: construction
+  id: DoubleBed
+  name: construction-graph-tag-double-bed
+  description: construction-graph-tag-double-bed-desc
+  graph: DoubleBeds
+  startNode: start
+  targetNode: doubleBed
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

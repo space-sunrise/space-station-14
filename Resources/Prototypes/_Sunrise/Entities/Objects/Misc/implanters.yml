@@ -1,0 +1,35 @@
+﻿#NanoTrasen implanters
+
+#Syndie implanters   #PR Wiz #31782
+- type: entity
+  id: SmokeScreenImplanter
+  suffix: smoke screen
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: SmokeScreenImplant
+
+- type: entity
+  id: CreepyLaughImplanter
+  name: creepy laugh implanter
+  suffix: Sunrise, Laugh
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: CreepyLaughImplant
+
+- type: entity
+  id: RadioImplanterFreelance
+  name: freelance radio implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: RadioImplantFreelance
+
+- type: entity
+  id: DeathRattleImplanterFreelance
+  name: freelance death rattle implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantFreelance

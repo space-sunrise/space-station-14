@@ -1,0 +1,23 @@
+﻿- type: entity
+  id: BarberBigBox
+  name: cardboard box
+  description: A cardboard box for storing things.
+  parent: BaseBigBox
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+    layers:
+    - state: cardboard
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: cardboard_open
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: InteractionOutline
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

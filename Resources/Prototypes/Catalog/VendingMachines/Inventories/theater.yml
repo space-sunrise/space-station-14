@@ -17,6 +17,21 @@
     ClothingHeadHatPwig: 2
     ClothingOuterRobesJudge: 2
     ClothingOuterPoncho: 2
+    ClothingOuterCoatMansport: 2  #sunrise-edit
+    ClothingOuterCoatJilldress: 2 #sunrise-edit
+    ClothingOuterKigurumiPanda: 4 #sunrise-edit
+    ClothingFairyWings: 2 #sunrise-edit
+    ClothingLosyashWings: 2 #sunrise-edit
+    ClothingDemonWings : 2 #sunrise-edit
+    ClothingArchangelWings: 2 #sunrise-edit
+    ClothingTechWings : 2 #sunrise-edit
+    ClothingVoidWings : 2 #sunrise-edit
+    ClothingNormalWings : 2 #sunrise-edit
+    ClothingUniformPencilSkirt : 4 #sunrise-edit
+    ClothingUniformMajimaTishka : 3 #sunrise-edit
+    ClothingUniformMetatonTishka : 3 #sunrise-edit
+    ClothingShoesBootsMettaton : 3 #sunrise-edit
+    ClothingShoesBootsMajima : 3 #sunrise-edit
     ClothingHeadHatSantahat: 2
     ClothingOuterSanta: 2
     ClothingHeadHatSkub: 2
@@ -29,6 +44,8 @@
     ClothingHeadHatShrineMaidenWig: 2
     ClothingOuterSuitShrineMaiden: 2
     Gohei: 2
+    ClothingOuterSuitWitchRobes: 2
+    ClothingHeadHatWitch1: 2
     ClothingHeadHatRedRacoon: 2
     ClothingOuterRedRacoon: 2
     ClothingHeadPaperSack: 2
@@ -53,11 +70,17 @@
     ClothingShoesBootsCowboyBrown: 1
     ClothingShoesBootsCowboyBlack: 1
     ClothingShoesBootsCowboyWhite: 1
-    ClothingMaskNeckGaiterRed: 2
-  emaggedInventory:
+  contrabandInventory:
+    ClothingHeadHatRichard: 1
+    ToyFigurineBoxer: 1
+    ToyFigurineMusician: 1
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
-    ClothingMaskSexyClown: 1
-    ClothingMaskSexyMime: 1
+    ClothingOuterSuitCarp: 1
+    ClothingHeadHelmetDogi: 1
+    ClothingMaskDogi: 1
+    UmbrellaEntity: 1
+    ClothingMaskBlushingClown: 1
+    ClothingMaskBlushingMime: 1
     ClothingHeadHatCowboyBountyHunter: 1

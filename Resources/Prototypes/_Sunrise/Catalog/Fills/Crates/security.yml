@@ -1,0 +1,65 @@
+- type: entity
+  id: CrateSecurityWebbing
+  parent: CrateSecgear
+  name: Security Webbing crate
+  description: Contains two Security Webbing. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingBeltSecurityWebbing
+        amount: 2
+
+- type: entity
+  id: CrateSecurityGlovesCombat
+  parent: CrateSecgear
+  name: Gloves Combat crate
+  description: Contains three Gloves Combat. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHandsGlovesCombat
+        amount: 3
+
+- type: entity
+  id: CrateSecuritySWAT
+  parent: CrateSecgear
+  name: SWAT armor crate
+  description: Contains a SWAT kit. One heavy armor suit with special forces helmet, special forces gas mask and combat Swat boots. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorSWAT
+      - id: ClothingMaskGasSwat
+      - id: ClothingShoesSwat
+      - id: ClothingHeadHelmetSwat
+      - id: ClothingBeltSecurity
+      - id: CombatKnife
+
+- type: entity
+  id: CrateSecurityArmorReflective
+  parent: CrateSecgear
+  name: reflective armor crate
+  description: Contains a 2 reflective armor. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorReflective
+        amount: 2
+
+- type: entity
+  id: CrateSecurityHoly
+  parent: CrateSecgear
+  name: exorcism crate
+  description: Contains a 2 Holy shotgun ammobox and one flask of Holy water. To open it, the Security Service access level is required. Ameno dori me Ameno!
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxShotgunHoly
+        amount: 2
+      - id: DrinkHolyWaterFull
+      - id: FoodGarlic
+        amount: 3
+      - id: WeaponShotgunDoubleBarreledRubber
+        prob: 0.25
+      - id: Bible
+        prob: 0.1

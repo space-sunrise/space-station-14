@@ -1,0 +1,191 @@
+- type: entity
+  id: LockerMechChassis
+  parent: BaseMechPart
+  name: LockerMech chassis
+  description: LockerMech chassis
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: state
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/_Sunrise/Objects/Specific/Mech/lockermech_construction.rsi
+    state: state0
+  - type: Construction
+    graph: LockerMechConstruction
+    node: chassis
+    defaultTarget: lockermech
+
+
+- type: constructionGraph
+  id: LockerMechConstruction
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: chassis
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 10
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 0
+
+  - node: chassis
+    entity: LockerMechChassis
+    edges:
+    - to: lockermech
+      steps:
+      - tag: Toolbox
+        name: step-lockermech-toolbox1
+        icon:
+          sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+          state: icon
+        doAfter: 3
+
+      - tag: Toolbox
+        name: step-lockermech-toolbox2
+        icon:
+          sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+          state: icon
+        doAfter: 3
+
+      - tag: Toolbox
+        name: step-lockermech-toolbox3
+        icon:
+          sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+          state: icon
+        doAfter: 2
+
+      - tag: Flashlight
+        name: step-lockermech-flashlight
+        icon:
+          sprite: Objects/Tools/flashlight.rsi
+          state: flashlight
+        doAfter: 2
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 2
+
+      - tool: Screwing
+        doAfter: 7
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 3
+
+      - tool: Welding
+        doAfter: 10
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 4
+
+      - material: Steel
+        amount: 5
+        doAfter: 3
+
+      - material: Glass
+        amount: 2
+        doAfter: 3
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 5
+
+      - tag: GasTank
+        name: step-lockermech-oxygentank
+        icon:
+          sprite: Objects/Tanks/oxygen.rsi
+          state: icon
+        doAfter: 4
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 6
+
+      - material: Steel
+        amount: 5
+        doAfter: 7
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 7
+
+      - material: Cable
+        amount: 10
+        doAfter: 10
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 8
+
+      - tag: DoorElectronics
+        name: step-lockermech-door-electronics
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: door_electronics
+        doAfter: 3
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 9
+          
+      - material: Manipulator
+        amount: 10
+        doAfter: 5
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 10
+
+      - material: CableHV
+        amount: 5
+        doAfter: 5
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 11
+
+      - tag: PowerCage
+        name: step-lockermech-powercell
+        icon:
+          sprite: Objects/Power/power_cages.rsi
+          state: medium
+        store: battery-container
+        doAfter: 1.5
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 12
+
+      - tool: Welding
+        doAfter: 3
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 13
+
+  - node: lockermech
+    entity: MechLocker
+    actions:
+    - !type:BuildMech
+      mechPrototype: MechLocker
+
+# Единый рецепт
+- type: construction
+  id: LockerMech
+  name: construction-graph-tag-lockermech-name
+  description: construction-graph-tag-lockermech-desc
+  graph: LockerMechConstruction
+  startNode: start
+  targetNode: lockermech
+  category: construction-category-misc
+  objectType: Structure
+

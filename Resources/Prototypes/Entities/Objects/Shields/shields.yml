@@ -32,17 +32,19 @@
           Heat: 1
     - type: Damageable
       damageContainer: Shield
+    - type: ExaminableDamage
+      messages: ShieldMessages
     - type: Destructible
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 80
+            damage: 140
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 40 #This is probably enough damage before it breaks
+            damage: 100 #This is probably enough damage before it breaks
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -58,61 +60,220 @@
                   min: 2
                   max: 2
     - type: StaticPrice
-      price: 50
+      price: 100
+    - type: HealthExaminable #Sunrise-Start
+      examinableTypes:
+        - Blunt
+        - Slash
+        - Piercing
+        - Heat
+        - Mangleness
+      locPrefix: shield
+    - type: ClothingSpeedModifier
+      sprintModifier: 0.95
+    - type: HeldSpeedModifier #Sunrise-End
+
+- type: entity
+  name: base repairable shield
+  parent: BaseShield
+  id: BaseRepairableShield
+  description: A repairable shield!
+  abstract: true
+  components:
+  - type: Repairable # Negative values represent healing
+    damage:
+      groups:
+        Brute: -60 # 20 of each Brute Type - 20% of a basic shield HP
+      types:
+        Heat: -20
+    fuelCost: 10 # 1/2 of a Welder for a full repair
+    doAfterDelay: 5
+    allowSelfRepair: false
 
 #Security Shields
 
 - type: entity
   name: riot shield
-  parent: BaseShield
+  parent: [ BaseRepairableShield, BaseSecurityContraband ]
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
+    - type: MeleeThrowOnHit #Sunrise-Start
+      distance: 0.7
+      speed: 7
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 7
+      bluntStaminaDamageFactor: 3.0 #Sunrise-End
     - type: StaticPrice
       price: 90
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+    - type: Tag #Sunrise-Start
+      tags:
+      - RiotShield
 
 - type: entity
-  name: riot laser shield
-  parent: BaseShield
+  name: riot strobe shield
+  parent: [ RepairableShield, BaseSecurityContraband, MachineComponentSounds, BaseShield ] # Sunrise-Edit
+  id: RiotShieldStrobe
+  description: A large tower shield with atached Flash. Good for controlling crowds.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Melee/shields.rsi
+      layers:
+      - state: riot-icon
+        map: [ "enum.FlashVisualLayers.BaseLayer" ]
+      - state: flashing
+        map: [ "enum.FlashVisualLayers.LightLayer" ]
+        visible: false
+        shader: unshaded
+    - type: Flash
+    - type: LimitedCharges
+      maxCharges: 5
+    - type: MeleeThrowOnHit
+      distance: 0.5
+      speed: 5
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 7
+      bluntStaminaDamageFactor: 3.0
+    - type: Item
+      size: Ginormous
+      sprite: _Sunrise/Objects/Weapons/Melee/shields.rsi
+      heldPrefix: riot
+    - type: UseDelay
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.FlashVisuals.Burnt:
+          enum.FlashVisualLayers.BaseLayer:
+            True: {state: burnt}
+        enum.FlashVisuals.Flashing:
+          enum.FlashVisualLayers.LightLayer:
+            True: {visible: true}
+            False: {visible: false}
+    - type: StaticPrice
+      price: 90
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+        flatReductions:
+          Blunt: 3
+          Slash: 3
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 150
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 120
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 2
+                  max: 3
+                SheetGlass:
+                  min: 2
+                  max: 2
+                CableApcStack1:
+                  min: 1
+                  max: 2
+    - type: Construction
+      graph: RiotShieldStrobeConstruction
+      node: shieldstrobe
+    - type: Tag
+      tags:
+      - RiotShieldStrobe
+#Sunrise-End
+
+- type: entity
+  name: laser shield
+  parent: [ BaseRepairableShield, BaseSecurityContraband ]
   id: RiotLaserShield
-  description: A riot shield built for withstanding lasers, but not much else.
+  description: A shield built for withstanding lasers, but not much else.
   components:
     - type: Sprite
       state: riot_laser-icon
     - type: Item
       heldPrefix: riot_laser
+      size: Ginormous # Sunrise-Edit Я не ебу почему он стал маленьким
     - type: Blocking
       passiveBlockModifier:
         coefficients:
-          Heat: 0.8
+          Heat: 0.7
       activeBlockModifier:
         coefficients:
-          Heat: 0.7
+          Heat: 0.5
         flatReductions:
-          Heat: 2
+          Heat: 1
+  # Sunrise-Start
+    - type: Reflect
+      reflectProb: 0.25
+      reflects:
+      - Energy
+  # Sunrise-End
 
 - type: entity
-  name: riot bullet shield
-  parent: BaseShield
+  name: ballistic shield
+  parent: [ BaseRepairableShield, BaseSecurityContraband ]
   id: RiotBulletShield
-  description: A ballistic riot shield built for withstanding bullets, but not much else.
+  description: A shield built for protecting against ballistics, but not much else.
   components:
     - type: Sprite
       state: riot_bullet-icon
     - type: Item
+      size: Ginormous # Sunrise-Edit Я не ебу почему он стал маленьким
       heldPrefix: riot_bullet
     - type: Blocking
       passiveBlockModifier:
         coefficients:
-          Blunt: 0.8
-          Piercing: 0.8
+          Piercing: 0.7
       activeBlockModifier:
         coefficients:
-          Blunt: 0.7
-          Piercing: 0.7
+          Piercing: 0.5
         flatReductions:
-          Blunt: 1.5
-          Piercing: 1.5
+          Piercing: 1
+  # Sunrise-Start
+    - type: Reflect
+      reflectProb: 0.1
+      spread: 180
+      soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+      reflects:
+      - NonEnergy
+  # Sunrise-End
 
 #Craftable shields
 
@@ -172,58 +333,110 @@
       price: 150
 
 - type: entity
-  name: makeshift shield
+  name: cardboard shield
   parent: BaseShield
-  id: MakeshiftShield
-  description: A rundown looking shield, not good for much.
+  id: CardShield
+  description: A shield made of cardboard. Won't protect you from much.
   components:
     - type: Sprite
-      state: makeshift-icon
+      state: cardshield-icon
     - type: Item
-      heldPrefix: metal
+      heldPrefix: cardshield
     - type: Blocking
       passiveBlockModifier:
         coefficients:
-          Blunt: 0.95
-          Slash: 0.95
-          Piercing: 0.95
-          Heat: 0.9
+          Blunt: 1
+          Slash: 2
+          Piercing: 0.6
+          Heat: 3
       activeBlockModifier:
         coefficients:
-          Blunt: 0.85
-          Slash: 0.85
-          Piercing: 0.85
-          Heat: 0.8
+          Blunt: 0.9
+          Slash: 1.8
+          Piercing: 0.5
+          Heat: 2.5
         flatReductions:
           Blunt: 0.5
-          Slash: 0.5
-          Piercing: 0.5
-          Heat: 1
     - type: Construction
-      graph: MakeshiftShield
-      node: makeshiftShield
+      graph: CardShield
+      node: cardShield
     - type: Destructible
       thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 40
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 20 #Very weak shield
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: MetalBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetSteel:
-                  min: 1
-                  max: 2
+      - trigger:
+          !type:DamageTrigger
+          damage: 25
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 10 #Very very weak shield
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound: /Audio/Items/Toys/ToyFall2.ogg
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialCardboard:
+              min: 2
+              max: 4
+    - type: StaticPrice
+      price: 20
+
+- type: entity
+  name: makeshift shield
+  parent: BaseRepairableShield
+  id: MakeshiftShield
+  description: A rundown looking shield, not good for much.
+  components:
+  - type: Sprite
+    state: makeshift-icon
+  - type: Item
+    heldPrefix: makeshift
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.8
+      flatReductions:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 1
+  - type: Construction
+    graph: MakeshiftShield
+    node: makeshiftShield
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20 #Very weak shield
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel:
+            min: 1
+            max: 2
 
 - type: entity
   name: web shield
@@ -282,7 +495,7 @@
 
 - type: entity
   name: clockwork shield
-  parent: BaseShield
+  parent: BaseRepairableShield
   id: ClockworkShield
   description: Ratvar oyrffrf lbh jvgu uvf cebgrpgvba.
   components:
@@ -311,9 +524,9 @@
 
 - type: entity
   name: mirror shield
-  parent: BaseShield
+  parent: [ BaseShield, BaseMagicalContraband ]
   id: MirrorShield
-  description: Glows an eerie red. You hear the Geometer whispering...
+  description: Eerily glows red... you hear the geometer whispering
   components:
     - type: Sprite
       state: mirror-icon
@@ -321,7 +534,6 @@
       heldPrefix: mirror
     - type: Reflect
       reflectProb: 0.95
-      innate: true
       reflects:
         - Energy
     - type: Blocking #Mirror shield reflects heat/laser, but is relatively weak to everything else.
@@ -359,23 +571,34 @@
                   max: 5
 
 - type: entity
-  name: energy shield
-  parent: BaseItem
+  parent: [BaseItem, BaseSyndicateContraband]
   id: EnergyShield
+  name: energy shield
   description: Exotic energy shield, when folded, can even fit in your pocket.
   components:
+    - type: EnergySword
     - type: ItemToggle
       soundActivate:
         path: /Audio/Weapons/ebladeon.ogg
       soundDeactivate:
         path: /Audio/Weapons/ebladeoff.ogg
+      deactivateUnequippedHand: true
+      # Sunrise-Start
+      predictable: false
+      soundFailToActivate:
+        path: /Audio/Machines/button.ogg
+        params:
+          variation: 0.250
+      # Sunrise-End
     - type: ItemToggleActiveSound
       activeSound:
         path: /Audio/Weapons/ebladehum.ogg
     - type: ItemToggleSize
       activatedSize: Huge
-    - type: ItemToggleDisarmMalus
-      activatedDisarmMalus: 0.6
+    - type: ComponentToggler
+      components:
+      - type: DisarmMalus
+        malus: 0.6
     - type: Sprite
       sprite: Objects/Weapons/Melee/e_shield.rsi
       layers:
@@ -391,7 +614,7 @@
       heldPrefix: eshield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
@@ -405,11 +628,10 @@
       enabled: false
       radius: 1.5
       energy: 2
-      color: blue
+      color: white
+    - type: ItemTogglePointLight
     - type: Reflect
-      enabled: false
       reflectProb: 0.95
-      innate: true
       reflects:
         - Energy
     - type: Blocking
@@ -431,6 +653,8 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
+    - type: ExaminableDamage
+      messages: EnergyShieldMessages
     - type: Destructible
       thresholds:
         - trigger:
@@ -454,7 +678,8 @@
                   min: 1
                   max: 1
     - type: StaticPrice
-      price: 350
+      price: 7000
+    # Sunrise-End
 
 - type: entity
   name: broken energy shield
@@ -472,7 +697,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: BaseShield
+  parent: BaseRepairableShield
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:
@@ -485,8 +710,10 @@
         path: /Audio/Weapons/telescopicoff.ogg
         params:
           volume: -5
-    - type: ItemToggleDisarmMalus
-      activatedDisarmMalus: 0.6
+    - type: ComponentToggler
+      components:
+      - type: DisarmMalus
+        malus: 0.6
     - type: ItemToggleSize
       activatedSize: Huge
     - type: Sprite
@@ -502,7 +729,7 @@
       heldPrefix: teleriot
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
@@ -536,4 +763,24 @@
                   min: 2
                   max: 2
     - type: StaticPrice
-      price: 250
+      price: 150
+
+- type: entity # Sunrise-Start
+  name: repairable shield
+  parent: BaseItem
+  id: RepairableShield
+  description: A shield!
+  abstract: true
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Repairable
+      doAfterDelay: 4
+      damage:
+        types:
+          Blunt: -25
+          Slash: -25
+          Piercing: -25
+          Heat: -25
+          Structural: -25
+          Mangleness: 7.5 # Sunrise-End

@@ -2,25 +2,21 @@
   id: DebugGenerator
   parent: BaseGenerator
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   components:
   - type: PowerSupplier
     supplyRate: 300000
     supplyRampRate: 50000
     supplyRampTolerance: 500
-  - type: Tag
-    tags:
-      - Debug
 
 - type: entity
   id: DebugConsumer
   name: consumer
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -60,12 +56,10 @@
   id: DebugBatteryStorage
   name: battery storage
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -82,6 +76,11 @@
     sprite: Structures/Power/power.rsi
     state: provider
   - type: Battery
+    # Very important:
+    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+    # This can not be done by changing the charge rate as the power supply ramps up over time.
+    # This disables prediction for this battery.
+    netsync: false
   - type: NodeContainer
     nodes:
       input:
@@ -93,12 +92,10 @@
   id: DebugBatteryDischarger
   name: battery discharger
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: PowerNetworkBattery
   - type: InteractionOutline
@@ -116,6 +113,11 @@
     sprite: Structures/Power/power.rsi
     state: provider
   - type: Battery
+    # Very important:
+    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+    # This can not be done by changing the charge rate as the power supply ramps up over time.
+    # This disables prediction for this battery.
+    netsync: false
   - type: NodeContainer
     nodes:
       input:
@@ -125,42 +127,47 @@
   - type: Anchorable
 
 - type: entity
-  id: DebugSMES
   parent: BaseSMES
-  suffix: DEBUG
+  id: DebugSMESRecharging
+  suffix: DEBUG, AutoRecharge
+  categories: [ Debug ] # Sunrise added
   components:
-  - type: Tag
-    tags:
-      - Debug
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50000
 
 - type: entity
-  id: DebugSubstation
   parent: BaseSubstation
-  suffix: DEBUG
+  id: DebugSubstationRecharging
+  suffix: DEBUG, AutoRecharge
   components:
-  - type: Tag
-    tags:
-      - Debug
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50000
 
 - type: entity
-  id: DebugAPC
-  parent: BaseAPC
-  suffix: DEBUG
+  parent: BaseSubstationWall
+  id: DebugSubstationWallRecharging
+  suffix: DEBUG, AutoRecharge
   components:
-  - type: Tag
-    tags:
-      - Debug
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50000
+
+- type: entity
+  parent: BaseAPC
+  id: DebugAPCRecharging
+  suffix: DEBUG, AutoRecharge
+  categories: [ Debug ] # Sunrise added
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50000
 
 - type: entity
   id: DebugPowerReceiver
   name: power receiver
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise added
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Physics

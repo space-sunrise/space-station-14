@@ -1,0 +1,71 @@
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineBlueshield
+  name: blue shield figure
+  description: A figure depicting Blue Shield, ready to protect the command staff at all costs.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: blueshield
+  - type: SpeakOnTrigger
+    pack: FigurinesBlueshield
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineEnforcementofficer
+  name: enforcement officer figure
+  description: A figure depicting Enforcement Officer, ready to protect the lawyer at all costs.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: enforcementofficer
+  - type: SpeakOnTrigger
+    pack: FigurinesEnforcementofficer
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineBrigmedic
+  name: Brigmedic figure
+  description: A figurine depicting a brigmedic. Seems like you'd rather die than have to explain to him how you got your injuries.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: brigmedic
+  - type: SpeakOnTrigger
+    pack: FigurinesBrigmedic
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineCburn
+  name: Cburn figure
+  description: A figurine depicting the station's defenders against... viruses?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: cburn
+  - type: SpeakOnTrigger
+    pack: FigurinesCburn
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineDeathsquad
+  name: Deathsquad figure
+  description: A figurine depicting.... Who's that?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: deathsquad
+  - type: SpeakOnTrigger
+    pack: FigurinesDeathsquad
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineErt
+  name: Ert leader figure
+  description: A figurine depicting the station's defenders from..... I don't know, just in case?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/figurines.rsi
+    state: ert
+  - type: SpeakOnTrigger
+    pack: FigurinesErt

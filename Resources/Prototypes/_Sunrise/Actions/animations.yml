@@ -1,0 +1,76 @@
+﻿- type: emote
+  id: Flip
+  category: Verb
+  name: animations-flip
+  whitelist:
+    components:
+    - Body
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+    - Fall
+  popupMessages: ["animations-msg-flip"]
+  animation: true
+
+- type: emote
+  id: Jump
+  category: Verb
+  name: animations-jump
+  whitelist:
+    components:
+    - Body
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+    - Fall
+  popupMessages: ["animations-msg-jump"]
+  animation: true
+
+- type: emote
+  id: Dance
+  category: Verb
+  name: animations-dance
+  whitelist:
+    components:
+    - Body
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+    - Fall
+  popupMessages: ["animations-msg-dance"]
+  animation: true
+
+- type: emote
+  id: Lay
+  category: Verb
+  name: animations-lay
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+    - Fall
+  animation: true
+
+- type: emote
+  id: FallOnNeck
+  category: Verb
+  name: animations-fall-on-neck
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
+  chatMessages: ["animations-msg-fall-on-neck"]
+  animation: true

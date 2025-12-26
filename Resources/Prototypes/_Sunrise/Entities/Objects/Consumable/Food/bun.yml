@@ -1,0 +1,27 @@
+- type: entity
+  name: Bun
+  parent: FoodBase
+  id: FoodBun
+  description: Heart shaped bun
+  components:
+    - type: FlavorProfile
+      flavors:
+        - sweet
+    - type: Food
+      utensil:
+        - Spoon
+        - Fork
+    - type: Sprite
+      sprite: _Sunrise/Objects/Consumable/Food/bun.rsi
+      state: icon
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 30
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 10
+            - ReagentId: Protein
+              Quantity: 5
+            - ReagentId: Sugar
+              Quantity: 5

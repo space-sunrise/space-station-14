@@ -24,4 +24,8 @@ public sealed class AntagSelectionPlayerPool (List<List<ICommonSession>> ordered
     }
 
     public int Count => orderedPools.Sum(p => p.Count);
+
+    // Sunrise-Sponsors-Start
+    public List<List<ICommonSession>> List => orderedPools.ToList();
+    // Sunrise-Sponsors-End
 }

@@ -1,0 +1,63 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleTerminator
+  name: Terminator Role
+  components:
+  - type: MindRole
+    antagPrototype: Terminator
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+  - type: TerminatorRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleFugitive
+  name: Fugitive Role
+  components:
+  - type: MindRole
+    antagPrototype: Fugitive
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+  - type: FugitiveRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRolePlanetPrisoner
+  name: Planet Prisoner Role
+  components:
+  - type: MindRole
+    antagPrototype: PlanetPrisoner
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+  - type: PlanetPrisonerRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+  - type: VampireRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLoneAbductor
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: LoneAbductorAntag
+  - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: AbductorVictimRole
+  name: Abductor Victim
+  components:
+  - type: MindRole
+    antagPrototype: AbductorVictim
+    roleType: SoloAntagonist
+  - type: AbductorVictimRole

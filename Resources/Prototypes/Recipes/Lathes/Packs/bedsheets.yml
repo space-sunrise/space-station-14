@@ -1,0 +1,42 @@
+## Static
+
+- type: latheRecipePack
+  id: Bedsheets
+  recipes:
+  - BedsheetBlack
+  - BedsheetBlue
+  - BedsheetBrown
+  - BedsheetGreen
+  - BedsheetGrey
+  - BedsheetOrange
+  - BedsheetPurple
+  - BedsheetRed
+  - BedsheetWhite
+  - BedsheetYellow
+  - BedsheetClown
+  - BedsheetCosmos
+  - BedsheetIan
+  - BedsheetMedical
+  - BedsheetMime
+  - BedsheetNT
+  - BedsheetRainbow
+  - BedsheetBrigmedic
+#Sunrise-start
+  - DoubleBedsheetBlack
+  - DoubleBedsheetBlue
+  - DoubleBedsheetBrown
+  - DoubleBedsheetGreen
+  - DoubleBedsheetGrey
+  - DoubleBedsheetOrange
+  - DoubleBedsheetPurple
+  - DoubleBedsheetRed
+  - DoubleBedsheetWhite
+  - DoubleBedsheetYellow
+  - DoubleBedsheetClown
+  - DoubleBedsheetCosmos
+  - DoubleBedsheetIan
+  - DoubleBedsheetMedical
+  - DoubleBedsheetMime
+  - DoubleBedsheetNT
+  - DoubleBedsheetRainbow
+#sunrise-end

@@ -19,7 +19,9 @@ public enum MechAssemblyVisuals : byte
 [Serializable, NetSerializable]
 public enum MechVisualLayers : byte
 {
-    Base
+    Base,
+    Open, // Sunrise-added
+    Broken // Sunrise-added
 }
 
 /// <summary>
@@ -49,6 +51,9 @@ public record struct AttemptRemoveMechEquipmentEvent()
     public bool Cancelled = false;
 }
 
+[ByRefEvent]
+public readonly record struct MechSayEvent(EntityUid EntityUid, string Message);
+
 public sealed partial class MechToggleEquipmentEvent : InstantActionEvent
 {
 }
@@ -58,5 +63,9 @@ public sealed partial class MechOpenUiEvent : InstantActionEvent
 }
 
 public sealed partial class MechEjectPilotEvent : InstantActionEvent
+{
+}
+
+public sealed partial class MechToggleLightsEvent : InstantActionEvent
 {
 }

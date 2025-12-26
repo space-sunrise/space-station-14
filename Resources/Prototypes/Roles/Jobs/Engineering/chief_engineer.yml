@@ -6,17 +6,20 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 2.5h
+    - !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 5h
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 10h
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
-  requireAdminNotify: true
   supervisors: job-supervisors-captain
-  radioBold: true
-  canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 70 # Sunrise-Edit
+  canBeAntag: true # RaMbUt878-edit
   access:
   - Maintenance
   - Engineering
@@ -28,21 +31,34 @@
   - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
   speciesBlacklist:
-  - Vox
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: ChiefEngineerGear
   equipment:
     id: CEPDA
+#    head: ClothingHeadHatHardhatWhite # Sunrise-Edit
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
   storage:
     back:
-    - BoxSurvivalEngineering
     - Flash
+    - Telebaton # Sunrise-Edit
+
+- type: chameleonOutfit
+  id: ChiefEngineerChameleonOutfit
+  job: ChiefEngineer
+  hasMindShield: false #Sunrise-Edit
+  equipment:
+    head: ClothingHeadHatBeretEngineering
+    mask: ClothingMaskBreath
+    neck: ClothingNeckCloakCe
+    outerClothing: ClothingOuterWinterCE
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMagAdv

@@ -21,17 +21,21 @@ public sealed partial class GunSystem
             return;
         }
 
-        var spent = (bool) varSpent;
-        string state;
+        var spent = (bool)varSpent;
+        string? state = null;
 
-        if (spent)
+        if (spent && component.State != null)
             state = component.Suffix ? $"{component.State}-spent" : "spent";
         else
             state = component.State;
 
-        sprite.LayerSetState(AmmoVisualLayers.Base, state);
-        if (sprite.LayerExists(AmmoVisualLayers.Tip)){
-            sprite.RemoveLayer(AmmoVisualLayers.Tip);
+        if (spent && component.revealSpent) /// Starlight
+        {
+            _sprite.LayerSetVisible((uid, sprite), AmmoVisualLayers.Spent, true);
+            return;
         }
+
+        _sprite.LayerSetRsiState((uid, sprite), AmmoVisualLayers.Base, state);
+        _sprite.RemoveLayer((uid, sprite), AmmoVisualLayers.Tip, false);
     }
 }

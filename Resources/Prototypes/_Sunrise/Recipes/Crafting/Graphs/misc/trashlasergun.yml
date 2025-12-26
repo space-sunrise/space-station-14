@@ -1,0 +1,31 @@
+- type: constructionGraph
+  id: Trashlasergun
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: Plasteel
+              amount: 1
+              doAfter: 0
+            - material: Steel
+              amount: 10
+              doAfter: 0
+            - material: Glass
+              amount: 5
+              doAfter: 0
+            - tag: PowerCage
+              name: step-lockermech-powercell
+              icon:
+                sprite: "Objects/Power/power_cages.rsi"
+                state: "medium"
+              doAfter: 0
+            - material: Cable
+              amount: 10
+              doAfter: 0
+            - material: CableHV
+              amount: 10
+              doAfter: 10
+    - node: done
+      entity: WeaponMechIndustrialTrashLasergun

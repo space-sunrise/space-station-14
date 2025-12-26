@@ -1,0 +1,12 @@
+ent-UnfinishedForgedShotgun = assembled forged shotgun
+    .desc = Just needs the welding to keep everything in place.
+ent-UnfinishedPistolForged = forged pistol parts
+    .desc = Some assembly may be reqiured. Needs welding.
+ent-UnfinishedRevolverForged = forged revolver parts
+    .desc = Some assembly may be reqiured. Needs welding.
+ent-UnfinishedSubMachineGunForged = forged SMG parts
+    .desc = Some assembly may be reqiured. Needs welding.
+ent-UnfinishedSniperForged = forged sniper parts
+    .desc = Some assembly may be reqiured. Needs welding.
+ent-ModularBarrel = modular barrel
+    .desc = A vital component in guncrafting.

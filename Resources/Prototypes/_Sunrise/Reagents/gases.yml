@@ -1,0 +1,222 @@
+- type: reagent
+  id: BZ
+  name: reagent-name-bz
+  desc: reagent-desc-bz
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#9370db"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        emote: Cough
+        showInChat: true
+        probability: 0.1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.5
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        scaling: true
+        ignoreResistances: true
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 2.5
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 10
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        emote: Laugh
+        showInChat: true
+        probability: 0.1
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        emote: Scream
+        showInChat: true
+        probability: 0.01
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.5
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        type: Local
+        visualType: Medium
+        messages: [ "effect-sleepy" ]
+        probability: 0.1
+      - !type:MovementSpeedModifier
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        key: ForcedSleep
+        component: ForcedSleeping
+        time: 10
+        type: Add
+
+- type: reagent
+  id: Healium
+  name: reagent-name-healium
+  desc: reagent-desc-healium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: sweet
+  color: "#8b0000"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 0.5
+        scaling: true
+        ignoreResistances: true
+        damage:
+          groups:
+            Burn: -0.7
+            Toxin: -0.7
+            Brute: -0.7
+          types:
+            Mangleness: 0.03
+      - !type:ModifyBleed
+        amount: -0.15
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 0.5
+        type: Local
+        visualType: Medium
+        messages: [ "effect-sleepy" ]
+        probability: 0.1
+      - !type:MovementSpeedModifier
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 1
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 1.8
+        key: ForcedSleep
+        component: ForcedSleeping
+        time: 3
+        type: Add
+
+
+- type: reagent
+  id: Nitrium
+  name: reagent-name-nitrium
+  desc: reagent-desc-nitrium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#8B4513"
+  metabolisms:
+    Gas:
+      metabolismRate: 1.0
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 0.5
+        ignoreResistances: true
+        damage:
+          types:
+            Mangleness: 0.8
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentCondition
+            reagent: Nitrium
+            min: 80
+        damage:
+          types:
+            Poison: 20
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 10
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 10
+        type: Remove
+      - !type:GenericStatusEffect
+        key: StaminaModifier
+        component: StaminaModifier
+        time: 10
+        type: Add
+      - !type:GenericStatusEffect
+        key: ForcedSleep
+        time: 10
+        type: Remove
+      - !type:Jitter
+      - !type:PopupMessage
+        visualType: Medium
+        messages: ["Вы чувствуете как ваше тело наполняется энергией", "Вы чувствуете как начинают болеть ваши мышцы"]
+        type: Local
+        probability: 0.05

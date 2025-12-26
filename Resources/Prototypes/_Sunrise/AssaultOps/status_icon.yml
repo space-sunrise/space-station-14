@@ -1,0 +1,10 @@
+﻿- type: factionIcon
+  id: AssaultOpsFaction
+  priority: 12
+  showTo:
+    components:
+    - ShowAntagIcons
+    - AssaultOperative
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Syndicate

@@ -5,10 +5,11 @@
   playTimeTracker: JobLawyer
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
+      time: 2.5h
   startingGear: LawyerGear
   icon: "JobIconLawyer"
-  supervisors: job-supervisors-hop
+  canBeAntag: false
+  supervisors: job-supervisors-magistrate
   access:
   - Service
   - Lawyer
@@ -20,11 +21,21 @@
   equipment:
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
-    ears: ClothingHeadsetSecurity
-    # TODO add copy of space law
+    ears: ClothingHeadsetLawyer
   inhand:
     - BriefcaseBrownFilled
   storage:
     back:
-    - BoxSurvival
     - RubberStampLawyer
+    - HyperLinkBookCorporateLaw
+
+- type: chameleonOutfit
+  id: LawyerChameleonOutfit
+  job: Lawyer
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckLawyerbadge
+    outerClothing: ClothingOuterWinterColorBlack
+    gloves: ClothingHandsGlovesColorBlack

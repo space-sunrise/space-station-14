@@ -1,0 +1,33 @@
+{
+  "version": 1,
+    "license": "CLA",
+    "copyright": "Sprited by discord: land1001",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "broken",
+      "directions": 4
+    },
+    {
+        "name": "screen",
+        "directions": 4
+    },
+    {
+        "name": "screenstatic",
+        "directions": 4
+    },
+    {
+        "name": "panel"
+    }
+  ]
+}

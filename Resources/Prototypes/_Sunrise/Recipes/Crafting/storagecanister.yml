@@ -1,0 +1,9 @@
+- type: construction
+  id: StorageCanister
+  name: construction-graph-tag-canister
+  graph: StorageCanister
+  startNode: start
+  targetNode: done
+  category: construction-category-storage
+  description: construction-graph-tag-canister-desc
+  objectType: Structure

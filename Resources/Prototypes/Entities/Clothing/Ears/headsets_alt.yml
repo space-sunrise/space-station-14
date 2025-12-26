@@ -22,14 +22,14 @@
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/cargo.rsi
+    sprite:  _Sunrise/Clothing/Ears/Headsets/cargo.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/cargo.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/cargo.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltCentCom
-  name: CentCom over-ear headset
+  name: CentComm over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -37,22 +37,12 @@
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/centcom.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/centcom.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAltCentCom
-  id: ClothingHeadsetAltCentComFake
-  suffix: Fake
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
-
-- type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltCommand
   name: command over-ear headset
   components:
@@ -61,12 +51,12 @@
       key_slots:
       - EncryptionKeyStationMaster
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/command.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/command.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltEngineering
   name: chief engineer's over-ear headset
   components:
@@ -77,12 +67,12 @@
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/engineering.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/engineering.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/engineering.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/engineering.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltMedical
   name: chief medical officer's over-ear headset
   components:
@@ -93,14 +83,14 @@
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/medical.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medical.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/medical.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/medical.rsi # Sunrise-Edit
   - type: StealTarget
     stealGroup: ClothingHeadsetAltMedical
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltSecurity
   name: head of security's over-ear headset
   components:
@@ -111,12 +101,12 @@
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/security.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/security.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltScience
   name: research director's over-ear headset
   components:
@@ -127,12 +117,12 @@
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/science.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/science.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/science.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/science.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
   id: ClothingHeadsetAltSyndicate
   name: blood-red over-ear headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
@@ -145,9 +135,9 @@
       key_slots:
       - EncryptionKeySyndie
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/syndicate.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/syndicate.rsi # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -162,6 +152,23 @@
         key_slots:
           - EncryptionKeyFreelance
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/freelance.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/freelance.rsi # Sunrise-Edit
     - type: Clothing
-      sprite: Clothing/Ears/Headsets/freelance.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/freelance.rsi # Sunrise-Edit
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseMagicalContraband]
+  id: ClothingHeadsetAltWizard
+  name: wizard's over-ear headset
+  components:
+    - type: Headset
+    - type: EncryptionKeyHolder
+      keySlots: 5
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyStationMaster
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Ears/Headsets/wizard.rsi # Sunrise-Edit
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Ears/Headsets/wizard.rsi # Sunrise-Edit

@@ -1,0 +1,6 @@
+- type: startingGear
+  id: SyndicateOperativeClothingFelinid
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesColorBlack

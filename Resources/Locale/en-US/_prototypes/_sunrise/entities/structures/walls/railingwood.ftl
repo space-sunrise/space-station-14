@@ -1,0 +1,10 @@
+ent-BaseRailingWood = railingwood
+    .desc = Basic wooden railing meant to protect idiots like you from falling. This one has some fashion to it.
+ent-RailingWood = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }
+ent-RailingCornerWood = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }
+ent-RailingCornerWoodSmall = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }
+ent-RailingRoundWood = { ent-BaseRailingWood }
+    .desc = { ent-BaseRailingWood.desc }

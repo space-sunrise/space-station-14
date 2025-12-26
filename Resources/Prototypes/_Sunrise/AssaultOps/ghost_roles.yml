@@ -1,0 +1,39 @@
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointAssaultOpsCommander
+  components:
+  - type: GhostRole
+    name: AssaultOps Commander
+    description: You are a syndicate operative assigned to the destruction of the station. Your task as an antagonist is to do whatever is necessary to achieve this goal.
+    rules: ghost-role-information-rules-default-team-antagonist
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: test
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointAssaultOpsOperative
+  components:
+  - type: GhostRole
+    name: AssaultOps Operative
+    description: You are a syndicate operative assigned to the destruction of the station. Your task as an antagonist is to do whatever is necessary to achieve this goal.
+    rules: ghost-role-information-rules-default-team-antagonist
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: test

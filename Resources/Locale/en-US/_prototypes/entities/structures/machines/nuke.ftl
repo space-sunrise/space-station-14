@@ -1,0 +1,13 @@
+ent-BaseNuclearBomb = nuclear fission explosive
+    .desc = { ent-BaseStructure.desc }
+ent-NuclearBomb = { ent-BaseNuclearBomb }
+    .desc = You probably shouldn't stick around to see if this is armed.
+ent-NuclearBombUnanchored = { ent-NuclearBomb }
+    .suffix = unanchored
+    .desc = { ent-NuclearBomb.desc }
+ent-NuclearBombDisarmed = { ent-BaseNuclearBomb }
+    .desc = You can clearly see that this can't be armed, given its lack of nuclear material.
+    .suffix = Disarmed
+ent-NuclearBombKeg = nuclear fission explosive
+    .desc = You probably shouldn't stick around to see if this is armed. It has a tap on the side.
+    .suffix = keg

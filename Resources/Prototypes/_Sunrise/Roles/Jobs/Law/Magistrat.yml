@@ -1,0 +1,66 @@
+- type: job
+  id: Magistrat
+  name: job-name-magistrat
+  description: job-description-magistrat
+  playTimeTracker: JobMagistrat
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 108000 #30 hrs
+  startingGear: MagistratGear
+  icon: "JobIconMagistrat"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  setPreference: false
+  radioBold: true
+  displayWeight: 75
+  access:
+  - Magistrat
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Janitor
+  - Theatre
+  - Chapel
+  - Lawyer
+  - Brig
+  - Security
+  - Medical
+  - Research
+  - Engineering
+  - Cargo
+  - Salvage
+  - Command
+  - Hydroponics
+  - Maintenance
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: MagistratGear
+  equipment:
+    jumpsuit: MagistratUniformSuit
+    back: ClothingBackpack
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorWhite
+    outerClothing: ClothingOuterRobesJudge
+    id: MagistratPDA
+    ears: ClothingHeadsetMagistrate
+    head: ClothingHeadHatPwig
+  storage:
+    back:
+    - RubberStampMagistrat
+    - ClothingNeckLawyerbadge
+    - GavelHammer
+    - GavelBlock
+    - Flash
+    - Telebaton
+
+- type: chameleonOutfit
+  id: MagistratChameleonOutfit
+  job: Magistrat

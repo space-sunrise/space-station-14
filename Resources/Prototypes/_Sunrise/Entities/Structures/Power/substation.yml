@@ -1,0 +1,8 @@
+- type: entity
+  parent: BaseSubstation
+  id: SubstationExtended
+  suffix: Basic, Extended, 7.5MJ
+  components:
+  - type: Battery
+    maxCharge: 7500000
+    startingCharge: 7500000

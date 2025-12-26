@@ -6,6 +6,8 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using System.Numerics;
+using Content.Shared._Sunrise.Footprints;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Chemistry.TileReactions;
 
@@ -21,10 +23,12 @@ public sealed partial class CleanDecalsReaction : ITileReaction
     [DataField]
     public FixedPoint2 CleanCost { get; private set; } = FixedPoint2.New(0.25f);
 
+
     public FixedPoint2 TileReact(TileRef tile,
         ReagentPrototype reagent,
         FixedPoint2 reactVolume,
-        IEntityManager entityManager)
+        IEntityManager entityManager,
+        List<ReagentData>? data)
     {
         if (reactVolume <= CleanCost ||
             !entityManager.TryGetComponent<MapGridComponent>(tile.GridUid, out var grid) ||
@@ -51,6 +55,14 @@ public sealed partial class CleanDecalsReaction : ITileReaction
             decalSystem.RemoveDecal(tile.GridUid, decal.Index, decalGrid);
             amount += CleanCost;
         }
+
+        // Sunrise-start
+        var footprints = lookupSystem.GetEntitiesInRange<FootprintComponent>(new EntityCoordinates(tile.GridUid, tile.X, tile.Y), 0.5f);
+        foreach (var footprint in footprints)
+        {
+            entityManager.QueueDeleteEntity(footprint);
+        }
+        // Sunrise-end
 
         return amount;
     }

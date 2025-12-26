@@ -1,0 +1,29 @@
+- type: soundCollection
+  id: CasingFall
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall3.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall4.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall5.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall6.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall7.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall8.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall9.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/fall10.ogg
+
+# TODO: Менять звук в зависимости от того, пустая ли хуйня из под дробовика или нет
+
+- type: soundCollection
+  id: ShellFall
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Casings/Shell/fall1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/Shell/fall2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/Shell/fall3.ogg
+
+- type: soundCollection
+  id: ShellEmptyFall
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Casings/Shell/Empty/fall1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/Shell/Empty/fall2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Casings/Shell/Empty/fall3.ogg

@@ -24,7 +24,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IInputManager _inputs = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
 
@@ -73,6 +73,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     public ShuttleMapControl() : base(256f, 512f, 512f)
     {
         RobustXamlLoader.Load(this);
+        _mapSystem = EntManager.System<SharedMapSystem>();
         _shuttles = EntManager.System<ShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
         var cache = IoCManager.Resolve<IResourceCache>();
@@ -109,7 +110,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         {
             if (args.Function == EngineKeyFunctions.UIClick)
             {
-                var mapUid = _mapManager.GetMapEntityId(ViewingMap);
+                var mapUid = _mapSystem.GetMapOrInvalid(ViewingMap);
 
                 var beaconsOnly = EntManager.TryGetComponent(mapUid, out FTLDestinationComponent? destComp) &&
                                   destComp.BeaconsOnly;
@@ -123,7 +124,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                 else
                 {
                     // We'll send the "adjusted" position and server will adjust it back when relevant.
-                    var mapCoords = new MapCoordinates(InverseMapPosition(args.RelativePosition), ViewingMap);
+                    var mapCoords = new MapCoordinates(InverseMapPosition(args.RelativePixelPosition), ViewingMap);
                     RequestFTL?.Invoke(mapCoords, _ftlAngle);
                 }
             }
@@ -179,7 +180,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         // Remove offset so we can floor.
         var botLeft = new Vector2(0f, 0f);
-        var topRight = botLeft + Size;
+        var topRight = botLeft + PixelSize;
 
         var flooredBL = botLeft - originBL;
 
@@ -249,7 +250,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         DrawParallax(handle);
 
-        var viewedMapUid = _mapManager.GetMapEntityId(ViewingMap);
+        var viewedMapUid = _mapSystem.GetMapOrInvalid(ViewingMap);
         var matty = Matrix3Helpers.CreateInverseTransform(Offset, Angle.Zero);
         var realTime = _timing.RealTime;
         var viewBox = new Box2(Offset - WorldRangeVector, Offset + WorldRangeVector);
@@ -519,7 +520,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (mapO is not ShuttleBeaconObject beacon)
                 continue;
 
-            var beaconCoords = EntManager.GetCoordinates(beacon.Coordinates).ToMap(EntManager, _xformSystem);
+            var beaconCoords = _xformSystem.ToMapCoordinates(EntManager.GetCoordinates(beacon.Coordinates));
             var position = Vector2.Transform(beaconCoords.Position, mapTransform);
             var localPos = ScalePosition(position with {Y = -position.Y});
 
@@ -559,6 +560,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
     private bool TryGetBeacon(IEnumerable<IMapObject> mapObjects, Matrix3x2 mapTransform, Vector2 mousePos, UIBox2i area, out ShuttleBeaconObject foundBeacon, out Vector2 foundLocalPos)
     {
+        Logger.Info("TryGetBeacon");
+
         // In pixels
         const float BeaconSnapRange = 32f;
         float nearestValue = float.MaxValue;
@@ -579,6 +582,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (!_shuttles.CanFTLBeacon(beaconObj.Coordinates))
                 continue;
 
+            Logger.Info("Can FTL Beacon");
+
             var position = Vector2.Transform(beaconCoords.Position, mapTransform);
             var localPos = ScalePosition(position with {Y = -position.Y});
 
@@ -586,13 +591,18 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (!area.Contains(localPos.Floored()))
                 continue;
 
+            Logger.Info("area contains localPos.Floored()");
+
             var distance = (localPos - mousePos).Length();
 
             if (distance > BeaconSnapRange * UIScale ||
                 distance > nearestValue)
             {
+                Logger.Info("distance > BeaconSnapRange");
                 continue;
             }
+
+            Logger.Info("Found beacon");
 
             foundLocalPos = localPos;
             nearestValue = distance;

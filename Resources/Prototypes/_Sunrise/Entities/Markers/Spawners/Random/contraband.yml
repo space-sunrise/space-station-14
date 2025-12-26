@@ -7,8 +7,8 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Objects/Fun/toys.rsi
-          state: synb
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
     - type: RandomSpawner
       rarePrototypes:
         # Usefull non-contra loot
@@ -17,7 +17,7 @@
         - ClothingHeadHelmetCult
         - ClothingOuterArmorCult
         - DehydratedSpaceCarp
-        - ClothingOuterHardsuitSyndicate
+        - ClothingOuterEVASuitSyndicate
         - ClothingHeadHelmetSyndicate
         - ClothingHeadHelmetSwatSyndicate
         - ToolboxSyndicateFilled
@@ -71,8 +71,8 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Objects/Fun/toys.rsi
-          state: synb
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
     - type: RandomSpawner
       rarePrototypes:
         - RevolverCapGunFake
@@ -85,7 +85,6 @@
         - HypopenBox
         - GatfruitSeeds
         - EnergyDagger
-        - SupermatterGrenade
         - WhiteholeGrenade
         - HotPotato
         - WeaponSniperMosin
@@ -122,8 +121,8 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Objects/Fun/toys.rsi
-          state: synb
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
     - type: RandomSpawner
       rarePrototypes:
         - ClothingBackpackChameleonFill
@@ -142,7 +141,7 @@
         - WeaponRevolverPythonAP
         - ThrowingKnivesKit
         - ExGrenade
-        - NocturineChemistryBottle
+        - ChemistryBottleNocturine
         - ChameleonProjector
       rareChance: 0.2
       prototypes:
@@ -173,4 +172,27 @@
         - Telecrystal5
         - BorgModuleSyndicateWeapon
       chance: 0.8
+      offset: 0.0
+
+- type: entity
+  name: messenger spawner
+  id: RandomBackpackContrabandMessengerSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - ClothingBackpackMessengerPirate
+      chance: 0.8
+      rarePrototypes:
+        - ClothingBackpackMessengerMercenary
+        - ClothingBackpackMessengerPrivateSecurity
+        - ClothingBackpackMessengerBloodCult
+        - ClothingBackpackMessengerSyndicate
+        - ClothingBackpackMessengerPilot
+      rareChance: 0.2
       offset: 0.0

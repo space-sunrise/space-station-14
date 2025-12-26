@@ -1,15 +1,14 @@
-# The progenitor. This should only container the most basic components possible.
-# Only put things on here if every mob *must* have it. This includes ghosts.
+# The literal bare minimum needed to be a controllable mob. Cannot move but can interact.
 - type: entity
-  save: false
-  id: BaseMob
   abstract: true
+  save: false
+  id: BaseControllable
   components:
   - type: Sprite
     noRot: true
     drawdepth: Mobs
+  - type: GravityAffected
   - type: Physics
-    bodyType: KinematicController
   - type: Fixtures
     fixtures:
       fix1:
@@ -23,11 +22,8 @@
         - MobLayer
   - type: Clickable
   - type: InteractionOutline
-  - type: InputMover
   - type: Input
     context: "human"
-  - type: LagCompensation
-  - type: MobMover
   - type: Actions
   - type: Alerts
   - type: Appearance
@@ -40,12 +36,79 @@
   - type: ContentEye
   - type: CameraRecoil
   - type: MindContainer
-  - type: MovementSpeedModifier
-  - type: Polymorphable
-  - type: StatusIcon
   - type: RequireProjectileTarget
     active: False
-  - type: TTS # Sunrise-TTS
+  - type: StunVisuals
+  # Sunrise-Start
+  - type: TTS
+  - type: DamageOverlay
+  - type: EmoteAnimation
+  - type: CustomLimbVisualizer
+    displacements:
+      LHand:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: l_hand
+      RHand:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: r_hand
+      LLeg:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: l_leg
+      RLeg:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: r_leg
+      LFoot:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: l_foot
+      RFoot:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: r_foot
+      LArm:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: l_arm
+      RArm:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/CustomLimb/displacement.rsi
+            state: r_arm
+  # Sunrise-end
+
+# The progenitor. This should only container the most basic components possible.
+# Only put things on here if every mob *must* have it. This includes ghosts.
+- type: entity
+  abstract: true
+  save: false
+  parent: BaseControllable
+  id: BaseMob
+  components:
+  - type: MobCollision
+  - type: Physics
+    bodyType: KinematicController
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+  - type: LagCompensation
+
+- type: entity
+  save: false
+  id: MobPolymorphable
+  abstract: true
+  components:
+  - type: Polymorphable
 
 # Used for mobs that have health and can take damage.
 - type: entity
@@ -58,8 +121,8 @@
   - type: Destructible
     thresholds:
     - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
+        !type:DamageGroupTrigger # Sunrise-Edit
+        damageGroup: Brute # Sunrise-Edit
         damage: 400
       behaviors:
       - !type:GibBehavior { }
@@ -78,8 +141,24 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: RadiationReceiver
   - type: Stamina
+  - type: StunVisuals
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -100,6 +179,11 @@
     - Piercing
     - Heat
     - Shock
+    - Cold
+    - Caustic
+    - Asphyxiation
+    - Radiation
+    - Mangleness # Sunrise-Edit
   - type: DamageOnHighSpeedImpact
     damage:
       types:
@@ -134,13 +218,14 @@
   components:
   - type: AtmosExposed
   - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
     heatDamageThreshold: 325
     coldDamageThreshold: 0
-    currentTemperature: 310.15
     coldDamage: #per second, scales with temperature & other constants
       types:
         Cold : 0.1
-    specificHeat: 42
     heatDamage: #per second, scales with temperature & other constants
       types:
         Heat : 1.5
@@ -151,7 +236,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: MovedByPressure
 
 # Used for mobs that require regular atmospheric conditions.
@@ -167,12 +252,13 @@
     sweatHeatRegulation: 500
     shiveringHeatRegulation: 500
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 1 #per second, scales with temperature & other constants
@@ -222,8 +308,14 @@
   abstract: true
   components:
   - type: SolutionContainerManager
+    # Sunrise-Edit
+    solutions:
+      foots:
+        maxVol: 5
+      body_surface:
+        maxVol: 15
   - type: InjectableSolution
-    solution: chemicals
+    solution: bloodstream
   - type: Bloodstream
     bloodlossDamage:
       types:
@@ -231,3 +323,9 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -1
+  - type: MeleeSound
+    soundTypes:
+      Slash:
+        collection: SquishyHitSlash
+      Piercing:
+        collection: SquishyHitPiercing

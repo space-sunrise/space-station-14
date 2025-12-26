@@ -1,0 +1,15 @@
+ent-CartridgeSRifleBase = патрон (5,56мм)
+    .desc = { ent-BaseCartridge.desc }
+    .suffix = { "" }
+ent-CartridgeSRifle = патрон (5,56мм)
+    .desc = { ent-CartridgeSRifleBase.desc }
+    .suffix = { "" }
+ent-CartridgeSRifleFlash = патрон (5,56мм светошумовой)
+    .desc = { ent-CartridgeSRifleBase.desc }
+    .suffix = { "" }
+ent-CartridgeSRifleHV = патрон (5,56мм высокоскоростной)
+    .desc = { ent-CartridgeSRifleBase.desc }
+    .suffix = { "" }
+ent-CartridgeSRiflePractice = патрон (5,56мм учебный)
+    .desc = { ent-CartridgeSRifleBase.desc }
+    .suffix = { "" }

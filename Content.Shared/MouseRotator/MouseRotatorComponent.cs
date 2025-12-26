@@ -15,7 +15,7 @@ public sealed partial class MouseRotatorComponent : Component
     ///     How much the desired angle needs to change before a predictive event is sent
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Angle AngleTolerance = Angle.FromDegrees(20.0);
+    public Angle AngleTolerance = Angle.FromDegrees(4.0); // Sunrise edit - для красивого света
 
     /// <summary>
     ///     The angle that will be lerped to
@@ -30,15 +30,14 @@ public sealed partial class MouseRotatorComponent : Component
     public double RotationSpeed = float.MaxValue;
 
     /// <summary>
-    ///     This one is important. If this is true, <see cref="AngleTolerance"/> does not apply, and the system will
-    ///     use <see cref="RequestMouseRotatorRotationSimpleEvent"/> instead. In this mode, the client will only send
+    ///     This one is important. If this is true, <see cref="AngleTolerance"/> does not apply. In this mode, the client will only send
     ///     events when an entity should snap to a different cardinal direction, rather than for every angle change.
     ///
     ///     This is useful for cases like humans, where what really matters is the visual sprite direction, as opposed to something
     ///     like turrets or ship guns, which have finer range of movement.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool Simple4DirMode = true;
+    public bool Simple4DirMode = false; // Sunrise edit - для красивого света
 }
 
 /// <summary>
@@ -49,14 +48,5 @@ public sealed partial class MouseRotatorComponent : Component
 public sealed class RequestMouseRotatorRotationEvent : EntityEventArgs
 {
     public Angle Rotation;
-}
-
-/// <summary>
-///     Simpler version of <see cref="RequestMouseRotatorRotationEvent"/> for implementations
-///     that only require snapping to 4-dir and not full angle rotation.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class RequestMouseRotatorRotationSimpleEvent : EntityEventArgs
-{
-    public Direction Direction;
+    public NetEntity? User;
 }

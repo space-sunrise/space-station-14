@@ -1,0 +1,27 @@
+- type: reaction
+  id: VaccineCreate
+  source: true
+  requiredMixerCategories:
+  - Vaccinator
+  reactants:
+    NotReadyVaccine:
+      amount: 19
+    Blood:
+      amount: 1
+  products:
+    Vaccine: 20
+
+- type: reaction
+  id: VaccinePlusCreate
+  reactants:
+    Cryptobiolin:
+      amount: 5
+    Sigynate:
+      amount: 5
+    Vaccine:
+      amount: 7
+    DiseaseBloodReagent:
+      amount: 11
+  products:
+    VaccinePlus: 15
+    Water: 10

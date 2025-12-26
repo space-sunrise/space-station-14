@@ -1,0 +1,37 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStoleTallit
+  name: Tallit
+  description: A Jewish prayer shawl.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Stoles/tallit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Stoles/tallit.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckAtmosCross
+  name: AtmosCross
+  description: A stylish cross that symbolizes your dedication to the atmosphere.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/atmos_cross.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/atmos_cross.rsi
+  - type: Item
+    sprite: _Sunrise/Clothing/Neck/Misc/atmos_cross.rsi
+  - type: Construction
+    graph: AtmosCrossCraft
+    node: cross
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckAmethystHeart
+  name: AmethystHeart
+  description: The perfect necklace for those who value uniqueness and elegance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Necklaces/amethyst_heart.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Necklaces/amethyst_heart.rsi

@@ -22,6 +22,17 @@
     ears: ClothingHeadsetService
   storage:
     back:
-    - BoxSurvival
-    - Bible
     - RubberStampChaplain
+    - FlippoLighterSunriseBlack  # Sunrise-edit
+
+- type: chameleonOutfit
+  id: ChaplainChameleonOutfit
+  job: Chaplain
+  equipment:
+    head: ClothingHeadHatPlaguedoctor
+    eyes: ClothingEyesGlasses
+    mask: ClothingMaskPlague
+    neck: ClothingNeckStoleChaplain
+    outerClothing: ClothingOuterPlagueSuit
+    gloves: ClothingHandsGlovesColorBlack
+

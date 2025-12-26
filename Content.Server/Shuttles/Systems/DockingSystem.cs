@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Server.Atmos.Components;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Doors.Systems;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.Shuttles.Components;
@@ -23,6 +25,7 @@ namespace Content.Server.Shuttles.Systems
     public sealed partial class DockingSystem : SharedDockingSystem
     {
         [Dependency] private readonly IMapManager _mapManager = default!;
+        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly DoorSystem _doorSystem = default!;
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
         [Dependency] private readonly PathfindingSystem _pathfinding = default!;
@@ -30,8 +33,12 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedJointSystem _jointSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly ILogManager _logMan = default!;
+        [Dependency] private readonly AirtightSystem _airtightSystem = default!;
 
         private const string DockingJoint = "docking";
+
+        private ISawmill? _logger;
 
         private EntityQuery<MapGridComponent> _gridQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -53,11 +60,17 @@ namespace Content.Server.Shuttles.Systems
             SubscribeLocalEvent<DockingComponent, ReAnchorEvent>(OnDockingReAnchor);
 
             SubscribeLocalEvent<DockingComponent, BeforeDoorAutoCloseEvent>(OnAutoClose);
+            // Sunrise-Start
+            SubscribeLocalEvent<DockingComponent, ComponentInit>(OnDockingInit);
+            SubscribeLocalEvent<DockingComponent, DoorStateChangedEvent>(OnDockingDoorStateChanged);
+            // Sunrise-End
 
             // Yes this isn't in shuttle console; it may be used by other systems technically.
             // in which case I would also add their subs here.
             SubscribeLocalEvent<ShuttleConsoleComponent, DockRequestMessage>(OnRequestDock);
             SubscribeLocalEvent<ShuttleConsoleComponent, UndockRequestMessage>(OnRequestUndock);
+
+            _logger = _logMan.GetSawmill("DockingSystem");
         }
 
         public void UndockDocks(EntityUid gridUid)
@@ -83,6 +96,29 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
+        // Sunrise-Start
+        private void OnDockingInit(Entity<DockingComponent> entity, ref ComponentInit args)
+        {
+            if (TryComp<DoorComponent>(entity, out var door) && TryComp<AirtightComponent>(entity, out var airtight))
+            {
+                var isOpen = door.State == DoorState.Open || door.State == DoorState.Opening;
+                _airtightSystem.SetAirblocked((entity.Owner, airtight), !isOpen);
+            }
+        }
+
+        private void OnDockingDoorStateChanged(Entity<DockingComponent> entity, ref DoorStateChangedEvent args)
+        {
+            if (TryComp<AirtightComponent>(entity, out var airtight))
+            {
+                if (!entity.Comp.Docked)
+                {
+                    var isOpen = args.State == DoorState.Open || args.State == DoorState.Opening;
+                    _airtightSystem.SetAirblocked((entity.Owner, airtight), !isOpen);
+                }
+            }
+        }
+        // Sunrise-End
+
         private void OnAutoClose(EntityUid uid, DockingComponent component, BeforeDoorAutoCloseEvent args)
         {
             // We'll just pin the door open when docked.
@@ -93,7 +129,7 @@ namespace Content.Server.Shuttles.Systems
         private void OnShutdown(EntityUid uid, DockingComponent component, ComponentShutdown args)
         {
             if (component.DockedWith == null ||
-                EntityManager.GetComponent<MetaDataComponent>(uid).EntityLifeStage > EntityLifeStage.MapInitialized)
+                Comp<MetaDataComponent>(uid).EntityLifeStage > EntityLifeStage.MapInitialized)
             {
                 return;
             }
@@ -136,8 +172,8 @@ namespace Content.Server.Shuttles.Systems
             dockA.DockJointId = null;
 
             // If these grids are ever null then need to look at fixing ordering for unanchored events elsewhere.
-            var gridAUid = EntityManager.GetComponent<TransformComponent>(dockAUid).GridUid;
-            var gridBUid = EntityManager.GetComponent<TransformComponent>(dockBUid.Value).GridUid;
+            var gridAUid = Comp<TransformComponent>(dockAUid).GridUid;
+            var gridBUid = Comp<TransformComponent>(dockBUid.Value).GridUid;
 
             var msg = new UndockEvent
             {
@@ -158,7 +194,7 @@ namespace Content.Server.Shuttles.Systems
             var component = entity.Comp;
 
             // Use startup so transform already initialized
-            if (!EntityManager.GetComponent<TransformComponent>(uid).Anchored)
+            if (!Comp<TransformComponent>(uid).Anchored)
                 return;
 
             // This little gem is for docking deserialization
@@ -168,7 +204,7 @@ namespace Content.Server.Shuttles.Systems
                 if (MetaData(component.DockedWith.Value).EntityLifeStage < EntityLifeStage.Initialized)
                     return;
 
-                var otherDock = EntityManager.GetComponent<DockingComponent>(component.DockedWith.Value);
+                var otherDock = Comp<DockingComponent>(component.DockedWith.Value);
                 DebugTools.Assert(otherDock.DockedWith != null);
 
                 Dock((uid, component), (component.DockedWith.Value, otherDock));
@@ -182,6 +218,16 @@ namespace Content.Server.Shuttles.Systems
             {
                 Undock(entity);
             }
+            // Sunrise-Start
+            else
+            {
+                if (TryComp<DoorComponent>(entity, out var door) && TryComp<AirtightComponent>(entity, out var airtight))
+                {
+                    var isOpen = door.State == DoorState.Open || door.State == DoorState.Opening;
+                    _airtightSystem.SetAirblocked((entity.Owner, airtight), !isOpen);
+                }
+            }
+            // Sunrise-End
         }
 
         private void OnDockingReAnchor(Entity<DockingComponent> entity, ref ReAnchorEvent args)
@@ -219,8 +265,8 @@ namespace Content.Server.Shuttles.Systems
             // https://gamedev.stackexchange.com/questions/98772/b2distancejoint-with-frequency-equal-to-0-vs-b2weldjoint
 
             // We could also potentially use a prismatic joint? Depending if we want clamps that can extend or whatever
-            var dockAXform = EntityManager.GetComponent<TransformComponent>(dockAUid);
-            var dockBXform = EntityManager.GetComponent<TransformComponent>(dockBUid);
+            var dockAXform = Comp<TransformComponent>(dockAUid);
+            var dockBXform = Comp<TransformComponent>(dockBUid);
 
             DebugTools.Assert(dockAXform.GridUid != null);
             DebugTools.Assert(dockBXform.GridUid != null);
@@ -234,8 +280,8 @@ namespace Content.Server.Shuttles.Systems
                 SharedJointSystem.LinearStiffness(
                     2f,
                     0.7f,
-                    EntityManager.GetComponent<PhysicsComponent>(gridA).Mass,
-                    EntityManager.GetComponent<PhysicsComponent>(gridB).Mass,
+                    Comp<PhysicsComponent>(gridA).Mass,
+                    Comp<PhysicsComponent>(gridB).Mass,
                     out var stiffness,
                     out var damping);
 
@@ -246,23 +292,34 @@ namespace Content.Server.Shuttles.Systems
                 // Pre-existing joint so use that.
                 if (dockA.Comp.DockJointId != null)
                 {
-                    DebugTools.Assert(dockB.Comp.DockJointId == dockA.Comp.DockJointId);
-                    joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, dockA.Comp.DockJointId);
+                    // Sunrise-Start
+                    if (dockB.Comp.DockJointId != dockA.Comp.DockJointId)
+                    {
+                        Log.Error($"DockJointId mismatch: {dockAUid}({dockA.Comp.DockJointId}) <-> {dockBUid}({dockB.Comp.DockJointId}), recreating joint.");
+                        dockA.Comp.DockJointId = null;
+                        dockB.Comp.DockJointId = null;
+                        joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, DockingJoint + dockAUid);
+                    }
+                    else
+                    {
+                        joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, dockA.Comp.DockJointId);
+                    }
+                    // Sunrise-End
                 }
                 else
                 {
                     joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, DockingJoint + dockAUid);
                 }
 
-                var gridAXform = EntityManager.GetComponent<TransformComponent>(gridA);
-                var gridBXform = EntityManager.GetComponent<TransformComponent>(gridB);
+                var gridAXform = Comp<TransformComponent>(gridA);
+                var gridBXform = Comp<TransformComponent>(gridB);
 
                 var anchorA = dockAXform.LocalPosition + dockAXform.LocalRotation.ToWorldVec() / 2f;
                 var anchorB = dockBXform.LocalPosition + dockBXform.LocalRotation.ToWorldVec() / 2f;
 
                 joint.LocalAnchorA = anchorA;
                 joint.LocalAnchorB = anchorB;
-                joint.ReferenceAngle = (float) (_transform.GetWorldRotation(gridBXform) - _transform.GetWorldRotation(gridAXform));
+                joint.ReferenceAngle = (float)(_transform.GetWorldRotation(gridBXform) - _transform.GetWorldRotation(gridAXform));
                 joint.CollideConnected = true;
                 joint.Stiffness = stiffness;
                 joint.Damping = damping;
@@ -281,25 +338,37 @@ namespace Content.Server.Shuttles.Systems
             {
                 if (_doorSystem.TryOpen(dockAUid, doorA))
                 {
-                    doorA.ChangeAirtight = false;
                     if (TryComp<DoorBoltComponent>(dockAUid, out var airlockA))
                     {
                         _doorSystem.SetBoltsDown((dockAUid, airlockA), true);
                     }
                 }
+                doorA.ChangeAirtight = false;
             }
 
             if (TryComp(dockBUid, out DoorComponent? doorB))
             {
                 if (_doorSystem.TryOpen(dockBUid, doorB))
                 {
-                    doorB.ChangeAirtight = false;
                     if (TryComp<DoorBoltComponent>(dockBUid, out var airlockB))
                     {
                         _doorSystem.SetBoltsDown((dockBUid, airlockB), true);
                     }
                 }
+                doorB.ChangeAirtight = false;
             }
+
+            // Sunrise-Start
+            if (TryComp<AirtightComponent>(dockAUid, out var airtightA))
+            {
+                _airtightSystem.SetAirblocked((dockAUid, airtightA), true);
+            }
+
+            if (TryComp<AirtightComponent>(dockBUid, out var airtightB))
+            {
+                _airtightSystem.SetAirblocked((dockBUid, airtightB), true);
+            }
+            // Sunrise-End
 
             if (_pathfinding.TryCreatePortal(dockAXform.Coordinates, dockBXform.Coordinates, out var handle))
             {
@@ -357,10 +426,26 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnRequestUndock(EntityUid uid, ShuttleConsoleComponent component, UndockRequestMessage args)
         {
+            var console = _console.GetDroneConsole(uid);
+
+            if (console == null)
+            {
+                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+                return;
+            }
+
+            var shuttleUid = Transform(console.Value).GridUid;
+
             if (!TryGetEntity(args.DockEntity, out var dockEnt) ||
                 !TryComp(dockEnt, out DockingComponent? dockComp))
             {
                 _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+                return;
+            }
+
+            if (!CanShuttleUndock(shuttleUid))
+            {
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
                 return;
             }
 

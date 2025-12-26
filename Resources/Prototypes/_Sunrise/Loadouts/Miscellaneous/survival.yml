@@ -1,0 +1,160 @@
+# Without Gas
+
+- type: loadoutEffectGroup
+  id: NoBreather
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - HumanoidXeno
+
+# Basic
+- type: loadout
+  id: EmergencyWithoutGas
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxSurvivalWithoutGas
+
+# Clown
+- type: loadout
+  id: EmergencyWithoutGasClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxHugWithoutGas
+
+# Mime
+- type: loadout
+  id: EmergencyWithoutGasMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxMimeWithoutGas
+
+# Engineering / Extended
+- type: loadout
+  id: EmergencyWithoutGasExtended
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxSurvivalWithoutGas
+
+# Medical
+- type: loadout
+  id: EmergencyWithoutGasMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxSurvivalWithoutGas
+
+- type: startingGear
+  id: EmergencyWithoutGasMedical
+
+# Security
+- type: loadout
+  id: EmergencyWithoutGasSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxSurvivalSecurityWithoutGas
+
+# Syndicate
+- type: loadout
+  id: EmergencyWithoutGasSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+  storage:
+    back:
+    - BoxSurvivalSyndicateWithoutGas
+
+# Dwarf
+
+- type: loadoutEffectGroup
+  id: Dwarf
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Dwarf
+
+# Basic
+- type: loadout
+  id: EmergencyDwarf
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxSurvivalWithBeer
+
+# Clown
+- type: loadout
+  id: EmergencyDwarfClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxHugWithBeer
+
+# Mime
+- type: loadout
+  id: EmergencyDwarfMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxMimeWithBeer
+
+# Engineering / Extended
+- type: loadout
+  id: EmergencyDwarfExtended
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxSurvivalEngineeringWithBeer
+
+# Medical
+- type: loadout
+  id: EmergencyDwarfMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxSurvivalMedicalWithBeer
+
+# Security
+- type: loadout
+  id: EmergencyDwarfSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxSurvivalSecurityWithBeer
+
+# Syndicate
+- type: loadout
+  id: EmergencyDwarfSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Dwarf
+  storage:
+    back:
+    - BoxSurvivalSyndicateWithBeer

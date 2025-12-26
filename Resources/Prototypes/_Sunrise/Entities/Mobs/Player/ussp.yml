@@ -1,0 +1,363 @@
+### USSP
+
+- type: entity
+  name: USSP Crew
+  parent: MobHuman
+  suffix: USSP
+  id: MobHumanUSSP
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-crew-name
+    description: ghost-role-information-ussp-crew-description
+    rules: ghost-role-information-ussp-crew-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPJobAltA, USSPJobAltB, USSPJobAltC, USSPJobAltD, USSPJobAltE, USSPJobAltF ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: USSP Officer
+  parent: MobHuman
+  suffix: USSP
+  id: MobHumanUSSPOfficer
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-sec-name
+    description: ghost-role-information-ussp-sec-description
+    rules: ghost-role-information-ussp-sec-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPOfficer ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+
+- type: entity
+  name: USSP Officer Soldier
+  parent: MobHuman
+  suffix: USSP | ANTAG
+  id: MobHumanUSSPOfficerSoldier
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-waralt-name
+    description: ghost-role-information-ussp-waralt-description
+    rules: ghost-role-information-ussp-war-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPOfficerAlt ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+- type: entity
+  name: USSP Soldier
+  parent: MobHuman
+  suffix: USSP | ANTAG
+  id: MobHumanUSSPSoldier
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-war-name
+    description: ghost-role-information-ussp-war-description
+    rules: ghost-role-information-ussp-war-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPSoldier ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+
+- type: entity
+  name: USSP Captain
+  parent: MobHuman
+  suffix: USSP
+  id: MobHumanUSSPCaptain
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-com-name
+    description: ghost-role-information-ussp-com-description
+    rules: ghost-role-information-ussp-com-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPCaptain ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirstLeader
+    - NamesMilitaryLast
+
+## RaidOps Leader
+####
+- type: entity
+  name: Infiltrator teamleader spawner
+  id: SyndieInfiltratorTeamLeaderSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidInfiltratorTeamLeader
+
+- type: entity
+  name: Infiltrator spawner
+  id: SyndieInfiltratorSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidInfiltrator
+
+- type: entity
+  id: RandomHumanoidInfiltratorTeamLeader
+  name: Infiltrator teamleader
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: InfiltratorTeamLeaderSettings
+
+- type: entity
+  id: RandomHumanoidInfiltrator
+  name: Infiltrator
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: InfiltratorSettings
+
+- type: randomHumanoidSettings
+  id: InfiltratorTeamLeaderSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: GhostRole
+      name: ghost-role-information-syndie-soldier-teamlead-name
+      description: ghost-role-information-syndie-soldier-teamlead-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ SyndicateRaidTeamLeaderGear ]
+      roleLoadout: [ RoleSurvivalSyndicate ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesSyndicateNormal
+      nameFormat: name-format-nukie-commander
+
+- type: randomHumanoidSettings
+  id: InfiltratorSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: GhostRole
+      name: ghost-role-information-syndie-soldier-name
+      description: ghost-role-information-syndie-soldier-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ SyndicateRaidGear ]
+      roleLoadout: [ RoleSurvivalSyndicate ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+# Pirate
+- type: entity
+  name: Scooner spawner
+  id: ScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: ScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: ScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerEVAGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+- type: entity
+  name: Scooner spawner
+  id: OldScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidOldScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidOldScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: OldScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: OldScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerOldEVAGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]

@@ -1,0 +1,54 @@
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBandOrange
+  name: orange bandana
+  description: A orange bandana to make you look cool.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Bandanas/orange.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Bandanas/orange.rsi
+
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBandYellow
+  name: yellow bandana
+  description: A yellow bandana to make you look cool.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Bandanas/yellow.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Bandanas/yellow.rsi
+
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBandCyan
+  name: cyan bandana
+  description: cyan bandana to make you look cool.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Bandanas/cyan.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Bandanas/cyan.rsi
+
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBandWhite
+  name: white bandana
+  description: white bandana to make you look cool.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Bandanas/white.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Bandanas/white.rsi
+
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBandPurple
+  name: purple bandana
+  description: purple bandana to make you look cool.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Bandanas/purple.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Bandanas/purple.rsi

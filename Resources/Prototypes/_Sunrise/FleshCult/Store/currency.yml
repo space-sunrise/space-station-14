@@ -1,0 +1,4 @@
+- type: currency
+  id: StolenMutationPoint
+  displayName: store-currency-display-stolen-mutation-points
+  canWithdraw: false

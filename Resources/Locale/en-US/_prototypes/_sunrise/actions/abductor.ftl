@@ -1,0 +1,12 @@
+ent-ActionExitConsole = Exit console
+    .desc = Exit console.
+ent-ActionSendYourself = Send yourself
+    .desc = send yourself.
+ent-ActionGizmoMark = Mark
+    .desc = using gizmo from your pockets to mark agent.
+ent-ActionSendAgent = Send agent
+    .desc = teleport agent from alien pad.
+ent-AbductorVestToggleStealth = Toggle invisibility
+    .desc = toggles the invisibility of the suit. Don't forget to set stealth mode!
+ent-ActionReturnToShip = return
+    .desc = return to the ship.

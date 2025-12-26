@@ -1,0 +1,12 @@
+ent-CloudEmoteBase = { "" }
+    .desc = { "" }
+ent-CloudEmoteStart = { ent-CloudEmoteBase }
+    .desc = { ent-CloudEmoteBase.desc }
+ent-CloudEmoteEnd = { ent-CloudEmoteBase }
+    .desc = { ent-CloudEmoteBase.desc }
+ent-CloudEmoteLenny = { ent-CloudEmoteBase }
+    .desc = { ent-CloudEmoteBase.desc }
+ent-CloudEmoteMark = { ent-CloudEmoteBase }
+    .desc = { ent-CloudEmoteBase.desc }
+ent-CloudEmoteNervous = { ent-CloudEmoteBase }
+    .desc = { ent-CloudEmoteBase.desc }

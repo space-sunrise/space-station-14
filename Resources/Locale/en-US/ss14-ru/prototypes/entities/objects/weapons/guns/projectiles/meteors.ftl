@@ -1,2 +1,0 @@
-ent-MeteorLarge = meteor
-    .desc = { "" }

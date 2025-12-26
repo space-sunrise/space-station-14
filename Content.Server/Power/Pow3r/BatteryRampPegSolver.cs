@@ -1,6 +1,8 @@
-using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Utility;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using Robust.Shared.Threading;
 using static Content.Server.Power.Pow3r.PowerState;
 
@@ -40,7 +42,9 @@ namespace Content.Server.Power.Pow3r
             DebugTools.Assert(state.GroupedNets.Select(x => x.Count).Sum() == state.Networks.Count);
             _networkJob.State = state;
             _networkJob.FrameTime = frameTime;
+#if DEBUG
             ValidateNetworkGroups(state, state.GroupedNets);
+#endif
 
             // Each network height layer can be run in parallel without issues.
             foreach (var group in state.GroupedNets)
@@ -89,16 +93,21 @@ namespace Content.Server.Power.Pow3r
             }
         }
 
-        private void UpdateNetwork(Network network, PowerState state, float frameTime)
+        public void UpdateNetwork(Network network, PowerState state, float frameTime)
         {
             // TODO Look at SIMD.
             // a lot of this is performing very basic math on arrays of data objects like batteries
             // this really shouldn't be hard to do.
             // except for maybe the paused/enabled guff. If its mostly false, I guess they could just be 0 multipliers?
 
+            var loads = network.Loads;
+            var supplies = network.Supplies;
+            var batteryLoads = network.BatteryLoads;
+            var batterySupplies = network.BatterySupplies;
+
             // Add up demand from loads.
-            var demand = 0f;
-            foreach (var loadId in network.Loads)
+            float demand = 0f;
+            foreach (var loadId in loads)
             {
                 var load = state.Loads[loadId];
 
@@ -114,7 +123,7 @@ namespace Content.Server.Power.Pow3r
             // Would require a second pass over the network, or something. Not sure.
 
             // Add demand from batteries
-            foreach (var batteryId in network.BatteryLoads)
+            foreach (var batteryId in batteryLoads)
             {
                 var battery = state.Batteries[batteryId];
                 if (!battery.Enabled || !battery.CanCharge || battery.Paused)
@@ -134,9 +143,9 @@ namespace Content.Server.Power.Pow3r
             DebugTools.Assert(demand >= 0);
 
             // Add up supply in network.
-            var totalSupply = 0f;
-            var totalMaxSupply = 0f;
-            foreach (var supplyId in network.Supplies)
+            float totalSupply = 0f;
+            float totalMaxSupply = 0f;
+            foreach (var supplyId in supplies)
             {
                 var supply = state.Supplies[supplyId];
                 if (!supply.Enabled || supply.Paused)
@@ -162,12 +171,12 @@ namespace Content.Server.Power.Pow3r
             // loading network, there will be a "rush" of input current when a network powers on, before power
             // stabilizes in the network. This is fine.
 
-            var totalBatterySupply = 0f;
-            var totalMaxBatterySupply = 0f;
+            float totalBatterySupply = 0f;
+            float totalMaxBatterySupply = 0f;
             if (unmet > 0)
             {
                 // determine supply available from batteries
-                foreach (var batteryId in network.BatterySupplies)
+                foreach (var batteryId in batterySupplies)
                 {
                     var battery = state.Batteries[batteryId];
                     if (!battery.Enabled || !battery.CanDischarge || battery.Paused)
@@ -199,7 +208,7 @@ namespace Content.Server.Power.Pow3r
             // if supply ratio == 1 (or is close to) we could skip some math for each load & battery.
 
             // Distribute supply to loads.
-            foreach (var loadId in network.Loads)
+            foreach (var loadId in loads)
             {
                 var load = state.Loads[loadId];
                 if (!load.Enabled || load.DesiredPower == 0 || load.Paused)
@@ -209,7 +218,7 @@ namespace Content.Server.Power.Pow3r
             }
 
             // Distribute supply to batteries
-            foreach (var batteryId in network.BatteryLoads)
+            foreach (var batteryId in batteryLoads)
             {
                 var battery = state.Batteries[batteryId];
                 if (!battery.Enabled || battery.DesiredPower == 0 || battery.Paused || !battery.CanCharge)
@@ -231,7 +240,7 @@ namespace Content.Server.Power.Pow3r
                 var targetRelativeSupplyOutput = Math.Min(demand, totalMaxSupply) / totalMaxSupply;
 
                 // Apply load to supplies
-                foreach (var supplyId in network.Supplies)
+                foreach (var supplyId in supplies)
                 {
                     var supply = state.Supplies[supplyId];
                     if (!supply.Enabled || supply.Paused)
@@ -256,7 +265,7 @@ namespace Content.Server.Power.Pow3r
             var relativeTargetBatteryOutput = Math.Min(unmet, totalMaxBatterySupply) / totalMaxBatterySupply;
 
             // Apply load to supplying batteries
-            foreach (var batteryId in network.BatterySupplies)
+            foreach (var batteryId in batterySupplies)
             {
                 var battery = state.Batteries[batteryId];
                 if (!battery.Enabled || battery.Paused || !battery.CanDischarge)
@@ -328,8 +337,15 @@ namespace Content.Server.Power.Pow3r
                     RecursivelyEstimateNetworkDepth(state, network, groupedNetworks);
             }
 
-            ValidateNetworkGroups(state, groupedNetworks);
             return groupedNetworks;
+        }
+
+        public void Validate(PowerState state)
+        {
+            if (state.GroupedNets == null)
+                throw new InvalidOperationException("We don't have grouped networks cached??");
+
+            ValidateNetworkGroups(state, state.GroupedNets);
         }
 
         /// <summary>
@@ -337,7 +353,6 @@ namespace Content.Server.Power.Pow3r
         /// group in parallel. This assumes that batteries are the only device that connects to multiple networks, and
         /// is thus the only obstacle to solving everything in parallel.
         /// </summary>
-        [Conditional("DEBUG")]
         private void ValidateNetworkGroups(PowerState state, List<List<Network>> groupedNetworks)
         {
             HashSet<Network> nets = new();
@@ -362,9 +377,9 @@ namespace Content.Server.Power.Pow3r
                             continue;
                         }
 
-                        DebugTools.Assert(!nets.Contains(subNet));
-                        DebugTools.Assert(!netIds.Contains(subNet.Id));
-                        DebugTools.Assert(subNet.Height < net.Height);
+                        Check(!nets.Contains(subNet), $"Net {net.Id}, battery {batteryId}");
+                        Check(!netIds.Contains(subNet.Id), $"Net {net.Id}, battery {batteryId}");
+                        Check(subNet.Height < net.Height, $"Net {net.Id}, battery {batteryId}");
                     }
 
                     foreach (var batteryId in net.BatterySupplies)
@@ -380,14 +395,31 @@ namespace Content.Server.Power.Pow3r
                             continue;
                         }
 
-                        DebugTools.Assert(!nets.Contains(parentNet));
-                        DebugTools.Assert(!netIds.Contains(parentNet.Id));
-                        DebugTools.Assert(parentNet.Height > net.Height);
+                        Check(!nets.Contains(parentNet), $"Net {net.Id}, battery {batteryId}");
+                        Check(!netIds.Contains(parentNet.Id), $"Net {net.Id}, battery {batteryId}");
+                        Check(parentNet.Height > net.Height, $"Net {net.Id}, battery {batteryId}");
                     }
 
-                    DebugTools.Assert(nets.Add(net));
-                    DebugTools.Assert(netIds.Add(net.Id));
+                    Check(nets.Add(net), $"Net {net.Id}");
+                    Check(netIds.Add(net.Id), $"Net {net.Id}");
                 }
+            }
+
+            return;
+
+            // Most readable C# function def.
+            [AssertionMethod]
+            static void Check(
+                [AssertionCondition(AssertionConditionType.IS_TRUE)]
+                [DoesNotReturnIf(false)]
+                bool condition,
+                [InterpolatedStringHandlerArgument("condition")]
+                ref DebugTools.AssertInterpolatedStringHandler handler,
+                [CallerArgumentExpression(nameof(condition))]
+                string check = "")
+            {
+                if (!condition)
+                    throw new DebugAssertException($"{handler.ToStringAndClear()}: failed check: {check}");
             }
         }
 
@@ -425,7 +457,7 @@ namespace Content.Server.Power.Pow3r
 
         #region Jobs
 
-        private record struct UpdateNetworkJob : IParallelRobustJob
+        public record struct UpdateNetworkJob : IParallelRobustJob
         {
             public int BatchSize => 4;
 

@@ -1,0 +1,10 @@
+- type: entity
+  abstract: true
+  parent: ClothingHandsBase
+  id: ClothingHandsSmooth
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - SmoothGloves # INTERACTIONS
+    - WhitelistChameleon

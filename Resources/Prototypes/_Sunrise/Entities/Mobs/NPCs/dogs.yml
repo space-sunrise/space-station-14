@@ -1,0 +1,141 @@
+- type: entity
+  parent: SimpleMobBase
+  id: MobPibble
+  name: Pibble
+  description: Nanny dog. Or a lab mix, depending on who asks.
+  components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 4
+        Piercing: 8
+        Blunt: 1
+        Structural: 4
+  - type: MobState
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Pets/pitbull.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: pibble
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 65
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Inventory
+    speciesId: dog
+    templateId: pet
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pibble
+      Critical:
+        Base: pibble_dead
+      Dead:
+        Base: pibble_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: ReplacementAccent
+    accent: dog
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-dog
+    interactFailureString: petting-failure-dog
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/small_dog_bark_happy.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: RandomMetadata
+    nameSegments: [ NamesPibble ]
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-pibble-name
+    description: ghost-role-information-pibble-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: DogVision
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+
+- type: entity
+  parent: MobPibble
+  id: MobPibbleVent
+  name: Ventibull
+  description: Some kind of pitbull mix... or maybe it's the next stage of pitbull evolution?
+  components:
+  - type: VentCrawler
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 2
+        Piercing: 5
+        Blunt: 0.5
+        Structural: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.28
+        density: 35
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Sprite
+    scale: 0.8, 0.6
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Pets/ventbull.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: pibble
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-pibble-vent-name
+    description: ghost-role-information-pibble-vent-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable

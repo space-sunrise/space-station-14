@@ -1,0 +1,159 @@
+- type: lobbyAnimation
+  id: Billy
+  rawPath: _Sunrise/Lobby/Animations/billy
+  scale: 13, 13
+
+- type: lobbyAnimation
+  id: BlackHole
+  rawPath: _Sunrise/Lobby/Animations/black_hole
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: BlackHole2
+  rawPath: _Sunrise/Lobby/Animations/black_hole2
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: BlackHoleIsland
+  rawPath: _Sunrise/Lobby/Animations/black_hole_island
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: BladeRunner
+  rawPath: _Sunrise/Lobby/Animations/blade_runner
+  scale: 12, 12
+
+- type: lobbyAnimation
+  id: Boats
+  rawPath: _Sunrise/Lobby/Animations/boats
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: Earth
+  rawPath: _Sunrise/Lobby/Animations/earth
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: Eclipse
+  rawPath: _Sunrise/Lobby/Animations/eclipse
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningBridge
+  rawPath: _Sunrise/Lobby/Animations/evening_bridge
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun
+  rawPath: _Sunrise/Lobby/Animations/evening_sun
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun2
+  rawPath: _Sunrise/Lobby/Animations/evening_sun2
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun3
+  rawPath: _Sunrise/Lobby/Animations/evening_sun3
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun4
+  rawPath: _Sunrise/Lobby/Animations/evening_sun4
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun5
+  rawPath: _Sunrise/Lobby/Animations/evening_sun5
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun6
+  rawPath: _Sunrise/Lobby/Animations/evening_sun6
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: EveningSun7
+  rawPath: _Sunrise/Lobby/Animations/evening_sun7
+  scale: 6, 6
+
+- type: lobbyAnimation
+  id: EveningSun8
+  rawPath: _Sunrise/Lobby/Animations/evening_sun8
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: GutsVsGriffit
+  rawPath: _Sunrise/Lobby/Animations/guts_vs_griffit
+  scale: 5, 5
+
+- type: lobbyAnimation
+  id: HomerStarfall
+  rawPath: _Sunrise/Lobby/Animations/homer_starfall
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: Jungle
+  rawPath: _Sunrise/Lobby/Animations/jungle
+  scale: 4, 4
+
+- type: lobbyAnimation
+  id: Kvazar
+  rawPath: _Sunrise/Lobby/Animations/kvazar
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: Lain
+  rawPath: _Sunrise/Lobby/Animations/lain
+  scale: 5, 5
+
+- type: lobbyAnimation
+  id: Monolith
+  rawPath: _Sunrise/Lobby/Animations/monolith
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: Nebula
+  rawPath: _Sunrise/Lobby/Animations/nebula
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: NightMoon
+  rawPath: _Sunrise/Lobby/Animations/night_moon
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: RedSkull
+  rawPath: _Sunrise/Lobby/Animations/red_skull
+  scale: 14, 14
+
+- type: lobbyAnimation
+  id: Sky
+  rawPath: _Sunrise/Lobby/Animations/sky
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: SpaceDesert
+  rawPath: _Sunrise/Lobby/Animations/space_desert
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: SpaceStarts
+  rawPath: _Sunrise/Lobby/Animations/space_starts
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: SunnyCity
+  rawPath: _Sunrise/Lobby/Animations/sunny_city
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: SunnyPtl
+  rawPath: _Sunrise/Lobby/Animations/sunny_PTL
+  scale: 8, 8
+
+- type: lobbyAnimation
+  id: SunnyPtl2
+  rawPath: _Sunrise/Lobby/Animations/sunny_PTL2
+  scale: 8, 8

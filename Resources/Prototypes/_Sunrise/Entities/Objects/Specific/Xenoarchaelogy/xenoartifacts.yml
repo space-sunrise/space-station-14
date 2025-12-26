@@ -1,0 +1,33 @@
+﻿- type: entity
+  id: BaseRandomItemXenoArtifactComponents
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: XenoArtifact
+    nodeCount:
+      min: 9
+      max: 13
+    effectsTable: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsDefaultTable
+        weight: 3
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsVanillaDefaultReducedTable
+        weight: 3
+      - !type:NestedSelector
+        tableId: SunriseArtifactEffectsUltraFunnyTable
+        weight: 1
+  - type: Damageable
+  - type: ContainerContainer
+    containers:
+      node-container: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+  - type: RadiationReceiver
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch]
+  - type: XenoArtifactRandomItemMarker

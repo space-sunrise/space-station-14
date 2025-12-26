@@ -1,0 +1,13 @@
+service-auth-discord-title = Авторизация Discord
+service-auth-telegram-title = Авторизация Telegram
+service-auth-github-title = Авторизация GitHub
+service-auth-select-service-title = Выбор сервиса авторизации
+service-auth-select-service = Для доступа на сервер вам необходимо связать аккаунт SS14 c одним из сервисов.
+service-auth-warn1 = Советуем вам делать привязку на основной аккаунт.
+service-auth-warn2 = Будьте внимательны при выборе аккаунта.
+service-auth-browser-btn = Открыть в браузере
+service-auth-quit-btn = Выйти
+service-auth-qrcode = QrCode для сканирования на телефоне.
+service-auth-check-btn = Проверить
+service-auth-check-btn-wait = Ожидайте: { TOSTRING($time, "G3") }
+service-auth-switch-link-service = Выбрать другой сервис

@@ -13,6 +13,20 @@
       - state: jobicon
 
 - type: entity
+  id: SpawnPointNtrep
+  parent: SpawnPointJobBase
+  name: NanoTrasen Representative
+  components:
+  - type: SpawnPoint
+    job_id: NanoTrasenRepresentative
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: ntrep
+      - state: jobicon
+
+- type: entity
   id: SpawnPointBrigmedic
   parent: SpawnPointJobBase
   name: brigmedic
@@ -23,3 +37,584 @@
     layers:
       - state: green
       - state: brigmedic
+
+- type: entity
+  id: SpawnPointBlueShieldOfficer
+  parent: SpawnPointJobBase
+  name: blue shield officer
+  components:
+  - type: SpawnPoint
+    job_id: BlueShieldOfficer
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: blueshield
+      - state: jobicon
+
+- type: entity
+  id: SpawnPointBlueShieldEnsign
+  parent: SpawnPointJobBase
+  name: blue shield ensign
+  components:
+  - type: SpawnPoint
+    job_id: BlueShieldEnsign
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: blueshield
+    - state: jobicon
+
+- type: entity
+  id: SpawnPointCentCommOperator
+  parent: SpawnPointJobBase
+  name: Central Command Operator
+  components:
+  - type: SpawnPoint
+    job_id: CentCommOperator
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: centcom
+
+- type: entity
+  id: SpawnPointCentCommOfficial
+  parent: SpawnPointJobBase
+  name: Central Command Official
+  components:
+  - type: SpawnPoint
+    job_id: CentCommOfficial
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: centcom
+
+- type: entity
+  id: SpawnPointPrisonInspector
+  parent: SpawnPointJobBase
+  name: prison inspector
+  components:
+  - type: SpawnPoint
+    job_id: PrisonInspector
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisoninspector
+
+- type: entity
+  id: SpawnPointPrisonInspectorLateJoin
+  parent: SpawnPointJobBase
+  name: prison inspector
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonInspector
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisoninspector
+
+- type: entity
+  id: SpawnPointHeadOfPrison
+  parent: SpawnPointJobBase
+  name: head of prison
+  components:
+  - type: SpawnPoint
+    job_id: HeadOfPrison
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: headofprison
+
+- type: entity
+  id: SpawnPointHeadOfPrisonLateJoin
+  parent: SpawnPointJobBase
+  name: head of prison
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: HeadOfPrison
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: headofprison
+
+- type: entity
+  id: SpawnPointPrisonChef
+  parent: SpawnPointJobBase
+  name: prison's chef
+  components:
+  - type: SpawnPoint
+    job_id: PrisonChef
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonchef
+
+- type: entity
+  id: SpawnPointPrisonChefLateJoin
+  parent: SpawnPointJobBase
+  name: prison's chef
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonChef
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonchef
+
+- type: entity
+  id: SpawnPointPrisonDoctor
+  parent: SpawnPointJobBase
+  name: prison's doctor
+  components:
+  - type: SpawnPoint
+    job_id: PrisonDoctor
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisondoctor
+
+- type: entity
+  id: SpawnPointPrisonDoctorLateJoin
+  parent: SpawnPointJobBase
+  name: prison's doctor
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonDoctor
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisondoctor
+
+- type: entity
+  id: SpawnPointPrisonEngineer
+  parent: SpawnPointJobBase
+  name: prison's engineer
+  components:
+  - type: SpawnPoint
+    job_id: PrisonEngineer
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonengineer
+
+- type: entity
+  id: SpawnPointPrisonEngineerLateJoin
+  parent: SpawnPointJobBase
+  name: prison's engineer
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonEngineer
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonengineer
+
+- type: entity
+  id: SpawnPointPrisonScientist
+  parent: SpawnPointJobBase
+  name: prison's scientist
+  components:
+  - type: SpawnPoint
+    job_id: PrisonScientist
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonscientist
+
+- type: entity
+  id: SpawnPointPrisonScientistLateJoin
+  parent: SpawnPointJobBase
+  name: prison's scientist
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonScientist
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonscientist
+
+- type: entity
+  id: SpawnPointPrisonGuard
+  parent: SpawnPointJobBase
+  name: prison's guard
+  components:
+  - type: SpawnPoint
+    job_id: PrisonGuard
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - state: security_officer
+
+- type: entity
+  id: SpawnPointPrisonGuardLateJoin
+  parent: SpawnPointJobBase
+  name: prison's guard
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonGuard
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: security_officer
+
+- type: entity
+  id: SpawnPointPrisonPilot
+  parent: SpawnPointJobBase
+  name: prison's pilot
+  components:
+  - type: SpawnPoint
+    job_id: PrisonPilot
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - state: seniorofficer
+
+- type: entity
+  id: SpawnPointPrisonPilotLateJoin
+  parent: SpawnPointJobBase
+  name: prison's pilot
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonPilot
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: Markers/jobs.rsi
+        state: seniorofficer
+
+- type: entity
+  id: SpawnPointPlanetPrisoner
+  parent: SpawnPointJobBase
+  name: prisoner
+  components:
+  - type: SpawnPoint
+    job_id: PlanetPrisoner
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: planetprisoner
+
+- type: entity
+  id: SpawnPointPlanetPrisonerLateJoin
+  parent: SpawnPointJobBase
+  name: prisoner
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PlanetPrisoner
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: planetprisoner
+
+- type: entity
+  id: SpawnPointPrisonWorker
+  parent: SpawnPointJobBase
+  name: prison's worker
+  components:
+  - type: SpawnPoint
+    job_id: PrisonWorker
+  - type: RoundStartSpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonworker
+
+- type: entity
+  id: SpawnPointPrisonWorkerLateJoin
+  parent: SpawnPointJobBase
+  name: prison's worker
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    job_id: PrisonWorker
+  - type: LateJoinSpawnPoint
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonworker
+
+- type: entity
+  id: SpawnPointSeniorEngineer
+  parent: SpawnPointJobBase
+  name: senior engineer
+  components:
+  - type: SpawnPoint
+    job_id: SeniorEngineer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: seniorengineer
+
+- type: entity
+  id: SpawnPointSeniorPhysician
+  parent: SpawnPointJobBase
+  name: senior physician
+  components:
+  - type: SpawnPoint
+    job_id: SeniorPhysician
+  - type: Sprite
+    layers:
+      - state: green
+      - state: seniorphysician
+
+- type: entity
+  id: SpawnPointSeniorResearcher
+  parent: SpawnPointJobBase
+  name: senior researcher
+  components:
+  - type: SpawnPoint
+    job_id: SeniorResearcher
+  - type: Sprite
+    layers:
+      - state: green
+      - state: seniorresearcher
+
+- type: entity
+  id: SpawnPointSeniorOfficer
+  parent: SpawnPointJobBase
+  name: senior officer
+  components:
+  - type: SpawnPoint
+    job_id: SeniorOfficer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: seniorofficer
+
+- type: entity
+  id: SpawnPointBarber
+  parent: SpawnPointJobBase
+  name: barber
+  components:
+  - type: SpawnPoint
+    job_id: Barber
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: barber
+
+- type: entity
+  id: SpawnPointMedicalPathologist
+  parent: SpawnPointJobBase
+  name: pathologist
+  components:
+  - type: SpawnPoint
+    job_id: MedicalPathologist
+  - type: Sprite
+    layers:
+      - state: green
+      - state: doctor
+
+- type: entity
+  id: SpawnPointAdjutant
+  parent: SpawnPointJobBase
+  name: adjutant
+  components:
+  - type: SpawnPoint
+    job_id: Adjutant
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: adjutant
+
+- type: entity
+  id: SpawnPointminingspecialist
+  parent: SpawnPointJobBase
+  name: miningspecialist
+  components:
+  - type: SpawnPoint
+    job_id: MiningSpecialist
+  - type: Sprite
+    layers:
+    - state: green
+    - state: salvagespecialist
+
+- type: entity
+  id: SpawnPointClownBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: ClownBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: clown
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: clown_e
+
+- type: entity
+  id: SpawnPointEngineerBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: EngineerBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: engineer
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: engineer_e
+
+- type: entity
+  id: SpawnPointJanitorBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: JanitorBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: janitor
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: janitor_e
+
+- type: entity
+  id: SpawnPointMedicalBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: MedicalBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: medical
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: medical_e
+
+- type: entity
+  id: SpawnPointMiningBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: MiningBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: miner
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: miner_e
+
+- type: entity
+  id: SpawnPointPeaceBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: PeaceBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: peace
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: peace_e
+
+- type: entity
+  id: SpawnPointSecurityBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: SecurityBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: sec
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: sec_e
+
+- type: entity
+  id: SpawnPointServiceBorg
+  parent: SpawnPointJobBase
+  name: cyborg
+  components:
+  - type: SpawnPoint
+    job_id: ServiceBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: service
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: service_e
+
+- type: entity
+  id: SpawnPointIAA
+  parent: SpawnPointJobBase
+  name: iaa
+  components:
+  - type: SpawnPoint
+    job_id: IAA
+  - type: Sprite
+    layers:
+    - state: green
+    - state: lawyer

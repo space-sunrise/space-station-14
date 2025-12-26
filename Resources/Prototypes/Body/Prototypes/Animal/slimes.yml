@@ -8,7 +8,7 @@
       connections:
       - legs
       organs:
-        core: SentientSlimesCore
+        core: SentientWildSlimeCore # Sunrise Edit
         lungs: OrganSlimesLungs
     legs:
       part: LegsAnimal

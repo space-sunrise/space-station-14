@@ -4,6 +4,9 @@
     ClothingBackpackDuffelEngineering: 3
     ClothingBackpackSatchelEngineering: 3
     ClothingBackpackEngineering: 3
+    #Sunrise-start
+    MaterialBagSunrise: 5
+    #Sunrise-end
     ClothingUniformJumpsuitEngineering: 3
     ClothingUniformJumpskirtEngineering: 3
     ClothingUniformJumpsuitEngineeringHazard: 3
@@ -16,3 +19,6 @@
     ClothingOuterWinterEngi: 2
     ClothingNeckScarfStripedOrange: 3
     ClothingShoesBootsWinterEngi: 2
+  contrabandInventory:
+    ToyFigurineEngineer: 1
+    ToyFigurineChiefEngineer: 1

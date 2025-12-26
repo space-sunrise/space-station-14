@@ -1,0 +1,5 @@
+﻿- type: xenoArchTrigger
+  id: TriggerHealthAnalyzer
+  tip: artifact-trigger-hint-health-analyzer
+  components:
+  - type: ArtifactHealthAnalyzerInteractionTrigger

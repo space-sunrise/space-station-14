@@ -1,13 +1,46 @@
 - type: entity
-  noSpawn: true
-  parent: [BaseTraitorObjective, BaseLivingObjective]
-  id: HijackShuttleObjective
-  name: Hijack emergency shuttle
-  description: Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
+  parent: BaseTraitorStealObjective
+  id: MultiphaseEnergygunStealObjective
   components:
-    - type: Objective
-      difficulty: 5 #Hijacker don't help anyone else
-      icon:
-        sprite: Objects/Tools/emag.rsi
-        state: icon
-    - type: HijackShuttleCondition
+  - type: Objective
+    difficulty: 3
+  - type: NotJobRequirement
+    job: BlueShieldOfficer
+  - type: StealCondition
+    stealGroup: WeaponEnergyGunMultiphase
+    owner: офицер «Синий щит»
+
+- type: entity
+  parent: BaseCMOStealObjective
+  id: CMOAdvancedDefibrillatorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AdvancedDefibrillator
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseTraitorStealObjective
+  id: PlutoniumCoreStealObjective
+  components:
+  - type: Objective
+    # its hard to steal and leaves evidence, but you can get away with it.
+    difficulty: 3.5
+  - type: NotCommandRequirement
+  - type: StealCondition
+    stealGroup: PlutoniumCore
+    owner: objective-condition-steal-nuclear-bomb
+  - type: StoreUnlocker
+    listings:
+    - UplinkCoreExtractionToolbox
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: HandheldFaxStealObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+  - type: NotJobRequirement
+    job: NanoTrasenRepresentative
+  - type: StealCondition
+    stealGroup: HandheldFax
+    owner: job-name-ntrep

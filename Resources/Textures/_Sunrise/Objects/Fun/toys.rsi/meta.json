@@ -1,0 +1,310 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by Sunrise",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "plushie-ce"
+      },
+      {
+        "name": "plushie-atmos"
+      },
+      {
+        "name": "plushie-hop"
+      },
+      {
+        "name": "plushie-MihailOsipov"
+      },
+      {
+        "name": "plushie-mira"
+      },
+      {
+        "name": "plushie-mori"
+      },
+	  {
+        "name": "plushie-mechanix"
+      },
+	  {
+        "name": "salvage-specialist"
+      },
+	  {
+        "name": "plushie-krokozyabka"
+      },
+	  {
+        "name": "plushie-jamal"
+      },
+	  {
+        "name": "plushie-molnia"
+      },
+      {
+        "name": "plushie-secvulp"
+      },
+      {
+        "name": "plushie-warden"
+      },
+      {
+        "name": "plushie-util"
+      },
+      {
+        "name": "plushie-nukeleader"
+      },
+      {
+        "name": "plushie-nhc"
+      },
+      {
+        "name": "plushie-janitor"
+      },
+      {
+        "name": "plushie-doctor"
+      },
+      {
+        "name": "plushie-cc"
+      },
+      {
+        "name": "plushie-capitan"
+      },
+      {
+        "name": "plushie-atmos2"
+      },
+      {
+        "name": "plushie-dragon"
+      },
+      {
+        "name": "plushie-doctorvulp"
+      },
+      {
+        "name": "RudolfAsp"
+      },
+      {
+        "name": "raptor-trs"
+      },
+      {
+        "name": "commisar-trs"
+      },
+      {
+        "name": "radik-sh"
+      },
+      {
+        "name": "Lurash-MaASP"
+      },
+      {
+        "name": "Gentuhv-UnminishASP"
+      },
+      {
+        "name": "condrat-trs"
+      },
+      {
+        "name": "dart-trs"
+      },
+      {
+        "name": "Uzo-kur"
+      },
+      {
+        "name": "roman-fill"
+      },
+      {
+        "name": "konrada-alex"
+      },
+      {
+        "name": "igor"
+      },
+      {
+        "name": "ah-vadimiek"
+      },
+      {
+        "name": "husky"
+      },
+      {
+        "name": "kirieshka"
+      },
+      {
+        "name": "spiffo"
+      },
+      {
+        "name": "scaut"
+      },
+      {
+        "name": "nanati"
+      },
+      {
+        "name": "allan-haskovich"
+      },
+      {
+        "name": "brisck_trs"
+      },
+      {
+        "name": "vortex"
+      },
+      {
+        "name": "vampire"
+      },
+      {
+        "name": "richard_detective"
+      },
+      {
+        "name": "captain_emily"
+      },
+      {
+        "name": "captain_tartarus"
+      },
+      {
+        "name": "crusader"
+      },
+      {
+        "name": "genok-librarian-unshaded",
+        "delays": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        ]
+      },
+      {
+        "name": "genok-librarian-shaded"
+      },
+      {
+        "name": "richard_industries"
+      },
+      {
+        "name": "plushie-frizko"
+      },
+      {
+        "name": "plushie-miron"
+      },
+      {
+        "name": "plushie-bublegum"
+      },
+      {
+        "name": "plushie-cikuus"
+      },
+      {
+        "name": "plushie-suvagesi"
+      },
+      {
+        "name": "plushie-prototupus"
+      },
+      {
+        "name": "plushie-smile"
+      },
+      {
+        "name": "plushie-CFB"
+      },
+      {
+        "name": "cfb-inhand-right",
+        "directions": 4
+      },
+      {
+        "name": "cfb-inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "plushie-sebastian"
+      },
+      {
+        "name": "plushie-nara"
+      },
+      {
+        "name": "mintypresent"
+      },
+      {
+        "name": "plushie-peacemaker"
+      },
+      {
+        "name": "plushie-eblan"
+      },
+      {
+        "name": "plushie-klim"
+      },
+      {
+        "name": "plushie-melania"
+      },
+      {
+        "name": "plushie-okobius"
+      },
+      {
+        "name": "plushie-vyacheslav"
+      },
+      {
+        "name": "plushie-lu"
+      },
+      {
+        "name": "plushie-agata"
+      },
+      {
+        "name": "plushie-milos-tan"
+      },
+      {
+        "name": "syndie-visor",
+        "delays": [
+          [
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3
+          ]
+        ]
+      },
+      {
+        "name": "alice"
+      },
+      {
+        "name": "kaioshi_barmen"
+      },
+      {
+        "name": "raisya"
+      },
+      {
+        "name": "anatoly_lisitsyn"
+      },
+      {
+        "name": "evgeniya_krein"
+      },
+      {
+        "name": "legendary-golden-weh"
+      },
+      {
+        "name": "goldenweh-equipped-HELMET",
+        "directions": 4
+      },
+      {
+        "name": "goldenw-inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "goldenw-inhand-right",
+        "directions": 4
+      },
+      {
+        "name": "plushie_narvi"
+      },
+      {
+        "name": "plushie_sansa"
+      },
+      {
+        "name": "plushie_tatarchuk"
+      },
+      {
+        "name": "plushie-velma"
+      },
+      {
+        "name": "plushie-seyaa"
+      }
+      ]
+  }

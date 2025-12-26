@@ -1,0 +1,157 @@
+- type: entity
+  name: NVD
+  abstract: true
+  id: BaseNightVisionDevice
+  parent: [BaseItem]
+  components:
+  - type: Item
+  - type: Sprite
+  - type: Clothing
+    slots: [ Eyes ]
+  - type: Appearance
+  - type: UseDelay
+    delay: 5.0
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionGreen
+
+- type: entity
+  name: NVD
+  id: ClothingEyesNVD
+  parent: [BaseNightVisionDevice, PowerCellSlotSmallItem]
+  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-flash
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    quickEquip: true
+    slots: [ Eyes ]
+  - type: PowerCellDraw
+    drawRate: 3.5
+    useRate: 20
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      eyes:
+      - state: on-equipped-EYES
+        shader: unshaded
+  - type: ToggleCellDraw
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+  - type: Tag
+    tags:
+    - NightVisionDevice
+
+- type: entity
+  name: NVD Security
+  id: ClothingEyesNVDSec
+  suffix: security
+  parent: [ClothingEyesNVD, ShowSecurityIcons, BaseSecurityCommandContraband]
+  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: icon-flash
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+
+- type: entity
+  name: Med-Security NVD
+  id: ClothingEyesNVDMedSec
+  suffix: med-security
+  parent: [ClothingEyesNVD, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
+  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: icon-flash
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+
+- type: entity
+  parent: [ClothingEyesNVD, ShowSecurityIcons]
+  id: ClothingEyesNVDSyndicate
+  suffix: syndicate
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: icon-flash
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: PowerCellDraw
+    drawRate: 2
+    useRate: 10
+  - type: ShowSyndicateIcons
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
+
+- type: entity
+  parent: ClothingEyesNVD
+  id: ClothingEyesNVDHandcrafted
+  suffix: handcrafted
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/handcrafted_nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: icon-flash
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: PowerCellDraw
+    drawRate: 5
+    useRate: 50
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionHandcraft
+  - type: Tag
+    tags:
+    - NVDHandcrafted

@@ -9,7 +9,7 @@
     noRot: True
   - type: Sprite
     noRot: True
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: _Sunrise/Objects/Devices/pinpointer.rsi # Sunrise-Edit
     layers:
     - state: pinpointer
       map: ["enum.PinpointerLayers.Base"]
@@ -18,10 +18,23 @@
       shader: unshaded
       visible: false
   - type: Icon
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: _Sunrise/Objects/Devices/pinpointer.rsi # Sunrise-Edit
     state: pinpointer
   - type: Item
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: _Sunrise/Objects/Devices/pinpointer.rsi # Sunrise-Edit
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#8e1518"
+      - state: inhand-left-stripe
+        color: "#8e1518"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#8e1518"
+      - state: inhand-right-stripe
+        color: "#8e1518"
+      - state: inhand-right-top
   - type: Pinpointer
   - type: Appearance
   - type: GenericVisualizer
@@ -42,7 +55,7 @@
 - type: entity
   name: pinpointer
   id: PinpointerNuclear
-  parent: PinpointerBase
+  parent: [ PinpointerBase, BaseCommandContraband ]
   components:
   - type: Pinpointer
     component: NukeDisk
@@ -52,7 +65,7 @@
   name: syndicate pinpointer
   description: Produced specifically for nuclear operative missions, get that disk!
   id: PinpointerSyndicateNuclear
-  parent: PinpointerBase
+  parent: [ PinpointerBase, BaseSyndicateContraband ]
   components:
   - type: Sprite
     layers:
@@ -62,11 +75,31 @@
       map: ["enum.PinpointerLayers.Screen"]
       shader: unshaded
       visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#202020"
+      - state: inhand-left-stripe
+        color: "#6c0014"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#202020"
+      - state: inhand-right-stripe
+        color: "#6c0014"
+      - state: inhand-right-top
   - type: Icon
     state: pinpointer-syndicate
   - type: Pinpointer
     component: NukeDisk
     targetName: nuclear authentication disk
+  # Sunrise-start
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  # Sunrise-end
 
 - type: entity
   name: universal pinpointer
@@ -82,6 +115,20 @@
       map: ["enum.PinpointerLayers.Screen"]
       shader: unshaded
       visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#606060"
+      - state: inhand-left-stripe
+        color: "#606060"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#606060"
+      - state: inhand-right-stripe
+        color: "#606060"
+      - state: inhand-right-top
   - type: Icon
     state: pinpointer-way
   - type: Pinpointer
@@ -103,8 +150,57 @@
       map: ["enum.PinpointerLayers.Screen"]
       shader: unshaded
       visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#3a3a3a"
+      - state: inhand-left-stripe
+        color: "#3a3a3a"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#3a3a3a"
+      - state: inhand-right-stripe
+        color: "#3a3a3a"
+      - state: inhand-right-top
   - type: Icon
     state: pinpointer-station
   - type: Pinpointer
     component: ResearchServer
     targetName: the station
+
+- type: entity
+  parent: [ PinpointerBase, BaseXenoborgContraband ]
+  id: PinpointerMothership
+  name: core pinpointer
+  suffix: Mothership
+  description: A handheld tracking device that leads to the direction of the Mothership core.
+  components:
+  - type: Sprite
+    layers:
+    - state: pinpointer-station
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#3a3a3a"
+      - state: inhand-left-stripe
+        color: "#3a3a3a"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#3a3a3a"
+      - state: inhand-right-stripe
+        color: "#3a3a3a"
+      - state: inhand-right-top
+  - type: Icon
+    state: pinpointer-station
+  - type: Pinpointer
+    component: MothershipCore
+    targetName: the Mothership

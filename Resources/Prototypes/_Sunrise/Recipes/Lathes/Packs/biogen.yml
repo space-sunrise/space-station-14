@@ -1,0 +1,19 @@
+## Static
+- type: latheRecipePack
+  id: BioGenStaticSunrise
+  recipes:
+  - BioGenHandheldSoil
+  - BioClothingBeltPlant
+  - BioClothingBeltUtility
+  - BioClothingBeltMedical
+  - BioClothingBeltJanitor
+  - BioClothingBeltStorageWaistbag
+  - BioClothingBeltChef
+  - BioCowCube
+  - BioGoatCube
+  - BioMothroachCube
+  - BioMouseCube
+  - BioCockroachCube
+  - BioPigCube
+  - BioChikenCube
+  - BioSheetOfficePaper

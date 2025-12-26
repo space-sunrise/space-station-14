@@ -19,3 +19,171 @@
       sprite: _Sunrise/Clothing/Eyes/Glasses/kim.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Eyes/Glasses/kim.rsi
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseRestrictedContraband]
+  id: ClothingEyesGlassesBlueShield
+  name: blueshield's glasses
+  description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/blueshield_sunglasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/blueshield_sunglasses.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowMindShieldIcons
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesWelding
+  name: Welding glasses
+  description: That's a welding goggles. It is a small item. Protects the eyes from welders.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: VisionDarkener
+    strength: 3
+  - type: StaticPrice
+    price: 8
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesSunGlassesHudSkill
+  name: skills sunglasses
+  description: Sunglusses with a build-in skills HUD, showing the employment history of nearby NT crew members.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/sunhudskill.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/sunhudskill.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowCriminalRecordIcons
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [BaseNightVisionDevice, ClothingEyesGlassesSunglasses,ShowSecurityIcons, PowerCellSlotSmallItem]
+  id: ClothingEyesGlassesNVG
+  name: sun glasses
+  description: A pair of black sunglasses.
+  components:
+  - type: ShowSyndicateIcons
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+  - type: ToggleCellDraw
+  - type: PowerCellDraw
+    drawRate: 3.5
+    useRate: 20
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
+
+- type: entity
+  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSyndicateContraband]
+  id: ClothingEyesGlassesThermalSyndie
+  name: optical thermal scanner
+  suffix: syndicate
+  description: Thermals in the shape of glasses. for better exterminating NanoTrasen Scum.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
+  - type: ShowSyndicateIcons
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+
+- type: entity
+  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSecurityCommandContraband]
+  id: ClothingEyesGlassesThermalSec
+  name: optical thermal scanner
+  suffix: security
+  description: Thermals in the shape of glasses. for better exterminating enemies of NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: ShowMindShieldIcons
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesStuttering
+  name: stuttering glasses
+  description: Glasses that give the owner knowledge...or stuttering
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
+  - type: AddAccentClothing
+    accent: StutteringAccent
+
+- type: entity
+  parent: ClothingEyesGlassesThermalSyndie
+  id: ClothingEyesGlassesSniperThermalSyndie
+  name: optical thermal sniper goggles
+  suffix: syndicate
+  description: Thermals in the shape of glasses. for better exterminating NanoTrasen Scum. Thats sniper version with nuclear cell.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/sniper_thermal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/sniper_thermal.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
+  - type: ShowSyndicateIcons
+  - type: PowerCellDraw
+    drawRate: 2
+    useRate: 15
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmallNuclear
+        disableEject: true
+        swap: false

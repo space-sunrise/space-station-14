@@ -13,15 +13,17 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-cough"]
   chatTriggers:
     - cough
     - coughs
+    - coughed
     # Russian-Localization-Start
     - кашель
     - кашляет
+    - кашлянул
     # Russian-Localization-End
 
 - type: emote
@@ -57,8 +59,8 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-yawn"]
   chatTriggers:
     - yawn

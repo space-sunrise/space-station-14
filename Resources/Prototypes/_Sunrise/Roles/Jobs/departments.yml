@@ -1,10 +1,85 @@
 - type: department
   id: Law
+  name: department-Law
   description: department-Law-description
   color: "#FF5297"
-  weight: -10
+  weight: 80
   roles:
-  - Magistrat
-  - IAA
-  - Lawyer
-  
+    - Magistrat
+    - IAA
+    - Lawyer
+    - NtrOfficer
+
+- type: department # Surnise-Blueshield
+  id: BlueShield
+  name: department-Blueshield
+  description: department-Blueshield-description
+  color: "#0f4e81"
+  roles:
+    - BlueShieldEnsign
+    - BlueShieldOfficer
+    - BlueShieldOperative
+  primary: false
+  weight: 50
+
+- type: department
+  id: PlanetPrison
+  name: department-PlanetPrison
+  description: department-PlanetPrison-description
+  color: "#9f4000"
+  roles:
+  - HeadOfPrison
+  - PrisonInspector
+  - PrisonWorker
+  - PrisonEngineer
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  # - PrisonGuard
+  # - PrisonPilot
+  - PlanetPrisoner
+  weight: 150
+
+- type: department
+  id: PlanetPrisonSecurity
+  name: department-PlanetPrisonSecurity
+  description: department-PlanetPrisonSecurity-description
+  color: "#691900"
+  roles:
+  - HeadOfPrison
+  - PrisonInspector
+  - PrisonWorker
+  - PrisonEngineer
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  # - PrisonGuard
+  # - PrisonPilot
+  editorHidden: true
+  manifestHidden: true
+
+- type: department
+  id: CentralCommand
+  name: department-CentralCommand
+  description: department-CentralCommand-description
+  color: "#0d4f1d"
+  roles:
+  - CentCommOperator
+  - CentCommOfficial
+  weight: 120
+
+- type: department
+  id: SpecialOperations
+  name: department-SpecialOperations
+  description: department-SpecialOperations-description
+  color: "#0c344d"
+  roles:
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  editorHidden: true

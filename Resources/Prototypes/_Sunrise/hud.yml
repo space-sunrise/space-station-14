@@ -1,0 +1,23 @@
+- type: hudTheme
+  id: SS14OperativeTheme
+  name: ui-options-hud-theme-operative
+  path: /Textures/_Sunrise/Interface/Operative/
+  order: 7
+
+- type: hudTheme
+  id: SS14PrototypeTheme
+  name: ui-options-hud-theme-prototype
+  path: /Textures/_Sunrise/Interface/Prototype/
+  order: 8
+
+- type: hudTheme
+  id: SS14MedicalTheme
+  name: ui-options-hud-theme-medical
+  path: /Textures/_Sunrise/Interface/Medical/
+  order: 9
+
+- type: hudTheme
+  id: SS14XenoTheme
+  name: ui-options-hud-theme-xeno
+  path: /Textures/_Sunrise/Interface/Xeno/
+  order: 10

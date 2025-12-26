@@ -1,8 +1,12 @@
 using Content.Shared.Actions;
+using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
+using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
@@ -10,9 +14,9 @@ namespace Content.Shared.CombatMode;
 public abstract class SharedCombatModeSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private   readonly INetManager _netMan = default!;
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
+    [Dependency] private   readonly SharedMindSystem  _mind = default!;
 
     public override void Initialize()
     {
@@ -21,7 +25,18 @@ public abstract class SharedCombatModeSystem : EntitySystem
         SubscribeLocalEvent<CombatModeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CombatModeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<CombatModeComponent, ToggleCombatActionEvent>(OnActionPerform);
+        SubscribeLocalEvent<CombatModeComponent, AttemptMobCollideEvent>(OnCollide); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void OnCollide(EntityUid uid, CombatModeComponent component, ref AttemptMobCollideEvent args)
+    {
+        if (!component.IsInCombatMode)
+        {
+            args.Cancelled = true;
+        }
+    }
+    // Sunrise-End
 
     private void OnMapInit(EntityUid uid, CombatModeComponent component, MapInitEvent args)
     {
@@ -44,14 +59,8 @@ public abstract class SharedCombatModeSystem : EntitySystem
         args.Handled = true;
         SetInCombatMode(uid, !component.IsInCombatMode, component);
 
-        // TODO better handling of predicted pop-ups.
-        // This probably breaks if the client has prediction disabled.
-
-        if (!_netMan.IsClient || !Timing.IsFirstTimePredicted)
-            return;
-
         var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
-        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
+        _popup.PopupClient(Loc.GetString(msg), args.Performer, args.Performer);
     }
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
@@ -78,11 +87,16 @@ public abstract class SharedCombatModeSystem : EntitySystem
         component.IsInCombatMode = value;
         Dirty(entity, component);
 
+        // Sunrise-Start
+        var ev = new CombatModeChangedEvent(value);
+        RaiseLocalEvent(entity, ref ev);
+        // Sunrise-End
+
         if (component.CombatToggleActionEntity != null)
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);
 
         // Change mouse rotator comps if flag is set
-        if (!component.ToggleMouseRotator || IsNpc(entity))
+        if (!component.ToggleMouseRotator || IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
 
         SetMouseRotatorComponents(entity, value);
@@ -92,11 +106,21 @@ public abstract class SharedCombatModeSystem : EntitySystem
     {
         if (value)
         {
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot) && !HasComp<NoRotateOnMoveComponent>(mechPilot.Mech))
+            {
+                EnsureComp<NoRotateOnMoveComponent>(mechPilot.Mech);
+            }
+
             EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else
         {
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot) && HasComp<NoRotateOnMoveComponent>(mechPilot.Mech))
+            {
+                RemComp<NoRotateOnMoveComponent>(mechPilot.Mech);
+            }
+
             RemComp<MouseRotatorComponent>(uid);
             RemComp<NoRotateOnMoveComponent>(uid);
         }
@@ -110,3 +134,9 @@ public sealed partial class ToggleCombatActionEvent : InstantActionEvent
 {
 
 }
+
+/// <summary>
+/// Raised when combat mode changes for an entity.
+/// </summary>
+[ByRefEvent]
+public readonly record struct CombatModeChangedEvent(bool IsInCombatMode);

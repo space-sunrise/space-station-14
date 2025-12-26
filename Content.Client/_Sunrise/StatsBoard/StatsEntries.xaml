@@ -1,0 +1,10 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              Margin="0 0 0 0"
+              HorizontalExpand="True"
+              Visible="True">
+    <BoxContainer Name="EntriesContainer"
+                  Orientation="Vertical"
+                  StyleClasses="transparentItemList"
+                  VerticalExpand="True"
+                  HorizontalExpand="True"/>
+</BoxContainer>

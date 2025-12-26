@@ -1,0 +1,2 @@
+ent-Reflector = рефлектор
+    .desc = { "" }

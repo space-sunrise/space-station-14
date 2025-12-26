@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "size": {
+    "x": 48,
+    "y": 48
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "states": [
+      {
+          "name": "heavy",
+          "directions": 4
+      },
+      {
+          "name": "heavy_e",
+          "directions": 4
+      },
+      {
+          "name": "heavy_e_r",
+          "directions": 4
+      },
+      {
+          "name": "heavy_l",
+          "directions": 4
+      }
+  ]
+}

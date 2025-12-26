@@ -1,0 +1,10 @@
+ent-ClothingHeadHatBeretCE = beret chief engineer
+    .desc = He takes the person who builds you a goal every shift.
+ent-ClothingHeadHatBeretParamedic = paramedic beret
+    .desc = A beret, for paramedic.
+ent-ClothingHeadHatBeretChemistry = chemist's beret
+    .desc = A beret, for chemist.
+ent-ClothingHeadHatBeretPatologoanatom = pathologist's beret
+    .desc = A beret, for patologoanatom.
+ent-ClothingHeadHatBeretAtmos = atmos beret
+    .desc = A beret, for atmos.

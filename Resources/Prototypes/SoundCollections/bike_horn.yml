@@ -32,3 +32,18 @@
   id: Parp
   files:
   - /Audio/Effects/Emotes/parp1.ogg
+
+# Sunrise edit start
+- type: soundCollection
+  id: ClownSpiderBiteSound
+  files:
+    - /Audio/Effects/bite.ogg
+    - /Audio/Effects/bite.ogg
+    - /Audio/Effects/bite.ogg
+    - /Audio/Items/bikehorn.ogg
+    - /Audio/Items/bikehorn.ogg
+    - /Audio/Items/bikehorn.ogg
+    - /Audio/Items/brokenbikehorn.ogg
+    - /Audio/Effects/Emotes/parp1.ogg
+
+# Sunrise edit end

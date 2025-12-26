@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by land1001",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "action"
+        },
+        {
+            "name": "shop"
+        },
+        {
+            "name": "cough"
+        },
+        {
+            "name": "sneeze"
+        },
+        {
+            "name": "vomit"
+        },
+        {
+            "name": "sob"
+        },
+        {
+            "name": "baseChance"
+        },
+        {
+            "name": "coughChance"
+        },
+        {
+            "name": "zombie"
+        },
+        {
+            "name": "lethal"
+        },
+        {
+            "name": "shield"
+        },
+        {
+            "name": "narcolepsy"
+        },
+        {
+            "name": "muted"
+        },
+        {
+            "name": "slowness"
+        },
+        {
+            "name": "bleed"
+        },
+        {
+            "name": "blindness"
+        }
+    ]
+}

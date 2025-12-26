@@ -1,0 +1,36 @@
+ui-options-lobby-opacity = Прозрачность лобби
+ui-options-lobby-background-type = Тип фона лобби
+ui-options-lobby-art = Арт лобби
+ui-options-lobby-animation = Анимация лобби
+ui-options-lobby-parallax = Паралакс лобби
+ui-options-damage-overlay-enable = Оверлей урона
+ui-options-damage-overlay-structures = Показывать урон по структурам
+ui-options-damage-overlay-self = Показывать урон по себе
+ui-options-sunrise-general-audio = Аудио
+ui-options-sunrise-general-graphics = Графика
+ui-options-sunrise-general-lobby = Лобби
+ui-options-sunrise-general-combat = Бой
+ui-options-tab-extra = Экстра
+ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
+ui-options-jump-sound-disable = Отключить звук прыжка
+ui-options-vote-music-disable = Отключить музыку голосования
+ui-options-mute-new-ghost-roles = Отключить звук новых гост-ролей
+ui-options-function-toggle-standing = Лечь/Встать
+ui-options-function-cock-gun = Взвести оружие/Разрядить
+ui-options-function-melee-gun-attack = Удар прикладом/штыком
+ui-options-function-jump = Прыжок
+ui-options-function-reloading = Перезарядка
+ui-options-function-interact = Открыть панель взаимодействий
+ui-options-function-look-up = Присмотреться/Прицелиться
+ui-options-function-auto-get-up = Автоматически вставать при падении
+ui-options-function-hold-look-up = Удерживать клавишу для прицеливания
+ui-options-chat-icons-enable = Использовать иконки профессий в чате
+ui-options-chat-pointing-visuals-enable = Отображать указывания с иконками в чате
+ui-options-play-heartbeat-sound = Проигрывать звук сердцебиения
+ui-options-trace = Отображать траекторию пули
+ui-options-trace-tooltip =
+    Если у вас задержки при стрельбе, снимите эту галочку,
+    и хитскан не будет отображать текстуру дыма за летящей пулей.
+ui-options-tts-enabled = ТТС интеграция
+ui-options-tts-queue = Использовать очередь для TTS рации?
+ui-options-tts-radio-ghost-enabled = ТТС рации в призраке

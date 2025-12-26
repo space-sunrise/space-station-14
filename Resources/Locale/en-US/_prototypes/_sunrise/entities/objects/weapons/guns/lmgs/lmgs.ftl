@@ -1,0 +1,10 @@
+ent-WeaponLightMachineGunMG60 = MG-60
+    .desc = { ent-BaseWeaponLightMachineGun.desc }
+ent-WeaponLightMachineGunRPD = RPD
+    .desc = { ent-BaseWeaponLightMachineGun.desc }
+ent-WeaponMachineGunMG42 = MG-42
+    .desc = { ent-BaseWeaponLightMachineGun.desc }
+ent-WeaponDL6902 = DL6902 machine gun
+    .desc = Cybersun heavy machine gun.
+ent-WeaponLightMachineGunPirateCannon = pirate machine cannon
+    .desc = Handheld pirate cannon with belt-fed cannonballs. Straight out of the wildest adventures of Treasure Island. A mix of pirate magic and ingenuity. Do not, under any circumstances, try to figure out how it actually works…

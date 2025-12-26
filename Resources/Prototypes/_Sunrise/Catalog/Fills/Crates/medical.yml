@@ -1,0 +1,9 @@
+- type: entity
+  id: CrateNPCVariantCubeBoxSunrise
+  parent: CrateGenericSteel
+  name: monkey cube crate
+  description: A crate containing single box of monkey cubes.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VariantCubeBoxSunrise

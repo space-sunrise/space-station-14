@@ -4,9 +4,12 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Pierceable
+    level: Metal
   - type: Transform
     anchored: true
   - type: Clickable
+  - type: GravityAffected
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -25,8 +28,14 @@
   - type: Tag
     tags:
       - Structure
+  - type: StaticPrice
+    price: 0
+  # Sunrise-Edit
+  - type: DamageOverlay
+    damagePopupType: SmallFloating
+    isStructure: true
   - type: TTS
-    voice: FactCore # Sunrise-TTS
+    voice: Portal2FactCore  # Sunrise-TTS
 
 - type: entity
   # This means that it's not anchored on spawn.
@@ -65,6 +74,3 @@
   components:
     - type: TileFrictionModifier
       modifier: 0.4
-
-- type: Tag
-  id: Structure

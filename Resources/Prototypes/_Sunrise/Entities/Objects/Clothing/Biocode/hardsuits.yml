@@ -3,62 +3,127 @@
   id: ClothingOuterHardsuitSyndieBiocode
   suffix: BIOCODE
   components:
-  - type: FactionClothingBlocker
+  - type: Biocode
     factions:
     - Syndicate
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 15
+  - type: FactionClothingBlocker
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieMedic
   id: ClothingOuterHardsuitSyndieMedicBiocode
   suffix: BIOCODE
   components:
-  - type: FactionClothingBlocker
+  - type: Biocode
     factions:
     - Syndicate
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 15
+  - type: FactionClothingBlocker
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieElite
   id: ClothingOuterHardsuitSyndieEliteBiocode
   suffix: BIOCODE
   components:
-  - type: FactionClothingBlocker
+  - type: Biocode
     factions:
     - Syndicate
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 15
+  - type: FactionClothingBlocker
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieCommander
   id: ClothingOuterHardsuitSyndieCommanderBiocode
   suffix: BIOCODE
   components:
-  - type: FactionClothingBlocker
+  - type: Biocode
     factions:
     - Syndicate
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 15
+  - type: FactionClothingBlocker
 
 - type: entity
   parent: ClothingOuterHardsuitJuggernaut
   id: ClothingOuterHardsuitJuggernautBiocode
   suffix: BIOCODE
   components:
-  - type: FactionClothingBlocker
+  - type: Biocode
     factions:
     - Syndicate
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 15
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingOuterArmorRaid
+  id: ClothingOuterArmorRaidBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingOuterHardsuitInfiltration
+  id: ClothingOuterHardsuitInfiltrationBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingShoesChameleonNoSlips
+  id: ClothingShoesChameleonNoSlipsBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingEyesGlassesThermalSyndie
+  id: ClothingEyesGlassesThermalSyndieBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingOuterVestWebElite
+  id: ClothingOuterVestWebEliteBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingOuterVestWeb
+  id: ClothingOuterVestWebBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingHandsGlovesNorthStar
+  id: ClothingHandsGlovesNorthStarBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+
+- type: entity
+  parent: ClothingShoesBootsMagSyndie
+  id: ClothingShoesBootsMagSyndieBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker

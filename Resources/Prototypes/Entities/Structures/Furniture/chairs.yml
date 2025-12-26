@@ -6,6 +6,7 @@
   placement:
     mode: PlaceFree
   components:
+  - type: Animateable
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -24,7 +25,8 @@
     noRot: true
   - type: Strap
     position: Stand
-    buckleOffset: "0,-0.05"
+    buckleOffsets: # Sunrise-Edit
+    - "0,-0.05"
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic
@@ -47,7 +49,8 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 10
+    price: 50
+  - type: CanSleepOnBuckle # Sunrise-Edit
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -211,6 +214,15 @@
     damageModifierSet: Wood
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 25
@@ -268,6 +280,15 @@
       collection: MaleScreams
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Voice/Human/womanlaugh.ogg
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -304,6 +325,15 @@
     damageModifierSet: Web
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -323,7 +353,7 @@
     node: chair
 
 - type: entity
-  parent: [SeatBase, BaseFoldable]
+  parent: [SeatBase, BaseDeployFoldable]
   id: ChairFolding
   name: folding chair
   description: If you carry six of these you become the coolest kid at church.
@@ -349,6 +379,7 @@
   - type: Construction
     graph: Seat
     node: chairFolding
+  - type: DamageExaminable
 
 - type: entity
   parent: ChairFolding
@@ -357,6 +388,8 @@
   components:
   - type: Foldable
     folded: true
+  - type: Strap
+    enabled: False
 
 - type: entity
   name: steel bench
@@ -369,6 +402,48 @@
   - type: Construction
     graph: Seat
     node: chairSteelBench
+  # Sunrise-Start
+  - type: Strap
+    position: Stand
+    buckleOffsets:
+    - "-0.2,0"
+    - "0.2,0"
+    size: 200
+  # Sunrise-End
+
+- type: entity
+  name: cardboard stool
+  id: CardStool
+  parent: UnanchoredChairBase
+  description: Make sure you sit *really* gently.
+  components:
+  - type: Sprite
+    state: card-stool
+  - type: Construction
+    graph: Seat
+    node: stoolCard
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Card
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCardboard:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   name: wooden bench
@@ -383,6 +458,15 @@
     node: chairWoodBench
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -398,4 +482,20 @@
             min: 2
             max: 4
   - type: StaticPrice
-    price: 20
+    price: 50
+  # Sunrise-Start
+  - type: Strap
+    position: Stand
+    buckleOffsets:
+    - "-0.2,0"
+    - "0.2,0"
+    size: 200
+  # Sunrise-End
+
+- type: entity
+  parent: StoolBase
+  id: ChairXeno
+  name: xeno chair
+  components:
+  - type: Sprite
+    state: xeno-chair

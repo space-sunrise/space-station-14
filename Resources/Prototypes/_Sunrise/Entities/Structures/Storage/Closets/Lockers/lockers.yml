@@ -1,0 +1,247 @@
+- type: entity
+  id: LockerBlueShield
+  parent: LockerBaseSecure
+  name: blue shield officer's locker
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Sunrise/Structures/Storage/closet.rsi
+      noRot: true
+      layers:
+      - state: generic
+        map: ["enum.StorageVisualLayers.Base"]
+      - state: generic_door
+        map: ["enum.StorageVisualLayers.Door"]
+      - state: locked
+        map: ["enum.LockVisualLayers.Lock"]
+        shader: unshaded
+      - state: welded
+        visible: false
+        map: ["enum.WeldableLayers.BaseWelded"]
+    - type: EntityStorageVisuals
+      stateBaseClosed: bssecure
+      stateDoorOpen: bssecure_open
+      stateDoorClosed: bssecure_door
+    - type: AccessReader
+      access: [["BlueShield"]]
+
+- type: entity
+  id: LockerBlueShieldEnsign
+  parent: LockerBlueShield
+  name: blue shield ensign locker
+  components:
+  - type: AccessReader
+    access: [["BlueShieldEnsign"]]
+
+- type: entity
+  id: LockerPilot
+  parent: LockerBaseSecure
+  name: security pilot's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: pilot
+    stateDoorOpen: pilot_open
+    stateDoorClosed: pilot_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeIonRifle
+  name: special security weapons
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponIonRifle
+    - id: WeaponTemperatureGun
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeSMRTGun
+  name: SMART Safe
+  description: Heavy reinforced special gun safe delivered from NanoTrasen Smart Arms Division for field testing. Contains the unique Smart gun LMG kit and a heavy energy sniper rifle.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackDuffelWeaponLightMachineGunM492
+    - id: ClothingBeltSecurityWebbing
+    - id: MagazineLightRifleBeltBoxHP
+    - id: MagazineLightRifleBeltBoxIncendiary # All types to manage all variants of threats
+    - id: WeaponEnergySniper
+  - type: AccessReader
+    access: [["CentralCommand"]]
+    alertAccesses:
+      gamma: GammaAlertAccesses
+  - type: Godmode
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 2000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: ClosetPatologoanatom
+  name: patologoanatom's locker
+  parent: LockerBaseSecure
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: patologoanatom
+    stateDoorOpen: patologoanatom_open
+    stateDoorClosed: patologoanatom_door
+  - type: AccessReader
+    access: [["Medical"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+
+- type: entity
+  id: ClosetPatologoanatomFilled
+  parent: ClosetPatologoanatom
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingUniformJumpsuitMedicalDoctor
+    - id: HandheldHealthAnalyzer
+    - id: BoxForensicPad
+    - id: ClothingHeadsetMedical
+    - id: HeadSkeleton
+    - id: ClothingHeadHatPatologonatHat
+    - id: Scalpel
+    - id: ClothingHandsGlovesNitrile
+    - id: ClothingShoesColorBlack
+    - id: RubberStampPath
+    - id: ClothingOuterHospitalGown
+      amount: 2
+
+- type: entity
+  id: LockerMiningSpecialist
+  parent: LockerBaseSecure
+  suffix: Empty
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: mining
+    stateDoorOpen: mining_open
+    stateDoorClosed: mining_door
+  - type: AccessReader
+    access: [["Mining"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+
+- type: entity
+  id: LockerMiningSpecialistFilled
+  parent: LockerMiningSpecialist
+  suffix: Filled, Hardsuit
+  name: mining specialist's equipment
+  description: Nevermind the pickaxe.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterHardsuitSalvage
+    - id: ToolboxMechanicalFilledAllTools
+    - id: ClothingMaskGasExplorer
+    - id: AirTankFilled
+    - id: RadioHandheld
+    - id: OreBag
+    - id: Nanopaste
+    - id: WeaponProtoKineticAccelerator
+    - id: HandHeldMassScanner
+    - id: PKAUpgradeRange
+      prob: 0.1
+    - id: PKAUpgradeFireRate
+      prob: 0.1
+    - id: PKAUpgradeDamage
+      prob: 0.1
+
+# Representative
+- type: entity
+  id: LockerRepresentative
+  name: representative locker
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+  # Sunrise-start
+  - type: StorageFill
+    contents:
+    - id: HandheldFax
+  # Sunrise-end
+
+- type: entity
+  id: LockerRepresentativeEmpty
+  name: representative locker
+  parent: LockerBaseSecure
+  suffix: Empty
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+
+- type: entity
+  id: LockerRepresentativeFilled
+  parent: LockerRepresentative
+  suffix: Filled
+  # Sunrise-start
+  # This is now identical to the base LockerRepresentative, kept for compatibility/explicit usage
+  # Sunrise-end
+#Fish-end
+

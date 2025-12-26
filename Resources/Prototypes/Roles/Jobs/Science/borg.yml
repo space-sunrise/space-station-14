@@ -1,3 +1,24 @@
+# No idea why it's in sci but we ball.
+# Why is this one file?
+- type: job
+  id: StationAi
+  name: job-name-station-ai
+  description: job-description-station-ai
+  playTimeTracker: JobStationAi
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 5h
+  weight: 10
+  canBeAntag: false
+  icon: JobIconStationAi
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-rd
+  jobEntity: StationAiBrain
+  jobPreviewEntity: PlayerStationAiPreview
+  applyTraits: false
+  alwaysUseSpawner: true # Sunrise-Edit
+
 - type: job
   id: Borg
   name: job-name-borg
@@ -5,8 +26,12 @@
   playTimeTracker: JobBorg
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 216000 #60 hrs
+      time: 10h
   canBeAntag: false
+  displayWeight: -10  # Sunrise
   icon: JobIconBorg
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-rd
-  jobEntity: PlayerBorgGeneric
+  jobEntity: PlayerBorgBattery
+  applyTraits: false
+  alwaysUseSpawner: true # Sunrise-Edit

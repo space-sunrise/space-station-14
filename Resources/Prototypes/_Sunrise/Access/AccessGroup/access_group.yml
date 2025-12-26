@@ -1,0 +1,35 @@
+- type: accessGroup
+  id: RedAlertAccesses
+  tags:
+  - HeadOfSecurity
+  - Security
+  - Armory
+  - Detective
+
+- type: accessGroup
+  id: BlueAlertAccesses
+  tags:
+  - HeadOfSecurity
+  - Security
+  - Detective
+  - Armory
+
+- type: accessGroup
+  id: BlueAlertAccessesHOS
+  tags:
+  - HeadOfSecurity
+
+- type: accessGroup
+  id: YellowAlertAccesses
+  tags:
+  - ChiefEngineer
+  - Atmospherics
+
+- type: accessGroup
+  id: GammaAlertAccesses
+  tags:
+  - HeadOfSecurity
+  - Security
+  - Armory
+  - Detective
+

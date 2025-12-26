@@ -1,0 +1,48 @@
+
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CLA",
+    "copyright": "SUNRISE",
+    "states": [
+        {
+            "name": "0.62combat"
+        },
+        {
+            "name": "0.62combat-spent"
+        },
+        {
+            "name": "7.62x54combat"
+        },
+        {
+            "name": "7.62x54combat-spent"
+        },
+        {
+            "name": "5.56combat"
+        },
+        {
+            "name": "5.56combat-spent"
+        },
+        {
+            "name": "5.7x28combat"
+        },
+        {
+            "name": "5.7x28combat-spent"
+        },
+        {
+            "name": "0.50combat"
+        },
+        {
+            "name": "0.50combat-spent"
+        },
+        {
+            "name": "relsotrone-combat"
+        },
+        {
+            "name": "relsotrone-combat-spent"
+        }
+    ]
+}

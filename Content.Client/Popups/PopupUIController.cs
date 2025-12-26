@@ -47,16 +47,18 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         _popupControl = null;
     }
 
-    public void DrawPopup(PopupSystem.PopupLabel popup, DrawingHandleScreen handle, Vector2 position, float scale)
+    public void DrawPopup(PopupSystem.PopupLabel popup, DrawingHandleScreen handle, Vector2 position, float scale, float horizontalDirection = 0f) // Sunrise-Edit
     {
         var lifetime = PopupSystem.GetPopupLifetime(popup);
 
         // Keep alpha at 1 until TotalTime passes half its lifetime, then gradually decrease to 0.
         var alpha = MathF.Min(1f, 1f - MathF.Max(0f, popup.TotalTime - lifetime / 2) * 2 / lifetime);
 
-        var updatedPosition = position - new Vector2(0f, MathF.Min(8f, 12f * (popup.TotalTime * popup.TotalTime + popup.TotalTime)));
+        // Sunrise-Edit
+        // var updatedPosition = position - new Vector2(0f, MathF.Min(8f, 12f * (popup.TotalTime * popup.TotalTime + popup.TotalTime)));
         var font = _smallFont;
         var color = Color.White.WithAlpha(alpha);
+        var useHorizontalDirection = false; // Sunrise-Edit
 
         switch (popup.Type)
         {
@@ -79,7 +81,31 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
                 font = _largeFont;
                 color = Color.Red;
                 break;
+            // Sunrise start
+            case PopupType.SmallFloating:
+                useHorizontalDirection = true;
+                break;
+            case PopupType.LargeGreen:
+                font = _largeFont;
+                color = Color.LightGreen;
+                break;
+            case PopupType.MediumCautionFloating:
+                font = _mediumFont;
+                color = Color.Red;
+                useHorizontalDirection = true;
+                break;
+            // Sunrise end
         }
+
+        // Sunrise edit start
+        if (!useHorizontalDirection)
+            horizontalDirection = 0f;
+
+        // Calculate horizontal offset based on direction.
+        var horizontalOffset = horizontalDirection * MathF.Min(8f, 12f * popup.TotalTime);
+        // Adjust position to move both vertically and horizontally.
+        var updatedPosition = position + new Vector2(horizontalOffset, -MathF.Min(8f, 12f * (popup.TotalTime * popup.TotalTime + popup.TotalTime)));
+        // Sunrise edit end
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);
         handle.DrawString(font, updatedPosition - dimensions / 2f, popup.Text, scale, color.WithAlpha(alpha));

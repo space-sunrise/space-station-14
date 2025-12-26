@@ -1,0 +1,237 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Content.Client._Sunrise.InteractionsPanel.InteractionsUIWindow"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="Interactions Panel"
+               MinSize="475 600"
+               SetSize="475 600">
+
+    <PanelContainer>
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#0f1419"/>
+        </PanelContainer.PanelOverride>
+
+        <BoxContainer Orientation="Vertical" Margin="0">
+
+            <PanelContainer Name="TopUserInfoBox" Margin="6 4 6 0">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                </PanelContainer.PanelOverride>
+
+                <BoxContainer Orientation="Horizontal"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             HorizontalExpand="True"
+                             Margin="8 12"
+                             Name="UserBoxShit">
+
+                    <PanelContainer Margin="0 0 8 0">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#243340"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical"
+                                      HorizontalAlignment="Center"
+                                      Margin="12 10" MaxSize="142 124">
+
+                            <PanelContainer Margin="0 0 0 6">
+                                <PanelContainer.PanelOverride>
+                                    <gfx:StyleBoxFlat BackgroundColor="#2c4455"/>
+                                </PanelContainer.PanelOverride>
+
+                                <SpriteView Name="UserSpriteView"
+                                        OverrideDirection="South"
+                                        Scale="1.8, 1.8"
+                                        HorizontalAlignment="Center"
+                                        Margin="8 8 8 8" MaxSize="142 124"/>
+                            </PanelContainer>
+
+                            <Label Name="NameUser"
+                                FontColorOverride="#00d4ff"
+                                HorizontalAlignment="Center"
+                                StyleClasses="LabelSubText"
+                                Margin="0 4 0 0" MaxSize="142 124" MaxWidth="140" />
+                        </BoxContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              HorizontalExpand="True"
+                              Margin="8 12">
+
+                    <PanelContainer Name="TargetContainer" Margin="8 0 0 0">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#243340"/>
+                        </PanelContainer.PanelOverride>
+
+                        <BoxContainer Orientation="Vertical"
+                                      HorizontalAlignment="Center"
+                                      Margin="12 10" MaxSize="142 124">
+
+                            <PanelContainer Margin="0 0 0 6">
+                                <PanelContainer.PanelOverride>
+                                    <gfx:StyleBoxFlat BackgroundColor="#2c4455"/>
+                                </PanelContainer.PanelOverride>
+
+                                <SpriteView Name="TargetSpriteView"
+                                            OverrideDirection="South"
+                                            Scale="1.8, 1.8"
+                                            HorizontalAlignment="Center"
+                                            Margin="8 8 8 8" MaxSize="142 124"/>
+                            </PanelContainer>
+
+                            <Label Name="NameTarget"
+                                   FontColorOverride="#00d4ff"
+                                   HorizontalAlignment="Center"
+                                   StyleClasses="LabelSubText"
+                                   Margin="0 4 0 0" MaxSize="142 124" MaxWidth="142" />
+                        </BoxContainer>
+                    </PanelContainer>
+
+                </BoxContainer>
+            </PanelContainer>
+
+            <controls:HSpacer Spacing="6" />
+
+            <TabContainer Name="MainTabContainer"
+                         HorizontalExpand="True"
+                         VerticalExpand="True"
+                         Margin="6 0 6 6">
+
+                <PanelContainer>
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                    </PanelContainer.PanelOverride>
+
+                    <BoxContainer Orientation="Vertical" Margin="0">
+                        <LineEdit
+                            Name="SearchInput"
+                            PlaceHolder="🔍 Поиск взаимодействий..."
+                            HorizontalExpand="True"
+                            MinHeight="26"
+                            VerticalAlignment="Center"
+                            StyleClasses="LineEditDark"/>
+
+                        <ScrollContainer HorizontalExpand="True"
+                                         VerticalExpand="True"
+                                         HScrollEnabled="False"
+                                         Margin="0 2 0 0">
+
+                            <BoxContainer Name="CategoriesContainer"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True"
+                                          Margin="2"/>
+                        </ScrollContainer>
+                    </BoxContainer>
+
+                </PanelContainer>
+
+                <PanelContainer Margin="0 0 0 0">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                    </PanelContainer.PanelOverride>
+
+                    <BoxContainer Orientation="Vertical" Margin="0">
+
+                        <BoxContainer Orientation="Horizontal" Margin="8 8">
+                            <Button Name="NewCustomInteractionButton"
+                                    Text="+ СОЗДАТЬ"
+                                    StyleClasses="ButtonSquare"
+                                    HorizontalExpand="False"
+                                    VerticalAlignment="Center"
+                                    MinHeight="26"
+                                    Margin="0 0 0 0"/>
+
+                            <LineEdit
+                                Name="CustomInteractionSearchInput"
+                                PlaceHolder="🔍 Поиск сохраненных..."
+                                HorizontalExpand="True"
+                                MinHeight="26"
+                                VerticalAlignment="Center"
+                                StyleClasses="LineEditDark"/>
+                        </BoxContainer>
+
+                    <ScrollContainer HorizontalExpand="True"
+                                     VerticalExpand="True"
+                                     HScrollEnabled="False"
+                                     Margin="0 2 0 0">
+
+
+                        <BoxContainer Name="SavedInteractionsContainer"
+                                      Orientation="Vertical"
+                                      HorizontalExpand="True"
+                                      VerticalExpand="True"
+                                      Margin="2"/>
+                    </ScrollContainer>
+                </BoxContainer>
+
+                </PanelContainer>
+
+                <PanelContainer>
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1a2332"/>
+                    </PanelContainer.PanelOverride>
+
+                    <BoxContainer Orientation="Vertical" Margin="0">
+
+                        <Label Text="⚙ НАСТРОЙКИ"
+                               FontColorOverride="#00d4ff"
+                               HorizontalAlignment="Center"
+                               StyleClasses="LabelHeading"
+                               Margin="0 10"/>
+
+                        <BoxContainer Orientation="Vertical" Margin="8 16" VerticalExpand="True">
+
+                            <BoxContainer Orientation="Horizontal" Margin="12 10" VerticalAlignment="Center">
+                                <CheckBox Name="EmoteVisibilityCheckBox"
+                                          Pressed="True"
+                                          Margin="0 0 8 0"/>
+                                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                                    <Label Text="Разрешить другим видеть ваши действия?"
+                                           FontColorOverride="#b8e6ff"
+                                           VerticalAlignment="Center"/>
+                                    <Label Text="Выключено: только вы и партнер видите действия.&#10;Включено: все игроки поблизости видят эмоуты."
+                                           FontColorOverride="#7a9db3"
+                                           StyleClasses="LabelSubText"
+                                           Margin="0 2 0 0"
+                                           MaxWidth="320"/>
+                                </BoxContainer>
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Horizontal" Margin="12 10" VerticalAlignment="Center">
+                                <CheckBox Name="HideTopPanelCheckBox"
+                                          Pressed="False"
+                                          Margin="0 0 8 0"/>
+                                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                                    <Label Text="Скрыть верхнюю панель с персонажами?"
+                                           FontColorOverride="#b8e6ff"
+                                           VerticalAlignment="Center"/>
+                                    <Label Text="Позволяет освободить больше места под &#10; взаимодействия."
+                                           FontColorOverride="#7a9db3"
+                                           StyleClasses="LabelSubText"
+                                           Margin="0 2 0 0"
+                                           MaxWidth="320"/>
+                                </BoxContainer>
+                            </BoxContainer>
+
+                            <Control VerticalExpand="True"/>
+
+                            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Name="ApplySettingsButton"
+                                        Text="ПРИМЕНИТЬ ИЗМЕНЕНИЯ"
+                                        StyleClasses="ButtonSquare"
+                                        MinWidth="180"
+                                        MinHeight="30"
+                                        Margin="0 6 0 0"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </TabContainer>
+        </BoxContainer>
+    </PanelContainer>
+</DefaultWindow>

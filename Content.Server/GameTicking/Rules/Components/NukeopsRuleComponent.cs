@@ -1,5 +1,6 @@
 using Content.Server.RoundEnd;
 using Content.Shared.Dataset;
+using Content.Shared.FixedPoint;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
@@ -39,7 +40,7 @@ public sealed partial class NukeopsRuleComponent : Component
     /// Time to emergency shuttle to arrive if RoundEndBehavior is ShuttleCall.
     /// </summary>
     [DataField]
-    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(3);
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(1);
 
     /// <summary>
     /// Whether or not nukie left their outpost
@@ -63,13 +64,26 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public int WarTcAmountPerNukie = 40;
+    public FixedPoint2 WarTcAmountPerNukie = 45; // Sunrise-edit
+
+    // Sunrise-Start
+    [DataField]
+    public int RoundstartOperatives;
+
+    public EntityUid? UplinkEnt;
+    // Sunrise-End
 
     /// <summary>
     ///     Delay between war declaration and nuke ops arrival on station map. Gives crew time to prepare
     /// </summary>
     [DataField]
     public TimeSpan WarNukieArriveDelay = TimeSpan.FromMinutes(15);
+
+    /// <summary>
+    ///     Time crew can't call emergency shuttle after war declaration.
+    /// </summary>
+    [DataField]
+    public TimeSpan WarEvacShuttleDisabled = TimeSpan.FromMinutes(30); // Sunrise-edit
 
     /// <summary>
     ///     Minimal operatives count for war declaration
@@ -94,36 +108,6 @@ public sealed partial class NukeopsRuleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/nukeops_start.ogg");
-}
-
-/// <summary>
-/// Stores the presets for each operative type
-/// Ie Commander, Agent and Operative
-/// </summary>
-[DataDefinition, Serializable]
-public sealed partial class NukeopSpawnPreset
-{
-
-    [DataField]
-    public ProtoId<AntagPrototype> AntagRoleProto = "Nukeops";
-
-    /// <summary>
-    /// The equipment set this operative will be given when spawned
-    /// </summary>
-    [DataField]
-    public ProtoId<StartingGearPrototype> GearProto = "SyndicateOperativeGearFull";
-
-    /// <summary>
-    /// The name prefix, ie "Agent"
-    /// </summary>
-    [DataField]
-    public LocId NamePrefix = "nukeops-role-operator";
-
-    /// <summary>
-    /// The entity name suffix will be chosen from this list randomly
-    /// </summary>
-    [DataField]
-    public ProtoId<DatasetPrototype> NameList = "SyndicateNamesNormal";
 }
 
 public enum WinType : byte

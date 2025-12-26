@@ -1,4 +1,3 @@
-using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -105,3 +104,18 @@ public record struct UncuffAttemptEvent(EntityUid User, EntityUid Target)
     public readonly EntityUid Target = Target;
     public bool Cancelled = false;
 }
+
+// Sunrise-Start
+[ByRefEvent]
+public record struct CuffedEvent(EntityUid User, EntityUid Target)
+{
+    public readonly EntityUid User = User;
+    public readonly EntityUid Target = Target;
+}
+// Sunrise-End
+
+/// <summary>
+/// Event raised on an entity being uncuffed to determine any modifiers to the amount of time it takes to uncuff them.
+/// </summary>
+[ByRefEvent]
+public record struct ModifyUncuffDurationEvent(EntityUid User, EntityUid Target, float Duration);

@@ -1,9 +1,11 @@
-using Content.Server.Body.Components;
-using Content.Server.GameTicking;
+using System.Numerics;
+using Content.Server.Ghost;
 using Content.Server.Humanoid;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -11,17 +13,20 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
-using System.Numerics;
+using Robust.Shared.Player;
+using Content.Server._Starlight.Medical.Limbs;
 
 namespace Content.Server.Body.Systems;
 
 public sealed class BodySystem : SharedBodySystem
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly LimbSystem _limbSystem = default!;//🌟Starlight🌟
 
     public override void Initialize()
     {
@@ -34,16 +39,16 @@ public sealed class BodySystem : SharedBodySystem
     private void OnRelayMoveInput(Entity<BodyComponent> ent, ref MoveInputEvent args)
     {
         // If they haven't actually moved then ignore it.
-        if ((args.Component.HeldMoveButtons &
+        if ((args.Entity.Comp.HeldMoveButtons &
              (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
         {
             return;
         }
 
-        if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind))
+        if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind) && _player.TryGetSessionById(mind.UserId, out var session)) // Sunrise-Edit
         {
             mind.TimeOfDeath ??= _gameTiming.RealTime;
-            _ticker.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
+            _ghostSystem.OpenAcceptEui(mindId, session); // Sunrise-Edit
         }
     }
 
@@ -65,16 +70,15 @@ public sealed class BodySystem : SharedBodySystem
         // TODO: Predict this probably.
         base.AddPart(bodyEnt, partEnt, slotId);
 
-        if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
+        var layer = partEnt.Comp.ToHumanoidLayers();
+        if (layer != null)
         {
-            var layer = partEnt.Comp.ToHumanoidLayers();
-            if (layer != null)
-            {
-                var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
-                _humanoidSystem.SetLayersVisibility(
-                    bodyEnt, layers, visible: true, permanent: true, humanoid);
-            }
+            var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
+            _humanoidSystem.SetLayersVisibility(bodyEnt.Owner, layers, visible: true);
         }
+
+        if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
+            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
     }
 
     protected override void RemovePart(
@@ -93,8 +97,7 @@ public sealed class BodySystem : SharedBodySystem
             return;
 
         var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
-        _humanoidSystem.SetLayersVisibility(
-            bodyEnt, layers, visible: false, permanent: true, humanoid);
+        _humanoidSystem.SetLayersVisibility((bodyEnt, humanoid), layers, visible: false);
     }
 
     public override HashSet<EntityUid> GibBody(
@@ -114,6 +117,9 @@ public sealed class BodySystem : SharedBodySystem
         {
             return new HashSet<EntityUid>();
         }
+
+        if (HasComp<GodmodeComponent>(bodyId))
+            return new HashSet<EntityUid>();
 
         var xform = Transform(bodyId);
         if (xform.MapUid is null)

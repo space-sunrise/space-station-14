@@ -1,0 +1,85 @@
+- type: entity
+  parent: [ClothingShoesBootsMagBase, ClothingShoesBootsCombat, BaseSecurityContraband]
+  id: ClothingShoesBootsMagCombat
+  name: combat magboots
+  description: Combat magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+
+- type: entity
+  parent: ClothingShoesBootsMagCombat
+  id: ClothingShoesBootsMagPirate
+  name: pirate magboots
+  description: Repainted combat magnets to match the colors of pirates.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
+  - type: Magboots
+
+- type: entity
+  parent: [ClothingShoesBootsMagBase, BaseSecurityContraband]
+  id: ClothingShoesBootsMagSec
+  name: Security magboots
+  description: Security magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.7
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+
+- type: entity
+  parent: ClothingShoesBootsMagBase
+  id: ClothingShoesBootsMagAtmos
+  name: Atmos magboots
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+  - type: Item
+    size: Huge
+  - type: Charger
+    slotId: charger_slot
+    portable: true
+    chargeRate: 10
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: false
+        whitelist:
+          components:
+          - PowerCell
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingShoesBootsMagSyndie] # port WZ #37855
+  id: ClothingShoesBootsMagERT
+  name: ERT magboots
+  description: Upgraded magnetic boots utilized by Nanotrasen's Emergency Response Teams, they have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/magboots-ert.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/magboots-ert.rsi

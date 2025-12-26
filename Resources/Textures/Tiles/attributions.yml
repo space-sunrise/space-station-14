@@ -26,6 +26,11 @@
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
+- files: ["grass.png", "junglegrass.png", "grassdark.png", "grassjungle.png", "grasslight.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by Ko4erga (discord)"
+  source: "https://github.com/space-wizards/space-station-14/pull/29134"
+
 - files: ["super_reinforced.png"]
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
@@ -61,6 +66,11 @@
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
+- files: [ "steel_dirty.png" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Originally created by github user @moonheart08, then modified by @Flareguy, then modified again by github user @moomoobeef."
+  source: "https://github.com/space-wizards/space-station-14/"
+
 - files: ["arcadeblue.png", "arcadered.png"]
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
@@ -90,6 +100,7 @@
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
+
 - files: ["grassdark.png", "grasslight.png", "dirt.png"]
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
@@ -129,3 +140,53 @@
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
+
+- files: ["xeno_flooring.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by SlamBamActionman (github) for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: ["dark_squiggly.png", "dark_squiggly_vertical.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by SlamBamActionman (github) for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: [ "xeno_steel.png", "xeno_steel_horizontal.png" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by Kezu for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: [ "xeno_maint.png" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by obscenelytinyshark for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: ["xeno_flooring.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by SlamBamActionman (github) for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: ["dark_squiggly.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by SlamBamActionman (github) for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: [ "xeno_steel.png", "xeno_steel_corner.png" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by Kezu for space-station-14, edited by SlamBamActionman (github)."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: [ "xeno_maint.png" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by obscenelytinyshark for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/"
+
+- files: ["dark_marble.png", "white_marble.png", "plasmarble.png", "uranium_marble.png"]
+  license: "CC0-1.0"
+  copyright: "Created by SeaWyrm"
+  source: "https://github.com/space-wizards/space-station-14/pull/38007"
+
+- files: ["exoborg.png"]
+  license: "CC0-1.0"
+  copyright: "Created by Samuka-C (github) for space-station-14."
+  source: "https://github.com/space-wizards/space-station-14/pull/37068"

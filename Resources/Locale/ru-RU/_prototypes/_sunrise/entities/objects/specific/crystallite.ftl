@@ -1,0 +1,12 @@
+ent-Crystallite = кристаллит
+    .desc = Похоже, он переливается манящей энергией.
+    .suffix = 100 К
+ent-Crystallite1 = { ent-Crystallite }
+    .suffix = 1 К
+    .desc = { ent-Crystallite.desc }
+ent-Crystallite25 = { ent-Crystallite }
+    .suffix = 25 К
+    .desc = { ent-Crystallite.desc }
+ent-Crystallite50 = { ent-Crystallite }
+    .suffix = 50 К
+    .desc = { ent-Crystallite.desc }

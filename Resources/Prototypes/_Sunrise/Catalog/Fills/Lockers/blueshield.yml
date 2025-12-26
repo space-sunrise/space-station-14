@@ -1,0 +1,29 @@
+- type: entity
+  id: LockerBlueShieldOfficerFilled
+  suffix: Filled
+  parent: LockerBlueShield
+  components:
+  - type: StorageFill
+    contents:
+      - id: CigarGoldCase
+        prob: 0.25
+      - id: ClothingMaskGasBlueShield
+      - id: ClothingHeadsetAltCommand
+      - id: HandheldBSOCrewMonitor
+      - id: WeaponMultiphaseGun
+
+- type: entity
+  id: LockerBlueshieldFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerBlueShield
+  components:
+  - type: StorageFill
+    contents:
+      - id: CigarGoldCase
+        prob: 0.25
+      - id: ClothingMaskGasBlueShield
+      - id: ClothingHeadsetAltCommand
+      - id: HandheldBSOCrewMonitor
+      - id: WeaponMultiphaseGun
+      - id: ClothingOuterHardsuitBlueShield
+      - id: OxygenTankFilled

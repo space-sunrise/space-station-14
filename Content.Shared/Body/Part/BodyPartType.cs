@@ -16,6 +16,7 @@ namespace Content.Shared.Body.Part
         Hand,
         Leg,
         Foot,
-        Tail
+        Tail,
+        Back // SUNRISE
     }
 }

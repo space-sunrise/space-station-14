@@ -1,0 +1,32 @@
+- type: entity
+  parent: EnergyDomeGeneratorBackpackSyndie
+  id: EnergyDomeGeneratorBackpackSyndieBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: EnergyDomeGeneratorPersonalSyndie
+  id: EnergyDomeGeneratorPersonalSyndieBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+  - type: FactionClothingBlocker
+  - type: StaticPrice
+    price: 4000
+
+- type: entity
+  parent: EnergyShield
+  id: EnergyShieldBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate

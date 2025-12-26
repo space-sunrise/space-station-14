@@ -1,0 +1,483 @@
+# Clarke
+- type: latheRecipe
+  id: ClarkeHarness
+  result: ClarkeHarness
+  categories:
+  - Clarke
+  completetime: 60
+  materials:
+    Steel: 2500
+    Glass: 1500
+    Plasma: 900
+    Plastic: 100
+
+- type: latheRecipe
+  id: ClarkeHead
+  result: ClarkeHead
+  categories:
+  - Clarke
+  completetime: 30
+  materials:
+    Steel: 1550
+    Glass: 950
+    Silver: 200
+    Uranium: 100
+
+- type: latheRecipe
+  id: ClarkeLArm
+  result: ClarkeLArm
+  categories:
+  - Clarke
+  completetime: 30
+  materials:
+    Steel: 900
+    Glass: 800
+
+- type: latheRecipe
+  id: ClarkeRArm
+  result: ClarkeRArm
+  categories:
+  - Clarke
+  completetime: 30
+  materials:
+    Steel: 900
+    Glass: 800
+
+- type: latheRecipe
+  id: ClarkeTreads
+  result: ClarkeTreads
+  categories:
+  - Clarke
+  completetime: 30
+  materials:
+    Steel: 950
+
+# Durand
+- type: latheRecipe
+  id: DurandHarness
+  result: DurandHarness
+  categories:
+  - Durand
+  completetime: 60
+  materials:
+    Steel: 3000
+    Glass: 2000
+    Silver: 1500
+
+- type: latheRecipe
+  id: DurandArmor
+  result: DurandArmorPlate
+  categories:
+  - Durand
+  completetime: 60
+  materials:
+    Steel: 3500
+    Plasteel: 2000
+    Silver: 900
+    Uranium: 600
+
+- type: latheRecipe
+  id: DurandHead
+  result: DurandHead
+  categories:
+  - Durand
+  completetime: 45
+  materials:
+    Steel: 1500
+    Glass: 800
+    Silver: 500
+    Uranium: 200
+    Diamond: 200
+
+- type: latheRecipe
+  id: DurandLArm
+  result: DurandLArm
+  categories:
+  - Durand
+  completetime: 45
+  materials:
+    Steel: 1700
+    Silver: 300
+
+- type: latheRecipe
+  id: DurandLLeg
+  result: DurandLLeg
+  categories:
+  - Durand
+  completetime: 45
+  materials:
+    Steel: 1700
+    Silver: 300
+
+- type: latheRecipe
+  id: DurandRLeg
+  result: DurandRLeg
+  categories:
+  - Durand
+  completetime: 45
+  materials:
+    Steel: 1700
+    Silver: 300
+
+- type: latheRecipe
+  id: DurandRArm
+  result: DurandRArm
+  categories:
+  - Durand
+  completetime: 45
+  materials:
+    Steel: 1700
+    Silver: 300
+
+# Gygax
+- type: latheRecipe
+  id: GygaxHarness
+  result: GygaxHarness
+  categories:
+  - Gygax
+  completetime: 45
+  materials:
+    Steel: 2500
+    Glass: 2000
+
+- type: latheRecipe
+  id: GygaxArmor
+  result: GygaxArmorPlate
+  categories:
+  - Gygax
+  completetime: 60
+  materials:
+    Steel: 3000
+    Plasteel: 1000
+
+- type: latheRecipe
+  id: GygaxHead
+  result: GygaxHead
+  categories:
+  - Gygax
+  completetime: 45
+  materials:
+    Steel: 1500
+    Glass: 300
+    Uranium: 200
+    Plasma: 200
+    Diamond: 300
+
+- type: latheRecipe
+  id: GygaxLArm
+  result: GygaxLArm
+  categories:
+  - Gygax
+  completetime: 45
+  materials:
+    Steel: 1100
+
+- type: latheRecipe
+  id: GygaxLLeg
+  result: GygaxLLeg
+  categories:
+  - Gygax
+  completetime: 45
+  materials:
+    Steel: 1100
+
+- type: latheRecipe
+  id: GygaxRLeg
+  result: GygaxRLeg
+  categories:
+  - Gygax
+  completetime: 45
+  materials:
+    Steel: 1100
+
+- type: latheRecipe
+  id: GygaxRArm
+  result: GygaxRArm
+  categories:
+  - Gygax
+  completetime: 45
+  materials:
+    Steel: 1100
+
+# Ripley MK-II
+- type: latheRecipe
+  id: RipleyMKIIHarness
+  result: RipleyMKIIHarness
+  categories:
+  - RipleyMKII
+  completetime: 30
+  materials:
+    Steel: 1500
+    Glass: 1200
+
+- type: latheRecipe
+  id: RipleyUpgradeKit
+  result: RipleyUpgradeKit
+  categories:
+  - RipleyMKII
+  completetime: 30
+  materials:
+    Steel: 500
+
+#Phazon
+
+- type: latheRecipe
+  id: PhazonHarness
+  result: PhazonHarness
+  categories:
+  - Phazon
+  completetime: 60
+  materials:
+    Steel: 3500
+    Glass: 2500
+    Plasma: 1500
+
+- type: latheRecipe
+  id: PhazonArmor
+  result: PhazonArmorPlate
+  categories:
+  - Phazon
+  completetime: 20
+  materials:
+    Steel: 3000
+    Plasma: 1000
+
+- type: latheRecipe
+  id: PhazonHead
+  result: PhazonHead
+  categories:
+  - Phazon
+  completetime: 45
+  materials:
+    Steel: 1500
+    Glass: 250
+    Plastic: 250
+    Plasma: 500
+    Diamond: 100
+
+- type: latheRecipe
+  id: PhazonLArm
+  result: PhazonLArm
+  categories:
+  - Phazon
+  completetime: 18
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+- type: latheRecipe
+  id: PhazonLLeg
+  result: PhazonLLeg
+  categories:
+  - Phazon
+  completetime: 18
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+- type: latheRecipe
+  id: PhazonRLeg
+  result: PhazonRLeg
+  categories:
+  - Phazon
+  completetime: 18
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+- type: latheRecipe
+  id: PhazonRArm
+  result: PhazonRArm
+  categories:
+  - Phazon
+  completetime: 18
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+
+# Equipment
+- type: latheRecipe
+  id: MechEquipmentDrill
+  result: WeaponMechMelleDrill
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1000
+    Glass: 250
+
+- type: latheRecipe
+  id: MechEquipmentDrillDiamond
+  result: WeaponMechMelleDrillDiamond
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1000
+    Plastic: 150
+    Silver: 350
+    Diamond: 150
+
+- type: latheRecipe
+  id: MechEquipmentHonkerBananaMortar
+  result: WeaponMechSpecialBananaMortar
+  categories:
+  - MechEquipment
+  completetime: 10
+  materials:
+    Steel: 1150
+    Bananium: 800
+
+- type: latheRecipe
+  id: MechEquipmentHonkerMousetrapMortar
+  result: WeaponMechSpecialMousetrapMortar
+  categories:
+  - MechEquipment
+  completetime: 10
+  materials:
+    Steel: 1200
+    Bananium: 300
+
+# Misc
+- type: latheRecipe
+  id: MechPhasicScanningModule
+  result: MechPhasicScanningModule
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 2000
+    Glass: 500
+    Silver: 100
+
+- type: latheRecipe
+  id: MechAirTank
+  result: MechAirTank
+  categories:
+  - MechEquipment
+  completetime: 15
+  materials:
+    Steel: 1000
+    Glass: 150
+
+- type: latheRecipe
+  id: MechThruster
+  result: MechThruster
+  categories:
+  - MechEquipment
+  completetime: 15
+  materials:
+    Steel: 1000
+    Glass: 150
+
+# MechPaint
+- type: latheRecipe
+  id: PaintClarkeOrangey
+  result: MechPaintClarkeOrangey
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 500
+    Plasma: 100
+    Glass: 100
+
+- type: latheRecipe
+  id: PaintRipleyAluminizer
+  result: MechPaintRipleyAluminizer
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintRipleyFirestarter
+  result: MechPaintRipleyFirestarter
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintRipleyHauler
+  result: MechPaintRipleyHauler
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintRipleyZairjah
+  result: MechPaintRipleyZairjah
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintDurandOld
+  result: MechPaintDurandOld
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 300
+    Glass: 100
+
+- type: latheRecipe
+  id: PaintDurandExecutor
+  result: MechPaintDurandExecutor
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1600
+    Plasma: 500
+    Glass: 500
+
+- type: latheRecipe
+  id: PaintDurandShire
+  result: MechPaintDurandShire
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1600
+    Plasma: 500
+    Glass: 500
+
+- type: latheRecipe
+  id: PaintGygaxOld
+  result: MechPaintGygaxOld
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1800
+    Plasma: 600
+    Glass: 600
+
+- type: latheRecipe
+  id: PaintGygaxWhite
+  result: MechPaintGygaxWhite
+  categories:
+  - MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1800
+    Plasma: 600
+    Glass: 600
+

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Создано kamenshik975 (github, discord) для Sunrise Station",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "lockermech",
+      "directions": 4
+    },
+    {
+      "name": "lockermech-open",
+      "directions": 4
+    },
+    {
+      "name": "lockermech-broken"
+    },
+    {
+      "name": "lockermech-light",
+      "directions": 4
+    }
+  ]
+}

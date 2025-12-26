@@ -8,7 +8,7 @@
     CrateMaterialSteel: 1.0
     # things the station might want
     CrateEngineeringAMEJar: 0.25
-    CrateFoodPizzaLarge: 0.25
+    CrateFoodPizza: 0.25
     CrateFoodSoftdrinks: 0.25
     CrateFunInstrumentsVariety: 0.25
     CrateSalvageEquipment: 0.25
@@ -62,13 +62,13 @@
     # basic weapons
     CrateArmorySMG: 1.0
     CrateArmoryLaser: 1.0
-    CrateArmoryShotgun: 1.0
+    CrateArmoryShotgunTrenchgun4034Sawn: 1.0 # Sunrise-Edit
     CrateArmoryPistols: 1.0
     # rare armor
     ClothingOuterArmorRiot: 1.0
     # rare chemicals
-    CognizineChemistryBottle: 1.0
-    OmnizineChemistryBottle: 1.0
+    ChemistryBottleCognizine: 1.0
+    ChemistryBottleOmnizine: 1.0
     # money
     SpaceCash2500: 1.0
     SpaceCash5000: 0.75

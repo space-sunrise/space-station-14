@@ -1,0 +1,56 @@
+﻿- type: job
+  id: HeadOfPrison
+  name: job-name-head-of-prison
+  description: job-description-head-of-prison
+  playTimeTracker: JobHeadOfPrison
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: PlanetPrison
+      time: 108000 # 30 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hrs
+  weight: 10
+  startingGear: HeadOfPrisonGear
+  icon: "JobIconHeadOfPrison"
+  overrideConsoleVisibility: false
+  requireAdminNotify: true
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  alwaysUseSpawner: true
+  radioBold: true
+  displayWeight: 100
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: HeadOfPrisonGear
+  equipment:
+    id: HeadOfPrisonPDA
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+    head: ClothingHeadHatBeretHoS
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltCommand
+    belt: ClothingBeltHeadOfPrisonMetus
+    back: ClothingBackpackSatchelHeadOfPrisonMetus
+    neck: ClothingNeckCloakHOSCloak
+    shoes: ClothingShoesBootsJack
+    pocket1: WeaponPistolDeagleMetus
+    pocket2: MagazineDeagle
+    outerClothing: ClothingOuterArmorRiot
+
+- type: chameleonOutfit
+  id: HeadOfPrisonChameleonOutfit
+  job: HeadOfPrison
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+    head: ClothingHeadHatBeretHoS
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltCommand
+    belt: ClothingBeltPrisonGuardianMetus
+    back: ClothingBackpackSatchelPrisonGuard
+    neck: ClothingNeckCloakHOSCloak
+    outerClothing: ClothingOuterArmorRiot

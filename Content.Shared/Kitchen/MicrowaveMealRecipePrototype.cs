@@ -3,6 +3,8 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; //Sunrise-Edit
+using Robust.Shared.Serialization; //Sunrise-Edit
 
 namespace Content.Shared.Kitchen
 {
@@ -19,6 +21,9 @@ namespace Content.Shared.Kitchen
         [DataField("name")]
         private string _name = string.Empty;
 
+        [DataField]
+        public string Group = "Other";
+
         [DataField("reagents", customTypeSerializer:typeof(PrototypeIdDictionarySerializer<FixedPoint2, ReagentPrototype>))]
         private Dictionary<string, FixedPoint2> _ingsReagents = new();
 
@@ -32,10 +37,19 @@ namespace Content.Shared.Kitchen
         public uint CookTime { get; private set; } = 5;
 
         public string Name => Loc.GetString(_name);
-
+        //Sunrise-Start
+        [DataField("recipeType", customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>))]
+        public int RecipeType = (int)MicrowaveRecipeType.Microwave;
+        //Sunrise-End
         // TODO Turn this into a ReagentQuantity[]
         public IReadOnlyDictionary<string, FixedPoint2> IngredientsReagents => _ingsReagents;
         public IReadOnlyDictionary<string, FixedPoint2> IngredientsSolids => _ingsSolids;
+
+        /// <summary>
+        /// Is this recipe unavailable in normal circumstances?
+        /// </summary>
+        [DataField]
+        public bool SecretRecipe = false;
 
         /// <summary>
         ///    Count the number of ingredients in a recipe for sorting the recipe list.
@@ -53,4 +67,16 @@ namespace Content.Shared.Kitchen
             return n;
         }
     }
+    //Sunrise-Start
+    [Flags, FlagsFor(typeof(MicrowaveRecipeTypeFlags))]
+    [Serializable, NetSerializable]
+    public enum MicrowaveRecipeType : int
+    {
+        Microwave = 1,
+        ElectricRangeKey = 2,
+        MedicalAssembler = 4,
+    }
+
+    public sealed class MicrowaveRecipeTypeFlags { }
+    //Sunrise-End
 }

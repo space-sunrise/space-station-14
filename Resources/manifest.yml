@@ -1,5 +1,5 @@
-defaultWindowTitle: Space Station 14 [RU]
-windowIconSet: /Textures/Logo/icon
-splashLogo: /Textures/_Sunrise/loading_screen.jpg
+﻿defaultWindowTitle: Sunrise Station # Sunrise-Edit
+windowIconSet: /Textures/Logo/icon-ru # Sunrise-Edit
+splashLogo: /Textures/_Sunrise/Logo/logo-sunrise-splash.png # Sunrise-Edit
 
 # PJB PLEASE

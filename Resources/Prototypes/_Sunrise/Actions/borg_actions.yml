@@ -1,0 +1,127 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionToggleBorgMagboots
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+    iconOn: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon-on }
+    itemIconStyle: NoItem
+    priority: 12
+  - type: InstantAction
+    event: !type:ToggleBorgMagbootsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: BorgCuffed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: Objects/Misc/cablecuffs.rsi, state: cuff }
+    itemIconStyle: NoItem
+    useDelay: 9
+    priority: 9
+  - type: TargetAction
+    range: 2
+    checkCanAccess: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Cuffable
+    event: !type:BorgCuffedActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: FabricateLollipop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: _Sunrise/Objects/Consumable/Food/candy.rsi, state: lollipop }
+    useDelay: 120
+    priority: 40
+  - type: InstantAction
+    event: !type:FabricateLollipopActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: FabricateGumball
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: _Sunrise/Objects/Consumable/Food/candy.rsi, state: gumball }
+    useDelay: 40
+    priority: 40
+  - type: InstantAction
+    event: !type:FabricateGumballActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: FabricateCookie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: Objects/Consumable/Food/Baked/misc.rsi, state: COOKIE!!! }
+    useDelay: 30
+    priority: 20
+  - type: InstantAction
+    event: !type:FabricateCookieActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: FabricateSoap
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: Objects/Specific/Janitorial/soap.rsi, state: soap-4 }
+    useDelay: 30
+    priority: 20
+  - type: InstantAction
+    event: !type:FabricateSoapActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: PieThrow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: _Sunrise/Interface/Actions/pie.png
+    itemIconStyle: NoItem
+    useDelay: 30
+    checkCanInteract: false
+  - type: TargetAction
+    range: 200
+  - type: WorldTargetAction
+    event: !type:PieThrowActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionViewCrewManifest
+  name: View Crew Manifest
+  description: View the View crew manifest station.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: state-manifest
+    useDelay: 0.5
+    priority: 11
+  - type: InstantAction
+    event: !type:CrewManifestOpenActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionChangeBorgVoice
+  name: Change Voice
+  description: Change your TTS voice. Cyborgs can speak with any voice due to their speakers.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: select-type }
+    itemIconStyle: NoItem
+    useDelay: 0.5
+    priority: 10
+  - type: InstantAction
+    event: !type:BorgVoiceChangeActionEvent

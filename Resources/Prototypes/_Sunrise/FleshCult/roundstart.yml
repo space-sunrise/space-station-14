@@ -1,0 +1,76 @@
+- type: entity
+  id: FleshCult
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 50 # НЕ ТРОГАТЬ БЕЗ МОЕГО РАЗРЕШЕНИЯ!!! SplikZerys
+  - type: FleshCultRule
+    faction: Flesh
+  - type: AntagObjectives
+    objectives:
+    - CreateFleshHeartObjective
+    - FleshCultSurviveObjective
+  - type: AntagSelection
+    agentName: flesh-cult-round-end-agent-name
+    definitions:
+    - prefRoles: [ FleshCultistLeader ]
+      fallbackRoles: [ FleshCultist ]
+      max: 1
+      startingGear: FleshCultistLeaderGear
+      components:
+      - type: FleshCultist
+        startingMutationPoints: 15
+      - type: NpcFactionMember
+        factions:
+        - FleshHuman
+      whitelist:
+        species:
+          - Human
+          - Reptilian
+          - Dwarf
+          - Vulpkanin
+          - Felinid
+          - Moth
+          - Arachnid
+          - Swine
+          - Demon
+          - Vox
+          - Tajaran
+      blacklist:
+        components:
+        - AntagImmune
+        #- Synth # SUNRISE-TODO: КПБ
+        - BibleUser
+      mindRoles:
+      - MindRoleFleshCultistLeader
+    - prefRoles: [ FleshCultist ]
+      fallbackRoles: [ FleshCultistLeader ]
+      max: 3
+      playerRatio: 15
+      components:
+      - type: FleshCultist
+        startingMutationPoints: 5
+      - type: NpcFactionMember
+        factions:
+        - FleshHuman
+      whitelist:
+        species:
+        - Human
+        - Reptilian
+        - Dwarf
+        - Vulpkanin
+        - Felinid
+        - Moth
+        - Arachnid
+        - Swine
+        - Demon
+        - Vox
+        - Tajaran
+      blacklist:
+        components:
+        - AntagImmune
+        #- Synth # SUNRISE-TODO: КПБ
+        - BibleUser
+      mindRoles:
+      - MindRoleFleshCultist

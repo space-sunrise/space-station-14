@@ -1,0 +1,41 @@
+- type: job
+  id: CentCommOperator
+  name: job-name-centcomop
+  description: job-description-centcomop
+  playTimeTracker: JobCentCommOperator
+  requirements:
+  - !type:DiscordRoleRequirement
+  weight: 30
+  setPreference: true
+  startingGear: CentCommOperatorGear
+  icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
+  supervisors: job-supervisors-centcom
+  radioBold: true
+  canBeAntag: false
+  alwaysUseSpawner: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: startingGear
+  id: CentCommOperatorGear
+  equipment:
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorBasic
+    id: CentcomOperatorPDA
+    ears: ClothingHeadsetCentCom
+    belt: WeaponPistolN1984
+  storage:
+    back:
+    - RubberStampCentcom
+
+- type: chameleonOutfit
+  id: CentCommOperatorChameleonOutfit
+  job: CentCommOperator

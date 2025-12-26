@@ -1,0 +1,473 @@
+- type: latheRecipe
+  id: WeaponEnergyGun
+  result: WeaponEnergyGun
+  categories:
+  - Weapons
+  completetime: 8
+  materials:
+    Steel: 2000
+    Glass: 800
+    Plastic: 500
+
+- type: latheRecipe
+  id: WeaponMiniEnergyGun
+  result: WeaponMiniEnergyGun
+  categories:
+  - Weapons
+  completetime: 4
+  materials:
+    Steel: 1000
+    Glass: 400
+    Plastic: 250
+
+- type: latheRecipe
+  id: WeaponEnergyGunPistol
+  result: WeaponEnergyGunPistol
+  categories:
+  - Weapons
+  completetime: 10
+  materials:
+    Steel: 1500
+    Glass: 600
+    Plastic: 400
+    Gold: 150
+
+- type: latheRecipe
+  id: WeaponGunLaserCarbineAutomatic
+  result: WeaponGunLaserCarbineAutomatic
+  categories:
+  - Weapons
+  completetime: 15
+  materials:
+    Steel: 2000
+    Glass: 1000
+    Plastic: 500
+    Gold: 250
+    Silver: 100
+    Plasma: 500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeSidearm
+  id: FlareGunSecurityUpgrade
+  result: FlareGunSecurityUpgrade
+  categories:
+  - Weapons
+  materials:
+    Plastic: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ModularReceiverAuto
+  result: ModularReceiverAuto
+  categories:
+  - Weapons
+  completetime: 10
+  materials:
+    Steel: 500
+    Plastic: 50
+
+- type: latheRecipe
+  id: DrozdUpgrade
+  result: DrozdUpgrade
+  categories:
+  - Weapons
+  completetime: 16
+  materials:
+    Steel: 150
+    Plastic: 300
+    Gold: 50
+
+- type: latheRecipe
+  id: LecterUpgrade
+  result: LecterUpgrade
+  categories:
+  - Weapons
+  completetime: 16
+  materials:
+    Steel: 150
+    Plastic: 300
+    Gold: 50
+
+- type: latheRecipe
+  id: EnergyDomeDirectionalTurtle
+  result: EnergyDomeDirectionalTurtle
+  completetime: 12
+  materials:
+    Steel: 1000
+    Plastic: 500
+    Gold: 250
+    Uranium: 50
+
+# Mech Weapons
+- type: latheRecipe
+  id: WeaponMechCombatIon
+  result: WeaponMechCombatIon
+  categories:
+  - MechWeapons
+  completetime: 30
+  materials:
+    Steel: 2500
+    Plastic: 1000
+    Plasma: 500
+    Glass: 500
+    Gold: 100
+
+- type: latheRecipe
+  id: WeaponMechCombatImmolationGun
+  result: WeaponMechCombatImmolationGun
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 2800
+    Plastic: 1000
+    Plasma: 750
+    Glass: 500
+
+- type: latheRecipe
+  id: WeaponMechCombatSolarisLaser
+  result: WeaponMechCombatSolarisLaser
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 1650
+    Plastic: 300
+    Plasma: 250
+    Glass: 200
+
+- type: latheRecipe
+  id: WeaponMechCombatXray
+  result: WeaponMechCombatXray
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 2500
+    Glass: 500
+    Plastic: 300
+    Plasma: 250
+    Gold: 100
+
+- type: latheRecipe
+  id: WeaponMechCombatFiredartLaser
+  result: WeaponMechCombatFiredartLaser
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 1200
+    Plastic: 200
+    Plasma: 150
+    Glass: 50
+
+- type: latheRecipe
+  id: WeaponMechCombatUltraRifle
+  result: WeaponMechCombatUltraRifle
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 1000
+    Plastic: 200
+
+- type: latheRecipe
+  id: WeaponMechCombatShotgun
+  result: WeaponMechCombatShotgun
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 1600
+    Plastic: 550
+
+- type: latheRecipe
+  id: WeaponMechCombatShotgunIncendiary
+  result: WeaponMechCombatShotgunIncendiary
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 1500
+    Plastic: 800
+    Plasma: 300
+
+- type: latheRecipe
+  id: WeaponMechCombatMG
+  result: WeaponMechCombatMG
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 3000
+    Plastic: 500
+    Plasma: 100
+
+- type: latheRecipe
+  id: WeaponMechCombatDisabler
+  result: WeaponMechCombatDisabler
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 750
+    Glass: 250
+    Plastic: 300
+
+- type: latheRecipe
+  id: WeaponMechCombatFlashbangLauncher
+  result: WeaponMechCombatFlashbangLauncher
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 1200
+    Glass: 300
+    Plastic: 450
+
+- type: latheRecipe
+  id: WeaponMechCombatMissileRack8
+  result: WeaponMechCombatMissileRack8
+  categories:
+  - MechWeapons
+  completetime: 20
+  materials:
+    Steel: 2500
+    Glass: 1500
+    Plastic: 750
+
+- type: latheRecipe
+  id: MechEquipmentKineticAccelerator
+  result: WeaponMechIndustrialKineticAccelerator
+  categories:
+  - MechEquipment
+  completetime: 20
+  materials:
+    Steel: 1500
+    Glass: 750
+    Silver: 150
+
+- type: latheRecipe
+  id: MechIndustrialPlasmaCutter
+  result: WeaponMechIndustrialPlasmaCutter
+  categories:
+  - MechEquipment
+  completetime: 20
+  materials:
+    Steel: 1800
+    Plasma: 1200
+    Glass: 300
+    Plastic: 50
+
+#Cybernetics
+- type: latheRecipe
+  id: ImplantCaseMantisBladeMaxGuard
+  result: ImplantCaseMantisBladeMaxGuard
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Steel: 1750
+    Plastic: 550
+    Silver: 250
+    Gold: 250
+    Glass: 300
+    Plasma: 200
+    Diamond: 200
+    Uranium: 50
+
+#
+- type: latheRecipe
+  id: ImplantCaseGrenadeThrower
+  result: ImplantCaseGrenadeThrower
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 2050
+    Silver: 250
+    Gold: 250
+    Glass: 100
+
+#
+- type: latheRecipe
+  id: ImplantCaseLaserEmitter
+  result: ImplantCaseLaserEmitter
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 1850
+    Silver: 250
+    Gold: 250
+    Glass: 400
+    Diamond: 100
+    Uranium: 250
+    Plasma: 250
+#
+- type: latheRecipe
+  id: ImplantCaseBulwark
+  result: ImplantCaseBulwark
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 1650
+    Silver: 250
+    Gold: 250
+    Glass: 250
+    Diamond: 300
+    Uranium: 250
+    Plasma: 250
+#
+- type: latheRecipe
+  id: ImplantCaseBonesaw
+  result: ImplantCaseBonesaw
+  categories:
+  - Cyberlimbs
+  completetime: 50
+  materials:
+    Plastic: 550
+    Steel: 1850
+    Silver: 250
+    Gold: 250
+    Glass: 200
+    Diamond: 300
+    Uranium: 250
+    Plasma: 250
+
+# Clothing
+- type: latheRecipe
+  id: ClothingHeadHelmetPubg
+  result: ClothingHeadHelmetPubg
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Steel: 1500
+    Glass: 300
+    Plastic: 300
+    Cloth: 200
+    Durathread: 100
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagCombat
+  result: ClothingShoesBootsMagCombat
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Steel: 1200
+    Plastic: 300
+    Durathread: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeWeb
+  result: VestSecUpgradeWeb
+  categories:
+  - Clothing
+  completetime: 35
+  materials:
+    Durathread: 2000
+    Plastic: 500
+    Steel: 200
+    Plasma: 100
+
+- type: latheRecipe
+  id: VestSecUpgradePlate
+  result: VestSecUpgradePlate
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 400
+    Steel: 600
+
+- type: latheRecipe
+  id: VestSecUpgradeBullet
+  result: VestSecUpgradeBullet
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 400
+    Plastic: 300
+    Glass: 300
+
+- type: latheRecipe
+  id: VestSecUpgradeBulletHeavy
+  result: VestSecUpgradeBulletHeavy
+  categories:
+  - Clothing
+  completetime: 20
+  materials:
+    Durathread: 400
+    Plastic: 400
+
+- type: latheRecipe
+  id: VestSecUpgradeStab
+  result: VestSecUpgradeStab
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 600
+    Durathread: 200
+    Plastic: 100
+
+- type: latheRecipe
+  id: VestSecUpgradeRiot
+  result: VestSecUpgradeRiot
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 400
+    Durathread: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeHeat
+  result: VestSecUpgradeHeat
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 200
+    Durathread: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: VestSecUpgradeReflective
+  result: VestSecUpgradeReflective
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Durathread: 400
+    Plastic: 250
+    Glass: 250
+
+- type: latheRecipe
+  id: BolaSecurity
+  result: BolaSecurity
+  completetime: 2
+  materials:
+    Plastic: 300
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponIonCarbine
+  result: WeaponIonCarbine
+  materials:
+    Steel: 1500
+    Glass: 750
+    Plastic: 500
+    Gold: 500
+    Uranium: 400

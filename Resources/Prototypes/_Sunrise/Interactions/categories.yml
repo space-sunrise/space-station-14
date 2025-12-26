@@ -1,0 +1,15 @@
+- type: interactionCategory
+  id: Face
+  name: interaction-category-name-face
+
+- type: interactionCategory
+  id: Friendly
+  name: interaction-category-name-friendly
+
+- type: interactionCategory
+  id: Tail
+  name: interaction-category-name-tail
+
+- type: interactionCategory
+  id: Neck
+  name: interaction-category-name-neck

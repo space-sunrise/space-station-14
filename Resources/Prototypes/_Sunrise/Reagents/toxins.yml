@@ -1,0 +1,168 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: reagent
+  id: FluorosulfuricAcidHumanoidXeno
+  name: reagent-name-fluorosulfuric-acid
+  group: Toxins
+  desc: reagent-desc-fluorosulfuric-acid
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: acid
+  color: "#44944A"
+  boilingPoint: 165
+  meltingPoint: -87
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TagCondition
+          tag: "HumanoidXeno"
+          inverted: true
+        scaling: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.2
+      - !type:Emote
+        conditions:
+        - !type:TagCondition
+          tag: "HumanoidXeno"
+          inverted: true
+        emote: Scream
+        probability: 0.2
+  metabolisms:
+    Poison:
+      metabolismRate: 3.00 # High damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TagCondition
+          tag: "HumanoidXeno"
+          inverted: true
+        damage:
+          types:
+            Caustic: 1
+      - !type:PopupMessage
+        conditions:
+        - !type:TagCondition
+          tag: "HumanoidXeno"
+          inverted: true
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        conditions:
+        - !type:TagCondition
+          tag: "HumanoidXeno"
+          inverted: true
+        emote: Scream
+        probability: 0.25
+
+- type: reagent
+  id: FluorosulfuricAcidPredator
+  name: reagent-name-predator-acid
+  group: Toxins
+  desc: reagent-desc-predator-acid
+  flavor: terrible
+  color: "#008000"
+  physicalDesc: reagent-physical-desc-strong-smelling
+  viscosity: 0.25
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TagCondition
+            tag: "Predator"
+            inverted: true
+          scaling: true
+          ignoreResistances: false
+          damage:
+            types:
+              Caustic: 1
+        - !type:Emote
+          conditions:
+          - !type:TagCondition
+            tag: "Predator"
+            inverted: true
+          emote: Scream
+          probability: 0.8
+  metabolisms:
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TagCondition
+            tag: "Predator"
+            inverted: true
+          damage:
+            types:
+              Caustic: 3
+        - !type:PopupMessage
+          conditions:
+          - !type:TagCondition
+            tag: "Predator"
+            inverted: true
+          type: Local
+          visualType: Large
+          messages: [ "generic-reagent-effect-burning-insides" ]
+          probability: 0.33
+
+
+
+- type: reagent
+  id: StableMutagen
+  name: reagent-name-stable-mutagen
+  group: Toxins
+  desc: reagent-desc-stable-mutagen
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: bitter
+  color: "#61b440"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 5
+
+- type: reagent
+  id: MuteToxinAbductor
+  name: reagent-name-mute-toxin
+  group: Narcotics
+  desc: reagent-desc-mute-toxin
+  physicalDesc: reagent-physical-desc-syrupy
+  color: "#000000"
+  boilingPoint: 255.0
+  meltingPoint: 36.0
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: Muted
+        component: Muted
+        type: Add
+        time: 80
+
+- type: reagent
+  id: NocturineAbductor
+  name: reagent-name-nocturine
+  group: Narcotics
+  desc: reagent-desc-nocturine
+  physicalDesc: reagent-physical-desc-powdery
+  color: "#128e80"
+  boilingPoint: 444.0
+  meltingPoint: 128.0
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: NocturineAbductor
+          min: 8
+        effectProto: StatusEffectForcedSleeping
+        time: 120
+        type: Add

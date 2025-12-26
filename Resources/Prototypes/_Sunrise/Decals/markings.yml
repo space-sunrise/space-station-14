@@ -1,0 +1,147 @@
+- type: decal
+  id: LoadingArrow
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: loading_arrow
+    
+- type: decal
+  id: LoadingLine
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: loading_line
+
+- type: decal
+  id: LoadingArrowGreyscale
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: loading_arrow_greyscale
+    
+- type: decal
+  id: LoadingLineGreyscale
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: loading_line_greyscale
+
+# siding line
+
+- type: decal
+  id: SidingLineE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_line_e
+    
+- type: decal
+  id: SidingLineN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_line_n
+    
+- type: decal
+  id: SidingLineS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_line_s
+    
+- type: decal
+  id: SidingLineW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_line_w
+    
+# siding end
+
+- type: decal
+  id: SidingEndE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_end_e
+    
+- type: decal
+  id: SidingEndN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_end_n
+    
+- type: decal
+  id: SidingEndS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_end_s
+    
+- type: decal
+  id: SidingEndW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_end_w
+    
+# siding small corner
+
+- type: decal
+  id: SidingCornerSmallNE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_small_ne
+    
+- type: decal
+  id: SidingCornerSmallNW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_small_nw
+    
+- type: decal
+  id: SidingCornerSmallSE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_small_se
+    
+- type: decal
+  id: SidingCornerSmallSW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_small_sw
+   
+# siding corner
+
+- type: decal
+  id: SidingCornerNE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_ne
+    
+- type: decal
+  id: SidingCornerNW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_nw
+    
+- type: decal
+  id: SidingCornerSE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_se
+    
+- type: decal
+  id: SidingCornerSW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/markings.rsi
+    state: siding_corner_sw

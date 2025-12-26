@@ -1,0 +1,25 @@
+﻿{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CLA",
+    "copyright": "SUNRISE",
+    "states": [
+        {
+            "name": "scanner",
+            "directions": 1,
+            "delays": [
+                [
+                    0.4,
+                    0.4
+                ]
+            ]
+        },
+        {
+            "name": "icon",
+            "directions": 1
+        }
+    ]
+}

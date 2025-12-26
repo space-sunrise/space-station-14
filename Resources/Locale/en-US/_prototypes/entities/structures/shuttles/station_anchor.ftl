@@ -1,0 +1,16 @@
+ent-StationAnchorBase = station anchor
+    .desc = Prevents stations from moving.
+    .suffix = On
+ent-StationAnchorIndestructible = { ent-StationAnchorBase }
+    .suffix = Indestructible, Unpowered
+    .desc = { ent-StationAnchorBase.desc }
+ent-StationAnchor = { ent-StationAnchorBase }
+    .desc = { ent-StationAnchorBase.desc }
+ent-StationAnchorOff = { ent-StationAnchor }
+    .suffix = Off
+    .desc = { ent-StationAnchor.desc }
+ent-StationAnchorBaseDespawn = { "" }
+    .desc = { "" }
+ent-StationAnchorDespawn = { ent-StationAnchorBaseDespawn }
+    .suffix = 5minDelete
+    .desc = { ent-StationAnchorBaseDespawn.desc }

@@ -1,9 +1,14 @@
+using Content.Shared.Damage;
+using Content.Shared.Damage.Events;
 using Content.Shared.Examine;
+using Content.Shared.Projectiles;
+using Content.Shared.Power;
+using Content.Shared.PowerCell;
+using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -11,45 +16,63 @@ public abstract partial class SharedGunSystem
 {
     protected virtual void InitializeBattery()
     {
-        // Trying to dump comp references hence the below
-        // Hitscan
-        SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, ComponentGetState>(OnBatteryGetState);
-        SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, ComponentHandleState>(OnBatteryHandleState);
-        SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, TakeAmmoEvent>(OnBatteryTakeAmmo);
-        SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, GetAmmoCountEvent>(OnBatteryAmmoCount);
-        SubscribeLocalEvent<HitscanBatteryAmmoProviderComponent, ExaminedEvent>(OnBatteryExamine);
-
-        // Projectile
-        SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, ComponentGetState>(OnBatteryGetState);
-        SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, ComponentHandleState>(OnBatteryHandleState);
-        SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, TakeAmmoEvent>(OnBatteryTakeAmmo);
-        SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, GetAmmoCountEvent>(OnBatteryAmmoCount);
-        SubscribeLocalEvent<ProjectileBatteryAmmoProviderComponent, ExaminedEvent>(OnBatteryExamine);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, ComponentStartup>(OnBatteryStartup);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, TakeAmmoEvent>(OnBatteryTakeAmmo);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, GetAmmoCountEvent>(OnBatteryAmmoCount);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, ExaminedEvent>(OnBatteryExamine);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, DamageExamineEvent>(OnBatteryDamageExamine);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, PowerCellChangedEvent>(OnPowerCellChanged);
+        SubscribeLocalEvent<BatteryAmmoProviderComponent, ChargeChangedEvent>(OnChargeChanged);
     }
 
-    private void OnBatteryHandleState(EntityUid uid, BatteryAmmoProviderComponent component, ref ComponentHandleState args)
+    private void OnBatteryExamine(Entity<BatteryAmmoProviderComponent> ent, ref ExaminedEvent args)
     {
-        if (args.Current is not BatteryAmmoProviderComponentState state)
+        args.PushMarkup(Loc.GetString("gun-battery-examine", ("color", AmmoExamineColor), ("count", ent.Comp.Shots)));
+    }
+
+    private void OnBatteryDamageExamine(Entity<BatteryAmmoProviderComponent> ent, ref DamageExamineEvent args)
+    {
+        var proto = ProtoManager.Index<EntityPrototype>(ent.Comp.Prototype);
+        DamageSpecifier? damageSpec = null;
+        var damageType = string.Empty;
+
+        if (proto.TryGetComponent<ProjectileComponent>(out var projectileComp, Factory))
+        {
+            if (!projectileComp.Damage.Empty)
+            {
+                damageType = Loc.GetString("damage-projectile");
+                damageSpec = projectileComp.Damage * Damageable.UniversalProjectileDamageModifier;
+            }
+        }
+        else if (proto.TryGetComponent<HitscanBasicDamageComponent>(out var hitscanComp, Factory))
+        {
+            if (!hitscanComp.Damage.Empty)
+            {
+                damageType = Loc.GetString("damage-hitscan");
+                damageSpec = hitscanComp.Damage * Damageable.UniversalHitscanDamageModifier;
+            }
+        }
+        if (damageSpec == null)
             return;
 
-        component.Shots = state.Shots;
-        component.Capacity = state.MaxShots;
-        component.FireCost = state.FireCost;
+        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), damageType);
     }
 
-    private void OnBatteryGetState(EntityUid uid, BatteryAmmoProviderComponent component, ref ComponentGetState args)
+    private void OnBatteryTakeAmmo(Entity<BatteryAmmoProviderComponent> ent, ref TakeAmmoEvent args)
     {
-        args.State = new BatteryAmmoProviderComponentState()
+        var shots = Math.Min(args.Shots, ent.Comp.Shots);
+
+            return null;
+        }
+
+        if (component is HitscanBatteryAmmoProviderComponent hitscan)
         {
-            Shots = component.Shots,
-            MaxShots = component.Capacity,
-            FireCost = component.FireCost,
-        };
-    }
+            var dmg = ProtoManager.Index<HitscanPrototype>(hitscan.Prototype).Damage;
+            return dmg == null ? dmg : dmg * Damageable.UniversalHitscanDamageModifier;
+        }
 
-    private void OnBatteryExamine(EntityUid uid, BatteryAmmoProviderComponent component, ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString("gun-battery-examine", ("color", AmmoExamineColor), ("count", component.Shots)));
+        return null;
     }
 
     private void OnBatteryTakeAmmo(EntityUid uid, BatteryAmmoProviderComponent component, TakeAmmoEvent args)
@@ -62,34 +85,27 @@ public abstract partial class SharedGunSystem
 
         for (var i = 0; i < shots; i++)
         {
-            args.Ammo.Add(GetShootable(component, args.Coordinates));
-            component.Shots--;
+            args.Ammo.Add(GetShootable(ent, args.Coordinates));
         }
 
-        TakeCharge(uid, component);
-        UpdateBatteryAppearance(uid, component);
-        Dirty(uid, component);
+        TakeCharge(ent, shots);
     }
 
-    private void OnBatteryAmmoCount(EntityUid uid, BatteryAmmoProviderComponent component, ref GetAmmoCountEvent args)
+    private void OnBatteryAmmoCount(Entity<BatteryAmmoProviderComponent> ent, ref GetAmmoCountEvent args)
     {
-        args.Count = component.Shots;
-        args.Capacity = component.Capacity;
+        args.Count = ent.Comp.Shots;
+        args.Capacity = ent.Comp.Capacity;
     }
 
     /// <summary>
-    /// Update the battery (server-only) whenever fired.
+    /// Use up the required amount of battery charge for firing.
     /// </summary>
-    protected virtual void TakeCharge(EntityUid uid, BatteryAmmoProviderComponent component) {}
-
-    protected void UpdateBatteryAppearance(EntityUid uid, BatteryAmmoProviderComponent component)
+    public void TakeCharge(Entity<BatteryAmmoProviderComponent> ent, int shots = 1)
     {
-        if (!TryComp<AppearanceComponent>(uid, out var appearance))
-            return;
-
-        Appearance.SetData(uid, AmmoVisuals.HasAmmo, component.Shots != 0, appearance);
-        Appearance.SetData(uid, AmmoVisuals.AmmoCount, component.Shots, appearance);
-        Appearance.SetData(uid, AmmoVisuals.AmmoMax, component.Capacity, appearance);
+        // Take charge from either the BatteryComponent or PowerCellSlotComponent.
+        var ev = new ChangeChargeEvent(-ent.Comp.FireCost * shots);
+        RaiseLocalEvent(ent, ref ev);
+        // UpdateShots is already called by the resulting ChargeChangedEvent
     }
 
     private (EntityUid? Entity, IShootable) GetShootable(BatteryAmmoProviderComponent component, EntityCoordinates coordinates)
@@ -104,13 +120,52 @@ public abstract partial class SharedGunSystem
             default:
                 throw new ArgumentOutOfRangeException();
         }
+        else if (currentChargeRate < 0f && currentCharge != 0f)
+        {
+            ent.Comp.NextUpdate = Timing.CurTime + TimeSpan.FromSeconds(-(currentCharge % ent.Comp.FireCost) / currentChargeRate);
+            ent.Comp.ChargeTime = TimeSpan.FromSeconds(-ent.Comp.FireCost / currentChargeRate);
+        }
+        Dirty(ent);
     }
 
-    [Serializable, NetSerializable]
-    private sealed class BatteryAmmoProviderComponentState : ComponentState
+    // Shots are only chached, not a DataField, so we need to refresh this when the game is loaded.
+    private void OnBatteryStartup(Entity<BatteryAmmoProviderComponent> ent, ref ComponentStartup args)
     {
-        public int Shots;
-        public int MaxShots;
-        public float FireCost;
+        if (_netManager.IsClient && !IsClientSide(ent.Owner))
+            return; // Don't overwrite the server state in cases where the battery is not predicted.
+
+        UpdateShots(ent);
+    }
+
+    /// <summary>
+    /// Gets the current and maximum amount of shots from this entity's battery.
+    /// This works for BatteryComponent and PowercellSlotComponent.
+    /// </summary>
+    public (int, int) GetShots(Entity<BatteryAmmoProviderComponent> ent)
+    {
+        var ev = new GetChargeEvent();
+        RaiseLocalEvent(ent, ref ev);
+        var currentShots = (int)(ev.CurrentCharge / ent.Comp.FireCost);
+        var maxShots = (int)(ev.MaxCharge / ent.Comp.FireCost);
+
+        return (currentShots, maxShots);
+    }
+
+    /// <summary>
+    /// Update loop for refreshing the ammo counter for charging/draining batteries.
+    /// </summary>
+    private void UpdateBattery(float frameTime)
+    {
+        var curTime = Timing.CurTime;
+        var hitscanQuery = EntityQueryEnumerator<BatteryAmmoProviderComponent>();
+        while (hitscanQuery.MoveNext(out var uid, out var provider))
+        {
+            if (provider.NextUpdate == null || curTime < provider.NextUpdate)
+                continue;
+            UpdateShots((uid, provider));
+            provider.NextUpdate += provider.ChargeTime; // Queue another update for when we reach the next full charge.
+            Dirty(uid, provider);
+            // TODO: Stop updating when full or empty.
+        }
     }
 }

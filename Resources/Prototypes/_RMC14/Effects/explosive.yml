@@ -1,0 +1,16 @@
+- type: entity
+  id: CMExplosionEffectGrenade
+  components:
+  - type: Sprite
+    sprite: _RMC14/Effects/grenade_explosion.rsi
+    state: grenade
+  - type: ExplosionEffect # Sunrise
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  id: RMCExplosionEffectGrenadeShockWave
+  components:
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: RMCExplosionShockWave

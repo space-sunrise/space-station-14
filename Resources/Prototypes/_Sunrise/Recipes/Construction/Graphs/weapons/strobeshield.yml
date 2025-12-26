@@ -1,0 +1,23 @@
+- type: constructionGraph
+  id: RiotShieldStrobeConstruction
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: shieldstrobe
+      steps:
+      - tag: RiotShield
+        name: construction-graph-tag-strobe-shield
+        icon:
+          sprite: Objects/Weapons/Melee/shields.rsi
+          state: riot-icon
+      - tag: Flash
+        name: construction-graph-tag-flash
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+      - material: Cable
+        amount: 2
+        doAfter: 5
+  - node: shieldstrobe
+    entity: RiotShieldStrobe

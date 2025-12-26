@@ -1,7 +1,7 @@
 # Used to animate the hitscan effects because effectsystem doesn't support it
 - type: entity
   id: HitscanEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 2.0
@@ -14,6 +14,7 @@
   - type: Tag
     tags:
       - HideContextMenu
+      - Laser
   - type: AnimationPlayer
 
 - type: hitscan
@@ -50,7 +51,7 @@
   id: RedMediumLaser
   damage:
     types:
-      Heat: 17
+      Heat: 20 # Sunrise-edit
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_laser
@@ -124,7 +125,7 @@
 
 - type: hitscan
   id: RedShuttleLaser
-  maxLength: 60
+  maxLength: 100 # Sunrise-edit
   damage:
     types:
       Heat: 45

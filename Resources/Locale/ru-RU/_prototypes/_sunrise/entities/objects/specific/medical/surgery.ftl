@@ -1,0 +1,16 @@
+ent-CauteryAbductor = прижигатель абдукторов
+    .desc = { ent-Cautery.desc }
+ent-DrillAbductor = дрель абдукторов
+    .desc = { ent-Drill.desc }
+ent-ScalpelAbductor = скальпель абдукторов
+    .desc = { ent-Scalpel.desc }
+ent-RetractorAbductor = ретрактор абдукторов
+    .desc = Хирургический инструмент для удержания разрезов открытыми.
+ent-HemostatAbductor = гемостат абдукторов
+    .desc = Хирургический инструмент для пережатия кровеносных сосудов.
+ent-BoneSetterAbductor = костоправ абдукторов
+    .desc = Хирургический инструмент для вправления костей. Или их переломов.
+ent-SawAbductor = циркулярная пила абдукторов
+    .desc = Кажется, ей можно распилить что угодно.
+ent-BoneGelAbductor = костный гель абдукторов
+    .desc = { ent-BoneGel.desc }

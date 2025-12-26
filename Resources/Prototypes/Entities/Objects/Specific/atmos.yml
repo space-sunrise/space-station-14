@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: gas analyzer
-  parent: BaseItem
+  parent: [BaseItem, MultitoolSounds]
   id: GasAnalyzer
   description: A hand-held environmental scanner which reports current gas levels.
   components:
@@ -32,3 +32,9 @@
     materialComposition:
       Steel: 400
       Glass: 100
+  - type: GuideHelp
+    guides:
+    - AtmosTools
+    - PipeNetworks
+    - Pipes
+    - GasCanisters

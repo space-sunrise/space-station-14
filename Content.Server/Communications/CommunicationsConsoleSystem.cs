@@ -1,18 +1,14 @@
-using System.Globalization;
-using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Interaction;
 using Content.Server.Popups;
+using Content.Server.Power.EntitySystems;
 using Content.Server.RoundEnd;
-using Content.Server.Screens;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -20,8 +16,12 @@ using Content.Shared.Chat;
 using Content.Shared.Communications;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Emag.Components;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -30,12 +30,10 @@ namespace Content.Server.Communications
     public sealed class CommunicationsConsoleSystem : EntitySystem
     {
         [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-        [Dependency] private readonly InteractionSystem _interaction = default!;
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -49,7 +47,6 @@ namespace Content.Server.Communications
         {
             // All events that refresh the BUI
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
-            SubscribeLocalEvent<CommunicationsConsoleComponent, ComponentInit>((uid, comp, _) => UpdateCommsConsoleInterface(uid, comp));
             SubscribeLocalEvent<RoundEndSystemChangedEvent>(_ => OnGenericBroadcastEvent());
             SubscribeLocalEvent<AlertLevelDelayFinishedEvent>(_ => OnGenericBroadcastEvent());
 
@@ -62,6 +59,11 @@ namespace Content.Server.Communications
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+
+            // Sunrise-Start
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleToggleRelayMessage>(OnToggleRelayMessage);
+            SubscribeLocalEvent<CommunicationsConsoleComponent, ListenEvent>(OnEntitySpokeNearbyRelay);
+            // Sunrise-End
         }
 
         public override void Update(float frameTime)
@@ -74,6 +76,23 @@ namespace Content.Server.Communications
                 {
                     comp.AnnouncementCooldownRemaining -= frameTime;
                 }
+
+                // Sunrise-Start
+                if (comp.RelayCooldownRemaining > 0f)
+                    comp.RelayCooldownRemaining -= frameTime;
+
+                if (comp.IsRelaying)
+                {
+                    if (!this.IsPowered(uid, EntityManager))
+                        StopRelay(uid, comp, announce: true);
+                    else
+                    {
+                        comp.RelayTimeRemaining -= frameTime;
+                        if (comp.RelayTimeRemaining <= 0f)
+                            StopRelay(uid, comp, announce: true);
+                    }
+                }
+                // Sunrise-End
 
                 comp.UIUpdateAccumulator += frameTime;
 
@@ -92,6 +111,7 @@ namespace Content.Server.Communications
         public void OnCommunicationsConsoleMapInit(EntityUid uid, CommunicationsConsoleComponent comp, MapInitEvent args)
         {
             comp.AnnouncementCooldownRemaining = comp.InitialDelay;
+            UpdateCommsConsoleInterface(uid, comp);
         }
 
         /// <summary>
@@ -165,13 +185,20 @@ namespace Content.Server.Communications
                 }
             }
 
+            var canRelay = comp.RelayCooldownRemaining <= 0f && !comp.IsRelaying && this.IsPowered(uid, EntityManager); // Sunrise-Edit
             _uiSystem.SetUiState(uid, CommunicationsConsoleUiKey.Key, new CommunicationsConsoleInterfaceState(
                 CanAnnounce(comp),
                 CanCallOrRecall(comp),
                 levels,
                 currentLevel,
                 currentDelay,
-                _roundEndSystem.ExpectedCountdownEnd
+                _roundEndSystem.ExpectedCountdownEnd,
+                // Sunrise-Start
+                canRelay,
+                comp.IsRelaying,
+                MathF.Max(0f, comp.RelayCooldownRemaining),
+                MathF.Max(0f, comp.RelayTimeRemaining)
+                // Sunrise-End
             ));
         }
 
@@ -182,11 +209,7 @@ namespace Content.Server.Communications
 
         private bool CanUse(EntityUid user, EntityUid console)
         {
-            // This shouldn't technically be possible because of BUI but don't trust client.
-            if (!_interaction.InRangeUnobstructed(console, user))
-                return false;
-
-            if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent) && !HasComp<EmaggedComponent>(console))
+            if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent))
             {
                 return _accessReaderSystem.IsAllowed(user, console, accessReaderComponent);
             }
@@ -199,9 +222,13 @@ namespace Content.Server.Communications
             if (_emergency.EmergencyShuttleArrived || !_roundEndSystem.CanCallOrRecall())
                 return false;
 
+            // Ensure that we can communicate with the shuttle (either call or recall)
+            if (!comp.CanShuttle)
+                return false;
+
             // Calling shuttle checks
             if (_roundEndSystem.ExpectedCountdownEnd is null)
-                return comp.CanShuttle;
+                return true;
 
             // Recalling shuttle checks
             var recallThreshold = _cfg.GetCVar(CCVars.EmergencyRecallTurningPoint);
@@ -251,10 +278,9 @@ namespace Content.Server.Communications
                     return;
                 }
 
-                if (_idCardSystem.TryFindIdCard(mob, out var id))
-                {
-                    author = $"{id.Comp.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(id.Comp.JobTitle ?? string.Empty)})".Trim();
-                }
+                var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
+                RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+                author = tryGetIdentityShortInfoEvent.Title;
             }
 
             comp.AnnouncementCooldownRemaining = comp.Delay;
@@ -267,16 +293,25 @@ namespace Content.Server.Communications
             Loc.TryGetString(comp.Title, out var title);
             title ??= comp.Title;
 
-            msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            if (comp.AnnounceSentBy)
+                msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            // Sunrise-start
+            var voice = comp.AnnounceVoice;
+            if (TryComp<TTSComponent>(message.Actor, out var ttsComponent))
+            {
+                voice = ttsComponent.VoicePrototypeId;
+            }
+            // Sunrise-end
+
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
+                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color, announceVoice: voice); // Sunrise-edit
 
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
+            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color, announceVoice: voice);
 
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
 
@@ -319,7 +354,7 @@ namespace Content.Server.Communications
             }
 
             _roundEndSystem.RequestRoundEnd(uid);
-            _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(mob):player} has called the shuttle.");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(mob):player} has called the shuttle.");
         }
 
         private void OnRecallShuttleMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleRecallEmergencyShuttleMessage message)
@@ -334,8 +369,69 @@ namespace Content.Server.Communications
             }
 
             _roundEndSystem.CancelRoundEndCountdown(uid);
-            _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
+
+        // Sunrise-Start
+        private void OnToggleRelayMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleToggleRelayMessage message)
+        {
+            if (comp.IsRelaying)
+            {
+                StopRelay(uid, comp, announce: true);
+                return;
+            }
+
+            if (comp.RelayCooldownRemaining > 0f)
+                return;
+
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            comp.IsRelaying = true;
+            comp.RelayTimeRemaining = comp.RelayDuration;
+            UpdateCommsConsoleInterface(uid, comp);
+            EnsureComp<ActiveListenerComponent>(uid).Range = comp.RelayRange;
+
+            var startText = Loc.GetString("comms-console-relay-started");
+            var title = Loc.GetString(comp.Title);
+            _chatSystem.DispatchStationAnnouncement(uid, startText, sender: title, playDefault: true, playTts: true, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice, announcementSound: comp.Sound);
+        }
+
+        private void OnEntitySpokeNearbyRelay(EntityUid uid, CommunicationsConsoleComponent comp, ListenEvent ev)
+        {
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            var voice = comp.AnnounceVoice;
+            if (TryComp<TTSComponent>(ev.Source, out var ttsComponent))
+            {
+                voice = ttsComponent.VoicePrototypeId;
+            }
+            _chatSystem.DispatchStationAnnouncement(uid, ev.Message, sender: Loc.GetString(comp.Title), playDefault: false, playTts: true, colorOverride: comp.Color, announceVoice: voice);
+        }
+
+        private void StopRelay(EntityUid uid, CommunicationsConsoleComponent comp, bool announce)
+        {
+            if (!comp.IsRelaying && comp.RelayCooldownRemaining > 0f)
+            {
+                UpdateCommsConsoleInterface(uid, comp);
+                return;
+            }
+
+            comp.IsRelaying = false;
+            comp.RelayTimeRemaining = 0f;
+            comp.RelayCooldownRemaining = comp.RelayCooldown;
+            UpdateCommsConsoleInterface(uid, comp);
+            RemCompDeferred<ActiveListenerComponent>(uid);
+
+            if (announce)
+            {
+                var stopText = Loc.GetString("comms-console-relay-stopped");
+                var title = Loc.GetString(comp.Title);
+                _chatSystem.DispatchStationAnnouncement(uid, stopText, sender: title, playDefault: true, playTts: true, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice, announcementSound: comp.Sound);
+            }
+        }
+        // Sunrise-End
     }
 
     /// <summary>

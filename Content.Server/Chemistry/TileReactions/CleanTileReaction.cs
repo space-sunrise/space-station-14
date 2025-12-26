@@ -1,4 +1,4 @@
-using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
@@ -7,6 +7,7 @@ using Content.Shared.Fluids.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using System.Linq;
+using Content.Shared._Sunrise.Footprints;
 
 namespace Content.Server.Chemistry.TileReactions;
 
@@ -34,11 +35,12 @@ public sealed partial class CleanTileReaction : ITileReaction
     FixedPoint2 ITileReaction.TileReact(TileRef tile,
         ReagentPrototype reagent,
         FixedPoint2 reactVolume,
-        IEntityManager entityManager)
+        IEntityManager entityManager
+        , List<ReagentData>? data)
     {
         var entities = entityManager.System<EntityLookupSystem>().GetLocalEntitiesIntersecting(tile, 0f).ToArray();
         var puddleQuery = entityManager.GetEntityQuery<PuddleComponent>();
-        var solutionContainerSystem = entityManager.System<SolutionContainerSystem>();
+        var solutionContainerSystem = entityManager.System<SharedSolutionContainerSystem>();
         // Multiply as the amount we can actually purge is higher than the react amount.
         var purgeAmount = reactVolume / CleanAmountMultiplier;
 
@@ -59,6 +61,15 @@ public sealed partial class CleanTileReaction : ITileReaction
             if (purgeable.Volume <= FixedPoint2.Zero)
                 break;
         }
+
+        var lookupSystem = entityManager.System<EntityLookupSystem>();
+        // Sunrise-start
+        var footprints = lookupSystem.GetEntitiesInRange<FootprintComponent>(new EntityCoordinates(tile.GridUid, tile.X, tile.Y), 0.5f);
+        foreach (var footprint in footprints)
+        {
+            entityManager.QueueDeleteEntity(footprint);
+        }
+        // Sunrise-end
 
         return (reactVolume / CleanAmountMultiplier - purgeAmount) * CleanAmountMultiplier;
     }

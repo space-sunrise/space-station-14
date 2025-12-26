@@ -2,6 +2,7 @@ using Content.Shared.Arcade;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared._Sunrise.Mood;
 
 namespace Content.Server.Arcade.BlockGame;
 
@@ -82,6 +83,9 @@ public sealed partial class BlockGame
         {
             _highScorePlacement = _arcadeSystem.RegisterHighScore(meta.EntityName, Points);
             SendHighscoreUpdate();
+
+            var ev = new MoodEffectEvent("ArcadePlay"); // Sunrise Edit
+            _entityManager.EventBus.RaiseLocalEvent(meta.Owner, ev); // Sunrise Edit
         }
         SendMessage(new BlockGameMessages.BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement));
     }

@@ -1,0 +1,31 @@
+- type: entity
+  name: snowman spawner
+  id: SpawnMobSnowMan
+  parent: MarkerBase
+  suffix: NewYear | Passive
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Sunrise/Mobs/Elemental/snowman.rsi
+        state: state
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSnowMan
+
+- type: entity
+  name: evil snowman spawner
+  id: SpawnMobSnowManEvil
+  parent: MarkerBase
+  suffix: NewYear | Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Sunrise/Mobs/Elemental/snowman.rsi
+        state: state
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSnowManEvil

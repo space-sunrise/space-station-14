@@ -1,0 +1,15 @@
+ent-ReinforcementRadioSyndicateCyborgMedical = syndicate medical cyborg reinforcement radio
+    .desc = Call in a well armed assault cyborg, instantly!
+    .suffix = NukeOps
+ent-ReinforcementRadioSyndicateCyborgReaper = syndicate reaper cyborg reinforcement radio
+    .desc = Call in a well armed assault cyborg, instantly!
+    .suffix = NukeOps
+ent-ReinforcementRadioSyndicateCyborgAssault = syndicate assault cyborg reinforcement radio
+    .desc = Call in a well armed assault cyborg, instantly!
+    .suffix = NukeOps
+ent-ReinforcementRadioSyndicateCyborgHeavy = syndicate heavy cyborg reinforcement radio
+    .desc = Call in a well armed assault cyborg, instantly!
+    .suffix = NukeOps
+ent-ReinforcementRadioSyndicateCyborgSaboteur = syndicate saboteur cyborg reinforcement radio
+    .desc = Call in a well armed assault cyborg, instantly!
+    .suffix = NukeOps

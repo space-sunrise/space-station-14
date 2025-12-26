@@ -1,0 +1,12 @@
+ent-WeaponSniperDragunov = Dragunov
+    .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleBR64 = BR-64
+    .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleBauer127 = SR-127 Bauer bolt action rifle
+    .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponSniperGarand = M1 Garand
+    .desc = { ent-BaseWeaponSniper.desc }
+ent-WeaponSniperRepeater = N2524 Repeater
+    .desc = A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.
+ent-WeaponSniperMosinLubed = Kardashev-Mosin
+    .desc = A relic Kardashev-Mosin rifle that has survived countless wars, and it's still deadly. Freshly unsealed, heavily greased — ready for the next war! Uses .30 caliber rounds.

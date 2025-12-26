@@ -3,7 +3,7 @@
 - type: entity
   id: CartridgeRocket
   name: PG-7VL grenade
-  parent: BaseItem
+  parent: [BaseItem, BaseMajorContraband]
   description: A 1.5 warhead designed for the RPG-7 launcher. Has tubular shape.
   components:
   - type: Tag
@@ -23,7 +23,7 @@
 - type: entity
   id: CartridgeRocketSlow
   name: PG-7VL grenade "Snail-Rocket"
-  parent: BaseItem
+  parent: [BaseItem, BaseMajorContraband]
   description: A 1.5 warhead designed for the RPG-7 launcher. It's unusually slow.
   components:
     - type: Tag
@@ -45,7 +45,7 @@
 - type: entity
   id: BaseGrenade
   name: base grenade
-  parent: BaseItem
+  parent: [BaseItem, BaseMajorContraband]
   abstract: true
   components:
   - type: Tag
@@ -73,12 +73,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeBlast
-  name: blast grenade
+  id: GrenadeBlastContact # Sunrise-edit
+  name: contact blast grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlast
+    proto: BulletGrenadeBlastContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -90,12 +90,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeFlash
-  name: flash grenade
+  id: GrenadeFlashContact # Sunrise-edit
+  name: contact flash grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFlash
+    proto: BulletGrenadeFlashContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -107,12 +107,12 @@
     suffix: false
 
 - type: entity
-  id: GrenadeFrag
-  name: frag grenade
+  id: GrenadeFragContact # Sunrise-edit
+  name: contact frag grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFrag
+    proto: BulletGrenadeFragContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -122,14 +122,31 @@
   - type: SpentAmmoVisuals
     state: frag
     suffix: false
-    
+
 - type: entity
-  id: GrenadeEMP
-  name: EMP grenade
+  parent: GrenadeFragContact # Sunrise-edit
+  id: GrenadeCleanade
+  name: cleanade grenade round
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeCleanade
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: cleanade
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+
+- type: entity
+  id: GrenadeEMPContact # Sunrise-edit
+  name: contact EMP grenade
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeEMP
+    proto: BulletGrenadeEMPContact # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -145,7 +162,7 @@
 - type: entity
   id: BaseCannonBall
   name: base cannon ball
-  parent: BaseItem
+  parent: [BaseItem, BaseMajorContraband]
   abstract: true
   components:
   - type: Tag
@@ -154,7 +171,7 @@
   - type: Item
     size: Small
   - type: Sprite
-  
+
 - type: entity
   id: CannonBall
   name: cannonball
@@ -175,9 +192,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: PelletGrapeshot
-    count: 5
-    spread: 40
+    proto: PelletGrapeshotSpread
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -190,9 +205,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: PelletGlass
-    count: 5
-    spread: 10
+    proto: PelletGlassSpread
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi

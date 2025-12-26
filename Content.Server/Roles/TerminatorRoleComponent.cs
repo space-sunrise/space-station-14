@@ -1,8 +1,8 @@
-using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 
 namespace Content.Server.Roles;
 
-[RegisterComponent, ExclusiveAntagonist]
-public sealed partial class TerminatorRoleComponent : AntagonistRoleComponent
+[RegisterComponent]
+public sealed partial class TerminatorRoleComponent : BaseMindRoleComponent
 {
 }

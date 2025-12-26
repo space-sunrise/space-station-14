@@ -1,0 +1,11 @@
+ent-WeaponLauncherRL5 = RL-5
+    .desc = { ent-BaseWeaponLauncher.desc }
+ent-WeaponGrenadeLauncherGL70 = GL-70
+    .desc = { ent-BaseWeaponLauncher.desc }
+ent-WeaponGrenadeLauncherGL70Flash = GL-70
+    .suffix = GrenadeFlash
+    .desc = { ent-WeaponGrenadeLauncherGL70.desc }
+ent-WeaponGrenadeLauncherSecurity = security grenade launcher
+    .desc = A security flare gun modification that allows for the safe launch of any hand grenade over long distances. "Warning" Firing at close range or directly at obstacles is not recommended — risk of grenade bounce-back.
+ent-WeaponLauncherM79 = m79 grenade launcher
+    .desc = A single-shot, break-action grenade launcher. It is a powerful weapon that can fire a variety of grenades and hand granades.

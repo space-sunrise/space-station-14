@@ -1,4 +1,5 @@
 using Content.Server.Ghost.Roles.Components;
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
@@ -16,6 +17,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -31,6 +33,14 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Handled = true;
 
@@ -49,17 +59,30 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
 
         UpdateAppearance(uid, ToggleableGhostRoleStatus.Searching);
 
-        var ghostRole = EnsureComp<GhostRoleComponent>(uid);
-        EnsureComp<GhostTakeoverAvailableComponent>(uid);
-        ghostRole.RoleName = Loc.GetString(component.RoleName);
-        ghostRole.RoleDescription = Loc.GetString(component.RoleDescription);
+        ActivateGhostRole((uid, component));
+    }
+
+    public void ActivateGhostRole(Entity<ToggleableGhostRoleComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        var ghostRole = EnsureComp<GhostRoleComponent>(ent);
+        EnsureComp<GhostTakeoverAvailableComponent>(ent);
+
+        // GhostRoleComponent inherits custom settings from the ToggleableGhostRoleComponent
+        ghostRole.RoleName = Loc.GetString(ent.Comp.RoleName);
+        ghostRole.RoleDescription = Loc.GetString(ent.Comp.RoleDescription);
+        ghostRole.RoleRules = Loc.GetString(ent.Comp.RoleRules);
+        ghostRole.JobProto = ent.Comp.JobProto;
+        ghostRole.MindRoles = ent.Comp.MindRoles;
     }
 
     private void OnExamined(EntityUid uid, ToggleableGhostRoleComponent component, ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
-        
+
         if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
         {
             args.PushMarkup(Loc.GetString(component.ExamineTextMindPresent));
@@ -95,8 +118,16 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
 
     private void AddWipeVerb(EntityUid uid, ToggleableGhostRoleComponent component, GetVerbsEvent<ActivationVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract)
+        if (args.Hands == null || !args.CanAccess || !args.CanInteract)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
         {

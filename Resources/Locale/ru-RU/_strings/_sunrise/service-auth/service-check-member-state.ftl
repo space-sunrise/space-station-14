@@ -1,0 +1,11 @@
+service-check-member-discord-title = Проверка членства в Discord
+service-check-member-telegram-title = Проверка членства в Telegram
+service-check-member-discord-info = Для доступа на сервер вам необходимо быть участником нашего Discord сервера.
+service-check-member-telegram-info = Для доступа на сервер вам необходимо быть участником нашего Telegram канала.
+service-check-member-warn = Учтите что зайти на сервер нужно с того аккаунта на который вы делали подвязку.
+service-check-member-username = Ваш подвязаный аккаунт:
+service-check-member-browser-btn = Открыть в браузере
+service-check-member-quit-btn = Выйти
+service-check-member-qrcode = QrCode для сканирования на телефоне.
+service-check-member-check-btn = Проверить
+service-check-member-check-btn-wait = Ожидайте: { TOSTRING($time, "G3") }

@@ -3,50 +3,58 @@
   name: roles-antag-nuclear-operative-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearOperative # Sunrise-Edit
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 7200 # 2h # Sunrise-RoleTime
+    time: 5h
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_operative
 
 - type: antag
   id: NukeopsMedic
-  name: roles-antag-nuclear-operative-agent-name
+  name: roles-antag-nuclear-operative-medic-name
   antagonist: true
   setPreference: true
-  objective: roles-antag-nuclear-operative-agent-objective
+  playTimeTracker: AntagNuclearMedic # Sunrise-Edit
+  objective: roles-antag-nuclear-operative-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 5h
   - !type:RoleTimeRequirement
     role: JobChemist
-    time: 18000 # 5h # Sunrise-RoleTime
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    time: 3h
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_medic
 
 - type: antag
   id: NukeopsCommander
   name: roles-antag-nuclear-operative-commander-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearCommander # Sunrise-Edit
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 5h
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    time: 5h
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_commander
 
-#Nuclear Operative Gear
 - type: startingGear
-  id: SyndicateOperativeGearFull
+  id: SyndicateOperativeGearFullNoUplink
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     back: ClothingBackpackDuffelSyndicate
@@ -54,43 +62,76 @@
     eyes: ClothingEyesHudSyndicate
     ears: ClothingHeadsetAltSyndicate
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitSyndie
+    outerClothing: ClothingOuterHardsuitSyndieBiocode # Sunrise-Edit
     shoes: ClothingShoesBootsCombatFilled
-    id: SyndiPDA
-    pocket1: DoubleEmergencyOxygenTankFilled
-    pocket2: BaseUplinkRadio40TC
+    id: SyndiOperativePDA
+    pocket2: PlushieCarp
     belt: ClothingBeltMilitaryWebbing
   storage:
     back:
-    - BoxSurvivalSyndicate
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
+
+#Nuclear Operative Gear
+- type: startingGear
+  id: SyndicateOperativeGearFull
+  #parent: SyndicateOperativeGearFullNoUplink
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndiOperativePDA
+  storage:
+    back:
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
+
+- type: chameleonOutfit
+  id: NukeopsOutfit
+  name: roles-antag-nuclear-operative-name
+  startingGear: SyndicateOperativeGearFullNoUplink
+  icon: "JobIconSyndicate"
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndie
+    neck: ClothingNeckScarfStripedSyndieRed
 
 #Nuclear Operative Commander Gear
 - type: startingGear
   id: SyndicateCommanderGearFull
   parent: SyndicateOperativeGearFull
   equipment:
+    id: SyndiCommanderPDA
     neck: SyndicateWhistle
-    outerClothing: ClothingOuterHardsuitSyndieCommander
+    #outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
+    pocket1: BaseUplinkRadio0TC
   inhand:
-    - NukeOpsDeclarationOfWar
+  - NukeOpsDeclarationOfWar
+  - RemoteNukeOpShuttleController # Sunrise-Edit
+
+- type: chameleonOutfit
+  id: NukeopsCommanderOutfit
+  name: roles-antag-nuclear-operative-commander-name
+  startingGear: SyndicateCommanderGearFull
+  icon: "JobIconSyndicate"
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndieCommander
+    neck: ClothingNeckScarfStripedSyndieGreen
 
 #Nuclear Operative Medic Gear
 - type: startingGear
   id: SyndicateOperativeMedicFull
   parent: SyndicateOperativeGearFull
   equipment:
-    eyes: ClothingEyesHudSyndicateAgent
-    outerClothing: ClothingOuterHardsuitSyndieMedic
-    shoes: ClothingShoesBootsMagSyndie
-    id: SyndiAgentPDA
-    belt: ClothingBeltMilitaryWebbingMedFilled
+    eyes: ClothingEyesHudSyndicateMedic # Sunrise-Edit
+    #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
+    #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
+    id: SyndiCorpsmanPDA
+    belt: ClothingBeltMilitaryWebbingMedSunriseFilled # Sunrise-Edit
   storage:
     back:
     - SyndiHypo
-    - BoxSurvivalSyndicate
     - SawAdvanced
     - Cautery
     - CombatKnife
@@ -100,10 +141,19 @@
     - CombatMedipen
     - DeathAcidifierImplanter
 
+- type: chameleonOutfit
+  id: NukeopsMedicOutfit
+  name: roles-antag-nuclear-operative-agent-name
+  startingGear: SyndicateOperativeMedicFull
+  icon: "JobIconSyndicate"
+  equipment:
+    head: ClothingHeadHelmetHardsuitSyndieMedic
+    neck: ClothingNeckScarfStripedLightBlue
+
 #Lone Operative Gear
 - type: startingGear
   id: SyndicateLoneOperativeGearFull
-  parent: SyndicateOperativeGearFull
+  #parent: SyndicateOperativeGearFull
+  parent: SyndicateOperativeGearFullNoUplink # Sunrise-Edit
   equipment:
     pocket2: BaseUplinkRadio60TC
-

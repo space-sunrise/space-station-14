@@ -1,0 +1,24 @@
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandOrange]
+  id: ClothingHeadBandOrange
+  name: orange bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandYellow]
+  id: ClothingHeadBandYellow
+  name: yellow bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandCyan]
+  id: ClothingHeadBandCyan
+  name: cyan bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandWhite]
+  id: ClothingHeadBandWhite
+  name: white bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandPurple]
+  id: ClothingHeadBandPurple
+  name: purple bandana

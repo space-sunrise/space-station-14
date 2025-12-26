@@ -15,13 +15,18 @@
   special:
   - !type:AddComponentSpecial
     components:
+    # Sunrise added start
+    - type: ArtifactFunnyTarget
+    # Sunrise added end
     - type: Clumsy
-      clumsyDamage:
+      gunShootFailDamage:
         types: #literally just picked semi random valus. i tested this once and tweaked it.
           Blunt: 5
           Piercing: 4
-        groups:
-          Burn: 3
+          Heat: 3
+      catchingFailDamage:
+        types:
+          Blunt: 1
     - type: SleepEmitSound
       snore: /Audio/Voice/Misc/silly_snore.ogg
       interval: 10
@@ -36,8 +41,19 @@
     pocket2: ClownRecorder
     id: ClownPDA
     ears: ClothingHeadsetService
+  inhand:
+  - FoolboxFilled
   storage:
     back:
-    - BoxHug
     - RubberStampClown
     - CrayonRainbow
+
+- type: chameleonOutfit
+  id: ClownChameleonOutfit
+  job: Clown
+  equipment:
+    head: ClothingHeadHatXmasCrown
+    eyes: ClothingEyesGlassesCheapSunglasses
+    neck: ClothingHeadHatFlowerWreath
+    outerClothing: ClothingOuterClownPriest
+    gloves: ClothingHandsGlovesColorYellowBudget

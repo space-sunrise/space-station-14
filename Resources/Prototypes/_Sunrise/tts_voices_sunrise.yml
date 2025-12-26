@@ -1,0 +1,739 @@
+﻿# ОЧЕНЬ ВАЖНО ДЛЯ LUST STATION АДАПТИРОВАТЬ ПРОТОТИПЫ ГОЛОСОВ ПРИ МЕРЖЕ
+# ТАКЖЕ ТУТ ЕСТЬ ОПЕЧАТКИ В speaker: которые лучше не исправлять
+
+- type: ttsVoice
+  id: Minkir
+  name: tts-voice-name-minkir
+  sex: Male
+  speaker: minkir
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Jirinovskiy
+  name: tts-voice-name-jirinovskiy
+  sex: Male
+  speaker: jirinovskiy
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: MaksimPoltavskiy
+  name: tts-voice-name-maksim-poltavskiy
+  sex: Male
+  speaker: maksim_poltavskiy
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: PortalGlados
+  name: tts-voice-name-hl2-glados
+  sex: Male
+  speaker: portal_glados
+  roundStart: false # for borgs
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SBSquidward
+  name: tts-voice-name-sb-squidward
+  sex: Male
+  speaker: sb_squidward
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: TemplarAssasin
+  name: tts-voice-name-templar-assasin
+  sex: Female
+  speaker: templar_assasin
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Brejnev
+  name: tts-voice-name-brejnev
+  sex: Male
+  speaker: brejnev
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2Kleiner
+  name: tts-voice-name-hl2-kleiner
+  sex: Male
+  speaker: hl2_kleiner
+  provider: sunrise
+
+- type: ttsVoice
+  id: TF2Medic
+  name: tts-voice-name-tf2-medic
+  sex: Male
+  speaker: tf2_medic
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2Barni
+  name: tts-voice-name-hl2-barni
+  sex: Male
+  speaker: hl2_barni
+  provider: sunrise
+
+- type: ttsVoice
+  id: HL2Gman
+  name: tts-voice-name-hl2-gman
+  sex: Male
+  speaker: hl2_gman
+  provider: sunrise
+
+- type: ttsVoice
+  id: Losyash
+  name: tts-voice-name-losyash
+  sex: Male
+  speaker: losyash
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2FatherGrigori
+  name: tts-voice-name-hl2-father-grigori
+  sex: Male
+  speaker: hl2_father_grigori
+  provider: sunrise
+
+- type: ttsVoice
+  id: Kopatich
+  name: tts-voice-name-kopatich
+  sex: Male
+  speaker: kopatich
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: StalkerSidorovich
+  name: tts-voice-name-stalker-sidorovich
+  sex: Male
+  speaker: stalker_sidorovich
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Livsey2
+  name: tts-voice-name-livsey
+  sex: Male
+  speaker: livsey
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP049 # DON'T USE
+  name: tts-voice-name-scp-049
+  sex: Male
+  speaker: scp_049
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP079 # DON'T USE
+  name: tts-voice-name-scp-079
+  sex: Male
+  speaker: scp_079
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: IcarusRevenge
+  name: tts-voice-name-icarus-revenge
+  sex: Male
+  speaker: icarus_revenge
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-hearthstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Kendrick
+  name: tts-voice-name-kendrick
+  sex: Male
+  speaker: kendrick
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Riki
+  name: tts-voice-name-dota2-riki
+  sex: Male
+  speaker: dota2_riki
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Pudge
+  name: tts-voice-name-dota2-pudge
+  sex: Male
+  speaker: dota2_pudge
+  provider: sunrise
+
+- type: ttsVoice
+  id: TF2Soldier
+  name: tts-voice-name-tf2-soldier
+  sex: Male
+  speaker: tf2_soldier
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Abaddon
+  name: tts-voice-name-dota2-abaddon
+  sex: Male
+  speaker: dota2_abaddon
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Silencer
+  name: tts-voice-name-dota2-silencer
+  sex: Male
+  speaker: dota2_silencer
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneWarden
+  name: tts-voice-name-hearthstone-warden
+  sex: Male
+  speaker: hearthstone_warden
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBAnnouncer
+  name: tts-voice-name-cb-announcer
+  sex: Male
+  speaker: cb_announcer
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneLordOfThunder
+  name: tts-voice-name-hearthstone-lord-of-thunder
+  sex: Male
+  speaker: hearthstone_lord_of_thunder
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneTekahn
+  name: tts-voice-name-hearthstone-tekahn
+  sex: Male
+  speaker: hearthstone_tekahn
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneFinli
+  name: tts-voice-name-hearthstone-finli
+  sex: Male
+  speaker: hearthstone_finli
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneBrann
+  name: tts-voice-name-hearthstone-brann
+  sex: Male
+  speaker: hearthstone_brann
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneReno
+  name: tts-voice-name-hearthstone-reno
+  sex: Male
+  speaker: hearthstone_reno
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneZverolovTavish
+  name: tts-voice-name-hearthstone-zverolov-tavish
+  sex: Male
+  speaker: hearthstone_zverolov_tavish
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneElisa
+  name: tts-voice-name-hearthstone-elisa
+  sex: Female
+  speaker: hearthstone_elisa
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneSotis
+  name: tts-voice-name-hearthstone-sotis
+  sex: Male
+  speaker: hearthstone_sotis
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBMTF1
+  name: tts-voice-name-mtf1
+  sex: Male
+  speaker: mtf_1
+  provider: sunrise
+  roundStart: false # временно
+
+- type: ttsVoice
+  id: CBMTF2 # Переобучить
+  name: tts-voice-name-mtf2
+  sex: Male
+  speaker: mtf_2
+  provider: sunrise
+  roundStart: false # временно
+
+- type: ttsVoice
+  id: ThreeBigatiraAleshaPopovich
+  name: tts-voice-name-three-bogatira-alesha-popovich
+  sex: Male
+  speaker: three_bogatira_alesha
+  provider: sunrise
+
+- type: ttsVoice
+  id: PetrGlanceIvashenko
+  name: tts-voice-name-petr_glance_ivashenko
+  sex: Male
+  speaker: petr_ivashenko
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneValiraSangvinar
+  name: tts-voice-name-hearthstone-valira-sangvinar
+  sex: Female
+  speaker: hearthstone_valira_sangvinar
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneAkama
+  name: tts-voice-name-hearthstone-akama
+  sex: Male
+  speaker: hearthstone_akama
+  provider: sunrise
+
+- type: ttsVoice
+  id: Pathologic2GeorgiyKain
+  name: tts-voice-name-pathologic2-georgiy-kain
+  sex: Male
+  speaker: pathologic2_georgiy_kain
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2ArtemiyBurach
+  name: tts-voice-name-pathologic2-artemiy-burach
+  sex: Male
+  speaker: pathologic2_artemiy_burach
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2Grif
+  name: tts-voice-name-pathologic2-grif
+  sex: Male
+  speaker: pathologic2_grif
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2AnglayaLilich
+  name: tts-voice-name-pathologic2-anglaya-lilich
+  sex: Female
+  speaker: pathologic2_anglaya_lilich_tired
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2AlexanderSaburov
+  name: tts-voice-name-pathologic2-alexander-saburov
+  sex: Male
+  speaker: pathologic2_alexander_saburov
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2Inkvizitor
+  name: tts-voice-name-pathologic2-inkvizitor
+  sex: Female
+  speaker: pathologic2_inkvizitor
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2AlexanderBlok
+  name: tts-voice-name-pathologic2-alexander-blok
+  sex: Male
+  speaker: pathologic2_alexander_blok
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2MarkBessmertnik
+  name: tts-voice-name-pathologic2-mark-bessmertnik
+  sex: Male
+  speaker: pathologic2_mark_bessmertnik
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Crysis2Operator3v1
+  name: tts-voice-name-crysis2-ai-blackops-03-v1
+  sex: Male
+  speaker: crysis2_ai_blackops_03_v1
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2AICostume
+  name: tts-voice-name-crysis2-ai-costume
+  sex: Male
+  speaker: crysis2_ai_costume
+  provider: sunrise
+  roundStart: false
+
+- type: ttsVoice
+  id: HearthstoneBellok
+  name: tts-voice-name-hearthstone-bellok-bright-blade
+  sex: Male
+  speaker: hearthstone_bellok_bright_blade
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstonePriceArtas
+  name: tts-voice-name-hearthstone-prince-artas
+  sex: Male
+  speaker: hearthstone_prince_artas
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneTarkus
+  name: tts-voice-name-hearthstone-tarkus
+  sex: Male
+  speaker: heathstone_tarkus
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneUter
+  name: tts-voice-name-hearthstone-uter
+  sex: Male
+  speaker: hearthstone_uter
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMalfurion
+  name: tts-voice-name-hearthstone-malfurion
+  sex: Male
+  speaker: hearthstone_malfurion
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneGulDan
+  name: tts-voice-name-hearthstone-gul-dan
+  sex: Male
+  speaker: hearthstone_gul_dan
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneTiranda
+  name: tts-voice-name-hearthstone-tiranda
+  sex: Female
+  speaker: hearthstone_tiranda
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv1
+  name: tts-voice-name-hearthstone-mediv1
+  sex: Male
+  speaker: hearthstone_mediv1
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv2
+  name: tts-voice-name-hearthstone-mediv2
+  sex: Male
+  speaker: hearthstone_mediv2
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneThrall
+  name: tts-voice-name-hearthstone-thrall
+  sex: Male
+  speaker: hearthstone_thrall
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2AIUsafrican01
+  name: tts-voice-name-crysis2-ai-usafrican-01
+  sex: Male
+  speaker: ai_usafrican_01
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3LordGarithos
+  name: tts-voice-name-warcraft3-lord-garithos
+  sex: Male
+  speaker: warcraft3_lord_garithos
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Artas2
+  name: tts-voice-name-warcraft3-artas-2
+  sex: Male
+  speaker: warcraft3_artas
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Muradin
+  name: tts-voice-name-warcraft3-muradin
+  sex: Male
+  speaker: warcraft3_muradin
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Dreney
+  name: tts-voice-name-warcraft3-dreney
+  sex: Male
+  speaker: warcraft3_dreney
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Witcher
+  name: tts-voice-name-warcraft3-witcher
+  sex: Male
+  speaker: warcraft3_witcher
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Kel
+  name: tts-voice-name-warcraft3-kel
+  sex: Male
+  speaker: warcraft3_kel
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3StarikTumba
+  name: tts-voice-name-warcraft3-starik-tumba
+  sex: Male
+  speaker: warcraft3_starik_tumba
+  provider: sunrise
+
+- type: ttsVoice
+  id: StarcraftTerranAdviser
+  name: tts-voice-name-starcraft-terran-adviser
+  sex: Female
+  speaker: starcraft_terran_adviser
+  provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AiUscaucasian03
+  name: tts-voice-name-crysis2-ai-uscaucasian-03
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_03
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Yastreb
+  name: tts-voice-name-warcraft3-yastreb
+  sex: Male
+  speaker: warcraft3_yastreb
+  provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AIuscaucasian02
+  name: tts-voice-name-crysis2-ai-uscaucasian-02
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_02
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneKhadgar
+  name: tts-voice-name-hearthstone-khadgar
+  sex: Male
+  speaker: hearthstone_khadgar
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Antimage
+  name: tts-voice-name-dota2-antimage
+  sex: Male
+  speaker: dota2_antimage
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneHamulRunicalTotem
+  name: tts-voice-name-hearthstone-hamul-runical-totem
+  sex: Male
+  speaker: hearthstone_hamul_runical_totem
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneDjaina
+  name: tts-voice-name-hearthstone-djaina
+  sex: Female
+  speaker: hearthstone_djaina
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneBob
+  name: tts-voice-name-hearthstone-bob1
+  sex: Male
+  speaker: hearthstone_bob1
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneRexar
+  name: tts-voice-name-hearthstone-rexar
+  sex: Male
+  speaker: hearthstone_rexar
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2Blackops01
+  name: tts-voice-name-crysis2-ai-blackops-01
+  sex: Male
+  speaker: crysis2_ai_blackops_01
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2Blackops02
+  name: tts-voice-name-crysis2-ai-blackops-02
+  sex: Male
+  speaker: crysis2_ai_blackops_02
+  provider: sunrise
+
+- type: ttsVoice
+  id: Portal2FactCore
+  name: tts-voice-name-portal2-fact-core
+  sex: Male
+  speaker: portal2_factcore
+  provider: sunrise
+  roundStart: false # Это ТТС для автоматов с едой, напитками и т.д (вендоров)
+
+- type: ttsVoice
+  id: HearthstoneAlleria
+  name: tts-voice-name-hearthstone-alleria
+  sex: Female
+  speaker: hearthstone_alleria
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneLunara
+  name: tts-voice-name-hearthstone-lunara
+  sex: Female
+  speaker: hearthstone_lunara
+  provider: sunrise
+
+- type: ttsVoice
+  id: SmesharikiBarash
+  name: tts-voice-name-barash
+  sex: Male
+  speaker: smeshariki_barash
+  provider: sunrise
+
+- type: ttsVoice
+  id: ChocolateFabricWonka
+  name: tts-voice-name-chocolate-fabric-wonka
+  sex: Male
+  speaker: chocolatefabric_wonka
+  provider: sunrise
+
+- type: ttsVoice
+  id: DeathNoteYagami
+  name: tts-voice-name-death-note-yagami-light
+  sex: Male
+  speaker: deathnote_yagami_light
+  provider: sunrise
+
+- type: ttsVoice
+  id: Warcraft3Jaina
+  name: tts-voice-name-warcraft3-jaina
+  sex: Female
+  speaker: warcraft3_jaina
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLAurora
+  name: tts-voice-name-lol-aurora
+  sex: Female
+  speaker: lol_aurora
+  provider: sunrise
+
+- type: ttsVoice
+  id: 314Zabolotniy
+  name: tts-voice-name-314-zabolotniy
+  sex: Male
+  speaker: 314_zabolotniy
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLAkali1
+  name: tts-voice-name-lol-akali1
+  sex: Female
+  speaker: lol_akali1
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLNasus
+  name: tts-voice-name-lol-nasus
+  sex: Male
+  speaker: lol_nasus
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2Overlord1
+  name: tts-voice-name-crysis2-overlord-1
+  sex: Male
+  speaker: crysis2_overlord1
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2Overlord2
+  name: tts-voice-name-crysis2-overlord-2
+  sex: Male
+  speaker: crysis2_overlord2
+  provider: sunrise
+
+- type: ttsVoice
+  id: DictorVsevolodKuznetsov
+  name: tts-voice-name-dictor-vsevolod-kuznetsov
+  sex: Male
+  speaker: dictor_vsevolod_kuznetsov
+  provider: sunrise
+
+- type: ttsVoice
+  id: DukeNukemForever
+  name: tts-voice-name-duke-nukem-forever
+  sex: Male
+  speaker: duke_nukem_forever
+  provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AiUscaucasian01
+  name: tts-voice-name-crysis2-ai-uscaucasian-01
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_01
+  provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AiBlackops04
+  name: tts-voice-name-crysis2-ai-blackops-04
+  sex: Male
+  speaker: crysis2_blackops_04
+  provider: sunrise
+
+- type: ttsVoice
+  id: CRYSIS2AIUsafrician01v2
+  name: tts-voice-name-crysis2-ai-usafrician-01-v2
+  sex: Male
+  speaker: crysis2_ai_usafrician_01_v2
+  provider: sunrise
+
+- type: ttsVoice
+  id: LOLAkshan
+  name: tts-voice-name-lol-akshan
+  sex: Male
+  speaker: lol_akshan
+  provider: sunrise

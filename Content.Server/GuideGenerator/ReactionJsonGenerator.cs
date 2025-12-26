@@ -2,12 +2,12 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Content.Shared.Chemistry.Reaction;
-using Content.Shared.Chemistry.Reagent;
+using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GuideGenerator;
 
-public sealed partial class ReactionJsonGenerator
+public sealed class ReactionJsonGenerator
 {
     public static void PublishJson(StreamWriter file)
     {
@@ -19,17 +19,12 @@ public sealed partial class ReactionJsonGenerator
                 .Select(x => new ReactionEntry(x))
                 .ToDictionary(x => x.Id, x => x);
 
-        // Wiki-Start
-        if (reactions is not null) AddMixingCategories(reactions, prototype);
-        // Wiki-End
-
         var serializeOptions = new JsonSerializerOptions
         {
             WriteIndented = true,
-            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals, // Wiki
             Converters =
             {
-                new UniversalJsonConverter<ReagentEffect>(),
+                new UniversalJsonConverter<EntityEffect>(),
             }
         };
 

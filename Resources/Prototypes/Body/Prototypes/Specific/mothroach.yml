@@ -9,5 +9,5 @@
         lungs: OrganAnimalLungs
         stomach: OrganMothStomach
         liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
+        heart: OrganMothroachHeart # Sunrise Edit
         kidneys: OrganAnimalKidneys

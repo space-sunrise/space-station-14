@@ -1,0 +1,30 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         MinSize="300 100">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+        <BoxContainer Orientation="Horizontal"
+                     HorizontalExpand="True"
+                     Margin="5 0 15 0">
+            <customControls:VSeparator/>
+            <Label Text="{Loc 'contributors-column-ss14'}"
+                   SizeFlagsStretchRatio="2"
+                   HorizontalExpand="True"
+                   Align="Center"/>
+            <customControls:VSeparator/>
+            <Label Text="{Loc 'contributors-column-github'}"
+                   SizeFlagsStretchRatio="2"
+                   HorizontalExpand="True"
+                   Align="Center"/>
+            <customControls:VSeparator/>
+            <Label Text="{Loc 'contributors-column-contributions'}"
+                   SizeFlagsStretchRatio="1"
+                   HorizontalExpand="True"
+                   Align="Center"/>
+            <customControls:VSeparator/>
+        </BoxContainer>
+        <customControls:HSeparator/>
+        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" MinHeight="150">
+            <BoxContainer Name="ContributorsList" Access="Public" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
+</Control>

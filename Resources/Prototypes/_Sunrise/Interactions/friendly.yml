@@ -1,0 +1,423 @@
+- type: interaction
+  id: FriendlyHandshake
+  name: interaction-name-friendly-handshake
+  icon: FriendlyHandshakeIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user жмёт руку %target"
+  interactionSounds:
+  - FriendlyHandshakeSound
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyPatShoulder
+  name: interaction-name-friendly-pat-shoulder
+  icon: FriendlyPatShoulderIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user хлопает по плечу %target"
+  interactionSounds:
+  - FriendlyPatShoulderSound
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyHug
+  name: interaction-name-friendly-hug
+  icon: FriendlyIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user обнимает %target"
+  - "%user крепко обнимает %target"
+  - "%user прижимает к себе %target"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 3
+
+- type: interaction
+  id: FriendlySniff
+  name: interaction-name-friendly-sniff
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "рот" ]
+    requireExposed: true
+  interactionMessages:
+  - "%user обхюнивает %target"
+  - "%user приближает свой нос, обнюхивая %target"
+  - "%user нюхает %target"
+  interactionSounds:
+  - FriendlySniff1
+  - FriendlySniff2
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyHighfive
+  name: interaction-name-friendly-highfive
+  icon: FriendlyHignFiveIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user даёт пять %target"
+  interactionSounds:
+  - FriendlyFive1
+  - FriendlyFive2
+  - FriendlyFive3
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyPatHead
+  name: interaction-name-friendly-pat-head
+  icon: FacePatsIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user гладит %target по голове"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyShoulderMassage
+  name: interaction-name-friendly-shoulder-massage
+  icon: FriendlyShoulderMassageIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user массирует плечи %target"
+  - "%user делает массаж плечей %target"
+  - "%user разминает плечи %target"
+  cooldown: 3
+
+- type: interaction
+  id: FaceRubCat
+  name: interaction-name-face-rub-cat
+  icon: FriendlyFaceRubCatIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "щёки"]
+    requireExposed: true
+  interactionMessages:
+  - "%user по-кошачьи трется щекой об лицо %target"
+  - "%user как котик трется головой об %target"
+  - "%user мурлыкая, трется ушками об %target"
+  interactionSounds:
+  - FacePatsSound
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyHeadTailpats
+  name: interaction-name-friendly-head-tailpats
+  icon: FriendlyTailIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: false
+    checkTarget: true
+    categories: [ "волосы"]
+    requireExposed: true
+  - !type:SpeciesCondition
+    checkTarget: false
+    checkInitiator: true
+    allowedSpecies: [Vulpkanin, Slime, Felinid, Demon, Reptilian]
+  - !type:HasVisualLayerCondition
+    checkTarget: false
+    checkInitiator: true
+    layer: Tail
+  interactionMessages:
+  - "%user нежно гладит хвостиком голову %target"
+  - "%user ласково гладит хвостиком по спине %target"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyTailPull
+  name: interaction-name-friendly-tail-pull
+  icon: FriendlyTailPullIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:SpeciesCondition
+    checkTarget: true
+    checkInitiator: false
+    allowedSpecies: [Human, Vulpkanin, Slime, Felinid, Demon, Reptilian]
+  - !type:HasVisualLayerCondition
+    checkTarget: true
+    checkInitiator: false
+    layer: Tail
+  interactionMessages:
+  - "%user резко дергает за хвост %target"
+  - "%user грубо дергает за хвост %target"
+  - "%user неожиданно дергает хвост %target"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyBlowSlap
+  name: interaction-name-friendly-blow-slap
+  icon: FriendlyBlowSlapIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user резко бьет ладонью по щеке %target"
+  - "%user сильно шлепает %target по лицу ладонью"
+  - "%user с громким хлопком ударяет %target по щеке ладонью"
+  - "%user дает ладонью звонкую пощечину %target"
+  interactionSounds:
+  - FriendlySlap1
+  - FriendlySlap2
+  - FriendlySlap3
+  - FriendlySlap4
+  - FriendlySlap5
+  - FriendlySlap6
+  - FriendlySlap7
+  cooldown: 2
+
+- type: interaction
+  id: FriendlyWristSlap
+  name: interaction-name-friendly-wrist-slap
+  icon: FriendlyBlowSlapIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user резко бьет ладонью по затылку %target"
+  - "%user сильно шлепает %target по затылку своей ладонью"
+  - "%user с громким хлопком ударяет %target по затылку своей ладонью"
+  - "%user дает ладонью смачный подзатыльник %target"
+  interactionSounds:
+  - FriendlySlap1
+  - FriendlySlap2
+  - FriendlySlap3
+  - FriendlySlap4
+  - FriendlySlap5
+  - FriendlySlap6
+  - FriendlySlap7
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyNoseBoop
+  name: interaction-name-friendly-nose-boop
+  icon: FriendlyNoseBoopIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user прикасается пальцем к носу %target, буп!"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyFingerTap
+  name: interaction-name-friendly-finger-tap
+  icon: FriendlyFingerTapIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user трогает пальцем спину %target"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyJojoPosing
+  name: interaction-name-friendly-jojo-posing
+  icon: FriendlyFingerTapIcon
+  category: Friendly
+  appearConditions:
+  - !type:SelfOnlyCondition
+  interactionMessages:
+  - "%user принимает крутую позу"
+  - "%user встает в крутую позу"
+  - "%user позирует играя мускулами"
+  - "%user делает jojo reference"
+  interactionSounds:
+  - FriendlyXZ
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyBackMassage
+  name: interaction-name-friendly-back-massage
+  icon: FriendlyShoulderMassageIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user массирует спину %target"
+  - "%user делает массаж спины %target"
+  - "%user разминает спину %target"
+  cooldown: 3
+
+- type: interaction
+  id: TailIntertwine
+  name: interaction-name-tail-intertwine
+  icon: FriendlyTailHugIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:SpeciesCondition
+    checkTarget: true
+    checkInitiator: true
+    allowedSpecies: [Vulpkanin, Slime, Felinid, Demon, Reptilian]
+  - !type:HasVisualLayerCondition
+    checkTarget: true
+    checkInitiator: true
+    layer: Tail
+  interactionMessages:
+  - "%user нежно сплетается хвостами с %target"
+  - "%user аккуратно сплетает свой хвост с хвостом %target"
+  - "%user обволакивает хвост %target своим хвостом"
+  - "%user играется своим хвостом с хвостом %target"
+  cooldown: 3
+
+- type: interaction
+  id: EarsMrrr
+  name: interaction-name-ears-mrrr
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:SpeciesCondition
+    checkTarget: false
+    checkInitiator: true
+    allowedSpecies: [Felinid]
+  interactionMessages:
+  - "%user нежно мурчит на ушко %target"
+  - "%user поднося свою голову ближе к %target, начинает мурчать на ушко"
+  interactionSounds:
+  - FelinidPurrs
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyShowTongue
+  name: interaction-name-friendly-show-tongue
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Friendly
+  appearConditions:
+  - !type:SelfOnlyCondition
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "рот" ]
+    requireExposed: true
+  interactionMessages:
+  - "%user открывает рот и высовывает язык на всю длину"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyPushups
+  name: interaction-name-friendly-pushups
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Friendly
+  appearConditions:
+  - !type:SelfOnlyCondition
+  interactionMessages:
+  - "%user отжимается от пола"
+  interactionSounds:
+  - FriendlySalute
+  cooldown: 1
+
+- type: interaction
+  id: FriendlyGrimace
+  name: interaction-name-friendly-grimace
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Friendly
+  appearConditions:
+  - !type:SelfOnlyCondition
+  interactionMessages:
+  - "%user корчит рожу"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyFuck
+  name: interaction-name-friendly-fuck
+  icon: FriendlyHandshakeIcon # TODO новый спрайт
+  category: Friendly
+  appearConditions:
+  - !type:SelfOnlyCondition
+  interactionMessages:
+  - "%user показывает фак"
+  - "%user элегантно показывает фак"
+  interactionSounds:
+  - FriendlySalute
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyFingerIntertwine
+  name: interaction-name-friendly-finger-intertwine
+  icon: FriendlyIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user слетается своим пальцем с пальцем %target"
+  - "%user нежно берёт палец %target и сплетает со своим"
+  - "%user аккуратно сплетает пальцы с %target"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyNoseClick
+  name: interaction-name-friendly-nose-click
+  icon: FriendlyNoseBoopIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user бьёт пальцем по носу %target"
+  cooldown: 3
+
+- type: interaction
+  id: FriendlyFofan
+  name: interaction-name-friendly-fofan
+  icon: FriendlyBlowSlapIcon
+  category: Friendly
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  interactionMessages:
+  - "%user натягивает средний палец, после со всей силы дает по лбу %target"
+  - "%user натягивает указательный палец, после со всей силы дает по лбу %target"
+  - "%user натягивает средний палец, удерживая его большим пальцем, после бьёт по лбу %target"
+  - "%user натягивает указательный палец, удерживая его большим пальцем, после бьёт по лбу %target"
+  interactionSounds:
+  - FriendlySlap1
+  - FriendlySlap2
+  - FriendlySlap3
+  - FriendlySlap4
+  - FriendlySlap5
+  - FriendlySlap6
+  - FriendlySlap7
+  cooldown: 3

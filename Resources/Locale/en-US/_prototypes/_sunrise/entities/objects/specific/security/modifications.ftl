@@ -1,0 +1,14 @@
+ent-BaseSecurityUpgrade = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-FlareGunSecurityUpgrade = upgrade kit (security flare gun)
+    .desc = A security flare gun modification kit. Includes a barrel replacement with a larger caliber and sight adjustments to safely launch any hand grenades over long distances.
+ent-ModularReceiverAuto = modular Auto receiver
+    .desc = A vital part used in the creation of Auto firearms.
+ent-DrozdUpgrade = Upgrade Kit (Drozd)
+    .desc = A modification kit for the Drozd submachine gun. Replaces the standard grip and stock with lighter versions and adds an automatic magazine release system.
+ent-LecterUpgrade = Upgrade Kit (Lecter)
+    .desc = A modification kit for the Security Lecter. Replaces the standard handguard and stock with ones made from lighter materials and adds an automatic magazine release system.
+ent-VestSecUpgrade = Upgrade Kit (Security Vest)
+    .desc = A modification kit for the standard security vest. Replaces the cheap protective fiber with a high-grade synthetic material, turning it into a durable, high-quality version. Also adds a couple of pouches that do not restrict movement.
+ent-GauntletGORILLAUpgradeKit = G.O.R.I.L.L.A. gauntlet upgrade chip
+    .desc = An experimental upgrade kit for the G.O.R.I.L.L.A.

@@ -8,6 +8,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
+  followSkinColor: true
   speciesRestriction: [Swine]
   sprites:
   - sprite: _Sunrise/Mobs/Customization/swine_ears.rsi

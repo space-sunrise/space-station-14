@@ -1,0 +1,14 @@
+ent-BaseToilet = унитаз
+    .desc = HT-451, устройство для утилизации отходов малых размеров с ротационным крутящим моментом. Этот выглядит удивительно чистым.
+ent-ToiletEmpty = туалет
+    .desc = HT-451, устройство для удаления мелких отходов, основанное на вращательном моменте. Этот выглядит удивительно чистым.
+    .suffix = Пустой
+ent-ToiletDirtyWater = { ent-ToiletEmpty }
+    .desc = { ent-ToiletEmpty.desc }
+    .suffix = Грязная вода
+ent-ToiletGoldenEmpty = золотой унитаз
+    .desc = HT-451G — золотая версия устройства. На боку указано, что он изготовлен из чистейшего меркурианского золота и имеет настоящее кожаное сиденье.
+    .suffix = Пустой
+ent-ToiletGoldenDirtyWater = { ent-ToiletGoldenEmpty }
+    .suffix = Грязная вода, Цель для воровства
+    .desc = { ent-ToiletGoldenEmpty.desc }

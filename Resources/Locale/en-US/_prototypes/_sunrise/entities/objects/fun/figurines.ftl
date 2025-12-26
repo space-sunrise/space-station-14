@@ -1,0 +1,12 @@
+ent-ToyFigurineBlueshield = blue shield figure
+    .desc = A figure depicting Blue Shield, ready to protect the command staff at all costs.
+ent-ToyFigurineEnforcementofficer = enforcement officer figure
+    .desc = A figure depicting Enforcement Officer, ready to protect the lawyer at all costs.
+ent-ToyFigurineBrigmedic = Brigmedic figure
+    .desc = A figurine depicting a brigmedic. Seems like you'd rather die than have to explain to him how you got your injuries.
+ent-ToyFigurineCburn = Cburn figure
+    .desc = A figurine depicting the station's defenders against... viruses?
+ent-ToyFigurineDeathsquad = Deathsquad figure
+    .desc = A figurine depicting.... Who's that?
+ent-ToyFigurineErt = Ert leader figure
+    .desc = A figurine depicting the station's defenders from..... I don't know, just in case?

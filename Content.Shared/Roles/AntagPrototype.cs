@@ -1,16 +1,22 @@
 using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles;
 
 /// <summary>
 ///     Describes information for a single antag.
 /// </summary>
-[Prototype("antag")]
-[Serializable, NetSerializable]
+[Prototype]
 public sealed partial class AntagPrototype : IPrototype
 {
+    // The name to group all antagonists under. Equivalent to DepartmentPrototype IDs.
+    public static readonly string GroupName = "Antagonist";
+
+    // The colour to group all antagonists using. Equivalent to DepartmentPrototype Color fields.
+    public static readonly Color GroupColor = Color.Red;
+
     [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;
@@ -20,6 +26,12 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField("name")]
     public string Name { get; private set; } = "";
+
+    /// <summary>
+    ///     The playtime that will be tracked while this antag.
+    /// </summary>
+    [DataField("playTimeTracker", required: true)]
+    public string PlayTimeTracker { get; private set; } = string.Empty;
 
     /// <summary>
     ///     The antag's objective, shown in a tooltip in the antag preference menu or as a ghost role description.
@@ -42,8 +54,6 @@ public sealed partial class AntagPrototype : IPrototype
     /// <summary>
     ///     Requirements that must be met to opt in to this antag role.
     /// </summary>
-    // TODO ROLE TIMERS
-    // Actually check if the requirements are met. Because apparently this is actually unused.
     [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
     public HashSet<JobRequirement>? Requirements;
 
@@ -53,4 +63,7 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+    [DataField]
+    public SpriteSpecifier PreviewIcon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/antag_preview.rsi"), "test");
 }

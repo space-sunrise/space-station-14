@@ -1,0 +1,245 @@
+- type: technology
+  id: EnergyBarriers
+  name: research-technology-energy_barriers
+  icon:
+    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - EnergyDomeDirectionalTurtle
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ArmorPenetrationMunitions
+  name: research-technology-armor-penetration
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: ap
+  discipline: Arsenal
+  tier: 2
+  cost: 11500
+  recipeUnlocks:
+  - SpeedLoaderMagnumAP
+  - MagazineMagnumAP
+  - MagazinePistolAP
+  - MagazinePistol40AP
+  - MagazineRifleAP
+  - MagazineLightRifleAP
+  - MagazineBoxMagnumAP
+  - MagazineBoxPistolAP
+  - MagazineBoxPistol40AP
+  - MagazineBoxRifleAP
+  - MagazineBoxLightRifleAP
+  - MagazineLightRifleBeltBoxAP
+  - MagazinePistolSubMachineGunAP
+  - MagazinePistolSubMachineGunTopMountedAP
+  - MagazinePistolHighCapacityAP
+  - MagazineBoxHeavyRifleAP
+  - MagazineRifleHeavyAP
+  radioChannels:
+  - Security
+
+- type: technology
+  id: Gygax
+  name: research-technology-gygax
+  icon:
+    sprite: Objects/Specific/Mech/gygax.rsi
+    state: gygax
+  discipline: Arsenal
+  tier: 2
+  cost: 12000
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxArmor
+  - GygaxHead
+  - GygaxLArm
+  - GygaxLLeg
+  - GygaxRArm
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxTargetingElectronics
+  - WeaponMechCombatUltraRifle
+  - PaintGygaxWhite
+  - PaintGygaxOld
+  technologyPrerequisites:
+  - Ripley2
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ExplosiveMechAmmunition
+  name: research-technology-explosive-mech-ammunition
+  icon:
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponMechCombatMissileRack8
+  technologyPrerequisites:
+  - ExplosiveTechnology
+  radioChannels:
+  - Security
+
+- type: technology
+  id: Durand
+  name: research-technology-durand
+  icon:
+    sprite: Objects/Specific/Mech/durand.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 16000
+  recipeUnlocks:
+  - DurandHarness
+  - DurandArmor
+  - DurandHead
+  - DurandLArm
+  - DurandLLeg
+  - DurandRArm
+  - DurandRLeg
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - DurandTargetingElectronics
+  - WeaponMechCombatShotgun
+  - WeaponMechCombatShotgunIncendiary
+  - WeaponMechCombatMG
+  - PaintDurandExecutor
+  - PaintDurandShire
+  - PaintDurandOld
+  - PowerCageHigh
+  technologyPrerequisites:
+  - Gygax
+  radioChannels:
+  - Security
+
+- type: technology
+  id: PortableIonWeaponry
+  name: research-technology-ion-technology
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponIonCarbine
+  technologyPrerequisites:
+  - PortableMicrofusionWeaponry
+  - ThermalWeaponry
+  radioChannels:
+  - Security
+
+# Tier 2
+
+# Sunrise-TODO: Требует ребаланса с учетом новых типов боеприпасов
+#- type: technology
+#  id: ExtendedAmunitions
+#  name: research-technology-extended-amunitions
+#  icon:
+#    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
+#    state: base
+#  discipline: Arsenal
+#  tier: 2
+#  cost: 12500
+#  recipeUnlocks:
+#  - BaseMagazinePistolCaselessRifleExtended
+#  - MagazinePPSH41Extended
+#  - MagazineMP5Extended
+#  - MagazineMP7Extended
+#  - MagazineRifleExtended
+#  - MagazineDragunovExtended
+#  radioChannels:
+#  - Security
+
+- type: technology
+  id: CombatEquipment
+  name: research-technology-combat-equipment
+  icon:
+    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - ClothingShoesBootsMagCombat
+  - ModularReceiverAuto
+  - LecterUpgrade
+  - DrozdUpgrade
+  - ClothingHeadHelmetPubg
+  - VestSecUpgradeBullet
+  - VestSecUpgradeRiot
+  - VestSecUpgradeReflective
+  technologyPrerequisites:
+  - AdvancedRiotControl
+  radioChannels:
+  - Security
+
+- type: technology
+  id: AdvancedCombatEquipment
+  name: research-technology-advanced-combat-equipment
+  icon:
+    sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_sec.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - VestSecUpgradeBulletHeavy
+  - VestSecUpgradeWeb
+  technologyPrerequisites:
+  - CombatEquipment
+  radioChannels:
+  - Security
+
+- type: technology
+  id: AdvancedLaserManipulation
+  name: research-technology-advance-laser
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+  - WeaponGunLaserCarbineAutomatic
+  - MagazineBatteryLr30
+  - WeaponEnergyGunPistol
+  radioChannels:
+  - Security
+
+- type: technology
+  id: AdvancedSecBorgsCombatModules
+  name: research-technology-advance-secborgs-combat
+  icon:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: security
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - BorgModuleAdvancedCombat
+  radioChannels:
+  - Security
+  
+- type: technology
+  id: HiTechShuttleWeapon
+  name: research-technology-hitech-shuttle-weapon
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/heavyammobelt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - ShuttleGunTeslaHyperionCircuitboard
+  - ShuttleGunQuadlingCircuitboard
+  technologyPrerequisites:
+  - AdvancedShuttleWeapon
+  radioChannels: # Sunrise-Add
+  - Security

@@ -69,6 +69,25 @@
   parent: MobSyndicateFootsoldier
   id: MobSyndicateFootsoldierPilot
 
+# Sunrise-start
+- type: entity
+  name: NanoTrasen footsoldier
+  parent: BaseMobHuman
+  id: MobNanoTrasenFootsoldier
+  components:
+    - type: NpcFactionMember
+      factions:
+        - NanoTrasen
+    - type: Loadout
+      prototypes:
+        - NanotrasenParamilitaryGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+# Sunrise-end
+
 - type: entity
   parent: BaseMobHuman
   suffix: Dead

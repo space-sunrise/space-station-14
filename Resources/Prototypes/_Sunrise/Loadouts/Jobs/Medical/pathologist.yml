@@ -1,0 +1,14 @@
+- type: loadout
+  id: HatPatologonatHat
+  equipment:
+    head: ClothingHeadHatPatologonatHat
+
+- type: loadout
+  id: CoatPatologoanatom
+  equipment:
+    outerClothing: ClothingOuterCoatPatologoanatom
+
+- type: loadout
+  id: PatologonatBeret
+  equipment:
+    head: ClothingHeadHatBeretPatologoanatom

@@ -2,6 +2,7 @@
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Robust.Client.GameObjects;
+using Robust.Shared.GameObjects;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Mech;
@@ -10,6 +11,7 @@ namespace Content.Client.Mech;
 public sealed class MechSystem : SharedMechSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -24,23 +26,42 @@ public sealed class MechSystem : SharedMechSystem
         if (args.Sprite == null)
             return;
 
-        if (!args.Sprite.TryGetLayer((int) MechVisualLayers.Base, out var layer))
-            return;
-
+        UpdateAppearance(uid, component, args.Sprite);
+    }
+    private void UpdateAppearance(EntityUid uid, MechComponent component, SpriteComponent sprite)
+    {
         var state = component.BaseState;
         var drawDepth = DrawDepth.Mobs;
-        if (component.BrokenState != null && _appearance.TryGetData<bool>(uid, MechVisuals.Broken, out var broken, args.Component) && broken)
+        UpdatePaintApperance(uid, component);
+
+        if (component.BrokenState != null
+            && _appearance.TryGetData<bool>(uid, MechVisuals.Broken, out var broken)
+            && broken)
         {
             state = component.BrokenState;
             drawDepth = DrawDepth.SmallMobs;
         }
-        else if (component.OpenState != null && _appearance.TryGetData<bool>(uid, MechVisuals.Open, out var open, args.Component) && open)
+        else if (component.OpenState != null
+                 && _appearance.TryGetData<bool>(uid, MechVisuals.Open, out var open)
+                 && open)
         {
             state = component.OpenState;
             drawDepth = DrawDepth.SmallMobs;
         }
 
-        layer.SetState(state);
-        args.Sprite.DrawDepth = (int) drawDepth;
+        _sprite.LayerSetRsiState((uid, sprite), MechVisualLayers.Base, state);
+        _sprite.SetDrawDepth((uid, sprite), (int)drawDepth);
+    }
+
+    private void UpdatePaintApperance(EntityUid uid, MechComponent component)
+    {
+        if (_appearance.TryGetData<string>(uid, MechVisualLayers.Base, out var baseState))
+            component.BaseState = baseState;
+
+        if (_appearance.TryGetData<string>(uid, MechVisualLayers.Open, out var open))
+            component.OpenState = open;
+
+        if (_appearance.TryGetData<string>(uid, MechVisualLayers.Broken, out var broken))
+            component.BrokenState = broken;
     }
 }

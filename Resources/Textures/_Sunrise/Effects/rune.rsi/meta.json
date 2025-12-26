@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "Taken from tgstation",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "landing"
+    },
+    {
+      "name": "lily_pad"
+    }
+  ]
+}

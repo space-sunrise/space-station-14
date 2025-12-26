@@ -1,35 +1,678 @@
 - type: entity
   parent: IDCardStandard
+  id: BlueShieldOfficerIDCard
+  name: blue shield officer ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: department-side
+      color: &color-centcomm "#134975"
+    - sprite: &sunrise-icon-rsi _Sunrise/Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.19, 0
+      state: BlueShield
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: BlueShieldOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldEnsignIDCard
+  name: blue shield ensign ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+    - state: department-side
+      color: *color-centcomm
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: BlueShield
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: BlueShieldEnsign
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldOperativeIDCard
+  name: blue shield operative ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: blue
+    - state: department-side
+      color: *color-centcomm
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: BlueShield
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: BlueShieldOperative
+
+- type: entity
+  parent: IDCardStandard
+  id: RoboticistIDCard
+  name: roboticist ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: department-side
+      color: &color-science "#a53aaa"
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+      offset: *icon-offset
+      state: Roboticist
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: Roboticist
+
+- type: entity
+  parent: IDCardStandard
+  id: SecurityPilotIDCard
+  name: security pilot ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: department-side
+      color: &color-security "#cb0000"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: SecurityPilot
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: SecurityPilot
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonEngineerIDCard
+  name: prison engineer ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: stripe_top
+      color: "#9c2600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonEngineer
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonEngineer
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonScientistIDCard
+  name: prison scientist ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: stripe_top
+      color: "#9c2600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonScientist
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonScientist
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonDoctorIDCard
+  name: prison doctor ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: stripe_top
+      color: "#9c2600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonDoctor
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonDoctor
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonChefIDCard
+  name: prison chef ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: stripe_top
+      color: "#9c2600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonChef
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonChef
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonWorkerIDCard
+  name: prison worker ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: stripe_top
+      color: "#9c2600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonWorker
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonWorker
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonInspectorIDCard
+  name: prison inspector ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: dark-orange-space-prison
+    - state: stripe_top
+      color: "#900600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonInspector
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonInspector
+
+- type: entity
+  parent: IDCardStandard
   id: IAAIDCard
   name: internal affairs agent ID card
   components:
-    - type: Sprite
-      layers:
-        - state: silver
-        - state: idiaa
-    - type: PresetIdCard
-      job: IAA
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: department-side
+      color: *color-centcomm
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: IAA
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: IAA
 
 - type: entity
   parent: IDCardStandard
   id: MagistratIDCard
-  name: Magistrate ID Card
+  name: magistrate ID card
   components:
-    - type: Sprite
-      layers:
-        - state: silver
-        - state: idmagistrat
-    - type: PresetIdCard
-      job: Magistrat
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: blue
+    - state: department-side
+      color: *color-centcomm
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Magistrat
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: Magistrat
 
 - type: entity
   parent: IDCardStandard
-  id: BrigmedicIDCard
-  name: brigmedic ID card
+  id: PlanetPrisonerIDCard
+  name: prisoner ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-      - state: default
-      - state: idbrigmedic
+    - state: prisoner-space-prison
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Prisoner
+  - type: Item
+    heldPrefix: space-prison
   - type: PresetIdCard
-    job: Brigmedic
+    job: PlanetPrisoner
+
+- type: entity
+  parent: IDCardStandard
+  id: GuardIDCard
+  name: guard ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: space-prison
+    - state: department-side
+      color: *color-security
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonGuard
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonGuard
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonPilotIDCard
+  name: prison pilot ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: space-prison
+    - state: department-side
+      color: *color-security
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonPilot
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonPilot
+
+- type: entity
+  parent: IDCardStandard
+  id: HeadOfPrisonIDCard
+  name: head of prison ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: dark-orange-space-prison
+    - state: stripe_top
+      color: "#900600"
+    - state: stripe_bottom
+      color: "#730401"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: HeadOfPrison
+  - type: PresetIdCard
+    job: HeadOfPrison
+
+- type: entity
+  parent: IDCardStandard
+  id: NanoTrasenRepresentativeIDCard
+  name: NanoTrasen representative ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+    - state: department-side
+      color: *color-centcomm
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Nanotrasen
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: NanoTrasenRepresentative
+
+- type: entity
+  parent: IDCardStandard
+  id: BarberIDCard
+  name: barber ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: department-side
+      color: *color-service
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: Barber
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: Barber
+
+- type: entity
+  parent: IDCardStandard
+  id: AdjutantIDCard
+  name: adjutant ID card
+  description: Adjutant ID card.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: department-side
+      color: *color-command
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Adjutant
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: Adjutant
+
+- type: entity
+  parent: IDCardStandard
+  id: PathologistIDCard
+  name: Pathologist ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: department-side
+      color: *color-medical
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: Pathologist
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: MedicalPathologist
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPIDCard
+  name: USSP ID card
+  suffix: Crew
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: department-side
+      color: &color-ussp-side "#e80c0c"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: CrewUSSP
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Item
+    heldPrefix: black
+  - type: PresetIdCard
+    job: USSPCrew
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPOfficerIDCard
+  name: USSP ID card
+  suffix: Guard
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: department-side
+      color: *color-ussp-side
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: OfficerUSSP
+  - type: Access
+    tags:
+    - Maintenance
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Item
+    heldPrefix: black
+  - type: PresetIdCard
+    job: USSPOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSoldierIDCard
+  name: USSP ID card
+  suffix: Combat
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: department-side
+      color: *color-ussp-side
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: SoldierUSSP
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Item
+    heldPrefix: black
+  - type: PresetIdCard
+    job: USSPSoldier
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSoldierOfficerIDCard
+  name: USSP ID card
+  suffix: Combat Officer
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: department-side
+      color: *color-ussp-side
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: OfficerAltUSSP
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Item
+    heldPrefix: black
+  - type: PresetIdCard
+    job: USSPOfficerAlt
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPCaptainIDCard
+  name: USSP ID card
+  suffix: Captain
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: department-side
+      color: *color-ussp-side
+    - state: department-side-extra-gold-ussp
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: CaptainUSSP
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Item
+    heldPrefix: black
+  - type: PresetIdCard
+    job: USSPCaptain
+  - type: IdCard
+    jobTitle: JobUSSPOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: NtrGuardIDCard
+  name: NTR Guard ID card
+  description: OwO Squad
+  suffix: Officer
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: department-side
+      color: *color-ussp-side
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: NanotrasenGuard
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: NtrGuard
+
+- type: entity
+  parent: IDCardStandard
+  id: NtrLeadGuardIDCard
+  name: NTR Lead ID card
+  description: Leader OwO Squad
+  suffix: Leader
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: department-side
+      color: *color-centcomm
+    - state: department-side-extra-gold
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: NanotrasenLeader
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: NtrLeader
+
+- type: entity
+  parent: IDCardStandard
+  id: MailCarrierIDCard
+  name: mail carrier ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: department-side
+      color: &color-supply "#b18644"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: MailCarrier
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: MailCarrier
+
+- type: entity
+  parent: IDCardStandard
+  id: MiningIDCard
+  name: mining ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: department-side
+      color: *color-supply
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ShaftMiner
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: MiningSpecialist
+
+- type: entity
+  parent: [ IDCardStandard ]
+  id: AbductorIDCard
+  name: abductor ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: abductor
+    - type: Access # get your access from your victims.
+    - type: AgentIDCard
+    - type: IdCard
+      bypassLogging: true
+      canMicrowave: false
+      jobTitle: job-name-unknown
+    - type: Item
+      heldPrefix: default
+    - type: ActivatableUI
+      key: enum.AgentIDCardUiKey.Key
+      inHandsOnly: true
+    - type: UserInterface
+      interfaces:
+        enum.AgentIDCardUiKey.Key:
+          type: AgentIDCardBoundUserInterface
+
+- type: entity
+  parent: IDCardStandard
+  id: CommaidIDCard
+  name: Commaid ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: department-side
+      color: "#ff7ee3"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: CommandMaid
+    - type: Item
+      heldPrefix: silver
+  - type: PresetIdCard
+    job: ComMaid
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomOperatorIDCard
+  name: command operator ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: blue
+    - state: department-side
+      color: *color-centcomm
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: Nanotrasen
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: CentCommOperator

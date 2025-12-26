@@ -1,0 +1,19 @@
+- type: construction #by Noychik
+  name: construction-graph-tag-trashgun
+  id: Trashgun
+  graph: Trashgun
+  startNode: start
+  targetNode: done
+  category: construction-category-misc
+  description: construction-graph-tag-trashgun-desc
+  objectType: Item
+
+- type: construction
+  name: construction-graph-tag-trashlasergun
+  id: Trashlasergun
+  graph: Trashlasergun
+  startNode: start
+  targetNode: done
+  category: construction-category-misc
+  description: construction-graph-tag-trashlasergun-desc
+  objectType: Item

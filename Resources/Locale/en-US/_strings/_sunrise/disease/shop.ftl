@@ -1,0 +1,26 @@
+shop-disease-currency = Evolution Points
+listing-disease-cough-name = Cough
+listing-disease-cough-description = Infected start coughing.
+listing-disease-sneeze-name = Sneeze
+listing-disease-sneeze-description = Infected start sneezing.
+listing-disease-vomit-name = Nausea
+listing-disease-vomit-description = Infected feel nauseous, causing vomiting.
+listing-disease-zombie-name = Zombification
+listing-disease-zombie-description = All current infected become zombies. They also stop being infected.
+listing-disease-cry-name = Involuntary Tears
+listing-disease-cry-description = Infected eyes water actively, making it seem like they are crying.
+listing-disease-narcolepsy-name = Drowsiness
+listing-disease-narcolepsy-description = Infected develop a constant desire to sleep, which they sometimes cannot overcome.
+listing-disease-muted-name = Muteness
+listing-disease-muted-description = Mutation causes damage to the hypoglossal nerve, leading to paralysis of the tongue muscles, causing patients to lose the ability to speak normally.
+listing-disease-slowness-name = Exhaustion
+listing-disease-slowness-description = The virus causes destruction of muscle fibers, leading to atrophy and accompanied by weakness. Reduces overall mobility.
+listing-disease-bleed-name = Blood Loss
+listing-disease-bleed-description = The virus causes denaturation of blood hemoglobin, causing all carriers to develop severe anemia.
+listing-disease-blindness-name = Blindness
+listing-disease-blindness-description = Prolonged illness leads to death of the optic nerve, leading to almost complete blindness of the patient.
+listing-disease-insult-name = Convulsions
+listing-disease-insult-description = Prolonged illness causes hyperstimulation of motor neurons, as a result of which patients may experience muscle overstrain, leading to convulsions.
+
+listing-disease-info-name = Disease Information
+listing-disease-info-description = View your current disease statistics and progress.

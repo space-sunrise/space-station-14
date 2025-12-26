@@ -1,0 +1,15 @@
+ent-RemoteShuttleControllerBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-RemoteAssaultOpsShuttleController = Удаленный контроллер управления шаттлом (Диверсионный отряд)
+    .desc = Теперь вам не нужен пилот, ведь пилот это вы!
+ent-RemoteNukeOpShuttleController = Удаленный контроллер управления шаттлом (Ядерные оперативки)
+    .desc = Теперь вам не нужен пилот, ведь пилот это вы!
+ent-RemoteSecurityShuttleController = Удаленный контроллер управления шаттлом (Шаттл службы безопастности)
+    .desc = Теперь вам не нужен пилот, ведь пилот это вы!
+ent-RemoteCargoShuttleController = Удаленный контроллер управления шаттлом (Шаттл карго)
+    .desc = Теперь вам не нужен пилот, ведь пилот это вы!
+ent-RemotePrisonShuttleController = Удаленный контроллер управления шаттлом (Тюремный шаттл)
+    .desc = Теперь вам не нужен пилот, ведь пилот это вы!
+ent-DoorRemoteOmni = универсальный пульт управления дверьми
+    .suffix = Центком
+    .desc = { ent-DoorRemoteDefault.desc }

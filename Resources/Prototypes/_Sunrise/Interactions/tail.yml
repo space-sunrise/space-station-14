@@ -1,0 +1,17 @@
+- type: interaction
+  id: PatTail
+  name: interaction-name-pat-tail
+  icon: FriendlyPatTailIcon
+  category: Tail
+  interactionMessages:
+  - "%user нежно гладит хвостик %target"
+  - "%user ласково проводит ладонью по хвосту %target"
+  - "%user игриво поглаживает ладонью хвостик %target"
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:HasVisualLayerCondition
+    checkTarget: true
+    checkInitiator: false
+    layer: Tail
+  cooldown: 3

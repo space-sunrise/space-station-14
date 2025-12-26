@@ -8,6 +8,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Random;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Prometheus;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
@@ -21,15 +22,22 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IComponentFactory _compFact = default!;
 
     private string _ruleCompName = default!;
+    // Sunrise-Start
+    private readonly Counter _secretPresetSelectedCounter = Metrics.CreateCounter(
+        "secret_preset_selected",
+        "Amount of times each preset was selected in secret mode",
+        new CounterConfiguration
+        {
+            LabelNames = ["preset"]
+        });
+    // Sunrise-End
 
     public override void Initialize()
     {
         base.Initialize();
-        _ruleCompName = _compFact.GetComponentName(typeof(GameRuleComponent));
+        _ruleCompName = Factory.GetComponentName<GameRuleComponent>();
     }
 
     protected override void Added(EntityUid uid, SecretRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -46,6 +54,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
+        _secretPresetSelectedCounter.WithLabels(preset.ID).Inc(); // Sunrise-Edit
 
         foreach (var rule in preset.Rules)
         {
@@ -164,7 +173,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
                 return false;
             }
 
-            if (ruleComp.MinPlayers > players)
+            if (ruleComp.MinPlayers > players && ruleComp.CancelPresetOnTooFewPlayers)
                 return false;
         }
 

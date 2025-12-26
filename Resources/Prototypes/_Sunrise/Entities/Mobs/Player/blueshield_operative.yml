@@ -1,0 +1,51 @@
+## Blueshield Operative
+
+- type: entity
+  id: RandomHumanoidSpawnerBlueShieldOperative
+  parent: RandomHumanoidSpawnerERTLeader
+  name: BlueShield Operative
+  suffix: BlueShieldRole, Basic
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: blueshieldoperative
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: BlueShieldOperative
+
+- type: randomHumanoidSettings
+  id: BlueShieldOperative
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-blueshield-operative-name
+      description: ghost-role-information-blueshield-operative-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: BlueShieldOperative
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Loadout
+      prototypes: [ BlueShieldOperativeGear ]
+      roleLoadout: [ RoleSurvivalExtended ]

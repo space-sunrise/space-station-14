@@ -1,0 +1,117 @@
+- type: roadmapVersions
+  id: SunriseRoadmap
+  versions:
+  - name: roadmap-available-now
+    goals:
+    - name: fugitive-name
+      desc: fugitive-desc
+      state: Complete
+    - name: planet-prison-name
+      desc: planet-prison-desc
+      state: Complete
+    - name: cyborg-update-name
+      desc: cyborg-update-desc
+      state: Complete
+    - name: collective-mind-name
+      desc: collective-mind-desc
+      state: Complete
+    - name: syndicate-cyborgs-name
+      desc: syndicate-cyborgs-desc
+      state: Complete
+    - name: new-guns-name
+      desc: new-guns-desc
+      state: Complete
+    - name: smart-viruse-name
+      desc: smart-viruse-desc
+      state: Complete
+    - name: cargo-rework-name
+      desc: cargo-rework-desc
+      state: Complete
+    - name: new-maps-name
+      desc: new-maps-desc
+      state: Complete
+    - name: fully-translating-name
+      desc: fully-translating-desc
+      state: Complete
+    - name: mechs-name
+      desc: mechs-desc
+      state: Complete
+    - name: assault-ops-name
+      desc: assault-ops-desc
+      state: Complete
+    - name: flesh-cult-name
+      desc: flesh-cult-desc
+      state: Complete
+    - name: blood-cult-name
+      desc: blood-cult-desc
+      state: Complete
+    - name: vent-crawling-name
+      desc: vent-crawling-desc
+      state: Complete
+  - name: roadmap-in-progress
+    goals:
+    - name: economy-name
+      desc: economy-desc
+      state: InProgress
+    - name: ipc-name
+      desc: ipc-desc
+      state: InProgress
+    - name: ert-call-name
+      desc: ert-call-desc
+      state: InProgress
+    - name: blob-name
+      desc: blob-desc
+      state: InProgress
+    - name: extend-med-name
+      desc: extend-med-desc
+      state: InProgress
+  - name: roadmap-planned
+    goals:
+    - name: station_goals_rework-name
+      desc: station_goals_rework-desc
+      state: Planned
+    - name: borer-name
+      desc: borer-desc
+      state: Planned
+    - name: lavaland-name
+      desc: lavaland-desc
+      state: Planned
+    - name: angels-name
+      desc: angels-desc
+      state: Planned
+    - name: impids-name
+      desc: impids-desc
+      state: Planned
+    - name: skills-name
+      desc: skills-name
+      state: Planned
+    - name: space-fight-name
+      desc: space-fight-desc
+      state: Planned
+    - name: spider-terror-name
+      desc: spider-terror-desc
+      state: Planned
+    - name: morph-name
+      desc: morph-desc
+      state: Planned
+    - name: diseases-name
+      desc: diseases-desc
+      state: Planned
+    - name: plasmamens-name
+      desc: plasmamens-desc
+      state: Planned
+    - name: arena-name
+      desc: arena-desc
+      state: Planned
+    - name: limbo-name
+      desc: limbo-desc
+      state: Planned
+    - name: taipan-name
+      desc: taipan-desc
+      state: Planned
+    - name: ussp-name
+      desc: ussp-desc
+      state: Planned
+    - name: ratvar-name
+      desc: ratvar-desc
+      state: Planned

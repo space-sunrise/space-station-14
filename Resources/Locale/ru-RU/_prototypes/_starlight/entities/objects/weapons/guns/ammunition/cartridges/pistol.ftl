@@ -1,0 +1,10 @@
+ent-CartridgePistol40SP = патрон (.40 SP)
+    .desc = { ent-BaseCartridgePistol.desc }
+ent-CartridgePistol40HP = патрон (.40 HP)
+    .desc = { ent-CartridgePistol40SP.desc }
+ent-CartridgePistol40FMJ = патрон (.40 FMJ)
+    .desc = { ent-CartridgePistol40SP.desc }
+ent-CartridgePistol40AP = патрон (.40 AP)
+    .desc = { ent-CartridgePistol40SP.desc }
+ent-CartridgePistolImprovised = самодельный патрон (.35 auto)
+    .desc = Самодельный пистолетный патрон, использующий фосфор в качестве метательного вещества вместо пороха, что делает его гораздо менее эффективным.

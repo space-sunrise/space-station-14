@@ -10,6 +10,8 @@ using Robust.Client.Graphics;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio;
+using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Client.GameTicking.Managers
 {
@@ -26,15 +28,19 @@ namespace Content.Client.GameTicking.Managers
 
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
-        [ViewVariables] public string? RestartSound { get; private set; }
+        [ViewVariables] public ResolvedSoundSpecifier? RestartSound { get; private set; }
         // Sunrise-Start
-        [ViewVariables] public string? LobbyParalax { get; private set; }
-        [ViewVariables] public LobbyImage? LobbyImage { get; private set; }
+        [ViewVariables] public string? LobbyType { get; private set; }
+        [ViewVariables] public string? LobbyParallax { get; private set; }
+        [ViewVariables] public ProtoId<LobbyBackgroundPrototype>? LobbyAnimation { get; private set; }
+        [ViewVariables] public string? LobbyArt { get; private set; }
         // Sunrise-End
         [ViewVariables] public bool DisallowedLateJoin { get; private set; }
         [ViewVariables] public string? ServerInfoBlob { get; private set; }
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
+
+        public override IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules => new List<(TimeSpan, string)>();
 
         [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
         [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
@@ -46,6 +52,8 @@ namespace Content.Client.GameTicking.Managers
 
         public override void Initialize()
         {
+            base.Initialize();
+
             SubscribeNetworkEvent<TickerJoinLobbyEvent>(JoinLobby);
             SubscribeNetworkEvent<TickerJoinGameEvent>(JoinGame);
             SubscribeNetworkEvent<TickerConnectionStatusEvent>(ConnectionStatus);
@@ -123,8 +131,10 @@ namespace Content.Client.GameTicking.Managers
             IsGameStarted = message.IsRoundStarted;
             AreWeReady = message.YouAreReady;
             // Sunrise-Start
-            LobbyParalax = message.LobbyParalax;
-            LobbyImage = message.LobbyImage;
+            LobbyType = message.LobbyType;
+            LobbyArt = message.LobbyArt;
+            LobbyParallax = message.LobbyParallax;
+            LobbyAnimation = message.LobbyAnimation;
             // Sunrise-End
             Paused = message.Paused;
 

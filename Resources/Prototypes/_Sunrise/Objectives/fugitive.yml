@@ -1,0 +1,24 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseFugitiveObjective
+  components:
+  - type: Objective
+    issuer: syndicate
+  - type: RoleRequirement
+    roles:
+    - FugitiveRole
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseFugitiveObjective, BaseLivingObjective]
+  id: FugitiveEscapeShuttleObjective
+  name: Escape to centcomm alive and unrestrained.
+  description: You somehow managed to escape from prison to a space station, you need to fly away from the station on an escape shuttle to the spaceport.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition

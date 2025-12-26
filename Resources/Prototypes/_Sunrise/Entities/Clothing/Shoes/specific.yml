@@ -52,3 +52,59 @@
     sprite: _Sunrise/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingWraps
+  name: wraps
+  description: Rugged cloth wraps, often used for protection or support in rough environments.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/wraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/wraps.rsi
+    slots: [FEET, gloves]
+  - type: Construction
+    graph: WrapsCraft
+    node: Wraps
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingWrapsHigh
+  name: high wraps
+  description: Rugged high cloth wraps, often used for protection or support in rough environments.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/wraps_high.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/wraps_high.rsi
+    slots: [FEET, gloves]
+  - type: Construction
+    graph: WrapsHighCraft
+    node: WrapsHigh
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/Leather/drop.ogg
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard

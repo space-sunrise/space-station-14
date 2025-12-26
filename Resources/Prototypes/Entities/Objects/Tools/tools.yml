@@ -7,6 +7,18 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wirecutter_drop.ogg
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/wirecutter_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/wirecutter_drop.ogg
+      params:
+        volume: -2
+  # Sunrise edit
   - type: Tag
     tags:
     - PlantSampleTaker
@@ -43,6 +55,15 @@
       Steel: 100
   - type: StaticPrice
     price: 30
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.35
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
 - type: entity
   name: screwdriver
@@ -53,6 +74,18 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/screwdriver_drop.ogg
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/screwdriver_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/screwdriver_drop.ogg
+      params:
+        volume: -2
+  # Sunrise end
   - type: Tag
     tags:
     - Screwdriver
@@ -92,11 +125,23 @@
   name: wrench
   parent: BaseItem
   id: Wrench
-  description: 'A common tool for assembly and disassembly. Remember: righty tighty, lefty loosey.'
+  description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
   components:
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wrench_drop.ogg
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/wrench_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/wrench_drop.ogg
+      params:
+        volume: -2
+  # Sunrise end
   - type: Tag
     tags:
     - Wrench
@@ -126,70 +171,15 @@
       Steel: 100
   - type: StaticPrice
     price: 22
-
-- type: entity
-  name: crowbar
-  parent: BaseItem
-  id: Crowbar
-  description: A multipurpose tool to pry open doors and fight interdimensional invaders.
-  components:
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Items/crowbar_drop.ogg
-  - type: Tag
-    tags:
-    - Crowbar
-  - type: Sprite
-    sprite: Objects/Tools/crowbar.rsi
-    state: icon
-  - type: Item
-    sprite: Objects/Tools/crowbar.rsi
-    size: Small
-    storedSprite:
-      sprite: Objects/Tools/crowbar.rsi
-      state: storage
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Blunt: 8
-    soundHit:
-      collection: MetalThud
-  - type: Tool
-    qualities:
-      - Prying
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: ToolTileCompatible
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-  - type: StaticPrice
-    price: 22
-  - type: Prying
-
-- type: entity
-  parent: Crowbar
-  id: CrowbarRed
-  name: emergency crowbar
-  components:
-  - type: Tag
-    tags:
-    - Crowbar
-    - CrowbarRed
-  - type: Sprite
-    state: red-icon
-  - type: Item
-    heldPrefix: red
-    storedSprite:
-      sprite: Objects/Tools/crowbar.rsi
-      state: red-storage
+  - type: GuideHelp
+    guides:
+    - Construction
 
 - type: entity
   name: multitool
-  parent: BaseItem
+  parent: [BaseItem, MultitoolSounds] # Sunrise
   id: Multitool
-  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines
+  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
   components:
   - type: EmitSoundOnLand
     sound:
@@ -232,10 +222,16 @@
       Plastic: 100
   - type: StaticPrice
     price: 56
+  - type: GuideHelp
+    guides:
+    - Networking
+    - WirePanels
+    - Airlocks
+    - InspectingPower
 
 - type: entity
   name: network configurator
-  parent: BaseItem
+  parent: [BaseItem, MultitoolSounds] # Sunrise
   id: NetworkConfigurator
   description: A tool for linking devices together. Has two modes, a list mode for mass linking devices and a linking mode for advanced device linking.
   components:
@@ -282,7 +278,7 @@
       price: 56
     - type: GuideHelp
       guides:
-        - NetworkConfigurator
+      - Networking
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -342,7 +338,7 @@
 
 - type: entity
   id: RCD
-  parent: BaseItem
+  parent: [ BaseItem, BaseEngineeringContraband ]
   name: RCD
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
   components:
@@ -367,10 +363,12 @@
     - HVCable
     - CableTerminal
     - Deconstruct
+    - TripleGlassAirlockBasic #sunrise start
+    - TripleGlassAirlock
+    - DoubleGlassAirlock
+    - DoubleGlassAirlockBasic #sunrise end
   - type: LimitedCharges
     maxCharges: 30
-    charges: 30
-  - type: UseDelay
   - type: Sprite
     sprite: Objects/Tools/rcd.rsi
     state: icon
@@ -386,12 +384,13 @@
       Steel: 600
       Plastic: 100
   - type: StaticPrice
-    price: 100
+    price: 110
   - type: UserInterface
     interfaces:
       enum.RcdUiKey.Key:
         type: RCDMenuBoundUserInterface
   - type: ActivatableUI
+    inHandsOnly: true
     key: enum.RcdUiKey.Key
 
 - type: entity
@@ -400,34 +399,33 @@
   suffix: Empty
   components:
   - type: LimitedCharges
-    charges: 0
-  - type: RCD
-    availablePrototypes:
-    - WallSolid
-    - FloorSteel
-    - Plating
-    - Catwalk
-    - Grille
-    - Window
-    - WindowDirectional
-    - WindowReinforcedDirectional
-    - ReinforcedWindow
-    - Airlock
-    - AirlockGlass
-    - Firelock
+    lastCharges: -1
 
 - type: entity
   id: RCDRecharging
   parent: RCD
   name: experimental RCD
-  description: A bluespace-enhanced rapid construction device that passively generates its own compressed matter.
+  description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
   suffix: AutoRecharge
   components:
   - type: LimitedCharges
     maxCharges: 20
-    charges: 20
   - type: AutoRecharge
     rechargeDuration: 10
+
+# Sunrise-start
+- type: entity
+  id: RCDRechargingMini
+  parent: RCD
+  name: experimental Mini-RCD
+  description: Cyberarm-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
+  suffix: AutoRecharge, Mini
+  components:
+  - type: LimitedCharges
+    maxCharges: 12
+  - type: AutoRecharge
+    rechargeDuration: 30
+# Sunrise-end
 
 - type: entity
   id: RCDExperimental
@@ -538,7 +536,7 @@
     wideAnimationRotation: 45
     damage:
       types:
-        Blunt: 14
+        Blunt: 12 # Sunrise-Edit
     soundHit:
       collection: MetalThud
   - type: Item
@@ -564,6 +562,7 @@
   - type: Item
     sprite: Objects/Tools/rolling_pin.rsi
     size: Small
+    storedRotation: -45
   - type: Clothing
     sprite: Objects/Tools/rolling_pin.rsi
     quickEquip: false
@@ -585,3 +584,6 @@
   - type: Tag
     tags:
     - RollingPin
+  - type: Construction
+    graph: WoodenRollingPin
+    node: rollingpin

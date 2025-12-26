@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "https://github.com/GentleButter, thrower sprites by KaiserMaus based on https://github.com/Baystation12/Baystation12/blob/4900e4272177602e235c72f1f8269974128c1d74/icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_titan.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "delays": [
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_arm",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_foot",
+      "directions": 4
+    },
+    {
+      "name": "l_hand",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_leg",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_arm",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_foot",
+      "directions": 4
+    },
+    {
+      "name": "eyes",
+      "directions": 4
+    },
+    {
+      "name": "r_hand",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_leg",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_hephaestus_titan",
+      "directions": 4
+    },
+    {
+      "name": "r_hephaestus_titan",
+      "directions": 4
+    },
+    {
+      "name": "l_hephaestus_titan_thrower",
+      "directions": 4
+    },
+    {
+      "name": "r_hephaestus_titan_thrower",
+      "directions": 4
+    },
+    {
+      "name": "l_hephaestus",
+      "directions": 4
+    },
+    {
+      "name": "r_hephaestus",
+      "directions": 4
+    },
+    {
+      "name": "l_hephaestus_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_hephaestus_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "hand_folder",
+      "directions": 4
+    },
+    {
+      "name": "l_zenghu",
+      "directions": 4
+    },
+    {
+      "name": "r_zenghu",
+      "directions": 4
+    },
+    {
+      "name": "l_zenghu_Jani",
+      "directions": 4
+    },
+    {
+      "name": "r_zenghu_Jani",
+      "directions": 4
+    },
+    {
+      "name": "l_zenghu_arm_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_zenghu_arm_TOOLS",
+      "directions": 4
+    }
+  ]
+}

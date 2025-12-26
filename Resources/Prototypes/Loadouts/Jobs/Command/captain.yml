@@ -1,36 +1,30 @@
+# For mantles
+- type: loadoutEffectGroup
+  id: MasterCap
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 20h
+
 # Jumpsuit
 - type: loadout
-  id: CaptainJumpsuit
-  equipment: CaptainJumpsuit
-
-- type: startingGear
   id: CaptainJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptain
 
 - type: loadout
   id: CaptainJumpskirt
-  equipment: CaptainJumpskirt
-
-- type: startingGear
-  id: CaptainJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCaptain
 
 - type: loadout
   id: CaptainFormalSuit
-  equipment: CaptainFormalSuit
-
-- type: startingGear
-  id: CaptainFormalSuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCapFormal
 
 - type: loadout
-  id: CaptainFormalSkirt
-  equipment: CaptainFormalSkirt
-
-- type: startingGear
   id: CaptainFormalSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCapFormalDress
@@ -38,44 +32,47 @@
 # Head
 - type: loadout
   id: CaptainHead
-  equipment: CaptainHead
-
-- type: startingGear
-  id: CaptainHead
   equipment:
     head: ClothingHeadHatCaptain
 
 - type: loadout
   id: CaptainCap
-  equipment: CaptainCap
-
-- type: startingGear
-  id: CaptainCap
   equipment:
     head: ClothingHeadHatCapcap
+
+- type: loadout #Sunrise-add
+  id: EliteCaptainCap
+  sponsorOnly: false
+  equipment:
+    head: ClothingHeadEliteCaptainCap
 
 # Neck
 - type: loadout
   id: CaptainCloak
-  equipment: CaptainCloak
-
-- type: startingGear
-  id: CaptainCloak
   equipment:
     neck: ClothingNeckCloakCap
-  
-- type: loadout
-  id: CaptainCloakFormal
-  equipment: CaptainCloakFormal
 
-- type: startingGear
+- type: loadout
   id: CaptainCloakFormal
   equipment:
     neck: ClothingNeckCloakCapFormal
 
 - type: loadout
   id: CaptainMantle
-  equipment: CaptainMantle
+  equipment:
+    neck: ClothingNeckMantleCap
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCap
+
+- type: loadout #Sunrise-add
+  id: CaptainEliteCloak
+  sponsorOnly: false
+  equipment:
+    head: ClothingEliteNeckCloakCaptain
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCap
 
 - type: startingGear
   id: CaptainMantle
@@ -85,46 +82,38 @@
 # Back
 - type: loadout
   id: CaptainBackpack
-  equipment: CaptainBackpack
-
-- type: startingGear
-  id: CaptainBackpack
   equipment:
     back: ClothingBackpackCaptain
 
 - type: loadout
-  id: CaptainSatchel
-  equipment: CaptainSatchel
-
-- type: startingGear
   id: CaptainSatchel
   equipment:
     back: ClothingBackpackSatchelCaptain
 
 - type: loadout
   id: CaptainDuffel
-  equipment: CaptainDuffel
-
-- type: startingGear
-  id: CaptainDuffel
   equipment:
     back: ClothingBackpackDuffelCaptain
 
 # Outer clothing
 - type: loadout
-  id: CaptainOuterClothing
-  equipment: CaptainOuterClothing
-
-- type: startingGear
-  id: CaptainOuterClothing
+  id: CaptainOuterArmor
   equipment:
     outerClothing: ClothingOuterArmorCaptainCarapace
 
+#Sunrise-Start
 - type: loadout
-  id: CaptainWintercoat
-  equipment: CaptainWintercoat
+  id: CaptainOuterCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCaptain
 
-- type: startingGear
+- type: loadout
+  id: CaptainOuterOverCoat
+  sponsorOnly: false
+  equipment:
+    outerClothing: ClothingOuterCoatCaptainOvercoat
+#Sunrise-End
+- type: loadout
   id: CaptainWintercoat
   equipment:
     outerClothing: ClothingOuterWinterCap

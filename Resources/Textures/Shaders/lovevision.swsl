@@ -1,0 +1,21 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp float effectStrength;
+
+void fragment() {
+    highp vec4 color = zTextureSpec(SCREEN_TEXTURE, UV);
+
+    highp mat3 m = mat3(
+        vec3(1.0, 0.3, 0.3),
+        vec3(0.6, 0.3, 0.3),
+        vec3(0.6, 0.3, 1.0)
+    );
+
+    // Apply the color transformation using the matrix
+    highp vec3 transformedColor = color.rgb * m;
+
+    // Interpolate between the original color and the transformed color based on effectStrength
+    highp vec3 finalColor = mix( color.rgb, transformedColor, vec3(effectStrength) );
+
+    // Set the final color output
+    COLOR = vec4(finalColor, 1.0);
+}

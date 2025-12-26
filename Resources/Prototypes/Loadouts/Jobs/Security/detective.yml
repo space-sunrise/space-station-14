@@ -1,65 +1,45 @@
 # Head
 - type: loadout
   id: DetectiveFedora
-  equipment: DetectiveFedora
-
-- type: startingGear
-  id: DetectiveFedora
   equipment:
     head: ClothingHeadHatFedoraBrown
 
 - type: loadout
   id: DetectiveFedoraGrey
-  equipment: DetectiveFedoraGrey
-
-- type: startingGear
-  id: DetectiveFedoraGrey
   equipment:
     head: ClothingHeadHatFedoraGrey
-  
+
 # Neck
 - type: loadout
-  id: DetectiveTie
-  equipment: DetectiveTie
-
-- type: startingGear
   id: DetectiveTie
   equipment:
     neck: ClothingNeckTieDet
 
+- type: loadout
+  id: DetectiveTieHorrific #Sunrise-add
+  equipment:
+    neck: ClothingNeckHorrific
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
 # Jumpsuit
 - type: loadout
-  id: DetectiveJumpsuit
-  equipment: DetectiveJumpsuit
-
-- type: startingGear
   id: DetectiveJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
 
 - type: loadout
   id: DetectiveJumpskirt
-  equipment: DetectiveJumpskirt
-
-- type: startingGear
-  id: DetectiveJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetective
 
 - type: loadout
   id: NoirJumpsuit
-  equipment: NoirJumpsuit
-
-- type: startingGear
-  id: NoirJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetectiveGrey
 
 - type: loadout
-  id: NoirJumpskirt
-  equipment: NoirJumpskirt
-
-- type: startingGear
   id: NoirJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveGrey
@@ -67,18 +47,104 @@
 # OuterClothing
 - type: loadout
   id: DetectiveArmorVest
-  equipment: DetectiveArmorVest
-
-- type: startingGear
-  id: DetectiveArmorVest
   equipment:
     outerClothing: ClothingOuterVestDetective
 
 - type: loadout
   id: DetectiveCoat
-  equipment: DetectiveCoat
-
-- type: startingGear
-  id: DetectiveCoat
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadout
+
+- type: loadout
+  id: DetectiveCoatGrey
+  equipment:
+    outerClothing: ClothingOuterCoatDetectiveLoadoutGrey
+
+#Sunrise-Start
+- type: loadoutEffectGroup
+  id: MasterDetective
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 #20 hrs
+
+- type: loadoutEffectGroup
+  id: MasterDetective50h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 180000 #50 hrs
+
+- type: loadoutEffectGroup
+  id: MasterDetective100h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 360000 #100 hrs
+
+#Weapons Detective
+
+- type: loadout
+  id: DetectiveWeapon
+  equipment:
+    pocket1: WeaponRevolverInspector
+
+- type: loadout
+  id: WeaponRevolverSnubRevolver
+  equipment:
+    pocket1: WeaponRevolverSnubRevolver
+
+- type: loadout
+  id: DetectiveWeapon20h
+  equipment:
+    pocket1: WeaponRevolverDeckard
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadout
+  id: DetectiveWeapon50h
+  equipment:
+    pocket1: WeaponRevolverSpearhead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective50h
+
+- type: loadout
+  id: DetectiveWeapon50h2
+  equipment:
+    pocket1: WeaponRevolverSpearheadBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective50h
+
+- type: loadout
+  id: DetectiveWeapon100h
+  equipment:
+    pocket1: WeaponPistolM1984
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective100h
+
+- type: loadout
+  id: ClothingUniformJumpSuitSuperStarCop20h
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSuperstarCop
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadout
+  id: ClothingOuterDiscoAssBlazerDetective20h
+  equipment:
+    outerClothing: ClothingOuterDiscoAssBlazerDetective
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+#Sunrise-End

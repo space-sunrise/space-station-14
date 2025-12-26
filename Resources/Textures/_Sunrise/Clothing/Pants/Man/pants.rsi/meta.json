@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "",
+    "copyright": "BoyBoyevich made (male_christmas_boxers, male_christmas_boxers_Icon) for SunRise",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,9 @@
     "states": [
         {
             "name": "male_stripe_icon"
+        },
+        {
+            "name": "male_christmas_boxers_Icon"
         },
         {
             "name": "male_uk_icon"
@@ -38,7 +41,14 @@
             "name": "male_briefs_icon"
         },
         {
+            "name": "male_midway_icon"
+        },
+        {
             "name": "male_stripe",
+            "directions": 4
+        },
+        {
+            "name": "male_christmas_boxers",
             "directions": 4
         },
         {

@@ -12,6 +12,7 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
+  - MechEquipmentKineticAccelerator # Sunrise-Add
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -27,6 +28,7 @@
   - BoxShotgunIncendiary
   - MagazineRifleIncendiary
   - MagazinePistolIncendiary
+  - MagazinePistolSubMachineGunIncendiary
   - MagazineLightRifleIncendiary
   - SpeedLoaderMagnumIncendiary
   - MagazineShotgunIncendiary
@@ -34,6 +36,13 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
+  - MagazinePistolSubMachineGunTopMountedIncendiary #Sunrise-Add
+  - MagazinePistolHighCapacityIncendiary # Sunrise-Add
+  - MagazineRifleHeavyIncendiary # Sunrise-Add
+  - MagazineBoxHeavyRifleIncendiary # Sunrise-Add
+  - MagazineRifleBoxIncendiary # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -46,21 +55,33 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  # Sunrise-Start
+  - WeaponMechCombatFiredartLaser
+  - WeaponEnergyGun
+  - WeaponMiniEnergyGun
+  # Sunrise-End
 
 - type: technology
   id: NonlethalAmmunition
   name: research-technology-nonlethal-ammunition
   icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
     state: beanbag
   discipline: Arsenal
   tier: 1
   cost: 5000
   recipeUnlocks:
   - MagazineShotgunBeanbag
-  - ShellTranquilizer 
-  - BoxBeanbag 
+  - BoxShellTranquilizer
+  - BoxBeanbag
   - WeaponDisabler
+  # Sunrise-Start
+  - WeaponMechCombatDisabler
+  - MagazinePistolSubMachineGunTopMountedRubber
+  - MagazinePistolSubMachineGunRubber
+  # Sunrise-End
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: UraniumMunitions
@@ -74,13 +95,23 @@
   recipeUnlocks:
   - MagazineRifleUranium
   - MagazinePistolUranium
+  - MagazinePistolSubMachineGunUranium
   - MagazineLightRifleUranium
   - SpeedLoaderMagnumUranium
+  - MagazineMagnumUranium
   - MagazineBoxPistolUranium
   - MagazineBoxMagnumUranium
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
+  - MagazinePistolSubMachineGunTopMountedUranium #Sunrise-Add
+  - MagazinePistolHighCapacityUranium # Sunrise-Add
+  - MagazineRifleHeavyUranium # Sunrise-Add
+  - MagazineBoxHeavyRifleUranium # Sunrise-Add
+  - MagazineRifleBoxUranium # Sunrise-Add
+  - MagazineLightRifleBeltBoxUranium # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: AdvancedRiotControl
@@ -96,8 +127,12 @@
   - TelescopicShield
   - HoloprojectorSecurity
   - WeaponDisablerSMG
-
-# Tier 2
+  - FlareGunSecurityUpgrade # Sunrise-Add
+  - VestSecUpgradePlate # Sunrise-Add
+  - VestSecUpgradeStab # Sunrise-Add
+  - VestSecUpgradeHeat # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
   id: ExplosiveTechnology
@@ -106,7 +141,7 @@
     sprite: Objects/Devices/payload.rsi
     state: payload-explosive-armed
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 10000
   recipeUnlocks:
   - SignallerAdvanced
@@ -116,6 +151,22 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
+  - CableDetStack1
+  - EmptyDetonator
+
+- type: technology
+  id: SpecialMeans
+  name: research-technology-special-means
+  icon:
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingBackpackElectropack
+
+# Tier 2
 
 - type: technology
   id: ConcentratedLaserWeaponry
@@ -128,6 +179,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
+  - WeaponMechCombatSolarisLaser #Sunrise-Add
 
 - type: technology
   id: WaveParticleHarnessing
@@ -140,11 +192,26 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
+  - WeaponMechCombatXray  #Sunrise-Add
+
+- type: technology
+  id: KineticModifications
+  name: research-technology-kinetic-modifications
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - PKAUpgradeDamage
+  - PKAUpgradeRange
+  - PKAUpgradeFireRate
 
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament
-  icon: 
+  icon:
     sprite: Structures/Power/cage_recharger.rsi
     state: full
   discipline: Arsenal
@@ -155,13 +222,35 @@
   - PowerCageSmall
   - PowerCageMedium
   - MagazineGrenadeEmpty
-  - GrenadeFlash
-  - GrenadeBlast
+  - ShellFlashArtillery # Sunrise-Edit
+  - ShellBlastArtillery # Sunrise-Edit
+  - ShellFragArtillery # Sunrise-Add
+  - RifleHeavyMagazineFMJ # Sunrise-Add
+  - RifleHeavyMagazineHP # Sunrise-Add
+  - RifleHeavyMagazineSP # Sunrise-Add
+  - RifleHeavyMagazineArtillery # Sunrise-Add
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
+  - ShuttleGunSquallCircuitboard # Sunrise-Add
   technologyPrerequisites:
   - SalvageWeapons
+  radioChannels: # Sunrise-Add
+  - Security
+
+- type: technology
+  id: DualWieldingTechnology
+  name: research-technology-dual-wielding-technology
+  icon:
+    sprite: Clothing/Back/Specific/harmpack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingBackpackHarmpack
+  radioChannels: # Sunrise-Add
+  - Security
 
 # Tier 3
 
@@ -177,31 +266,52 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
+  - WeaponMechCombatImmolationGun # Sunrise-Add
+  - WeaponMechCombatIon # Sunrise-Add
+  radioChannels: # Sunrise-Add
+  - Security
 
 - type: technology
-  id: ExperimentalBatteryAmmo
-  name: research-technology-experimental-battery-ammo
+  id: ThermalWeaponry
+  name: research-technology-thermal-weaponry
   icon:
-    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
     state: icon
   discipline: Arsenal
-  tier: 3
-  cost: 15000
+  tier: 2
+  cost: 8000
   recipeUnlocks:
-  - WeaponLaserSvalinn
-  
+  - WeaponTemperatureGun
+
 - type: technology
   id: AdvancedShuttleWeapon
   name: research-technology-advanced-shuttle-weapon
-  icon: 
+  icon:
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
     state: icon
   discipline: Arsenal
   tier: 3
   cost: 15000
   recipeUnlocks:
-  - GrenadeEMP
+  - ShellEMPArtillery # Sunrise-Edit
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
+  - ShuttleGunLongbowCircuitboard # Sunrise-start
+  - ShuttleGunVympelCircuitboard
+  - ShuttleGunTeslaOrionCircuitboard
+  - ShuttleGunBeamstormMachineGunCircuitboard
+  - MagazineBauer127
+  - MagazineBauer127Penetrator
+  - MagazineBauer127Blast
+  - MagazineBauer127Frag
+  - MagazineBauer127Emp
+  - MagazineBoxBelt127Empty
+  - MagazineBoxBelt127
+  - MagazineBoxBelt127Artillery
+  - MagazineBoxBelt127Blast
+  - MagazineBoxBelt127Frag
+  - MagazineBoxBelt127Emp # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
+  radioChannels: # Sunrise-Add
+  - Security

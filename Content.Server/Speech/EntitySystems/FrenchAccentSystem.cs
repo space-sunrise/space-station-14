@@ -1,5 +1,6 @@
-using Content.Server.Speech.Components;
 using System.Text.RegularExpressions;
+using Content.Server.Speech.Components;
+using Content.Shared.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -10,8 +11,7 @@ public sealed class FrenchAccentSystem : EntitySystem
 {
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
 
-    private static readonly Regex RegexTh = new(@"th", RegexOptions.IgnoreCase);
-    private static readonly Regex RegexStartH = new(@"(?<!\w)h", RegexOptions.IgnoreCase);
+private static readonly Regex RegexKR = new(@"[кКрР]", RegexOptions.Compiled | RegexOptions.NonBacktracking);
     private static readonly Regex RegexSpacePunctuation = new(@"(?<=\w\w)[!?;:](?!\w)", RegexOptions.IgnoreCase);
 
     public override void Initialize()
@@ -26,13 +26,17 @@ public sealed class FrenchAccentSystem : EntitySystem
         var msg = message;
 
         msg = _replacement.ApplyReplacements(msg, "french");
-
-        // replaces th with dz
-        msg = RegexTh.Replace(msg, "'z");
-
-        // removes the letter h from the start of words.
-        msg = RegexStartH.Replace(msg, "'");
-
+// Sunrise-Edit Start
+        // replaces 'к/К' with 'кх/КХ' and 'р/Р' with 'х/Х' globally (preserves case) in a single pass.
+        msg = RegexKR.Replace(msg, static m => m.Value[0] switch
+        {
+            'К' => "КХ",
+            'к' => "кх",
+            'Р' => "Х",
+            'р' => "х",
+            _ => m.Value
+        });
+// Sunrise -Edit End
         // spaces out ! ? : and ;.
         msg = RegexSpacePunctuation.Replace(msg, " $&");
 

@@ -10,15 +10,22 @@ namespace Content.Client.Stealth;
 
 public sealed class StealthSystem : SharedStealthSystem
 {
+    private static readonly ProtoId<ShaderPrototype> Shader = "Stealth";
+    private static readonly ProtoId<ShaderPrototype> NoMirageShader = "NoMirageStealth";
+
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private ShaderInstance _shader = default!;
+    private ShaderInstance _noMirageShader = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _shader = _protoMan.Index<ShaderPrototype>("Stealth").InstanceUnique();
+        _shader = _protoMan.Index(Shader).InstanceUnique();
+        _noMirageShader = _protoMan.Index(NoMirageShader).InstanceUnique(); // Sunrise-Edit
 
         SubscribeLocalEvent<StealthComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<StealthComponent, ComponentStartup>(OnStartup);
@@ -39,8 +46,13 @@ public sealed class StealthSystem : SharedStealthSystem
         if (!Resolve(uid, ref component, ref sprite, false))
             return;
 
-        sprite.Color = Color.White;
-        sprite.PostShader = enabled ? _shader : null;
+        _sprite.SetColor((uid, sprite), Color.White);
+        // Sunrise-Start
+        if (component.Mirage)
+            sprite.PostShader = enabled ? _shader : null;
+        else
+            sprite.PostShader = enabled ? _noMirageShader : null;
+        // Sunrise-End
         sprite.GetScreenTexture = enabled;
         sprite.RaiseShaderEvent = enabled;
 
@@ -81,17 +93,20 @@ public sealed class StealthSystem : SharedStealthSystem
         if (!parent.IsValid())
             return; // should never happen, but lets not kill the client.
         var parentXform = Transform(parent);
-        var reference = args.Viewport.WorldToLocal(parentXform.WorldPosition);
+        var reference = args.Viewport.WorldToLocal(_transformSystem.GetWorldPosition(parentXform));
         reference.X = -reference.X;
         var visibility = GetVisibility(uid, component);
 
         // actual visual visibility effect is limited to +/- 1.
         visibility = Math.Clamp(visibility, -1f, 1f);
 
-        _shader.SetParameter("reference", reference);
-        _shader.SetParameter("visibility", visibility);
+        // Sunrise-Start
+        ShaderInstance shaderToUse = component.Mirage ? _shader : _noMirageShader;
+        shaderToUse.SetParameter("reference", reference);
+        shaderToUse.SetParameter("visibility", visibility);
+        // Sunrise-End
 
         visibility = MathF.Max(0, visibility);
-        args.Sprite.Color = new Color(visibility, visibility, 1, 1);
+        _sprite.SetColor((uid, args.Sprite), new Color(visibility, visibility, 1, 1));
     }
 }

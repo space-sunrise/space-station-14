@@ -1,0 +1,35 @@
+- type: localizedDataset
+  id: FigurinesBlueshield
+  values:
+    prefix: figurines-blueshield-
+    count: 4
+
+- type: localizedDataset
+  id: FigurinesEnforcementofficer
+  values:
+    prefix: figurines-enforcementofficer-
+    count: 3
+
+- type: localizedDataset
+  id: FigurinesBrigmedic
+  values:
+    prefix: figurines-brigmedic-
+    count: 5
+
+- type: localizedDataset
+  id: FigurinesCburn
+  values:
+    prefix: figurines-cburn-
+    count: 6
+
+- type: localizedDataset
+  id: FigurinesDeathsquad
+  values:
+    prefix: figurines-deathsquad-
+    count: 13
+
+- type: localizedDataset
+  id: FigurinesErt
+  values:
+    prefix: figurines-ert-
+    count: 7

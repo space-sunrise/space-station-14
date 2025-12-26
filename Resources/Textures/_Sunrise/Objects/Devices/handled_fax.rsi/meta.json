@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "license": "CC-BY-SA-3.0",
+ "copyright": "Sprites by focstor",
+ "size": {
+     "x": 32,
+     "y": 32
+ },
+ "states": [
+     {
+       "name": "icon"
+     },
+     {
+        "name": "idle"
+      },
+
+      {
+        "name": "scanner",
+        "delays": [
+          [
+             0.2,
+             0.2
+          ]
+        ]
+      },
+
+     {
+       "name": "inserting",
+       "delays": [
+         [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+         ]
+       ]
+     },
+     {
+        "name": "inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "inhand-right",
+        "directions": 4
+      },
+     {
+       "name": "printing",
+       "delays": [
+         [
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3,
+            0.3
+         ]
+       ]
+     }
+   ]
+ }

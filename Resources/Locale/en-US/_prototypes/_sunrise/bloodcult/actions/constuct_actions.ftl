@@ -1,0 +1,14 @@
+ent-ArtificerCreateSoulStone = { "" }
+    .desc = { "" }
+ent-ArtificerCreateConstructShell = { "" }
+    .desc = { "" }
+ent-ArtificerConvertCultistFloor = { "" }
+    .desc = { "" }
+ent-ArtificerCreateCultistWall = { "" }
+    .desc = { "" }
+ent-ArtificerCreateCultistAirlock = { "" }
+    .desc = { "" }
+ent-WraithPhase = { "" }
+    .desc = { "" }
+ent-JuggernautCreateWall = { "" }
+    .desc = { "" }

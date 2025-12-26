@@ -9,7 +9,7 @@ namespace Content.Shared.Chat.Prototypes;
 ///     IC emotes (scream, smile, clapping, etc).
 ///     Entities can activate emotes by chat input, radial or code.
 /// </summary>
-[Prototype("emote")]
+[Prototype]
 public sealed partial class EmotePrototype : IPrototype
 {
     [IdDataField]
@@ -68,6 +68,14 @@ public sealed partial class EmotePrototype : IPrototype
     /// </summary>
     [DataField]
     public HashSet<string> ChatTriggers = new();
+
+    // Sunrise-Start
+    [DataField]
+    public List<string> PopupMessages = new();
+
+    [DataField]
+    public bool Animation;
+    // Sunrise-Edit
 }
 
 /// <summary>
@@ -81,5 +89,6 @@ public enum EmoteCategory : byte
     Invalid = 0,
     Vocal = 1 << 0,
     Hands = 1 << 1,
+    Verb = 1 << 2,
     General = byte.MaxValue
 }

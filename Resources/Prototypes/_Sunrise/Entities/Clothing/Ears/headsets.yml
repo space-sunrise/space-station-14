@@ -1,4 +1,38 @@
 - type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingHeadsetNokey
+  name: headset
+  description: An updated, modular intercom that fits over the head. Takes encryption keys.
+  components:
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: Headset
+  - type: EncryptionKeyHolder
+    keySlots: 4
+  - type: Sprite
+    state: icon
+  - type: Item
+    size: Small
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Clothing/Ears/Headsets/base.rsi
+
+- type: entity
+  abstract: true
+  parent: ClothingHeadsetNokey
+  id: ClothingHeadsetAltNokey
+  name: headset
+  description: An updated, modular intercom that fits over the head. Takes encryption keys.
+  components:
+  - type: Sprite
+    state: icon_alt
+  - type: Clothing
+    equippedPrefix: alt
+
+- type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetIAA
   name: iaa headset
@@ -7,6 +41,221 @@
     - type: ContainerFill
       containers:
         key_slots:
-        - EncryptionKeyIAA
+        - EncryptionKeyLaw
+        - EncryptionKeySecurity
+        - EncryptionKeyCommon
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/servicesecurity.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/servicesecurity.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMagistrate
+  name: magistrate headset
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyLaw
+        - EncryptionKeySecurity
+        - EncryptionKeyCommon
+        - EncryptionKeyCommand
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Ears/Headsets/servicesecurity.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetJEngineering
+  name: Prison engineering headset
+  description: A headset for prison engineers to chat while the station burns around them.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEngineering
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/engineering.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/engineering.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetLawyer
+  name: lawyer headset
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyLaw
+        - EncryptionKeyCommon
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Ears/Headsets/servicesecurity.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetAdjutant
+  name: adjutant headset
+  description: A headset for adjutant.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetBlueShieldEnsign
+  name: blue shield ensign headset
+  description:
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBlueShield
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetBlueShield
+  name: blue shield headset
+  description: A headset for blue shield.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBlueShield
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetUSSP
+  name: Headset USSP
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/mining.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/mining.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyUSSP
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetUSSPSec
+  name: Headset USSP Security
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyUSSPSec
+
+- type: entity
+  parent: ClothingHeadsetAltSyndicate
+  id: ClothingHeadsetAltUSSP
+  name: Full-Headset USSP
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+  - type: Headset
+  - type: EncryptionKeyHolder
+    keySlots: 5
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyUSSPSec
+      - EncryptionKeyUSSPCom
+
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltAbductor
+  name: abductor over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Clothing/Ears/Headsets/abductor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Abductor/Clothing/Ears/Headsets/abductor.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetCommaid
+  name: command maid headset
+  description: A headset for command maid.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/commaid_headset.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/commaid_headset.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltCentComSunrise
+  name: CentComm over-ear headset
+  suffix: No CentComm Key.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi
+
+- type: entity
+  parent: ClothingHeadsetNokey
+  id: ClothingHeadsetFreelanceNoKey
+  name: freelancer headset
+  suffix: No Key
+  description: This is used by a roaming group of freelancers.
+  components:
+    - type: Sprite
+      sprite: Clothing/Ears/Headsets/freelance.rsi
+    - type: Clothing
+      sprite: Clothing/Ears/Headsets/freelance.rsi
+
+- type: entity
+  parent: [ClothingHeadsetAltNokey, BaseSyndicateContraband]
+  id: ClothingHeadsetAltSyndicateNoKey
+  name: blood-red over-ear headset
+  suffix: No Key
+  description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
+  components:
+  - type: EncryptionKeyHolder
+    keySlots: 5
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/syndicate.rsi

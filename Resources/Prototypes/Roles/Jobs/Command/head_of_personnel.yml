@@ -6,22 +6,26 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 2.5h
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 2.5h
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 2.5h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 18000 #5 hrs # Sunrise-RoleTime
-    - !type:OverallPlaytimeRequirement
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 2.5h
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 2.5h
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
-  requireAdminNotify: true
   supervisors: job-supervisors-captain
-  radioBold: true
   canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 90 # Sunrise-Edit
   access:
   - Command
   - HeadOfPersonnel
@@ -47,16 +51,19 @@
   - Brig
   - Lawyer
   - Cargo
+  - CargoPurchaseAccess # Sunrise-edit
+  - ResearchConsoleAccess # Sunrise-Edit
   - Atmospherics
   - Medical
+  - Barber  # Sunrise-edit
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
   speciesBlacklist:
-  - Vox
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: HoPGear
@@ -65,8 +72,21 @@
     id: HoPPDA
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand
-    belt: BoxFolderClipboard
+    belt: BoxFolderClipboardThreePapers
+    eyes: ClothingEyesHudCommand
   storage:
     back:
-    - BoxSurvival
     - Flash
+    - Telebaton # Sunrise-Edit
+
+- type: chameleonOutfit
+  id: HeadOfPersonnelChameleonOutfit
+  job: HeadOfPersonnel
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHopcap
+    eyes: ClothingEyesHudCommand
+    mask: ClothingMaskNeckGaiterRed
+    neck: ClothingNeckCloakHop
+    outerClothing: ClothingOuterWinterHoP
+

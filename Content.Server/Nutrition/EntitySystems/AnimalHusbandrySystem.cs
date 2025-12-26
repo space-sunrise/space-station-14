@@ -5,13 +5,12 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Storage;
 using Content.Shared.Whitelist;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -29,12 +28,12 @@ public sealed class AnimalHusbandrySystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly NameModifierSystem _nameMod = default!;
 
     private readonly HashSet<EntityUid> _failedAttempts = new();
     private readonly HashSet<EntityUid> _birthQueue = new();
@@ -43,8 +42,7 @@ public sealed class AnimalHusbandrySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ReproductiveComponent, MindAddedMessage>(OnMindAdded);
-        SubscribeLocalEvent<InfantComponent, ComponentStartup>(OnInfantStartup);
-        SubscribeLocalEvent<InfantComponent, ComponentShutdown>(OnInfantShutdown);
+        SubscribeLocalEvent<InfantComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
     }
 
     // we express EZ-pass terminate the pregnancy if a player takes the role
@@ -54,16 +52,11 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         component.GestationEndTime = null;
     }
 
-    private void OnInfantStartup(EntityUid uid, InfantComponent component, ComponentStartup args)
+    private void OnRefreshNameModifiers(Entity<InfantComponent> entity, ref RefreshNameModifiersEvent args)
     {
-        var meta = MetaData(uid);
-        component.OriginalName = meta.EntityName;
-        _metaData.SetEntityName(uid, Loc.GetString("infant-name-prefix", ("name", meta.EntityName)), meta);
-    }
-
-    private void OnInfantShutdown(EntityUid uid, InfantComponent component, ComponentShutdown args)
-    {
-        _metaData.SetEntityName(uid, component.OriginalName);
+        // This check may seem redundant, but it makes sure that the prefix is removed before the component is removed
+        if (_timing.CurTime < entity.Comp.InfantEndTime)
+            args.AddModifier("infant-name-prefix");
     }
 
     /// <summary>
@@ -82,6 +75,9 @@ public sealed class AnimalHusbandrySystem : EntitySystem
 
         if (partners.Count >= component.Capacity)
             return false;
+
+        if (!component.IsPartnerNeed) //Sunrise
+            return TryReproduce(uid, uid, component); //Sunrise
 
         foreach (var comp in partners)
         {
@@ -105,13 +101,13 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (uid == partner)
+        if (uid == partner && component.IsPartnerNeed) //Sunrise: component.IsPartnerNeed
             return false;
 
         if (!CanReproduce(uid, component))
             return false;
 
-        if (!IsValidPartner(uid, partner, component))
+        if (!IsValidPartner(uid, partner, component) && component.IsPartnerNeed) //Sunrise: component.IsPartnerNeed
             return false;
 
         // if the partner is valid, yet it fails the random check
@@ -188,6 +184,8 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        BirthEvent birthEvent = new BirthEvent(); //Sunrise
+
         // this is kinda wack but it's the only sound associated with most animals
         if (TryComp<InteractionPopupComponent>(uid, out var interactionPopup))
             _audio.PlayPvs(interactionPopup.InteractSuccessSound, uid);
@@ -197,11 +195,14 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         foreach (var spawn in spawns)
         {
             var offspring = Spawn(spawn, xform.Coordinates.Offset(_random.NextVector2(0.3f)));
+            birthEvent.Spawns.Add(offspring); //Sunrise
             _transform.AttachToGridOrMap(offspring);
             if (component.MakeOffspringInfant)
             {
                 var infant = AddComp<InfantComponent>(offspring);
                 infant.InfantEndTime = _timing.CurTime + infant.InfantDuration;
+                // Make sure the name prefix is applied
+                _nameMod.RefreshNameModifiers(offspring);
             }
             _adminLog.Add(LogType.Action, $"{ToPrettyString(uid)} gave birth to {ToPrettyString(offspring)}.");
         }
@@ -210,6 +211,8 @@ public sealed class AnimalHusbandrySystem : EntitySystem
 
         component.Gestating = false;
         component.GestationEndTime = null;
+
+        RaiseLocalEvent(uid, birthEvent); //Sunrise
     }
 
     public override void Update(float frameTime)
@@ -249,6 +252,16 @@ public sealed class AnimalHusbandrySystem : EntitySystem
             if (_timing.CurTime < infant.InfantEndTime)
                 continue;
             RemCompDeferred(uid, infant);
+            // Make sure the name prefix gets removed
+            _nameMod.RefreshNameModifiers(uid);
         }
     }
 }
+
+//Sunrise-start
+
+public sealed class BirthEvent : EntityEventArgs
+{
+    public List<EntityUid> Spawns = new List<EntityUid>();
+}
+//Sunrise-end

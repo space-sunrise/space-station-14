@@ -8,14 +8,14 @@
   },
   "states": [
     {
-      "name": "assembly"
-    },
-    {
-      "name": "bolted_unlit"
-    },
-    {
-      "name": "bolted_open_unlit"
-    },
+	  "name": "assembly"
+	},
+	{
+	  "name": "bolted_unlit"
+	},
+	{
+	  "name": "bolted_open_unlit"
+	},
     {
       "name": "closed"
     },

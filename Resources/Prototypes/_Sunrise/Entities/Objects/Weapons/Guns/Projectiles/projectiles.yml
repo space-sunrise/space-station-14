@@ -1,0 +1,840 @@
+- type: entity
+  id: BulletAcid2
+  name: acid spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 12
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+
+- type: entity
+  id: BulletTaserSunrise
+  name: taser bolt
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    color: "#ffff33"
+    layers:
+    - state: spark
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Shock: 1
+  - type: StaminaDamageOnCollide
+    damage: 33
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: Licoxide
+          Quantity: 0.5
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 0.5
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+  - type: TimedDespawn
+    lifetime: 0.28 #5.2 tiles
+
+# Sunrise-ION
+- type: entity
+  name: EMP impulse
+  parent: BaseBulletTrigger
+  id: BulletEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/emp.rsi
+    layers:
+    - state: emp_pulse
+  - type: Projectile
+    damage:
+      types:
+        Shock: 5
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 30000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
+
+- type: entity
+  name: EMP impulse
+  parent: BaseBulletTrigger
+  id: BulletEMPMedium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/emp.rsi
+    layers:
+    - state: emp_pulse
+  - type: Projectile
+    damage:
+      types:
+        Shock: 15
+        Structural: 5
+  - type: EmpOnTrigger
+    range: 6
+    energyConsumption: 30000
+    disableDuration: 15
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.75
+
+- type: entity
+  name: EMP impulse
+  parent: BaseBulletTrigger
+  id: BulletEMPLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/emp.rsi
+    layers:
+    - state: emp_pulse
+  - type: Projectile
+    damage:
+      types:
+        Shock: 30
+        Structural: 15
+  - type: EmpOnTrigger
+    range: 10
+    energyConsumption: 50000
+    disableDuration: 30
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 4
+    color: blue
+    energy: 1
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletEMPMedium
+    capacity: 6
+
+- type: entity
+  name: tesla gun lightning
+  id: TeslaGunBulletLarge
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 12
+  - type: Sprite
+    sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+    scale: 1.5, 1.5
+    layers:
+    - state: tesla_projectile
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 85
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Shock: 50
+        Structural: 25
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: LightningArcShooter
+    arcDepth: 2
+    maxLightningArc: 4
+    shootMinInterval: 1
+    shootMaxInterval: 4
+    shootRange: 6
+    lightningPrototype: Lightning
+  - type: Electrified
+    requirePower: false
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound: /Audio/Effects/tesla_collapse.ogg
+  - type: AmbientSound
+    enabled: true
+    sound:
+      path: /Audio/Effects/tesla.ogg
+    range: 15
+    volume: -5
+
+- type: entity
+  parent: BaseBullet
+  id: RadiationBullet
+  name: radiation particle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    enabled: true
+    color: "#32CD32"
+    radius: 2.0
+    energy: 7.0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: magicm_green
+        shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 10
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Reflective
+    reflective:
+    - Energy
+
+# Mechs
+- type: entity
+  id: BulletfragRocket
+  name: frag rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 40
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+  - type: AmbientSound
+    enabled: true
+    volume: 2
+    range: 14
+    sound:
+      path: /Audio/Effects/Grenades/Supermatter/supermatter_loop.ogg
+
+# Shells that used for friendship and duster
+
+- type: entity
+  id: BulletShellBatonArtillery
+  name: baton shell
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: StaminaDamageOnCollide
+    damage: 80
+
+- type: entity
+  id: BulletShellFlashArtillery
+  name: flash shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: FlashOnTrigger
+    range: 7
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: GrenadeFlashEffect
+    predicted: true
+  - type: ActiveTimerTrigger
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: BulletShellEMPArtillery
+  name: EMP shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: EmpOnTrigger
+    range: 15 #Sunrise-edit
+    energyConsumption: 50000
+    disableDuration: 20
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
+
+# Grenades Handheld
+- type: entity
+  id: BulletGrenadeExplosive
+  name: explosive grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/grenade.rsi
+    layers:
+      - state: primed
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120 # about a ~4 tile radius
+    canCreateVacuum: false
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
+  - type: EmitSoundOnSpawn
+    sound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+  - type: TimedDespawn
+    lifetime: 3.55
+
+- type: entity
+  id: BulletGrenadeExplosiveShrapnel
+  name: explosive grenade
+  parent: BulletGrenadeExplosive
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 45
+
+- type: entity
+  id: BulletSmokeGrenade
+  name: Smoke grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/smoke.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 45 # Sunrise-Edit
+    spreadAmount: 50
+  - type: Ammo
+    muzzleFlash: null
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/_Sunrise/sg_explode.ogg
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+      params:
+        volume: 15
+
+- type: entity
+  id: BulletEMPGrenade
+  name: emp grenade
+  parent: BulletGrenadeEMPTimer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/empgrenade.rsi
+    layers:
+      - state: primed
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/countdown.ogg
+  - type: EmpOnTrigger
+    keysIn:
+    - timer
+    range: 11
+    energyConsumption: 50000
+    disableDuration: 60
+  - type: Ammo
+    muzzleFlash: null
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: BulletAirGrenade
+  parent: BaseBulletGrenade
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+    layers:
+      - state: active
+  - type: EmitSoundOnSpawn
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles: # Target is 3117.84 mols total for filling 30 tiles (goal is 101.325 kPa @ 20C)
+      - 654.7464 # oxygen
+      - 2463.0936 # nitrogen
+      temperature: 293.15
+
+- type: entity
+  id: BulletTearGasGrenade
+  name: tear gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
+
+- type: entity
+  id: BulletToxGasGrenade
+  name: tox gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite #TearGasSmoke
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 10
+      - ReagentId: PolytrinicAcid
+        Quantity: 15
+      - ReagentId: Lead
+        Quantity: 10
+      - ReagentId: Phlogiston
+        Quantity: 10
+
+- type: entity
+  id: BulletCleanerGrenade
+  name: tear gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/janitor.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10 # Для баланса вселенной
+    spreadAmount: 50
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 30
+  - type: TimedDespawn
+    lifetime: 2.75
+
+- type: entity
+  id: BulletMetalFoamGrenade
+  name: tear gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/metalfoam.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 20
+    smokePrototype: AluminiumMetalFoam
+  - type: TimedDespawn
+    lifetime: 2.75
+
+- type: entity # не работает флеш тригер
+  id: BulletGrenadeFlashBang
+  name: flashbang
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/flashbang.rsi
+    layers:
+      - state: primed
+  - type: TimerTrigger
+    delay: 1.5
+  - type: FlashOnTrigger
+    keysIn:
+    - timer
+    range: 7
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
+      params:
+        volume: 20
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: GrenadeFlashEffect
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/countdown.ogg
+
+# Grenades Handheld  Pellet
+- type: entity
+  id: BulletGrenadeIncendiary
+  name: incendiary grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/pyrogrenade.rsi
+    layers:
+      - state: primed
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterIncendiary
+    capacity: 30
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: GrenadeFlashEffect
+  - type: TimerTrigger
+    delay: 1.75
+  - type: EmitSoundOnSpawn
+    sound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+  - type: TimedDespawn
+    lifetime: 3.55
+
+- type: entity
+  id: BulletGrenadeShrapnel
+  name: shrapnel grenade
+  parent: BulletGrenadeIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
+    layers:
+      - state: primed
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLethal
+    capacity: 30
+
+- type: entity
+  id: BulletGrenadeStinger
+  name: stinger grenade
+  parent: BulletGrenadeIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/stingergrenade.rsi
+    layers:
+      - state: primed
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterRubber
+    capacity: 30
+
+- type: entity
+  id: BulletFireBomb
+  name: fire bomb
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/ied.rsi
+    layers:
+      - state: primed
+      - state: wires
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterIncendiary
+    capacity: 10
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 3
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: TimerTrigger
+    delay: 2
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+      params:
+        volume: 1
+  - type: AmbientSound
+    range: 8
+    volume: 1
+    sound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: BulletKineticTrash
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _Sunrise/Objects/Weapons/Projectiles/projectiles.rsi
+    layers:
+    - state: bullet_trash
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 20
+        Structural: 25
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: PointLight
+    radius: 2.5
+    color: white
+    energy: 0.5
+  - type: GatheringProjectile
+
+- type: entity
+  id: BulletGrenadeBlastTimer
+  name: blast grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 150 # a ~2 tile radius
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+
+# This is supposed to spawn shrapnel and stuff so uhh... TODO?
+- type: entity
+  id: BulletGrenadeFragTimer
+  name: frag grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 30
+
+- type: entity
+  id: BulletGrenadeEMPTimer
+  name: EMP rocket
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: EmpOnTrigger
+    keysIn:
+    - timer
+    range: 10
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: BulletHeavyRifleArtillery
+  name: bullet (.308)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25
+        Structural: 15
+  - type: StaminaDamageOnCollide
+    damage: 5
+
+# .60 small grenade (1/3 power of China Lake)
+- type: entity
+  id: BulletAntiMaterielFrag
+  name: frag bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 0.5, 0.5
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 25
+    intensitySlope: 4
+    maxIntensity: 8
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 10
+
+- type: entity
+  id: BulletAntiMaterielBlast
+  name: blast bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 0.5, 0.5
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50 # a ~1.5 tile radius
+    intensitySlope: 4
+    maxIntensity: 10
+    canCreateVacuum: false
+
+- type: entity
+  id: BulletAntiMaterielEMP
+  name: EMP bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 0.5, 0.5
+    layers:
+      - state: grenade
+  - type: EmpOnTrigger
+    range: 3
+    energyConsumption: 10000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 1.5
+    color: blue
+    energy: 0.5
+  - type: DeleteOnTrigger
+  - type: Projectile
+    damage:
+      types:
+        Shock: 15

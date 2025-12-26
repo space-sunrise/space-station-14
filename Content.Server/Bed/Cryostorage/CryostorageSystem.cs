@@ -1,24 +1,25 @@
 using System.Globalization;
-using System.Linq;
+using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking;
+using Content.Server.Chat.Systems;
+using Content.Server.Ghost;
 using Content.Server.Hands.Systems;
 using Content.Server.Inventory;
 using Content.Server.Popups;
-using Content.Server.Chat.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.StationRecords;
-using Content.Shared.UserInterface;
 using Content.Shared.Access.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Chat;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mind.Components;
+using Content.Shared.StationRecords;
+using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -40,7 +41,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly ServerInventorySystem _inventory = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -97,8 +98,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         EntityUid? entity = null;
         if (args.Type == CryostorageRemoveItemBuiMessage.RemovalType.Hand)
         {
-            if (_hands.TryGetHand(cryoContained, args.Key, out var hand))
-                entity = hand.HeldEntity;
+            entity = _hands.GetHeldItem(cryoContained, args.Key);
         }
         else
         {
@@ -210,12 +210,14 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             if (userId != null && Mind.TryGetMind(userId.Value, out var mind) &&
                 HasComp<CryostorageContainedComponent>(mind.Value.Comp.CurrentEntity))
             {
-                _gameTicker.OnGhostAttempt(mind.Value, false);
+                _ghostSystem.OnGhostAttempt(mind.Value, false);
             }
         }
 
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
+        RaiseLocalEvent(ent, new CryostorageEnteredEvent());
+        RemCompDeferred<AntagTargetComponent>(ent);
         cryostorageComponent.StoredPlayers.Add(ent);
         Dirty(ent, comp);
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
@@ -235,14 +237,16 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             _stationRecords.RemoveRecord(key, stationRecords);
         }
 
-        _chatSystem.DispatchStationAnnouncement(station.Value,
-            Loc.GetString(
-                "earlyleave-cryo-announcement",
-                ("character", name),
-                ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
-            ), Loc.GetString("earlyleave-cryo-sender"),
-            playDefault: false
-        );
+        // _chatSystem.DispatchStationAnnouncement(station.Value,
+        //     Loc.GetString(
+        //         "earlyleave-cryo-announcement",
+        //         ("character", name),
+        //         ("entity", ent.Owner), // gender things for supporting downstreams with other languages
+        //         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
+        //     ), Loc.GetString("earlyleave-cryo-sender"),
+        //     playDefault: false,
+        //     playTts: false
+        // );
     }
 
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)
@@ -319,10 +323,10 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         foreach (var hand in _hands.EnumerateHands(uid))
         {
-            if (hand.HeldEntity == null)
+            if (!_hands.TryGetHeldItem(uid, hand, out var heldEntity))
                 continue;
 
-            data.HeldItems.Add(hand.Name, Name(hand.HeldEntity.Value));
+            data.HeldItems.Add(hand, Name(heldEntity.Value));
         }
 
         return data;
@@ -346,4 +350,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             HandleEnterCryostorage((uid, containedComp), id);
         }
     }
+}
+
+public class CryostorageEnteredEvent
+{
 }

@@ -1,4 +1,4 @@
-using Content.Shared.Interaction;
+﻿using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
@@ -9,7 +9,10 @@ using Robust.Shared.Utility;
 using System;
 using System.Linq;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Wieldable;
+using Content.Shared.Wieldable.Components;
 using JetBrains.Annotations;
+using Content.Shared._Starlight.Weapon.Components;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -31,8 +34,13 @@ public partial class SharedGunSystem
 
     private void OnRevolverUse(EntityUid uid, RevolverAmmoProviderComponent component, UseInHandEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!_useDelay.TryResetDelay(uid))
             return;
+
+        args.Handled = true;
 
         Cycle(component);
         UpdateAmmoCount(uid, prediction: false);
@@ -93,7 +101,7 @@ public partial class SharedGunSystem
             return false;
 
         // If it's a speedloader try to get ammo from it.
-        if (EntityManager.HasComponent<SpeedLoaderComponent>(uid))
+        if (HasComp<SpeedLoaderComponent>(uid))
         {
             var freeSlots = 0;
 
@@ -123,7 +131,7 @@ public partial class SharedGunSystem
                 return false;
             }
 
-            for (var i = Math.Min(ev.Ammo.Count - 1, component.Capacity - 1); i >= 0; i--)
+            for (var i = 0; i < component.Capacity; i++)
             {
                 var index = (component.CurrentIndex + i) % component.Capacity;
 
@@ -295,7 +303,7 @@ public partial class SharedGunSystem
                     var uid = Spawn(component.FillPrototype, mapCoordinates);
 
                     if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
-                        SetCartridgeSpent(uid, cartridge, !(bool) chamber);
+                        SetCartridgeSpent(uid, cartridge, !(bool)chamber);
 
                     EjectCartridge(uid);
                 }
@@ -381,8 +389,15 @@ public partial class SharedGunSystem
             // Chamber empty or spent
             if (ent == null)
                 continue;
+            //🌟Starlight🌟
+            if (TryComp<HitScanCartridgeAmmoComponent>(ent, out var hitscanCartridge))
+            {
+                if (hitscanCartridge.Spent)
+                    continue;
 
-            if (TryComp<CartridgeAmmoComponent>(ent, out var cartridge))
+                args.Ammo.Add((ent.Value, hitscanCartridge));
+            }
+            else if (TryComp<CartridgeAmmoComponent>(ent, out var cartridge))
             {
                 if (cartridge.Spent)
                     continue;
@@ -393,10 +408,14 @@ public partial class SharedGunSystem
                 args.Ammo.Add((spawned, EnsureComp<AmmoComponent>(spawned)));
 
                 if (cartridge.DeleteOnSpawn)
+                {
+                    component.AmmoSlots[index] = null;
                     component.Chambers[index] = null;
+                }
             }
             else
             {
+                component.AmmoSlots[index] = null;
                 component.Chambers[index] = null;
                 args.Ammo.Add((ent.Value, EnsureComp<AmmoComponent>(ent.Value)));
             }

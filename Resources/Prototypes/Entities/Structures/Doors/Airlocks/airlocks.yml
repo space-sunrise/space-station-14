@@ -15,8 +15,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/engineering.rsi
-  - type: PaintableAirlock
-    department: Engineering
   - type: Wires
     layoutId: AirlockEngineering
 
@@ -35,10 +33,28 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/cargo.rsi
-  - type: PaintableAirlock
-    department: Cargo
   - type: Wires
     layoutId: AirlockCargo
+
+- type: entity
+  parent: Airlock
+  id: AirlockSalvage
+  suffix: Salvage
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/cargo.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: Airlock
+  id: AirlockHydroponics
+  suffix: Hydroponics
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/hydroponics.rsi #Sunrise-Resprite
+  - type: Wires
+    layoutId: AirlockService
 
 - type: entity
   parent: Airlock
@@ -47,8 +63,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/medical.rsi
-  - type: PaintableAirlock
-    department: Medical
   - type: Wires
     layoutId: AirlockMedical
 
@@ -64,6 +78,9 @@
   parent: AirlockMedical
   id: AirlockChemistry
   suffix: Chemistry
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/chemistry.rsi #Sunrise-Resprite
 
 - type: entity
   parent: Airlock
@@ -72,8 +89,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/science.rsi
-  - type: PaintableAirlock
-    department: Science
   - type: Wires
     layoutId: AirlockScience
 
@@ -86,8 +101,6 @@
     sprite: Structures/Doors/Airlocks/Standard/command.rsi
   - type: WiresPanelSecurity
     securityLevel: medSecurity
-  - type: PaintableAirlock
-    department: Command
   - type: Wires
     layoutId: AirlockCommand
 
@@ -98,8 +111,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/security.rsi
-  - type: PaintableAirlock
-    department: Security
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -125,9 +136,11 @@
   suffix: Mining(Salvage)
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/mining.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/salvage.rsi #Sunrise-Resprite
   - type: Wires
     layoutId: AirlockCargo
+  - type: Paintable
+    group: null
 
 - type: entity
   parent: AirlockCommand # if you get centcom door somehow it counts as command, also inherit panel
@@ -137,21 +150,48 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/centcomm.rsi
 
-- type: entity
-  parent: Airlock
-  id: AirlockHatch
-  name: airtight hatch
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
+# edited by Sunrise, view in _Sunrise\Entities\Structures\Doors
+#
+#- type: entity
+#  parent: Airlock
+#  id: AirlockHatch
+#  name: airtight hatch
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
+#  - type: Paintable
+#    group: null
+
+#- type: entity
+#  parent: Airlock
+#  id: AirlockHatchMaintenance
+#  name: maintenance hatch
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+#  - type: Paintable
+#    group: null
+#
+#end
 
 - type: entity
-  parent: Airlock
-  id: AirlockHatchMaintenance
-  name: maintenance hatch
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
+  id: AirlockXenoborg
+  name: xenoborg airlock
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+    sprite: Structures/Doors/Airlocks/Standard/xenoborg.rsi
+  - type: Paintable
+    group: null
+
+- type: entity
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
+  id: AirlockHatchSyndicate
+  name: airtight hatch
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/hatch_syndicate.rsi
 
 # Glass
 - type: entity
@@ -161,8 +201,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/engineering.rsi
-  - type: PaintableAirlock
-    department: Engineering
   - type: Wires
     layoutId: AirlockEngineering
 
@@ -189,10 +227,28 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
-  - type: PaintableAirlock
-    department: Cargo
   - type: Wires
     layoutId: AirlockCargo
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockSalvageGlass
+  suffix: Salvage
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/salvage.rsi #Sunrise-Resprite
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockHydroponicsGlass
+  suffix: Hydroponics
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/hydroponics.rsi #Sunrise-Resprite
+  - type: Wires
+    layoutId: AirlockService
 
 - type: entity
   parent: AirlockGlass
@@ -201,8 +257,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/medical.rsi
-  - type: PaintableAirlock
-    department: Medical
   - type: Wires
     layoutId: AirlockMedical
 
@@ -210,6 +264,9 @@
   parent: AirlockMedicalGlass
   id: AirlockChemistryGlass
   suffix: Chemistry
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/chemistry.rsi #Sunrise-Resprite
 
 - type: entity
   parent: AirlockMedicalGlass
@@ -226,8 +283,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/science.rsi
-  - type: PaintableAirlock
-    department: Science
   - type: Wires
     layoutId: AirlockScience
 
@@ -238,8 +293,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/command.rsi
-  - type: PaintableAirlock
-    department: Command
   - type: WiresPanelSecurity
     securityLevel: medSecurity
   - type: Wires
@@ -252,8 +305,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/security.rsi
-  - type: PaintableAirlock
-    department: Security
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -272,6 +323,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/mining.rsi
+  - type: Paintable
+    group: null
 
 - type: entity
   parent: AirlockCommandGlass # see standard
@@ -280,3 +333,31 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/centcomm.rsi
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockStandardGlass
+  suffix: Service
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/basic.rsi
+
+- type: entity
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
+  id: AirlockXeno
+  suffix: Xeno
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/xeno.rsi
+  - type: Paintable
+    group: null
+
+- type: entity
+  parent: AirlockUnlitVisibleFalse # Sunrise-edit
+  id: AirlockGlassXeno
+  suffix: Xeno
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/xeno.rsi
+  - type: Paintable
+    group: null

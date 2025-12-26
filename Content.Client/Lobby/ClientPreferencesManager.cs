@@ -1,10 +1,13 @@
 using System.Linq;
+using Content.Shared.Construction.Prototypes;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Client;
 using Robust.Client.Player;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby
 {
@@ -52,7 +55,7 @@ namespace Content.Client.Lobby
 
         public void SelectCharacter(int slot)
         {
-            Preferences = new PlayerPreferences(Preferences.Characters, slot, Preferences.AdminOOCColor);
+            Preferences = new PlayerPreferences(Preferences.Characters, slot, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
             var msg = new MsgSelectCharacter
             {
                 SelectedCharacterIndex = slot
@@ -65,10 +68,19 @@ namespace Content.Client.Lobby
             var collection = IoCManager.Instance!;
             // Sunrise-Sponsors-Start
             var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
+            // Log initial profile state
+            var initialAppearance = (HumanoidCharacterAppearance) profile.CharacterAppearance;
+            Logger.Debug("Initial profile state:");
+            Logger.Debug($"Profile type: {profile.GetType().Name}");
+            Logger.Debug($"Initial Hair gradient: enabled={initialAppearance.HairGradientEnabled}, color={initialAppearance.HairGradientSecondaryColor}, dir={initialAppearance.HairGradientDirection}");
+            Logger.Debug($"Initial FacialHair gradient: enabled={initialAppearance.FacialHairGradientEnabled}, color={initialAppearance.FacialHairGradientSecondaryColor}, dir={initialAppearance.FacialHairGradientDirection}");
+            Logger.Debug($"Initial AllMarkings gradient: enabled={initialAppearance.AllMarkingsGradientEnabled}, color={initialAppearance.AllMarkingsGradientSecondaryColor}, dir={initialAppearance.AllMarkingsGradientDirection}");
+
             profile.EnsureValid(_playerManager.LocalSession!, collection, sponsorPrototypes);
             // Sunrise-Sponsors-End
             var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) {[slot] = profile};
-            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor);
+            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
             var msg = new MsgUpdateCharacter
             {
                 Profile = profile,
@@ -91,7 +103,7 @@ namespace Content.Client.Lobby
 
             var l = lowest.Value;
             characters.Add(l, profile);
-            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor);
+            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
 
             UpdateCharacter(profile, l);
         }
@@ -104,10 +116,20 @@ namespace Content.Client.Lobby
         public void DeleteCharacter(int slot)
         {
             var characters = Preferences.Characters.Where(p => p.Key != slot);
-            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor);
+            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
             var msg = new MsgDeleteCharacter
             {
                 Slot = slot
+            };
+            _netManager.ClientSendMessage(msg);
+        }
+
+        public void UpdateConstructionFavorites(List<ProtoId<ConstructionPrototype>> favorites)
+        {
+            Preferences = new PlayerPreferences(Preferences.Characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, favorites);
+            var msg = new MsgUpdateConstructionFavorites
+            {
+                Favorites = favorites
             };
             _netManager.ClientSendMessage(msg);
         }

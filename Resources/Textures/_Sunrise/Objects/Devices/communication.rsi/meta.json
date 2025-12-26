@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Uplink radio sprites by Gungalabalarb",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "old-radio",
+      "delays": [
+        [
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+      ]
+    },
+    {
+      "name": "old-radio-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "old-radio-inhand-right",
+      "directions": 4
+    }
+  ]
+}

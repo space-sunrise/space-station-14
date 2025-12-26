@@ -1,0 +1,23 @@
+- type: reaction
+  id: LanternFlash
+  impact: High
+  priority: 20
+  reactants:
+    PulverizedLantern:
+      amount: 0.5
+    Water:
+      amount: 0.5
+  effects:
+  - !type:Flash
+
+- type: reaction
+  id: UniversalSolvent # Chemists are already war criminals, they can have the mustard gas chemical.
+  reactants:
+    FluorosulfuricAcid:
+      amount: 1
+    Bleach:
+      amount: 1
+    Vestine:
+      amount: 4
+  products:
+    UniversalSolvent: 6

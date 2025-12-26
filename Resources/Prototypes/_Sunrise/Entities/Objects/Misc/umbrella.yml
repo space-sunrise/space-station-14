@@ -1,0 +1,10 @@
+#umbrella
+- type: entity
+  parent: BaseItem
+  id: UmbrellaEntity
+  name: japanese umbrella
+  description: Umbrella. Handcrafted from bamboo and washi paper.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/umbrella.rsi
+    state: icon

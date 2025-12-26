@@ -6,44 +6,61 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 4h
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 4h
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 4h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 #10 hrs # Sunrise-RoleTime
-    - !type:OverallPlaytimeRequirement
-      time: 72000 #20 hrs # Sunrise-RoleTime
+      time: 4h
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 4h
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
-  requireAdminNotify: true
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
-  radioBold: true
   canBeAntag: false
+  displayWeight: 100 # Sunrise-Edit
+  radioBold: true # Sunrise-Edit
   accessGroups:
   - AllAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
+      # Sunrise added start
+      - type: ArtifactFunnyTarget
+      # Sunrise added end
       - type: CommandStaff
   speciesBlacklist:
-  - Vox
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: CaptainGear
   equipment:
     shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesCommand
     gloves: ClothingHandsGlovesCaptain
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
   storage:
     back:
-    - BoxSurvival
     - Flash
+    - Telebaton # Sunrise-Edit
     # - StationCharter
+
+- type: chameleonOutfit
+  id: CaptainChameleonOutfit
+  job: Captain
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatCapcap
+    eyes: ClothingEyesGlassesCommand
+    mask: ClothingMaskGasCaptain
+    neck: ClothingNeckCloakCap

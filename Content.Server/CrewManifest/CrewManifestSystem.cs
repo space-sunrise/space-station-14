@@ -1,21 +1,22 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.EUI;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
+using Content.Shared.Actions;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.StationRecords;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Server.CrewManifest;
 
@@ -26,6 +27,7 @@ public sealed class CrewManifestSystem : EntitySystem
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     /// <summary>
     ///     Cached crew manifest entries. The alternative is to outright
@@ -46,7 +48,45 @@ public sealed class CrewManifestSystem : EntitySystem
 
         SubscribeLocalEvent<CrewManifestViewerComponent, BoundUIClosedEvent>(OnBoundUiClose);
         SubscribeLocalEvent<CrewManifestViewerComponent, CrewManifestOpenUiMessage>(OpenEuiFromBui);
+        SubscribeLocalEvent<BorgCrewManifestViewerComponent, MapInitEvent>(BorgCrewManifestViewerMapInit);
+        SubscribeLocalEvent<BorgCrewManifestViewerComponent, CrewManifestOpenActionEvent>(OpenCrewManifest);
     }
+
+    // Sunrise-Start
+    private void BorgCrewManifestViewerMapInit(EntityUid uid, BorgCrewManifestViewerComponent component, MapInitEvent args)
+    {
+        _actions.AddAction(uid, component.ActionViewCrewManifest);
+    }
+
+    private void OpenCrewManifest(EntityUid uid, BorgCrewManifestViewerComponent component, CrewManifestOpenActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var owningStation = _stationSystem.GetOwningStation(uid);
+        if (owningStation == null || !TryComp<ActorComponent>(args.Performer, out var actor))
+        {
+            return;
+        }
+
+        if (!_openEuis.TryGetValue(owningStation.Value, out var euis))
+        {
+            euis = new();
+            _openEuis.Add(owningStation.Value, euis);
+        }
+
+        if (euis.ContainsKey(actor.PlayerSession))
+        {
+            CloseEui(owningStation.Value, actor.PlayerSession, uid);
+        }
+        else
+        {
+            OpenEui(owningStation.Value, actor.PlayerSession, uid);
+        }
+
+        args.Handled = true;
+    }
+    // Sunrise-End
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
@@ -251,56 +291,45 @@ public sealed class CrewManifestSystem : EntitySystem
 }
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class CrewManifestCommand : IConsoleCommand
+public sealed class CrewManifestCommand : LocalizedEntityCommands
 {
-    public string Command => "crewmanifest";
-    public string Description => "Opens the crew manifest for the given station.";
-    public string Help => $"Usage: {Command} <entity uid>";
+    [Dependency] private readonly CrewManifestSystem _manifestSystem = default!;
 
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    public override string Command => "crewmanifest";
 
-    public CrewManifestCommand()
-    {
-        IoCManager.InjectDependencies(this);
-    }
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length != 1)
         {
-            shell.WriteLine($"Invalid argument count.\n{Help}");
+            shell.WriteLine(Loc.GetString($"shell-need-exactly-one-argument"));
             return;
         }
 
-        if (!NetEntity.TryParse(args[0], out var uidNet) || !_entityManager.TryGetEntity(uidNet, out var uid))
+        if (!NetEntity.TryParse(args[0], out var uidNet) || !EntityManager.TryGetEntity(uidNet, out var uid))
         {
-            shell.WriteLine($"{args[0]} is not a valid entity UID.");
+            shell.WriteLine(Loc.GetString($"shell-argument-station-id-invalid", ("index", args[0])));
             return;
         }
 
-        if (shell.Player == null || shell.Player is not { } session)
+        if (shell.Player is not { } session)
         {
-            shell.WriteLine("You must run this from a client.");
+            shell.WriteLine(Loc.GetString($"shell-cannot-run-command-from-server"));
             return;
         }
 
-        var crewManifestSystem = _entityManager.System<CrewManifestSystem>();
-
-        crewManifestSystem.OpenEui(uid.Value, session);
+        _manifestSystem.OpenEui(uid.Value, session);
     }
 
-    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         if (args.Length != 1)
-        {
             return CompletionResult.Empty;
-        }
 
         var stations = new List<CompletionOption>();
-        var query = _entityManager.EntityQueryEnumerator<StationDataComponent>();
+        var query = EntityManager.EntityQueryEnumerator<StationDataComponent>();
         while (query.MoveNext(out var uid, out _))
         {
-            var meta = _entityManager.GetComponent<MetaDataComponent>(uid);
+            var meta = EntityManager.GetComponent<MetaDataComponent>(uid);
             stations.Add(new CompletionOption(uid.ToString(), meta.EntityName));
         }
 

@@ -1,27 +1,69 @@
+using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Contraband;
+using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
+using Content.Shared.Lock;
 using Content.Shared.Tag;
+using Content.Shared.Verbs;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Biocode;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
 public abstract class SharedChameleonClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ClothingSystem _clothingSystem = default!;
+    [Dependency] private readonly ContrabandSystem _contraband = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedItemSystem _itemSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] private readonly LockSystem _lock = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
+
+    private static readonly SlotFlags[] IgnoredSlots =
+    {
+        SlotFlags.All,
+        SlotFlags.PREVENTEQUIP,
+        SlotFlags.NONE
+    };
+
+    private static readonly SlotFlags[] Slots = Enum.GetValues<SlotFlags>().Except(IgnoredSlots).ToArray();
+
+    private readonly Dictionary<SlotFlags, List<EntProtoId>> _data = new();
+
+    public readonly Dictionary<SlotFlags, List<string>> ValidVariants = new();
+
+    private static readonly ProtoId<TagPrototype> WhitelistChameleonTag = "WhitelistChameleon";
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ChameleonClothingComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<ChameleonClothingComponent, GotUnequippedEvent>(OnGotUnequipped);
+        SubscribeLocalEvent<ChameleonClothingComponent, GetVerbsEvent<InteractionVerb>>(OnVerb);
+        SubscribeLocalEvent<ChameleonClothingComponent, EmpPulseEvent>(OnEmpPulse);
+
+        SubscribeLocalEvent<ChameleonClothingComponent, PrototypesReloadedEventArgs>(OnPrototypeReload);
+        PrepareAllVariants();
+    }
+
+    private void OnPrototypeReload(EntityUid uid, ChameleonClothingComponent component, PrototypesReloadedEventArgs args)
+    {
+        PrepareAllVariants();
     }
 
     private void OnGotEquipped(EntityUid uid, ChameleonClothingComponent component, GotEquippedEvent args)
@@ -41,7 +83,7 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     protected void UpdateVisuals(EntityUid uid, ChameleonClothingComponent component)
     {
         if (string.IsNullOrEmpty(component.Default) ||
-            !_proto.TryIndex(component.Default, out EntityPrototype? proto))
+            !_proto.Resolve(component.Default, out EntityPrototype? proto))
             return;
 
         // world sprite icon
@@ -57,17 +99,124 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
 
         // item sprite logic
         if (TryComp(uid, out ItemComponent? item) &&
-            proto.TryGetComponent(out ItemComponent? otherItem, _factory))
+            proto.TryGetComponent(out ItemComponent? otherItem, Factory))
         {
             _itemSystem.CopyVisuals(uid, otherItem, item);
         }
 
         // clothing sprite logic
         if (TryComp(uid, out ClothingComponent? clothing) &&
-            proto.TryGetComponent("Clothing", out ClothingComponent? otherClothing))
+            proto.TryGetComponent(out ClothingComponent? otherClothing, Factory))
         {
             _clothingSystem.CopyVisuals(uid, otherClothing, clothing);
         }
+
+        // appearance data logic
+        if (TryComp(uid, out AppearanceComponent? appearance) &&
+            proto.TryGetComponent(out AppearanceComponent? appearanceOther, Factory))
+        {
+            _appearance.AppendData(appearanceOther, uid);
+            Dirty(uid, appearance);
+        }
+
+        // properly mark contraband
+        if (proto.TryGetComponent(out ContrabandComponent? contra, Factory))
+        {
+            EnsureComp<ContrabandComponent>(uid, out var current);
+            _contraband.CopyDetails(uid, contra, current);
+        }
+        else
+        {
+            RemComp<ContrabandComponent>(uid);
+        }
+            HelmetUpdate(uid, proto); // Sunrise-edit
+    }
+    // Sunrise-start
+    // I know that this is shitcode.
+    // I could subdivide UpdateVisuals into different methods, but I don't want to change the wizden code much
+    public void HelmetUpdate(EntityUid uid, EntityPrototype proto)
+    {
+        if (!TryComp(uid, out ToggleableClothingComponent? helmet))
+            return;
+
+        if (helmet.ClothingUid == null)
+            return;
+
+        if (!proto.TryGetComponent(out ToggleableClothingComponent? protoHelmet, Factory))
+            return;
+
+        if (!_proto.TryIndex(protoHelmet.ClothingPrototype.Id, out var prototypeHelmetOther))
+            return;
+
+        if (TryComp(helmet.ClothingUid, out ClothingComponent? helmetClothing)
+            && prototypeHelmetOther.TryGetComponent(out ClothingComponent? otherHelmetClothing, Factory))
+        {
+            _clothingSystem.CopyVisuals(helmet.ClothingUid.Value, otherHelmetClothing, helmetClothing);
+        }
+        if (TryComp(helmet.ClothingUid, out AppearanceComponent? helmetApperance)
+            && prototypeHelmetOther.TryGetComponent(out AppearanceComponent? otherHelmetApperance, Factory))
+        {
+            _appearance.AppendData(otherHelmetApperance, helmet.ClothingUid.Value);
+            Dirty(uid, helmetApperance);
+        }
+        if (TryComp(helmet.ClothingUid, out MetaDataComponent? meta))
+        {
+            _metaData.SetEntityName(helmet.ClothingUid.Value, prototypeHelmetOther.Name, meta);
+            _metaData.SetEntityDescription(helmet.ClothingUid.Value, prototypeHelmetOther.Description, meta);
+        }
+        if (prototypeHelmetOther.TryGetComponent("Contraband", out ContrabandComponent? contra))
+        {
+            EnsureComp<ContrabandComponent>(helmet.ClothingUid.Value, out var current);
+            _contraband.CopyDetails(helmet.ClothingUid.Value, contra, current);
+        }
+        else
+        {
+            RemComp<ContrabandComponent>(helmet.ClothingUid.Value);
+        }
+
+    }
+    // Sunrise-end
+
+    private void OnVerb(Entity<ChameleonClothingComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || _lock.IsLocked(ent.Owner))
+            return;
+
+        // Can't pass args from a ref event inside of lambdas
+        var user = args.User;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
+        args.Verbs.Add(new InteractionVerb()
+        {
+            Text = Loc.GetString("chameleon-component-verb-text"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+            Act = () => UI.TryToggleUi(ent.Owner, ChameleonUiKey.Key, user)
+        });
+    }
+
+    private void OnEmpPulse(EntityUid uid, ChameleonClothingComponent component, ref EmpPulseEvent args)
+    {
+        if (!component.AffectedByEmp)
+            return;
+
+        if (component.EmpContinuous)
+            component.NextEmpChange = Timing.CurTime + TimeSpan.FromSeconds(1f / component.EmpChangeIntensity);
+
+        if (_net.IsServer) // needs RandomPredicted
+        {
+            var pick = GetRandomValidPrototype(component.Slot, component.RequireTag);
+            SetSelectedPrototype(uid, pick, component: component);
+        }
+
+        args.Affected = true;
+        args.Disabled = true;
     }
 
     protected virtual void UpdateSprite(EntityUid uid, EntityPrototype proto) { }
@@ -75,22 +224,89 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     /// <summary>
     ///     Check if this entity prototype is valid target for chameleon item.
     /// </summary>
-    public bool IsValidTarget(EntityPrototype proto, SlotFlags chameleonSlot = SlotFlags.NONE)
+    public bool IsValidTarget(EntityPrototype proto, SlotFlags chameleonSlot = SlotFlags.NONE, string? requiredTag = null)
     {
         // check if entity is valid
-        if (proto.Abstract || proto.NoSpawn)
+        if (proto.Abstract || proto.HideSpawnMenu)
             return false;
 
         // check if it is marked as valid chameleon target
-        if (!proto.TryGetComponent(out TagComponent? tag, _factory) || !_tag.HasTag(tag, "WhitelistChameleon"))
+        if (!proto.TryGetComponent(out TagComponent? tag, Factory) || !_tag.HasTag(tag, WhitelistChameleonTag))
+            return false;
+
+        if (requiredTag != null && !_tag.HasTag(tag, requiredTag))
             return false;
 
         // check if it's valid clothing
-        if (!proto.TryGetComponent("Clothing", out ClothingComponent? clothing))
+        if (!proto.TryGetComponent(out ClothingComponent? clothing, Factory))
             return false;
         if (!clothing.Slots.HasFlag(chameleonSlot))
             return false;
 
         return true;
     }
+
+    /// <summary>
+    ///     Get a list of valid chameleon targets for these slots.
+    /// </summary>
+    public IEnumerable<EntProtoId> GetValidTargets(SlotFlags slot, string? tag = null)
+    {
+        var validTargets = new List<EntProtoId>();
+        if (tag != null)
+        {
+            foreach (var proto in _data[slot])
+            {
+                if (IsValidTarget(_proto.Index(proto), slot, tag))
+                    validTargets.Add(proto);
+            }
+        }
+        else
+        {
+            validTargets = _data[slot];
+        }
+
+        return validTargets;
+    }
+
+    /// <summary>
+    ///     Get a random prototype for a given slot.
+    /// </summary>
+    public string GetRandomValidPrototype(SlotFlags slot, string? tag = null)
+    {
+        return _random.Pick(GetValidTargets(slot, tag).ToList());
+    }
+
+    protected void PrepareAllVariants()
+    {
+        _data.Clear();
+        var prototypes = _proto.EnumeratePrototypes<EntityPrototype>();
+
+        foreach (var proto in prototypes)
+        {
+            // check if this is valid clothing
+            if (!IsValidTarget(proto))
+                continue;
+            if (!proto.TryGetComponent(out ClothingComponent? item, Factory))
+                continue;
+
+            // sort item by their slot flags
+            // one item can be placed in several buckets
+            foreach (var slot in Slots)
+            {
+                if (!item.Slots.HasFlag(slot))
+                    continue;
+
+                if (!_data.ContainsKey(slot))
+                {
+                    _data.Add(slot, new List<EntProtoId>());
+                }
+                _data[slot].Add(proto.ID);
+            }
+        }
+    }
+
+    // TODO: Predict and use component states for the UI
+    public virtual void SetSelectedPrototype(EntityUid uid, string? protoId, bool forceUpdate = false,
+        ChameleonClothingComponent? component = null)
+    { }
 }

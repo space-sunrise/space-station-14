@@ -1,9 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Content.Client.Lobby;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client;
 using Robust.Client.Player;
@@ -12,7 +13,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Preferences;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -27,10 +28,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
-    private readonly List<string> _roleBans = new();
+    private readonly List<string> _jobBans = new();
+    private readonly List<string> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
+
+    private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
 
     public event Action? Updated;
 
@@ -44,6 +48,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);  // Sunrise-Sponsors
     }
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
@@ -52,18 +58,20 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             // Reset on disconnect, just in case.
             _roles.Clear();
+            _jobWhitelists.Clear();
+            _jobBans.Clear();
+            _antagBans.Clear();
         }
     }
 
     private void RxRoleBans(MsgRoleBans message)
     {
-        _sawmill.Debug($"Received roleban info containing {message.Bans.Count} entries.");
+        _sawmill.Debug($"Received role ban info: {message.JobBans.Count} job ban entries and {message.AntagBans.Count} antag ban entries.");
 
-        if (_roleBans.Equals(message.Bans))
-            return;
-
-        _roleBans.Clear();
-        _roleBans.AddRange(message.Bans);
+        _jobBans.Clear();
+        _jobBans.AddRange(message.JobBans);
+        _antagBans.Clear();
+        _antagBans.AddRange(message.AntagBans);
         Updated?.Invoke();
     }
 
@@ -92,62 +100,126 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    /// <summary>
+    /// Check a list of job- and antag prototypes against the current player, for requirements and bans.
+    /// </summary>
+    /// <returns>
+    /// False if any of the prototypes are banned or have unmet requirements.
+    /// </returns>>
+    public bool IsAllowed(
+        List<ProtoId<JobPrototype>>? jobs,
+        List<ProtoId<AntagPrototype>>? antags,
+        HumanoidCharacterProfile? profile,
+        [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 
-        if (_roleBans.Contains($"Job:{job.ID}"))
+        if (antags is not null)
+        {
+            foreach (var proto in antags)
+            {
+                if (!IsAllowed(_prototypes.Index(proto), profile, out reason))
+                    return false;
+            }
+        }
+
+        if (jobs is not null)
+        {
+            foreach (var proto in jobs)
+            {
+                if (!IsAllowed(_prototypes.Index(proto), profile, out reason))
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Check the job prototype against the current player, for requirements and bans
+    /// </summary>
+    public bool IsAllowed(
+        JobPrototype job,
+        HumanoidCharacterProfile? profile,
+        [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        // Check the player's bans
+        if (_jobBans.Contains(job.ID))
         {
             reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
             return false;
         }
 
+        // Check whitelist requirements
         if (!CheckWhitelist(job, out reason))
             return false;
 
-        var player = _playerManager.LocalSession;
-        if (player == null)
-            return true;
+        // Check other role requirements
+        var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(job);
+        if (!CheckRoleRequirements(reqs, job.ID, profile, out reason))
+            return false;
 
         // Sunrise-Start
-        if (_clientPreferences.Preferences != null)
+        if (profile != null)
         {
-            var profile = (HumanoidCharacterProfile) _clientPreferences.Preferences.SelectedCharacter;
-
             if (job.SpeciesBlacklist.Contains(profile.Species))
             {
-                reason = FormattedMessage.FromUnformatted($"Расса {Loc.GetString($"species-name-{profile.Species.Id.ToLower()}")} не может занимать эту должность. Для спонсоров ограничений нет");
+                reason = FormattedMessage.FromUnformatted(Loc.GetString("species-job-fail", ("name", Loc.GetString($"species-name-{profile.Species.Id.ToLower()}"))));
                 return false;
             }
         }
         // Sunrise-End
 
-        return CheckRoleTime(job, out reason);
+        return true;
     }
 
-    public bool CheckRoleTime(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    /// <summary>
+    /// Check the antag prototype against the current player, for requirements and bans
+    /// </summary>
+    public bool IsAllowed(
+        AntagPrototype antag,
+        HumanoidCharacterProfile? profile,
+        [NotNullWhen(false)] out FormattedMessage? reason)
     {
-        var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
-        return CheckRoleTime(reqs, out reason);
+        // Check the player's bans
+        if (_antagBans.Contains(antag.ID))
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            return false;
+        }
+
+        // Check whitelist requirements
+        if (!CheckWhitelist(antag, out reason))
+            return false;
+
+        // Check other role requirements
+        var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(antag);
+        if (!CheckRoleRequirements(reqs, antag.ID, profile, out reason))
+            return false;
+
+        return true;
     }
 
-    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
+    private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, string protoId, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason) // Sunrise-Edit
     {
         reason = null;
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? []; // Sunrise-Sponsors
+
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
+            if (requirement.Check(_entManager, _prototypes, profile, _roles, protoId, sponsorPrototypes, out var jobReason)) // Sunrise-Sponsors
                 continue;
 
             reasons.Add(jobReason.ToMarkup());
         }
 
-        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
+        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkupOrThrow(string.Join('\n', reasons));
         return reason == null;
     }
 
@@ -162,6 +234,15 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             reason = FormattedMessage.FromUnformatted(Loc.GetString("role-not-whitelisted"));
             return false;
         }
+
+        return true;
+    }
+
+    public bool CheckWhitelist(AntagPrototype antag, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = default;
+
+        // TODO: Implement antag whitelisting.
 
         return true;
     }

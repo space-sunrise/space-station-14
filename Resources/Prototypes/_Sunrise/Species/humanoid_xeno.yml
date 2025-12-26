@@ -1,0 +1,158 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: species
+  id: HumanoidXeno
+  name: species-name-xeno
+  roundStart: true
+  prototype: MobHumanoidXeno
+  bodyTypes:
+  - HumanoidXenoNormal
+  markingLimits: MobHumanoidXenoMarkingLimits
+  dollPrototype: MobXenoDummy
+  skinColoration: Hues
+  sponsorOnly: false
+  maleFirstNames: names_xeno_first
+  femaleFirstNames: names_xeno_first
+  maleLastNames: names_xeno_last
+  femaleLastNames: names_xeno_last
+  defaultHeight: 1.1
+  defaultWidth: 1.2
+  maxHeight: 1.15
+  maxWidth: 1.25
+  minHeight: 0.95
+  minWidth: 1.05
+  minHeightCm: 155
+  maxHeightCm: 215
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
+
+- type: bodyType
+  id: HumanoidXenoNormal
+  name: body-normal
+  sprites:
+    Head: MobHumanoidXenoHead
+    Chest: MobHumanoidXenoTorso
+    Tail: MobHumanoidAnyMarking
+    LArm: MobHumanoidXenoLArm
+    RArm: MobHumanoidXenoRArm
+    LHand: MobHumanoidXenoLHand
+    RHand: MobHumanoidXenoRHand
+    LLeg: MobHumanoidXenoLLeg
+    RLeg: MobHumanoidXenoRLeg
+    LFoot: MobHumanoidXenoLFoot
+    RFoot: MobHumanoidXenoRFoot
+
+- type: markingPoints
+  id: MobHumanoidXenoMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Hair:
+      points: 0
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ HumanoidXenoTailsDefault ]
+    Head:
+      points: 1
+      required: true
+      defaultMarkings: [ HumanoidXenoHeadDefault ]
+    HeadTop:
+      points: 0
+      required: false
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 0
+      required: false
+    Arms:
+      points: 0
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoHead
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoHeadMale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoHeadFemale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoTorso
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoTorsoMale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoTorsoFemale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoLLeg
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoLArm
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoLHand
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoLFoot
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRLeg
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRArm
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRHand
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRFoot
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: r_foot

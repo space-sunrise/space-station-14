@@ -1,0 +1,43 @@
+- type: entity
+  id: TeleportEffectSource
+  components:
+    - type: Sprite
+      layers:
+        - sprite: /Textures/_Sunrise/Effects/teleports_effect.rsi
+          state: source
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#008DFE"
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/Effects/electrical_short_circuit2.ogg
+    - type: TimedDespawn
+      lifetime: 0.6
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+
+- type: entity
+  id: TeleportEffectTarget
+  components:
+    - type: Sprite
+      layers:
+        - sprite: /Textures/_Sunrise/Effects/teleports_effect.rsi
+          state: target
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#008DFE"
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/Effects/electrical_short_circuit2.ogg
+    - type: TimedDespawn
+      lifetime: 0.6
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true

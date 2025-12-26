@@ -1,0 +1,9 @@
+- type: entity
+  id: FTLPointShuttle
+  parent: MarkerBase
+  name: landing pad
+  components:
+    - type: FTLBeacon
+      blockRotate: true
+    - type: Sprite
+      state: pink

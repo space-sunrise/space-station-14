@@ -3,13 +3,18 @@
   name: species-name-swine
   roundStart: true
   prototype: MobSwine
-  sprites: MobSwineSprites
+  bodyTypes:
+  - SwineNormal
   markingLimits: MobSwineMarkingLimits
   dollPrototype: MobSwineDummy
-  skinColoration: None
+  skinColoration: Hues
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human # SUNRISE-TODO: Спрайт жопы свинов
 
-- type: speciesBaseSprites
-  id: MobSwineSprites
+- type: bodyType
+  id: SwineNormal
+  name: body-normal
   sprites:
     Head: MobSwineHead
     Hair: MobHumanoidAnyMarking

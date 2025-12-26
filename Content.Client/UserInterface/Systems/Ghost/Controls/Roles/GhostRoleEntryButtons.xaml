@@ -1,15 +1,22 @@
 ﻿<BoxContainer xmlns="https://spacestation14.io"
-              Orientation="Horizontal">
+              Orientation="Horizontal"
+              HorizontalAlignment="Stretch">
     <Button Name="RequestButton"
             Access="Public"
             Text="{Loc 'ghost-roles-window-request-role-button'}"
             StyleClasses="OpenRight"
-            HorizontalAlignment="Left"
-            SetWidth="300"/>
+            HorizontalExpand="True"
+            SizeFlagsStretchRatio="2"/>
+    <Button Name="RulesButton"
+            Access="Public"
+            Text="{Loc 'ghost-roles-window-rules-role-button'}"
+            StyleClasses="OpenBoth"
+            HorizontalExpand="True"
+            SizeFlagsStretchRatio="1"/>
     <Button Name="FollowButton"
             Access="Public"
             Text="{Loc 'ghost-roles-window-follow-role-button'}"
             StyleClasses="OpenLeft"
-            HorizontalAlignment="Right"
-            SetWidth="150"/>
+            HorizontalExpand="True"
+            SizeFlagsStretchRatio="1"/>
 </BoxContainer>

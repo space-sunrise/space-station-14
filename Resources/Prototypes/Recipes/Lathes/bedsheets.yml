@@ -1,0 +1,208 @@
+- type: latheRecipe
+  abstract: true
+  id: BaseBedsheetRecipe
+  categories:
+  - Bedsheets
+  completetime: 2
+  materials:
+    Cloth: 150
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseBedsheetRecipe
+  id: BaseSpecifiedBedsheetRecipe
+  materials:
+    Cloth: 150
+    Durathread: 50
+
+  #Base bedsheets
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetBlack
+  result: BedsheetBlack
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetBlue
+  result: BedsheetBlue
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetBrown
+  result: BedsheetBrown
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetGreen
+  result: BedsheetGreen
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetGrey
+  result: BedsheetGrey
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetOrange
+  result: BedsheetOrange
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetPurple
+  result: BedsheetPurple
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetRed
+  result: BedsheetRed
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetWhite
+  result: BedsheetWhite
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: BedsheetYellow
+  result: BedsheetYellow
+
+  #Specified bedsheets
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetClown
+  result: BedsheetClown
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetCosmos
+  result: BedsheetCosmos
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetIan #I'm not sure that that should be here
+  result: BedsheetIan
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetMedical
+  result: BedsheetMedical
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetMime
+  result: BedsheetMime
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetNT
+  result: BedsheetNT
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetRainbow
+  result: BedsheetRainbow
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetBrigmedic
+  result: BedsheetBrigmedic
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetSyndie
+  result: BedsheetSyndie
+
+#sunrise-starts
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetBlack
+  result: DoubleBedsheetBlack
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetBlue
+  result: DoubleBedsheetBlue
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetBrown
+  result: DoubleBedsheetBrown
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetGreen
+  result: DoubleBedsheetGreen
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetGrey
+  result: DoubleBedsheetGrey
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetOrange
+  result: DoubleBedsheetOrange
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetPurple
+  result: DoubleBedsheetPurple
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetRed
+  result: DoubleBedsheetRed
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetWhite
+  result: DoubleBedsheetWhite
+
+- type: latheRecipe
+  parent: BaseBedsheetRecipe
+  id: DoubleBedsheetYellow
+  result: DoubleBedsheetYellow
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetClown
+  result: DoubleBedsheetClown
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetCosmos
+  result: DoubleBedsheetCosmos
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetIan #I'm not sure that that should be here
+  result: DoubleBedsheetIan
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetMedical
+  result: DoubleBedsheetMedical
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetMime
+  result: DoubleBedsheetMime
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetNT
+  result: DoubleBedsheetNT
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetRainbow
+  result: DoubleBedsheetRainbow
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetSyndie
+  result: DoubleBedsheetSyndie
+#sunrise-end

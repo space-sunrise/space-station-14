@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Спизжено из SS13 Paradise",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "indwelder_cyborg"
+    },
+    {
+      "name": "indwelder_cyborg100"
+    },
+    {
+      "name": "indwelder_cyborg75"
+    },
+    {
+      "name": "indwelder_cyborg50"
+    },
+    {
+      "name": "indwelder_cyborg25"
+    },
+    {
+      "name": "indwelder_cyborg0"
+    },
+    {
+      "name": "indwelder_cyborg-on",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "wrench_cyborg"
+    },
+    {
+      "name": "wirecutters_cyborg"
+    },
+    {
+      "name": "screwdriver_cyborg"
+    },
+    {
+      "name": "crowbar_cyborg"
+    },
+    {
+      "name": "multitool_cyborg"
+    },
+    {
+      "name": "knife_cyborg"
+    },
+    {
+      "name": "fingerblades"
+    },
+    {
+      "name": "laser_cyborg"
+    },
+    {
+      "name": "laser_cyborg-unshaded-1"
+    },
+    {
+      "name": "laser_cyborg-unshaded-2"
+    },
+    {
+      "name": "laser_cyborg-unshaded-3"
+    },
+    {
+      "name": "laser_cyborg-unshaded-4"
+    },
+    {
+      "name": "laser_cyborg-unshaded-0"
+    },
+    {
+      "name": "taser"
+    },
+    {
+      "name": "taser_charge_disable"
+    },
+    {
+      "name": "taser_disable"
+    },
+    {
+      "name": "taser_charge_stun"
+    },
+    {
+      "name": "taser_stun"
+    },
+    {
+      "name": "claymore_cyborg"
+    }
+  ]
+}

@@ -32,3 +32,19 @@
   - Chapel
   - Hydroponics
   - Atmospherics
+  - GenpopEnter
+  - GenpopLeave
+  - Magistrat  # Sunrise-edit
+  - BlueShield  # Sunrise-edit
+  - BlueShieldEnsign  # Sunrise-edit
+  - Ntrep  # Sunrise-edit
+  - Barber  # Sunrise-edit
+  - Mail  # Sunrise-edit
+  - Mining  # Sunrise-edit
+  - CargoPurchaseAccess  # Sunrise-edit
+  - ResearchConsoleAccess  # Sunrise-edit
+
+- type: accessGroup
+  id: General
+  tags:
+  - Maintenance

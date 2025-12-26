@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CrateNPCVariantCubeBoxSunrise
+  icon:
+    sprite: Objects/Misc/monkeycube.rsi
+    state: box_variant
+  product: CrateNPCVariantCubeBoxSunrise
+  cost: 12000
+  category: cargoproduct-category-name-medical
+  group: market

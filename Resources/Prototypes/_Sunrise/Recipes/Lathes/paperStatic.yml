@@ -1,0 +1,20 @@
+- type: latheRecipe
+  id: ProtoSheetOfficePaper
+  result: SheetOfficePaper1
+  completetime: 1
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ProtoSheetPaper
+  result: SheetPaper1
+  completetime: 1
+  materials:
+    Wood: 50
+
+- type: latheRecipe
+  id: ProtoPaper
+  result: Paper
+  completetime: 1
+  materials:
+    Paper: 200

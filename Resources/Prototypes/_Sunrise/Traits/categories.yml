@@ -1,0 +1,5 @@
+- type: traitCategory
+  id: VocalTraits
+  name: trait-category-vocal
+  maxTraitPoints: 1
+
