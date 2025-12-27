@@ -193,11 +193,11 @@
         children:
         - id: ClothingMaskBreath
         - id: EmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkBeerBottleFull
   - type: Label
     currentLabel: без балона
 
@@ -214,11 +214,11 @@
         children:
         - id: ClothingMaskBreath
         - id: ExtendedEmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkBeerBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -238,11 +238,11 @@
         children:
         - id: ClothingMaskBreathMedical
         - id: EmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkBeerBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -267,11 +267,11 @@
         children:
         - id: ClothingMaskBreath
         - id: EmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkBeerBottleFull
   - type: Tag
     tags:
     - BoxHug
@@ -287,11 +287,11 @@
         children:
         - id: ClothingMaskBreath
         - id: EmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodBreadBaguette
-        - id: DrinkBeerBottleFull
 
 - type: entity
   parent: BoxSurvivalBase
@@ -306,11 +306,11 @@
         children:
         - id: ClothingMaskGasSecurity
         - id: ExtendedEmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkBeerBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -329,11 +329,11 @@
         children:
         - id: ClothingMaskGasSyndicate
         - id: DoubleEmergencyOxygenTankFilled
+        - id: FoodTinMRE
+        - id: DrinkBeerBottleFull
+        - id: Flare
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkBeerBottleFull
   - type: Sprite
     layers:
     - state: internals
