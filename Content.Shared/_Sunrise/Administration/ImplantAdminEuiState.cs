@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Content.Shared.Eui;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Administration;
+namespace Content.Shared._Sunrise.Administration;
 
 /// <summary>
 ///     Network state for the admin implant management UI.

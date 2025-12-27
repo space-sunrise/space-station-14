@@ -1,9 +1,9 @@
 using Content.Client.Eui;
-using Content.Shared.Administration;
+using Content.Shared._Sunrise.Administration;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
 
-namespace Content.Client.Administration.UI.Implants;
+namespace Content.Client._Sunrise.Administration.UI.Implants;
 
 [UsedImplicitly]
 public sealed class ImplantAdminEui : BaseEui

@@ -1,7 +1,8 @@
 using System.Linq;
+using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
-using Content.Shared.Administration;
+using Content.Shared._Sunrise.Administration;
 using Content.Shared.Implants;
 using Content.Server.Implants; // for concrete SubdermalImplantSystem
 using Content.Shared.Implants.Components;
@@ -18,7 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Server.Console;
 
-namespace Content.Server.Administration.UI;
+namespace Content.Server._Sunrise.Administration.UI;
 
 /// <summary>
 /// Server side EUI for managing implants on a target entity.
