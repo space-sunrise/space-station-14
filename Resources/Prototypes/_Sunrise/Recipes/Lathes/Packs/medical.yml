@@ -21,7 +21,7 @@
   - HyposprayMedical
   - AutoMenderBurn
   - AutoMenderBrute
-  - HandheldCrewMonitor
+  - EmergencyHandheldCrewMonitor
   - BlankMediPen
 
 - type: latheRecipePack

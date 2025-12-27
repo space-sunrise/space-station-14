@@ -17,11 +17,16 @@
       enum.CrewMonitoringUIKey.Key:
         type: BSOCrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    allowedDepartmentIds:
+    - Command
+    includeTrackers: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 500
+  - type: StationLimitedNetwork
 
 - type: entity
   id: HandheldBSOCrewMonitorEmpty

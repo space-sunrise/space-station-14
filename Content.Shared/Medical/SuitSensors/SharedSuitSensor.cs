@@ -7,7 +7,7 @@ namespace Content.Shared.Medical.SuitSensor;
 [Serializable, NetSerializable]
 public sealed class SuitSensorStatus
 {
-    public SuitSensorStatus(NetEntity ownerUid, NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, MapId? mapId)
+    public SuitSensorStatus(NetEntity ownerUid, NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, List<string> jobDepartmentIds) // Sunrise - edit
     {
         OwnerUid = ownerUid;
         SuitSensorUid = suitSensorUid;
@@ -15,7 +15,7 @@ public sealed class SuitSensorStatus
         Job = job;
         JobIcon = jobIcon;
         JobDepartments = jobDepartments;
-        MapId = mapId;
+        JobDepartmentIds = jobDepartmentIds; // Sunrise - add
     }
 
     public TimeSpan Timestamp;
@@ -25,12 +25,12 @@ public sealed class SuitSensorStatus
     public string Job;
     public string JobIcon;
     public List<string> JobDepartments;
+    public List<string> JobDepartmentIds; // Sunrise - add  Айди самих отделов для фильтра
     public bool IsAlive;
     public int? TotalDamage;
     public int? TotalDamageThreshold;
     public float? DamagePercentage => TotalDamageThreshold == null || TotalDamage == null ? null : TotalDamage / (float) TotalDamageThreshold;
     public NetCoordinates? Coordinates;
-    public MapId? MapId;
 }
 
 [Serializable, NetSerializable]
@@ -64,6 +64,7 @@ public static class SuitSensorConstants
     public const string NET_JOB = "job";
     public const string NET_JOB_ICON = "jobIcon";
     public const string NET_JOB_DEPARTMENTS = "jobDepartments";
+    public const string NET_JOB_DEPARTMENT_IDS = "jobDepartmentIds"; // Sunrise - Add
     public const string NET_IS_ALIVE = "alive";
     public const string NET_TOTAL_DAMAGE = "vitals";
     public const string NET_TOTAL_DAMAGE_THRESHOLD = "vitalsThreshold";
@@ -72,7 +73,6 @@ public static class SuitSensorConstants
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";
-    public const string MAP_ID = "mapId";
 }
 
 [Serializable, NetSerializable]

@@ -5,6 +5,7 @@ research-technology-basic-cyberlimbs = Basic cyberlimbs
 research-technology-bluespace-ammo = Bluespace Syringegun Ammo
 research-technology-implant-extractor = Implant extractor
 research-technology-advanced-surgery = Advanced surgery
+research-technology-emergency-crew-monitor = Emergency crew monitor
 research-technology-mechanized-medical-treatment = Mechanized Medical Treatment
 research-technology-basic-eye-implants = Basic Eye Implants
 research-technology-functional-cyberlimbs = Functional Cyberlimbs

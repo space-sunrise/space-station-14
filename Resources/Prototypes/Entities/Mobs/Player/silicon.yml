@@ -66,6 +66,7 @@
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
     transmitFrequencyId: ShuttleTimer
+  - type: StationLimitedNetwork   # Sunrise - Edit
   - type: RadarConsole
     followEntity: false
   - type: CommunicationsConsole

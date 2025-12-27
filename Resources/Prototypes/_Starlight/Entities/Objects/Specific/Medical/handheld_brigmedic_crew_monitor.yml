@@ -17,11 +17,15 @@
       enum.CrewMonitoringUIKey.Key:
         type: BrigmedicCrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    allowedDepartmentIds:
+    - Security
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 500
+  - type: StationLimitedNetwork
 
 - type: entity
   id: HandheldBrigmedicCrewMonitorEmpty

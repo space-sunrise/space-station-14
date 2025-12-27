@@ -469,6 +469,7 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: StationLimitedNetwork   # Sunrise - Add
 
 - type: entity
   parent: BaseComputerAiAccess
