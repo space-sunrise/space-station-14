@@ -320,6 +320,14 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
     private void UpdateSlow(EntityUid uid, Solution solution)
     {
+        // Sunrise: footprint/drag-mark "puddles" (e.g. slime on shoes) are visual traces and should not apply slowdown.
+        // They also do not have physics, so adding contact slowdowns causes physics queries to error.
+        if (TryComp(uid, out PuddleComponent? puddle) && !puddle.CanSlow)
+        {
+            RemComp<SpeedModifierContactsComponent>(uid);
+            return;
+        }
+
         var maxViscosity = 0f;
         foreach (var (reagent, _) in solution.Contents)
         {
