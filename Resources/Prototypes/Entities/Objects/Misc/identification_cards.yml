@@ -18,7 +18,7 @@
   # Sunrise added end
   # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: &id-rsi _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
   - type: Clothing
     slots:
     - idcard
@@ -67,6 +67,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: gold
     - state: department-side
@@ -95,6 +96,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
     - state: department-side
@@ -116,6 +118,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
     - state: department-side
@@ -137,6 +140,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
     - state: department-side
@@ -158,6 +162,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
     - state: department-side
@@ -179,6 +184,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
     - state: department-side
@@ -200,6 +206,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
     - state: department-side
@@ -223,6 +230,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -241,6 +249,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -259,6 +268,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -277,6 +287,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -295,6 +306,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -313,6 +325,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -331,6 +344,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -349,6 +363,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -367,6 +382,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -385,6 +401,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -403,6 +420,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -421,6 +439,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -439,6 +458,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -476,6 +496,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -494,6 +515,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -512,6 +534,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -530,6 +553,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -550,6 +574,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -568,6 +593,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -586,6 +612,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: clown-side
@@ -603,6 +630,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -621,6 +649,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -639,6 +668,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -657,6 +687,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -675,6 +706,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -693,6 +725,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -715,6 +748,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -733,6 +767,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -751,6 +786,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -769,6 +805,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -787,6 +824,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -805,6 +843,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - state: department-side
@@ -939,6 +978,7 @@
   name: visitor ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - sprite: *icon-rsi
@@ -1004,6 +1044,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
     - state: department-side
@@ -1026,6 +1067,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
     - state: department-side
@@ -1043,6 +1085,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
     - state: department-side
@@ -1059,6 +1102,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
     - state: department-side
@@ -1074,6 +1118,7 @@
   name: pirate ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: pirate
   - type: Item
@@ -1089,6 +1134,7 @@
   name: xenoborg ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
   - type: Access
@@ -1101,6 +1147,7 @@
   name: wizard ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: wizard
     - sprite: *icon-rsi
@@ -1123,6 +1170,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1144,6 +1192,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: gold
     - state: department-side
@@ -1164,6 +1213,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1184,6 +1234,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1204,6 +1255,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1224,6 +1276,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1244,6 +1297,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1264,6 +1318,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
@@ -1283,6 +1338,7 @@
   components:
   # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: blue
     - state: department-side
