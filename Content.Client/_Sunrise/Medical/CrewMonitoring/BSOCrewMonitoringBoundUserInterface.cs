@@ -1,4 +1,4 @@
-using Content.Shared.Medical.CrewMonitoring;
+using Content.Client._Sunrise.Medical.CrewMonitoring;
 
 namespace Content.Client._Sunrise.Medical.CrewMonitoring.BSO;
 

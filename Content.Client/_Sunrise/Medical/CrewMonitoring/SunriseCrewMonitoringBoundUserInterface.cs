@@ -3,34 +3,32 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Localization;
 using Robust.Shared.Map;
 
-namespace Content.Client.Medical.CrewMonitoring;
+namespace Content.Client._Sunrise.Medical.CrewMonitoring;
 
 /// <summary>
 /// Вся фильтрация данных должна происходить на сервере, клиент только отображает полученное состояние.
 /// </summary>
-public abstract class SunriseCrewMonitoringBoundUserInterface : BoundUserInterface
+public class SunriseCrewMonitoringBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-
     [ViewVariables]
-    protected CrewMonitoringWindow? Menu;
+    protected SunriseCrewMonitoringWindow? Menu;
 
     protected virtual string? TitleLocKey => null;
 
-    protected SunriseCrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
+    public SunriseCrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
 
     protected override void Open()
     {
         base.Open();
 
-        Menu = this.CreateWindow<CrewMonitoringWindow>();
+        Menu = this.CreateWindow<SunriseCrewMonitoringWindow>();
         Menu.Set(string.Empty, null);
         Menu.SetBoundUserInterface(this);
 
         var titleLocKey = TitleLocKey;
 
         if (titleLocKey != null)
-            Menu.Title = _loc.GetString(titleLocKey);
+            Menu.Title = Loc.GetString(titleLocKey);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

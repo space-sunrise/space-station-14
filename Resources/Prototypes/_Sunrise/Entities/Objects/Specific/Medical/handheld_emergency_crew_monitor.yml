@@ -14,7 +14,7 @@
   - type: UserInterface
     interfaces:
       enum.CrewMonitoringUIKey.Key:
-        type: CrewMonitoringBoundUserInterface
+        type: SunriseCrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
   - type: CrewMonitoringFilter
     onlyShowWoundedOrDead: true
