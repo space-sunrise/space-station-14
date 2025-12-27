@@ -22,7 +22,6 @@
     collisionMask: BulletImpassable
   - type: HitscanReflect
     reflectiveType: NonEnergy
-  - type: HitscanCreateBloodSpray
 
 ####
 
