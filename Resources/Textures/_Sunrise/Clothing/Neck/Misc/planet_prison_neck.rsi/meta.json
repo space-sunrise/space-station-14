@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "by KAVALDi (github/discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cellblock"
+    },
+    {
+      "name": "cellblock-equipped",
+      "directions": 4
+    },
+    {
+      "name": "lockdown",
+      "delays": [
+        [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+      ]
+    },
+    {
+      "name": "lockdown-equipped",
+      "directions": 4
+    }
+  ]
+}

@@ -1,9 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using NetCord;
 using NetCord.Gateway;
 using NetCord.Rest;
 using Robust.Shared.Configuration;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Discord.DiscordLink;
 
@@ -18,9 +23,16 @@ public sealed class CommandReceivedEventArgs
     public string Command { get; init; } = string.Empty;
 
     /// <summary>
-    /// The arguments to the command. This is everything after the command
+    /// The raw arguments to the command. This is everything after the command
     /// </summary>
-    public string Arguments { get; init; } = string.Empty;
+    public string RawArguments { get; init; } = string.Empty;
+
+    /// <summary>
+    /// A list of arguments to the command.
+    /// This uses <see cref="CommandParsing.ParseArguments"/> mostly for maintainability.
+    /// </summary>
+    public List<string> Arguments { get; init; } = [];
+
     /// <summary>
     /// Information about the message that the command was received from. This includes the message content, author, etc.
     /// Use this to reply to the message, delete it, etc.
@@ -35,6 +47,8 @@ public sealed class DiscordLink : IPostInjectInit
 {
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
+
+    [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise added
 
     /// <summary>
     ///    The Discord client. This is null if the bot is not connected.
@@ -66,6 +80,7 @@ public sealed class DiscordLink : IPostInjectInit
     /// </summary>
     public event Action<Message>? OnMessageReceived;
 
+    // TODO: consider implementing this in a way where we can unregister it in a similar way
     public void RegisterCommandCallback(Action<CommandReceivedEventArgs> callback, string command)
     {
         OnCommandReceived += args =>
@@ -106,6 +121,7 @@ public sealed class DiscordLink : IPostInjectInit
                              | GatewayIntents.MessageContent
                              | GatewayIntents.DirectMessages,
             Logger = new DiscordSawmillLogger(_sawmillLog),
+            RestClientConfiguration = CreateClientConfiguration(), // Sunrise added - поддержка прокси
         });
         _client.MessageCreate += OnCommandReceivedInternal;
         _client.MessageCreate += OnMessageReceivedInternal;
@@ -180,24 +196,28 @@ public sealed class DiscordLink : IPostInjectInit
         var trimmedInput = content[BotPrefix.Length..].Trim();
         var firstSpaceIndex = trimmedInput.IndexOf(' ');
 
-        string command, arguments;
+        string command, rawArguments;
 
         if (firstSpaceIndex == -1)
         {
             command = trimmedInput;
-            arguments = string.Empty;
+            rawArguments = string.Empty;
         }
         else
         {
             command = trimmedInput[..firstSpaceIndex];
-            arguments = trimmedInput[(firstSpaceIndex + 1)..].Trim();
+            rawArguments = trimmedInput[(firstSpaceIndex + 1)..].Trim();
         }
+
+        var argumentList = new List<string>();
+        CommandParsing.ParseArguments(rawArguments, argumentList);
 
         // Raise the event!
         OnCommandReceived?.Invoke(new CommandReceivedEventArgs
         {
             Command = command,
-            Arguments = arguments,
+            Arguments = argumentList,
+            RawArguments = rawArguments,
             Message = message,
         });
         return ValueTask.CompletedTask;
@@ -236,4 +256,29 @@ public sealed class DiscordLink : IPostInjectInit
     }
 
     #endregion
+
+    // Sunrise added start - поддержка прокси
+    private RestClientConfiguration CreateClientConfiguration()
+    {
+        var httpMessageHandler = CreateHttpMessageHandler();
+        var restClientConfiguration = new RestClientConfiguration
+        {
+            RequestHandler = httpMessageHandler != null ? new RestRequestHandler(httpMessageHandler) : null,
+        };
+
+        return restClientConfiguration;
+    }
+
+    private SocketsHttpHandler? CreateHttpMessageHandler()
+    {
+        var proxyAddress = _configuration.GetCVar(SunriseCCVars.DiscordProxyAddress);
+        if (string.IsNullOrWhiteSpace(proxyAddress))
+        {
+            _sawmill.Debug("No proxy configured for Discord bot connection.");
+            return null;
+        }
+
+        return _discord.CreateHandler(proxyAddress);
+    }
+    // Sunrise added end
 }

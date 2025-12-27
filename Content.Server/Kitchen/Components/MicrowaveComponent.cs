@@ -1,14 +1,13 @@
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Item;
+using Content.Shared.Kitchen;
+using Content.Shared.Kitchen.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.Kitchen; //Sunrise-Edit
-using Robust.Shared.Serialization; //Sunrise-Edit
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; //Sunrise-Edit
-using Content.Shared.Kitchen.Components; //Sunrise-Edit
 
 namespace Content.Server.Kitchen.Components
 {
@@ -136,21 +135,5 @@ namespace Content.Server.Kitchen.Components
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public MicrowaveUiKey Key = MicrowaveUiKey.Key;
         //Sunrise-End
-    }
-
-    public sealed class BeingMicrowavedEvent : HandledEntityEventArgs
-    {
-        public EntityUid Microwave;
-        public EntityUid? User;
-        public bool BeingHeated; //Sunrise-Edit
-        public bool BeingIrradiated; //Sunrise-Edit
-
-        public BeingMicrowavedEvent(EntityUid microwave, EntityUid? user, bool heating, bool irradiating) //Sunrise-Edit
-        {
-            Microwave = microwave;
-            User = user;
-            BeingHeated = heating; //Sunrise-Edit
-            BeingIrradiated = irradiating; //Sunrise-Edit
-        }
     }
 }

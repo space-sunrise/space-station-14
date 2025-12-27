@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Interactions
-  - type: JumpSkill
+  # - type: JumpSkill
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
@@ -27,7 +27,7 @@
       Burn:
         sprite: _Sunrise/Mobs/Effects/Resomi/burn_damage.rsi
   - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
+    sprite: _Sunrise/Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
   - type: HumanoidAppearance
@@ -85,6 +85,8 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
+  - type: Carriable
+    requiresNestingMob: true
   - type: InteractionPopup
     successChance: 0.9
     interactSuccessString: petting-success-monkey
@@ -95,7 +97,12 @@
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
   - type: Hands
-    handDisplacement:
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
+          state: inHand
+    rightHandDisplacement:
       sizeMaps:
         32:
           sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
@@ -234,9 +241,12 @@
       Male: UnisexResomi
       Female: UnisexResomi
       Unsexed: UnisexResomi
+  - type: TypingIndicator
+    proto: resomi
   - type: Speech
     speechVerb: Resomi
-    allowedEmotes: ['Chirp', 'Hisses', 'Growl', 'Scree', 'Call', 'Squawk']
+    speechSounds: UnisexResomi
+    allowedEmotes: ['Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'Chirp']
   - type: Tag
     tags:
     - CanPilot

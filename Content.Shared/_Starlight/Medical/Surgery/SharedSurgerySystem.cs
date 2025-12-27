@@ -6,6 +6,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
@@ -49,6 +50,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {

@@ -14,7 +14,7 @@
     sprite: Clothing/Hands/Gloves/combat.rsi
     state: icon
   product: CrateSecurityGlovesCombat
-  cost: 3500
+  cost: 12000
   category: cargoproduct-category-name-security
   group: market
 
@@ -35,5 +35,15 @@
     state: icon
   product: CrateSecurityArmorReflective
   cost: 880
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecurityExorcismCrate
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
+    state: holy
+  product: CrateSecurityHoly
+  cost: 2777
   category: cargoproduct-category-name-security
   group: market

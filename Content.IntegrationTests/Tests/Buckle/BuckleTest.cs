@@ -31,11 +31,15 @@ namespace Content.IntegrationTests.Tests.Buckle
   - type: Hands
   - type: ComplexInteraction
   - type: InputMover
+  - type: Physics
+    bodyType: KinematicController
   - type: Body
     prototype: Human
   - type: StandingState
+    # Sunrise-Start
   - type: Appearance
   - type: DoAfter
+    # Sunrise-End
 
 - type: entity
   name: {StrapDummyId}
@@ -317,10 +321,10 @@ namespace Content.IntegrationTests.Tests.Buckle
                 // Still buckled
                 Assert.That(buckle.Buckled);
 
-                // Now with no item in any hand
+                // Still with items in hand
                 foreach (var hand in hands.Hands.Keys)
                 {
-                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Null);
+                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Not.Null);
                 }
 
                 buckleSystem.Unbuckle(human, human);

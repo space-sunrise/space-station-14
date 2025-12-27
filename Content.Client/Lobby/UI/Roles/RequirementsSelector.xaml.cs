@@ -35,9 +35,9 @@ public sealed partial class RequirementsSelector : BoxContainer
         IoCManager.InjectDependencies(this);
         _options = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
         {
-            FirstButtonStyle = StyleBase.ButtonOpenRight,
-            ButtonStyle = StyleBase.ButtonOpenBoth,
-            LastButtonStyle = StyleBase.ButtonOpenLeft,
+            FirstButtonStyle = StyleClass.ButtonOpenRight,
+            ButtonStyle = StyleClass.ButtonOpenBoth,
+            LastButtonStyle = StyleClass.ButtonOpenLeft,
             HorizontalExpand = true,
         };
         //Override default radio option button width
@@ -54,7 +54,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             Text = Loc.GetString("role-timer-locked"),
             Visible = true,
             HorizontalAlignment = HAlignment.Center,
-            StyleClasses = {StyleBase.StyleClassLabelSubText},
+            StyleClasses = {StyleClass.LabelSubText},
         };
 
         _lockStripe = new StripeBack()
@@ -115,7 +115,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             Text = Loc.GetString("role-timer-locked"),
             Visible = true,
             HorizontalAlignment = HAlignment.Center,
-            StyleClasses = {StyleBase.StyleClassLabelSubText},
+            StyleClasses = { "StyleClassLabelSubText" },
         };
 
         _lockStripe.Children.Clear();
@@ -136,7 +136,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             Visible = true,
             HorizontalAlignment = HAlignment.Center,
             FontColorOverride = Color.Red,
-            StyleClasses = {StyleBase.StyleClassLabelSubText},
+            StyleClasses = { "StyleClassLabelSubText" },
         };
 
         _lockStripe.Children.Clear();

@@ -239,8 +239,8 @@
     sprite: Objects/Weapons/Guns/Rifles/XL8.rsi
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5 # Sunrise-Edit
-    pvsIncrease: 0.5 # Sunrise-Edit
+    maxOffset: 7 # sunrise-edit
+    pvsIncrease: 0.7 # sunrise-edit
   - type: StaticPrice
     price: 1500 #3x lecter
   - type: Gun
@@ -307,8 +307,8 @@
     sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5 # Sunrise-Edit
-    pvsIncrease: 0.5 # Sunrise-Edit
+    maxOffset: 7 # Sunrise-Edit
+    pvsIncrease: 0.7 # Sunrise-Edit
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -331,6 +331,7 @@
     sprite: Objects/Fun/Foam/foam_rifle.rsi
   - type: Item
     sprite: Objects/Fun/Foam/foam_rifle_inhand_64x.rsi
+    size: Normal
     shape:
     - 0,0,3,0
   - type: BallisticAmmoProvider
@@ -351,3 +352,5 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     clumsyProof: true
   - type: PacifismAllowedGun
+  - type: StaticPrice
+    price: 100

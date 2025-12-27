@@ -90,6 +90,8 @@ ignore_list:
   - 'STG 44'
   - 'ACP-14'
   - 'Glock-22'
+  - 'Desert Eagle'
+  - 'Metus'
   - 'GL-70'
   - 'M-41'
   - 'DEAD-BEEF'
@@ -155,6 +157,7 @@ ignore_list:
   - 'T'
   - 'H₂O'
   - 'v2.1'
+  - 'v0.2.1'
   - 'v 1.6'
   - 'Sol Dry'
   - 'Ds ujdjhbnt nhfyckbnjv.'
@@ -169,6 +172,7 @@ ignore_list:
   - <index>
   - 'MHelp'
   - 'Net-ERR*?*%'
+  - 'Holo Girl'
 
 ignore_files:
   - 'italian.ftl'
@@ -199,3 +203,6 @@ ignore_files:
   - role-types.ftl
   - rmobjective.ftl
   - persistence-save-command.ftl
+  - xeno_last.ftl
+  - xeno_first.ftl
+  - narsie.ftl

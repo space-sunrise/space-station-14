@@ -9,6 +9,7 @@ using Content.Shared._Starlight.Combat.Ranged.Pierce;
 using Content.Shared.Armor;
 using Content.Shared.Damage;
 using Content.Shared.Inventory;
+using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Server._Starlight.Combat.Ranged;
 

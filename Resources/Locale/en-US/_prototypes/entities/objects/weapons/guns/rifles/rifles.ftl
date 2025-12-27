@@ -1,5 +1,3 @@
-ent-BaseWeaponRifle = BaseWeaponRifle
-    .desc = A rooty tooty point and shooty.
 ent-WeaponRifleAk = AKMS
     .desc = A somewhat battered combat rifle of a design originating from old Earth. Favored by criminals, militias, and terrorists due to its famed reliability and easy-to-manufacture design. Feeds from .30 rifle magazines.
 ent-WeaponRifleM90GrenadeLauncher = M-90gl

@@ -1,10 +1,10 @@
-# Автоматы:
+# region Огнестрел:
 - type: listing
   id: ERTUplinkWeaponSubMachineGunDrozdMk2
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunDrozdMk2
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: drozd }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 10
   categories:
     - NTAutoGun
   conditions:
@@ -16,7 +16,7 @@
   productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 10
   categories:
     - NTAutoGun
   conditions:
@@ -29,7 +29,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunWt550
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: wt550 }
   cost:
-    Bluecrystal: 9
+    Bluecrystal: 10
   categories:
     - NTAutoGun
   conditions:
@@ -55,35 +55,175 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkWeaponAMS42Filled
-  name: ntuplink-gun-bundleams42-name
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
-  productEntity: ClothingBackpackDuffelWeaponAMS42Filled
-  cost:
-    Bluecrystal: 12
-  categories:
-  - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
-
-- type: listing
   id: ERTUplinkWeaponRifleG36Filled
   name: ntuplink-gun-bundleg36-name
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: g36 }
   productEntity: ClothingBackpackDuffelWeaponRifleG36Filled
   cost:
+    Bluecrystal: 13
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM24Filled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm24nano }
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM24Filled
+  cost:
     Bluecrystal: 12
   categories:
   - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM24FilledCBURN
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm24 }
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
+  cost:
+    Bluecrystal: 13
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkWeaponAMS42Filled
+  name: ntuplink-gun-bundleams42-name
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
+  productEntity: ClothingBackpackDuffelWeaponAMS42Filled
+  cost:
+    Bluecrystal: 15
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM28Filled
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM28Filled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm28nano }
+  cost:
+    Bluecrystal: 15
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkWeaponRifleSKM28FilledCBURN
+  productEntity: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm28 }
+  cost:
+    Bluecrystal: 15
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkWeaponLightMachineGunM492
+  productEntity: ClothingBackpackDuffelWeaponLightMachineGunM492
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m492 }
+  cost:
+    Bluecrystal: 20
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+
+- type: listing
+  id: ERTUplinkWeaponLightMachineGunM492CBURN
+  productEntity: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m492cburn }
+  cost:
+    Bluecrystal: 20
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkWeaponLightMachineGunMG42
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
+  cost:
+    Bluecrystal: 33
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkPowerpackMinigunMG100Incendiary
+  description: ntuplink-gun-minigun-desc
+  productEntity: PowerpackMinigunMG100Incendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
+  cost:
+    Bluecrystal: 35
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkPowerpackMinigunMG100
+  description: ntuplink-gun-minigun-desc
+  productEntity: PowerpackMinigunMG100
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
   cost:
     Bluecrystal: 35
   categories:
@@ -96,37 +236,6 @@
       tags:
       - ERTGamma
       - ERTEpsilon
-
-- type: listing
-  id: ERTUplinkPowerpackMinigunMG100
-  description: ntuplink-gun-minigun-desc
-  productEntity: PowerpackMinigunMG100
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
-  cost:
-    Bluecrystal: 38
-  categories:
-    - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - CBURN
-      - ERTGamma
-      - ERTEpsilon
-
-- type: listing
-  id: ERTUplinkWeaponRifleM28Filled
-  productEntity: ClothingBackpackDuffelWeaponRifleM28Filled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m28 }
-  cost:
-    Bluecrystal: 14
-  categories:
-  - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: ERTUplinklWeaponRifleM52Filled
@@ -230,7 +339,7 @@
   - !type:ListingLimitedStockCondition
     stock: 5
 
-# Лазеры:
+# region Лазеры:
 - type: listing
   id: ERTUplinkWeaponWeaponPulseRifle
   productEntity: WeaponPulseRifle
@@ -245,7 +354,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - CBURN
       - ERTGamma
       - ERTEpsilon
 
@@ -263,13 +371,12 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - CBURN
       - ERTGamma
       - ERTEpsilon
 
 - type: listing
   id: ERTUplinkWeaponIONRifle
-  productEntity: WeaponIONRifle
+  productEntity: WeaponIonRifle
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ion-r }
   cost:
     Bluecrystal: 10
@@ -293,7 +400,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - CBURN
       - ERTGamma
       - ERTEpsilon
 
@@ -303,6 +409,18 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lnt620 }
   cost:
     Bluecrystal: 10
+  categories:
+  - NTLasers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
+  id: ERTUplinkWeaponGunLaserCarbineAutomatic
+  productEntity: WeaponGunLaserCarbineAutomatic
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ik60 }
+  cost:
+    Bluecrystal: 11
   categories:
   - NTLasers
   conditions:
@@ -344,7 +462,7 @@
       - ERTGamma
       - ERTEpsilon
 
-# Пистолеты:
+# region Пистолеты:
 - type: listing
   id: ERTUplinkWeaponRevolverSpearhead
   productEntity: WeaponRevolverSpearhead
@@ -416,10 +534,10 @@
       - ERTGamma
       - CBURN
 
-# Боеприпасы:
+# region Боеприпасы:
 - type: listing
   id: ERTUplinkBoxMagazineSubMachineGunTopMounted
-  productEntity: BoxMagazinePistolSubMachineGunTopMounted
+  productEntity: BoxMagazineSMGTopMounted
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_wt550 }
   cost:
     Crystallite: 5
@@ -428,6 +546,22 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 6
+
+- type: listing
+  id: ERTUplinkBoxMagazineSMGTopMountedIncendiary
+  productEntity: BoxMagazineSMGTopMountedIncendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_wt550 }
+  cost:
+    Crystallite: 5
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkMagazineBatteryLr30
@@ -516,7 +650,7 @@
 
 - type: listing
   id: ERTUplinkBoxMagazineRifle
-  productEntity: BoxMagazineRifle
+  productEntity: BoxMagazineRifleKit
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
   cost:
     Crystallite: 5
@@ -527,16 +661,48 @@
     stock: 6
 
 - type: listing
-  id: ERTUplinkBoxMagazineRifleNanotrasen
-  productEntity: BoxMagazineRifleNanotrasen
+  id: ERTUplinkBoxMagazineRifleIncendiary
+  productEntity: BoxMagazineRifleIncendiary
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
   cost:
-    Crystallite: 6
+    Crystallite: 5
   categories:
   - NTAmmo
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 6
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
+  id: ERTUplinkBoxMagazineRifleNanotrasen
+  productEntity: BoxMagazineRifleNanotrasen
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
+  cost:
+    Crystallite: 7
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
+  id: ERTUplinkBoxMagazineRifleNanotrasenIncendiary
+  productEntity: BoxMagazineRifleNanotrasenIncendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
+  cost:
+    Crystallite: 7
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkBoxMagazineRifleM52
@@ -549,6 +715,11 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 6
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
 
 - type: listing
   id: ERTUplinkMagazineMagnum
@@ -582,7 +753,7 @@
   productEntity: MagazineP90
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
   cost:
-    Crystallite: 5
+    Crystallite: 2
   categories:
     - NTAmmo
   conditions:
@@ -593,14 +764,115 @@
       - ERTEpsilon
 
 - type: listing
+  id: ERTUplinkMagazineP90HP
+  productEntity: MagazineP90HP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 2
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMagazineP90FMJ
+  productEntity: MagazineP90FMJ
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 3
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMagazineP90Incendiary
+  productEntity: MagazineP90Incendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 4
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMagazineP90AP
+  productEntity: MagazineP90AP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
+  cost:
+    Crystallite: 5
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkBoxMagazineLightRifle
+  productEntity: BoxMagazineLightRifle
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
+  cost:
+    Crystallite: 6
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTRed
+      - CBURN
+
+- type: listing
+  id: ERTUplinkBoxMagazineLightRifleIncendiary
+  productEntity: BoxMagazineLightRifleIncendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
+  cost:
+    Crystallite: 6
+  categories:
+    - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
+
+- type: listing
   id: ERTUplinkSMGAmmoKit
   productEntity: SMGAmmoKit
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg }
   cost:
-    Crystallite: 9
+    Crystallite: 8
+  categories:
+  - NTAmmo
+
+- type: listing
+  id: ERTUplinkSMGIncendiaryAmmoKit
+  productEntity: SMGIncendiaryAmmoKit
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg }
+  cost:
+    Crystallite: 8
   categories:
   - NTAmmo
   conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkBoxMagazineShotgun
@@ -619,12 +891,28 @@
   productEntity: BoxMagazineShotgunSlug
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_slug }
   cost:
-    Crystallite: 7
+    Crystallite: 9
   categories:
   - NTAmmo
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 8
+
+- type: listing
+  id: ERTUplinkBoxMagazineShotgunIncendiary
+  productEntity: BoxMagazineShotgunIncendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_red }
+  cost:
+    Crystallite: 9
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - CBURN
 
 - type: listing
   id: ERTUplinkBoxMagazineShotgunBeanbag
@@ -643,7 +931,52 @@
   productEntity: MagazineMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_mg342 }
   cost:
-    Crystallite: 6
+    Crystallite: 4
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkRifleHeavyMagazineFMJ
+  productEntity: RifleHeavyMagazineFMJ
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342fmj }
+  cost:
+    Crystallite: 8
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkMRifleHeavyMagazinIncendiary
+  productEntity: RifleHeavyMagazineIncendiary
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342incendiary }
+  cost:
+    Crystallite: 10
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkRifleHeavyMagazineAP
+  productEntity: RifleHeavyMagazineAP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342ap }
+  cost:
+    Crystallite: 16
   categories:
   - NTAmmo
   conditions:
@@ -665,7 +998,7 @@
   - !type:ListingLimitedStockCondition
     stock: 8
 
-# NTexplosive:
+# region Взрывчатка:
 - type: listing
   id: ERTUplinkWeaponGrenadeLauncherSecurity
   productEntity: WeaponGrenadeLauncherSecurity
@@ -830,6 +1163,18 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+
+- type: listing
+  id: ERTUplinkSyringeAmbuzol
+  productEntity: SyringeAmbuzol
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ambuzol-syringe }
+  cost:
+    Crystallite: 9
+  categories:
+    - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: ERTUplinkMedkitOxygenFilled

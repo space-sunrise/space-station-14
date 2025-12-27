@@ -118,12 +118,24 @@
   - NanoTrasenRepresentativeCoatOpen
 
 - type: loadoutGroup
+  id: NanoTrasenRepresentativeBackpack
+  name: loadout-group-hop-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - NanoTrasenRepresentativeModsuit
+
+- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:
   - BlueShieldBackpack
   - BlueShieldSatchel
   - BlueShieldDuffel
+  - BlueShieldModsuit
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -145,6 +157,15 @@
   loadouts:
   - BlueShieldMantle
   - BlueShieldCoat
+
+- type: loadoutGroup
+  id: BlueshieldGun
+  name: loadout-group-blueshield-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - BlueshieldWT550
+  - BlueshieldAsh12
 
 - type: loadoutGroup
   id: BarberJumpsuit
@@ -1308,6 +1329,7 @@
   name: loadout-group-commaid-backpack
   loadouts:
   - ComMaidBackpackSatchelLeather
+  - ComMaidModsuit
 
 - type: loadoutGroup
   id: ComMaidNeck
@@ -1333,3 +1355,114 @@
   - ComMaidGlovesWhite
   - ComMaidGlovesTactical
 
+# Planet Prison - General
+
+- type: loadoutGroup
+  id: TrinketsPlanetPrison
+  name: loadout-group-planet-prison-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ClothingNeckPlanetPrisonLockdownPin
+  - ClothingNeckPlanetPrisonCellblockPin
+
+# Planet Prison - Planet Prisoner
+
+- type: loadoutGroup
+  id: PlanetPrisonerLoot
+  name: loadout-group-planet-prisoner-loot
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PresentRandomPrisoner
+
+# Planet Prison - General Security
+
+- type: loadoutGroup
+  id: PlanetPrisonSecurityLoot
+  name: loadout-group-planet-prison-security-loot
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PlanetPrisonSecurity-MasterHandheldCamera
+
+# Planet Prison - Inspector
+
+- type: loadoutGroup
+  id: PrisonInspectorHats
+  name: loadout-group-prison-inspector-hats
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PrisonInspector-ClothingHeadHatBowlerHat
+  - PrisonInspector-ClothingHeadHatIAA
+  - PrisonInspector-ClothingHeadHatDetGadget
+
+
+- type: loadoutGroup
+  id: PrisonInspectorGlasses
+  name: loadout-group-prison-inspector-glasses
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonInspector-ClothingEyesGlassesSunglasses
+  - PrisonInspector-ClothingEyesGlassesNoir
+
+# Planet Prison - Head Security
+- type: loadoutGroup
+  id: PrisonDoctorHead
+  name: loadout-group-prison-doctor-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonDoctor-ClothingHeadCapPrisonDoctorMetus
+  - PrisonDoctor-ClothingHeadHatBeretPrisonDoctorMetus
+  - PrisonDoctor-ClothingHeadHatCapPrisonDoctorMetus
+
+- type: loadoutGroup
+  id: PrisonChefHead
+  name: loadout-group-prison-chef-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonChef-ClothingHeadHatChef
+  - PrisonChef-ClothingHeadCapPrisonChefMetus
+  - PrisonChef-ClothingHeadHatBeretPrisonChefMetus
+  - PrisonChef-ClothingHeadHatCapPrisonChefMetus
+  - PrisonChef-ClothingHeadHatChefBlackToque
+
+- type: loadoutGroup
+  id: PrisonEngineerHead
+  name: loadout-group-prison-engineer-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonEngineer-ClothingHeadCapPrisonEngineerMetus
+  - PrisonEngineer-ClothingHeadHatBeretPrisonEngineerMetus
+  - PrisonEngineer-ClothingHeadHatCapPrisonEngineerMetus
+
+- type: loadoutGroup
+  id: PrisonScientistHead
+  name: loadout-group-prison-scientist-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonScientist-ClothingHeadCapPrisonScientistMetus
+  - PrisonScientist-ClothingHeadHatBeretPrisonScientistMetus
+  - PrisonScientist-ClothingHeadHatCapPrisonScientistMetus
+
+- type: loadoutGroup
+  id: PrisonWorkerHead
+  name: loadout-group-prison-worker-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonWorker-ClothingHeadCapPrisonWorkerMetus
+  - PrisonWorker-ClothingHeadHatBeretPrisonWorkerMetus
+  - PrisonWorker-ClothingHeadHatCapPrisonWorkerMetus
+- type: loadoutGroup
+  id: Contributors
+  name: loadout-group-contributors
+  minLimit: 0
+  loadouts:
+  - ContributorLoadout

@@ -13,6 +13,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Network; // Starlight-edit
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -23,6 +24,8 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly INetManager _net = default!; // Starlight-edit
+    [Dependency] private readonly SharedGunSystem _gun = default!;
 
     public override void Initialize()
     {
@@ -31,8 +34,8 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, UseInHandEvent>(OnUseInHandEvent);
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, GetVerbsEvent<Verb>>(OnGetVerb);
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, AttemptShootEvent>(OnShootAttempt);
+        SubscribeLocalEvent<BatteryWeaponFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent); // Starlight-edit
+        SubscribeLocalEvent<BatteryWeaponFireModesComponent, AttemptShootEvent>(OnShootAttempt); // Starlight-edit
     }
 
     private void OnExamined(EntityUid uid, BatteryWeaponFireModesComponent component, ExaminedEvent args)
@@ -42,25 +45,21 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
         var fireMode = GetMode(component);
 
+        // Starlight-start
         if (TryGetAmmoProvider(uid, out var ammoProvider) && ammoProvider != null)
         {
-            if (ammoProvider is ProjectileBatteryAmmoProviderComponent projectileAmmo)
+            if (ammoProvider is BatteryAmmoProviderComponent projectileAmmo)
             {
                 if (!_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var projectile))
                     return;
 
                 args.PushMarkup(Loc.GetString("gun-set-fire-mode", ("mode", projectile.Name)));
             }
-            else if (ammoProvider is HitscanBatteryAmmoProviderComponent hitscanAmmo)
-            {
-                if (!_prototypeManager.TryIndex<HitscanPrototype>(fireMode.Prototype, out var hitscan))
-                    return;
-
-                args.PushMarkup(Loc.GetString("gun-set-fire-mode", ("mode", hitscan.Name)));
-            }
         }
+        // Starlight-end
     }
 
+    private BatteryWeaponFireMode GetMode(BatteryWeaponFireModesComponent component) => component.FireModes[component.CurrentFireMode]; // Starlight-edit: Lambda
 
     private void OnGetVerb(EntityUid uid, BatteryWeaponFireModesComponent component, GetVerbsEvent<Verb> args)
     {
@@ -76,7 +75,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         if (!_accessReaderSystem.IsAllowed(args.User, uid))
             return;
 
-        if (!TryGetAmmoProvider(uid, out var ammoProvider) && ammoProvider == null)
+        if (!TryGetAmmoProvider(uid, out var ammoProvider) && ammoProvider == null) // Starlight-edit
             return;
 
         for (var i = 0; i < component.FireModes.Count; i++)
@@ -84,7 +83,8 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             var fireMode = component.FireModes[i];
             var index = i;
 
-            if (ammoProvider is ProjectileBatteryAmmoProviderComponent projectileAmmo)
+            // Starlight-start
+            if (ammoProvider is BatteryAmmoProviderComponent projectileAmmo)
             {
                 var entProto = _prototypeManager.Index<EntityPrototype>(fireMode.Prototype);
 
@@ -104,26 +104,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
                 args.Verbs.Add(v);
             }
-            else if (ammoProvider is HitscanBatteryAmmoProviderComponent hitscanAmmo)
-            {
-                var entProto = _prototypeManager.Index<HitscanPrototype>(fireMode.Prototype);
-
-                var v = new Verb
-                {
-                    Priority = 1,
-                    Category = VerbCategory.SelectType,
-                    Text = entProto.Name,
-                    Disabled = i == component.CurrentFireMode,
-                    Impact = LogImpact.Low,
-                    DoContactInteraction = true,
-                    Act = () =>
-                    {
-                        SetFireMode(uid, component, index, args.User);
-                    }
-                };
-
-                args.Verbs.Add(v);
-            }
+            // Starlight-end
         }
     }
 
@@ -162,9 +143,11 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
     private void SetFireMode(EntityUid uid, BatteryWeaponFireModesComponent component, int index, EntityUid? user = null)
     {
+        // Starlight-start
+        if (_net.IsClient)
+            return; // Why? Conditions is server side only, we can't fully move this to server, so we just drop client here
+
         var fireMode = component.FireModes[index];
-        component.CurrentFireMode = index;
-        Dirty(uid, component);
 
         if (fireMode.Conditions != null && user != null)
         {
@@ -172,17 +155,17 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             var conditionsMet = fireMode.Conditions.All(condition => condition.Condition(conditionArgs));
 
             if (!conditionsMet)
-            {
-                if (TryComp<ActorComponent>(user, out var actor))
-                    _popupSystem.PopupEntity(Loc.GetString("gun-alert-level-condition"),
-                uid, actor.PlayerSession);
                 return;
-            }
         }
+        // Starlight-end
 
+        component.CurrentFireMode = index;
+        Dirty(uid, component);
+
+        // Starlight-start
         if (TryGetAmmoProvider(uid, out var ammoProvider) && ammoProvider != null)
         {
-            if (ammoProvider is ProjectileBatteryAmmoProviderComponent projectileAmmo)
+            if (ammoProvider is BatteryAmmoProviderComponent projectileAmmo)
             {
                 if (!_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var prototype))
                     return;
@@ -196,54 +179,39 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
                 projectileAmmo.Capacity = (int)Math.Round(projectileAmmo.Capacity / fireCostDiff);
                 Dirty(uid, projectileAmmo);
 
-                _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode", ("mode", prototype.Name)), uid, user);
+                if (user != null)
+                    _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode", ("mode", prototype.Name)), uid, user);
             }
-            else if (ammoProvider is HitscanBatteryAmmoProviderComponent hitscanAmmo)
-            {
-                if (!_prototypeManager.TryIndex<HitscanPrototype>(fireMode.Prototype, out var hitscan))
-                    return;
-
-                var oldFireCost = hitscanAmmo.FireCost;
-                hitscanAmmo.Prototype = fireMode.Prototype;
-                hitscanAmmo.FireCost = fireMode.FireCost;
-
-                float fireCostDiff = (float)fireMode.FireCost / (float)oldFireCost;
-                hitscanAmmo.Shots = (int)Math.Round(hitscanAmmo.Shots / fireCostDiff);
-                hitscanAmmo.Capacity = (int)Math.Round(hitscanAmmo.Capacity / fireCostDiff);
-                Dirty(uid, hitscanAmmo);
-
-                _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode", ("mode", hitscan.Name)), uid, user);
-            }
-
-            var updateClientAmmoEvent = new UpdateClientAmmoEvent();
-            RaiseLocalEvent(uid, ref updateClientAmmoEvent);
 
             if (fireMode.HeldPrefix != null)
                 _item.SetHeldPrefix(uid, fireMode.HeldPrefix);
         }
+        // Starlight-end
+
+        if (TryComp(uid, out BatteryAmmoProviderComponent? batteryAmmoProviderComponent))
+        {
+            batteryAmmoProviderComponent.Prototype = fireMode.Prototype;
+            batteryAmmoProviderComponent.FireCost = fireMode.FireCost;
+
+            Dirty(uid, batteryAmmoProviderComponent);
+
+            _gun.UpdateShots((uid, batteryAmmoProviderComponent));
+        }
     }
+
+    # region Starlight
 
     private bool TryGetAmmoProvider(EntityUid uid, out object? ammoProvider)
     {
         ammoProvider = null;
 
-        if (TryComp<ProjectileBatteryAmmoProviderComponent>(uid, out var projectileProvider))
+        if (TryComp<BatteryAmmoProviderComponent>(uid, out var provider))
         {
-            ammoProvider = projectileProvider;
-            return true;
-        }
-
-        if (TryComp<HitscanBatteryAmmoProviderComponent>(uid, out var hitscanProvider))
-        {
-            ammoProvider = hitscanProvider;
+            ammoProvider = provider;
             return true;
         }
 
         return false;
-    }
-    private BatteryWeaponFireMode GetMode(BatteryWeaponFireModesComponent component)
-    {
-        return component.FireModes[component.CurrentFireMode];
     }
 
     private void OnShootAttempt(EntityUid uid, BatteryWeaponFireModesComponent component, ref AttemptShootEvent args)
@@ -257,9 +225,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             var conditionsMet = fireMode.Conditions.All(condition => condition.Condition(conditionArgs));
 
             if (!conditionsMet)
-            {
                 SetFireMode(uid, component, 0, args.User);
-            }
         }
     }
 
@@ -283,4 +249,6 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
         SetFireMode(uid, component, index, user);
     }
+
+    # endregion Starlight
 }

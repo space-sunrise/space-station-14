@@ -4,3 +4,6 @@ ent-AccessBreakerUnlimited = дешифратор аутентификации
 ent-AccessBreaker = { ent-AccessBreakerUnlimited }
     .suffix = Ограниченный
     .desc = { ent-AccessBreakerUnlimited.desc }
+ent-AccessBreakerPirate = { ent-AccessBreakerUnlimited }
+    .suffix = Пираты
+    .desc = { ent-AccessBreakerUnlimited.desc }

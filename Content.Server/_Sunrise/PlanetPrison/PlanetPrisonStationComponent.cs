@@ -1,26 +1,31 @@
 ﻿using Content.Server.Maps;
+using Content.Shared.Maps;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.PlanetPrison;
+
+
 [RegisterComponent]
 public sealed partial class PlanetPrisonStationComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(PrototypeIdHashSetSerializer<GameMapPrototype>), required: true)]
-    public HashSet<string> Stations = [];
+    [DataField(required: true)]
+    public HashSet<ProtoId<GameMapPrototype>> StationsModern = [];
+
+    [DataField(required: true)]
+    public HashSet<ProtoId<GameMapPrototype>> StationsOld = [];
 
     public MapId MapId = MapId.Nullspace;
 
     [DataField]
     public EntityUid Entity = EntityUid.Invalid;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<BiomeTemplatePrototype>), required: true)]
-    public List<string> Biomes = [];
+    [DataField(required: true)]
+    public List<ProtoId<BiomeTemplatePrototype>> Biomes = [];
 
-    [DataField("shuttleWhitelist")]
+    [DataField]
     public EntityWhitelist? ShuttleWhitelist;
 
     [DataField]

@@ -11,3 +11,19 @@
   id: veryRareDiscounts # Casually used items that are widely used but can be (rarely) discounted for epic lulz.
   weight: 2
   maxItems: 4 #Sunrise-Edit
+
+# sunrise-start
+- type: discountCategory
+  id: rarePirateDiscounts # Dirty-cheap items that are rarely used and can be discounted to 0-ish cost to encourage usage.
+  weight: 18
+  maxItems: 12 #Sunrise-Edit
+
+- type: discountCategory
+  id: usualPirateDiscounts # Cheap items that are used not very often.
+  weight: 80
+
+- type: discountCategory
+  id: veryRarePirateDiscounts # Casually used items that are widely used but can be (rarely) discounted for epic lulz.
+  weight: 2
+  maxItems: 8 #Sunrise-Edit
+# sunrise-end

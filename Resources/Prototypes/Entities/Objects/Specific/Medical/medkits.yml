@@ -10,7 +10,7 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,3,1
+    - 0,0,5,1 # Sunrise-Edit
   - type: Item
     size: Large
     sprite: Objects/Specific/Medical/firstaidkits.rsi
@@ -96,6 +96,10 @@
   components:
   - type: Sprite
     state: blackkit
+  - type: Storage # Sunrise-Edit
+    maxItemSize: Small # Sunrise-Edit
+    grid: # Sunrise-Edit
+    - 0,0,3,1 # Sunrise-Edit
   - type: Item
     heldPrefix: blackkit
     size: Normal

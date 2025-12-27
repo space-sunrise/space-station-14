@@ -32,6 +32,8 @@ using Content.Shared.Item;
 using Content.Shared.Medical;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Store.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Chemistry.Components;
 namespace Content.Server._Sunrise.Disease;
 public sealed class SickSystem : SharedSickSystem
 {
@@ -103,10 +105,17 @@ public sealed class SickSystem : SharedSickSystem
             }
         }
 
-        if (!string.IsNullOrEmpty(component.BeforeInfectedBloodReagent) &&
-            TryComp<BloodstreamComponent>(uid, out var bloodstream))
+        if (TryComp<BloodstreamComponent>(uid, out var stream))
         {
-            _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
+            var solution = new Solution();
+
+            foreach (var reagentId in component.BeforeInfectedBloodReagent)
+            {
+                // Количество подставь логичное для твоей механики
+                solution.AddReagent(reagentId, FixedPoint2.New((int)stream.BloodReferenceSolution.MaxVolume));
+            }
+
+            _bloodstream.ChangeBloodReagents(uid, solution);
         }
     }
     public override void Update(float frameTime)
@@ -124,10 +133,22 @@ public sealed class SickSystem : SharedSickSystem
                 UpdateInfection(uid, component, component.owner, diseaseComp);
                 if (!component.Inited)
                 {
-                    //Infect
                     if (TryComp<BloodstreamComponent>(uid, out var stream))
-                        component.BeforeInfectedBloodReagent = stream.BloodReagent;
-                    _bloodstream.ChangeBloodReagent(uid, diseaseComp.NewBloodReagent);
+                    {
+                        foreach (var item in stream.BloodReferenceSolution)
+                        {
+                            component.BeforeInfectedBloodReagent.Add(item.Reagent.Prototype);
+                        }
+                        var solution = new Solution();
+
+                        foreach (var reagentId in diseaseComp.NewBloodReagent)
+                        {
+                            // количество — подставь нужное тебе
+                            solution.AddReagent(reagentId, FixedPoint2.New((int)stream.BloodReferenceSolution.MaxVolume));
+                        }
+
+                        _bloodstream.ChangeBloodReagents(uid, solution);
+                    }
 
                     RaiseNetworkEvent(new ClientInfectEvent(GetNetEntity(uid), GetNetEntity(component.owner)));
                     diseaseComp.SickOfAllTime++;

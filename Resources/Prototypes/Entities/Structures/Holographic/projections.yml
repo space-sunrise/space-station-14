@@ -155,7 +155,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 60
+          damage: 250 # Sunrise - Edit
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]

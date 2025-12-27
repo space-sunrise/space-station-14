@@ -1,4 +1,23 @@
 - type: entity
+  parent: UniformPrinter
+  id: SewingPrinterMetus
+  name: prison sewing printer
+  description: Designed for producing textile items, maintaining order and identification within the prison.
+  suffix: Metus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/sewing_printer_metus.rsi
+    snapCardinals: false
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Lathe
+    staticPacks:
+    - ClothingMetusPlanetPrison
+    - BedsheetsMetus
+    - CarpetsMetus
+
+- type: entity
   id: ExosuitFabricatorHyperConvection
   name: exosuit fabricator hyper convection
   description: A highly-experimental Exosuit Fabricator that harnesses the power of extreme heat to slowly create objects more cost-effectively.
@@ -54,10 +73,11 @@
   - type: OreSiloClient
 
 - type: entity
-  id: AutolathePrison
+  id: AutolathePrisonMetus
   parent: Autolathe
   name: prison autolathe
   description: Produces basic metal and glass items of prison standard.
+  suffix: Metus
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/prison_autolathe.rsi
@@ -87,3 +107,97 @@
     - PowerCellsStatic
     - ElectronicsStaticPrison
     - HydroponicsStatic
+
+- type: entity
+  id: PirateTechFab
+  parent: BaseLatheLube
+  name: pirate techfab
+  suffix: pirate
+  description: Prints basic weapons, ammo and gear for unruly gangs. The cost-optimized model sacrifices speed and variety for lower resource use
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/pirate_stitcher.rsi
+    snapCardinals: false
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Machine
+    board: PirateTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    materialUseMultiplier: 0.6
+    timeMultiplier: 1.75
+    staticPacks:
+    - PirateStaticSunrise
+    - ToolsStaticPrison
+    - PartsStatic
+    - PowerCellsStatic
+    - CablesStatic
+    - Equipment
+    dynamicPacks:
+    - SecurityEquipment
+    - SecurityExplosives
+    - SecurityAmmo
+    - SecurityWeapons
+    - SecurityDynamicSunrise
+
+- type: entity
+  id: AmmoLathe
+  parent: BaseLatheLube
+  name: ammo lathe
+  suffix: ShuttleBattle
+  description: Prints ammunition, repair parts for shuttle crew. "Cost-optimized model" has reduced fabrication speed and limited selection.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/ammolathe.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: AmmoTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    materialUseMultiplier: 0.75
+    timeMultiplier: 2
+    staticPacks: # Базовые вещи минимально для ведения боя на шаттле
+    - ShuttleBattleStatic
+    - ShuttleBoards
+    - PowerCages
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - LightsStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+  - type: EmagLatheRecipes # продвинутые вещи для повышенного весёлья
+    emagStaticPacks:
+    - ShuttleBattleDynamic
+    - MedicalCyberlimbDynamic
+    - MedicalCyberOrgansDynamic
+    - MedicalImplantDynamic
+    - NightVisionDevice
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Godmode

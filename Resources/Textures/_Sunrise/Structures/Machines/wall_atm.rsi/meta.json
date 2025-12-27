@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CLA",
-    "copyright": "Sprited by discord: land1001",
+    "copyright": "Sprited by discord: land1001, Pirate and rusted by KaiserMaus",
     "states": [
         {
             "name": "base",
@@ -18,6 +18,20 @@
         {
             "name": "panel",
             "directions": 4
+        },
+        {
+            "name": "rusted",
+            "directions": 4
+        },
+        {
+            "name": "pirate",
+            "directions": 4,
+            "delays": [
+                [ 0.3, 0.3, 0.4, 0.6, 0.9, 0.6, 0.4, 0.3, 0.3, 0.3 ],
+                [ 0.3, 0.3, 0.4, 0.6, 0.9, 0.6, 0.4, 0.3, 0.3, 0.3 ],
+                [ 0.3, 0.3, 0.4, 0.6, 0.9, 0.6, 0.4, 0.3, 0.3, 0.3 ],
+                [ 0.3, 0.3, 0.4, 0.6, 0.9, 0.6, 0.4, 0.3, 0.3, 0.3 ]
+            ]
         }
     ]
 }

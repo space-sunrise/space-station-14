@@ -17,6 +17,7 @@ using Content.Server._Sunrise.Medical.CrewMonitoring; // Sunrise - Edit
 using Content.Shared.Mobs.Systems; // Sunrise - Edit
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.PowerCell.Components;
 
 
 namespace Content.Server.Medical.CrewMonitoring;

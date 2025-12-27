@@ -14,7 +14,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Threading;
 using System.Diagnostics;
 
@@ -70,8 +70,8 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         InitializeGridAtmosphere();
         InitializeMap();
 
-        _mapAtmosQuery = GetEntityQuery<MapAtmosphereComponent>();
         _atmosQuery = GetEntityQuery<GridAtmosphereComponent>();
+        _mapAtmosQuery = GetEntityQuery<MapAtmosphereComponent>();
         _airtightQuery = GetEntityQuery<AirtightComponent>();
         _firelockQuery = GetEntityQuery<FirelockComponent>();
 
@@ -116,10 +116,12 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
         _frameCount++;
 
+#if DEBUG
         if (_frameCount % 100 == 0)
         {
-            Logger.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
+            Log.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
         }
+#endif
 
         _exposedTimer += frameTime;
 

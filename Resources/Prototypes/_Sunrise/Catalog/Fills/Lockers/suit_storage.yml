@@ -37,9 +37,34 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitPirateEVASun
+          orGroup: OxygenTankPool
+        - id: DoubleEmergencyOxygenTankFilled
+          prob: 0.5
+          orGroup: OxygenTankPool
+        - id: NitrogenTankFilled
+          orGroup: NitrogenTankPool
+        - id: DoubleEmergencyNitrogenTankFilled
+          prob: 0.5
+          orGroup: NitrogenTankPool
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagPirate
+        - id: CombatMedipen
+          prob: 0.5
+        - id: JetpackMiniFilled
+          prob: 0.3
+        - id: ClothingHeadHelmetPirate
+          orGroup: HelmetPiratePool
+        - id: ClothingHeadHelmetPirateAlt
+          orGroup: HelmetPiratePool
+        - id: ClothingOuterEVASuitPirate
+          prob: 0.5
+          orGroup: SuitPiratePool
+        - id: ClothingOuterEVASuitPirateArmored
+          prob: 0.45
+          orGroup: SuitPiratePool
+        - id: ClothingOuterEVASuitPirateArmoredAlt
+          prob: 0.3
+          orGroup: SuitPiratePool
 
 #Pirate hardsuit
 - type: entity
@@ -50,7 +75,31 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitPirateSun
+          orGroup: OxygenTankPool
+        - id: DoubleEmergencyOxygenTankFilled
+          prob: 0.5
+          orGroup: OxygenTankPool
+        - id: NitrogenTankFilled
+          orGroup: NitrogenTankPool
+        - id: DoubleEmergencyNitrogenTankFilled
+          prob: 0.5
+          orGroup: NitrogenTankPool
+        - id: ClothingHeadHelmetPirate
+          orGroup: HelmetPiratePool
+        - id: ClothingHeadHelmetPirateAlt
+          orGroup: HelmetPiratePool
+        - id: ClothingHeadHelmetPirateOld
+          prob: 0.3
+          orGroup: HelmetPiratePool
+        - id: ClothingOuterEVASuitPirateOld
+          prob: 0.3
+          orGroup: SuitPiratePool
+        - id: ClothingOuterEVASuitPirateArmored
+          prob: 0.4
+          orGroup: SuitPiratePool
+        - id: ClothingOuterEVASuitPirateArmoredAlt
+          prob: 0.25
+          orGroup: SuitPiratePool
         - id: ClothingMaskBreath
         - id: WeaponGrapplingGun
           prob: 0.8
@@ -71,6 +120,15 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
+          orGroup: OxygenTankPool
+        - id: DoubleEmergencyOxygenTankFilled
+          prob: 0.5
+          orGroup: OxygenTankPool
+        - id: NitrogenTankFilled
+          orGroup: NitrogenTankPool
+        - id: DoubleEmergencyNitrogenTankFilled
+          prob: 0.5
+          orGroup: NitrogenTankPool
         - id: ClothingOuterHardsuitPirateCapSun
         - id: ClothingMaskBreath
         - id: WeaponGrapplingGun

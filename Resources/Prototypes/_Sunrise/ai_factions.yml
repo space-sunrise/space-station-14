@@ -12,6 +12,7 @@
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Carps
@@ -31,6 +32,7 @@
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Vampire
@@ -48,6 +50,7 @@
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: SpiderClan
@@ -66,3 +69,22 @@
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
+
+- type: npcFaction
+  id: Pirate
+  hostile:
+    - NanoTrasen
+    - SimpleHostile
+    - Xeno
+    - PetsNT
+    - Revolutionary
+    - Syndicate
+    - Zombie
+    - Vampire
+    - AllHostile
+    - Thief
+    - Carps
+    - Flesh
+    - FleshHuman
+    - BloodCult

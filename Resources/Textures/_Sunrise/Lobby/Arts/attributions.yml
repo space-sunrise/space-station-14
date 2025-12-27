@@ -23,16 +23,6 @@
   copyright: "Drodn#1101 (372319756180520961) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["hydroponics.png"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Nyan cat#9990 (864832778767958037) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["med-depart.png"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Vetochka (Вета Игрит)#1118 (532579764762837022) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
 - files: ["lizard-bar.png", "new-year-explosion.png"]
   license: "CC-BY-SA-3.0"
   copyright: "mosley#6223 (498508581210161164) on discord"
@@ -53,11 +43,6 @@
   copyright: "Buryatus#8143 (353797088007684097) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["russellmart.png"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Russell#3212 (269179522744713220) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
 - files: ["nukies-here.png"]
   license: "CC-BY-SA-3.0"
   copyright: "bib#5784 (807870054598967296) on discord"
@@ -68,19 +53,9 @@
   copyright: "Gasper_horned#9372 (428967480057397260) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["detective.png", "sidor.png"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Kukurudznik#0103 (513319174794248192) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
 - files: ["maintenance-clown.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Nijn#5581 (436971507923681290) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["greytide.png"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Giliof#5213 (412634509901824005) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
 - files: ["dead-in-space.png"]
@@ -98,17 +73,7 @@
   copyright: "ROBUSTyanka#3178 (1012354394181861406) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["lost-and-powerless.png"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "~DreamlyJack~#2438 on discord"
-  source: "https://discord.gg/vtRtT4PD"
-
 - files: ["men-at-work.png"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "~DreamlyJack~#2438 on discord"
-  source: "https://discord.gg/vtRtT4PD"
-
-- files: ["you-look-lonely.png"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "~DreamlyJack~#2438 on discord"
   source: "https://discord.gg/vtRtT4PD"
@@ -207,3 +172,13 @@
   license: "CC-BY-SA-3.0"
   copyright: "Doner #4037 on discord"
   source: "https://discord.com/channels/1253315855731916821/1361656257647349882/1392788240129462343"
+
+- files: ["beerslime.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "dirtyjesus1506 on discord"
+  source: "https://discord.com/channels/1253315855731916821/1445376669413281802/1445376669413281802"
+
+- files: ["prostchitalsanogde.webp"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "ugog (865939150947352578) on discord"
+  source: "https://github.com/space-sunrise/sunrise-station"

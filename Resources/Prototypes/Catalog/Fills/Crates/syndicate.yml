@@ -1,6 +1,6 @@
 - type: entity
-  id: CrateSyndicateSurplusBundleAgent
   parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  id: CrateSyndicateSurplusBundle
   name: Syndicate surplus crate
   description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
   suffix: Agent
@@ -51,27 +51,26 @@
     - NukeOpsUplink
 
 - type: entity
-  id: CrateCybersunJuggernautBundle
-  suffix: Filled
   parent: CrateSyndicate
+  id: CrateCybersunJuggernautBundle
   name: Cybersun juggernaut bundle
+  suffix: Filled
   description: Contains everything except a big gun to go postal.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterHardsuitJuggernautBiocode
-      - id: ClothingMaskGasSyndicate
-      - id: ClothingHandsGlovesCombat
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: DoubleEmergencyNitrogenTankFilled
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitJuggernaut
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable
 
 #Sunrise-start
 - type: entity
-  id: CrateCybersunDarkGygaxBundle
-  suffix: Filled
-  parent: CrateSyndicate
-  name: Cybersun gygax bundle
-  description: Contains a set of Cybersan light armored mechs.
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  id: CrateSyndicateSuperSurplusBundle
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
   components:
   - type: StorageFill
     contents:
@@ -107,4 +106,42 @@
       - id: MechPaintMaulerMeowler
         prob: 0.25
 
+- type: entity
+  id: CratePirateMechYarrkeBundle
+  suffix: Filled
+  parent: CrateLivestock
+  name: Blackmarket salvage mech bundle
+  description: Contains a set of Cybersan light armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechBigYarrkeBattery
+      - id: ToolboxSyndicateMechRepair
+
+- type: entity
+  id: CratePirateMechDollHouseBundle
+  suffix: Filled
+  parent: CrateLivestock
+  name: Blackmarket USSP mech bundle
+  description: Contains a set of Cybersan medium armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechDollHouseFilled
+      - id: ToolboxSyndicateMechRepair
+      - id: MechPaintDollHouseWarboss
+        prob: 0.25
+
+- type: entity
+  id: CrateCybersunRipleyBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun death bundle
+  description: Contains a Death Ripley MK-II mech with basic maintenance supplies.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechRipley2DeathBattery
+      - id: ToolboxSyndicateMechRepair
+      - id: ToyDeathRipley
 #sunrise-end

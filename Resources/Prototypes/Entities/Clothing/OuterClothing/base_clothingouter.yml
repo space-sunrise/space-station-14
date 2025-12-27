@@ -168,6 +168,17 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      beakerSlot: !type:ContainerSlot # Sunrise-Start
+  - type: Inject
+    openCloseDelay: 1.5
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit # Sunrise-End
   - type: GroupExamine
   - type: Tag
     tags:

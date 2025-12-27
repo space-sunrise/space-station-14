@@ -15,12 +15,9 @@
   access:
   - Security
   - Brig
-#  - Maintenance #Sunrise-Edit
-  - Service
+  - Maintenance
   - External
   - Cryogenics
-  - GenpopEnter
-  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

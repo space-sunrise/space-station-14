@@ -1,5 +1,3 @@
-ent-BaseWeaponRifleSunrise = BaseWeaponRifleSunrise
-    .desc = A rooty tooty point and shooty.
 ent-WeaponRifleAKM = AKMS
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleAKMU = AKM-U
@@ -9,10 +7,6 @@ ent-WeaponRifleAK514 = AK-514
 ent-WeaponRifleFamas = Famas
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleG36 = G-36
-    .desc = { ent-BaseWeaponRifle.desc }
-ent-WeaponRifleM28 = M-28
-    .desc = { ent-BaseWeaponRifle.desc }
-ent-WeaponRifleAR18 = AR-18
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleM16A4 = M16A4
     .desc = { ent-BaseWeaponRifle.desc }

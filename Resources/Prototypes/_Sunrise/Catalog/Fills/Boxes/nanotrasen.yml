@@ -13,7 +13,25 @@
     - 0,0,5,3
   - type: StorageFill
     contents:
-    - id: DeathRattleImplantCentcomm
+    - id: DeathRattleImplanterCentcomm
+      amount: 6
+
+- type: entity
+  name: Freelance death rattle implant box
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxFreelanceRattleImplants
+  description: Six death rattle implants for the whole freelance team.
+  components:
+  - type: Sprite
+    layers:
+      - state: box_of_doom
+      - state: syringe
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+    - id: DeathRattleImplanterFreelance
       amount: 6
 
 - type: entity
@@ -194,7 +212,7 @@
 
 #ammo kits
 - type: entity
-  name: box of .308 SP magazines
+  name: .308 magazines kit
   parent: BoxMagazine
   id: BoxMagazineRifleNanotrasen
   description: A box full of 7,62x51 magazines.
@@ -207,7 +225,18 @@
       - id: MagazineRifleHeavyHP
 
 - type: entity
-  name: box of M-52 magazines
+  name: .308 incendiary magazines kit
+  parent: BoxMagazine
+  id: BoxMagazineRifleNanotrasenIncendiary
+  description: A box full of 7,62x51 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifleHeavyIncendiary
+        amount: 4
+
+- type: entity
+  name: M-52 magazines kit
   parent: BoxMagazine
   id: BoxMagazineRifleM52
   description: A box full of 5,56x45 magazines.
@@ -218,3 +247,62 @@
         amount: 2
       - id: MagazineRifleM52FMJ
       - id: MagazineRifleM52HP
+
+- type: entity
+  name: 5,56 magazines kit
+  parent: BoxMagazine
+  id: BoxMagazineRifleKit
+  description: A box full of 5,56x45 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifleSP
+        amount: 2
+      - id: MagazineRifleFMJ
+      - id: MagazineRifleHP
+
+- type: entity
+  name: 5,56 incendiary magazines kit
+  parent: BoxMagazine
+  id: BoxMagazineRifleIncendiary
+  description: A box full of 5,56x45 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifleIncendiary
+        amount: 4
+
+- type: entity
+  name: WT550 magazines kit
+  parent: BoxMagazine
+  id: BoxMagazineSMGTopMounted
+  description: A box full of WT550 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunTopMountedSP
+        amount: 2
+      - id: MagazinePistolSubMachineGunTopMounted
+      - id: MagazinePistolSubMachineGunTopMountedHP
+
+- type: entity
+  name: WT550 incendiary magazines kit
+  parent: BoxMagazine
+  id: BoxMagazineSMGTopMountedIncendiary
+  description: A box full of WT550 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunTopMountedIncendiary
+        amount: 4
+
+- type: entity
+  name: 7,62 incendiary magazines kit
+  parent: BoxMagazine
+  id: BoxMagazineLightRifleIncendiary
+  description: A box full of 7,62 magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunTopMountedIncendiary
+        amount: 4

@@ -1,0 +1,91 @@
+- type: latheRecipePack
+  id: ClothingMetusPlanetPrison
+  recipes:
+    # Head of Prison highlights
+    - ClothingUniformJumpsuitHoSOld
+    - ClothingHeadHatBeretHoSMetus
+    - ClothingNeckCloakHOSCloak
+
+    # Prison Guard
+    - UniformPrisonGuardMetus
+    - ClothingHeadHatBeretPrisonGuardMetus
+    - ClothingHeadCapPrisonGuardMetus
+
+    # Prison Doctor
+    - UniformPrisonDoctorMetus
+    - ClothingHeadHatBeretPrisonDoctorMetus
+    - ClothingHeadHatCapPrisonDoctorMetus
+    - ClothingHeadCapPrisonDoctorMetus
+
+    # Prison Chef
+    - UniformPrisonChefMetus
+    - ClothingHeadHatChef
+    - ClothingHeadHatChefBlackToque
+    - ClothingHeadHatBeretPrisonChefMetus
+    - ClothingHeadHatCapPrisonChefMetus
+    - ClothingHeadCapPrisonChefMetus
+
+    # Prison Engineer
+    - UniformPrisonEngineerMetus
+    - ClothingHeadHatBeretPrisonEngineerMetus
+    - ClothingHeadHatCapPrisonEngineerMetus
+    - ClothingHeadCapPrisonEngineerMetus
+
+    # Prison Scientist
+    - UniformPrisonScientistMetus
+    - ClothingHeadHatBeretPrisonScientistMetus
+    - ClothingHeadHatCapPrisonScientistMetus
+    - ClothingHeadCapPrisonScientistMetus
+
+    # Prison Worker
+    - UniformPrisonWorkerMetus
+    - ClothingHeadHatBeretPrisonWorkerMetus
+    - ClothingHeadHatCapPrisonWorkerMetus
+    - ClothingHeadCapPrisonWorkerMetus
+
+    # Optional prisoner stock uniforms
+    - ClothingUniformJumpsuitPrisonerGrey
+
+- type: latheRecipePack
+  id: BedsheetsMetus
+  recipes:
+    # Single bedsheets (neutral only)
+    - BedsheetBlack
+    - BedsheetBlue
+    - BedsheetBrown
+    - BedsheetGreen
+    - BedsheetGrey
+    - BedsheetOrange
+    - BedsheetPurple
+    - BedsheetRed
+    - BedsheetWhite
+    - BedsheetYellow
+    - BedsheetCosmos
+    - BedsheetRainbow
+    # Double bedsheets (neutral only)
+    - DoubleBedsheetBlack
+    - DoubleBedsheetBlue
+    - DoubleBedsheetBrown
+    - DoubleBedsheetGreen
+    - DoubleBedsheetGrey
+    - DoubleBedsheetOrange
+    - DoubleBedsheetPurple
+    - DoubleBedsheetRed
+    - DoubleBedsheetWhite
+    - DoubleBedsheetYellow
+    - DoubleBedsheetCosmosMetus
+    - DoubleBedsheetRainbow
+
+- type: latheRecipePack
+  id: CarpetsMetus
+  recipes:
+    - Carpet
+    - CarpetBlackMetus
+    - CarpetPinkMetus
+    - CarpetBlue
+    - CarpetSkyBlue
+    - CarpetGreen
+    - CarpetOrangeMetus
+    - CarpetPurple
+    - CarpetCyan
+    - CarpetWhite

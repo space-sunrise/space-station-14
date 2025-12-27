@@ -641,9 +641,6 @@
     - type: ClothingSpeedModifier
       walkModifier: 0.99
       sprintModifier: 0.99
-    - type: EyeCursorOffset
-      maxOffset: 2
-      pvsIncrease: 0.2
     - type: Contraband
       allowedDepartments: [ CentralCommand, Security ]
 

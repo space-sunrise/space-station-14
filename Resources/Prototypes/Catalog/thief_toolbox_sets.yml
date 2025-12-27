@@ -53,7 +53,7 @@
     sprite: Objects/Specific/Syndicate/telecrystal.rsi
     state: telecrystal
   content:
-  - RadioJammer
+  - RadioJammerBox # Sunrise-Edit
   - EmpImplanter # Sunrise-Edit
   - CreepyLaughImplanter # Sunrise-Add
   - TraitorCodePaper
@@ -88,7 +88,7 @@
   - EncryptionKeyStationMaster
   - CyberPen
   - BriefcaseThiefBribingBundleFilled
-  - ClothingMaskGasVoiceChameleon
+  - VoiceMaskImplanter
   #- todo Chameleon Stamp
 
 - type: thiefBackpackSet
@@ -104,5 +104,7 @@
   - Fulton
   - SmokeGrenade
   - SmokeGrenade
-  - SmokeGrenade
+  - SmokeScreenImplanter
   - SyndicateTeleporterBiocode
+  - BolaSyndicateBiocode
+  - BolaSyndicateBiocode

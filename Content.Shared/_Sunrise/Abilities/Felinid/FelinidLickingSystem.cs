@@ -13,6 +13,8 @@ using Content.Shared.Nutrition.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared._Sunrise.Abilities.Felinid;
 

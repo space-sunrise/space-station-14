@@ -1782,7 +1782,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,3.5
       parent: 1
-- proto: CrateSyndicateSuperSurplusBundleNuke #Sunrise-Edit
+- proto: CrateSyndicateSurplusBundle
   entities:
   - uid: 459
     components:
@@ -2675,7 +2675,7 @@ entities:
       parent: 532
     - type: Physics
       canCollide: False
-- proto: GrenadeFragTimer
+- proto: GrenadeFrag
   entities:
   - uid: 522
     components:

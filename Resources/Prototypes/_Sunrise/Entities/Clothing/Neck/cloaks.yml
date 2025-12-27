@@ -68,12 +68,12 @@
 
 - type: entity
   parent: ClothingCloakBase # SUNRISE EDIT
-  id: ClothingNeckCMOCloak
-  name: chief medical officer's cloak
+  id: ClothingNeckMedCloak
+  name: medic's honor cloak
   description: Only the best of the best get it. Human who wears it has saved hundreds of lives.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Neck/Cloaks/cmocloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/medcloak.rsi
     state: icon
 
 - type: entity
@@ -309,3 +309,29 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakContrib
+  name: Contributors cloak
+  description: This cat hold up this station.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/contributor.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Cloaks/contributor.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-light
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodContributor
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}

@@ -63,12 +63,8 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.6
-    sprintModifier: 0.6
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -115,6 +111,7 @@
         whitelist:
           tags:
           - MagazineRPD
+          - LightRifleHeavy
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifleSP
@@ -140,10 +137,6 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -170,10 +163,10 @@
     minAngle: 0
     maxAngle: 0
   - type: Gun
-    minAngle: 5
-    maxAngle: 140
-    angleIncrease: 4.5
-    angleDecay: 70
+    minAngle: 6
+    maxAngle: 90
+    angleIncrease: 2
+    angleDecay: 60
     fireRate: 12
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
@@ -183,7 +176,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMachineGunMG42
+        startingItem: RifleHeavyMagazineFMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2
@@ -215,12 +208,8 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
   - type: SpeedModifiedOnWield
-    walkModifier: 0.6
-    sprintModifier: 0.6
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -295,3 +284,112 @@
   - type: GunRequiresWield
   - type: StaticPrice
     price: 10000
+
+- type: entity
+  id: MagazineCannonBallMini
+  name: cannonball magazine
+  description: A compact drum of mini cannonballs for the pirate cannon.
+  components:
+    - type: Tag
+      tags:
+        - MagazineCannonBallMini
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - CannonBallMini
+      proto: CannonBallMini
+      capacity: 6
+      mayTransfer: true
+    - type: Item
+      size: Large
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: mag-5
+    - type: MagazineVisuals
+      magState: mag
+      steps: 6
+      zeroVisible: true
+    - type: Appearance
+
+- type: entity
+  name: pirate cannon
+  parent: BaseWeaponLightMachineGun
+  id: WeaponLightMachineGunPirateCannon
+  description: Kaboom!
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-3
+        map: ["enum.GunVisualLayers.Mag"]
+        type: ContainerContainer
+    - type: Clothing
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+    - type: Item
+      size: Huge
+      shape:
+      - 0,0,4,3
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+      storedSprite:
+        state: storage
+        sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
+    - type: Gun
+      fireRate: 6.5
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+        params:
+          volume: -1
+          pitch: 1.2
+      projectileSpeed: 20
+      bigTrigger: true
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: GunRequiresWield
+    - type: ChamberMagazineAmmoProvider
+      soundRack:
+        path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+        params:
+          volume: -10
+          pitch: 0.8
+      soundAutoEject:
+        path: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
+      autoEject: true
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazineCannonBallMini
+          insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
+          ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
+          priority: 2
+          whitelist:
+            tags:
+            - MagazineCannonBallMini
+        gun_chamber:
+          name: Chamber
+          startingItem: CannonBallMini
+          priority: 1
+          whitelist:
+            tags:
+            - CannonBallMini
+    - type: SpeedModifiedOnWield
+      walkModifier: 0.75
+      sprintModifier: 0.75
+    - type: Appearance
+    - type: MagazineVisuals
+      magState: mag
+      steps: 6
+      zeroVisible: true
+    - type: StaticPrice
+      price: 4000
+    - type: KnockbackByUserTag
+      doestContain:
+        Resomi:
+          knockback: 2
+          staminaMultiplier: 15
+        Felinid:
+          knockback: 1 #half of what resomi take
+          staminaMultiplier: 15

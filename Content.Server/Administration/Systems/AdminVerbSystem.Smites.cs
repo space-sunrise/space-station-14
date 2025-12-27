@@ -1,10 +1,10 @@
-using Content.Server.Administration.Components;
+using System.Numerics;
+using System.Threading;
 using System.Numerics;
 using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
@@ -23,6 +23,7 @@ using Content.Shared.Actions;
 using Content.Server.Terminator.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -30,7 +31,7 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
 using Content.Shared.Coordinates;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -65,9 +66,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
-using System.Numerics;
-using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Damage;
 
 namespace Content.Server.Administration.Systems;
 
@@ -641,12 +641,31 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/killsign.rsi"), "icon"),
                 Act = () =>
                 {
-                    EnsureComp<KillSignComponent>(args.Target);
+                    EnsureComp<KillSignComponent>(args.Target, out var comp);
+                    comp.HideFromOwner = false; // We set it to false anyway, in case the hidden smite was used beforehand.
+                    Dirty(args.Target, comp);
                 },
                 Impact = LogImpact.Extreme,
                 Message = string.Join(": ", killSignName, Loc.GetString("admin-smite-kill-sign-description"))
             };
             args.Verbs.Add(killSign);
+
+            var hiddenKillSignName = Loc.GetString("admin-smite-kill-sign-hidden-name").ToLowerInvariant();
+            Verb hiddenKillSign = new()
+            {
+                Text = hiddenKillSignName,
+                Category = VerbCategory.Smite,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/killsign.rsi"), "icon-hidden"),
+                Act = () =>
+                {
+                    EnsureComp<KillSignComponent>(args.Target, out var comp);
+                    comp.HideFromOwner = true;
+                    Dirty(args.Target, comp);
+                },
+                Impact = LogImpact.Extreme,
+                Message = string.Join(": ", hiddenKillSignName, Loc.GetString("admin-smite-kill-sign-hidden-description"))
+            };
+            args.Verbs.Add(hiddenKillSign);
 
             var cluwneName = Loc.GetString("admin-smite-cluwne-name").ToLowerInvariant();
             Verb cluwne = new()
@@ -1180,7 +1199,7 @@ public sealed partial class AdminVerbSystem
                 { "Radiation", GetDamageToKill(target) }
             }
         };
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 
     private void Scorched(EntityUid target)
@@ -1205,7 +1224,7 @@ public sealed partial class AdminVerbSystem
                         { "Heat", GetDamageToKill(target) - 50 }
                     }
                 };
-                _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+                _damageable.SetDamage(target, damageSpecifier);
             });
         }
     }
@@ -1233,7 +1252,7 @@ public sealed partial class AdminVerbSystem
                 { "Toxin", GetDamageToKill(target) }
             }
         };
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 
     private void BluespaceAway(EntityUid target)
@@ -1269,6 +1288,6 @@ public sealed partial class AdminVerbSystem
             }
         };
 
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 }

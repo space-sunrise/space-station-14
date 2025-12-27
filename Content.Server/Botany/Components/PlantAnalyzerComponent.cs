@@ -1,15 +1,14 @@
-using Content.Server.AbstractAnalyzer;
-using Content.Server.Botany.Systems;
+using Content.Shared.AbstractAnalyzer;
+using Content.Shared.Paper;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Botany.Components;
+namespace Content.Shared.Botany.Components;
 
 /// <inheritdoc/>
-[RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(PlantAnalyzerSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class PlantAnalyzerComponent : AbstractAnalyzerComponent
 {
     /// <inheritdoc/>
@@ -20,24 +19,25 @@ public sealed partial class PlantAnalyzerComponent : AbstractAnalyzerComponent
     /// <summary>
     /// When will the analyzer be ready to print again?
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan PrintReadyAt = TimeSpan.Zero;
 
     /// <summary>
     /// How often can the analyzer print?
     /// </summary>
-    [DataField("printCooldown")]
+    [DataField]
     public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// The sound that's played when the analyzer prints off a report.
     /// </summary>
-    [DataField("soundPrint")]
+    [DataField]
     public SoundSpecifier SoundPrint = new SoundPathSpecifier("/Audio/Machines/short_print_and_rip.ogg");
 
     /// <summary>
     /// What the machine will print.
     /// </summary>
-    [DataField("machineOutput", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string MachineOutput = "PlantAnalyzerReportPaper";
+    [DataField]
+    public EntProtoId<PaperComponent> MachineOutput = "PlantAnalyzerReportPaper";
 }

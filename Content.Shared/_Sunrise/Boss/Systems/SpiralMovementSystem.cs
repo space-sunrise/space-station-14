@@ -1,5 +1,6 @@
 ﻿using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;

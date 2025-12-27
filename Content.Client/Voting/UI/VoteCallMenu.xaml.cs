@@ -49,7 +49,7 @@ namespace Content.Client.Voting.UI
         {
             { VotekickReasonType.Raiding.ToString(), Loc.GetString("ui-vote-votekick-type-raiding") },
             { VotekickReasonType.Cheating.ToString(), Loc.GetString("ui-vote-votekick-type-cheating") },
-            { VotekickReasonType.Spam.ToString(), Loc.GetString("ui-vote-votekick-type-spam") }
+            { VotekickReasonType.Spam.ToString(), Loc.GetString("ui-vote-votekick-type-spamming") }
         };
 
         public Dictionary<NetUserId, (NetEntity, string)> PlayerList = new();
@@ -64,7 +64,7 @@ namespace Content.Client.Voting.UI
             RobustXamlLoader.Load(this);
             _votingSystem = _entityManager.System<VotingSystem>();
 
-            Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace;
+            Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSystem;
             CloseButton.OnPressed += _ => Close();
             // Sunrise-Start
             var deathTimeReq = _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime);
@@ -88,8 +88,10 @@ namespace Content.Client.Voting.UI
                 VoteTypeButton.AddItem(Loc.GetString(option.Name), (int)voteType);
             }
 
+            // Sunrise-Start
             var loc = IoCManager.Resolve<ILocalizationManager>();
             DetailsEdit.Placeholder = new Rope.Leaf(loc.GetString("ui-vote-votekick-details-placeholder"));
+            // Sunrise-End
 
             _state.OnStateChanged += OnStateChanged;
             VoteTypeButton.OnItemSelected += VoteTypeSelected;
@@ -181,7 +183,7 @@ namespace Content.Client.Voting.UI
                     }
                 }
 
-                commandArgs += $"\"{Rope.Collapse(DetailsEdit.TextRope)}\"";
+                commandArgs += $"\"{Rope.Collapse(DetailsEdit.TextRope)}\""; // Sunrise-Edit
                 _consoleHost.LocalShell.RemoteExecuteCommand($"createvote {((StandardVoteType)typeId).ToString()} {commandArgs}");
             }
 
@@ -240,7 +242,6 @@ namespace Content.Client.Voting.UI
             VoteTypeButton.SelectId(obj.Id);
 
             VoteNotTrustedLabel.Visible = false;
-            DetailsEdit.Visible = false;
             if ((StandardVoteType)obj.Id == StandardVoteType.Votekick)
             {
                 if (!IsAllowedVotekick)
@@ -254,8 +255,6 @@ namespace Content.Client.Voting.UI
                 {
                     _votingSystem.RequestVotePlayerList();
                 }
-
-                DetailsEdit.Visible = true;
             }
 
             VoteWarningLabel.Visible = AvailableVoteOptions[(StandardVoteType)obj.Id].EnableVoteWarning;
