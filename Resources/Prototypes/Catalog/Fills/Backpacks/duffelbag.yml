@@ -129,11 +129,11 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
-        - id: GrenadeBlastContact # Sunrise-edit
+        - id: GrenadeBlast
           amount: 1
-        - id: GrenadeFragContact # Sunrise-edit
+        - id: GrenadeFrag
           amount: 1
-        - id: GrenadeEMPContact # Sunrise-edit
+        - id: GrenadeEMP
           amount: 1
         - id: GrenadeBlastTimer
           amount: 2
@@ -152,11 +152,11 @@
   - type: StorageFill
     contents:
       - id: WeaponLauncherM79Biocode # Sunrise-edit
-      - id: GrenadeBlastContact # Sunrise-edit
+      - id: GrenadeBlast
         amount: 1
-      - id: GrenadeFragContact # Sunrise-edit
+      - id: GrenadeFrag
         amount: 1
-      - id: GrenadeEMPContact # Sunrise-edit
+      - id: GrenadeEMP
         amount: 1
       - id: GrenadeBlastTimer
         amount: 2
@@ -174,11 +174,11 @@
   - type: StorageFill
     contents:
       - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
-      - id: GrenadeBlastContact # Sunrise-edit
+      - id: GrenadeBlast
         amount: 1
-      - id: GrenadeFragContact # Sunrise-edit
+      - id: GrenadeFrag
         amount: 1
-      - id: GrenadeEMPContact # Sunrise-edit
+      - id: GrenadeEMP
         amount: 1
       - id: GrenadeBlastTimer
         amount: 2
@@ -218,7 +218,7 @@
           amount: 2
         - id: GrenadeBlastTimer # Sunrise-edit
           amount: 2
-        - id: GrenadeFlashContact # Sunrise-edit
+        - id: GrenadeFlash # Sunrise-edit
           amount: 2
         - id: GrenadeFragTimer # Sunrise-edit
           amount: 2

@@ -107,7 +107,7 @@
     tags:
     - CartridgeDebug
   - type: CartridgeAmmo # Sunrise-Edit
-    hitscan: DebugBulletTrace # Sunrise-Edit
+    proto: DebugBulletTrace # Sunrise-Edit
 
 - type: entity
   name: bang stick gibber

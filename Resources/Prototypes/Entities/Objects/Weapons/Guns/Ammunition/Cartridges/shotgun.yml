@@ -39,7 +39,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunBeanbagTrace
+    proto: PelletShotgunBeanbagTrace
 
 - type: entity
   id: ShellShotgunSlug
@@ -59,7 +59,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSlugTrace
+    proto: PelletShotgunSlugTrace
     # sunrise-start
   - type: Tag
     tags:
@@ -110,7 +110,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSpreadTrace
+    proto: PelletShotgunSpreadTrace
 
 - type: entity
   id: ShellShotgunIncendiary
@@ -149,7 +149,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunPracticeSpreadTrace
+    proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
   id: ShellTranquilizer
@@ -209,7 +209,7 @@
 #   - type: CartridgeAmmo
 #     soundEject:
 #       collection: ShellEject
-#     hitscan: PelletShotgunImprovisedSpreadTrace
+#     proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
   id: ShellShotgunUranium
@@ -230,4 +230,4 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunUraniumSpreadTrace
+    proto: PelletShotgunUraniumSpreadTrace

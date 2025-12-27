@@ -622,6 +622,21 @@
   - type: TimedDespawn
     lifetime: 0.4
 
+  # Deals less damage, glaive has better HP recovery
+- type: entity
+  id: BulletChargeGlaive
+  name: leech bolt
+  parent: BulletCharge
+  components:
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Blunt: 1
+        Slash: 5
+
 - type: entity
   parent: BaseBullet
   id: AnomalousParticleDelta
@@ -1111,6 +1126,17 @@
     - type: GrapplingProjectile
 
 - type: entity
+  parent: GrapplingHook
+  id: StickyHandPalm
+  name: sticky hand palm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/sticky_hand.rsi
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
   name : disabler bolt smg
   id: BulletDisablerSmg
   parent: BaseBullet
@@ -1300,7 +1326,7 @@
     damage:
       types:
         Heat: 20
-        
+
 - type: entity
   name: destroying bolt
   id: BulletLaserDestroy

@@ -2319,7 +2319,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: GrenadeFragContact
+    proto: GrenadeFrag
     capacity: 1
     count: 1
   - type: Gun

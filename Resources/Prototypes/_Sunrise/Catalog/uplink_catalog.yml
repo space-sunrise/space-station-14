@@ -551,11 +551,11 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkGrenadeFragContact
+  id: UplinkGrenadeFrag
   name: uplink-grenade-frag-contact-name
   description: uplink-grenade-frag-contact-desc
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
-  productEntity: GrenadeFragContact
+  productEntity: GrenadeFrag
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -571,11 +571,11 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkGrenadeBlastContact
+  id: UplinkGrenadeBlast
   name: uplink-grenade-blast-contact-name
   description: uplink-grenade-blast-contact-desc
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
-  productEntity: GrenadeBlastContact
+  productEntity: GrenadeBlast
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -591,11 +591,11 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkGrenadeEMPContact
+  id: UplinkGrenadeEMP
   name: uplink-grenade-emp-contact-name
   description: uplink-grenade-emp-contact-desc
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: emp }
-  productEntity: GrenadeEMPContact
+  productEntity: GrenadeEMP
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2

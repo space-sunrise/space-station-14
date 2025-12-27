@@ -414,7 +414,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: BatteryAmmoProvider
-    proto: GrenadeBlastContact # Sunrise-Edit
+    proto: GrenadeBlast
     fireCost: 300
   - type: Appearance
   - type: AmmoCounter

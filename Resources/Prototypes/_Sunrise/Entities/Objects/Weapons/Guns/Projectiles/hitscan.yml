@@ -21,18 +21,6 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_laser
 
-- type: entity
-  id: IgnitionRedLaser
-  parent: BasicHitscan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 14
-  - type: HitscanIgniteEffect
-
-
 # region Heavy Rifle
 - type: entity
   id: BulletRifleTraceHeavySP
@@ -44,7 +32,7 @@
     damage:
       types:
         Piercing: 25
-      Structural: 10
+        Structural: 10
   - type: HitscanStaminaDamage
     staminaDamage: 5
   - type: HitscanPierce
@@ -280,3 +268,55 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: rubber
+
+- type: entity
+  parent: BulletTrace
+  id: XrayLaserBeam
+  components:
+  - type: HitscanPierce
+    chance: 0.99
+    deviation: 0.005
+    pierceLevel: Rock
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 15
+        Radiation: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_xray
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: xray
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_xray
+
+- type: entity
+  id: AdvancedDisablerBolt
+  parent: DisablerBolt
+  components:
+  - type: HitscanStaminaDamage
+    staminaDamage: 35
+
+- type: entity
+  id: PelletShotgunImprovisedSpreadTraceLarge
+  parent: PelletShotgunImprovisedTrace
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 2
+        Slash: 2
+        Structural: 3
+  - type: HitscanPierce
+    chance: 0.01
+  - type: HitscanRicochet
+    chance: 0.5
+  - type: HitscanStaminaDamage
+    staminaDamage: 3
+  - type: ProjectileSpread
+    proto: PelletShotgunImprovisedSpreadTraceLarge
+    count: 36
+    spread: 45
