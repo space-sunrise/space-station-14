@@ -493,6 +493,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var newHairStyle = HairStyles.DefaultHairStyle;
         List<Marking> newMarkings = [];
 
+        var hairStyles = markingManager.MarkingsByCategoryAndSpeciesAndSex(MarkingCategories.Hair, species, sex);
+        if (hairStyles.Count > 0)
+            newHairStyle = random.Pick(hairStyles.Keys.ToArray());
+
+        var facialHairStyles = markingManager.MarkingsByCategoryAndSpeciesAndSex(MarkingCategories.FacialHair, species, sex);
+        if (facialHairStyles.Count > 0)
+            newFacialHairStyle = random.Pick(facialHairStyles.Keys.ToArray());
+
         // grab a completely random color.
         var baseColor = new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1);
 
