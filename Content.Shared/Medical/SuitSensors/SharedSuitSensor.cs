@@ -7,7 +7,7 @@ namespace Content.Shared.Medical.SuitSensor;
 [Serializable, NetSerializable]
 public sealed class SuitSensorStatus
 {
-    public SuitSensorStatus(NetEntity ownerUid, NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, List<string> jobDepartmentIds, MapId? mapId) // Sunrise - edit
+    public SuitSensorStatus(NetEntity ownerUid, NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, List<string> jobDepartmentIds) // Sunrise - edit
     {
         OwnerUid = ownerUid;
         SuitSensorUid = suitSensorUid;
@@ -16,7 +16,6 @@ public sealed class SuitSensorStatus
         JobIcon = jobIcon;
         JobDepartments = jobDepartments;
         JobDepartmentIds = jobDepartmentIds; // Sunrise - add
-        MapId = mapId;
     }
 
     public TimeSpan Timestamp;
@@ -32,7 +31,6 @@ public sealed class SuitSensorStatus
     public int? TotalDamageThreshold;
     public float? DamagePercentage => TotalDamageThreshold == null || TotalDamage == null ? null : TotalDamage / (float) TotalDamageThreshold;
     public NetCoordinates? Coordinates;
-    public MapId? MapId;
 }
 
 [Serializable, NetSerializable]
@@ -75,7 +73,6 @@ public static class SuitSensorConstants
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";
-    public const string MAP_ID = "mapId";
 }
 
 [Serializable, NetSerializable]

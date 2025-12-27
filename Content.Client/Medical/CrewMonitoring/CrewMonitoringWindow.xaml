@@ -33,15 +33,18 @@
                                    Margin="0 0 10 0">
                         <!-- Table rows are filled by code -->
                     </BoxContainer>
-                    <Label  Name="NoServerLabel"
-                            Text="{Loc crew-monitoring-ui-no-server-label}"
-                            StyleClasses="LabelHeading"
-                            FontColorOverride="Red"
-                            HorizontalAlignment="Center"
-                            Visible="false"/>
-                </ScrollContainer>
-            </BoxContainer>
-        </BoxContainer>
+                     <!-- Sunrise - Edit -->
+                     <Label  Name="NoServerLabel"
+                             Text="{Loc crew-monitoring-ui-no-server-label}"
+                             StyleClasses="LabelSmall"
+                             FontColorOverride="Red"
+                             HorizontalExpand="True"
+                             Align="Center"
+                             HorizontalAlignment="Center"
+                             Visible="false"/>
+                 </ScrollContainer>
+             </BoxContainer>
+         </BoxContainer>
 
         <!-- Footer -->
         <BoxContainer Orientation="Vertical">

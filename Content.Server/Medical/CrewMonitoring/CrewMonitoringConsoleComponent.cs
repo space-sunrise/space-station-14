@@ -24,18 +24,17 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     ///     от "сервер есть, но датчиков нет"
     /// </summary>
     public TimeSpan LastServerStateReceived;
-    // Sunrise - End
 
     /// <summary>
     ///     After what time sensor consider to be lost.
     /// </summary>
-    [DataField("sensorTimeout"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float SensorTimeout = 10f;
 
     /// <summary>
     ///     Whether the console should beep when corpses with sensors are detected outside morgues.
     /// </summary>
-    [DataField("doCorpseAlert"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool DoCorpseAlert = false;
 
     /// <summary>
@@ -47,12 +46,14 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     /// <summary>
     ///     The amount of time between each corpse alert beep.
     /// </summary>
-    [DataField("corpseAlertTime"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float CorpseAlertTime = 15f;
 
     /// <summary>
     ///     Sound to play when corpses with sensors are detected outside morgues.
     /// </summary>
-    [DataField("corpseAlertSound")]
-    public SoundSpecifier CorpseAlertSound = new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg");
+    [DataField]
+    public SoundSpecifier CorpseAlertSound =
+        new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg");
+    // Sunrise - End
 }

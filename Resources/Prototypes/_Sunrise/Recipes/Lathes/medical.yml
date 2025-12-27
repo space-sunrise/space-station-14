@@ -1,14 +1,15 @@
 - type: latheRecipe
-  id: HandheldCrewMonitor
-  result: HandheldCrewMonitorEmpty
+  id: EmergencyHandheldCrewMonitor
+  result: EmergencyHandheldCrewMonitorEmpty
   categories:
   - Tools
   completetime: 4
   materials:
-    Glass: 250
-    Steel: 250
-    Plastic: 400
-    Gold: 100
+    Glass: 150
+    Steel: 150
+    Plastic: 200
+    Plasma: 100
+    Gold: 50
 
 - type: latheRecipe
   id: ScalpelAdvanced

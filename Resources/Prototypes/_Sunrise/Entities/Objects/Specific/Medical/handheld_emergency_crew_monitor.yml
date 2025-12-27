@@ -1,14 +1,13 @@
 - type: entity
-  name: handheld crew monitor
-  categories: [ DoNotMap ]
-  parent: [ BaseHandheldComputer ]
-  id: HandheldCrewMonitor
-  description: A hand-held crew monitor displaying the status of suit sensors.
+  name: emergency crew monitor
+  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
+  id: EmergencyHandheldCrewMonitor
+  description: A hand-held crew monitor displaying the status of suit sensors of injured crew.
   components:
   - type: Item
     heldPrefix: scanner
   - type: Sprite
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    sprite: _Sunrise/Objects/Specific/Medical/handheld_emergency_crewmonitor.rsi
     state: scanner
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
@@ -17,6 +16,8 @@
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    onlyShowWoundedOrDead: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
@@ -24,17 +25,11 @@
     range: 500
   - type: StationLimitedNetwork
   - type: StaticPrice
-    price: 500
-  # Sunrise - Edit
-  - type: Tag
-    tags:
-    - HighRiskItem
-  - type: StealTarget
-    stealGroup: HandheldCrewMonitor
+    price: 200
 
 - type: entity
-  id: HandheldCrewMonitorEmpty
-  parent: HandheldCrewMonitor
+  id: EmergencyHandheldCrewMonitorEmpty
+  parent: EmergencyHandheldCrewMonitor
   suffix: Empty
   components:
   - type: ItemSlots

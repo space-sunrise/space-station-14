@@ -75,12 +75,10 @@ public sealed partial class SuitSensorComponent : Component
     public EntityUid? StationId = null;
 
     /// <summary>
-    ///     The server the suit sensor sends it state to.
-    ///     The suit sensor will try connecting to a new server when no server is connected.
-    ///     It does this by calling the servers entity system for performance reasons.
+    ///     Legacy field for targeted sending. Suit sensors currently broadcast to all crew monitor servers.
     /// </summary>
-    [DataField("server")]
-    public string? ConnectedServer = null;
+    [DataField]
+    public string? ConnectedServer; // Sunrise - edit
 
     /// <summary>
     /// The previous mode of the suit. This is used to restore the state when an EMP effect ends.

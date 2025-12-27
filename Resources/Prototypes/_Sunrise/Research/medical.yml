@@ -82,15 +82,15 @@
 
 - type: technology
   id: HandheldCrewMonitorTech
-  name: research-technology-hanheld-crew-monitor
+  name: research-technology-emergency-crew-monitor
   icon:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    sprite: _Sunrise/Objects/Specific/Medical/handheld_emergency_crewmonitor.rsi
     state: scanner
   discipline: Biochemical
   tier: 2
   cost: 9000
   recipeUnlocks:
-    - HandheldCrewMonitor
+    - EmergencyHandheldCrewMonitor
   technologyPrerequisites:
     - SurgeryTech
 

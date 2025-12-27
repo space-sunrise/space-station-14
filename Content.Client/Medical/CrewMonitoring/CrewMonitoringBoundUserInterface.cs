@@ -1,55 +1,10 @@
 using Content.Shared.Medical.CrewMonitoring;
-using Robust.Client.UserInterface;
-using Robust.Shared.Map; // Sunrise - edit
 
 namespace Content.Client.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
+public sealed class CrewMonitoringBoundUserInterface : SunriseCrewMonitoringBoundUserInterface
 {
-    [ViewVariables]
-    private CrewMonitoringWindow? _menu;
-
     public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-    }
-
-    protected override void Open()
-    {
-        base.Open();
-
-        _menu = this.CreateWindow<CrewMonitoringWindow>();
-        _menu.Set(string.Empty, null); // Sunrise - Add  открываем в пустом состоянии чтобы избавится от старых данных
-        _menu.SetBoundUserInterface(this);
-    }
-
-    protected override void UpdateState(BoundUserInterfaceState state)
-    {
-        base.UpdateState(state);
-
-        switch (state)
-        {
-            case CrewMonitoringState st:
-                // Sunrise - Start
-                EntityUid? monitoringGridUid = null;
-                var stationName = string.Empty;
-
-                if (st.MonitoringGrid.HasValue)
-                {
-                    monitoringGridUid = EntMan.GetEntity(st.MonitoringGrid.Value);
-                    if (EntMan.TryGetComponent<MetaDataComponent>(monitoringGridUid, out var metaData))
-                        stationName = metaData.EntityName;
-                }
-
-                _menu?.Set(stationName, monitoringGridUid);
-
-                EntityCoordinates? monitorCoords = null;
-                if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
-                    monitorCoords = xform.Coordinates;
-
-                _menu?.ShowSensors(st.Sensors, Owner, monitorCoords, st.HasServer);
-                // Sunrise - End
-                _menu?.UpdateCorpseAlertToggle(st.CorpseAlertEnabled);
-                break;
-        }
     }
 }

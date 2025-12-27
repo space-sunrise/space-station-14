@@ -27,13 +27,14 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise - Edit
     private readonly SharedTransformSystem _transformSystem;
     private readonly SpriteSystem _spriteSystem;
 
     private NetEntity? _trackedEntity;
     private bool _tryToScrollToListFocus;
     private Texture? _blipTexture;
-    private BoundUserInterface? _boundUserInterface; // Sunrise - edit
+    private BoundUserInterface? _boundUserInterface; // Sunrise - Edit
 
     public CrewMonitoringWindow()
     {
@@ -81,7 +82,12 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             TryToScrollToFocus();
     }
 
-    public void ShowSensors(List<SuitSensorStatus> sensors, EntityUid monitor, EntityCoordinates? monitorCoords, bool hasServer) // Sunrise - edit
+    public void ShowSensors(
+        List<SuitSensorStatus> sensors,
+        EntityUid monitor,
+        EntityCoordinates? monitorCoords,
+        bool hasServer,
+        CrewMonitoringNoSensorsReason noSensorsReason = CrewMonitoringNoSensorsReason.None) // Sunrise - edit
     {
         ClearOutDatedData();
 
@@ -90,7 +96,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         if (!hasServer)
         {
             NoServerLabel.Visible = true;
-            NoServerLabel.Text = Loc.GetString("crew-monitoring-ui-no-server-label");
+            NoServerLabel.Text = _loc.GetString("crew-monitoring-ui-no-server-label");
             NoServerLabel.FontColorOverride = Color.Red;
             return;
         }
@@ -98,7 +104,14 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         if (sensors.Count == 0)
         {
             NoServerLabel.Visible = true;
-            NoServerLabel.Text = Loc.GetString("crew-monitoring-ui-no-sensors-label");
+            var locKey = noSensorsReason switch
+            {
+                CrewMonitoringNoSensorsReason.NoWoundedOrDead => "crew-monitoring-ui-no-wounded-or-dead-label",
+                CrewMonitoringNoSensorsReason.NoMatchingSensors => "crew-monitoring-ui-no-matching-sensors-label",
+                _ => "crew-monitoring-ui-no-sensors-label"
+            };
+
+            NoServerLabel.Text = _loc.GetString(locKey);
             NoServerLabel.FontColorOverride = Color.LightGray;
             return;
         }
@@ -182,7 +195,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 HorizontalExpand = true,
             };
 
-            deparmentLabel.SetMessage(Loc.GetString("crew-monitoring-ui-no-department-label"));
+            deparmentLabel.SetMessage(_loc.GetString("crew-monitoring-ui-no-department-label"));
             deparmentLabel.StyleClasses.Add(StyleNano.StyleClassTooltipActionDescription);
 
             SensorsTable.AddChild(deparmentLabel);
@@ -480,12 +493,12 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
     {
         if (enabled)
         {
-            CorpseAlertToggle.Text = Loc.GetString("crew-monitoring-corpse-alert-on");
+            CorpseAlertToggle.Text = _loc.GetString("crew-monitoring-corpse-alert-on");
             CorpseAlertToggle.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
         }
         else
         {
-            CorpseAlertToggle.Text = Loc.GetString("crew-monitoring-corpse-alert-off");
+            CorpseAlertToggle.Text = _loc.GetString("crew-monitoring-corpse-alert-off");
             CorpseAlertToggle.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
         }
 

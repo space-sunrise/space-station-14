@@ -1,12 +1,16 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.IoC;
+using Robust.Shared.Localization;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
 public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 {
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise - Edit
+
     public NetEntity? Focus;
     public Dictionary<NetEntity, string> LocalizedNames = new();
 
@@ -15,6 +19,8 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
     public CrewMonitoringNavMapControl() : base()
     {
+        IoCManager.InjectDependencies(this); // Sunrise - Edit
+
         WallColor = new Color(192, 122, 196);
         TileColor = new(71, 42, 72);
         BackgroundColor = Color.FromSrgb(TileColor.WithAlpha(BackgroundOpacity));
@@ -62,9 +68,9 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
                 continue;
 
             if (!LocalizedNames.TryGetValue(netEntity, out var name))
-                name = Loc.GetString("navmap-unknown-entity");
+                name = _loc.GetString("navmap-unknown-entity");
 
-            var message = name + "\n" + Loc.GetString("navmap-location",
+            var message = name + "\n" + _loc.GetString("navmap-location",
                 ("x", MathF.Round(blip.Coordinates.X)),
                 ("y", MathF.Round(blip.Coordinates.Y)));
 
