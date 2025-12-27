@@ -30,9 +30,9 @@
   - type: Injector
     solutionName: pen
     activeModeProtoId: HyposprayInjectMode
-    AllowedModes:
+    allowedModes:
     - HyposprayInjectMode
-    CurrentTransferAmount: 20
+    currentTransferAmount: 20
   - type: UseDelay
     delay: 45
   - type: Appearance

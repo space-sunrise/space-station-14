@@ -115,7 +115,7 @@
         - id: AmpulaBica # Sunrise-Edit
           amount: 1 # Sunrise-Edit
         - id: AmpulaDerm # Sunrise-Edit
-        amount: 1 # Sunrise-Edit
+          amount: 1 # Sunrise-Edit
 
 - type: entity
   id: MedkitCombatFilled

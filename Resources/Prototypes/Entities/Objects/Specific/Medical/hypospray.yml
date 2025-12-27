@@ -159,8 +159,6 @@
     activeModeProtoId: HyposprayInjectMode
     allowedModes:
     - HyposprayInjectMode
-    doAfterTime: 1 #Sunrise-Edit
-    preventOverdose: true #Sunrise-Edit
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false

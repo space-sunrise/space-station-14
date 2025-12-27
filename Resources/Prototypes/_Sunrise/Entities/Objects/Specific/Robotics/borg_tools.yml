@@ -136,10 +136,10 @@
         Quantity: 0.4
   - type: Injector
     solutionName: hypospray
-    ActiveModeProtoId: HyposprayInjectMode
-    AllowedModes:
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
     - HyposprayInjectMode
-    CurrentTransferAmount: 5 #Sunrise-End
+    currentTransferAmount: 5 #Sunrise-End
   - type: UseDelay
     delay: 1
 
@@ -712,8 +712,8 @@
     solution: hypospray
   - type: Injector
     solutionName: hypospray
-    ActiveModeProtoId: HyposprayInjectMode
-    AllowedModes:
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
     - HyposprayInjectMode
 
 - type: entity
