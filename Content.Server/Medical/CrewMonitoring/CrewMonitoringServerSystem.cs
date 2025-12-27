@@ -121,7 +121,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     {
         var serverGrid = Transform(uid).GridUid;
 
-        // Фильтруем датчики в радиусе сервера.
+        // Датчики уже отфильтрованы по радиусу при получении в OnPacketReceived
         var filteredStatus = new Dictionary<string, SuitSensorStatus>(serverComponent.SensorStatus);
 
         var payload = new NetworkPayload()
