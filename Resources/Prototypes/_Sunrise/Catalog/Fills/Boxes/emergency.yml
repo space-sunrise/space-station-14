@@ -1,6 +1,6 @@
 - type: entity
   name: survival box
-  parent: BoxSurvivalBase
+  parent: BoxCardboardSmall
   id: BoxRepairSynth
   description: It's a box with basic internals inside.
   components:
@@ -10,14 +10,6 @@
         children:
         - id: Welder
         - id: CableApcStack
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
   - type: Sprite
     layers:
       - state: box_science
@@ -25,7 +17,7 @@
 
 - type: entity
   name: survival box
-  parent: BoxSurvivalBase
+  parent: BoxCardboardSmall
   id: BoxHugSynth
   description: It's a box with basic internals inside.
   components:
@@ -44,14 +36,6 @@
         children:
         - id: Welder
         - id: CableApcStack
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
 
 - type: entity
   name: survival box
@@ -68,14 +52,7 @@
         - id: ClothingMaskGasSecurity
         - id: Welder
         - id: CableApcStack
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
   - type: Sprite
     layers:
     - state: box_science
@@ -94,14 +71,7 @@
         - id: ClothingMaskGasSyndicate
         - id: Welder
         - id: CableApcStack
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
   - type: Sprite
     layers:
     - state: box_science
@@ -120,14 +90,7 @@
         children:
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Label
@@ -152,14 +115,7 @@
         children:
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
   - type: Tag
@@ -177,14 +133,7 @@
         children:
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodBreadBaguette
         - id: DrinkWaterBottleFull
 
@@ -201,14 +150,7 @@
         children:
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
         - id: ClothingMaskGasSecurity
@@ -230,14 +172,7 @@
         children:
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
         - id: ClothingMaskGasSyndicate
@@ -262,14 +197,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkBeerBottleFull
   - type: Label
@@ -290,14 +218,7 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkBeerBottleFull
   - type: Sprite
@@ -321,14 +242,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkBeerBottleFull
   - type: Sprite
@@ -357,14 +271,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkBeerBottleFull
   - type: Tag
@@ -384,14 +291,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodBreadBaguette
         - id: DrinkBeerBottleFull
 
@@ -410,14 +310,7 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkBeerBottleFull
   - type: Sprite
@@ -440,14 +333,7 @@
         - id: DoubleEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: SpaceMedipen
-        - id: GlowstickRed
-          orGroup: Glowstick
-        - id: GlowstickPurple
-          orGroup: Glowstick
-        - id: GlowstickYellow
-          orGroup: Glowstick
-        - id: GlowstickBlue
-          orGroup: Glowstick
+        - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkBeerBottleFull
   - type: Sprite
