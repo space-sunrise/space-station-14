@@ -36,7 +36,7 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunBeanbagTrace
@@ -56,7 +56,7 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunSlugTrace
@@ -107,7 +107,7 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunSpreadTrace
@@ -146,7 +146,7 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunPracticeSpreadTrace
@@ -206,7 +206,7 @@
 #   - type: Construction
 #     graph: ImprovisedShotgunShellGraph
 #     node: shell
-#   - type: HitScanCartridgeAmmo
+#   - type: CartridgeAmmo
 #     soundEject:
 #       collection: ShellEject
 #     hitscan: PelletShotgunImprovisedSpreadTrace
@@ -227,7 +227,7 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunUraniumSpreadTrace

@@ -106,7 +106,7 @@
   - type: Tag
     tags:
     - CartridgeDebug
-  - type: HitScanCartridgeAmmo # Sunrise-Edit
+  - type: CartridgeAmmo # Sunrise-Edit
     hitscan: DebugBulletTrace # Sunrise-Edit
 
 - type: entity

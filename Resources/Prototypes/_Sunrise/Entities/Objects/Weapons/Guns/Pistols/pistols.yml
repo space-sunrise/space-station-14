@@ -290,7 +290,7 @@
     maxAngle: 16
     angleIncrease: 2.75
     angleDecay: 15
-    fireRate: 4.25
+    fireRate: 4
     availableModes:
     - SemiAuto
     soundGunshot:
