@@ -4,8 +4,8 @@
   description: A handmade rifle bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective.
   parent: [BaseCartridgeLightRifleSP, BaseMinorContraband]
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceImprovised
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceImprovised
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/improvised_lightrifle.rsi
     layers:

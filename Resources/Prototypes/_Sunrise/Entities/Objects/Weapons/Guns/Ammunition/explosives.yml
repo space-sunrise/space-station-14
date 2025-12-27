@@ -157,8 +157,8 @@
   suffix: Pirate
   parent: BaseCartridge
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: PelletShotgunImprovisedSpreadTraceLarge
+  - type: CartridgeAmmo
+    proto: PelletShotgunImprovisedSpreadTraceLarge
     deleteOnSpawn: true
   - type: Sprite
     scale: 0.75,0.75

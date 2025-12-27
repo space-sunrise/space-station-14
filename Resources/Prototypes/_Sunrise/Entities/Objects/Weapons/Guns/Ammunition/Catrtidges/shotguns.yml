@@ -63,7 +63,7 @@
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunImprovisedSpreadTrace
@@ -88,7 +88,7 @@
   - type: Construction
     graph: ImprovisedIncendiaryShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunImprovisedIncendiarySpreadTrace
@@ -115,7 +115,7 @@
   - type: Construction
     graph: ImprovisedUraniumShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunImprovisedUraniumSpreadTrace
@@ -142,7 +142,7 @@
   - type: Construction
     graph: CoinShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     hitscan: PelletShotgunCoinSpreadTrace

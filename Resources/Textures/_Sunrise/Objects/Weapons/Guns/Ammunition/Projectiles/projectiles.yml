@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseBulletIncendiary
+  id: BulletRifleHeavyIncendiary
+  categories: [ HideSpawnMenu ]
+  name: bullet (.308 incendiary)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Heat: 3

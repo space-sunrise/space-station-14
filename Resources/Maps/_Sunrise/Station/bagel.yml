@@ -68698,7 +68698,7 @@ entities:
     - type: Transform
       pos: -10.889593,0.11666772
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -16780.9
@@ -142432,7 +142432,7 @@ entities:
 
 
 
-        [italic]Ты, наверно, думаешь, 
+        [italic]Ты, наверно, думаешь,
               Что тебе выпало 18 карат невезения?[/italic]
 
 

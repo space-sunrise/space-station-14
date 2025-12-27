@@ -33,144 +33,250 @@
   - type: HitscanIgniteEffect
 
 
-### rifle heavy #Sunrise
-
-- type: hitscan
+# region Heavy Rifle
+- type: entity
   id: BulletRifleTraceHeavySP
   parent: BulletTrace
-  damage:
-    types:
-      Piercing: 26
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -0.13
+    damage:
+      types:
+        Piercing: 25
       Structural: 10
-  armorPenetration: -0.25
-  pierceChance: 0.40
-  ricochetChance: 0.30
-  staminaDamage: 5
-  pierceLevel: Wood
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: sp
+  - type: HitscanStaminaDamage
+    staminaDamage: 5
+  - type: HitscanPierce
+    chance: 0.40
+    deviation: 0.05
+    pierceLevel: Metal
+  - type: HitscanRicochet
+    chance: 0.30
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: sp
 
-- type: hitscan
+- type: entity
   id: BulletRifleTraceHeavyHP
   parent: BulletTrace
-  damage:
-    types:
-      Piercing: 28 #+ 30%
-      Structural: 5
-  armorPenetration: -0.80
-  staminaDamage: 10
-  pierceChance: 0.05
-  ricochetChance: 0.15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -0.90
+    damage:
+      types:
+        Piercing: 30 # +30%
+  - type: HitscanStaminaDamage
+    staminaDamage: 10
+  - type: HitscanPierce
+    chance: 0.05
+    deviation: 0.05
+  - type: HitscanRicochet
+    chance: 0.15
 
-- type: hitscan
+- type: entity
   id: BulletRifleTraceHeavyFMJ
   parent: BulletTrace
-  damage:
-    types:
-      Piercing: 20 #- 30%
-      Structural: 5
-  armorPenetration: 0.35
-  pierceChance: 0.8
-  ricochetChance: 0.40
-  staminaDamage: 3
-  pierceLevel: Metal
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: fmj
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.25
+    damage:
+      types:
+        Piercing: 20 #- 30%
+        Structural: 5
+  - type: HitscanStaminaDamage
+    staminaDamage: 3
+  - type: HitscanPierce
+    chance: 0.8
+    deviation: 0.05
+    pierceLevel: Metal
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
 
-- type: hitscan
-  id: BulletRifleTraceHeavyAP
-  parent: BulletTrace
-  damage:
-    types:
-      Piercing: 20 #- 30%
-      Structural: 2
-  armorPenetration: 0.80
-  pierceChance: 0.85
-  ricochetChance: 0.30
-  staminaDamage: 1
-  pierceLevel: HardenedMetal
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: piercing
-
-- type: hitscan
+- type: entity
   id: BulletRifleTraceHeavyPractice
   parent: BulletTrace
-  damage:
-    types:
-      Blunt: 5
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: practice
-  pierceChance: 0.30
-  ricochetChance: 0.40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 5
+  - type: HitscanPierce
+    chance: 0.5
+    deviation: 0.05
+  - type: HitscanRicochet
+    chance: 0.8
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: practice
 
-- type: hitscan
-  id: BulletRifleTraceHeavyIncendiary
+- type: entity
+  id: BulletRifleTraceHeavyAP
   parent: BulletTrace
-  igniteOnCollision: true
-  damage:
-    types:
-      Blunt: 3
-      Heat: 20
-  pierceChance: 0.60
-  ricochetChance: 0.30
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: incendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.69
+    damage:
+      types:
+        Piercing: 20 #- 30%
+        Structural: 2
+  - type: HitscanStaminaDamage
+    staminaDamage: 2
+  - type: HitscanPierce
+    chance: 0.9
+    deviation: 0.05
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.3
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: ap
 
-- type: hitscan
+- type: entity
   id: BulletRifleTraceHeavyUranium
   parent: BulletTrace
-  damage:
-    types:
-      Radiation: 10
-      Piercing: 12
-      Structural: 5
-  pierceChance: 0.85
-  ricochetChance: 0.80
-  pierceLevel: HardenedMetal
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: uranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 10
+        Piercing: 12
+  - type: HitscanPierce
+    chance: 0.95
+    deviation: 0.05
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: uranium
 
 # Rubber bullets
-- type: hitscan
+- type: entity
   id: BulletMagnumTraceRubber
   parent: BulletTrace
-  damage:
-    types:
-      Blunt: 4
-  ricochetChance: 0.99
-  staminaDamage: 20
-  armorPenetration: -0.95
-  pierceChance: 0.01
-  derivation: 0.05
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: rubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanStaminaDamage
+    staminaDamage: 20
+  - type: HitscanBasicDamage
+    armorPenetration: -0.99
+    damage:
+      types:
+        Blunt: 5
+  - type: HitscanPierce
+    chance: 0.05
+    deviation: 0.05
+    pierceLevel: Wood
+  - type: HitscanRicochet
+    chance: 0.99
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: rubber
 
-- type: hitscan
+- type: entity
   id: BulletPistolTraceRubber
   parent: BulletTrace
-  damage:
-    types:
-      Blunt: 2
-  ricochetChance: 0.8
-  staminaDamage: 13
-  armorPenetration: -0.95
-  pierceChance: 0.01
-  derivation: 0.05
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: rubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanStaminaDamage
+    staminaDamage: 15
+  - type: HitscanBasicDamage
+    armorPenetration: -0.99
+    damage:
+      types:
+        Blunt: 2
+  - type: HitscanPierce
+    chance: 0.05
+    deviation: 0.05
+    pierceLevel: Wood
+  - type: HitscanRicochet
+    chance: 0.99
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: rubber

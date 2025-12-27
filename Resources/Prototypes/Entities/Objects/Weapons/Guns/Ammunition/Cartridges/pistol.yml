@@ -20,8 +20,8 @@
   name: cartridge (.35 auto rubber)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceRubber
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceRubber
   - type: Sprite
     layers:
       - state: base
@@ -35,8 +35,8 @@
   name: cartridge (.35 auto SP)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceSP
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceSP
   - type: Sprite
     layers:
       - state: base
@@ -50,8 +50,8 @@
   name: cartridge (.35 auto HP)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceHP
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceHP
   - type: Sprite
     layers:
       - state: base
@@ -65,8 +65,8 @@
   name: cartridge (.35 auto FMJ)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceFMJ
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceFMJ
   - type: Sprite
     layers:
       - state: base
@@ -80,8 +80,8 @@
   name: cartridge (.35 auto AP)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceAP
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceAP
   - type: Sprite
     layers:
       - state: base
@@ -96,8 +96,8 @@
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Chalk ammunition is generally non-harmful, used for practice.
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTracePractice
+  - type: CartridgeAmmo
+    proto: BulletPistolTracePractice
   -  type: Sprite
      layers:
        - state: base
@@ -128,8 +128,8 @@
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Uranium core ammunition features a load of fissile material, irradiating the target from the inside.
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceUranium
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceUranium
   - type: Sprite
     layers:
       - state: base
