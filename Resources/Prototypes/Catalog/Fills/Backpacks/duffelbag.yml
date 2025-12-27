@@ -99,7 +99,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponRevolverPythonAPBiocode # Sunrise-edit
+        - id: WeaponRevolverPythonAP
         - id: SpeedLoaderMagnumAP
           amount: 2
 
@@ -412,7 +412,7 @@
       storagebase: !type:AllSelector
         children:
         - id: SyringeRomerol
-        - id: WeaponRevolverPythonBiocode # Sunrise-edit
+        - id: WeaponRevolverPython
         - id: MagazineBoxMagnumIncendiary
         - id: PillAmbuzolPlus
         - id: PillAmbuzol

@@ -212,11 +212,11 @@
 
 # For the SIAR52
 - type: listing
-  id: UplinkMagazinePistolSubMachineGunSIAR52
+  id: UplinkMagazinePistolSubMachineGunCaselessExtended
   name: uplink-magazine-siar52-name
   description: uplink-magazine-siar52-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi, state: base }
-  productEntity: MagazinePistolSubMachineGunSIAR52
+  productEntity: MagazinePistolSubMachineGunCaselessExtended
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -2525,7 +2525,6 @@
       components:
       - SurplusBundle
 
-
 - type: listing
   id: Uplink50blessingset
   name: uplink-50blessing-name
@@ -2541,7 +2540,7 @@
   id: UplinkPistolTec9Magazine
   name: uplink-pistoltec9-magazine-name
   description: uplink-pistoltec9-magazine-desc
-  productEntity: BaseMagazinePistolCaselessRifleTec9
+  productEntity: MagazinePistolSubMachineGunCaseless
   cost:
     Telecrystal: 2
   categories:
@@ -2551,11 +2550,11 @@
   id: uplinkWeaponPistolTec9
   name: uplink-pistoltec9-name
   description: uplink-pistoltec9-desc
-  productEntity: WeaponPistolTec9Biocode
+  productEntity: WeaponPistolTec9
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 3
   cost:
-    Telecrystal: 8
+    Telecrystal: 5
   categories:
   - UplinkWeaponry

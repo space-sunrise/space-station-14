@@ -37,7 +37,7 @@ uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
-uplink-pistoltec9-magazine-name = пистолетный магазин tec-9 (.20 безгильзовый)
+uplink-pistoltec9-magazine-name = Tac-Tec (.20 безгильзовый)
 uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин под распространённый патрон, используемый агентами синдиката.
 
 
@@ -104,8 +104,8 @@ uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = Использует патрон «магнум» 45-го калибра. Выгравировано: "Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра".
 uplink-mini-energy-crossbow-name = Мини энерго-арбалет
 uplink-mini-energy-crossbow-desc =  Компактное оружие скрытного действия. Выпускает маломощные кинетические болты, вызывающие паралич и малое отравление. Эффективен на близком расстоянии.
-uplink-pistoltec9-name = Тек-9 тактикал
-uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как Египесткий  АК-47.
+uplink-pistoltec9-name = Tac-Tec 9
+uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как SKM-24.
 
 ## Cyborgs
 

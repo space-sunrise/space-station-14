@@ -523,9 +523,8 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
 
-
 - type: entity
-  name: Tec-9 Tactical
+  name: Tac-Tec
   parent: BaseWeaponPistolSunrise
   id: WeaponPistolTec9
   components:
@@ -546,13 +545,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: BaseMagazinePistolCaselessRifleTec9
+        startingItem: MagazinePistolSubMachineGunCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 1
         whitelist:
           tags:
           - MagazinePistolCaselessRifle
+          - MagazineCaselessRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeCaselessRifle
