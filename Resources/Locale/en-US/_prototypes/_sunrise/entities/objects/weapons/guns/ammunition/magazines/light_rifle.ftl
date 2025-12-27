@@ -22,5 +22,3 @@ ent-MagazineDl6902 = box-magazine DL6902
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazinePistolSubMachineGunSIAR52 = extended magazine (caseless)
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazineScarH = scar-h magazine
-    .desc = { ent-BaseItem.desc }

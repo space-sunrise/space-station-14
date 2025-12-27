@@ -61,7 +61,7 @@
   id: CaptainIDCard
   name: steal-target-groups-captain-id-card
   sprite:
-    sprite: /Textures/_Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     state: icon-captain
 
 - type: stealTargetGroup
@@ -154,7 +154,7 @@
   id: IDCard
   name: steal-target-groups-id-cards
   sprite:
-    sprite: /Textures/_Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     state: default
 
 - type: stealTargetGroup

@@ -905,6 +905,8 @@ SupermatterFlatpack: SupermatterFlatpackAnchored
 SupermatterCrystal: SupermatterFlatpackAnchored
 WeaponRifleM28: WeaponRifleSKM28
 WeaponRifleAR18: null
+MagazineScarH: null
+WeaponRifleScarH: null
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
