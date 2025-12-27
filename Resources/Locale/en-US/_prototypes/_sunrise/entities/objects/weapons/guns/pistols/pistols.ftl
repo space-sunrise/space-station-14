@@ -32,8 +32,5 @@ ent-WeaponPistolM1984 = D1984
 ent-WeaponPistolDeagleGolden = Golden Desert Eagle
     .desc = Fires a .45 magnum cartridge. Engraved: All I remember of him are two gold-plated .45 Desert Eagles.
 
-ent-WeaponPistolTec9 = Tec-9 Tactical
-    .desc = Very cheap to produce and very easy to use, as reliable as the Egyptian AK-47.
-ent-WeaponPistolTec9Biocode = { ent-WeaponPistolTec9 }
-    .suffix = BIOCODE
-    .desc = { ent-WeaponPistolTec9.desc }
+ent-WeaponPistolTec9 = Tac-Tec
+    .desc = Very cheap to produce and very easy to use, as reliable as the SKM-24.

@@ -44,10 +44,11 @@
       Female: FemaleTajaran
       Unsexed: MaleTajaran
   - type: Temperature
-    heatDamageThreshold: 400
-    coldDamageThreshold: 200
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 200
     coldDamage:
       types:
         Cold : 0.2

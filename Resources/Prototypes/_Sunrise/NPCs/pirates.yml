@@ -19,7 +19,7 @@
       120: Critical
       140: Dead
   - type: Stamina
-    critThreshold: 125
+    baseCritThreshold: 125
   - type: DamageStateVisuals
   - type: RotationVisuals
     defaultRotation: 90
@@ -65,7 +65,7 @@
       80: Critical
       100: Dead
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -853,12 +853,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 3
     autoRechargeRate: 99
   - type: Battery
@@ -908,12 +906,10 @@
       state: up-equipped-HELMET
     - sprite: _Sunrise/Clothing/Neck/Misc/pins.rsi
       state: comm-equipped
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 99
   - type: Battery
@@ -1138,8 +1134,10 @@
       Dead:
         Base: bigbrother-broken
   - type: Bloodstream
-    bloodReagent: WeldingFuel
-    bloodMaxVolume: 200
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1155,7 +1153,7 @@
       400: 1.5
       450: 1.6
   - type: Stamina
-    critThreshold: 800
+    baseCritThreshold: 800
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.75
@@ -1238,7 +1236,7 @@
       215: 1.8
       225: 2
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
   - type: HellSpawnInvincibility
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
@@ -1324,12 +1322,10 @@
       state: equipped-OUTERCLOTHING
     - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
       state: equipped-HELMET
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeMagnumHP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 4
     autoRechargeRate: 999
   - type: Battery
@@ -1440,12 +1436,10 @@
       shader: unshaded
     - sprite: Clothing/Belt/assault.rsi
       state: equipped-BELT
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeMagnumImprovised
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
@@ -1487,12 +1481,10 @@
       shader: unshaded
     - sprite: Clothing/Belt/assault.rsi
       state: equipped-BELT
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeMagnumAP
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -1660,12 +1652,10 @@
       state: equipped-BELT
   - type: MovementSpeedModifier
     baseSprintSpeed: 2.75
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 1.75
     autoRechargeRate: 999
   - type: Battery
@@ -1783,12 +1773,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -1828,12 +1816,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -1874,12 +1860,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavySP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 0.8
     autoRechargeRate: 999
   - type: Battery
@@ -1931,12 +1915,10 @@
     - sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
       state: on-equipped-HELMET
       shader: unshaded
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavyFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 0.2
     autoRechargeRate: 999
   - type: Battery
@@ -1991,12 +1973,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 3
     autoRechargeRate: 99
   - type: Battery
@@ -2072,12 +2052,10 @@
       shader: unshaded
   - type: MovementSpeedModifier
     baseSprintSpeed: 3.25
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
@@ -2127,7 +2105,7 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol40SP
   - type: BatterySelfRecharger
     autoRechargePauseTime: 0.5
@@ -2164,7 +2142,7 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRAP
   - type: BatterySelfRecharger
     autoRechargePauseTime: 1.25
@@ -2208,12 +2186,10 @@
       state: equipped-SUITSTORAGE
   - type: MovementSpeedModifier
     baseSprintSpeed: 2.75
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 1
     autoRechargeRate: 999
   - type: Battery
@@ -2257,8 +2233,6 @@
     proto: RedLightLaser
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
@@ -2301,8 +2275,6 @@
     proto: RedHeavyLaser
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 30
     autoRechargeRate: 999
   - type: Battery
@@ -2347,7 +2319,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: GrenadeFragContact
+    proto: GrenadeFrag
     capacity: 1
     count: 1
   - type: Gun
@@ -2382,12 +2354,10 @@
       shader: unshaded
     - sprite: Clothing/Head/Hats/cowboyhatbountyhunter.rsi
       state: equipped-HELMET
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol40SP
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
@@ -2482,12 +2452,10 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
       state: on-equipped-HELMET
       shader: unshaded
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol40FMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -2536,8 +2504,10 @@
       Dead:
         Base: warboss-broken
   - type: Bloodstream
-    bloodReagent: WeldingFuel
-    bloodMaxVolume: 300
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2550,7 +2520,7 @@
       400: 0.7
       550: 0.6
   - type: Stamina
-    critThreshold: 9999
+    baseCritThreshold: 9999
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2.25
@@ -2559,12 +2529,10 @@
   - type: Repairable
     fuelCost: 25
     doAfterDelay: 10
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery

@@ -20,7 +20,7 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Магазин для Deagle
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
-uplink-pistoltec9-magazine-name = пистолетный магазин tec-9 (.20 безгильзовый)
+uplink-pistoltec9-magazine-name = магазин Tac-Tec (.20 безгильзовый)
 uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин на 20 патронов,под калибр, используемый агентами синдиката.
 ## Misc
 

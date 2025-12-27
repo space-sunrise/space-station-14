@@ -11,6 +11,7 @@ using Robust.Client.Utility;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Client.Stylesheets;
 
 namespace Content.Client._Sunrise.InteractionsPanel;
 

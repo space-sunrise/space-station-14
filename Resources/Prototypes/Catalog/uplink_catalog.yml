@@ -5,7 +5,7 @@
   id: UplinkPistolViper
   name: uplink-pistol-viper-name
   description: uplink-pistol-viper-desc
-  productEntity: WeaponPistolViperBiocode # Sunrise-edit
+  productEntity: WeaponPistolViper
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -18,7 +18,7 @@
   id: UplinkRevolverPython
   name: uplink-revolver-python-name
   description: uplink-revolver-python-desc
-  productEntity: WeaponRevolverPythonAPBiocode # Sunrise-edit
+  productEntity: WeaponRevolverPythonAP
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -32,7 +32,7 @@
   id: UplinkPistolCobra
   name: uplink-pistol-cobra-name
   description: uplink-pistol-cobra-desc
-  productEntity: WeaponPistolCobraBiocode # Sunrise-edit
+  productEntity: WeaponPistolCobra
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -1296,7 +1296,7 @@
   id: UplinkSurplusBundle
   name: uplink-surplus-bundle-name
   description: uplink-surplus-bundle-desc
-  productEntity: CrateSyndicateSurplusBundleAgent
+  productEntity: CrateSyndicateSurplusBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 10
@@ -2068,6 +2068,13 @@
     Telecrystal: 26
   categories:
   - UplinkPointless
+  # Sunrise-start
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+  # Sunrise-end
 
 - type: listing
   id: UplinkOutlawHat
@@ -2148,6 +2155,13 @@
     Telecrystal: 20
   categories:
   - UplinkPointless
+  # Sunrise-start
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+  # Sunrise-end
 
 - type: listing
   id: UplinkScarfSyndieRed

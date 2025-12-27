@@ -210,4 +210,16 @@
       - id: ClothingOuterEVASuitPirate
       - id: DoubleEmergencyNitrogenTankFilled
       - id: DoubleEmergencyOxygenTankFilled
-#SUNRISE-End
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleAgent
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: Agent
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - SyndieAgentUplink

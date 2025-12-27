@@ -936,7 +936,6 @@
   - type: ItemBorgModule
     hands:
     - item: HypoBorgMedical # Sunrise-Edit
-    - item: HyposprayMedical # Sunrise-Edit
     - item: Syringe
     # - item: BorgDropper # Sunrise-Edit
     - item: BaseChemistryEmptyVial

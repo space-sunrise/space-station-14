@@ -20,9 +20,7 @@
     maxCharge: 50
     startingCharge: 50
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 50
-    autoRechargePause: true
     autoRechargePauseTime: 9
   - type: EnergyDomeGenerator
     damageEnergyDraw: 1

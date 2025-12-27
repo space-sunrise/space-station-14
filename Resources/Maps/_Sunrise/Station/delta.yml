@@ -212067,13 +212067,6 @@ entities:
     - type: Transform
       pos: -123.5,36.5
       parent: 2
-- proto: MobCatCake
-  entities:
-  - uid: 29354
-    components:
-    - type: Transform
-      pos: -57.5018,-50.305336
-      parent: 2
 - proto: ModularGrenade
   entities:
   - uid: 29355

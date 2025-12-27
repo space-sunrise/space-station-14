@@ -885,9 +885,6 @@ WeaponShotgunZauer: null
 HandheldCamera: null # Не надо маппить, оно есть в автоматах
 GrenadeBlast: GrenadeBlastTimer
 GrenadeEMP: GrenadeEMPTimer
-GrenadeFlash: GrenadeFlashContact
-GrenadeFlashTimer: GrenadeFlashContact
-GrenadeFrag: GrenadeFragContact
 WeaponEnergyGunMini: WeaponMiniEnergyGun
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
 AphrodisiacChemistryBottle: null
@@ -905,6 +902,9 @@ SupermatterFlatpack: SupermatterFlatpackAnchored
 SupermatterCrystal: SupermatterFlatpackAnchored
 WeaponRifleM28: WeaponRifleSKM28
 WeaponRifleAR18: null
+MagazineScarH: null
+WeaponRifleScarH: null
+MagazinePistolSubMachineGunSIAR52: MagazinePistolSubMachineGunCaselessExtended
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP

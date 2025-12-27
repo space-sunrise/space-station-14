@@ -3698,7 +3698,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 50000
-      autoRecharge: True
   - uid: 285
     components:
     - type: Transform
@@ -3707,7 +3706,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 50000
-      autoRecharge: True
   - uid: 286
     components:
     - type: Transform
@@ -3715,7 +3713,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 50000
-      autoRecharge: True
   - uid: 287
     components:
     - type: Transform

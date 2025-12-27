@@ -433,7 +433,7 @@
   id: UplinkPirateMiniEnergyCrossbow
   name: uplink-mini-energy-crossbow-name
   description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbowBiocode
+  productEntity: WeaponEnergyCrossbowBiocode
   discountCategory: rarePirateDiscounts
   discountDownTo:
     Doubloon: 34
@@ -448,12 +448,12 @@
 
 - type: listing
   id: UplinkPirateEnergyCrossbow
-  productEntity: WeaponEnergyCrossbow
+  productEntity: WeaponEnergyCrossbowLarge
   discountCategory: rarePirateDiscounts
   discountDownTo:
-    Doubloon: 38
+    Doubloon: 35
   cost:
-    Doubloon: 45
+    Doubloon: 40
   restockTime: 2700
   categories:
   - UplinkPirateWeaponry
@@ -1285,11 +1285,11 @@
   - UplinkPirateExplosives
 
 - type: listing
-  id: UplinkPirateGrenadeFragContact
+  id: UplinkPirateGrenadeFrag
   name: uplink-grenade-frag-contact-name
   description: uplink-grenade-frag-contact-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
-  productEntity: GrenadeFragContact
+  productEntity: GrenadeFrag
   discountCategory: usualPirateDiscounts
   discountDownTo:
     Doubloon: 2
@@ -1300,11 +1300,11 @@
 
 
 - type: listing
-  id: UplinkPirateGrenadeBlastContact
+  id: UplinkPirateGrenadeBlast
   name: uplink-grenade-blast-contact-name
   description: uplink-grenade-blast-contact-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
-  productEntity: GrenadeBlastContact
+  productEntity: GrenadeBlast
   discountCategory: usualPirateDiscounts
   discountDownTo:
     Doubloon: 2
@@ -1315,11 +1315,11 @@
 
 
 - type: listing
-  id: UplinkPirateGrenadeEMPContact
+  id: UplinkPirateGrenadeEMP
   name: uplink-grenade-emp-contact-name
   description: uplink-grenade-emp-contact-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: emp }
-  productEntity: GrenadeEMPContact
+  productEntity: GrenadeEMP
   discountCategory: usualPirateDiscounts
   discountDownTo:
     Doubloon: 2

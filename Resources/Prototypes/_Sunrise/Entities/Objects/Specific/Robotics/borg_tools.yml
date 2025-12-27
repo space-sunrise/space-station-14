@@ -6,7 +6,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 4
 
 - type: entity
@@ -17,7 +16,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
 
 - type: entity
@@ -28,7 +26,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
 
 - type: entity
@@ -85,7 +82,6 @@
         - delta
         - epsilon
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 20
   - type: MagazineVisuals
     magState: laser_cyborg
@@ -138,10 +134,12 @@
       reagents:
       - ReagentId: Epinephrine
         Quantity: 0.4
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
-    transferAmount: 5 #Sunrise-End
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    currentTransferAmount: 5 #Sunrise-End
   - type: UseDelay
     delay: 1
 
@@ -168,9 +166,6 @@
       Quantity: 0.1
     - ReagentId: ChloralHydrate
       Quantity: 2
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -202,9 +197,6 @@
     - ReagentId: Dermaline
       Quantity: 1
     keepSolution: false
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
   - type: BorgHypospray
 
 - type: entity
@@ -257,9 +249,6 @@
     - ReagentId: Phalanximine
       Quantity: 0.5
     keepSolution: false
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
   - type: BorgHypospray
 
 - type: entity
@@ -317,9 +306,7 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   name: gorlax robot hypospray
@@ -347,64 +334,7 @@
         Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    doAfterTime: 0.1 #Sunrise-Edit
-    injectOnly: true
-
-- type: entity
-  name: robot china lake
-  parent: WeaponLauncherChinaLake
-  id: WeaponLauncherChinaLakeBorg
-  description: PLOOP
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Gun
-    fireRate: 1
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFragTimer
-    fireCost: 1000
-  - type: Battery
-    maxCharge: 10000
-    startingCharge: 10000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
-  - type: AmmoCounter
-
-- type: entity
-  id: FireExtinguisherBorg
-  name: fire extinguisher borg
-  description: fire extinguisher borg
-  parent: FireExtinguisher
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: SolutionRegeneration
-      solution: spray
-      generated:
-        reagents:
-        - ReagentId: Water
-          Quantity: 2
-
-- type: entity
-  id: SprayBottleSpaceCleanerBorg
-  name: space cleaner
-  description: BLAM!-brand non-foaming space cleaner!
-  parent: SprayBottleSpaceCleaner
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SolutionRegeneration
-    solution: spray
-    generated:
-      reagents:
-      - ReagentId: SpaceCleaner
-        Quantity: 2
+  - type: BorgHypospray
 
 - type: entity
   name: borg crowbar
@@ -542,7 +472,6 @@
   id: WeaponDisablerSMGBorg
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
 
 - type: entity
@@ -575,7 +504,6 @@
     maxCharge: 5000
     startingCharge: 5000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
 
 - type: entity
@@ -607,13 +535,12 @@
     availableModes:
     - FullAuto
   - type: BatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    proto: RedLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
     fireCost: 50
   - type: Battery
     maxCharge: 10000
     startingCharge: 10000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
   - type: AmmoCounter
 
@@ -653,9 +580,7 @@
     maxCharge: 10000
     startingCharge: 10000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 250
-    autoRechargePause: true
     autoRechargePauseTime: 10
 
 - type: entity
@@ -675,16 +600,14 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeAntiMateriel
     fireCost: 500
   - type: Battery
     maxCharge: 4000
     startingCharge: 4000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 250
-    autoRechargePause: true
     autoRechargePauseTime: 20
   - type: AmmoCounter
 
@@ -714,16 +637,14 @@
     burstCooldown: 1.15
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFragTimer
     fireCost: 250
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 125
-    autoRechargePause: true
     autoRechargePauseTime: 20
   - type: AmmoCounter
 
@@ -763,7 +684,6 @@
     maxCharge: 5000
     startingCharge: 5000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25
   - type: AmmoCounter
 
@@ -790,9 +710,11 @@
         Quantity: 0.2
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
 
 - type: entity
   parent: HandheldCrewMonitor
@@ -880,9 +802,6 @@
         Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
 
 - type: entity
   name: Borg heavy laser cannon
@@ -908,7 +827,6 @@
     maxCharge: 1000
     startingCharge: 1000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25 # 40 seconds full recharge.
   - type: MagazineVisuals
     magState: laser_cyborg
@@ -988,9 +906,7 @@
     maxCharge: 1600
     startingCharge: 1600
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 50 # 32 seconds full recharge.
-    autoRechargePause: true
     autoRechargePauseTime: 5
   - type: AmmoCounter
 
@@ -1034,9 +950,7 @@
     maxCharge: 2600
     startingCharge: 2600
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 65 # 40 seconds full recharge.
-    autoRechargePause: true
     autoRechargePauseTime: 5
   - type: AmmoCounter
 
@@ -1180,3 +1094,17 @@
     examinableWhileClosed: true
   - type: SolutionItemStatus
     solution: drink
+
+- type: entity
+  id: FireExtinguisherBorg
+  name: fire extinguisher borg
+  description: fire extinguisher borg
+  parent: FireExtinguisher
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SolutionRegeneration
+      solution: spray
+      generated:
+        reagents:
+        - ReagentId: Water
+          Quantity: 2

@@ -560,15 +560,12 @@
         shader: unshaded
       - state: equipped-OUTERCLOTHING-unshaded
         shader: shaded
-  - type: Construction
-    graph: NavalJacketCraft
-    node: NavalJacket
   - type: Reflect
     reflectProb: 0.02
     reflects:
     - Energy
     reflectingInHands: false
-    
+
 - type: entity
   parent: ClothingOuterCoatDetectiveLoadout
   id: ClothingOuterDiscoAssBlazerDetective

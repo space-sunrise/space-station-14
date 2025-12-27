@@ -40,7 +40,6 @@
           SalvageSpecialist: [ 2, 3 ]
           Musician: [ 1, 2 ]
           AtmosphericTechnician: [ 1, 2 ]
-          Boxer: [ 1, 2 ]
           CargoTechnician: [ 2, 2 ]
           Reporter: [ 1, 2 ]
           ServiceWorker: [ 2, 3 ]

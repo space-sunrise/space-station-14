@@ -1,3 +1,34 @@
+# region Base Bullets
+- type: entity
+  id: BaseBulletGrenade
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+    deleteOnCollide: false
+  - type: StartTimerOnShoot
+  - type: TimerTrigger
+    delay: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 50
+        mask:
+        - ItemMask
+        restitution: 0.05
+        friction: 0.5
+# region end
+
 - type: entity
   id: BulletAcid2
   name: acid spit
@@ -838,3 +869,45 @@
     damage:
       types:
         Shock: 15
+
+- type: entity
+  id: BulletPlasma
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: arcane_barrage
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 14
+        Slash: 14
+        Structural: 35
+    penetrationThreshold: 800
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 0.35
+  - type: PointLight
+    radius: 2.5
+    color: "#dd16d395"
+    energy: 0.5
+  - type: GatheringProjectile
+
+- type: entity
+  name: wide plasma barrage
+  id: BulletPlasmaSpread
+  categories: [ HideSpawnMenu ]
+  parent: BulletPlasma
+  components:
+  - type: ProjectileSpread
+    proto: BulletPlasma
+    count: 3
+    spread: 25

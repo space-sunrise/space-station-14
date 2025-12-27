@@ -153,7 +153,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: CorePoweredThrower
   - type: MeleeThrowOnHit
-    unanchorOnHit: true
+    unanchorOnHit: Unanchorable
   - type: ItemSlots
     slots:
       core_slot:
@@ -208,7 +208,7 @@
     soundHit:
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: MeleeThrowOnHit
-    unanchorOnHit: true
+    unanchorOnHit: Unanchorable
     stunTime: 1.5
   - type: Tool
     qualities:
@@ -251,7 +251,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AnomalousParticleDeltaStrong
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -265,7 +265,6 @@
     - proto: AnomalousParticleSigmaStrong
       fireCost: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25
     autoRechargePauseTime: 1
 
@@ -323,7 +322,6 @@
     proto: RedLightLaser
     fireCost: 75
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 120
     autoRechargePauseTime: 8
   - type: MagazineVisuals
@@ -371,7 +369,7 @@
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: GrenadeFlashContact
+        startingItem: GrenadeFlash
         priority: 1
         whitelist:
           tags:
@@ -414,7 +412,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     projectileSpeed: 15
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AirGrenade
     fireCost: 130
   - type: BatteryWeaponFireModes
@@ -427,7 +425,6 @@
     maxCharge: 500
     startingCharge: 500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
   - type: KnockbackByUserTag
     doestContain:

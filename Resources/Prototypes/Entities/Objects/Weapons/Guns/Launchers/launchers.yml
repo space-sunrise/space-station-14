@@ -212,12 +212,12 @@
       layers:
         - state: icon
           map: ["enum.GunVisualLayers.Base"]
-    - containers:
+    - type: ContainerContainer
+      containers:
         balistic-ammo: !type:Container
           ents: []
         ballistic-ammo: !type:Container
           ents: []
-      type: ContainerContainer
     - type: Clothing
       sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
     - type: Gun

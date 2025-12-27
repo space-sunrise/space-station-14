@@ -166,9 +166,7 @@
     maxCharge: 720
     startingCharge: 720
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 60
-    autoRechargePause: true
     autoRechargePauseTime: 6
   - type: BatteryAmmoProvider
     proto: DisablerBolt
@@ -411,9 +409,7 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 14 # ~2 minute
-    autoRechargePause: true
     autoRechargePauseTime: 30
   - type: BatteryAmmoProvider
     proto: DisablerBolt
@@ -800,9 +796,7 @@
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
-    autoRechargePause: true
     autoRechargePauseTime: 10
   - type: StaticPrice
     price: 7500
@@ -1153,10 +1147,8 @@
     proto: RedLightLaser
     fireCost: 33
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargePauseTime: 1
     autoRechargeRate: 250
-    autoRechargePause: true
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -1179,7 +1171,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: ProjectileBatteryAmmoProvider # Sunrise-Edit
+  - type: BatteryAmmoProvider # Sunrise-Edit
     proto: CartridgeXrayBeam # Sunrise-Edit
     fireCost: 100
   - type: MagazineVisuals
@@ -1188,5 +1180,4 @@
     zeroVisible: true
   - type: Appearance
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30

@@ -25150,7 +25150,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 50000
-      autoRecharge: True
   - uid: 4400
     components:
     - type: Transform
@@ -25385,7 +25384,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 538
     components:
     - type: MetaData
@@ -25398,7 +25396,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 539
     components:
     - type: MetaData
@@ -25411,7 +25408,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 541
     components:
     - type: MetaData
@@ -25423,7 +25419,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 543
     components:
     - type: MetaData
@@ -25438,7 +25433,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 544
     components:
     - type: MetaData
@@ -25454,7 +25448,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 545
     components:
     - type: MetaData
@@ -25469,7 +25462,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 547
     components:
     - type: MetaData
@@ -25482,7 +25474,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 548
     components:
     - type: MetaData
@@ -25495,7 +25486,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 549
     components:
     - type: MetaData
@@ -25514,7 +25504,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 553
     components:
     - type: MetaData
@@ -25526,7 +25515,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 554
     components:
     - type: MetaData
@@ -25538,7 +25526,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 555
     components:
     - type: Transform
@@ -25551,7 +25538,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 556
     components:
     - type: MetaData
@@ -25567,7 +25553,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 557
     components:
     - type: MetaData
@@ -25585,7 +25570,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 558
     components:
     - type: Transform
@@ -25605,7 +25589,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 562
     components:
     - type: MetaData
@@ -25618,7 +25601,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 563
     components:
     - type: MetaData
@@ -25631,7 +25613,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 567
     components:
     - type: MetaData
@@ -25643,7 +25624,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 568
     components:
     - type: MetaData
@@ -25655,7 +25635,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 570
     components:
     - type: MetaData
@@ -25668,7 +25647,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 571
     components:
     - type: MetaData
@@ -25680,7 +25658,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 572
     components:
     - type: MetaData
@@ -25696,7 +25673,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 574
     components:
     - type: MetaData
@@ -25708,7 +25684,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 575
     components:
     - type: MetaData
@@ -25720,7 +25695,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 576
     components:
     - type: MetaData
@@ -25732,7 +25706,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 578
     components:
     - type: MetaData
@@ -25747,7 +25720,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 579
     components:
     - type: MetaData
@@ -25759,7 +25731,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 580
     components:
     - type: MetaData
@@ -25774,7 +25745,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 581
     components:
     - type: MetaData
@@ -25786,7 +25756,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 583
     components:
     - type: MetaData
@@ -25799,7 +25768,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 584
     components:
     - type: MetaData
@@ -25811,7 +25779,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 585
     components:
     - type: MetaData
@@ -25823,7 +25790,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 586
     components:
     - type: MetaData
@@ -25835,7 +25801,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 587
     components:
     - type: MetaData
@@ -25847,7 +25812,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 588
     components:
     - type: Transform
@@ -25858,7 +25822,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 589
     components:
     - type: MetaData
@@ -25870,7 +25833,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 590
     components:
     - type: Transform
@@ -25881,7 +25843,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 591
     components:
     - type: MetaData
@@ -25894,7 +25855,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 592
     components:
     - type: MetaData
@@ -25907,7 +25867,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 593
     components:
     - type: MetaData
@@ -25919,7 +25878,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 594
     components:
     - type: MetaData
@@ -25932,7 +25890,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 595
     components:
     - type: MetaData
@@ -25945,7 +25902,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 596
     components:
     - type: Transform
@@ -25955,7 +25911,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 597
     components:
     - type: Transform
@@ -25976,7 +25931,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 648
     components:
     - type: Transform
@@ -26003,7 +25957,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 4235
     components:
     - type: Transform
@@ -26027,7 +25980,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 6818
     components:
     - type: Transform
@@ -26045,7 +25997,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 8061
     components:
     - type: Transform
@@ -26056,7 +26007,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 8243
     components:
     - type: MetaData
@@ -26093,7 +26043,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 17989
     components:
     - type: MetaData
@@ -26106,7 +26055,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 100000
-      autoRecharge: True
   - uid: 18676
     components:
     - type: Transform
@@ -26211,7 +26159,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 200000
-      autoRecharge: True
   - uid: 604
     components:
     - type: MetaData
@@ -26224,7 +26171,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 200000
-      autoRecharge: True
   - uid: 605
     components:
     - type: MetaData
@@ -26237,7 +26183,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 200000
-      autoRecharge: True
   - uid: 606
     components:
     - type: MetaData
@@ -26249,7 +26194,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 200000
-      autoRecharge: True
   - uid: 607
     components:
     - type: MetaData
@@ -26261,7 +26205,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 200000
-      autoRecharge: True
   - uid: 608
     components:
     - type: MetaData
@@ -26274,7 +26217,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 200000
-      autoRecharge: True
   - uid: 13094
     components:
     - type: Transform
@@ -26295,7 +26237,6 @@ entities:
       fixtures: {}
     - type: BatterySelfRecharger
       autoRechargeRate: 150000
-      autoRecharge: True
   - uid: 28694
     components:
     - type: Transform
@@ -68757,7 +68698,7 @@ entities:
     - type: Transform
       pos: -10.889593,0.11666772
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -16780.9
@@ -142491,7 +142432,7 @@ entities:
 
 
 
-        [italic]Ты, наверно, думаешь, 
+        [italic]Ты, наверно, думаешь,
               Что тебе выпало 18 карат невезения?[/italic]
 
 
@@ -164029,7 +163970,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21049
     components:
     - type: Transform
@@ -164037,7 +163977,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21051
     components:
     - type: MetaData
@@ -164047,7 +163986,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21052
     components:
     - type: Transform
@@ -164055,7 +163993,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21054
     components:
     - type: MetaData
@@ -164065,7 +164002,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21055
     components:
     - type: MetaData
@@ -164075,7 +164011,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21057
     components:
     - type: MetaData
@@ -164085,7 +164020,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
   - uid: 21058
     components:
     - type: MetaData
@@ -164095,7 +164029,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 16000000
-      autoRecharge: True
 - proto: SMESBasic
   entities:
   - uid: 6878
@@ -164117,7 +164050,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 30000000
-      autoRecharge: True
   - uid: 21060
     components:
     - type: Transform
@@ -164125,7 +164057,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 30000000
-      autoRecharge: True
   - uid: 21061
     components:
     - type: Transform
@@ -164133,7 +164064,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 30000000
-      autoRecharge: True
   - uid: 21062
     components:
     - type: Transform
@@ -164141,7 +164071,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 30000000
-      autoRecharge: True
   - uid: 21063
     components:
     - type: Transform
@@ -164149,7 +164078,6 @@ entities:
       parent: 2
     - type: BatterySelfRecharger
       autoRechargeRate: 30000000
-      autoRecharge: True
 - proto: SmokingPipeFilledTobacco
   entities:
   - uid: 21064
@@ -167512,7 +167440,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 13244
     components:
     - type: Transform
@@ -167539,7 +167466,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21684
     components:
     - type: MetaData
@@ -167550,7 +167476,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21687
     components:
     - type: MetaData
@@ -167561,7 +167486,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21689
     components:
     - type: MetaData
@@ -167572,7 +167496,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21690
     components:
     - type: Transform
@@ -167581,7 +167504,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21691
     components:
     - type: MetaData
@@ -167592,7 +167514,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21695
     components:
     - type: MetaData
@@ -167603,7 +167524,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21696
     components:
     - type: MetaData
@@ -167614,7 +167534,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21697
     components:
     - type: MetaData
@@ -167625,7 +167544,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21699
     components:
     - type: MetaData
@@ -167636,7 +167554,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21701
     components:
     - type: Transform
@@ -167645,7 +167562,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21702
     components:
     - type: MetaData
@@ -167656,7 +167572,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21703
     components:
     - type: MetaData
@@ -167667,7 +167582,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21704
     components:
     - type: MetaData
@@ -167678,7 +167592,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21705
     components:
     - type: MetaData
@@ -167689,7 +167602,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21706
     components:
     - type: MetaData
@@ -167700,7 +167612,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 21707
     components:
     - type: Transform
@@ -167709,7 +167620,6 @@ entities:
     - type: CMExplosionEffect
     - type: BatterySelfRecharger
       autoRechargeRate: 7500000
-      autoRecharge: True
   - uid: 22074
     components:
     - type: Transform

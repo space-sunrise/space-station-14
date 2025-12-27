@@ -126,7 +126,7 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
-    useRate: 85
+    useCharge: 85
   - type: PowerDrainOnMeleeHit
     chargePerHit: 30
   # Sunrise-End

@@ -1,0 +1,61 @@
+- type: entity
+  id: StorePresetNTUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-ntuplink
+    categories:
+    - NTAutoGun
+    - NTLasers
+    - NTPistols
+    - NTAmmo
+    - NTMedicine
+    - NTAdditional
+    - NTexplosive
+    - NTMechs
+    - NTSanitary
+    - NTEngineering
+    #- NTCBURN
+    - NTEquipment
+    currencyWhitelist:
+    - Bluecrystal
+    - Crystallite
+    balance:
+      Telecrystal: 0
+
+- type: entity
+  id: StorePresetPirateUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-blackmarket
+    categories:
+    - UplinkPirateWeaponry
+    - UplinkPirateAmmo
+    - UplinkPirateExplosives
+    - UplinkPirateChemicals
+    - UplinkPirateDeception
+    - UplinkPirateDisruption
+    - UplinkPirateImplants
+    - UplinkPirateCybernetics
+    - UplinkPirateAllies
+    - UplinkPirateWearables
+    - UplinkPiratePointless
+    - UplinkPirateMechs
+    currencyWhitelist:
+    - Doubloon
+    balance:
+      Doubloon: 0
+
+- type: entity
+  id: StorePresetPirateExchanger
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-exchanger
+    categories:
+    - UplinkPirateExchanger
+    currencyWhitelist:
+    - Credit
+    balance:
+      Credit: 0

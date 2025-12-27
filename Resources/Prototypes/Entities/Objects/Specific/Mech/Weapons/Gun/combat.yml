@@ -61,7 +61,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeAntiMateriel
     fireCost: 125
   - type: Appearance
@@ -143,7 +143,7 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TeslaGunBullet
     fireCost: 100
   - type: Appearance
@@ -166,7 +166,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDisablerSmgSpread
     fireCost: 30
   - type: Appearance
@@ -218,7 +218,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShellShotgunMech
     fireCost: 75
   - type: Appearance
@@ -241,7 +241,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShellShotgunMechIncendiary
     fireCost: 75
   - type: Appearance
@@ -268,7 +268,7 @@
       - Burst
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/garand/garand.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRFMJMech #CartridgeLightRifleSP
     fireCost: 10
   - type: Appearance
@@ -352,7 +352,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeXrayBeam
     fireCost: 50
   - type: Appearance
@@ -386,7 +386,7 @@
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletWeakRocket
     fireCost: 100
   - type: Appearance
@@ -413,8 +413,8 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeBlastContact # Sunrise-Edit
+  - type: BatteryAmmoProvider
+    proto: GrenadeBlast
     fireCost: 300
   - type: Appearance
   - type: AmmoCounter
@@ -435,7 +435,7 @@
     state: mecha_missilerack
   - type: Gun
     fireRate: 0.75
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRocketFrag
     fireCost: 200
   - type: Battery
@@ -462,7 +462,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletGrenadeFlashBang # Sunrise-Edit
     fireCost: 60
   - type: Appearance

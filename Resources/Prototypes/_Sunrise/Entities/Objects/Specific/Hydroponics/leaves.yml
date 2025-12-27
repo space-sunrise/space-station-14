@@ -8,7 +8,7 @@
     sprite: _Sunrise/Objects/Specific/Hydroponics/cannabis_vita.rsi
   - type: Produce
     seedId: CannabisVita
-  - type: Food
+  - type: Edible
   - type: SolutionContainerManager
     solutions:
       food:

@@ -118,8 +118,6 @@
       solutions:
         hypospray:
           maxVol: 3000
-    - type: Hypospray
-      onlyAffectsMobs: false
     - type: UseDelay
       delay: 0.0
 
@@ -157,10 +155,10 @@
     exactVolume: true
   - type: Injector
     solutionName: pen
-    transferAmount: 15
-    onlyAffectsMobs: false
-    injectOnly: true
-  - type: Appearance
+    currentTransferAmount: null
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
