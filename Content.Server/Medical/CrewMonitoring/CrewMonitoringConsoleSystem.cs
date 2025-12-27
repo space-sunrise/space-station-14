@@ -7,7 +7,6 @@ using Content.Shared.Morgue.Components;
 using Content.Shared.Pinpointer;
 using Content.Server.Power.EntitySystems; // Sunrise - Edit
 using Content.Shared.Power.Components; // Sunrise - Edit
-using Content.Shared.PowerCell; // Sunrise - Edit
 using Content.Shared.UserInterface; // Sunrise - Edit
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs; // Sunrise - Edit

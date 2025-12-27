@@ -1,6 +1,6 @@
 using Content.Shared.Medical.CrewMonitoring;
 
-namespace Content.Client.Medical.CrewMonitoring.BSO;
+namespace Content.Client._Sunrise.Medical.CrewMonitoring.BSO;
 
 public sealed class BSOCrewMonitoringBoundUserInterface : SunriseCrewMonitoringBoundUserInterface
 {

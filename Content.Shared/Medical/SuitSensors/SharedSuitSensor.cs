@@ -25,7 +25,7 @@ public sealed class SuitSensorStatus
     public string Job;
     public string JobIcon;
     public List<string> JobDepartments;
-    public List<string> JobDepartmentIds; // Sunrise - add  Айди самих отделов для фильтра
+    public readonly List<string> JobDepartmentIds; // Sunrise - add  Айди самих отделов для фильтра
     public bool IsAlive;
     public int? TotalDamage;
     public int? TotalDamageThreshold;
