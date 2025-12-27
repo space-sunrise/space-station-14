@@ -102,7 +102,7 @@
   - type: StorageFill
     contents:
       - id: MechGygaxSyndieFilled
-      - id: ToolboxSyndicateMechRepair
+      - id: ToolboxSyndicateFilledRepair
       - id: ToyGygax
 
 - type: entity
@@ -115,7 +115,7 @@
   - type: StorageFill
     contents:
       - id: MechRoverSyndieFilled
-      - id: ToolboxSyndicateMechRepair
+      - id: ToolboxSyndicateFilledRepair
       - id: ToyDurand
 
 - type: entity
@@ -128,7 +128,7 @@
   - type: StorageFill
     contents:
       - id: MechMaulerSyndieFilled
-      - id: ToolboxSyndicateMechRepair
+      - id: ToolboxSyndicateFilledRepair
       - id: ToyMauler
       - id: MechPaintMaulerMeowler
         prob: 0.25
@@ -143,7 +143,7 @@
   - type: StorageFill
     contents:
       - id: MechBigYarrkeBattery
-      - id: ToolboxSyndicateMechRepair
+      - id: ToolboxSyndicateFilledRepair
 
 - type: entity
   id: CratePirateMechDollHouseBundle
@@ -155,7 +155,7 @@
   - type: StorageFill
     contents:
       - id: MechDollHouseFilled
-      - id: ToolboxSyndicateMechRepair
+      - id: ToolboxSyndicateFilledRepair
       - id: MechPaintDollHouseWarboss
         prob: 0.25
 
@@ -169,6 +169,6 @@
   - type: StorageFill
     contents:
       - id: MechRipley2DeathBattery
-      - id: ToolboxSyndicateMechRepair
+      - id: ToolboxSyndicateFilledRepair
       - id: ToyDeathRipley
 #sunrise-end
