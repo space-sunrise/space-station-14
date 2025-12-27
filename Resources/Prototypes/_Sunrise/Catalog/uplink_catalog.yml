@@ -736,6 +736,25 @@
       - LoneOpsUplink
 
 - type: listing
+  id: UplinkPowerpackDL6902
+  name: uplink-power-backpack-dl6902-name
+  productEntity: PowerpackDL6902
+  description: uplink-power-backpack-dl6902-desc
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 22
+  cost:
+    Telecrystal: 38
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
   id: UplinkClothingBackpackSyndieSIAR52Filled
   name: uplink-clothing-backpack-syndie-siar52-name
   productEntity: ClothingBackpackSyndieSIAR52Filled
