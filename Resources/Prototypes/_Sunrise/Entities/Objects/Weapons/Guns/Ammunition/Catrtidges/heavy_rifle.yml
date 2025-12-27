@@ -6,7 +6,6 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeHeavyRifle
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x51.rsi
@@ -28,7 +27,6 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeHeavyRifleR
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x54.rsi
