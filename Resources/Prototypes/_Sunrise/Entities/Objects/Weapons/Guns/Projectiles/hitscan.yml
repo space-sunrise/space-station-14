@@ -1,32 +1,176 @@
-- type: hitscan
+- type: entity
   id: RedShuttleMediumLaser
-  maxLength: 80
-  damage:
-    types:
-      Heat: 20
-      Structural: 13
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_laser
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicRaycast
+    maxDistance: 80.0
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 20
+        Structural: 13
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_laser
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_laser
+
+- type: entity
+  id: IgnitionRedLaser
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 14
+  - type: HitscanIgniteEffect
+
+
+### rifle heavy #Sunrise
 
 - type: hitscan
-  id: IgnitionRedLaser
+  id: BulletRifleTraceHeavySP
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 26
+      Structural: 10
+  armorPenetration: -0.25
+  pierceChance: 0.40
+  ricochetChance: 0.30
+  staminaDamage: 5
+  pierceLevel: Wood
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: sp
+
+- type: hitscan
+  id: BulletRifleTraceHeavyHP
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 28 #+ 30%
+      Structural: 5
+  armorPenetration: -0.80
+  staminaDamage: 10
+  pierceChance: 0.05
+  ricochetChance: 0.15
+
+- type: hitscan
+  id: BulletRifleTraceHeavyFMJ
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 20 #- 30%
+      Structural: 5
+  armorPenetration: 0.35
+  pierceChance: 0.8
+  ricochetChance: 0.40
+  staminaDamage: 3
+  pierceLevel: Metal
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: fmj
+
+- type: hitscan
+  id: BulletRifleTraceHeavyAP
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 20 #- 30%
+      Structural: 2
+  armorPenetration: 0.80
+  pierceChance: 0.85
+  ricochetChance: 0.30
+  staminaDamage: 1
+  pierceLevel: HardenedMetal
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: piercing
+
+- type: hitscan
+  id: BulletRifleTraceHeavyPractice
+  parent: BulletTrace
+  damage:
+    types:
+      Blunt: 5
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: practice
+  pierceChance: 0.30
+  ricochetChance: 0.40
+
+- type: hitscan
+  id: BulletRifleTraceHeavyIncendiary
+  parent: BulletTrace
   igniteOnCollision: true
   damage:
     types:
-      Heat: 14
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_laser
+      Blunt: 3
+      Heat: 20
+  pierceChance: 0.60
+  ricochetChance: 0.30
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: incendiary
+
+- type: hitscan
+  id: BulletRifleTraceHeavyUranium
+  parent: BulletTrace
+  damage:
+    types:
+      Radiation: 10
+      Piercing: 12
+      Structural: 5
+  pierceChance: 0.85
+  ricochetChance: 0.80
+  pierceLevel: HardenedMetal
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: uranium
+
+# Rubber bullets
+- type: hitscan
+  id: BulletMagnumTraceRubber
+  parent: BulletTrace
+  damage:
+    types:
+      Blunt: 4
+  ricochetChance: 0.99
+  staminaDamage: 20
+  armorPenetration: -0.95
+  pierceChance: 0.01
+  derivation: 0.05
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: rubber
+
+- type: hitscan
+  id: BulletPistolTraceRubber
+  parent: BulletTrace
+  damage:
+    types:
+      Blunt: 2
+  ricochetChance: 0.8
+  staminaDamage: 13
+  armorPenetration: -0.95
+  pierceChance: 0.01
+  derivation: 0.05
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: rubber
