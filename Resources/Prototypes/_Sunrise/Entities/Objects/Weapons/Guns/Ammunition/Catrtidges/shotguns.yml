@@ -91,7 +91,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedIncendiarySpreadTrace
+    proto: PelletShotgunImprovisedIncendiarySpread
   - type: SpentAmmoVisuals
     state: "improvised-incendiary"
     revealSpent: false
@@ -118,7 +118,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedUraniumSpreadTrace
+    proto: PelletShotgunImprovisedUraniumSpread
   - type: SpentAmmoVisuals
     state: "improvised-uranium"
     revealSpent: false
@@ -145,7 +145,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunCoinSpreadTrace
+    proto: PelletShotgunCoinSpread
   - type: SpentAmmoVisuals
     state: "coinshot"
     revealSpent: false
