@@ -165,6 +165,7 @@
 - type: entity
   id: AlwaysPoweredStrobeDimLight
   parent: AlwaysPoweredStrobeLight
+  suffix: Always powered, Dimlight
   components:
   - type: PointLight
     mask: /Textures/Effects/LightMasks/double_cone.png
