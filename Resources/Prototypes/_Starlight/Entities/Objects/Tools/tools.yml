@@ -774,3 +774,38 @@
       - PlantSampleTaker
       - Wirecutter
       - Screwdriver
+<<<<<<< HEAD:Resources/Prototypes/_Starlight/Entities/Objects/Tools/tools.yml
+=======
+
+- type: entity
+  id: RPD
+  parent: RCD
+  name: RPD
+  description: A device used to rapidly pipe things.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - PipeFourway
+    - PipeStraight
+    - PipeBend
+    - PipeTJunction
+    - OutletInjector
+    - ManualValve
+    - VolumetricPump
+    - PressurePump
+    - VentScrubber
+    - PressureValve
+    - DualPortVent
+    - VentGas
+    - VentPassive
+    - MixerGas
+    - Radiator
+    - SignalValve
+    - CanisterPort
+    - FilterGas
+    - Deconstruct
+  - type: LimitedCharges
+    maxCharges: 45
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/rpd.rsi
+>>>>>>> ca90a87cff (Yaml fix):Resources/Prototypes/_StarLight/Entities/Objects/Tools/tools.yml
