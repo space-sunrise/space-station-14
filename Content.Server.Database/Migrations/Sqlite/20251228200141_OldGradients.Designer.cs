@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    [Migration("20250926230050_GradientUpdate")]
-    partial class GradientUpdate
+    [Migration("20251228200141_OldGradients")]
+    partial class OldGradients
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.0");
 
             modelBuilder.Entity("Content.Server.Database.AHelpMessage", b =>
                 {
@@ -135,10 +135,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<int>("Id")
                         .HasColumnType("INTEGER")
                         .HasColumnName("admin_log_id");
-
-                    b.Property<long>("CurTime")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("cur_time");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT")
@@ -936,19 +932,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
-                    b.Property<int>("AllMarkingsGradientDirection")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("all_markings_gradient_direction");
-
-                    b.Property<bool>("AllMarkingsGradientEnabled")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("all_markings_gradient_enabled");
-
-                    b.Property<string>("AllMarkingsGradientSecondaryColor")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("all_markings_gradient_secondary_color");
-
                     b.Property<string>("BodyType")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -969,18 +952,14 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_color");
 
-                    b.Property<int>("FacialHairGradientDirection")
+                    b.Property<int>("FacialHairColorType")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("facial_hair_gradient_direction");
+                        .HasColumnName("facial_hair_color_type");
 
-                    b.Property<bool>("FacialHairGradientEnabled")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("facial_hair_gradient_enabled");
-
-                    b.Property<string>("FacialHairGradientSecondaryColor")
+                    b.Property<string>("FacialHairExtendedColor")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("facial_hair_gradient_secondary_color");
+                        .HasColumnName("facial_hair_extended_color");
 
                     b.Property<string>("FacialHairName")
                         .IsRequired()
@@ -1002,18 +981,14 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color");
 
-                    b.Property<int>("HairGradientDirection")
+                    b.Property<int>("HairColorType")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("hair_gradient_direction");
+                        .HasColumnName("hair_color_type");
 
-                    b.Property<bool>("HairGradientEnabled")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("hair_gradient_enabled");
-
-                    b.Property<string>("HairGradientSecondaryColor")
+                    b.Property<string>("HairExtendedColor")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("hair_gradient_secondary_color");
+                        .HasColumnName("hair_extended_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()
