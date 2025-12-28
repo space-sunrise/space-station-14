@@ -107,7 +107,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: &icon-offset-old -0.1, 0.06 # спрайты ID карт для ПТ не обновлены, поэтому возвращаем старый offset
       state: PrisonEngineer
   - type: Item
     heldPrefix: space-prison
@@ -128,7 +128,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: PrisonScientist
   - type: Item
     heldPrefix: space-prison
@@ -149,7 +149,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: PrisonDoctor
   - type: Item
     heldPrefix: space-prison
@@ -170,7 +170,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: PrisonChef
   - type: Item
     heldPrefix: space-prison
@@ -191,7 +191,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: PrisonWorker
   - type: Item
     heldPrefix: space-prison
@@ -212,7 +212,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: PrisonInspector
   - type: Item
     heldPrefix: space-prison
@@ -267,7 +267,7 @@
     layers:
     - state: prisoner-space-prison
     - sprite: *icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: Prisoner
   - type: Item
     heldPrefix: space-prison
@@ -326,7 +326,7 @@
     - state: stripe_bottom
       color: "#730401"
     - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
+      offset: *icon-offset-old
       state: HeadOfPrison
   - type: PresetIdCard
     job: HeadOfPrison
