@@ -1,18 +1,9 @@
-trait-category-height = Рост
-trait-category-vocal = Голос
-trait-colorblindness-name = Дальтонизм
-trait-colorblindness-desc = Вы видите мир не так, как все.
-trait-OwOAccent-name = акцент OwO
-trait-OwOAccent-desc = Ты просто хочешь UwU
-trait-noemotions-name = Крепкий орешек
-trait-noemotions-desc = Вы настолько очерствели, что физическая боль не вызывает у вас произвольных звуков.
-trait-ss13-accent-name = SS13 акцент
-trait-ss13-accent-desc = Для тру ценителей олдскула.
-trait-ukrainian-accent-name = Украинский акцент
-trait-ukrainian-accent-desc = Заробiтчани вже навiть у космосi.
-trait-russian-accent-name = Русский акцент
-trait-russian-accent-desc = Товарищ, это не ваше а наше.
-trait-transliteration-accent-name = Транслитерированный акцент
-trait-transliteration-accent-desc = Ds ujdjhbnt nhfyckbnjv.
-trait-felinid-vocal-name = мурлыкание
-trait-felinid-vocal-desc = Заменяет ваши звуки эмоций фелинидскими. Ня!
+trait-monochromacy-name = Монохроматизм
+trait-monochromacy-desc = Вы полностью дальтоник: всё вокруг — оттенки от чёрного до белого.
+
+trait-hemophilia-name = Гемофилия
+trait-hemophilia-desc = Ваша кровь плохо сворачивается.
+
+trait-impaired-mobility-name = Ограниченная подвижность
+trait-impaired-mobility-desc = Вам сложно передвигаться без средства помощи.
+

@@ -30,3 +30,5 @@ ent-GrenadeEMPTimer = ЭМИ-граната с таймером
     .desc = { ent-BaseGrenade.desc }
 ent-GrenadeFragLight = лёгкая осколочная граната
     .desc = { ent-BaseGrenade.desc }
+ent-CartridgeRocketFrag = осколочная ракета
+    .desc = Осколочная боеголовка для РПГ-7. Имеет форму трубы.
