@@ -119,7 +119,7 @@
     reagents:
       Omnizine: 10
       Epinephrine: 5
-      Apoptodon: 5
+      Necrosol: 5
   - type: ItemSlots
     slots:
       cell_slot:
@@ -128,7 +128,7 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
-    useCharge: 50
+    useCharge: 40
   - type: PowerDrainOnMeleeHit
     chargePerHit: 30
   # Sunrise-End

@@ -194,7 +194,7 @@
   - Service
 
 - type: technology
-  id: CompactDefibrilation
+  id: CompactDefibrillation
   name: research-technology-compact-defibrilation
   icon:
     sprite: Objects/Specific/Medical/defibsmall.rsi
@@ -210,7 +210,7 @@
   - Medical
 
 - type: technology
-  id: AdvancedCompactDefibrilation
+  id: AdvancedCompactDefibrillation
   name: research-technology-advanced-compact-defibrilation
   icon:
     sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defibsmall.rsi
