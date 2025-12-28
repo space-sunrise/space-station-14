@@ -3,10 +3,41 @@
   id: ToolboxSyndicateFilledCoreExtraction
   suffix: Filled, Core Extraction
   components:
-  - type: StorageFill
-    contents:
-    - id: Crowbar
-    - id: Welder
-    - id: Wrench
-    - id: ThinTippedScrewdriver
-    - id: NukeCoreContainer
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Welder
+        - id: Wrench
+        - id: ThinTippedScrewdriver
+        - id: NukeCoreContainer
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: ToolboxSyndicate
+  id: ToolboxSyndicateFilledRepair
+  suffix: Filled, Repair
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: WelderIndustrial
+        - id: Multitool
+        - id: ClothingHandsGlovesCombatCQC
+        - id: ClothingMaskGasSyndicate
+        - id: HandheldMechAnalyzer
+        - id: CableApcStack
+          amount: 3
+        - id: PowerCellSyndicate
+        - id: Nanopaste
+          amount: 2
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+  - type: StaticPrice
+    price: 1500

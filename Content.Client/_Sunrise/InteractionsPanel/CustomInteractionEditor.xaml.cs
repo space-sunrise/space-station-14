@@ -11,6 +11,7 @@ using Robust.Client.Utility;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Client.Stylesheets;
 
 namespace Content.Client._Sunrise.InteractionsPanel;
 
@@ -438,7 +439,7 @@ public sealed partial class CustomInteractionEditor : DefaultWindow
         var removeButton = new Button
         {
             Text = "✕",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             MinWidth = 22,
             MinHeight = 22,
             Label = { FontColorOverride = PrimaryColor}
@@ -494,7 +495,7 @@ public sealed partial class CustomInteractionEditor : DefaultWindow
         var removeButton = new Button
         {
             Text = "✕",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             MinWidth = 22,
             MinHeight = 22,
             Label = { FontColorOverride = PrimaryColor}
@@ -553,7 +554,7 @@ public sealed partial class CustomInteractionEditor : DefaultWindow
         var closeButton = new Button
         {
             Text = "ОК",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             HorizontalAlignment = HAlignment.Center,
             MinWidth = 80,
             MinHeight = 30

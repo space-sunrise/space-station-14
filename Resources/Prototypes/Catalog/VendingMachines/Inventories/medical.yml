@@ -9,9 +9,20 @@
     ChemistryBottleEpinephrine: 3
     Syringe: 3
     PillCanisterTricordrazine: 2
+    PatchPack: 1 # Sunrise-Edit
+    PatchBrute: 2 # Sunrise-Edit
+    PatchBruteSmall: 3 # Sunrise-Edit
+    PatchBurn: 2 # Sunrise-Edit
+    PatchBurnSmall: 3 # Sunrise-Edit
   contrabandInventory:
     PillCanisterRandom: 1
     PowerCellSmall: 2
+    PatchBurn: 1 # Sunrise-Edit
+    PatchBrute: 1 # Sunrise-Edit
+  emaggedInventory: # Sunrise Edit
+    StimpackMini: 1 # Sunrise Edit
+    PatchOmni: 5 # Sunrise Edit
+    PatchPack: 1 # Sunrise-Edit
 
 - type: vendingMachineInventory
   id: NanoMedCivilianWallInventory
@@ -25,9 +36,19 @@
     ChemistryBottleEpinephrine: 3
     Syringe: 3
     PillCanisterTricordrazine: 2
+    PatchPack: 1 # Sunrise-Edit
+    PatchBrute: 2 # Sunrise-Edit
+    PatchBruteSmall: 3 # Sunrise-Edit
+    PatchBurn: 2 # Sunrise-Edit
+    PatchBurnSmall: 3 # Sunrise-Edit
   contrabandInventory:
     PillCanisterRandom: 1
     PowerCellSmall: 2
+    PatchBurn: 1 # Sunrise-Edit
+    PatchBrute: 1 # Sunrise-Edit
+  emaggedInventory: # Sunrise Edit
+    StimpackMini: 1 # Sunrise Edit
+    PatchOmni: 3 # Sunrise Edit
 
 - type: vendingMachineInventory
   id: NanoMedPlusInventory
@@ -49,19 +70,25 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    HyposprayMedical: 2 # Sunrise-Edit
+    Ampula: 5 # Sunrise-Edit
     Dropper: 2 # Sunrise-Edit
     BaseChemistryEmptyVial: 2 # Sunrise-Edit
-    PatchPack: 4 # Sunrise-Edit
-    PatchMedical: 5 # Sunrise-Edit
-    PatchBrute: 5 # Sunrise-Edit
-    PatchBruteSmall: 8 # Sunrise-Edit
-    PatchBurn: 5 # Sunrise-Edit
-    PatchBurnSmall: 8 # Sunrise-Edit
+    PatchPack: 3 # Sunrise-Edit
+    PatchPackBrute: 1 # Sunrise-Edit
+    PatchPackHeat: 1 # Sunrise-Edit
+    PatchBrute: 3 # Sunrise-Edit
+    PatchBruteSmall: 9 # Sunrise-Edit
+    PatchBurn: 3 # Sunrise-Edit
+    PatchBurnSmall: 9 # Sunrise-Edit
   contrabandInventory:
     PillCanisterRandom: 3
     PillSpaceDrugs: 3
     FoodApple: 1
+    PatchMedical: 6 # Sunrise-Edit
+  emaggedInventory: # Sunrise Edit
+    Stimpack: 1 # Sunrise Edit
+    PatchOmni: 5 # Sunrise Edit
+    PatchPack: 1 # Sunrise-Edit
 
 - type: vendingMachineInventory
   id: NanoMedCivilianInventory
@@ -80,11 +107,16 @@
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1
+    PatchPack: 2 # Sunrise-Edit
+    PatchBrute: 2 # Sunrise-Edit
+    PatchBruteSmall: 3 # Sunrise-Edit
+    PatchBurn: 2 # Sunrise-Edit
+    PatchBurnSmall: 3 # Sunrise-Edit
   contrabandInventory:
     PillCanisterRandom: 1
     PillSpaceDrugs: 3
     FoodApple: 1
-    MiniSyringe: 3 # Sunrise Edit
-  emaggedInventory:
+  emaggedInventory: # Sunrise Edit
     Stimpack: 1 # Sunrise Edit
-    PatchOmni: 2 # Sunrise Edit
+    PatchOmni: 5 # Sunrise Edit
+    PatchPack: 1 # Sunrise-Edit

@@ -507,7 +507,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunSIAR52
+        startingItem: MagazinePistolSubMachineGunCaselessExtended
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -573,7 +573,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunSIAR52
+        startingItem: MagazinePistolSubMachineGunCaselessExtended
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2
@@ -641,9 +641,6 @@
     - type: ClothingSpeedModifier
       walkModifier: 0.99
       sprintModifier: 0.99
-    - type: EyeCursorOffset
-      maxOffset: 2
-      pvsIncrease: 0.2
     - type: Contraband
       allowedDepartments: [ CentralCommand, Security ]
 

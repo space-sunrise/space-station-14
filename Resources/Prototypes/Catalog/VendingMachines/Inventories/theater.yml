@@ -27,6 +27,11 @@
     ClothingTechWings : 2 #sunrise-edit
     ClothingVoidWings : 2 #sunrise-edit
     ClothingNormalWings : 2 #sunrise-edit
+    ClothingUniformPencilSkirt : 4 #sunrise-edit
+    ClothingUniformMajimaTishka : 3 #sunrise-edit
+    ClothingUniformMetatonTishka : 3 #sunrise-edit
+    ClothingShoesBootsMettaton : 3 #sunrise-edit
+    ClothingShoesBootsMajima : 3 #sunrise-edit
     ClothingHeadHatSantahat: 2
     ClothingOuterSanta: 2
     ClothingHeadHatSkub: 2
@@ -72,6 +77,7 @@
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
+    ClothingOuterSuitCarp: 1
     ClothingHeadHelmetDogi: 1
     ClothingMaskDogi: 1
     UmbrellaEntity: 1

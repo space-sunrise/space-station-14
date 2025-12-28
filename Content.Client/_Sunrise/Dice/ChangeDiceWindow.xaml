@@ -1,0 +1,12 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+            Resizable="False"
+            Title="{Loc 'ui-sides-amount-title'}">
+    <BoxContainer Orientation="Vertical" SeparationOverride="6" MinSize="310 80">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <LineEdit Name="AmountStartLineEdit" Access="Public" HorizontalExpand="True" PlaceHolder="{Loc 'ui-sides-amount-start-placeholder'}"/>
+            <LineEdit Name="AmountEndLineEdit" Access="Public" HorizontalExpand="True" PlaceHolder="{Loc 'ui-sides-amount-end-placeholder'}"/>
+        </BoxContainer>
+        <Button Name="ApplyButton" Access="Public" Text="{Loc 'ui-sides-amount-apply'}"/>
+        <Label Margin="0 0 0 0" Text="{Loc 'ui-sides-amount-bottom-text'}" SetHeight="44" VerticalExpand="True" StyleClasses="WindowFooterText" />
+    </BoxContainer>
+</DefaultWindow>

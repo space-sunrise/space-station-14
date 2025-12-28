@@ -45,3 +45,25 @@
     - state: green
     - sprite: Mobs/Species/Terminator/parts.rsi
       state: full
+
+- type: entity
+  id: SpawnPointGhostCarpQueen
+  parent: SpawnPointGhostFoliant
+  suffix: carp queen
+  components:
+  - type: GhostRole
+    name: ghost-role-information-carp-queen-name
+    description: ghost-role-information-carp-queen-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobCarpQueen
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+        state: icon

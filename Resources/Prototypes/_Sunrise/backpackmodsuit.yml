@@ -1,0 +1,226 @@
+#parent modsuit
+- type: entity
+  abstract: true
+  parent: [BackpackSounds, Clothing, ContentsExplosionResistanceBase] # Sunrise edit
+  id: ClothingModsuitBackpack
+  name: backpack
+  description: You wear this on your back and put items into it.
+  components:
+  - type: ContainerInteractionAnimation # Sunrise added
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/backpack.rsi
+    state: icon
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Storage # Basic Backpack size
+    grid:
+    - 0,0,6,3
+    maxItemSize: Huge
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      toggleable-clothing: !type:ContainerSlot
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  # to prevent bag open/honk spam
+  - type: UseDelay
+    delay: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Backpack
+  - type: ItemSlots
+    slots:
+      modsuit_core:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+        swap: false
+        whitelist:
+          tags:
+            - ModsuitCore
+  - type: Modsuit
+    roundStartBiocode: true
+
+#Синего Щита
+- type: loadout
+  id: BlueShieldModsuit
+  sponsorOnly: true
+  equipment:
+    back: ClothingBlueShieldModsuit
+
+- type: entity
+  parent: ClothingModsuitBackpack
+  id: ClothingBlueShieldModsuit
+  name: blueshield modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Modsuits/Backpack/Qillu/blueshield.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingModsuitBlueshield
+      requiredSlot: back
+      slot: outerClothing
+
+
+#Представителя NT/Qillu
+- type: loadoutEffectGroup
+  id: NTModsuit
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobNanoTrasenRepresentative
+      time: 100h
+
+- type: loadout
+  id: NanoTrasenRepresentativeModsuit
+  equipment:
+    back: ClothingModsuitNanoTrasenRepresentative
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NTModsuit
+
+- type: entity
+  parent: ClothingModsuitBackpack
+  id: ClothingModsuitNanoTrasenRepresentative
+  name: NT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Modsuits/Backpack/Qillu/representative.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingModsuitRepresentative
+      requiredSlot: back
+      slot: outerClothing
+
+#Горничной Командования
+- type: loadout
+  id: ComMaidModsuit
+  sponsorOnly: true
+  equipment:
+    back: ClothingModsuitComMaid
+
+- type: entity
+  parent: ClothingModsuitBackpack
+  id: ClothingModsuitComMaid
+  name: com maid modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Modsuits/Backpack/Qillu/commaid.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingModsuitCommaid
+      requiredSlot: back
+      slot: outerClothing
+
+#Пассажира
+- type: loadout
+  id: CommonModsuit
+  sponsorOnly: true
+  equipment:
+    back: ClothingCommonModsuit
+
+- type: entity
+  parent: ClothingModsuitBackpack
+  id: ClothingCommonModsuit
+  name: passenger modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Modsuits/Backpack/passenger.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingModsuitCommon
+      requiredSlot: back
+      slot: outerClothing
+
+###ОТРЯДЫ БЫСТРОГО РЕАГИРОВАНИЯ
+#ОБР уборщик
+- type: entity
+  parent: ClothingBackpackERTJanitor
+  id: ClothingModsuitERTJanitor
+  name: janitorERT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingOuterHardsuitERTJanitor
+      requiredSlot: back
+      slot: outerClothing
+
+#ОБР охрана
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingModsuitERTSecurity
+  name: securityERT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingOuterHardsuitERTSecurity
+      requiredSlot: back
+      slot: outerClothing
+
+#ОБР медик
+- type: entity
+  parent: ClothingBackpackERTMedical
+  id: ClothingModsuitERTMedical
+  name: medicalERT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingOuterHardsuitERTMedical
+      requiredSlot: back
+      slot: outerClothing
+
+#ОБР лидер
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingModsuitERTLeader
+  name: leaderERT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingOuterHardsuitERTLeader
+      requiredSlot: back
+      slot: outerClothing
+
+#ОБР инженер
+- type: entity
+  parent: ClothingBackpackERTEngineer
+  id: ClothingModsuitERTEngineer
+  name: engineerERT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingOuterHardsuitERTEngineer
+      requiredSlot: back
+      slot: outerClothing
+
+#ОБР священник
+- type: entity
+  parent: ClothingBackpackERTChaplain
+  id: ClothingModsuitERTChaplain
+  name: chaplainERT modsuit
+  description: Superior.
+  suffix: Modsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingOuterHardsuitERTChaplain
+      requiredSlot: back
+      slot: outerClothing

@@ -5,6 +5,7 @@ using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;

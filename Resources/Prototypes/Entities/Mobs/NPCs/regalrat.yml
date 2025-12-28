@@ -67,7 +67,7 @@
         Piercing: 8
   - type: Body
     prototype: Rat
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 300 # Sunrise-Edit
@@ -193,6 +193,11 @@
     description: ghost-panel-antagonist-rats-description
     priority: 110
   - type: NightVision
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 60
   # Sunrise edit end
   - type: VentCrawler # Sunrise-edit
   - type: CombatMode
@@ -211,9 +216,6 @@
         2.0
       FollowRange: !type:Single
         3.0
-  - type: Bloodstream
-    bloodReagent: Blood
-    bloodMaxVolume: 60
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -266,7 +268,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 60
+    baseCritThreshold: 60
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
@@ -278,7 +280,7 @@
         Piercing: 3
   - type: Body
     prototype: Rat
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -355,8 +357,10 @@
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 2.5
-    bloodReagent: Blood
-    bloodMaxVolume: 200
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -409,7 +413,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 250
+    baseCritThreshold: 250
   - type: MeleeSpeech
   - type: UserInterface
     interfaces:
@@ -421,9 +425,9 @@
     attackRate: 1.5
     damage:
       types:
-        Slash: 2 # Additional claw damage
+        Slash: 1 # Additional claw damage
         Piercing: 1 # Additional claw damage
-        Blunt: 15 # Strong guard attack
+        Blunt: 13 # Strong guard attack
         Structural: 10 # Strong guard attack
     bluntStaminaDamageFactor: 1.5
     soundHit:

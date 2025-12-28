@@ -242866,7 +242866,7 @@ entities:
         projectileProto: null
     - type: Item
       heldPrefix: disabler
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       fireCost: 50
       proto: BulletDisabler
 - proto: WeaponLaserCarbinePractice

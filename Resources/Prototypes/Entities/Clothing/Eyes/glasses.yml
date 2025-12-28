@@ -261,7 +261,7 @@
     - type: ThermalVision
   - type: PowerCellDraw
     drawRate: 3.5
-    useRate: 20
+    useCharge: 20
   - type: ItemToggle
     predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
     onUse: false

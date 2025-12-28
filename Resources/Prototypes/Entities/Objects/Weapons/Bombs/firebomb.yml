@@ -55,6 +55,13 @@
   - type: Construction
     graph: FireBomb
     node: firebomb
+  - type: CartridgeAmmo #Sunrise-Start
+    proto: BulletFireBomb
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo #Sunrise-End
 
 # has igniter but no fuel or wires
 - type: entity

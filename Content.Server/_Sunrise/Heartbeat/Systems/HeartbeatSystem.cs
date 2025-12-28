@@ -1,6 +1,7 @@
 ﻿using Content.Server._Sunrise.Heartbeat.Components;
 using Content.Shared._Sunrise.Heartbeat;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
 using Robust.Server.Audio;

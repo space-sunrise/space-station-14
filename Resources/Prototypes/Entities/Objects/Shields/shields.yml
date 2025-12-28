@@ -32,6 +32,8 @@
           Heat: 1
     - type: Damageable
       damageContainer: Shield
+    - type: ExaminableDamage
+      messages: ShieldMessages
     - type: Destructible
       thresholds:
         - trigger:
@@ -71,11 +73,28 @@
       sprintModifier: 0.95
     - type: HeldSpeedModifier #Sunrise-End
 
+- type: entity
+  name: base repairable shield
+  parent: BaseShield
+  id: BaseRepairableShield
+  description: A repairable shield!
+  abstract: true
+  components:
+  - type: Repairable # Negative values represent healing
+    damage:
+      groups:
+        Brute: -60 # 20 of each Brute Type - 20% of a basic shield HP
+      types:
+        Heat: -20
+    fuelCost: 10 # 1/2 of a Welder for a full repair
+    doAfterDelay: 5
+    allowSelfRepair: false
+
 #Security Shields
 
 - type: entity
   name: riot shield
-  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
+  parent: [ BaseRepairableShield, BaseSecurityContraband ]
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -202,7 +221,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
+  parent: [ BaseRepairableShield, BaseSecurityContraband ]
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -222,14 +241,14 @@
           Heat: 1
   # Sunrise-Start
     - type: Reflect
-      reflectProb: 0.75
+      reflectProb: 0.25
       reflects:
       - Energy
   # Sunrise-End
 
 - type: entity
   name: ballistic shield
-  parent: [ RepairableShield, BaseSecurityContraband, BaseShield ] # Sunrise-Edit
+  parent: [ BaseRepairableShield, BaseSecurityContraband ]
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:
@@ -247,6 +266,14 @@
           Piercing: 0.5
         flatReductions:
           Piercing: 1
+  # Sunrise-Start
+    - type: Reflect
+      reflectProb: 0.1
+      spread: 180
+      soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+      reflects:
+      - NonEnergy
+  # Sunrise-End
 
 #Craftable shields
 
@@ -359,7 +386,7 @@
 
 - type: entity
   name: makeshift shield
-  parent: [ BaseShield, RepairableShield ] # Sunrise-Edit
+  parent: BaseRepairableShield
   id: MakeshiftShield
   description: A rundown looking shield, not good for much.
   components:
@@ -468,7 +495,7 @@
 
 - type: entity
   name: clockwork shield
-  parent: BaseShield
+  parent: BaseRepairableShield
   id: ClockworkShield
   description: Ratvar oyrffrf lbh jvgu uvf cebgrpgvba.
   components:
@@ -626,24 +653,30 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
-    # Sunrise-Start
-    - type: BatterySelfRecharger
-      autoRechargeRate: 75
-      autoRecharge: true
-      autoRechargePause: true
-      autoRechargePauseTime: 5
-    - type: EnergyShield
-      energyCostPerDamage: 15
-    - type: ExaminableBattery
-    - type: Battery
-      maxCharge: 1500
-      startingCharge: 1500
-    - type: PowerCellDraw
-      useRate: 2.5
-    - type: ClothingSpeedModifier
-      sprintModifier: 1
-    - type: HeldSpeedModifier
-    - type: EmpImmune
+    - type: ExaminableDamage
+      messages: EnergyShieldMessages
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 180
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                BrokenEnergyShield:
+                  min: 1
+                  max: 1
     - type: StaticPrice
       price: 7000
     # Sunrise-End
@@ -664,7 +697,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: [ RepairableShield, BaseShield, BaseSecurityContraband ] # Sunrise-Edit
+  parent: BaseRepairableShield
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:

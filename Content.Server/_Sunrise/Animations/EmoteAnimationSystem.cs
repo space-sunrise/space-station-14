@@ -6,6 +6,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emoting;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
@@ -88,7 +89,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
         if (emoteId == "FallOnNeck")
         {
             var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 100);
-            _damageableSystem.TryChangeDamage(uid, damage, true, useVariance: false, useModifier: false);
+            _damageableSystem.ChangeDamage(uid, damage, true, useVariance: false, ignoreGlobalModifiers: true);
         }
 
         component.AnimationId = emoteId;

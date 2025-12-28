@@ -4,11 +4,11 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server._Sunrise.StationGoal
 {
-    [Serializable, Prototype("stationGoal")]
-    public sealed class StationGoalPrototype : IPrototype
+    [Prototype]
+    public sealed partial class StationGoalPrototype : IPrototype
     {
         [IdDataField]
-        public string ID { get; } = default!;
+        public string ID { get; private set; } = default!;
 
         [DataField("text")]
         public string Text { get; set; } = string.Empty;

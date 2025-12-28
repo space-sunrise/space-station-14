@@ -1,8 +1,8 @@
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Server.GameTicking.Prototypes;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Server.GameTicking;
 

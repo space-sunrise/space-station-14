@@ -1,5 +1,6 @@
 ﻿using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;

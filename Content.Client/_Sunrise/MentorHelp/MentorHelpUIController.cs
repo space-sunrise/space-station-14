@@ -439,12 +439,12 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
 
         if (hasUnread)
         {
-            GameMHelpButton?.StyleClasses.Add(MenuButton.StyleClassRedTopButton);
+            GameMHelpButton?.StyleClasses.Add("StyleClassRedTopButton");
             LobbyMHelpButton?.StyleClasses.Add("ButtonColorRed");
         }
         else
         {
-            GameMHelpButton?.StyleClasses.Remove(MenuButton.StyleClassRedTopButton);
+            GameMHelpButton?.StyleClasses.Remove("StyleClassRedTopButton");
             LobbyMHelpButton?.StyleClasses.Remove("ButtonColorRed");
         }
 

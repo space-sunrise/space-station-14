@@ -14,6 +14,18 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
+        - type: SpawnGridAndDockToStation
+          grids:
+          - gridPath: /Maps/_Sunrise/Shuttles/miner.yml
+            priorityTag: DockMining
+          - gridPath: /Maps/_Sunrise/Shuttles/security.yml
+            priorityTag: DockSecurity
+          - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
+            priorityTag: DockPersonal
+          - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
+            priorityTag: DockPersonal
+          - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
+            priorityTag: DockPersonal
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency.yml
         - type: StationJobs
@@ -33,7 +45,6 @@
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 5, 5 ]
             Reporter: [ 2, 2 ]
-            Zookeeper: [ 1, 1 ]
             Barber: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]

@@ -83,19 +83,6 @@
     - NudeBottom # INTERACTIONS
   # SUNRISE EDIT
 
-  # SUNRISE EDIT
-- type: entity
-  abstract: true
-  parent: ClothingUniformBase
-  id: ClothingUniformCommand
-  components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CommandSuit
-  # SUNRISE EDIT
-
 - type: entity
   abstract: true
   id: ClothingUniformFoldableBase

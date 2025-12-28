@@ -1,8 +1,12 @@
+ent-MobHellspawnBossSpawn = { ent-MobHellspawn }
+    .desc = { ent-MobHellspawn.desc }
 ent-MobHellspawnBoss = { ent-MobHellspawn }
     .desc = { ent-MobHellspawn.desc }
 ent-ComputerBossTravel = алтарь битвы с боссом
     .desc = { ent-AltarFangs.desc }
 ent-HellSpawnCultist = { ent-MobHuman }
+    .desc = { ent-MobHuman.desc }
+ent-HellSpawnCultistDummy = { ent-MobHuman }
     .desc = { ent-MobHuman.desc }
 ent-BulletSkyFlare = шар пламени
     .suffix = Босс

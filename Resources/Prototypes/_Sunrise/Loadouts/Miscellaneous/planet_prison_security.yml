@@ -1,0 +1,12 @@
+# Neck
+
+- type: loadout
+  id: PlanetPrisonSecurity-MasterHandheldCamera
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: PlanetPrisonSecurity
+      time: 108000 # 30 hrs
+  inhand:
+  - MasterHandheldCamera

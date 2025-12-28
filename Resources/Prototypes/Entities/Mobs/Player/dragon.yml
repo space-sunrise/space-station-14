@@ -7,7 +7,10 @@
   abstract: true
   components:
   - type: Bloodstream
-    bloodMaxVolume: 650
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 650
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -83,7 +86,7 @@
     thresholds:
       0: Alive
       650: Critical # Sunrise-Edit
-      700: Dead #Sunrise-Edit
+      700: Dead # Sunrise-Edit
   - type: SlowOnDamage
     speedModifierThresholds:
       360: 0.7 # Sunrise-Edit
@@ -100,7 +103,8 @@
     - RadiationProtection
     - Adrenaline
   - type: Temperature
-    heatDamageThreshold: 800
+  - type: TemperatureDamage
+    heatDamageThreshold: 2400
   - type: Metabolizer
     solutionOnBody: false
     updateInterval: 0.25
@@ -136,7 +140,7 @@
       components:
       - MobState
     chemical: Ichor
-    healRate: 25.0 #Sunrise-edit
+    healRate: 25.0 #  Sunrise-edit
     whitelist:
       components:
       - MobState
@@ -148,7 +152,7 @@
     - CannotSuicide
     - DoorBumpOpener
     - StunImmune
-    - CarpRiftHealTarget # Sunrise-edit
+    - CarpRiftHealTarget #  Sunrise-edit
   - type: Puller
     needsHands: false
   - type: RandomMetadata
@@ -173,6 +177,36 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Dragon
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger
+        damageGroup: Brute
+        damage: 999
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
   - type: ToggleableNightVision
   - type: TTS
     voice: HearthstoneLordOfThunder
@@ -228,6 +262,17 @@
   id: MobDragonDungeon
   suffix: Dungeon
   components:
+  # Sunrise-start
+  - type: Sprite
+    scale: 0.9,0.9
+    sprite: Mobs/Aliens/Carps/dragon.rsi
+  - type: Reflect # Чтобы били его утили в ближнем, а не своими дробовками из карго
+    reflects:
+    - NonEnergy
+    - Energy
+    reflectProb: 0.5
+    spread: 280
+  # Sunrise-end
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
     rules: ghost-role-information-space-dragon-dungeon-rules

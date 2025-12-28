@@ -33,6 +33,8 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
+using Robust.Shared.Maths;
 
 namespace Content.Server._Sunrise.Boss.Systems;
 
@@ -132,7 +134,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
             return false;
         }
 
-        entityUid = Spawn("MobHellspawnBoss", new EntityCoordinates(Arena.Value, 0.5f, 0.5f));
+        entityUid = Spawn("MobHellspawnBossSpawn", new EntityCoordinates(Arena.Value, 0.5f, 0.5f));
         var fighters = EntityQuery<HellSpawnFighterComponent>().ToList().Count;
         return true;
     }
@@ -334,13 +336,32 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
     /// <summary>
     /// Заспавнить культистов(а). Сделано для упрощения изменения поведения босса.
     /// </summary>
-    private async void OnSpawnCultists()
+    private void OnSpawnCultists()
     {
         if (Arena == null)
             return;
 
-        var uid = Spawn("HellSpawnCultist", new EntityCoordinates(Arena.Value, 0.5f, 0.5f));
-        ApplyProtection(uid);
+        var center = new EntityCoordinates(Arena.Value, 0.5f, 0.5f);
+
+        var main = Spawn("HellSpawnCultist", center);
+        ApplyProtection(main);
+
+        var dummySpawns = new[]
+        {
+            new EntityCoordinates(Arena.Value, 0.5f, 2.5f),   // north (+2)
+            new EntityCoordinates(Arena.Value, 0.5f, -1.5f),  // south (-2)
+            new EntityCoordinates(Arena.Value, 2.25f, 0.5f),  // east (+1.75)
+            new EntityCoordinates(Arena.Value, -1.25f, 0.5f), // west (-1.75)
+        };
+
+        foreach (var coords in dummySpawns)
+        {
+            var dummy = Spawn("HellSpawnCultistDummy", coords);
+            ApplyProtection(dummy);
+
+            var dir = center.Position - coords.Position;
+            _transform.SetLocalRotation(dummy, Angle.FromWorldVec(dir));
+        }
     }
 
     /// <summary>

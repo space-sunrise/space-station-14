@@ -40,6 +40,16 @@ ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
 ui-options-bwoink-sound = Play AHelp Notification Sound
 ui-options-volume-label = Volume
+# Sunrise-Start
+ui-options-scp-echo-enabled = Echo effect
+ui-options-scp-echo-enabled-tooltip =
+    If enabled, each non-global sound will have an echo effect.
+    When enabled, all sounds may become louder. Use the volume slider to adjust the volume.
+ui-options-scp-echo-strong-preset-preferred = Use enhanced echo effect
+ui-options-scp-echo-strong-preset-preferred-tooltip =
+    Determines whether a strong echo effect will be used.
+    In the enhanced effect, sounds will have a longer tail.
+# Sunrise-End
 
 ## Graphics menu
 
@@ -227,6 +237,11 @@ ui-options-function-editor-copy-object = Copy
 ui-options-function-show-debug-console = Open Console
 ui-options-function-show-debug-monitors = Show Debug Monitors
 ui-options-function-inspect-entity = Inspect Entity
+ui-options-function-inspect-entity-tooltip = Open a ViewVariables window for the entity your mouse is currently hovering over.
+ui-options-function-inspect-server-component = Inspect Server Component
+ui-options-function-inspect-server-component-tooltip = Open a ViewVariables window with the server component set by the "quickinspect" command for the entity your mouse is currently hovering over.
+ui-options-function-inspect-client-component = Inspect Client Component
+ui-options-function-inspect-client-component-tooltip = Open a ViewVariables window with the client component set by the "quickinspect" command for the entity your mouse is currently hovering over.
 ui-options-function-hide-ui = Hide UI
 
 ui-options-function-hotbar1 = Hotbar slot 1

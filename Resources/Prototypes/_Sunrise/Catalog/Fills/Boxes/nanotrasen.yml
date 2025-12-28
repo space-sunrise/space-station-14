@@ -13,7 +13,25 @@
     - 0,0,5,3
   - type: StorageFill
     contents:
-    - id: DeathRattleImplantCentcomm
+    - id: DeathRattleImplanterCentcomm
+      amount: 6
+
+- type: entity
+  name: Freelance death rattle implant box
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxFreelanceRattleImplants
+  description: Six death rattle implants for the whole freelance team.
+  components:
+  - type: Sprite
+    layers:
+      - state: box_of_doom
+      - state: syringe
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+    - id: DeathRattleImplanterFreelance
       amount: 6
 
 - type: entity

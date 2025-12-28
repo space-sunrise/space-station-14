@@ -156,7 +156,7 @@ public sealed partial class VerbsTabControl : BaseTabControl
             return false;
 
         if (!whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player) ||
-            whitelistSystem.IsBlacklistPass(emote.Blacklist, player))
+            whitelistSystem.IsWhitelistFail(emote.Blacklist, player))
             return false;
 
         if (!emote.Available &&

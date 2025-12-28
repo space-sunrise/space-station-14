@@ -1,34 +1,38 @@
 - type: entity
+  parent: CratePirate
   id: CratePirateChestCaptain
   name: captains pirate chest
   suffix: Filled
-  parent: CratePirate
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingNeckCloakPirateCap
-      - id: EnergyCutlass
-      - id: MicroBombImplanter
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingNeckCloakPirateCap
+        - id: EnergyCutlass
+        - id: MicroBombImplanter
 
 - type: entity
+  parent: CratePirate
   id: CratePirateChest
   name: crews pirate chest
   suffix: Filled
-  parent: CratePirate
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponLauncherPirateCannon
-        amount: 2
-      - id: ClothingOuterCoatGentle
-      - id: Cutlass
-        amount: 2
-      - id: CannonBall
-        amount: 2
-      - id: WeaponPistolFlintlock
-        amount: 4
-      - id: WeaponShotgunBlunderbuss
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLauncherPirateCannon
+          amount: 2
+        - id: ClothingOuterCoatGentle
+        - id: Cutlass
+          amount: 2
+        - id: CannonBall
+          amount: 2
+        - id: WeaponPistolFlintlock
+          amount: 4
+        - id: WeaponShotgunBlunderbuss
+          amount: 2
 
 #SUNRISE-Start
 - type: entity
@@ -89,9 +93,11 @@
         prob: 0.25
       - id: WeaponSubMachineGunSkorpion
         prob: 0.15
+      - id: WeaponRifleSKM24Scrap
+        prob: 0.15
       - id: WeaponSubMachineGunPPSH
         prob: 0.10
-      - id: WeaponIONRifle
+      - id: WeaponIonRifle
         prob: 0.05
       - id: WeaponSyndieLaserGun
         prob: 0.05
@@ -105,4 +111,115 @@
         prob: 0.001
       - id: WeaponLightMachineGunRPD
         prob: 0.001
-#SUNRISE-End
+
+- type: entity
+  id: CratePirateChestCannonBall
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBall
+        amount: 6
+
+- type: entity
+  id: CratePirateChestCannonBallFuze
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallFuze
+        amount: 6
+
+- type: entity
+  id: CratePirateChestGrapeshot
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallGrapeshot
+        amount: 6
+
+- type: entity
+  id: CratePirateChestCannonEMP
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallEMPshot
+        amount: 6
+
+- type: entity
+  id: CratePirateChestGlassshot
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallGlassshot
+        amount: 6
+
+- type: entity
+  id: CratePirateChestCannonBallMiniMix
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallGrapeshotMini
+        amount: 8
+      - id: CannonBallMini
+        amount: 8
+
+- type: entity
+  id: CratePiraterEVASuitArmoredBundle
+  suffix: Filled
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetPirate
+        orGroup: HelmetPool
+      - id: ClothingHeadHelmetPirateAlt
+        orGroup: HelmetPool
+      - id: ClothingHeadHelmetPirateAlt2
+        orGroup: HelmetPool
+      - id: ClothingOuterEVASuitPirateArmoredAlt
+        orGroup: HardPool
+      - id: ClothingOuterEVASuitPirateArmored
+        orGroup: HardPool
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+
+- type: entity
+  id: CratePiraterEVASuitBundle
+  suffix: Filled
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetPirate
+        orGroup: HelmetPool
+      - id: ClothingHeadHelmetPirateAlt
+        orGroup: HelmetPool
+      - id: ClothingHeadHelmetPirateAlt2
+        orGroup: HelmetPool
+      - id: ClothingOuterEVASuitPirate
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleAgent
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: Agent
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - SyndieAgentUplink

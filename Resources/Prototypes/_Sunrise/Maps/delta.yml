@@ -16,7 +16,7 @@
             prefixCreator: 'TG'
         - type: SpawnGridAndDockToStation
           grids:
-          - gridPath: /Maps/_Sunrise/Shuttles/mining.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/miner.yml
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/security.yml
             priorityTag: DockSecurity
@@ -45,7 +45,6 @@
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 5, 5 ]
             Reporter: [ 2, 2 ]
-            Zookeeper: [ 1, 1 ]
             Barber: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -80,6 +79,7 @@
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 1, 1 ]
             CargoTechnician: [ 3, 3 ]
             MailCarrier: [ 2, 2 ]
             #civilian

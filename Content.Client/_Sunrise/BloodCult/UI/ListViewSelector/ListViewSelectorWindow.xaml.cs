@@ -37,7 +37,7 @@ public partial class ListViewSelectorWindow : DefaultWindow
                 MinSize = new Vector2(100, 100),
                 MaxSize = new Vector2(100, 100),
                 HorizontalExpand = true,
-                StyleClasses = { StyleBase.ButtonSquare },
+                StyleClasses = { StyleClass.ButtonSquare },
                 ToggleMode = false,
                 ToolTip = Loc.GetString($"ent-{item}"),
                 TooltipDelay = 0.01f,

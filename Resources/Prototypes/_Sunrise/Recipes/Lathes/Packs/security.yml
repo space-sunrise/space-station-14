@@ -96,6 +96,104 @@
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
+    # PODAVLENIE
+    - BolaSecurity
+####################################################
+
+- type: latheRecipePack
+  id: PirateStaticSunrise
+  recipes:
+    ######################BOX#######################
+    # Light Rifle
+    - MagazineBoxLightRifleSP
+    - MagazineBoxLightRifleHP
+    - MagazineBoxLightRifleFMJ
+    # Magnum
+    - MagazineBoxMagnumSP
+    - MagazineBoxMagnumHP
+    - MagazineBoxMagnumFMJ
+    - MagazineBoxMagnumRubber
+    # Pistol
+    - MagazineBoxPistolSP
+    - MagazineBoxPistolHP
+    - MagazineBoxPistolFMJ
+    - MagazineBoxPistolRubber
+    - MagazineBoxPistol40SP
+    - MagazineBoxPistol40HP
+    - MagazineBoxPistol40FMJ
+    # Rifle
+    - MagazineBoxRifleSP
+    - MagazineBoxRifleHP
+    - MagazineBoxRifleFMJ
+    # Rifle Heavy
+    - MagazineBoxHeavyRifleFMJ
+    - MagazineBoxHeavyRifleHP
+    - MagazineBoxHeavyRifleSP
+    - MagazineBoxHeavyRiflePractice
+    # Shotgun
+    - BoxLethalshot
+    - BoxShotgunSlug
+    - BoxBeanbag
+    - BoxShellTranquilizer
+    # Anti-mat
+    - MagazineBoxAntiMateriel
+    #####################MAGAZINE#######################
+    # LMG
+    - MagazineLightRifleBeltBoxSP
+    - MagazineLightRifleBeltBoxHP
+    - MagazineLightRifleBeltBoxFMJ
+    - MagazineLightRifleBeltBoxEmpty
+    # Light Rifle
+    - MagazineLightRifleSP
+    - MagazineLightRifleHP
+    - MagazineLightRifleFMJ
+    - MagazineLightRifleEmpty
+    # Magnum
+    - SpeedLoaderMagnumSP
+    - SpeedLoaderMagnumHP
+    - SpeedLoaderMagnumFMJ
+    - SpeedLoaderMagnumRubber
+    - SpeedLoaderMagnumEmpty
+    # Pistol
+    - MagazinePistolSP
+    - MagazinePistolHP
+    - MagazinePistolFMJ
+    - MagazinePistolRubber
+    - MagazinePistolEmpty
+    - MagazinePistol40SP
+    - MagazinePistol40HP
+    - MagazinePistol40FMJ
+    - MagazinePistol40Empty
+    # Pistol High Capacity
+    - MagazinePistolHighCapacitySP
+    - MagazinePistolHighCapacityHP
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityRubber
+    - MagazinePistolHighCapacityEmpty
+    # SMG
+    - MagazinePistolSubMachineGunSP
+    - MagazinePistolSubMachineGunHP
+    - MagazinePistolSubMachineGunFMJ
+    - MagazinePistolSubMachineGunEmpty
+    # Rifle LMG
+    - MagazineRifleBoxFMJ
+    - MagazineRifleBoxSP
+    - MagazineRifleBoxEmpty
+    # Rifle Heavy
+    - MagazineRifleHeavyFMJ
+    - MagazineRifleHeavyHP
+    - MagazineRifleHeavySP
+    - MagazineRifleHeavyEmpty
+    # Shotgun Speedloader
+    - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunEmpty
+    - SpeedLoaderShotgunSlug
+    - SpeedLoaderShotgunBeanbag
+    # Medical
+    - Gauze
+    - Brutepack
+    - Ointment
+    - BodyBag
 ####################################################
 
 - type: latheRecipePack
@@ -361,7 +459,7 @@
 - type: latheRecipePack
   id: SyndicateAmmoSunrise
   recipes:
-  - MagazineLightRifleBoxIncendiary
-  - MagazineLightRifleBoxUranium
-  - MagazineShotgunIncendiary
-  - MagazineShotgunBeanbag
+    - MagazineRifleBoxIncendiary
+    - MagazineRifleBoxUranium
+    - MagazineShotgunIncendiary
+    - MagazineShotgunBeanbag

@@ -1,8 +1,3 @@
-- files: ["emergency_meeting.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Taken from TG station."
-  source: "https://github.com/tgstation/tgstation/commit/97945e7d08d1457ffc27e46526a48c0453cc95e4"
-
 - files: ["tension_session.ogg"]
   license: "CC-BY-3.0"
   copyright: "Created by qwertyquerty"
@@ -62,3 +57,18 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from Citadel Station 13"
   source: "https://github.com/Skyrat-SS13/Skyrat13/commit/2d4f2d1b489590b559e4073f41b126cef56f4c50"
+
+- files: ["woosh.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from SciFiSounds via freesound.org, edit by august-sun(GitHub)/augustsun(Discord)"
+  source: "https://freesound.org/people/SciFiSounds/sounds/529925/"
+
+- files: ["stickystretch.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from sdroliasnick via freesound.org, edit by august-sun(GitHub)/augustsun(Discord)"
+  source: "https://freesound.org/people/sdroliasnick/sounds/731262/"
+
+- files: ["boing.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from stevielematt via freesound.org, edit by august-sun(GitHub)/augustsun(Discord)"
+  source: "https://freesound.org/people/stevielematt/sounds/538066/"

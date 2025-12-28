@@ -158,8 +158,9 @@
   completetime: 45
   materials:
     Steel: 1500
-    Glass: 250
-    Uranium: 50
+    Glass: 300
+    Uranium: 200
+    Plasma: 200
     Diamond: 300
 
 - type: latheRecipe

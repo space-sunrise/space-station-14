@@ -5,7 +5,8 @@
   - type: Objective
     difficulty: 3
   - type: NotJobRequirement
-    job: BlueShieldOfficer
+    jobs:
+    - BlueShieldOfficer
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
     owner: офицер «Синий щит»
@@ -40,7 +41,8 @@
   - type: Objective
     difficulty: 1.5
   - type: NotJobRequirement
-    job: NanoTrasenRepresentative
+    jobs:
+    - NanoTrasenRepresentative
   - type: StealCondition
     stealGroup: HandheldFax
     owner: job-name-ntrep

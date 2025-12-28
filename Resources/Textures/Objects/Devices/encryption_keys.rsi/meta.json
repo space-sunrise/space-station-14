@@ -37,6 +37,7 @@
     {"name": "synd_label"},
     {"name": "borg_label"},
     {"name": "ai_label"},
+    {"name": "crypt_ussp"},
     {"name": "crypt_red2"}
   ]
 }

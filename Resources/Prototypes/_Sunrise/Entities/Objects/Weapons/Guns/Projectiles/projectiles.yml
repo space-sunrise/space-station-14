@@ -1,3 +1,34 @@
+# region Base Bullets
+- type: entity
+  id: BaseBulletGrenade
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+    deleteOnCollide: false
+  - type: StartTimerOnShoot
+  - type: TimerTrigger
+    delay: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 50
+        mask:
+        - ItemMask
+        restitution: 0.05
+        friction: 0.5
+# region end
+
 - type: entity
   id: BulletAcid2
   name: acid spit
@@ -459,6 +490,33 @@
         Quantity: 20
 
 - type: entity
+  id: BulletToxGasGrenade
+  name: tox gase grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+    layers:
+      - state: primed
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 30
+    smokePrototype: TearGasSmokeWhite #TearGasSmoke
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 10
+      - ReagentId: PolytrinicAcid
+        Quantity: 15
+      - ReagentId: Lead
+        Quantity: 10
+      - ReagentId: Phlogiston
+        Quantity: 10
+
+- type: entity
   id: BulletCleanerGrenade
   name: tear gase grenade
   parent: BulletSmokeGrenade
@@ -589,6 +647,43 @@
   - type: ProjectileGrenade
     fillPrototype: PelletClusterRubber
     capacity: 30
+
+- type: entity
+  id: BulletFireBomb
+  name: fire bomb
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/ied.rsi
+    layers:
+      - state: primed
+      - state: wires
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterIncendiary
+    capacity: 10
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 3
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: TimerTrigger
+    delay: 2
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+      params:
+        volume: 1
+  - type: AmbientSound
+    range: 8
+    volume: 1
+    sound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+  - type: DeleteOnTrigger
 
 - type: entity
   id: BulletKineticTrash
@@ -774,3 +869,45 @@
     damage:
       types:
         Shock: 15
+
+- type: entity
+  id: BulletPlasma
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: arcane_barrage
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Heat: 14
+        Slash: 14
+        Structural: 35
+    penetrationThreshold: 800
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 0.35
+  - type: PointLight
+    radius: 2.5
+    color: "#dd16d395"
+    energy: 0.5
+  - type: GatheringProjectile
+
+- type: entity
+  name: wide plasma barrage
+  id: BulletPlasmaSpread
+  categories: [ HideSpawnMenu ]
+  parent: BulletPlasma
+  components:
+  - type: ProjectileSpread
+    proto: BulletPlasma
+    count: 3
+    spread: 25

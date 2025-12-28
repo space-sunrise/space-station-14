@@ -62,7 +62,6 @@
     back:
     - RubberStampNtrep
     - CaneNT
-    - HandheldFax #sunrise-edit
     - RubberStampVeto #sunrise-edit
 
 - type: chameleonOutfit

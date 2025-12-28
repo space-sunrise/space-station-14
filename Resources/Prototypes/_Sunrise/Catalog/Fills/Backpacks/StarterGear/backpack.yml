@@ -30,5 +30,5 @@
   - type: StorageFill
     contents:
     - id: WeaponSIAR52Biocode
-    - id: MagazinePistolSubMachineGunSIAR52
+    - id: MagazinePistolSubMachineGunCaselessExtended
       amount: 2

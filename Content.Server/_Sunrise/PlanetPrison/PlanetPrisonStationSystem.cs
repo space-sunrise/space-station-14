@@ -7,6 +7,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Shared._Sunrise.Shuttles;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Light.Components;
+using Content.Shared.Maps;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;

@@ -1,64 +1,24 @@
 - type: entity
   name: energy crossbow
-  id: WeaponEnergyCrossbow
-  parent: [ BaseItem, BaseSecurityContraband ]
+  id: WeaponEnergyCrossbowLarge
+  parent: [ WeaponEnergyCrossbowBase, BaseSyndicateContraband ]
   description: Fires low-damage kinetic bolts at a short range.
   components:
-  - type: Sprite
+  - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow.rsi
-    layers:
-    - state: icon
-      map: [ "icon" ]
-    - state: animation-icon
-      visible: false
-      map: [ "empty-icon" ]
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow_x64.rsi
     size: Huge
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
   - type: Gun
-    fireRate: 0.5
-    selectedMode: SemiAuto
-    angleDecay: 45
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: AmmoCounter
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.AmmoVisuals.HasAmmo:
-        empty-icon:
-          True: { visible: False }
-          False: { visible: True }
-        icon:
-          True: { visible: True }
-          False: { visible: False }
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
-    rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-  - type: BasicEntityAmmoProvider
-    proto: BulletEnergyCrossbow
-    capacity: 1
-    count: 1
-  - type: UseDelay
-    delay: 1
-  # - type: GunRequiresWield # Sunrise-TODO: отдельно сделать, добавить требование держать в две руки и прицел. Придумать как станция может его получить как в ЫЫ13
-
-
-- type: entity
-  name: mini energy crossbow
-  id: WeaponMiniEnergyCrossbow
-  parent: [ WeaponEnergyCrossbow, BaseSecurityContraband ]
-  description: Fires low-damage kinetic bolts at a short range.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Basic/mini_crossbow.rsi
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Basic/mini_crossbow.rsi
-    size: Normal
-  - type: BasicEntityAmmoProvider
-    proto: BulletMiniEnergyCrossbow
-    capacity: 1
-    count: 1
+  - type: StaticPrice
+    price: 2000

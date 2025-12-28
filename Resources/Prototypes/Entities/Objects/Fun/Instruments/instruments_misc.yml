@@ -57,12 +57,12 @@
     program: 124
   - type: Item
     size: Small
-# Лютая ЛРП механика
-#  - type: Prayable
-#    sentMessage: prayer-popup-notify-centcom-sent
-#    notificationPrefix: prayer-chat-notify-centcom
-#    verb: prayer-verbs-call
-#    verbImage: null
+    storedRotation: -90
+  - type: Prayable
+    sentMessage: prayer-popup-notify-centcom-sent
+    notificationPrefix: prayer-chat-notify-centcom
+    verb: prayer-verbs-call
+    verbImage: null
 
 - type: entity
   parent: PhoneInstrument

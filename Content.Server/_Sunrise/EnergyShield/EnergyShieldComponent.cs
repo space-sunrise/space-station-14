@@ -18,13 +18,13 @@ public sealed partial class EnergyShieldComponent : Component
     /// Звук поглощения урона
     /// </summary>
     [DataField]
-    public SoundSpecifier AbsorbSound = new SoundPathSpecifier("/Audio/Machines/energyshield_parry.ogg");
+    public SoundSpecifier AbsorbSound = new SoundPathSpecifier("/Audio/_Sunrise/Machines/energyshield_parry.ogg");
 
     /// <summary>
     /// Звук отключения щита при нехватке энергии
     /// </summary>
     [DataField]
-    public SoundSpecifier ShutdownSound = new SoundPathSpecifier("/Audio/Machines/energyshield_down.ogg");
+    public SoundSpecifier ShutdownSound = new SoundPathSpecifier("/Audio/_Sunrise/Machines/energyshield_down.ogg");
 
     /// <summary>
     /// При скольки процентах заряда можно включить щит

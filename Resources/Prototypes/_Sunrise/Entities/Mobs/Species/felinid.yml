@@ -414,7 +414,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 150
+        density: 100
         restitution: 0.0
         mask:
         - MobMask
@@ -468,7 +468,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: FootprintEmitter
   - type: Vocal
     sounds:
@@ -507,6 +507,7 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
   - type: Carriable
+    requiresNestingMob: true
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier

@@ -66,12 +66,12 @@ public sealed partial class ChangelogTab : Control
         else
             dayNice = day.ToShortDateString();
 
-        ChangelogBody.AddChild(new Label
-        {
-            Text = dayNice,
-            StyleClasses = { StyleBase.StyleClassLabelHeading },
-            Margin = new Thickness(4, 6, 0, 0)
-        });
+            ChangelogBody.AddChild(new Label
+            {
+                Text = dayNice,
+                StyleClasses = { StyleClass.LabelHeading },
+                Margin = new Thickness(4, 6, 0, 0)
+            });
 
         var first = true;
 
@@ -127,9 +127,9 @@ public sealed partial class ChangelogTab : Control
                     }
                 };
 
-                readDivider.AddChild(hBox);
-                readDivider.AddChild(new PanelContainer { StyleClasses = { StyleBase.ClassLowDivider } });
-                ChangelogBody.AddChild(readDivider);
+                    readDivider.AddChild(hBox);
+                    readDivider.AddChild(new PanelContainer { StyleClasses = { StyleClass.LowDivider } });
+                    ChangelogBody.AddChild(readDivider);
 
                 if (first)
                     readDivider.SetPositionInParent(ChangelogBody.ChildCount - 2);

@@ -10,7 +10,7 @@
     - Wall
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: RangedDamageSound
@@ -259,7 +259,7 @@
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
-          Girder:
+          CultGirder: # sunrise-edit
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -283,7 +283,7 @@
   - type: Tag
     tags:
     - Wall
-    - Debug
+
   - type: Sprite
     sprite: Structures/Walls/debug.rsi
   - type: Icon
@@ -1447,9 +1447,9 @@
   - type: IconSmooth
     key: walls
     base: mining
-  - type: RandomIconSmooth
-    randomStates:
-    - mining
+  # - type: RandomIconSmooth # sunrise-edit # We dont have diferent 2.5d sprites
+  #   randomStates:
+  #   - mining
   - type: Appearance
 
 - type: entity

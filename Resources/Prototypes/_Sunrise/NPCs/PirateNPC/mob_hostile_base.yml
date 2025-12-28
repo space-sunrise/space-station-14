@@ -1,0 +1,418 @@
+- type: entity
+  id: MobDungeonAtmos
+  abstract: true
+  components:
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme heat
+    coldDamageThreshold: -250 # Should make mobs immune to cold planets
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 1.5
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+  - type: MovedByPressure
+  - type: Insulated
+
+# region Regeneration
+- type: entity
+  id: MobPassiveRegenWeak
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 500
+    damage:
+      groups:
+        Brute: -0.5
+        Burn: -0.5
+        Airloss: -0.05
+
+- type: entity
+  id: MobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 500
+    damage:
+      groups:
+        Brute: -0.5
+        Burn: -0.5
+        Airloss: -0.05
+
+- type: entity
+  id: MobPassiveRegenMedium
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 500
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Airloss: -0.1
+
+- type: entity
+  id: MobPassiveRegenStrong
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+    damageCap: 9999
+    damage:
+      groups:
+        Brute: -0.5
+        Burn: -0.5
+        Airloss: -1
+#endregion
+
+#region Movement
+- type: entity
+  id: MobEnhancedMovement
+  abstract: true
+  components:
+  - type: MovementAlwaysTouching
+  - type: MovementIgnoreGravity
+  - type: NoSlip
+  - type: ProtectedFromStepTriggers
+  - type: Climbing
+  - type: Tool
+    speedModifier: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity # For reference 4.5 is the speed of unencumbered humans
+  id: MobMovementSpeedModifierMelee
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.2 # ~10% slowdown
+    baseSprintSpeed : 4.2 # ~10% slowdown
+
+- type: entity
+  id: MobMovementSpeedModifierEVAMelee
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.8 # ~15% slowdown
+    baseSprintSpeed : 3.8 # ~15% slowdown
+
+- type: entity
+  id: MobMovementSpeedModifierRanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 3.5
+
+- type: entity
+  id: MobMovementSpeedModifierEVARanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3 # ~15% slowdown
+    baseSprintSpeed : 3 # ~15% slowdown
+
+- type: entity
+  id: MobMovementSpeedModifierSpecial
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+
+- type: entity
+  id: MobMovementSpeedModifierBoss
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+#endregion
+
+#region Stamina
+- type: entity
+  id: MobStaminaFodder
+  abstract: true
+  components:
+  - type: Stamina
+    baseCritThreshold: 80
+
+- type: entity
+  id: MobStaminaSpecial
+  abstract: true
+  components:
+  - type: Stamina
+    baseCritThreshold: 200
+
+- type: entity
+  id: MobStaminaBoss
+  abstract: true
+  components:
+  - type: Stamina
+    baseCritThreshold: 500
+#endregion
+
+#region Dungeon boss
+- type: entity
+  id: MobHostileBossBase
+  abstract: true
+  parent:
+  - MobEnhancedMovement
+  - MobStaminaBoss
+  - MobMovementSpeedModifierBoss
+  - MobPassiveRegenMedium
+  components:
+  - type: Hands
+  - type: Puller
+  - type: Stamina
+    baseCritThreshold: 999
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+#endregion
+
+#region Inventories
+- type: entity # All slots are fillable, most of them are "hidden"
+  id: MobHumanoidInvetory
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: hostilehumanoid # Supports loadouts
+  - type: InventorySlots
+
+- type: entity # Slots for loot containers: pockets, belt, back
+  id: MobHumanoidInvetorySimplified
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: hostilehumanoidsimplified # Does not support loadouts
+  - type: InventorySlots
+#endregion
+
+#region AI packages
+- type: entity
+  id: MobHumanoidHostileAISimpleMelee
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        20
+
+- type: entity
+  id: MobHumanoidHostileAISimpleRanged
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        20
+      MeleeRange: !type:Single
+        4
+
+- type: entity
+  id: MobHumanoidHostileAIComplex
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHumanoidHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+#endregion
+
+#region NPC types
+# Human NPC, uses equipment, immune to vacuum/low pressure
+- type: entity
+  save: false
+  suffix: AI, Hostile
+  abstract: true
+  parent:
+  - MobDungeonAtmos
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  - BaseMobSpecies
+  - MobHumanoidHostileAIComplex
+  id: MobHumanoidHostileBase
+  components:
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: MobMover
+  - type: StandingState
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      40: 0.7
+      60: 0.5
+  - type: Blindable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatRotten
+      amount: 2
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Respirator
+    updateInterval: 99999 # Shouldn't run often, if ever.
+    suffocationThreshold: -100 # Should never happen.
+    damage:
+      types: {}
+    damageRecovery:
+      types: {}
+
+# NonHuman NPC base, no equipment, immune to vacuum/low pressure
+- type: entity
+  save: false
+  suffix: AI, Pirate
+  abstract: true
+  parent:
+  - BaseMob
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
+  - MobDamageable
+  - MobCombat
+  - MobDungeonAtmos
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  - MobHumanoidHostileAIComplex
+  id: MobNonHumanHostileBase
+  components:
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - Drowsiness
+    - Adrenaline
+  - type: Buckle
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: ZombieImmune
+  - type: Hands
+  - type: Puller
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      55: 0.5
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      100: Dead
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+
+#region Gibb
+- type: entity
+  abstract: true
+  id: MobNoEquipmentOnGib
+  components:
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true

@@ -10,6 +10,7 @@ using Content.Shared.Mindshield.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Weapons.Melee.InfectOnMelee;
 
@@ -36,7 +37,7 @@ public sealed class InfectOnMeleeSystem : EntitySystem
                     && !_mob.IsDead(entity)
                     && _random.Prob(GenerateHitChance(entity, component))
                     && !HasComp<ClumsyComponent>(entity)
-                    && !HasComp<ZombieComponent>(entity) 
+                    && !HasComp<ZombieComponent>(entity)
                     && !HasComp<MindShieldComponent>(entity))
                 {
                     _audio.PlayPvs(component.InfectionSound, uid);
@@ -45,7 +46,7 @@ public sealed class InfectOnMeleeSystem : EntitySystem
             }
         }
     }
-    
+
     private float GenerateHitChance(EntityUid enemy, InfectOnMeleeComponent component)
     {
         float chance = component.InfectionChance;
@@ -59,7 +60,7 @@ public sealed class InfectOnMeleeSystem : EntitySystem
 
             chance = finalChance;
         }
-        
+
         return chance;
     }
 }

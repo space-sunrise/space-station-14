@@ -20,7 +20,7 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 30
   - type: ItemSlots
@@ -117,7 +117,7 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 60
   - type: BatteryWeaponFireModes
@@ -166,11 +166,9 @@
     maxCharge: 720
     startingCharge: 720
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 60
-    autoRechargePause: true
     autoRechargePauseTime: 6
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 90
   - type: BatteryWeaponFireModes
@@ -214,7 +212,7 @@
     - state: mag-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -227,6 +225,12 @@
       - !type:AlertLevelCondition
         alertLevels:
         - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -293,7 +297,7 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -345,7 +349,7 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -405,11 +409,9 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 14 # ~2 minute
-    autoRechargePause: true
     autoRechargePauseTime: 30
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 49
   - type: BatteryWeaponFireModes
@@ -429,62 +431,6 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-
-- type: entity
-  parent: [BaseWeaponBattery, BaseGunPulseSound]
-  id: WeaponIONRifle
-  name: ion rifle
-  components:
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,5,2
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-    selectedMode: SemiAuto
-    fireRate: 0.5
-    availableModes:
-    - SemiAuto
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #25sec+60Sec Pause
-    autoRechargePause: true
-    autoRechargePauseTime: 60
-  - type: Wieldable
-  - type: GunRequiresWield
-  - type: HitscanBatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: EmpImmune
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 8
-    pvsIncrease: 0.5
-
 # Sunrise Colonial Marines
 
 - type: entity
@@ -503,7 +449,7 @@
     - state: mag-unshaded-2
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
   - type: MagazineVisuals
@@ -553,7 +499,7 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -598,7 +544,7 @@
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -647,7 +593,7 @@
   - type: Battery
     maxCharge: 8000
     startingCharge: 8000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -697,7 +643,7 @@
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: XrayLaser
     fireCost: 100
   - type: Wieldable
@@ -746,7 +692,7 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 100
   - type: Wieldable
@@ -794,7 +740,7 @@
         volume: 5
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 40
   - type: Wieldable
@@ -846,13 +792,11 @@
     availableModes:
       - SemiAuto
       - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
-    autoRechargePause: true
     autoRechargePauseTime: 10
   - type: StaticPrice
     price: 7500
@@ -893,7 +837,7 @@
         volume: -1
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 25
   - type: MultiHandedItem
@@ -926,7 +870,7 @@
     size: Small
     shape:
     - 0, 0, 1, 1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -977,7 +921,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AdvancedDisablerBolt
     fireCost: 1000
   - type: BatteryWeaponFireModes
@@ -1031,7 +975,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
@@ -1087,7 +1031,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AdvancedDisablerBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
@@ -1150,7 +1094,7 @@
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AdvancedDisablerBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
@@ -1170,3 +1114,70 @@
   - type: Battery
     maxCharge: 400000
     startingCharge: 400000
+
+# XenoBorgs
+- type: entity
+  name: xenoborg turbo-laser
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgLaserMinigun
+  description: A big gun for big "Refrigerators". Fires so fast it overheats after a short burst, but at least you’ll definitely hit your target.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    minAngle: 6
+    maxAngle: 15
+    angleIncrease: 1
+    angleDecay: 5
+    fireRate: 12
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -2
+    availableModes:
+    - FullAuto
+  - type: BatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 33
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 1
+    autoRechargeRate: 250
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  name: xenoborg X-ray cannon
+  parent: [BaseWeaponBattery, BaseXenoborgContraband]
+  id: XenoborgXrayGun
+  description: Weapon that uses concentrated x-ray energy against its target.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: BatteryAmmoProvider # Sunrise-Edit
+    proto: CartridgeXrayBeam # Sunrise-Edit
+    fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30

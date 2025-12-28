@@ -80,18 +80,6 @@
     Steel: 200
 
 - type: latheRecipe
-  id: HyposprayMedical
-  result: HyposprayMedical
-  categories:
-  - Tools
-  completetime: 3
-  materials:
-    Plastic: 100
-    Steel: 300
-    Plasma: 100
-    Glass: 100
-
-- type: latheRecipe
   id: BlankMediPen
   result: BlankMediPen
   completetime: 2
@@ -109,3 +97,11 @@
     Glass: 300
     Plasma: 100
     Silver: 50
+
+- type: latheRecipe
+  id: Ampula
+  result: Ampula
+  completetime: 2
+  materials:
+    Glass: 200
+    Steel: 50

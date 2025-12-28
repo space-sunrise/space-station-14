@@ -1,4 +1,4 @@
-﻿version: 1 # Not used right now, whatever.
+version: 1 # Not used right now, whatever.
 binds:
 - function: UIClick
   type: State
@@ -282,6 +282,14 @@ binds:
   type: State
   key: v
   mod1: Alt
+- function: InspectServerComponent
+  type: State
+  key: b
+  mod1: Alt
+- function: InspectClientComponent
+  type: State
+  key: c
+  mod1: Alt
 - function: MouseMiddle
   type: State
   key: MouseMiddle
@@ -293,7 +301,7 @@ binds:
   type: State
   key: R
   mod1: Shift
-- function: Interact # default: FlipObject (но он что-то не работает, поэтому бинд для панели будет)
+- function: FlipObject
   type: State
   key: F
 - function: TextCursorLeft
@@ -538,6 +546,7 @@ binds:
 - function: Arcade3
   type: State
   key: Z
+# Sunrise-Edit
 #- function: ToggleKnockdown
 #  type: State
 #  key: C
@@ -645,13 +654,13 @@ binds:
   key: MouseRight
   canFocus: true
 # Sunrise-Start
-- function: CockGun # Это не то о чем вы подумали, товарищ визард.
+- function: CockGun
   type: State
   key: C
-- function: ToggleStanding # Упал-отжался.
+- function: ToggleStanding
   type: State
   key: R
-- function: Jump # Да, мы прыгаем в 2д игре.
+- function: Jump
   type: State
   key: Space
 - function: LookUp

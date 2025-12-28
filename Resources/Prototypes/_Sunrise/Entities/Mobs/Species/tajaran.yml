@@ -44,18 +44,17 @@
       Female: FemaleTajaran
       Unsexed: MaleTajaran
   - type: Temperature
-    heatDamageThreshold: 400
-    coldDamageThreshold: 200
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 200
     coldDamage:
       types:
         Cold : 0.2
     heatDamage:
       types:
         Heat : 0.1
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
   - type: FlashModifier
     modifier: 1.4
   - type: Perishable
@@ -68,6 +67,8 @@
     speciesId: human
   - type: FootprintEmitter
   - type: Carriable
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
 
 - type: entity
   save: false

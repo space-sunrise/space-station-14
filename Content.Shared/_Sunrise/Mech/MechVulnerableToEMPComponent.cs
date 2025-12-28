@@ -21,7 +21,7 @@ public sealed partial class MechVulnerableToEMPComponent : Component
     {
         DamageDict = new()
         {
-            { "Shock", 30f },
+            { "Shock", 25f },
         }
     };
 

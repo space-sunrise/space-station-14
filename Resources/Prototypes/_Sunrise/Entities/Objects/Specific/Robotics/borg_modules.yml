@@ -131,6 +131,7 @@
     hands:
     - item: StunbatonBorg
     - item: FlashBorg
+    - item: WeaponDisablerSMGBorg
 
 - type: entity
   id: BorgModuleAdvancedCombat
@@ -144,7 +145,8 @@
   - type: ItemBorgModule
     hands:
     - item: Truncheon
-    - item: WeaponLaserBorg
+    - item: WeaponRifleLecterB
+    - item: WeaponHeavyLaserBorg
     - item: HoloprojectorSecurityBorg
 
 - type: entity
@@ -159,6 +161,7 @@
   - type: ItemBorgModule
     hands:
     - item: CombatKnife
+    - item: WeaponPistolG22AutoBorg
     - item: WeaponLaserBorg
     - item: HoloprojectorSecurityBorg
 
@@ -284,3 +287,36 @@
     - item: HypoBorgStandardERT
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Objects/Tools/items_cyborg.rsi, state: crowbar_cyborg }
+
+# Xeno Borgs Stuff
+- type: entity
+  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleXray
+  name: x-ray xenoborg module
+  description: Module with a x-ray cannon gun.
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_heavy
+    - state: icon-grappling-gun
+  - type: ItemBorgModule
+    hands:
+    - item: XenoborgXrayGun
+  - type: BorgModuleIcon
+    icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: xenoborg-laser4-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleTurboLaser
+  name: turbo-laser xenoborg module
+  description: Module with a heavy machinegun laser.
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_heavy
+    - state: icon-combat
+  - type: ItemBorgModule
+    hands:
+    - item: XenoborgLaserMinigun
+  - type: BorgModuleIcon
+    icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
