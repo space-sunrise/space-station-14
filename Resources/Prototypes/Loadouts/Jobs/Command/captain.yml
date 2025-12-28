@@ -39,64 +39,6 @@
   id: CaptainCap
   equipment:
     head: ClothingHeadHatCapcap
-# Sunrise - Start
-- type: loadout
-  id: CaptainCapWhite
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 13h
-  equipment:
-    head: ClothingHeadCaptainCapWhite
-
-- type: loadout
-  id: CaptainCapBlack
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 35h
-  equipment:
-    head: ClothingHeadCaptainCapBlack
-# Sunrise - End
-
-- type: loadout #Sunrise-add
-  id: EliteCaptainCap
-  sponsorOnly: false
-  equipment:
-    head: ClothingHeadEliteCaptainCap
-
-# Sunrise - Start
-- type: loadout
-  id: CaptainGloves
-  equipment:
-    gloves: ClothingHandsGlovesCaptain
-
-- type: loadout
-  id: CaptainGlovesWhite
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 13h
-  equipment:
-    gloves: ClothingHandsGlovesCaptainCapWhite
-
-- type: loadout
-  id: CaptainGlovesBlack
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 35h
-  equipment:
-    gloves: ClothingHandsGlovesCaptainCapBlack
-# Sunrise - End
 
 # Neck
 - type: loadout
@@ -113,15 +55,6 @@
   id: CaptainMantle
   equipment:
     neck: ClothingNeckMantleCap
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterCap
-
-- type: loadout #Sunrise-add
-  id: CaptainEliteCloak
-  sponsorOnly: false
-  equipment:
-    head: ClothingEliteNeckCloakCaptain
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterCap
@@ -153,18 +86,6 @@
   equipment:
     outerClothing: ClothingOuterArmorCaptainCarapace
 
-#Sunrise-Start
-- type: loadout
-  id: CaptainOuterCoat
-  equipment:
-    outerClothing: ClothingOuterCoatCaptain
-
-- type: loadout
-  id: CaptainOuterOverCoat
-  sponsorOnly: false
-  equipment:
-    outerClothing: ClothingOuterCoatCaptainOvercoat
-#Sunrise-End
 - type: loadout
   id: CaptainWintercoat
   equipment:

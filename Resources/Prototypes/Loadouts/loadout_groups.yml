@@ -154,6 +154,12 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
+  # Sunrise - Start: captain cap uniforms
+  - CaptainJumpsuitCapWhite
+  - CaptainJumpsuitCapBlack
+  - CaptainJumpskirtCapWhite
+  - CaptainJumpskirtCapBlack
+  # Sunrise - End
 
 - type: loadoutGroup
   id: CaptainNeck
