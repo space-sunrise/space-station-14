@@ -470,6 +470,15 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct a floor tile
         if (target == null)
         {
+            // Starlight Start: RPD
+            if (TryComp<RCDComponent>(uid, out var rcd) && rcd.IsRPD)
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
+                return false;
+            }
+            // Starlight End
+
             // The tile is empty
             if (tile.Tile.IsEmpty)
             {
@@ -504,13 +513,36 @@ public sealed class RCDSystem : EntitySystem
         else
         {
             // The object is not in the whitelist
-            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.Deconstructable)
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible)) // Starlight edit: RPD
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
 
                 return false;
             }
+
+            // Starlight Start: RPD
+            if (TryComp<RCDComponent>(uid, out var rcd) && rcd.IsRPD)
+            {
+                // RPD can only deconstruct entities flagged rpd: true
+                if (!deconstructible.RpdDeconstructable)
+                {
+                    if (popMsgs)
+                        _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
+                    return false;
+                }
+            }
+            else
+            {
+                // Normal RCD cannot deconstruct RPD-only entities
+                if (!deconstructible.Deconstructable || deconstructible.RpdDeconstructable)
+                {
+                    if (popMsgs)
+                        _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
+                    return false;
+                }
+            }
+            // Starlight End
         }
 
         return true;

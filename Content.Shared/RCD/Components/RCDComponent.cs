@@ -37,8 +37,8 @@ public sealed partial class RCDComponent : Component
     /// <summary>
     /// Indicates whether this is an RPD
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool IsRPD;
+    [DataField("isRPD"), AutoNetworkedField]
+    public bool IsRPD { get; set; } = false;
     // Starlight End
 
     /// <summary>
