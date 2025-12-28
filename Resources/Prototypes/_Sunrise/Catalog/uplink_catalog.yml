@@ -2017,9 +2017,9 @@
   productEntity: CrateCybersunRipleyBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 16
+    Telecrystal: 14
   cost:
-    Telecrystal: 20
+    Telecrystal: 18 # нужно купить карточку для доступа в мех
   categories:
   - UplinkJob
   restockTime: 1800
