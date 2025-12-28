@@ -39,12 +39,64 @@
   id: CaptainCap
   equipment:
     head: ClothingHeadHatCapcap
+# Sunrise - Start
+- type: loadout
+  id: CaptainCapWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    head: ClothingHeadCaptainCapWhite
+
+- type: loadout
+  id: CaptainCapBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    head: ClothingHeadCaptainCapBlack
+# Sunrise - End
 
 - type: loadout #Sunrise-add
   id: EliteCaptainCap
   sponsorOnly: false
   equipment:
     head: ClothingHeadEliteCaptainCap
+
+# Sunrise - Start
+- type: loadout
+  id: CaptainGloves
+  equipment:
+    gloves: ClothingHandsGlovesCaptain
+
+- type: loadout
+  id: CaptainGlovesWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    gloves: ClothingHandsGlovesCaptainCapWhite
+
+- type: loadout
+  id: CaptainGlovesBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    gloves: ClothingHandsGlovesCaptainCapBlack
+# Sunrise - End
 
 # Neck
 - type: loadout

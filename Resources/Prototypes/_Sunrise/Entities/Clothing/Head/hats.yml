@@ -8,13 +8,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -26,13 +24,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/ntrg_hat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/ntrg_hat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -44,13 +40,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -84,13 +78,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -102,13 +94,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -131,13 +121,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/caphat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/caphat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -160,13 +148,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadPrisonGuard
@@ -424,13 +410,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
@@ -598,13 +582,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 # SUNRISE EDIT
 - type: entity
@@ -622,13 +604,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -640,13 +620,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -665,13 +643,11 @@
       head:
       - state: equipped-HELMET
         shader: unshaded
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -683,13 +659,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -701,13 +675,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -719,13 +691,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadHatHardhatBase
@@ -737,13 +707,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -766,13 +734,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -783,13 +749,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/pathologist_helmet.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/pathologist_helmet.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -812,13 +776,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/garrisoncap_adj.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/garrisoncap_adj.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -830,13 +792,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -848,13 +808,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHeadBase
@@ -888,13 +846,11 @@
     sprite: _Sunrise/Clothing/Head/Hats/mailman.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/mailman.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 #чёрная свадебная фата SUNRISE
 - type: entity
@@ -1093,3 +1049,35 @@
     - HeadTop
     - HeadSide
     - FacialHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadCaptainCapWhite
+  name: captain's cap
+  description: A white officer cap made for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/white_cap_hat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/white_cap_hat.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadCaptainCapBlack
+  name: captain's cap (black)
+  description: A black officer cap made for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/black_cap_hat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/black_cap_hat.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon

@@ -39,6 +39,7 @@ loadout-group-engineering-trinkets = Безделушки ИНЖ
 loadout-group-hos-gun = ГСБ, оружие
 loadout-group-mail-backpack = Почтальон, рюкзак
 loadout-group-mail-jumpsuit = Почтальон, комбинезон
+loadout-group-captain-gloves = Капитан, перчатки
 loadout-group-medical-doctor-neck = Врач, шея
 loadout-group-medical-trinkets = Безделушки МЕД
 loadout-group-nanotrasenrepresentative-jumpsuit = Представитель NT, комбинезон
