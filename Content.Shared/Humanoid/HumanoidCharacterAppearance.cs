@@ -43,7 +43,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public Color EyeColor { get; set; } = Color.Black;
 
     [DataField]
-    public Color SkinColor { get; set; } = Humanoid.SkinColor.ValidHumanSkinTone;
+    public Color SkinColor { get; set; } = Color.FromHsv(new Vector4(0.07f, 0.2f, 1f, 1f));
 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
@@ -115,15 +115,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Markings = markings;
         Width = width;
         Height = height;
-        HairGradientEnabled = hairGradientEnabled;
-        HairGradientSecondaryColor = hairGradientSecondaryColor == default ? Color.White : ClampColor(hairGradientSecondaryColor);
-        HairGradientDirection = hairGradientDirection;
-        FacialHairGradientEnabled = facialHairGradientEnabled;
-        FacialHairGradientSecondaryColor = facialHairGradientSecondaryColor == default ? Color.White : ClampColor(facialHairGradientSecondaryColor);
-        FacialHairGradientDirection = facialHairGradientDirection;
-        AllMarkingsGradientEnabled = allMarkingsGradientEnabled;
-        AllMarkingsGradientSecondaryColor = allMarkingsGradientSecondaryColor == default ? Color.White : ClampColor(allMarkingsGradientSecondaryColor);
-        AllMarkingsGradientDirection = allMarkingsGradientDirection;
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
@@ -316,6 +307,60 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             return MathHelper.Clamp01(channel + random.Next(-25, 25) / 100f);
         }
+
+        List<Color> GetComplementaryColors(Color color, double angle)
+        {
+            var hsl = Color.ToHsl(color);
+
+            var hVal = hsl.X + angle;
+            hVal = hVal >= 0.360 ? hVal - 0.360 : hVal;
+            var positiveHSL = new Vector4((float)hVal, hsl.Y, hsl.Z, hsl.W);
+
+            var hVal1 = hsl.X - angle;
+            hVal1 = hVal1 <= 0 ? hVal1 + 0.360 : hVal1;
+            var negativeHSL = new Vector4((float)hVal1, hsl.Y, hsl.Z, hsl.W);
+
+            var c0 = Color.FromHsl(positiveHSL);
+            var c1 = Color.FromHsl(negativeHSL);
+
+            var palette = new List<Color> { color, c0, c1 };
+            return palette;
+        }
+
+        // return a list of triadic complementary colors
+        List<Color> GetTriadicComplementaries(Color color)
+        {
+            return GetComplementaryColors(color, 0.120);
+        }
+
+        // return a list of split complementary colors
+        List<Color> GetSplitComplementaries(Color color)
+        {
+            return GetComplementaryColors(color, 0.150);
+        }
+
+        // return a list containing the base color and two copies of a single complemenary color
+        List<Color> GetOneComplementary(Color color)
+        {
+            return GetComplementaryColors(color, 0.180);
+        }
+
+        Color SquashToSkinLuminosity(Color skinColor, Color toSquash)
+        {
+            var skinColorHSL = Color.ToHsl(skinColor);
+            var toSquashHSL = Color.ToHsl(toSquash);
+
+            // check if the skin color is as dark as or darker than the marking color:
+            if (toSquashHSL.Z <= skinColorHSL.Z)
+            {
+                // if it is, don't fuck with it
+                return toSquash;
+            }
+
+            // otherwise, create a new color with the H, S, and A of toSquash, but the L of skinColor
+            var newColor = new Vector4(toSquashHSL.X, toSquashHSL.Y, skinColorHSL.Z, toSquashHSL.W);
+            return Color.FromHsl(newColor);
+        }
     }
 
     public static Color ClampColor(Color color)
@@ -331,18 +376,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var hairColor = ClampColor(appearance.HairColor);
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
-
-        var hairGradientEnabled = appearance.HairGradientEnabled;
-        var hairGradientSecondaryColor = ClampColor(appearance.HairGradientSecondaryColor);
-        var hairGradientDirection = appearance.HairGradientDirection;
-
-        var facialHairGradientEnabled = appearance.FacialHairGradientEnabled;
-        var facialHairGradientSecondaryColor = ClampColor(appearance.FacialHairGradientSecondaryColor);
-        var facialHairGradientDirection = appearance.FacialHairGradientDirection;
-
-        var allMarkingsGradientEnabled = appearance.AllMarkingsGradientEnabled;
-        var allMarkingsGradientSecondaryColor = ClampColor(appearance.AllMarkingsGradientSecondaryColor);
-        var allMarkingsGradientDirection = appearance.AllMarkingsGradientDirection;
 
         var width = appearance.Width;
         var height = appearance.Height;
@@ -427,16 +460,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             appearance.FacialHairMarkingEffectType,
             facialHairExtendedColor,
             width,
-            height,
-            hairGradientEnabled,
-            hairGradientSecondaryColor,
-            hairGradientDirection,
-            facialHairGradientEnabled,
-            facialHairGradientSecondaryColor,
-            facialHairGradientDirection,
-            allMarkingsGradientEnabled,
-            allMarkingsGradientSecondaryColor,
-            allMarkingsGradientDirection);
+            height);
     }
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
     {
