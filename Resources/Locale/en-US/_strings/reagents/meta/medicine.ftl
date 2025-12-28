@@ -156,3 +156,6 @@ reagent-desc-haloperidol = Removes most stimulating and hallucinogenic drugs. Re
 
 reagent-name-warfarin = warfarin
 reagent-desc-warfarin = Commonly used as an anticoagulant medication. Causes blood to have difficulty forming clots. Can cause internal bleeding when overdosed.
+
+reagent-name-apoptodon = apoptodon
+reagent-desc-apoptodon = Advanced cryo-compatible regenerative solution; slows decay but inflicts mild radiation and cellular damage. Works on the dead.

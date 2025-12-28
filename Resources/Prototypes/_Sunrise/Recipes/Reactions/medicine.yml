@@ -1,18 +1,4 @@
 - type: reaction
-  id: Desoantizyne
-  reactants:
-    Potassium:
-      amount: 4
-    Nitrogen:
-      amount: 1
-    Ephedrine:
-      amount: 5
-    Razorium:
-      amount: 3
-  products:
-    Desoantizyne: 2.7
-
-- type: reaction
   id: Apoptodon
   reactants:
     Cryoxadone:
