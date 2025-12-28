@@ -26,7 +26,7 @@ station-ai-fixer-console-window-action-progress-purge = Удаление вып�
 station-ai-fixer-console-window-action-progress-eta = Осталось: {$time} {$units}
 
 station-ai-fixer-console-window-flavor-left = Блокируйте консоль, когда она не используется
-station-ai-fixer-console-window-flavor-right = v4.0.4
+station-ai-fixer-console-window-flavor-right = версия 4.0.4
 
 station-ai-fixer-console-window-continue-action = Продолжить
 station-ai-fixer-console-window-cancel-action = Отмена
