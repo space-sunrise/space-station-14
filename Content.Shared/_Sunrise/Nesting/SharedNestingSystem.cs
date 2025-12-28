@@ -29,7 +29,7 @@ public abstract class SharedNestingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NestingMobComponent, GettingPickedUpAttemptEvent>(OnGettingPickupAttempt);
+        SubscribeLocalEvent<NestingMobComponent, GetVerbsEvent<AlternativeVerb>>(AddNestingPickupAltVerb);
         SubscribeLocalEvent<NestingMobComponent, PickupAttemptEvent>(OnPickupAttempt);
         SubscribeLocalEvent<NestingMobComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<NestingMobComponent, ContainerIsInsertingAttemptEvent>(OnHandEquippedAttempt);
@@ -136,10 +136,27 @@ public abstract class SharedNestingSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnGettingPickupAttempt(EntityUid uid, NestingMobComponent component, ref GettingPickedUpAttemptEvent args)
+    private void AddNestingPickupAltVerb(EntityUid uid, NestingMobComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        args.Cancel();
-        StartNestingPickupDoAfter(args.User, args.Item);
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        if (component.InContainer)
+            return;
+
+        if (args.User == args.Target)
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                StartNestingPickupDoAfter(args.User, uid);
+            },
+            Text = Loc.GetString("pick-up-verb-get-data-text"),
+            Priority = 2
+        };
+        args.Verbs.Add(verb);
     }
 
     private void StartNestingPickupDoAfter(EntityUid user, EntityUid item)

@@ -109,6 +109,11 @@ public abstract class SharedItemSystem : EntitySystem
         if (args.Handled)
             return;
 
+        // Sunrise-start
+        if (HasComp<NestingMobComponent>(uid))
+            return;
+        // Sunrise-end
+
         args.Handled = _handsSystem.TryPickup(args.User, uid, null, animateUser: false);
     }
 

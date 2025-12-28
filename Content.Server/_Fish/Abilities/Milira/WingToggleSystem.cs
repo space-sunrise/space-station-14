@@ -37,6 +37,7 @@ public sealed class WingToggleSystem : EntitySystem
     private void OnMapInit(EntityUid uid, WingToggleComponent component, MapInitEvent args)
     {
         _actions.AddAction(uid, ref component.ActionEntity, component.Action, uid);
+        UpdateActionToggle(uid, component);
     }
 
     private void OnToggleAction(EntityUid uid, WingToggleComponent component, ref ToggleActionEvent args)
@@ -93,6 +94,7 @@ public sealed class WingToggleSystem : EntitySystem
 
         component.WingsOpened = openTarget;
         Dirty(uid, component);
+        UpdateActionToggle(uid, component);
 
         if (component.WingsOpened)
         {
@@ -105,6 +107,14 @@ public sealed class WingToggleSystem : EntitySystem
             RemCompDeferred<JumpAbilityComponent>(uid);
         }
         return true;
+    }
+
+    private void UpdateActionToggle(EntityUid uid, WingToggleComponent component)
+    {
+        if (component.ActionEntity == null)
+            return;
+
+        _actions.SetToggled(component.ActionEntity.Value, component.WingsOpened);
     }
 
     private void OnShutdown(EntityUid uid, WingToggleComponent component, ComponentShutdown args)
