@@ -41,10 +41,11 @@
     prototype: Milira
     requiredLegs: 2
   - type: Temperature
-    heatDamageThreshold: 313
-    coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 313
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.1 #per second, scales with temperature & other constants
@@ -52,7 +53,7 @@
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
   - type: Stamina
-    critThreshold: 100 # не убавляйте милирам стамину в угоду баланса
+    baseCritThreshold: 100 # не убавляйте милирам стамину в угоду баланса
   - type: Vocal
     sounds:
       Male: MaleHuman
