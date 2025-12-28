@@ -40,6 +40,7 @@ public sealed class DisplacementMapSystem : EntitySystem
 
         EnsureDisplacementIsNotOnSprite(sprite, key);
 
+        // Sunrise edit start - градиенты
         if (data.ShaderOverride is not null)
         {
             if (shaderOverride is not null)
@@ -51,7 +52,7 @@ public sealed class DisplacementMapSystem : EntitySystem
             else
                 sprite.Comp.LayerSetShader(index, data.ShaderOverride);
         }
-        // Sunrise-End
+        // Sunrise edit end
 
         //allows you not to write it every time in the YML
         foreach (var pair in data.SizeMaps)

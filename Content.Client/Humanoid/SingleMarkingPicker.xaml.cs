@@ -242,6 +242,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {
+            // Sunrise edit start - градиенты
             MarkingEffect selectorColor;
             var selectorType = MarkingEffectType.Color;
             if(marking.MarkingEffects == null)
@@ -258,16 +259,21 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             };
             // selector.Color = marking.MarkingColors[i];
             selector.CurrentType = selectorType;
+            // Sunrise edit end
 
             var colorIndex = i;
             selector.OnColorChanged += color =>
             {
-                var newCol = color.Colors["base"];
-                if (marking.MarkingColors[colorIndex] != newCol)
+                // Sunrise edit start - градиенты
+                if (!color.Colors.TryGetValue("base", out var newCol))
+                    newCol = Color.White;
+
+                if (marking.MarkingColors.Count >= colorIndex && marking.MarkingColors[colorIndex] != newCol)
                     marking.SetColor(colorIndex, newCol);
 
-                if(marking.MarkingEffects?[colorIndex].Equals(color) != true)
+                if (marking.MarkingEffects?.Count >= colorIndex && marking.MarkingEffects?[colorIndex].Equals(color) != true)
                     marking.SetMarkingEffect(colorIndex, color.Clone());
+                // Sunrise edit end
 
                 OnColorChanged!((_slot, marking));
             };

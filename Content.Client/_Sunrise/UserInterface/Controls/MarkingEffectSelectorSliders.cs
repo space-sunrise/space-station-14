@@ -7,6 +7,11 @@ namespace Content.Client._Sunrise.UserInterface.Controls;
 
 public sealed class MarkingEffectSelectorSliders : Control
 {
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+
+    private readonly ISawmill _sawmill;
+
     private MarkingEffect Effect { get; set; }
 
     private static readonly Dictionary<MarkingEffectType, IMarkingEffectUiBuilder> UiBuilders = new()
@@ -19,7 +24,7 @@ public sealed class MarkingEffectSelectorSliders : Control
     private readonly Dictionary<string, CustomColorSelectorSliders> _colorSelectors = new();
 
     private readonly OptionButton _typeSelector;
-    private readonly List<MarkingEffectType> _types = new();
+    private readonly List<MarkingEffectType> _types = [];
 
     private MarkingEffectType _currentType;
 
@@ -44,13 +49,16 @@ public sealed class MarkingEffectSelectorSliders : Control
 
     public MarkingEffectSelectorSliders(MarkingEffect? defaultEffect = null)
     {
+        IoCManager.InjectDependencies(this);
+        _sawmill = _log.GetSawmill(nameof(MarkingEffectSelectorSliders));
+
         defaultEffect ??= ColorMarkingEffect.White;
 
         _typeSelector = new OptionButton();
         _typeSelector.HorizontalExpand = true;
         foreach (var type in Enum.GetValues<MarkingEffectType>())
         {
-            _typeSelector.AddItem(Loc.GetString($"marking-effect-type-{type.ToString().ToLower()}"));
+            _typeSelector.AddItem(_loc.GetString($"marking-effect-type-{type.ToString().ToLower()}"));
             _types.Add(type);
         }
 
@@ -83,18 +91,17 @@ public sealed class MarkingEffectSelectorSliders : Control
         _toggleContainer = new BoxContainer();
         bodyBox.AddChild(_toggleContainer);
 
-
         _currentType = defaultEffect.Type;
         _typeSelector.TrySelect(_types.IndexOf(_currentType));
         Effect = defaultEffect;
         Populate(_currentType, defaultEffect);
     }
 
-    public CustomColorSelectorSliders CreateSelector(string key = "base", MarkingEffectType type = MarkingEffectType.Color)
+    public void CreateSelector(string key = "base", MarkingEffectType type = MarkingEffectType.Color)
     {
         var colorSelector = new CustomColorSelectorSliders(
             CustomColorSelectorSliders.ColorSelectorType.Hsv,
-            Loc.GetString($"marking-effect-{type.ToString().ToLower()}-color-{key}"));
+            _loc.GetString($"marking-effect-{type.ToString().ToLower()}-color-{key}"));
 
         colorSelector.HorizontalExpand = true;
         colorSelector.HorizontalAlignment = HAlignment.Stretch;
@@ -104,7 +111,7 @@ public sealed class MarkingEffectSelectorSliders : Control
 
         colorSelector.OnColorChanged += _ => OnColorsChanged();
 
-        _colorSelectors.Add(key, colorSelector);
+        _colorSelectors.TryAdd(key, colorSelector);
 
         var selectorContainer = new BoxContainer
         {
@@ -114,8 +121,6 @@ public sealed class MarkingEffectSelectorSliders : Control
 
         _selectorsContainer.AddChild(selectorContainer);
         selectorContainer.AddChild(colorSelector);
-
-        return colorSelector;
     }
 
     public void CreateSlider(string label,
@@ -145,7 +150,6 @@ public sealed class MarkingEffectSelectorSliders : Control
         };
         spinBox.InitDefaultButtons();
         spinBox.Value = defaultValue;
-
 
 
         sliderContainer.AddChild(sliderLabel);
@@ -183,8 +187,6 @@ public sealed class MarkingEffectSelectorSliders : Control
             HorizontalExpand = true,
         };
 
-        button.OnToggled += _ => OnColorsChanged();
-
         _toggleContainer.AddChild(button);
 
         BindToggle(button, onValueChanged);
@@ -199,7 +201,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         };
     }
 
-    private bool IsSpinBoxValid(int value, float min, float max)
+    private static bool IsSpinBoxValid(int value, float min, float max)
     {
         return (value >= min) && (value <= max);
     }
@@ -221,7 +223,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         _slidersContainer.DisposeAllChildren();
         _toggleContainer.DisposeAllChildren();
 
-        Logger.Debug($"{defaultEffect}");
+        _sawmill.Verbose($"{defaultEffect}");
 
         defaultEffect ??= type switch
         {
@@ -236,7 +238,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         if (UiBuilders.TryGetValue(type, out var builder))
             builder.BuildUI(Effect, this);
         else
-            Logger.Warning($"No UI builder for marking effect: {type}");
+            _sawmill.Warning($"No UI builder for marking effect: {type}");
     }
 }
 

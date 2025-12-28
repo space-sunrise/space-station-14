@@ -334,6 +334,10 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
+
+                if (newColor.marking.MarkingEffects.Count == 0)
+                    return;
+
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairExtendedColor(newColor.marking.MarkingEffects[0]));
                 UpdateCMarkingsHair();
@@ -344,6 +348,10 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
+
+                if (newColor.marking.MarkingEffects.Count == 0)
+                    return;
+
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.MarkingEffects[0]));
                 UpdateCMarkingsFacialHair();
@@ -364,6 +372,12 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
+
+                // Sunrise edit start - градиенты
+                if (newColor.marking.MarkingColors.Count == 0)
+                    return;
+                // Sunrise edit end
+
                 var newExtended = newColor.marking.MarkingEffects[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
@@ -384,6 +398,12 @@ namespace Content.Client.Lobby.UI
             {
                 if (Profile is null)
                     return;
+
+                // Sunrise edit start - градиенты
+                if (newColor.marking.MarkingColors.Count == 0)
+                    return;
+                // Sunrise edit end
+
                 var newExtended = newColor.marking.MarkingEffects[0].Clone();
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
