@@ -221,7 +221,7 @@
   recipeUnlocks:
     - AdvancedDefibrillatorCompact
   technologyPrerequisites:
-    - CompactDefibrilation
+    - CompactDefibrillation
   radioChannels:
   - Medical
 
